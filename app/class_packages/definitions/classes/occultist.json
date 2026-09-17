@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "key": "occultist",
+  "class_key": "pathfinder-class:occultist",
+  "class_name": "Occultist",
+  "governing_ability": "intelligence",
+  "optional_blocks": ["inquisitor_features", "spells_known", "spell_level_overview"],
+  "external_systems": ["traditional_spontaneous_casting", "mental_focus", "implements", "focus_powers"],
+  "resource_modules": [],
+  "passive_effects": [
+    {
+      "key": "magic_item_skill",
+      "feature_tokens": ["magic-item-skill"],
+      "targets": ["skill:use_magic_device"],
+      "progression": "half_level_minimum_one",
+      "bonus_type": "untyped",
+      "source": "Occultist: Magic Item Skill",
+      "minimum_level": 2
+    }
+  ],
+  "choice_providers": [
+    {
+      "key": "occultist-implements",
+      "label": "Implement Schools",
+      "feature_tokens": ["implements"],
+      "option_families": ["occultist_implement"],
+      "minimum": 0,
+      "maximum": 7,
+      "minimum_levels": [1, 1, 2, 6, 10, 14, 18],
+      "maximum_levels": [1, 1, 2, 6, 10, 14, 18],
+      "description": "Choose two implement schools at 1st level and another at 2nd level and every 4 levels thereafter. A school may be selected more than once where the class rules allow it."
+    }
+  ],
+  "power_providers": [
+    {
+      "key": "occultist-focus-powers",
+      "label": "Focus Powers",
+      "family": "occultist_focus_power",
+      "feature_tokens": ["focus-powers"],
+      "slot_levels": [1, 3, 5, 7, 9, 11, 13, 15, 17, 19],
+      "description": "Choose one additional focus power at 1st level and every odd level thereafter. Implement schools separately grant their base focus powers."
+    }
+  ],
+  "notes": "Implement schools, their granted spell lists and base powers, invested mental focus, resonant powers, and selectable focus powers use separate reusable systems."
+}

@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "key": "investigator",
+  "class_key": "pathfinder-class:investigator",
+  "class_name": "Investigator",
+  "governing_ability": "intelligence",
+  "optional_blocks": ["inquisitor_features", "spells_known", "spell_level_overview"],
+  "external_systems": [
+    "traditional_prepared_casting",
+    "investigator_formula_book",
+    "inspiration",
+    "studied_combat",
+    "studied_strike",
+    "investigator_talents"
+  ],
+  "resource_modules": [],
+  "passive_effects": [],
+  "notes": "Extracts use the shared prepared-casting book. Inspiration, target-bound Studied Combat and Studied Strike, and retained Investigator Talent slots are handled by the shared class-feature and combat services."
+}

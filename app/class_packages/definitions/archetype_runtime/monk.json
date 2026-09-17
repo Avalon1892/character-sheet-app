@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "class_key": "pathfinder-class:monk",
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:monk:kata-master",
+      "system_features": ["panache"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:monk:master-of-many-styles",
+      "choice_handling": "automatic",
+      "choice_handling_note": "Permanent style feats use the shared Feat picker and advancement budget; wildcard style slots are chosen transiently whenever styles change and therefore are not persisted as one fixed archetype choice."
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:monk:qinggong-monk",
+      "power_providers": [
+        {"key": "qinggong-ki-powers", "label": "Qinggong Ki Powers", "family": "ki_power", "feature_tokens": ["ki-power"], "slot_levels": [4, 5, 7, 11, 12, 13, 15, 17, 17, 19, 20], "description": "Optionally replace each listed Monk ability with one qualifying Ki power. The power picker enforces imported level and named prerequisites; costs spend the shared Ki pool."}
+      ],
+      "system_features": ["ki-power"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:monk:scaled-fist",
+      "governing_ability": "charisma",
+      "choice_providers": [
+        {"key": "scaled-fist-energy", "label": "Draconic Energy", "feature_tokens": ["draconic-fury"], "minimum": 1, "maximum": 1, "description": "Choose the permanent damage type used by Draconic Fury and related abilities.", "fixed_options": [
+          {"key": "acid", "name": "Acid"}, {"key": "cold", "name": "Cold"}, {"key": "electricity", "name": "Electricity"}, {"key": "fire", "name": "Fire"}
+        ]}
+      ],
+      "resource_modules": [
+        {"key": "scaled_fist", "title": "Scaled Fist", "governing_ability": "charisma", "resources": [
+          {"key": "draconic_fury", "name": "Draconic Fury", "feature_tokens": ["draconic-fury"], "progression": "zero", "description": "Spend 1 ki point as a swift action to add the chosen energy damage to natural and unarmed attacks for a number of rounds equal to half the Monk level.", "can_activate": true, "activate_on_spend": true, "tracks_uses": false, "external_cost_key": "ki_pool", "use_cost": 1}
+        ]}
+      ],
+      "system_features": ["draconic-fury"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:monk:sohei",
+      "resource_modules": [
+        {"key": "sohei", "title": "Sohei", "governing_ability": "wisdom", "resources": [
+          {"key": "monastic_mount", "name": "Monastic Mount", "feature_tokens": ["monastic-mount"], "progression": "zero", "description": "Spend 1 ki point to grant the adjacent mount temporary hit points equal to twice Monk level for 1 hour per level, together with currently unlocked mount benefits.", "tracks_uses": false, "external_cost_key": "ki_pool", "use_cost": 1},
+          {"key": "weapon_training", "name": "Weapon Training", "feature_tokens": ["weapon-training"], "progression": "one", "description": "Record the weapon group selected at 6th level and additional groups at 12th and 18th level.", "choice_options": ["Axes", "Blades, Heavy", "Blades, Light", "Bows", "Close", "Crossbows", "Double", "Flails", "Hammers", "Monk", "Natural", "Polearms", "Spears", "Thrown"]}
+        ]}
+      ],
+      "system_features": ["monastic-mount", "weapon-training"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:monk:soul-shepherd",
+      "resource_modules": [
+        {"key": "soul_shepherd", "title": "Soul Shepherd", "governing_ability": "wisdom", "resources": [
+          {"key": "calming_strike", "name": "Calming Strike", "feature_tokens": ["calming-strike"], "progression": "level", "description": "Daily uses equal Monk level. After an unarmed hit against incorporeal undead, spend a use to apply calm spirit on a failed Will save; a haunt is targeted by a touch attack instead."},
+          {"key": "spirit_sense", "name": "Spirit Sense", "feature_tokens": ["spirit-sense"], "progression": "zero", "minimum_class_level": 12, "description": "Spend 1 ki point as a swift action to notice, locate, and distinguish living and undead creatures within 30 feet for rounds equal to Wisdom modifier (minimum 1).", "tracks_uses": false, "external_cost_key": "ki_pool", "use_cost": 1},
+          {"key": "yamarajs_judgment", "name": "Yamaraj's Judgment", "feature_tokens": ["yamaraj-s-judgment", "judgment"], "progression": "zero", "minimum_class_level": 15, "description": "Spend 1 ki point as a standard action to attempt the archetype's targeted dispel check against an effect imprisoning a soul. Spend 1 additional ki point for the optional +4 check bonus.", "tracks_uses": false, "external_cost_key": "ki_pool", "use_cost": 1}
+        ]}
+      ],
+      "system_features": ["calming-strike", "spirit-sense", "judgment"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:monk:water-dancer",
+      "governing_ability": "charisma",
+      "choice_handling": "automatic",
+      "choice_handling_note": "Water is the archetype's fixed elemental focus. Wild talents use the shared Kineticist power/resource presentation and are restricted to Water options by the archetype rules.",
+      "system_features": ["burn", "elemental-focus"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:monk:zen-archer",
+      "choice_providers": [
+        {"key": "zen-archer-weapon-focus", "label": "Zen Archer Weapon Focus", "feature_tokens": ["weapon-focus"], "minimum": 1, "maximum": 1, "minimum_class_level": 2, "description": "Choose the bow type for the 2nd-level Weapon Focus bonus feat.", "fixed_options": [
+          {"key": "longbow", "name": "Longbow"}, {"key": "shortbow", "name": "Shortbow"}, {"key": "composite-longbow", "name": "Composite Longbow"}, {"key": "composite-shortbow", "name": "Composite Shortbow"}
+        ]}
+      ],
+      "system_features": ["weapon-focus"]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "key": "fighter",
+  "class_key": "pathfinder-class:fighter",
+  "class_name": "Fighter",
+  "governing_ability": "strength",
+  "optional_blocks": ["inquisitor_features"],
+  "external_systems": [
+    "fighter_bonus_combat_feats",
+    "fighter_weapon_training",
+    "fighter_armor_training"
+  ],
+  "bonus_feat_levels": [1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20],
+  "bonus_feat_label": "Fighter bonus combat feats",
+  "resource_modules": [
+    {
+      "key": "fighter_context",
+      "title": "Fighter Defenses",
+      "governing_ability": "strength",
+      "resources": [
+        {
+          "key": "bravery_applies",
+          "name": "Bravery Applies",
+          "feature_tokens": ["bravery"],
+          "progression": "one",
+          "description": "Enable for a Will save against fear. The retained Fighter level determines the exact Bravery bonus.",
+          "can_activate": true,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": false,
+          "tracks_uses": false
+        }
+      ]
+    }
+  ],
+  "passive_effects": [
+    {
+      "key": "fighter-bravery",
+      "feature_tokens": ["bravery"],
+      "targets": ["will"],
+      "progression": "fighter_bravery",
+      "bonus_type": "untyped",
+      "source": "Fighter: Bravery (fear only)",
+      "minimum_level": 2,
+      "requires_resource_active": "bravery_applies"
+    }
+  ],
+  "notes": "Weapon-group choices, attack and damage bonuses, armor-check-penalty reduction, maximum-Dexterity increase, and armor speed exceptions use the shared Fighter Training module. Bonus combat feats are counted by the shared advancement budget."
+}

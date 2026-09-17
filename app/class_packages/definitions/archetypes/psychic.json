@@ -1,0 +1,849 @@
+{
+  "version": 1,
+  "class_key": "pathfinder-class:psychic",
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:psychic:amnesiac",
+      "package": "pathfinder-class:psychic",
+      "name": "Amnesiac",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Psychic Amnesiac",
+      "replaces_features": [
+        "spellcasting"
+      ],
+      "removed_features": [
+        "spellcasting"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Amnesiac",
+          "description": "Source Occult Adventures pg. 104"
+        },
+        {
+          "level": 1,
+          "name": "Repressed Memories",
+          "description": "All the amnesiac’s older memories have been deeply hidden, as though she had been affected by multiple repress memory spells. She isn’t prevented from remembering things that happen over the course of a game, but might be forgetful. If the amnesiac’s memories are ever restored, she loses this archetype and reverts to a standard psychic."
+        },
+        {
+          "level": 1,
+          "name": "Spells",
+          "description": "An amnesiac’s ability to cast psychic spells is the same as that of the psychic class, with the following exceptions."
+        },
+        {
+          "level": 1,
+          "name": "Spell Recollection",
+          "description": "Once per hour as a swift action, an amnesiac can attempt to remember any spell from the psychic spell list of her choice from either of the 2 highest spell levels she can cast. When she does, she rolls on Table 2–1: Spell Recollection to determine the result. Because the mental stress of combat brings memories to the surface more easily, the amnesiac adds 1d10 to this roll’s result if she’s in combat when she attempts to recall a spell. Regardless of the result, the amnesiac expends an amnesia slot of the appropriate level for the spell she is attempting to remember; she must cast the spell remembered (if any) using that amnesia slot during the same round, or the spell slot is lost without effect. Once a spell has been remembered in this way, the amnesiac can cast it as one of her spells known for the rest of the day (even if she failed to cast the spell during the round in which she remembered it), unless spell recollection allowed her to cast a spell of a higher level than she would normally be able to cast."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:psychic:ascendant-mind",
+      "package": "pathfinder-class:psychic",
+      "name": "Ascendant Mind",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/ascendant-mind",
+      "replaces_features": [
+        "detect-thoughts",
+        "discipline-spells",
+        "phrenic-amplifications",
+        "psychic-discipline",
+        "remake-self",
+        "spellcasting",
+        "telepathic-bond"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "spells class feature",
+        "detect thoughts",
+        "discipline spells",
+        "phrenic amplifications",
+        "telepathic bond",
+        "remake self"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The ascendant mind may combine spheres and talents to create magical effects. The ascendant mind is considered a High-Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the spells class feature."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "The ascendant mind gains a small reservoir of energy she can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to her level + her casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Magic Talents",
+          "description": "An ascendant mind gains 1 magic talent every level."
+        },
+        {
+          "level": 1,
+          "name": "Mental Powers",
+          "description": "At each even numbered class level, the ascendant mind gains an additional magic talent of her choice from the Divination, Mind, or Telekinesis sphere\n\nThis replaces detect thoughts and discipline spells."
+        },
+        {
+          "level": 1,
+          "name": "Psychic Discipline",
+          "description": "The ascendant mind gains a psychic discipline, but does not gain bonus spells from her discipline. Discipline powers that trigger with the use of psychic spells are triggered by any sphere ability.\n\nThis alters psychic discipline."
+        },
+        {
+          "level": 1,
+          "name": "Phrenic Techniques",
+          "description": "The ascendant mind learns a large number of small, useful powers powered by her phrenic pool. Using any phrenic technique requires spending one point from her phrenic pool, and any saving throw against a phrenic technique is a Will save with a DC equal to 10 + 1/2 her ascendant mind level + her casting ability modifier. All phrenic techniques are mind-affecting abilities, but have the ability to affect creatures normally immune to mind-affecting abilities. Those creatures gain a +4 to their saving throws against phrenic techniques instead. Mindless creatures are always immune to phrenic techniques."
+        },
+        {
+          "level": 1,
+          "name": "Autohypnosis",
+          "description": "As an immediate action, the ascendant mind may use a limited form of mind control on herself. She may reroll a concentration check she just made. She must keep the second result, even if it is lower than the first."
+        },
+        {
+          "level": 1,
+          "name": "Psionic Blast",
+          "description": "The ascendant mind may use a standard action to fire a blast of psychic energy. She may make a ranged touch attack against an enemy within 30 feet. If successful, the target takes 1d8 nonlethal damage per class level."
+        },
+        {
+          "level": 1,
+          "name": "Thought Shield",
+          "description": "The ascendant mind may use an immediate action to create a small telekinetic shield that blocks a single attack. She receives a +2 shield bonus against that attack. The decision to use this power is made after a successful attack roll is made, but before damage dice or saving throws are rolled. The shield bonus lasts until the beginning of her next turn."
+        },
+        {
+          "level": 1,
+          "name": "Ego Whip",
+          "description": "As a standard action, the ascendant mind may lash out with a tendril of ectoplasmic matter at an enemy. She makes a ranged touch attack against a creature within 30 feet. If successful, the creature receives a -2 penalty to its Will saving throws for 1 minute. This penalty does not stack with itself."
+        },
+        {
+          "level": 1,
+          "name": "Hypercognition",
+          "description": "The ascendant mind can connect to higher sources of knowledge. When she rolls a Knowledge check, she may use this ability as a free action to reroll a check, with an insight bonus equal to her phrenic ability modifier. She must accept the second result, even if it is lower than the first."
+        },
+        {
+          "level": 1,
+          "name": "Mind Trick",
+          "description": "As a swift action, the ascendant mind may touch the mind of a creature within 30 feet. The target must succeed at a save or be fascinated for 1 minute by whatever she chooses. This can be a person, object, or anything with a physical presence the target can see. The distraction of a nearby combat or other dangers prevents the ability from working. This is an enchantment (compulsion) ability."
+        },
+        {
+          "level": 1,
+          "name": "False Sensory Input",
+          "description": "As a swift action, the ascendant mind implants a thought into a target’s mind, making its reality a little more convenient for the ascendant mind. For 1 minute, she receives a circumstance bonus equal to 1/2 her class level on all Bluff, Diplomacy, Disguise, or Stealth checks against that target. This is an enchantment (charm) ability."
+        },
+        {
+          "level": 1,
+          "name": "Mental Barrier",
+          "description": "The ascendant mind may use an immediate action create a psychokinetic barrier that interferes with magical energies and exists long enough to defend against a single spell or sphere effect. She gains spell resistance equal to 10 + her class level against that one effect."
+        },
+        {
+          "level": 1,
+          "name": "Thoughtsense",
+          "description": "As a standard action, the ascendant mind can gain the thoughtsense ability with a range of 60 feet. This lasts for a number of rounds equal to her class level."
+        },
+        {
+          "level": 1,
+          "name": "Biofeedback",
+          "description": "As a standard action, the ascendant mind may reprogram the mind of a willing creature to ignore pain and injury. The creature receives a number of temporary hit points equal to twice the ascendant mind’s class level, heals an equal amount of nonlethal damage, and any condition that currently affecting them has its remaining duration shortened by 2 rounds."
+        },
+        {
+          "level": 1,
+          "name": "Id Insinuation",
+          "description": "As a standard action, the ascendant mind may envelop a target within 60 feet in a telepathic static that subtly influences it. The target must succeed at a save or it immediately make an attack on a target of the ascendant mind’s choice other than itself. This is an enchantment (compulsion) ability."
+        },
+        {
+          "level": 1,
+          "name": "Mind Blank",
+          "description": "As a swift action, the ascendant mind may empty her mind of all thought. While in this state, she is still able to function, but can not apply great mental effort, such as by using sphere abilities or attempting skill checks that involve mental abilities. While she is like this, she is effectively mindless, and is invisible to senses that detect intelligent creatures. Scrying also fails to detect her. This state lasts for up to 1 hour per class level, or until she exerts herself mentally. Her psychic nexus still operates normally."
+        },
+        {
+          "level": 1,
+          "name": "Intellect Fortress",
+          "description": "As a standard action, the ascendant mind may spend a point from her phrenic pool to create a telekinetic bubble surrounding herself and everyone within 10 feet. The bubble is made up of overlapping fields moving in chaotic patterns, blocking line of effect for those who do not understand its mysteries. Whenever an enemy attacks anyone within the bubble, the enemy must succeed at a Perception check with a DC equal to 10 + 1/2 her ascendant mind level + her phrenic modifier or else the attack is negated as the fortress blocks it. Area of effect abilities can not penetrate the fortress, and the fortress blocks incorporeal movement, but not gaze attacks or light-based attacks. The fortress lasts for a number of rounds equal to her class level."
+        },
+        {
+          "level": 1,
+          "name": "Mind Thrust",
+          "description": "As a standard action, the ascendant mind may propel pure mental energy at a target within 30 feet. The target must succeed at a saving throw or take 1d6 damage to a mental ability score of the ascendant mind’s choice."
+        },
+        {
+          "level": 1,
+          "name": "Precognition",
+          "description": "As a full-round action, the ascendant mind can gain a glimpse into the future to determine what dangers lurk. The next time she rolls initiative within the next hour, she may add her phrenic modifier to her initiative."
+        },
+        {
+          "level": 1,
+          "name": "Psychic Crush",
+          "description": "As a standard action, the ascendant mind can reach out with her mind to another mind within 30 feet, and crush it. The target must succeed at a save or be dazed for 1 round. If successful, it is staggered for 1 round instead. If a creature that fails a saving throw against this ability has a current hit point total less than the ascendant mind’s current hit point total, it is overwhelmed by her life force, and immediately drop to -1 hit point. It is unconscious, but stable."
+        },
+        {
+          "level": 1,
+          "name": "Schism",
+          "description": "As a swift action, the ascendant mind may divide her mind into two separate, functional minds for a number of rounds equal to her class level. The two minds work together and share actions, essentially giving the ascendant mind two attempts to perform certain actions. While in this state, she rolls twice on any Will save or any ability or skill check involving a mental ability. She may also roll twice for any concentration check."
+        },
+        {
+          "level": 1,
+          "name": "Tower of Iron Will",
+          "description": "As an immediate action in response to needing to attempt a saving throw, the ascendant mind can create a field of psychic energy around her body. She receives a circumstance bonus to her saving throw equal to her phrenic modifier.\n\nThis replaces phrenic amplifications."
+        },
+        {
+          "level": 9,
+          "name": "Psychic Nexus",
+          "description": "At 9th level, the ascendant mind can form a telepathic bond with other willing creatures. This takes a full-round action and has a range of touch, but once formed, the bond lasts until the creature is knocked unconscious, moves to a different plane of existence, or the ascendant mind dismisses the bond as a free action. The ascendant mind may have a maximum number of other creatures bonded to her equal to her phrenic ability modifier. If the ascendant mind is knocked unconscious, her bonds remain, but not if she is killed. Creatures bonded to the ascendant mind can communicate with her and with each other telepathically. She may also use mind-affecting abilities on bonded creatures, even if she would normally not be in range.\n\nThis replaces telepathic bond."
+        },
+        {
+          "level": 20,
+          "name": "Psychic Ascension",
+          "description": "At 20th level, the ascendant mind gains the ability to transform into pure thought. While in this form, she exists in the minds of the creatures in her psychic nexus, while her physical form is suspended in time in a pocket dimension. While in this form, she can see and hear through the eyes and ears of those in her psychic nexus, but cannot act beyond attempting ability or skills checks that do not require her to act physically, or by using her phrenic powers. When she uses her phrenic powers while ascended, she chooses someone to be ‘her’ acting as target or point of origin of the power. She may use her phrenic powers on herself while ascended. Entering or exiting this form is a full-round action that provokes attacks of opportunity, and she may appear next to any member of her nexus when she exits. If no creatures make up her psychic nexus, she can not enter this form, and losing the last creature in her psychic nexus causes her body to materialize in an empty square adjacent to it. If at least one creature is part of her psychic nexus, when the ascendant mind is rendered unconscious or even killed, her bonds remain and she automatically ascends without needing to take an action, provided the form of death allows for some form of resurrection. If the ascendant mind is killed by an ability that prevents resurrection, she can not ascend. While ascended, she is conscious and alive and can not be affected by any condition that is not a mind-affecting condition. If she materializes, she gains whatever conditions her body has, and dies if her body is dead. She regains one hit point per minute, even if she is dead. If she died due to hit point damage, she comes back to life upon reaching 1 hit point. If she rests for 8 hours while ascended, she is completely healed as if using the Greater Resurrection Life talent. Being brought back from the dead leaves the ascendant mind with one permanent negative level.\n\nThis replaces remake self."
+        },
+        {
+          "level": 1,
+          "name": "Archetypes of Power",
+          "description": "In a perfect world, those with the greatest intelligence would rule. But in this world, those with the greatest power rule. The ascendant mind transmutes thought into power, and thus makes the world more perfect by her mere presence. She will open the minds of others, and fill them with her insights, while removing the cumbersome free will she finds within."
+        },
+        {
+          "level": 1,
+          "name": "At 1st level, the ascendant mind gains the following abilities",
+          "description": "Autohypnosis - As an immediate action, the ascendant mind may use a limited form of mind control on herself. She may reroll a concentration check she just made. She must keep the second result, even if it is lower than the first. Psionic Blast - The ascendant mind may use a standard action to fire a blast of psychic energy. She may make a ranged touch attack against an enemy within 30 feet. If successful, the target takes 1d8 nonlethal damage per class level. Thought Shield - The ascendant mind may use an immediate action to create a small telekinetic shield that blocks a single attack. She receives a +2 shield bonus against that attack. The decision to use this power is made after a successful attack roll is made, but before damage dice or saving throws are rolled. The shield bonus lasts until the beginning of their next turn."
+        },
+        {
+          "level": 1,
+          "name": "At 3rd level, the ascendant mind gains these abilities",
+          "description": "Ego Whip - As a standard action, the ascendant mind may lash out with a tendril of ectoplasmic matter at an enemy. She makes a ranged touch attack against a creature within 30 feet. If successful, the creature receives a -2 penalty to their Will saving throws for 1 minute. This penalty does not stack with itself. Hypercognition - The ascendant mind can connect to higher sources of knowledge. When she rolls a knowledge check, she may use this ability as a free action to reroll a check, with an insight bonus equal to her phrenic ability modifier. She must accept the second result, even if it is lower than the first. Mind Trick - As a swift action, the ascendant mind may touch the mind of a creature within 30 feet. The target must make a save or be fascinated for 1 minute by whatever she chooses. This can be a person, object, or anything with a physical presence the target can see. The distraction of a nearby combat or other dangers prevents the ability from working. This is an enchantment (compulsion) ability."
+        },
+        {
+          "level": 1,
+          "name": "At 7th level, the ascendant mind gains these abilities",
+          "description": "False Sensory Input - As a swift action, the ascendant mind implants a thought into a target’s mind, making their reality a little more convenient for the ascendant mind. For 1 minute, she receives a circumstance bonus equal to 1/2 her class level on all Bluff, Diplomacy, Disguise, or Stealth checks against that target. This is an enchantment (charm) ability. Mental Barrier - The ascendant mind may use an immediate action create a psychokinetic barrier that interferes with magical energies and exists long enough to defend against a single spell or sphere effect. She gains spell resistance equal to 10 + her class level against that one effect. Thoughtsense - As a standard action, the ascendant mind can gain the thoughtsense ability with a range of 60 feet. This lasts for a number of rounds equal to her class level."
+        },
+        {
+          "level": 1,
+          "name": "At 11th level, the ascendant mind gains these abilities",
+          "description": "Biofeedback - As a standard action, the ascendant mind may reprogram the mind of a willing creature to ignore pain and injury. The creature receives a number of temporary hit points equal to twice the ascendant mind’s class level, heals an equal amount of nonlethal damage, and any condition that currently affecting them has its remaining duration shortened by 2 rounds. Id Insinuation - As a standard action, the ascendant mind may envelop a target within 60 ft. in a telepathic static that subtly influences them. The target must make a save or they immediately make an attack on a target of the ascendant mind’s choice other than themself. This is an enchantment (compulsion) ability. Mind Blank - As a swift action, the ascendant mind may empty her mind of all thought. While in this state, she is still able to function, but can not apply great mental effort, such as by using sphere abilities or making skill checks that involve mental abilities. While she is like this, she is effectively mindless, and is invisible to senses that detect intelligent creatures. Scrying also fails to detect her. This state lasts for up to 1 hour per class level, or until she exerts herself mentally. Her psychic nexus still operates normally."
+        },
+        {
+          "level": 1,
+          "name": "At 15th level, the ascendant mind gains these abilities",
+          "description": "Intellect Fortress - As a standard action, you may spend a point from your phrenic pool to create a telekinetic bubble surrounding yourself and everyone within 10 feet. The bubble is made up of overlapping fields moving in chaotic patterns, blocking line of effect for those who do not understand its mysteries. Whenever an enemy attacks anyone within the bubble, the enemy must make a Perception check with a DC equal to 10 + 1/2 your class level + your phrenic modifier or else the attack is negated as the fortress blocks it. Area of effect abilities can not penetrate the fortress, and the fortress blocks incorporeal movement, but not gaze attacks or light based attacks. The fortress lasts for a number of rounds equal to your class level. Mind Thrust - As a standard action, the ascendant mind may propel pure mental energy at a target within 30 feet. The target must make a saving throw or take 1d6 damage to a mental ability score of the ascendant mind’s choice. Precognition - As a full-round action, the ascendant mind can gain a glimpse into the future to determine what dangers lurk. The next time she rolls initiative within the next hour, she may add her phrenic modifier to her initiative."
+        },
+        {
+          "level": 1,
+          "name": "At 19th level, the ascendant mind gains these abilities",
+          "description": "Psychic Crush - As a standard action, the ascendant mind can reach out with her mind to another mind within 30 ft., and crush it. The target must make a save or be dazed for 1 round. If successful, they are staggered for 1 round instead. If a creature that fails a saving throw against this ability has a current hit point total less than the ascendant mind’s current hit point total, they are overwhelmed by her life force, and immediately drop to -1 hit point. They are unconscious, but stable. Schism - As a swift action, the ascendant mind may divide her mind into two separate, functional minds for a number of rounds equal to her class level. The two minds work together and share actions, essentially giving the ascendant mind two attempts to perform certain actions. While in this state, she rolls twice on any Will save or any skill check involving a mental ability. She may also roll twice for any concentration check. Tower of Iron Will - As an immediate action in response to needing to make a saving throw, the ascendant mind can create a field of psychic energy around her body. She receives a circumstance bonus to her saving throw equal to her phrenic modifier.\n\nThis replaces phrenic amplifications."
+        }
+      ],
+      "detected_systems": [
+        "phrenic_pool"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:psychic:esoteric-starseeker",
+      "package": "pathfinder-class:psychic",
+      "name": "Esoteric Starseeker",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Psychic Esoteric Starseeker",
+      "replaces_features": [
+        "discipline-spells",
+        "major-amplifications",
+        "phrenic-amplifications"
+      ],
+      "removed_features": [
+        "discipline-spells",
+        "major-amplifications",
+        "phrenic-amplifications"
+      ],
+      "removed_feature_clauses": [
+        "bonus spells normally granted by the psychic’s discipline",
+        "the phrenic amplifications gained at 1st and 11th levels"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Esoteric Starseeker",
+          "description": "Source Wilderness Origins pg. 30"
+        },
+        {
+          "level": 11,
+          "name": "Written in the Stars",
+          "description": "An esoteric starseeker can spend 1 hour each night in quiet contemplation of the stars to attune herself to a constellation of the Cosmic Caravan, gaining knowledge of new spells from it. She gains one bonus constellation spell slot for each spell level she can cast, and she can prepare a spell associated with her attuned constellation into that slot. At 11th level, she can attune herself to two constellations, choosing between the spells offered by both constellations when she prepares her constellation spells. Whenever she attunes herself to a constellation, the esoteric starseeker must also weaken her connection to one school of magic of her choice, increasing the casting time for all spells of that school to a full-round action or an additional full-round action, as though she were using a metamagic feat. She can change her attuned constellations and her weakened school each day when she prepares her constellation spells. The Cosmic Caravan and their associated spells are as follows."
+        },
+        {
+          "level": 1,
+          "name": "The Thrush",
+          "description": "comprehend languages (1st), magic mouth (2nd), tiny hut (3rd), dream (4th), remote viewing (5th), battlemind link (6th), phase door (7th), discern location (8th), wish (9th)."
+        },
+        {
+          "level": 1,
+          "name": "The Lantern Bearer",
+          "description": "liberating command (1st), glitterdust (2nd), guiding star (3rd), wandering star motes (4th), true seeing (5th), sonic form (6th), prismatic spray (7th), sunburst (8th), meteor swarm (9th)."
+        },
+        {
+          "level": 1,
+          "name": "The Newlyweds",
+          "description": "charm person (1st), enthrall (2nd), synesthesia (3rd), break enchantment (4th), reincarnate (5th), joyful rapture (6th), mass synesthesia (7th), bilocation (8th), overwhelming presence (9th)."
+        },
+        {
+          "level": 1,
+          "name": "The Bridge",
+          "description": "endure elements (1st), resist energy (2nd), daylight (3rd), fire shield (4th), wall of force (5th), contagious flame (6th), reverse gravity (7th), create demiplane (8th), world wave (9th)."
+        },
+        {
+          "level": 1,
+          "name": "The Daughter",
+          "description": "bless (1st), hypnotic pattern (2nd), heroism (3rd), freedom of movement (4th), hostile juxtaposition (5th), cloak of dreams (6th), greater hostile juxtaposition (7th), irresistible dance (8th), freedom (9th)."
+        },
+        {
+          "level": 1,
+          "name": "The Rider",
+          "description": "anticipate peril (1st), acute senses (2nd), ablative barrier (3rd), dimensional anchor (4th), echolocation (5th), blade barrier (6th), grasping hand (7th), frightful aspect (8th), ride the lightning (9th)."
+        },
+        {
+          "level": 1,
+          "name": "The Patriarch",
+          "description": "command (1st), spiritual weapon (2nd), dispel magic (3rd), telekinetic charge (4th), contact other plane (5th), find the path (6th), mage’s sword (7th), brilliant inspiration (8th), gate (9th)."
+        },
+        {
+          "level": 1,
+          "name": "The Wagon",
+          "description": "expeditious retreat (1st), twisted space (2nd), haste (3rd), mirror transport (4th), teleport (5th), fluid form (6th), walk through space (7th), etherealness (8th), time stop (9th)."
+        },
+        {
+          "level": 1,
+          "name": "The Pack",
+          "description": "calm animals (1st), animal aspect (2nd), rage (3rd), greater animal aspect (4th), summon monster V (5th), mass bear’s endurance (6th), summon monster VII (7th), animal shapes (8th), shapechange (9th)."
+        },
+        {
+          "level": 1,
+          "name": "The Mother",
+          "description": "identify (1st), aid (2nd), invisibility purge (3rd), stoneskin (4th), spell resistance (5th), contingency (6th), mind blank (7th), refuge (8th), wall of suppression (9th)."
+        },
+        {
+          "level": 1,
+          "name": "The Stargazer",
+          "description": "know the enemy (1st), augury (2nd), arcane sight (3rd), locate creature (4th), feeblemind (5th), geas/quest (6th), arcane sight (greater) (7th), moment of prescience (8th), dream voyage (9th)."
+        },
+        {
+          "level": 1,
+          "name": "The Stranger",
+          "description": "disguise self (1st), invisibility (2nd), displacement (3rd), riding possession (4th), prying eyes (5th), veil (6th), project image (7th), maze (8th), divide mind (9th)."
+        },
+        {
+          "level": 1,
+          "name": "The Follower",
+          "description": "forced quiet (1st), darkness (2nd), vision of hell (3rd), enervation (4th), waves of fatigue (5th), shadow walk (6th), simulacrum (7th), destruction (8th), energy drain (9th).\n\nThis replaces the bonus spells normally granted by the psychic’s discipline and the phrenic amplifications gained at 1st and 11th levels."
+        },
+        {
+          "level": 15,
+          "name": "Major Amplifications",
+          "description": "An esoteric starseeker gains this ability at 15th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:psychic:formless-adept",
+      "package": "pathfinder-class:psychic",
+      "name": "Formless Adept",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Psychic Formless Adept",
+      "replaces_features": [
+        "discipline-powers",
+        "discipline-spells",
+        "phrenic-amplification",
+        "phrenic-pool",
+        "psychic-discipline",
+        "remade-self"
+      ],
+      "removed_features": [
+        "discipline-powers",
+        "discipline-spells",
+        "phrenic-amplification",
+        "phrenic-pool",
+        "psychic-discipline",
+        "remade-self"
+      ],
+      "removed_feature_clauses": [
+        "1st-level phrenic amplification",
+        "discipline spells",
+        "15th-level phrenic amplification",
+        "remade self"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Formless Adept",
+          "description": "Source Occult Adventures pg. 104"
+        },
+        {
+          "level": 1,
+          "name": "Phrenic Charisma",
+          "description": "A formless adept uses his Charisma modifier to determine the number of points in his phrenic pool. This ability alters phrenic pool."
+        },
+        {
+          "level": 1,
+          "name": "Formless Body",
+          "description": "A formless adept gradually sheds his body, taking on increasingly nebulous forms. A formless adept can assume a formless body as a standard action. He can remain in each formless body type for a number of rounds per day equal to 3 + his Charisma modifier. The rounds don’t have to be used consecutively, but must be used in 1-round increments. Resuming his physical form takes another standard action; otherwise, the formless adept continues spending rounds of formless body until he runs out of them. The formless adept must return to his physical form before assuming a different formless body."
+        },
+        {
+          "level": 1,
+          "name": "Blurred Body",
+          "description": "At 1st level, a formless adept can act under the effect of a blur spell. At 5th level, the formless adept can use this ability for a number of minutes per day instead of rounds per day. These minutes don’t have to be used consecutively, but must be used in 1-minute increments."
+        },
+        {
+          "level": 5,
+          "name": "Gaseous Body",
+          "description": "At 5th level, a formless adept can become gaseous as gaseous form. At 13th level, the formless adept can use this ability for a number of minutes per day instead of rounds per day. These minutes don’t have to be used consecutively, but must be used in 1-minute increments."
+        },
+        {
+          "level": 13,
+          "name": "Incorporeal Body",
+          "description": "At 13th level, a formless adept can become incorporeal (Pathfinder RPG Bestiary 301)."
+        },
+        {
+          "level": 1,
+          "name": "Formless Spell",
+          "description": "At 1st level, a formless adept gains the formless spell phrenic amplification. He can spend 1 point from his phrenic pool to cast a spell with a standard-action casting time as part of the action he uses to assume his formless body, expending the spell slot as normal. This ability replaces the 1st-level phrenic amplification."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Spells",
+          "description": "The formless adept adds extra spells to his list of spells known while he’s in a formless body (including when he uses the formless spell phrenic amplification). Spells with a duration last for their full duration, even if the psychic reverts to his physical form. For feats and other abilities that require these spells as prerequisites, the psychic counts as knowing the spells but can benefit from the feats and abilities only while in a formless body. The formless adept gains the following spells at the appropriate levels: chill touch and expeditious retreat (1st), levitate and stricken heartACG (4th), gaseous form and vampiric touch (6th), shadow stepUM and telekinesis (8th), dominate person and synapse overload (10th), disintegrate and enemy hammerAPG (12th), finger of death and telekinetic sphere (14th), etherealness and power word stun (16th), and dominate monster and telekinetic storm (18th). This ability replaces discipline spells."
+        },
+        {
+          "level": 15,
+          "name": "Psychic Possession",
+          "description": "At 15th level, while using his incorporeal body ability, a formless adept can attempt to psychically possess another living creature. To use this ability, the formless adept must be adjacent to the target. This effect works as the greater possession spell and can be maintained only as long as the formless adept maintains his incorporeal body form. The target can attempt a Will save with a DC equal to 10 + 1/2 the formless adept’s class level + the formless adept’s Intelligence modifier to resist the effect. A creature that successfully saves is immune to the formless adept’s psychic possession for 24 hours. This ability replaces the 15th-level phrenic amplification."
+        },
+        {
+          "level": 20,
+          "name": "Formless Master",
+          "description": "At 20th level, a formless adept can assume any formless body as a swift action and change between formless body types as a standard action (without returning to his physical form first). He can use the formless spell phrenic amplification to cast any spell with a swiftaction casting time when assuming a formless body or any spell with a standard-action casting time while switching between formless bodies. The formless adept also adds his Charisma bonus as a deflection bonus to his AC while in a formless body. A formless adept can attempt a saving throw to bypass any spells that prevent entry of incorporeal creatures (such as anti-incorporeal shellACG), even if the spells don’t normally allow one. This ability replaces remade self."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:psychic:magaambyan-telepath",
+      "package": "pathfinder-class:psychic",
+      "name": "Magaambyan Telepath",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Psychic Magaambyan Telepath",
+      "replaces_features": [
+        "discipline-spells",
+        "phrenic-amplifications",
+        "telepathic-bond",
+        "telepathy"
+      ],
+      "removed_features": [
+        "discipline-spells",
+        "phrenic-amplifications",
+        "telepathic-bond",
+        "telepathy"
+      ],
+      "removed_feature_clauses": [
+        "discipline spells",
+        "telepathic bond"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Magaambyan Telepath",
+          "description": "Source Wilderness Origins pg. 27"
+        },
+        {
+          "level": 1,
+          "name": "Primal Spells",
+          "description": "A Magaambyan telepath adds one 1st-level spell from the druid spell list to the psychic spell list and her spells known. Each time a Magaambyan telepath gains the ability to cast a new level of spell, she can add one spell of that level from the druid spell list to both the psychic spell list and her spells known. She casts these spells as psychic spells, and once the spells are selected these choices cannot be changed.\n\nThis replaces discipline spells."
+        },
+        {
+          "level": 1,
+          "name": "Nature’s Command",
+          "description": "The Magaambyan telepath’s mind-affecting spells can affect even plant creatures. When she casts a mind-affecting spell, the Magaambyan telepath can spend 2 points from her phrenic pool to overcome a plant creature’s immunity to mind-affecting effects for the purposes of that spell. This ability functions even on mindless plant creatures, but it has no effect on creatures that aren’t plants."
+        },
+        {
+          "level": 9,
+          "name": "Know the Land",
+          "description": "At 9th level, the Magaambyan telepath can cast commune with nature as a spell-like ability once per day, using her psychic level as her caster level. She can also expend any unused spell slot of 5th level or higher to cast commune with nature.\n\nThis replaces telepathic bond."
+        },
+        {
+          "level": 17,
+          "name": "Wild Mind",
+          "description": "At 17th level, when the Magaambyan telepath gains the telepathy ability, she can also mentally communicate with any animal or plant creature as if it had a language.\n\nThis alters telepathy."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:psychic:mutation-mind",
+      "package": "pathfinder-class:psychic",
+      "name": "Mutation Mind",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Psychic Mutation Mind",
+      "replaces_features": [
+        "major-amplifications",
+        "phrenic-amplification",
+        "phrenic-amplifications"
+      ],
+      "removed_features": [
+        "major-amplifications",
+        "phrenic-amplification",
+        "phrenic-amplifications"
+      ],
+      "removed_feature_clauses": [
+        "1st-level phrenic amplification"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Mutation Mind",
+          "description": "Source Occult Adventures pg. 105"
+        },
+        {
+          "level": 12,
+          "name": "Physical Mutation",
+          "description": "A mutation mind’s psychic powers warp her body, allowing her to physically mutate herself as a swift action, which grants her a +4 enhancement bonus to Strength and a –2 penalty to Intelligence. At 12th level, the bonus to Strength increases to +6. A mutation mind can assume her physically mutated form for a number of minutes per day equal to her psychic level. The minutes don’t have to be used consecutively, but must be used in 1-minute increments. When the duration runs out, the mutation mind can spend 1 point from her phrenic pool to extend the duration by 1 round. She can continue extending it in this way until she runs out of points. After the mutation ends, the mutation mind is fatigued and can’t activate a physical mutation again for 1 round. Turning back to normal before the end of a 1-minute increment takes a standard action. This ability replaces the 1st-level phrenic amplification."
+        },
+        {
+          "level": 3,
+          "name": "Bodily Mutations",
+          "description": "Starting at 3rd level, whenever a mutation mind gains a phrenic amplification, she can select either a phrenic amplification or a bodily mutation. A bodily mutation grants its benefit only when the mutation mind is affected by her physical mutation. Each time she activates her physical mutation, she can activate any number of bodily mutations she possesses."
+        },
+        {
+          "level": 1,
+          "name": "Adhesive",
+          "description": "The mutation mind’s skin becomes sticky, granting her a +4 bonus on disarm and grapple combat maneuver checks."
+        },
+        {
+          "level": 1,
+          "name": "Bite Attack",
+          "description": "The mutation mind’s mouth fills with sharp teeth, allowing her to make a bite attack as part of a full-attack action at her highest base attack bonus. This attack deals 1d4 points of damage (1d3 if Small) and counts as a primary attack unless combined with manufactured weapon attacks, as normal."
+        },
+        {
+          "level": 1,
+          "name": "Bulging Eyes",
+          "description": "The mutation mind’s eyes grow large and round, granting her darkvision with a range of 60 feet."
+        },
+        {
+          "level": 1,
+          "name": "Claws",
+          "description": "The mutation mind’s hands turn into claws, allowing her to make two claw attacks as a full-attack action at her highest base attack bonus. Each of these attacks deals 1d4 points of damage (1d3 if Small) and counts as a primary attack unless combined with manufactured weapon attacks, as normal."
+        },
+        {
+          "level": 1,
+          "name": "Elongated Fingers",
+          "description": "The mutation mind’s fingers grow long and supple, increasing her reach by 5 feet when she’s making melee touch attacks."
+        },
+        {
+          "level": 1,
+          "name": "Elongated Legs",
+          "description": "The mutation mind’s legs become long and spindly, increasing her base movement by 10 feet."
+        },
+        {
+          "level": 1,
+          "name": "Energy Resistance",
+          "description": "The mutation mind’s body changes in color and texture, and gains energy resistance 5 to one energy type (acid, cold, electricity, fire, or sonic), chosen when this mutation is selected. This mutation can be selected multiple times. Each time it is selected, the mutation mind either chooses an additional energy type to gain energy resistance 5 against or increases the resistance granted to one existing type by 5."
+        },
+        {
+          "level": 1,
+          "name": "Enlarged Torso",
+          "description": "The mutation mind’s torso enlarges disproportionately with the rest of her body, granting her a +2 natural armor bonus to AC."
+        },
+        {
+          "level": 1,
+          "name": "Rubbery",
+          "description": "The mutation mind’s body becomes soft and rubbery, granting her DR 2/—."
+        },
+        {
+          "level": 1,
+          "name": "Slimy",
+          "description": "The mutation mind exudes a thin layer of oily slime over her body, granting her a +4 bonus to CMD."
+        },
+        {
+          "level": 7,
+          "name": "Phrenic Empowerment",
+          "description": "At 7th level, a mutation mind’s phrenic amplifications empower her physical mutation. Whenever a mutation mind modifies a spell with a phrenic amplification while affected by her physical mutation, she can increase the bonus to her Strength score from her physical mutation by 2 for a number of rounds equal to the level of the spell she cast. This bonus doesn’t stack; if the mutation mind activates it again, she uses the longer duration but doesn’t increase the bonus. While under the effect of phrenic empowerment, whenever the mutation mind takes damage, she risks losing control of her powers. At the end of each turn that she takes hit point damage, the mutation mind must succeed at a Will save (DC = 15 + 1/2 her character level) or take a –2 penalty on Will saving throws and to Intelligence. These penalties last for 1 hour after the physical mutation ends and stack with themselves. If the penalty lowers her Intelligence score to 0, the mutation mind is comatose until 1 hour after physical mutation ends."
+        },
+        {
+          "level": 11,
+          "name": "Improved Bodily Mutations",
+          "description": "At 11th level, a mutation mind can select one of the following improved bodily mutations instead of a phrenic amplification."
+        },
+        {
+          "level": 1,
+          "name": "Aquatic Form",
+          "description": "The mutation mind’s legs fuse into a tail and fins to sprout from her back and side, granting her a swim speed of 30 feet, tremorsense with a range of 30 feet (affecting other creatures in contact with the same body of water), and the aquatic subtype. Her base land speed is reduced to 10 feet."
+        },
+        {
+          "level": 1,
+          "name": "Enlarged Body",
+          "description": "The mutation mind’s body swells and stretches, enlarging her as the enlarge person spell but up to two size categories larger (maximum Huge)."
+        },
+        {
+          "level": 1,
+          "name": "Multiple Eyes",
+          "description": "Multiple eyes erupt all over the mutation mind’s body. She can’t be flanked and gains a +4 bonus on Perception checks."
+        },
+        {
+          "level": 1,
+          "name": "Recuperation",
+          "description": "The mutation mind heals quickly from physical wounds, gaining fast healing 5."
+        },
+        {
+          "level": 1,
+          "name": "Toppling Fists",
+          "description": "The mutation mind’s fists become large masses of flesh, allowing her to attempt a bull rush combat maneuver check against one creature within 10 feet of her as a standard action."
+        },
+        {
+          "level": 1,
+          "name": "Wings",
+          "description": "The mutation mind sprouts a pair of fleshy, batlike wings, giving her a fly speed of 60 feet with average maneuverability."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:psychic:psychic-duelist",
+      "package": "pathfinder-class:psychic",
+      "name": "Psychic Duelist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Psychic Psychic Duelist",
+      "replaces_features": [
+        "discipline-spell",
+        "phrenic-amplification",
+        "phrenic-amplifications",
+        "telepathic-bond",
+        "telepathy"
+      ],
+      "removed_features": [
+        "discipline-spell",
+        "phrenic-amplification",
+        "phrenic-amplifications",
+        "telepathic-bond",
+        "telepathy"
+      ],
+      "removed_feature_clauses": [
+        "4th-level discipline spell",
+        "telepathic bond",
+        "telepathy"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Psychic Duelist",
+          "description": "Source Occult Adventures pg. 107"
+        },
+        {
+          "level": 4,
+          "name": "Psychic Duel Acumen",
+          "description": "At 4th level, a psychic duelist adds instigate psychic duel to her list of spells known, and the save DC of any instigate psychic duel spell she casts increases by 1. Beginning at 6th level, she can also expend any unused psychic spell slot of 3rd level or higher to cast instigate psychic duel. If she does so, she uses the level of the spell slot expended to determine the Will save DC. In addition, when the psychic duelist sacrifices points from her phrenic pool to generate manifestation points for an offensive manifestation, she uses d8s for damage dice instead of d4s. This ability replaces the 4th-level discipline spell."
+        },
+        {
+          "level": 7,
+          "name": "Manifestation Amplifications",
+          "description": "At 7th level, a psychic duelist gains a manifestation amplification instead of a phrenic amplification; thereafter, whenever the psychic duelist gains a phrenic amplification, she can select either a phrenic amplification or a manifestation amplification. A manifestation amplification functions for a manifestation as a phrenic amplification does for a spell, with the same restrictions. The manifestation being amplified is called the linked manifestation. Phrenic pool points spent toward manifestation amplifications are separate from points sacrificed to generate manifestation points. For example, a psychic duelist capable of casting 4th-level spells (with a maximum of 4 MP per manifestation) could turn 4 points from her phrenic pool into MP and spend 2 points on a manifestation amplification, expending a total of 6 points from her phrenic pool."
+        },
+        {
+          "level": 11,
+          "name": "Extended Effect",
+          "description": "The psychic duelist can spend points from her phrenic pool to increase the duration of a condition by 1 round per point spent. She can spend a maximum of 1 phrenic pool point in this way; this maximum increases to 2 points at 11th level, to 3 points at 15th level, and to 4 points at 19th level. If the target succeeds at its saving throw, this amplification has no effect (though the points are still lost). This amplification can be linked only to offensive manifestations that impose conditions."
+        },
+        {
+          "level": 1,
+          "name": "Faithful Creature",
+          "description": "When she manifests a thoughtform creature, the psychic duelist can spend 1 point from her phrenic pool to give that creature the ability to persist even if it doesn’t attack. She can concentrate to maintain the creature as a swift action instead of as a full-round action, but the creature can attack only if the psychic duelist concentrates as a full-round action. In addition, the psychic backlash damage from that thought-form creature is halved. This amplification can be linked only to thoughtform creature manifestations."
+        },
+        {
+          "level": 1,
+          "name": "Punishing Thought-form",
+          "description": "The psychic duelist can spend 1 point from her phrenic pool to increase the damage die size of an offensive manifestation by one step (d4 to d6, d6 to d8, or d8 to d10). This amplification can be linked only to offensive manifestations."
+        },
+        {
+          "level": 11,
+          "name": "Reciprocal Defense",
+          "description": "The psychic duelist can spend 1 point from her phrenic pool when using a defensive manifestation to improve her defenses in the real world as well. Her physical body gains a +2 insight bonus to AC for the number of rounds the defensive manifestation lasts, or for 1 round if the manifestation doesn’t have a duration. This bonus increases to +3 at 11th level and to +4 at 15th level. This amplification can be linked only to defensive manifestations."
+        },
+        {
+          "level": 9,
+          "name": "Thought Made Real",
+          "description": "At 9th level, a psychic duelist can bring offensive manifestations directly into her foes’ minds, attacking with them without entering a psychic duel. When doing so, she can generate manifestation points only by sacrificing a spell, not through any other methods. Using an offensive manifestation in this way functions as casting a spell with a full-round-action casting time. Conditions imposed by these offensive manifestations last for their full duration, even though the target isn’t in a psychic duel. The psychic duelist can use manifestation amplifications on offensive manifestations created this way. Such offensive manifestations can’t affect thought-form creatures. This is a mind-affecting illusion (phantasm) effect. A thoughtform creature manifested in this way is visible only to its target. This ability replaces telepathic bond."
+        },
+        {
+          "level": 17,
+          "name": "Expert Manifester",
+          "description": "At 17th level, a psychic duelist doesn’t have to expend as many resources to create manifestations. She gains 1 additional MP each time she creates a psychic manifestation, in addition to the MP she gains by sacrificing resources. This doesn’t increase the maximum number of points she can spend per manifestation, but does allow her to create a manifestation costing 1 MP without sacrificing any resources. This ability replaces telepathy."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:psychic:psychic-marauder",
+      "package": "pathfinder-class:psychic",
+      "name": "Psychic Marauder",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Psychic Psychic Marauder",
+      "replaces_features": [
+        "alignment",
+        "detect-thoughts",
+        "phrenic-amplification",
+        "remade-self",
+        "telepathic-bond"
+      ],
+      "removed_features": [
+        "alignment",
+        "detect-thoughts",
+        "phrenic-amplification",
+        "remade-self",
+        "telepathic-bond"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Psychic Marauder",
+          "description": "Source Heroes of the Darklands pg. 22"
+        },
+        {
+          "level": 1,
+          "name": "Alignment",
+          "description": "A psychic marauder must be of nonlawful alignment. A psychic marauder that becomes lawful loses her aura of insanity. However, she retains all other benefits of this archetype."
+        },
+        {
+          "level": 2,
+          "name": "Skewed Mentality",
+          "description": "At 2nd level, a psychic marauder becomes alienated from reality as others perceive it. The psychic marauder uses her Charisma modifier on Will saves instead of her Wisdom modifier."
+        },
+        {
+          "level": 3,
+          "name": "Aura of Insanity",
+          "description": "At 3rd level, a psychic marauder’s madness begins to leak out. As a standard action, the psychic marauder can spend 1 point from her phrenic pool to manifest an aura of insanity, letting bits of her psyche penetrate the minds of those around her. The aura is centered on the psychic marauder and has a radius of 10 feet, increasing by 5 feet for every 3 class levels beyond 3rd. Any creature starting its turn within the aura must succeed at a Will save (DC = 10 + half the psychic marauder’s level + the psychic marauder’s Charisma modifier) or be confused for 1 round. The psychic marauder can exclude a number of targets inside the radius equal to 1 + 1 for every 3 class levels beyond 3rd, shielding them from her madness. The aura of insanity lasts for a number of rounds equal to the psychic marauder’s Charisma modifier. This is a mind-affecting effect."
+        },
+        {
+          "level": 9,
+          "name": "Cracked Perspectives",
+          "description": "At 9th level, a psychic marauder’s growing madness renders her immune to confusion and insanity effects."
+        },
+        {
+          "level": 20,
+          "name": "Unreal Understanding",
+          "description": "At 20th level, a psychic marauder’s mindset becomes completely aberrant, to the point that no outside force can penetrate her psyche. Because of this, the psychic marauder becomes immune to all mind-affecting effects."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:psychic:terror-weaver",
+      "package": "pathfinder-class:psychic",
+      "name": "Terror Weaver",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Psychic Terror Weaver",
+      "replaces_features": [
+        "detect-thoughts",
+        "phrenic-amplifications",
+        "telepathic-bond"
+      ],
+      "removed_features": [
+        "detect-thoughts",
+        "phrenic-amplifications",
+        "telepathic-bond"
+      ],
+      "removed_feature_clauses": [
+        "detect thoughts",
+        "telepathic bond",
+        "the phrenic amplifications gained at 11th and 19th levels"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Terror Weaver",
+          "description": "Source Heroes from the Fringe pg. 26"
+        },
+        {
+          "level": 2,
+          "name": "Manipulation",
+          "description": "At 2nd level, a terror weaver can cast charm person once per day as a spell-like ability. He can also expend any unused spell slot of 1st level or higher to cast charm person. If he does so, he uses the level of the spell slot expended to determine the save DC. When a terror weaver gains this ability, if he already knows charm person, he can learn a different 1st-level spell in place of charm person, losing the old spell in exchange for the new one.\n\nThis replaces detect thoughts."
+        },
+        {
+          "level": 9,
+          "name": "Aura of Intimidation",
+          "description": "Because he lacks the physical prowess of most orcs, a terror weaver seeks to end fights before they start. At 9th level, he can cast aura of doom as a spell-like ability once per day. He can also expend any unused spell slot of 4th level or higher to cast aura of doom. Casting the spell using a higher-level spell slot gives no benefit on its own, but the terror weaver can apply metamagic feats that would increase the spell level to the appropriate level. At 11th level, a terror weaver’s aura of doom causes enemies to become frightened instead of shaken. At 19th level, it causes enemies to become panicked.\n\nThis replaces telepathic bond and the phrenic amplifications gained at 11th and 19th levels."
+        },
+        {
+          "level": 15,
+          "name": "Persistent Nightmare",
+          "description": "Gloomkin often suffer from lifetimes of cruelty and abuse, and a terror weaver repays that suffering back onto his tormentors. At 15th level, when he successfully casts a mind-affecting spell on a target, he can spend 2 points from his phrenic pool to afflict the target with a nightmare spell the next time it goes to sleep. The day after nightmare has taken effect, regardless of the victim’s saving throw, the target takes a –2 penalty on Will saves against the terror weaver’s mind-affecting spells and abilities for 24 hours."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

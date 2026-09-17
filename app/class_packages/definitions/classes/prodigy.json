@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "key": "prodigy",
+  "class_key": "prodigy",
+  "class_name": "Prodigy",
+  "governing_ability": "charisma",
+  "optional_blocks": ["prodigy_sequence", "imbue", "martial_focus", "spell_points", "inquisitor_features"],
+  "external_systems": ["prodigy_sequence", "integrated_techniques", "imbue_sequence", "reflect_spell", "moldable_talents"],
+  "resource_modules": [
+    {
+      "key": "prodigy",
+      "title": "Prodigy Adaptation",
+      "governing_ability": "charisma",
+      "resources": [
+        {"key": "adaptation", "name": "Adaptation Uses", "feature_tokens": ["adaptation"], "progression": "three_plus_half_level", "description": "Daily uses of Adaptation. Each talent gained consumes one use; Share Adaptation consumes two uses."},
+        {"key": "steady_skill", "name": "Steady Skill — Take 15", "feature_tokens": ["steady-skill"], "progression": "zero", "description": "Expend martial focus to take 15 on the selected skill as though taking 10. At 19th level, Skill Juggler improves this to take 20.", "custom_choice_label": "Chosen Steady Skill", "tracks_uses": false, "external_cost_key": "martial_focus"}
+      ]
+    }
+  ],
+  "passive_effects": [],
+  "notes": "Sequence and Imbue remain specialized shared subsystems; Adaptation and Steady Skill use the generic class-resource contract."
+}

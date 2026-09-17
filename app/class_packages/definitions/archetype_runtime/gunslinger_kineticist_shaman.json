@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:gunslinger:commando",
+      "resource_modules": [{"key": "commando", "title": "Commando Fieldcraft", "governing_ability": "wisdom", "resources": [{"key": "favored_terrain", "name": "Favored Terrains", "feature_tokens": ["favored-terrain"], "progression": "commando_favored_terrains", "description": "One favored terrain at 2nd level and another at 6th level and every 4 levels thereafter. Record the selected terrains and distributed bonuses.", "custom_choice_label": "Terrains and bonuses", "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": false}, {"key": "ranger_traps", "name": "Ranger Traps", "feature_tokens": ["trapsmith"], "progression": "ability_modifier_minimum_one", "description": "Daily uses of each learned extraordinary ranger trap equal Wisdom modifier (minimum 1). A gun-training selection may be exchanged for one learned trap.", "custom_choice_label": "Known traps"}]}],
+      "system_features": ["favored-terrain"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:gunslinger:firebrand",
+      "governing_ability": "charisma",
+      "resource_modules": [{"key": "firebrand", "title": "Firebrand Bombs", "governing_ability": "charisma", "resources": [{"key": "bombs", "name": "Bombs", "feature_tokens": ["bomb"], "progression": "firebrand_bombs", "description": "At 5th level, bombs per day equal effective Alchemist level (Gunslinger level - 4) + Charisma modifier, minimum 1. Bomb dice use that same effective Alchemist level and always include Explosive Bombs."}]}],
+      "system_features": ["bomb", "grit"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:gunslinger:gun-tank",
+      "resource_modules": [{"key": "gun_tank", "title": "Gun Tank Armor", "governing_ability": "wisdom", "resources": [{"key": "armor_training", "name": "Armor Training Rank", "feature_tokens": ["armor-training"], "progression": "armor_training_from_four", "description": "Reduce armor check penalty and increase maximum Dexterity by 1 at 4th level and every 4 levels thereafter, to a maximum of 4. If another class grants Armor Training, use the better result rather than stacking." , "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": false}]}],
+      "system_features": ["armor-training"]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:gunslinger:game-hunter",
+      "choice_handling": "automatic",
+      "choice_handling_note": "Trade and martial traditions use the shared tradition pickers. The competent trade rank and alternating utility/combat-or-skill talent budget are derived from the reviewed profile."
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:gunslinger:spellshot-engineer",
+      "choice_handling": "automatic",
+      "choice_handling_note": "Casting ability and casting tradition are selected through the shared Spheres casting workflow; the spell pool replaces grit and pays both deeds and amplified sphere effects."
+    },
+
+    {
+      "key": "pathfinder-archetype:pathfinder-class:kineticist:cinderlands-adept",
+      "choice_provider_overrides": [{"key": "kineticist-elements", "minimum": 3, "maximum": 3, "label": "Fire Focus"}],
+      "choice_option_filters": [{"key": "kineticist-elements", "include_names": ["Fire Element"]}],
+      "choice_handling": "automatic",
+      "choice_handling_note": "Elemental Focus and both Expanded Element selections are fixed to Fire. The mount is fixed to a horse or pony and uses effective Druid level equal to Kineticist level - 3.",
+      "system_features": ["animal-companion"]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:kineticist:scion",
+      "choice_providers": [{"key": "scion-blast-group", "label": "Destructive Focus", "feature_tokens": ["destructive-focus"], "minimum": 1, "maximum": 1, "fixed_options": [{"key": "aether", "name": "Aether — air or force"}, {"key": "air", "name": "Air — air, electric, or sonic"}, {"key": "earth", "name": "Earth — acid, crystal, or stone"}, {"key": "fire", "name": "Fire — fire or light"}, {"key": "void", "name": "Void — negative"}, {"key": "water", "name": "Water — cold"}, {"key": "wood", "name": "Wood — acid, force, or holy"}], "description": "Choose the primary Destruction blast group and associated kinetic element. It grants that element's basic utility talent and one matching blast-type talent."}],
+      "system_features": ["destructive-focus"]
+    },
+
+    {
+      "key": "pathfinder-archetype:pathfinder-class:shaman:name-keeper",
+      "resource_modules": [{"key": "name_keeper", "title": "Pathfinders Past", "governing_ability": "wisdom", "resources": [{"key": "pathfinders_past", "name": "Daily Pathfinder Focus", "feature_tokens": ["pathfinders-past"], "progression": "one", "description": "Choose Scrolls, Spells, or Swords when preparing spells. The exact mystery, spirits, weapons, and later benefits may be changed at the next preparation.", "can_activate": true, "choice_options": ["Scrolls", "Spells", "Swords"], "custom_choice_label": "Daily options", "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": true}, {"key": "versatile_hex", "name": "Versatile Hex", "feature_tokens": ["versatile-hex"], "progression": "one", "description": "Record one temporary Shaman or spirit hex at 6th level, increasing to two at 14th level. Choices last until the next spell preparation.", "custom_choice_label": "Temporary hexes", "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": true}]}]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:shaman:overseer",
+      "audit_ignore_mechanics": ["spirit_influence"],
+      "choice_handling": "transient",
+      "choice_handling_note": "Spirit Surge changes the delivery method of one qualifying spell at cast time; it is neither a spirit-influence pool nor a persistent build choice."
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:shaman:speaker-for-the-past",
+      "power_providers": [{"key": "speaker-past-revelations", "label": "Revelations of the Past", "family": "revelation", "feature_tokens": ["revelations-of-the-past"], "slot_levels": [4, 6, 12, 14, 20], "option_names": ["Ancestral Weapon", "Blood of Heroes", "Phantom Touch (Ancestor Mystery)", "Sacred Council", "Spirit of the Warrior", "Spirit Shield", "Storm of Souls", "Wisdom of the Ancestors", "Aging Touch", "Erase from Time", "Knowledge of the Ages", "Momentary Glimpse", "Rewind Time", "Speed or Slow Time", "Temporal Celerity", "Time Flicker", "Time Hop", "Time Sight"], "description": "Choose an Ancestor or Time mystery revelation at 4th, 6th, 12th, 14th, and 20th levels. Shaman level replaces Oracle level and Wisdom replaces Charisma."}],
+      "system_features": ["revelation"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:shaman:true-silvered-throne",
+      "resource_modules": [{"key": "silvered_throne", "title": "Wandering Ritual", "governing_ability": "wisdom", "resources": [{"key": "wandering_ritual", "name": "Wandering Ritual", "feature_tokens": ["wandering-ritual"], "progression": "wandering_ritual_uses", "description": "One daily one-hour spirit bond at 6th level, two at 8th, and three at 14th. The bond grants spirit ability and spirit magic; greater spirit power unlocks at 12th and true spirit power at 20th.", "can_activate": true, "activate_on_spend": true, "choice_options": ["Ancestors", "Battle", "Bones", "Dark Tapestry", "Flame", "Frost", "Heavens", "Life", "Lore", "Mammoth", "Nature", "Slums", "Stone", "Tribe", "Waves", "Wind", "Wood"]}]}]
+    }
+  ]
+}

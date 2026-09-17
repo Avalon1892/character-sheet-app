@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:blacksmith:disciple-of-goibniu",
+      "resource_modules": [{
+        "key": "disciple_of_goibniu",
+        "title": "Disciple of Goibniu",
+        "governing_ability": "constitution",
+        "resources": [{
+          "key": "anathemic_blows",
+          "name": "Anathemic Blows",
+          "feature_tokens": ["anathemic-blows"],
+          "progression": "zero",
+          "description": "Enable while the attack satisfies Anathemic Blows. The tracker supplies the archetype's reduced 1d6-at-3rd-and-every-3-levels damage progression.",
+          "can_activate": true,
+          "tracks_uses": false,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": false,
+          "extra_damage_levels": [3, 6, 9, 12, 15, 18],
+          "extra_damage_die": "d6",
+          "extra_damage_type": "untyped"
+        }]
+      }],
+      "system_features": ["anathemic-blows"]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:blacksmith:iron-chef",
+      "choice_providers": [
+        {"key": "iron-chef-entrees", "label": "Recipe Entrees", "feature_tokens": ["recipes"], "minimum": 1, "maximum_levels": [1, 13], "fixed_options": [{"key":"fish","name":"Fish"},{"key":"fowl","name":"Fowl"},{"key":"mycoprotein","name":"Mycoprotein"},{"key":"red-meat","name":"Red Meat"}]},
+        {"key": "iron-chef-flavors", "label": "Recipe Flavors", "feature_tokens": ["recipes"], "minimum": 1, "maximum_levels": [1, 9, 17], "fixed_options": [{"key":"salty","name":"Salty"},{"key":"savory","name":"Savory"},{"key":"sour","name":"Sour"},{"key":"spicy","name":"Spicy"},{"key":"sweet","name":"Sweet"}]}
+      ],
+      "resource_modules": [{
+        "key": "iron_chef", "title": "Iron Chef Recipes", "governing_ability": "constitution",
+        "resources": [{"key":"recipe_servings","name":"Recipe Servings","feature_tokens":["recipes"],"progression":"one_plus_ability_minimum_one","description":"Creatures fed without supplemental rations or foraging: the Iron Chef plus allies equal to Constitution modifier.","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false}]
+      }],
+      "system_features": ["recipes"]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:elementalist:admixture-savant",
+      "resource_modules": [{
+        "key":"admixture_savant","title":"Admixture Savant","governing_ability":"intelligence",
+        "resources":[{"key":"admixture_pool","name":"Admixture Pool","feature_tokens":["admixture-pool"],"progression":"level","description":"Spend admixture points to remove Admixture's casting-time increase or reduce a metamagic spell-point surcharge. Full Rest restores the pool."}]
+      }],
+      "system_features": ["admixture-pool"]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:elementalist:martial-elementalist",
+      "system_features": ["combat-training"]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:elementalist:soul-adept",
+      "resource_modules": [{
+        "key":"soul_adept","title":"Soul Adept","governing_ability":"intelligence",
+        "resources":[{"key":"wraith_form","name":"Wraith Form","feature_tokens":["wraith-form"],"progression":"level_plus_ability_minimum_one","description":"Rounds per day of incorporeal wraith form. Full Rest restores the pool.","can_activate":true,"activate_on_spend":true,"use_requires_active":true}]
+      }],
+      "system_features": ["wraith-form"]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:elementalist:twinsoul-elementalist",
+      "choice_providers": [{
+        "key":"twinsoul-elemental-conduit","label":"Elemental Conduit","feature_tokens":["elemental-conduit"],"minimum":1,"maximum":1,"description":"Record whether the conduit is a newly gained companion or an existing companion receiving the required mage companion archetype.","fixed_options":[{"key":"new-companion","name":"New elemental conduit"},{"key":"existing-companion","name":"Existing companion as conduit"}]
+      }],
+      "resource_modules": [{
+        "key":"twinsoul_elementalist","title":"Twinsoul Elementalist","governing_ability":"intelligence",
+        "resources":[{"key":"destructive_capacitor","name":"Destructive Capacitor","feature_tokens":["destructive-capacitor"],"progression":"zero","description":"Record the elemental conduit and use this row while channeling caster level and temporary spell points to it.","can_activate":true,"custom_choice_label":"Elemental conduit","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false}]
+      }],
+      "system_features": ["elemental-conduit", "destructive-capacitor", "companion"]
+    }
+  ]
+}

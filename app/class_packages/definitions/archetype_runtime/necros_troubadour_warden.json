@@ -1,0 +1,50 @@
+{
+  "version":1,
+  "entries":[
+    {
+      "key":"spheres-archetype:spheres-class:necros:necrotech-savant",
+      "resource_modules":[{
+        "key":"necrotech-savant","title":"Necrotech Savant","governing_ability":"casting","resources":[
+          {"key":"gadgets","name":"Dark Gadgets","feature_tokens":["dark-gadgets"],"progression":"three_plus_ability_minimum_one","description":"Daily gadget uses equal 3 + casting ability modifier."},
+          {"key":"necrograft_capacity","name":"Necrograft Capacity","feature_tokens":["necrograft"],"progression":"necrotech_necrografts","description":"Inventions or improvements that can be applied with one necrograft use.","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false},
+          {"key":"necrograft_shield","name":"Necrograft Shield Temporary HP","feature_tokens":["necrograft-shield"],"progression":"necros_necrotic_shield","description":"Temporary HP granted by Necrograft Shield; doubled from level 13.","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false}
+        ]
+      }],
+      "choice_providers":[
+        {"key":"necrotech-technical-insights","label":"Technical Insights","feature_tokens":["technical-insight"],"minimum_levels":[4,8,12,16,20],"maximum_levels":[4,8,12,16,20],"custom_option_label":"Technician technical insight","description":"Choose a Technician technical insight at level 4 and every four levels thereafter."},
+        {"key":"necrotech-necrografts","label":"Necrograft Inventions and Improvements","feature_tokens":["necrograft"],"minimum_levels":[3,7,11,15,19],"maximum_levels":[3,7,11,15,19],"custom_option_label":"Invention, improvement, or qualifying fleshcraft","description":"Record each invention or improvement the Necrotech Savant can apply. Fleshcraft options unlock at level 7 and an advanced fleshcraft at level 20."}
+      ],
+      "system_features":["dark-gadgets","necrograft","technical-insight"]
+    },
+    {
+      "key":"spheres-archetype:spheres-class:troubadour:binder",
+      "resource_modules":[{"key":"binder","title":"Binder","governing_ability":"charisma","resources":[{"key":"potent_expulsion","name":"Potent Expulsion Temporary Spell Points","feature_tokens":["potent-expulsion"],"progression":"binder_potent_expulsion","description":"Temporary spell points gained by expelling a persona; they last for one round.","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false}]}],
+      "system_features":["potent-expulsion"]
+    },
+    {
+      "key":"spheres-archetype:spheres-class:troubadour:clone",
+      "choice_providers":[{"key":"clone-mimicked-creature","label":"Mimicked Creature","feature_tokens":["steal-face"],"minimum":1,"maximum":1,"custom_option_label":"Creature identity and form","description":"Record the creature copied by Steal Face; its size, movement, senses, natural attacks, and eligible abilities scale with Troubadour level."}],
+      "choice_provider_overrides":[{"key":"troubadour-personas","minimum":1,"maximum":1}],
+      "system_features":["steal-face"]
+    },
+    {
+      "key":"spheres-archetype:spheres-class:troubadour:ringmaster",
+      "resource_modules":[{"key":"ringmaster","title":"Ringmaster","governing_ability":"charisma","resources":[{"key":"master_of_ceremonies_duration","name":"Master of Ceremonies Duration","feature_tokens":["master-of-ceremonies"],"progression":"ringmaster_ceremony_duration","description":"Rounds an ally retains the granted trope benefit and persona quirks.","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false}]}],
+      "choice_provider_overrides":[{"key":"troubadour-personas","minimum":1,"maximum":1}],
+      "system_features":["master-of-ceremonies"]
+    },
+    {
+      "key":"spheres-archetype:spheres-class:warden:custodian",
+      "choice_providers":[{"key":"custodian-charge","label":"Custodian's Charge","feature_tokens":["sole-guard"],"minimum":1,"maximum":1,"custom_option_label":"Charge name","description":"Choose the single familiar creature who is always the Custodian's guarded charge."}],
+      "system_features":["sole-guard"]
+    },
+    {
+      "key":"spheres-archetype:spheres-class:warden:jailer",
+      "resource_modules":[{"key":"jailer","title":"Jailer","governing_ability":"casting","resources":[
+        {"key":"detain_dc","name":"Detain DC","feature_tokens":["detain"],"progression":"ten_plus_half_level_plus_ability","description":"Reflex save DC for Detain.","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false},
+        {"key":"detained_targets","name":"Detained Targets","feature_tokens":["detain"],"progression":"zero","description":"Track creatures currently affected by Detain.","custom_choice_label":"Detained creature","maximum_choices_progression":"jailer_detain_targets","can_activate":true,"tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":true}
+      ]}],
+      "system_features":["detain"]
+    }
+  ]
+}

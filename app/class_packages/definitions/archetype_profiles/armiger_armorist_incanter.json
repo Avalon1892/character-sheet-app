@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "key":"spheres-archetype:spheres-class:armiger:battlefield-tinker",
+      "class_modifications":{"statistics":{"add_class_skills":["disable_device","knowledge_engineering"],"remove_class_skills":["intimidate","survival"]}}
+    },
+    {
+      "key":"spheres-archetype:spheres-class:armorist:darkshaper",
+      "class_modifications":{
+        "statistics":{"add_class_skills":["acrobatics","stealth"],"remove_class_skills":["knowledge_engineering","knowledge_nobility"]},
+        "casting":{"ability":"charisma"},
+        "proficiencies":{"mode":"replace","weapons":["Simple weapons"],"armor":["Light armor"]}
+      }
+    },
+    {
+      "key":"spheres-archetype:spheres-class:armorist:inventioneer",
+      "class_modifications":{
+        "advancement":{"talent_progression":"Low","talent_kinds":["magic","martial"]},
+        "capabilities":{"grants":["martial"]},
+        "proficiencies":{"mode":"replace","weapons":["Simple weapons"],"armor":["Light armor","Bucklers"]}
+      }
+    },
+    {
+      "key":"spheres-archetype:spheres-class:armorist:living-weapon",
+      "class_modifications":{"proficiencies":{"mode":"replace","weapons":["Simple weapons","Martial weapons"],"armor":[]}}
+    },
+    {
+      "key":"spheres-archetype:spheres-class:armorist:martial-armorist",
+      "class_modifications":{
+        "advancement":{"talent_progression":"Low","talent_kinds":["magic","martial"]},
+        "capabilities":{"grants":["martial"]},
+        "proficiencies":{"mode":"replace","weapons":["Simple weapons"],"armor":["Light armor","Bucklers"]}
+      }
+    },
+    {
+      "key":"spheres-archetype:spheres-class:armorist:spirit-blade",
+      "class_modifications":{
+        "advancement":{"talent_progression":"Low","talent_kinds":["magic","martial"]},
+        "capabilities":{"grants":["martial"]},
+        "proficiencies":{"mode":"replace","weapons":["Simple weapons"],"armor":["Light armor","Bucklers"]}
+      }
+    },
+    {
+      "key":"spheres-archetype:spheres-class:armorist:vajrahasta",
+      "class_modifications":{
+        "advancement":{"talent_progression":"Low","talent_kinds":["magic","martial"]},
+        "capabilities":{"grants":["martial"]},
+        "proficiencies":{"mode":"replace","weapons":["Simple weapons"],"armor":["Light armor","Bucklers"]}
+      }
+    },
+    {
+      "key":"spheres-archetype:spheres-class:armorist:warleader",
+      "class_modifications":{"statistics":{"add_class_skills":["handle_animal"]}}
+    },
+    {
+      "key":"spheres-archetype:spheres-class:incanter:frostweaver",
+      "class_modifications":{
+        "statistics":{"add_class_skills":["perception","survival"]},
+        "advancement":{"talent_replaces_base":true,"talent_bonus_levels":[7,15]}
+      },
+      "feature_additions":[
+        {"level":1,"name":"Servant of Winter","description":"Gain the Nature sphere with the water package, or the corresponding package chosen for a variant Frostweaver; gain a +1 Nature caster-level bonus at 2nd level."},
+        {"level":1,"name":"Frost Motes","description":"Begin each day with frost motes equal to the casting ability modifier (minimum 1). Spend and regain them through Frostweaver sphere effects and ice charms."},
+        {"level":1,"name":"Frost Mote Augmentation","description":"Spend one frost mote while casting a sphere effect to add the appropriate elemental descriptor and enable one applicable spellrime."},
+        {"level":1,"name":"Frost Familiar","description":"While at least one frost mote remains, gain a familiar using Incanter level as Wizard level. A melted or slain familiar reforms through the Frostweaver recovery rules."},
+        {"level":2,"name":"Blessings of Winter","description":"Choose one blessing at 2nd level and every 4 levels thereafter."},
+        {"level":4,"name":"Freeze Magic","description":"Spend a frost mote to freeze an ongoing or newly created magical effect after a successful magic skill check."},
+        {"level":20,"name":"Frozen","description":"Gain the published Frostweaver capstone, including improved matching-descriptor caster level and doubled frost-mote recovery."}
+      ]
+    }
+  ]
+}

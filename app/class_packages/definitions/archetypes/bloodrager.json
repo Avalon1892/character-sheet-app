@@ -1,0 +1,1516 @@
+{
+  "version": 1,
+  "class_key": "pathfinder-class:bloodrager",
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bloodrager:ancestral-harbinger",
+      "package": "pathfinder-class:bloodrager",
+      "name": "Ancestral Harbinger",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager Ancestral Harbinger",
+      "replaces_features": [
+        "bloodline-feats",
+        "improved-uncanny-dodge",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "bloodline-feats",
+        "improved-uncanny-dodge",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "uncanny dodge",
+        "the bloodline feats gained at 6th and 18th levels"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Ancestral Harbinger",
+          "description": "Source Monster Summoner's Handbook pg. 6"
+        },
+        {
+          "level": 2,
+          "name": "Spirit Guardian",
+          "description": "At 2nd level, an ancestral harbinger can call upon her ancestors to aid her in combat, summoning a weapon of force that functions as per spiritual weapon. At 6th level, her ancestral spirit can take the form of a savage creature, functioning as per summon nature's ally II (this can't be used to summon multiple creatures from the summon nature's ally I list). At 12th level, her ancestor can manifest physically as a ghostly figure, functioning as per spiritual ally. At 18th level, her ancestral spirit can manifest either as a single powerful creature or as multiple lesser ancestors, functioning as per summon nature's ally VI. The harbinger chooses which spell this ability functions as at the time of casting, and can use this ability while in a bloodrage. The ancestral harbinger can use this ability once per day, plus an additional time per day for every 4 bloodrager levels she possesses beyond 2nd. This ability replaces uncanny dodge and the bloodline feats gained at 6th and 18th levels."
+        },
+        {
+          "level": 5,
+          "name": "Spirit Servants",
+          "description": "At 5th level, an ancestral harbinger adds summon monster I to her class spell list and gains it as a bonus spell known. She also gains summon monster II at 8th level, summon monster III at 11th level, and summon monster IV at 14th level. These spells can be used only to summon types of monsters with strong ties to the ancestral harbinger's family history, ranging from clan totems to monsters of the same type as those famously killed by her forebears. For each of these spells, the ancestral harbinger selects a number of monsters she can summon equal to her Charisma bonus (minimum 1) to represent these spirits. These monsters are selected from the options on the summon monster creature list or the expanded summoning list (see the summoning project) that are appropriate for the spell level. At 7th level and every 2 bloodrager levels thereafter, the ancestral harbinger can swap one selected monster from one of these spells for a new monster from the same level's summoning lists."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bloodrager:blood-conduit",
+      "package": "pathfinder-class:bloodrager",
+      "name": "Blood Conduit",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager Blood Conduit",
+      "replaces_features": [
+        "bloodline-feats",
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "indomitable-will",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "bloodline-feats",
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "indomitable-will",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "fast movement",
+        "alters bloodline feats",
+        "uncanny dodge",
+        "improved uncanny dodge",
+        "indomitable will"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blood Conduit",
+          "description": "Source Advanced Class Guide pg. 82"
+        },
+        {
+          "level": 1,
+          "name": "Contact Specialist",
+          "description": "At 1st level, a blood conduit selects a bonus feat from the following: Improved Bull Rush, Improved Grapple, Improved Reposition, Improved Trip, and Improved Unarmed Strike. He does not need to meet the prerequisites to take this feat. He also adds those feats to his list of bloodline feats. This ability replaces fast movement and alters bloodline feats."
+        },
+        {
+          "level": 5,
+          "name": "Spell Conduit",
+          "description": "At 5th level, as long as a blood conduit is wearing light or no armor, he can deliver bloodrager spells with a range of touch through bodily contact. When he succeeds at a combat maneuver check to bull rush, grapple, pin, reposition, or trip an opponent, or makes an unarmed strike against an enemy, he can as a swift action cast a touch spell on the creature that he affected with the combat maneuver, requiring no further touch attack roll. If this spell would usually require a successful touch attack, his successful combat maneuver check counts as this attack. This ability replaces uncanny dodge and improved uncanny dodge."
+        },
+        {
+          "level": 14,
+          "name": "Reflexive Conduit",
+          "description": "At 14th level, a blood conduit can discharge his power into foes that attempt bodily contact with him. While wearing light or no armor, when the blood conduit is subject to a combat maneuver check made to bull rush, grapple, pin, reposition, or trip him, as an immediate action he can target his attacker with a bloodrager spell that has a range of touch. If the spell would normally require a touch attack, a blood conduit can attempt a combat maneuver check for this attack instead. This ability replaces indomitable will."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bloodrager:bloodrider",
+      "package": "pathfinder-class:bloodrager",
+      "name": "Bloodrider",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager Bloodrider",
+      "replaces_features": [
+        "bloodline-feat",
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "bloodline-feat",
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "fast movement",
+        "uncanny dodge",
+        "improved uncanny dodge",
+        "bloodline feat gained at 9th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Bloodrider",
+          "description": "Source Advanced Class Guide pg. 82"
+        },
+        {
+          "level": 1,
+          "name": "Fast Rider",
+          "description": "The bloodrider is adept at pushing his mount to its limit. The speed of any mount the bloodrager rides increases by 10 feet. This ability replaces fast movement."
+        },
+        {
+          "level": 5,
+          "name": "Feral Mount",
+          "description": "At 5th level, the bloodrider gains the service of a feral mount. This ability functions as the druid’s animal companion, using the bloodrager’s level – 4 as his effective druid level. This companion must be one he is capable of riding and suitable as a mount. A Medium bloodrider can select a camel or a horse. A Small bloodrider can select a pony or wolf, but can also select a boar or riding dog if he is at least 8th level. Whenever a bloodrider is bloodraging, this feral mount gains a +2 morale bonus to its Strength. This ability replaces uncanny dodge and improved uncanny dodge."
+        },
+        {
+          "level": 9,
+          "name": "Blood Bond",
+          "description": "At 9th level, the bloodrider and his feral mount gain a closer bond that allows the bloodrider to augment his mount based on his bloodline. While the bloodrider is bloodraging and on his feral mount, he grants the mount all the immunities and resistances he gains from bloodline powers. Furthermore, whenever the bloodrager is affected by a spell or spell-like ability with the range of personal while on the feral mount, the feral mount also gains the benefit of that spell. This ability replaces the bloodline feat gained at 9th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bloodrager:bloody-knuckled-rowdy",
+      "package": "pathfinder-class:bloodrager",
+      "name": "Bloody-Knuckled Rowdy",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager Bloody-Knuckled Rowdy",
+      "replaces_features": [
+        "damage-reduction",
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "spellcasting",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "damage-reduction",
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "spellcasting",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "fast movement",
+        "uncanny dodge",
+        "improved uncanny dodge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Bloody-Knuckled Rowdy",
+          "description": "Source Melee Tactics Toolbox pg. 13"
+        },
+        {
+          "level": 1,
+          "name": "Bloody Knuckles",
+          "description": "The bloody-knuckled rowdy does not gain damage reduction."
+        },
+        {
+          "level": 1,
+          "name": "Reduced Spells Known",
+          "description": "The bloody-knuckled rowdy focuses more on fighting tactics and less on his natural arcane powers. He receives one fewer spell known at each spell level. This ability modifies bloodrager spellcasting."
+        },
+        {
+          "level": 1,
+          "name": "Pugilist",
+          "description": "At 1st level, a bloody-knuckled rowdy gains Improved Unarmed Strike as a bonus feat. This ability replaces fast movement."
+        },
+        {
+          "level": 2,
+          "name": "Combat Style Student",
+          "description": "At 2nd level, a bloody-knuckled rowdy gains a bonus feat. This bonus feat must be a style feat or a feat with a style feat as a prerequisite. The bloody-knuckled rowdy treats his bloodrager levels as monk levels when qualifying for and calculating the effects of style feats and feats that have style feats as prerequisites. At 5th level, the bloody-knuckled rowdy gains the Combat Style Master feat. He doesn’t need to meet the prerequisites for this feat. This ability replaces uncanny dodge and improved uncanny dodge."
+        },
+        {
+          "level": 3,
+          "name": "Hand-to-Hand Training",
+          "description": "At 3rd level, a bloody-knuckled rowdy deals unarmed damage as a monk of a level equal to his bloodrager level – 2."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bloodrager:crossblooded-rager",
+      "package": "pathfinder-class:bloodrager",
+      "name": "Crossblooded Rager",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager Crossblooded Rager",
+      "replaces_features": [
+        "bloodline-powers",
+        "bonus-feats",
+        "bonus-spells",
+        "saving-throws"
+      ],
+      "removed_features": [
+        "bloodline-powers",
+        "bonus-feats",
+        "bonus-spells",
+        "saving-throws"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Crossblooded Rager",
+          "description": "Source Advanced Class Guide pg. 83"
+        },
+        {
+          "level": 1,
+          "name": "Bonus Feats",
+          "description": "A crossblooded rager combines the bonus feat lists from both of his bloodlines and can select his bloodline bonus feats from this combined list."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Spells",
+          "description": "A crossblooded rager can select his bonus spells from either of his bloodlines. He can also learn a lower-level bonus spell he did not choose in place of the higher-level bonus spell he would normally gain. Lowerlevel bonus spells learned in this manner are always the spell level that they would be if the crossblooded rager had learned them with the appropriate bonus spell."
+        },
+        {
+          "level": 10,
+          "name": "For example",
+          "description": "A 7th-level aberrant/abyssal crossblooded rager has the choice of learning enlarge person or ray of enfeeblement as his bloodline bonus spell. If he selected ray of enfeeblement as his 7th-level bonus spell, at 10th level he could use his new bonus spell to learn enlarge person instead of bull’s strength or see invisibility, and he would add it to his list of 1st-level spells known (just as if he had learned it as his 7th-level bonus spell)."
+        },
+        {
+          "level": 1,
+          "name": "Bloodline Powers",
+          "description": "At 1st, 4th, 8th, 12th, 16th, and 20th levels, a crossblooded rager gains one of the two new bloodline powers available to him at that level. He can instead select a lower-level bloodline power he did not choose in place of one of these high-level powers."
+        },
+        {
+          "level": 1,
+          "name": "Drawbacks",
+          "description": "The furious mix of arcane power inside a crossblooded rager forces him to constantly expend mental effort to remain focused on his current situation and needs. This leaves him with less mental resolve available to deal with external threats. A crossblooded rager takes a –2 penalty to all Will saving throws at all times, and does not gain the +2 morale bonus on Will saving throws while bloodraging—though he does gain a +1 morale bonus Will saving throws when he gains the greater bloodrage class feature, which increases to a +2 morale bonus on saving throws upon gaining the mighty bloodrage class feature."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bloodrager:enlightened-bloodrager",
+      "package": "pathfinder-class:bloodrager",
+      "name": "Enlightened Bloodrager",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager Enlightened Bloodrager",
+      "replaces_features": [
+        "bloodline-power",
+        "bloodrage",
+        "bonus-spells",
+        "damage-reduction",
+        "spellcasting"
+      ],
+      "removed_features": [
+        "bloodline-power",
+        "bloodrage",
+        "bonus-spells",
+        "damage-reduction",
+        "spellcasting"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Enlightened Bloodrager",
+          "description": "Source Adventurer's Guide pg. 120, Arcane Anthology pg. 16"
+        },
+        {
+          "level": 4,
+          "name": "Enlightened Spellcasting",
+          "description": "An enlightened bloodrager’s unusually sophisticated outlook on the relationship between magic and emotional outbursts allows her to cast an expanded array of spells. She gains the ability to know and cast 0-level spells, which are cast like any other spells, but don’t consume spell slots and can be used again. At 4th level, she gains a number of 0-level spells known equal to those of a bard whose level is 3 lower than her bloodrager level. She selects these 0-level spells from the druid’s list of 0-level spells."
+        },
+        {
+          "level": 4,
+          "name": "Enlightened Bloodrage",
+          "description": "At 4th level, while bloodraging, an enlightened bloodrager can still use Intelligence-, Dexterity-, and Charisma-based skills and can use abilities that require patience or concentration."
+        },
+        {
+          "level": 6,
+          "name": "Bloodline Feat",
+          "description": "At 6th level, an enlightened bloodrager adds Expanded Arcana, Nameless One, and all feats that list Nameless One as a prerequisite to the list of feats she can select as a bloodline feat."
+        },
+        {
+          "level": 8,
+          "name": "Bloodline Powers",
+          "description": "At 8th level, an enlightened bloodrager gains the bloodline power normally granted at 1st level. At 12th level she gains the bloodline power normally granted at 4th level, at 16th level she gains the bloodline power normally granted at 8th level, and at 20th level she gains the bloodline power normally gained at 12th level. She still uses her full bloodrager level when making level-based calculations in regard to these abilities.\n\nThis alters the bloodrager’s bloodline powers."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bloodrager:greenrager",
+      "package": "pathfinder-class:bloodrager",
+      "name": "Greenrager",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager Greenrager",
+      "replaces_features": [
+        "blood-sanctuary",
+        "bloodline-feats"
+      ],
+      "removed_features": [
+        "blood-sanctuary",
+        "bloodline-feats"
+      ],
+      "removed_feature_clauses": [
+        "blood sanctuary",
+        "bloodline feat gained at 6th level",
+        "bloodline feat at 9th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Greenrager",
+          "description": "Source Advanced Class Guide pg. 83"
+        },
+        {
+          "level": 3,
+          "name": "Unfettered Fury",
+          "description": "At 3rd level, a greenrager’s fury allows him to move through undergrowth with frightening speed and grace. This functions as the druid’s woodland stride class feature, but only while the greenrager is bloodraging. This ability replaces blood sanctuary."
+        },
+        {
+          "level": 6,
+          "name": "Summoning Rager",
+          "description": "At 6th level, a greenrager’s magic unlocks the secrets of summoning allies from nature. He adds summon nature’s ally I to his list of 1st-level bloodrager spells known as a bonus spell, as if it were a bonus bloodrager spell. At 7th level, he adds summon nature’s ally II as a bonus 2nd-level bloodrager spell, at 10th level he adds summon nature’s ally III as a bonus 3rd level bloodrager spell, and at 13th level he adds summon nature’s ally IV as a bonus 4th-level bloodrager spell. This ability replaces the bloodline feat gained at 6th level."
+        },
+        {
+          "level": 9,
+          "name": "Furious Summoning",
+          "description": "At 9th level, creatures summoned by the bloodrager’s summon nature’s ally spell gain a +4 morale bonus to Strength and Constitution and gain the druid’s woodland stride ability. At 11th level, this bonus increases to +6. At 20th level, it increases to +8. This ability replaces the bloodline feat at 9th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bloodrager:hag-riven",
+      "package": "pathfinder-class:bloodrager",
+      "name": "Hag-Riven",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager Hag-Riven",
+      "replaces_features": [
+        "damage-reduction",
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "uncanny-dodge",
+        "weapon-armor-proficiencies"
+      ],
+      "removed_features": [
+        "damage-reduction",
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "uncanny-dodge",
+        "weapon-armor-proficiencies"
+      ],
+      "removed_feature_clauses": [
+        "fast movement",
+        "uncanny dodge",
+        "damage reduction"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Hag-Riven",
+          "description": "Source Blood of the Coven pg. 27"
+        },
+        {
+          "level": 1,
+          "name": "Arcane Influence",
+          "description": "A hag-riven bloodrager does not gain proficiency with martial weapons and must choose from one of the following bloodrager bloodlines: arcane, destined, elemental, fey, or hag.\n\nThis alters the bloodrager’s weapon and armor proficiencies."
+        },
+        {
+          "level": 2,
+          "name": "Claws of the Hag",
+          "description": "A hag-riven grows a pair of vicious claws that are treated as natural weapons. These claws are primary attacks and deal 1d4 points of damage each (1d3 for a Small creature) plus the hag-riven’s Strength modifier. At 2nd level, these claws are considered magic weapons for the purpose of overcoming damage reduction. At 5th level, the damage increases to 1d6 points (1d4 for a Small creature). At 13th level, the hag-riven’s claws threaten a critical hit on a natural roll of 19–20. At 16th level, the damage increases again to 1d8 points (1d6 for a Small creature).\n\nThis replaces fast movement and uncanny dodge."
+        },
+        {
+          "level": 7,
+          "name": "Scarred Hide",
+          "description": "At 7th level, a hag-riven’s scarred flesh becomes thick and leathery. She gains a +1 natural armor bonus to AC. At 10th, 13th, 16th, and 19th levels, this bonus increases by 1."
+        },
+        {
+          "level": 10,
+          "name": "Hexing Claws",
+          "description": "At 10th level, a hag-riven gains Critical Focus as a bonus feat, but she can apply its benefits only to her claw attacks. Each morning, she can select a single feat with Critical Focus as a prerequisite and apply its benefits to her claw attacks. She must meet all other prerequisites for any feat she wishes to apply with this ability.\n\nThis replaces damage reduction."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:bloodrager:hemophage",
+      "package": "pathfinder-class:bloodrager",
+      "name": "Hemophage",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/hemophage",
+      "replaces_features": [
+        "all-bloodline-feats",
+        "armor-proficiencies",
+        "blood-casting",
+        "bloodline",
+        "eschew-materials-feat",
+        "fast-movement",
+        "greater-bloodrage",
+        "including-all-bloodline-spells",
+        "mighty-bloodrage",
+        "spellcasting",
+        "weapon"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "spells class feature",
+        "the Eschew Materials feat",
+        "fast movement",
+        "all bloodline feats",
+        "bloodline",
+        "including all bloodline spells (but not bloodline feats",
+        "which are replaced by blended training)"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Hemophages are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis alters weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "At 1st level, the hemophage may combine spheres and talents to create magical effects. The hemophage is considered a Low-Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the spells class feature, and the Eschew Materials feat."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "At 1st level, the hemophage gains a small reservoir of energy he can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to his class level + his casting ability modifier. This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "A hemophage gains a combat or magic talent every time he gains a class level. Hemophages use their casting ability modifier as their practitioner modifier.\n\nThis replaces fast movement and all bloodline feats."
+        },
+        {
+          "level": 1,
+          "name": "Absorb Bloodline",
+          "description": "At 1st level, the hemophage does not gain a bloodline. Instead, he can temporarily access one by drinking the blood of creatures with the appropriate bloodline or other associated creatures. By drinking fresh blood (which inflicts 1 point of Constitution damage from a helpless, unconscious, or willing creature as a standard action or by inflicting ability damage with the blood drain ability) from a bloodrager or sorcerer with the given bloodline or from a creature associated with that bloodline (other than himself), the hemophage may choose to gain the ability to use the bloodline powers (but not bonus spells, proficiencies, and so on) as appropriate to his level indefinitely. This ability is usable any number of times per day, though gaining a new bloodline removes the benefits of any previous use. Gaining a bloodline again does not restore uses of abilities with limited activations, any uses of that ability are expended until recovered as normal. Blood must be harvested within 1 hour after death. Drinking the blood normally requires a full minute, but hemophages can distill the blood into a potion-sized draught that can be stored indefinitely and consumed as a standard action. This takes 10 minutes per draught and requires the use of an alchemy lab. The hemophage may only store a number of such draughts equal to his class level plus his casting ability modifier (minimum 1) at a time; creating draughts in excess of this number requires allowing previously made draughts to expire. Tiny creatures can supply 1 draught each, Small creatures 2 each, Medium creatures 4 each, etc. Creatures smaller than Tiny lack sufficient blood for the process. In addition to bloodragers and sorcerers of the given bloodline, the following list presents a few examples of creatures whose blood is considered associated to a bloodline. There may be others who work equally well, at the GM’s discretion. Only bloodlines from the Advanced Classes Guide are included in this list; other bloodlines can be accessed similarly if in use in your game."
+        },
+        {
+          "level": 1,
+          "name": "Aberrant",
+          "description": "Any aberration."
+        },
+        {
+          "level": 1,
+          "name": "Abyssal",
+          "description": "Any outsider with the chaotic and evil subtypes."
+        },
+        {
+          "level": 1,
+          "name": "Arcane",
+          "description": "Any arcane caster, sphere caster with and arcane-associated or natural tradition or any creature with an arcane spell or spell-like ability of at least 3rd-level."
+        },
+        {
+          "level": 1,
+          "name": "Celestial",
+          "description": "Any outsider with the good subtype."
+        },
+        {
+          "level": 1,
+          "name": "Destined",
+          "description": "Any creature able to cast divination spells."
+        },
+        {
+          "level": 1,
+          "name": "Draconic",
+          "description": "Any dragon or creature with the dragon type."
+        },
+        {
+          "level": 1,
+          "name": "Elemental",
+          "description": "Any creature with an elemental or energy subtype (air, cold, earth, fire, water), provided it has flesh and blood (such as a salamander, but not a fire elemental)."
+        },
+        {
+          "level": 1,
+          "name": "Fey",
+          "description": "Any elf, fey, or gnome."
+        },
+        {
+          "level": 1,
+          "name": "Infernal",
+          "description": "Any outsider with the evil and lawful subtypes"
+        },
+        {
+          "level": 1,
+          "name": "Shapechanger",
+          "description": "Any creature with the shapechanger subtype."
+        },
+        {
+          "level": 1,
+          "name": "Undead",
+          "description": "Any undead creature with flesh and blood (such as vampires or ghouls, but not skeletons).\n\nThis replaces bloodline, including all bloodline spells (but not bloodline feats, which are replaced by blended training)."
+        },
+        {
+          "level": 4,
+          "name": "Sphere Blood Casting",
+          "description": "At 4th level, the hemophage may use magical sphere effects while bloodraging, just as he can with spells.\n\nThis alters blood casting."
+        },
+        {
+          "level": 1,
+          "name": "Sphere Greater Bloodrage",
+          "description": "In place of casting a spell of 2nd level or lower as part of entering bloodrage, the hemophage may cast a sphere ability on himself as a free action. The sphere ability affects only the hemophage or his equipment. If the sphere ability can be maintained with concentration, the hemophage does not need to begin concentration until his bloodrage ends. The hemophage must pay the normal spell point costs of the ability.\n\nThis alters greater bloodrage."
+        },
+        {
+          "level": 1,
+          "name": "Sphere Mighty Bloodrage",
+          "description": "The hemophage’s mighty bloodrage ability allows the hemophage to cast two sphere abilities on himself.\n\nThis alters mighty bloodrage."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bloodrager:id-rager",
+      "package": "pathfinder-class:bloodrager",
+      "name": "Id Rager",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager Id Rager",
+      "replaces_features": [
+        "bloodline",
+        "bloodline-feats",
+        "bloodline-powers",
+        "bloodline-spells",
+        "eschew-materials",
+        "spellcasting"
+      ],
+      "removed_features": [
+        "bloodline",
+        "bloodline-feats",
+        "bloodline-powers",
+        "bloodline-spells",
+        "eschew-materials",
+        "spellcasting"
+      ],
+      "removed_feature_clauses": [
+        "all bloodline feats"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Id Rager",
+          "description": "Source Occult Origins pg. 23"
+        },
+        {
+          "level": 1,
+          "name": "Atavistic Avatar",
+          "description": "An id rager chooses one emotional focus to define his core: anger, dedication, despair, fear, hatred, jealousy, remorse, or zeal. At 1st level, he gains Skill Focus as a bonus feat in one skill associated with his atavistic focus."
+        },
+        {
+          "level": 1,
+          "name": "Anger",
+          "description": "Intimidate or Survival."
+        },
+        {
+          "level": 1,
+          "name": "Dedication",
+          "description": "Diplomacy or Sense Motive."
+        },
+        {
+          "level": 1,
+          "name": "Despair",
+          "description": "Intimidate or Stealth."
+        },
+        {
+          "level": 1,
+          "name": "Fear",
+          "description": "Intimidate or Stealth."
+        },
+        {
+          "level": 1,
+          "name": "Hatred",
+          "description": "Acrobatics or Perception."
+        },
+        {
+          "level": 1,
+          "name": "Jealousy",
+          "description": "Appraise or Bluff."
+        },
+        {
+          "level": 1,
+          "name": "Remorse",
+          "description": "Perception or Sense Motive."
+        },
+        {
+          "level": 1,
+          "name": "Zeal",
+          "description": "Acrobatics or Survival."
+        },
+        {
+          "level": 4,
+          "name": "Atavistic Caster",
+          "description": "At 4th level, a id rager’s bloodrager spells are treated as psychic magic (Occult Adventures 144). The bloodrager’s bloodrage does not prevent him from casting spells with emotional components, and he is considered to be a psychic spellcaster for the purposes of prerequisites (such as for the prerequisites of psychic duels and occult skill unlocks). This ability alters the bloodrager’s spellcasting and replaces eschew materials."
+        },
+        {
+          "level": 6,
+          "name": "Bonus Feats",
+          "description": "At 6th level and every 3 bloodrager levels thereafter, an id rager can select one of the following feats as a bonus feat: Combat Casting, Empath, Extra Rage, Intuitive Spell, Logical Spell, Psychic Combatant, Psychic Defender, Psychic Healing, Psychic Maestro, Psychic Virtuoso, Raging Concentration, Spell Focus, or Spell Penetration. This ability replaces all bloodline feats."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bloodrager:metamagic-rager",
+      "package": "pathfinder-class:bloodrager",
+      "name": "Metamagic Rager",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager Metamagic Rager",
+      "replaces_features": [
+        "improved-uncanny-dodge"
+      ],
+      "removed_features": [
+        "improved-uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "improved uncanny dodge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Metamagic Rager",
+          "description": "Source Advanced Class Guide pg. 83"
+        },
+        {
+          "level": 5,
+          "name": "Meta-Rage",
+          "description": "At 5th level, a metamagic rager can sacrifice additional rounds of bloodrage to apply a metamagic feat he knows to a bloodrager spell. This costs a number of rounds of bloodrage equal to twice what the spell’s adjusted level would normally be with the metamagic feat applied (minimum 2 rounds). The metamagic rager does not have to be bloodraging to use this ability. The metamagic effect is applied without increasing the level of the spell slot expended, though the casting time is increased as normal. The metamagic rager can apply only one metamagic feat he knows in this manner with each casting. Additionally, when the metamagic rager takes a bloodline feat, he can choose to take a metamagic feat instead. This ability replaces improved uncanny dodge."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:bloodrager:mystic-scion",
+      "package": "pathfinder-class:bloodrager",
+      "name": "Mystic Scion",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/mystic-scion",
+      "replaces_features": [
+        "blood-casting",
+        "bloodline-spells",
+        "bloodrage",
+        "eschew-materials-bonus-feat",
+        "fast-movement",
+        "greater-bloodrage",
+        "improved-uncanny-dodge",
+        "mighty-bloodrage",
+        "spellcasting",
+        "tireless-bloodrage",
+        "uncanny-dodge"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "spells class feature",
+        "bloodline spells",
+        "the Eschew Materials bonus feat",
+        "uncanny dodge",
+        "improved uncanny dodge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The mystic scion may combine spheres and talents to create magical effects. The mystic scion is considered a Low-Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the spells class feature, bloodline spells, and the Eschew Materials bonus feat."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "A mystic scion gains a small reservoir of energy he can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to his level + his casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 4,
+          "name": "Magic Talent",
+          "description": "A mystic scion gains one magic talent at 4th level and every 2 levels thereafter."
+        },
+        {
+          "level": 1,
+          "name": "Fast Movement",
+          "description": "The mystic scion does not gain this ability until 2nd level.\n\nThis alters fast movement."
+        },
+        {
+          "level": 1,
+          "name": "Bloodrage",
+          "description": "At 1st level, the mystic scion gains the unchained barbarian’s rage ability. This counts as the unchained barbarian’s rage class features for the purpose of feat prerequisites, feat abilities, magic item abilities, and spell effects. If the mystic scion would acquire a rage power via any means, he may choose an unchained barbarian rage power instead.\n\nThis alters bloodrage."
+        },
+        {
+          "level": 2,
+          "name": "Ragespell",
+          "description": "At 2nd level, the mystic scion begins to harness the destructive magics within them. He gains the Destruction sphere with the Energy Focus drawback (which grants him a bonus (blast type) talent). If he possesses this sphere from another source, he gains another Destruction talent of his choice. The mystic scion chooses a damage type. Whenever he uses a Destruction sphere ability to do damage of this type, he may use his class level as his caster level. This stacks normally with caster levels gained from other sources.\n\nThis replaces uncanny dodge and improved uncanny dodge."
+        },
+        {
+          "level": 4,
+          "name": "Blood Casting",
+          "description": "At 4th level, the mystic scion gains the ability to use sphere abilities even while bloodraging. He can also cast these sphere abilities defensively and can attempt concentration checks while bloodraging.\n\nThis alters blood casting."
+        },
+        {
+          "level": 11,
+          "name": "Greater Bloodrage",
+          "description": "At 11th level, the mystic scion gains the unchained barbarian’s greater rage ability. In addition, upon entering a bloodrage, the mystic scion can use a sphere ability on himself as a free action. The sphere ability affects only the mystic scion or his equipment. If the sphere ability can be maintained with concentration, the mystic scion does not need to begin concentration until his bloodrage ends. The mystic scion must pay the normal spell point costs of the ability.\n\nThis alters greater bloodrage."
+        },
+        {
+          "level": 17,
+          "name": "Tireless Bloodrage",
+          "description": "At 17th level, the mystic scion gains the unchained barbarian’s tireless rage ability.\n\nThis alters tireless bloodrage."
+        },
+        {
+          "level": 20,
+          "name": "Mighty Bloodrage",
+          "description": "At 20th level, the mystic scion gains the unchained barbarian’s mighty rage ability. In addition, upon entering a bloodrage, the mystic scion can use two sphere abilities on himself.\n\nThis alters mighty bloodrage."
+        },
+        {
+          "level": 1,
+          "name": "Archetypes of Power",
+          "description": "When a heart full of rage meets blood filled with magic, a mystic scion is created. Rage is their weapon of choice, and magic makes them stronger."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bloodrager:primalist",
+      "package": "pathfinder-class:bloodrager",
+      "name": "Primalist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager Primalist",
+      "replaces_features": [
+        "bloodline"
+      ],
+      "removed_features": [
+        "bloodline"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Primalist",
+          "description": "Source Advanced Class Guide pg. 84"
+        },
+        {
+          "level": 4,
+          "name": "Primal Choices",
+          "description": "At 4th level and every 4 levels thereafter, a primalist can choose to take either his bloodline power or two barbarian rage powers. If the primalist chooses rage powers, those rage powers can be used in conjunction with his bloodrage, and his bloodrager level acts as his barbarian level when determining the effect of those bloodrage powers and any prerequisites. Any other prerequisites for a rage power must be met before a primalist can choose it. This ability does not count as the rage power class feature for determining feat prerequisites and other requirements. This ability alters the bloodline class feature."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bloodrager:prowler-at-world-s-end",
+      "package": "pathfinder-class:bloodrager",
+      "name": "Prowler at World's End",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager Prowler at World's End",
+      "replaces_features": [
+        "bloodline-feats",
+        "bloodline-powers",
+        "greater-bloodrage",
+        "mighty-bloodrage"
+      ],
+      "removed_features": [
+        "bloodline-feats",
+        "bloodline-powers",
+        "greater-bloodrage",
+        "mighty-bloodrage"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Prowler at World's End",
+          "description": "Source Blood of the Beast pg. 4"
+        },
+        {
+          "level": 1,
+          "name": "Bloodline",
+          "description": "A prowler at world’s end must choose the destined bloodline as his bloodline."
+        },
+        {
+          "level": 1,
+          "name": "Spirit",
+          "description": "At 1st level, a prowler at world’s end gains the ability to channel the spirits of creation, granting him the medium’s spirit and spirit surge abilities. A prowler channels the cheetah (which acts as the trickster), the leopard (which acts as the guardian), the lion (which acts as the marshal), and the tiger (which acts as the champion). The prowler does not have access to the archmage or hierophant legends. The favored locations for these spirits are altars, churches, sacred groves, and shrines, and their taboo requires the prowler to strongly revere nature and attempt to either destroy or incapacitate evil wherever he encounters it."
+        },
+        {
+          "level": 4,
+          "name": "Bloodline Powers",
+          "description": "At 4th level, a prowler at world’s end gains the bloodline power normally granted by his bloodline at 1st level. At 9th level, he gains the bloodline power normally granted by his bloodline at 4th level. At 12th level, he gains the bloodline power normally granted by his bloodline at 8th level. At 15th level, he gains the bloodline power normally granted by his bloodline at 12th level. At 20th level, he gains the bloodline power normally granted by his bloodline at 16th level."
+        },
+        {
+          "level": 11,
+          "name": "Chosen of the Spirits (Su)",
+          "description": "At 11th level, whenever a prowler at world’s end enters a bloodrage, he can apply the effects of beast shape IV to himself instead of using greater bloodrage or mighty bloodrage to apply the effects of a bloodrager spell to himself. He must assume the form of a great cat of the same kind as a channeled spirit (cheetah, leopard, lion, or tiger). This effect lasts for as long as the prowler continues bloodraging, regardless of its normal duration, and using it does not consume a spell slot."
+        },
+        {
+          "level": 12,
+          "name": "Shapeshifted Spellcasting (Su)",
+          "description": "At 12th level, the prowler at world’s end can cast spells while under the effects of chosen of the spirits. This ability functions as Natural Spell, except the prowler uses the ability to cast while under the effects of chosen of the spirits instead of wild shape."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bloodrager:rageshaper",
+      "package": "pathfinder-class:bloodrager",
+      "name": "Rageshaper",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager Rageshaper",
+      "replaces_features": [
+        "blood-sanctuary",
+        "improved-uncanny-dodge"
+      ],
+      "removed_features": [
+        "blood-sanctuary",
+        "improved-uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "blood sanctuary",
+        "improved uncanny dodge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Rageshaper",
+          "description": "Source Advanced Class Guide pg. 84"
+        },
+        {
+          "level": 4,
+          "name": "Bestial Aspect",
+          "description": "At 4th level, whenever a rageshaper gains a natural attack through the use of a polymorph spell, he can increase the damage done by that attack by one die. If the spell grants multiple natural attacks, the rageshaper must choose one kind of natural attack for the ability to enhance. At 9th level, if the rageshaper’s altered form grants him a new mode of movement, that movement’s base speed increases by 10 feet. This is an enhancement bonus. If the rageshaper’s bloodrage powers already grant natural attacks or alternate modes of movement, then the bonuses granted by bestial aspect also apply to these bloodrage powers. This ability replaces blood sanctuary."
+        },
+        {
+          "level": 5,
+          "name": "Furious Transformation",
+          "description": "At 5th level, a rageshaper can attempt to bolster any transmutation spell from the bloodrager spell list with the polymorph subschool while bloodraging. The rageshaper must succeed at a concentration check as if casting defensively to modify the spell; otherwise, the spell is wasted. If he succeeds, the spell is treated as if the rageshaper had the Extend Spell metamagic feat. The rageshaper must be the spell’s intended target or cast a spell with a range of personal to gain this effect. If the rageshaper casts a spell that is linked to the rageshaper’s own bloodline, such as a rageshaper with the elemental bloodline who casts elemental body I, the spell is automatically extended without forcing the concentration check, so long as the rageshaper casts it while in a bloodrage. This ability replaces improved uncanny dodge."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bloodrager:spelleater",
+      "package": "pathfinder-class:bloodrager",
+      "name": "Spelleater",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager Spelleater",
+      "replaces_features": [
+        "damage-reduction",
+        "improved-uncanny-dodge",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "damage-reduction",
+        "improved-uncanny-dodge",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "uncanny dodge",
+        "damage reduction",
+        "improved uncanny dodge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Spelleater",
+          "description": "Source Advanced Class Guide pg. 85"
+        },
+        {
+          "level": 2,
+          "name": "Blood of Life",
+          "description": "A spelleater’s blood empowers him to slowly recover from his wounds. At 2nd level, while bloodraging a spelleater gains fast healing 1 (Bestiary 300). At 7th level and every 3 levels thereafter, this increases by 1 (to a maximum of fast healing 6 at 19th level). If the spelleater gains an increase to damage reduction from a bloodline, feat, or other ability, he is considered to have an effective damage reduction of 0, and the increase is added to this effective damage reduction. This ability replaces uncanny dodge and damage reduction."
+        },
+        {
+          "level": 5,
+          "name": "Spell Eating",
+          "description": "At 5th level, a spelleater can consume spell slots for an extra dose of healing. As a swift action, the spelleater can consume one unused bloodrager spell slot to heal 1d8 damage for each level of the spell slot consumed. This ability replaces improved uncanny dodge."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:bloodrager:sphere-bloodrager",
+      "package": "pathfinder-class:bloodrager",
+      "name": "Sphere Bloodrager",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/sphere-bloodrager",
+      "replaces_features": [
+        "all-bloodline-spells",
+        "blood-casting",
+        "eschew-materials-feat",
+        "greater-bloodrage",
+        "mighty-bloodrage",
+        "spellcasting",
+        "spells-usually-from-sphere-bloodragers-bloodline"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "spells class feature",
+        "the Eschew Materials feat",
+        "spells usually gained from the sphere bloodrager’s bloodline"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 4,
+          "name": "Casting",
+          "description": "At 4th level, the sphere bloodrager may combine spheres and talents to create magical effects. The sphere bloodrager is considered a Low-Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the spells class feature and the Eschew Materials feat."
+        },
+        {
+          "level": 4,
+          "name": "Spell Pool",
+          "description": "At 4th level, the sphere bloodrager gains a small reservoir of energy he can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to his class level + his casting ability modifier. This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 4,
+          "name": "Magic Talents",
+          "description": "A sphere bloodrager gains one magic talent at 4th level and every 2 levels thereafter."
+        },
+        {
+          "level": 7,
+          "name": "Bloodline Talent",
+          "description": "At 7th level, a sphere bloodrager gains one bonus magic talent that must be spent on a sphere associated with his bloodline, as outlined below:"
+        },
+        {
+          "level": 1,
+          "name": "Bloodline Spheres",
+          "description": "Aberrant (Mind), Abyssal (War), Aquatic (Weather), Arcane (Warp), Black Blood (Blood), Celestial (Light), Destined (Time), Draconic (Divination), Elemental (Destruction), Fey (Fallen Fey), Hag (Illusion), Infernal (Conjuration), Kyton (Telekinesis), Martyred (Life), Medusa (Protection), Salamander (Creation), Shadow (Dark), Shapechanger (Alteration), Sphinx (Fate), Undead (Death), Verdant (Nature), Vestige (Enhancement).\n\nThis replaces the spells usually gained from the sphere bloodrager’s bloodline."
+        },
+        {
+          "level": 20,
+          "name": "Sphere Bloodrage",
+          "description": "The sphere bloodrager may cast sphere effects on himself upon entering a bloodrage instead of casting spells on himself when using the greater bloodrage and mighty bloodrage class features. Just as with spells, the effect can only be applied to himself, and if it has a duration of greater than 1 round, it instead lasts for the duration of the bloodrage. The chosen sphere effect must cost no spell points; if an effect is chosen with a duration of concentration, it instead lasts 1 round. At 20th level, the chosen effect no longer needs to cost 0 spell points.\n\nThis alters greater bloodrage and mighty bloodrage."
+        },
+        {
+          "level": 4,
+          "name": "Sphere Blood Casting",
+          "description": "At 4th level, the sphere bloodrager may use magical sphere effects while bloodraging, just as he can with spells.\n\nThis alters blood casting."
+        },
+        {
+          "level": 1,
+          "name": "Spheres of Power",
+          "description": "Expanded Options"
+        },
+        {
+          "level": 1,
+          "name": "Recommended Casting Tradition",
+          "description": "The classic feel of the bloodrager can be recreated through taking the verbal casting and somatic casting drawback. (Note: For a classic bloodrager, the somatic casting drawback provides a chance of spell failure if the bloodrager uses a shield or wears heavy armor, not when wearing medium or heavy armor.)"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bloodrager:steelblood",
+      "package": "pathfinder-class:bloodrager",
+      "name": "Steelblood",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager Steelblood",
+      "replaces_features": [
+        "armor-proficiency",
+        "damage-reduction",
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "armor-proficiency",
+        "damage-reduction",
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "bloodrager’s armor proficiency",
+        "fast movement",
+        "uncanny dodge",
+        "improved uncanny dodge",
+        "damage reduction"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Steelblood",
+          "description": "Source Advanced Class Guide pg. 85"
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "A steelblood gains proficiency in heavy armor. A steelblood can cast bloodrager spells while wearing heavy armor without incurring an arcane spell failure chance. This replaces the bloodrager’s armor proficiency."
+        },
+        {
+          "level": 1,
+          "name": "Indomitable Stance",
+          "description": "At 1st level, a steelblood gains a +1 bonus on combat maneuver checks, to CMD against overrun combat maneuvers, and on Reflex saving throws against trample attacks. He also gains a +1 bonus to his AC against charge attacks and on attack and damage rolls against charging creatures. This ability replaces fast movement."
+        },
+        {
+          "level": 2,
+          "name": "Armored Swiftness",
+          "description": "At 2nd level, a steelblood moves faster in medium and heavy armor. When wearing medium or heavy armor, a steelblood can move 5 feet faster than normal in that armor, to a maximum of his unencumbered speed. This ability replaces uncanny dodge."
+        },
+        {
+          "level": 5,
+          "name": "Armor Training",
+          "description": "At 5th level, a steelblood learns to be more maneuverable while wearing armor. Whenever he is wearing armor, he reduces the armor check penalty by 1 (to a maximum of 0) and increases the maximum Dexterity bonus allowed by his armor by 1. Every 4 levels thereafter (9th, 13th, and 17th), these bonuses increase by 1, to a maximum 4-point reduction of the armor check penalty and a +4 increase of the maximum Dexterity bonus. This ability stacks with the fighter class feature of the same name. This ability replaces improved uncanny dodge."
+        },
+        {
+          "level": 7,
+          "name": "Blood Deflection",
+          "description": "At 7th level, as an immediate action a steelblood can sacrifice a bloodrager spell slot to gain a deflection bonus to AC equal to the level of the spell sacrificed. The deflection bonus lasts until the start of his next turn. This ability can be applied after an attack roll is made against the steelblood, allowing the steelblood to convert a hit into a miss if the deflection bonus is high enough. This ability replaces damage reduction."
+        }
+      ],
+      "detected_systems": [
+        "armor_training"
+      ]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:bloodrager:stormlord",
+      "package": "pathfinder-class:bloodrager",
+      "name": "Stormlord",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/stormlord",
+      "replaces_features": [
+        "armor-proficiencies",
+        "bloodline-power-he-would-have-received-at-level-at",
+        "bloodline-power-he-would-have-received-at-level-at-level",
+        "bloodline-powers-normally-at",
+        "indomitable-will",
+        "level",
+        "stormlord-instead-gains-bloodline-power-he-would-normally-have-received-at-level-at-level",
+        "weapon"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "bloodline powers normally gained at 4th and 12th level; the stormlord instead gains the bloodline power he would normally have received at 4th level at 8th level",
+        "the bloodline power he would have received at 8th level at 16th",
+        "the bloodline power he would have received at 12th level at 20th level",
+        "indomitable will"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Stormlords are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis modifies weapon and armor proficiencies."
+        },
+        {
+          "level": 2,
+          "name": "Combat Training",
+          "description": "A stormlord is considered an Adept practitioner, gaining spheres and talents as appropriate. Stormlords use Charisma as their practitioner modifier. Stormlords with this ability do not gain a point of base attack bonus at every level, and instead use the rogue base attack bonus progression, gaining their first point of base attack bonus at 2nd level and reaching a maximum of +15 at 20th level."
+        },
+        {
+          "level": 4,
+          "name": "Storm Strike",
+          "description": "At 4th level, whenever a stormlord casts a spell with a range of touch from the bloodrager spell list, he can deliver the spell through any weapon he is wielding. Instead of the free melee touch attack normally allowed to deliver the spell, a stormlord can make one free melee attack with his weapon (at his highest base attack bonus) as part of casting this spell; this attack is treated as an attack action. If successful, this melee attack deals its normal damage as well as the effects of the spell. This attack uses the weapon’s critical range (20, 19–20, or 18–20 and modified by the keen weapon special ability or similar effects), but the spell effect only deals ×2 damage on a successful critical hit, while the weapon damage uses its own critical modifier. This ability replaces the bloodline powers normally gained at 4th and 12th level; the stormlord instead gains the bloodline power he would normally have received at 4th level at 8th level, the bloodline power he would have received at 8th level at 16th, and the bloodline power he would have received at 12th level at 20th level."
+        },
+        {
+          "level": 1,
+          "name": "Surging Strike",
+          "description": "From 14th level on, whenever the stormlord successfully confirms a critical hit while using his storm strike, he may cast a known spell with a range of touch or personal as a swift action.\n\nThis replaces indomitable will."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bloodrager:symbol-striker",
+      "package": "pathfinder-class:bloodrager",
+      "name": "Symbol Striker",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager Symbol Striker",
+      "replaces_features": [
+        "bloodline-feats",
+        "class-skills",
+        "fast-movement"
+      ],
+      "removed_features": [
+        "bloodline-feats",
+        "class-skills",
+        "fast-movement"
+      ],
+      "removed_feature_clauses": [
+        "fast movement",
+        "bloodline feat gained at 9th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Symbol Striker",
+          "description": "Source Heroes from the Fringe pg. 7"
+        },
+        {
+          "level": 1,
+          "name": "Skills",
+          "description": "A symbol striker gains Linguistics as a class skill, but does not gain Handle Animal as a class skill.\n\nThis alters the bloodrager’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Rune Training",
+          "description": "A symbol striker can cast read magic at will and comprehend languages once per day, but only to decipher written text. A symbol striker also adds arcane mark and erase to his bloodrager spell list as 1st-level spells, though he must select these as spells known to be able to cast them.\n\nThis replaces fast movement."
+        },
+        {
+          "level": 6,
+          "name": "Weapon Rune",
+          "description": "At 6th level, once per day as a standard action, a symbol striker can imbue any spell he knows that has a range of touch or greater and a defined number of targets (rather than an area or other non-target- based effect) into a melee weapon he is holding. The spell forms itself into a brightly glowing rune, which is obvious to a casual observer. This ability functions only while the symbol striker wields the weapon. If dropped or taken, the weapon ceases granting this ability until it is returned to the symbol striker. The symbol striker can have only a single weapon rune active at a time; if he casts an additional weapon rune while a previous rune is active, the earlier rune fades. Weapon runes also fade when the symbol striker regains his spell slots for the day. Otherwise, the rune remains until the spell is discharged or dispelled. At 12th level, a symbol striker can use this ability twice per day. At 18th level, he can use this ability three times per day."
+        },
+        {
+          "level": 9,
+          "name": "Rune Trap",
+          "description": "At 9th level, as a standard action, the symbol striker can use a melee weapon to place a rune trap in any adjacent square. Any creature entering a square containing a rune trap takes 1d6 points of damage plus 1 additional point of damage for every 2 bloodrager levels the symbol striker has. This rune deals either acid, cold, electricity, or fire damage, which is decided at the rune’s creation. The rune is clearly visible and lasts a number of minutes equal to the symbol striker’s bloodrager level or until discharged. A symbol striker cannot create a rune trap in a square occupied by another creature. This rune counts as a 1st-level spell for the purpose of dispelling. A creature can disarm the rune by succeeding at a DC 26 Disable Device check. The symbol striker can use this ability a number of times per day equal to 3 plus his Charisma modifier.\n\nThis replaces the bloodline feat gained at 9th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bloodrager:untouchable-rager",
+      "package": "pathfinder-class:bloodrager",
+      "name": "Untouchable Rager",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager Untouchable Rager",
+      "replaces_features": [
+        "blood-casting",
+        "bloodline-spells",
+        "eschew-materials",
+        "spellcasting"
+      ],
+      "removed_features": [
+        "blood-casting",
+        "bloodline-spells",
+        "eschew-materials",
+        "spellcasting"
+      ],
+      "removed_feature_clauses": [
+        "spells",
+        "blood casting",
+        "eschew materials",
+        "bloodline spells class features"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Untouchable Rager",
+          "description": "Source Advanced Class Guide pg. 85"
+        },
+        {
+          "level": 4,
+          "name": "Raging Resistance",
+          "description": "At 4th level, instead of gaining spells, a bloodrager becomes resistant to spells. While bloodraging, he gains spell resistance equal to 8 + his bloodrager level. Unlike normal spell resistance, the untouchable rager’s spell resistance cannot be voluntarily lowered. As long as the untouchable is bloodraging, the spell resistance is persistent, and can only be lowered by ending the bloodrage. At 7th, 10th, 13th, and 16th levels (when other bloodragers would gain bloodline spells), an untouchable rager’s spell resistance from raging resistance is increased by 1. This ability replaces the spells, blood casting, eschew materials, and bloodline spells class features."
+        },
+        {
+          "level": 14,
+          "name": "Resistance Control",
+          "description": "At 14th level, an untouchable rager gains the spell resistance from raging resistance even while not in a bloodrage. Additionally, as long as the untouchable rager isn’t bloodraging, he can turn off this spell resistance."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bloodrager:urban-bloodrager",
+      "package": "pathfinder-class:bloodrager",
+      "name": "Urban Bloodrager",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Bloodrager Urban Bloodrager",
+      "replaces_features": [
+        "blood-sanctuary",
+        "bloodrage",
+        "class-skills",
+        "damage-reduction",
+        "weapon-armor-proficiencies"
+      ],
+      "removed_features": [
+        "blood-sanctuary",
+        "bloodrage",
+        "class-skills",
+        "damage-reduction",
+        "weapon-armor-proficiencies"
+      ],
+      "removed_feature_clauses": [
+        "blood sanctuary",
+        "damage reduction"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Urban Bloodrager",
+          "description": "Source Heroes of the Streets pg. 24"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "An urban bloodrager adds Diplomacy (Cha), Knowledge (local) (Int), Linguistics (Int), and Profession (Wis) as class skills, and removes Handle Animal (Cha), Knowledge (nature) (Int), and Survival (Wis). This alters the bloodrager’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "An urban bloodrager isn’t proficient with shields. This alters the bloodrager’s weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Controlled Bloodrage",
+          "description": "When an urban bloodrager rages, she does not gain the normal benefits. Instead, she can apply a +4 morale bonus to her Constitution, Dexterity, or Strength. This bonus increases to +6 when she gains greater bloodrage and to +8 when she gains mighty bloodrage. She can apply the full bonus to one ability score or split the bonus between several scores in increments of 2. When using a controlled bloodrage, an urban bloodrager gains no bonus on Will saves, takes no penalties to AC, and can still use Charisma-, Dexterity-, and Intelligence-based skills. A controlled bloodrage still counts as a bloodrage for the purposes of any spells, feats, and other effects. This ability alters bloodrage."
+        },
+        {
+          "level": 3,
+          "name": "Restrained Magic",
+          "description": "At 3rd level, an urban bloodrager can attune her spells so they are less likely to impact her allies or innocent bystanders. When the bloodrager casts a spell, she can grant a +2 bonus on the saving throw against that spell to any creatures she is aware of that are targeted by the spell or within the spell’s area. Any creature that receives this bonus and succeeds at its save is unaffected by the spell, as if it hadn’t been targeted or wasn’t in the area. This ability replaces blood sanctuary."
+        },
+        {
+          "level": 7,
+          "name": "Adopted Magic",
+          "description": "At 7th level, an urban bloodrager learns some of the secrets of other magical traditions from other denizens of the city. She can select from the bard or magus spell list any spell of a level she can cast, and add it to her bloodrager spell list and to her bloodrager spells known. At 10th level and every 3 levels thereafter, the urban bloodrager can add another such spell to her spell list and spells known. If she chooses to learn a new spell in place of an old one, she can exchange a bard or magus spell for another. This ability replaces damage reduction."
+        },
+        {
+          "level": 1,
+          "name": "Bloodline",
+          "description": "The following bloodlines are especially suitable for an urban bloodrager, reflecting either a more nuanced origin or ancestry from city-dwelling magical creatures: aberrant, arcane, celestial, destined, infernal, and undead."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:bloodrager:wendigo",
+      "package": "pathfinder-class:bloodrager",
+      "name": "Wendigo",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/wendigo",
+      "replaces_features": [
+        "all-bloodline-feats",
+        "all-bloodline-spells",
+        "armor-proficiencies",
+        "blood-casting",
+        "bloodline",
+        "bloodline-power-at-level",
+        "bloodline-powers-at",
+        "greater-bloodrage",
+        "improved-uncanny-dodge",
+        "level",
+        "mighty-bloodrage",
+        "replacing-increased-spell-level-he-may-apply-to-himself-on-entering-bloodrage",
+        "replacing-to-apply-spells-to-himself-on-entering-bloodrage",
+        "spellcasting",
+        "uncanny-dodge",
+        "weapon"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "spells class feature",
+        "all bloodline spells",
+        "bloodline",
+        "the bloodline power gained at 1st level",
+        "uncanny dodge",
+        "improved uncanny dodge",
+        "all bloodline feats",
+        "bloodline powers gained at 4th and 12th level",
+        "bloodline powers gained at 8th and 16th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Wendigo are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis alters weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The wendigo may combine spheres and talents to create magical effects. The wendigo is considered a Low-Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the spells class feature and all bloodline spells."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "The wendigo gains a small reservoir of energy he can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to his level + his casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "A wendigo gains a combat or magic talent every even level."
+        },
+        {
+          "level": 1,
+          "name": "Hunger",
+          "description": "At 1st level the wendigo gains a bite attack. This is a primary natural attack dealing 1d6 damage (1d4 damage if Small) plus the wendigo’s Strength modifier. This ability replaces bloodline and the bloodline power gained at 1st level."
+        },
+        {
+          "level": 2,
+          "name": "Snow Strider",
+          "description": "Starting at 2nd level, the wendigo’s speed is unhindered by snow. He need not spend extra squares of movement to move through it, leaves no trail in snow or ice, and cannot be tracked. He may choose to leave a trail if so desired. At 5th level he need not attempt Acrobatics checks to move, run, or charge on ice; takes no penalty to Acrobatics checks for moving on ice; and gains a +10 feet enhancement bonus to his land speed while on snow, ice, or other frozen terrain (such as permafrost). This ability replaces uncanny dodge and improved uncanny dodge."
+        },
+        {
+          "level": 3,
+          "name": "Famine Aura",
+          "description": "At 3rd level, while the wendigo is in his bloodrage any living creature that begins their turn within 30 feet or moves into this area must succeed at a Fortitude save (DC 10 + 1/2 the wendigo’s class level + his casting ability modifier) or be fatigued for one round per 3 class levels. Whether a creature succeeds or fails on this saving throw, they are immune to that particular wendigo’s aura of famine for 24 hours. At 12th level any creature that fails its save becomes exhausted instead of fatigued and any creature that succeeds on its saving throw is fatigued for one round. At the beginning of each day, the wendigo may choose a number of creatures up to his Constitution modifier or his casting ability modifier, whichever is greater, to be immune to this aura. Any creatures bound to the wendigo or those he chooses to be immune, such as familiars or animal companions, are similarly immune. For each creature that fails a saving throw against this ability, the duration of the wendigo’s fatigue after his bloodrage ends decreases by 1. This ability replaces all bloodline feats."
+        },
+        {
+          "level": 4,
+          "name": "Sphere Blood Casting",
+          "description": "At 4th level, the sphere bloodrager may use magical sphere effects while bloodraging, just as he can with spells.\n\nThis alters blood casting."
+        },
+        {
+          "level": 4,
+          "name": "Ravenous Spirit",
+          "description": "At 4th level, whenever the wendigo deals damage with his bite attack he may spend a spell point as an immediate action to have his spirit reach out and devour the spirit of an enemy within 30 feet. The target enemy takes 1d6 nonlethal cold damage per 4 bloodrager levels and the wendigo gains an equal number of temporary hit points that last 1 minute per class level. At 12th level he may target two enemies in this way, and at 18th level he may target three, gaining a number of temporary hit points equal to the total damage dealt to all enemies. This ability replaces the bloodline powers gained at 4th and 12th level."
+        },
+        {
+          "level": 8,
+          "name": "Devour Magic",
+          "description": "Starting at 8th level, the wendigo may counter a spell or magical effect cast by another within medium range as an immediate action. He must succeed at a magic skill check against the caster or magical effect in question. If he succeeds then the targeted effect is negated with no result and he gains any spell points spent on the negated effect as temporary spell points that last for one minute; if he negates a spell he instead gains a number of spell points equal to the spell’s level divided by 3, rounded up. He may use this ability once per day at 8th level and twice per day at 16th level. This ability replaces the bloodline powers gained at 8th and 16th level."
+        },
+        {
+          "level": 11,
+          "name": "Rime Rage",
+          "description": "At 11th level the wendigo produces a ferocious aura of cold as long as he is in a bloodrage. This affects the area within 25 feet of him as though he used control weather to reduce Heat or increase Cold, using his class level as his caster level. This stacks normally with caster levels gained from other sources. The temperature changes instantly, dropping to the highest severity of Cold he could create. Talents such as Cold Lord apply to this effect, and he need not concentrate on it, but it ends immediately upon ending his rage and he cannot increase the effect size, center it anywhere but on himself, or spend a spell point to modify it.\n\nThis alters greater bloodrage, replacing the ability to apply spells to himself on entering a bloodrage."
+        },
+        {
+          "level": 20,
+          "name": "Bitter Rage",
+          "description": "At 20th level the wendigo’s aura of cold becomes almost a living thing. As a free action once at the end of each turn he may move the area of cold from rime rage to any point within 75 feet, causing it to pass through each space between its old position centered on the wendigo and its new one and affecting that area until the end of his next turn. At the beginning of his next turn, he must choose to either teleport (as the Warp sphere base ability) to the center of the aura as a free action or cause the aura to return to him. If he is somehow prevented from teleporting, the aura returns to him automatically.\n\nThis alters mighty bloodrage, replacing the increased spell level he may apply to himself on entering a bloodrage."
+        },
+        {
+          "level": 1,
+          "name": "The Tempestarian's Handbook",
+          "description": "Wendigos are terrible creatures of cold, wind, and famine, and those who learn to harness their energies find themselves embodying the frightening powers of these creatures."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

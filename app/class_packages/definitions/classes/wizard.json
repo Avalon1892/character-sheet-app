@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "key": "wizard",
+  "class_key": "pathfinder-class:wizard",
+  "class_name": "Wizard",
+  "governing_ability": "intelligence",
+  "optional_blocks": ["inquisitor_features", "spells_known", "spell_level_overview"],
+  "external_systems": [
+    "traditional_prepared_casting",
+    "wizard_spellbook",
+    "arcane_school_and_opposition_schools",
+    "arcane_bond",
+    "familiar"
+  ],
+  "resource_modules": [
+    {
+      "key": "wizard_bond",
+      "title": "Wizard Arcane Bond",
+      "governing_ability": "intelligence",
+      "resources": [
+        {
+          "key": "bonded_object_spell",
+          "name": "Bonded Object Spell",
+          "feature_tokens": ["arcane-bond"],
+          "progression": "one",
+          "description": "Once per day, a Wizard with a bonded object may cast one Wizard spell from the spellbook even if it was not prepared. The spell must be of a level the Wizard can cast and is cast normally through the bonded object.",
+          "custom_choice_label": "Bonded object",
+          "requires_choice_provider": "arcane-bond",
+          "requires_choice_option": "class-choice-fixed:arcane-bond:bonded-object"
+        }
+      ]
+    }
+  ],
+  "passive_effects": [],
+  "notes": "School powers and their exact rules are projected from the selected Arcane School. A familiar is handled by the shared bonded-companion page; a bonded object exposes its daily spell use through the shared class-resource controls."
+}

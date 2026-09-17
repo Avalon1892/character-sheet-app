@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "description": "Hand-reviewed Fighter, Rogue, and Sorcerer profile changes and permanent creation choices.",
+  "entries": [
+    {"key": "pathfinder-archetype:pathfinder-class:fighter:aerial-assaulter", "class_modifications": {"statistics": {"add_class_skills": ["acrobatics", "fly"], "remove_class_skills": ["knowledge_dungeoneering", "ride", "swim"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:fighter:airborne-ambusher", "class_modifications": {"statistics": {"add_class_skills": ["fly"], "remove_class_skills": ["climb"]}, "proficiencies": {"mode": "modify", "remove_armor": ["Heavy armor", "Tower shields"]}}},
+    {
+      "key": "pathfinder-archetype:pathfinder-class:fighter:armiger",
+      "class_modifications": {"statistics": {"skill_points": 4, "add_class_skills": ["knowledge_local", "knowledge_planes"]}},
+      "choices": [{"key": "hellknight-order", "level": 1, "name": "Hellknight Order", "description": "Choose the Hellknight order the Armiger intends to join. A later Hellknight prestige class must use the same order.", "minimum": 1, "maximum": 1, "options": [
+        {"key": "chain", "name": "Order of the Chain"}, {"key": "gate", "name": "Order of the Gate"}, {"key": "godclaw", "name": "Order of the Godclaw"}, {"key": "nail", "name": "Order of the Nail"}, {"key": "pyre", "name": "Order of the Pyre"}, {"key": "rack", "name": "Order of the Rack"}, {"key": "scourge", "name": "Order of the Scourge"}, {"key": "torrent", "name": "Order of the Torrent"}
+      ]}]
+    },
+    {"key": "pathfinder-archetype:pathfinder-class:fighter:calistrian-hunter", "class_modifications": {"statistics": {"add_class_skills": ["diplomacy", "knowledge_local", "perception"], "remove_class_skills": ["knowledge_dungeoneering", "knowledge_engineering"]}, "proficiencies": {"mode": "replace", "weapons": ["Simple weapons", "Martial weapons", "Whips"], "armor": ["Light armor", "Medium armor", "Shields (except tower shields)"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:fighter:cavern-sniper", "class_modifications": {"statistics": {"add_class_skills": ["stealth"], "remove_class_skills": ["intimidate"]}}},
+    {
+      "key": "pathfinder-archetype:pathfinder-class:fighter:dragonheir-scion",
+      "class_modifications": {"statistics": {"add_class_skills": ["knowledge_arcana", "use_magic_device"], "remove_class_skills": ["handle_animal", "ride"]}},
+      "choices": [{"key": "draconic-progenitor", "level": 1, "name": "Draconic Progenitor", "description": "Choose the chromatic or metallic dragon type that fixes the Dragonheir Scion's energy type.", "minimum": 1, "maximum": 1, "options": [
+        {"key": "black", "name": "Black (acid)"}, {"key": "blue", "name": "Blue (electricity)"}, {"key": "green", "name": "Green (acid)"}, {"key": "red", "name": "Red (fire)"}, {"key": "white", "name": "White (cold)"}, {"key": "brass", "name": "Brass (fire)"}, {"key": "bronze", "name": "Bronze (electricity)"}, {"key": "copper", "name": "Copper (acid)"}, {"key": "gold", "name": "Gold (fire)"}, {"key": "silver", "name": "Silver (cold)"}
+      ]}]
+    },
+    {"key": "pathfinder-archetype:pathfinder-class:fighter:eldritch-guardian", "class_modifications": {"statistics": {"add_class_skills": ["perception", "spellcraft", "use_magic_device"], "remove_class_skills": ["intimidate", "ride", "swim"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:fighter:high-guardian", "class_modifications": {"statistics": {"add_class_skills": ["knowledge_local", "knowledge_nobility"], "remove_class_skills": ["knowledge_dungeoneering", "knowledge_engineering"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:fighter:relic-master", "class_modifications": {"statistics": {"add_class_skills": ["knowledge_arcana", "use_magic_device"], "remove_class_skills": ["handle_animal", "ride"]}}},
+    {
+      "key": "pathfinder-archetype:pathfinder-class:fighter:savage-warrior",
+      "choices": [{"key": "natural-weapon-mastery", "level": 20, "name": "Natural Weapon Mastery", "description": "Choose the natural weapon that receives the Savage Warrior's 20th-level mastery benefits.", "minimum": 1, "maximum": 1, "options": [{"key": "bite", "name": "Bite"}, {"key": "claw", "name": "Claw"}, {"key": "gore", "name": "Gore"}, {"key": "hooves", "name": "Hooves"}, {"key": "slam", "name": "Slam"}, {"key": "sting", "name": "Sting"}, {"key": "talon", "name": "Talon"}, {"key": "tail", "name": "Tail"}, {"key": "tentacle", "name": "Tentacle"}, {"key": "wing", "name": "Wing"}]}]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:fighter:skirmisher",
+      "class_modifications": {"statistics": {"skill_points": 4, "add_class_skills": ["acrobatics", "stealth"]}, "proficiencies": {"mode": "modify", "remove_armor": ["Medium armor", "Heavy armor", "Tower shields"]}},
+      "choices": [{"key": "skirmisher-conditioning", "level": 2, "name": "Conditioning", "description": "Choose the Skirmisher's permanent conditioning specialization.", "minimum": 1, "maximum": 1, "options": [
+        {"key": "alpine", "name": "Alpine Training"}, {"key": "counter-interrogation", "name": "Counter-Interrogation Training"}, {"key": "jungle", "name": "Jungle Training"}, {"key": "light-infantry", "name": "Light Infantry Training"}
+      ]}]
+    },
+    {"key": "pathfinder-archetype:pathfinder-class:fighter:spear-fighter", "class_modifications": {"statistics": {"add_class_skills": ["acrobatics"], "remove_class_skills": ["ride"]}, "proficiencies": {"mode": "modify", "remove_armor": ["Heavy armor", "Tower shields"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:fighter:varisian-free-style-fighter", "class_modifications": {"statistics": {"add_class_skills": ["escape_artist", "knowledge_local"], "remove_class_skills": ["knowledge_dungeoneering", "ride"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:fighter:warlord", "class_modifications": {"statistics": {"add_class_skills": ["acrobatics", "knowledge_nobility"], "remove_class_skills": ["knowledge_dungeoneering", "swim"]}}},
+    {
+      "key": "spheres-archetype:pathfinder-class:fighter:runesinger",
+      "sphere_capabilities": {"grants": ["martial"], "removes": []},
+      "class_modifications": {"advancement": {"talent_progression": "Expert", "talent_kinds": ["martial"]}, "capabilities": {"grants": ["martial"], "removes": []}, "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}},
+      "choices": [{"key": "runesinger-practitioner-ability", "level": 1, "name": "Practitioner Ability", "description": "Choose Intelligence, Wisdom, or Charisma as the Runesinger's permanent practitioner modifier.", "minimum": 1, "maximum": 1, "options": [{"key": "intelligence", "name": "Intelligence"}, {"key": "wisdom", "name": "Wisdom"}, {"key": "charisma", "name": "Charisma"}]}],
+      "feature_include_names": ["Weapons and Armor Proficiencies", "Combat Training", "Runes"]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:fighter:soldier",
+      "class_modifications": {"statistics": {"skill_points": 4}, "advancement": {"talent_progression": "Expert", "talent_kinds": ["martial"]}, "capabilities": {"grants": ["martial"], "removes": []}, "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}},
+      "choices": [{"key": "soldier-practitioner-ability", "level": 1, "name": "Practitioner Ability", "description": "Choose Intelligence, Wisdom, or Charisma as the Soldier's permanent practitioner modifier.", "minimum": 1, "maximum": 1, "options": [{"key": "intelligence", "name": "Intelligence"}, {"key": "wisdom", "name": "Wisdom"}, {"key": "charisma", "name": "Charisma"}]}],
+      "feature_include_names": ["Skill Ranks per Level", "Proficiencies", "Combat Training", "Conditioning", "Sphere Specialization"]
+    },
+
+    {"key": "pathfinder-archetype:pathfinder-class:rogue:carnivalist", "class_modifications": {"statistics": {"add_class_skills": ["handle_animal"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:rogue:consigliere", "class_modifications": {"statistics": {"add_class_skills": ["knowledge_nobility"], "remove_class_skills": ["knowledge_dungeoneering"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:rogue:construct-saboteur", "class_modifications": {"statistics": {"add_class_skills": ["knowledge_arcana", "knowledge_engineering"], "remove_class_skills": ["knowledge_dungeoneering", "knowledge_local"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:rogue:deadly-courtesan", "class_modifications": {"statistics": {"add_class_skills": ["knowledge_history", "knowledge_nobility"], "remove_class_skills": ["knowledge_dungeoneering"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:rogue:desert-raider", "class_modifications": {"statistics": {"add_class_skills": ["knowledge_geography", "survival"], "remove_class_skills": ["knowledge_dungeoneering", "swim"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:rogue:eldritch-raider", "class_modifications": {"statistics": {"skill_points": 6, "add_class_skills": ["knowledge_arcana", "knowledge_history", "spellcraft"], "remove_class_skills": ["disguise", "perform", "sleight_of_hand"]}}},
+    {
+      "key": "pathfinder-archetype:pathfinder-class:rogue:eldritch-scoundrel",
+      "class_modifications": {"statistics": {"skill_points": 4, "add_class_skills": ["knowledge_arcana", "spellcraft"], "remove_class_skills": ["diplomacy", "disguise"]}, "casting": {"traditional": true, "type": "prepared", "progression": "medium", "ability": "intelligence", "spells": "Wizard", "caster_level_offset": -3}, "capabilities": {"grants": ["traditional_spells"], "removes": []}, "proficiencies": {"mode": "modify", "remove_armor": ["Light armor", "Medium armor", "Heavy armor", "Shields", "Shields (except tower shields)", "Tower shields"]}}
+    },
+    {"key": "pathfinder-archetype:pathfinder-class:rogue:river-rat", "class_modifications": {"statistics": {"add_class_skills": ["knowledge_nature"], "remove_class_skills": ["knowledge_dungeoneering"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:rogue:skulking-slayer", "class_modifications": {"statistics": {"remove_class_skills": ["disable_device", "linguistics", "sleight_of_hand"]}, "proficiencies": {"mode": "modify", "add_weapons": ["Greatclub", "Whip"], "remove_weapons": ["Rapier", "Hand crossbow"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:rogue:sly-saboteur", "class_modifications": {"statistics": {"add_class_skills": ["survival"], "remove_class_skills": ["knowledge_dungeoneering"]}}},
+    {
+      "key": "pathfinder-archetype:pathfinder-class:rogue:swashbuckler",
+      "choices": [{"key": "swashbuckler-martial-weapon", "level": 1, "name": "Martial Weapon Training", "description": "Choose one martial weapon proficiency gained by the Swashbuckler Rogue.", "minimum": 1, "maximum": 1, "options": [
+        {"key": "battleaxe", "name": "Battleaxe", "class_modifications": {"proficiencies": {"add_weapons": ["Battleaxe"]}}}, {"key": "flail", "name": "Flail", "class_modifications": {"proficiencies": {"add_weapons": ["Flail"]}}}, {"key": "glaive", "name": "Glaive", "class_modifications": {"proficiencies": {"add_weapons": ["Glaive"]}}}, {"key": "greatsword", "name": "Greatsword", "class_modifications": {"proficiencies": {"add_weapons": ["Greatsword"]}}}, {"key": "longbow", "name": "Longbow", "class_modifications": {"proficiencies": {"add_weapons": ["Longbow"]}}}, {"key": "longsword", "name": "Longsword", "class_modifications": {"proficiencies": {"add_weapons": ["Longsword"]}}}, {"key": "scimitar", "name": "Scimitar", "class_modifications": {"proficiencies": {"add_weapons": ["Scimitar"]}}}, {"key": "warhammer", "name": "Warhammer", "class_modifications": {"proficiencies": {"add_weapons": ["Warhammer"]}}}
+      ]}]
+    },
+    {"key": "pathfinder-archetype:pathfinder-class:rogue:swordmaster", "class_modifications": {"statistics": {"add_class_skills": ["knowledge_nature", "survival"], "remove_class_skills": ["disguise", "knowledge_dungeoneering"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:rogue:sylvan-trickster", "class_modifications": {"statistics": {"add_class_skills": ["knowledge_nature"], "remove_class_skills": ["knowledge_dungeoneering"]}}},
+    {
+      "key": "spheres-archetype:pathfinder-class:rogue:canny-scoundrel",
+      "class_modifications": {"advancement": {"talent_progression": "Adept", "talent_kinds": ["martial"]}, "capabilities": {"grants": ["martial"], "removes": []}, "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}},
+      "feature_include_names": ["Proficiencies", "Combat Training", "Keen Blades, Keen Eyes, and Keen Wits"]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:rogue:snake-oil-salesman",
+      "class_modifications": {"casting": {"sphere_progression": "Low", "traditional": false, "ability": "charisma", "type": "sphere", "spells": ""}, "advancement": {"talent_progression": "Low", "talent_kinds": ["magic"]}, "capabilities": {"grants": ["magic"], "removes": ["traditional_spells"]}},
+      "feature_include_names": ["Casting", "Spell Pool", "Magic Talents", "Soul of a Salesman", "Snake Oil", "Rogue Talents", "Cabinet of Miracles", "A Simple Demonstration", "Masterful Salesman"]
+    },
+
+    {
+      "key": "pathfinder-archetype:pathfinder-class:sorcerer:crossblooded",
+      "class_modifications": {"casting": {"spells_known_per_spell_level_adjustment": -1}},
+      "feature_exclude_names": ["Example"]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:sorcerer:sphere-sorcerer",
+      "class_modifications": {"casting": {"sphere_progression": "High", "traditional": false, "ability": "charisma", "type": "sphere", "spells": ""}, "advancement": {"talent_progression": "High", "talent_kinds": ["magic"]}, "capabilities": {"grants": ["magic"], "removes": ["traditional_spells"]}},
+      "feature_include_names": ["Casting", "Mystic Heritage", "Spell Points", "Sorcerous Blood", "Magic Talents", "Focus Sphere"]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:sorcerer:inheritor",
+      "class_modifications": {"statistics": {"hit_die": 8, "bab_progression": "3/4"}, "advancement": {"talent_progression": "Expert", "talent_kinds": ["magic", "martial"]}, "capabilities": {"grants": ["magic", "martial"], "removes": []}, "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}},
+      "feature_include_names": ["Proficiencies", "Eldritch Warrior", "Blended Training", "Empowered Lineage", "Empower", "Infuse", "Hasten", "Martial Flexibility"]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "key": "shaman",
+  "class_key": "pathfinder-class:shaman",
+  "class_name": "Shaman",
+  "governing_ability": "wisdom",
+  "optional_blocks": ["inquisitor_features", "spells_known", "spells_prepared", "spell_level_overview", "pet"],
+  "external_systems": ["traditional_prepared_casting", "shaman_spirit", "spirit_magic", "spirit_animal", "shaman_hexes", "wandering_spirit", "wandering_hex"],
+  "spell_grant_choice_providers": ["shaman-spirit"],
+  "resource_modules": [],
+  "passive_effects": [],
+  "notes": "The permanent spirit, spirit magic, spirit animal, hexes, and prepared divine spells are handled by shared systems. Wandering choices remain separately editable because they can change after daily preparation."
+}

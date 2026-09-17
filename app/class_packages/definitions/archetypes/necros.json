@@ -1,0 +1,179 @@
+{
+  "version": 1,
+  "class_key": "spheres-class:necros",
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:necros:brutal-necromancer",
+      "package": "spheres-class:necros",
+      "name": "Brutal Necromancer",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/brutal-necromancer",
+      "replaces_features": [
+        "base-attack-bonus",
+        "base-attack-bonus-of-necros",
+        "casting",
+        "fleshcraft",
+        "hit-die"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {
+        "statistics": {
+          "hit_die": 10,
+          "bab_progression": "Full"
+        },
+        "casting": {
+          "sphere_progression": "Low"
+        }
+      },
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Hardened Warrior",
+          "description": "Brutal necromancers use a d10 to determine their hit points and use their level to determine their base attack bonus. This ability alters the hit die and base attack bonus of necros."
+        },
+        {
+          "level": 1,
+          "name": "Reduced Casting",
+          "description": "A brutal necromancer may combine spheres and talents to create magical effects. A brutal necromancer is considered a Low-Caster. They may use either Intelligence or Charisma as their casting ability modifier and must make this choice at 1st level. (Note: all casters may select a casting tradition the first time they gain the casting class feature.) This ability alters the casting class feature."
+        },
+        {
+          "level": 3,
+          "name": "Necromantic Modification",
+          "description": "At 3rd level, a brutal necromancer treats themselves as an undead they control for the purpose of their fleshcrafting ability. However, they cannot use their fleshcrafting ability on undead they control except for their corpse puppet. This ability alters fleshcrafter."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:necros:necrotech-savant",
+      "package": "spheres-class:necros",
+      "name": "Necrotech Savant",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/necrotech-savant",
+      "replaces_features": [
+        "advanced-fleshcraft",
+        "channel-energy",
+        "corpse-puppets-undead-evolution",
+        "deathbound",
+        "decaying-form",
+        "fleshcraft",
+        "fleshcrafting-artisan",
+        "fleshcrafting-master",
+        "master-multicrafting",
+        "multicrafting",
+        "necrotic-shield",
+        "rebuke-undead",
+        "undead-affinity",
+        "undead-rebirth",
+        "unholy-revivification"
+      ],
+      "removed_features": [
+        "channel-energy",
+        "decaying-form",
+        "fleshcraft",
+        "fleshcrafting-master",
+        "master-multicrafting",
+        "rebuke-undead",
+        "undead-affinity",
+        "undead-rebirth",
+        "unholy-revivification"
+      ],
+      "removed_feature_clauses": [
+        "channel energy",
+        "rebuke undead",
+        "alters deathbound",
+        "undead affinity",
+        "fleshcraft",
+        "decaying form",
+        "undead rebirth",
+        "unholy revivification",
+        "master multicrafting",
+        "fleshcrafting master"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Dark Gadgets",
+          "description": "At 1st level, a necrotech savant gains the gadgets class feature of the Technician class, although they can only use it a number of times per day equal to 3 + their casting modifier. In addition, they gain the Death sphere as a bonus talent rather than being required to spend their 1st talent on it. This ability replaces channel energy and rebuke undead and alters deathbound."
+        },
+        {
+          "level": 2,
+          "name": "Necrotech Synthesis",
+          "description": "At 2nd level, a necrotech savant is treated as both a construct and undead whenever it would benefit them (a necrotech master cannot be turned or rebuked, and can be healed by effects that would heal a construct or an undead creature). This ability replaces undead affinity."
+        },
+        {
+          "level": 3,
+          "name": "Necrograft",
+          "description": "At 3rd level, a necrotech savant can spend 1 spell point or use of their gadgets class feature to grant the effects of the following inventions to an undead they control (including their corpse puppet) as well as an improvement of their choice; this ability can be used when animating an undead with the reanimate ability of the Death sphere. This alteration of a creature lasts for 1 day. The necrotech savant can select from the following inventions:"
+        },
+        {
+          "level": 7,
+          "name": "Improved Boots",
+          "description": "Improved Crossbow: Improved Firearm: Improved Gloves: Improved Goggles: Improved Melee Weapon: Improved Shield: An undead treats its legs as boots, its hands as gloves, and its eyes as goggles, having a crossbow, firearm, melee weapon, or shield grafted onto it at no cost for improved crossbow, improved firearm, improved melee weapon, or improved shield. At first, a necrotech savant only has the capability of applying a single invention to an undead. At 7th level and every four levels afterwards, a necros can apply an additional invention or an improvement to any invention they already possess (if the necrotech savant applies the same invention to an undead, they instead apply an additional improvement to that invention). Applying more than 1 invention still only requires a single spell point or use of channel energy. This ability replaces fleshcraft."
+        },
+        {
+          "level": 1,
+          "name": "Inventor’s Evolution",
+          "description": "The corpse puppet can gain either a permanent invention (and improvement of that invention) or ability from the fleshcrafting list (but not advanced fleshcrafter). If they already possess the selected invention, they instead gain an improvement from the list of improvements an invention can select. These abilities do not count against the limit of inventions a necros can add to an undead with the necrograft ability. This ability alters the corpse puppet’s undead evolution."
+        },
+        {
+          "level": 4,
+          "name": "Technical Insight",
+          "description": "At 4th level and every four levels afterwards, a necrotech savant gains a technical insight from the Technician class. This ability replaces decaying form."
+        },
+        {
+          "level": 6,
+          "name": "Necrograft Shield",
+          "description": "At 6th level, whenever a necrotech savant uses their necrograft class feature on an undead, it gains temporary hit points equal to the necrotech savant’s class level + their casting ability modifier. These temporary hit points last until the necrograft ends, and can be restored by the necrotech savant by expending 1 use of gadget while within 60 feet of the undead. At 13th level, the amount of temporary hit points gained is doubled. This ability alters necrotic shield."
+        },
+        {
+          "level": 7,
+          "name": "Unique Fleshcrafting",
+          "description": "At 7th level, a necrotech savant can use their necrograft class feature to instead provide an ability from those on the fleshcrafting list in place of an invention or improvement. This ability alters advanced fleshcrafting and fleshcrafting artisan."
+        },
+        {
+          "level": 9,
+          "name": "Failsafe",
+          "description": "At 9th level, whenever a necrotech savant would be killed, they can spend 5 uses of gadgets to instead transport their consciousness into an undead they control (including their corpse puppet) as a free action that can be taken at any time, taking complete control of it. They can then spend 1 spell point and spend 1 hour to recreate their old body, transporting their consciousness to the newly created body. Once their consciousness takes hold of this new body, they are staggered for 24 hours. At 17th level, they can use this ability by spending 3 uses of gadgets and are no longer staggered. This ability replaces undead rebirth and unholy revivification."
+        },
+        {
+          "level": 10,
+          "name": "Multi-Necrografting",
+          "description": "At 10th level, whenever a necrotech savant uses their necrograft ability, they can spend an additional spell point or use of gadget to have it affect a number of creatures equal to their casting ability modifier. This ability alters multicrafting."
+        },
+        {
+          "level": 18,
+          "name": "Iron Form",
+          "description": "At 18th level, a necrotech savant changes their type to construct (unless it was already construct), losing their Constitution score. Rather than gaining hit points based on their size, they use their casting ability modifier to determine their hit points, Fortitude saves, and any special abilities which rely on Constitution. This ability replaces master multicrafting."
+        },
+        {
+          "level": 20,
+          "name": "Advanced Fleshcraft",
+          "description": "At 20th level, a necrotech savant can also select an advanced fleshcraft to add to an undead in place of an invention or normal fleshcrafting ability. An undead can only have a single ability from the advanced fleshcraft list. This ability replaces fleshcrafting master."
+        },
+        {
+          "level": 20,
+          "name": "Undying Construct",
+          "description": "At 20th level, a necrotech savant gains the rejuvenation ability of the lich template. In addition, their phylactery comes into existence instantly, requiring no effort or payment from the necros to do so."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

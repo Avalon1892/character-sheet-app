@@ -1,0 +1,142 @@
+{
+  "version": 1,
+  "class_key": "pathfinder-class:cleric",
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:asmodean-advocate",
+      "choice_provider_overrides": [{"key": "cleric-domains", "minimum": 1, "maximum": 1}],
+      "choice_option_filters": [{"key": "cleric-domains", "include_names": ["Trickery Domain"]}],
+      "system_features": ["familiar"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:cloistered-cleric",
+      "choice_provider_overrides": [{"key": "cleric-domains", "minimum": 1, "maximum": 1}],
+      "passive_effects": [
+        {"key": "breadth-of-knowledge", "feature_tokens": ["breadth-of-knowledge"], "target_family": "knowledge_skills", "progression": "half_level_minimum_one", "bonus_type": "untyped", "source": "Cleric (Cloistered): Breadth of Knowledge"}
+      ],
+      "skill_rules": [
+        {"key": "breadth-untrained", "feature_tokens": ["breadth-of-knowledge"], "minimum_level": 1, "rule": "allow_all_untrained", "source": "Cleric (Cloistered): Breadth of Knowledge"}
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:divine-scourge",
+      "choice_provider_overrides": [{"key": "cleric-domains", "minimum": 1, "maximum": 1}],
+      "choice_option_filters": [{"key": "cleric-domains", "include_names": ["Curse Subdomain"]}],
+      "power_providers": [
+        {
+          "key": "divine-scourge-hexes",
+          "label": "Divine Hexes",
+          "family": "witch_hex",
+          "feature_tokens": ["divine-hexes"],
+          "slot_levels": [3, 7, 11, 15, 19],
+          "option_names": ["Blight", "Cursed Wound", "Evil Eye", "Misfortune", "Scar", "Slumber", "Unnerve Beasts", "Agony", "Hoarfrost", "Infected Wounds", "Nightmares", "Retribution"],
+          "description": "Choose a listed Witch hex at 3rd level and every 4 Cleric levels thereafter. Major hexes unlock at 11th level; Wisdom sets save DCs and Charisma replaces Intelligence for duration or effect values."
+        }
+      ],
+      "system_features": ["divine-hexes"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:idealist",
+      "choice_providers": [
+        {
+          "key": "idealist-planar-bond",
+          "label": "Planar Bond",
+          "feature_tokens": ["planar-bond"],
+          "minimum": 1,
+          "maximum": 1,
+          "description": "Choose the deity's home plane. Its 1st-, 4th-, and 7th-level spells become additional spontaneous conversion options.",
+          "fixed_options": [
+            {"key": "abaddon", "name": "Abaddon", "description": "Protection from good; unholy blight; blasphemy."},
+            {"key": "abyss", "name": "Abyss", "description": "Doom; unholy blight; blasphemy."},
+            {"key": "astral", "name": "Astral Plane", "description": "Summon monster I; dismissal; lesser create demiplane."},
+            {"key": "axis", "name": "Axis", "description": "Protection from chaos; order's wrath; dictum."},
+            {"key": "boneyard", "name": "Boneyard", "description": "Deathwatch; death ward; arbitrament."},
+            {"key": "elysium", "name": "Elysium", "description": "Remove fear; freedom of movement; word of chaos."},
+            {"key": "ethereal", "name": "Ethereal Plane", "description": "Obscuring mist; sending; ethereal jaunt."},
+            {"key": "first-world", "name": "First World", "description": "Entropic shield; giant vermin; regenerate."},
+            {"key": "heaven", "name": "Heaven", "description": "Sanctuary; discern lies; holy word."},
+            {"key": "hell", "name": "Hell", "description": "Command; tongues; dictum."},
+            {"key": "maelstrom", "name": "Maelstrom", "description": "Protection from law; chaos hammer; word of chaos."},
+            {"key": "nirvana", "name": "Nirvana", "description": "Protection from evil; holy smite; holy word."},
+            {"key": "air", "name": "Plane of Air", "description": "Alter winds; air walk; control weather."},
+            {"key": "earth", "name": "Plane of Earth", "description": "Magic stone; stoneskin; statue."},
+            {"key": "fire", "name": "Plane of Fire", "description": "Produce flame; wall of fire; delayed blast fireball."},
+            {"key": "water", "name": "Plane of Water", "description": "Hydraulic push; control water; vortex."},
+            {"key": "shadow", "name": "Shadow Plane", "description": "Cause fear; shadow conjuration; destruction."},
+            {"key": "other", "name": "Other Plane", "description": "Use the custom planar-bond rules agreed with the GM."}
+          ]
+        }
+      ],
+      "system_features": ["planar-bond"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:lawspeaker",
+      "audit_ignore_mechanics": ["judgment"],
+      "choice_provider_overrides": [{"key": "cleric-domains", "minimum": 1, "maximum": 1}],
+      "choice_option_filters": [{"key": "cleric-domains", "include_names": ["Law Domain", "Archon Subdomain", "Inevitable Subdomain", "Judgment Subdomain", "Legislation Subdomain", "Loyalty Subdomain", "Tyranny Subdomain"]}],
+      "resource_modules": [
+        {
+          "key": "lawspeaker",
+          "title": "Lawspeaker",
+          "governing_ability": "charisma",
+          "resources": [
+            {
+              "key": "circumvent_obfuscation",
+              "name": "Circumvent Obfuscation",
+              "feature_tokens": ["circumvent-obfuscation"],
+              "progression": "zero",
+              "description": "Spend two Channel Energy uses to invoke one currently unlocked truth-revealing spell-like ability.",
+              "tracks_uses": false,
+              "external_cost_key": "channel_energy",
+              "use_cost": 2,
+              "choice_options": ["Calm Emotions", "Zone of Truth", "Invisibility Purge", "Discern Lies", "True Seeing", "Greater Dispel Magic", "Communal Tongues", "Discern Location", "Antimagic Field"]
+            }
+          ]
+        }
+      ],
+      "system_features": ["circumvent-obfuscation"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:varisian-pilgrim",
+      "choice_option_filters": [
+        {"key": "cleric-domains", "include_names": ["Chaos Domain", "Community Domain", "Liberation Domain", "Luck Domain", "Travel Domain", "Weather Domain", "Exploration Subdomain", "Fate Subdomain", "Freedom Subdomain", "Trade Subdomain", "Seasons Subdomain"]}
+      ]
+    },
+    {"key": "pathfinder-archetype:pathfinder-class:cleric:angelfire-apostle", "choice_provider_overrides": [{"key": "cleric-domains", "minimum": 1, "maximum": 1}]},
+    {"key": "pathfinder-archetype:pathfinder-class:cleric:cardinal", "choice_provider_overrides": [{"key": "cleric-domains", "minimum": 1, "maximum": 1}]},
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:channeler-of-the-unknown",
+      "choice_provider_overrides": [{"key": "cleric-domains", "minimum": 1, "maximum": 1}],
+      "choice_option_filters": [{"key": "cleric-domains", "include_names": ["Darkness Domain", "Destruction Domain", "Luck Domain", "Madness Domain", "Void Domain"]}]
+    },
+    {"key": "pathfinder-archetype:pathfinder-class:cleric:crusader", "choice_provider_overrides": [{"key": "cleric-domains", "minimum": 1, "maximum": 1}]},
+    {"key": "pathfinder-archetype:pathfinder-class:cleric:evangelist", "choice_provider_overrides": [{"key": "cleric-domains", "minimum": 1, "maximum": 1}]},
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:forgemaster",
+      "choice_provider_overrides": [{"key": "cleric-domains", "minimum": 1, "maximum": 1}],
+      "choice_option_filters": [{"key": "cleric-domains", "include_names": ["Artifice Domain"]}]
+    },
+    {"key": "pathfinder-archetype:pathfinder-class:cleric:herald-caller", "choice_provider_overrides": [{"key": "cleric-domains", "minimum": 1, "maximum": 1}]},
+    {"key": "pathfinder-archetype:pathfinder-class:cleric:mendevian-priest", "choice_provider_overrides": [{"key": "cleric-domains", "minimum": 1, "maximum": 1}]},
+    {"key": "pathfinder-archetype:pathfinder-class:cleric:merciful-healer", "choice_provider_overrides": [{"key": "cleric-domains", "minimum": 1, "maximum": 1}]},
+    {"key": "pathfinder-archetype:pathfinder-class:cleric:roaming-exorcist", "choice_provider_overrides": [{"key": "cleric-domains", "minimum": 1, "maximum": 1}]},
+    {"key": "pathfinder-archetype:pathfinder-class:cleric:sacred-attendant", "choice_provider_overrides": [{"key": "cleric-domains", "minimum": 1, "maximum": 1}]},
+    {"key": "pathfinder-archetype:pathfinder-class:cleric:stoic-caregiver", "choice_provider_overrides": [{"key": "cleric-domains", "minimum": 1, "maximum": 1}]},
+    {"key": "pathfinder-archetype:pathfinder-class:cleric:theologian", "choice_provider_overrides": [{"key": "cleric-domains", "minimum": 1, "maximum": 1}]},
+    {"key": "pathfinder-archetype:pathfinder-class:cleric:triadic-priest", "choice_provider_overrides": [{"key": "cleric-domains", "minimum": 1, "maximum": 1}]},
+    {"key": "pathfinder-archetype:pathfinder-class:cleric:undead-lord", "choice_provider_overrides": [{"key": "cleric-domains", "minimum": 1, "maximum": 1}]},
+    {
+      "key": "spheres-archetype:pathfinder-class:cleric:faithful-shepherd",
+      "governing_ability": "wisdom",
+      "resource_adjustments": [
+        {"resource_key": "channel_energy", "choice_options": ["Positive energy"], "maximum_choices_levels": [1], "description": "Positive Channeling uses the casting ability instead of Charisma for daily uses, save DCs, and other effects."}
+      ],
+      "system_features": ["channel-energy"]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:cleric:kindred-keeper",
+      "choice_handling": "automatic",
+      "choice_handling_note": "Tradition, talent, domain-count, and community selections use the shared tradition, talent, and class-choice controls rather than a separate archetype-only field."
+    }
+  ]
+}

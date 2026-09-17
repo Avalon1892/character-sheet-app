@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "key": "druid",
+  "class_key": "pathfinder-class:druid",
+  "class_name": "Druid",
+  "governing_ability": "wisdom",
+  "optional_blocks": ["inquisitor_features", "spells_known", "spell_level_overview", "animal_companion"],
+  "external_systems": [
+    "traditional_prepared_casting",
+    "druid_nature_bond",
+    "druid_wild_shape",
+    "druid_spontaneous_summon_natures_ally"
+  ],
+  "resource_modules": [],
+  "passive_effects": [],
+  "notes": "Nature Bond uses the shared domain-or-companion selector. Wild Shape uses the retained-feature-aware Druid tracker; prepared spells and spontaneous summon nature's ally conversion remain in the shared spell system."
+}

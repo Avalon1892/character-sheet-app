@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "key": "inquisitor",
+  "class_key": "pathfinder-class:inquisitor",
+  "class_name": "Inquisitor",
+  "governing_ability": "wisdom",
+  "optional_blocks": ["inquisitor_features", "spells_known", "spell_level_overview"],
+  "external_systems": ["traditional_spontaneous_casting", "domains_and_inquisitions", "teamwork_feats"],
+  "resource_modules": [
+    {
+      "key": "inquisitor",
+      "title": "Inquisitor Class Systems",
+      "governing_ability": "wisdom",
+      "resources": [
+        {"key": "judgment", "name": "Judgment", "feature_tokens": ["judgment"], "progression": "inquisitor_judgment_uses", "description": "Daily judgments. Activating one spends a use and lasts until combat ends.", "can_activate": true, "activate_on_spend": true, "choice_options": ["Destruction", "Healing", "Justice", "Piercing", "Protection", "Purity", "Resiliency", "Resistance", "Smiting"]},
+        {"key": "bane", "name": "Bane", "feature_tokens": ["bane"], "progression": "level", "description": "Rounds per day of bane on a wielded weapon against the selected creature type.", "can_activate": true, "activate_on_spend": true, "choice_options": ["Aberration", "Animal", "Construct", "Dragon", "Fey", "Humanoid (choose subtype)", "Magical beast", "Monstrous humanoid", "Ooze", "Outsider (choose subtype)", "Plant", "Undead", "Vermin"]},
+        {"key": "discern_lies", "name": "Discern Lies", "feature_tokens": ["discern-lies"], "progression": "level", "description": "Rounds per day of discern lies; activating it is an immediate action.", "can_activate": true, "activate_on_spend": true},
+        {"key": "teamwork_swaps", "name": "Teamwork Feat Changes", "feature_tokens": ["teamwork-feat"], "progression": "ability_modifier", "description": "Daily changes of the most recently gained bonus teamwork feat."},
+        {"key": "monster_lore", "name": "Monster Lore Applies", "feature_tokens": ["monster-lore"], "progression": "one", "description": "Toggle while making a Knowledge check to identify a creature. The governing ability modifier is then added automatically.", "can_activate": true, "recover_on_full_rest": false, "end_on_full_rest": false},
+        {"key": "track", "name": "Track Applies", "feature_tokens": ["track"], "progression": "one", "description": "Toggle while using Survival to follow tracks. Half the Inquisitor level is added automatically.", "can_activate": true, "recover_on_full_rest": false, "end_on_full_rest": false},
+        {"key": "true_judgment", "name": "True Judgment", "feature_tokens": ["true-judgment"], "progression": "one", "description": "Once per day, pronounce true judgment upon one target as a swift action. The next successful melee attack invokes the feature's Fortitude save; a successful save instead deals 1d6 Constitution damage. A creature can be targeted only once per 24 hours.", "custom_choice_label": "Current target"}
+      ]
+    }
+  ],
+  "passive_effects": [
+    {"key": "cunning_initiative", "feature_tokens": ["cunning-initiative"], "targets": ["initiative"], "progression": "ability_modifier", "ability": "governing", "bonus_type": "untyped", "source": "Inquisitor: Cunning Initiative"},
+    {"key": "stern_gaze_intimidate", "feature_tokens": ["stern-gaze"], "targets": ["skill:intimidate", "skill:sense_motive"], "progression": "half_level_minimum_one", "bonus_type": "morale", "source": "Inquisitor: Stern Gaze"},
+    {"key": "monster_lore", "feature_tokens": ["monster-lore"], "target_family": "creature_knowledge_skills", "progression": "ability_modifier", "ability": "governing", "bonus_type": "untyped", "source": "Inquisitor: Monster Lore", "requires_resource_active": "monster_lore"},
+    {"key": "track", "feature_tokens": ["track"], "targets": ["skill:survival"], "progression": "half_level_minimum_one", "bonus_type": "untyped", "source": "Inquisitor: Track", "requires_resource_active": "track"}
+  ]
+}

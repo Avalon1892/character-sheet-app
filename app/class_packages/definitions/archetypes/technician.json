@@ -1,0 +1,449 @@
+{
+  "version": 1,
+  "class_key": "spheres-class:technician",
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:technician:adamantine-scientist",
+      "package": "spheres-class:technician",
+      "name": "Adamantine Scientist",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/adamantine-scientist",
+      "replaces_features": [
+        "danger-sense",
+        "greater-trapmaster",
+        "invention",
+        "perfect-trapmaster",
+        "supreme-trapmaster",
+        "trap-specialist",
+        "trapfinding",
+        "trapmaster"
+      ],
+      "removed_features": [
+        "danger-sense",
+        "greater-trapmaster",
+        "perfect-trapmaster",
+        "supreme-trapmaster",
+        "trap-specialist",
+        "trapfinding",
+        "trapmaster"
+      ],
+      "removed_feature_clauses": [
+        "trap specialist",
+        "trapfinding",
+        "danger sense",
+        "trapmaster",
+        "greater trapmaster",
+        "supreme trapmaster",
+        "perfect trapmaster"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Brawler",
+          "description": "An adamantine scientist gains the Open Hand sphere at 1st level.\n\nThis ability replaces trap specialist."
+        },
+        {
+          "level": 1,
+          "name": "Educated Unarmed Strike",
+          "description": "At 1st level, an adamantine scientist is treated as one size larger (up to Large) for the purpose of the damage their unarmed strike deals.\n\nThis ability replaces trapfinding."
+        },
+        {
+          "level": 1,
+          "name": "Power Fist",
+          "description": "An adamantine scientist can only select gloves for their invention at 1st level. These gloves deal damage equal to the adamantine scientist’s unarmed strike if it would be higher, and have a critical threat range of 19-20 and a critical multiplier of x2, being able to be enhanced as though they were gauntlets. At 5th level, the adamantine scientist can spend a full-round action to transform their gloves into any tool they desire, treating it as a masterwork tool. If their improved gloves have an enhancement bonus, this is added to the circumstance bonus to Craft checks made with this tool.\n\nThis ability alters invention."
+        },
+        {
+          "level": 3,
+          "name": "Outstanding Blow",
+          "description": "At 3rd level, the adamantine scientist’s improved gloves gain the super punch improvement even if they do not possess the steampower insight. This improvement does not count against the limit of improvements his improved gloves can have. At 11th level, the critical threat range of his improved gloves increases to 18-20.\n\nThis ability replaces danger sense."
+        },
+        {
+          "level": 7,
+          "name": "Improved Punch",
+          "description": "At 7th level, an adamantine scientist can build up pressure with the super punch improvement as a swift action rather than a move action.\n\nThis ability replaces trapmaster."
+        },
+        {
+          "level": 11,
+          "name": "Megaton Punch",
+          "description": "At 11th level, an adamantine scientist may have two charges of super punch readied simultaneously, though they may only use one charge per round\n\nThis ability replaces greater trapmaster."
+        },
+        {
+          "level": 15,
+          "name": "Gigaton Punch",
+          "description": "At 15th level, once per round, an adamantine scientist can build up pressure as a free action.\n\nThis ability replaces supreme trapmaster."
+        },
+        {
+          "level": 19,
+          "name": "Final Punch",
+          "description": "At 19th level, an adamantine scientist can use both uses of their pressure at once. If they do, all damage from it is maximized.\n\nThis ability replaces perfect trapmaster.\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:technician:innovator",
+      "package": "spheres-class:technician",
+      "name": "Innovator",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/innovator",
+      "replaces_features": [
+        "invention",
+        "invention-at-level",
+        "magical-trap-function-of-trapmaster"
+      ],
+      "removed_features": [
+        "invention-1st-level",
+        "magical-trap-function-of-trapmaster"
+      ],
+      "removed_feature_clauses": [
+        "invention gained at 1st level",
+        "magical trap function of trapmaster"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Note - Alternate Class Features",
+          "description": "An innovator technician is recommended to take the tinker specialist and battery gadget alternate class features (which were made with this archetype in mind, but available to technicians generally)."
+        },
+        {
+          "level": 1,
+          "name": "Moldable Inventorship",
+          "description": "Starting at 1st level, the innovator gains 1 bonus Tinker sphere talent, plus an additional Tinker sphere talent at 5th level and every 4 levels thereafter. Tinker talents granted this way are referred to as “moldable Tinker talents”. Whenever the innovator rests and regains their resources (such as regaining their daily uses of gadgets, etc.), the innovator is able to change their moldable Tinker talents for other Tinker sphere talents, losing the previous ones and gaining the new ones in their place. Only the moldable Tinker talents granted by this feature can be changed this way. Whenever the innovator would gain an additional invention, the innovator may instead gain a bonus moldable Tinker talent. Sources of additional inventions (i.e. the inventor’s insight technical insight, favored class bonuses, etc.) cannot be exchanged for bonus moldable Tinker talents this way.\n\nThis replaces the invention gained at 1st level."
+        },
+        {
+          "level": 7,
+          "name": "Gizmo-master",
+          "description": "At 7th level, all uses of the Disable Device skill have their required time decreased by 2 steps instead of 1. In addition, whenever an innovator succeeds at a Disable Device check against a gizmo they did not craft by 10 or more, the innovator may take control of that gizmo and treat it as a gizmo they crafted (including any installed routines, excluding AI). The innovator may adjust any of the gizmo’s set functions or parameters as part of succeeding at a Disable Device check performed this way. A gizmo that is taken control of by this ability is able to remain functioning without the original crafter’s maintenance for 24 hours before becoming depleted. The innovator may choose to scavenge a gizmo they take control of and have the gizmo count against their gizmo limit (see Section 4.1: Mastering Gizmos, Scavenging Gizmos for more). The innovator always succeeds at proficiency checks made to scavenge a gizmo they took control of this way, and may upgrade, adjust, and add the effects of talents, feats, or other abilities they posses even if they do not possess the appropriate talents used to craft the gizmo. The innovator still cannot modify a gizmo whose gizmo level is higher than their ranks in the associated skill.\n\nThis replaces the magical trap function of trapmaster."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:technician:mad-scientist",
+      "package": "spheres-class:technician",
+      "name": "Mad Scientist",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/mad-scientist",
+      "replaces_features": [
+        "danger-sense",
+        "gadgets",
+        "greater-trapmaster",
+        "perfect-trapmaster",
+        "supreme-trapmaster",
+        "trap-insight",
+        "trap-master",
+        "trap-specialist",
+        "trapfinding"
+      ],
+      "removed_features": [
+        "danger-sense",
+        "gadgets",
+        "greater-trapmaster",
+        "perfect-trapmaster",
+        "supreme-trapmaster",
+        "trap-insight",
+        "trap-master",
+        "trap-specialist",
+        "trapfinding"
+      ],
+      "removed_feature_clauses": [
+        "gadgets",
+        "trap specialist",
+        "trapfinding",
+        "danger sense",
+        "trap insight",
+        "trap master",
+        "greater trapmaster",
+        "supreme trapmaster",
+        "perfect trapmaster"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "The mad scientist loses Disable Device, Knowledge (dungeoneering), Knowledge (geography), Knowledge (local), and Sleight of Hand as class skills, but gains Knowledge (arcana), Knowledge (nature), Knowledge (planes), Knowledge (religion), and Spellcraft."
+        },
+        {
+          "level": 1,
+          "name": "Skills",
+          "description": "The mad scientist only gains 4 + Int modifier skill points per level rather than 6 + Int modifier."
+        },
+        {
+          "level": 1,
+          "name": "Laboratory",
+          "description": "A mad scientist can create a laboratory, and begins with one if this is his first level in any class. A laboratory is a permanent location, constructed in either a building or a vehicle with at least a 10-ft. cube of open space, but may be up to a 10-ft. cube per technician level. The mad scientist can only maintain one laboratory at a time, but many spend 2 days of work (following the magic item creation rules) to replace their laboratory with a new one in a new location."
+        },
+        {
+          "level": 7,
+          "name": "A laboratory has the same effect as a vigilante’s safe house",
+          "description": "Objects within this safe house can’t be located by any effect that is less powerful than a discern location spell. At 7th level, this protection from being located also applies to creatures in the safe house. At 13th level, the entire area is protected from scrying effects (though not mundane snooping) like a mage’s private sanctum. At 5th, 10th, 15th, and 20th level, the mad scientist may create an additional laboratory in a new location without sacrificing the old one."
+        },
+        {
+          "level": 1,
+          "name": "Supernatural Science",
+          "description": "A mad scientist is considered an arcane magic user, and treats his technician levels as if they were wizard levels for the purpose of activating magic items such as wands, staves, and scrolls, as well as when meeting the prerequisites for item creation feats and when making magic items. This includes both access to spell lists as well as determining his effective ‘caster level’. This does not, however, allow him to cast spells in a conventional fashion, nor increase his caster level if casting spells via another class. The mad scientist must decipher spells and meet a spell’s prerequisites, just as a wizard must, in order to use a spell, copy a spell into a spellbook, etc. The mad scientist gains Scribe Scroll as a bonus feat at 1st level. A mad scientist cannot memorize spells, but so long as he is inside of his laboratory, meets the spell’s minimum caster level and Intelligence requirement, and has a copy of that spell present such as via a wizard’s spellbook, he can reproduce the effects of a spell by spending time and money to recreate the magic via scientific means, via mixing ingredients, harnessing crude electrical charges, and applying other aspects of natural philosophy. If the spell includes any costly spell components, those must be supplied in addition to the cost listed on the Table: Spell Activation."
+        },
+        {
+          "level": 1,
+          "name": "Spell Level",
+          "description": "Material Cost: Casting Time 0 1 gp 1 minute 1 5 gp 5 minutes 2 10 gp 10 minutes 3 25 gp 30 minutes 4 50 gp 1 hour 5 100 gp 2 hours 6 250 gp 4 hours 7 500 gp 8 hours 8 1,000 gp 1 day 9 5,000 gp 2 days A mad scientist begins play with a spellbook containing all 0-level wizard spells, plus three 1st-level spells of his choice. The mad scientist also selects a number of additional 1st-level spells equal to his Intelligence modifier to add to the spellbook. At each new technician level, he gains two new spells of any spell level or levels equal to those that would be castable for his effective wizard level to add to his spellbook.\n\nThis replaces gadgets."
+        },
+        {
+          "level": 1,
+          "name": "Unethical Science",
+          "description": "At 1st level, 3rd level, and every 4 levels thereafter, the mad scientist gains a special insight into unethical science. At each of the listed levels, they may choose one of the following options. Each of the following allows the mad scientist to construct a special kind of invention that is as much magic as science, and is considered a grand gadget for the purposes of wielding, drawing, sundering, integrating it with other inventions, etc. Just as with grand gadgets, any saving throw required by an unethical invention has a DC equal to 10 +1/2 the mad scientist’s level + his Intelligence modifier. At each of the listed levels, the mad scientist gains an additional invention, which must be spent creating one of the following devices they have chosen with unethical science. A mad scientist may use one of their general invention slots to create a new unethical invention (except those gained through Inventor’s Insight), but may not use an unethical invention to create a general invention. Rather than gaining improvements, unethical science inventions possesses one ability. However, multiple unethical invention slots can be spent on the same device, adding 3 more uses (or 6, in the case of the portal gun). Just as with general inventions, an unethical science invention can be dismantled and changed into another with 8 hours of work. If a creature other than the mad scientist uses an unethical invention, any attack rolls and DCs associated with the unethical invention suffer a -1 penalty, which increases by 1 at 5th level and every 4 levels thereafter."
+        },
+        {
+          "level": 5,
+          "name": "Death Ray",
+          "description": "As a standard action, the wielder may make a ranged touch attack against a creature. If successful, the target gains 1 temporary negative level, which lasts for 1 hour per technician level. This increases by 1 die size at 5th level and every 4 levels thereafter (1d2, 1d3, 1d4, 1d6). This ability is usable 3 times per day, +1 at 5th level and every 4 levels thereafter. This is considered a ranged weapon with a range increment of 10 ft."
+        },
+        {
+          "level": 1,
+          "name": "Freeze Ray",
+          "description": "As a standard action, the wielder may make a ranged touch attack against a creature. If successful, the target must pass a Fortitude save or become stunned for 1 round per 2 technician levels (minimum: 2). This ability is usable 3 times per day. This is considered a ranged weapon with a range increment of 10 ft."
+        },
+        {
+          "level": 1,
+          "name": "Mind Control",
+          "description": "As a standard action, the wielder may make a melee touch attack to attach a small device from this invention to the target. The target must pass a Will save or fall under the wielder’s control for 1 round per 2 technician levels (minimum: 1). The target obeys all commands (if they do not share a language, only basic commands can be communicated such as ‘go’, ‘fight’, ‘help me’, etc.) except for obviously suicidal ones, and the target is staggered for the duration of the effect. Giving a target commands is a move action; without commands, the target will simply stand still, although it will defend itself if attacked. Another creature may attempt to remove the small device as a steal combat maneuver, and if successful causes the mind control to immediately end and the device to become inert. This ability is usable 3 times per day. This is a mind-altering effect."
+        },
+        {
+          "level": 1,
+          "name": "Monstrous Transformation",
+          "description": "As a standard action, the wielder may inject an adjacent creature with a special formulae. The target gains an alchemical bonus to Strength and Dexterity and a penalty to all mental scores equal to 1/2 the technician’s level (minimum 2). This cannot reduce a target’s mental scores below 1. Unwilling targets require a melee touch attack and are allowed a Fortitude save to resist this effect. This bonus and penalty lasts a number of rounds equal to the technician’s Intelligence modifier. This can be used 3 times per day."
+        },
+        {
+          "level": 5,
+          "name": "Portal Gun",
+          "description": "As a move action, the wielder may make a ranged touch attack against a solid surface of at least 5 ft. by 5 ft., such as a wall, ceiling, or floor. Once struck, this surface swirls with a visual effect, almost like a gateway into an extradimensional space. This gateway is 5 ft. x 5 ft., but may have its radius doubled at 5th level, and again for every 4 levels thereafter. The portal gun has no effect on creatures. Once the wielder has successfully struck two surfaces that are not further apart than long range (400 ft. +40 ft. per technician level), the portals connect, such that walking into one portal causes a creature to cross through to the other portal. These spaces are considered adjacent for all purposes, including flanking and attacking someone with a ranged weapon by firing through the portal. If the portal gun is used a third time, the wielder must choose one of their previous portals to be replaced by the new one, with the remaining 2 portals now being connected. The portal gun can be used 6 times per day. This is considered a ranged weapon with a range increment of 50 ft. Because of the nature of the portal gun and the imprecise need for firing, the weapon is usable as a move action rather than a standard action, and if the wielder misses their intended space, they may roll as if they had missed while making an attack with a splash weapon to determine if the attack strikes another valid surface instead. However, this roll determines where the shot lands in relation to the line of fire (for example, if a roll of 5 is made while aiming at a wall, the shot will have landed 5 ft. high, not 5 ft. forward)."
+        },
+        {
+          "level": 1,
+          "name": "Reanimation",
+          "description": "Rather than create a device, the mad scientist may create a humanoid zombie with a number of Hit Dice equal to his technician level. The zombie possesses no proficiencies except its natural weapons, but has an Intelligence of 3 + 1 per 2 technician level the mad scientist possesses, 2 skill points per level (reduced to 1 for lack of Intelligence), and feats and attribute increases as if it were a PC. The zombie does not gain additional Hit Dice for its size, and may spend a feat to lose the staggered condition. The zombie begins speaking one language the mad scientist speaks and is loyal to him and obeys all commands, but is more akin to an animal companion than an undead slave; if not treated well (especially as it gains more intelligence), it very well may abandon the mad scientist in pursuit of its own goals. The zombie can be made from any humanoid creature, but only if the appropriate corpse can be found, and only if the creature’s racial Hit Dice does not exceed 1 per technician level."
+        },
+        {
+          "level": 1,
+          "name": "Prerequisite",
+          "description": "A body’s worth of humanoid corpse pieces, with a brain that has been dead for no more than a day."
+        },
+        {
+          "level": 5,
+          "name": "Shrink Ray",
+          "description": "As a standard action, the wielder may make a ranged touch attack against a creature. If successful, the target must pass a Fortitude save or shrink by 1 size category, plus up to 1 additional size category at 5th level and every 4 levels thereafter, suffering a -2 penalty to Strength but gaining a +2 bonus to Dexterity per size category. This penalty lasts 1 minute per technician level. Allies may always choose to fail this saving throw. This ability is usable 3 times per day. This is considered a ranged weapon with a range increment of 30 ft.\n\nThis replaces trap specialist, trapfinding, danger sense, trap insight, trap master, greater trapmaster, supreme trapmaster, and perfect trapmaster."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:technician:mythbreaker",
+      "package": "spheres-class:technician",
+      "name": "Mythbreaker",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/mythbreaker",
+      "replaces_features": [
+        "greater-trapmaster",
+        "invention",
+        "invention-at-level",
+        "supreme-trapmaster",
+        "supreme-trapmaster-class-features",
+        "technically-minded"
+      ],
+      "removed_features": [
+        "invention-3rd-level",
+        "technically-minded"
+      ],
+      "removed_feature_clauses": [
+        "technically minded class feature",
+        "invention gained at 3rd level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 2,
+          "name": "Skeptic",
+          "description": "At 2nd level, the mythbreaker gains a bonus to Sense Motive checks equal to half his technician class level.\n\nThis replaces the technically minded class feature."
+        },
+        {
+          "level": 3,
+          "name": "Experimentation",
+          "description": "At 3rd level, whenever you make a Use Magic Device check, you may spend a move action or expend your martial focus to roll the check twice and take the higher result.\n\nThis replaces the invention gained at 3rd level."
+        },
+        {
+          "level": 5,
+          "name": "Remove Magic",
+          "description": "At 5th level, the mythbreaker gains the ability to use their Disable Device skill to dispel magical effects, as described under the greater trapmaster class feature. At 10th level, the mythbreaker can dispel multiple effects with each check, as described under the supreme trapmaster class feature.\n\nThis modifies the greater trapmaster and supreme trapmaster class features."
+        },
+        {
+          "level": 11,
+          "name": "Rigorous Mind",
+          "description": "At 11th level, the mythbreaker gains the slippery mind advanced rogue talent. This states that if the mythbreaker is affected by an enchantment spell or effect and fails his saving throw, he can attempt it again 1 round later at the same DC. He gets only this one extra chance to succeed on his saving throw. At 15th level, the mythbreaker gains a +2 insight bonus to all Will saving throws."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:technician:rigger",
+      "package": "spheres-class:technician",
+      "name": "Rigger",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/rigger",
+      "replaces_features": [
+        "invention",
+        "invention-at-level",
+        "trap-specialist",
+        "trapmaster"
+      ],
+      "removed_features": [
+        "invention-1st-level",
+        "trap-specialist",
+        "trapmaster"
+      ],
+      "removed_feature_clauses": [
+        "trap specialist",
+        "invention gained at 1st level",
+        "trapmaster"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Gadgeteer",
+          "description": "At 1st level, the rigger gains the Tech sphere as a bonus sphere. If he already possesses this sphere, he instead gains a one talent from that sphere.\n\nThis replaces trap specialist."
+        },
+        {
+          "level": 1,
+          "name": "Recharging Gadgets",
+          "description": "At 1st level the rigger can expend a single gadget from the gadgets technician class feature as a free action to recharge his charge pool by an amount of charges equal to his practitioner modifier + 1 for every 4 technician levels he possesses."
+        },
+        {
+          "level": 1,
+          "name": "Jury-Rigged Device",
+          "description": "Riggers tend to hold onto more spare parts than are normally contained within an engineering kit, allowing him experiment in the creation of spontaneous inventions. At 1st level, if the rigger spends 30 minutes (or 15 minutes with an engineering kit), he may pick and craft any (gadget) talent that he meets the prerequisites for. Gadgets created in this fashion are referred to as a jury-rigged device. Jury-rigged devices do not count against the maximum number of gadgets that a rigger may have crafted at one time, but a rigger may only have one jury-rigged device prepared at a time. Beginning at 5th level, and every four levels thereafter (9th, 13th, etc.), the rigger may have an additional jury-rigged device prepared at a time.\n\nThis replaces the invention gained at 1st level."
+        },
+        {
+          "level": 7,
+          "name": "Drone Hacker",
+          "description": "At 7th level, all uses of the Disable Device skill have their required time decreased by 2 steps instead of 1. The rigger may make a melee touch attack against a construct or technological device (including gadgets created by an enemy) to gain control over the target, causing it to behave as if the rigger had created it, allowing him to modify the target’s commands or active rote functions. This melee touch attack may either be done in place of any of your melee attacks during an attack action or a full-attack action. A successful Will save negates the effect. Control over the target lasts as long as the rigger maintains martial focus.\n\nThis replaces trapmaster."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:technician:suit-pilots",
+      "package": "spheres-class:technician",
+      "name": "Suit Pilots",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/suit-pilots",
+      "replaces_features": [
+        "danger-sense",
+        "gadgets",
+        "greater-trapmaster",
+        "perfect-trapmaster",
+        "supreme-trapmaster",
+        "technically-minded",
+        "trap-insight",
+        "trap-specialist",
+        "trapfinding",
+        "trapmaster",
+        "true-genius"
+      ],
+      "removed_features": [
+        "danger-sense",
+        "gadgets",
+        "greater-trapmaster",
+        "perfect-trapmaster",
+        "supreme-trapmaster",
+        "technically-minded",
+        "trap-insight",
+        "trap-specialist",
+        "trapfinding",
+        "trapmaster",
+        "true-genius"
+      ],
+      "removed_feature_clauses": [
+        "trap specialist",
+        "gadgets",
+        "trapfinding",
+        "danger sense",
+        "true genius",
+        "technically minded",
+        "trap insight",
+        "trapmaster",
+        "greater trapmaster",
+        "supreme trapmaster",
+        "perfect trapmaster"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Engineer",
+          "description": "The suit pilot gains mechanical insight as a bonus insight at 1st level.\n\nThis replaces trap specialist."
+        },
+        {
+          "level": 10,
+          "name": "Suit Mechanic",
+          "description": "Whenever the suit pilot creates an independent invention, it gains a number of bonus hit points equal to his technician level. Whenever giving the suit improvement to an independent invention, he may grant that independent invention an extra improvement. At 10th level, he may grant the independent invention 2 extra improvements. At 20th level, he may grant it 3 extra improvements.\n\nThis replaces gadgets, trapfinding, danger sense, and true genius."
+        },
+        {
+          "level": 2,
+          "name": "Ace Pilot",
+          "description": "At 2nd level, the suit pilot gains a bonus to all Profession (sailor) and Profession (driver) checks equal to half the suit pilot’s technician level.\n\nThis replaces technically minded."
+        },
+        {
+          "level": 3,
+          "name": "Defensive Piloting",
+          "description": "At 3rd level, any vehicle or independent invention the suit pilot is piloting gains a +1 dodge bonus to AC and to Reflex saves. This increases by +1 for every 4 additional technician levels possessed, to a maximum of +5 at 19th level.\n\nThis replaces trap insight, trapmaster, greater trapmaster, supreme trapmaster, and perfect trapmaster"
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

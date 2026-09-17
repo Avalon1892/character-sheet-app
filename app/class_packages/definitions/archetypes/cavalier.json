@@ -1,0 +1,2877 @@
+{
+  "version": 1,
+  "class_key": "pathfinder-class:cavalier",
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:beast-rider",
+      "package": "pathfinder-class:cavalier",
+      "name": "Beast Rider",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Beast Rider",
+      "replaces_features": [
+        "expert-trainer",
+        "mount"
+      ],
+      "removed_features": [
+        "expert-trainer",
+        "mount"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Beast Rider",
+          "description": "Source Ultimate Combat pg. 36"
+        },
+        {
+          "level": 1,
+          "name": "Armor Proficiency",
+          "description": "A beast rider is proficient with light and medium armor, and with shields (with the exception of tower shields)."
+        },
+        {
+          "level": 1,
+          "name": "Exotic Mount",
+          "description": "At 1st level, a beast rider forms a bond with a strong, loyal companion that permits him to ride it as a mount. This mount functions as a druid’s animal companion, using the beast rider’s level as his effective druid level. The animal chosen as a mount must be large enough to carry the beast rider (Medium or Large for a Small character; Large or Huge for a Medium character)."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:cavalier:blooded-knight",
+      "package": "pathfinder-class:cavalier",
+      "name": "Blooded Knight",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/blooded-knight",
+      "replaces_features": [
+        "armor-proficiencies",
+        "challenge",
+        "greater-tactician",
+        "master-tactician",
+        "mighty-charge",
+        "supreme-charge",
+        "tactician",
+        "weapon"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "tactician",
+        "greater tactician",
+        "mighty charge",
+        "master tactician",
+        "challenge class feature",
+        "supreme charge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Blooded knights are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis modifies weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A blooded knight is considered an Expert practitioner, gaining spheres and talents as appropriate. Blooded knights use Charisma as their practitioner modifier.\n\nThis replaces tactician, greater tactician, mighty charge, and master tactician."
+        },
+        {
+          "level": 1,
+          "name": "Knightly Arts",
+          "description": "The blooded knight gains the Warleader sphere as a bonus talent at 1st level. In addition, he also receives the Guardian sphere (challenge) package as a bonus talent. If the blooded knight already possesses one or both of the selected talents, or is incapable of selecting them due to a drawback, he may instead select any talent he qualifies for from the corresponding sphere, or buy off the drawback. This replaces the challenge class feature."
+        },
+        {
+          "level": 1,
+          "name": "Blooded Challenge",
+          "description": "Any abilities the blooded knight possesses that reference his use of challenge (such as the demanding challenge class feature or the challenge ability for his order) apply to any use of the challenge ability provided by the Guardian sphere."
+        },
+        {
+          "level": 20,
+          "name": "Kingly Demeanor",
+          "description": "At 20th level the blooded knight is a paragon of the knightly arts both on and off the battlefield. The blooded knight may make a Diplomacy check to improve a creature’s attitude towards him as a move action, and whenever he makes a successful Diplomacy check to improve a target’s attitude, he improves their attitude by 1 additional step. In addition, whenever the blooded knight reduces the hit points of an opponent within 30 ft. to 25% or less of their normal maximum, he can demand they submit as a free action that can be taken even when it’s not the blooded knight’s turn, forcing them to make a Will save (DC 10 + 1/2 his cavalier level + his Charisma modifier) or drop whatever weapons they are holding and surrender. Creatures who have surrendered will not attempt to attack the blooded knight or his allies, nor will they attempt to flee the battlefield as long as the blooded knight is conscious and within line of sight. This is a mind-affecting fear effect. This ability replaces supreme charge."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:castellan",
+      "package": "pathfinder-class:cavalier",
+      "name": "Castellan",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Castellan",
+      "replaces_features": [
+        "cavaliers-charge",
+        "demanding-challenge",
+        "expert-trainer",
+        "mighty-charge",
+        "mount",
+        "supreme-charge"
+      ],
+      "removed_features": [
+        "cavaliers-charge",
+        "demanding-challenge",
+        "expert-trainer",
+        "mighty-charge",
+        "mount",
+        "supreme-charge"
+      ],
+      "removed_feature_clauses": [
+        "mount",
+        "cavalier’s charge",
+        "expert trainer",
+        "mighty charge",
+        "demanding challenge",
+        "supreme charge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Castellan",
+          "description": "Source Melee Tactics Toolbox pg. 9"
+        },
+        {
+          "level": 1,
+          "name": "Castle Defender",
+          "description": "At 1st level, a castellan gains a +1 bonus to Armor Class and an additional +1 bonus on attack rolls when he is on higher ground. He also gains an additional +1 bonus to Armor Class and on Reflex saves when he has cover other than soft cover from other creatures. At 6th level, a castellan gains evasion (as a rogue) when he has cover (but not soft cover) against the source of the attack. At 11th level, these bonuses increase by 1. At 16th level, he gains improved evasion instead of evasion. Both the evasion and improved evasion abilities work even when the castellan wears medium or heavy armor. This ability replaces mount."
+        },
+        {
+          "level": 3,
+          "name": "Castle Lore",
+          "description": "At 3rd level, the castellan gains a +2 bonus on initiative checks and Knowledge (engineering), Knowledge (local), Knowledge (nobility), Perception, and Stealth checks when he is in urban terrain, including fortifications. A castellan in an urban environment can always act in a surprise round, though he remains flat-footed until he acts. At 8th level and every 5 levels thereafter, the castellan’s bonuses on skill and initiative checks increase by 2. This ability replaces cavalier’s charge."
+        },
+        {
+          "level": 4,
+          "name": "Guard Companion",
+          "description": "At 4th level, the castellan forms a bond with an animal companion that serves as a guard. While most castellans select birds or canines, the castellan can choose any animal companions available to rangers. This ability functions like the druid nature bond ability, except that the castellan’s effective druid level is equal to his cavalier level – 3 and his animal companion doesn’t gain the share spells special ability. This ability replaces expert trainer."
+        },
+        {
+          "level": 11,
+          "name": "Mighty Defense",
+          "description": "At 11th level, when the castellan readies an action to make a melee attack against a creature that is not yet adjacent to him, he doubles the threat range of any melee weapons wielded during the attack. This increase doesn’t stack with other effects that increase the threat range of his weapons. In addition, the cavalier can attempt a free dirty trick, disarm, sunder, or trip combat maneuver if his readied attack is successful. This free combat maneuver doesn’t provoke an attack of opportunity. This ability replaces mighty charge."
+        },
+        {
+          "level": 12,
+          "name": "Defending Challenge",
+          "description": "At 12th level, the castellan takes no penalty to Armor Class when using his challenge ability. This ability replaces demanding challenge."
+        },
+        {
+          "level": 20,
+          "name": "Supreme Defense",
+          "description": "At 20th level, whenever the castellan readies an action to make a melee attack against a creature that is not yet adjacent to him, his readied attack deals double the normal amount of damage (or triple the damage if using a brace weapon against a charge). In addition, if the cavalier confirms a critical hit on the readied attack, the target is stunned for 1d4 rounds. A successful Will save (DC = 10 + the cavalier’s class level + the cavalier’s Strength modifier) reduces this to being staggered for 1d4 rounds. This ability replaces supreme charge."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:cavalier:cavalry-officer",
+      "package": "pathfinder-class:cavalier",
+      "name": "Cavalry Officer",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/cavalry-officer",
+      "replaces_features": [
+        "all-order",
+        "armor-proficiencies",
+        "bonus-feats-at",
+        "challenge",
+        "greater-tactician",
+        "levels",
+        "master-tactician",
+        "order",
+        "tactician",
+        "weapon"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "order",
+        "all order abilities",
+        "the bonus feats gained at 6th",
+        "12th",
+        "and 18th levels",
+        "challenge class feature",
+        "tactician",
+        "greater tactician",
+        "master tactician"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Cavalry officers are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis modifies weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A cavalry officer is considered an Expert practitioner, gaining spheres and talents as appropriate. Cavalry officers use Charisma as their practitioner modifier.\n\nThis replaces order and all order abilities and the bonus feats gained at 6th, 12th, and 18th levels."
+        },
+        {
+          "level": 1,
+          "name": "Knightly Arts",
+          "description": "The cavalry officer gains the Leadership sphere selecting the (cohort) package, and the Guardian sphere selecting the (challenge) package as bonus talents at 1st level. If the cavalry officer possesses one of these spheres but not the corresponding package, he gains Expanded Leadership or Expanded Guardian to gain the package. If the cavalry officer already possesses one of these packages, he may instead select a talent he qualifies for from the corresponding sphere in its place. If he is incapable of selecting a package due to a drawback, he uses that bonus talent to buy off the drawback.\n\nThis replaces the challenge class feature."
+        },
+        {
+          "level": 1,
+          "name": "Officer’s Challenge",
+          "description": "Any abilities the cavalry officer possesses that reference his use of challenge (such as the demanding challenge class feature) apply to any use of the challenge ability provided by the Guardian sphere."
+        },
+        {
+          "level": 1,
+          "name": "Officer",
+          "description": "At 1st level, the cavalry officer gains a teamwork feat that he qualifies for. He may automatically share any one teamwork feat he possesses with any Leadership sphere cohort within 25 feet + 5 feet per 2 class levels. As a standard action, the cavalry officer can choose to learn a new bonus teamwork feat in place of the most recent bonus teamwork feat he has already learned. In effect, the cavalry commander loses the bonus feat in exchange for the new one. He can only change the most recent teamwork feat gained. Whenever he gains a new teamwork feat, the previous teamwork feat becomes set and cannot be changed again. A cavalry commander can change his most recent teamwork feat a number of times per day equal to his practitioner ability modifier. The cavalry officer gains an additional teamwork feat and increases the number of teamwork feats he may share with his Leadership sphere cohorts by +1 at 9th and 17th levels.\n\nThis replaces tactician, greater tactician, and master tactician."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:charger",
+      "package": "pathfinder-class:cavalier",
+      "name": "Charger",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Charger",
+      "replaces_features": [
+        "cavaliers-charge",
+        "class-skills",
+        "expert-trainer",
+        "mighty-charge",
+        "mount",
+        "weapon-armor-proficiencies"
+      ],
+      "removed_features": [
+        "cavaliers-charge",
+        "class-skills",
+        "expert-trainer",
+        "mighty-charge",
+        "mount",
+        "weapon-armor-proficiencies"
+      ],
+      "removed_feature_clauses": [
+        "cavalier’s weapon",
+        "armor proficiencies",
+        "mount",
+        "cavalier’s charge",
+        "expert trainer",
+        "mighty charge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Charger",
+          "description": "Source Inner Sea Monster Codex pg. 5"
+        },
+        {
+          "level": 1,
+          "name": "Prerequisite",
+          "description": "Centaur (or any tauric creature at the GM’s discretion)."
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A charger gains Acrobatics, Knowledge (nature), and Survival as class skills, but does not gain Climb, Handle Animal, or Ride as class skills. This alters the cavalier’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "A charger is proficient with all simple and martial weapons, with light and medium armor, and with shields (except tower shields). A charger’s cavalier levels stack with any fighter levels he possesses for the purpose of meeting the level prerequisite for feats that can specify a lance, such as Weapon Specialization. This replaces the cavalier’s weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Natural Mount",
+          "description": "A charger counts as having the Mounted Combat feat only for the purpose of meeting feat prerequisites, and substitutes the Acrobatics skill for any Ride skill prerequisites when acquiring feats that have Mounted Combat as a prerequisite. Because of his equine form, a charger can wield a lance one-handed as if mounted and deals double damage with a lance while charging. A charger can never gain the benefit of the Mounted Combat feat (or other similar feats or effects, such as Trick Riding) if ridden by another creature. This ability replaces mount."
+        },
+        {
+          "level": 3,
+          "name": "Thundering Hooves",
+          "description": "At 3rd level, a charger’s hoof attack deals an additional 1d6 points of damage and its critical threat range increases to 19–20. This effect doesn’t stack with any other effect that expands the critical threat range of a weapon. Whenever he performs a charge, the charger can make an additional hoof attack against his target with a –5 penalty on his attack roll. This ability replaces cavalier’s charge."
+        },
+        {
+          "level": 4,
+          "name": "Courser",
+          "description": "At 4th level, a charger’s constant training increases his land speed by 10 feet. A charger can also move through up to 10 feet of difficult terrain each round as if it were normal terrain. These benefits apply only when he is wearing no armor, light armor, or medium armor, and not carrying a heavy load. Apply this bonus before modifying the charger’s speed because of any load carried or armor worn. These bonuses stack with any other bonuses to the charger’s land speed or ability to ignore difficult terrain. This ability replaces expert trainer."
+        },
+        {
+          "level": 11,
+          "name": "Ride Down",
+          "description": "At 11th level, a charger can attempt to overrun any number of targets in the path of his charge as a free action. For each successful overrun combat maneuver check, the charger automatically deals an amount of damage to the overrun target equal to that of his hoof attack and can continue with his charge. If any overrun attempt fails during the charge, the charger’s progress ends in the space directly in front of the target where the maneuver failed. These overrun attempts do not provoke attacks of opportunity. For each target in the path of his charge, the charger incurs a cumulative –2 penalty on his overrun combat maneuver checks. This ability replaces mighty charge."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:circuit-judge",
+      "package": "pathfinder-class:cavalier",
+      "name": "Circuit Judge",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Circuit Judge",
+      "replaces_features": [
+        "challenge",
+        "demanding-challenge",
+        "greater-tactician",
+        "master-tactician",
+        "tactician"
+      ],
+      "removed_features": [
+        "challenge",
+        "demanding-challenge",
+        "greater-tactician",
+        "master-tactician",
+        "tactician"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Circuit Judge",
+          "description": "Source Path of the Hellknight pg. 32"
+        },
+        {
+          "level": 1,
+          "name": "Circuit",
+          "description": "At 1st level, a circuit judge chooses a single community. While in that community or within 25 miles of it, she adds half her cavalier level (minimum 1) on Intimidate, Knowledge (local), and Sense Motive skill checks (as well as any other law-related skill checks, at the GM’s discretion). Whenever she advances in level, the range within which she gains this bonus expands by another 25 miles—50 miles at 2nd level, 75 miles at 3rd level, and so forth. This bonus on Intimidate checks increases by 2 when she enters a community within this area that she hasn’t visited for 1 week or more."
+        },
+        {
+          "level": 1,
+          "name": "Sentence",
+          "description": "Once per day as a swift action, the circuit judge can choose one target within sight to sentence. The circuit judge gains the potential for a variety of bonuses related to that target. The circuit judge chooses the form of these benefits from the following list of inquisitor judgments: destruction, justice, protection, purity, or smiting."
+        },
+        {
+          "level": 12,
+          "name": "Double Jeopardy",
+          "description": "At 12th level, whenever a circuit judge sentences a foe, she can gain the benefits of two inquisitor judgments against the foe instead of one. Using this ability does not expend a daily use of sentence."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:constable",
+      "package": "pathfinder-class:cavalier",
+      "name": "Constable",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Constable",
+      "replaces_features": [
+        "banner",
+        "cavaliers-charge",
+        "class-skills",
+        "expert-trainer",
+        "greater-banner",
+        "mighty-charge",
+        "mount",
+        "supreme-charge"
+      ],
+      "removed_features": [
+        "banner",
+        "cavaliers-charge",
+        "class-skills",
+        "expert-trainer",
+        "greater-banner",
+        "mighty-charge",
+        "mount",
+        "supreme-charge"
+      ],
+      "removed_feature_clauses": [
+        "mount",
+        "cavalier’s charge",
+        "expert trainer",
+        "banner",
+        "mighty charge",
+        "supreme charge",
+        "greater banner"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Constable",
+          "description": "Source Heroes of the Streets pg. 17"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "Perception is a class skill for constables. This alters the cavalier’s class skills."
+        },
+        {
+          "level": 2,
+          "name": "Apprehend",
+          "description": "A constable gains Improved Unarmed Strike as a bonus feat and can attempt a grapple combat maneuver check in place of the attack at the end of a charge. At 2nd level, the constable receives a +1 bonus on Perception checks and combat maneuver checks to disarm, grapple, or trip opponents. At 7th level and every 5 levels thereafter, this bonus improves by 1. At 4th level, the constable does not treat crowds as difficult terrain. This ability replaces mount."
+        },
+        {
+          "level": 3,
+          "name": "Squad Commander",
+          "description": "At 3rd level, a constable can spend 1 minute laying out a plan to activate the tactician ability without having it count against his number of uses per day. The ability must be triggered within 1 hour of the plan being made, and the benefits last for 1 minute per cavalier level he has. The constable can have only one plan at a time, and if a new plan is made, any old plan is lost. This ability replaces cavalier’s charge."
+        },
+        {
+          "level": 4,
+          "name": "Quick Interrogator",
+          "description": "At 4th level, a constable can attempt a Diplomacy check to gather information in 1d6 × 5 minutes and attempt a Diplomacy or Intimidate check to change someone’s attitude in 5 rounds. This ability replaces expert trainer."
+        },
+        {
+          "level": 5,
+          "name": "Badge",
+          "description": "At 5th level, a constable’s badge becomes a powerful symbol of rules and authority. As long as he wears his badge, allies within 30 feet who can see him gain a +2 morale bonus on saving throws against charm, compulsion, and fear effects and a +1 morale bonus on attack rolls against targets the constable has challenged. At 10th level and every 5 levels thereafter, the bonuses increase by 1. This ability replaces banner."
+        },
+        {
+          "level": 11,
+          "name": "Instant Order",
+          "description": "At 11th level, a constable can bark an order to an ally within 30 feet as a standard action. That ally can instantly take a single move or standard action to comply with the order. Taking the action dazes the ally for 1 round afterward. At 20th level, the constable can use this ability as a move action, but no more than once per round. This ability replaces mighty charge and supreme charge."
+        },
+        {
+          "level": 14,
+          "name": "Greater Badge",
+          "description": "At 14th level, a constable can hold his badge aloft as a standard action to inspire his allies to be steadfast. All allies within 30 feet gain a number of temporary hit points equal to twice the constable’s cavalier level for 10 minutes. A given ally can benefit from this ability only once per day. This ability replaces greater banner."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:courtly-knight",
+      "package": "pathfinder-class:cavalier",
+      "name": "Courtly Knight",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Courtly Knight",
+      "replaces_features": [
+        "greater-tactician",
+        "master-tactician",
+        "tactician"
+      ],
+      "removed_features": [
+        "greater-tactician",
+        "master-tactician",
+        "tactician"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Courtly Knight",
+          "description": "Source Ultimate Intrigue pg. 24"
+        },
+        {
+          "level": 4,
+          "name": "Social Presence",
+          "description": "A courtly knight gains a +1 bonus on all Bluff, Diplomacy, Intimidate, and Sense Motive checks. At 4th level and every 4 cavalier levels thereafter, this bonus increases by 1 (to a maximum of +6 at 20th level). A courtly knight starts any verbal duel with an extra edge she can use for only the presence tactic unless she is at a significant or extreme disadvantage in the duel."
+        },
+        {
+          "level": 9,
+          "name": "Imperious Attitude",
+          "description": "At 9th level, a courtly knight develops a commanding demeanor, and the strength of her conviction is often enough to get others to do as she asks, merely because she expects it to be done. In a social setting, the courtly knight can attempt Diplomacy checks to make a request of a creature whose attitude toward her is unfriendly, provided that creature does not intend to harm or oppose the courtly knight or her allies in the immediate future. Further, whenever she attempts a Diplomacy check to make a request, a courtly knight can first attempt an Intimidate check (DC = 20 + the creature’s Charisma modifier). If she succeeds, she gains a +5 bonus on the subsequent Diplomacy check. Neither aspect of imperious attitude applies if the requested creature considers itself to be of an equal or higher social rank than the courtly knight, which includes creatures that don’t understand or value the concept of social ranks."
+        },
+        {
+          "level": 17,
+          "name": "Grand Boast",
+          "description": "At 17th level, whenever a courtly knight uses her challenge class feature against an opponent who is at full health and under no negative afflictions, conditions, spells, or other effects, she can make a grand boast, declaring that she can defeat her foe with ease. She does not gain the benefits of her challenge (including any additional benefits granted by her order) when making a grand boast. If she successfully defeats the target of her challenge within 1 minute, however, she is vindicated in her boast and gains the benefits of her challenge against all allies of the defeated enemy who witnessed her grand boast and who are of the same or lower CR as the defeated enemy. If any of the courtly knight’s allies attack the initial target of the challenge or assist the courtly knight after the boast, this ability has no effect."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:daring-champion",
+      "package": "pathfinder-class:cavalier",
+      "name": "Daring Champion",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Daring Champion",
+      "replaces_features": [
+        "cavaliers-charge",
+        "expert-trainer",
+        "mighty-charge",
+        "mount",
+        "supreme-charge",
+        "weapon-armor-proficiencies"
+      ],
+      "removed_features": [
+        "cavaliers-charge",
+        "expert-trainer",
+        "mighty-charge",
+        "mount",
+        "supreme-charge",
+        "weapon-armor-proficiencies"
+      ],
+      "removed_feature_clauses": [
+        "cavalier’s weapon",
+        "armor proficiencies",
+        "mount",
+        "cavalier’s charge",
+        "expert trainer",
+        "mighty charge",
+        "supreme charge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Daring Champion",
+          "description": "Source Advanced Class Guide pg. 90"
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "Daring champions are proficient with all simple and martial weapons, light and medium armor, and bucklers. This replaces the cavalier’s weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Champion’s Finesse",
+          "description": "At 1st level, a daring champion gains the benefits of the Weapon Finesse feat with light or one-handed piercing melee weapons, and he can use Charisma in place of Intelligence for the purpose of combat feats prerequisites. A daring champion also counts as having the Weapon Finesse feat for the purpose of meeting feat requirements. This ability replaces mount."
+        },
+        {
+          "level": 3,
+          "name": "Nimble",
+          "description": "At 3rd level, a daring champion gains a +1 dodge bonus to AC when wearing light or no armor and carrying no more than a light load. Anything that causes the daring champion to lose his Dexterity bonus to AC also causes him to lose this dodge bonus. This bonus increases by 1 for every 4 levels beyond 3rd (to a maximum of +5 at 19th level). This ability replaces cavalier’s charge."
+        },
+        {
+          "level": 4,
+          "name": "Panache and Deeds",
+          "description": "At 4th level, a daring champion gains the swashbuckler’s panache class feature, along with the following swashbuckler deeds: dodging panache, precise strike, and swashbuckler initiative. This ability replaces expert trainer."
+        },
+        {
+          "level": 11,
+          "name": "Advanced Deeds",
+          "description": "At 11th level, a daring champion gains the following swashbuckler deeds: superior feint, targeted strike, subtle blade, and dizzying defense. This ability replaces mighty charge."
+        },
+        {
+          "level": 20,
+          "name": "Champion’s Weapon Mastery",
+          "description": "At 20th level, when a daring champion threatens a critical hit with a light or one-handed piercing melee weapon, that critical is automatically confirmed. Furthermore, the critical modifier of those weapons increases by 1 (×2 becomes ×3, for example). This ability replaces supreme charge."
+        }
+      ],
+      "detected_systems": [
+        "grit_panache_luck"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:daring-general",
+      "package": "pathfinder-class:cavalier",
+      "name": "Daring General",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Daring General",
+      "replaces_features": [
+        "bonus-feats",
+        "demanding-challenge",
+        "supreme-charge"
+      ],
+      "removed_features": [
+        "bonus-feats",
+        "demanding-challenge",
+        "supreme-charge"
+      ],
+      "removed_feature_clauses": [
+        "supreme charge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Daring General",
+          "description": "Source Ultimate Intrigue pg. 24"
+        },
+        {
+          "level": 6,
+          "name": "Aides-de-Camp",
+          "description": "A daring general gains a modified version of the Leadership feat at 6th level, even if he doesn’t meet the prerequisites. All followers that the daring general gains as a result of this version of the Leadership feat can only have levels in the warrior class. All cohorts that the daring general gains from this ability must have levels only in classes that grant a full base attack bonus (such as barbarian, fighter, paladin, or ranger), and must be at least 4 levels lower than the daring general himself. However, at 12th level and 18th level, the daring general gains an additional cohort (up to a maximum of three cohorts at 18th level) and a number of additional followers equal to the number of followers he gained from the Leadership feat (up to a maximum of triple his normal number of followers at 18th level). When determining the kinds of cohorts the daring general can attract, he treats his Leadership score as 3 lower for each subsequent cohort (effectively taking a –3 penalty for the second cohort and a –6 penalty for the third cohort)."
+        },
+        {
+          "level": 1,
+          "name": "Groom",
+          "description": "The groom cares for the daring general’s mount. She does not take an armor check penalty on Ride checks while riding the cavalier’s mount. Additionally, once per day, the groom can spend 10 minutes preparing the daring general’s mount for battle. If she does, the mount’s speed increases by 10 feet and its Dexterity score increases by 2. These benefits last for 1 hour."
+        },
+        {
+          "level": 1,
+          "name": "Squire",
+          "description": "The squire’s main task is to care for the daring general’s arms and armor. If the squire aids the daring general in donning his armor, it takes half as much time to don as it would if someone else aided the daring general. Additionally, when the squire is adjacent to the daring general, as a standard action, she can grant a +2 bonus to the daring general’s AC against the first attack made against the daring general before the squire’s next turn. This counts as an application of the aid another action, but the squire does not need to threaten the attacker in question."
+        },
+        {
+          "level": 1,
+          "name": "Standard Bearer",
+          "description": "The daring general’s standard bearer can carry his banner in his stead, granting the benefits of his banner ability (and later, his greater banner ability) to all allies within 60 feet of the standard bearer. If the standard bearer becomes unconscious or dead, she ceases to grant these benefits."
+        },
+        {
+          "level": 1,
+          "name": "Footman",
+          "description": "Each follower gains a +2 bonus on attack and damage rolls, but takes a –2 penalty to her AC and on saving throws. A footman unit gains a +2 bonus to its OM and takes a –2 penalty to its DV in mass combat."
+        },
+        {
+          "level": 1,
+          "name": "Honor Guard",
+          "description": "The follower gains a +2 bonus to her AC and on saving throws, but takes a –2 penalty on attack and damage rolls. An honor guard unit gains a +2 bonus to its DV and takes a –2 penalty to its OM in mass combat."
+        },
+        {
+          "level": 12,
+          "name": "Shared Challenge",
+          "description": "At 12th level, when a daring general issues a challenge, his followers and cohorts take up that challenge alongside him. Whenever the daring general uses his challenge class feature, as long as the challenge remains in effect, each of the daring general’s followers and cohorts that are within 30 feet of him gain a +4 morale bonus on attack rolls made against the target of his challenge."
+        },
+        {
+          "level": 20,
+          "name": "Supreme Tactician",
+          "description": "At 20th level, whenever the daring general uses his tactician ability, he can grant any number of teamwork feats that he knows to his allies, and when he uses his tactician ability as a standard action in combat, it does not count against his daily uses of tactician. This ability replaces supreme charge."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:disciple-of-the-pike",
+      "package": "pathfinder-class:cavalier",
+      "name": "Disciple of the Pike",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Disciple of the Pike",
+      "replaces_features": [
+        "banner",
+        "cavalier-s-charge",
+        "expert-trainer",
+        "greater-banner",
+        "mighty-charge",
+        "mount",
+        "supreme-charge"
+      ],
+      "removed_features": [
+        "banner",
+        "cavalier-s-charge",
+        "expert-trainer",
+        "greater-banner",
+        "mighty-charge",
+        "mount",
+        "supreme-charge"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Disciple of the Pike",
+          "description": "Source Monster Hunter's Handbook pg. 13"
+        },
+        {
+          "level": 6,
+          "name": "Bigger They Are",
+          "description": "A disciple of the pike gains a +1 dodge bonus to AC against creatures larger than he is. This bonus increases by 1 if the creature is two size categories larger. At 6th level, the bonus increases to +3 against a creature three size categories larger, and at 12th level, the bonus increases to +4 against creatures four size categories larger."
+        },
+        {
+          "level": 3,
+          "name": "Pike Charge",
+          "description": "At 3rd level, a disciple of the pike learns to make more accurate charge attacks with weapons from the polearms or spears fighter weapon group. He receives a +4 bonus on melee attacks when charging with a polearm or spear (instead of the normal +2). In addition, the disciple of the pike takes no penalty to his AC after making a charge attack with a polearm or spear."
+        },
+        {
+          "level": 4,
+          "name": "Monster Hunter",
+          "description": "At 4th level, a disciple of the pike has an uncanny ability to identify monsters. He can attempt Knowledge checks untrained to identify monsters and their weaknesses, and gains a bonus equal to half of his cavalier level on Knowledge checks to identify monsters."
+        },
+        {
+          "level": 5,
+          "name": "Weapon Training",
+          "description": "At 5th level, a disciple of the pike gains weapon training, just like a fighter. He must select polearms or spears as his weapon group, and never gains another weapon group. His bonuses with the selected group otherwise progress as though his fighter level were equal to his cavalier level."
+        },
+        {
+          "level": 11,
+          "name": "Agile Charger",
+          "description": "At 11th level, a disciple of the pike takes no penalties caused by difficult terrain while charging. His movement is still hampered by obstacles, poor visibility, and other conditions. This ability doesn’t allow him to move through impassible terrain."
+        },
+        {
+          "level": 20,
+          "name": "Deadly Charge",
+          "description": "At 20th level, whenever a disciple of the pike makes a charge attack with a polearm or spear, he deals double the normal amount of damage. In addition, if he confirms a critical hit on a deadly charge, the target is stunned for 1d4 rounds. If the target succeeds at a Will save (DC = 10 + the cavalier’s base attack bonus), it is instead staggered for 1d4 rounds."
+        }
+      ],
+      "detected_systems": [
+        "weapon_training"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:drakerider",
+      "package": "pathfinder-class:cavalier",
+      "name": "Drakerider",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Drakerider",
+      "replaces_features": [
+        "banner",
+        "expert-trainer",
+        "greater-banner",
+        "greater-tactician",
+        "master-tactician",
+        "mount",
+        "tactcian"
+      ],
+      "removed_features": [
+        "banner",
+        "expert-trainer",
+        "greater-banner",
+        "greater-tactician",
+        "master-tactician",
+        "mount",
+        "tactcian"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Drakerider",
+          "description": "Source Legacy of Dragons pg. 24"
+        },
+        {
+          "level": 9,
+          "name": "Drake Mount",
+          "description": "A drakerider gains a drake companion instead of a mount. She gains cavalier’s charge at 9th level instead of 3rd."
+        },
+        {
+          "level": 1,
+          "name": "Approved Order",
+          "description": "A drakerider can join only an order approved by its mount. Suitable orders include order of the beast (ISC), order of the cockatrice, and order of the dragon, as well as other fitting orders at the GM’s discretion."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:emissary",
+      "package": "pathfinder-class:cavalier",
+      "name": "Emissary",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Emissary",
+      "replaces_features": [
+        "banner",
+        "greater-banner",
+        "greater-tactician",
+        "supreme-charge",
+        "tactician"
+      ],
+      "removed_features": [
+        "banner",
+        "greater-banner",
+        "greater-tactician",
+        "supreme-charge",
+        "tactician"
+      ],
+      "removed_feature_clauses": [
+        "tactician",
+        "banner",
+        "greater tactician",
+        "greater banner",
+        "supreme charge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Emissary",
+          "description": "Source Ultimate Combat pg. 36"
+        },
+        {
+          "level": 1,
+          "name": "Armor Proficiency",
+          "description": "An emissary does not gain proficiency with heavy armor."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Feats",
+          "description": "An emissary can select Endurance, Fleet, or Run in addition to the list of combat feats whenever he gains a bonus feat."
+        },
+        {
+          "level": 1,
+          "name": "In or Out of the Saddle",
+          "description": "At 1st level, an emissary gains Mounted Combat as a bonus feat. In addition, he can move at normal speed when wearing medium armor. This ability replaces tactician."
+        },
+        {
+          "level": 5,
+          "name": "Battlefield Agility",
+          "description": "At 5th level, an emissary learns to be more aware of the threats that surround him in combat, and shares this awareness with his loyal steed. Both the emissary and his mount gain Mobility as a bonus feat. This ability replaces banner."
+        },
+        {
+          "level": 9,
+          "name": "Mounted Acrobatics",
+          "description": "At 9th level, an emissary is even more adept at hopping on and off his steed, and even dropping alongside its flanks mid-gallop. He gains Trick Riding as a bonus feat, even if he does not meet the prerequisites. The emissary can employ this feat even when wearing medium armor. This ability replaces greater tactician."
+        },
+        {
+          "level": 14,
+          "name": "Mounted Dervish",
+          "description": "At 14th level, an emissary becomes a fearsome, mobile foe on the battlefield. He gains Mounted Skirmisher as a bonus feat, even if he does not meet the prerequisites. In addition, whenever the emissary is mounted and takes the charge action, he adds 10 feet to his mount’s speed. This ability replaces greater banner."
+        },
+        {
+          "level": 20,
+          "name": "Erratic Charge",
+          "description": "At 20th level, an emissary learns to ride through the thick of combat, striking and then moving away with blinding speed. Whenever the emissary is mounted and takes the charge action, he can first move 10 feet and make a melee attack. This first attack is not a charge, but a regular melee attack, and the movement counts toward the total allowed movement for the round. After making this attack, the emissary must still move in a straight line to reach the target of his charge, and he takes a –5 penalty on the attack roll for the attack at the end of his charge. This ability replaces supreme charge."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:esquire",
+      "package": "pathfinder-class:cavalier",
+      "name": "Esquire",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Esquire",
+      "replaces_features": [
+        "banner",
+        "cavaliers-charge",
+        "expert-trainer",
+        "mighty-charge",
+        "mount",
+        "supreme-charge"
+      ],
+      "removed_features": [
+        "banner",
+        "cavaliers-charge",
+        "expert-trainer",
+        "mighty-charge",
+        "mount",
+        "supreme-charge"
+      ],
+      "removed_feature_clauses": [
+        "cavalier’s charge",
+        "expert trainer",
+        "supreme charge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Esquire",
+          "description": "Source Cohorts and Companions pg. 30"
+        },
+        {
+          "level": 3,
+          "name": "Aide-De-Camp",
+          "description": "At 3rd level, an esquire acquires the services of a loyal aide-de-camp. This NPC functions similarly to a cohort, though the aide-de-camp must advance in a class that grants proficiency with all martial weapons and cannot multiclass until the esquire reaches 7th level (though the aide-de-camp can select an archetype). If the aide-de-camp is a cavalier, he must follow the same order as the esquire."
+        },
+        {
+          "level": 3,
+          "name": "Teamwork",
+          "description": "At 3rd level, as long as an esquire and his aide-de-camp are adjacent, the aide-de-camp is treated as having any teamwork feats the esquire has. They also share any teamwork feats that function when two or more allies threaten the same target, as long as they both threaten the same target. This ability replaces cavalier’s charge."
+        },
+        {
+          "level": 4,
+          "name": "Shared Challenge",
+          "description": "At 4th level, whenever an esquire challenges an opponent when his aide-de-camp is within 30 feet, he may grant his aide-de-camp bonuses equal to one-half of the bonuses he gains from challenge, including bonuses derived from the cavalier’s order. If the aide-de-camp is also a cavalier and challenges the same target, these bonuses do not stack. Like the esquire, his aide-decamp takes a –2 penalty to Armor Class against attacks from creatures other than the challenged opponent. This ability replaces expert trainer."
+        },
+        {
+          "level": 1,
+          "name": "Banner",
+          "description": "An aide-de-camp can carry an esquire’s banner for him and still grant allies within range the banner’s bonuses. While doing so the aide-de-camp gains double the normal morale bonuses provided by the banner. This ability modifies banner."
+        },
+        {
+          "level": 11,
+          "name": "Avenge Me",
+          "description": "At 11th level, whenever the esquire is killed, dying, stunned, dazed, or otherwise unable to take actions, his aide-de-camp gains the full benefits of the esquire’s challenge and order abilities against all creatures that attacked the esquire in the previous round. If the aidede- camp is also a cavalier and challenges the same target, these bonuses do not stack. These benefits last until the esquire regains the ability to take actions, or until the aide-de-camp or the triggering opponents are killed."
+        },
+        {
+          "level": 20,
+          "name": "Fight As One",
+          "description": "At 20th level, the shared challenge ability increases in power, granting the aide-de-camp full benefit of the esquire’s challenge. In addition, if the esquire and aide-de-camp both confirm a critical hit against the same target within the same round, the target must make a Fortitude save (DC 10 +1/2 the esquire’s cavalier level + the esquire’s Charisma bonus) or be staggered for 1d4 rounds. This ability replaces supreme charge."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:fell-rider",
+      "package": "pathfinder-class:cavalier",
+      "name": "Fell Rider",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Fell Rider",
+      "replaces_features": [
+        "banner",
+        "cavaliers-charge",
+        "expert-trainer",
+        "greater-banner",
+        "mighty-charge",
+        "mount",
+        "supreme-charge"
+      ],
+      "removed_features": [
+        "banner",
+        "cavaliers-charge",
+        "expert-trainer",
+        "greater-banner",
+        "mighty-charge",
+        "mount",
+        "supreme-charge"
+      ],
+      "removed_feature_clauses": [
+        "cavalier’s charge",
+        "expert trainer",
+        "banner",
+        "mighty charge",
+        "supreme charge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Fell Rider",
+          "description": "Source Advanced Race Guide pg. 122"
+        },
+        {
+          "level": 1,
+          "name": "Brute Steed",
+          "description": "A fell rider’s mount is unusually large and fierce. It gains a +2 bonus to Strength, but takes a –2 penalty to Dexterity. This otherwise works like the cavalier’s mount ability and alters that ability."
+        },
+        {
+          "level": 3,
+          "name": "Rampage",
+          "description": "At 3rd level, a fell rider gains Trample as a bonus feat. The fell rider receives a +2 bonus on overrun attempts made while mounted. In addition, his mount gains a +2 bonus on damage rolls when making hoof attacks or using the trample monster ability, even when not overrunning. This ability replaces cavalier’s charge."
+        },
+        {
+          "level": 4,
+          "name": "Dread Rider",
+          "description": "At 4th level, a fell rider gains a bonus equal to 1/2 his level on Intimidate checks made while mounted. Once per round as a free action, he can make an Intimidate check to demoralize a foe he has trampled or charged while mounted. This ability replaces expert trainer."
+        },
+        {
+          "level": 5,
+          "name": "Fell Presence",
+          "description": "At 5th level, a fell rider inspires dread while mounted. As long as the fell rider is mounted, all enemies within 60 feet receive a –2 penalty on savings throws against fear. At 10th level and every 5 levels thereafter, this penalty increases by –1. This ability replaces banner."
+        },
+        {
+          "level": 11,
+          "name": "Deadly Rampage",
+          "description": "At 11th level, a mounted fell rider no longer provokes attacks of opportunity when he attempts to overrun a creature. He can make a single melee attack against the creature as a free action if the overrun attempt succeeds. This ability replaces mighty charge."
+        },
+        {
+          "level": 14,
+          "name": "Terror",
+          "description": "At 14th level, a fell rider can rear up his mount as a standard action, spreading terror among his enemies. Enemies within 60 feet who can see the fell rider must succeed at a Will save (DC 10 + 1/2 the fell rider’s level + the fell rider’s Charisma modifier) or be shaken for 1 round per level the fell rider possesses. Creatures with half or fewer Hit Dice than the fell rider become frightened instead. An opponent that succeeds at the saving throw is immune to that fell rider’s terror ability for 24 hours. This ability is a mind-affecting fear effect, and replaces greater banner."
+        },
+        {
+          "level": 20,
+          "name": "Unstoppable Rampage",
+          "description": "At 20th level, a mounted fell rider can overrun up to four creatures as part of a single overrun combat maneuver. Each attempt made against a creature after the first receives a cumulative –5 penalty (for example, the fourth overrun attempt would be at a –15 penalty). If any overrun attempt fails, the fell rider cannot make further overrun attempts that round. Attacks made by the fell rider or his mount as part of the overrun, such as those provided by the Trample feat or the deadly rampage ability, receive a +4 bonus to hit, and any critical threats from these attacks automatically confirm. This ability replaces supreme charge."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:first-mother-s-fang",
+      "package": "pathfinder-class:cavalier",
+      "name": "First Mother's Fang",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier First Mother's Fang",
+      "replaces_features": [
+        "class-skills",
+        "mount",
+        "order",
+        "weapon-proficiencies"
+      ],
+      "removed_features": [
+        "class-skills",
+        "mount",
+        "order",
+        "weapon-proficiencies"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "First Mother's Fang",
+          "description": "Source Blood of the Beast pg. 17"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A first mother’s fang adds all Knowledge skills to his list of class skills.\n\nThis alters the cavalier’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "A first mother’s fang is proficient with all simple and martial weapons. Additionally, a first mother’s fang is proficient in one exotic melee weapon of his choice and one exotic ranged weapon of his choice.\n\nThis alters the cavalier’s weapon proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Serpent Mount",
+          "description": "Instead of the usual choices for a cavalier’s mount, first mother’s fangs ride on giant riding constrictors. These use the statistics of the constrictor snake druid animal companion, except that they are suitable mounts and begin as size Large at 1st level with no other adjustments to their abilities or statistics based on this size change. A serpent mount is considered to be a quadruped for the purpose of determining its carrying capacity, and its base land speed is 40 feet (other speeds are unaffected). At 4th level, a giant riding constrictor doesn’t increase in size again, but it does receive all the other usual 4th-level benefits.\n\nThis alters mount."
+        },
+        {
+          "level": 1,
+          "name": "Honored Warrior",
+          "description": "A first mother’s fang is expected to act as a military leader in wartime and a governor in peace time, and as a result, he must be versed both in the martial and political arts. At 1st level, he gains Combat Expertise as a bonus feat, and if his Intelligence score is less than 13, it counts as 13 for the sole purpose of meeting the prerequisites of combat feats that require Combat Expertise as a prerequisite."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:gallant",
+      "package": "pathfinder-class:cavalier",
+      "name": "Gallant",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Gallant",
+      "replaces_features": [
+        "banner",
+        "greater-banner",
+        "order"
+      ],
+      "removed_features": [
+        "banner",
+        "greater-banner",
+        "order"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Gallant",
+          "description": "Source Heroes of the High Court pg. 12"
+        },
+        {
+          "level": 1,
+          "name": "Code of Gallantry",
+          "description": "A gallant must belong to either the order of the blue rose, the order of the guard, the order of the lion, or the order of the sword. A gallant must also be of lawful good or neutral good alignment. A gallant who ceases to be lawful good or neutral good, or who violates his order’s edicts, loses all class features except armor and weapon proficiencies until he restores his alignment or atones for his violation (see the atonement spell), as appropriate.\n\nThis alters the cavalier’s order."
+        },
+        {
+          "level": 5,
+          "name": "Symbol of Inspiration",
+          "description": "At 5th level, the gallant’s personal crest becomes an inspirational symbol of his chivalrous ideals. As long as he displays his crest on his tabard, banner, or similar item, allies within 60 feet who can see him gain a +2 morale bonus on saving throws against charm, compulsion, and fear effects, and a +2 bonus on damage rolls to deal nonlethal damage. At 10th level and every 5 cavalier levels thereafter, these bonuses increase by 1."
+        },
+        {
+          "level": 14,
+          "name": "Symbol of Resilience",
+          "description": "At 14th level, the gallant’s personal crest empowers his allies to stand firm against evil. While his personal crest is displayed, the gallant can bolster his allies’ resilience as a standard action. All allies within 60 feet of the gallant gain DR 5/evil for 1 minute. An ally cannot benefit from this ability more than once per day."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:gendarme",
+      "package": "pathfinder-class:cavalier",
+      "name": "Gendarme",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Gendarme",
+      "replaces_features": [
+        "greater-tactician",
+        "master-tactician",
+        "supreme-charge",
+        "tactician"
+      ],
+      "removed_features": [
+        "greater-tactician",
+        "master-tactician",
+        "supreme-charge",
+        "tactician"
+      ],
+      "removed_feature_clauses": [
+        "tactician",
+        "greater tactician",
+        "master tactician",
+        "the standard cavalier’s selection of bonus feats",
+        "supreme charge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Gendarme",
+          "description": "Source Ultimate Combat pg. 37"
+        },
+        {
+          "level": 1,
+          "name": "Bonus Feats",
+          "description": "A gendarme trains to be a mounted terror, almost to the exclusion of all other abilities. He gains bonus feats at 1st level, 5th level, and then every three levels thereafter, but must select these bonus feats from the following list: Improved Bull Rush, Mounted Combat, Power Attack, Ride-By Attack, Spirited Charge, Spring Attack, and Unseat. If the gendarme has already selected all of the listed feats, then he may select his bonus feats from those feats listed as combat feats. This ability replaces tactician, greater tactician, master tactician, and the standard cavalier’s selection of bonus feats."
+        },
+        {
+          "level": 20,
+          "name": "Transfixing Charge",
+          "description": "At 20th level, a gendarme represents the epitome of mounted combat. Whenever he makes a charge attack while mounted, he deals triple the normal damage (quadruple if using a lance); this damage includes all increases from the Spirited Charge feat and from the use of a lance. In addition, if the gendarme confirms a critical hit on a charge attack while mounted, the attack deals maximum damage for the weapon wielded. Additional damage from weapon properties, magic effects, precision-based bonuses, or other increases are rolled normally. This ability replaces supreme charge."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:ghost-rider",
+      "package": "pathfinder-class:cavalier",
+      "name": "Ghost Rider",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Ghost Rider",
+      "replaces_features": [
+        "banner",
+        "cavaliers-charge",
+        "expert-trainer",
+        "greater-banner",
+        "greater-tactician",
+        "master-tactician",
+        "mighty-charge",
+        "mount",
+        "tactician"
+      ],
+      "removed_features": [
+        "banner",
+        "cavaliers-charge",
+        "expert-trainer",
+        "greater-banner",
+        "greater-tactician",
+        "master-tactician",
+        "mighty-charge",
+        "mount",
+        "tactician"
+      ],
+      "removed_feature_clauses": [
+        "cavalier’s charge",
+        "expert trainer",
+        "banner",
+        "mighty charge",
+        "greater banner"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Ghost Rider",
+          "description": "Source Occult Adventures pg. 117"
+        },
+        {
+          "level": 1,
+          "name": "Ghost Mount",
+          "description": "At 1st level, a ghost rider gains the ability to manifest a special mount of conjured ectoplasm rather than one of flesh and bone. This spectral companion functions like a spiritualist’s phantom companion, using the ghost rider’s cavalier level as her effective spiritualist level. The phantom takes the form of a ghostly creature analogous to one of a cavalier’s normal mount options for her size and class level, such as a Large horse for a Medium ghost rider or a wolf for a Small ghost rider. A ghost rider must choose a mount that is capable of bearing her weight, that has four or more legs, and that lacks a fly speed (although the GM may allow mounts with a swim speed in certain environments). The GM might approve other animals as suitable mounts."
+        },
+        {
+          "level": 1,
+          "name": "Ghost Mount Starting Statistics",
+          "description": "Type animal (phantom); Size one size category larger than the ghost rider; Speed 50 ft.; AC +4 natural armor; Attack bite (1d4), 2 hooves (1d6; this is a secondary natural attack); Ability Scores Str 16, Dex 13, Con 15, Int 2, Wis 12, Cha 6."
+        },
+        {
+          "level": 1,
+          "name": "Frightful Gaze",
+          "description": "At 1st level, a ghost rider can use this ability on opponents within 30 feet as a standard action, which acts as a gaze attack until the ghost rider’s next turn. Creatures within range that meet the ghost rider’s gaze must succeed at a Will saving throw (DC = 10 + 1/2 the ghost rider’s class level + the ghost rider’s Charisma modifier) or stand paralyzed in fear for 1 round. This is a mind-affecting fear effect. Creatures that successfully save against that ghost rider’s frightful gaze are immune to it for 24 hours. At 9th level, this ability can affect creatures that are mindless or immune to mind-affecting effects, though it still counts as a fear effect. The ghost rider can use this ability a number of times each day equal to her Charisma modifier."
+        },
+        {
+          "level": 3,
+          "name": "Fearless",
+          "description": "At 3rd level, a ghost rider becomes immune to fear. Each ally within 10 feet of the ghost rider gains a +4 morale bonus on saving throws against fear effects. This ability functions only while the ghost rider is conscious, not if she is unconscious or dead. This ability replaces cavalier’s charge."
+        },
+        {
+          "level": 5,
+          "name": "Spirited Mount",
+          "description": "At 5th level, the ghost rider’s mount ignores difficult terrain. At 8th level, it gains the ability to use water walk at will. This ability replaces expert trainer and banner."
+        },
+        {
+          "level": 11,
+          "name": "Ghost Wind",
+          "description": "At 11th level, the ghost rider’s ghost mount can use air walk (as the spell, no action required) at will for up to 1 round at a time, after which it falls to the ground. At 14th level, the mount can fly at its speed with a bonus on Fly skill checks equal to the ghost rider’s class level. This ability replaces mighty charge and greater banner."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:green-knight",
+      "package": "pathfinder-class:cavalier",
+      "name": "Green Knight",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Green Knight",
+      "replaces_features": [
+        "banner",
+        "cavaliers-charge",
+        "expert-trainer",
+        "greater-banner",
+        "greater-tactician",
+        "master-tactician",
+        "mighty-charge",
+        "mount",
+        "order",
+        "supreme-charge",
+        "tactician"
+      ],
+      "removed_features": [
+        "banner",
+        "cavaliers-charge",
+        "expert-trainer",
+        "greater-banner",
+        "greater-tactician",
+        "master-tactician",
+        "mighty-charge",
+        "mount",
+        "order",
+        "supreme-charge",
+        "tactician"
+      ],
+      "removed_feature_clauses": [
+        "tactician",
+        "mount",
+        "cavalier’s charge",
+        "expert trainer",
+        "banner",
+        "greater tactician",
+        "mighty charge",
+        "greater banner",
+        "master tactician",
+        "supreme charge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Green Knight",
+          "description": "Source Ultimate Wilderness pg. 44"
+        },
+        {
+          "level": 1,
+          "name": "Beast Tongue",
+          "description": "A green knight can use Diplomacy to improve an animal’s attitude. Beast tongue otherwise functions like the druid’s wild empathy ability, using the green knight’s Diplomacy modifier and using her cavalier level as her effective druid level, and it counts as that ability for the purpose of other effects (such as feat prerequisites or effects that alter or improve wild empathy).\n\nThis replaces tactician."
+        },
+        {
+          "level": 1,
+          "name": "Implacable Knight",
+          "description": "A green knight gains Endurance and Diehard as bonus feats.\n\nThis replaces mount."
+        },
+        {
+          "level": 1,
+          "name": "Nature’s Servant",
+          "description": "A green knight must select the order of the Green.\n\nThis alters order."
+        },
+        {
+          "level": 3,
+          "name": "Ferocious",
+          "description": "At 3rd level, a green knight is not staggered when below 0 hit points. At 9th level, taking actions when below 0 hit points does not cause her to lose hit points.\n\nThis replaces cavalier’s charge."
+        },
+        {
+          "level": 4,
+          "name": "Woodland Stride",
+          "description": "At 4th level, a green knight gains the druid’s woodland stride ability.\n\nThis replaces expert trainer and banner."
+        },
+        {
+          "level": 9,
+          "name": "Stalwart",
+          "description": "At 9th level, whenever a green knight succeeds at a Fortitude or Will save against an effect that has a reduced effect on a successful save, she instead negates the effect.\n\nThis replaces greater tactician."
+        },
+        {
+          "level": 11,
+          "name": "Oaken Vitality",
+          "description": "At 11th level, nature protects a green knight from many afflictions. The green knight becomes immune to disease, infestations, and poison.\n\nThis replaces mighty charge and greater banner."
+        },
+        {
+          "level": 17,
+          "name": "Take Their Heads",
+          "description": "A green knight’s blade is blessed by mighty fey powers and unerringly seeks out foes’ necks. At 17th level, any slashing weapon a green knight wields gains the vorpal weapon special ability.\n\nThis replaces master tactician."
+        },
+        {
+          "level": 20,
+          "name": "Indestructible",
+          "description": "At 20th level, a green knight is virtually impervious to death. She gains a +6 bonus to her Constitution score. In addition, the green knight becomes immune to death effects and to effects that would kill her without reducing her to 0 hit points, unless the effect involves decapitation. If she is decapitated, the green knight can continue to act normally. Reattachment requires the head and body to be joined and the application of any effect that restores hit points.\n\nThis replaces supreme charge."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:cavalier:halfling-dragonrider",
+      "package": "pathfinder-class:cavalier",
+      "name": "Halfling Dragonrider",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/halfling-dragonrider",
+      "replaces_features": [],
+      "removed_features": [],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiencies",
+          "description": "The halfling dragonrider is proficient with all simple and martial weapons, light armor, and shields (except tower shields)."
+        },
+        {
+          "level": 1,
+          "name": "Dragon Companion",
+          "description": "A halfling dragonrider gains a dragon companion, which serves as a faithful companion throughout their lives. If either dragon or halfling dies, the other may bond a new creature, but only after a period of mourning extending at least a week. If the dragon chooses not to bond another creature, it retains its size and regains the magic and other abilities it would gain for its size after one year, rather than reverting to the power level usual for its age. A dragon companion is a companion from the Conjuration sphere from Spheres of Power, but it is not considered an extraplanar, nor requires summoning (as the bound companion boon, but with a few significant changes discussed below). The halfling dragonrider uses their cavalier level as their ‘caster level’ when determining the power of their dragon companion, but this does not cause the halfling dragonrider to count as a caster in any other way, nor is the dragon companion affected by the halfling dragonrider’s caster level, Conjuration talents (including [form] talents), nor magic items or effects that affect the Conjuration Sphere. A dragon companion, regardless of its dragon type, is a Medium-sized quadraped companion, and possesses the dragon type, gaining its associated changes: The dragon companion uses d12’s instead of d10’s as its hit dice, gains darkvision 60 ft and low-light vision, gains all three saving throws as good saves, and skill points equal to 6 + its Int modifier (reduced to 4 due to low Intelligence) per Hit Die, with the following class skills: Appraise, Bluff, Climb, Craft, Diplomacy, Fly, Heal, Intimidate, Knowledge (all), Linguistics, Perception, Sense Motive, Spellcraft, Stealth, Survival, Swim, and Use Magic Device. In addition, the dragon companion begins with the Avian Creature talent (gaining wings), as well as the Armored Companion, Fortified Companion, Quick Companion, Powerful Companion Conjuration, and the Draconic Creature talents. The form of breath weapon gained depends on the type of the dragon in question."
+        },
+        {
+          "level": 1,
+          "name": "Dragon Type",
+          "description": "Energy Type: Breath Shape: Black: Acid 60-foot line"
+        },
+        {
+          "level": 1,
+          "name": "Blue",
+          "description": "Electricity 60-foot line"
+        },
+        {
+          "level": 1,
+          "name": "Green",
+          "description": "Acid 30-foot cone"
+        },
+        {
+          "level": 1,
+          "name": "Red",
+          "description": "Fire 30-foot cone"
+        },
+        {
+          "level": 1,
+          "name": "White",
+          "description": "Cold 30-foot cone"
+        },
+        {
+          "level": 1,
+          "name": "Brass",
+          "description": "Fire 60-foot line"
+        },
+        {
+          "level": 1,
+          "name": "Bronze",
+          "description": "Electricity 60-foot line"
+        },
+        {
+          "level": 1,
+          "name": "Copper",
+          "description": "Acid 60-foot line"
+        },
+        {
+          "level": 1,
+          "name": "Gold",
+          "description": "Fire 30-foot cone"
+        },
+        {
+          "level": 1,
+          "name": "Silver",
+          "description": "Cold 30-foot cone The dragon companion also gains immunity to the element it breaths with its breath weapon, a pair of claw attacks in addition to its bite attack, and a bonus to Intelligence and Charisma equal to 1/2 its Hit Dice. The dragon companion and halfling dragonrider also gain the effects of the Link talent with each other. A dragon companion also gains the Altered Size talent at 8th and 15th levels, growing to Large and Huge size respectively. Its breath weapon also doubles its range at 8th and 15th levels as well."
+        },
+        {
+          "level": 2,
+          "name": "Focus",
+          "description": "However, despite the powerful bond between them, seamlessly blending the actions of a dragon and its rider is difficult. No matter how much a dragon companion wants to obey its rider, a dragon’s nature leads it to often initiate its own plan, only to realize its plan is different than that of its rider, causing it to stop its actions halfway through so it doesn’t take a radical action that would surprise its ally. This can result in the dragon doing very little but fly around, even in a pitched battle. To avoid this, a halfling dragon rider and dragon companion must establish a mental focus. A dragon companion always goes on the same initiative as its rider. Without the halfing dragonrider establishing focus, a draconic companion will only take a single move action (moving as the dragonrider wishes) each round and such free actions (speaking, making attacks of opportunity, etc.) that seem prudent. If a halfling dragonrider is unconscious or incapacitated, his dragon companion moves to be adjacent to its rider as quickly as possible, then attacks any foe that threatens either dragon or rider. A dragon companion acts to defend itself if separated from its rider, and can be convinced to stay behind to guard a camp or other location, but does not willingly go on missions or run errands separate from its rider. Establishing focus is a standard action for the halfling dragonrider, after which its dragon companion may take a full-round’s worth of action, as normal. This improves to only requiring a move action at 2nd level, a swift action at 8th level, and a free action at 15th level. As the focus establishes a mental bond between the dragon rider and her draconic companion, no vocal communication is required between the two while the focus is in effect. A dragon and its rider must be within Close range (25 ft + 5 ft per 2 levels) to establish focus. The dragon companion replaces mount and the cavalier’s order. For more information on dragonriders and dragon magic, see Dracomancer and Dragon Rider by Rogue Genius Games."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:herald-squire",
+      "package": "pathfinder-class:cavalier",
+      "name": "Herald Squire",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Herald Squire",
+      "replaces_features": [
+        "cavalier-s-charge",
+        "order",
+        "tactician"
+      ],
+      "removed_features": [
+        "cavalier-s-charge",
+        "order",
+        "tactician"
+      ],
+      "removed_feature_clauses": [
+        "tactician",
+        "2nd-level order ability",
+        "cavalier’s charge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Herald Squire",
+          "description": "Source Knights of the Inner Sea pg. 21"
+        },
+        {
+          "level": 1,
+          "name": "Introduction",
+          "description": "At 1st level, whenever a herald squire tries to influence a creature’s attitude with the Diplomacy skill for the first time, she may roll her Diplomacy check twice and take the best result. In addition, any improvement of a creature’s attitude toward the herald squire also applies to her knight. This ability replaces tactician."
+        },
+        {
+          "level": 2,
+          "name": "Fleet of Foot",
+          "description": "At 2nd level, a herald squire gains fast movement, as the barbarian class feature of the same name. If the herald squire gains fast movement from another class, the bonuses to her speed do not stack. Whenever she makes long overland journeys alone or with only her mount, the distance a herald squire can travel each day increases by 20%. This ability replaces the 2nd-level order ability."
+        },
+        {
+          "level": 3,
+          "name": "Transcend Language",
+          "description": "At 3rd level, three times per day, a herald squire can cast tongues on herself, using her herald squire level as her caster level. The effects of this ability last for a number of rounds equal to her herald squire level. This ability replaces cavalier’s charge."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:honor-guard",
+      "package": "pathfinder-class:cavalier",
+      "name": "Honor Guard",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Honor Guard",
+      "replaces_features": [
+        "cavaliers-charge",
+        "challenge",
+        "demanding-challenge",
+        "mighty-charge"
+      ],
+      "removed_features": [
+        "cavaliers-charge",
+        "challenge",
+        "demanding-challenge",
+        "mighty-charge"
+      ],
+      "removed_feature_clauses": [
+        "cavalier’s charge",
+        "mighty charge",
+        "demanding challenge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Honor Guard",
+          "description": "Source Ultimate Combat pg. 37"
+        },
+        {
+          "level": 1,
+          "name": "Sworn Defense",
+          "description": "At 1st level, whenever an honor guard issues a challenge, he can select one ally as his ward for the duration of the challenge. Whenever the honor guard is adjacent to his ward, he takes a –1 penalty to Armor Class, and the ward receives a +1 dodge bonus to AC. This modifies the challenge ability"
+        },
+        {
+          "level": 3,
+          "name": "Intercept",
+          "description": "At 3rd level, an honor guard learns to better disrupt the attacks of his enemies. He gains Bodyguard as a bonus feat, even if he does not meet the prerequisite. In addition, whenever the honor guard uses the aid another action to increase an ally’s Armor Class, the bonus to Armor Class granted by the aid another action increases by +1. This ability replaces cavalier’s charge."
+        },
+        {
+          "level": 11,
+          "name": "Warding Charge",
+          "description": "At 11th level, an honor guard can flash across the battlefield to protect his ward against the target of his challenge. Whenever the target of the honor guard’s challenge makes an attack against his ward, the honor guard can move up to his speed and make a single melee attack against the target of his challenge as an immediate action. This movement and attack can be made as a charge if the movement qualifies. This ability replaces mighty charge."
+        },
+        {
+          "level": 12,
+          "name": "Defensive Challenge",
+          "description": "At 12th level, whenever an honor guard declares a challenge, his target must pay particular attention to him and his ability to intercept attacks. As long as the target is within the threatened area of the cavalier, it takes a –2 penalty on attack rolls against anyone other than the honor guard. This ability replaces demanding challenge."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:hooded-knight",
+      "package": "pathfinder-class:cavalier",
+      "name": "Hooded Knight",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Hooded Knight",
+      "replaces_features": [
+        "class-skills",
+        "greater-tactician",
+        "master-tactician",
+        "mount",
+        "tactician"
+      ],
+      "removed_features": [
+        "class-skills",
+        "greater-tactician",
+        "master-tactician",
+        "mount",
+        "tactician"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Hooded Knight",
+          "description": "Source Legacy of the First World pg. 26"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A hooded knight gains Knowledge (geography) and Survival as class skills instead of Climb and Swim.\n\nThis alters the cavalier’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Feytouched Mount",
+          "description": "A hooded knight’s mount has the feytouched simple template (see page 10) when he is riding it, but it cannot use its change shape ability while being ridden."
+        },
+        {
+          "level": 9,
+          "name": "Hero of the Roads",
+          "description": "When on a road, a hooded knight gains a +2 bonus on initiative checks and Knowledge (geography), Perception, Stealth, and Survival checks. These bonuses increase by 2 at 9th and 17th level. The speed of any mount a hooded knight rides is increased by 10 feet at 9th level and by an additional 10 feet at 17th level. By spending 1 minute coaxing his allies’ mounts and expending one use of his challenge ability, a hooded knight can grant the same speed increase to the mounts ridden by all allies within 30 feet who can see and hear him. This speed increase to his allies’ mounts lasts for 1 hour."
+        },
+        {
+          "level": 9,
+          "name": "Champion of the Roads",
+          "description": "At 9th level, a hooded knight gains dimension door as a spell-like ability with a caster level equal to his cavalier level. If the hooded knight is riding a mount, his mount does not count against the number of creatures he brings along with this ability. If the destination is not a road, the hooded knight is shunted to the nearest open space on a road, taking damage as described in the dimension door spell. The cavalier can use this ability once per day, plus one additional time for every 4 levels beyond 9th, to a maximum of three times per day at 17th level."
+        },
+        {
+          "level": 17,
+          "name": "Paragon of the Roads",
+          "description": "At 17th level, when a hooded knight uses his champion of the roads ability, he can treat the ability as greater teleport rather than dimension door. The hooded knight’s mount and the mounts ridden by any creatures he brings along do not count against the number of teleported creatures."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:huntmaster",
+      "package": "pathfinder-class:cavalier",
+      "name": "Huntmaster",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Huntmaster",
+      "replaces_features": [
+        "banner",
+        "bonus-feats",
+        "cavaliers-charge",
+        "challenge",
+        "expert-trainer",
+        "greater-banner",
+        "greater-tactician",
+        "master-tactician",
+        "mighty-charge",
+        "mount",
+        "supreme-charge",
+        "tactician",
+        "weapon-armor-proficiency"
+      ],
+      "removed_features": [
+        "banner",
+        "bonus-feats",
+        "cavaliers-charge",
+        "challenge",
+        "expert-trainer",
+        "greater-banner",
+        "greater-tactician",
+        "master-tactician",
+        "mighty-charge",
+        "mount",
+        "supreme-charge",
+        "tactician",
+        "weapon-armor-proficiency"
+      ],
+      "removed_feature_clauses": [
+        "cavalier’s charge",
+        "banner",
+        "a cavalier’s standard bonus feats",
+        "mighty charge",
+        "greater banner",
+        "supreme charge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Huntmaster",
+          "description": "Source Animal Archive pg. 6"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A huntmaster gains Knowledge (nature), Stealth, and Survival as class skills."
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "A huntmaster is not proficient with heavy armor. Huntmasters are proficient with all simple and martial weapons, plus the net and whip."
+        },
+        {
+          "level": 1,
+          "name": "Bestial Challenge",
+          "description": "Whenever a huntmaster issues a challenge, both he and his hunting pack gain the bonuses and penalties associated with his challenge. This modifies the challenge ability."
+        },
+        {
+          "level": 1,
+          "name": "Hunting Pack",
+          "description": "At 1st level, a huntmaster forms a close bond with an animal companion. This animal companion functions as a druid’s animal companion, using the cavalier’s level as his effective druid level. He can choose either a bird or a dog when selecting his animal companion."
+        },
+        {
+          "level": 1,
+          "name": "Tactician",
+          "description": "A huntmaster’s tactician ability affects only his hunting pack, not other allies. This modifies the tactician, greater tactician, and master tactician abilities."
+        },
+        {
+          "level": 3,
+          "name": "Takedown",
+          "description": "At 3rd level, a huntmaster’s dog can make a free trip or dirty trick (entangled) combat maneuver after a successful melee attack. A huntmaster’s bird can make a free dirty trick (dazzled or deafened) combat maneuver after a successful melee attack; if the target is already dazzled, the bird can choose dirty trick (blinded) instead. These combat maneuvers do not provoke attacks of opportunity. This ability replaces cavalier’s charge."
+        },
+        {
+          "level": 4,
+          "name": "Animal Trainer",
+          "description": "At 4th level, a huntmaster’s expert trainer ability applies to birds and dogs rather than mounts. This modifies the expert trainer ability."
+        },
+        {
+          "level": 5,
+          "name": "Swift Tracker",
+          "description": "At 5th level, a huntmaster gains the swift tracker ability, as the ranger ability of the same name. This ability replaces banner."
+        },
+        {
+          "level": 6,
+          "name": "Bonus Feats",
+          "description": "At 6th level, a huntmaster and all members of his hunting pack gain Step Up as a bonus feat. At 12th level, they gain Following Step and at 18th level, they gain Step Up and Strike. This ability replaces a cavalier’s standard bonus feats."
+        },
+        {
+          "level": 11,
+          "name": "Pack Attack",
+          "description": "At 11th level, whenever a huntmaster and any of his hunting pack or multiple animals in his hunting pack are adjacent and attack the same target in melee, they are treated as flanking. In addition, they can flank a creature with improved uncanny dodge if the huntmaster has at least 4 more levels than the target. This ability replaces mighty charge."
+        },
+        {
+          "level": 14,
+          "name": "Quarry",
+          "description": "At 14th level, a huntmaster gains quarry, as the ranger ability of the same name. The benefits of this ability also apply to his hunting pack. This ability replaces greater banner."
+        },
+        {
+          "level": 20,
+          "name": "Improved Quarry",
+          "description": "At 20th level, a huntmaster gains improved quarry, as the ranger ability of the same name. The benefits of this ability also apply to his hunting pack. This ability replaces supreme charge."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:hussar",
+      "package": "pathfinder-class:cavalier",
+      "name": "Hussar",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Hussar",
+      "replaces_features": [
+        "armor-proficiencies",
+        "banner",
+        "bonus-feats",
+        "class-skills",
+        "greater-banner",
+        "greater-tactician",
+        "master-tactician",
+        "tactician"
+      ],
+      "removed_features": [
+        "armor-proficiencies",
+        "banner",
+        "bonus-feats",
+        "class-skills",
+        "greater-banner",
+        "greater-tactician",
+        "master-tactician",
+        "tactician"
+      ],
+      "removed_feature_clauses": [
+        "cavalier’s normal armor proficiencies",
+        "greater tactician"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Hussar",
+          "description": "Source Ultimate Intrigue pg. 25"
+        },
+        {
+          "level": 1,
+          "name": "Armor Proficiency",
+          "description": "A hussar is proficient with light armor, but not with medium or heavy armor or with shields.\n\nThis replaces the cavalier’s normal armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Agile Warrior",
+          "description": "A hussar gains Acrobatics, Escape Artist, Stealth, and Survival as class skills.\n\nThis alters the cavalier’s class skills."
+        },
+        {
+          "level": 5,
+          "name": "Fast Mount",
+          "description": "A hussar is able to spur on any mount that he rides to faster speeds than other riders. The base speed of any creature that the hussar is riding increases by 10 feet. This applies to all forms of movement that the mount possesses. At 5th level and every 5 cavalier levels thereafter, this bonus increases by an additional 5 feet (to a maximum increase of 30 feet at 20th level)."
+        },
+        {
+          "level": 6,
+          "name": "Skillful Rider",
+          "description": "At 6th level, a hussar and his mount work in tandem to achieve amazing accomplishments of dexterity while riding. As long as the hussar is mounted, whenever he or his mount is required to attempt an Acrobatics, Climb, Escape Artist, Fly, Stealth, or Swim check, he can use his own modifier or his mount’s, whichever is higher. Additionally, regardless of whose bonus is used, the hussar gains an additional +2 bonus on all skill checks to overcome obstacles as part of a chase. At 12th level, this bonus increases to +4, and at 18th level, it increases to +6."
+        },
+        {
+          "level": 9,
+          "name": "Maneuverable Mount",
+          "description": "At 9th level, a hussar is able to maneuver his mount with exceptional grace and poise, even in areas that would normally be a difficult fit for such a creature. Any creature that the hussar is riding can squeeze into a space that is at least half as wide as its normal space without taking the normal penalties on attack rolls and AC for doing so, though it still moves at half speed. If the mount attempts to squeeze into a space less than half its space’s width, it must use the Escape Artist skill to do so, and takes the normal penalties. This ability replaces greater tactician."
+        },
+        {
+          "level": 17,
+          "name": "Sudden Swerve",
+          "description": "At 17th level, a hussar’s control over his mount is advanced enough to allow the mount to turn on the spot, even when charging forward at full speed. Whenever the hussar makes the charge or run action while mounted, he can make a single turn of up to 90 degrees at any one point during this movement."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:knight-of-arnisant",
+      "package": "pathfinder-class:cavalier",
+      "name": "Knight of Arnisant",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Knight of Arnisant",
+      "replaces_features": [
+        "banner",
+        "demanding-challenge",
+        "expert-trainer",
+        "greater-tactician",
+        "tactician"
+      ],
+      "removed_features": [
+        "banner",
+        "demanding-challenge",
+        "expert-trainer",
+        "greater-tactician",
+        "tactician"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Knight of Arnisant",
+          "description": "Source Armor Master's Handbook pg. 5"
+        },
+        {
+          "level": 1,
+          "name": "Shield Expertise",
+          "description": "At 1st level, a knight of Arnisant gains the Shield Focus feat as a bonus feat. His cavalier levels count as fighter levels for the purpose of qualifying for all feats that list the Shield Focus feat as a prerequisite."
+        },
+        {
+          "level": 4,
+          "name": "Deflective Shield",
+          "description": "At 4th level, a knight of Arnisant specializes in using his shield to deflect attacks. He adds a bonus equal to his shield bonus to AC to his touch AC and his CMD, up to a maximum of half his cavalier level. He does not include any enhancement bonus he has from a magic shield in this calculation."
+        },
+        {
+          "level": 5,
+          "name": "Heraldic Banner",
+          "description": "At 5th level, a knight of Arnisant uses his shield as a banner, though its benefits apply only to allies within 30 feet."
+        },
+        {
+          "level": 9,
+          "name": "Soul Shield",
+          "description": "At 9th level, when carrying a shield, a knight of Arnisant adds a bonus equal to his shield bonus to AC on all saving throws against curse spells and effects, up to a maximum of half his cavalier level. He does not include any enhancement bonus from a magic shield in this calculation."
+        },
+        {
+          "level": 12,
+          "name": "Defensive Challenge",
+          "description": "At 12th level, whenever a knight of Arnisant declares a challenge, his target must pay particular attention to him. As long as the target is within the threatened area of the cavalier, it takes a –2 penalty on attack rolls against anyone other than the knight of Arnisant."
+        },
+        {
+          "level": 17,
+          "name": "Heart Shield",
+          "description": "At 17th level, when carrying a shield, a knight of Arnisant adds a bonus equal to his shield bonus to AC on saving throws against death spells and magical death effects, up to a maximum of half his cavalier level. He does not include any enhancement bonus from a magic shield in this calculation."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:cavalier:knight-of-the-order",
+      "package": "pathfinder-class:cavalier",
+      "name": "Knight of the Order",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/knight-of-the-order",
+      "replaces_features": [
+        "expert-trainer",
+        "mount"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "mount",
+        "expert trainer"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Trade Tradition",
+          "description": "If this is this character’s first level in any class, the knight of the order may select a trade tradition of their choice, and have an adroit trade rank."
+        },
+        {
+          "level": 1,
+          "name": "Envoy of the Order",
+          "description": "At 1st level, the knight of the order gains the Faction sphere as a bonus sphere, selecting his knightly order as his faction. If the knight of the order possesses the (retainer) package, he may gain the services of a single courier or expert retainer at a time without having to pay a authorization. If the knight of the order possesses the (supply) package, obtaining a mount with suitable gear does not cost faction authorizations but the price of the mount (including any gear it comes with) cannot exceed the knight of the order’s temporary faction resources limit. The mount can be replaced like a retainer, but also must be paid for if it is lost like a retainer.\n\nThis replaces mount."
+        },
+        {
+          "level": 1,
+          "name": "Noble Bearing",
+          "description": "Whenever the knight of the order would gain a teamwork feat or combat feat as a bonus feat from cavalier levels, he may instead choose to gain a single skill talent. In addition, the knight of the order may exchange each of the following class features for a single skill talent at the respective level: banner, cavalier’s charge, greater banner, greater tactician, master tactician, mighty charge, supreme charge, and tactician. A knight of the order may not exchange these class features if he possesses an archetype that would alter or replace the exchanged class features."
+        },
+        {
+          "level": 4,
+          "name": "Storied Knight",
+          "description": "At 4th level, the knight of the order gains the Faction talent Social Clout as a bonus talent. When the knight of the order transfers clout to a new area, he may spend 1 use of skill leverage to transfer clout immediately rather than having to do so over multiple hours or days.\n\nThis replaces expert trainer."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:luring-cavalier",
+      "package": "pathfinder-class:cavalier",
+      "name": "Luring Cavalier",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Luring Cavalier",
+      "replaces_features": [
+        "cavaliers-charge",
+        "challenge",
+        "demanding-challenge",
+        "mighty-charge",
+        "supreme-charge"
+      ],
+      "removed_features": [
+        "cavaliers-charge",
+        "challenge",
+        "demanding-challenge",
+        "mighty-charge",
+        "supreme-charge"
+      ],
+      "removed_feature_clauses": [
+        "cavalier’s charge",
+        "mighty charge",
+        "supreme charge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Luring Cavalier",
+          "description": "Source Ultimate Combat pg. 38"
+        },
+        {
+          "level": 1,
+          "name": "Far Challenge",
+          "description": "Once per day, a luring cavalier can use his far challenge ability as a swift action. When he does, the luring cavalier chooses one target within sight to challenge. The luring cavalier’s ranged attacks deal extra damage whenever the attacks are made against the target of his challenge. This extra damage is equal to the luring cavalier’s level. The luring cavalier can use this ability once per day at 1st level, plus one additional time per day for every three levels beyond 1st, to a maximum of seven times per day at 19th level. Furthermore, once per day, the luring cavalier may spend a use of his far challenge ability to double the potential extra damage of his ranged attack. Before making the attack roll, he can choose to spend a use of his challenge to deal twice his cavalier level in extra damage on a successful hit instead of just his cavalier level in extra damage. If the attack misses, the use of the challenge is wasted."
+        },
+        {
+          "level": 3,
+          "name": "Careful Aim",
+          "description": "At 3rd level, when a luring cavalier makes a ranged attack with his highest base attack bonus, he can ignore the penalties for firing up to three range increments away. If he is using a firearm, he can target touch AC up to two range increments away. This effect stacks with effects that allow the cavalier to make ranged attacks farther without penalty or that allow him to target touch AC with a firearm beyond the first range increment. This ability replaces cavalier’s charge."
+        },
+        {
+          "level": 11,
+          "name": "Infuriating Aim",
+          "description": "At 11th level, when a luring cavalier confirms a critical hit with a ranged attack made at his highest base attack bonus against the target of a far challenge, the target becomes infuriated for 1 round. While infuriated, the target must spend its turn moving closer to the cavalier, making move, run, or charge actions only (challenged creature’s choice). This is a mind-affecting effect. This ability replaces mighty charge."
+        },
+        {
+          "level": 12,
+          "name": "Versatile Challenge",
+          "description": "At 12th level, a luring cavalier can expend a use of his challenge to gain the benefit of far challenge or the normal cavalier challenge. He can even change the type of challenge an opponent is under the effects of as a swift action, as long as the target of the challenge is within line of sight."
+        },
+        {
+          "level": 20,
+          "name": "Supreme Aim",
+          "description": "At 20th level, the luring cavalier gains the careful aim bonus and the effect of infuriating aim on all ranged attacks. This ability replaces supreme charge."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:musketeer",
+      "package": "pathfinder-class:cavalier",
+      "name": "Musketeer",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Musketeer",
+      "replaces_features": [
+        "expert-trainer",
+        "mount"
+      ],
+      "removed_features": [
+        "expert-trainer",
+        "mount"
+      ],
+      "removed_feature_clauses": [
+        "expert trainer"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Musketeer",
+          "description": "Source Ultimate Combat pg. 38"
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "A musketeer does not gain proficiency in heavy armor. Musketeers are proficient with all simple and martial weapons, and with firearms. A cavalier’s levels stack with any fighter levels he possesses for the purpose of meeting the level prerequisite for feats that specifically select a firearm, such as Weapon Specialization."
+        },
+        {
+          "level": 1,
+          "name": "Gifted Firearm",
+          "description": "At 1st level, a musketeer is gifted by his order with a firearm (either a pistol or a musket). This weapon is both a symbol of the cavalier’s duty and a focus for much of his talent. He cannot sell this weapon. He also gains the Gunsmithing feat."
+        },
+        {
+          "level": 4,
+          "name": "Swift Powder",
+          "description": "At 4th level, the musketeer gains Rapid Reload (musket) or Rapid Reload (pistol) as a bonus feat. At 14th level, each time the musketeer issues a challenge, he may reload a wielded firearm as a free action. This ability replaces expert trainer."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:oceanrider",
+      "package": "pathfinder-class:cavalier",
+      "name": "Oceanrider",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Oceanrider",
+      "replaces_features": [
+        "armor-proficiency",
+        "expert-trainer",
+        "mount"
+      ],
+      "removed_features": [
+        "armor-proficiency",
+        "expert-trainer",
+        "mount"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Oceanrider",
+          "description": "Source Aquatic Adventures pg. 53"
+        },
+        {
+          "level": 1,
+          "name": "Armor Proficiency",
+          "description": "An oceanrider is proficient with light and medium armor, and with shields (but not tower shields)"
+        },
+        {
+          "level": 1,
+          "name": "Aquatic Mount",
+          "description": "A Medium oceanrider can ride either a seahorse or an orca (unlike most orcas, this one starts at size Large with none of the other level 7 abilities until level 7) instead of the normal options, while a Small oceanrider can ride a dolphin.\n\nThis alters mount and replaces expert trainer."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:qabarat-outrider",
+      "package": "pathfinder-class:cavalier",
+      "name": "Qabarat Outrider",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Qabarat Outrider",
+      "replaces_features": [
+        "armor-proficiency",
+        "banner",
+        "greater-banner",
+        "greater-tactician",
+        "master-tactician",
+        "tactician"
+      ],
+      "removed_features": [
+        "armor-proficiency",
+        "banner",
+        "greater-banner",
+        "greater-tactician",
+        "master-tactician",
+        "tactician"
+      ],
+      "removed_feature_clauses": [
+        "banner"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Qabarat Outrider",
+          "description": "Source People of the Stars pg. 11"
+        },
+        {
+          "level": 1,
+          "name": "Armor Proficiency",
+          "description": "A Qabarat outrider does not gain proficiency with heavy armor."
+        },
+        {
+          "level": 1,
+          "name": "Combat Expertise",
+          "description": "At 1st level, a Qabarat outrider gains Combat Expertise as a bonus feat, even if he does not meet the prerequisites."
+        },
+        {
+          "level": 1,
+          "name": "Maneuver Tactics",
+          "description": "At 1st level, a Qabarat outrider receives an Improved combat maneuver feat (such as Improved Feint) as a bonus feat. He must meet the prerequisites for this feat. As a standard action, a Qabarat outrider can grant this feat to all allies within 30 feet, regardless of whether they can see or hear him or they meet the feat’s prerequisites. Allies retain this bonus feat for 3 rounds, plus 1 round for every 2 levels the Qabarat outrider possesses. An outrider can use this ability once per day at 1st level, plus one additional time per day at 5th level and for every 5 levels thereafter."
+        },
+        {
+          "level": 5,
+          "name": "Mindlink",
+          "description": "At 5th level, a Qabarat outrider’s innate telepathy develops into a mindlink, allowing contact between himself and his allies and companions. As long as the Qabarat outrider is conscious, all allies within range of his limited telepathy racial ability (30 feet for most Qabarat outriders) receive a +2 morale bonus on saving throws against charm and compulsion effects and a +1 morale bonus on attack rolls made while flanking. At 10th level and every 5 levels thereafter, these bonuses increase by 1. This ability replaces banner."
+        },
+        {
+          "level": 14,
+          "name": "Mindlink Pulse",
+          "description": "At 14th level, a Qabarat outrider can send a pulse of psychic energy through the minds of allies within range of his limited telepathy as a standard action. If he does so during a surprise round, any allies not normally able to act in the surprise round can act. If an ally would normally be denied the ability to act in the surprise round, that ally’s initiative is equal to her initiative roll, or to the initiative of the outrider – 1, whichever is lower."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:qadiran-horselord",
+      "package": "pathfinder-class:cavalier",
+      "name": "Qadiran Horselord",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Qadiran Horselord",
+      "replaces_features": [
+        "armor-proficiency",
+        "bonus-feat",
+        "cavalier-s-charge",
+        "greater-tactician",
+        "master-tactician",
+        "mount",
+        "tactician",
+        "weapon"
+      ],
+      "removed_features": [
+        "armor-proficiency",
+        "bonus-feat",
+        "cavalier-s-charge",
+        "greater-tactician",
+        "master-tactician",
+        "mount",
+        "tactician",
+        "weapon"
+      ],
+      "removed_feature_clauses": [
+        "cavalier’s normal weapon",
+        "armor proficiencies",
+        "greater tactician"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Qadiran Horselord",
+          "description": "Source Adventurer's Guide pg. 12, Inner Sea Combat pg. 42"
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "A Qadiran horselord is proficient with all simple and martial weapons, with light and medium armor, and with shields (except tower shields).\n\nThis replaces the cavalier’s normal weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Mount",
+          "description": "A Qadiran horselord must select a horse or pony as his mount. At the GM’s discretion, a different mount can be selected."
+        },
+        {
+          "level": 5,
+          "name": "Desert Wind",
+          "description": "The speed of a Qadiran horselord’s mount increases by 5 feet. Its speed increases by an additional 5 feet at 5th level and every 5 cavalier levels thereafter."
+        },
+        {
+          "level": 3,
+          "name": "Desert Mastery",
+          "description": "At 3rd level, a Qadiran horselord gains favored terrain (desert) as per the ranger ability of the same name. At 8th level and every 5 levels thereafter, the granted bonus on initiative and skill checks increases by 2, but the Qadiran horselord never selects additional favored terrains. Additionally, his mount gains all the benefits of the favored terrain ability."
+        },
+        {
+          "level": 6,
+          "name": "Sand Storm",
+          "description": "At 6th level, a Qadiran horselord gains the benefits of the Mobility feat so long as he is mounted. Additionally, he deals double damage while using a one-handed slashing weapon from the back of a charging mount, as though using a lance."
+        },
+        {
+          "level": 9,
+          "name": "As One",
+          "description": "At 9th level, a Qadiran horselord gains the benefits of the Spring Attack feat so long as he is mounted. He uses his mount’s movement for this action, and neither he nor his mount provokes attacks of opportunity from the target. When he makes a single attack with a one-handed slashing weapon in this way, the attack deals 1d6 additional points of damage. This bonus damage increases to 3d6 at 17th level. This ability counts as the Spring Attack feat for the purpose of meeting feat prerequisites, but only while the Qadiran horselord is mounted.\n\nThis replaces greater tactician."
+        },
+        {
+          "level": 17,
+          "name": "Sand Scourge",
+          "description": "At 17th level, a Qadiran horselord and his mount can make a tactical rush through enemy ranks as a full-round action. His mount can move up to twice its normal speed in a straight line. The Qadiran horselord can make a single attack against each creature he threatens during his mount’s movement, up to his normal number of attacks per round. These attacks use his full base attack bonus and take a –2 penalty; this is not a charge, and these attacks deal normal damage. The Qadiran horselord provokes attacks of opportunity during this movement, but his mount does not."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:saurian-champion",
+      "package": "pathfinder-class:cavalier",
+      "name": "Saurian Champion",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Saurian Champion",
+      "replaces_features": [
+        "banner",
+        "cavaliers-mount",
+        "challenge",
+        "class-skills",
+        "greater-banner",
+        "greater-tactician",
+        "master-tactician",
+        "order",
+        "tactician",
+        "weapon-armor-proficiencies"
+      ],
+      "removed_features": [
+        "banner",
+        "cavaliers-mount",
+        "challenge",
+        "class-skills",
+        "greater-banner",
+        "greater-tactician",
+        "master-tactician",
+        "order",
+        "tactician",
+        "weapon-armor-proficiencies"
+      ],
+      "removed_feature_clauses": [
+        "order",
+        "banner",
+        "greater banner"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Saurian Champion",
+          "description": "Source Ultimate Wilderness pg. 45"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A saurian champion gains Acrobatics, Knowledge (nature), Perception, and Survival as class skills.\n\nThis alters the cavalier’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "A saurian champion does not gain proficiency with medium or heavy armor.\n\nThis alters the cavalier’s weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Savage Combatant",
+          "description": "A saurian champion does not rely on lethal charges or firing from afar as more “civilized” cavaliers do, preferring to rampage among his foes instead. Saurian champions do not deal double damage when charging with a lance (or similar weapon) while mounted. While mounted, a saurian champion cannot attack with ranged weapons other than thrown weapons."
+        },
+        {
+          "level": 1,
+          "name": "Titanic Challenge",
+          "description": "A saurian champion considers only the largest creatures a true challenge. His titanic challenge adds only half his level on damage rolls against Medium or smaller creatures, but he adds a +1 bonus on attack rolls against a target of his challenge that is at least two size categories larger than himself (Huge for Medium saurian champions) and a +2 bonus on attack rolls against a Colossal target of his challenge.\n\nThis alters challenge."
+        },
+        {
+          "level": 1,
+          "name": "Wild Warrior",
+          "description": "A saurian champion hails from primeval lands where the civilized orders hold little sway. He does not select an order or gain any order-related benefits.\n\nThis replaces order."
+        },
+        {
+          "level": 1,
+          "name": "Dinosaur Mount",
+          "description": "A saurian champion bonds with a dinosaur companion that willingly serves as his mount. This mount functions as a cavalier’s normal mount with the following adjustments: The saurian champion’s mount must be a dinosaur (see animal companions for all the available options). The saurian champion can ride mounts of his size category and larger, rather than only those of a larger size. Increase the mount’s Strength score by 8 for the purpose of determining its carrying capacity. Whenever an ability or feat allows the saurian champion’s mount to make a hoof attack, the mount can make a claw or bite attack instead.\n\nThis alters the cavalier’s mount and replaces tactician, greater tactician, and master tactician."
+        },
+        {
+          "level": 2,
+          "name": "Nimble Rider",
+          "description": "At 2nd level, a saurian champion gains a +1 dodge bonus to AC when mounted. Anything that causes the saurian champion to lose his Dexterity bonus to AC also causes him to lose this dodge bonus. This bonus increases by 1 for every 6 levels beyond 2nd (to a maximum of +4 at 20th level)."
+        },
+        {
+          "level": 5,
+          "name": "Fierce Devotion",
+          "description": "At 5th level, a saurian champion’s mount gains the devotion ability, and its effects also apply against emotion and fear effects. The mount is immune to the effects of unnatural aura (Pathfinder RPG Bestiary 2 303).\n\nThis replaces banner."
+        },
+        {
+          "level": 8,
+          "name": "Quick Rider",
+          "description": "At 8th level, a saurian champion can attempt Ride checks to fast mount or fast dismount his mount even if it’s more than one size category larger than himself."
+        },
+        {
+          "level": 10,
+          "name": "Titanic Mount",
+          "description": "At 10th level, a saurian champion’s mount increases in size by one category (even if the base creature normally does not reach that size). The creature receives the appropriate size penalty on attack rolls and to AC (–1 if growing to Large or –2 if growing to Huge) and a –2 penalty to Dexterity (to a minimum Dexterity score of 1), its base damage increases by one size category, and its reach increases to 10 feet (if it wasn’t already). It also gains a +2 size bonus to its Strength and Constitution score. At 12th, 14th, 16th, and 18th levels, the bonus to Strength increases by 2 and the mount’s natural armor increases by 1. At 14th and 18th levels, the bonus to Constitution increases by 2. At 15th level, the mount’s reach increases to 15 feet."
+        },
+        {
+          "level": 14,
+          "name": "Primeval Devotion",
+          "description": "At 14th level, the bonus on saving throws provided by the mount’s devotion ability increases by 2. In addition, the mount adds half this bonus to other saving throws.\n\nThis replaces greater banner."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:sister-in-arms",
+      "package": "pathfinder-class:cavalier",
+      "name": "Sister-in-Arms",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Sister-in-Arms",
+      "replaces_features": [
+        "cavalier-s-charge",
+        "challenge",
+        "expert-trainer",
+        "mighty-charge",
+        "mount",
+        "order",
+        "supreme-charge"
+      ],
+      "removed_features": [
+        "cavalier-s-charge",
+        "challenge",
+        "expert-trainer",
+        "mighty-charge",
+        "mount",
+        "order",
+        "supreme-charge"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Sister-in-Arms",
+          "description": "Source Adventurer's Guide pg. 83"
+        },
+        {
+          "level": 1,
+          "name": "Halfhearted Challenge",
+          "description": "Sisters-in-arms vigilantly protect their allies, weakening their focus on their challenged foe. A sister-in-arms adds only half her cavalier level (minimum 1) to damage rolls against her challenge target."
+        },
+        {
+          "level": 1,
+          "name": "Maiden’s Order",
+          "description": "All sisters-in-arms share a talent for aiding and inspiring their fellow Gray Maidens, strengthened by training and the bond of sisterhood. Generally, those loyal to Queen Ileosa refer to their pledge as the order of the fanged crown, while those who have forsaken the cruel queen call it the order of the scarlet rose. In either case, the benefits are the same."
+        },
+        {
+          "level": 3,
+          "name": "Devoted Defender",
+          "description": "Sisters-in-arms cling to their fellow Gray Maidens as closely as family and protect them with intense devotion. At 3rd level, a sister-in-arms gains Bodyguard as a bonus feat (she does not need to meet the feat’s prerequisite)."
+        },
+        {
+          "level": 4,
+          "name": "Maiden’s Loyalty",
+          "description": "The loyalty of a sister-in-arms is absolute. At 4th level, a sister-in-arms gains a +2 bonus on Will saves against any effect that would compel her to attack or betray her allies. This bonus increases by 1 for every 4 levels beyond 4th."
+        },
+        {
+          "level": 11,
+          "name": "Dedicated Commander",
+          "description": "A sister-in-arms can inspire and direct allies with great efficiency. At 11th level, the sister-in-arms can use lion’s call or strategy order as a move action, rather than as a standard action. At 20th level, she can use act as one, lion’s call, or strategy order as a swift or move action."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:spellscar-drifter",
+      "package": "pathfinder-class:cavalier",
+      "name": "Spellscar Drifter",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Spellscar Drifter",
+      "replaces_features": [
+        "banner-cavalier",
+        "bonus-feats",
+        "cavaliers-charge",
+        "demanding-challenge",
+        "greater-tactician",
+        "master-tactician",
+        "mighty-charge",
+        "supreme-charge",
+        "tactician",
+        "weapon-armor-proficiency"
+      ],
+      "removed_features": [
+        "banner-cavalier",
+        "bonus-feats",
+        "cavaliers-charge",
+        "demanding-challenge",
+        "greater-tactician",
+        "master-tactician",
+        "mighty-charge",
+        "supreme-charge",
+        "tactician",
+        "weapon-armor-proficiency"
+      ],
+      "removed_feature_clauses": [
+        "cavalier’s normal weapon",
+        "armor proficiencies",
+        "tactician",
+        "cavalier’s charge",
+        "cavalier’s normal bonus feats",
+        "greater tactician",
+        "mighty charge",
+        "demanding challenge",
+        "master tactician"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Spellscar Drifter",
+          "description": "Source Inner Sea Combat pg. 45"
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "Spellscar drifters are proficient with all simple and martial weapons, the whip, and with all firearms. They are proficient with all light armor. This replaces the cavalier’s normal weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Have Gun",
+          "description": "At 1st level, the Spellscar drifter gains Amateur Gunslinger and Gunsmithing as bonus feats. The Spellscar drifter uses his Charisma modifier (minimum 1) in place of his Wisdom modifier when determining his maximum grit points and for any other abilities which use grit. Additionally, he also gains a battered gun identical to the one gained by the gunslinger. This ability replaces tactician."
+        },
+        {
+          "level": 3,
+          "name": "Daring Deeds",
+          "description": "At 3rd level, a Spellscar drifter gains Rapid Reload as a bonus feat. The Spellscar drifter must choose a firearm to associate with this feat. Additionally, the Spellscar drifter can select one additional 1st-level gunslinger deed which he can use with his Amateur Gunslinger feat. This ability replaces cavalier’s charge."
+        },
+        {
+          "level": 5,
+          "name": "Worn Banner",
+          "description": "At 5th level, a Spellscar drifter can choose to use his hat as his banner. If the drifter does not wear a hat, another iconic accessory—such as an eyemask, bandana, or distinguishing coat—can instead serve as his banner. In all other ways, this ability functions as and replaces the banner cavalier ability."
+        },
+        {
+          "level": 6,
+          "name": "Bonus Feats",
+          "description": "At 6th level, and at every 6 levels thereafter, a Spellscar drifter gains a bonus feat in addition to those gained from normal advancement. These bonus feats must be either combat or grit feats, and the Spellscar drifter must meet the prerequisites as normal. This replaces the cavalier’s normal bonus feats."
+        },
+        {
+          "level": 9,
+          "name": "Notorious Deeds",
+          "description": "At 9th level, a Spellscar drifter can select two additional gunslinger deeds which he can use with his Amateur Gunslinger feat. The Spellscar drifter can choose one deed from the list of deeds available to 3rd-level gunslingers and one from the list available to 7th-level gunslingers. This ability replaces greater tactician."
+        },
+        {
+          "level": 11,
+          "name": "Old Reliable",
+          "description": "At 11th level, whenever a Spellscar drifter declares a challenge, the threat range of the Spellscar drifter’s firearm is doubled against the target of his challenge. This increase only affects one weapon and does not stack with other effects that increase the threat range of the weapon. In addition, if the Spellscar drifter rolls a misfire during his challenge, the Spellscar drifter can spend 1 grit point to reroll the attack roll. The Spellscar drifter must accept the results of the second roll, even if it is worse. This ability replaces mighty charge."
+        },
+        {
+          "level": 12,
+          "name": "Spell Severed",
+          "description": "At 12th level, a Spellscar drifter becomes permanently marked by long exposure to the Spellscar Desert. The Spellscar drifter gains spell resistance equal to 10 + his character level. The Spellscar drifter can drop this spell resistance for 1 round as a standard action, or he can spend 1 grit point to drop it as a swift action. This ability replaces demanding challenge."
+        },
+        {
+          "level": 17,
+          "name": "Infamous Deeds",
+          "description": "At 17th level, a Spellscar drifter can select two additional gunslinger deeds which he can use with his Amateur Gunslinger feat. The Spellscar drifter can choose one deed from the list of deeds available to 7th-level gunslingers and one from the list available to 11th-level gunslingers. This ability replaces master tactician."
+        },
+        {
+          "level": 20,
+          "name": "Tough as Nails",
+          "description": "At 20th level, a Spellscar drifter is able to select three additional deeds for use with his Amateur Gunslinger feat—two from the list of deeds available to 15th-level gunslingers, and one from the list available to 19th-level gunslingers."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:standard-bearer",
+      "package": "pathfinder-class:cavalier",
+      "name": "Standard Bearer",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Standard Bearer",
+      "replaces_features": [
+        "banner",
+        "mighty-charge",
+        "mount",
+        "supreme-charge"
+      ],
+      "removed_features": [
+        "banner",
+        "mighty-charge",
+        "mount",
+        "supreme-charge"
+      ],
+      "removed_feature_clauses": [
+        "standard cavalier’s mount ability",
+        "standard cavalier’s banner ability",
+        "mighty charge",
+        "supreme charge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Standard Bearer",
+          "description": "Source Ultimate Combat pg. 39"
+        },
+        {
+          "level": 1,
+          "name": "Banner",
+          "description": "At 1st level, a standard bearer gains the banner ability. This ability is identical to the standard cavalier’s banner ability, except that the morale bonuses on saving throws against fear effects and on attack rolls made as part of a charge increase at 5th level, and every five levels thereafter. This ability replaces the standard cavalier’s mount ability."
+        },
+        {
+          "level": 5,
+          "name": "Mount",
+          "description": "At 5th level, a standard bearer gains the service of a loyal and trusted mount. This mount is identical in all ways to the standard cavalier’s mount. This ability replaces the standard cavalier’s banner ability."
+        },
+        {
+          "level": 11,
+          "name": "Banner of Solace",
+          "description": "At 11th level, a standard bearer’s banner becomes an even more potent symbol of protection and inspiration to those around him. Once per day, while his banner is displayed, the standard bearer can wave it through the air as a full-round action, granting all allies within 60 feet temporary hit points equal to 1/2 his cavalier level, and a +2 morale bonus on their next damage rolls. At 15th level, and every four levels thereafter, this bonus increases by +1 (to a maximum of +4 at 19th level). The temporary hit points last for 10 minutes or until depleted, whichever occurs first. This ability replaces mighty charge."
+        },
+        {
+          "level": 20,
+          "name": "Awesome Pennon",
+          "description": "At 20th level, a standard bearer’s banner has become a powerful rallying point to his allies, and a bane to his foes. Whenever his banner is visible, allies of the standard bearer within 60 feet gain a +1 morale bonus on attack rolls, immunity to fear effects, and a +3 morale bonus on saving throws against mind-affecting effects. This ability replaces supreme charge."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:strategist",
+      "package": "pathfinder-class:cavalier",
+      "name": "Strategist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Strategist",
+      "replaces_features": [
+        "bonus-feat",
+        "expert-trainer",
+        "greater-banner"
+      ],
+      "removed_features": [
+        "bonus-feat",
+        "expert-trainer",
+        "greater-banner"
+      ],
+      "removed_feature_clauses": [
+        "expert trainer",
+        "greater banner",
+        "cavalier’s 18th-level bonus feat"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Strategist",
+          "description": "Source Ultimate Combat pg. 39"
+        },
+        {
+          "level": 1,
+          "name": "Tactician",
+          "description": "As the cavalier class feature, except that a strategist can use this ability once per day at 1st level, plus one additional time per day at 5th level and for every four levels thereafter (to a maximum of five times per day at 17th level)."
+        },
+        {
+          "level": 4,
+          "name": "Drill Instructor",
+          "description": "At 4th level, a strategist learns to train his fellow adventurers in the nuances of squad combat. By spending 10 minutes and expending 1 use of his challenge ability, the strategist can grant the use of a teamwork feat that he knows to up to four of his allies, similar to the tactician ability. As with tactician, allies need not meet the prerequisites of the granted feat, but they retain the use of this feat for 10 minutes plus 1 minute for every two levels the cavalier possesses, as long as the cavalier is visible and can be heard by his allies. If the cavalier falls unconscious or cannot be both seen and heard, his allies lose the benefit of the granted feat until the condition is remedied. This ability replaces expert trainer."
+        },
+        {
+          "level": 14,
+          "name": "Tactical Advantage",
+          "description": "At 14th level, whenever a strategist uses his tactician ability to grant the use of a teamwork feat to his allies, he can move up to his speed as a free action either before or after granting the feat. This movement provokes attacks of opportunity normally. This ability replaces greater banner."
+        },
+        {
+          "level": 18,
+          "name": "Strategic Supremacy",
+          "description": "At 18th level, a strategist gains the ability not only to improve his allies’ abilities, but also to disrupt the teamwork of his enemies. Whenever the strategist uses the tactician ability, he can choose to cancel out the effects of one teamwork feat employed by any of his opponents within 30 feet instead of granting the use of a teamwork feat to his allies. This ability replaces the cavalier’s 18th-level bonus feat."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:verdivant",
+      "package": "pathfinder-class:cavalier",
+      "name": "Verdivant",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Verdivant",
+      "replaces_features": [
+        "banner",
+        "bonus-feats",
+        "cavalier-s-charge",
+        "expert-trainer",
+        "greater-banner",
+        "greater-tactician",
+        "master-tactician",
+        "tactician"
+      ],
+      "removed_features": [
+        "banner",
+        "bonus-feats",
+        "cavalier-s-charge",
+        "expert-trainer",
+        "greater-banner",
+        "greater-tactician",
+        "master-tactician",
+        "tactician"
+      ],
+      "removed_feature_clauses": [
+        "tactician",
+        "banner",
+        "greater tactician",
+        "greater banner",
+        "master tactician",
+        "bonus feats"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Verdivant",
+          "description": "Source Wilderness Origins pg. 15"
+        },
+        {
+          "level": 1,
+          "name": "Plant Mount",
+          "description": "A verdivant buds off and cultivates his vines into an animal form, imbuing them with limited intelligence. The verdivant selects a mount appropriate for his size as normal, but this mount is a plant with the leshy subtype and has the same immunities as a vine leshy."
+        },
+        {
+          "level": 2,
+          "name": "Effloresce",
+          "description": "At 2nd level, a verdivant can use a standard action to create efflorescences, explosive growths fed by his animating spirit. A verdivant can use this ability three times per day, plus one additional time per day for every 4 cavalier levels he has beyond 2nd. A verdivant can apply effloresces to himself, or his plant mount if it is adjacent. Efflorescences last for 1 round per cavalier level, and a verdivant can have at most two efflorescences in effect at a time. A verdivant can end an efflorescence during his turn as a free action."
+        },
+        {
+          "level": 9,
+          "name": "Shieldvines",
+          "description": "Allies within 10 feet do not provoke attacks of opportunity when leaving threatened squares; this increases to 20 feet at 9th level."
+        },
+        {
+          "level": 9,
+          "name": "Floatflower",
+          "description": "Allies within 10 feet ignore the effects of nonmagical difficult terrain. At 9th level, they also gain the effects of air walk while within 10 feet of the verdivant."
+        },
+        {
+          "level": 1,
+          "name": "Innervating Pollen",
+          "description": "The verdivant and his allies within 30 feet gain a competence bonus either on attack rolls or to saving throws (the verdivant’s choice; all allies gain the same benefit) equal to one-third the verdivant’s cavalier level."
+        },
+        {
+          "level": 9,
+          "name": "Bolsterbloom",
+          "description": "The verdivant and his allies within 30 feet gain fast healing 1; this fast healing increases by 1 at 9th level, and again at 14th and 17th levels."
+        },
+        {
+          "level": 14,
+          "name": "Charged Blossoms",
+          "description": "Choose an energy type: acid, cold, electricity, or fire. The verdivant and his allies within 10 feet gain energy resistance 10 to the chosen energy type. At 14th level this affects allies within 20 feet, and the energy resistance increases to 20."
+        },
+        {
+          "level": 17,
+          "name": "Slipstrands",
+          "description": "The verdivant and his allies within 10 feet are affected by freedom of movement; this increases to 20 feet at 17th level."
+        },
+        {
+          "level": 1,
+          "name": "Ambrosia",
+          "description": "The efflorescence temporarily suppresses enchantments, transmutations, and curses on the verdivant and his allies within 30 feet, as break enchantment with a caster level equal to the verdivant’s cavalier level. Affected creatures ignore the effects of such conditions for the duration of the efflorescence, after which the conditions’ full effects resume. The duration of suppressed conditions continues to elapse while the condition is suppressed."
+        },
+        {
+          "level": 1,
+          "name": "Luckleaf",
+          "description": "When attempting a d20 roll, allies of the verdivant within 30 feet of him can roll twice and use the better result; each ally can benefit from this ability only once per efflorescence. Luckleaf can be activated once per minute.\n\nThis replaces tactician, banner, greater tactician, greater banner, master tactician, and bonus feats."
+        },
+        {
+          "level": 3,
+          "name": "Sinuous Steps",
+          "description": "At 3rd level, a verdivant and his plant mount gain the woodland stride druid class feature. In addition, they do not take any penalty to AC after making a charge attack.\n\nThis alters cavalier’s charge."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:vermin-tamer",
+      "package": "pathfinder-class:cavalier",
+      "name": "Vermin Tamer",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Vermin Tamer",
+      "replaces_features": [
+        "demanding-challenge",
+        "expert-trainer",
+        "mount"
+      ],
+      "removed_features": [
+        "demanding-challenge",
+        "expert-trainer",
+        "mount"
+      ],
+      "removed_feature_clauses": [
+        "expert training",
+        "demanding challenge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Vermin Tamer",
+          "description": "Source Heroes of the Darklands pg. 17"
+        },
+        {
+          "level": 1,
+          "name": "Darklands Mount",
+          "description": "At 1st level, a vermin tamer chooses a creature native to the Darklands as his mount. This functions as a cavalier’s mount. He can choose a giant beetle, giant centipede, giant gecko, giant slug, or giant spider as his mount. These mounts (except the giant gecko) and the rules for vermin companions are detailed here, under Vermin Companions."
+        },
+        {
+          "level": 4,
+          "name": "Stuck in the Saddle",
+          "description": "A practiced vermin tamer can remain steady in the saddle even in unconventional situations. At 4th level, he gains a +4 circumstance bonus on any checks to stay in the saddle when his mount is climbing walls or flying. At 8th level, this bonus increases to +8, and he never falls off his mount when he is rendered unconscious.\n\nThis replaces expert training."
+        },
+        {
+          "level": 12,
+          "name": "Disorienting Challenge",
+          "description": "At 12th level, whenever a vermin tamer declares a challenge, he can confound his target with the erratic movements of his mount. As long as the vermin tamer begins his turn mounted, with his mount climbing or flying at a higher location than his target, the target of his challenge takes a –2 penalty to its AC.\n\nThis replaces demanding challenge."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cavalier:wave-rider",
+      "package": "pathfinder-class:cavalier",
+      "name": "Wave Rider",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cavalier Wave Rider",
+      "replaces_features": [
+        "mount",
+        "weapon-armor-proficiency"
+      ],
+      "removed_features": [
+        "mount",
+        "weapon-armor-proficiency"
+      ],
+      "removed_feature_clauses": [
+        "cavalier’s weapon",
+        "armor proficiencies"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Wave Rider",
+          "description": "Source Inner Sea Combat pg. 47"
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "Wave riders are proficient with all simple and martial weapons and with light and medium armor, but not with shields. This replaces the cavalier’s weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Seafaring Companion",
+          "description": "At 1st level, a wave rider gains Monstrous Mount as a bonus feat. The wave rider can use this feat only to select a hippocampus mount. Otherwise, this ability functions identically to and replaces the cavalier’s mount ability."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

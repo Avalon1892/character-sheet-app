@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "description": "Hand-reviewed statistical, proficiency, Spheres casting, and talent-progression changes for Ninja, Samurai, Slayer, and their archetypes.",
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:ninja:frozen-shadow",
+      "class_modifications": {"statistics": {"add_class_skills": ["survival"], "remove_class_skills": ["diplomacy"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:ninja:hunting-serpent",
+      "class_modifications": {"statistics": {"add_class_skills": ["survival"], "remove_class_skills": ["knowledge_nobility"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:ninja:petal-ninja",
+      "class_modifications": {"statistics": {"add_class_skills": ["heal"], "remove_class_skills": ["appraise"]}}
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:ninja:shinobi",
+      "sphere_capabilities": {"grants": ["martial"], "removes": []},
+      "class_modifications": {
+        "advancement": {"talent_progression": "Adept", "talent_kinds": ["martial"]},
+        "capabilities": {"grants": ["martial"], "removes": []},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:ninja:shrouded-operative",
+      "sphere_capabilities": {"grants": ["magic", "martial"], "removes": []},
+      "class_modifications": {
+        "casting": {"sphere_progression": "Mid", "traditional": false, "ability": "charisma", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "Expert", "talent_kinds": ["magic", "martial"]},
+        "capabilities": {"grants": ["magic", "martial"], "removes": []},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:samurai:honorbound",
+      "sphere_capabilities": {"grants": ["martial"], "removes": []},
+      "class_modifications": {
+        "advancement": {"talent_progression": "Adept", "talent_kinds": ["martial"]},
+        "capabilities": {"grants": ["martial"], "removes": []},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:samurai:wandering-swordsman",
+      "sphere_capabilities": {"grants": ["martial"], "removes": []},
+      "class_modifications": {
+        "advancement": {"talent_progression": "Proficient", "talent_kinds": ["martial"]},
+        "capabilities": {"grants": ["martial"], "removes": []},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:slayer:cutthroat",
+      "class_modifications": {"statistics": {"add_class_skills": ["diplomacy", "knowledge_nobility", "linguistics"], "remove_class_skills": ["knowledge_dungeoneering", "knowledge_geography", "survival"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:slayer:sczarni-executioner",
+      "class_modifications": {"statistics": {"add_class_skills": ["appraise", "diplomacy", "escape_artist"], "remove_class_skills": ["knowledge_dungeoneering", "knowledge_geography", "ride", "survival"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:slayer:velvet-blade",
+      "class_modifications": {
+        "statistics": {"add_class_skills": ["diplomacy", "knowledge_nobility"], "remove_class_skills": ["knowledge_dungeoneering"]},
+        "proficiencies": {"remove_armor": ["Medium armor", "Shields"]}
+      }
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:slayer:witch-killer",
+      "class_modifications": {"statistics": {"add_class_skills": ["knowledge_arcana", "spellcraft"]}}
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:slayer:guild-assassin",
+      "sphere_capabilities": {"grants": ["martial"], "removes": []},
+      "class_modifications": {
+        "advancement": {"talent_progression": "Adept", "talent_kinds": ["martial"]},
+        "capabilities": {"grants": ["martial"], "removes": []},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:slayer:mercenary",
+      "sphere_capabilities": {"grants": ["martial"], "removes": []},
+      "class_modifications": {
+        "advancement": {"talent_progression": "Expert", "talent_kinds": ["martial"]},
+        "capabilities": {"grants": ["martial"], "removes": []},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    }
+  ]
+}

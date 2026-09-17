@@ -1,0 +1,277 @@
+{
+  "version": 1,
+  "class_key": "spheres-class:troubadour",
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:troubadour:binder",
+      "package": "spheres-class:troubadour",
+      "name": "Binder",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/binder",
+      "replaces_features": [
+        "master-of-disguise",
+        "method-actor",
+        "personas",
+        "quick-change"
+      ],
+      "removed_features": [
+        "master-of-disguise",
+        "quick-change"
+      ],
+      "removed_feature_clauses": [
+        "master of disguise",
+        "quick change"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Binder’s Knacks",
+          "description": "The binder may select the following persona quirks for any persona regardless of trope. This alters method actor."
+        },
+        {
+          "level": 1,
+          "name": "Occultist",
+          "description": "The binder gains a bonus to Knowledge (planes) checks equal to half their binder level (minimum 1).\n\nThis replaces master of disguise."
+        },
+        {
+          "level": 1,
+          "name": "Otherworldly Mark",
+          "description": "Each of the binder’s personas are an otherworldly being that inhabits the binder’s body so long as a persona is assumed. These creatures frequently display unique signs of their presence such as glowing eyes, the stench of brimstone, or strange runes inscribed across the binder’s skin. The binder takes a -5 penalty to Disguise checks in any persona besides their base persona.\n\nWhile under the effects of the Hallow word or similar effects that can prevent possession, a binder must make a Will save against the effect. On a failure, they revert to their base persona.\n\nThis alters personas."
+        },
+        {
+          "level": 2,
+          "name": "Potent Expulsion",
+          "description": "At 2nd level, the binder may force a bound creature out of his body to obtain a surge of power. If he is not in his base persona, the binder may as a free action revert to their base persona in order to gain one of the following benefits.\n\nThe binder gains a temporary spell point plus an additional temporary spell point for every 8 levels beyond 2nd. These temporary spell points last for 1 round.\n\nThe binder may make a new saving throw against any ongoing effect they are currently suffering from that normally grants a saving throw using the original DC, even if they have already failed the initial save and would not normally be granted another. The binder cannot use this if unable to perform the free action to use potent expulsion.\n\nThe binder gains a +2 insight bonus to a single d20 roll made before the start of their next turn. This bonus increases by 1 at 6th level and every 4 levels thereafter.\n\nThe binder does not revert to their base persona until the effects of the expulsion (such as a modified d20 roll or an effect created using the spell points) and any subsequent effects stemming from it (such as damage rolls) are resolved. They may use this ability once per day at 2nd level plus an additional time per day at 6th level and every 4 levels thereafter.\n\nThis replaces quick change.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:troubadour:clone",
+      "package": "spheres-class:troubadour",
+      "name": "Clone",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/clone",
+      "replaces_features": [
+        "master-of-disguise",
+        "performers-synergy",
+        "personas"
+      ],
+      "removed_features": [
+        "master-of-disguise",
+        "performers-synergy"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Steal Face",
+          "description": "A clone cannot simply create a persona. Instead, he must adopt the personas of others. A clone can choose his first persona if his first clone level is also his first character level, as the persona was gained before play begins. In order to create a persona, the clone must touch a helpless, dead, or willing target for 1 minute. After that time, the clone creates a persona based on that creature. A clone can create one new persona per day this way, +1 per 5 class levels he possesses. As always, when a clone that does not have unused persona slots creates a new persona, he must choose another persona to lose. The created persona matches the cloned creature in appearance, gender, race, height, and weight. While the created persona can possess whatever tropes and persona quirks the clone wishes to give it, possessing abilities the cloned creature does not have (or not possessing powers it should have) can easily reveal the deception to others. At 1st level, the clone can only steal faces and create personas that are humanoid and Small or Medium size. As the clone gains levels, he gains the ability to steal faces from creatures of additional sizes and creature types, according to the following table. Unlocked types and sizes are cumulative."
+        },
+        {
+          "level": 1,
+          "name": "Clone Troubadour Level",
+          "description": "Creature Size: Creature Type 1st"
+        },
+        {
+          "level": 1,
+          "name": "Small-Medium",
+          "description": "Humanoid 5th"
+        },
+        {
+          "level": 1,
+          "name": "Tiny-Large",
+          "description": "Undead, outsider, plant 15th"
+        },
+        {
+          "level": 1,
+          "name": "Diminutive-Huge",
+          "description": "Construct, dragon, elemental 20th"
+        },
+        {
+          "level": 1,
+          "name": "Size",
+          "description": "The persona can change his size to match that of the chosen creature. The persona can only be Small or Medium at 1st level, but at 10th level may become anywhere from Large to Tiny. At 15th level, the clone’s personas can also become Huge or Diminutive. The clone gains benefits and penalties for its adjusted size as if using the Size Change talent from the Alteration sphere."
+        },
+        {
+          "level": 1,
+          "name": "Creature Abilities",
+          "description": "The clone gains the limbs and natural attacks possessed by the mimicked creature. Additionally, the clone gains any of the following abilities if the mimicked creature possesses them, depending on the clone’s troubadour level. 1st level: darkvision 60 feet, low-light vision, scent, land or swim speed (up to 30 feet). 5th level: climb, fly, land, or swim speed (up to 30 feet, average maneuverability), undersized weapons. 10th level: climb, fly, land, or swim speed (up to 60 feet, good maneuverability), constrict, crushing leap, ferocity, freeze, grab, kneecapper, nasal spray, no shadow, oversized weapons, leap attack, mimicry, jet, poison, pounce, rake, sound mimicry, speak with sharks, trackless step, trample, tree meld, trip, and web. 15th level: burrow speed (up to 30 feet), climb, fly, land, or swim speed (up to 90 feet, good maneuverability), blindsense (up to 30 feet), lifesense (up to 60 feet), tremorsense (up to 60 feet), all-around vision, see in darkness, abduct, animated hair, bleed, blood frenzy, blood rage, boot stomp, burn, compression, cold vigor, constrict, damage reduction (up to 5), earthglide, fast healing (up to 5), fear aura, horrific appearance, natural cunning, overwhelming, putrid vomit, rock throwing, rock catching, roar, spikes, vortex, whirlwind, woodland stride. If the creature has immunity to mind-affecting effects or poison, he gains a +4 resistance bonus on saves against those effects. If the creature has any weaknesses, he gains them. If the form is immune to bleed damage, critical hits, and sneak attacks, he is as well. 20th level: burrow speed (up to 60 feet), climb, fly, land, or swim speed (up to 120 feet, perfect maneuverability), damage reduction (up to 10), boot stomp, heavy weapons, hide in plain sight, icewalking, lifesense (up to 60 feet), regeneration (up to 5), supernatural speed, tear shadow, tremorsense (up to 60 feet), If the creature has immunity or resistance to any elements, he gains resistance 20 to those elements. If the creature has vulnerability to an element, he gains that vulnerability.\n\nThis alters personas and replaces performer’s synergy and master of disguise. A clone gains one fewer persona than usual for a troubadour of his level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:troubadour:method-actor",
+      "package": "spheres-class:troubadour",
+      "name": "Method Actor",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/method-actor",
+      "replaces_features": [
+        "",
+        "levels",
+        "persona-quirks",
+        "persona-quirks-at"
+      ],
+      "removed_features": [
+        "11th",
+        "17th-levels",
+        "persona-quirks-5th"
+      ],
+      "removed_feature_clauses": [
+        "persona quirks gained at 5th",
+        "11th",
+        "and 17th levels"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "All Part of the Act",
+          "description": "Each of the method actor’s personas may have a unique set of Oaths and Oath boons, and may even grant different numbers of Oath points. However, he can only benefit from a number of Oath boons which he would gain based on his current persona’s Oath points (for example, a method actor has two personas, a hermit who has sworn an Oath of Poverty and a guard who has sworn an Oath of Candor and an Oath of Loyalty. The method actor selects 10 Oath points worth of Oath boons for the hermit and 2 Oath points worth of Oath boons for the guard, but can only benefit from any of those oath boons while in that respective persona). A method actor need only adhere to an Oath while in a persona that has accepted it (for example, the previously-mentioned method actor may lie in his hermit or base personas without breaking the Oath accepted by his guard persona, and could wield expensive equipment while in his guard or base personas). If a method actor breaks an Oath in a persona where they have accepted it, however, the defiance penalty carries over between all of the method actor’s personas. The method actor must atone for a broken Oath in the same persona in which he swore and broke the Oath.\n\nThis replaces the persona quirks gained at 5th, 11th, and 17th levels."
+        },
+        {
+          "level": 1,
+          "name": "Blank Canvas",
+          "description": "A method actor must not possess any strong convictions himself in order to fully assume the commitments of his personas. A method actor’s base persona may not accept any Oaths, and as a result never benefits from Oath boons."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:troubadour:polymath",
+      "package": "spheres-class:troubadour",
+      "name": "Polymath",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/polymath",
+      "replaces_features": [
+        "combat-training",
+        "magic-talents-as-well-as-persona-quirk",
+        "magic-talents-as-well-as-persona-quirk-at-level",
+        "troubadours-normal-class-skills"
+      ],
+      "removed_features": [
+        "combat-training",
+        "magic-talents-as-well-as-persona-quirk-3rd-level",
+        "troubadours-normal-class-skills"
+      ],
+      "removed_feature_clauses": [
+        "troubadour’s normal class skills",
+        "combat training",
+        "magic talents as well as the persona quirk gained at 3rd level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Trade Tradition",
+          "description": "If this is the character’s first level, the polymath chooses a trade tradition. Their trade rank is adroit. If this is not the character’s first level, they instead choose one trade talent from the Vocation sphere as a bonus talent.\n\nThis replaces the troubadour’s normal class skills"
+        },
+        {
+          "level": 3,
+          "name": "Blended Training",
+          "description": "A polymath gains combat, magic, or skill talents (some of which are required to be utility talents) using the journeyman talent progression (or the virtuoso talent progression if the polymath replaces the greater actor and master actor class features). A polymath’s casting ability modifier determines their operative and practitioner modifiers.\n\nThis replaces combat training and magic talents as well as the persona quirk gained at 3rd level.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nSpheres of Guile by Drop Dead Studios\n\nUsing Spheres of Guile\n\nClasses\n\nAdvisor (DRS)\nAgent\nConduit (DRS)\nCourser\nEnvoy\n\nGenius\nMastermind\nProfessional\n\nSpheres\n\nArtifice\nBluster\nBody Control\nCommunication\nFaction\n\nHerbalism\nInfiltration\nInvestigation\nNavigation\nPerformance\n\nSpellhacking\nStudy\nSubterfuge\nSurvivalism\nVocation\n\nOther Rules\n\nOperative Feats\nOperative Gear\nSkill Rules\nTrade Traditions\nRunning Guile Games\n\nGet Spheres of Guile"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:troubadour:ringmaster",
+      "package": "spheres-class:troubadour",
+      "name": "Ringmaster",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/ringmaster",
+      "replaces_features": [
+        "flexible-truth",
+        "master-of-disguise",
+        "performers-synergy"
+      ],
+      "removed_features": [
+        "flexible-truth",
+        "master-of-disguise",
+        "performers-synergy"
+      ],
+      "removed_feature_clauses": [
+        "performer’s synergy",
+        "master of disguise",
+        "flexible truth"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Personas",
+          "description": "A ringmaster gains one fewer personas than a troubadour of equal level, beginning with only one persona at 1st level."
+        },
+        {
+          "level": 1,
+          "name": "Leader of Men",
+          "description": "A ringmaster gains the tactician class power, as a cavalier of equal level. This stacks with any cavalier levels the ringmaster may possess, but does not grant greater tactician or master tactician as the ringmaster gains levels.\n\nThis replaces performer’s synergy and master of disguise."
+        },
+        {
+          "level": 3,
+          "name": "Master of Ceremonies",
+          "description": "Beginning at 3rd level, whenever the ringmaster is in a persona, as a standard action, he may choose to grant his trope benefit and persona quirks to an ally within medium range as well as to himself. The same standard action can be used to activate both leader of men and master of ceremonies. This ally retains the benefits of the trope power for up to 3 rounds +1 per 2 ringmaster levels. Any limited-use abilities or points spent by the ally counts against the ringmaster’s daily total. The effect may be ended early as a free action. At 8th level and every 5 levels thereafter, the ringmaster may affect an additional target when using master of ceremonies. This ability is usable once per day, +1 per 5 troubadour levels the ringmaster possesses. An ally may only be under the effect of a single use of master of ceremonies at a time, even from multiple ringmasters. As the ringmaster’s personas gains additional tropes (such as through the greater actor and master actor class features), he must choose only one trope at a time to share the benefits of with his allies.\n\nThis replaces flexible truth."
+        },
+        {
+          "level": 1,
+          "name": "Actor Training",
+          "description": "The ringmaster gains exclusive access to the following custom actor trainings:"
+        },
+        {
+          "level": 1,
+          "name": "Trained Monkey",
+          "description": "The ringmaster gains a familiar as the wizard class feature, treating half his troubadour levels as wizard levels (minimum 1)."
+        },
+        {
+          "level": 1,
+          "name": "Greater Tactician (requires ringmaster 10)",
+          "description": "The ringmaster gains greater tactician, as the cavalier class feature."
+        },
+        {
+          "level": 1,
+          "name": "Master Tactician (requires ringmaster 10, greater tactician)",
+          "description": "The ringmaster gains master tactician, as the cavalier class feature."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

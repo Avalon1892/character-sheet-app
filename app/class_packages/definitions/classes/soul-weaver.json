@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "key": "soul-weaver",
+  "class_key": "spheres-class:soul-weaver",
+  "class_name": "Soul Weaver",
+  "governing_ability": "charisma",
+  "catalog_profile": {
+    "weapon_proficiencies": ["Simple weapons"],
+    "armor_proficiencies": [],
+    "proficiencies": {"weapons": ["Simple weapons"], "armor": []},
+    "advancement": {"talent_progression": "High", "talent_kinds": ["magic"], "talent_bonus_levels": [1]},
+    "feature_descriptions": {"nexus powers":"Bound Nexus powers unlock at the published levels and expend souls from the live Bound Nexus pool."}
+  },
+  "optional_blocks": ["magic_spheres", "spell_points"],
+  "external_systems": ["spell_points", "channel_energy", "bound_nexus", "blessing"],
+  "resource_modules": [{
+    "key":"soul_weaver","title":"Soul Weaver","governing_ability":"charisma","resources":[
+      {"key":"souls","name":"Bound Nexus Souls","feature_tokens":["bound-nexus"],"progression":"three_plus_ability_minimum_one","description":"Available souls equal 3 + casting ability modifier (minimum 1) and replenish with spell points."},
+      {"key":"channel_energy","name":"Channel Energy","feature_tokens":["channel-energy"],"progression":"three_plus_ability_minimum_one","description":"Daily uses equal 3 + Charisma modifier (minimum 1). Positive or negative energy is fixed by the first-level choice."},
+      {"key":"channel_energy_dice","name":"Channel Energy Dice","feature_tokens":["channel-energy"],"progression":"soul_weaver_channel_dice","description":"Channel Energy heals or harms 1d6 at 1st level plus 1d6 every two levels thereafter.","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false},
+      {"key":"nexus_save_dc","name":"Nexus Save DC","feature_tokens":["bound-nexus"],"progression":"ten_plus_half_level_plus_ability","description":"Save DC for Bound Nexus abilities: 10 + half Soul Weaver level + casting ability modifier.","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false}
+    ]
+  }],
+  "choice_providers": [
+    {"key":"soul-weaver-channel","label":"Channel Energy and Mastery","feature_tokens":["channel-energy","master-of-life-and-death"],"minimum":1,"maximum":1,"fixed_options":[{"key":"positive","name":"Positive Energy / Life Sphere"},{"key":"negative","name":"Negative Energy / Death Sphere"}],"description":"Choose positive or negative energy at 1st level. This also determines whether Master of Life and Death grants the Life or Death sphere."},
+    {"key":"soul-weaver-blessings","label":"Blessings","feature_tokens":["blessing-blight"],"minimum":0,"maximum_levels":[2,6,10,14,18],"depends_on":"soul-weaver-channel","depends_on_option":"class-choice-fixed:soul-weaver-channel:positive","fixed_options":[{"key":"blessing","name":"Blessing"},{"key":"heal","name":"Heal"},{"key":"restore","name":"Restore"},{"key":"revive","name":"Revive"},{"key":"renew","name":"Renew"}],"description":"Positive channelers choose one Blessing at 2nd level and every four levels thereafter; prerequisites remain enforced by the published sequence."},
+    {"key":"soul-weaver-blights","label":"Blights","feature_tokens":["blessing-blight"],"minimum":0,"maximum_levels":[2,6,10,14,18],"depends_on":"soul-weaver-channel","depends_on_option":"class-choice-fixed:soul-weaver-channel:negative","fixed_options":[{"key":"blight","name":"Blight"},{"key":"lesion","name":"Lesion"},{"key":"mind-blight","name":"Mind Blight"},{"key":"consume","name":"Consume"},{"key":"detonate","name":"Detonate"}],"description":"Negative channelers choose one Blight at 2nd level and every four levels thereafter; prerequisites remain enforced by the published sequence."}
+  ],
+  "notes":"Spell points use the shared sphere service. Souls and Channel Energy are live rest-recovering resources; their powers and Blessing/Blight selections use the shared class-choice system."
+}

@@ -1,0 +1,523 @@
+{
+  "version": 1,
+  "class_key": "pathfinder-class:ninja",
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:ninja:frozen-shadow",
+      "package": "pathfinder-class:ninja",
+      "name": "Frozen Shadow",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Ninja Frozen Shadow",
+      "replaces_features": [
+        "class-skills",
+        "improved-uncanny-dodge",
+        "ki-pool",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "class-skills",
+        "improved-uncanny-dodge",
+        "ki-pool",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "improved uncanny dodge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Frozen Shadow",
+          "description": "Source Inner Sea Intrigue pg. 38"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A frozen shadow adds Survival to his list of class skills, instead of Diplomacy."
+        },
+        {
+          "level": 2,
+          "name": "Hardy Killer",
+          "description": "At 2nd level, a frozen shadow has become incredibly inured to his surrounding climate. At the beginning of any day, the frozen shadow can spend 1 point from his ki pool to benefit from the effects of an endure elements spell. The frozen shadow does not treat any Acrobatics skill check to jump as if he had a running start, and at 10th level he cannot reduce the DC of Acrobatics skill checks made to jump by half."
+        },
+        {
+          "level": 4,
+          "name": "Track Victim",
+          "description": "Starting at 4th level, a frozen shadow adds half his ninja level on Survival checks to follow tracks and on Perception checks to see through disguises. Additionally, if the frozen shadow sees a creature that has changed its appearance using the Disguise skill, he can always attempt a Perception check to see through the disguise, even if the disguised creature did nothing to draw attention to itself. The frozen shadow also gains a +2 bonus to Will saving throws when attempting to disbelieve an illusion affecting a creature or creatures."
+        },
+        {
+          "level": 8,
+          "name": "Swift Tracker",
+          "description": "At 8th level, a frozen shadow can move at his normal speed while using Survival to follow tracks without taking the normal –5 penalty. He takes only a –10 penalty (instead of the normal –20) when moving up to twice his normal speed while tracking. Additionally, his bonus on Will saving throws to disbelieve illusions affecting a creature or creatures increases to +4.\n\nThis replaces improved uncanny dodge."
+        },
+        {
+          "level": 1,
+          "name": "Ninja Tricks",
+          "description": "The following ninja tricks complement the frozen shadow archetype bleeding attackUC, darkvisionUC, deadly rangeUC, fast stealthUC, hidden weaponsUC, sudden disguiseUC, vanishing trickUC, and wall climberUC."
+        },
+        {
+          "level": 1,
+          "name": "Advanced Ninja Tricks",
+          "description": "The following advanced ninja tricks complement the frozen shadow archetype assassinateUC, ghost stepUC, invisible bladeUC, master disguiseUC, and see the unseenUC."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:ninja:ghost-stepper",
+      "package": "pathfinder-class:ninja",
+      "name": "Ghost Stepper",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/ghost-stepper",
+      "replaces_features": [
+        "levels",
+        "replaces-rogue-talents-or-ninja-tricks-at",
+        "replaces-track",
+        "slayer-talents-at",
+        "sneak-attack"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Note",
+          "description": "The Ghost Stepper is an archetype for the Ninja, Rogue, Unchained Rogue, and Slayer classes. Walls are small hindrance to those that can step between realms."
+        },
+        {
+          "level": 1,
+          "name": "Wraith Form",
+          "description": "At 1st level, the ghost stepper gains the wraith form ability as a wraith of her level. Additionally, the ghost stepper uses d4 for sneak attack dice. While in wraith form, the ghost stepper can deliver her sneak attack damage as an incorporeal touch attack made in place of a normal attack, dealing cold or negative energy damage (chosen when this ability is gained). If negative energy is chosen, creatures healed by negative energy are not affected by this attack. For ninjas and (unchained) rogues, this alters sneak attack and replaces the (unchained) rogue talents or ninja tricks gained at 2nd, 8th, and 14th levels. For slayers, this alters sneak attack and replaces track and the slayer talents gained at 2nd, 8th, and 14th levels."
+        },
+        {
+          "level": 1,
+          "name": "Ghostly Talent",
+          "description": "The ghost stepper may take wraith haunts in place of rogue talents, slayer talents, or ninja tricks. The ghost stepper treats her class level as wraith levels for using and qualifying for wraith haunts. These levels stack with those gained from other sources. The ghost stepper may choose any mental ability score for her casting ability modifier for determining the effects of her wraith haunts, unless she already possesses a casting tradition."
+        },
+        {
+          "level": 1,
+          "name": "Ghost Stepper Haunt",
+          "description": "The ghost stepper gains exclusive access to the following ninja trick/rogue talent/unchained rogue talent/slayer talent:"
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "The ghost stepper gains a pool of spell points equal to her casting ability modifier (as selected for the ghostly talent ability). If she already possesses a spell point pool or gains it later, this ability is automatically exchanged for the Extra Spell Points feat. The Ghost Stepper is an archetype for the Ninja, Rogue, Unchained Rogue, and Slayer classes. Walls are small hindrance to those that can step between realms."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:ninja:gunpowder-bombardier",
+      "package": "pathfinder-class:ninja",
+      "name": "Gunpowder Bombardier",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Ninja Gunpowder Bombardier",
+      "replaces_features": [
+        "improved-uncanny-dodge",
+        "ki-pool",
+        "ninja-trick",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "improved-uncanny-dodge",
+        "ki-pool",
+        "ninja-trick",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "uncanny dodge",
+        "improved uncanny dodge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Gunpowder Bombardier",
+          "description": "Source Heroes from the Fringe pg. 30"
+        },
+        {
+          "level": 2,
+          "name": "Gunpowder Bomb",
+          "description": "At 2nd level, a gunpowder bombardier can expend 1 ki point to throw a gunpowder bomb at a grid intersection as a ranged attack against AC 5 with a range of 20 feet. The gunpowder bomb deals 1d6 points of bludgeoning damage to all creatures in a 10-footradius burst, which can be increased to 20 feet by spending 1 additional ki point. A creature in the bomb’s radius can attempt a Reflex save (DC = 10 + half the gunpowder bombardier’s ninja level + her Dexterity modifier) for half damage. At 5th level and every 2 levels thereafter, the bomb’s damage increases by 1d6, to a maximum of 9d6 points of bludgeoning damage at 19th level.\n\nThis alters ki pool and replaces the ninja trick gained at 2nd level."
+        },
+        {
+          "level": 4,
+          "name": "Explosive Impairment",
+          "description": "At 4th level, a gunpowder bombardier can imbue her gunpowder bombs with impairing effects. By spending 1 additional ki point when she throws a gunpowder bomb, the gunpowder bombardier can cause her bomb to inflict one of the following conditions, in addition to dealing its normal damage, for a number of rounds equal to half her ninja level: dazzled, deafened, entangled, or shaken. At 8th level, she adds nauseated and stunned to the list of conditions her bombs can inflict. A creature that succeeds at the Reflex save to halve the damage also negates the condition inflicted by the gunpowder bomb.\n\nThis replaces uncanny dodge."
+        },
+        {
+          "level": 8,
+          "name": "Delayed Explosive",
+          "description": "At 8th level, a gunpowder bombardier can plant a gunpowder bomb and delay its explosion. As a standard action, the gunpowder bombardier can place a gunpowder bomb—adding effects as she would if she were throwing the gunpowder bomb, and spending the requisite ki points—and specify a number of rounds after which the bomb will detonate, up to a maximum number of rounds equal to the gunpowder bombardier’s ninja level. If the bomb is touched or moved by another creature, it detonates immediately. The gunpowder bombardier can have only one delayed explosive active at a time; planting another gunpowder bomb renders the previous bomb inert.\n\nThis replaces improved uncanny dodge."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:ninja:hunting-serpent",
+      "package": "pathfinder-class:ninja",
+      "name": "Hunting Serpent",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Ninja Hunting Serpent",
+      "replaces_features": [
+        "class-skills",
+        "improved-uncanny-dodge",
+        "ninja-trick",
+        "no-trace",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "class-skills",
+        "improved-uncanny-dodge",
+        "ninja-trick",
+        "no-trace",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Hunting Serpent",
+          "description": "Source Villain Codex pg. 104"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A hunting serpent gains Survival as a class skill but loses Knowledge (nobility)."
+        },
+        {
+          "level": 3,
+          "name": "Relentless Pursuit",
+          "description": "At 3rd level, a hunting serpent gains a +1 bonus on Diplomacy checks to gather information and on Survival checks to identify or follow tracks. The bonus increases by 1 for every 3 ninja levels beyond 3rd."
+        },
+        {
+          "level": 4,
+          "name": "Death Mark",
+          "description": "At 4th level, as a swift action once per day, a hunting serpent can mark an opponent damaged by her sneak attack for death. A hunting serpent gains a +1 competence bonus on attack and damage rolls against an opponent affected by death mark as well as on Survival checks to track the marked creature. The bonuses from death mark and its number of uses per day increase by 1 at 8th, 12th, and 16th levels. The effects of death mark last for 24 hours, until the marked creature is slain, or until the hunting serpent chooses to mark another creature, whichever comes first."
+        },
+        {
+          "level": 10,
+          "name": "Certain Demise",
+          "description": "At 10th level, the hunting serpent’s sneak attack damage applies on the first attack she makes each round against the target of her death mark ability, even if it normally wouldn’t. Other effects that trigger on a sneak attack do not apply with this ability."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:ninja:mask-of-the-living-god",
+      "package": "pathfinder-class:ninja",
+      "name": "Mask of the Living God",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Ninja Mask of the Living God",
+      "replaces_features": [
+        "armor-proficiency",
+        "ki-pool",
+        "no-trace",
+        "poison-use",
+        "weapon"
+      ],
+      "removed_features": [
+        "armor-proficiency",
+        "ki-pool",
+        "no-trace",
+        "poison-use",
+        "weapon"
+      ],
+      "removed_feature_clauses": [
+        "poison use",
+        "no trace"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Mask of the Living God",
+          "description": "Source Disciple's Doctrine pg. 20"
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiencies",
+          "description": "In addition to having the ninja’s normal weapon and armor proficiencies, the mask of the Living God is proficient with bolas, saps, and whips.\n\nThis alters the mask of the Living God’s weapon and armor proficiency."
+        },
+        {
+          "level": 1,
+          "name": "Mask",
+          "description": "A mask of the Living God has a mask that is a symbol of his faith and the myriad powers invested in him. Abilities granted by this class other than undercover faith function only while the mask of the Living God is wearing his mask. Putting on or removing this mask is a move action."
+        },
+        {
+          "level": 1,
+          "name": "Undercover Faith",
+          "description": "At 1st level, when not wearing his mask, a mask of the Living God can take on an utterly mundane identity as if he were a vigilante with the many guises social talent. While in a mundane identity, the mask of the Living God cannot wear his mask; putting it on while in a mundane identity immediately ends the mundane identity and its effects. Changing into this mundane identity takes 1 minute and must be done out of sight to preserve the mask of the Living God’s secret. The time it takes the mask of the Living God to change into a mundane identity cannot be decreased.\n\nThis replaces poison use."
+        },
+        {
+          "level": 2,
+          "name": "Expurgate",
+          "description": "The role of a mask of the Living God is to silence heretics and blasphemers, and he is an expert at rendering even the most glib of his foes into babbling fools. At 2nd level, when he deals damage to a target, he can expend 1 point from his ki pool to affect that target as if he had cast fumbletongue, using his ninja level as his caster level. The target can attempt a Will saving throw (DC = 10 + half the ninja’s level + his Charisma modifier) to negate this effect. At 6th level, the target of this ability is instead struck entirely mute for 1d4 rounds unless it succeeds at a Will saving throw. The mask of the Living God cannot spend a point from his ki pool to make an additional attack.\n\nThis alters ki pool."
+        },
+        {
+          "level": 3,
+          "name": "Stern Gaze",
+          "description": "A mask of the Living God is trained to sense deception and strike fear into the hearts of his foes. At 3rd level, he gains a morale bonus equal to half his ninja level on Intimidate and Sense Motive checks.\n\nThis replaces no trace."
+        },
+        {
+          "level": 1,
+          "name": "Ninja Tricks",
+          "description": "The following ninja tricks complement the mask of the Living God archetype: forgotten trick, kamikaze, unarmed combat training, vanishing trick, weapon training."
+        },
+        {
+          "level": 1,
+          "name": "Master Tricks",
+          "description": "The following master tricks complement the mask of the Living God: ghost step, see the unseen, and shadow split."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:ninja:petal-ninja",
+      "package": "pathfinder-class:ninja",
+      "name": "Petal Ninja",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Ninja Petal Ninja",
+      "replaces_features": [
+        "class-skills",
+        "improved-uncanny-dodge",
+        "light-steps",
+        "ninja-trick",
+        "no-trace",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "class-skills",
+        "improved-uncanny-dodge",
+        "light-steps",
+        "ninja-trick",
+        "no-trace",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "no trace",
+        "uncanny dodge",
+        "improved uncanny dodge",
+        "light steps"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Petal Ninja",
+          "description": "Source Wilderness Origins pg. 13"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A petal ninja gains Heal as a class skill, but does not gain Appraise as a class skill.\n\nThis alters the ninja’s class skills."
+        },
+        {
+          "level": 2,
+          "name": "Blossom Shower",
+          "description": "At 2nd level, as a standard action, a petal ninja can spend 1 ki point to create a burst of flower petals in a 15-foot radius centered on a point within 20 feet. A blossom shower lasts for a number of rounds equal to half the petal ninja’s level (minimum 1 round)."
+        },
+        {
+          "level": 4,
+          "name": "Burst of Blossoms",
+          "description": "At 4th level, a petal ninja gains the ability to transform into a cloud of blossoms as a standard action. By spending 1 point from her ki pool, a petal ninja can take the form of a cloud of blossoms, becoming insubstantial for 1 round, as gaseous form. While insubstantial she also gains a +4 circumstance bonus on Stealth checks. At 8th level, the duration increases to a number of rounds equal to 1 plus the petal ninja’s Charisma modifier.\n\nThis replaces no trace, uncanny dodge, and improved uncanny dodge."
+        },
+        {
+          "level": 6,
+          "name": "Sundial",
+          "description": "At 6th level, the petal ninja gains the ability to change the lighting in a 30-foot-radius emanation centered on herself as a move action. For every ki point she spends, the light levels change by one step (from darkness to dim light, normal light, and bright light, and vice versa). This change remains in effect for 1 minute.\n\nThis replaces light steps."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:ninja:shinobi",
+      "package": "pathfinder-class:ninja",
+      "name": "Shinobi",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/shinobi",
+      "replaces_features": [
+        "armor-proficiencies",
+        "level",
+        "ninja-tricks-at",
+        "poison-use",
+        "weapon"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "ninja tricks gained at 2nd",
+        "6th",
+        "10th",
+        "14th",
+        "and 18th level",
+        "poison use class feature"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Shinobi are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis modifies weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A shinobi is considered an adept practitioner, gaining spheres and talents as appropriate. Shinobis use Charisma as their practitioner modifier.\n\nThis replaces the ninja tricks gained at 2nd, 6th, 10th, 14th, and 18th level."
+        },
+        {
+          "level": 1,
+          "name": "Shadow of Body and Spirit",
+          "description": "At 1st level the shinobi gains the Alchemy and Scout spheres as bonus spheres. If she already possesses one or both of these spheres, she may instead choose any talent she qualifies for from the corresponding sphere.\n\nThis replaces the poison use class feature."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:ninja:shrouded-operative",
+      "package": "pathfinder-class:ninja",
+      "name": "Shrouded Operative",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/shrouded-operative",
+      "replaces_features": [
+        "ki-pool",
+        "level",
+        "light-steps",
+        "no-trace",
+        "poison-use",
+        "proficiencies",
+        "sneak-attack",
+        "tricks-at"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "poison use",
+        "ki pool",
+        "tricks gained at 4th",
+        "8th",
+        "12th",
+        "16th",
+        "20th level",
+        "no trace",
+        "light steps"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Shrouded operatives are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis alters proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "At 1st level, the shrouded operative may combine spheres and talents to create magical effects. The shrouded operative is considered a Mid-Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.)\n\nThis replaces poison use."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "A shrouded operative gains a small reservoir of energy she can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to her level + her casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest. A shrouded operative may spend spell points as if they were ki points for all ninja tricks and class features.\n\nThis replaces ki pool."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "A shrouded operative gains a combat or magic talent every time she gains a class level. Shrouded operatives use their casting ability modifier as their practitioner modifier.\n\nThis replaces the tricks gained at 4th, 8th, 12th, 16th, 20th level."
+        },
+        {
+          "level": 19,
+          "name": "Delayed Sneak Attack",
+          "description": "The shrouded operative’s sneak attack die improves at a slower rate than most ninjas, adding an additional 1d6 precision damage every 3 levels beyond 1st, to a maximum of 7d6 at 19th level.\n\nThis alters sneak attack."
+        },
+        {
+          "level": 2,
+          "name": "Shadow Techniques",
+          "description": "At 2nd level, the shrouded operative gains the following abilities she may use as a swift action, usually by spending a spell point:"
+        },
+        {
+          "level": 10,
+          "name": "Shadow Leap",
+          "description": "As long as the shrouded operative has at least 1 spell point, she treats any Acrobatics check made to jump as if she had a running start. At 10th level, she also halves the DC of Acrobatics checks made to jump (although she still cannot move farther than her speed allows)."
+        },
+        {
+          "level": 1,
+          "name": "Quick Stride",
+          "description": "The shrouded operative may spend a spell point to increase her speed by 20 feet for 1 round, plus 1 round per 4 class levels she possesses."
+        },
+        {
+          "level": 1,
+          "name": "Cloak of Shadows",
+          "description": "The shrouded operative may spend a spell point to grant herself a +4 insight bonus on Stealth checks for 1 round. This bonus increases by 1 per 3 class levels she possesses."
+        },
+        {
+          "level": 3,
+          "name": "Ninjutsu",
+          "description": "At 3rd level, the shrouded operative gains the Scout sphere as a bonus combat sphere and the Illusion sphere as a bonus magic sphere.\n\nThis replaces no trace."
+        },
+        {
+          "level": 6,
+          "name": "Urgent Tricks",
+          "description": "At 6th level, the shrouded operative may spend a spell point to use any Illusion sphere trick she possesses as a swift action. If she may already do so, such as by using the Talented Trickster talent, she may instead spend a spell point to use any Illusion sphere trick she possesses as an immediate action.\n\nThis replaces light steps."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

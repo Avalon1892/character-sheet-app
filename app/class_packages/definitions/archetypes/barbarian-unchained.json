@@ -1,0 +1,442 @@
+{
+  "version": 1,
+  "class_key": "pathfinder-class:barbarian-unchained",
+  "entries": [
+    {
+      "key": "spheres-archetype:pathfinder-class:barbarian-unchained:painted-savage",
+      "package": "pathfinder-class:barbarian-unchained",
+      "name": "Painted Savage",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/painted-savage",
+      "replaces_features": [
+        "armor-proficiencies",
+        "danger-sense-for-unchained-barbarians",
+        "fast-movement",
+        "greater-rage",
+        "mighty-rage",
+        "rage",
+        "rage-power",
+        "tireless-rage",
+        "trap-sense-for-barbarians",
+        "weapon"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "trap sense for barbarians",
+        "danger sense for unchained barbarians",
+        "fast movement",
+        "rage",
+        "mighty rage",
+        "greater rage",
+        "tireless rage"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Painted savages are proficient with simple weapons, as well as bucklers. In addition, if this is the character’s first level in any class, they may select a martial tradition of their choice.\n\nThis modifies weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A painted savage is considered a Proficient practitioner, gaining spheres and talents as appropriate. Painted savages use Constitution as their practitioner modifier. This ability replaces trap sense for barbarians and danger sense for unchained barbarians."
+        },
+        {
+          "level": 1,
+          "name": "Muscles of Steel",
+          "description": "When wearing no armor and unencumbered, the painted savage adds her Strength bonus (if any) as a natural armor bonus to her AC; this bonus cannot exceed her class level. (A 1st level painted savage with 16 Strength gains only a +1 natural armor bonus to her armor class from this class feature.) This bonus to AC does not stack with other sources of natural armor, but stacks with the armor bonus granted from the Unarmored Training talent. She loses these bonuses when she wears light, medium, or heavy armor, or when she carries a medium or heavy load."
+        },
+        {
+          "level": 1,
+          "name": "Enduring Temper",
+          "description": "At 1st level, a painted savage gains Berserker as a bonus sphere and Combat Stamina as a bonus feat. If the painted savage already possess the Combat Stamina feat from another source, she instead gains either an additional talent from the Berserker sphere, or a feat that has Combat Stamina as a prerequisite as a bonus feat.\n\nThis replaces fast movement."
+        },
+        {
+          "level": 1,
+          "name": "Mystical Tattoos",
+          "description": "A painted savage is recognized by the full-body tattoos that she has inked on her body. While many of the tattoos are purely decorative, others have mystical power to them. At 1st level the painted savage gains the ability to unlock certain tattoos granting herself increased strength, speed, and endurance. As a swift action, the painted savage may grant herself a +2 bonus to either her Strength, Dexterity, or Constitution score for a number of rounds equal to her Constitution modifier, or for 1 minute if the painted savage spends 5 points from her stamina pool when activating the ability. At 3rd level, and every 3 levels thereafter, the bonus granted by this ability increases by an additional +2. The painted savage may apply all of this bonus to a single physical ability score, or divide it in units of +2 between multiple physical ability scores; regardless of how the painted savage assigns this bonus, she cannot add more than +10 to a given ability score. At 4th level, and every 4 levels thereafter, the painted savage gains one (enhance) talent from the Enhancement sphere as a bonus talent. The painted savage may take (enhance) talents from the Enhancement sphere without possessing the Enhancement base sphere. She may utilize mystic tattoos to use any (enhance) talent she knows as a swift action. When using mystic tattoos in this way, she may only target her own body or tattoos she possesses and their effects last for only a number of rounds equal to the painted savage’s Constitution modifier, or for 1 minute if the painted savage spends 5 points from her stamina pool when activating the ability. The effective caster level of (enhance) talents or abilities used this way is equal to her painted savage level, this does not stack with caster levels from other sources. The save DC for (enhance) talents used this way is 10 + 1/2 her painted savage level + her Constitution modifier.\n\nThis replaces rage, mighty rage, greater rage, and tireless rage."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "A painted savage may spend 2 stamina points from her stamina pool when under the effect of mystical tattoos. This allows the painted savage to be treated as if under the effects of a rage, though she gains none of the other benefits or drawbacks of raging. This effect lasts for the remaining duration of the mystical tattoos effect. New instances of mystical tattoos will require additional stamina to be spent. Rage powers that require additional rage rounds may instead use 5 points from her stamina pool per required rage round. In addition, whenever the painted savage would gain a rage power from her class levels, she may instead gain a bonus talent from the Berserker sphere.\n\nThis modifies rage powers."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:barbarian-unchained:super-soldier",
+      "package": "pathfinder-class:barbarian-unchained",
+      "name": "Super Soldier",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/super-soldier",
+      "replaces_features": [
+        "alignment",
+        "armor-proficiencies",
+        "barbarians-normal-weapon",
+        "damage-reduction",
+        "danger-sense",
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "indomitable-will",
+        "rage",
+        "tireless-rage",
+        "uncanny-dodge"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "uncanny dodge",
+        "improved uncanny dodge",
+        "damage reduction",
+        "fast movement",
+        "danger sense",
+        "tireless rage",
+        "indomitable will"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Alignment",
+          "description": "A super soldier may have any alignment.\n\nThis alters alignment."
+        },
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "A super soldier is proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis alters the barbarian’s normal weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A super soldier is considered a Proficient practitioner, gaining spheres and talents as appropriate. A super soldier chooses whether to use Charisma, Intelligence, or Wisdom as their practitioner modifier when they first gain the combat training class feature.\n\nThis replaces uncanny dodge, improved uncanny dodge, and damage reduction."
+        },
+        {
+          "level": 1,
+          "name": "Mightiest Weapons",
+          "description": "At 1st level, and every odd level thereafter, the super soldier gains a Tinker sphere talent as a bonus talent.\n\nThis replaces fast movement and danger sense."
+        },
+        {
+          "level": 1,
+          "name": "Powered Rage",
+          "description": "At 1st level, the super soldier’s rage behaves differently, in a number of ways detailed below. The super soldier gains fewer rounds of rage, equal to 4 + their Constitution modifier. For every even level they possess, the super soldier can rage for 1 additional round per day (to a maximum of 14 + their Constitution modifier at 20th level). The super soldier’s rage also grants its bonus to ranged attack rolls and ranged damage rolls made with mechanical weapons or gizmos that do not add a Strength modifier to damage (such as crossbows and firearms, as well as Tinker sphere blasters with the ray blaster shape). The super soldier’s rage only benefits the super soldier, not any piloted mechanoid or indirectly operated gizmo. The super soldier’s rage does not prevent them from using gizmos they crafted (even if such gizmos would normally require concentration, proficiency checks, or additional mental exertion subject to GM discretion). Certain abilities may extend the current duration of the super soldier’s rage. When the super soldier’s rage has been extended by any such ability, the super soldier cannot choose to end their rage (the super soldier may only choose to freely end their rage when they would need to spend a round of rage to continue raging, as a normal barbarian would)."
+        },
+        {
+          "level": 17,
+          "name": "Personal Battery Use [Powered Rage] (1 battery)",
+          "description": "While raging, the super soldier may deplete 1 battery to extend the current duration of their rage by 1 round. The super soldier may use this ability as a free action, even if it is not their turn. At 17th level, this instead extends the current duration of their rage by 2 rounds.\n\nThis alters rage."
+        },
+        {
+          "level": 2,
+          "name": "Power is Fuel",
+          "description": "At 2nd level, while raging, whenever the super soldier depletes one or more batteries (except to use the powered rage personal battery use ability), the super soldier extends the current duration of their rage by 1 round.\n\nThis replaces tireless rage."
+        },
+        {
+          "level": 2,
+          "name": "Burn the Hate",
+          "description": "At 2nd level, whenever the super soldier would spend rounds of rage to use a rage power or other ability, the super soldier may instead reduce the current duration of their rage. If the duration of the super soldier’s rage would be 0 at the start of their turn, the super soldier’s rage ends unless the super soldier spends a round of rage to continue raging (as a normal barbarian would)."
+        },
+        {
+          "level": 14,
+          "name": "They Shall Know No Fear",
+          "description": "At 14th level, the super soldier becomes immune to fear. Whenever the super soldier enters a rage, or uses the powered rage personal battery ability, the super soldier removes any fear effect they are under (such as certain fear effects that would bypass immunity to fear).\n\nThis replaces indomitable will."
+        },
+        {
+          "level": 1,
+          "name": "Super Soldier Rage Powers",
+          "description": "The super soldier gains access to the following unique rage powers. Many of these rage powers may directly spend rounds of rage (or rounds of the super soldier’s current rage)."
+        },
+        {
+          "level": 1,
+          "name": "Author’s Note",
+          "description": "The mechanical design space of these rage powers is to incentivize a super soldier to be constantly depleting batteries, aggressively, as a resource."
+        },
+        {
+          "level": 1,
+          "name": "Defeating Creatures",
+          "description": "Some rage powers are denoted with an asterisk (*). The super soldier may use any number of these rage powers whenever they reduce another creature to 0 hit points or fewer (or would otherwise render the creature helpless or unconscious) (“defeating” that creature). Defeating a helpless or unaware creature, or a creature that has fewer Hit Dice than half of the super soldier’s character level, does not allow the super soldier to use these rage powers."
+        },
+        {
+          "level": 1,
+          "name": "Adrenal Reactant",
+          "description": "As a free action at the start of the super soldier’s turn (or as part of beginning a new rage), the super soldier may spend 2 rounds of rage. If they do, until the start of their next turn, the super soldier adds 1/2 their super soldier level to Strength checks, to their Strength for the purposes of carrying capacity, and to their combat maneuver bonus and combat maneuver defense. In addition, while benefitting from this effect, the super soldier increases their base movement speed by +10 feet. The super soldier may use this ability as an immediate action, but the effect’s duration instead ends at the end of the current turn."
+        },
+        {
+          "level": 1,
+          "name": "Artificial Rage",
+          "description": "The super soldier gains Expanded Tinkering as a bonus talent, choosing the (computation) package as one of the two selected packages. If the super soldier already possesses the (computation) package, they instead must select a Tinker talent that grants a (computation) package option. While raging,the super soldier’s crafted AI may choose to benefit from the super soldier’s rage (provided that the AI’s host gizmo is in the super soldier’s possession). An AI benefitting from the super soldier’s rage may also use the super soldier’s rage powers (batteries spent by an AI do not extend the super soldier’s current rage). This allows an AI to benefit from mind-affecting effects, despite normally being immune."
+        },
+        {
+          "level": 1,
+          "name": "Artificial Rage, Improved (Ex) (requires super soldier level 10, Artificial Rage)",
+          "description": "The super soldier gains a Tinker sphere talent as a bonus talent; the chosen Tinker sphere talent must grant a (computation) package option. While raging, the super soldier’s crafted AI may choose to benefit from the super soldier’s rage even if their host gizmo is not in the super soldier’s possession (and instead, the AI must be able to see or hear the super soldier). In addition, batteries depleted by the super soldier’s AI extends the super soldier’s rage as though the super soldier depleted the battery themselves for the power is fuel class feature. An AI does not need to benefit from the super soldier’s rage to extend the super soldier’s rage this way."
+        },
+        {
+          "level": 1,
+          "name": "Blood is Fuel (Ex)*",
+          "description": "Whenever the super soldier defeats a creature, the super soldier may immediately recharge a single depleted battery (restoring it to full functionality)."
+        },
+        {
+          "level": 1,
+          "name": "Collateral Rampage (Ex)* (requires super soldier 6, (modification) package)",
+          "description": "The super soldier gains Excavation Set as a bonus talent. They may craft a killer drill modification as a personal gizmo to grant it the benefits of the Advanced Excavation killer drill destroyer option. Whenever you defeat a creature with a killer drill destroyer modified weapon, that creature explodes as though they failed their saving throw and died to the killer drill destroyer. This explosion may kill the defeated creature. If this explosion would defeat another creature, that creature also explodes. A creature can only be damaged by a single explosion (even if they would be caught in the area of overlapping explosions)."
+        },
+        {
+          "level": 1,
+          "name": "Exaltation (Ex)* (requires Bluster, Gladiator, or Warleader sphere)",
+          "description": "Whenever the super soldier defeats an enemy, the super soldier may spend 1 round of rage to boast, quip, or shout as a free action that can be taken even when it is not the super soldier’s turn. The super soldier may only use exaltation once per round, and cannot modify a boast, quip, or shout performed this way with any ability that would increase the action time required to use that ability (such as performing a boast with Self Confidence)."
+        },
+        {
+          "level": 1,
+          "name": "Exploit Opening (Ex) (requires super soldier 6)",
+          "description": "The super soldier gains Critical Focus as a bonus feat. Whenever the super soldier confirms a critical hit or successfully performs a combat maneuver, the super soldier may benefit from a single rage power as though they defeated that enemy (unlike normally defeating an enemy, the super soldier may only use a single rage power). The struck target of the critical hit or combat maneuver must still qualify to be defeated, as normal (not helpless, unaware, or insufficient Hit Dice). The super soldier may only benefit from this ability once per round. The super soldier does not need to be raging to benefit from this rage power."
+        },
+        {
+          "level": 1,
+          "name": "Glory Kill (Ex)*",
+          "description": "Whenever the super soldier defeats a creature, the super soldier may perform one of the following: - Adrenaline: The super soldier gains a number of temporary hit points equal to their super soldier level + their practitioner modifier (these temporary hit points last for duration of the super soldier’s rage). - Quick Rush: The super soldier may immediately move up to 15 feet and make a single attack as an immediate action. If this attack defeats an opponent and the super soldier chooses to use this ability again, the super soldier does not get to move but may make an additional attack. - Rapid Reload: The super soldier may immediately reload a single weapon in their possession (that takes 1 standard action or fewer to reload) or may attach a battery to a gizmo in their possession. If the super soldier spends 2 rounds of rage, they may instead choose 2 options."
+        },
+        {
+          "level": 1,
+          "name": "Launching Assault",
+          "description": "The super soldier gains the Brute sphere as a bonus talent. The super soldier benefits from the Brute sphere Follow Through talent while raging. Whenever the super soldier uses the Follow Through talent, the super soldier increases the distance the target is moved by +5 feet, +5 feet per 5 super soldier levels. The super soldier may spend 2 rounds of rage when performing any bull rush, drag, or reposition combat maneuver to roll twice on their combat maneuver check, taking the better result."
+        },
+        {
+          "level": 1,
+          "name": "Lightning Sprint",
+          "description": "The super soldier may spend 1 round of rage as a free action to move 10 feet. This movement does not provoke attacks of opportunity from battered enemies, but otherwise provokes attacks of opportunity normally. They may use this ability 2 times per round, +1 per 4 super soldier levels. If the super soldier would use this movement to jump or become airborne, the super soldier may choose to take other actions before falling at the end of their turn, including to use this ability again to continue moving (if the super soldier jumped, use the super soldier’s original Acrobatics check to jump to determine the total movement the super soldier can move this way). If already airborne, the super soldier must be capable of moving while airborne (possessing flight or otherwise being able to jump midair, etc.). If the super soldier does not possess an appropriate form of movement, they may instead glide up to 10 feet in any horizontal direction, descending 5 feet this way, and may only use this rage power once before landing."
+        },
+        {
+          "level": 1,
+          "name": "Mechanized Rage",
+          "description": "The super soldier gains Expanded Tinkering as a bonus talent, choosing the (transportation) packages as one of the two selected packages. If the super soldier already possesses the (transportation) package, they instead must select a Tinker talent that grants a (transportation) package option. While raging and piloting a mechanoid, the mechanoid benefits from the super soldier’s rage and may also use the super soldier’s rage powers. Batteries spent by a mechanoid piloted by the super soldier extend the super soldier’s current rage as though the super soldier depleted that battery for the power is fuel class feature."
+        },
+        {
+          "level": 1,
+          "name": "Physiological Superiority (Ex) (requires super soldier level 8)",
+          "description": "The super soldier’s rage now also grants a bonus to the super soldier’s Fortitude saving throws. While raging, as a swift action, the super soldier may spend 2 rounds of rage to make a new saving throw against an ongoing effect that normally grants a Fortitude or Will saving throw. This new saving throw is made against the effect’s the original DC, even if they have already failed the initial saving throw and would not be granted another. A failed saving throw does not count as a failure for effects that worsen (such as poisons). This rage power may only be used to attempt a new saving throw this way once per effect."
+        },
+        {
+          "level": 1,
+          "name": "Technological Devastation",
+          "description": "The super soldier gains Disruption Set or Technological Weapons as a bonus talent. While raging, the super soldier’s blaster and disruptor gizmos add the super soldier’s rage bonus to their gizmo DC. In addition, creatures that are damaged or fail their saving throw against any of the super soldier’s gizmo effects become battered for 1 round (but not more than once per round)."
+        },
+        {
+          "level": 1,
+          "name": "The Only One They Fear (Ex) (requires super soldier level 20)",
+          "description": "The super soldier’s rage powers that function against defeated creatures work against any creature that is the super soldier’s enemy, even if it is helpless, unaware, or has a number of Hit Dice less than half the super soldier’s character level. While raging, the super soldier gains the frightful presence universal monster ability with a range of 60 feet and a DC equal to 10 + 1/2 their super soldier level + their practitioner modifier. The super soldier may cause creatures that would become frightened or panicked by their frightful presence to instead cower. A creature that cowers due to this effect is not considered defeated by other abilities."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:barbarian-unchained:tribal-champion",
+      "package": "pathfinder-class:barbarian-unchained",
+      "name": "Tribal Champion",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/tribal-champion",
+      "replaces_features": [
+        "barbarians-normal-class-skills",
+        "improved-uncanny-dodge",
+        "trap-sense-or-danger-sense",
+        "uncanny-dodge"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "barbarian’s normal class skills",
+        "uncanny dodge",
+        "improved uncanny dodge",
+        "trap sense or danger sense"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Trade Tradition",
+          "description": "If this is this character’s first level in any class, the tribal champion may select a trade tradition of their choice, and have a competent trade rank.\n\nThis replaces the barbarian’s normal class skills."
+        },
+        {
+          "level": 2,
+          "name": "Champion’s Tribute",
+          "description": "A tribal champion commands influence to be invoked in times of trouble. The champion gains the Faction sphere as a bonus sphere at 2nd level, selecting the (retainer) package. The tribal champion’s retainers always consider providing assistance in combat a reasonable part of their role as long as the champion never abandons them. This does not make them willing to take directly hostile actions, but does include delivering items and taking the aid another action. Starting at 5th level, as long as the tribal champion is within 10 feet of a retainer, a creature gains no bonus to attack rolls to hit the champion due to flanking, blindness, or the attacker being otherwise unseen.\n\nThis replaces uncanny dodge and improved uncanny dodge."
+        },
+        {
+          "level": 3,
+          "name": "Champion’s Wisdom",
+          "description": "A tribal champion understands the dangers and risks of diplomacy as well as other barbarians understand the threats of the battlefield. At 3rd level, the champion gains a +1 insight bonus on Diplomacy, Intimidate, and Sense Motive checks as well as a +1 insight bonus to the DC to demoralize her. These bonuses increase by an additional +1 at 6th level and every 3 levels thereafter.\n\nThis replaces trap sense or danger sense."
+        },
+        {
+          "level": 1,
+          "name": "Leader’s Resolve",
+          "description": "In place of selecting a rage power, a tribal champion may select a single skill talent that she qualifies for."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:barbarian-unchained:worldsoul-incarnate",
+      "package": "pathfinder-class:barbarian-unchained",
+      "name": "Worldsoul Incarnate",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/worldsoul-incarnate",
+      "replaces_features": [
+        "fast-movement",
+        "greater-rage",
+        "indomitable-will",
+        "mighty-rage",
+        "rage",
+        "tireless-rage"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "fast movement",
+        "greater rage",
+        "indomitable will",
+        "tireless rage",
+        "mighty rage"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Rapture",
+          "description": "A worldsoul incarnate can tap into the forces of nature and channel them through her body, filling herself with euphoric rapture. At 1st level, a worldsoul incarnate can be enraptured for a number of rounds per day equal to 4 + her Constitution modifier, and she can be enraptured for 2 additional rounds per day per class level thereafter. Temporary increases to Constitution, such as from the Enhancement sphere, do not increase the total number of rounds that a worldsoul incarnate can be enraptured per day. The total number of rounds of rapture per day is renewed after resting for 8 hours, although these hours need not be consecutive. While enraptured, a worldsoul incarnate cannot use any Charisma-, Dexterity-, or Intelligence-based skill (except Acrobatics, Fly, Intimidate, and Ride) or any ability that requires patience or concentration (such as spherecasting). She also takes a -2 penalty to her AC. The worldsoul incarnate can enter rapture as a free action, and can maintain rapture each round as a free action, so long as she is conscious. Whenever a rapture ends, the worldsoul incarnate is fatigued for 1d4+1 rounds. A worldsoul incarnate cannot enter a new rapture while fatigued or exhausted, but can otherwise become enraptured multiple times per day. Rapture counts as the rage ability for purposes of prerequisites, and may be augmented by rage powers.\n\nThis alters rage."
+        },
+        {
+          "level": 1,
+          "name": "Primal Channeling",
+          "description": "While enraptured, the worldsoul incarnate may channel primal energy to create powerful supernatural effects. Whenever she spends a free action to enter or maintain rapture, she gains a number of vitality points equal to her class level. She may spend vitality points to achieve many different effects at once. At the end of her turn, she loses all unspent vitality points."
+        },
+        {
+          "level": 1,
+          "name": "Fight or Flight",
+          "description": "As a free action, the worldsoul incarnate may spend a vitality point to gain a +4 dodge bonus until the beginning of her next turn against an enemy of her choice that she can see. She may acquire this bonus against multiple targets in a single round, but not multiple times against the same target in the same round."
+        },
+        {
+          "level": 1,
+          "name": "Hurricane Strike",
+          "description": "As a full-round action, the worldsoul incarnate may spend 14 vitality points to summon forth ghostly spirits that echo her physical form, each of which makes a single attack before disappearing. The worldsoul incarnate may make a single melee attack against every enemy within 20 feet she can see. These attacks are at her full base attack bonus."
+        },
+        {
+          "level": 1,
+          "name": "Life Force",
+          "description": "The worldsoul incarnate may spend any number of vitality points as a free action to gain an equal number of temporary hit points. This ability can only be used if she is injured, and cannot raise her current hit points plus her temporary hit points to be higher than her maximum hit points. The temporary hit points last until the end of rapture, and stack with themselves and with temporary hit points from other sources."
+        },
+        {
+          "level": 1,
+          "name": "Mighty Blow",
+          "description": "The worldsoul incarnate may spend 1 vitality point as a free action to add a +2 circumstance bonus to any attack roll (including attack rolls to confirm critical hits) or damage roll made with a melee or thrown weapon, or to add a +2 circumstance bonus to any skill or attribute check that uses her Strength, Dexterity or Constitution, or to add +2 to a combat maneuver roll. The decision to use this ability is made after dice are rolled, but before the results are announced. Although this ability can be used multiple times per turn, it can only be used once per die roll."
+        },
+        {
+          "level": 1,
+          "name": "Primal Ascension",
+          "description": "The worldsoul incarnate may spend 20 vitality points as a standard action to benefit from the restore ability of the Life sphere, using her class level as her caster level. This removes all conditions, all attribute damage and drain, and removes all temporary negative levels."
+        },
+        {
+          "level": 1,
+          "name": "Restoring Force",
+          "description": "The worldsoul incarnate may spend 11 vitality points as a swift action to benefit from the restore ability of the Life sphere, using her class level as her caster level."
+        },
+        {
+          "level": 1,
+          "name": "Sunder Magic",
+          "description": "As a swift action, the worldsoul incarnate may spend 17 vitality points to dispel any number of magical effects that currently afflict her."
+        },
+        {
+          "level": 1,
+          "name": "Surge of Movement",
+          "description": "The worldsoul incarnate may spend 2 vitality points as a free action to move 5 feet. This movement draws attacks of opportunity normally and ignores difficult terrain. She may do this multiple times in a turn."
+        },
+        {
+          "level": 1,
+          "name": "Vicious Cycle",
+          "description": "The worldsoul incarnate may spend 8 vitality points as a free action to make an attack at her full base attack bonus against a target she has already successfully hit with an attack this turn."
+        },
+        {
+          "level": 1,
+          "name": "Vital Force",
+          "description": "The worldsoul incarnate may spend 5 vitality points as a free action to regain 1 hit point.\n\nThis replaces fast movement, greater rage, indomitable will, tireless rage, and mighty rage."
+        },
+        {
+          "level": 1,
+          "name": "Rapture Powers",
+          "description": "The worldsoul incarnate may choose any of the following powers in place of a rage power:"
+        },
+        {
+          "level": 1,
+          "name": "Channel Energy",
+          "description": "The worldsoul incarnate may release a massive wave of primal energy. She gains the channel energy ability as a cleric of equal level, using her casting ability to determine the saving throw DC of her channeled energy. She may only channel positive energy. The worldsoul incarnate must expend 4 rounds of her rapture to channel energy."
+        },
+        {
+          "level": 1,
+          "name": "Elation (requires worldsoul incarnate 10)",
+          "description": "The worldsoul incarnate gains a fly speed equal to her base land speed with good maneuverability."
+        },
+        {
+          "level": 1,
+          "name": "Natural Grace (requires worldsoul incarnate 6)",
+          "description": "Whenever the worldsoul incarnate enters rapture, she may choose a combat feat for which she meets the prerequisites. She gains the use of this feat for the duration of the rapture. She may choose a different feat whenever she enters rapture, provided at least 1 minute has passed since she has last left rapture."
+        },
+        {
+          "level": 1,
+          "name": "Primal Aura (requires worldsoul incarnate 4)",
+          "description": "While she is enraptured, she may give off an aura of positive energy that causes her and all living and undead creatures within 20 feet to glow slightly, giving them a penalty on Stealth checks equal to her class level and negating all bonuses usually bestowed by invisibility, blink effects, darkness, or similar effects. While the aura is in effect, she gains a +5 circumstance bonus to Intimidate checks, and sheds bright light to a distance of 20 feet around her, and normal light another 20 feet beyond that. The light harms creatures vulnerable to natural sunlight as if it were natural sunlight."
+        },
+        {
+          "level": 1,
+          "name": "Primal Stamina (requires Combat Stamina)",
+          "description": "During her turn, the worldsoul incarnate may spend vitality in place of stamina points. She must spend 2 vitality points in place of each stamina point she wishes to spend."
+        },
+        {
+          "level": 1,
+          "name": "Elation (requires 10th Level)",
+          "description": "The worldsoul incarnate gains a fly speed equal to her base land speed with good maneuverability."
+        },
+        {
+          "level": 1,
+          "name": "Natural Grace (requires 6th Level)",
+          "description": "Whenever the worldsoul incarnate enters rapture, she may choose a combat feat for which she meets the prerequisites. She gains the use of this feat for the duration of the rapture. She may choose a different feat whenever she enters rapture, provided at least 1 minute has passed since she has last left rapture."
+        },
+        {
+          "level": 1,
+          "name": "Primal Aura (requires 4th Level)",
+          "description": "While she is enraptured, she may give off an aura of positive energy that causes her and all living and undead creatures within 20 ft. to glow slightly, giving them a penalty on Stealth checks equal to her class level and negating all bonuses usually bestowed by invisibility, blink effects, darkness, or similar effects. While the aura is in effect, she gains a +5 circumstance bonus to Intimidate checks, and sheds bright light to a distance of 20 ft. around her, and normal light another 20 ft. beyond that. The light harms creatures vulnerable to natural sunlight as if it were natural sunlight."
+        },
+        {
+          "level": 1,
+          "name": "Primal Stamina (requires Combat Stamina feat)",
+          "description": "During her turn, the worldsoul incarnate may spend vitality in place of stamina points. She must spend 2 vitality points in place of each stamina point she wishes to spend."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

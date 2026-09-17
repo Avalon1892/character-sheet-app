@@ -1,0 +1,770 @@
+{
+  "version": 1,
+  "class_key": "spheres-class:blacksmith",
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:blacksmith:artificer",
+      "package": "spheres-class:blacksmith",
+      "name": "Artificer",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/artificer",
+      "replaces_features": [
+        "artisan-savant",
+        "combat-training",
+        "reforge"
+      ],
+      "removed_features": [
+        "artisan-savant",
+        "reforge"
+      ],
+      "removed_feature_clauses": [
+        "artisan savant",
+        "reforge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Artifice Specialist",
+          "description": "At 1st level, the artificer can replace the equipment specialist class feature to gain the Artifice sphere as a bonus skill sphere, as well as allowing him to use Profession (blacksmith) as the associated skill for the (fabrication) and (gear) Artifice sphere packages.\n\nThis (optionally) replaces equipment specialist."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "Whenever an artificer would gain a combat talent from his class levels, he may instead choose to gain a skill talent. An artificer uses his practitioner modifier as his operative ability modifier.\n\nThis alters combat training. This archetype may be combined with other archetypes that replace combat training."
+        },
+        {
+          "level": 1,
+          "name": "Efficient Additions",
+          "description": "In addition to the normal options granted by the artificer when using maintenance, he gains the following option:\n\nTemporary Alterations: The artificer chooses a single Artifice sphere flourish he possesses; the artificer applies the chosen flourish to a single piece of equipment that the ally possesses, which does not count towards the maximum number of flourishes that the object can possess."
+        },
+        {
+          "level": 1,
+          "name": "Trade Tradition",
+          "description": "If this is the character’s first level in any class, the blacksmith can choose a trade tradition instead of his usual class skills. His trade rank is competent."
+        },
+        {
+          "level": 3,
+          "name": "Artifice Savant",
+          "description": "At 3rd level, the artificer can apply an additional flourish to an object, or an additional function to a trinket he creates.\n\nAt 5th level, the artificer gains the unchained skill unlocks (Pathfinder Unchained) for the Craft skill as appropriate for his number of ranks in that skill. Additionally, he gains a bonus skill talent from the Artifice sphere, which can be changed to another talent from the Artifice sphere with 8 hours of rest. This talent cannot be a (flourish) or [utility] talent.\n\nThis replaces artisan savant."
+        },
+        {
+          "level": 3,
+          "name": "Remarkable Armament",
+          "description": "At 3rd level, the artificer can spend 8 hours using artisan’s tools altering a set of armor, shield, or weapon to perfectly tailor it to his style and requirements, making it remarkable. This functions as the Exquisite Equipment exceptional talent, except that it is not a flourish, and it uses his blacksmith level instead of his associated ranks when determining the talent's effects.\n\nThe artificer can only have a single piece of equipment altered in this way, and such an item grants no benefits to other creatures who use it.\n\nThis replaces reforge.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nSpheres of Guile by Drop Dead Studios\n\nUsing Spheres of Guile\n\nClasses\n\nAdvisor (DRS)\nAgent\nConduit (DRS)\nCourser\nEnvoy\n\nGenius\nMastermind\nProfessional\n\nSpheres\n\nArtifice\nBluster\nBody Control\nCommunication\nFaction\n\nHerbalism\nInfiltration\nInvestigation\nNavigation\nPerformance\n\nSpellhacking\nStudy\nSubterfuge\nSurvivalism\nVocation\n\nOther Rules\n\nOperative Feats\nOperative Gear\nSkill Rules\nTrade Traditions\nRunning Guile Games\n\nGet Spheres of Guile"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:blacksmith:barista",
+      "package": "spheres-class:blacksmith",
+      "name": "Barista",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/barista",
+      "replaces_features": [
+        "maintenance",
+        "rapid-maintenance",
+        "skill-ranks-per-level",
+        "smiths-masterpiece"
+      ],
+      "removed_features": [
+        "maintenance",
+        "rapid-maintenance",
+        "smiths-masterpiece"
+      ],
+      "removed_feature_clauses": [
+        "maintenance",
+        "rapid maintenance",
+        "smith’s masterpiece"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Note",
+          "description": "Open image in a new tab for full size The barista grinds coffee and steeps tea leaves, brewing refreshing, bold and delicious drinks for himself, his companions, and anyone around him in need of a pick-me-up. A barista is a warm and welcome member to any adventuring party who can prepare miraculous and invigorating brews. Where the blacksmith and iron chef provide static, reliable buffs to their party, the barista instead offers a more conditional (but often more potent) boost exactly when it is most needed, letting allies reroll crucial checks with scaling bonuses at the cost of a self-stacking debuff that is as customizable as the benefits."
+        },
+        {
+          "level": 1,
+          "name": "Skill Ranks per Level",
+          "description": "The barista gains a number of skill ranks equal to 6 + his Intelligence modifier at each level, instead of 4 + his Intelligence modifier skill ranks.\n\nThis alters skill ranks per level."
+        },
+        {
+          "level": 1,
+          "name": "Professional Brewer",
+          "description": "The barista gains a free rank in Profession (barista) every class level."
+        },
+        {
+          "level": 1,
+          "name": "Invigorating Brews",
+          "description": "The barista is able to spend 1 hour (which may be done concurrently with other daily preparation activities, such as studying a spellbook or praying for spells) and 1 gallon of water to prepare a batch of invigorating brews equal to 1 + his practitioner modifier. Each brew may be individually prepared with different effects. Brews must be consumed within 1 hour of preparation to provide their benefits, and preparing a new batch renders any previously made brews inert, removing any special qualities of an unconsumed brew. At 1st level, the barista has access to all foundations and styles for his brews. At 4th level, the barista unlocks all mixes for his brews. At 8th level, the barista unlocks all toppings for his brews. Any brew must have 1 foundation and 1 style. Mixes and toppings are optional, and any given brew may have up to 1 of each option (unless stated otherwise by another class feature or effect). Unless otherwise specified, the benefits of an invigorating brew last for 24 hours; activating the brew’s benefit does not expend it. Drinking a new brew ends the effects of the old one, including any ongoing crash effects. All invigorating brews provide a +1 alchemical bonus to initiative checks and to saving throws vs. any effect that causes sleep, fatigue, or exhaustion. These bonuses increase by 1 per 5 class levels. If the drinker cannot suffer from the effects of a crash (due to immunity or because you are already suffering the worst level of the effects in question, for example), they cannot trigger any brew effect that would cause that specific crash. If a drinker has immunity to a crash effect, they may voluntarily choose to bypass that immunity in order to use the brew. A brew’s primary effect cannot be used more than once per qualifying condition. Any time class levels are mentioned in the description of a brew, this refers to the class levels possessed by the barista, not the drinker.\n\nThis replaces maintenance."
+        },
+        {
+          "level": 1,
+          "name": "Foundation",
+          "description": "The foundational beans, leaves, or other base ingredient determines the brew’s primary effect. Activating a primary effect does not take an action unless otherwise specified, but can only be done once per roll."
+        },
+        {
+          "level": 1,
+          "name": "Arabica",
+          "description": "The drinker may re-roll a failed attack roll with a +2 bonus, but suffers a crash at the beginning of their next turn. This bonus increases by 1 for every 4 class levels you possess."
+        },
+        {
+          "level": 1,
+          "name": "Black Tea",
+          "description": "The drinker may re-roll a failed Reflex save with a +2 bonus, but suffers a crash at the beginning of their next turn. This bonus increases by 1 for every 4 class levels you possess."
+        },
+        {
+          "level": 1,
+          "name": "Decaf",
+          "description": "The drinker may gain a number of temporary hit points equal to the drinker’s Hit Dice plus the brewer’s class level as an immediate action (which may be applied before damage they are reacting to is dealt), but suffers a crash at the beginning of their next turn. These temporary hit points expire at the end of their next turn. Decaf brews do not provide the standard alchemical bonus to initiative and saves vs. sleep, fatigue, or exhaustion. Brews with this foundation (and no mix or toppings) do not violate Oaths of Abstention."
+        },
+        {
+          "level": 1,
+          "name": "Green Tea",
+          "description": "The drinker may re-roll a failed Will save with a +2 bonus, but suffers a crash at the beginning of their next turn. This bonus increases by 1 for every 4 class levels you possess."
+        },
+        {
+          "level": 1,
+          "name": "Red Tea",
+          "description": "The drinker may re-roll a failed Fortitude save with a +2 bonus, but suffers a crash at the beginning of their next turn. This bonus increases by 1 for every 4 class levels you possess."
+        },
+        {
+          "level": 1,
+          "name": "Robusta",
+          "description": "The drinker may re-roll an initiative check with double the normal alchemical bonus all invigorating brews provide, but suffers a crash at the beginning of their next turn."
+        },
+        {
+          "level": 1,
+          "name": "Style",
+          "description": "How the brew is made determines the effects of its crash."
+        },
+        {
+          "level": 1,
+          "name": "Cold Brewed",
+          "description": "The drinker is flat-footed for 1 round. If they are already flat-footed, they become staggered for 1 round. If they are already staggered, they become dazed for 1 round."
+        },
+        {
+          "level": 1,
+          "name": "Espresso",
+          "description": "The drinker becomes shaken for 1 minute. If they are already shaken, they become frightened for 1 round. If they are already frightened, they become panicked for 1 round. If they are already panicked, they become cowering for 1 round."
+        },
+        {
+          "level": 1,
+          "name": "Frappe",
+          "description": "The drinker is sickened for 1 minute. If they are already sickened, they also become nauseated for 1 round."
+        },
+        {
+          "level": 1,
+          "name": "Percolated",
+          "description": "The drinker becomes fatigued. If they are already fatigued, they become exhausted. If they are already exhausted, they fall asleep."
+        },
+        {
+          "level": 1,
+          "name": "Mix",
+          "description": "Mixing in other ingredients provides an additional twist on the effects of the brew."
+        },
+        {
+          "level": 1,
+          "name": "Black",
+          "description": "Calculate the other effects of the brew as if the brewer had two more class levels. Note that this represents exceptional quality of the fundamentals of the brew, not a default; you do not gain this benefit if no mix is used."
+        },
+        {
+          "level": 1,
+          "name": "Cream",
+          "description": "The drinker gains a +10 feet alchemical bonus to all movement speeds so long as they are not currently suffering from a crash. This bonus increases by 5 feet per 5 class levels."
+        },
+        {
+          "level": 1,
+          "name": "Dwarven (Whisky)",
+          "description": "The drinker may delay the onset of any crash by 1 round. The brew counts as an alcoholic drink, and if the drinker has the Barroom sphere, they gain the drunk status as per Hard Drinker whenever they activate the brew’s primary effect."
+        },
+        {
+          "level": 1,
+          "name": "Foamed",
+          "description": "The drinker may move 5 feet immediately before or after they trigger the primary effect of the brew. This movement does not provoke attacks of opportunity but is not considered a 5-foot step."
+        },
+        {
+          "level": 1,
+          "name": "Honey",
+          "description": "The drinker negates the first crash they suffer after consuming this brew."
+        },
+        {
+          "level": 1,
+          "name": "Mocha",
+          "description": "The drinker may choose to provide the benefits of the brew’s primary effect to an ally within reach instead of themself; the drinker is still the one suffering crash and spending any required actions."
+        },
+        {
+          "level": 1,
+          "name": "Toppings",
+          "description": "Toppings provide a benefit while the drinker is suffering from a crash."
+        },
+        {
+          "level": 1,
+          "name": "Bubble Tea Pearls",
+          "description": "The drinker gains a +1 alchemical bonus to AC while suffering from a crash. This bonus increases by +1 per 4 class levels."
+        },
+        {
+          "level": 1,
+          "name": "Cinnamon",
+          "description": "The first attack or hostile effect during this crash that targets or includes the drinker while they are suffering from a crash provokes attacks of opportunity from all creatures threatening the attacker."
+        },
+        {
+          "level": 1,
+          "name": "Rainbow Sprinkles",
+          "description": "While suffering from a crash, the drinker gains energy resistance equal to the baristas class level towards the first type of energy damage the drinker would take damage from during that crash."
+        },
+        {
+          "level": 1,
+          "name": "Sugar",
+          "description": "The drinker gains a +10-foot alchemical bonus to all move speeds so long as they are currently suffering from a crash. This bonus increases by 5 feet per 5 class levels."
+        },
+        {
+          "level": 5,
+          "name": "Whipped Cream",
+          "description": "The drinker ignores the first square of difficult terrain they enter each round while suffering from a crash; at 5th level and every five class levels thereafter, they may ignore one additional square of difficult terrain each round."
+        },
+        {
+          "level": 1,
+          "name": "Author's Note",
+          "description": "Crash effects are intended to not be bypassable by any means (which is why a wide variety of crash effects are available). This includes effects that would allow a creature to suffer a different negative effect than the crash's intended effect (such as a magic item that allows a creature to take nonlethal damage instead of being fatigued). Treat such interactions as being similar to immunity, preventing the creature from activating that invigorating brew's primary effect."
+        },
+        {
+          "level": 3,
+          "name": "Sneak Attack",
+          "description": "Starting at 3rd level if the barista can catch a creature when he is unable to defend himself effectively from his attack, he can strike a vital spot for extra damage. The barista’s attack deals extra damage anytime his target would be denied a Dexterity bonus to AC (whether the target actually has a Dexterity bonus or not), or when the barista flanks his target. This additional damage is 1d6 at 3rd level, and increases by 1d6 every three levels thereafter. Ranged attacks can count as sneak attacks only if the target is within 30 feet. This additional damage is precision damage and is not multiplied on a critical hit. With a weapon that deals nonlethal damage (such as a sap, unarmed strike, or whip), a barista can make a sneak attack that deals nonlethal damage instead of lethal damage. He cannot use a weapon that deals lethal damage to deal nonlethal damage in a sneak attack, not even with the usual –4 penalty. The barista must be able to see the target well enough to pick out a vital spot and must be able to reach such a spot. A barista cannot sneak attack while striking a creature with total concealment."
+        },
+        {
+          "level": 1,
+          "name": "Brewing Insights",
+          "description": "In addition to the smithing insights available to all blacksmiths, the barista may select from any of the following brewing insights whenever he would gain a smithing insight:"
+        },
+        {
+          "level": 1,
+          "name": "Double-Shot",
+          "description": "The barista may prepare any brew as a double shot. A double shot brew’s effects are calculated as though his barista level was 5 levels higher, but when the drinker suffers a crash from a double shot, the crash’s duration is doubled (if a crash effect does not have a set duration, instead gain the next level of that crash, as if they had suffered from a crash twice)."
+        },
+        {
+          "level": 1,
+          "name": "Esoteric Brewing Techniques",
+          "description": "The barista’s brews may be consumed by any creature, even those that cannot drink or have no corporeal form. The barista no longer requires a source of water to prepare his brews."
+        },
+        {
+          "level": 1,
+          "name": "Magic Beans",
+          "description": "The barista may mix a potion, or alchemical consumable into a brew as he is preparing it, or allow it to be the target of an instill talent; the effects of said potion, consumable, or instill are delayed until the drinker first activates the brew’s primary effect. The barista must be at least 6th level to choose this brewing insight."
+        },
+        {
+          "level": 1,
+          "name": "Sweet Tooth",
+          "description": "The barista may spend a swift action to treat himself as suffering from a crash for the purposes of topping benefits for 1 round. Multiple contiguous rounds of sweet tooth activation count as a single crash. The barista must be at least 8th level to choose this brewing insight."
+        },
+        {
+          "level": 1,
+          "name": "Tea Ceremony",
+          "description": "The barista may substitute his bonus on Bluff and Diplomacy checks with his Profession (barista) bonus, as the bard’s versatile performance class feature."
+        },
+        {
+          "level": 1,
+          "name": "The Morning Grind",
+          "description": "The barista increases the number of brews he can make in a single batch to his barista level plus his practitioner modifier."
+        },
+        {
+          "level": 1,
+          "name": "Unhealthy Caffeine Tolerance",
+          "description": "The barista may ignore the first crash he suffers each day. This stacks with honey mixed brews."
+        },
+        {
+          "level": 1,
+          "name": "Vacuum Extracted Ichor",
+          "description": "Whenever the barista prepares a batch of brews, he may choose to prepare part of the batch as condensed, miniature vials. The barista may prepare a number of condensed brews this way up to his practitioner modifier (minimum 1). Condensed brews prepared stay fresh and ready to drink for up to 24 hours, but cannot have toppings. If the barista prepares a new batch, any condensed brews lose their potency and become inert."
+        },
+        {
+          "level": 9,
+          "name": "Secret Menu",
+          "description": "The barista’s skill at adapting to his party’s increasingly impractical drink orders waxes as his ability to feel empathy towards customers wanes, and he may now create brews with extra components. At 9th level, any brew he creates may have two foundations. At 13th level, any brew he creates may have two foundations or two mixes. At 17th level, any brew he creates may have two foundations or two mixes or two toppings.\n\nThis replaces rapid maintenance."
+        },
+        {
+          "level": 20,
+          "name": "Espresso Soul",
+          "description": "At 20th level, the barista no longer suffers crash effects from invigorating brews, allowing him to trigger their effects without downsides - this is an exception to the usual rules regarding crash and immunities. He still cannot use a brew’s primary effect more than once per qualifying condition. In addition, he no longer requires sleep and is immune to all sleep effects.\n\nThis replaces smith’s masterpiece."
+        },
+        {
+          "level": 1,
+          "name": "New Feats",
+          "description": "Part-Time Barista: Prerequisite: Invigorating brews class feature."
+        },
+        {
+          "level": 1,
+          "name": "Benefit",
+          "description": "Add 1/2 your ranks in Profession (barista) to your barista class level when determining the effects of your invigorating brews class feature. This cannot increase your effective barista class level above your Hit Dice."
+        },
+        {
+          "level": 1,
+          "name": "I’ll Sleep When I’m Dead (Aristeia)",
+          "description": "Benefit: You require half the amount of time you otherwise would to get the benefits of a full night’s rest. In addition, you may activate Aristeia even while unconscious (and even if your unconsciousness would make you unaware of the reason to activate Aristeia in the first place), and doing so immediately brings you fully awake. While in Aristeia, you can still suffer from crashes from the barista blacksmith’s invigorating brew class feature, but all negative crash effects, as well as any penalties from fatigue and exhaustion, are delayed until after you leave Aristeia."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:blacksmith:disciple-of-goibniu",
+      "package": "spheres-class:blacksmith",
+      "name": "Disciple of Goibniu",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/disciple-of-goibniu",
+      "replaces_features": [
+        "class-skills",
+        "skilled-craftsman",
+        "smithing-insight",
+        "thunderous-blows"
+      ],
+      "removed_features": [
+        "a-smithing-insight"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "The disciple of Goibniu gains Knowledge (nature) (Int) as a class skill, but loses Climb (Str) as a class skill.\n\nThis alters class skills."
+        },
+        {
+          "level": 1,
+          "name": "Great Hospitality",
+          "description": "If the disciple of Goibniu has the recipes ability, he may select the following entree:\n\nAle: Any morale bonuses affecting a creature who partakes of a recipe using ale as an entree last 1 additional round, +1 additional round per 10 class levels the iron chef possesses."
+        },
+        {
+          "level": 1,
+          "name": "Gregarious Smith",
+          "description": "In place of a smithing insight, a disciple of Goibniu may choose a social talent as per the vigilante class feature. He treats his class level as his vigilante level for the purpose of meeting prerequisites, and is always treated as though he was in his social identity for the purpose of the effects of social talents.\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps"
+        },
+        {
+          "level": 1,
+          "name": "Hidden Weapons",
+          "description": "If the disciple of Goibniu has the maintenance ability, he may perform the following maintenance:\n\nGlamered Equipment: The disciple of Goibniu places a subtle charm on his and his allies’ equipment, granting one weapon, shield, or suit of armor per ally the glamered special ability. Whatever object they are disguised as has clear signs of fairy make, recognizable with a Knowledge (nature) check against a DC of 15 + the disciple of Goibniu’s level. This is a supernatural effect."
+        },
+        {
+          "level": 2,
+          "name": "Cold Iron Specialist",
+          "description": "At 2nd level the disciple of Goibniu’s bonus to Profession (blacksmith) checks is equal to his class level instead of half his class level when working with cold iron. In addition, any item he creates or modifies using his Profession (blacksmith) skill or an item creation feat counts as cold iron when it would be beneficial to its user. However, he must spend a full-round action that provokes attacks of opportunity when he uses his skilled craftsman ability to repair equipment not made of cold iron.\n\nThis alters skilled craftsman."
+        },
+        {
+          "level": 6,
+          "name": "Anathemic Blows",
+          "description": "The disciple of Goibniu’s thunderous blows do not normally deal extra damage until 3rd level, at which point they deal 1d6 additional damage. This damage increases by 1d6 at 6th level and every three levels thereafter. Against creatures with damage reduction overcome by cold iron and objects made of cold iron they instead deal the normal amount of extra damage.\n\nHowever, at 1st level the disciple of Goibniu may make a special sunder attempt as an attack action against a creature. On a successful check he deals damage to the creature equal to his normal weapon damage (bonus damage from thunderous blows is not applied when using sunder in this manner) and any damage reduction it possesses is reduced by 2, plus 5 if it is overcome by cold iron, until the end of the disciple of Goibniu’s next round. He may expend his martial focus as a free action to extend this by a number of rounds equal to his Constitution modifier (minimum 1). At 3rd level and every two levels thereafter this reduction increases by 2. This reduction is halved for damage reduction that cannot be overcome or is overcome only by epic weapons (such as DR 3/– or DR 20/ epic).\n\nThis alters thunderous blows."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:blacksmith:essence-smith",
+      "package": "spheres-class:blacksmith",
+      "name": "Essence Smith",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/essence-smith",
+      "replaces_features": [
+        "artisan-savant",
+        "base-attack-bonus",
+        "combat-training",
+        "equipment-specialist",
+        "maintenance",
+        "rapid-maintenance",
+        "reforge",
+        "skilled-craftsman",
+        "thunderous-blows"
+      ],
+      "removed_features": [
+        "artisan-savant",
+        "combat-training",
+        "equipment-specialist",
+        "maintenance",
+        "rapid-maintenance",
+        "skilled-craftsman",
+        "thunderous-blows"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {
+        "casting": {
+          "sphere_progression": "Low"
+        }
+      },
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Smithing Insights",
+          "description": "The essence smith has exclusive access to the following smithing insights:"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:blacksmith:fleshforger",
+      "package": "spheres-class:blacksmith",
+      "name": "Fleshforger",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/fleshforger",
+      "replaces_features": [
+        "maintenances",
+        "rapid-maintenance",
+        "skilled-craftsman-but-can-be-replaced-as-if-it-were-skilled-craftsman-by-other-archetypes",
+        "smiths-masterpiece"
+      ],
+      "removed_features": [
+        "maintenances",
+        "rapid-maintenance",
+        "skilled-craftsman-but-can-be-replaced-as-if-it-were-skilled-craftsman-by-other-archetypes",
+        "smiths-masterpiece"
+      ],
+      "removed_feature_clauses": [
+        "skilled craftsman but can be replaced as if it were skilled craftsman by other archetypes",
+        "rapid maintenance",
+        "smith’s masterpiece"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Body Modifications",
+          "description": "Starting at 1st level, the fleshforger learns how to create a variety of grafts, internal cybernetics, and other body modifications which grant inhuman capabilities.\n\nWhenever the party has at least 8 consecutive hours of rest time (or the equivalent of 8 hour’s rest, such as 2 hour’s rest with a ring of sustenance or similar ability), the fleshforger can set aside a small period of time to install or repair these modifications without interfering with his normal rest to give him and a number of allies equal to 1 + his Constitution modifier (minimum 1) one of the following benefits for 24 hours, or until their next 8 hour or longer rest, whichever comes first.\n\nThe fleshforger may select a different maintenance for each ally to be affected."
+        },
+        {
+          "level": 1,
+          "name": "Physiological Tinker",
+          "description": "The fleshforger gains Heal as a class skill. This does not prevent compatibility with other archetypes that change class skills."
+        },
+        {
+          "level": 1,
+          "name": "Promethean Insights",
+          "description": "The fleshforger has exclusive access to the following smithing insights:"
+        },
+        {
+          "level": 2,
+          "name": "Body Manipulator",
+          "description": "Starting at 2nd level, the fleshforger may use Heal in place of all Craft and Spellcraft checks made to create, modify, repair, and enchant compounds, grafts, cybernetics, and any magic item which would be grafted onto a creature or installed internally. He gains a competence bonus equal to 1/2 his class level (minimum 1) on all Heal checks. In addition, the fleshforger gains the medical training class feature of a scholar of his fleshforger level. The amount of healing increases to 2 hit points +2 for each point by which the fleshforger exceeds the DC at 5th level and 3 hit points +3 for each point by which the fleshforger exceeds the DC at 9th level. This does not grant the advanced medical training or expert medical training class features at higher levels. The fleshforger uses their practitioner modifier in place of the Intelligence modifier to determine uses per day.\n\nThis replaces skilled craftsman but can be replaced as if it were skilled craftsman by other archetypes."
+        },
+        {
+          "level": 17,
+          "name": "Manifold Alterations",
+          "description": "At 9th, 13th, and 17th level, the fleshforger may maintain 1 additional body modification during an 8 hour rest (for a total of 4 maintenances per affected creature at 17th level).\n\nThis replaces rapid maintenance."
+        },
+        {
+          "level": 20,
+          "name": "The Next Stage",
+          "description": "At 20th level, the fleshforger learns to use the body as a phenomenally versatile canvas. He may select a single creature per day and apply any number of body modifications to that creature. He may only apply one instance of each body modification to each creature.\n\nThis replaces smith’s masterpiece."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:blacksmith:iron-chef",
+      "package": "spheres-class:blacksmith",
+      "name": "Iron Chef",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/iron-chef",
+      "replaces_features": [
+        "maintenance",
+        "rapid-maintenance",
+        "rapid-maintenance-class-features"
+      ],
+      "removed_features": [
+        "maintenance",
+        "rapid-maintenance-class-features"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Chef’s Insights",
+          "description": "In addition to the smithing insights available to all blacksmiths, the iron chef may select from any of the following chef’s insights whenever he would gain a smithing insight:"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:blacksmith:master-at-arms",
+      "package": "spheres-class:blacksmith",
+      "name": "Master-At-Arms",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/master-at-arms",
+      "replaces_features": [
+        "maintenance",
+        "rapid-maintenance",
+        "thunderous-blows"
+      ],
+      "removed_features": [
+        "maintenance",
+        "rapid-maintenance",
+        "thunderous-blows"
+      ],
+      "removed_feature_clauses": [
+        "maintenance",
+        "thunderous blows",
+        "rapid maintenance"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Drills",
+          "description": "Starting at 1st level, the master-at-arms learns to perform and instruct his allies through training drills. Whenever the party has at least 8 consecutive hours of rest time (or the equivalent of 8 hour’s rest, such as 2 hour’s rest with a ring of sustenance or similar ability), the master-at-arms can set aside a small period of time to perform these drills without interfering with his normal rest to give him and a number of allies equal to 1 + his practitioner modifier (minimum 1) one of the following benefits for 24 hours, or until their next 8 hour or longer rest, whichever comes first. The master-at-arms may select a different drill for each ally to be affected.\n\nConditioning: The master-at-arms runs his students through grueling physical tasks, enhancing their athletic prowess. Each ally trained with this drill selects a single combat maneuver. The creatures gain a +1 bonus on combat maneuver checks with that maneuver, and to their combat maneuver defense when defending against that maneuver. In addition, the creature receives a +1 bonus on all Strength and Dexterity-based skill checks. These bonuses increase by +1 for every 4 class levels the master-at-arms possesses.\n\nEndurance: To prepare for long marches, the master-at-arms instructs his students in the art of proper weight distribution and marching technique. Each ally trained with this drill increases their maximum Hit Points by an amount equal to the master-at-arms’s class level. In addition, each ally trained with this drill gains a bonus equal to 1/2 the master-at-arms’s class level on all Constitution checks and Fortitude saving throws made against environmental hazards (such as nonlethal damage from hot or cold environments). The affected creatures also gain DR/- equal to 1/2 the master-at-arms’s class level against nonlethal damage. This DR stacks with other damage reduction the creature may possess.\n\nPerseverance: The master-at-arms pushes his students to their absolute limit, and shows them how to go beyond them. Each ally trained with this drill may, once per day as a free action, reduce the exhausted or nauseated conditions to fatigued or sickened respectively. Alternatively, the trained ally may cure the fatigued or sickened condition by using this ability.This free action may be used even when a creature is normally unable to take free actions, such as when nauseated. A drilled ally may benefit from this drill 1 additional time per day for every 5 class levels the master-at-arms possesses.\n\nPositioning: The master-at-arms demonstrates the value of always moving, instructing others in proper footwork and movement techniques. Each ally trained with this drill gains a +2 bonus on Acrobatics checks made to tumble and a +5 bonus to their base speed. These benefits increase by +2 and + 5 ft. for every 4 class levels the master-at-arms possesses.\n\nPrecision: By teaching techniques in a controlled environment, the master-at-arms can train a practitioner to compensate for some of the innate riskiness of a technique. Each ally trained with this drill reduces any self inflicted attack roll penalties (such as from the combat expertise feat or the barrage sphere base ability) on the first attack roll they make in a round by 1 + 1 per 3 class levels the master-at-arms possesses.\n\nReaction: Through sparring and shadowboxing, the master-at-arms shows his students how to think quicker on their feet. Each ally trained with this drill gains a +2 bonus on initiative checks and may make 1 additional attack of opportunity each round. These benefits increase by +2 and 1 additional attack of opportunity respectively for every 5 class levels the master-at-arms possesses.\n\nRepetition: Through the repeated reinforcement of a technique, the master-at-arms brings out the best in his students. Each ally trained with this drill selects one combat sphere they possess, treating their base attack bonus as 1 higher for the purposes of its effects, but not for attacks made with talents from that sphere. At 5th level and every 5 levels afterwards, the chosen sphere’s base attack bonus is treated as an additional 1 higher, although the sphere’s effective base attack bonus cannot be higher than the creature’s character level.\n\nSidestepping: The master-at-arms knows that footwork is the foundation of any martial art and instructs his students mercilessly in this fact. The affected creatures gain a +1 dodge bonus to AC +1 per 5 class levels the master-at-arms possesses.\n\nThis replaces maintenance"
+        },
+        {
+          "level": 1,
+          "name": "Teamwork Training",
+          "description": "At 1st level, the master-at-arms receives a teamwork feat as a bonus feat. He must meet the prerequisites for this feat. As a standard action, the master-at-arms can grant this feat to all allies within 30 feet who can see and hear him. Allies retain the use of this bonus feat for 3 rounds plus 1 round for every two class levels the master-at-arms possesses. Allies do not need to meet the prerequisites of these bonus feats. This ability counts as the tactician ability for the purpose of qualifying for feats and abilities that list tactician as a prerequisite.\n\nThis replaces thunderous blows"
+        },
+        {
+          "level": 17,
+          "name": "Rapid Drill",
+          "description": "The master-at-arms’s skill at performing drills improves and he may now perform multiple drills at once. At 9th, 13th, and 17th level, the master-at-arms may perform 1 additional drill during an 8 hour rest (for a total of 4 drills per affected creature at 17th level).\n\nThis replaces rapid maintenance."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:blacksmith:peltmonger",
+      "package": "spheres-class:blacksmith",
+      "name": "Peltmonger",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/peltmonger",
+      "replaces_features": [
+        "combat-training",
+        "equipment-specialist",
+        "thunderous-blows"
+      ],
+      "removed_features": [
+        "equipment-specialist",
+        "thunderous-blows"
+      ],
+      "removed_feature_clauses": [
+        "equipment specialist",
+        "thunderous blows"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "Whenever a peltmonger would gain a combat talent from his class levels, he may instead choose to gain a skill talent. A peltmonger uses his practitioner modifier as his operative modifier.\n\nThis alters combat training."
+        },
+        {
+          "level": 1,
+          "name": "Body Specialist",
+          "description": "At 1st level, the peltmonger gains the Survivalism sphere as a bonus sphere, selecting the (harvest) package.\n\nThis replaces equipment specialist."
+        },
+        {
+          "level": 1,
+          "name": "Peltmonger’s Insights",
+          "description": "The peltmonger gains exclusive access to the following smithing insights."
+        },
+        {
+          "level": 1,
+          "name": "Precise Carving",
+          "description": "At 1st level, the peltmonger gains sneak attack +1d6. This functions as the rogue sneak attack ability. If the peltmonger gets a sneak attack bonus from another source, the bonuses on damage stack. This sneak attack increases by 1d6 at 4th level and every 3 levels thereafter.\n\nThis replaces thunderous blows."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:blacksmith:spellforge",
+      "package": "spheres-class:blacksmith",
+      "name": "Spellforge",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/spellforge",
+      "replaces_features": [
+        "base-attack-bonus",
+        "combat-training",
+        "equipment-specialist",
+        "skilled-craftsman",
+        "thunderous-blows"
+      ],
+      "removed_features": [
+        "combat-training",
+        "equipment-specialist",
+        "skilled-craftsman",
+        "thunderous-blows"
+      ],
+      "removed_feature_clauses": [
+        "combat training",
+        "thunderous blows",
+        "equipment specialist",
+        "skilled craftsman"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {
+        "casting": {
+          "sphere_progression": "Mid"
+        }
+      },
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Base Attack Bonus",
+          "description": "The spellforge gains base attack bonus equal to a Commander of his class level.\n\nThis alters base attack bonus."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "A spellforge gains a combat or magic talent every time he gains a class level. Spellforges use their casting ability modifier as their practitioner modifier.\n\nThis replaces combat training."
+        },
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "At 1st level, the spellforge may combine spheres and talents to create magical effects. The spellforge is considered a Mid-Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.)"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "The spellforge loses Intimidate and Survival as class skills and gains Knowledge (arcana) and Spellcraft as class skills."
+        },
+        {
+          "level": 1,
+          "name": "Creation Specialist",
+          "description": "The spellforge gains the Creation sphere as a bonus talent at 1st level, plus an additional talent from the Creation sphere at 5th level and every five levels thereafter. Additionally, the spellforge treats his class level as his caster level with the Creation sphere.\n\nThis replaces thunderous blows."
+        },
+        {
+          "level": 1,
+          "name": "Hit Dice",
+          "description": "The spellforge uses d8 for his Hit Die."
+        },
+        {
+          "level": 1,
+          "name": "Magical Ingenuity",
+          "description": "The spellforge may use his alter Repair sphere ability on attended objects, as long as they are attended by an ally.\n\nIf the spellforge has the maintenance ability, he may perform the following ability:\n\nWhen using his alter Repair ability on an object attended by an ally, the spellforge may spend a spell point to grant the ally the benefits of one maintenance of his choice for a number of rounds equal to 1/2 his class level (minimum 1). A single ally can only benefit from a single maintenance at one time.\n\nIf the spellforge possesses the Altering Burst talent, he may spend an additional spell point to target an additional ally per 4 caster levels he possesses with this ability. Each target must gain the same maintenance.\n\nIf the spellforge has the recipes ability, he may select the following flavor:\n\nHearty: The spellforge may spend a spell point when adding this flavor to a recipe to allow each creature who partakes in a hearty recipe to gain DR 1/adamantine. This damage reduction increases by 1 for every 5 class levels the spellforge possesses. This damage reduction stacks with similar sources.\n\nThis replaces equipment specialist."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "A spellforge gains a small reservoir of energy he can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to his level + his casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 5,
+          "name": "Expert Spellforge",
+          "description": "At 5th level, the spellforge gains the Creation sphere Potent Alteration talent as a bonus talent. Additionally, whenever the spellforge uses his alter ability to Destroy or Repair, he may add his casting ability modifier to the amount of damage dealt or healed.\n\nThis replaces skilled craftsman.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:blacksmith:techsmith",
+      "package": "spheres-class:blacksmith",
+      "name": "Techsmith",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/techsmith",
+      "replaces_features": [
+        "armor-feat",
+        "armor-feat-at-level",
+        "craft-magic-arms",
+        "craft-wondrous-item-feat",
+        "craft-wondrous-item-feat-at-level"
+      ],
+      "removed_features": [
+        "armor-feat-5th-level",
+        "craft-magic-arms",
+        "craft-wondrous-item-feat-3rd-level"
+      ],
+      "removed_feature_clauses": [
+        "Craft Wondrous Item feat gained at 3rd level",
+        "Craft Magic Arms",
+        "Armor feat gained at 5th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Insights",
+          "description": "A techsmith can select a technical insight (as a technician) in place of a smithing insight. The techsmith must meet the prerequisites of the technical insight, and cannot select a technical insight that requires prerequisite technician levels unless those levels are gained from another source."
+        },
+        {
+          "level": 3,
+          "name": "Trapfinding",
+          "description": "At 3rd level, a techsmith adds 1/2 his level on Perception checks to locate traps and on all Disable Device checks (minimum +1). The techsmith can use Disable Device to disarm magic traps.\n\nThis replaces the Craft Wondrous Item feat gained at 3rd level."
+        },
+        {
+          "level": 5,
+          "name": "Technical Maintenance",
+          "description": "At 5th level, the techsmith can perform the following maintenance:"
+        },
+        {
+          "level": 1,
+          "name": "Technical Improvement",
+          "description": "The techsmith gives one technical improvement from the technician’s invention list to one piece of the ally’s worn equipment. The techsmith must choose from those improvements that he meets the prerequisites for. These improvements are custom tailored to the ally in question, and provide the listed penalties to anyone other than the person they were designed for. These improvements cease to function if the maintenance is not maintained each day. This maintenance can be given to the same ally multiple times through the Rapid Maintenance class feature, selecting a different improvement and even possibly a different piece of equipment per maintenance.\n\nThis replaces the Craft Magic Arms and Armor feat gained at 5th level."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

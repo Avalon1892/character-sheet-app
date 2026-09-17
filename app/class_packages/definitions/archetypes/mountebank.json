@@ -1,0 +1,205 @@
+{
+  "version": 1,
+  "class_key": "spheres-class:mountebank",
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:mountebank:back-alley-grifter",
+      "package": "spheres-class:mountebank",
+      "name": "Back Alley Grifter",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/back-alley-grifter",
+      "replaces_features": [
+        "",
+        "level-social-talents",
+        "master-trickster",
+        "natural-scoundrel",
+        "shade-stepper",
+        "social-talents",
+        "swift-veil",
+        "thiefs-mark",
+        "trick-casting"
+      ],
+      "removed_features": [
+        "master-trickster",
+        "natural-scoundrel",
+        "shade-stepper",
+        "swift-veil",
+        "thiefs-mark",
+        "trick-casting"
+      ],
+      "removed_feature_clauses": [
+        "natural scoundrel",
+        "thief’s mark",
+        "trick casting",
+        "swift veil",
+        "master trickster",
+        "shade stepper"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Bare Knuckles",
+          "description": "The back alley grifter gains her choice of Boxing, Brute, or Open Hand as a bonus sphere. If she already possesses Boxing, Brute, or Open Hand, she can choose to gain either a sphere she does not have or a talent from the sphere she does possess. This ability replaces natural scoundrel."
+        },
+        {
+          "level": 1,
+          "name": "Tension",
+          "description": "The back alley grifter gains the tension and tension technique class features, using her casting modifier in place of her Constitution modifier (if it would be different) when determining the amount of tension she can possess and the effects of her tension techniques. In addition, a back alley grifter gains the following tension techniques in place of stalwart form and rapid pummel: 1 tension:"
+        },
+        {
+          "level": 1,
+          "name": "Disorientating Fist",
+          "description": "Whenever a back alley grifter successfully attacks a creature with an unarmed strike, that creature must make a successful Reflex saving throw or be treated as flat footed for 1 round. 3 tension:"
+        },
+        {
+          "level": 1,
+          "name": "Veiled Follow-Up",
+          "description": "Once per turn, whenever a back alley grifter has hidden her spellcasting with her veiled casting ability, she can spend a swift action to make an unarmed strike against a creature within her reach; this attack is treated as an attack action for the purpose of feats and talents. This ability replaces thief’s mark."
+        },
+        {
+          "level": 2,
+          "name": "Striker Arts",
+          "description": "At 2nd level and every four levels afterwards, a back alley grifter can select a striker art of her choice in place of a social talent, treating her back alley grifter level as though it was her striker level for the purpose of which striker talents she can select and their effects. She also treats her back alley grifter level as her striker level for the purpose of being able to select the Extra Striker Talent feat."
+        },
+        {
+          "level": 1,
+          "name": "Speed Veil (Requires Back Alley Grifter 6)",
+          "description": "The back alley grifter can use her veiled follow-up tension technique as a free action."
+        },
+        {
+          "level": 1,
+          "name": "Veiled Pummeling (Requires Back Alley Grifter 10)",
+          "description": "Whenever the back alley grifter uses her veiled follow-up tension technique, she can spend an additional 2 tension to make a second attack with an unarmed strike, although this second attack takes a -2 penalty. This ability alters the 2nd, 6th, 10th, 14th, and 18th level social talents."
+        },
+        {
+          "level": 3,
+          "name": "Tension Boost",
+          "description": "At 3rd level, a back alley grifter gains 1 tension at the start of her first turn in combat (including surprise rounds). At 7th level and every six levels thereafter, she gains an additional tension at the start of her first turn in combat. This ability replaces trick casting, swift veil, and master trickster."
+        },
+        {
+          "level": 11,
+          "name": "Rising Tension",
+          "description": "At 11th level, a back alley grifter gains 1 tension at the start of her turn. At 16th level, she instead gains 2 tension at the start of her turn. This ability replaces shade stepper."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mountebank:mental-manipulator",
+      "package": "spheres-class:mountebank",
+      "name": "Mental Manipulator",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/mental-manipulator",
+      "replaces_features": [
+        "advanced-trickery",
+        "master-trickster",
+        "natural-scoundrel",
+        "trickster-training"
+      ],
+      "removed_features": [
+        "advanced-trickery",
+        "master-trickster",
+        "natural-scoundrel",
+        "trickster-training"
+      ],
+      "removed_feature_clauses": [
+        "trickster training",
+        "natural scoundrel",
+        "advanced trickery",
+        "master trickster"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Mastermind Training",
+          "description": "A mountebank gains the Mind sphere as a bonus magic talent and uses her class level as her caster level with the Mind sphere. This stacks normally with caster levels gained from other sources. This ability replaces trickster training."
+        },
+        {
+          "level": 1,
+          "name": "Dominant Personality",
+          "description": "A mountebank must select the command talent from the Mind sphere with the first talent they gain from this class. This ability replaces natural scoundrel."
+        },
+        {
+          "level": 5,
+          "name": "Controlling Enhancement",
+          "description": "Whenever a mountebank forces a creature to make an attack roll with the command talent’s greater charm or powerful charm effect, that creature’s attack roll gains a +1 bonus to attack rolls and a +2 bonus to damage rolls. At 5th level and every four levels afterwards, this bonus increases by +1/+2 (to a maximum of +5/+10 at 17th level)."
+        },
+        {
+          "level": 9,
+          "name": "Advanced Mind Control",
+          "description": "At 9th level, whenever a mental manipulator successfully feints against a creature using her trick casting class feature, she can delay the saving throw that it would normally gain from the command talent’s effect for 1 round. This ability replaces advanced trickery."
+        },
+        {
+          "level": 13,
+          "name": "Genius Mind Control",
+          "description": "At 13th level, whenever a mental manipulator successfully feints against a creature using her trick casting class feature, if she used command talent’s greater charm effect, she can instead treat it as the powerful charm effect without spending an additional spell point, even if she does not have the powerful charm talent. This ability replaces master trickster."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mountebank:phantom-thief",
+      "package": "spheres-class:mountebank",
+      "name": "Phantom Thief",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/phantom-thief-archetype",
+      "replaces_features": [
+        "natural-scoundrel",
+        "social-talents",
+        "thiefs-mark"
+      ],
+      "removed_features": [
+        "natural-scoundrel",
+        "thiefs-mark"
+      ],
+      "removed_feature_clauses": [
+        "natural scoundrel",
+        "thief’s mark"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Scoundrel’s Touch",
+          "description": "A phantom thief must select the Scout sphere with the first talent they gain from this class. This ability replaces natural scoundrel."
+        },
+        {
+          "level": 1,
+          "name": "Analytical Gaze",
+          "description": "At 1st level, whenever a phantom thief successfully identifies a creature with the scout ability of the Scout sphere, she gains a +2 circumstance bonus to damage rolls against the analyzed creature for 1 minute. In addition, the phantom thief does not take the normal -5 penalty when using the scout ability. A phantom thief can only use this ability against a creature a number of times equal to her casting ability modifier every 24 hours. At 5th level and every four levels afterwards, this bonus increases by +2 (to a maximum of +10 at 17th level). This ability replaces thief’s mark."
+        },
+        {
+          "level": 1,
+          "name": "Rogue Talents",
+          "description": "A phantom thief can select rogue talents (chained or unchained) in place of social talents, treating her phantom thief level as her rogue level for the purpose of their effects. She cannot select talents which modify sneak attack unless she possesses sneak attack from another source. This ability alters social talents."
+        }
+      ],
+      "detected_systems": [
+        "rogue_talent"
+      ]
+    }
+  ]
+}

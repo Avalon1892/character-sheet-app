@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "key": "cavalier",
+  "class_key": "pathfinder-class:cavalier",
+  "class_name": "Cavalier",
+  "governing_ability": "charisma",
+  "optional_blocks": ["inquisitor_features", "animal_companion"],
+  "external_systems": [
+    "cavalier_order",
+    "cavalier_challenge",
+    "cavalier_mount",
+    "cavalier_tactician",
+    "cavalier_banner"
+  ],
+  "resource_modules": [
+    {
+      "key": "cavalier_tactics",
+      "title": "Cavalier Tactics",
+      "governing_ability": "charisma",
+      "resources": [
+        {
+          "key": "tactician",
+          "name": "Tactician",
+          "feature_tokens": ["tactician", "greater-tactician", "master-tactician"],
+          "progression": "cavalier_tactician_uses",
+          "description": "Daily uses of Tactician. Record the teamwork feat shared with allies in the choice field.",
+          "custom_choice_label": "Shared teamwork feat"
+        },
+        {
+          "key": "mounted_charge",
+          "name": "Mounted Charge Applies",
+          "feature_tokens": ["cavalier-s-charge", "mighty-charge", "supreme-charge"],
+          "progression": "one",
+          "description": "Toggle while making the Cavalier's Charge from the class mount; its attack and Armor Class adjustments feed the sheet.",
+          "can_activate": true,
+          "tracks_uses": false,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": false
+        },
+        {
+          "key": "banner_fear",
+          "name": "Banner vs. Fear Applies",
+          "feature_tokens": ["banner", "greater-banner"],
+          "progression": "one",
+          "description": "Toggle when an ally can see the Cavalier's banner and the morale bonus against fear applies.",
+          "can_activate": true,
+          "tracks_uses": false,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": false
+        },
+        {
+          "key": "banner_charge",
+          "name": "Banner Charge Applies",
+          "feature_tokens": ["banner", "greater-banner"],
+          "progression": "one",
+          "description": "Toggle while charging when the Cavalier can see the displayed banner; its morale attack bonus feeds the sheet.",
+          "can_activate": true,
+          "tracks_uses": false,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": false
+        }
+      ]
+    }
+  ],
+  "passive_effects": [
+    {
+      "key": "cavalier_charge_attack",
+      "feature_tokens": ["cavalier-s-charge", "mighty-charge", "supreme-charge"],
+      "targets": ["attack"],
+      "target_family": "",
+      "progression": "two",
+      "bonus_type": "untyped",
+      "source": "Cavalier's Charge",
+      "minimum_level": 3,
+      "requires_resource_active": "mounted_charge"
+    },
+    {
+      "key": "cavalier_charge_ac",
+      "feature_tokens": ["cavalier-s-charge", "mighty-charge", "supreme-charge"],
+      "targets": ["armor_class"],
+      "target_family": "",
+      "progression": "two",
+      "bonus_type": "untyped",
+      "source": "Cavalier's Charge",
+      "minimum_level": 3,
+      "requires_resource_active": "mounted_charge"
+    },
+    {
+      "key": "cavalier_banner_fear",
+      "feature_tokens": ["banner", "greater-banner"],
+      "targets": ["will"],
+      "target_family": "",
+      "progression": "cavalier_banner_bonus",
+      "bonus_type": "morale",
+      "source": "Cavalier Banner vs. Fear",
+      "minimum_level": 5,
+      "requires_resource_active": "banner_fear"
+    },
+    {
+      "key": "cavalier_banner_charge",
+      "feature_tokens": ["banner", "greater-banner"],
+      "targets": ["attack"],
+      "target_family": "",
+      "progression": "cavalier_banner_charge_bonus",
+      "bonus_type": "morale",
+      "source": "Cavalier Banner on Charge",
+      "minimum_level": 5,
+      "requires_resource_active": "banner_charge"
+    }
+  ],
+  "bonus_feat_levels": [1, 6, 9, 9, 12, 17, 17, 18],
+  "bonus_feat_label": "Cavalier teamwork and bonus feats",
+  "notes": "Order selection, challenge uses and target state, Tactician, charge mode, banner benefits, bonus-feat budget, and the retained Mount companion are modular systems."
+}

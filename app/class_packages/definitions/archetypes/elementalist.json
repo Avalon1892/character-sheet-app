@@ -1,0 +1,1047 @@
+{
+  "version": 1,
+  "class_key": "spheres-class:elementalist",
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:elementalist:admixture-savant",
+      "package": "spheres-class:elementalist",
+      "name": "Admixture Savant",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/admixture-savant",
+      "replaces_features": [
+        "bonus-combat-feats",
+        "but-counts-as-favored-element-for-stacking-purposes",
+        "dodge-bonus",
+        "energy-body",
+        "evasion",
+        "favored-element",
+        "improved-evasion"
+      ],
+      "removed_features": [
+        "bonus-combat-feats",
+        "but-counts-as-favored-element-for-stacking-purposes",
+        "dodge-bonus",
+        "energy-body",
+        "evasion",
+        "favored-element",
+        "improved-evasion"
+      ],
+      "removed_feature_clauses": [
+        "evasion",
+        "dodge bonus",
+        "bonus combat feats",
+        "favored element",
+        "but counts as favored element for stacking purposes",
+        "improved evasion",
+        "energy body"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "The admixture savant loses Acrobatics (Dex), Bluff (Cha), Climb (Str), Intimidate (Cha), and Swim (Str) as class skills and gains Knowledge (all) (Int) as class skills."
+        },
+        {
+          "level": 2,
+          "name": "Admixture Pool",
+          "description": "At 2nd level, the admixture savant gains the Admixture talent as a bonus talent.\n\nAdditionally, he gains a pool of admixture points equal to his level. These points may be used to remove the casting time increase from the Admixture talent or to reduce the spell point cost of a metamagic feat by one spell point per admixture point spent.\n\nThis ability replaces evasion and dodge bonus."
+        },
+        {
+          "level": 2,
+          "name": "Bonus Feat",
+          "description": "The admixture savant may select a metamagic feat or any feat with the casting prerequisite for which he qualifies at 2nd level and every 4 levels thereafter.\n\nThis replaces bonus combat feats."
+        },
+        {
+          "level": 3,
+          "name": "Intense Study",
+          "description": "At 3rd level, the admixture savant may study a target that he can see as a move action. The admixture savant adds 1/2 his admixture savant level to all damage dealt by destructive blasts to his studied target until he studies another target.\n\nAt 9th level, this bonus damage increases to become equal to his admixture savant level and he may study a target as a swift action.\n\nAt 15th level, this bonus damage increases to become equal to 1.5 times his admixture savant level.\n\nThis ability replaces favored element, but counts as favored element for stacking purposes."
+        },
+        {
+          "level": 11,
+          "name": "Flexibility",
+          "description": "At 11th level, the admixture savant may spend 10 minutes practicing to gain a single bonus talent from the Destruction sphere. He retains use of this talent until the next time he rests to regain spell points or he spends 10 minutes practicing to replace it with another talent.\n\nThis ability replaces improved evasion."
+        },
+        {
+          "level": 20,
+          "name": "Metamagic Master",
+          "description": "At 20th level, the admixture adept reduces the spell point cost of any metamagic feat applied to a destructive blast by 1 (minimum 0).\n\nThis replaces energy body.\n\nClass Skills: The admixture savant loses Acrobatics, Bluff, Climb, Intimidate, and Swim as class skills and gains all Knowledge skills, taken individually, as class skills.\n\nCasting Ability Modifier: The admixture savant uses Intelligence as his casting ability modifier.\n\nAdmixture Pool (Su): At 2nd level, the admixture savant gains the Admixture talent as a bonus talent. If the admixture savant already possesses the Admixture talent, he may instead select another Destruction talent as a bonus talent.\n\nAdditionally, he gains a pool of admixture points equal to his level. These points may be used to remove the casting time increase from the Admixture talent or to reduce the spell point cost of a metamagic feat by one spell point per admixture point spent.\n\nThis ability replaces evasion and dodge bonus.\n\nBonus Feat: The admixture savant may select a metamagic feat or any feat with the casting prerequisite for which he qualifies at 2nd level and every 4th levels thereafter.\n\nThis replaces bonus combat feats.\n\nIntense Study (Su): At 3rd level, the admixture savant may study a target that he can see as a move action. The admixture savant adds 1/2 his admixture savant level to all damage dealt by destructive blasts to his studied target for 1 minute per admixture savant level or until he studies another target.\n\nAt 9th level, this bonus damage increases to become equal to his admixture savant level and he may study a target as a swift action.\n\nAt 15th level, this bonus damage increases to become equal to 1.5 times his admixture savant level.\n\nThis ability replaces favored element.\n\nFlexibility (Ex): At 11th level, the admixture savant may spend 10 minutes practicing to gain a single bonus talent from the Destruction sphere. He retains use of this talent until the next time he rests to regain spell points or he spends 10 minutes practicing to replace it with a different talent.\n\nThis ability replaces improved evasion.\n\nMetamagic Master (Ex): At 20th level, the admixture adept reduces the spell point cost of any metamagic feat applied to a destructive blast by 1, to a minimum of 0.\n\nThis replaces energy body.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:elementalist:arcanophage",
+      "package": "spheres-class:elementalist",
+      "name": "Arcanophage",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/arcanophage",
+      "replaces_features": [
+        "bonus-combat-feats",
+        "dodge-bonus",
+        "elemental-defense",
+        "energy-body",
+        "favored-element",
+        "weave-energy"
+      ],
+      "removed_features": [
+        "bonus-combat-feats",
+        "dodge-bonus",
+        "elemental-defense",
+        "energy-body",
+        "favored-element",
+        "weave-energy"
+      ],
+      "removed_feature_clauses": [
+        "weave energy",
+        "bonus combat feats",
+        "favored element",
+        "dodge bonus",
+        "elemental defense",
+        "energy body"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Spell Mimicry",
+          "description": "At 1st level, an arcanophage can intuitively understand magic that they see in practice. When he successfully identifies a sphere effect, as an immediate action he can gain knowledge of 1 + 1 per 3 class levels talents used in that effect, to a maximum of his casting ability modifier, used in that effect. This knowledge is retained for 1 minute per class level. If the arcanophage would gain talents in excess of his CAM through another use of this ability, he must choose which previously gained talents to lose until their total mimicked talents is reduced to his CAM. An arcanophage cannot choose to lose a talent that is a prerequisite for another talent gained from this ability. Any sphere effects that use talents gained from this ability use the arcanophage’s class level in place of his caster level and increase their wild magic chance by 10% per talent. This caster level and wild magic chance stack with those gained from other sources. This ability replaces weave energy."
+        },
+        {
+          "level": 2,
+          "name": "Bonus Feat",
+          "description": "An arcanophage may select a wild magic feat or any feat with the casting prerequisite for which he qualifies at 2nd level and every 4th level thereafter.\n\nThis replaces bonus combat feats."
+        },
+        {
+          "level": 3,
+          "name": "Stifle Spells",
+          "description": "At 3rd level, the arcanophage gains the Counterspell feat even if he does not meet the prerequisites and may use his spell mimicry ability to gain knowledge of any effects targeted by the counterspell as part of the action required to counterspell. At 9th level, the arcanophage gains the Improved Counterspell feat even if he does not meet the prerequisites and gains a +2 bonus to MSB when using Counterspell. At 15th level, the arcanophage gains the Greater Counterspell feat even if he does not meet the prerequisites and his bonus to MSB checks to dispel increases to +4.\n\nThis replaces favored element."
+        },
+        {
+          "level": 4,
+          "name": "Resist Magic",
+          "description": "At 4th level, an arcanophage gains a +1 bonus to saving throws against magic, spells, spell-like abilities, and sphere effects. This increases by one for every 4 levels thereafter, to a maximum of +5 at 20th level.\n\nThis replaces dodge bonus."
+        },
+        {
+          "level": 5,
+          "name": "Spell Shield",
+          "description": "At 5th level, an arcanophage can grant himself spell resistance against the effects of any sphere from which he currently has gained a talent from his spell mimicry ability equal to 5 + his class level. He may raise or lower this resistance as an immediate action. At 11th level, this increases to 10 + class level and to 15 + class level at 17th level.\n\nThis replaces elemental defense."
+        },
+        {
+          "level": 20,
+          "name": "Mimic Master",
+          "description": "At 20th level, the arcanophage retains knowledge of talents gained from spell mimicry until replacing them with subsequent uses of the ability and ignores the increase to wild magic chance from using talents gained from spell mimicry.\n\nThis replaces energy body."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:elementalist:arcanopulser",
+      "package": "spheres-class:elementalist",
+      "name": "Arcanopulser",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/arcanopulser",
+      "replaces_features": [
+        "",
+        "combat-feats",
+        "combat-feats-at",
+        "dodge-bonus",
+        "elemental-defense",
+        "elemental-movement",
+        "energy-body",
+        "favored-element",
+        "level",
+        "magic-talents",
+        "weave-energy"
+      ],
+      "removed_features": [
+        "6th-level",
+        "combat-feats-2nd",
+        "dodge-bonus",
+        "elemental-defense",
+        "elemental-movement",
+        "energy-body",
+        "favored-element",
+        "weave-energy"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Pathways",
+          "description": "The following pathways are available to an arcanopulser."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:elementalist:earth-warrior",
+      "package": "spheres-class:elementalist",
+      "name": "Earth Warrior",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/earth-warrior",
+      "replaces_features": [
+        "elemental-defense",
+        "elemental-movement",
+        "energy-body",
+        "favored-element"
+      ],
+      "removed_features": [
+        "elemental-movement",
+        "energy-body",
+        "favored-element"
+      ],
+      "removed_feature_clauses": [
+        "favored element",
+        "elemental movement",
+        "energy body",
+        "Favored Element",
+        "Elemental Movement",
+        "Energy Body"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 3,
+          "name": "Earth Focus",
+          "description": "At 3rd level, an earth warrior adds 1/2 his earth warrior level to all damage dealt with destructive blasts from the stone blast type group. At 9th level, this bonus damage increases to become equal to his earth warrior level, and the earth warrior may use his class level as his caster level when using the (earth) package from the Nature sphere. This stacks normally with caster levels gained from other sources.\n\nAt 15th level, the bonus damage increases to 1.5 times his earth warrior level, and he gains a +2 bonus to his caster level with the (earth) package from the Nature sphere.\n\nThis replaces favored element."
+        },
+        {
+          "level": 5,
+          "name": "Hard as Stone",
+          "description": "At 5th level, an earth warrior gains DR 1/adamantine. This increases to DR 2/adamantine at 11th level, and DR 3/adamantine at 17th level.\n\nThis alters elemental defense."
+        },
+        {
+          "level": 7,
+          "name": "Earth Movement",
+          "description": "At 7th level, an earth warrior gains a 15 feet burrow speed. This improves to a 30 feet burrow speed at 13th level, and the earth warrior gains tremorsense 10 feet. At 19th level the burrow speed increases to 45 feet and the tremorsense increases to 20 feet.\n\nThis replaces elemental movement."
+        },
+        {
+          "level": 20,
+          "name": "Earth Body",
+          "description": "At 20th level, the earth warrior’s body has become as hard as stone. His damage reduction increases to DR 15/adamantine.\n\nThis replaces energy body.\n\nSpheres of Power: Expanded Options\n\n$4.99\n\nEarth Focus (Su): At 3rd level, an earth warrior adds 1/2 their elementalist level to all damage dealt with stone blasts. At 9th level, this bonus damage increases to become equal to their elementalist level, and the elementalist may use her class level as her caster level when using the Earth package from the Nature sphere. This stacks normally with caster levels gained from other sources.\n\nAt 15th level, the bonus damage increases to 1.5 times their elementalist level, and they gain a +2 bonus to their caster level with the Earth package from the Nature sphere.\n\nThis replaces Favored Element.\n\nHard as Stone (Ex): At 5th level, an earth warrior gains DR 1/adamantine. This increases to DR 2/adamantine at 11th level, and DR 3/adamantine at 17th level.\n\nThis modifies Elemental Defense.\n\nEarth Movement (Su): At 7th level, an earth warrior gains a 15 ft burrow speed. This improves to a 30 ft burrow speed at 13th level, and the earth warrior gains tremorsense 10 ft. At 19th level the burrow speed increases to 45 ft and the tremorsense increases to 20 ft.\n\nThis replaces Elemental Movement.\n\nEarth Body: At 20th level, the earth warrior’s body has becomes as hard as stone. His damage resistance increases to DR 15/adamantine.\n\nThis replaces Energy Body.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:elementalist:electrokinetic",
+      "package": "spheres-class:elementalist",
+      "name": "Electrokinetic",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/electrokinetic",
+      "replaces_features": [
+        "elemental-defense",
+        "elemental-movement",
+        "favored-element",
+        "weave-energy"
+      ],
+      "removed_features": [
+        "elemental-movement",
+        "weave-energy"
+      ],
+      "removed_feature_clauses": [
+        "weave energy",
+        "elemental movement"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Electrokinesis",
+          "description": "An electrokinetic gains the Destruction sphere, the Telekinesis sphere, and the Electric Blast Destruction talent as bonus magic talents, but also gains the Energy Focus (electric blast) and Limited Telekinesis (metal objects) drawbacks without gaining bonus talents from them. If the electrokinetic already possesses the Destruction sphere or the Telekinesis sphere, he does not gain those spheres but also does not gain their connected drawbacks. If he already possesses the Electric Blast talent, he gains one free Destruction talent of his choice. The electrokinetic uses his class level as his caster level when using a destructive blast with an electric type blast type, and when using telekinesis on metal objects. This ability replaces weave energy."
+        },
+        {
+          "level": 1,
+          "name": "Electrokinetic Stunts",
+          "description": "An electrokinetic can select electrokinetic stunts for which he qualifies in place of elementalist bonus feats. All stunts are supernatural abilities. Unless otherwise specified an electrokinetic may only select any given electrokinetic stunt once."
+        },
+        {
+          "level": 1,
+          "name": "Bioelectric Manipulation",
+          "description": "The electrokinetic may treat living creatures as metal objects for the purposes of his telekinesis and electrokinetic stunts."
+        },
+        {
+          "level": 1,
+          "name": "Electric Charge",
+          "description": "When the electrokinetic uses his telekinesis to attack a target with a metal Bludgeon, he may spend a swift action to affect that target as if they had also been struck by his destructive blast, including any (blast type) talents, additional talents and spell points that he applies to it. This destructive blast must deal electricity damage, and cannot have a (blast shape) talent applied to it."
+        },
+        {
+          "level": 1,
+          "name": "Electroreception",
+          "description": "The electrokinetic can sense electricity around him, including bioelectricity. He gains blindsense 60 feet, except he can only sense sources of electricity and living creatures, and does not require line of effect to sense these things with his blindsense."
+        },
+        {
+          "level": 1,
+          "name": "Electrotherapy",
+          "description": "By modulating the electricity always coursing through the electrokinetic, he can heal himself faster. His natural healing rate for hit points and ability score damage doubles, and he also doubles any healing from the treat deadly wounds and long term care uses of the Heal skill. In addition, after a night of rest he may remove a single point of ability drain from one ability score, or two points after a day of complete bedrest. Lastly, whenever he would take ability damage or ability drain, reduce the damage by 1 (minimum 0)."
+        },
+        {
+          "level": 1,
+          "name": "Horizon",
+          "description": "The electrokinetic learns to stretch the limits of his electrokinetic power, reaching further with it. When he uses a destructive blast that deals electricity damage (or sonic damage if he possesses the thunderclap class feature) or he uses telekinesis on a metal object, increase the range of the effect by one step (close to medium, medium to long). This stunt cannot extend the range of these effects beyond long range. This may be taken multiple times."
+        },
+        {
+          "level": 1,
+          "name": "Lightning Circuit",
+          "description": "Once per round when the electrokinetic would resist electricity damage with elemental defense he may redirect the electric charge as a ray, firing it back at its source as a ranged touch attack with a range equal to his destructive blast range. If the ray hits it deals damage equal to the damage resisted by elemental defense."
+        },
+        {
+          "level": 1,
+          "name": "Particle Blade",
+          "description": "As a swift action the electrokinetic can form a sharp, flexible weapon out of dust, sand and grit, drawing out metallic particles and accumulating others with static. This particle blade is either a light melee weapon or two handed melee weapon, chosen when he forms it. It deals slashing damage equal to 1d6 per odd electrokinetic level. The particle blade immediately dissipates if removed from his hand."
+        },
+        {
+          "level": 1,
+          "name": "Wall Bind",
+          "description": "As a standard action, the electrokinetic can pass a looping electric current through an object or creature that binds it to a surface. This effect has the same range as his telekinesis and suffers the same size restriction, and the target must be touching a wall or floor. The target must succeed at a Reflex save (DC 10 + 1/2 his electrokinetic level + his casting ability modifier) or become entangled and anchored in place for a number of rounds equal to his casting ability modifier (minimum 1). An entangled creature can attempt to move by attempting a Strength or Escape Artist check equal to the Reflex DC at the beginning of their turn. On a success they can move for that turn, but remain entangled so long as they remain in contact with a wall or floor."
+        },
+        {
+          "level": 3,
+          "name": "Favored Element",
+          "description": "An electrokinetic must select electricity as his favored element at 3rd level. At 9th and 15th level his bonus damage increases as normal, but he does not get to select additional elements. This ability alters favored element."
+        },
+        {
+          "level": 5,
+          "name": "Elemental Defense",
+          "description": "At 5th level, the electrokinetic gains resistance 10 to electricity and sonic. At 11th level, this resistance increases to 15. At 17th level, this resistance increases to 20. When he gains elemental body at level 20, this resistance increases to 25. This ability alters elemental defense."
+        },
+        {
+          "level": 7,
+          "name": "Thunderbolt Wings",
+          "description": "At 7th level, an electrokinetic gains a 20 feet fly speed with average maneuverability. At levels 13 and 19, the electrokinetic’s fly speed increases by 20 feet and his maneuverability improves by one step. This ability replaces elemental movement."
+        },
+        {
+          "level": 9,
+          "name": "Thunderclap",
+          "description": "At 9th level electrokinetic gains Thunder Blast as a bonus magic talent, and may use his class level as his caster level when making destructive blasts that deal sonic damage. An electrokinetic with the Energy Focus (electric blast) drawback may make destructive blasts that deal either electricity or sonic damage."
+        },
+        {
+          "level": 1,
+          "name": "New Feats",
+          "description": "Extra Electrokinetic Stunt: Prerequisite: Electrokinetic stunt class feature."
+        },
+        {
+          "level": 1,
+          "name": "Benefit",
+          "description": "You gain an additional electrokinetic stunt for which you qualify. You may take this feat multiple times. The effects stack"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:elementalist:elemontalist",
+      "package": "spheres-class:elementalist",
+      "name": "Elemontalist",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/elemontalist",
+      "replaces_features": [
+        "dodge-bonus",
+        "elemental-defense",
+        "energy-body",
+        "favored-element"
+      ],
+      "removed_features": [
+        "dodge-bonus",
+        "energy-body"
+      ],
+      "removed_feature_clauses": [
+        "dodge bonus",
+        "energy body"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Limelife",
+          "description": "At 1st level, whenever the elemontalist casts a sphere effect that deals energy damage, the elemontalist can change the damage dealt by that sphere effect to acid. When used to change the damage dealt by a destructive blast, this effect changes that destructive blast’s blast type to the acid blast type group.\n\nNote: For the purposes of this ability, energy damage is fire, cold, acid, electricity, and sonic."
+        },
+        {
+          "level": 1,
+          "name": "Special",
+          "description": "When choosing this archetype, a player may not want to be a mighty elemontalist, or lemons just are not in the setting. For example, players may want to be a cool blue raspberry dude, a spicy hot poblanomancer, or an electric currant master. When choosing this archetype, players can exchange the acid theme and abilities from this archetype for cold, fire, or electricity respectively (sonic is not an appropriate choice for this archetype). Doing so changes all abilities granted by this archetype to that energy type or appropriate blast type group (fire blast type, cold blast type, and electricity blast type respectively).\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        },
+        {
+          "level": 3,
+          "name": "Citric Focus",
+          "description": "At 3rd level, the elemontalist adds 1/2 his elemontalist level to all damage dealt with destructive blasts from the acid blast type group. At 9th level, this bonus damage increases to become equal to his elemontalist level.\n\nThis alters favored element."
+        },
+        {
+          "level": 4,
+          "name": "Hearty Rind",
+          "description": "At 4th level, an elemontalist’s skin becomes thicker, like a hearty citrus fruit. The elemontalist gains a +1 natural armor bonus which stacks with other sources of natural armor. This bonus increases by 1 every 4 levels thereafter. The elemontalist retains the benefits of this ability even while under the effects of a polymorph effect (or other effect that would suppress abilities reliant on the target’s natural form).\n\nThis ability replaces dodge bonus."
+        },
+        {
+          "level": 5,
+          "name": "Elemontal Defense",
+          "description": "At 5th level, an elemontalist gains resistance 10 to acid and a +2 bonus on saving throws against disease and poison effects. At 11th level, this resistance increases to 15, and the bonus on saving throws increases to +4. At 17th level, this resistance increases to 20, and the bonus on saving throws increases to +6.\n\nThis alters elemental defense."
+        },
+        {
+          "level": 6,
+          "name": "Sugar, Lemon, and Water",
+          "description": "The elemontalist is an innovator, always looking to create the next and greatest mixture. At 6th level, and every 4 levels thereafter, the elemontalist gains an alchemist discovery, using his elemontalist level in place of alchemist level for meeting prerequisites and casting ability modifier in place of Intelligence for determining their effects. His elemontalist level stacks with his alchemist level for the purpose of determining effective alchemist level for qualifying for discoveries."
+        },
+        {
+          "level": 20,
+          "name": "Fruit Almighty",
+          "description": "At 20th level, the elemontalist ascends to the zenith of citrus might. The elemontalist’s type changes to plant, and he acquires all plant traits. In addition, the elemontalist gains immunity to acid.\n\nThis ability replaces energy body."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:elementalist:flame-warrior",
+      "package": "spheres-class:elementalist",
+      "name": "Flame Warrior",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/flame-warrior",
+      "replaces_features": [
+        "elemental-defense",
+        "elemental-movement",
+        "energy-body",
+        "favored-element"
+      ],
+      "removed_features": [
+        "elemental-defense",
+        "elemental-movement",
+        "energy-body",
+        "favored-element"
+      ],
+      "removed_feature_clauses": [
+        "favored element",
+        "elemental defense",
+        "elemental movement",
+        "energy body",
+        "Favored Element",
+        "Elemental Defense",
+        "Elemental Movement",
+        "Energy Body"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 3,
+          "name": "Fire Focus",
+          "description": "At 3rd level, a flame warrior adds 1/2 his flame warrior level to all damage dealt with destructive blasts from the fire blast type group.\n\nAt 9th level, this bonus damage increases to become equal to his flame warrior level, and the flame warrior may use his class level as his caster level when using the (fire) package from the Nature sphere. This stacks normally with caster levels gained from other sources.\n\nAt 15th level, the bonus damage increases to 1.5 times his flame warrior level, and he gains a +2 bonus to his caster level with the (fire) package from the Nature sphere.\n\nThis replaces favored element."
+        },
+        {
+          "level": 5,
+          "name": "Fire Defense",
+          "description": "At 5th level, a flame warrior gains fire resistance equal to 5 + his flame warrior level.\n\nThis replaces elemental defense."
+        },
+        {
+          "level": 7,
+          "name": "Fire Movement",
+          "description": "At 7th level, a flame warrior gains a 20 feet increase to his base land speed. This improves by another 20 feet at 13th and 19th levels.\n\nThis replaces elemental movement."
+        },
+        {
+          "level": 20,
+          "name": "Fire Body",
+          "description": "At 20th level, the flame warrior’s body has become infused with the power of fire. He gains immunity to fire, sneak attacks, and critical hits, and gains DR 10/magic.\n\nThis replaces energy body.\n\nSpheres of Power: Expanded Options\n\n$4.99\n\nFire Focus (Su): At 3rd level, a flame warrior adds 1/2 their elementalist level to all damage dealt with fire blasts.\n\nAt 9th level, This bonus damage increases to become equal to their elementalist level, and the elementalist may use his class level as his caster level when using the Fire package from the Nature sphere. This stacks normally with caster levels gained from other sources.\n\nAt 15th level, the bonus damage increases to 1.5 times their elementalist level, and they gain a +2 bonus to their caster level with the Fire package from the Nature sphere.\n\nThis replaces Favored Element.\n\nFire Defense (Ex): At 5th level, a flame warrior gains Fire Resistance equal to 5 + their elementalist level.\n\nThis replaces Elemental Defense.\n\nFire Movement (Su): At 7th level, a flame warrior gains a 20 ft increase to their base land speed. This improves by another 20 ft at 13th and 19th levels.\n\nThis replaces Elemental Movement.\n\nFire Body: At 20th level, the flame warrior’s body has become infused with the power of fire. He gains immunity to fire, sneak attacks, and critical hits, and gains DR 10/magic.\n\nThis replaces Energy Body.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:elementalist:geomancer",
+      "package": "spheres-class:elementalist",
+      "name": "Geomancer",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/geomancer",
+      "replaces_features": [
+        "favored-element",
+        "weave-energy"
+      ],
+      "removed_features": [
+        "favored-element",
+        "weave-energy"
+      ],
+      "removed_feature_clauses": [
+        "weave energy",
+        "favored element"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Weave Elements",
+          "description": "A geomancer gains the Nature sphere as a bonus sphere at 1st level, and uses his geomancer level as his caster level with that sphere. This stacks normally with caster levels gained from other sources.\n\nThis replaces weave energy."
+        },
+        {
+          "level": 3,
+          "name": "Favored Package",
+          "description": "At 3rd level, a geomancer chooses one of the packages from the Nature sphere and gains a +2 bonus to his caster level with that package. At 9th level, this bonus improves by an additional +2, and he may choose another package to gain a +2 bonus with. At 15th level, all previously chosen packages increase their caster level by another +2, and the geomancer may choose a third package to gain a +2 bonus.\n\nThis replaces favored element."
+        },
+        {
+          "level": 1,
+          "name": "New Feat",
+          "description": "Improved Favored Package: Prerequisites: Two favored packages (geomancer elementalist archetype)."
+        },
+        {
+          "level": 1,
+          "name": "Benefit",
+          "description": "Your second and third favored packages receive the same bonus as your first favored package."
+        },
+        {
+          "level": 1,
+          "name": "Spheres of Power",
+          "description": "Expanded Options"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:elementalist:martial-elementalist",
+      "package": "spheres-class:elementalist",
+      "name": "Martial Elementalist",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/martial-elementalist",
+      "replaces_features": [
+        "elementalists-bonus-combat-feats",
+        "proficiencies"
+      ],
+      "removed_features": [
+        "elementalists-bonus-combat-feats"
+      ],
+      "removed_feature_clauses": [
+        "elementalist’s bonus combat feats"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A martial elementalist may combine combat spheres and talents to create powerful martial techniques. Martial elementalists are considered Proficient combatants and use their casting ability modifier as their practitioner modifier.\n\nThis ability replaces the elementalist’s bonus combat feats.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps"
+        },
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Martial elementalists are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is the character’s first level in any class, they may select a martial tradition of their choice.\n\nThis alters proficiencies."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:elementalist:metal-warrior",
+      "package": "spheres-class:elementalist",
+      "name": "Metal Warrior",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/metal-warrior",
+      "replaces_features": [
+        "elemental-defense",
+        "elemental-movement",
+        "energy-body",
+        "favored-element"
+      ],
+      "removed_features": [
+        "elemental-defense",
+        "elemental-movement",
+        "energy-body",
+        "favored-element"
+      ],
+      "removed_feature_clauses": [
+        "favored element",
+        "elemental defense",
+        "elemental movement",
+        "energy body"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 3,
+          "name": "Conductive Focus",
+          "description": "At 3rd level, a metal warrior adds 1/2 his metal warrior level to all damage dealt with destructive blasts from the electric blast type group. At 9th level, this bonus damage increases to become equal to his metal warrior level, and the metal warrior may use his class level as his caster level when using the (metal) package from the Nature sphere. This stacks normally with caster levels gained from other sources.\n\nAt 15th level, the bonus damage increases to 1.5 times his metal warrior level, and he gains a +2 bonus to his caster level with the (metal) package from the Nature sphere.\n\nThis replaces favored element."
+        },
+        {
+          "level": 5,
+          "name": "Electric Defence",
+          "description": "At 5th level, a metal warrior gains electricity resistance equal to 5 + his metal warrior level.\n\nThis replaces elemental defense."
+        },
+        {
+          "level": 7,
+          "name": "Static Cling",
+          "description": "At 7th level, a metal warrior gains a 30 feet climb speed. This improves by 30 feet at 13th and 19th levels.\n\nThis replaces elemental movement."
+        },
+        {
+          "level": 20,
+          "name": "Electric Body",
+          "description": "At 20th level, the metal warrior’s body has become infused with the power of metal. He gains immunity to electricity, sneak attacks, and critical hits, and gains DR 10/ magic.\n\nThis replaces energy body."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:elementalist:natural-warrior",
+      "package": "spheres-class:elementalist",
+      "name": "Natural Warrior",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/natural-warrior",
+      "replaces_features": [
+        "elemental-defense",
+        "elemental-movement",
+        "energy-body",
+        "favored-element"
+      ],
+      "removed_features": [
+        "elemental-defense",
+        "elemental-movement",
+        "energy-body",
+        "favored-element"
+      ],
+      "removed_feature_clauses": [
+        "favored element",
+        "elemental defense",
+        "elemental movement",
+        "energy body"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 3,
+          "name": "Natural Focus",
+          "description": "At 3rd level, the natural warrior adds 1/2 his natural warrior level to all damage dealt with destructive blasts from the acid blast type group. At 9th level, this bonus damage increases to become equal to his natural warrior level, and the natural warrior may use his class level as his caster level when using the (plant) package from the Nature sphere. This stacks normally with caster levels gained from other sources.\n\nAt 15th level, the bonus damage increases to 1.5 times his natural warrior level, and he gains a +2 bonus to his caster level with the (plant) package from the Nature sphere.\n\nThis replaces favored element."
+        },
+        {
+          "level": 5,
+          "name": "Acid Defense",
+          "description": "At 5th level, a natural warrior gains acid resistance equal to 5 + his natural warrior level.\n\nThis replaces elemental defense."
+        },
+        {
+          "level": 7,
+          "name": "Home in the Wild",
+          "description": "At 7th level, a natural warrior gains woodland stride and trackless step, as the druid class features. At 13th level, the natural warrior gains immunity to poisons and diseases. At 19th level, the natural warrior gains timeless body, as the druid class feature.\n\nThis replaces elemental movement."
+        },
+        {
+          "level": 20,
+          "name": "Natural Body",
+          "description": "At 20th level, the natural warrior’s body has become infused with the power of nature. He gains immunity to acid, sneak attacks, and critical hits, and gains DR 10/ magic.\n\nThis replaces energy body."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:elementalist:sablesavant",
+      "package": "spheres-class:elementalist",
+      "name": "Sablesavant",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/sablesavant",
+      "replaces_features": [
+        "elemental-defense",
+        "elemental-movement",
+        "favored-element",
+        "weave-energy"
+      ],
+      "removed_features": [
+        "elemental-defense",
+        "elemental-movement",
+        "favored-element"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 11,
+          "name": "Sablesavant Gifts",
+          "description": "The following sablesavant gifts are available to the sablesavant archetype for elementalist. Unless otherwise stated, the saving throw DC of a sablesavant gift is equal to 10 + 1/2 the sablesavant’s class level + the sablesavant’s casting ability modifier.\n\nA sablesavant gift is a supernatural effect (unless otherwise stated).\n\nAmplified Harms (Su): Whenever the sablesavant damages a target within a magical darkness they created (such as a Dark sphere gloom or other effect), the sablesavant deals additional damage equal to 1/2 their sablesavant level. This additional damage is treated as part of the initial damaging effect and is not treated as a separate source (i.e. a 6th level sablesavant deals 14 fire damage with a destructive blast against a target within a gloom; the sablesavant would deal +3 damage, treating the total damage as 17).\n\nAmplified Harms, Destruction (requires 7th level): When dealing damage with a destructive blast, the additional damage dealt by the amplified harms sablesavant gift is instead equal to their sablesavant level (instead of 1/2).\n\nDarkness to Destruction (Su) (requires 5th level): As part of casting a destructive blast sphere effect, the sablesavant may choose 1 ongoing Dark sphere effect they created to dismiss, provided the sablesavant has line of sight to the effect and the effect is not being maintained through concentration. If they do, the sablesavant reduces the total spell point cost of the destructive blast by 1 and the Dark sphere ability is dismissed immediately after the destructive blast resolves.\n\nDeceptions (Ex): The sablesavant gains a bonus on Disguise and Stealth checks equal to 1/2 their sablesavant class level. This sablesavant treats this sablesavant gift as though it were the Deceitful, Skill Focus (Disguise), and Skill Focus (Stealth) feats for the purposes of prerequisites.\n\nMagic Talent: The sablesavant gains 1 bonus magic talent.\n\nOracle Revelation: The sablesavant gains 1 revelation chosen from the dark tapestry or shadow mystery, treating their sablesavant level as their oracle level when determining its effects. The sablesavant may use their casting ability modifier in place of their Charisma modifier when determining this revelation’s effects.\n\nPersonal Cloak (Sp): The sablesavant gains the ability to maintain a single cloak as a constant sphere effect; this cloak may only be granted (meld) options the sablesavant possesses. The sablesavant must pay any additional spell point costs for the cloak or its options as appropriate. The sablesavant may use their cloak sphere ability to select different options for this cloak, replacing the previously chosen options (instead of creating a new cloak effect).\n\nPhantom Step (Su) (requires 7th level): Whenever the sablesavant takes a move action to move, the sablesavant may treat up to 10 feet of that movement as teleportation. This teleportation may be taken at any point during their movement and cannot exceed the total movement they could normally make. The sablesavant must have line of sight to their destination and cannot teleport into an occupied space. This is a teleportation effect. This ability may also be used as part of using the charge, run, and withdraw actions. If performing a charge or run action, this allows the sablesavant to bypass a single 5-foot square obstacle (creature, object, etc.) as part of the action by teleporting “across” the obstacle; doing so allows the sablesavant to treat that single square as being empty for determining whether the sablesavant can take the charge or run action.\n\nSuffused Defense (Su): Choose 2 energy types, chosen between acid, cold, electricity, and fire. The sablesavant gains energy resistance 5 to the chosen energy types, increasing to 10 at 11th level, and 15 at 17th level. This sablesavant gift may be selected a second time; if selected a second time, the sablesavant also selects the 2 previously unchosen energy types, this energy resistance stacks with other forms of energy resistance, and the sablesavant gains the following augment which may be added to any gloom:\n\nAugment 1 sp [Shared Suffused Defense]: Allies within the gloom’s area gain the benefits of the sablesavant’s suffused defense class feature.\n\nSuffused Movement (Su): The sablesavant learns to manipulate their own shadow to assist them across terrain. The sablesavant chooses a movement mode from the list below. Each movement mode has reduced effects while in an area of bright light. This sablesavant gift may be selected multiple times, each time gaining a new movement mode.\n\nClinging Shadow: The sablesavant gains a climb speed equal to their base land speed and can climb without using their hands. In an area of bright light, this climb speed is reduced to 10 feet.\n\nDiving Shadow: The sablesavant gains a swim speed equal to their base land speed and can breathe water freely. In an area of bright light, this swim speed is reduced to 10 feet.\n\nShadowed Steps: The sablesavant increases their base land speed by +10 feet, +5 feet per 5 sablesavant levels and gains Nimble Moves as a bonus feat. In an area of bright light, this increase to base land speed is reduced to +5 feet, +5 feet per 10 sablesavant levels.\n\nWinged Shadow (requires 7th level): The sablesavant gains a fly speed with maneuverability (good) equal to 1/2 their base land speed and can always choose to fall slowly (this otherwise functions as a constant feather fall effect). In an area of bright light, this fly speed is reduced by 20 feet (minimum 10 feet).\n\nSablemixing: The sablesavant gains the Destruction sphere Admixture talent as a bonus talent. When casting a destructive blast that targets or whose area is within a gloom the sablesavant created (i.e. at least one target is within the gloom or the area is at least partially within the gloom), the sablesavant treats both (blast type) talents used as part of the Admixture talent as though they were from the same blast type group (allowing the sablesavant to use the Admixture talent without spending additional spell points or increasing the casting time).\n\nSablecasting: The sablesavant gains 1 bonus feat; this bonus feat must have either the Dark sphere or Destruction sphere as a prerequisite."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:elementalist:soul-adept",
+      "package": "spheres-class:elementalist",
+      "name": "Soul Adept",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/soul-adept",
+      "replaces_features": [
+        "bonus-feat-normally",
+        "bonus-feat-normally-at-level",
+        "elemental-defense",
+        "elemental-movement",
+        "energy-body",
+        "favored-element"
+      ],
+      "removed_features": [
+        "bonus-feat-normally-2nd-level",
+        "elemental-defense",
+        "elemental-movement",
+        "energy-body",
+        "favored-element"
+      ],
+      "removed_feature_clauses": [
+        "bonus feat normally gained at 2nd level",
+        "favored element",
+        "elemental defense",
+        "elemental movement",
+        "energy body"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A soul adept loses Escape Artist (Dex) as a class skill, and adds Knowledge (religion) (Int) to his list of class skills."
+        },
+        {
+          "level": 2,
+          "name": "Phantasmal Energy",
+          "description": "At 2nd level, a soul adept gains the Death sphere as a bonus magic talent.\n\nThis replaces the bonus feat normally gained at 2nd level."
+        },
+        {
+          "level": 3,
+          "name": "Weave the Ether",
+          "description": "At 3rd level, the soul adept gains Ghostly Admixture as a bonus feat, even if he does not meet the prerequisites, and may make admixtures even without the Admixture talent, so long as he uses the Ghostly Admixture feat. When using this feat, he uses the higher of his Destruction and Death caster levels for determining the effects of each sphere.\n\nAt 9th level, he adds 1/2 his class level to all damage dealt by Ghostly Admixture destructive blasts, and he no longer needs to spend the additional spell point detailed in the Ghostly Admixture feat.\n\nAt 15th level, he adds his full class level to all damage dealt by Ghostly Admixture destructive blasts.\n\nThis replaces favored element."
+        },
+        {
+          "level": 5,
+          "name": "Ghostly Defense",
+          "description": "At 5th level, the soul adept gains a +2 bonus to saving throws vs. death effects, diseases, mind-affecting effects, paralysis, poison, sleep effects, and stunning. These bonuses increase by 2 at 11th and 17th level.\n\nThis replaces elemental defense."
+        },
+        {
+          "level": 7,
+          "name": "Wraith Form",
+          "description": "At 7th level, the soul adept becomes incorporeal for a maximum number of rounds per day equal to his class level + his casting ability modifier, as the wraith class feature of the same name. If the soul adept gains this ability from any other source, their levels stack when determining the total number of rounds the soul adept may use this ability.\n\nThis replaces elemental movement."
+        },
+        {
+          "level": 20,
+          "name": "Spiritual Body",
+          "description": "At 20th level, the soul adept’s body becomes one with the spirit world. He gains immunity to death effects, sneak attacks, and critical hits, and gains DR 10/magic.\n\nThis replaces energy body.\n\nThe Necromancer's Handbook\n\n$4.99\n\nMost traditional elementalists focus on the four classical elements; earth, air, fire and water. But a rare few, sometimes known as soul adepts, instead focus on an energy they refer to as Ether; the primordial energy that suffuses and constitutes the Ethereal Plane and is the source of power for all manner of spirits, ghosts and entities. Mastering this bizarre energy grants them unsurpassed proficiency in all matters incorporeal, sometimes to the degree that the line between them and the spirits they study begins to blur.\n\nSkills: A soul adept loses Escape Artist as a class skill, and adds Knowledge (religion) to his list of class skills.\n\nPhantasmal Energy: At 2nd level, a soul adept gains the Death sphere as a bonus magic talent. If he already has access to the Death sphere, he gains a Death talent as a bonus magic talent.\n\nThis replaces the bonus feat normally gained at 2nd level.\n\nWeave the Ether (Su): At 3rd level, the soul adept gains Ghostly Admixture as a bonus feat, even if he does not meet the prerequisites, and may make admixtures even without the Admixture talent, so long as they use the Ghostly Admixture feat. When using this feat, he uses the higher of his Destruction and Death caster levels for determining the effects of each sphere.\n\nAt 9th level, he adds 1/2 his class level to all damage dealt by Ghostly Admixture blasts, and he no longer needs to spend the additional spell point detailed in the Ghostly Admixture feat.\n\nAt 15th level, he adds his full class level to all damage dealt by Ghostly Admixture blasts.\n\nThis replaces favored element.\n\nGhostly Defense (Su): At 5th level, the soul adept gains a +2 bonus to saving throws vs. mind-affecting effects, death effects, disease, paralysis, poison, sleep effects, and stunning. These bonuses increase by 2 at 11th and 17th level.\n\nThis replaces elemental defense.\n\nWraith Form (Su): At 7th level, the soul adept becomes incorporeal for a maximum number of rounds per day equal to his class level + his casting ability modifier, gaining the incorporeal subtype with the following modifications:\n\nThe soul adept takes half damage from non-magic weapons.\n\nThe soul adept cannot make weapon or natural weapon attacks while in wraith form unless he uses a weapon with the ghost touch special ability.\n\nEffects originating from corporeal sources that do not deal damage have a 20% chance to fail against the soul adept instead of the normal 50%. Force effects are not subject to this failure chance.\n\nThe soul adept retains all worn equipment not exceeding his maximum load as well as the benefits from any magic items that grant a continuous effect, but gains no benefit from physical armor or shields.\n\nThe soul adept uses normal movement speeds (treat moving through solid objects as ground movement).\n\nWhen not on or in a solid or liquid, the soul adept falls slowly and may glide, moving with a speed of 30 ft. with maneuverability (perfect), but falling 1 ft. for every 5 ft. traveled (unless possessing a fly speed).\n\nActivating this ability is a move action and ending it is a free action. The soul adept cannot activate this ability if carrying a load greater than his maximum load. Should the soul adept become corporeal while in a solid object, he is immediately shunted to the nearest empty space, taking 1d6 untyped damage per 5 ft. traveled.\n\nIf the soul adept gains this ability from any other source, their levels stack when determining the total number of rounds the soul adept may use this ability.\n\nThis replaces elemental movement.\n\nSpiritual Body: At 20th level, the soul adept’s body becomes one with the spirit world. He gains immunity to death effects, sneak attacks, and critical hits, and gains DR 10/magic.\n\nThis replaces energy body.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:elementalist:tenebrous-stalker",
+      "package": "spheres-class:elementalist",
+      "name": "Tenebrous Stalker",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/tenebrous-stalker",
+      "replaces_features": [
+        "elemental-defense",
+        "elemental-movement",
+        "energy-body",
+        "favored-element",
+        "weave-energy"
+      ],
+      "removed_features": [
+        "elemental-defense",
+        "elemental-movement",
+        "energy-body",
+        "favored-element",
+        "weave-energy"
+      ],
+      "removed_feature_clauses": [
+        "elemental defense",
+        "weave energy",
+        "favored element",
+        "elemental movement",
+        "energy body"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Expanded Shadow Weaving",
+          "description": "The tenebrous stalker gains a bonus talent from the Dark or Illusion spheres at 5th, 11th and 17th level.\n\nThis replaces elemental defense."
+        },
+        {
+          "level": 1,
+          "name": "Shadow Weaver",
+          "description": "The tenebrous stalker gains the Dark and Illusion spheres as bonus magic talents, and uses his class level as his caster level with the Dark and Illusion spheres. This stacks normally with caster levels gained from other sources.\n\nThis replaces weave energy."
+        },
+        {
+          "level": 1,
+          "name": "Surreal Feats",
+          "description": "The tenebrous stalker may select a surreal feat as a bonus feat in place of a combat feat.\n\nAuthor's Note: This does not count as modifying, replacing or enhancing the Combat Feats feature for the purpose of archetype compatibility."
+        },
+        {
+          "level": 3,
+          "name": "Darkstalker",
+          "description": "At 3rd level, the tenebrous stalker gains a +1 bonus to his caster level with the Dark and Illusion spheres. This bonus increases by 1 at 6th level and every 4 levels thereafter.\n\nThis replaces favored element."
+        },
+        {
+          "level": 7,
+          "name": "Duskwalk",
+          "description": "At 7th level, the tenebrous stalker gains the ability to travel between shadows. As long as he is within an area of dim light or darkness, the tenebrous stalker may spend a spell point as a move or swift action to teleport to another area of dim light or darkness within 30 feet of him. The range of this ability increases by 30 feet at 13th and 19th levels. If the tenebrous stalker possesses the Step Through Darkness Dark sphere talent, he does not need to spend a spell point when using this ability.\n\nThis replaces elemental movement."
+        },
+        {
+          "level": 20,
+          "name": "Shadow Master",
+          "description": "At 20th level, whenever the tenebrous stalker is in an area of dim light or darkness, he gains DR 10/— and a +2 bonus to all saving throws. In addition, whenever he successfully scores a critical hit against an enemy in dim light or magical darkness, the enemy is blinded for 1d6 rounds.\n\nThis replaces energy body.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:elementalist:twinsoul-elementalist",
+      "package": "spheres-class:elementalist",
+      "name": "Twinsoul Elementalist",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/twinsoul-elementalist",
+      "replaces_features": [
+        "bonus-combat-feat",
+        "bonus-combat-feat-at-level",
+        "favored-element",
+        "favored-element-but-counts-as-favored-element-for-stacking-purposes",
+        "weave-energy"
+      ],
+      "removed_features": [
+        "bonus-combat-feat-2nd-level",
+        "favored-element",
+        "favored-element-but-counts-as-favored-element-for-stacking-purposes",
+        "weave-energy"
+      ],
+      "removed_feature_clauses": [
+        "weave energy",
+        "bonus combat feat gained at 2nd level",
+        "favored element but counts as favored element for stacking purposes",
+        "favored element"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Elemental Conduit",
+          "description": "At 1st level, the twinsoul elementalist gains the Conjuration and Destruction spheres as bonus magic talents. If the Destruction sphere is already possessed, he may choose any Destruction sphere talent to gain as a bonus talent. If the Conjuration sphere is already possessed, he instead gains Extra Companion as a bonus talent. The companion gained from this ability is his elemental conduit. The twinsoul elementalist and his elemental conduit always act on the same initiative count. The elemental conduit must have the mage companion archetype and gains the Destruction sphere as a bonus magic talent.\n\nThis replaces weave energy."
+        },
+        {
+          "level": 2,
+          "name": "Destructive Capacitor",
+          "description": "At 2nd level, the twinsoul elementalist may spend a full-round action channeling destructive energy into his elemental conduit as a spell-like ability. The elemental conduit must be in range of the twinsoul elementalist’s destructive blast. The elemental conduit may add the twinsoul elementalist’s class level as an enhancement bonus to its own caster level for one destructive blast it casts prior to the end of its turn. The twinsoul elementalist may spend any number of spell points up to his current spell point total as part of this ability; the elemental conduit gains an equal number of temporary spell points until the end of its turn.\n\nWhen enhancing a destructive blast with this ability, the elemental conduit may use the twinsoul elementalist’s casting ability modifier in place of its own to determine the destructive blast’s effects. The elemental conduit may use any Destruction sphere talents and benefit from any feats, traits, or other abilities that modify destructive blasts that the twinsoul elementalist possesses when using a destructive blast enhanced by this ability, though feats, traits, and abilities (such as the Energy Specialization and Focused Blast Type Group feats) possessed by both do not stack. The elemental conduit may use the twinsoul elementalist’s MSB and MSD for the modified destructive blast if necessary. The twinsoul elementalist treats using this ability as casting a sphere effect for the purposes of any casting tradition he possesses. Treat his class level as his caster level for this purpose.\n\nThis stacks normally with caster levels gained from other sources. He may voluntarily reduce his caster level when using this ability. Should the twinsoul elementalist possess more than one casting tradition, he must choose one when gaining this ability; this ability is then associated with that tradition.\n\nThis replaces the bonus combat feat gained at 2nd level."
+        },
+        {
+          "level": 3,
+          "name": "Focused Fire",
+          "description": "At 3rd level, when the elemental conduit casts a destructive blast benefiting from the elemental conduit’s destructive capacitor ability, it deals bonus damage equal to half the twinsoul elementalist’s class level. At 9th level, this increases to his full class level. At 15th level, this increases to 1.5 times his class level.\n\nThis replaces favored element but counts as favored element for stacking purposes.\n\nBy channeling destructive energy through a vessel, a splinter of themselves given form by their magic to act as a lens to focus their energy, these elementalists amplify their power even further.\n\nElemental Conduit: At 1st level, the twinsoul elementalist gains the Conjuration and Destruction spheres as bonus magic talents. If the Destruction sphere is already possessed, he may choose any Destruction sphere talent to gain as a bonus talent. If the Conjuration sphere is already possessed, he instead gains Extra Companion as a bonus talent. The companion gained from this ability is his elemental conduit. The twinsoul elementalist and his elemental conduit always act on the same initiative count. The elemental conduit must have the mage companion archetype and gains the Destruction sphere as a bonus magic talent.\n\nThis replaces weave energy.\n\nDestructive Capacitor: At 2nd level, the twinsoul elementalist may spend a full-round action channeling destructive energy into his elemental conduit as a spell-like ability. The elemental conduit must be in range of the twinsoul elementalist’s destructive blast. The elemental conduit may add the twinsoul elementalist’s class level as an enhancement bonus to its own caster level for one destructive blast it casts prior to the end of its turn. The twinsoul elementalist may spend any number of spell points up to his current spell point total as part of this ability; the elemental conduit gains an equal number of temporary spell points until the end of its turn. When enhancing a blast with this ability, the elemental conduit may use the twinsoul elementalist’s casting ability modifier in place of its own to determine the destructive blast’s effects. The elemental conduit may use any Destruction sphere talents and benefit from any feats, traits, or other abilities that modify destructive blasts that the twinsoul elementalist possesses when using a destructive blast enhanced by this ability, though feats, traits, and abilities (such as the Energy Specialization and Focused Blast Type Group feats) possessed by both do not stack. The elemental conduit may use the twinsoul elementalist’s MSB and MSD for the modified destructive blast if necessary.\n\nThe twinsoul elementalist treats using this ability as casting a sphere effect for the purposes of any casting tradition he possesses. Treat his class level as his caster level for this purpose. He may voluntarily reduce his caster level when using this ability. Should the twinsoul elementalist possess more than one casting tradition, he must choose one when gaining this ability; this ability is then associated with that tradition.\n\nThis replaces the bonus combat feat gained at 2nd level.\n\nFocused Fire: At 3rd level, when the elemental conduit casts a destructive blast benefiting from the elemental conduit’s destructive capacitor ability, it deals bonus damage equal to half the twinsoul elementalist’s class level. At 9th level, this increases to her full class level. At 15th level, this increases to 1.5 times her class level.\n\nThis replaces favored element.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:elementalist:water-warrior",
+      "package": "spheres-class:elementalist",
+      "name": "Water Warrior",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/water-warrior",
+      "replaces_features": [
+        "elemental-defense",
+        "elemental-movement",
+        "energy-body",
+        "favored-element"
+      ],
+      "removed_features": [
+        "elemental-defense",
+        "elemental-movement",
+        "energy-body",
+        "favored-element"
+      ],
+      "removed_feature_clauses": [
+        "favored element",
+        "elemental defense",
+        "elemental movement",
+        "energy body",
+        "Favored Element",
+        "Elemental Defense",
+        "Elemental Movement",
+        "Energy Body"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 3,
+          "name": "Water Focus",
+          "description": "At 3rd level, a water warrior adds 1/2 his water warrior level to all damage dealt with destructive blasts from the cold blast type group.\n\nAt 9th level, this bonus damage increases to become equal to his water warrior level, and the water warrior may use his class level as his caster level when using the (water) package from the Nature sphere. This stacks normally with caster levels gained from other sources.\n\nAt 15th level, the bonus damage increases to 1.5 times his water warrior level, and he gains a +2 bonus to his caster level with the (water) package from the Nature sphere.\n\nThis replaces favored element."
+        },
+        {
+          "level": 5,
+          "name": "Cold Defense",
+          "description": "At 5th level, a water warrior gains cold resistance equal to 5 + his water warrior level.\n\nThis replaces elemental defense."
+        },
+        {
+          "level": 7,
+          "name": "Water Movement",
+          "description": "At 7th level, a water warrior gains a 30 feet swim speed. This improves by 20 feet at 13th and 19th levels.\n\nThis replaces elemental movement."
+        },
+        {
+          "level": 20,
+          "name": "Water Body",
+          "description": "At 20th level, the water warrior’s body has become infused with the power of ice. He gains immunity to cold, sneak attacks, and critical hits, and gains DR 10/magic.\n\nThis replaces energy body.\n\nSpheres of Power: Expanded Options\n\n$4.99\n\nWater Focus (Su): At 3rd level, a water warrior adds 1/2 their elementalist level to all damage dealt with frost blasts.\n\nAt 9th level, This bonus damage increases to become equal to their elementalist level, and the elementalist may use his class level as his caster level when using the Water package from the Nature sphere. This stacks normally with caster levels gained from other sources.\n\nAt 15th level, the bonus damage increases to 1.5 times their elementalist level, and they gain a +2 bonus to their caster level with the Water package from the Nature sphere.\n\nThis replaces Favored Element.\n\nFrost Defense (Ex): At 5th level, a water warrior gains Frost Resistance equal to 5 + their elementalist level.\n\nThis replaces Elemental Defense.\n\nWater Movement (Su): At 7th level, a water warrior gains a 30 ft swim speed. This improves by 20 ft at 13th and 19th levels.\n\nThis replaces Elemental Movement.\n\nWater Body: At 20th level, the water warrior’s body has become infused with the power of ice. He gains immunity to frost, sneak attacks, and critical hits, and gains DR 10/magic.\n\nThis replaces Energy Body.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:elementalist:wind-warrior",
+      "package": "spheres-class:elementalist",
+      "name": "Wind Warrior",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/wind-warrior",
+      "replaces_features": [
+        "elemental-defense",
+        "elemental-movement",
+        "energy-body",
+        "favored-element"
+      ],
+      "removed_features": [
+        "elemental-defense",
+        "elemental-movement",
+        "energy-body",
+        "favored-element"
+      ],
+      "removed_feature_clauses": [
+        "favored element",
+        "elemental defense",
+        "elemental movement",
+        "energy body",
+        "Favored Element",
+        "Elemental Defense",
+        "Elemental Movement",
+        "Energy Body"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 3,
+          "name": "Wind Focus",
+          "description": "At 3rd level, a wind warrior adds 1/2 his wind warrior level to all damage dealt with destructive blasts using the air blast type group.\n\nAt 9th level, this bonus damage increases to become equal to their wind warrior level, and the wind warrior may use his class level as his caster level when using the (air) package from the Nature sphere. This stacks normally with caster levels gained from other sources.\n\nAt 15th level, the bonus damage increases to 1.5 times his wind warrior level, and he gains a +2 bonus to his caster level with the (air) package from the Nature sphere.\n\nThis replaces favored element."
+        },
+        {
+          "level": 5,
+          "name": "Buffeted",
+          "description": "At 5th level, a wind warrior gains damage reduction against nonlethal damage equal to his wind warrior level. He also gains a +2 bonus to his CMD, which increases by an additional +2 at 11th and 17th levels.\n\nThis replaces elemental defense."
+        },
+        {
+          "level": 7,
+          "name": "Wind Movement",
+          "description": "At 7th level, a wind warrior gains a 20 feet fly speed with average maneuverability. This increases to a 40 feet fly speed with good maneuverability at 13th level, and a 60 feet fly speed with perfect maneuverability at 19th level.\n\nThis replaces elemental movement."
+        },
+        {
+          "level": 20,
+          "name": "Wind Body",
+          "description": "At 20th level, the wind warrior’s body has become infused with the power of air. He gains immunity to nonlethal damage, sneak attacks, and critical hits, and gains DR 10/magic.\n\nThis replaces energy body.\n\nSpheres of Power: Expanded Options\n\n$4.99\n\nWind Focus (Su): At 3rd level, a wind warrior adds 1/2 their elementalist level to all damage dealt with air blasts.\n\nAt 9th level, This bonus damage increases to become equal to their elementalist level, and the wind warrior gains a +2 bonus to the Bull Rush check granted by his air blast.\n\nAt 15th level, the bonus damage increases to 1.5 times their elementalist level, and the bonus to the Bull Rush increases to +4.\n\nThis replaces Favored Element.\n\nBuffeted (Ex): At 5th level, a wind warrior gains DR against nonlethal damage equal to his elementalist level. He also gains a +2 bonus to his CMD, which increases by an additional +2 at 11th and 17th levels.\n\nThis replaces Elemental Defense.\n\nWind Movement (Su): At 7th level, a wind warrior gains a 20 ft flight speed with average maneuverability. This increases to a 40 ft flight speed with good maneuverability at 13th level, and a 60 ft flight speed with perfect maneuverability at 19th level.\n\nThis replaces Elemental Movement.\n\nWind Body: At 20th level, the wind warrior’s body has become infused with the power of air. He gains immunity to nonlethal damage, sneak attacks, and critical hits, and gains DR 10/magic.\n\nThis replaces Energy Body.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

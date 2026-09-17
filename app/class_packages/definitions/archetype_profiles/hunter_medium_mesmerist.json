@@ -1,0 +1,196 @@
+{
+  "version": 1,
+  "description": "Hand-reviewed class-profile changes for Hunter, Medium, Mesmerist, and their Pathfinder and Spheres archetypes.",
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:courtly-hunter",
+      "class_modifications": {"statistics": {"add_class_skills": ["bluff", "diplomacy", "sense_motive"], "remove_class_skills": ["knowledge_geography", "knowledge_nature", "survival"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:divine-hunter",
+      "class_modifications": {"statistics": {"add_class_skills": ["knowledge_religion"], "remove_class_skills": ["knowledge_dungeoneering"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:patient-ambusher",
+      "class_modifications": {"statistics": {"add_class_skills": ["disable_device"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:roof-runner",
+      "class_modifications": {"proficiencies": {"mode": "modify", "remove_armor": ["Medium armor", "Shields"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:urban-hunter",
+      "class_modifications": {"statistics": {"add_class_skills": ["diplomacy", "knowledge_local", "sense_motive"], "remove_class_skills": ["knowledge_nature", "survival"]}}
+    },
+
+    {
+      "key": "spheres-archetype:pathfinder-class:hunter:beast-bender",
+      "sphere_capabilities": {"grants": ["magic", "martial"], "removes": []},
+      "class_modifications": {
+        "casting": {"sphere_progression": "Mid", "traditional": false, "ability": "wisdom", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "High", "talent_kinds": ["magic", "martial"]},
+        "capabilities": {"grants": ["magic", "martial"], "removes": ["traditional_spells"]},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:hunter:beastmaster",
+      "sphere_capabilities": {"grants": ["martial"], "removes": []},
+      "class_modifications": {
+        "casting": {"traditional": false, "progression": "", "spells": ""},
+        "advancement": {"talent_progression": "Adept", "talent_kinds": ["martial"]},
+        "capabilities": {"grants": ["martial"], "removes": ["traditional_spells"]},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:hunter:greenrunner",
+      "sphere_capabilities": {"grants": ["martial"], "removes": []},
+      "compatibility": {"requires": ["spheres-archetype:pathfinder-class:hunter:sphere-hunter"]},
+      "class_modifications": {
+        "advancement": {"talent_progression": "Adept", "talent_kinds": ["martial"]},
+        "capabilities": {"grants": ["martial"], "removes": []}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:hunter:master-of-the-hunt",
+      "sphere_capabilities": {"grants": ["magic", "martial"], "removes": []},
+      "class_modifications": {
+        "statistics": {"add_class_skills": ["bluff", "diplomacy", "knowledge_nobility"], "remove_class_skills": ["heal", "knowledge_dungeoneering"]},
+        "casting": {"sphere_progression": "Mid", "traditional": false, "ability": "charisma", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "Mid", "talent_kinds": ["magic", "martial"]},
+        "capabilities": {"grants": ["magic", "martial"], "removes": ["traditional_spells"]},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:hunter:pellucid-hunter",
+      "sphere_capabilities": {"grants": ["skill"], "removes": []},
+      "class_modifications": {
+        "statistics": {"class_skills": []},
+        "capabilities": {"grants": ["skill"], "removes": []}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:hunter:sphere-hunter",
+      "sphere_capabilities": {"grants": ["magic"], "removes": []},
+      "class_modifications": {
+        "casting": {"sphere_progression": "Mid", "traditional": false, "ability": "wisdom", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "Mid", "talent_kinds": ["magic"]},
+        "capabilities": {"grants": ["magic"], "removes": ["traditional_spells"]}
+      }
+    },
+
+    {
+      "key": "pathfinder-archetype:pathfinder-class:medium:medium-of-the-master",
+      "class_modifications": {
+        "statistics": {"add_class_skills": ["acrobatics"], "remove_class_skills": ["use_magic_device"]},
+        "proficiencies": {"mode": "modify", "remove_armor": ["Medium armor", "Shields"]}
+      }
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:medium:uda-wendo",
+      "class_modifications": {"statistics": {"add_class_skills": ["knowledge_geography", "knowledge_nature"], "remove_class_skills": ["perform"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:medium:rivethun-spirit-channeler",
+      "choices": [
+        {
+          "key": "mind-and-soul",
+          "level": 1,
+          "name": "Mind and Soul",
+          "description": "Choose Wisdom or Charisma for all Medium and Rivethun Spirit Channeler class abilities. Once selected, this choice cannot be changed except by editing the class level.",
+          "minimum": 1,
+          "maximum": 1,
+          "options": [
+            {
+              "key": "charisma",
+              "name": "Charisma",
+              "description": "Use Charisma for Medium spells, class ability DCs, daily uses, and spirit abilities.",
+              "class_modifications": {"casting": {"ability": "charisma"}}
+            },
+            {
+              "key": "wisdom",
+              "name": "Wisdom",
+              "description": "Use Wisdom for Medium spells, class ability DCs, daily uses, and spirit abilities.",
+              "class_modifications": {"casting": {"ability": "wisdom"}}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:medium:champion-medium",
+      "sphere_capabilities": {"grants": ["magic", "martial"], "removes": []},
+      "class_modifications": {
+        "statistics": {"class_skills": []},
+        "casting": {"sphere_progression": "Low", "traditional": false, "ability": "charisma", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "High", "talent_kinds": ["magic", "martial"]},
+        "capabilities": {"grants": ["magic", "martial"], "removes": ["traditional_spells"]},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons", "Deity's favored weapon"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:medium:sphere-medium",
+      "sphere_capabilities": {"grants": ["magic"], "removes": []},
+      "class_modifications": {
+        "casting": {"sphere_progression": "Low", "traditional": false, "ability": "charisma", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "Low", "talent_kinds": ["magic"]},
+        "capabilities": {"grants": ["magic"], "removes": ["traditional_spells"]}
+      }
+    },
+
+    {
+      "key": "pathfinder-archetype:pathfinder-class:mesmerist:chart-caster",
+      "class_modifications": {"statistics": {"add_class_skills": ["knowledge_nature", "knowledge_planes"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:mesmerist:fey-trickster",
+      "class_modifications": {
+        "statistics": {"add_class_skills": ["handle_animal", "knowledge_nature", "survival"], "remove_class_skills": ["appraise", "knowledge_dungeoneering", "profession"]},
+        "casting": {"traditional": true, "ability": "wisdom", "progression": "med", "type": "spontaneous", "spells": "divine"}
+      }
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:mesmerist:umbral-mesmerist",
+      "class_modifications": {"casting": {"daily_slot_adjustment": -1}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:mesmerist:vexing-daredevil",
+      "class_modifications": {"statistics": {"add_class_skills": ["acrobatics"]}, "proficiencies": {"mode": "modify", "add_weapons": ["One selected martial weapon"]}}
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:mesmerist:champion-mesmerist",
+      "sphere_capabilities": {"grants": ["magic", "martial"], "removes": []},
+      "class_modifications": {
+        "casting": {"sphere_progression": "Mid", "traditional": false, "ability": "charisma", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "Mid", "talent_kinds": ["magic", "martial"]},
+        "capabilities": {"grants": ["magic", "martial"], "removes": ["traditional_spells"]},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:mesmerist:conniving-bastard",
+      "sphere_capabilities": {"grants": ["magic"], "removes": []},
+      "class_modifications": {
+        "casting": {"sphere_progression": "Mid", "traditional": false, "ability": "charisma", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "Mid", "talent_kinds": ["magic"]},
+        "capabilities": {"grants": ["magic"], "removes": ["traditional_spells"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:mesmerist:incendiary",
+      "sphere_capabilities": {"grants": ["skill"], "removes": []},
+      "class_modifications": {"capabilities": {"grants": ["skill"], "removes": []}}
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:mesmerist:sphere-mesmerist",
+      "sphere_capabilities": {"grants": ["magic"], "removes": []},
+      "class_modifications": {
+        "casting": {"sphere_progression": "Mid", "traditional": false, "ability": "charisma", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "Mid", "talent_kinds": ["magic"]},
+        "capabilities": {"grants": ["magic"], "removes": ["traditional_spells"]}
+      }
+    }
+  ]
+}

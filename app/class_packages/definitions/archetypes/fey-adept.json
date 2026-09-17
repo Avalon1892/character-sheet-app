@@ -1,0 +1,722 @@
+{
+  "version": 1,
+  "class_key": "spheres-class:fey-adept",
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:fey-adept:auteur",
+      "package": "spheres-class:fey-adept",
+      "name": "Auteur",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/auteur",
+      "replaces_features": [
+        "darkvision",
+        "fey-adepts-normal-class-skills",
+        "feytouched",
+        "magic-talents",
+        "master-illusionist",
+        "see-in-darkness",
+        "shadowmark"
+      ],
+      "removed_features": [
+        "darkvision",
+        "fey-adepts-normal-class-skills",
+        "feytouched",
+        "master-illusionist",
+        "see-in-darkness",
+        "shadowmark"
+      ],
+      "removed_feature_clauses": [
+        "shadowmark",
+        "fey adept’s normal class skills",
+        "master illusionist",
+        "darkvision",
+        "see in darkness",
+        "feytouched"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "Whenever an auteur would gain a magic talent from his class levels, he may instead choose to gain a skill talent.\n\nThis alters magic talents."
+        },
+        {
+          "level": 1,
+          "name": "Propagandist",
+          "description": "At 1st level, the auteur may extend the casting time of an illusion sphere effect by one step to invoke a minor or major motivation as part of the casting. The illusion effect created must represent something which would advance the creature’s motivation (for example, you might invoke a motivation of wealth by creating an illusory pile of gold or invoke a motivation of fame by creating the illusion of an adoring follower).\n\nCreatures with the invoked motivation must roll twice on Perception checks and Will saves against the illusion, taking the lower result. If the auteur invokes a major motivation, the target also takes a -2 penalty on their saving throws or Perception checks. This penalty increases to -3 at 13th level and -4 at 19th level.\n\nThis replaces shadowmark."
+        },
+        {
+          "level": 1,
+          "name": "Trade Tradition",
+          "description": "If this is this character’s first level in any class, the auteur may select a trade tradition of their choice, and have an adroit trade rank. The auteur gains 2 additional skill ranks per fey adept level.\n\nThis replaces the fey adept’s normal class skills and master illusionist."
+        },
+        {
+          "level": 2,
+          "name": "Viewing Pleasure",
+          "description": "At 2nd level, the auteur gains the Masques talent as a bonus talent or buys off a sphere-specific drawback which would prevent him from selecting the Masques talent. If they already possess this talent, they may select a different Illusion sphere talent. When the auteur succeeds at a roll which is currently improved by Masques, he is treated as having spent skill leverage to Seize an Opportunity on that roll.\n\nThis replaces darkvision."
+        },
+        {
+          "level": 14,
+          "name": "Suture Attention",
+          "description": "At 14th level, the auteur learns to deliberately impose engagement upon his audiences. As part of creating an illusion effect or attempting a skill check, the auteur may name a specific motivation (such as wealth, justice, or uncertainty). All creatures targeted by the effect or who observe the illusion are treated as having the named motivation as a minor motivation for one minute per auteur level unless they succeed at a Will save (DC 10 + 1/2 your auteur level + your casting ability modifier). A creature who successfully saves against this ability is immune to this ability for 24 hours. This is a mind-affecting charm effect.\n\nAt 20th level, creatures which fail their saving throw against suture treat the named motivation as a major motivation for 1 hour per fey adept level, or as a minor motivation for 1 round on a successful saving throw.\n\nThis replaces see in darkness and feytouched.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nSpheres of Guile by Drop Dead Studios\n\nUsing Spheres of Guile\n\nClasses\n\nAdvisor (DRS)\nAgent\nConduit (DRS)\nCourser\nEnvoy\n\nGenius\nMastermind\nProfessional\n\nSpheres\n\nArtifice\nBluster\nBody Control\nCommunication\nFaction\n\nHerbalism\nInfiltration\nInvestigation\nNavigation\nPerformance\n\nSpellhacking\nStudy\nSubterfuge\nSurvivalism\nVocation\n\nOther Rules\n\nOperative Feats\nOperative Gear\nSkill Rules\nTrade Traditions\nRunning Guile Games\n\nGet Spheres of Guile"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:fey-adept:dreamtwister",
+      "package": "spheres-class:fey-adept",
+      "name": "Dreamtwister",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/dreamtwister",
+      "replaces_features": [
+        "create-reality",
+        "fey-magic",
+        "feytouched",
+        "hide-in-plain-sight",
+        "master-illusionist",
+        "permanent-illusion",
+        "truesight"
+      ],
+      "removed_features": [
+        "create-reality",
+        "fey-magic",
+        "feytouched",
+        "hide-in-plain-sight",
+        "master-illusionist",
+        "permanent-illusion",
+        "truesight"
+      ],
+      "removed_feature_clauses": [
+        "fey magic",
+        "master illusionist",
+        "truesight",
+        "create reality",
+        "hide in plain sight",
+        "feytouched",
+        "permanent illusion"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Delusionist",
+          "description": "At 1st level, the dreamtwister gains the Mind sphere as a bonus magic talent with the Empath drawback, selecting the Vision talent with this drawback. In addition, the dreamtwister gains Mass Charm as a bonus talent, treating their caster level as 4 levels higher for the purpose of determining how many creatures they may target with charms.\n\nThis replaces fey magic and master illusionist."
+        },
+        {
+          "level": 1,
+          "name": "Mimeses",
+          "description": "Source: Fey Adept Expanded: Mimeses\n\nA target under the effects of your Vision charm is considered to be within the area of your illusion and affected by your glamer for the purpose of your mimesis abilities.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        },
+        {
+          "level": 4,
+          "name": "Freudian Slip",
+          "description": "At 4th level, the dreamtwister may force a creature within range of their Mind sphere abilities to reroll a Will save they have just attempted as an immediate action. The dreamtwister may use this ability once per day at 4th level and an additional time per day every 4 levels thereafter.\n\nThis replaces truesight."
+        },
+        {
+          "level": 6,
+          "name": "Dreams into Reality",
+          "description": "Rather than illusions, the dreamtwister’s instances of created reality are potent phantasms that enter the minds of their targets. Starting at 6th level, when using a Vision greater or powerful charm, the dreamtwister may spend a shadow point + 1 shadow point per spell point that would be required by the mimicked effect in question to create a companion, destructive blast, glamer, nature, object, or weather which lasts for the maximum possible duration of the vision. These creations can only affect and be observed by those you targeted with vision. Creatures that succeed at their saving throw against the charm are considered to have disbelieved the creation, but targeted creatures are not allowed additional saving throws to disbelieve the effect beyond the Will save they make each round against the Vision charm (they are still allowed saving throws against other aspects of the created effect as normal).\n\nThe effects created by this skill otherwise have the same limits as Create Reality (such as what types of destructive blasts can be made, etc.).\n\nThis replaces create reality."
+        },
+        {
+          "level": 10,
+          "name": "Cosmic Dreamkeeper",
+          "description": "At 10th level, for the purpose of Mind sphere effects, the dreamtwister ignores any immunities to mind-affecting effects that a creature under the effects of their shadowmark possesses.\n\nThis replaces hide in plain sight."
+        },
+        {
+          "level": 20,
+          "name": "Being of Dreams",
+          "description": "At 20th level, the dreamtwister’s type changes to outsider (native). They also gain DR/10 bypassed by either good, lawful, evil, or chaotic (choosing one that opposes their alignment. A true neutral dreamtwister’s damage reduction is bypassed by any aligned weapon). The dreamtwister also gains a +10 resistance bonus on saving throws vs. mind-affecting effects.\n\nThis replaces feytouched."
+        },
+        {
+          "level": 20,
+          "name": "Unrelenting Nightmare",
+          "description": "At 20th level, the dreamtwister may make one instance of their Vision charm permanent. Only one such charm may be made permanent in this way at one time. If another charm is designated as permanent, the previous permanent charm ends.\n\nThis replaces permanent illusion."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:fey-adept:immersed",
+      "package": "spheres-class:fey-adept",
+      "name": "Immersed",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/immersed",
+      "replaces_features": [
+        "hide-in-plain-sight",
+        "permanent-illusion",
+        "truesight"
+      ],
+      "removed_features": [
+        "hide-in-plain-sight",
+        "truesight"
+      ],
+      "removed_feature_clauses": [
+        "truesight",
+        "hide in plain sight",
+        "modifies permanent illusion"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 4,
+          "name": "Illusion Specialty",
+          "description": "At 4th level and every 4 levels thereafter, the immersed receives a single Illusion sphere talent or Surreal feat as a bonus talent or bonus feat. Whenever the immersed rests to regains spell points, they may exchange these talents or feats for any other Illusion sphere talents or Surreal feats for which he meets the prerequisites.\n\nThis replaces truesight."
+        },
+        {
+          "level": 10,
+          "name": "Extended Illusions",
+          "description": "At 10th level, the immersed may concentrate on Illusion sphere effects for up to 10 minutes per caster level. If he possesses the Focused Imagination talent, he may concentrate up to 1 hour per caster level instead.\n\nIf the immersed possesses the Lingering Illusion talent and spends a spell point to concentrate on an illusion, the Illusion lasts for 10 minutes per caster level or 1 hour per caster level if he also has the Focused Imagination talent.\n\nIf the immersed possesses the Permanent Image talent, he reduces the cost of making an illusion permanent by 1 spell point (to a minimum of 1 spell point).\n\nIf the immersed possess the permanent illusion class feature from the fey adept class in addition to the Permanent Image talent, the added spell point cost to make an illusion permanent is reduced from 2 to 1.\n\nThis replaces hide in plain sight and modifies permanent illusion\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:fey-adept:inspired-inventor-cs",
+      "package": "spheres-class:fey-adept",
+      "name": "Inspired Inventor [CS]",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/inspired-inventor",
+      "replaces_features": [
+        "armor-proficiencies",
+        "create-reality",
+        "feytouched",
+        "hide-in-plain-sight",
+        "magic-talents",
+        "master-illusionist",
+        "see-in-darkness",
+        "shadowmark",
+        "truesight",
+        "weapon"
+      ],
+      "removed_features": [
+        "create-reality",
+        "feytouched",
+        "hide-in-plain-sight",
+        "magic-talents",
+        "master-illusionist",
+        "see-in-darkness",
+        "shadowmark",
+        "truesight"
+      ],
+      "removed_feature_clauses": [
+        "magic talents",
+        "master illusionist",
+        "shadowmark",
+        "truesight",
+        "create reality",
+        "hide in plain sight",
+        "see in darkness",
+        "feytouched"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "An inspired inventor gains a combat or magic talent every time he gains a class level. Inspired inventors use their casting ability modifier as their practitioner modifier.\n\nThis replaces magic talents\n\nTechnical Inspiration (Ex)\n\nAn inspired inventor gains the Tinker sphere as a bonus sphere at 1st level. The inspired inventor can create temporary gizmos by shaping shadowstuff. If the inspired inventor creates a figment of a gizmo that he knows how to create, as a free action he may spend 1 shadow point to allow it to work as a functional gizmo for the illusion’s duration, as if he had constructed it on the spot.\n\nA figment needs to have all the senses needed to operate the gizmo, and senses it does not have do not function (for example a figment without the Illusionary Sound talent made into a communicator would be unable to produce sound). The illusionary gizmo does not count towards the inspired inventor’s maximum number of gizmos. Once the illusion is over, the gizmo vanishes. A second use of this ability immediately ends the duration of the previous use. The inspired inventor may not create mechanoids or AI this way.\n\nGizmos created this way are still illusions woven with shadow magic, and have the shadow magic descriptor applied. Creatures may attempt Will saves to disbelieve the gizmo’s effects, and such illusory gizmos have 1/5th their normal hit points and a hardness of 0.\n\nThis replaces master illusionist.\n\nUnknown Energetics (Su)\n\nAt 1st level, the inspired inventor may spend a shadow point in place of a battery use for any gizmo that he may activate.\n\nThis replaces shadowmark.\n\nMiraculous Builder (Ex)\n\nAt 4th level and every 4 levels thereafter, when using technical inspiration, the inspired inventor may have an additional gizmo created at a time. If the inspired inventor has the Complex Illusion talent, he may create multiple gizmos as part of the same action, spending a shadow point for each. This replaces truesight.\n\nInspired Construction (Su)\n\nAt 6th level, when using the technical inspiration ability, the inspired inventor may treat himself as having one Tinker sphere (gizmo) talent he does not possess for the purpose of determining what gizmos he can create or how created gizmos function. In addition, the inspired inventor may install any created gadgets onto equipment or willing creatures as part of the action to create them.\n\nAt 12th level, the inspired inventor may emulate up to two (gizmo) talents with a single use of technical inspiration and may emulate three at a time at 18th level.\n\nThis replaces create reality.\n\nManifold Technologies (Su)\n\nAt 10th level and 14th level, the inspired inventor gains a single item creation feat for which he meets the prerequisites for.\n\nThis ability replaces hide in plain sight and see in darkness.\n\nOf My Own Invention (Su)\n\nAt 20th level, the inspired inventor’s type changes to construct, except that he retains his Constitution score, does not receive bonus hit points for his size, retains his ability to heal damage on his own, is not immediately destroyed at 0 hit points, can be raised or resurrected normally, and is affected by magical healing effects normally. The inspired inventor does not recalculate Hit Dice, base attack bonus, or saving throws.\n\nThis replaces feytouched.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nSpheres of Guile by Drop Dead Studios\n\nUsing Spheres of Guile\n\nClasses\n\nAdvisor (DRS)\nAgent\nConduit (DRS)\nCourser\nEnvoy\n\nGenius\nMastermind\nProfessional\n\nSpheres\n\nArtifice\nBluster\nBody Control\nCommunication\nFaction\n\nHerbalism\nInfiltration\nInvestigation\nNavigation\nPerformance\n\nSpellhacking\nStudy\nSubterfuge\nSurvivalism\nVocation\n\nOther Rules\n\nOperative Feats\nOperative Gear\nSkill Rules\nTrade Traditions\nRunning Guile Games\n\nGet Spheres of Guile"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "An inspired inventor gains Knowledge (engineering) as a class skill and loses Knowledge (nature) as a class skill.\n\nProficiencies\n\nAn inspired inventor is proficient with simple weapons. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis alters weapon and armor proficiencies."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:fey-adept:regisseur",
+      "package": "spheres-class:fey-adept",
+      "name": "Regisseur",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/regisseur",
+      "replaces_features": [
+        "create-reality"
+      ],
+      "removed_features": [
+        "create-reality"
+      ],
+      "removed_feature_clauses": [
+        "create reality"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 6,
+          "name": "Second Mimesis",
+          "description": "At 6th level, the regisseur selects a second mimesis, gaining that mimesis’ associated sphere as a bonus sphere.\n\nAt 10th level, the regisseur gains the 7th-level ability of their second mimesis.\n\nAt 14th level, the regisseur gains the 11th-level ability of their second mimesis.\n\nAt 18th level, the regisseur gains the 15th-level ability of their second mimesis.\n\nThis replaces create reality.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:fey-adept:seelie-disciple",
+      "package": "spheres-class:fey-adept",
+      "name": "Seelie Disciple",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/seelie-disciple",
+      "replaces_features": [
+        "darkvision",
+        "hide-in-plain-sight",
+        "see-in-darkness"
+      ],
+      "removed_features": [
+        "darkvision",
+        "hide-in-plain-sight",
+        "see-in-darkness"
+      ],
+      "removed_feature_clauses": [
+        "darkvision",
+        "hide in plain sight",
+        "see in darkness"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 2,
+          "name": "Versatile Performance",
+          "description": "At 2nd level, the seelie disciple gains versatile performance, as the bard class feature.\n\nThis replaces darkvision."
+        },
+        {
+          "level": 10,
+          "name": "Fascinate",
+          "description": "At 10th level, a seelie disciple can use the Perform skill to cause targets to become fascinated with him. This is identical to the fascinate bardic performance, treating his seelie disciple levels as bard levels, except that the seelie disciple can only use this ability for a total number of rounds per day equal to 1/2 his seelie disciple level + his casting ability modifier, and the seelie disciple’s ability to start a bardic performance does not improve past a standard action. If the seelie disciple gains bardic performance from any other source, these levels stack when determining the effectiveness of this performance, as well as the number of rounds it is usable per day.\n\nThis replaces hide in plain sight."
+        },
+        {
+          "level": 14,
+          "name": "Suggestion",
+          "description": "At 14th level, the seelie adept may plant suggestions in the minds of those he has fascinated, as the bardic performance of the same name.\n\nThis replaces see in darkness.\n\nSpheres of Power: Expanded Options\n\n$4.99\n\nVersatile Performance (Ex): At 2nd level, the Seelie disciple gains versatile performance, as the Bard class feature.\n\nThis replaces darkvision.\n\nFascinate (Su): At 10th level, a Seelie disciple can use the Perform skill to cause targets to become fascinated with him. This is identical to the fascinate bardic performance, treating the Seelie disciple’s fey adept levels as bard levels, except that the Seelie disciple can only use this ability for a total number of rounds per day equal to 1/2 his fey adept level + his Charisma modifier, and the Seelie disciple’s ability to start a bardic performance does not improve past a standard action. If the Seelie disciple gains bardic performance from any other source, these levels stack when determining the effectiveness of this performance, as well as the number of rounds it is usable per day.\n\nThis replaces hide in plain sight.\n\nSuggestion (Su): At 14th level, the Seelie adept may plant suggestions in the minds of those he has fascinated, as the bardic performance of the same name.\n\nThis replaces see in darkness.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:fey-adept:sidhe-invoker",
+      "package": "spheres-class:fey-adept",
+      "name": "Sidhe Invoker",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/sidhe-invoker",
+      "replaces_features": [
+        "create-reality",
+        "hide-in-plain-sight",
+        "shadowmark",
+        "shadowstuff"
+      ],
+      "removed_features": [
+        "hide-in-plain-sight",
+        "shadowmark",
+        "shadowstuff"
+      ],
+      "removed_feature_clauses": [
+        "shadowstuff",
+        "shadowmark",
+        "hide in plain sight"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 10,
+          "name": "Mimeses",
+          "description": "Source: Fey Adept Expanded: Mimeses\n\nA target within the area of your ringfort is considered to be within the area of your illusion for the purpose of your mimesis abilities. Creatures within the ringfort take a -1 penalty on saves against sphere effects of your mimesis’ associated sphere originating from you.\n\nThe Fey Binder's Handbook\n\n$4.99\n\nAble to temporarily draw portions of the land around them into Faerie, sidhe invokers can reshape the world to suit their whim, for a moment.\n\nFae Power (Su): Instead of manipulating shadowstuff, the sidhe invoker draws on his ability to manipulate the plane of Faerie. The sidhe invoker gains a pool of fae points equal to his Charisma modifier + 1/2 his class level (minimum 1). The sidhe invoker may spend fae points in place of shadow points when using [surreal] feats.\n\nA sidhe invoker may spend fae points to create any of the following effects:\n\nSummon Ringfort: The sidhe invoker may draw the area around himself partially into Faerie by spending a fae point as a fullround action. This affects an area of the caster’s choice out to a maximum of close range (25 ft. + 5 ft. per 2 class levels) and persists for 1 minute per class level. Inside the ringfort, colors are more intense, the light shimmers strangely, and the entire area has an unearthly appearance, obscuring what is real and what is not. Creatures within the ringfort take a -1 penalty on saves against Fallen Fey, Illusion, and Mind sphere effects originating from the sidhe invoker.\n\nThe ringfort is morphic to the sidhe invoker’s will and he may make the following alterations as a standard action:\n\nMagic: The fey invoker may spend a fae point to suppress either all magic or a single descriptor (fire, polymorph, teleportation, etc.), school, or sphere. Any attempt to use a suppressed ability while within the ring fort or to effect a creature within the ringfort requires a successful magic skill check against the fey invoker’s MSD. Ongoing effects within the ringfort are suppressed unless the caster succeeds on a magic skill check against the fey invoker’s MSD. Alternatively, the fey invoker may impose a 100% wild magic chance on all spells and sphere effects cast within the ring fort. The fey invoker may exclude himself from this wild magic chance.\n\nTerrain: The sidhe invoker may reshape the terrain within the area, raising or lowering a number of 5-ft. squares equal to his class level + his Charisma modifier by up to 5 ft. plus 5 ft. per 4 class levels and may choose to have them be difficult terrain or to clear existing difficult terrain (magically created difficult terrain can only be cleared by succeeding on an magic skill check against the effect’s MSD).\n\nTime: At 10th level, the sidhe invoker may speed or slow time within the area by spending a fae point, doubling or halving the passing of time relative to the outside. The warping at the edge of this effect imposes a 50% miss chance on all attack rolls and a 50% failure chance on all spell effect made against targets outside the ringfort from those inside and on those made from outside against those inside (this happens regardless of whether time is sped up or slowed down). If time is sped up, creatures inside the ringfort still act in normal initiative order, but experience two rounds of time (taking two rounds of actions) for every round that passes outside, essentially only allowing creatures outside the area to act every other turn. If time is slowed down, those inside instead act only every other turn. Maintaining fast time requires the fey invoker to spend an additional fae point every round after the first as a free action.\n\nAdditional rounds of actions are all taken after the normal rounds of actions, beginning from the end of the turn where time is altered.\n\n(Example: Morgana the sidhe invoker summons a ringfort around herself on her turn in round one. On her turn in round 2, she speeds time. All other creatures take their normal turns in initiative order until Morgana’s turn comes around again. Then, Morgana and all other creatures inside the ringfort take an additional round of actions in their order of initiative. Then all creatures in the combat take their normal turns in order, etc.)\n\nThese alterations persist until changed again or until the ringfort ends.\n\nThis replaces shadowstuff and shadowmark.\n\nCreate Reality: At 6th level, the sidhe invoker may spend fae points to create reality. This functions as the fey adept class feature.\n\nThis modifies create reality.\n\nFae Reality: At 10th level, when the sidhe invoker uses create reality, the illusion becomes completely real while inside the ringfort or on the plane of Faerie; creatures are no longer allowed a save to disbelieve the illusion unless it moves beyond the ringfort or leaves Faerie.\n\nThis replaces hide in plain sight.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:fey-adept:skulk",
+      "package": "spheres-class:fey-adept",
+      "name": "Skulk",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/skulk",
+      "replaces_features": [
+        "create-reality",
+        "fey-magic",
+        "feytouched",
+        "master-illusionist"
+      ],
+      "removed_features": [
+        "create-reality",
+        "fey-magic",
+        "feytouched",
+        "master-illusionist"
+      ],
+      "removed_feature_clauses": [
+        "master illusionist",
+        "fey magic",
+        "create reality",
+        "feytouched"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Master Nyctomancer",
+          "description": "Whenever the skulk ceases to concentrate on a Dark sphere talent he is maintaining through concentration, or if he decides not to maintain a Dark sphere talent at all after its creation, it remains for a number of rounds equal to 1/2 his skulk level (minimum 1) before disappearing.\n\nThis replaces master illusionist."
+        },
+        {
+          "level": 1,
+          "name": "Umbral Adept",
+          "description": "The skulk gains the Dark sphere as a bonus magic talent at first level. If the skulk has the Dark sphere already, he gains a bonus talent for this sphere instead.\n\nThis replaces fey magic."
+        },
+        {
+          "level": 6,
+          "name": "Arcane Forgery",
+          "description": "When a skulk successfully steals a target’s shadow, he gains immediate knowledge of the target’s available repertoire of spells, spell-like abilities, and talents and can spend another shadow point as a free action to temporarily duplicate one sphere and a number of sphere talents possessed by the target. He may duplicate advanced talents, but must meet prerequisites to use them. He may duplicate one talent at 6th level, two at 10th level, three at 14th level, and four at 18th level.\n\nThese talents must be within the copied sphere. These arcane forgeries last for 1 round per caster level, during which time the skulk may spend his own spell points to use these talents as if he possessed them.\n\nIf the target of arcane forgery has spells or spell-like abilities, the skulk may copy one or more of these in place of a forged sphere or talent, gaining the ability to cast it as a spelllike ability. A forged spell or spell-like ability must have a spell level of no more than half the skulk’s caster level. These spelllike abilities expire after 1 round per caster level or when cast, and a skulk may not use this ability to duplicate a spell with a costly material component or a focus."
+        },
+        {
+          "level": 6,
+          "name": "Mimeses",
+          "description": "Source: Fey Adept Expanded: Mimeses\n\nA target within the area of your (blot) or (darkness) effects is considered to be within the area of your illusion for the purpose of your mimesis abilities. A target affected by any of your (shadow) effects is considered to be within the area of your illusion and affected by your glamer for the purpose of your mimesis abilities.\n\nUmbral Adept: The skulk gains the Dark sphere as a bonus magic talent at first level. If the skulk has the Dark sphere already, she gains a bonus talent for this sphere instead. This replaces fey magic.\n\nMaster Nyctomancer: Whenever the skulk ceases to concentrate on a Dark sphere talent she is maintaining through concentration, or if she decides not to maintain a Dark sphere talent at all after its creation, it remains for a number of rounds equal to 1/2 her skulk level (minimum 1) before disappearing.\n\nThis replaces master illusionist.\n\nSiphon Shadow (Su): At 6th level the skulk may spend a shadow point to attempt to siphon away a creature’s shadow as a melee touch attack. If this attack is successful, the target must make a Will save equal to 10 + 1/2 the skulk’s class level + her casting ability modifier or have its shadow stolen.\n\nThe skulk gains 1 temporary spell point for every two die of her shadowmark damage when she successfully steals a shadow. These temporary spell points do not stack with spell points from other targets, other instances of this ability, or any other source and expire after 1 round per caster level. The skulk may not gain more temporary spell points than the target has Hit Dice.\n\nThe target becomes immune to all abilities that target its shadow until the shadow returns, including additional uses of this ability. If the target has items in a shadow stash, they are inaccessible until the shadow returns.\n\nThe target’s shadow returns when the temporary spell points are spent or expire. Siphon shadow cannot be used against a creature that has been conjured or summoned, or against a creature lacking an Intelligence score. A target can’t be subject to a successful use of this ability more than once every 24 hours.\n\nThis ability replaces create reality.\n\nArcane Forgery (Su): When a skulk successfully steals a target’s shadow, she gains immediate knowledge of the target’s available repertoire of spells, spell-like abilities, and talents and can spend another shadow point as a free action to temporarily duplicate one sphere and a number of sphere talents possessed by the target. She may duplicate advanced talents, but must meet prerequisites to use them. She may duplicate one talent at 6th level, two at 10th level, three at 14th level, and four at 18th level.\n\nThese talents must be within the copied sphere. These arcane forgeries last for 1 round per caster level, during which time the skulk may spend her own spell points to use these talents as if she possessed them.\n\nIf the target of arcane forgery has spells or spell-like abilities, the skulk may copy one or more of these in place of a forged sphere or talent, gaining the ability to cast it as a spell-like ability. A forged spell or spell-like ability must have a spell level of no more than half the skulk’s caster level. These spell-like abilities expire after 1 round per caster level or when cast, and a skulk may not use this ability to duplicate a spell with a costly material component or a focus.\n\nConsummate Forger (Su): At 20th level, the skulk may use advanced talents replicated by arcane forgery without meeting any prerequisites. Additionally, she may copy a second sphere, though her pool of stolen talents remains the same.\n\nThis replaces feytouched.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        },
+        {
+          "level": 6,
+          "name": "Siphon Shadow",
+          "description": "At 6th level the skulk may spend a shadow point to attempt to siphon away a creature’s shadow as a melee touch attack. If this attack is successful, the target must succeed at a Will save equal to 10 + 1/2 the skulk’s class level + his casting ability modifier or have its shadow stolen. The skulk gains 1 temporary spell point for every two dice of his shadowmark damage when he successfully steals a shadow. These temporary spell points do not stack with spell points from other targets, other instances of this ability, or any other source and expire after 1 round per caster level. The skulk may not gain more temporary spell points than the target has Hit Dice.\n\nThe target becomes immune to all abilities that target its shadow until the shadow returns, including additional uses of this ability. If the target has items in a shadow stash, they are inaccessible until the shadow returns.\n\nThe target’s shadow returns when the temporary spell points are spent or expire. Siphon shadow cannot be used against a creature that has been conjured or summoned, or against a creature lacking an Intelligence score. A target cannot be subject to a successful use of this ability more than once every 24 hours.\n\nThis ability replaces create reality."
+        },
+        {
+          "level": 20,
+          "name": "Consummate Forger",
+          "description": "At 20th level, the skulk may use advanced talents replicated by arcane forgery without meeting any prerequisites. Additionally, he may copy a second sphere, though his pool of stolen talents remains the same.\n\nThis replaces feytouched."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:fey-adept:solipsist",
+      "package": "spheres-class:fey-adept",
+      "name": "Solipsist",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/solipsist",
+      "replaces_features": [
+        "",
+        "casting",
+        "feytouched",
+        "levels",
+        "shadowmark",
+        "solipsist-skill-list",
+        "truesight-at"
+      ],
+      "removed_features": [
+        "12th",
+        "16th",
+        "20th-levels",
+        "8th",
+        "feytouched",
+        "shadowmark",
+        "truesight-at-4th"
+      ],
+      "removed_feature_clauses": [
+        "shadowmark",
+        "truesight at 4th",
+        "8th",
+        "12th",
+        "16th",
+        "and 20th levels",
+        "feytouched"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "The solipsist gains Knowledge (dungeoneering) (Int), Knowledge (engineering) (Int), Knowledge (history) (Int), and Knowledge (planes) (Int) as class skills but loses Appraise (Int), Intimidate (Cha), Knowledge (local) (Int) and Knowledge (nature) (Int) as class skills.\n\nThis alters the solipsist skill list."
+        },
+        {
+          "level": 1,
+          "name": "Introspection",
+          "description": "A solipsist is keenly aware of the abstract state of reality and may connect to the strange and terrible truths underlying the nature of the cosmos or even momentarily alter them to suit his self perception. A solipsist has the ability to augment skill checks and ability checks through his understanding of the lie we call reality.\n\nAs a free action, he can spend a shadow point to add 1d6 to the result of that check, including any on which he takes 10 or 20. This choice is made after the check is rolled and before the results are revealed.\n\nA solipsist can only use introspection once per check or roll. The solipsist can use introspection on any Bluff, Knowledge or Stealth skill checks without expending a shadow point, provided he is trained in the skill. Introspection can also be used on attack rolls and saving throws, at the cost of expending two points each time from the shadow pool. In the case of saving throws, using introspection is an immediate action rather than a free action. This feature counts as the inspiration class feature for the purposes of feats and abilities. If he has levels in both solipsist and an inspiration granting class he does not gain an inspiration pool, instead, he adds his inspiration granting class levels to his solipsist levels to determine the size of his shadow pool and use points from the shadow pool in place of the inspiration pool.\n\nThis replaces shadowmark."
+        },
+        {
+          "level": 4,
+          "name": "Introspective Investigation",
+          "description": "At 4th level and every 4 levels thereafter a solipsist gains an investigator talent, treating his solipsist level as his investigator level for the purposes of meeting prerequisites for these talents. Any talents that use inspiration pool instead use the shadow pool.\n\nThis replaces truesight at 4th, 8th, 12th, 16th, and 20th levels."
+        },
+        {
+          "level": 20,
+          "name": "Hypotheosis",
+          "description": "At 20th level, a solipsist becomes manifested surreality and is treated as an aberration rather than a humanoid (or whatever the solipsist’s creature type was before) if to do so would be advantageous for the purpose of spells and magical effects. He also gains +2 on all saving throws and spell resistance 30 + his casting ability modifier vs. divination spells, effects, and all other abilities used to gather information about the solipsist. This spell resistance stacks with spell resistance gained from other sources.\n\nThis replaces feytouched.\n\nSkills: The solipsist gains Knowledge (dungeoneering), Knowledge (engineering), Knowledge (history) and Knowledge (planes) as class skills but loses Appraise, Intimidate, Knowledge (local) and Knowledge (nature) as class skills.\n\nThis modifies the solipsist skill list.\n\nCasting Ability Modifier: A solipsist uses Intelligence instead of Charisma as his casting ability modifier and for all class related purposes.\n\nThis modifies casting.\n\nIntrospection: A solipsist is keenly aware of the abstract state of reality and may connect to the strange and terrible truths underlying the nature of the cosmos or even momentarily alter them to suit her self perception. A solipsist has the ability to augment skill checks and ability checks through her understanding of the lie we call reality.\n\nAs a free action, she can spend a shadow point to add 1d6 to the result of that check, including any on which she takes 10 or 20. This choice is made after the check is rolled and before the results are revealed. A solipsist can only use introspection once per check or roll. The solipsist can use introspection on any Bluff, Knowledge or Stealth skill checks without expending a shadow point, provided she’s trained in the skill.\n\nIntrospection can also be used on attack rolls and saving throws, at the cost of expending two points each time from the shadow pool. In the case of saving throws, using introspection is an immediate action rather than a free action. This feature counts as the inspiration class feature for the purposes of feats and abilities. If you have levels in both solipsist and an inspiration granting class you do not gain an inspiration pool, instead, add your inspiration granting class levels to your solipsist levels to determine the size of your shadow pool and use points from the shadow pool in place of the inspiration pool.\n\nThis replaces shadowmark.\n\nIntrospective Investigation: At 4th level and every 4 levels thereafter a solipsist gains an investigator talent, treating her solipsist level as her investigator level for the purposes of meeting prerequisites for these talents. Any talents that use inspiration pool instead use the shadow pool.\n\nThis replaces truesight at 4th, 8th, 12th, 16th, and 20th levels.\n\nHypotheosis: At 20th level, a solipsist becomes manifested surreality and is treated as an aberration rather than a humanoid (or whatever the solipsist’s creature type was before) if to do so would be advantageous for the purpose of spells and magical effects. She also gains +2 on all saving throws and spell resistance 30 + Intelligence modifier vs. divination spells, effects, and all other abilities used to gather information about the solipsist. This spell resistance stacks with spell resistance gained from other sources.\n\nThis replaces feytouched.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:fey-adept:unseelie-disciple",
+      "package": "spheres-class:fey-adept",
+      "name": "Unseelie Disciple",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/unseelie-disciple",
+      "replaces_features": [
+        "create-reality",
+        "greater-create-reality",
+        "improved-create-reality",
+        "shadowmark",
+        "shadowstuff"
+      ],
+      "removed_features": [
+        "create-reality",
+        "greater-create-reality",
+        "improved-create-reality",
+        "shadowmark",
+        "shadowstuff"
+      ],
+      "removed_feature_clauses": [
+        "shadowstuff",
+        "shadowmark",
+        "create reality",
+        "improved create reality",
+        "greater create reality"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 3,
+          "name": "Sneak Attack",
+          "description": "A unseelie disciple gains +1d6 sneak attack, as the rogue class feature. This improves by +1d6 at 3rd level and every 2 levels thereafter, to a maximum of 10d6 at 19th level. This damage can be applied to sphere effects, but only those that deal damage, require an attack roll of some sort, and only once per effect regardless of the number of targets or attacks and only when the target is within 30 feet. Additional damage is of the same type as the effect, and if the effect allows a saving throw to negate or halve the damage, it also negates or halves the sneak attack damage.\n\nIf the unseelie disciple gains sneak attack from any other source (such as rogue levels), he adds these levels together when determining the strength of his sneak attack (thus, a rogue 1/ unseelie disciple 1 would possess 1d6 sneak attack, not 2d6).\n\nThis replaces shadowstuff and shadowmark."
+        },
+        {
+          "level": 12,
+          "name": "Rogue Talents",
+          "description": "At 6th, 12th, and 18th level, the unseelie disciple gains a rogue talent of his choice, treating his unseelie disciple levels as rogue levels when determining their effects. At 12th level, the unseelie disciple can choose advanced rogue talents in place of rogue talents.\n\nThis replaces create reality, improved create reality, and greater create reality.\n\nSpheres of Power: Expanded Options\n\n$4.99\n\nSneak Attack (Ex): A Unseelie disciple gains +1d6 sneak attack, as the rogue class feature. This improves by +1d6 at 3rd level and every 2 levels thereafter, to a maximum of 10d6 at 19th level. This damage can be applied to sphere effects, but only those that deal damage, require an attack roll of some sort, and only once per effect regardless of the number of targets or attacks and only when the target is within 30 ft. Additional damage is of the same type as the effect, and if the effect allows a saving throw to negate or halve the damage, it also negates or halves the sneak attack damage.\n\nIf the Unseelie disciple gains sneak attack from any other source (such as rogue levels), add these levels together when determining the strength of their sneak attack (thus, a rogue 1/Unseelie Adept 1 would possess 1d6 sneak attack, not 2d6).\n\nThis replaces shadowstuff and shadowmark.\n\nRogue Talents: At 6th, 12th, and 18th level, the Unseelie Adept gains a rogue talent of his choice, treating his fey adept levels as rogue levels when determining their effects. At 12th level, the Unseelie disciple can choose advanced talents in place of rogue talents.\n\nThis replaces create reality, improved create reality, and greater create reality.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": [
+        "sneak_attack",
+        "rogue_talent"
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:fey-adept:word-witch",
+      "package": "spheres-class:fey-adept",
+      "name": "Word Witch",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/word-witch",
+      "replaces_features": [
+        "fey-magic",
+        "master-illusionist",
+        "permanent-illusion",
+        "shadowstuff"
+      ],
+      "removed_features": [
+        "fey-magic",
+        "master-illusionist",
+        "permanent-illusion",
+        "shadowstuff"
+      ],
+      "removed_feature_clauses": [
+        "fey magic",
+        "master illusionist",
+        "shadowstuff",
+        "permanent illusion"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Creation Magic",
+          "description": "At 1st level a word witch gains the Creation sphere as a bonus magic talent.\n\nThis ability replaces fey magic."
+        },
+        {
+          "level": 1,
+          "name": "Creation Mastery",
+          "description": "Whenever a word witch ceases concentration on an object he has created and is maintaining through concentration or if he decides not to maintain the object at all, that object remains for a number of rounds equal to 1/2 his word witch level (minimum 1) before disappearing. This ability replaces master illusionist."
+        },
+        {
+          "level": 1,
+          "name": "Mimeses",
+          "description": "Source: Fey Adept Expanded: Mimeses\n\nA target in contact with an object you have created or affected by any of your (alter) effects is considered to be within the area of your illusion and affected by your glamer for the purpose of your mimesis abilities.\n\nWords have power. A simple but deep truth learned well by but a few, be they a simple bard singing in a town corner or a mighty king speaking to his court, the right words spoken in the right ears can change the world. But these are words that were created by mere mortals, vague ideas given crude form. But there are other words, older words, words that helped shape Creation when it was first wrought into being. This is the language of the gods themselves, and even knowing just a few words of it can grant great power. One who walks this path is the Word Witch, and when they speak, Creation itself listens.\n\nCasting Ability Modifier: A word witch uses Intelligence as her casting ability modifier and for all class features instead of Charisma.\n\nCreation Magic: At 1st level a word witch gains the Creation sphere as a bonus magic talent. If she already has the Creation sphere, then she may select a Creation bonus talent instead.\n\nThis ability replaces fey magic.\n\nCreation Mastery: Whenever a word witch ceases concentration on an object she has created and is maintaining through concentration or if she decides not to maintain the object at all after its creation, that object remains for a number of rounds equal to 1/2 her word witch level (minimum 1) before disappearing. This ability replaces master illusionist.\n\nWords of Creation: Word witches gain a limited ability to utilize words of creation. With this power, the word witch can create effects by conjuring forth physical manifestations of the words that describe them.\n\nThe word witch gains a pool of word points equal to her Intelligence modifier + 1/2 her word witch level (minimum 1). Unless otherwise noted, the saving throw DC for a word of power is equal to 10 + 1/2 the word witch’s level + her Intelligence modifier. A word witch may spend word points to create any of the following effects as a standard action.\n\nFire: The word witch may spend a word point to create a set of flaming letters at 1st level and an additional set for every two caster levels she has beyond 1st, whose size and damage grow as she gains more levels. These letters may be launched altogether at a single target as a ranged touch attack at close range that deals 1d6 points of fire damage.\n\nIf successful, the target must make a Reflex save to avoid catching on fire. This deals an additional 1d6 points of fire damage for every 2 levels beyond 1st (to a maximum of 10d6 at 19th level). Alternatively, you may fire each set at a separate target, each requiring a ranged touch attack to hit and dealing 1d3 points of fire damage, plus an additional 1d3 points of fire damage for every 2 levels beyond 1st (to a maximum of 10d3 at 19th level). When used in this way, targets are not at risk of catching fire and never take damage from more than one letter.\n\nIce: The word witch may conjure frozen pillars which quickly fly toward the target and attempt to trap them. The word witch must make a grapple combat maneuver check against the target, using her Intelligence modifier in place of her Strength modifier and her caster level in place of her base attack bonus, additionally, she uses the maximum size she may create in place of her size for determining her size bonus on this attack. If successful, the target becomes grappled and must make a Fortitude save each round or take 1 point of Dexterity damage as long as they remain grappled. The ice maintains the grapple every round (but never makes any action other than to maintain the grapple) for a number of rounds equal to your CAM plus 1/2 your caster level. At 7th level the word witch gains the benefits of Improved Grapple when using this ability. At 13th level she gains the benefits of Greater Grapple and may make a single attempt to Pin the target as a free action if the initial grapple is successful.\n\nIron: The word witch conjures 1 metal bar for every 3 caster levels she possesses (minimum 1) that launch themselves at enemies or objects. Each bar may be hurled at a target as a ranged touch attack and each deals 1d6 bludgeoning damage at 1st level and an additional 1d6 damage at 5th and every 4 levels thereafter. When striking a creature, she makes a bull rush attempt using her caster level as her base attack bonus, her Intelligence modifier in place of her Strength modifier, and gaining a size bonus fitting for the maximum size she can create with the Creation sphere. When striking an object, iron may make a Strength check using the word witch’s Intelligence modifier and gaining a size bonus fitting for the maximum size she can create with the Creation sphere at her caster level to break that object. Regardless of whether she is targeting a creature or object, every bar beyond the first that targets the same entity grants a +3 bonus to the combat maneuver check or Strength check instead of an additional combat maneuver or Strength check.\n\nEarth: The word witch creates a series of stone shapes which slam into the ground at a target location within close range. All creatures within a 10 ft. radius of the target location must make a Reflex save or fall prone as the stones smash into the ground with enough force to cause it to shake.\n\nWind: The word witch conjures a whirlwind burst of air. This word creates a severe blast of air (approximately 50 mph) that originates from the word witch, affecting all creatures in a 60 ft. line and persists for a number of rounds equal to her caster level. All flying creatures in this area take a –4 penalty on Fly skill checks. Tiny or smaller flying creatures must make a DC 25 Fly skill check or be blown back 2d6 × 10 ft. and take 2d6 points of damage. Small or smaller flying creatures must make a DC 20 Fly skill check to move against the force of the wind.\n\nA Tiny or smaller creature on the ground is knocked down and rolled 1d4 × 10 ft., taking 1d4 points of nonlethal damage per 10 feet.\n\nSmall creatures are knocked prone by the force of the wind.\n\nMedium or smaller creatures are unable to move forward against the force of the wind unless they succeed at a DC 15 Strength check.\n\nLarge or larger creatures may move normally within a gust of wind effect.\n\nThis effect can’t move a creature beyond the limit of its range.\n\nAny creature, regardless of size, takes a –4 penalty on ranged attacks and Perception checks in the area of Word of Power: Wind.\n\nThe force of the wind automatically extinguishes candles, torches, and similar unprotected flames. It causes protected flames, such as those in lanterns, to dance wildly and has a 50% chance to extinguish those lights. In addition to the effects noted, a Word of Power: Wind can do anything that a sudden blast of wind would be expected to do. It can create a stinging spray of sand or dust, fan a large fire, overturn delicate awnings or hangings, heel over a small boat, and blow gases or vapors to the edge of its range.\n\nLightning: At 3rd level, the word witch gains access to a new Word. She may create arcing letters that dance with electricity before shooting out. All creatures within a 30 ft. cone take 2d6 points of electricity damage (Reflex half), and an additional 1d6 for every odd level beyond 3rd to a maximum of 10d6 points of damage at 19th level. Targets wearing metal armor or who are primarily made of metal take a -3 penalty to this Reflex save.\n\nLife: At 6th level, the word witch can imbue her creations with a semblance of life. By spending a word point in conjunction with any create effect, the object is affected as if by Animate Object, treating your word witch level as your caster level in the Enhancement sphere. This effect lasts for as long as the word witch concentrates to maintain the creation or for up to 1 minute per level if she spends an additional spell point.\n\nSilver: At 6th level, the word witch’s magical vocabulary grows. She may now conjure sharp, silvery characters that seem fluid before they break apart into a barrage of needles. This deals 1d6 piercing damage for every odd word witch level in a 30 ft. cone (Reflex half). This damage is considered silver for the purposes of overcoming damage reduction.\n\nAdditionally, the word witch may instead target up to 6 creatures. These creatures take on a silvery, metallic sheen and their natural and manufactured weapons are treated as silver for up to 1 minute per level.\n\nAdamantine: At 12th level, the word witch learns how to call upon the ultimate metal. She may create adamantine by spending 1 word point in conjunction with any non-instantaneous duration create effect.\n\nIn addition, she may spend two word points to turn a target creature into a dangerous living weapon. This grants the target a +6 enhancement bonus to Strength, damage reduction 10/adamantine, and a single simple or martial weapon of her choice made of adamantine with an enhancement bonus of +4 (this bonus increases to +5 at 15th level) for 1 round per caster level. While in this form, the target’s speed is reduced as if they were wearing full plate and suffers a -4 penalty to Dexterity.\n\nThis ability replaces shadowstuff.\n\nPermanent Creation: At level 20, the word witch can make one of her creations permanent. She may select any object she has conjured through the create ability and increase its duration to permanent. Only one creation can be made permanent in this way at one time. If another creation is designated as permanent, the previous creation expires.\n\nThis ability replaces permanent illusion.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        },
+        {
+          "level": 1,
+          "name": "Permanent Creation",
+          "description": "At level 20, the word witch can make one of his creations permanent. He may select any object he has conjured through the create ability and increase its duration to permanent. Only one creation can be made permanent in this way at one time. If another creation is designated as permanent, the previous creation expires.\n\nThis ability replaces permanent illusion."
+        },
+        {
+          "level": 1,
+          "name": "Words of Creation",
+          "description": "Word witches gain a limited ability to utilize words of creation. With this power, the word witch can create effects by conjuring forth physical manifestations of the words that describe them.\n\nThe word witch gains a pool of word points equal to 1/2 his word witch level + his casting ability modifier (minimum 1). Unless otherwise noted, the words of creation have a range of close and use his caster level in the Creation sphere and the saving throw DC for a word of power is equal to 10 + 1/2 the word witch’s caster level + his casting ability modifier. A word witch may spend word points to create any of the following effects as a standard action."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:fey-adept:wunderkind",
+      "package": "spheres-class:fey-adept",
+      "name": "Wunderkind",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/wunderkind",
+      "replaces_features": [],
+      "removed_features": [],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {
+        "statistics": {
+          "skill_points": 4
+        },
+        "casting": {
+          "sphere_progression": "High"
+        }
+      },
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "A wunderkind may combine spheres and talents to create magical effects. A wunderkind is considered a High-Caster, and uses Charisma as her casting ability modifier. (Note: all casters gain 2 bonus talents and may refine their tradition the first time they gain the casting class feature. Wunderkinder begin with the Wild Magic and Magical Signs drawbacks (as described in her ability descriptions), as well as the Easy Focus boon."
+        },
+        {
+          "level": 1,
+          "name": "Emotive Magic",
+          "description": "A wunderkind’s connection to the Fey Realm comes from her emotions. This manifests in the form of a single powerful emotion that dominates all others. For example, the wunderkind’s first exposure to her powers was likely when she was exceptionally angry, sad, or joyful. Notwithstanding it being the source of her power, a wunderkind’s dominant emotion also stands to throw her magic into chaos if she ever loses control.\n\nAt character creation, the wunderkind chooses a dominant emotion: Serenity, Courage, Enmity, Fear, Grief, Joy, Love, or Rage. This decision must be made at character creation and cannot be changed. Each time the wunderkind spends a spell point, there is a 10% chance that wild magic manifests. If it does, she must roll on Table: Wild Magic Effects for her dominant emotion. As wild magic effects occur when the wunderkind uses a spell point, the wild magic takes effect prior to any other effects (each treated separately). Wild magic does not interrupt or prevent any other effects that might occur due to the spell point being spent, but it might make things easier or harder, depending on the emotion!\n\nCreatures within the wunderkind’s Fey Aura are allowed a Will save to ignore her wild magic effects. The DC for this save is equal to 10 + 1/2 the wunderkind’s level + the wunderkind’s Charisma modifier. A wunderkind is never subjected to the effects of her own wild magic.\n\nTable: Wild Magic Effects\n\nSerenity Wild Magic Effect\n\n1–25% All in your Fey Aura are stunned for 1 round\n\n26–50% All in your Fey Aura are dazed for 1 round\n\n51–75% All in your Fey Aura are staggered for 1 round\n\n76–100%+ All foes in your Fey Aura are stunned for 1 round\n\nCourage Wild Magic Effect\n\n1–25% All in your Fey Aura get +3 atk and saves vs. fear for 1 round\n\n26–50% All in your Fey Aura get +2 atk and saves vs. fear for 1 round\n\n51–75% All in your Fey Aura get +1 atk and saves vs. fear for 1 round\n\n76–100%+ All allies in your Fey Aura get +3 atk and saves vs. fear for 1 round\n\nEnmity Wild Magic Effect\n\n1–25% All in your Fey Aura treat others at -3 attitude for 1 round\n\n26–50% All in your Fey Aura treat treat others at -2 attitude for 1 round\n\n51–75% All in your Fey Aura treat treat others at -1 attitude for 1 round\n\n76–100%+ All foes in your Fey Aura treat others at -3 attitude for 1 round\n\nFear Wild Magic Effect\n\n1–25% All in your Fey Aura are panicked for 1 round\n\n26–50% All in your Fey Aura are frightened for 1 round\n\n51–75% All in your Fey Aura are shaken for 1 round\n\n76–100%+ All foes in your Fey Aura cower for 1 round\n\nGrief Wild Magic Effect\n\n1–25% All in your Fey Aura fall prone from overwhelming sadness\n\n26–50% All in your Fey Aura are nauseated for 1 round\n\n51–75% All in your Fey Aura are sickened for 1 round\n\n76–100%+ All foes in your Fey Aura fall prone from overwhelming sadness\n\nJoy Wild Magic Effect\n\n1–25% All in your Fey Aura get +3 to next d20 roll for 1 round\n\n26–50% All in your Fey Aura get +2 to next d20 roll for 1 round\n\n51–75% All in your Fey Aura get +1 to next d20 roll for 1 round\n\n76–100%+ All allies in your Fey Aura get +3 to next d20 roll for 1 round\n\nLove Wild Magic Effect\n\n1–25% All in your Fey Aura treat others at +3 attitude for 1 round\n\n26–50% All in your Fey Aura treat others at +2 attitude for 1 round\n\n51–75% All in your Fey Aura treat others at +1 attitude for 1 round\n\n76–100%+ All foes in your Fey Aura treat you at +3 attitude for 1 round\n\nRage Wild Magic Effect\n\n1–25% All in your Fey Aura rage and attack an ally for 1 round\n\n26–50% All in your Fey Aura are confused and rage for 1 round\n\n51–75% All in your Fey Aura are confused for 1 round\n\n76–100%+ All foes in your Fey Aura rage and attack an ally for 1 round"
+        },
+        {
+          "level": 1,
+          "name": "Fey Aura",
+          "description": "A wunderkind acts as a conduit through which the Fey Realm can influence the Material Plane. At 1st level the wunderkind gains the Illusion sphere as a bonus magic talent and an aura of Fey influence with a radius of 30 feet, centered on her. In its most harmless manifestations, this aura creates glimpses of the Fey Realm as colored by the wunderkind’s present mood. At its strongest, the wunderkind’s merest whim becomes reality.\n\nA wunderkind’s Fey Aura constantly manifests a shifting reality around her, creating random effects—as per the trick ability from the Illusion sphere—as appropriate for the wunderkind’s personality and mood (determined by the GM). Thus, when enjoying a pleasant day a wunderkind’s Fey Aura might manifest shining fairy lights, the smell of freshly-baked muffins, or sounds of a babbling brook. When grieved it might instead cause her to appear emaciated, smell like rotting meat, or be haunted by the sound of distant pained wails. These signs intensify when the wunderkind uses magic, becoming easily noticeable to anyone within her Fey Aura.\n\nA wunderkind’s Fey Aura can be detected by the base divine talent from the Divination sphere. Wunderkinder cannot naturally suppress this aura, but it can be hidden or altered by Manipulate Aura (Illusion)."
+        },
+        {
+          "level": 1,
+          "name": "Magic Talents",
+          "description": "A wunderkind gains a magic talent every level, according to Table: The Wunderkind."
+        },
+        {
+          "level": 1,
+          "name": "Persistent Illusions",
+          "description": "Whenever the wunderkind ceases to concentrate on an illusion she is maintaining through concentration, or if she decides not to maintain an illusion at all after its creation, it remains for a number of rounds equal to 1/2 her wunderkind level (minimum 1) before disappearing."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "A wunderkind gains a small reservoir of energy she can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to her level + her Charisma modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 2,
+          "name": "Fey Will",
+          "description": "A wunderkinder bows to no will but her own. At 2nd level, the wunderkind gains a +2 bonus on Will saving throws to resist talents from the Mind sphere. In addition, if she fails such a save, she receives another save 1 round later to prematurely end the effect (assuming it has a duration greater than 1 round). This second save is made at the same DC as the first. If the wunderkind has a similar ability from another source (such as a rogue’s slippery mind class feature or the stubborn racial trait), she can only use one of these abilities per round, but can try the other on the next round if the previous reroll ability fails."
+        },
+        {
+          "level": 3,
+          "name": "Emotion",
+          "description": "At 3rd level, the wunderkind begins to affect the very fabric of the Material Plane through sheer force of will. She gains a pool of reality points equal to her Charisma modifier + 1/2 her wunderkind level. The wunderkind chooses an emotion from those listed in the eliciter class description from Spheres of Power, gaining the minor power associated with that emotion. Any emotion power with ‘touch’ in the name costs 1 reality point to activate. Whenever you activate a lesser emotion power you may spend up to 3 reality points to increase the range; one reality point increases the range from touch to close, two increases it from close to medium, and 3 increases it from medium to long.\n\nAt 5th level and every odd level thereafter, the wunderkind may choose to gain the minor power of a new emotion, or gain access to the next level of an emotion she already possesses (lesser, greater, and master). A wunderkind cannot gain a lesser power before 5th level, a greater power before 7th level, or a master power before 9th level. All emotions are mind-affecting effects. If an emotion calls for a saving throw, the DC is equal to 10 + 1/2 the wunderkind’s level + the wunderkind’s Charisma modifier.\n\nEach time the wunderkind gains a power from her dominant emotion, the chance that wild magic manifests when she spends a spell point permanently increases by 5%. This stacks with itself and represents the wunderkind’s indulgence in the uncontrollable side of her magic.\n\nEach time the wunderkind gains a power from her tempering emotion (see below), she gains a permanent +5% bonus to all rolls on Table: Wild Magic Effects (maximum 100). This bonus stacks with itself and represents the emotional training the wunderkind has done to keep herself in control of her magic. For the purposes of this effect, serenity tempers rage, courage tempers fear, enmity tempers love, and grief tempers joy (and vice versa).\n\nThe wunderkind can choose from any emotion listed in the eliciter class, using her wunderkind level as her eliciter level for this purpose."
+        },
+        {
+          "level": 4,
+          "name": "The Sight",
+          "description": "Once per day at 4th level a wunderkind may grant herself the ability to see all things as they truly are to a range of 120 feet for 1 round per level. The wunderkind sees through magical darkness, notices secret doors hidden by magic, sees the exact locations of creatures or objects under blur or displacement effects, sees invisible creatures or objects normally, succeeds at all saving throws against illusions and sees through them naturally, and sees the true form of polymorphed, changed, or transmuted things. The wunderkind may use this ability an additional time per day for every 4 levels beyond 4th, to a maximum of 5 times at 20th level.\n\nThis does not allow the wunderkind to see through mundane disguises, non-magical means of hiding things, fog, or other such effects. This cannot be combined with other magic that enhances the senses, such as a crystal ball."
+        },
+        {
+          "level": 6,
+          "name": "Mingling Realities",
+          "description": "At 6th level, a wunderkind may spend a reality point in conjunction with one of her Illusion talents to will a part of the illusion into being, effectively permitting a portion of the Fey Realm to cross over into the Material Plane for a brief time. This functions as the Create Reality ability from the fey adept class from Spheres of Power, and improves at 12th and 18th levels, as normal."
+        },
+        {
+          "level": 10,
+          "name": "Fey Step",
+          "description": "At 10th level, the wunderkind may step into a pocket of the Fey Realm as per the Extradimensional Room talent from the Warp sphere, except that while she is there the trick effects of her Fey Aura fill the extradimensional space (regardless of the Aura’s normal radius). As a standard action, and without spending a spell point, she may allow the space to remain for up to 1 round per caster level regardless of whether or not she is inside it. 1d4 nights after using this ability, a 5 ft. diameter ring of red toadstools appears on the ground where this ability was used."
+        },
+        {
+          "level": 14,
+          "name": "Fey Resistance",
+          "description": "At 14th level, the wunderkind has been in contact with the Fey Realm for so long that she gains DR 5/cold iron and a +1 luck bonus on all saving throws."
+        },
+        {
+          "level": 19,
+          "name": "Master of Emotion",
+          "description": "At 19th level, the wunderkind has developed such mastery over her emotions that she is no longer affected by mind-affecting effects, and she never rolls for wild magic when she spends a spell point. Instead, the wunderkind may choose which wild magic effect from her dominant emotion occurs, or none at all. If she chooses, she may also be affected by her own wild magic."
+        },
+        {
+          "level": 20,
+          "name": "Permanent Illusions",
+          "description": "At 20th level, the wunderkind can make one of her illusions permanent. Only one illusion may be made permanent in this way at one time. If another illusion is designated as permanent, the previous permanent illusion ends. In addition, as long as the wunderkind maintains an illusion as permanent her Fey Aura never manifests trick effects.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        },
+        {
+          "level": 20,
+          "name": "Taken by the Fey",
+          "description": "At 20th level, a wunderkind is treated as a fey rather than as a humanoid (or whatever the wunderkind’s creature type was) for the purpose of spells and magical effects. She also gains DR 10/cold iron, and a +2 luck bonus on all saving throws."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

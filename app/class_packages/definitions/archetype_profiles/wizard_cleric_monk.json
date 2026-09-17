@@ -1,0 +1,160 @@
+{
+  "version": 1,
+  "description": "Hand-reviewed profile changes for Wizard, Cleric, and Monk archetypes.",
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:arcane-warden",
+      "class_modifications": {
+        "statistics": {
+          "add_class_skills": ["climb", "heal", "survival", "swim"],
+          "remove_class_skills": ["appraise", "fly", "knowledge_nobility", "linguistics"]
+        }
+      }
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:qadira-mage-of-the-veil",
+      "class_modifications": {
+        "statistics": {"add_class_skills": ["bluff", "disguise", "stealth"]}
+      }
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:wind-listener",
+      "class_modifications": {
+        "statistics": {"add_class_skills": ["perception"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:wizard:eclectic-researcher",
+      "class_modifications": {
+        "casting": {"sphere_progression": "High", "traditional": false, "ability": "intelligence", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "High", "talent_kinds": ["magic"]},
+        "capabilities": {"grants": ["magic"], "removes": ["traditional_spells"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:wizard:sphere-wizard",
+      "class_modifications": {
+        "casting": {"sphere_progression": "High", "traditional": false, "ability": "intelligence", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "High", "talent_kinds": ["magic"]},
+        "capabilities": {"grants": ["magic"], "removes": ["traditional_spells"]}
+      }
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:cloistered-cleric",
+      "class_modifications": {
+        "statistics": {
+          "skill_points": 4,
+          "class_skills": ["appraise", "craft", "diplomacy", "heal", "knowledge_all", "linguistics", "profession", "sense_motive", "spellcraft"]
+        },
+        "casting": {"daily_slot_adjustment": -1, "preserve_domain_slots": true},
+        "proficiencies": {
+          "mode": "replace",
+          "weapons": ["Club", "Heavy mace", "Light mace", "Quarterstaff", "Sling"],
+          "armor": ["Light armor"]
+        }
+      }
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:angelfire-apostle",
+      "class_modifications": {"casting": {"daily_slot_adjustment": -1, "preserve_domain_slots": true}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:cardinal",
+      "class_modifications": {"statistics": {"bab_progression": "1/2"}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:channeler-of-the-unknown",
+      "class_modifications": {"casting": {"daily_slot_adjustment": -1, "preserve_domain_slots": true}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:crusader",
+      "class_modifications": {"casting": {"daily_slot_adjustment": -1, "preserve_domain_slots": true}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:iron-priest",
+      "class_modifications": {
+        "statistics": {
+          "class_skills": ["appraise", "craft", "diplomacy", "disable_device", "heal", "knowledge_engineering", "knowledge_history", "knowledge_local", "knowledge_religion", "linguistics", "profession", "spellcraft", "survival"]
+        }
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:cleric:faithful-shepherd",
+      "class_modifications": {
+        "casting": {"sphere_progression": "Mid", "traditional": false, "ability": "wisdom", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "Mid", "talent_kinds": ["magic"]},
+        "capabilities": {"grants": ["magic"], "removes": ["traditional_spells"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:cleric:sphere-cleric",
+      "class_modifications": {
+        "casting": {"sphere_progression": "High", "traditional": false, "ability": "wisdom", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "Low", "talent_kinds": ["magic"]},
+        "capabilities": {"grants": ["magic"], "removes": ["traditional_spells"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:cleric:kindred-keeper",
+      "class_modifications": {
+        "statistics": {"skill_points": 4},
+        "advancement": {"talent_progression": "Journeyman", "talent_kinds": ["magic", "martial", "skill"]},
+        "capabilities": {"grants": ["magic", "martial", "skill"], "removes": []},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:monk:brazen-disciple",
+      "class_modifications": {
+        "statistics": {"add_class_skills": ["bluff", "disguise", "knowledge_planes"], "remove_class_skills": ["knowledge_religion", "ride", "swim"]}
+      }
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:monk:hellcat",
+      "class_modifications": {
+        "statistics": {"add_class_skills": ["knowledge_planes", "survival"], "remove_class_skills": ["craft", "knowledge_history", "perform", "profession"]},
+        "proficiencies": {"mode": "replace", "weapons": ["Club", "Crossbow", "Dagger", "Kama", "Light mace", "Nunchaku", "Quarterstaff", "Repeating crossbow", "Sai", "Shuriken", "Siangham"]}
+      }
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:monk:karmic-monk",
+      "class_modifications": {"statistics": {"add_class_skills": ["diplomacy"], "remove_class_skills": ["intimidate"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:monk:perfect-scholar",
+      "class_modifications": {"statistics": {"add_class_skills": ["knowledge_all", "linguistics"], "remove_class_skills": ["intimidate", "perform"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:monk:sage-counselor",
+      "class_modifications": {"statistics": {"add_class_skills": ["bluff", "diplomacy", "knowledge_nobility"], "remove_class_skills": ["climb", "escape_artist", "perception"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:monk:serpent-fire-adept",
+      "class_modifications": {"statistics": {"add_class_skills": ["appraise", "diplomacy", "fly", "heal", "knowledge_arcana", "linguistics", "survival"], "remove_class_skills": ["climb", "intimidate", "knowledge_history", "perform", "ride", "swim"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:monk:terra-cotta-monk",
+      "class_modifications": {"statistics": {"add_class_skills": ["knowledge_dungeoneering", "knowledge_engineering", "disable_device"], "remove_class_skills": ["knowledge_history", "perform", "ride"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:monk:wanderer",
+      "class_modifications": {"statistics": {"add_class_skills": ["diplomacy", "knowledge_geography", "knowledge_local", "linguistics", "survival"]}}
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:monk:street-fighter",
+      "class_modifications": {
+        "advancement": {"talent_progression": "Adept", "talent_kinds": ["martial"]},
+        "capabilities": {"grants": ["martial"], "removes": []},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:monk:sundering-hand",
+      "class_modifications": {
+        "advancement": {"talent_progression": "Adept", "talent_kinds": ["martial"]},
+        "capabilities": {"grants": ["martial"], "removes": []},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": []}
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "version":1,"key":"wraith","class_key":"spheres-class:wraith","class_name":"Wraith","governing_ability":"casting",
+  "catalog_profile":{"weapon_proficiencies":["Simple weapons"],"armor_proficiencies":["Light armor"],"proficiencies":{"weapons":["Simple weapons"],"armor":["Light armor"]},"casting":{"sphere_progression":"Mid","ability":"charisma","traditional":false},"advancement":{"talent_progression":"Mid","talent_kinds":["magic"],"talent_bonus_levels":[1]},"capabilities":{"grants":["magic"],"removes":[]}},
+  "optional_blocks":["magic_spheres","spell_points"],"external_systems":["spell_points","wraith_form","possession","wraith_haunts"],
+  "resource_modules":[{"key":"wraith","title":"Wraith","governing_ability":"casting","grantable":false,"resources":[
+    {"key":"wraith_form","name":"Wraith Form Rounds","feature_tokens":["wraith-form"],"progression":"level_plus_ability_minimum_one","description":"Rounds per day equal Wraith level + casting ability modifier. Activate as a move action and end as a free action.","can_activate":true,"use_requires_active":true},
+    {"key":"possession","name":"Possession Active","feature_tokens":["possession"],"progression":"one","description":"Track passive or active possession. Active and unwilling passive possession normally cost 1 spell point.","choice_options":["Passive — willing","Passive — unwilling","Active"],"can_activate":true,"tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":true},
+    {"key":"possession_dc","name":"Possession / Haunt DC","feature_tokens":["possession"],"progression":"ten_plus_half_level_plus_ability","description":"10 + half Wraith level + casting ability modifier.","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false}
+  ]}],
+  "choice_providers":[
+    {"key":"wraith-haunt-path","label":"Haunt Path","feature_tokens":["haunt-path"],"minimum_levels":[1],"maximum_levels":[1],"custom_option_label":"Path name","description":"Choose one haunt path permanently. It grants its sphere, staged possession options, and a half-level path-skill bonus."},
+    {"key":"wraith-haunts","label":"Wraith Haunts","feature_tokens":["wraith-haunt"],"minimum_levels":[3,5,7,9,11,13,15,17,19],"maximum_levels":[3,5,7,9,11,13,15,17,19],"custom_option_label":"Haunt","description":"Choose one qualifying wraith haunt at every odd level from 3rd through 19th."}
+  ],
+  "notes":"The corrected Mid-Caster profile feeds shared CL, talent, and spell-point systems; wraith form, possession, path, and nine haunts are explicit."
+}

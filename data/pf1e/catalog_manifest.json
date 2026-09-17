@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "catalog_version": "2026.07.30.1",
+  "created_utc": "2026-07-30T00:00:00Z",
+  "application_schema_min": 1,
+  "files": [
+    {"path": "animal_companions.json", "sha256": "1b1fcacd25155803e1e677f21db5c97cf8730f96697d14ef7d7b1208cd01a3e7", "size": 201610},
+    {"path": "archetypes.json", "sha256": "e3e5cfc2d6ab6e592f8a95371044077c3c443fe819a8c9b2c94c843d056c5508", "size": 7116273},
+    {"path": "armor.json", "sha256": "12de0128855d13aa07317ffedbc9630c7242f4de53d0de106eaa8761f4bbad0b", "size": 2981},
+    {"path": "class_automation_audit.json", "sha256": "71fd5f33d3d63bb20decdc7369de6d93d35e3b7e74050ba9874c40929a2b9fa5", "size": 3695747},
+    {"path": "class_choices.json", "sha256": "a77deefb157f70a1041cb6b737ca2b7e6b0808242f7f705887d869a569fd7871", "size": 1225308},
+    {"path": "class_powers.json", "sha256": "77a8336975dbd30b07ac8e33c34bb390f906cca49649f6bfce6db87bfe5bbabe", "size": 2013977},
+    {"path": "classes.json", "sha256": "4b69037119a0defefefd646d0584585c322cb042d6163f27a1a5f4eaeffe5118", "size": 4530},
+    {"path": "enchantments.json", "sha256": "c3b33f4b7c77625fb393ccc3adefe05f2f81d97bb00512149ecb35ee9ea4dd0a", "size": 427287},
+    {"path": "feats.json", "sha256": "f125d1b440dd22b351529f50834cdedf84bd29f12fd1787719fec6ccc5f00400", "size": 3529417},
+    {"path": "familiars.json", "sha256": "3a8e16afbda2f38a9465e771392879dd221ebf4ccda5712bd08f59b0c86a73f2", "size": 98670},
+    {"path": "inquisitions.json", "sha256": "2f5ff7c16157bb2b7ad5c92a29b389271574328f3f225d03547716427da97c33", "size": 46291},
+    {"path": "item_automation_audit.json", "sha256": "eed81040961c7ed74cc8d212138363c5af8df498407c390f6473d975d82ad250", "size": 784339},
+    {"path": "items.json", "sha256": "0e9d2ed219344d79679d691c1ad3d9d8dd6d884d69f647b3b7736257c8f41a44", "size": 4025434},
+    {"path": "magic_spheres.json", "sha256": "74ab61cbe9425781ecfda3de3f20304df15eb8a0e7d9cabd8fd8b650412b1f9f", "size": 2195841},
+    {"path": "martial_spheres.json", "sha256": "b45ac3f9dcb9f3ec1add64efba0349112f40f46ea918f46ea260d638026c2e54", "size": 1920490},
+    {"path": "pathfinder_classes.json", "sha256": "9fbbc51262abe2c34b3e91d6bb9438139230c8054b672829f07848b424209e33", "size": 649639},
+    {"path": "races.json", "sha256": "903b27608eef1e13289fc4cd8aa751fe1e3fa6e0a9e1b963dd99887b3a7406ec", "size": 2162452},
+    {"path": "spells.json", "sha256": "52f7cb7d9913ab174adcec76ef5e1f8c34ab897deeeaf2b3d9cc0d983d6d7665", "size": 13529720},
+    {"path": "spheres_class_archetypes.json", "sha256": "513110b4402b66ba3d2abaa10669245ff45d84fe7e8d01fdd6125d7918ea8dc8", "size": 3358319},
+    {"path": "spheres_classes.json", "sha256": "cb4445945b6b67e287fa8d66bb7ea68273d2c69162559b0d4e04b17936b8cf1b", "size": 8073766},
+    {"path": "traditions.json", "sha256": "7a19de70e0505ab8dbfc513c08134d83ef86baaea6222e56d5c11c8bfce01ae0", "size": 361985},
+    {"path": "traits.json", "sha256": "15ed19c8e9ef573628a6593528dd68b8e5b42d3560b25c1c8d32666c0930f676", "size": 1857472},
+    {"path": "weapons.json", "sha256": "ceac3f293268cedc4f29878a9c534e08337f795b76b5a8207796aad7978854c8", "size": 2381}
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:striker:black-powder-brawler",
+      "governing_ability": "wisdom",
+      "choice_handling": "automatic",
+      "choice_handling_note": "Firearm Proficiency replaces Bare Knuckles and is represented by the first-level martial talent allocation. Wisdom governs Tension and the AC feature."
+    },
+    {
+      "key": "spheres-archetype:spheres-class:striker:chaos-shifter",
+      "resource_modules": [{"key":"chaos_shifter","title":"Chaos Shifter","governing_ability":"constitution","resources":[{"key":"mutagen","name":"Mutagen","feature_tokens":["mutagen-monster"],"progression":"one","description":"Track the active mutagen and its selected physical ability. Duration and greater/grand improvements use Striker level as Alchemist level.","can_activate":true,"choice_options":["Strength","Dexterity","Constitution"],"tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":true}]}],
+      "system_features": ["mutagen"]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:striker:elemental-fist",
+      "audit_ignore_mechanics": ["elemental_focus"],
+      "choice_handling": "automatic",
+      "choice_handling_note": "Nature is the required first sphere and Blended Training allows each later class talent to be martial or magical."
+    },
+    {
+      "key": "spheres-archetype:spheres-class:striker:shadowed-fist",
+      "governing_ability": "charisma",
+      "power_providers": [{"key":"shadowed-fist-ninja-tricks","label":"Ninja Tricks in place of Striker Arts","family":"ninja_trick","feature_tokens":["expanded-talent"],"slot_levels":[2,5,8,11,14,17,20],"description":"A Striker Art slot may instead hold a Ninja Trick; Master Tricks become available at 11th level."}],
+      "system_features": ["ninja-trick"]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:technician:mad-scientist",
+      "choice_providers": [{"key":"unethical-science","label":"Unethical Science","feature_tokens":["unethical-science"],"minimum":0,"maximum_levels":[1,3,7,11,15,19],"fixed_options":[{"key":"death-ray","name":"Death Ray"},{"key":"freeze-ray","name":"Freeze Ray"},{"key":"mind-control","name":"Mind Control"},{"key":"monster","name":"Monster"},{"key":"portal-gun","name":"Portal Gun"},{"key":"reanimation","name":"Reanimation"}],"description":"Choose an unethical invention at 1st, 3rd, and every four levels thereafter."}],
+      "resource_modules": [{"key":"mad_scientist","title":"Mad Scientist","governing_ability":"intelligence","resources":[{"key":"laboratories","name":"Laboratories","feature_tokens":["laboratory"],"progression":"one_plus_every_five_after_one","description":"One laboratory at 1st level and another at levels 5, 10, 15, and 20.","can_activate":true,"custom_choice_label":"Laboratory locations","maximum_choices_progression":"one_plus_every_five_after_one","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false}]}],
+      "system_features": ["unethical-science"]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mageknight:doomblade",
+      "choice_providers": [{"key":"destructive-focus","label":"Destructive Focus","feature_tokens":["destructive-focus"],"minimum":1,"maximum":1,"fixed_options":[{"key":"destruction","name":"Destruction Sphere"}],"description":"The first-level magic talent must be the Destruction sphere unless it is already possessed."}],
+      "resource_modules": [{"key":"doomblade","title":"Doomblade","governing_ability":"casting","resources":[{"key":"destructive_blade","name":"Destructive Blade","feature_tokens":["destructive-blade"],"progression":"one","description":"Track the active destructive blade. It uses Mageknight level as caster level and functions as the published melee-touch blast shape.","can_activate":true,"tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":true}]}]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mageknight:herculean-scion",
+      "choice_providers": [{"key":"herculean-domain","label":"Divine Domain","feature_tokens":["domain-power"],"option_families":["domain"],"minimum":1,"maximum":1,"description":"Choose one domain; use Herculean Scion level as Cleric level and casting ability modifier in place of Wisdom."}],
+      "system_features": ["domain"]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mageknight:knightknight",
+      "governing_ability_choice": {"provider":"knightknight-practitioner-ability","options":["intelligence","wisdom","charisma"]},
+      "choice_providers": [
+        {"key":"knightknight-practitioner-ability","label":"Practitioner Ability","feature_tokens":["combat-training"],"minimum":1,"maximum":1,"fixed_options":[{"key":"intelligence","name":"Intelligence"},{"key":"wisdom","name":"Wisdom"},{"key":"charisma","name":"Charisma"}]},
+        {"key":"knightknight-order","label":"Knight's Order","feature_tokens":["knights-order"],"option_families":["order"],"minimum":1,"maximum":1,"description":"Choose one Cavalier order; Knightknight levels determine its effects."}
+      ],
+      "resource_modules": [{"key":"knightknight","title":"Knightknight","governing_ability":"charisma","resources":[{"key":"gallantry","name":"Gallantry","feature_tokens":["gallantry"],"progression":"quarter_level_plus_ability_minimum_one","description":"Gallantry equals practitioner modifier + one-quarter Knightknight level and substitutes for spell-point costs of class features."},{"key":"marked_for_justice","name":"Marked for Justice","feature_tokens":["marked-for-justice"],"progression":"one","description":"Track the single marked target, which counts as both Challenge and Marked for relevant effects.","can_activate":true,"custom_choice_label":"Marked target","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":true}]}],
+      "system_features": ["challenge", "order"]
+    }
+  ]
+}

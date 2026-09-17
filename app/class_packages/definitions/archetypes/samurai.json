@@ -1,0 +1,733 @@
+{
+  "version": 1,
+  "class_key": "pathfinder-class:samurai",
+  "entries": [
+    {
+      "key": "spheres-archetype:pathfinder-class:samurai:blind-swordsman",
+      "package": "pathfinder-class:samurai",
+      "name": "Blind Swordsman",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/blind-swordsman",
+      "replaces_features": [
+        "banner",
+        "greater-banner",
+        "greater-resolve",
+        "mount",
+        "mounted-archer",
+        "resolve",
+        "true-resolve"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "mount",
+        "mounted archer class features",
+        "banner class feature",
+        "greater resolve class feature",
+        "greater banner class feature",
+        "true resolve class feature",
+        "mount class feature"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Spiritual Resolve",
+          "description": "A blind swordsman may spend daily uses of resolve as if they were spell points to power any sphere talents and abilities it has gained through levels in blind swordsman or a sphere casting class.\n\nThis alters the resolve class feature."
+        },
+        {
+          "level": 5,
+          "name": "Blindfolded Fighting",
+          "description": "At first level the blind swordsman gains Blind-Fight as a bonus feat. In addition, he can spend one use of his resolve as an immediate action to gain the benefits of the Blindfolded Oracle Divination (sense) talent with an effective caster level equal to his class level. At 5th level, he gains the Blinded Blade style feat, even if he does not meet the prerequisites.\n\nThis replaces the mount and mounted archer class features."
+        },
+        {
+          "level": 5,
+          "name": "Totem of War",
+          "description": "At 5th level, the blind swordsman can spend one use of his resolve as a move action to present an emblem granting the benefits of the War sphere’s Totem Of War base ability with an effective caster level equal to his class level. This lasts for 1 round per level.\n\nThis replaces the banner class feature."
+        },
+        {
+          "level": 9,
+          "name": "Improved Blindfolded Fighting",
+          "description": "At 9th level, the blind swordsman gains Improved Blind-Fight as a bonus feat, even if he does not meet the feat’s prerequisites. In addition, he can spend one use of his resolve as a standard action to gain the benefits of the Ghost Sight Divination (sense) talent with an effective caster level equal to his class level. This stacks normally with caster levels gained from other sources, except for any provided by these blind swordsman levels (like through Advanced Magic Training).\n\nThis replaces the greater resolve class feature."
+        },
+        {
+          "level": 14,
+          "name": "Totem of Allegiance",
+          "description": "At 14th level, the blind swordsman can spend one use of his resolve as a move action to present an emblem (such as a banner or insignia) granting the benefits of the War sphere’s Totem Of Allegiance talent with an effective caster level equal to his class level to those who can see it. This stacks normally with caster levels gained from other sources, except for any provided by these blind swordsman levels (like through Advanced Magic Training).\n\nThis replaces the greater banner class feature."
+        },
+        {
+          "level": 17,
+          "name": "Greater Blindfolded Fighting",
+          "description": "At 17th level, the blind swordsman gains Greater Blind-Fight as a bonus feat, even if he does not meet the feat’s prerequisites. In addition, he can spend one use of his resolve as a standard action to gain the benefits of the Foreshadow Divination (sense) talent with an effective caster level equal to his class level. This stacks normally with caster levels gained from other sources, except for any provided by these blind swordsman levels (like through Advanced Magic Training).\n\nThis replaces the true resolve class feature."
+        },
+        {
+          "level": 1,
+          "name": "Blindfolded Fighting",
+          "description": "At first level the blind swordsman gains Blind-Fight as a bonus feat. In addition, he can spend one use of his resolve as an immediate action to gain the benefits of the Blindfolded Oracle Divination (sense) talent with an effective caster level equal to his class level.\n\nThis replaces the mount class feature."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:samurai:brawling-blademaster",
+      "package": "pathfinder-class:samurai",
+      "name": "Brawling Blademaster",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Samurai Brawling Blademaster",
+      "replaces_features": [
+        "armor-proficiency",
+        "banner",
+        "greater-banner",
+        "mount",
+        "mounted-archer",
+        "weapon",
+        "weapon-expertise"
+      ],
+      "removed_features": [
+        "armor-proficiency",
+        "banner",
+        "greater-banner",
+        "mount",
+        "mounted-archer",
+        "weapon",
+        "weapon-expertise"
+      ],
+      "removed_feature_clauses": [
+        "mount",
+        "weapon expertise",
+        "mounted archer",
+        "greater banner"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Brawling Blademaster",
+          "description": "Source Martial Arts Handbook pg. 10"
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "Brawling blademasters are proficient with all simple and martial weapons, plus the katana and wakizashi. Brawling blademasters are proficient with light armor, but not with shields.\n\nThis alters the samurai’s weapon and armor proficiency."
+        },
+        {
+          "level": 1,
+          "name": "Empty Hand",
+          "description": "A brawling blademaster gains Improved Unarmed Strike as a bonus feat. She uses her samurai level as her monk level for determining the amount of damage she deals with an unarmed strike. These levels stack with monk levels to determine the brawling blademaster’s unarmed strike damage.\n\nThis replaces mount."
+        },
+        {
+          "level": 2,
+          "name": "Nimble",
+          "description": "At 2nd level, a brawling blademaster gains the gunslinger’s nimble class feature, using her samurai level as his gunslinger level."
+        },
+        {
+          "level": 3,
+          "name": "Dual Expertise",
+          "description": "At 3rd level, a brawling blademaster gains Two-Weapon Fighting as a bonus feat, even if she doesn’t meet the prerequisites. Furthermore, when the brawling blademaster selects a feat with the bonus feat class feature, she can ignore any Dexterity requirements for the feat if its prerequisites include the Two-Weapon Fighting feat. This replaces weapon expertise."
+        },
+        {
+          "level": 4,
+          "name": "Harmonious Flow",
+          "description": "At 4th level, the brawling blademaster becomes skilled at combining weapon attacks and unarmed strikes into a harmonious combat style. When attacking the target of her challenge, the brawling blademaster doesn’t take the usual –2 penalty on attack rolls associated with attacking with two weapons if her main-hand weapon is a light or one-handed manufactured weapon and her off-hand weapon is an unarmed strike (or vice versa). While she’s using this ability, one of her hands must be empty even if she uses another body part to make an unarmed strike.\n\nThis replaces mounted archer."
+        },
+        {
+          "level": 5,
+          "name": "Perfect Clarity",
+          "description": "At 5th level, the brawling blademaster sees all her foes with perfect clarity even when focused on one opponent. She no longer takes a penalty to her AC during a challenge."
+        },
+        {
+          "level": 14,
+          "name": "Superior Focus",
+          "description": "At 14th level, the brawling blademaster gains a +2 bonus on saving throws during a challenge.\n\nThis replaces greater banner."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:samurai:fabled-blade",
+      "package": "pathfinder-class:samurai",
+      "name": "Fabled Blade",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/fabled-blade",
+      "replaces_features": [
+        "banner",
+        "greater-banner",
+        "mount",
+        "samurais-normal-class-skills"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "samurai’s normal class skills",
+        "mount",
+        "banner",
+        "greater banner"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Trade Tradition",
+          "description": "If this is this character’s first level in any class, the fabled blade may select a trade tradition of his choice, and have a competent trade rank.\n\nThis replaces the samurai’s normal class skills."
+        },
+        {
+          "level": 1,
+          "name": "Famed Weapon Style",
+          "description": "At 1st level, the fabled blade’s unique style of using his weapon has become so renowned that the style itself precedes his own renown. The fabled blade chooses one of the following weapon styles, which grant additional benefits at 5th and 14th level.\n\nThis replaces mount, banner, and greater banner."
+        },
+        {
+          "level": 1,
+          "name": "Mountain Body Style",
+          "description": "At 1st level, the fabled blade gains the Body Control sphere as a bonus sphere. At 5th level, the fabled blade’s meditate approach can be used to endure a failed Fortitude or Will save (provided he succeeds at an Escape Artist check). While he maintains the meditate approach, he adds his ranks in Escape Artist to his Constitution score when determining when he dies due to being at a negative hit point total. At 14th level, whenever the fabled blade makes an honorable stand against a creature, he gains the benefits of the stalwart class ability (as the courser ability of the same name)."
+        },
+        {
+          "level": 1,
+          "name": "Roaring Steel Style",
+          "description": "At 1st level, the fabled blade gains the Bluster sphere as a bonus sphere, but must choose Frightening Threat as the bonus (quip) talent he gains when he first gains the Bluster sphere. At 5th level, a creature who is suffering from a fear effect inflicted by the fabled blade (such as from demoralizing) removes any DC or saving throw adjustments against the fabled blade’s quips for as long as they suffer from the fear condition (this also applies to any quips used against the creature after the fear effect was applied). At 14th level, as long as a creature can see the fabled blade wielding a weapon, they lose any immunity to fear that they possess. Additionally, whenever the fabled blade confirms a critical hit against a creature, he can attempt to demoralize the creature or use a quip against the creature as a swift or immediate action."
+        },
+        {
+          "level": 1,
+          "name": "Gilded Poet Style",
+          "description": "At 1st level, the fabled blade gains the Performance sphere as a bonus sphere, and must choose the (lyric) package. At 5th level, whenever the fabled blade uses an inspiring lyric on an ally, he can also spend one use of his resolve to allow the ally to spend the use of resolve as if they were the fabled blade. At 14th level, whenever the fabled blade successfully damages a creature with a weapon or challenges a creature, he can use a lyric against the creature as a swift action."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:samurai:honorbound",
+      "package": "pathfinder-class:samurai",
+      "name": "Honorbound",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/honorbound",
+      "replaces_features": [
+        "all-bonus-feats",
+        "challenge",
+        "mount",
+        "mounted-archer",
+        "proficiencies"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "mount",
+        "mounted archer",
+        "all bonus feats",
+        "challenge class feature"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Honorbound are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis alters proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "An honorbound may combine combat spheres and talents to create powerful martial techniques. Honorbound are considered Adept combatants and use Wisdom as their practitioner modifier.\n\nThis replaces mount, mounted archer, and all bonus feats."
+        },
+        {
+          "level": 1,
+          "name": "Bushido",
+          "description": "The honorbound gains the Warleader sphere and the Guardian sphere with the (challenge) package as bonus talents at 1st level. If he possesses the Guardian sphere already, but not the (challenge) package, he gains the Expanded Guardian talent and the (challenge) package. If he possesses a drawback removing the (challenge) package, he buys off the drawback and chooses the (challenge) package. Any abilities the honorbound possesses that reference his use of challenge apply to any use of the challenge ability granted by the Guardian sphere.\n\nThis replaces the challenge class feature."
+        },
+        {
+          "level": 5,
+          "name": "Commander’s Crest",
+          "description": "At 5th level, the honorbound gains the Heraldry Warleader talent as a bonus talent."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:samurai:ironbound-sword",
+      "package": "pathfinder-class:samurai",
+      "name": "Ironbound Sword",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Samurai Ironbound Sword",
+      "replaces_features": [
+        "banner",
+        "greater-banner",
+        "weapon-expertise"
+      ],
+      "removed_features": [
+        "banner",
+        "greater-banner",
+        "weapon-expertise"
+      ],
+      "removed_feature_clauses": [
+        "weapon expertise",
+        "banner",
+        "greater banner"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Ironbound Sword",
+          "description": "Source Blood of the Ancients pg. 18"
+        },
+        {
+          "level": 3,
+          "name": "Merciful Combatant",
+          "description": "At 3rd level, an ironbound sword becomes an expert at defeating foes without killing them. An ironbound sword can use any weapon to deal nonlethal damage without taking the normal –4 penalty on attack rolls. Additionally, the ironbound sword gains a +2 bonus on combat maneuvers against a target so long as the last successful attack she made against that target dealt nonlethal damage. Her samurai levels count as fighter levels and stack with fighter levels for the purposes of fighter and samurai prerequisites and class features.\n\nThis replaces weapon expertise."
+        },
+        {
+          "level": 5,
+          "name": "Subduing Knockout",
+          "description": "At 5th level, once per day, an ironbound sword can unleash a devastating attack that can instantly knock a target unconscious. She must announce this intent before making her attack roll. If the ironbound sword’s attack hits and the target takes damage from the blow, the target must succeed at a Fortitude saving throw (DC = 10 + half the ironbound sword’s level + the higher of the ironbound sword’s Strength or Dexterity modifier) or fall unconscious for 1d6 rounds. Each round on its turn, the unconscious target can attempt a new saving throw to end the effect as a full-round action that does not provoke attacks of opportunity. Creatures immune to critical hits or nonlethal damage are immune to this ability. At 10th level, the ironbound sword can use this ability twice per day; at 15th level, she can use it three times per day.\n\nThis replaces banner."
+        },
+        {
+          "level": 14,
+          "name": "Blade Reversal",
+          "description": "At 14th level, an ironbound sword can turn the force of an opponent’s attacks back against them. Whenever the ironbound sword takes a full defense action, she can expend an attack of opportunity to attempt to counter melee attacks made against her. This counter is a single attack roll at the ironbound blade’s full base attack bonus that resolves before the enemy’s attack. If the counter successfully hits the attacking enemy’s AC and if the ironbound sword’s attack roll is higher than the attacking creature’s attack roll, the ironbound sword takes no damage from the enemy’s attack and can initiate a disarm combat maneuver against the attacking enemy as a free action. If the triggering attack was made with a natural attack or unarmed strike, a successful disarm combat maneuver renders that natural attack or unarmed strike unusable until the victim spends a standard action to reset dislocated joints. In addition, the ironbound sword can spend one use of her resolve when she hits with a nonlethal attack to initiate a disarm combat maneuver against her target as a free action.\n\nThis replaces greater banner."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:samurai:sovereign-blade",
+      "package": "pathfinder-class:samurai",
+      "name": "Sovereign Blade",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Samurai Sovereign Blade",
+      "replaces_features": [
+        "alignment",
+        "bonus-feats",
+        "mount",
+        "mounted-archer"
+      ],
+      "removed_features": [
+        "alignment",
+        "bonus-feats",
+        "mount",
+        "mounted-archer"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Sovereign Blade",
+          "description": "Source Legacy of Dragons pg. 14"
+        },
+        {
+          "level": 1,
+          "name": "Alignment",
+          "description": "A sovereign blade’s alignment must be at least partially neutral. If the sovereign blade’s alignment is not partially neutral, she is treated as if she had violated her order’s edicts each day until her alignment is again partially neutral."
+        },
+        {
+          "level": 4,
+          "name": "Golden Armor",
+          "description": "At 4th level, a sovereign blade can spend one use of her resolve to cause her armor to become golden for 1 round per class level, gaining energy resistance equal to 1/2 her samurai level against one energy type of her choice."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:samurai:sword-saint",
+      "package": "pathfinder-class:samurai",
+      "name": "Sword Saint",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Samurai Sword Saint",
+      "replaces_features": [
+        "banner",
+        "greater-banner",
+        "mounted-charge",
+        "samurai-s-mount"
+      ],
+      "removed_features": [
+        "banner",
+        "greater-banner",
+        "mounted-charge",
+        "samurai-s-mount"
+      ],
+      "removed_feature_clauses": [
+        "banner",
+        "greater banner"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Sword Saint",
+          "description": "Source Dragon Empires Primer pg. 22"
+        },
+        {
+          "level": 3,
+          "name": "Iaijutsu Strike",
+          "description": "A sword saint can perform a lightning-quick iaijutsu strike against the target of his challenge to inflict devastating wounds while drawing his sword. After the sword saint has challenged a foe but before he has attacked the target of his challenge, he may choose to use his iaijutsu strike as a full-round action, making an attack roll with his weapon as normal. In order to use this ability, the sword saint’s weapon must be sheathed at the start of his turn. If he successfully hits his opponent with an iaijutsu strike, his attack deals an additional +1d6 points of damage. This bonus damage increases by an additional +1d6 at 3rd level and every two levels thereafter to a maximum of +10d6 damage at 19th level. Any extra damage as a result of a successful iaijutsu strike is not multiplied by a critical hit."
+        },
+        {
+          "level": 3,
+          "name": "Brutal Slash",
+          "description": "At 3rd level, a sword saint’s iaijutsu strike becomes even more deadly. If a sword saint threatens a critical hit with his iaijutsu strike, he adds a bonus equal to 1/2 his class level to the attack roll to confirm a critical hit. The sword saint may only select the katana or the wakizashi as his chosen weapon for the weapon expertise ability. This ability alters weapon expertise and replaces mounted archer."
+        },
+        {
+          "level": 5,
+          "name": "Terrifying Iaijutsu",
+          "description": "At 5th level, a sword saint’s iaijutsu strike devastates the morale of foes that witness it. When a sword saint successfully hits with an iaijutsu strike, all foes within 30 feet must succeed at a Will save (DC 10 + 1/2 the sword saint’s class level + the sword saint’s Cha modifier) or become shaken for 1d4+1 rounds. This ability replaces banner."
+        },
+        {
+          "level": 14,
+          "name": "Roaring Iaijutsu",
+          "description": "At 14th level, a sword saint’s iaijutsu strike deafens foes upon impact. When a sword saint successfully hits with an iaijutsu strike, all foes within 30 feet must succeed at a Fortitude save (DC 10 + 1/2 the sword saint’s class level + the sword saint’s Str modifier) or be deafened for 1d4 minutes. This ability replaces greater banner."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:samurai:wandering-swordsman",
+      "package": "pathfinder-class:samurai",
+      "name": "Wandering Swordsman",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/wandering-swordsman",
+      "replaces_features": [
+        "armor-proficiencies",
+        "challenge",
+        "last-stand",
+        "mount",
+        "weapon"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "challenge",
+        "mount class features",
+        "last stand"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Wandering swordsmen are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis modifies weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A wandering swordsman is considered a proficient practitioner, gaining spheres and talents as appropriate. Wandering swordsmen use Wisdom as their practitioner modifier."
+        },
+        {
+          "level": 1,
+          "name": "Ronin Arts",
+          "description": "The wandering swordsman gains the Duelist sphere and the Guardian sphere (challenge) package as bonus talents at 1st level. If the wandering swordsman already possesses one or both of the selected talents, he may instead select any talent he qualifies for from the corresponding sphere or spheres.\n\nThis replaces the challenge and mount class features."
+        },
+        {
+          "level": 1,
+          "name": "Swordsman’s Challenge",
+          "description": "Any abilities the wandering swordsman possesses that reference his use of challenge (such as the demanding challenge class feature or the challenge ability for his order) apply to any use of the challenge ability provided by the Guardian sphere."
+        },
+        {
+          "level": 20,
+          "name": "Shogun",
+          "description": "At 20th level the wandering swordsman is unmatched in his sheer presence and power, both on and off the battlefield. The wandering swordsman may make an Intimidate check to improve a creature’s attitude towards him as a move action, and whenever he makes a successful Intimidate check to improve a target’s attitude, he improves their attitude by 1 additional step. In addition, whenever the wandering swordsman reduces the hit points of an opponent within 30 ft. to 25% or less of their normal maximum, he can demand they submit as a free action that can be taken even when it’s not the wandering swordsman’s turn, forcing them to make a Will save (DC 10 + 1/2 his samurai level + his Charisma modifier) or drop whatever weapons they are holding and surrender. Creatures who have surrendered will not attempt to attack the wandering swordsman or his allies, nor will they attempt to flee the battlefield as long as the wandering swordsman is conscious and within line of sight. This is a mind-affecting fear effect. This ability replaces last stand."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:samurai:ward-speaker",
+      "package": "pathfinder-class:samurai",
+      "name": "Ward Speaker",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Samurai Ward Speaker",
+      "replaces_features": [
+        "alignment",
+        "greater-resolve",
+        "honorable-stand",
+        "resolve",
+        "true-resolve"
+      ],
+      "removed_features": [
+        "alignment",
+        "greater-resolve",
+        "honorable-stand",
+        "resolve",
+        "true-resolve"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Ward Speaker",
+          "description": "Source Disciple's Doctrine pg. 26"
+        },
+        {
+          "level": 1,
+          "name": "Alignment",
+          "description": "A ward speaker must be of a nonevil alignment. This alters the samurai’s alignment."
+        },
+        {
+          "level": 1,
+          "name": "Propitiation (Ex, Su, Sp)",
+          "description": "A ward speaker can perform a special ritual to propitiate kami and gain a sliver of their power. This ritual must be performed at a shrine or a location warded by a specific type of kami. The propitiation takes 1 minute and involves clapping, ringing bells, bowing, and token offerings of coins, food, incense, or other gifts. The ward speaker’s propitiation must be performed uninterrupted to receive any benefits from it. At the end of this ritual, the ward speaker immediately gains a fortune depending on the type of kami he sought to propitiate. Common kami are presented beginning on page 159 of Bestiary 3, and the fortunes each of those kami grant are listed below."
+        },
+        {
+          "level": 9,
+          "name": "Jinushigami (Ex, Sp)",
+          "description": "The ward speaker (and his mount, if he has one) gains a 10-foot enhancement bonus to base speed. At 9th level, this enhancement bonus increases to 20 feet. At 17th level, once per day, he can dismiss this fortune as an immediate action to cast earthquake as a spell-like ability, using his samurai level as his caster level."
+        },
+        {
+          "level": 9,
+          "name": "Kodama",
+          "description": "As a standard action, the ward speaker can afflict one target that can see him with a distracting gaze. If the target fails a Will save (DC = 10 + half the ward speaker’s samurai level), it is staggered for 1d4 rounds. At 9th level, it is instead staggered for 2d4 rounds. At 17th level, it is instead staggered for 1 minute. Once a creature has been targeted by this ability, it cannot be targeted by it again for 24 hours."
+        },
+        {
+          "level": 9,
+          "name": "Shikigami",
+          "description": "The ward speaker gains Catch Off-Guard and Throw Anything as bonus feats. At 9th level, he gains Toughness and Step Up. At 17th level, he gains Following Step and Step Up and Strike, even if he does not meet the prerequisites."
+        },
+        {
+          "level": 9,
+          "name": "Toshigami",
+          "description": "The ward speaker can speak with plants, as the speak with plants spell. At 9th level, the ward speaker can dismiss this fortune as an immediate action to cast haste as a spell-like ability. Once per day at 17th level, the ward speaker can instead dismiss this fortune to cast temporal stasis as a spell-like ability. The ward speaker’s caster level for these spell-like abilities is equal to his samurai level."
+        },
+        {
+          "level": 9,
+          "name": "Zuishin",
+          "description": "As an immediate action, the ward speaker can dismiss this fortune to cast cure light wounds as a spell-like ability. At 9th level, the ward speaker can dismiss this fortune to cast cure serious wounds, lesser restoration, remove curse, or remove disease; at 17th level, he also adds breath of life and heal to this list. The ward speaker’s caster level for these spell-like abilities is equal to his samurai level."
+        },
+        {
+          "level": 11,
+          "name": "Resilient Stand",
+          "description": "At 11th level, the spirits can bolster a ward speaker’s willpower and resolve, granting him an inner reservoir he can use when he needs it most. If a ward speaker has not expended his daily uses of propitiation, he can call upon the spirits to reroll a saving throw during an honorable stand instead of expending a use of resolve to do so. He must take the result of the second roll, even if it is worse. This expends a daily use of propitiation.\n\nThis alters honorable stand."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:samurai:warrior-poet",
+      "package": "pathfinder-class:samurai",
+      "name": "Warrior Poet",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Samurai Warrior Poet",
+      "replaces_features": [
+        "armor-proficiency",
+        "banner",
+        "bonus-combat-feats",
+        "challenge",
+        "demanding-challange",
+        "greater-banner",
+        "mount",
+        "mounted-archer",
+        "weapon",
+        "weapon-expertise"
+      ],
+      "removed_features": [
+        "armor-proficiency",
+        "banner",
+        "bonus-combat-feats",
+        "challenge",
+        "demanding-challange",
+        "greater-banner",
+        "mount",
+        "mounted-archer",
+        "weapon",
+        "weapon-expertise"
+      ],
+      "removed_feature_clauses": [
+        "samurai’s proficiency with medium armor",
+        "heavy armor",
+        "shields",
+        "mount",
+        "weapon expertise",
+        "banner",
+        "greater banner",
+        "mounted archer",
+        "demanding challenge",
+        "samurai’s bonus combat feats"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Warrior Poet",
+          "description": "Source Heroes from the Fringe pg. 13"
+        },
+        {
+          "level": 1,
+          "name": "Dancer’s Grace",
+          "description": "When wearing no armor and not using a shield, the warrior poet gains a bonus to Armor Class equal to her Charisma bonus (to a maximum of her samurai level). A warrior poet loses this bonus while flatfooted or otherwise denied her Dexterity bonus.\n\nThis replaces the samurai’s proficiency with medium armor, heavy armor, and shields."
+        },
+        {
+          "level": 1,
+          "name": "Flourish",
+          "description": "The warrior poet is skilled at performing elegant moves in battle. At 1st level, the warrior poet gains a flourish of her choice from the list below. She gains another flourish at 3rd, 5th, 9th, 13th, 17th, and 20th levels."
+        },
+        {
+          "level": 1,
+          "name": "Chrysanthemum’s Blooming",
+          "description": "The warrior poet gains Vital Strike as a bonus feat and can apply its benefit when using Spring Attack. If the warrior poet is at least 16th level and has Improved Vital Strike, she can apply that feat’s benefit instead. The warrior poet must be at least 11th level to select this flourish."
+        },
+        {
+          "level": 1,
+          "name": "Exodus of Jinin",
+          "description": "As long as the warrior poet is wearing light or no armor and carrying no more than a light load, her land speed increases by 10 feet. A warrior poet can select this flourish up to three times."
+        },
+        {
+          "level": 1,
+          "name": "Harmony of the Tranquil Garden",
+          "description": "The warrior poet can focus her senses as a move action to gain blindsense out to 5 feet for 1 round. For every 5 samurai levels she has, the range of this blindsense increases by 5 feet."
+        },
+        {
+          "level": 1,
+          "name": "Jininsiel’s Guidance",
+          "description": "The warrior poet gains the rogue’s uncanny dodge class feature. This flourish can be selected up to twice; selecting it a second time grants the warrior poet the rogue’s improved uncanny dodge class feature. The warrior poet must be at least 4th level to select this flourish the first time and at least 8th level to select this flourish the second time."
+        },
+        {
+          "level": 1,
+          "name": "Kitsune’s Mystique",
+          "description": "The warrior poet gains Improved Feint as a bonus feat, ignoring its prerequisites. When the warrior poet uses Spring Attack or takes a move action to move, she can attempt to feint against one creature she threatens during her movement as part of her movement."
+        },
+        {
+          "level": 1,
+          "name": "Petals on the Wind",
+          "description": "Whenever a foe provokes an attack of opportunity from the warrior poet, she can move 5 feet before making the attack of opportunity. This movement does not provoke attacks of opportunity. If the warrior poet takes an action to move during her next turn, she subtracts 5 feet from her total movement for each time she has used this ability since her last turn."
+        },
+        {
+          "level": 1,
+          "name": "Wrath of the Heavens",
+          "description": "The warrior poet gains Shot on the Run as a bonus feat, ignoring its prerequisites.\n\nThis replaces mount, weapon expertise, banner, and greater banner."
+        },
+        {
+          "level": 1,
+          "name": "Graceful Warrior",
+          "description": "The warrior poet gains Weapon Finesse as a bonus feat and can apply its benefits to glaives, katanas, and naginatas as if they were light weapons. This does not alter the weapons’ properties for the purposes of any other effects."
+        },
+        {
+          "level": 1,
+          "name": "Skirmisher’s Challenge",
+          "description": "The warrior poet adds her samurai level to her damage rolls only on her first successful attack against a challenged target each round.\n\nThis modifies challenge."
+        },
+        {
+          "level": 4,
+          "name": "Graceful Strike",
+          "description": "At 4th level, when the warrior poet uses Weapon Finesse to make a melee attack that adds her Dexterity bonus to attack rolls and her Strength bonus to damage rolls, she also adds half her samurai level to damage rolls.\n\nThis replaces mounted archer and demanding challenge."
+        },
+        {
+          "level": 6,
+          "name": "Battle Dance",
+          "description": "At 6th level, the warrior poet gains Spring Attack as a bonus feat. At 12th level, she gains Improved Spring Attack as a bonus feat, and at 18th level, she gains Greater Spring Attack as a bonus feat. The warrior poet does not need to meet the prerequisites for these feats.\n\nThis replaces the samurai’s bonus combat feats."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:samurai:yojimbo",
+      "package": "pathfinder-class:samurai",
+      "name": "Yojimbo",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Samurai Yojimbo",
+      "replaces_features": [
+        "mount",
+        "mounted-archer",
+        "weapon-expertise"
+      ],
+      "removed_features": [
+        "mount",
+        "mounted-archer",
+        "weapon-expertise"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Yojimbo",
+          "description": "Source Armor Master's Handbook pg. 7"
+        },
+        {
+          "level": 1,
+          "name": "Resolute Defense",
+          "description": "At 1st level, whenever a yojimbo issues a challenge, he can select one ally as his ward for the duration of the challenge. Whenever the yojimbo is adjacent to his ward, he can use resolve, greater resolve, and true resolve on his ward rather than targeting himself."
+        },
+        {
+          "level": 3,
+          "name": "Armor Expertise",
+          "description": "At 3rd level, a yojimbo selects one type of armor, such as chain shirt or scale mail. The yojimbo gains armor training, treating his samurai level as his fighter level, when wearing the selected armor."
+        },
+        {
+          "level": 4,
+          "name": "Intercept",
+          "description": "At 4th level, a yojimbo learns to better disrupt the attacks of his enemies. He gains BodyguardAPG as a bonus feat, even if he does not meet the prerequisite. In addition, whenever the yojimbo uses the aid another action to increase an ally’s Armor Class, the bonus to Armor Class from the aid another action increases by 1."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

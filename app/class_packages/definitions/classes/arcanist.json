@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "key": "arcanist",
+  "class_key": "pathfinder-class:arcanist",
+  "class_name": "Arcanist",
+  "governing_ability": "intelligence",
+  "optional_blocks": ["inquisitor_features", "spells_known", "spell_level_overview"],
+  "external_systems": [
+    "traditional_hybrid_casting",
+    "arcanist_spellbook",
+    "arcane_reservoir",
+    "consume_spells",
+    "arcanist_exploits"
+  ],
+  "resource_modules": [],
+  "passive_effects": [],
+  "notes": "The shared hybrid-casting engine tracks the Arcanist spellbook, daily preparation, and spontaneous use of prepared spells. Arcane Reservoir capacity and daily fill are separate values, and retained exploit slots are generated at every odd class level."
+}

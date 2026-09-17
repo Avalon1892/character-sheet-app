@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "key": "barbarian-unchained",
+  "class_key": "pathfinder-class:barbarian-unchained",
+  "class_name": "Barbarian (Unchained)",
+  "governing_ability": "constitution",
+  "optional_blocks": ["inquisitor_features"],
+  "external_systems": [
+    "unchained_barbarian_rage",
+    "barbarian_rage_powers",
+    "barbarian_fast_movement",
+    "barbarian_damage_reduction"
+  ],
+  "resource_modules": [],
+  "passive_effects": [],
+  "notes": "Unchained rage uses its published attack, damage, Will, AC, and temporary-hit-point model. Rage powers and exchanged archetype slots use the shared power and replacement systems."
+}

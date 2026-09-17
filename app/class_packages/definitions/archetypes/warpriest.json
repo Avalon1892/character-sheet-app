@@ -1,0 +1,1639 @@
+{
+  "version": 1,
+  "class_key": "pathfinder-class:warpriest",
+  "entries": [
+    {
+      "key": "spheres-archetype:pathfinder-class:warpriest:bastion-of-conviction",
+      "package": "pathfinder-class:warpriest",
+      "name": "Bastion of Conviction",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/bastion-of-conviction",
+      "replaces_features": [
+        "armor-proficiencies",
+        "bonus-feat-at-level",
+        "bonus-feats-at",
+        "levels",
+        "weapon"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "bonus feats gained at 3rd",
+        "6th",
+        "12th",
+        "15th",
+        "and 18th levels",
+        "bonus feat gained at 9th level",
+        "bonus feat gained at 12th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiencies",
+          "description": "A bastion of conviction is proficient with all simple weapons, as well as the favored weapon of his deity, and with light armor and bucklers. If the bastion of conviction worships a deity with unarmed strike as its favored weapon, he gains Improved Unarmed Strike as a bonus feat. In addition, if this is the character’s first level in any class, he may select a martial tradition of his choice.\n\nThis alters weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A bastion of conviction is considered a Proficient practitioner, gaining spheres and talents as appropriate. A bastion of conviction uses his casting ability modifier as his practitioner modifier. A bastion of conviction may use his class level as his base attack bonus to determine what combat feats he qualifies for. This stacks with other sources of base attack bonus.\n\nThis replaces the bonus feats gained at 3rd, 6th, 12th, 15th, and 18th levels."
+        },
+        {
+          "level": 1,
+          "name": "Militant Extremist",
+          "description": "A bastion of conviction counts his class levels as fighter levels for the purpose of qualifying for feats that have a minimum number of fighter levels as a prerequisite."
+        },
+        {
+          "level": 9,
+          "name": "Energetic Focus",
+          "description": "At 9th level, whenever the bastion of conviction uses a positive or negative energy ability, he regains martial focus.\n\nThis replaces the bonus feat gained at 9th level."
+        },
+        {
+          "level": 1,
+          "name": "Archetypes of Power",
+          "description": "The true test of faith is not accomplishment, but the ability to sacrifice. For some devout followers of their gods, being faithful means showing strength in the face of death, and bringing the rightness of their cause to those who would be destroyed by it."
+        },
+        {
+          "level": 12,
+          "name": "Energetic Focus",
+          "description": "At 12th level, whenever the bastion of conviction uses a positive or negative energy ability, he regains martial focus.\n\nThis replaces the bonus feat gained at 12th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:warpriest:calamity-caller",
+      "package": "pathfinder-class:warpriest",
+      "name": "Calamity Caller",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest Calamity Caller",
+      "replaces_features": [
+        "aspect-of-war",
+        "blessings",
+        "bonus-feats",
+        "focus-weapon",
+        "sacred-weapon"
+      ],
+      "removed_features": [
+        "aspect-of-war",
+        "blessings",
+        "bonus-feats",
+        "focus-weapon",
+        "sacred-weapon"
+      ],
+      "removed_feature_clauses": [
+        "focus weapon",
+        "sacred weapon",
+        "bonus feats",
+        "aspect of war"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Calamity Caller",
+          "description": "Source Heroes from the Fringe pg. 12"
+        },
+        {
+          "level": 1,
+          "name": "Catastrophic Blessing",
+          "description": "A calamity caller must select a disaster blessing (Earthquake, Flood, Tornado, or Wildfire) as one of his two blessings, even if the calamity caller’s deity does not grant the disaster blessing’s associated domain.\n\nThis alters blessings."
+        },
+        {
+          "level": 1,
+          "name": "Calamity",
+          "description": "As a standard action, a calamity caller can cause a 5-foot square within 30 feet to suffer a calamity. A calamity deals 1d6 damage plus an additional 1d6 damage for every 2 warpriest levels he has beyond 1st to creatures within that square. The type of calamity determines what type of damage the calamity deals (see below). An affected creature can attempt a saving throw to reduce this damage by half (DC = 10 + half the calamity caller’s warpriest level + the calamity caller’s Wisdom modifier); the type of save is determined by the calamity. The calamity caller can use this ability at will."
+        },
+        {
+          "level": 1,
+          "name": "Acid Rain",
+          "description": "A brief rain shower deals acid damage to the target square, with a Fortitude save for half damage. A creature that fails its save against enhanced acid rain continues to dissolve for 1 round, automatically taking half the original damage."
+        },
+        {
+          "level": 1,
+          "name": "Blizzard",
+          "description": "Hail deals cold damage to the target square, with a Fortitude save for half damage. A creature that fails its save against an enhanced blizzard is blinded for 1 round."
+        },
+        {
+          "level": 12,
+          "name": "Deadfall",
+          "description": "A tree branch, stone boulder, or other heavy object falls on the target square. A deadfall deals bludgeoning damage, with a Reflex save for half damage. A creature that fails its save against an enhanced deadfall is knocked prone; at 12th level, the target is also confused for 1 round."
+        },
+        {
+          "level": 12,
+          "name": "Flash Flood",
+          "description": "A brief surge of stormy water deals bludgeoning damage to the target square, with a Reflex save for half damage. An enhanced flash flood does not cause additional effects; instead, an enhanced flash flood targets creatures in a 5-foot radius. At 12th level, the area increases to a 10-foot radius; at 16th level, the area increases to a 15-foot radius."
+        },
+        {
+          "level": 1,
+          "name": "Lightning Strike",
+          "description": "A bolt of lightning deals electricity damage to the target square, with a Reflex save for half damage. A creature that fails its save against an enhanced lightning strike is staggered for 1 round by electrical impulses."
+        },
+        {
+          "level": 1,
+          "name": "Thorny Vines",
+          "description": "Vines covered with thick thorns wrap around the target square. The thorny vines deal piercing damage, with a Reflex save for half damage. A creature that fails its save against enhanced thorny vines is entangled for 1 round."
+        },
+        {
+          "level": 1,
+          "name": "Volcanic Rift",
+          "description": "A magmatic rift emits a plume of fire into the air, dealing fire damage to the target square, with a Fortitude save for half damage. An enhanced volcanic rift also emits poisonous and corrosive gases; a creature that fails its save against the enhanced volcanic rift is sickened for 1 round.\n\nThis replaces focus weapon, sacred weapon, and bonus feats."
+        },
+        {
+          "level": 20,
+          "name": "Aspect of Disaster",
+          "description": "At 20th level, a creature affected by a calamity caller’s enhanced calamity does not receive a save to reduce the damage or avoid the calamity’s effects.\n\nThis replaces aspect of war."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:warpriest:champion-of-the-faith",
+      "package": "pathfinder-class:warpriest",
+      "name": "Champion of the Faith",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest Champion of the Faith",
+      "replaces_features": [
+        "bonus-feat",
+        "channel-energy",
+        "sacred-weapon"
+      ],
+      "removed_features": [
+        "bonus-feat",
+        "channel-energy",
+        "sacred-weapon"
+      ],
+      "removed_feature_clauses": [
+        "bonus feat gained at 3rd level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Champion of the Faith",
+          "description": "Source Advanced Class Guide pg. 128"
+        },
+        {
+          "level": 1,
+          "name": "Chosen Alignment",
+          "description": "At 1st level, a champion of the faith must select one of the following as his chosen alignment: chaos, evil, good, or law. This choice must be one of the alignments shared by the champion of the faith and his deity. Champions of the faith who are neutral with no other alignment components (or whose deity is) can choose any of the above alignments for this purpose. Additionally, a champion of the faith must select the blessing corresponding to his chosen alignment, even if it’s not on his deity’s list of domains."
+        },
+        {
+          "level": 1,
+          "name": "Sacred Weapon",
+          "description": "At 1st level, a champion of the faith gains the sacred weapon class feature as normal. However, this ability does not grant the 4th-level ability to enhance the champion of the faith’s weapon with divine power, nor does it grant any subsequent increases to that ability. Instead, at 4th level, any sacred weapon wielded by a champion of the faith counts as having his chosen alignment for the purposes of overcoming damage reduction."
+        },
+        {
+          "level": 3,
+          "name": "Detect Alignment",
+          "description": "At 3rd level, a champion of the faith can detect his opposed alignment. As a move action, the champion of the faith can focus on a single item or creature within 60 feet and determine whether it possesses the opposed alignment, as detect chaos/evil/good/law, learning the strength of the aura as if he had studied it for 3 rounds. The champion of the faith does not detect alignment in any other object or creature when using this ability in this way. This ability replaces the bonus feat gained at 3rd level."
+        },
+        {
+          "level": 4,
+          "name": "Smite",
+          "description": "At 4th level, a champion of the faith can focus his powers against his chosen foes. As a swift action, the champion of the faith chooses one target within sight to smite. If this target is of his opposed alignment, the champion of the faith adds his Charisma bonus (if any) to his attack rolls and adds his warpriest level to all damage rolls made against the target of his smite. If the target of his smite is an outsider with the subtype corresponding to his opposed alignment, the bonus to damage on the first successful attack increases to 2 points of damage per warpriest level the champion of the faith possesses. Regardless of the target, smite attacks automatically bypass any DR the target possesses."
+        }
+      ],
+      "detected_systems": [
+        "smite"
+      ]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:warpriest:champion-warpriest",
+      "package": "pathfinder-class:warpriest",
+      "name": "Champion Warpriest",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/champion-warpriest",
+      "replaces_features": [
+        "as-well-as-warpriests-to-spontaneously-cast-cure-or-inflict-spells",
+        "fervor",
+        "proficiencies",
+        "spellcasting"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "spells class feature",
+        "as well as the warpriest’s ability to spontaneously cast ‘cure’ or ‘inflict’ spells"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Champion warpriests are proficient with simple weapons, as well as the favored weapon of his deity, light armor, and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis alters proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The champion warpriest may combine spheres and talents to create magical effects. The champion warpriest is considered a Mid-Caster and uses Wisdom as his casting ability modifier. (Note: All casters gain 2 bonus talents and may select a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the spells class feature, as well as the warpriest’s ability to spontaneously cast ‘cure’ or ‘inflict’ spells."
+        },
+        {
+          "level": 1,
+          "name": "Sacred Talent",
+          "description": "At 1st level, the champion warpriest gains one magic sphere associated with a domain granted by his deity. The spheres associated with each domain are listed on Table: Domain Spheres."
+        },
+        {
+          "level": 1,
+          "name": "Domain",
+          "description": "Associated Sphere: Air: Weather: Animal: Alteration: Artifice: Creation: Chaos: Fate: Charm: Mind: Community: Protection: Darkness: Dark: Death: Death: Destruction: Destruction: Earth: Nature: Evil: Fate: Fire: Nature: Glory: Enhancement: Good: Fate: Healing: Life: Knowledge: Divination: Law: Fate: Liberation: Warp: Luck: Fate: Madness: Mind: Magic: Divination: Nobility: War: Plant: Nature: Protection: Protection: Repose: Life: Rune: Enhancement: Scalykind: Alteration: Strength: Enhancement: Sun: Light: Travel: Warp: Trickery: Illusion: Void: Warp: War: War: Water: Nature: Weather: Weather: Spell Pool: The champion warpriest gains a small reservoir of energy he can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to his class level + his casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "A champion warpriest gains 3 talents every 4 levels; the same as he gains caster levels. Whenever he gains a talent he may choose to gain either a magic talent or a combat talent. Champion warpriests use their casting ability modifier as their practitioner modifier."
+        },
+        {
+          "level": 1,
+          "name": "Fervor",
+          "description": "The champion warpriest’s fervor ability may be used to cast sphere effects in place of warpriest spells. All other abilities and limitations of fervor are unchanged.\n\nThis alters fervor."
+        }
+      ],
+      "detected_systems": [
+        "domain"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:warpriest:cult-leader",
+      "package": "pathfinder-class:warpriest",
+      "name": "Cult Leader",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest Cult Leader",
+      "replaces_features": [
+        "bonus-feats",
+        "channel-energy",
+        "class-skills",
+        "focus-weapon",
+        "skill-ranks",
+        "weapon-armor-proficiencies"
+      ],
+      "removed_features": [
+        "bonus-feats",
+        "channel-energy",
+        "class-skills",
+        "focus-weapon",
+        "skill-ranks",
+        "weapon-armor-proficiencies"
+      ],
+      "removed_feature_clauses": [
+        "warpriest’s weapon",
+        "armor proficiencies",
+        "focus weapon",
+        "bonus feats gained at 3rd",
+        "9th",
+        "and 15th levels",
+        "channel energy",
+        "bonus feat gained at 12th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Cult Leader",
+          "description": "Source Advanced Class Guide pg. 128"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "The cult leader’s class skills are Acrobatics (Dex), Bluff (Cha), Climb (Str), Craft (Int), Diplomacy (Cha), Disguise (Cha), Escape Artist (Dex), Heal (Wis), Intimidate (Cha), Knowledge (local) (Int), Knowledge (religion) (Int), Perception (Wis), Profession (Wis), Sense Motive (Wis), Slight of Hand (Dex), Spellcraft (Int), and Stealth (Dex). These skills replace the warpriest’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Skill Ranks per Level",
+          "description": "4 + Int modifier."
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "Cult leaders are proficient with all simple weapons, plus the hand crossbow, rapier, sap, shortbow, and short sword, as well as the favored weapon of their deity. They are proficient with light armor and light shields. The cult leader does not gain Weapon Focus as a bonus feat as a warpriest normally would. This replaces the warpriest’s weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Well-Hidden",
+          "description": "A cult leader gains a +2 bonus on Disguise and Stealth checks. This ability replaces focus weapon."
+        },
+        {
+          "level": 3,
+          "name": "Sneak Attack",
+          "description": "At 3rd level, a cult leader gains the sneak attack ability, as the rogue class feature. If he already has sneak attack from another class, the extra damage from the classes that grant sneak attack stack for the purpose of determining the sneak attack’s extra damage dice. This extra damage is 1d6 at 3rd level and increases by 1d6 every 3 levels thereafter. This ability replaces the bonus feats gained at 3rd, 9th, and 15th levels."
+        },
+        {
+          "level": 4,
+          "name": "Enthrall",
+          "description": "At 4th level, a cult leader can cast enthrall. Using this ability consumes two uses of his fervor ability. This ability replaces channel energy."
+        },
+        {
+          "level": 12,
+          "name": "Hide in Plain Sight",
+          "description": "At 12th level, a cult leader can use the Stealth skill even while being observed. As long as he is within 10 feet of an area of dim light, a cult leader can hide himself from view in the open without anything to actually hide behind. He cannot, however, hide in his own shadow. This ability replaces the bonus feat gained at 12th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:warpriest:devoted-disciple",
+      "package": "pathfinder-class:warpriest",
+      "name": "Devoted Disciple",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/devoted-disciple",
+      "replaces_features": [
+        "as-well-as-warpriests-to-spontaneously-cast-cure-or-inflict-spells",
+        "blessings",
+        "fervor",
+        "spellcasting"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "spells class feature",
+        "as well as the warpriest’s ability to spontaneously cast ‘cure’ or ‘inflict’ spells"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [
+          [
+            "spheres-archetype:pathfinder-class:warpriest:champion-warpriest",
+            "spheres-archetype:pathfinder-class:warpriest:sphere-warpriest"
+          ]
+        ],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blessings",
+          "description": "A devoted disciple only receives one blessing, not two. Whatever sphere is associated with his blessing (according to the same associations used by sphere clerics for their domains) the devoted disciple receives as a bonus magic talent at 1st level, or a bonus talent from that sphere if he possesses it already. He uses his class level as his caster level for this sphere. This stacks normally with other caster level sources.\n\nThis alters blessings."
+        },
+        {
+          "level": 2,
+          "name": "Sacred Blood",
+          "description": "At 2nd level, the devoted disciple can channel his fervor ability to increase his combat ability. As a swift action, he can expend a use of his fervor ability to give himself greater combat ability. He may use his sacred blood offensively or defensively. When used offensively, he gains a +2 sacred or profane bonus (depending on whether he channels positive or negative energy, respectively) to his attack and damage rolls, while using his sacred blood defensively he gains this bonus to his saving throws and AC instead. This bonus increases by +1 for every 4 levels after the 2nd, to a maximum of +6 at 18th level. This bonus lasts for 1 minute. The devoted disciple may change his blood from being offensive to defense or vice-versa as a swift action. This does not alter the duration of the ability."
+        },
+        {
+          "level": 1,
+          "name": "Archetypes of Power",
+          "description": "To truly master something requires a singular devotion to it. The devoted disciple does not have ideals, he has one ideal, one goal, and one purpose."
+        },
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The devoted disciple may combine spheres and talents to create magical effects. The devoted disciple is considered a Mid-Caster and uses Wisdom as his casting ability modifier. (Note: All casters gain 2 bonus talents and may select a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the spells class feature, as well as the warpriest’s ability to spontaneously cast ‘cure’ or ‘inflict’ spells."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "The devoted disciple gains a small reservoir of energy he can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to his level + his Wisdom modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Magic Talents",
+          "description": "A devoted disciple gains 1 magic talent every time he gains a caster level."
+        },
+        {
+          "level": 1,
+          "name": "Fervor",
+          "description": "The devoted disciple cannot spend fervor to speed up the casting time of a spell.\n\nThis modifies fervor."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:warpriest:disenchanter",
+      "package": "pathfinder-class:warpriest",
+      "name": "Disenchanter",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest Disenchanter",
+      "replaces_features": [
+        "bonus-feat",
+        "bonus-feats",
+        "channel-energy"
+      ],
+      "removed_features": [
+        "bonus-feat",
+        "bonus-feats",
+        "channel-energy"
+      ],
+      "removed_feature_clauses": [
+        "channel energy",
+        "bonus feat gained at 6th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Disenchanter",
+          "description": "Source Advanced Class Guide pg. 129"
+        },
+        {
+          "level": 6,
+          "name": "Bonus Feats",
+          "description": "Whenever a disenchanter gains a bonus feat, he must choose from the following list: Great Fortitude, Improved Counterspell, Iron Will, Lightning Reflexes, Skill Focus (Spellcraft), or Spell Focus (abjuration). At 6th level, he adds the following feats to this list: Dispel SynergyUC, Improved Great Fortitude, Improved Iron Will, and Improved Lightning Reflexes. At 12th level, he adds the following feats to this list: Destructive DispelUC, Dispelling CriticalUC, Parry SpellAPG, and Ray ShieldAPG. He need not meet the prerequisites for these feats. This ability alters bonus feats."
+        },
+        {
+          "level": 4,
+          "name": "Mystic Interference",
+          "description": "At 4th level, a disenchanter can channel a burst of pure abjuration magic to grant protection to himself and all allies with 30 feet. Affected creatures receive a +1 bonus on saving throws against spells and spell-like abilities for a number of rounds equal to his warpriest level. This is a sacred bonus if the warpriest is good-aligned or able to spontaneously cast cure spells, and a profane bonus if the warpriest is evil-aligned or able to spontaneously cast inflict spells. Using this ability consumes two uses of his fervor ability. At 8th level and every 4 levels thereafter, the bonus granted by mystic interference increases by 1 (to a maximum of +5 at 20th level). This ability replaces channel energy."
+        },
+        {
+          "level": 6,
+          "name": "Banish Enchantment",
+          "description": "At 6th level, a disenchanter learns to focus his mystic interference. As a standard action, he can consume two uses of his fervor ability to target a single creature within 30 feet with a targeted dispel magic. This ability replaces the bonus feat gained at 6th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:warpriest:divine-champion",
+      "package": "pathfinder-class:warpriest",
+      "name": "Divine Champion",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest Divine Champion",
+      "replaces_features": [
+        "bonus-feat"
+      ],
+      "removed_features": [
+        "bonus-feat"
+      ],
+      "removed_feature_clauses": [
+        "bonus feat gained at 3rd level",
+        "bonus feat gained at 9th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Divine Champion",
+          "description": "Source Divine Anthology pg. 14"
+        },
+        {
+          "level": 1,
+          "name": "Devotion",
+          "description": "A divine champion’s power comes from his close connection to his deity. He must worship a deity, and must maintain the same alignment as that deity."
+        },
+        {
+          "level": 3,
+          "name": "Obedient Champion",
+          "description": "At 3rd level, the divine champion gains Deific Obedience as a bonus feat, even if he doesn’t meet the feat’s prerequisites. When a divine champion gains boons from this feat, he gains the appropriate sentinel boon offered by his deity, rather than gaining the exalted boon.\n\nThis replaces the bonus feat gained at 3rd level."
+        },
+        {
+          "level": 6,
+          "name": "Know the Infidel",
+          "description": "At 6th level, the divine champion becomes an expert at combating enemies of his faith. He must choose a deity whose alignment is opposed to his own deity’s alignment in at least one way (good versus evil or law versus chaos); preferably, he should choose a deity whose alignment diametrically opposes that of his own deity. If the divine champion worships a deity whose alignment is neutral, he must instead select a deity whose alignment is chaotic evil, chaotic good, lawful evil, or lawful good. The choice of this enemy deity is subject to GM approval. At the GM’s discretion, the divine champion may be allowed to choose a philosophy or religious organization that’s not affiliated with a deity, such as the Green Faith, the Pure Legion, or the Whispering Way, but only if that philosophy or religious organization is an enemy of the divine champion’s deity. The divine champion gains a +2 bonus on Bluff, Intimidate, Knowledge, Perception, and Sense Motive checks against followers of the enemy faith, as well as a +2 bonus on weapon attack and damage rolls made against them. Additionally, he can attempt Knowledge skill checks relating to the deity and its church untrained, even if the DC is higher than 10."
+        },
+        {
+          "level": 9,
+          "name": "Fervent Boon",
+          "description": "Beginning at 9th level, a divine champion can call upon his deity for minor boons. By expending one or more uses of his fervor ability, he can cast one of the spell-like abilities included in his deity’s first sentinel boon. By expending one use of fervor, he can cast the spell-like ability that the boon normally grants three uses of per day; by expending two uses of fervor he can cast the spell-like ability that the boon normally grants twice per day; and by expending three uses of fervor, he can cast the spell-like ability that the boon normally grants once per day. These uses don’t count against any uses granted by the boon.\n\nThis replaces the bonus feat gained at 9th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:warpriest:divine-commander",
+      "package": "pathfinder-class:warpriest",
+      "name": "Divine Commander",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest Divine Commander",
+      "replaces_features": [
+        "blessings",
+        "bonus-feats"
+      ],
+      "removed_features": [
+        "blessings",
+        "bonus-feats"
+      ],
+      "removed_feature_clauses": [
+        "bonus feat gained at 3rd level",
+        "bonus feat gained at 12th level",
+        "bonus feat gained at 15th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Divine Commander",
+          "description": "Source Advanced Class Guide pg. 129"
+        },
+        {
+          "level": 1,
+          "name": "Mount",
+          "description": "A divine commander gains the service of a loyal and trusty steed to carry her into battle. This mount functions as a druid’s animal companion, using the divine commander’s level as her effective druid level. The creature must be one that she is capable of riding and must be suitable as a mount. A Medium divine commander can select a camel or a horse. A Small divine commander can select a pony or wolf, but can also select a boar or a dog if she is at least 4th level. (The GM might approve other animals as suitable mounts.)"
+        },
+        {
+          "level": 3,
+          "name": "Battle Tactician",
+          "description": "At 3rd level, a divine commander gains a teamwork feat as a bonus feat. She must meet the prerequisites for this feat. As a standard action, the divine commander can grant this feat to all allies within 30 feet who can see and hear her. Allies retain the use of this bonus feat for 4 rounds, plus 1 round for every 2 levels beyond 3rd that the divine commander possesses. Allies do not need to meet the prerequisites of this bonus feat. The divine commander can use this ability once per day at 3rd level, plus one additional time per day at 9th and 15th levels. This ability replaces the bonus feat gained at 3rd level."
+        },
+        {
+          "level": 6,
+          "name": "Blessed Mount",
+          "description": "At 6th level, a divine commander’s mount becomes a creature blessed by his deity. The divine commander’s mount gains either the celestial, entropic, fiendish, or resolute template, matching the alignment of the warpriest’s deity (celestial for good, entropic for chaotic, fiendish for evil, and resolute for lawful). If the deity matches more than one alignment, the divine commander can select which of the two templates the mount receives. Once the type of template is selected, it cannot be changed."
+        },
+        {
+          "level": 12,
+          "name": "Greater Battle Tactician",
+          "description": "At 12th level, the divine commander gains an additional teamwork feat as a bonus feat. She must meet the prerequisites for this feat. The divine commander can grant this feat to her allies using the battle tactician ability. Additionally, using the battle tactician ability is now a swift action. This ability replaces the bonus feat gained at 12th level."
+        },
+        {
+          "level": 15,
+          "name": "Bless Army",
+          "description": "At 15th level, a divine commander can raise her holy symbol high and give a blessing to the army she is leading. The divine commander’s army gains a +1 bonus to the army’s OM and DV (Ultimate Campaign 235). This is a sacred bonus if the warpriest is good-aligned or able to spontaneously cast cure spells, and it is a profane bonus if the warpriest is evil-aligned or able to spontaneously cast inflict spells. Using this ability requires the divine commander to expend two uses of her fervor ability. This bonus lasts for 1 battle, and it must be performed during the tactics phase of the battle. If this is performed when a mass combat is not imminent, the fervor is spent without granting any bonus. This ability replaces the bonus feat gained at 15th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:warpriest:divine-heretic",
+      "package": "pathfinder-class:warpriest",
+      "name": "Divine Heretic",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/divine-heretic",
+      "replaces_features": [
+        "as-well-as-divine-heretics-to-spontaneously-cast-cure-or-inflict-spells",
+        "aspect-of-war",
+        "blessings",
+        "channel-energy",
+        "fervor",
+        "spellcasting"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "blessings",
+        "channel energy",
+        "aspect of war",
+        "spells class feature",
+        "as well as the divine heretic’s ability to spontaneously cast ‘cure’ or ‘inflict’ spells"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [
+          [
+            "spheres-archetype:pathfinder-class:warpriest:champion-warpriest",
+            "spheres-archetype:pathfinder-class:warpriest:sphere-warpriest"
+          ]
+        ],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Domain Spheres",
+          "description": "At 1st level, the divine heretic gains two spheres as his domain spheres. The first of these spheres is the War sphere. A divine heretic gains the War sphere and Totemic Aura as bonus talents, as well as the Personal Conflict drawback. This drawback may be bought off as normal. If the divine heretic already possesses the War sphere, then the Totemic Aura talent is gained as a bonus talent with no drawback. If both are already possessed, then he may choose any talent from the War sphere as a bonus talent. The second domain sphere may be any sphere of the divine heretic’s choice. A divine heretic uses his class level as his caster level with both his domain spheres. This stacks normally with caster levels gained from other sources.\n\nThis replaces blessings."
+        },
+        {
+          "level": 10,
+          "name": "Domain Mastery",
+          "description": "At 10th level, the divine heretic can expend two uses of his fervor to add any one magic talent from his domain spheres that he qualifies for to his list of talents known for the purposes of a single use of a sphere ability. He may use this ability with his fervor class ability without needing to spend additional fervor.\n\nThis replaces channel energy."
+        },
+        {
+          "level": 20,
+          "name": "Endless Fervor",
+          "description": "At 20th level, once per day as a swift action, the heretic may connect with the cosmic source of all their power, unhindered by the interference of the divine. During this action, he may use an unlimited number of sphere abilities from his domain spheres that target himself or his equipment. He must pay spell point costs normally.\n\nThis replaces aspect of war."
+        },
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The divine heretic may combine spheres and talents to create magical effects. The divine heretic is considered a Mid-Caster and uses Charisma as his casting ability modifier. (Note: All casters gain 2 bonus talents and may select a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the spells class feature, as well as the divine heretic’s ability to spontaneously cast ‘cure’ or ‘inflict’ spells."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "The divine heretic gains a small reservoir of energy he can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to his level + his Charisma modifier (minimum: 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Magic Talents",
+          "description": "A divine heretic gains 1 magic talent every time he gains a caster level."
+        },
+        {
+          "level": 1,
+          "name": "Strength of Conviction",
+          "description": "The divine heretic receives the Steadfast Personality feat as a bonus feat at 1st level, even if he does not meet the prerequisites. He uses his Charisma in place of Wisdom for any warpriest abilities he possesses."
+        },
+        {
+          "level": 2,
+          "name": "Fervent Casting",
+          "description": "At 2nd level, as a swift action, a divine heretic can expend one use of this ability to use any sphere ability with a casting time of 1 round or shorter. When used this way, the ability can target only the divine heretic or equipment he is carrying, even if it could normally affect others or multiple targets. Abilities that create an area that moves with the divine heretic (such as a totemic aura or a Fate consecration) may be cast with this ability. The spell point cost of the ability must still be paid. If the sphere ability creates an ongoing effect, it lasts an additional number of rounds equal to the divine heretic’s Charisma modifier. The divine heretic may use his fervor a number of times per day equal to 1/2 his class level + his Charisma modifier.\n\nThis modifies fervor."
+        }
+      ],
+      "detected_systems": [
+        "domain"
+      ]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:warpriest:divinitech-pilot",
+      "package": "pathfinder-class:warpriest",
+      "name": "Divinitech Pilot",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/divinitech-pilot",
+      "replaces_features": [
+        "aspect-of-war",
+        "blessings",
+        "channel-energy"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "blessings",
+        "channel energy",
+        "aspect of war"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Holy Driver",
+          "description": "At 1st level, the divinitech pilot gains the Tinker sphere as a bonus sphere, selecting the (transportation) package, and Dedicated Upgrades as a bonus feat. Any mechanoid built by the divinitech pilot that is granted additional upgrades with the Dedicated Upgrades feat may be interacted with as the divinitech pilot’s “shining mech”. When piloting their shining mech (or when the shining mech is within the divinitech pilot’s natural reach), the divinitech pilot may do the following:"
+        },
+        {
+          "level": 1,
+          "name": "Repairing Fervor",
+          "description": "The divinitech pilot may repair their shining mech with their fervor, as though healing themselves (regardless of the energy type of their fervor)."
+        },
+        {
+          "level": 1,
+          "name": "Shared Fervor",
+          "description": "When the divinitech pilot uses their fervor to cast a spell, they may target their shining mech instead."
+        },
+        {
+          "level": 1,
+          "name": "Shared Sacred Armaments",
+          "description": "When the divinitech pilot uses their sacred weapon or sacred armor to empower their equipment, the divinitech pilot may grant those benefits to their shining mech instead (choosing an appropriate piece of equipment, or the shining mech’s body as armor).\n\nThis replaces blessings."
+        },
+        {
+          "level": 3,
+          "name": "Divinitech Upgrades",
+          "description": "At 3rd level, the divinitech pilot gains access to the following unique mechanoid upgrades. These upgrades may only be granted to a shining mech."
+        },
+        {
+          "level": 1,
+          "name": "Chosen Armaments (upgrade)",
+          "description": "The shining mech’s wielded weapons and natural attacks benefit from the divinitech pilot’s sacred weapon base weapon dice adjustment (as though it were one of the divinitech pilot’s deity’s favored weapons)."
+        },
+        {
+          "level": 1,
+          "name": "Prayer-conductive Loops (upgrade) (requires divinitech pilot 10)",
+          "description": "When the divinitech pilot uses shared sacred armaments ability to grant their shining mech a weapon or armor special ability, they may select an additional +1 weapon or armor special ability in addition to the normal effects. For example, a 12th level divinitech pilot grants their shining mech a +4 enhancement bonus to one of their weapons could also grant that weapon the flaming special ability (or any other ability available to the divinitech pilot)."
+        },
+        {
+          "level": 4,
+          "name": "Mechanical Fervor",
+          "description": "At 4th level, the divinitech pilot gains the mechanical fervor personal battery use ability. The divinitech pilot may only have a single instance of mechanical fervor active at a time, +1 per 4 levels after 4th."
+        },
+        {
+          "level": 1,
+          "name": "Personal Battery Use [Mechanical Fervor] (2 batteries)",
+          "description": "Whenever you would use fervor to cast a spell on your shining mech, you may instead deplete two batteries. These batteries are in use for the spell’s duration, and you may only have a single effect cast this way at one time. Using this ability again immediately ends the duration of the previous spell cast this way.\n\nThis replaces channel energy."
+        },
+        {
+          "level": 20,
+          "name": "Supercharged Dedication",
+          "description": "At 20th level, the divinitech pilot can cause a shining mech to surge with power. Once per day as a swift action, the divinitech pilot can grant a shining mech a +5 bonus to all attack and damage rolls and saving throws and damage reduction 10/- that stacks with other sources of damage reduction. These benefits only apply while the divinitech pilot pilots the chosen mechanoid. This ability lasts for 1 minute.\n\nThis replaces aspect of war."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:warpriest:feral-champion",
+      "package": "pathfinder-class:warpriest",
+      "name": "Feral Champion",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest Feral Champion",
+      "replaces_features": [
+        "blessings",
+        "sacred-armor",
+        "sacred-weapon"
+      ],
+      "removed_features": [
+        "blessings",
+        "sacred-armor",
+        "sacred-weapon"
+      ],
+      "removed_feature_clauses": [
+        "sacred armor"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Feral Champion",
+          "description": "Source Ultimate Wilderness pg. 97"
+        },
+        {
+          "level": 1,
+          "name": "Feral Blessing",
+          "description": "A feral champion must take the Animal blessing and does not gain a second blessing.\n\nThis alters blessings."
+        },
+        {
+          "level": 1,
+          "name": "Sacred Claws",
+          "description": "Rather than empowering a physical weapon, a feral champion grows claws as primary natural weapons on each hand. These claws deal damage as a warpriest’s sacred weapon and can be enhanced as such.\n\nThis alters sacred weapon."
+        },
+        {
+          "level": 7,
+          "name": "Wild Shape",
+          "description": "At 7th level, a feral champion gains wild shape, as the druid ability of the same name, and treats his warpriest level – 3 as his effective druid level for the purposes of this ability. However, a feral champion does not gain the ability to take on elemental or plant forms with wild shape. A feral champion can use wild shape once per day at 7th level and one additional time per day every 4 levels thereafter, for a total of four times per day at 19th level.\n\nThis replaces sacred armor."
+        }
+      ],
+      "detected_systems": [
+        "wild_shape"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:warpriest:fist-of-the-godclaw",
+      "package": "pathfinder-class:warpriest",
+      "name": "Fist of the Godclaw",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest Fist of the Godclaw",
+      "replaces_features": [
+        "alignment",
+        "aspect-of-war",
+        "blessings",
+        "bonus-feat",
+        "deities"
+      ],
+      "removed_features": [
+        "alignment",
+        "aspect-of-war",
+        "blessings",
+        "bonus-feat",
+        "deities"
+      ],
+      "removed_feature_clauses": [
+        "bonus feat gained at 3rd level",
+        "bonus feats gained at 6th level and 12th level",
+        "aspect of war"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Fist of the Godclaw",
+          "description": "Source Disciple's Doctrine pg. 12"
+        },
+        {
+          "level": 1,
+          "name": "Alignment",
+          "description": "A fist of the Godclaw must be of a lawful alignment.\n\nThis alters the warpriest’s alignment restriction."
+        },
+        {
+          "level": 1,
+          "name": "Deities",
+          "description": "A fist of the Godclaw must worship Abadar, Asmodeus, Iomedae, Irori, or Torag. Alternatively, the fist of the Godclaw must venerate the pantheon of these deities known as the Godclaw."
+        },
+        {
+          "level": 1,
+          "name": "Blessings of the Godclaw",
+          "description": "A fist of the Godclaw must select the Law blessing and the Godclaw blessing.\n\nThis alters blessings."
+        },
+        {
+          "level": 3,
+          "name": "Detect Chaos",
+          "description": "At 3rd level, a fist of the Godclaw can cast detect chaos three times per day as a spell-like ability, using his warpriest level as his caster level. If the fist of the Godclaw already has, or later gains, the ability to cast detect chaos, then he can cast detect chaos at will as a spell-like ability.\n\nThis replaces the bonus feat gained at 3rd level."
+        },
+        {
+          "level": 6,
+          "name": "Alignment Channel",
+          "description": "At 6th level, a fist of the Godclaw gains Alignment Channel as a bonus feat. When he uses this feat and spends fervor to channel energy, he can harm only outsiders with the chaotic subtype. Additionally, when using this feat, he expends only one use of his fervor to channel energy and deals 1d6 points of damage for every 2 warpriest levels he has. At 12th level, a fist of the Godclaw can expend an additional use of fervor to channel energy as a move action.\n\nThis replaces the bonus feats gained at 6th level and 12th level."
+        },
+        {
+          "level": 20,
+          "name": "Aspect of Law",
+          "description": "At 20th level, a fist of the Godclaw can channel an aspect of law, growing even more inflexible. Once per day as a swift action, a warpriest can treat his level as his base attack bonus, gains DR 20/chaotic, and becomes immune to mind-affecting effects. In addition, he can take the average result on any die roll instead of rolling normally. This ability lasts for 1 minute.\n\nThis replaces aspect of war."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:warpriest:forgepriest",
+      "package": "pathfinder-class:warpriest",
+      "name": "Forgepriest",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest Forgepriest",
+      "replaces_features": [
+        "blessings",
+        "bonus-feats",
+        "channel-energy",
+        "spellcasting"
+      ],
+      "removed_features": [
+        "blessings",
+        "bonus-feats",
+        "channel-energy",
+        "spellcasting"
+      ],
+      "removed_feature_clauses": [
+        "bonus feat gained at 3rd level",
+        "channel energy",
+        "bonus feat gained at 6th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Forgepriest",
+          "description": "Source Advanced Class Guide pg. 130"
+        },
+        {
+          "level": 1,
+          "name": "Blessings",
+          "description": "A forgepriest selects only one blessing. This alters the blessings class feature."
+        },
+        {
+          "level": 1,
+          "name": "Smith’s Spells",
+          "description": "A forgepriest adds the following spells to his spell list: 1st—jury rigUC, shield; 2nd—heat metal, shatter; 3rd—keen edge, quench, versatile weapon; 4th—wreath of bladesUC; 5th—fabricate, major creation; 6th—mage’s sword."
+        },
+        {
+          "level": 1,
+          "name": "Forge Mastery",
+          "description": "A 2nd level, the forgepriest adds a bonus equal to half his level to all Craft checks to make metal items, armor, and weapons. (This benefit is gained from the altered version of blessings, above.)"
+        },
+        {
+          "level": 1,
+          "name": "Bonus Feats",
+          "description": "A forgepriest can select item creation feats in addition to combat feats when he gains a bonus feat. This ability alters bonus feats."
+        },
+        {
+          "level": 3,
+          "name": "Craft Magic Arms and Armor",
+          "description": "At 3rd level, a forgepriest gains Craft Magic Arms and Armor as a bonus feat. This ability replaces the bonus feat gained at 3rd level."
+        },
+        {
+          "level": 4,
+          "name": "Creator’s Bond",
+          "description": "At 4th level, when a forgepriest uses his sacred weapon ability with an item he created personally, he can expend two uses of his fervor ability to increase the bonus granted by 1. Once the forgepriest has the sacred armor ability, he can also use this ability in conjunction with that. This ability replaces channel energy."
+        },
+        {
+          "level": 6,
+          "name": "Heat of the Forge",
+          "description": "At 6th level, a forgepriest gains fire resistance 5. At 13th level, this resistance increases to 10. This ability replaces the bonus feat gained at 6th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:warpriest:jistkan-magistrate",
+      "package": "pathfinder-class:warpriest",
+      "name": "Jistkan Magistrate",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest Jistkan Magistrate",
+      "replaces_features": [
+        "blessings",
+        "bonus-languages",
+        "channel-energy",
+        "class-skilss",
+        "spontaneous-casting"
+      ],
+      "removed_features": [
+        "blessings",
+        "bonus-languages",
+        "channel-energy",
+        "class-skilss",
+        "spontaneous-casting"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Jistkan Magistrate",
+          "description": "Source Blood of the Ancients pg. 15"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A Jistkan magistrate gains Knowledge (planes) as a class skill. Survival is not a class skill for a Jistkan magistrate.\n\nThis alters the warpriest’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Elemental Binder",
+          "description": "A Jistkan magistrate must worship a deity who grants the Air, Earth, Fire, or Water blessing, and he must select one of these blessings. He does not gain a second blessing.\n\nThis alters the warpriest’s blessings."
+        },
+        {
+          "level": 1,
+          "name": "Spontaneous Summons",
+          "description": "A Jistkan magistrate is extremely flexible in channeling his stored spell energy. In addition to losing prepared spells to cast “cure” or “inflict” spells, he can also lose a prepared spell in order to cast any summon monster spell of the same level or lower. He can use this ability only to summon an elemental whose subtype matches his blessing. He can expend one use of his fervor ability to decrease the spell’s casting time to 1 standard action and to increase the spell’s duration to 1 minute per level.\n\nThis alters spontaneous casting."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Languages",
+          "description": "A Jistkan magistrate’s bonus language options include Aquan, Auran, Ignan, and Terran instead of Abyssal, Celestial, and Infernal. These choices are in addition to the bonus languages available to the character because of his race.\n\nThis alters the warpriest’s bonus languages."
+        },
+        {
+          "level": 4,
+          "name": "Channel Element",
+          "description": "At 4th level, a Jistkan magistrate gains Elemental Channel as a bonus feat, choosing the elemental subtype that matches his blessing. He doesn’t gain the ability to harm undead with channeled energy (if he channels positive energy) or heal undead (if he channels negative energy). Instead, he can channel a blast of elemental matter and energy that buffets his targets. The Jistkan artificer’s blessing determines the damage type of this attack, as indicated by the table below. A successful Reflex save halves the damage.\n\nThis alters channel."
+        },
+        {
+          "level": 1,
+          "name": "Channel Element Damage",
+          "description": "BlessingDamage type: AirElectricity: EarthAcid: FireFire: WaterCold"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:warpriest:liberty-s-blade",
+      "package": "pathfinder-class:warpriest",
+      "name": "Liberty's Blade",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest Liberty's Blade",
+      "replaces_features": [
+        "blessings",
+        "channel-energy",
+        "sacred-armor",
+        "sacred-weapon"
+      ],
+      "removed_features": [
+        "blessings",
+        "channel-energy",
+        "sacred-armor",
+        "sacred-weapon"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Liberty's Blade",
+          "description": "Source Advanced Class Origins pg. 24"
+        },
+        {
+          "level": 1,
+          "name": "Freedom’s Focus",
+          "description": "A liberty’s blade must worship a good deity who grants the Liberation blessing, and he must select the Liberation blessing. He does not gain a second blessing. This ability alters blessings."
+        },
+        {
+          "level": 4,
+          "name": "Devilslayer",
+          "description": "At 4th level, a liberty’s blade adds devilbane to the list of enhancements he can add to his sacred weapon. This ability alters sacred weapon."
+        },
+        {
+          "level": 4,
+          "name": "Channel Liberty",
+          "description": "At 4th level, when a liberty’s blade channels energy to heal, the effects of his healing is halved, but all creatures affected by his healing instantly benefit as if from a liberating commandUC spell at the liberty’s blade’s caster level. When channeling to harm, the liberty’s blade harms devils as if using Alignment Channel instead of harming undead, and she deals double the normal amount of damage. This ability alters channel energy."
+        },
+        {
+          "level": 7,
+          "name": "Shield Against Hellspawn",
+          "description": "At 7th level, a liberty’s blade adds devil-defiantUE to the list of enhancements that he can add to his sacred armor. This ability alters sacred armor."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:warpriest:mantis-zealot",
+      "package": "pathfinder-class:warpriest",
+      "name": "Mantis Zealot",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest Mantis Zealot",
+      "replaces_features": [
+        "alignment",
+        "armor-proficiencies",
+        "aspect-of-war",
+        "deity",
+        "sacred-armor",
+        "sacred-weapon",
+        "weapon"
+      ],
+      "removed_features": [
+        "alignment",
+        "armor-proficiencies",
+        "aspect-of-war",
+        "deity",
+        "sacred-armor",
+        "sacred-weapon",
+        "weapon"
+      ],
+      "removed_feature_clauses": [
+        "warpriest’s weapon",
+        "armor proficiencies"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Mantis Zealot",
+          "description": "Source Adventurer's Guide pg. 157, Advanced Class Origins pg. 25"
+        },
+        {
+          "level": 1,
+          "name": "Mantis Sworn",
+          "description": "A mantis zealot must choose Achaekek as his deity, and he must be lawful evil in alignment. If he ever changes his deity, he loses this archetype and becomes a normal warpriest."
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "Mantis zealots are proficient with simple and martial weapons, as well as with the sawtooth sabreUE. They are proficient with light armor but not with shields.\n\nThis replaces the warpriest’s weapon and armor proficiencies."
+        },
+        {
+          "level": 4,
+          "name": "Sneak Attack",
+          "description": "At 4th level, a mantis zealot can make a sneak attack. This ability functions as the rogue class feature of the same name. At 4th level, his sneak attack damage is +1d6. This damage increases by 1d6 at 8th level and every 4 warpriest levels thereafter. If the zealot gets a sneak attack bonus from another source, the bonuses stack."
+        },
+        {
+          "level": 7,
+          "name": "Sacred Reflexes",
+          "description": "At 7th level, a mantis zealot can emulate Achaekek’s grace and move with a supernatural fluidity. As long as he is wearing light or no armor, as a swift action he can gain uncanny dodge as per the rogue class feature. He can use this ability for a number of minutes per day equal to his warpriest level. This duration does not need to be consecutive, but it must be spent in 1-minute increments. If he already has the uncanny dodge ability from another source, he instead gains improved uncanny dodge while this ability is active. At 10th level, when he uses this ability, he also gains evasion as per the monk class feature (or improved evasion if he already has evasion from another source). At 13th level, he gains improved uncanny dodge instead of uncanny dodge. At 16th level, he can activate this ability as part of making an initiative check, before rolling the die. At 19th level, he gains improved evasion instead of evasion."
+        },
+        {
+          "level": 20,
+          "name": "Aspect of the Mantis",
+          "description": "At 20th level, when using aspect of war, instead of moving at full speed regardless of his armor or encumbrance, a mantis zealot deals a number of points of bleed damage equal to his Dexterity modifier with each attack."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:warpriest:molthuni-arsenal-chaplain",
+      "package": "pathfinder-class:warpriest",
+      "name": "Molthuni Arsenal Chaplain",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest Molthuni Arsenal Chaplain",
+      "replaces_features": [
+        "blessing",
+        "channel-energy",
+        "sacred-armor",
+        "sacred-weapon"
+      ],
+      "removed_features": [
+        "blessing",
+        "channel-energy",
+        "sacred-armor",
+        "sacred-weapon"
+      ],
+      "removed_feature_clauses": [
+        "channel energy"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Molthuni Arsenal Chaplain",
+          "description": "Source Weapon Master's Handbook pg. 6"
+        },
+        {
+          "level": 1,
+          "name": "War Blessing",
+          "description": "A Molthuni arsenal chaplain must choose War as his blessing, and can do so even if it is a domain not normally granted by his deity. He does not receive a second blessing."
+        },
+        {
+          "level": 1,
+          "name": "Sacred Weapon",
+          "description": "The base damage of a Molthuni arsenal chaplain’s sacred weapon does not increase above 1d6. This alters sacred weapon."
+        },
+        {
+          "level": 5,
+          "name": "Weapon Training",
+          "description": "At 5th level, a Molthuni arsenal chaplain gains weapon training as per the fighter class feature, but the benefits of this weapon training apply only to the his sacred weapons (weapons with which the warpriest has taken Weapon Focus). This ability replaces channel energy."
+        }
+      ],
+      "detected_systems": [
+        "weapon_training"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:warpriest:proclaimer",
+      "package": "pathfinder-class:warpriest",
+      "name": "Proclaimer",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest Proclaimer",
+      "replaces_features": [
+        "alignment",
+        "channel-energy",
+        "deity",
+        "fervor",
+        "sacred-armor",
+        "spellcasting"
+      ],
+      "removed_features": [
+        "alignment",
+        "channel-energy",
+        "deity",
+        "fervor",
+        "sacred-armor",
+        "spellcasting"
+      ],
+      "removed_feature_clauses": [
+        "channel energy"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proclaimer",
+          "description": "Source People of the Wastes pg. 19"
+        },
+        {
+          "level": 1,
+          "name": "Righteous Oath",
+          "description": "A proclaimer cannot be evil or worship an evil deity, and he must choose cure spells for his spontaneous casting.\n\nThis alters the warpriest’s spellcasting."
+        },
+        {
+          "level": 2,
+          "name": "Cleanser of Evil",
+          "description": "At 2nd level, a proclaimer can hold his weapon aloft and shout his deity’s name as a swift action, spending one use of fervor to deal 1d6 points of damage to all evil outsiders within 5 feet. At 5th level and every 3 levels thereafter, this damage increases by an additional 1d6. This damage has the same alignment as the proclaimer’s deity (for example, it counts as good and lawful for a worshiper of Ragathiel who uses this ability). At 7th level, the effect expands to include an area within 10 feet of the proclaimer, and it expands by 5 feet every 6 levels thereafter. A proclaimer can’t use fervor to damage undead or to heal.\n\nThis alters fervor and replaces sacred armor."
+        },
+        {
+          "level": 4,
+          "name": "Zone of Sanctification",
+          "description": "At 4th level, when a proclaimer uses fervor to damage evil outsiders with his cleanser of evil ability, he can spend one additional use of fervor as a move action to create a zone of sanctification in the same area for 1 round. All evil outsiders in the zone when it becomes active must succeed at a Will saving throw (DC 10 + half the proclaimer’s level + his Wisdom modifier) or be pushed back until they are out of the area. Evil outsiders that end their turns in the area take damage as if affected by cleanser of evil.\n\nThis replaces channel energy."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:warpriest:proselytizer",
+      "package": "pathfinder-class:warpriest",
+      "name": "Proselytizer",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest Proselytizer",
+      "replaces_features": [
+        "blessings",
+        "bonus-feat",
+        "sacred-armor",
+        "sacred-weapon",
+        "weapon-armor-proficiencies"
+      ],
+      "removed_features": [
+        "blessings",
+        "bonus-feat",
+        "sacred-armor",
+        "sacred-weapon",
+        "weapon-armor-proficiencies"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proselytizer",
+          "description": "Source Cohorts and Companions pg. 24"
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiencies",
+          "description": "A proselytizer does not gain proficiency with heavy armor or with all martial weapons, though he does gain proficiency in his deity’s favored weapon. If his deity’s favored weapon is unarmed strike, he gains Improved Unarmed Strike as a bonus feat. This ability alters the warpriest’s weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Emotional Appeal",
+          "description": "A proselytizer has great power over the emotions of others, wielding his voice like a weapon to pierce the heart of listeners and bring them closer to communion with his deity’s power. The warpriest adds the following spells to his warpriest spell list at the indicated levels. He casts these as divine warpriest spells: 1st—charm person, rally pointAPG, wrathAPG; 2nd—castigateAPG, heroism, suggestion; 3rd—charm monster, geas (lesser); 4th—forced repentanceAPG, serenityUM; 5th—castigate (mass)APG, suggestion (mass); 6th—antipathy, sympathy."
+        },
+        {
+          "level": 1,
+          "name": "Sacred Subdual",
+          "description": "When a proselytizer uses his sacred weapon damage in place of his normal weapon damage, all damage he deals with that weapon is nonlethal damage. This ability modifies sacred weapon."
+        },
+        {
+          "level": 1,
+          "name": "Blessing of Conversion",
+          "description": "The proselytizer always gains the conversion bonus upon converting an NPC, rather than only the first time he does so each level. The bonuses overlap their durations, and do not stack. The proselytizer does not gain access to the minor blessings granted by his blessing class feature until 3rd level. This ability modifies blessings."
+        },
+        {
+          "level": 1,
+          "name": "Voice of the Faithful",
+          "description": "A proselytizer of 10th level or higher can expend a use of his major blessing to be able to speak to and understand any creature with a language for 1 hour. This ability modifies blessings (major)."
+        },
+        {
+          "level": 1,
+          "name": "Converting NPCs",
+          "description": "Cohorts and their masters often share alignment, but a common religion can be just as important. A cohort may share a leader’s faith when first recruited, or a PC may seek to convert a cohort as their relationship develops."
+        },
+        {
+          "level": 1,
+          "name": "Successful Conversion",
+          "description": "Characters that successfully convert others to their faith can gain divine blessings for adding new members to their religion. The first time at each character level a PC converts an NPC, they gain a conversion bonus for a number of days equal to the level of the NPC converted. Typical conversion bonuses for various faiths, and examples of classes likely to be interested in converting, are listed on the following page. In the case of Neutral deities, the bonus may be a sacred or profane bonus as most appropriate for the PC who gains it."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:warpriest:sacred-fist",
+      "package": "pathfinder-class:warpriest",
+      "name": "Sacred Fist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest Sacred Fist",
+      "replaces_features": [
+        "bonus-feats",
+        "class-skills",
+        "focus-weapon",
+        "sacred-armor",
+        "sacred-weapon",
+        "weapon-armor-proficiencies"
+      ],
+      "removed_features": [
+        "bonus-feats",
+        "class-skills",
+        "focus-weapon",
+        "sacred-armor",
+        "sacred-weapon",
+        "weapon-armor-proficiencies"
+      ],
+      "removed_feature_clauses": [
+        "warpriest’s weapon",
+        "armor proficiency",
+        "sacred weapon",
+        "focus weapon",
+        "bonus feat gained at 3rd level",
+        "bonus feats gained at 6th",
+        "12th",
+        "and 18th levels",
+        "sacred armor",
+        "bonus feat gained at 9th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Sacred Fist",
+          "description": "Source Advanced Class Guide pg. 130"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "The sacred fist’s class skills are Acrobatics (Dex), Climb (Str), Craft (Int), Diplomacy (Cha), Escape Artist (Dex), Heal (Wis), Intimidate (Cha), Knowledge (history) (Int), Knowledge (religion) (Int), Perception (Wis), Profession (Wis), Ride (Dex), Sense Motive (Wis), Spellcraft (Int), Stealth (Dex), and Swim (Str). These skills replace the warpriest’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "Sacred fists are proficient with the club, crossbow (light or heavy), dagger, handaxe, javelin, kama, nunchaku, quarterstaff, sai, shortspear, short sword, shuriken, siangham, sling, and spear. Sacred fists are not proficient with any armor or shields. When wearing armor, using a shield, or carrying a medium or heavy load, a sacred fist loses his AC bonus and flurry of blows. This replaces the warpriest’s weapon and armor proficiency."
+        },
+        {
+          "level": 4,
+          "name": "AC Bonus",
+          "description": "A deity protects her sacred fist as long as he is unarmored and unencumbered. A sacred fist adds his Wisdom modifier (minimum 0) to his AC and his CMD. In addition, a sacred fist gains a +1 dodge bonus to AC and CMD at 4th level. This bonus increases by 1 for every 4 levels thereafter (to a maximum of +5 at 20th level)."
+        },
+        {
+          "level": 1,
+          "name": "Flurry of Blows",
+          "description": "At 1st level, a sacred fist can make a flurry of blows attack as a full-attack action. This ability works like the monk ability of the same name, except the sacred fist's attack bonus from warpriest levels does not count as his warpriest level. This ability replaces sacred weapon."
+        },
+        {
+          "level": 1,
+          "name": "Unarmed Strike",
+          "description": "At 1st level, a sacred fist gains Improved Unarmed Strike as a bonus feat. He uses his warpriest levels as monk levels for determining the amount of damage dealt with an unarmed strike. This ability replaces focus weapon."
+        },
+        {
+          "level": 3,
+          "name": "Blessed Fortitude",
+          "description": "At 3rd level, a sacred fist can avoid even magical and unusual attacks with help from his deity. If he succeeds at a Fortitude saving throw against an attack that has a reduced effect on a successful save, he instead avoids the effect entirely. A helpless sacred fist does not gain the benefit of the blessed fortitude ability. This ability replaces the bonus feat gained at 3rd level."
+        },
+        {
+          "level": 6,
+          "name": "Bonus Style Feat",
+          "description": "At 6th level, the sacred fist gains a style feat as a bonus feat. The sacred fist must meet the style feat’s prerequisites. He uses his warpriest levels as monk levels for the purposes of meeting the feat’s prerequisites. At 12th and 18th levels, a sacred fist gains either another style feat or a feat that requires a style feat as a prerequisite. This ability replaces the bonus feats gained at 6th, 12th, and 18th levels."
+        },
+        {
+          "level": 7,
+          "name": "Ki Pool",
+          "description": "At 7th level, the sacred fist gains a ki pool. This functions as the monk class feature, using the sacred fist’s level – 3 as his monk level when determining the number of points in his pool and bonuses granted to his unarmed strike. Additionally, the sacred fist can as a swift action spend 1 point from his ki pool to grant himself a +1 insight bonus to his AC for 1 minute. (This is in addition the normal ki ability to gain a dodge bonus to AC.) This insight bonus increases by 1 for every 3 levels above 7th (to a maximum of +5 at 19th level). This ability replaces sacred armor."
+        },
+        {
+          "level": 9,
+          "name": "Miraculous Fortitude",
+          "description": "At 9th level, the sacred fist’s blessed fortitude ability improves. He still takes no damage or negative effect when he succeeds at a Fortitude save, but now when he fails a Fortitude saving throw against a spell or effect that deals damage (including ability damage and drain), he takes only half the amount of damage. A helpless sacred fist does not gain the benefit of miraculous fortitude. This ability replaces the bonus feat gained at 9th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:warpriest:shieldbearer",
+      "package": "pathfinder-class:warpriest",
+      "name": "Shieldbearer",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest Shieldbearer",
+      "replaces_features": [
+        "focus-weapon",
+        "sacred-armor",
+        "sacred-weapon"
+      ],
+      "removed_features": [
+        "focus-weapon",
+        "sacred-armor",
+        "sacred-weapon"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Shieldbearer",
+          "description": "Source Armor Master's Handbook pg. 7"
+        },
+        {
+          "level": 1,
+          "name": "Shield Adept",
+          "description": "At 1st level, a shieldbearer receives Improved Shield Bash as a bonus feat. When carrying a shield, the shieldbearer adds his shield bonus on concentration checks to cast defensively."
+        },
+        {
+          "level": 19,
+          "name": "Sacred Weapon",
+          "description": "A shieldbearer treats shields as sacred weapons (instead of his god’s favored weapon), though the shieldbearer can still designate additional weapons as sacred weapons by selecting them with the Weapon Focus feat. The shieldbearer’s sacred weapon damage applies only to attacks made with shields. The shieldbearer does not gain the ability to enhance sacred weapons until 7th level. For every 3 warpriest levels beyond 7th, this bonus increases by 1 (to a maximum of +5 at 19th level)."
+        },
+        {
+          "level": 4,
+          "name": "Sacred Shield",
+          "description": "At 4th level, a shieldbearer gains the ability to enhance his shield with divine power as a swift action. This ability functions as the sacred armor ability, except as follows. This power grants the shield a +1 enhancement bonus (this bonus does not act as an attack or damage bonus when the shield is used in a shield bash). For every 4 warpriest levels beyond 4th, this bonus increases by 1 (to a maximum of +5 at 20th level). The shieldbearer can enhance a shield with any of the following armor special abilities (instead of those listed for sacred armor): arrow deflection, blinding, fortification (heavy, light, or moderate), reflecting, and spell resistance (13, 15, 17, and 19)."
+        },
+        {
+          "level": 1,
+          "name": "Channel Energy",
+          "description": "The shieldbearer can channel energy only when carrying a shield, and the ability manifests as a 30-foot-cone burst, rather than as a radius."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:warpriest:sixth-wing-bulwark",
+      "package": "pathfinder-class:warpriest",
+      "name": "Sixth Wing Bulwark",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Warpriest Sixth Wing Bulwark",
+      "replaces_features": [
+        "6-th",
+        "armor-proficiencies",
+        "bonus-feats",
+        "focus-weapon",
+        "sacred-armor",
+        "sacred-weapon"
+      ],
+      "removed_features": [
+        "6-th",
+        "armor-proficiencies",
+        "bonus-feats",
+        "focus-weapon",
+        "sacred-armor",
+        "sacred-weapon"
+      ],
+      "removed_feature_clauses": [
+        "focus weapon",
+        "bonus feat gained at 12th level",
+        "bonus feat gained at 18th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Sixth Wing Bulwark",
+          "description": "Source Distant Realms pg. 32"
+        },
+        {
+          "level": 1,
+          "name": "Sixth Wing Sworn",
+          "description": "A Sixth Wing bulwark must be a worshiper of Ragathiel. If she ever changes her deity, she loses this archetype, cannot regain it, and becomes a normal warpriest."
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "A Sixth Wing bulwark gains proficiency in tower shields.\n\nThis alters the warpriest’s weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Focus Shield",
+          "description": "A Sixth Wing bulwark gains Shield Focus as a bonus feat.\n\nThis replaces focus weapon."
+        },
+        {
+          "level": 20,
+          "name": "Sacred Shield",
+          "description": "Dedicated training and divine grace allow a Sixth Wing bulwark to lessen the burden of a shield’s weight. As long as a Sixth Wing bulwark is wielding a shield, she reduces her total armor check penalty by 1. This reduction improves by 1 for every 5 warpriest levels she has, to a maximum reduction of 5 at 20th level."
+        },
+        {
+          "level": 6,
+          "name": "Shield of Grace",
+          "description": "At 6th level, when a Sixth Wing bulwark uses her sacred shield to protect an ally, she can deliver blessings, healing from her fervor ability, and touch spells through the shield to the ally benefiting from the shield’s protection."
+        },
+        {
+          "level": 7,
+          "name": "Sacred Fortification",
+          "description": "At 7th level, when a Sixth Wing bulwark activates her sacred armor ability, she can expend one use of fervor to also activate her sacred shield ability.\n\nThis alters sacred armor."
+        },
+        {
+          "level": 12,
+          "name": "Intercession",
+          "description": "At 12th level, by expending a use of fervor as a swift action, a Sixth Wing bulwark can teleport to the location of a willing (or unconscious) ally and immediately teleport that ally to her own previous position, in effect switching places with the ally. A Sixth Wing bulwark must have line of effect to the target to use this ability.\n\nThis replaces the bonus feat gained at 12th level."
+        },
+        {
+          "level": 18,
+          "name": "Reflexive Fortification",
+          "description": "At 18th level, a Sixth Wing bulwark can use her sacred shield ability as an immediate action when she is attacked. Alternatively, she can use this ability as an immediate action when an ally within 30 feet is attacked to send her shield to protect that ally. She can use this ability even if she is surprised.\n\nThis replaces the bonus feat gained at 18th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:warpriest:sphere-warpriest",
+      "package": "pathfinder-class:warpriest",
+      "name": "Sphere Warpriest",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/sphere-warpriest",
+      "replaces_features": [
+        "as-well-as-warpriests-to-spontaneously-cast-cure-or-inflict-spells",
+        "fervor-but-still-counts-as-fervor-for-purpose-of-trading-it-out-for-other-archetypes",
+        "spellcasting",
+        "warpriests-to-spontaneously-cast-cure-or-inflict-spells"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "spells class feature",
+        "warpriest’s ability to spontaneously cast ‘cure’ or ‘inflict’ spells"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The sphere warpriest may combine spheres and talents to create magical effects. The sphere warpriest is considered a Mid-Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the spells class feature."
+        },
+        {
+          "level": 1,
+          "name": "Devotion",
+          "description": "At first level, a good sphere warpriest (or a neutral warpriest of a good deity) gains the Life sphere as bonus sphere. An evil warpriest (or a neutral warpriest of an evil deity) gains the Death sphere as bonus sphere instead. A neutral warpriest of a neutral deity (or one who is not devoted to a particular deity) must choose whether he channels positive or negative energy.\n\nThis replaces the warpriest’s ability to spontaneously cast ‘cure’ or ‘inflict’ spells."
+        },
+        {
+          "level": 1,
+          "name": "Fervor",
+          "description": "As a swift action, a sphere warpriest can expend one use of this ability to use any sphere ability with a casting time of 1 round or shorter. When used this way, the ability can target only the sphere warpriest or equipment he is carrying, even if it could normally affect others or multiple targets. Abilities that create an area that moves with the sphere warpriest (such as a Totemic Aura or a Fate consecration) may be cast with this ability. The spell point cost of the ability must still be paid. If the sphere ability creates an ongoing effect, it lasts an additional number of rounds equal to the sphere warpriest’s casting ability modifier. The sphere warpriest may use his fervor a number of times per day equal to 1/2 his sphere warpriest level + his casting ability modifier.\n\nThis alters fervor but still counts as fervor for the purpose of trading it out for other archetypes."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "The sphere warpriest gains a small reservoir of energy he can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to his level + his casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Magic Talents",
+          "description": "A sphere warpriest gains 3/4ths of a magic talent every level (the same progression as he gains caster levels)."
+        },
+        {
+          "level": 1,
+          "name": "Spheres of Power",
+          "description": "Expanded Options"
+        },
+        {
+          "level": 1,
+          "name": "Recommended Casting Tradition",
+          "description": "The classic feel of the warpriest can be recreated through taking the divine petitioner casting tradition."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

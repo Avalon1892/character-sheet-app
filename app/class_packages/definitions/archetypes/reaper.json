@@ -1,0 +1,591 @@
+{
+  "version": 1,
+  "class_key": "spheres-class:reaper",
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:reaper:chem-dog",
+      "package": "spheres-class:reaper",
+      "name": "Chem Dog",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/chem-dog",
+      "replaces_features": [
+        "",
+        "blended-training",
+        "casting",
+        "level",
+        "prey-casting-bonus",
+        "reaper-techniques",
+        "reaper-techniques-at",
+        "spell-pool",
+        "spell-pool-class-features"
+      ],
+      "removed_features": [
+        "12th-level",
+        "blended-training",
+        "casting",
+        "prey-casting-bonus",
+        "reaper-techniques-2nd",
+        "spell-pool-class-features"
+      ],
+      "removed_feature_clauses": [
+        "casting",
+        "spell pool class features",
+        "blended training",
+        "reaper techniques gained at 2nd and 12th level",
+        "prey casting bonus"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Martial Soul",
+          "description": "At 1st level, a chem dog does not gain the ability to cast spells like a normal reaper. Instead, as long as the chem dog does not have the casting class feature or advanced magical training feat from any source, the chem dog gains a spell point pool equal to their chem dog level + their practitioner modifier. These spell points can only be used for reaper class features. If the chem dog also possesses the magekiller archetype, the chem dog may use these spell points for the counterspell feat and any feat which has counterspell as a prerequisite. If the chem dog later gains the casting class feature or advanced magical training feat, the chem dog loses this ability. This ability replaces the casting and spell pool class features."
+        },
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A chem dog may combine combat spheres and talents to create powerful martial techniques. Chem dogs are considered Expert combatants. When they gain their first level in the reaper class, chem dogs may choose either Charisma, Intelligence or Wisdom as their practitioner modifier. This ability replaces blended training."
+        },
+        {
+          "level": 2,
+          "name": "Flashbangs",
+          "description": "At 2nd level, a chem dog gains the flashbangs class feature of the scholar class, treating their reaper level as their scholar level and using their practitioner modifier to calculate the DCs of their flashbangs instead of their Intelligence modifier.\n\nThis replaces reaper techniques gained at 2nd and 12th level."
+        },
+        {
+          "level": 3,
+          "name": "Material Imposition",
+          "description": "At 3rd level, a chem dog gains the material imposition class feature from the scholar class, treating their reaper level as their scholar level and using their practitioner modifier instead of their Intelligence modifier for any abilities granted by their material impositions. At 7th level and every 4 levels after, the chem dog gains a new material imposition. This ability replaces prey casting bonus."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:reaper:disciple-of-the-monstrous-arts",
+      "package": "spheres-class:reaper",
+      "name": "Disciple of the Monstrous Arts",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/disciple-of-the-monstrous-arts",
+      "replaces_features": [
+        "cult",
+        "cult-at-level",
+        "eternal-foe",
+        "favored-prey",
+        "prey-casting-bonus",
+        "reality-shudders",
+        "reaper-trophy"
+      ],
+      "removed_features": [
+        "cult-1st-level",
+        "eternal-foe",
+        "favored-prey",
+        "prey-casting-bonus",
+        "reaper-trophy"
+      ],
+      "removed_feature_clauses": [
+        "cult ability gained at 1st level",
+        "favored prey",
+        "reaper trophy",
+        "prey casting bonus",
+        "eternal foe"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Basic Stance Training",
+          "description": "At 1st level, a disciple of the monstrous arts gains a (stance) talent they meet the prerequisites for as a bonus talent.\n\nThis ability replaces the cult ability gained at 1st level."
+        },
+        {
+          "level": 1,
+          "name": "Bewitched Stance",
+          "description": "By meditating for 10 minutes, a disciple of the monstrous arts may assign a magical sphere effect they know to each (stance) talent they know. The sphere effect must have a casting time of a standard action, must target only the disciple of the monstrous arts, and must have a duration of concentration.\n\nThe disciple of the monstrous arts may enter a (stance) talent as a move action to cast the magical sphere effect assigned to the stance as part of the action without provoking an attack of opportunity, paying any costs associated with the sphere effect. Spells cast this way use the disciple of the monstrous arts’s class level in place of their base caster level. This magical sphere effect’s duration is changed to the duration of the stance, and losing the benefit of the stance ends the magical sphere effect. The stance may be maintained as a swift action once entered.\n\nThis ability replaces favored prey and reaper trophy.\n\nAuthor's Note: If a (stance) talent gives the option to use multiple stances, each stance offered by the talent counts as a separate (stance) talent for Bewitched Stance."
+        },
+        {
+          "level": 1,
+          "name": "Reality Shudders",
+          "description": "Use the creature type (or subtype) that would have been the additional favored prey granted by the cult the disciple of monstrous arts chose for this ability.\n\nThis alters reality shudders."
+        },
+        {
+          "level": 3,
+          "name": "Combat Empowerment",
+          "description": "At 3rd level, whenever a disciple of the monstrous arts successfully damages a creature with a CR of at least half their character level with an attack action, they gain a +1 bonus to their caster level until the end of their next turn. This can not increase their caster level above their character level. At 7th level and every 4 levels after, this bonus to caster level increases by 1.\n\nThis ability replaces prey casting bonus."
+        },
+        {
+          "level": 19,
+          "name": "Eternal Body",
+          "description": "At 19th level, a disciple of monstrous arts no longer takes ability score penalties or receives ability score bonuses for aging, cannot be magically aged, and cannot die of old age. Additionally, the disciple of monstrous arts no longer needs to sleep, eat, or drink in order to survive in a given day as long as they have meditated for at least 10 minutes.\n\nThis ability replaces eternal foe.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:reaper:flagellant",
+      "package": "spheres-class:reaper",
+      "name": "Flagellant",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/flagellant",
+      "replaces_features": [
+        "cult",
+        "prey-casting-bonus",
+        "reality-shudders",
+        "soul-crisis"
+      ],
+      "removed_features": [
+        "cult",
+        "prey-casting-bonus",
+        "reality-shudders",
+        "soul-crisis"
+      ],
+      "removed_feature_clauses": [
+        "cult",
+        "reality shudders",
+        "prey casting bonus",
+        "soul crisis"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Cult of the Flagellant",
+          "description": "At 1st level, the flagellant is always treated as if they have selected their own creature type (or subtype, as appropriate) with the favored prey class feature, in addition to the currently selected creature type.\n\nThis ability replaces cult and reality shudders."
+        },
+        {
+          "level": 3,
+          "name": "Centrality of Self",
+          "description": "At 3rd level, whenever a flagellant uses a magic sphere effect which targets or includes in its effect only themself, the caster level for the effect increases by 1. At 7th level and every 4 levels after, this bonus to caster level increases by 1.\n\nThis replaces prey casting bonus."
+        },
+        {
+          "level": 5,
+          "name": "Worldly Distance",
+          "description": "At 5th level, the flagellant learns to evade harm and solidify their body against assault, these defensive instincts facilitating an uneasy anxiety over broken equilibrium. The flagellant’s base Reflex save bonus from reaper levels is equal to 2 + 1/2 their reaper level. In addition, the flagellant gains a +2 natural armor bonus; this natural armor bonus increases by +1 at 10th level and every 5 levels thereafter. Whenever the flagellant is hit with an attack, they take a -2 penalty to attack rolls and AC and cannot benefit from morale bonuses for 1 round. The flagellant may spend a spell point as a free action to end these penalties."
+        },
+        {
+          "level": 9,
+          "name": "Inurement",
+          "description": "At 9th level, the flagellant can deprive themselves of outside influences to an even greater degree. If the flagellant succeeds at a Fortitude, Reflex, or Will saving throw against an attack that has a reduced effect on a successful save, they instead avoid the effect entirely. A helpless flagellant does not gain the benefit of this ability. This counts as having the evasion and stalwart class features. Whenever the flagellant fails a saving throw, they take a -2 penalty to saving throws and the saving throw DCs of their abilities and cannot benefit from insight bonuses for 1 round. The flagellant may spend a spell point as a free action to end these penalties."
+        },
+        {
+          "level": 13,
+          "name": "Total Anathema",
+          "description": "At 13th level, the flagellant treats all creature types as their favored enemy. Whenever the flagellant misses with an attack, the flagellant cannot be a willing target of any effect and must attempt saving throws to resist all abilities, even those cast by allies, for 1 round. The flagellant may spend a spell point to end this unwillingness as a free action."
+        },
+        {
+          "level": 17,
+          "name": "Exile from All",
+          "description": "At 17th level, the flagellant begins to detach themselves from existence and reason in order to find refuge. The flagellant becomes immune to pain effects and nonlethal damage as well as the stunned and dazed conditions. The flagellant takes a -10 penalty on all Intelligence, Wisdom, and Charisma-based skill checks, but may suppress this penalty for 1 minute by spending a spell point as a free action."
+        },
+        {
+          "level": 20,
+          "name": "Embrace of Solitude",
+          "description": "At 20th level, the flagellant learns to completely seal themselves off from reality and find a strange, distorted peace in their own mind. The flagellant becomes immune to mind-affecting effects, gains DR 10/-, and gains resistance 30 to all energy types. This replaces soul crisis.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nSpheres of Guile by Drop Dead Studios\n\nUsing Spheres of Guile\n\nClasses\n\nAdvisor (DRS)\nAgent\nConduit (DRS)\nCourser\nEnvoy\n\nGenius\nMastermind\nProfessional\n\nSpheres\n\nArtifice\nBluster\nBody Control\nCommunication\nFaction\n\nHerbalism\nInfiltration\nInvestigation\nNavigation\nPerformance\n\nSpellhacking\nStudy\nSubterfuge\nSurvivalism\nVocation\n\nOther Rules\n\nOperative Feats\nOperative Gear\nSkill Rules\nTrade Traditions\nRunning Guile Games\n\nGet Spheres of Guile\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nSpheres of Guile by Drop Dead Studios\n\nUsing Spheres of Guile\n\nClasses\n\nAdvisor (DRS)\nAgent\nConduit (DRS)\nCourser\nEnvoy\n\nGenius\nMastermind\nProfessional\n\nSpheres\n\nArtifice\nBluster\nBody Control\nCommunication\nFaction\n\nHerbalism\nInfiltration\nInvestigation\nNavigation\nPerformance\n\nSpellhacking\nStudy\nSubterfuge\nSurvivalism\nVocation\n\nOther Rules\n\nOperative Feats\nOperative Gear\nSkill Rules\nTrade Traditions\nRunning Guile Games\n\nGet Spheres of Guile"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:reaper:hunt-master",
+      "package": "spheres-class:reaper",
+      "name": "Hunt Master",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/hunt-master",
+      "replaces_features": [
+        "",
+        "blended-training",
+        "casting",
+        "level",
+        "prey-casting-bonus",
+        "reaper-techniques",
+        "reaper-techniques-at",
+        "spell-pool",
+        "spell-pool-class-features"
+      ],
+      "removed_features": [
+        "12th-level",
+        "blended-training",
+        "casting",
+        "prey-casting-bonus",
+        "reaper-techniques-2nd",
+        "spell-pool-class-features"
+      ],
+      "removed_feature_clauses": [
+        "blended training",
+        "casting",
+        "spell pool class features",
+        "reaper techniques gained at 2nd and 12th level",
+        "prey casting bonus"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A hunt master may combine combat spheres and talents to create powerful martial techniques. Hunt masters are considered Expert combatants. When they gain their first level in the reaper class, a hunt master may choose either Charisma, Intelligence or Wisdom as their practitioner modifier.\n\nA hunt master must select the Warleader sphere with the first talent they gain from this class.\n\nThis ability replaces blended training."
+        },
+        {
+          "level": 1,
+          "name": "Martial Soul",
+          "description": "At 1st level, a hunt master does not gain the ability to cast spells like a normal reaper. Instead, as long as the hunt master does not have the casting class feature or advanced magical training feat from any source, the hunt master gains a spell point pool equal to their hunt master level + their practitioner modifier. These spell points can only be used for reaper class features.\n\nIf the hunt master also possesses the magekiller archetype, the hunt master may use these spell points for the Counterspell feat and any feat which has Counterspell as a prerequisite. If the hunt master later gains the casting class feature or Advanced Magic Training feat, the hunt master loses this ability.\n\nThis ability replaces the casting and spell pool class features."
+        },
+        {
+          "level": 1,
+          "name": "Master’s Techniques",
+          "description": "The hunt master gains exclusive access to the following reaper techniques.\n\nThis ability alters reaper techniques."
+        },
+        {
+          "level": 2,
+          "name": "Banner",
+          "description": "At 2nd level, a hunt master chooses a banner with which to bolster their allies. As long as the hunt master’s banner is clearly visible, all allies within 60 feet receive a bonus depending on which banner the hunt master chooses to fly. The banner must be at least Small or larger and must be carried or displayed by the hunt master or an animal companion to function.\n\nThe banners of the hunt master come in four distinct varieties, named after things typical of more leisurely hunts than those involving monsters. A hunt master may choose between the following banners:\n\nStandard of the Lucky Fox: An ally who benefits from this banner gains a +2 morale bonus to attack rolls to confirm critical hits and +1 luck bonus to saving throws against spells or traps that would move them or impede their movement. At 6th level and every four levels thereafter, these bonuses increase by +1.\n\nStandard of the Stalwart Oak: An ally who benefits from this banner gains a +2 morale bonus to CMD and a +1 morale bonus on attack rolls to creatures threatening an ally. At 6th level and every four levels thereafter, the bonus to CMD increases by +1.\n\nStandard of the Pack Dog: An ally who benefits from this banner gains a +1 morale bonus on attack rolls that benefit from flanking and a +2 morale bonus on saving throws against charm and compulsion effects. At 6th level and every four levels thereafter, the bonus to saving throws increases by +1.\n\nStandard of the Swift Steed: An ally who benefits from this banner increases a movement speed of their choice by 5 feet and gains a +1 bonus to attack rolls made as part of a charge. Additionally, allies who begin a charge while benefiting from this standard do not take a penalty to their AC. At 6th level and every four levels thereafter, the bonus to speed increases by 5 feet. An ally who begins their turn in this banner’s radius retains the benefits of this banner until the end of their turn, even if they move outside the banner’s area of effect.\n\nA hunt master can select a new banner to fly by redesigning their existing banner over an 8 hour period. This replaces the reaper techniques gained at 2nd and 12th level."
+        },
+        {
+          "level": 3,
+          "name": "Unified Host",
+          "description": "At 3rd level, the hunt master begins to share their trade secrets with their close associates. As a move action, the hunt master can grant half their favored prey bonus against a single target of the appropriate type to all allies benefiting from their banner, tactics, or shouts. This bonus does not stack with any favored enemy or similar bonuses possessed by those allies; they use whichever bonus is higher. This effect lasts a number of rounds equal to the hunt master’s practitioner modifier (minimum 1). At 11th level, the hunt master grants their entire favored prey bonus to their allies, not just half, and can use this ability as a move or swift action. Additionally at 3rd level, the hunt master gains a teamwork feat as a bonus feat. They must meet the prerequisites for this feat. Whenever the hunt master shares their favored prey bonus with their allies, they can also grant one teamwork feat they possess to their allies, who retain the use of this teamwork feat for the duration of this effect. Allies do not need to meet the prerequisites of a teamwork feat granted to them with this ability.\n\nWhenever the hunt master uses this ability, they may maintain an ongoing tactic without spending a move or swift action that turn.\n\nThis ability replaces prey casting bonus.\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:reaper:machine-cultist",
+      "package": "spheres-class:reaper",
+      "name": "Machine Cultist",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/machine-cultist",
+      "replaces_features": [
+        "cult",
+        "prey-casting-bonus",
+        "reality-shudders",
+        "reaper-s-class-skills",
+        "reaper-techniques",
+        "soul-crisis"
+      ],
+      "removed_features": [
+        "cult",
+        "prey-casting-bonus",
+        "soul-crisis"
+      ],
+      "removed_feature_clauses": [
+        "cult",
+        "prey casting bonus",
+        "soul crisis"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A machine cultist adds Disable Device and Knowledge (engineering) to their list of class skills, and removes Knowledge (Nature) and Ride from their list of class skills.\n\nThis alters the reaper's class skills."
+        },
+        {
+          "level": 1,
+          "name": "Construct Hunter",
+          "description": "At 1st level, you are always treated as if you've selected constructs with your favored prey class feature, in addition to the currently selected creature type. This ability replaces cult."
+        },
+        {
+          "level": 1,
+          "name": "Tinkering",
+          "description": "Whenever a machine cultist can gain a reaper technique, they may instead select a technical insight from the technician's technical insight list, treating their reaper level as their technician level for the purposes of these technical insights. This stacks with any technician levels the machine cultist possesses. This ability modifies reaper techniques."
+        },
+        {
+          "level": 3,
+          "name": "The Flesh Is Weak",
+          "description": "At 3rd level, a machine cultist gains damage reduction 2/adamantine as they slowly replace parts of their flesh and bone with sturdier alloys. At 7th level and every 4 levels after, this damage reduction increases by 2. This ability replaces prey casting bonus."
+        },
+        {
+          "level": 5,
+          "name": "Integrated Perfection",
+          "description": "At 5th level, a machine cultist may gain an invention, as the technician class feature, except that they may not select independent invention. The chosen invention is integrated directly into the machine cultist's body rather than being a removable object. The invention cannot be removed once chosen, but it can be replaced by another invention of the same type. In the case of held inventions such as improved melee weapon or improved shield, the object is grafted onto one of the machine cultist's arms as per the Graft Weapon trait of the Morphic Weapon talent of the Alteration sphere. (Alteration Handbook) At 9th, 13th, and 17th level, the machine cultist may select an additional invention in this manner."
+        },
+        {
+          "level": 17,
+          "name": "Robotic Mannerisms",
+          "description": "At 17th level, a machine cultist uses the construct creature type for their reality shudders class feature. This ability modifies reality shudders."
+        },
+        {
+          "level": 20,
+          "name": "Immaculate Union",
+          "description": "At 20th level, a machine cultist has completed their journey to become a perfect cyborg of living metal. The machine cultist's type changes to construct, except that they retain their Constitution score, do not receive bonus hit points for their size, retain their ability to heal damage on their own, are not immediately destroyed at 0 hit points, can be raised or resurrected normally, and are affected by magical healing effects normally. The machine cultist does not recalculate hit dice, base attack bonus, or saving throws. This ability replaces soul crisis."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:reaper:magekiller",
+      "package": "spheres-class:reaper",
+      "name": "Magekiller",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/magekiller",
+      "replaces_features": [
+        "cult",
+        "reality-shudders",
+        "reality-shudders-class-features",
+        "soul-crisis"
+      ],
+      "removed_features": [
+        "cult",
+        "reality-shudders-class-features",
+        "soul-crisis"
+      ],
+      "removed_feature_clauses": [
+        "cult",
+        "reality shudders class features",
+        "soul crisis"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Arcane Hunter",
+          "description": "At 1st level, a magekiller may always treat any creature capable of casting spells or using magical sphere effects as their favoured prey.\n\nThis replaces the cult and reality shudders class features."
+        },
+        {
+          "level": 5,
+          "name": "Break Magic",
+          "description": "At 5th level, a magekiller gains Counterspell as a bonus feat, even if they do not meet their prerequisites. If the magekiller already possess this feat, they may instead select and gain a different feat they meet the prerequisites for."
+        },
+        {
+          "level": 9,
+          "name": "Spell Breaker",
+          "description": "At 9th level, a magekiller gains Counterspell Mastery as a bonus feat, even if they do not meet their prerequisites. If the magekiller already possesses any of these feats, they may instead select and gain a different feat or feats they meet the prerequisites for."
+        },
+        {
+          "level": 13,
+          "name": "Spell Eater",
+          "description": "At 13th level, whenever a magekiller successfully dispels a magic effect, suppresses a magical item, or counters a spell or magical effect with the Counterspell feat, they are refunded 1 spell point. The magekiller can only gain 1 spell point per use of the Counterspell feat, even if more than one spell, magical effect, or magic item is affected (such as with the Improved Counterspell feat)."
+        },
+        {
+          "level": 17,
+          "name": "Spell Sunder",
+          "description": "At 17th level, whenever a magekiller successfully counters a spell with the Counterspell feat, they may cause harmful backlash towards the caster as a free action than can be taken even if it is not the magekiller's turn. The caster takes damage equal to 1d6 times the caster level of the countered ability, or half this damage with a successful Reflex save (DC = 10 + 1/2 the magekiller's HD + the magekiller's practitioner modifier)."
+        },
+        {
+          "level": 20,
+          "name": "Null Magic",
+          "description": "At 20th level, a magekiller gains a +5 insight bonus to all saves against spells and magical sphere effects. Additionally, the magekiller does not need to spend an extra spell point to use the Counterspell Mastery feat. This ability replaces soul crisis."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:reaper:mythos-hunter",
+      "package": "spheres-class:reaper",
+      "name": "Mythos Hunter",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/mythos-hunter",
+      "replaces_features": [
+        "blood-hunter",
+        "bloodletter",
+        "cult",
+        "engorged-scent",
+        "reality-shudders",
+        "reality-shudders-class-features",
+        "soul-crisis"
+      ],
+      "removed_features": [
+        "blood-hunter",
+        "bloodletter",
+        "cult",
+        "engorged-scent",
+        "reality-shudders-class-features",
+        "soul-crisis"
+      ],
+      "removed_feature_clauses": [
+        "bloodletter: Favored Mythos (Ex): At 1st level",
+        "the mythos hunter selects a specific literary tradition in which creatures appear",
+        "cult",
+        "reality shudders class features",
+        "blood hunter",
+        "engorged scent: Homage to the Classic (Su): At 9th level",
+        "the mythos hunter may weave a story’s resonant power to replicate a storied success",
+        "soul crisis"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Eye for Stories",
+          "description": "At 1st level, the mythos hunter receives the Scout sphere as a bonus sphere and Target Spotting as a bonus feat.\n\nThis replaces bloodletter: Favored Mythos (Ex): At 1st level, the mythos hunter selects a specific literary tradition in which creatures appear. Creatures sourced from the chosen tradition are considered to be the mythos hunter’s favored prey. A literary tradition may take the form of a shared mythological tradition (such as Greek Mythology or Norse Poetry), the works of a specific author or group (such as Lewis Carroll or H.P. Lovecraft’s mythos cycle), or another grouping of works (such as “Wuxia” or “1970s Action Movies”). Creatures that the players and GM can agree are derived from a literary tradition also count as being part of that literary tradition (for example, halflings and treants could reasonably be considered part of a “Works of J.R.R. Tolkien” literary tradition). As humans tend to appear in the vast majority of stories, humans do not innately count as being part of any particular literary tradition. In addition to creatures, characters who possess certain classes, feats, talents, or other features may also be treated as being part of a literary tradition for the purpose of favored mythos. For example, a Japanese Mythology literary tradition might include characters with levels in ninja while a Cyberpunk literary tradition might include characters with the Technomancy sphere. What ultimately qualifies as being part of a specific literary tradition is up to GM discretion."
+        },
+        {
+          "level": 1,
+          "name": "This replaces bloodletter",
+          "description": "Favored Mythos (Ex): At 1st level, the mythos hunter selects a specific literary tradition in which creatures appear. Creatures sourced from the chosen tradition are considered to be the mythos hunter’s favored prey. A literary tradition may take the form of a shared mythological tradition (such as Greek Mythology or Norse Poetry), the works of a specific author or group (such as Lewis Carroll or H.P. Lovecraft’s mythos cycle), or another grouping of works (such as “Wuxia” or “1970s Action Movies”). Creatures that the players and GM can agree are derived from a literary tradition also count as being part of that literary tradition (for example, halflings and treants could reasonably be considered part of a “Works of J.R.R. Tolkien” literary tradition). As humans tend to appear in the vast majority of stories, humans do not innately count as being part of any particular literary tradition. In addition to creatures, characters who possess certain classes, feats, talents, or other features may also be treated as being part of a literary tradition for the purpose of favored mythos. For example, a Japanese Mythology literary tradition might include characters with levels in ninja while a Cyberpunk literary tradition might include characters with the Technomancy sphere. What ultimately qualifies as being part of a specific literary tradition is up to GM discretion.\n\nThis replaces the cult and reality shudders class features."
+        },
+        {
+          "level": 4,
+          "name": "Storied Techniques",
+          "description": "A mythos hunter may select bardic masterpieces in place of reaper talents, using their mythos hunter level as their effective bard level. By spending a spell point as a free action, a mythos hunter may gain one round of bardic performance which lasts for 1 minute and can only be used for bardic masterpieces. At 4th level and every 4 levels thereafter, the number of bardic performance rounds gained from spending a spell point increases by 1."
+        },
+        {
+          "level": 5,
+          "name": "Pedantic Lore",
+          "description": "At 5th level, the mythos hunter becomes extremely adept at spotting allusions and motifs in their surroundings, nuances which are often lost on their fellows. The mythos hunter gains the bardic knowledge and lore master abilities of a bard of their reaper level. Whenever the mythos hunter takes 10 or 20 on a Knowledge check using lore master, the mythos hunter takes a -4 penalty on non-Knowledge skill checks for 1 minute."
+        },
+        {
+          "level": 7,
+          "name": "Weakness Savvy",
+          "description": "At 7th level, the mythos hunter gains Target Weakness as a bonus talent. When using Target Weakness, the effects of the talent last for a number of attacks equal to the mythos hunter’s practitioner modifier (minimum 2) rather than just the next attack. At 13th level, the mythos hunter does not need to spend martial focus to use Target Weakness as a free action.\n\nThis replaces blood hunter and engorged scent: Homage to the Classic (Su): At 9th level, the mythos hunter may weave a story’s resonant power to replicate a storied success. When the mythos hunter attempts an attack roll, saving throw, or skill check, they may spend a spell point to roll twice and take the higher result. Whenever the mythos hunter uses this ability, they roll twice and take the lower result on all other d20 rolls until the end of their next turn."
+        },
+        {
+          "level": 9,
+          "name": "This replaces blood hunter and engorged scent",
+          "description": "Homage to the Classic (Su): At 9th level, the mythos hunter may weave a story’s resonant power to replicate a storied success. When the mythos hunter attempts an attack roll, saving throw, or skill check, they may spend a spell point to roll twice and take the higher result. Whenever the mythos hunter uses this ability, they roll twice and take the lower result on all other d20 rolls until the end of their next turn."
+        },
+        {
+          "level": 13,
+          "name": "Quote the Source",
+          "description": "At 13th level, a mythos hunter can spend a spell point as a swift action to invoke a primordial storytelling language that legendary creatures seem to innately understand. For a number of minutes equal to the mythos hunter’s level, they may communicate with their favored prey regardless of language (as the Logos sense from the Divination sphere with two spell points spent) and may apply their favored enemy bonus on all skill checks made against their favored prey (rather than just Bluff, Knowledge, Perception, Sense Motive, and Survival checks). When this effect ends, the mythos hunter is abruptly pulled back into their uncertain reality, becoming shaken for 1 hour."
+        },
+        {
+          "level": 17,
+          "name": "Legend-Woven Blessing",
+          "description": "At 17th level, a mythos hunter can offer themself up to the power of stories in order to send a chain of impossible phenomena resonating through their surroundings. Once per day, the mythos hunter can request a minor miracle. This request must be in line with the options for miracle that don’t cost powdered diamond. As usual for a miracle, the deity or other being the mythos hunter draws power from can choose whether or not to grant the request at its whim. Whenever the mythos hunter uses this ability, they suffer 1d6 points of ability burn to all of their ability scores."
+        },
+        {
+          "level": 20,
+          "name": "One World, Countless Stories",
+          "description": "At 20th level, a mythos hunter understands existence as an endless stream of connections, identifying how themes and elements depicted in any tale have-for better or worse-touched any given moment of the mythos hunter’s present experience. The mythos hunter treats all creatures as if the mythos hunter had scouted them and becomes immune to ability damage, ability drain, death effects, and level drain.\n\nThis replaces soul crisis"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:reaper:partisan",
+      "package": "spheres-class:reaper",
+      "name": "Partisan",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/partisan",
+      "replaces_features": [
+        "blessing-of-silver",
+        "blood-hunter",
+        "bloodletter",
+        "cult",
+        "discern-true-form",
+        "engorged-scent",
+        "favored-prey",
+        "reality-shudders",
+        "reaper-techniques",
+        "reaper-totem",
+        "soul-crisis"
+      ],
+      "removed_features": [
+        "blessing-of-silver",
+        "blood-hunter",
+        "bloodletter",
+        "cult",
+        "discern-true-form",
+        "engorged-scent",
+        "reality-shudders",
+        "reaper-totem",
+        "soul-crisis"
+      ],
+      "removed_feature_clauses": [
+        "reaper totem",
+        "bloodletter",
+        "cult",
+        "blood hunter",
+        "engorged scent",
+        "discern true form",
+        "reality shudders",
+        "blessing of silver",
+        "soul crisis"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Organized Prey",
+          "description": "When a partisan would select a creature type for their favored prey, they must instead select a specific organization, such as a particular thieves’ guild. The partisan’s bonuses from favored prey apply against official members of this organization regardless of their creature type, but not against the organization’s allies, paid mercenaries, or forced labor. This ability only applies if the partisan knows that the target is a member of the organization. The reaper may change their favored prey by meditating on a faction trophy they've created for 1 minute. The partisan may still meditate on reaper trophies gained from other class features such as effigy of hate, gaining their effects as normal. This ability alters favored prey."
+        },
+        {
+          "level": 1,
+          "name": "Faction Trophy",
+          "description": "The partisan may create a small object called a faction trophy with an object that has a symbol or written title associated with a specific organization and 1 hour of work. Whenever a partisan meditates on a faction trophy they've created, their favored prey type changes to the organization corresponding to the object used to make the trophy. These totems are otherwise treated as reaper trophies. This ability replaces reaper totem."
+        },
+        {
+          "level": 1,
+          "name": "Propensity for Violence",
+          "description": "At 1st level, a partisan gains the Gladiator sphere as a bonus talent, or a talent from the Gladiator sphere if they already possess the base sphere. This ability replaces bloodletter."
+        },
+        {
+          "level": 1,
+          "name": "Social Talents",
+          "description": "Whenever a partisan would gain a reaper technique, they may choose to gain a social talent instead, treating their reaper level as their vigilante level. These levels stack with vigilante levels to determine the partisan's effective vigilante level. The partisan is always considered to be in their social identity, unless they have the ability to change into a vigilante identity from another class feature. This ability alters reaper techniques."
+        },
+        {
+          "level": 2,
+          "name": "Emotions",
+          "description": "At 2nd level, a partisan chooses an eliciter emotion, gaining the minor power associated with that emotion and treating their partisan level as their eliciter level. At 5th level and every 3 levels thereafter, the partisan may choose to gain the minor power of a new emotion, or gain access to the next level of an emotion they already possess (lesser, greater, and master). A partisan cannot gain a lesser power before 8th level, a greater power before 14th level, or a master power before 20th level. All emotions are mind-affecting effects. If an emotion calls for a saving throw, the DC is equal to 10 + 1/2 their effective eliciter level + their casting ability modifier. This ability replaces cult, blood hunter, engorged scent, discern true form, and reality shudders."
+        },
+        {
+          "level": 3,
+          "name": "Infiltrator",
+          "description": "At 3rd level, a partisan may add their favored prey bonus to Disguise checks to appear to be a member of the organization chosen with their organized prey ability (this does not apply on Disguise checks to change their appearance and replace a specific member, but rather to checks related to appear to be a general member of the organization). A partisan posing as a member of one of their organizations chosen with organized prey automatically defeats truth-telling magic (as if under the effects of glibness), but only for the purpose of claiming to be a member of the organization. Truth-telling magic can still expose them with a more indirect question, such as a member of a non-religious evil organization asking the partisan for the identity of their patron deity. This ability replaces blessing of silver."
+        },
+        {
+          "level": 20,
+          "name": "Puppet Conscription",
+          "description": "At 20th level, a partisan can make a special attack action against a favored prey, expending their martial focus. If the attack hits, the target takes damage normally and must succeed on a Will save (DC 10 + 1/2 their partisan level + their casting ability modifier) or become devoted to the partisan for 1 hour, gaining a disposition of helpful and obeying any orders the partisan gives to the exclusion of all other activities except those necessary for survival (eating, sleeping, etc.). The target never obeys obviously self destructive commands, and is allowed a new save with a +2 bonus to throw off the compulsion if asked to do something against its nature. A DC 25 Sense Motive check reveals the target is under compulsion. The partisan may only have one target dominated in this fashion at a time; if the partisan successfully uses this ability to dominate a second target, the first is immediately released from service. This ability replaces soul crisis."
+        }
+      ],
+      "detected_systems": [
+        "vigilante_social_talent"
+      ]
+    }
+  ]
+}

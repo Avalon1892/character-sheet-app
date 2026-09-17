@@ -1,0 +1,2259 @@
+{
+  "version": 1,
+  "class_key": "pathfinder-class:wizard",
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:absalom-arcanamirium-crafter",
+      "package": "pathfinder-class:wizard",
+      "name": "Absalom: Arcanamirium Crafter",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Absalom  Arcanamirium Crafter",
+      "replaces_features": [
+        "hand-of-apprentice"
+      ],
+      "removed_features": [
+        "hand-of-apprentice"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Absalom",
+          "description": "Arcanamirium Crafter Source Inner Sea Primer pg. 28"
+        },
+        {
+          "level": 1,
+          "name": "Associated School",
+          "description": "Universalist."
+        },
+        {
+          "level": 1,
+          "name": "Replacement Power",
+          "description": "The following school power replaces the hand of the apprentice power of the universalist school."
+        },
+        {
+          "level": 3,
+          "name": "Metacharge",
+          "description": "As an Arcanamirium crafter, you gain a bonus feat at 3rd level, which must be an item creation feat or metamagic feat. You must still meet all prerequisites for a bonus feat, including caster level minimums. When using metamagic feats to create magic items, your skill and understanding of the principles involved in the item’s creation give you a +2 bonus on the skill check made to create the item."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:arcane-bomber",
+      "package": "pathfinder-class:wizard",
+      "name": "Arcane Bomber",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Arcane Bomber",
+      "replaces_features": [
+        "arcane-bond",
+        "arcane-school",
+        "cantrips"
+      ],
+      "removed_features": [
+        "arcane-bond",
+        "arcane-school",
+        "cantrips"
+      ],
+      "removed_feature_clauses": [
+        "arcane bond",
+        "cantrips",
+        "but the arcana bomber gains the detect magic",
+        "read magic cantrips",
+        "places them in his spellbook",
+        "arcane school"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Arcane Bomber",
+          "description": "Source Ultimate Combat pg. 75"
+        },
+        {
+          "level": 1,
+          "name": "Bomb",
+          "description": "At 1st level, the arcane bomber gains an ability nearly identical to the alchemist’s bomb ability. Unlike the alchemist, at 1st level, the arcane bomber chooses one type of energy from the following list: acid, cold, fire, and electricity. He can throw bombs of that type, but cannot modify them with discoveries. This ability stacks with the alchemist bomb ability to determine the level of bomb damage, but an arcane bomber that becomes an alchemist does not gain that class’s bomb ability, nor does an alchemist that becomes an arcane bomber gain this bomb ability. This ability replaces arcane bond."
+        },
+        {
+          "level": 1,
+          "name": "Spellblast Bombs",
+          "description": "At 1st level, as a swift action, an arcane bomber can sacrifice one of his spells to empower the next bomb he throws during his turn. When he does, he gains a bonus to hit with the next bomb he throws before the end of his turn equal to the level of the spell he sacrificed, and a bonus to damage equal to twice the level of the spell. This ability replaces cantrips, but the arcana bomber gains the detect magic and read magic cantrips and places them in his spellbook. He can cast either of these as 1st-level spells."
+        },
+        {
+          "level": 1,
+          "name": "School of the Bomb",
+          "description": "The creation and use of bombs is often so engrossing or intellectually taxing that an arcane bomber forsakes four schools of magic. These opposition schools are chosen at 1st level and cannot be changed later. An arcane bomber who prepares spells from his opposition school must use two spell slots of that level to prepare the spell. In addition, the arcane bomber takes a –4 penalty on any skill checks made when crafting a magic item that has a spell from one of his opposition schools. This ability replaces arcane school."
+        }
+      ],
+      "detected_systems": [
+        "bombs"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:arcane-physician",
+      "package": "pathfinder-class:wizard",
+      "name": "Arcane Physician",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Arcane Physician",
+      "replaces_features": [
+        "arcane-school",
+        "scribe-scroll"
+      ],
+      "removed_features": [
+        "arcane-school",
+        "scribe-scroll"
+      ],
+      "removed_feature_clauses": [
+        "scribe scroll"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Arcane Physician",
+          "description": "Source Healer's Handbook pg. 6"
+        },
+        {
+          "level": 1,
+          "name": "Medicinal Alchemy",
+          "description": "The arcane physician treats all spells of the healing subschool on the alchemist extract list as if they were on the wizard spell list for the purpose of activating magic items."
+        },
+        {
+          "level": 1,
+          "name": "Brew Potion",
+          "description": "At 1st level, an arcane physician gains Brew Potion as a bonus feat.\n\nThis replaces scribe scroll."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:arcane-warden",
+      "package": "pathfinder-class:wizard",
+      "name": "Arcane Warden",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Arcane Warden",
+      "replaces_features": [
+        "arcane-school",
+        "bonus-feats",
+        "class-skills",
+        "hand-of-apprentice",
+        "metamagic-mastery",
+        "scribe-scroll"
+      ],
+      "removed_features": [
+        "arcane-school",
+        "bonus-feats",
+        "class-skills",
+        "hand-of-apprentice",
+        "metamagic-mastery",
+        "scribe-scroll"
+      ],
+      "removed_feature_clauses": [
+        "Scribe Scroll",
+        "the bonus feats gained at 5th",
+        "10th",
+        "15th",
+        "and 20th levels",
+        "hand of the apprentice universalist school ability",
+        "metamagic mastery universalist school ability"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Arcane Warden",
+          "description": "Source Blood of the Ancients pg. 12"
+        },
+        {
+          "level": 1,
+          "name": "Universal Magic",
+          "description": "An arcane warden values all schools of magic and recognizes that, faced with an unpredictable world, versatility is one of the greatest tools for survival. All arcane warden wizards must be universalists.\n\nThis alters arcane school."
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "An arcane warden focuses his training on survival, be it navigating difficult regions, enduring in the wilderness, or aiding others in such conditions. He gains Climb, Heal, Survival, and Swim as class skills. Appraise, Fly, Knowledge (nobility), and Linguistics are not class skills for the arcane warden.\n\nThis alters the wizard’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Ready for Anything",
+          "description": "Instead of crafting magical items or learning ways to manipulate metamagic, arcane wardens prefer to spend their time providing safety and refuge for others. At 1st level, an arcane warden gains a bonus feat associated with aiding allies or providing shelter. At 5th, 10th, 15th, and 20th levels, the arcane warden gains an additional bonus feat. The arcane warden must qualify for any feat he takes, and must choose from the following list: Alertness, Endurance, Great Fortitude, Improved Great Fortitude, Leadership, Self-Sufficient, Skill Focus (Survival), Toughness, or any teamwork feat.\n\nThis replaces Scribe Scroll and the bonus feats gained at 5th, 10th, 15th, and 20th levels."
+        },
+        {
+          "level": 1,
+          "name": "Generous Touch",
+          "description": "Arcane wardens are talented at enhancing the magical effects they create to bolster allies. When an arcane warden casts a spell with a target of “creature touched” on a willing target other than himself, he can cause the effects of the spell to last longer than normal. A spell with a duration of 1 round per level lasts an additional number of rounds equal to the arcane warden’s Intelligence modifier (minimum of 1 additional round). A spell with a duration of 1 minute per level lasts for an additional number of minutes equal to the arcane warden’s Intelligence modifier (minimum of 1 additional minute). Spells with different durations than this are not enhanced by this ability. Only one spell can be enhanced in this way on any individual creature at a time.\n\nThis replaces the hand of the apprentice universalist school ability."
+        },
+        {
+          "level": 1,
+          "name": "Restorative Shelter",
+          "description": "While an arcane warden can find refuge in many naturally occurring hideaways, his preferred places of rest are magically created cottages, homes, and even manors. An arcane warden learns the following spells: mage’s magnificent mansion, rope trick, secure shelter, and tiny hut. These spells do not take up room in the arcane warden’s spellbook, and he does not need his spellbook to prepare these spells. He must still be the appropriate level to prepare the spell in question. The arcane warden’s caster level is treated as 2 higher than his actual caster level for the purposes of determining the duration of these spells and resolving attempts to dispel these spells. Any creature that spends at least 8 hours relaxing in one of these shelters gains a bonus equal to the level of the spell that created it on any saving throws against disease or poison effects made in the next 24 hours.\n\nThis replaces the metamagic mastery universalist school ability."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:bonded-wizard",
+      "package": "pathfinder-class:wizard",
+      "name": "Bonded Wizard",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Bonded Wizard",
+      "replaces_features": [
+        "bonus-feats",
+        "scribe-scroll"
+      ],
+      "removed_features": [
+        "bonus-feats",
+        "scribe-scroll"
+      ],
+      "removed_feature_clauses": [
+        "wizard’s bonus feat normally gained at 10th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Bonded Wizard",
+          "description": "Source Cohorts and Companions pg. 17"
+        },
+        {
+          "level": 1,
+          "name": "Arcane Bond",
+          "description": "A bonded wizard must select an item as her arcane bond. The bonded object’s hit point and hardness increase by +1 per level the bonded wizard possesses."
+        },
+        {
+          "level": 1,
+          "name": "Hidden Bond",
+          "description": "A bonded wizard can change the appearance and magical aura of her bonded item at will, as if using disguise self and magic aura, but affecting only the item; for the purpose of disguise self, the item’s item type (such as weapon or ring) is its creature type."
+        },
+        {
+          "level": 5,
+          "name": "Bonded Force",
+          "description": "At 5th level, a bonded wizard wearing or wielding her bonded object can channel magical energies through it to create tools, armor, and weapons from pure force. She gains a pool of force points equal to half his wizard level. She can expend 1 point from his force pool as a standard action to create an effect that acts as mage armor (lasting 1 hour), shield (lasting 1 minute), or spiritual weapon (any simple or martial weapon, using her Intelligence modifier to determine its attack bonus rather than Wisdom and lasting 1 round per wizard level). These effects are visible; they take the appearance of armor, shields, or weapons as appropriate, and they always have some visual detail reminiscent of the wizard’s bonded item (such as the pattern of a bonded ring appearing as decoration on a mage armor or shield effect)."
+        },
+        {
+          "level": 10,
+          "name": "Reshape Bond",
+          "description": "At 10th level, a bonded wizard can repair her bonded item or turn it into another object once per day as a full-round action. Transforming it functions as polymorph any object, but does not alter the item’s magical properties (including its item slot), while repairing it functions as make whole. The wizard may also sacrifice a prepared spell in order to repair an additional 1d6 points of damage per level of the sacrificed spell. This replaces the wizard’s bonus feat normally gained at 10th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:cheliax-egorian-academy-infernal-binder",
+      "package": "pathfinder-class:wizard",
+      "name": "Cheliax: Egorian Academy Infernal Binder",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Cheliax  Egorian Academy Infernal Binder",
+      "replaces_features": [
+        "acid-dart",
+        "dimensional-steps"
+      ],
+      "removed_features": [
+        "acid-dart",
+        "dimensional-steps"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Cheliax",
+          "description": "Egorian Academy Infernal Binder Source Inner Sea Primer pg. 29"
+        },
+        {
+          "level": 1,
+          "name": "Associated School",
+          "description": "Conjuration."
+        },
+        {
+          "level": 1,
+          "name": "Suggested Opposition Schools",
+          "description": "Divination, illusion, or transmutation."
+        },
+        {
+          "level": 1,
+          "name": "Alignment",
+          "description": "Lawful Evil, Lawful Neutral, Neutral Evil, or Neutral."
+        },
+        {
+          "level": 1,
+          "name": "Requirements",
+          "description": "An infernal binder must choose a familiar as her arcane bond at 1st level."
+        },
+        {
+          "level": 1,
+          "name": "Replacement Powers",
+          "description": "The following school powers replace the acid dart and dimensional steps powers of the conjuration school."
+        },
+        {
+          "level": 1,
+          "name": "Planar Knowledge",
+          "description": "As an infernal binder, you gain a +3 bonus on Knowledge (planes) checks."
+        },
+        {
+          "level": 1,
+          "name": "Assume Control",
+          "description": "At 1st level, you can attempt to gain control over a summoned creature by disrupting the bond between it and the caster who summoned it. You must make a caster level check (1d20 + caster level) equal to 10 + the summoning caster’s level. If you know the summoned creature’s name, you receive a +2 circumstance bonus on the check. If the check is successful, you can control the summoned creature as if you had summoned it for a number of rounds equal to 1/2 your wizard level (minimum 1 round). This does not increase the duration of the original summoning. The original summoning caster can attempt to regain control of the summoned creature as a standard action by making a caster level check against your caster level + 10. When your control ends, the creature reverts to the control of its summoner. At 9th level, you can use this ability to bargain with called creatures as if you were the caster who conjured them. You can use this ability a number of times per day equal to 3 + your Intelligence modifier."
+        },
+        {
+          "level": 7,
+          "name": "Imp Familiar",
+          "description": "At 7th level, you gain Improved Familiar as a bonus feat, and must take an imp as a familiar. The imp replaces your current familiar."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:chronomancer",
+      "package": "pathfinder-class:wizard",
+      "name": "Chronomancer",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Chronomancer",
+      "replaces_features": [
+        "arcane-bond",
+        "bonus-feats"
+      ],
+      "removed_features": [
+        "arcane-bond",
+        "bonus-feats"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Chronomancer",
+          "description": "Source Legacy of the First World pg. 30"
+        },
+        {
+          "level": 1,
+          "name": "Temporal Pool",
+          "description": "A chronomancer gains a reservoir of temporal energy to manipulate the time stream in a variety of ways listed below. This temporal pool has a number of points equal to half his class level + his Intelligence modifier (minimum 1). This pool refreshes once per day when the chronomancer prepares his spells."
+        },
+        {
+          "level": 5,
+          "name": "Forewarned",
+          "description": "The chronomancer can expend 1 point from his temporal pool when he rolls initiative to allow himself or an ally within 30 feet to roll 1d4 and add it to that character’s initiative result. At 5th level, the chronomancer can expend 2 points from his temporal pool as an immediate action to apply this benefit to a saving throw he has just rolled (but before the result is revealed). At 10th level, the die size increases to 1d6."
+        },
+        {
+          "level": 1,
+          "name": "Rewind",
+          "description": "As an immediate action after losing a spell due to a failed concentration check or after casting a spell that had no effect (such as due to successful saving throws, a failed caster level check to overcome spell resistance, or other immunities), the chronomancer can expend a number of points from his temporal pool equal to half the spell’s level (minimum 1) to immediately prepare the spell again, as if it had not been cast. Any material components expended in the original casting remain expended, as are actions used to cast the original spell."
+        },
+        {
+          "level": 10,
+          "name": "Accelerate",
+          "description": "At 10th level when casting a spell, the chronomancer can expend 2 points from his temporal pool to apply the effects of haste to one creature affected by the spell until the end of the chronomancer’s next turn."
+        },
+        {
+          "level": 15,
+          "name": "Complex Contingency",
+          "description": "At 15th level, the chronomancer can specify two trigger conditions when casting contingency. In addition, when the chronomancer’s contingency would trigger, the chronomancer can expend 1 point from his temporal pool as an immediate action to prevent the contingency from triggering, saving the stored effect for later."
+        },
+        {
+          "level": 20,
+          "name": "Parallel Self",
+          "description": "At 20th level, if the chronomancer is killed, he can immediately expend 10 points from his temporal pool to summon an alternate version of himself from a parallel existence, appearing up to 30 feet away. This alternate version is identical to the chronomancer except he is a member of a random race, determined using the table that accompanies reincarnate. The alternate version has half the chronomancer’s total hit points (but not any temporary hit points) and those spells the chronomancer had prepared when he died. The alternate version has the same equipment as the chronomancer but does not bear any artifacts the chronomancer was carrying. Any expendable items, charges, or expensive material components the alternate version uses are also expended for the chronomancer. This alternate version remains for 1 minute before the duplicate and its equipment are ripped back to their reality."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:clocksmith",
+      "package": "pathfinder-class:wizard",
+      "name": "Clocksmith",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Clocksmith",
+      "replaces_features": [
+        "arcane-bond",
+        "arcane-school",
+        "bonus-feats",
+        "scribe-scroll"
+      ],
+      "removed_features": [
+        "arcane-bond",
+        "arcane-school",
+        "bonus-feats",
+        "scribe-scroll"
+      ],
+      "removed_feature_clauses": [
+        "school powers granted by the wizard’s arcane school",
+        "Scribe Scroll",
+        "bonus feats gained at 5th",
+        "10th",
+        "15th",
+        "and 20th levels"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Clocksmith",
+          "description": "Source Construct Handbook pg. 10"
+        },
+        {
+          "level": 1,
+          "name": "Clockwork Bond",
+          "description": "A clocksmith forms a bond with one of his clockwork creations and begins play with a constructed familiar. He must select this familiar as his arcane bond. The constructed familiar functions as a typical familiar of its type except as noted here. The construct familiar is always a construct with the clockwork subtype. A construct familiar grants only half of its typical bonus (minimum +1 bonus) from its special familiar ability to its master.\n\nThis alters arcane bond."
+        },
+        {
+          "level": 8,
+          "name": "Clockwork Expertise",
+          "description": "A clocksmith is especially adept at dealing with clockworks. He gains a +2 bonus on saving throws against effects created by creatures of the clockwork subtype. This bonus increases to +4 at 8th level. Additionally, he treats his caster level as 1 higher when casting a spell that affects or targets only creatures of the clockwork subtype. At 8th level, he treats his caster level as 2 higher when casting such a spell.\n\nThis replaces the school powers granted by the wizard’s arcane school."
+        },
+        {
+          "level": 1,
+          "name": "Craft Construct",
+          "description": "A clocksmith gains Craft Construct as a bonus feat, even if he does not meet the prerequisites. He can create any construct, but he increases the cost required to create constructs without the clockwork subtype by 50%.\n\nThis replaces Scribe Scroll."
+        },
+        {
+          "level": 5,
+          "name": "Familiar Tinkering",
+          "description": "At 5th level, a clocksmith learns to improve upon his clockwork familiar. A clocksmith can grant his familiar 1 evolution point worth of eidolon evolutions for every 5 wizard levels he has, though he can’t select any evolutions that require a specific base form. Each time the clocksmith gains a level, he can change his familiar’s evolutions. These evolutions stack with those from the Evolved Familiar feat.\n\nThis replaces the bonus feats gained at 5th, 10th, 15th, and 20th levels."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:wizard:cosmic-sage",
+      "package": "pathfinder-class:wizard",
+      "name": "Cosmic Sage",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/cosmic-sage",
+      "replaces_features": [
+        "arcane-bond",
+        "arcane-school",
+        "scribe-scroll",
+        "spellcasting",
+        "sphere-specialization-from-sphere-wizard-archetype"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "sphere specialization from the sphere wizard archetype",
+        "spells class feature"
+      ],
+      "compatibility": {
+        "requires": [
+          "spheres-archetype:pathfinder-class:wizard:sphere-wizard"
+        ],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Scribe Scroll",
+          "description": "At 1st level, the cosmic sage gains the scribe scroll feat as a bonus feat. The cosmic sage may ignore the requirement to possess the base sphere when scribing or using a scroll, although scribing a scroll without the base sphere increases the DC of the Craft check by +5.\n\nThis alters scribe scroll."
+        },
+        {
+          "level": 2,
+          "name": "Sagacious Secrets",
+          "description": "Beginning at 2nd level, the cosmic sage begins to assemble magical secrets to aid in his spherecasting. He may create a book of notes and formulae that can help him assist in his spherecasting. Despite its contents, it is just a normal book, and if lost, can be replaced in about 8 hours - the book is only for quick reference. When the cosmic sage spherecasts, he may consult his notes and gain a +1 enhancement bonus to caster level. This bonus increases by +1 every 4 levels after the 2nd, to a maximum of +5 at 18th level. Using this ability increases the casting to a fullround action, if it is not a full-round action or longer already.\n\nThis replaces sphere specialization from the sphere wizard archetype."
+        },
+        {
+          "level": 1,
+          "name": "Author's Note",
+          "description": "The increase in casting time is applied after all other effects that increase casting time, such as meta-magic effects, and is applied even if the quicken meta-magic feat would lower the casting time. If the casting time is already a full-round action or greater, there is no further increase in casting time."
+        },
+        {
+          "level": 1,
+          "name": "Archetypes of Power",
+          "description": "It is amazing how some people can consider themselves masters of magic when they have no idea what it is or where it came from. For the cosmic sage, magic is a secondary effect of understanding the universe. He is a scientist who studies the fantastic."
+        },
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The cosmic sage may combine spheres and talents to create magical effects. The cosmic sage is considered a High-Caster and uses Intelligence as his casting ability modifier. (Note: All casters gain 2 bonus talents and may select a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the spells class feature."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "The cosmic sage gains a small reservoir of energy he can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to her level + her Intelligence modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Magic Talents",
+          "description": "A cosmic sage gains a magic talent at every even-numbered class level, and 2 magic talents at every odd-numbered class level."
+        },
+        {
+          "level": 1,
+          "name": "Arcane Bond",
+          "description": "At 1st level, the cosmic sage may choose a familiar or a bonded object as any other wizard. If the cosmic sage chooses a bonded object, then he can use it to access magical knowledge he does not normally possess. As a standard action, he may grant himself the benefit of any one magic talent he does not possess. This effect lasts for 1 minute. If gaining a magic talent other than a base sphere, he must possess that talent’s base sphere and fulfill its prerequisites. He may do this once per day at 1st level, plus an additional once per day for every 4 class levels he possesses, up to a total of 6 times per day at 20th level. Multiple uses of this ability do not stack. If he uses this ability again before the previous duration has expired, it replaces the previous use. If the cosmic sage’s casting tradition includes the focus casting drawback, the bond can also be their focus, but does not have to be. If their tradition includes the somatic drawback, holding the bonded object does not interfere with using sphere abilities. In all other respects, his arcane bond works as it does for a normal wizard.\n\nThis modifies arcane bond."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:cruoromancer",
+      "package": "pathfinder-class:wizard",
+      "name": "Cruoromancer",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Cruoromancer",
+      "replaces_features": [
+        "arcane-bond",
+        "bonus-feat"
+      ],
+      "removed_features": [
+        "arcane-bond",
+        "bonus-feat"
+      ],
+      "removed_feature_clauses": [
+        "10th-level wizard bonus feat",
+        "15th-level wizard bonus feat",
+        "20th-level wizard bonus spell"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Cruoromancer",
+          "description": "Source Advanced Race Guide pg. 98"
+        },
+        {
+          "level": 1,
+          "name": "Blood Infusion",
+          "description": "When a cruoromancer casts a spell of the necromancy school, he can opt to infuse that spell with his undead-tainted blood as a swift action. As he increases in level, the power and effects of such infusions become more potent. Each time a cruoromancer uses blood infusion, he drains a portion of his own blood either by cutting himself with a blade or by opening a scab from a previous wound. When he does this, he takes an amount of damage equal to 1d4 + the level of the spell being infused. A cruoromancer can only affect a spell with a single type of blood infusion. At 1st level, he can infuse his necromancy spells in either of the following ways."
+        },
+        {
+          "level": 1,
+          "name": "Focused Infusion",
+          "description": "When the cruoromancer uses this infusion, he adds +1 to the DC of the infused necromancy spell."
+        },
+        {
+          "level": 1,
+          "name": "Sickening Infusion",
+          "description": "When the cruoromancer uses this infusion, any creature damaged by the infused necromancy spell becomes sickened for 1 round."
+        },
+        {
+          "level": 5,
+          "name": "Blood Command",
+          "description": "At 5th level, a cruoromancer can control up to 5 Hit Dice worth of undead creatures per caster level instead of the normal 4 Hit Dice of undead when casting the animate dead spell. He also gains the following blood infusion ability."
+        },
+        {
+          "level": 1,
+          "name": "Commanding Infusion",
+          "description": "When using this infusion with animate dead, the cruoromancer can create a number of Hit Dice of undead equal to three times his caster level instead of twice his caster level."
+        },
+        {
+          "level": 10,
+          "name": "Blood Desecration",
+          "description": "At 10th level, a cruoromancer gains the following blood infusion."
+        },
+        {
+          "level": 1,
+          "name": "Desecrating Infusion",
+          "description": "When the cruoromancer uses this infusion, he can choose to center a desecrate effect on himself or a single target of the spell modified by this infusion (he chooses upon casting). This effect is like the desecrate spell, but lasts for 1 minute per caster level of the cruoromancer, and does not interact with altars, shrines, or permanent fixtures that boost the desecrate effect. This ability replaces the 10th-level wizard bonus feat."
+        },
+        {
+          "level": 15,
+          "name": "Blood Ability",
+          "description": "At 15th level, a cruoromancer can choose to scry through a single undead creature he created with a spell modified by a commanding infusion. The undead creature is treated as if imbued with an arcane eye spell (caster level equal to the cruoromancer’s wizard level). This ability replaces the 15th-level wizard bonus feat."
+        },
+        {
+          "level": 20,
+          "name": "Perfect Infusion",
+          "description": "At 20th level, a cruoromancer can use his blood infusions without taking damage. This ability replaces the 20th-level wizard bonus spell."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:wizard:eclectic-researcher",
+      "package": "pathfinder-class:wizard",
+      "name": "Eclectic Researcher",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/eclectic-researcher",
+      "replaces_features": [
+        "arcane-bond",
+        "arcane-school",
+        "scribe-scroll-bonus-feat",
+        "spellcasting"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "spells class feature",
+        "arcane bond class feature",
+        "the Scribe Scroll bonus feat",
+        "arcane school"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The eclectic researcher may combine spheres and talents to produce wondrous effects. He is considered to be a High-Caster. (Note: All casters gain 2 bonus talents, and a casting tradition, upon first gaining the casting class feature.)\n\nThis replaces the spells class feature."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "The eclectic researcher gains a small reservoir of energy he can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to his level + his casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Magic Talents",
+          "description": "An eclectic researcher gains 2 magic talents at every odd level and 1 at every even level. If he does not already possess it, one of the magic talents he selects at 1st level must be the Enhancement sphere."
+        },
+        {
+          "level": 1,
+          "name": "Researcher’s Notebook",
+          "description": "An eclectic researcher gains the Spellbook Mastery and Spellcrafting feats as bonus feats at 1st level. The eclectic researcher also gains the effects of the Focus Casting drawback, but not the benefits, treating his spell books as his focus. This cannot be combined with the Focus Casting drawback. Once per day, an eclectic researcher may reduce the complexity of a spell cast from his notebook by 1 (minimum 0); this reduction increases to 2 at 10th level, and 3 at 18th level. This ability replaces the arcane bond class feature and the Scribe Scroll bonus feat."
+        },
+        {
+          "level": 1,
+          "name": "Name-Bound Spells",
+          "description": "Starting at 1st level, an eclectic researcher may incorporate his identity into any spell he crafts; this involves personalized imagery and symbolism. Once he completes a spell developed through this method, he must name the spell after himself – any attempt at modesty or subtlety in the spell’s name renders the entire spell useless. Whenever he casts a spell incorporating his identity in this manner, he gains the following benefits and drawbacks: He becomes an additional prerequisite for the spell; another spellcaster may only meet this prerequisite if he is aiding him in casting the spell (such as through the Circle Casting feat), or if they are possessing the eclectic researcher. Another caster may use the spell if it has been copied into their own spellbooks or repertoire, but the spell possesses none of the benefits of being a name-bound spell. When he uses researcher’s notebook to reduce the complexity of one of his name-bound spells, he may increase the reduction by one. He may use an enhancement he knows on the spell as a swift action on the same turn as it is cast. The exact effects of doing so vary based on the exact nature of the spell itself. If the spell requires an attack roll, he may enhance it as if it were a weapon. If the spell grants a bonus to armor class, he may enhance it as if it were armor. If the spell allows a save, he may enhance it with a talent that grants a bonus to an ability score – doing so increases the save DC by half the bonus granted by the talent. He must use Physical Enhancement to improve the save DC of a spell requiring a Fortitude or Reflex save, and Mental Enhancement to improve the DC of a Will save. If the spell summons a creature, he may enhance it as if it were a creature. In that case, the enhancement automatically affects one of the creatures he summoned. The eclectic researcher cannot concentrate on a spell and that spell’s enhancement at the same time; one or the other, if it is not instantaneous, must be maintained in another fashion, such as through spending spell points. At 6th level, an eclectic researcher may add a namebound spell to his repertoire without it counting towards his limit; at 14th level, he may add an additional name-bound spell to his repertoire in the same manner.\n\nThis replaces arcane school."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:elder-mythos-scholar",
+      "package": "pathfinder-class:wizard",
+      "name": "Elder Mythos Scholar",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Elder Mythos Scholar",
+      "replaces_features": [
+        "arcane-bond",
+        "arcane-school",
+        "bonus-feats",
+        "scribe-scroll",
+        "spellbook"
+      ],
+      "removed_features": [
+        "arcane-bond",
+        "arcane-school",
+        "bonus-feats",
+        "scribe-scroll",
+        "spellbook"
+      ],
+      "removed_feature_clauses": [
+        "Scribe Scroll",
+        "the 5th- and 10th-level bonus feats"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Elder Mythos Scholar",
+          "description": "Source Horror Adventures pg. 74"
+        },
+        {
+          "level": 1,
+          "name": "Arcane Bond",
+          "description": "An Elder Mythos scholar must choose to bond with an object, inscribing that object with eldritch runes.\n\nThis alters arcane bond."
+        },
+        {
+          "level": 1,
+          "name": "Eldritch Knowledge",
+          "description": "An Elder Mythos scholar gains two fewer daily uses of his 1st-level arcane school ability, which is normally used a number of times per day equal to 3 + his Intelligence modifier. If he has no such ability, he can’t take this archetype."
+        },
+        {
+          "level": 1,
+          "name": "Eldritch Grimoire",
+          "description": "An Elder Mythos scholar keeps copious notes on how to use magic against the servants of the Elder Mythos in his spellbook. Every spell he adds to his spellbook takes up an additional 1d6 pages and costs twice the normal amount to inscribe; however, when casting spells prepared from his grimoire, he gains a +2 bonus on caster level checks and increases the save DCs by 1 against the creatures listed in talisman of revealing below."
+        },
+        {
+          "level": 5,
+          "name": "Talisman of Revealing",
+          "description": "While wearing or wielding his bonded item, an Elder Mythos scholar can spontaneously cast a special detect aberrationAPG spell by sacrificing a prepared 1st-level spell. Instead of detecting aberrations, this spell detects creatures associated with the Elder Mythos, such as the following (or similar creatures, at the GM’s discretion): bholeB4, colour out of spaceB4, deep oneB5, deep one elderB5, denizen of LengB2, elder thingB4, flying polypB4, gugB2, hound of TindalosB2, Leng ghoulB5, Leng spiderB2, mi-goB4, nightgauntB4, ratlingB4, shantakB2, shoggoth, spawn of Yog-SothothB4, star-spawn of CthulhuB4, voonithB3, wendigoB2, and yithianB3. He gains a +2 circumstance bonus on Knowledge checks to identify such creatures and Spellcraft checks to identify effects they create. At 5th level, an Elder Mythos scholar adds invisibility purge and see invisibility to his spellbook and can spontaneously cast either spell by sacrificing a prepared spell of the same or higher level while wearing or wielding his bonded item. At 10th level, he adds banish seemingAPG and true seeing to his spellbook as 5th-level spells and can spontaneously cast them in the same fashion.\n\nThis replaces Scribe Scroll and the 5th- and 10th-level bonus feats."
+        },
+        {
+          "level": 8,
+          "name": "Eldritch Infusion",
+          "description": "At 8th level, once each day while preparing spells, an Elder Mythos scholar can spend 1 extra hour to brew a tincture of hallucinogens and alien trace minerals. Though it has no effect for others, if he drinks it, the elixir expands his mind and perceptions into transitive dimensions, granting him a +4 alchemical bonus to his Intelligence score and reducing his Wisdom and Constitution scores by 2 for 10 minutes per wizard level he has. While under the effects of this elixir, he adds 1/2 his class level to his Perception checks against aberrations and creatures listed in talisman of revealing, but subtracts the same amount from all other Perception checks. His spells have a 20% failure chance, unless they summon, call, or contact a creature listed in talisman of revealing or otherwise affect only such creatures (for instance, a fireball aimed at 3 gugs but not a fireball aimed at 3 gugs and a gnome)."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:exploiter-wizard",
+      "package": "pathfinder-class:wizard",
+      "name": "Exploiter Wizard",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Exploiter Wizard",
+      "replaces_features": [
+        "arcane-bond",
+        "arcane-school"
+      ],
+      "removed_features": [
+        "arcane-bond",
+        "arcane-school"
+      ],
+      "removed_feature_clauses": [
+        "arcane bond",
+        "arcane school"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Exploiter Wizard",
+          "description": "Source Advanced Class Guide pg. 133"
+        },
+        {
+          "level": 1,
+          "name": "Arcane Reservoir",
+          "description": "At 1st level, the exploiter wizard gains the arcanist’s arcane reservoir class feature. The exploiter wizard uses his wizard level as his arcanist level for determining how many arcane reservoir points he gains at each level. This ability replaces arcane bond."
+        },
+        {
+          "level": 1,
+          "name": "Exploiter Exploit",
+          "description": "At 1st level and every 4 levels thereafter, the exploiter wizard gains a single arcanist exploit (see page 9). The exploiter wizard uses his wizard level as his arcanist level for determining the effects and DCs of his arcanist exploits. This ability replaces arcane school."
+        }
+      ],
+      "detected_systems": [
+        "arcane_reservoir"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:familiar-adept",
+      "package": "pathfinder-class:wizard",
+      "name": "Familiar Adept",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Familiar Adept",
+      "replaces_features": [
+        "arcane-bond",
+        "bonus-feats",
+        "scribe-scroll",
+        "spellbooks"
+      ],
+      "removed_features": [
+        "arcane-bond",
+        "bonus-feats",
+        "scribe-scroll",
+        "spellbooks"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Familiar Adept",
+          "description": "Source Familiar Folio pg. 8"
+        },
+        {
+          "level": 1,
+          "name": "Diminished Expertise",
+          "description": "A familiar adept doesn’t gain Scribe Scroll at 1st level or the wizard’s bonus feats at 5th and 10th levels. He must also choose one additional opposition school, even if he is a universalist."
+        },
+        {
+          "level": 1,
+          "name": "School Familiar",
+          "description": "At 1st level, a familiar adept must select a familiar for his arcane bond. His familiar automatically gains the school familiar archetype (see page 14), but it cannot use its lesser school power until 4th level. At 8th level, it gains access to its greater school power. This ability alters arcane bond."
+        },
+        {
+          "level": 1,
+          "name": "Familiar Spells",
+          "description": "A familiar adept stores his spells in his familiar rather than in a spellbook, exactly as a witch does. His familiar can freely trade spells known with a witch’s familiar, provided the spells traded are on both casters’ class spell lists. The familiar adept’s familiar uses the witch rules for familiars, including the increased cost of replacing the familiar. This ability alters spellbooks."
+        },
+        {
+          "level": 1,
+          "name": "Focused School",
+          "description": "A familiar adept’s training is focused more deeply on his familiar and his school of magic. At 1st level, 5th level, and every 5 levels thereafter, his familiar gains the ability to use the wizard’s 1st-level school ability one time per day without it counting against the wizard’s daily uses."
+        }
+      ],
+      "detected_systems": [
+        "familiar"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:first-world-caller",
+      "package": "pathfinder-class:wizard",
+      "name": "First World Caller",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard First World Caller",
+      "replaces_features": [
+        "arcane-bond",
+        "arcane-school",
+        "bonus-feats",
+        "scribe-scroll"
+      ],
+      "removed_features": [
+        "arcane-bond",
+        "arcane-school",
+        "bonus-feats",
+        "scribe-scroll"
+      ],
+      "removed_feature_clauses": [
+        "bonus feats gained at 10th and 15th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "First World Caller",
+          "description": "Source Heroes from the Fringe pg. 17"
+        },
+        {
+          "level": 10,
+          "name": "Fey Familiar",
+          "description": "A First World caller must select a familiar as his arcane bond. This familiar is often the fey creature that was created when the First World caller’s soul passed through the First World on the way to being born. The familiar counts as both an animal and a fey for the purposes of effects that depend on its type, rather than counting as a magical beast. It gains only half the normal natural armor bonus for a familiar based on the First World caller’s level (rounded down, minimum 0), and it doesn’t grant its special familiar ability to its master. Instead, the familiar gains the fey-touched creature template (see sidebar). At 10th level, the familiar grows a pair of delicate, gossamer wings, gaining a fly speed equal to its land speed and average maneuverability. If the familiar could already fly, its maneuverability improves by one step instead.\n\nThis alters arcane bond."
+        },
+        {
+          "level": 1,
+          "name": "Fey Summoner",
+          "description": "A First World caller is able to conjure fey creatures. He gains Augment Summoning as a bonus feat. He adds the following creatures to the summon monster list of the same level, allowing him to summon them with the appropriate summon monster spell: 1st—grimple (gremlin), mite, sprite; 2nd—atomie, fuath (gremlin), nixie; 3rd— leprechaun, nuglub (gremlin), pooka; 4th—kelpie, korred, twigjack; 5th—lampad, lurker in light, swan maiden; 6th—cold rider, oceanid, sangoi; 7th—alp, bogeyman, ijiraq; 8th—banelight, fastachee, rusalka; 9th—ankou, kamaitachi, wild hunt archer."
+        },
+        {
+          "level": 10,
+          "name": "Warp Reality",
+          "description": "At 10th level, a First World caller can reshape the nearby area at his whim, as he pulls in aspects of the mutable and primal First World. To use this ability, he must expend a spell slot of 5th level or higher as a standard action and succeed at a DC 15 Charisma check. If he succeeds, he can apply one of the following planar traits to the area in a 60-foot radius for 2d4 minutes: normal gravity, heavy gravity, light gravity, mildly aligned (chaos, evil, good, or law), enhanced magic, or impeded magic. At 15th level, he can instead expend a slot of 7th level or higher and attempt a DC 20 Charisma check. If successfully, he can apply two planar traits from the previous list, or any one of the following traits: no gravity, subjective directional gravity, erratic time, fire-dominant, water-dominant, negative-dominant, positive-dominant, or wild magic. See page 58 of Pathfinder RPG Planar Adventures for more information on planar traits.\n\nThis replaces the bonus feats gained at 10th and 15th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:hallowed-necromancer",
+      "package": "pathfinder-class:wizard",
+      "name": "Hallowed Necromancer",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Hallowed Necromancer",
+      "replaces_features": [
+        "arcane-school",
+        "bonus-feat",
+        "grave-touch",
+        "power-over-undead",
+        "scribe-scroll",
+        "spellcasting"
+      ],
+      "removed_features": [
+        "arcane-school",
+        "bonus-feat",
+        "grave-touch",
+        "power-over-undead",
+        "scribe-scroll",
+        "spellcasting"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Hallowed Necromancer",
+          "description": "Source Horror Adventures pg. 74"
+        },
+        {
+          "level": 1,
+          "name": "Arcane School",
+          "description": "A hallowed necromancer must specialize in the school of necromancy and swear never to create undead.\n\nThis alters arcane school and spells."
+        },
+        {
+          "level": 1,
+          "name": "Turn Undead",
+          "description": "A hallowed necromancer must select Turn Undead as a bonus feat with her power over undead arcane school ability.\n\nThis alters power over undead."
+        },
+        {
+          "level": 1,
+          "name": "Positive Touch",
+          "description": "As a standard action, a hallowed necromancer can sacrifice a prepared spell of the necromancy school to spontaneously cast a cure spell of the same level or lower, counting the spell as a necromancy spell rather than a conjuration spell. This cure spell harms only undead; it doesn’t heal the living. If the spell requires an attack roll, it as has a critical threat range of 19–20. A number of times per day equal to 3 + her Intelligence modifier, when she spontaneously casts a cure spell, she can either turn the effect into a ray and increase the range to close or remove the Will save but deal half the normal amount of damage."
+        },
+        {
+          "level": 5,
+          "name": "Death Bane",
+          "description": "At 5th level, a hallowed necromancer’s cure spells are maximized when used to damage undead and the save DCs of her spells cast on undead creatures are 1 higher. She can expend 2 uses of positive touch as a swift action to imbue any weapon she wields with the undead-bane or ghost touch weapon special ability for 1 round per 5 wizard levels she has. These effects apply only against undead, and only while the hallowed necromancer wields the weapon. If the weapon is her arcane bond item, this ability costs only 1 use of positive touch."
+        },
+        {
+          "level": 10,
+          "name": "Ghostbane",
+          "description": "At 10th level, a hallowed necromancer can expend 3 uses of her positive touch as a swift action while casting a spell to affect undead as if the spell were prepared with the Ectoplasmic SpellAPG, Thanatopic SpellAPG, or Threnodic SpellAPG feat."
+        },
+        {
+          "level": 15,
+          "name": "Guarded Life",
+          "description": "At 15th level, when a hallowed necromancer fails a saving throw against a death effect, energy drain, a necromantic effect, or a negative energy effect, she can expend 2 uses of positive touch as an immediate action to reroll it. She must accept the result of the reroll even if it’s worse. If she would take hit point damage from such an effect, as an immediate action she can instead expend 1 use of positive touch and sacrifice a prepared necromancy spell of 4th level or higher to reduce the damage she takes by an amount equal to her wizard level + 10 times the spell level."
+        }
+      ],
+      "detected_systems": [
+        "bane"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:instructor",
+      "package": "pathfinder-class:wizard",
+      "name": "Instructor",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Instructor",
+      "replaces_features": [
+        "arcane-bond",
+        "bonus-feats"
+      ],
+      "removed_features": [
+        "arcane-bond",
+        "bonus-feats"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Instructor",
+          "description": "Source Cohorts and Companions pg. 31"
+        },
+        {
+          "level": 1,
+          "name": "Apprentice",
+          "description": "At 1st level, an instructor acquires the services of a loyal apprentice. She functions similarly to a cohort, though your apprentice begins as a 1st-level commoner with Magical Aptitude as their 1st-level feat and NPC ability scores (13, 12, 11, 10, 9, 8 before racial modifiers). When the instructor reaches 3rd level, if his Leadership score is at least 2, the apprentice becomes a 1st-level wizard of the same school specialization as the instructor, and she gains heroic ability scores (15, 14, 13, 12, 10, 8 before racial modifiers). The apprentice never gains item creation feats, but otherwise follows the normal rules for a cohort."
+        },
+        {
+          "level": 5,
+          "name": "Trained Teamwork",
+          "description": "Starting at 5th level, the instructor can take a teamwork feat as his wizard bonus feat. As long as his apprentice is within 60 feet, the apprentice gains all such teamwork feats as bonus feats. The apprentice does not have to meet the feat’s prerequisites. This ability modifies the bonus feats gained at 5th, 10th, 15th, and 20th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:wizard:magitect",
+      "package": "pathfinder-class:wizard",
+      "name": "Magitect",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/magitect",
+      "replaces_features": [
+        "arcane-bond",
+        "scribe-scroll-bonus-feat",
+        "wizards-normal-class-skills"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "wizard’s normal class skills",
+        "arcane bond",
+        "the Scribe Scroll bonus feat"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Author's Note",
+          "description": "Despite altering the same features, the author intended for magitect to be compatible with the Spheres of Power system. The magitect archetype can be applied to a wizard also taking the sphere wizard archetype, making the following adjustments: (1) the arcane theorem class feature replaces the sphere wizard's arcane bond and scribe scroll class features, and (2) the foundations studies feature optionally replaces the sphere wizard's sphere specialization class feature."
+        },
+        {
+          "level": 1,
+          "name": "Trade Tradition",
+          "description": "If this is this character’s first level in any class, the magitect may select a trade tradition of their choice, and have a competent trade rank.\n\nThis replaces the wizard’s normal class skills."
+        },
+        {
+          "level": 1,
+          "name": "Arcane Theorem",
+          "description": "The magitect does not form a bond with an object or familiar, but instead delves into arcane theories and study. At 1st level, the magitect gains the Spellhacking and Study skill spheres as bonus talents. Starting at 3rd level, as a standard action, he may grant himself the benefit of any one skill talent from either of these spheres for 1 minute. The magitect may do this once per day at 3rd level, plus an additional time per day at 13th level. Multiple uses of this ability do not stack; if he uses this ability again before the previous duration has expired, it replaces the previous use.\n\nThis replaces arcane bond and the Scribe Scroll bonus feat."
+        },
+        {
+          "level": 6,
+          "name": "Foundations Studies",
+          "description": "The magitect gains Mystical Aptitude as a bonus feat, even if he does not meet the prerequisites. Additionally, he can choose to gain a number of breakthroughs that he can use with any theory: The magitect can spend 3 notions whenever he casts a spell to increase the saving throw DC of the effect by 1. At 6th level, the magitect can spend any amount of notions as a swift action to treat his ranks in the associated skills for Spellhacking and Study sphere as being an amount higher equal to the number of notions spent (maximum equal to his operative modifier) for the purposes of determining the effects of sphere abilities (except dispel checks and the DC to remove your (hack) talents) for 1 minute. At 11th level, the magitect can spend up to 3 notions as part of using hack magic to decrease the action cost to do so by one step for each notion spent as part of this breakthrough (standard > move > swift > immediate). Additionally, the magitect gains the following notions that can be applied to any theory (a specific action can only grant one notion once per round): The magitect expends a spell slot of the highest or second highest level he can cast (or spends at least 2 spell points on a single sphere effect). The subject of his theory fails their saving throw against a magical effect by 5 or more. At 11th level, the subject does not need to fail the save by 5 or more to gain the notion. The magitect successfully uses hack magic on a magical effect originating from or a magical item attended by the subject of his theory."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:pact-wizard-ff",
+      "package": "pathfinder-class:wizard",
+      "name": "Pact Wizard (FF)",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Pact Wizard (FF)",
+      "replaces_features": [
+        "arcane-bond",
+        "arcane-school"
+      ],
+      "removed_features": [
+        "arcane-bond",
+        "arcane-school"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Pact Wizard (FF)",
+          "description": "Source Familiar Folio pg. 8"
+        },
+        {
+          "level": 1,
+          "name": "Familiar",
+          "description": "A pact wizard must select a familiar for his arcane bond. The familiar’s loyalty ultimately lies with the pact wizard’s patron, and it reports back to the patron on the wizard’s activities. This ability alters arcane bond."
+        },
+        {
+          "level": 1,
+          "name": "Pact Focus",
+          "description": "At 1st level, a pact wizard must choose one additional opposition school, even if he is a universalist. A pact wizard can’t pick conjuration as an opposition school. This ability alters arcane school."
+        },
+        {
+          "level": 1,
+          "name": "Pact",
+          "description": "A pact wizard enters into a bargain with an extraplanar being in order to gain increased wizardly powers. At 1st level, he selects a patron belonging to one specific subtype of outsider for which there exists an improved familiar option (such as devil or azata). The pact wizard can select a subtype of outsider even with a diametrically opposed alignment; in this case, the patron being offers the pact in an attempt to tempt or redeem the pact wizard. A pact wizard whose alignment shifts away from the chosen outsider subtype, who grossly abuses his familiar or any outsider of the chosen subtype, or who commits egregious acts against the alignment of the patron loses all the benefits of this archetype (but keeps the additional opposition school) until he receives an atonement."
+        },
+        {
+          "level": 1,
+          "name": "Aura",
+          "description": "A pact wizard has an aura corresponding to the alignment of his chosen subtype as a cleric of his wizard level."
+        },
+        {
+          "level": 1,
+          "name": "Pact Summons",
+          "description": "A pact wizard can select Sacred Summons (Pathfinder RPG Ultimate Magic 155) as a wizard bonus feat. He can use this feat only to summon outsiders of his chosen subtype."
+        },
+        {
+          "level": 7,
+          "name": "True Form",
+          "description": "At 7th level, a pact wizard’s familiar reveals its true form, automatically transforming into an outsider improved familiar of the chosen subtype."
+        }
+      ],
+      "detected_systems": [
+        "familiar"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:pact-wizard-hhh",
+      "package": "pathfinder-class:wizard",
+      "name": "Pact Wizard (HHH)",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Pact Wizard (HHH)",
+      "replaces_features": [
+        "level-bonus-feats",
+        "scribe-scroll",
+        "spellcasting"
+      ],
+      "removed_features": [
+        "level-bonus-feats",
+        "scribe-scroll",
+        "spellcasting"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Pact Wizard (HHH)",
+          "description": "Source Haunted Heroes Handbook pg. 20"
+        },
+        {
+          "level": 1,
+          "name": "Patron Spells",
+          "description": "At 1st level, a pact wizard must select a patron. This functions like the witch class ability of the same name, except the pact wizard automatically adds his patron’s spells to his spellbook instead of to his familiar. In addition, the pact wizard can expend any prepared spell that isn’t a spell prepared using the additional spell slot the wizard receives from his arcane school in order to spontaneously cast one of his patron’s spells of the same level or lower."
+        }
+      ],
+      "detected_systems": [
+        "witch_patron"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:poleiheira-adherent",
+      "package": "pathfinder-class:wizard",
+      "name": "Poleiheira Adherent",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Poleiheira Adherent",
+      "replaces_features": [
+        "arcane-bond",
+        "arcane-school"
+      ],
+      "removed_features": [
+        "arcane-bond",
+        "arcane-school"
+      ],
+      "removed_feature_clauses": [
+        "arcane school"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Poleiheira Adherent",
+          "description": "Source Blood of the Ancients pg. 16"
+        },
+        {
+          "level": 1,
+          "name": "Bonded Book",
+          "description": "A Poleiheira adherent forms a bond with a spellbook. This bonded book becomes intrinsically tied to a Poleiheira adherent’s conscious and subconscious mind. The book always opens to the right page, and she can record any number of spells and other information in her bonded book—when she turns pages, more blank pages appear. Other wizards find it difficult to read the book, which displays information in a seemingly random order: the DC of all Spellcraft checks to copy or prepare spells from the book increases by 10."
+        },
+        {
+          "level": 1,
+          "name": "Great Odyssey",
+          "description": "A Poleiheira adherent specializes in exploration and travel rather than a particular school of magic. She gains the abilities below.\n\nThis replaces arcane school."
+        },
+        {
+          "level": 1,
+          "name": "Mount",
+          "description": "A Poleiheira adherent can summon a magical steed to her side (per the mount spell) that lasts up to 2 hours per wizard level. The duration of this ability doesn’t need to be consecutive, but it must be spent in 2-hour increments. When riding a mount summoned with this ability, a Poleiheira adherent can substitute Spellcraft checks for Ride checks."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:primalist",
+      "package": "pathfinder-class:wizard",
+      "name": "Primalist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Primalist",
+      "replaces_features": [
+        "arcane-bond",
+        "bonus-feat"
+      ],
+      "removed_features": [
+        "arcane-bond",
+        "bonus-feat"
+      ],
+      "removed_feature_clauses": [
+        "wizard bonus feat acquired at 5th level",
+        "wizard bonus feat acquired at 10th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Primalist",
+          "description": "Source Inner Sea Magic pg. 37"
+        },
+        {
+          "level": 1,
+          "name": "Primal Magic",
+          "description": "At 1st level, a primalist may attempt to channel primal magic as a swift action to cast a prepared spell without losing that spell from its spell slot. Essentially, a primalist is forcing primal magic into the world and attempting to shape it into a specific spell effect. To use this ability, she casts the spell as she would normally, but as the spell’s effects take place, she makes a concentration check (DC 20 + double the spell’s level). If she fails this check, she expends the spell normally as if she had cast it, but its actual effects are replaced by a primal magic event with a CR equal to her caster level and she is staggered for 1 round per level of the spell she was attempting to cast. If she makes this check, she casts the spell normally and it is not expended from her prepared spell slot, allowing her to cast that spell again at a later point."
+        },
+        {
+          "level": 5,
+          "name": "Enhance Primal Magic Event",
+          "description": "At 5th level, when a primalist triggers a primal magic event, as a swift action she can increase or decrease its CR by 1. If she makes a concentration check (DC = 15 + the primal magic event’s CR), she can instead increase or decrease the CR by 2. If she reduces a primal magic event’s CR to less than 1, the event is negated. She can choose to use this ability after she determines what primal magic event she triggers, but before she resolves the effects of that event. This ability replaces the wizard bonus feat acquired at 5th level."
+        },
+        {
+          "level": 10,
+          "name": "Primal Surge",
+          "description": "At 10th level, whenever a primalist triggers a primal magic event, she rolls the percentile dice twice to determine the event that occurs and chooses which one of the two possible events occurs. She becomes resistant to the effects of primal magic events. Anytime an event would affect her, the GM rolls 1d20 + the event’s CR against a DC of 11 + her wizard level. If this roll fails, the event does not affect her, similar to a creature with spell resistance ignoring magical effects with an SR check. If the primal magic event is duplicating the effects of a spell that does not allow spell resistance (such as create pit), this resistance does not apply. This ability replaces the wizard bonus feat acquired at 10th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:qadira-mage-of-the-veil",
+      "package": "pathfinder-class:wizard",
+      "name": "Qadira: Mage of the Veil",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Qadira  Mage of the Veil",
+      "replaces_features": [
+        "blinding-ray",
+        "invisibility-field"
+      ],
+      "removed_features": [
+        "blinding-ray",
+        "invisibility-field"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Qadira",
+          "description": "Mage of the Veil Source Inner Sea Primer pg. 29"
+        },
+        {
+          "level": 1,
+          "name": "Associated School",
+          "description": "Illusion."
+        },
+        {
+          "level": 1,
+          "name": "Requirements",
+          "description": "A mage of the veil must select disguise self as one of his spells known at 1st level."
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A mage of the veil gains Bluff, Disguise, and Stealth as class skills."
+        },
+        {
+          "level": 1,
+          "name": "Replacement Powers",
+          "description": "The following school powers replace the blinding ray and invisibility field powers of the illusion school."
+        },
+        {
+          "level": 1,
+          "name": "Face in the Crowd",
+          "description": "At 1st level as a standard action, you can cause yourself to appear so normal, mundane, and unexceptional that you blend in to your surroundings. All creatures within 30 feet treat you as if you belonged there, effectively ignoring you. Creatures outside of this area may notice that you appear out of place, but as soon as they approach within 30 feet they are affected by the magic and no longer think something is amiss. If you interact with an affected creature in any way, it gains a Will save (DC 10 + 1/2 your wizard level + your Intelligence modifier) to disbelieve the illusion and notice you. The effect lasts for a number of minutes equal to your wizard level, or until the illusion is dispelled. The minutes do not need to be consecutive, but must be used in 1-minute increments. This is a mind-affecting phantasm effect."
+        },
+        {
+          "level": 8,
+          "name": "Master of the Veil",
+          "description": "At 8th level, you can create an illusion that hides the appearance of yourself and any number of allies within 30 feet for 1 round per wizard level. This ability otherwise functions like the spell veil. The rounds do not need to be consecutive."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:runesage",
+      "package": "pathfinder-class:wizard",
+      "name": "Runesage",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Runesage",
+      "replaces_features": [
+        "arcane-bond",
+        "arcane-school"
+      ],
+      "removed_features": [
+        "arcane-bond",
+        "arcane-school"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Runesage",
+          "description": "Source Adventurer's Guide pg. 58"
+        },
+        {
+          "level": 1,
+          "name": "Runic Focus",
+          "description": "A runesage can use her knowledge of runes to create a runic focus, a small, semiprecious stone engraved with Thassilonian runes that she manipulates to alter her spellcasting abilities. In function, a runic focus behaves like an ioun stone. To activate a runic focus, the runesage must meditate on it as she prepares her spells. Following spell preparation, she tosses the gemstone into the air, after which it orbits around her head. A runic focus remains in orbit until the next time the runesage prepares her spells. A runic focus automatically functions as a runesage’s bonded object."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:scroll-scholar",
+      "package": "pathfinder-class:wizard",
+      "name": "Scroll Scholar",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Scroll Scholar",
+      "replaces_features": [
+        "bonus-feat",
+        "diviner-s-fortune-or-hand-of-apprentice",
+        "spell-slot"
+      ],
+      "removed_features": [
+        "bonus-feat",
+        "diviner-s-fortune-or-hand-of-apprentice",
+        "spell-slot"
+      ],
+      "removed_feature_clauses": [
+        "one of the 1st-level granted powers from her domains—the character gets to choose which of her two 1st-level granted powers it replaces",
+        "diviner’s fortune (if a diviner) or hand of the apprentice (if a universalist)",
+        "increase to her channel energy damage normally gained at 5th level—her channel energy damage increases to 3d6 at 7th level instead",
+        "for the rest of her career as a cleric lags 1d6 behind normal",
+        "her bonus feat for 5th level",
+        "normal addition of a new 4th-level spell slot to the character’s spells per day— from this point on",
+        "the cleric or wizard has one fewer 4thlevel spell slot than other clerics or wizards"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Scroll Scholar",
+          "description": "Source Pathfinder Society Field Guide pg. 26"
+        },
+        {
+          "level": 1,
+          "name": "Diligent Student",
+          "description": "At 1st level, a scroll scholar chooses one Knowledge skill. This becomes a class skill if it is not already one. The scroll scholar adds half her class level to all Knowledge checks of this type (minimum 1). At 5th level and every five levels thereafter, a scroll scholar chooses 1 additional Knowledge skill to receive this bonus. For clerics, this ability replaces one of the 1st-level granted powers from her domains—the character gets to choose which of her two 1st-level granted powers it replaces. For wizards, this ability replaces diviner’s fortune (if a diviner) or hand of the apprentice (if a universalist)."
+        },
+        {
+          "level": 5,
+          "name": "Secrets Revealed",
+          "description": "At 5th level, a scroll scholar gains the ability to cast comprehend languages and identify as spelllike abilities. Her caster level is equal to her character level in whatever class she took the scroll scholar archetype for. She can cast these spells once per day each at 5th level, twice per day each at 7th level, and three times per day each at 9th level. At 11th level, one of these spell-like abilities (scholar’s choice) becomes a constant spell-like ability, and at 13th level, the second one becomes a constant spell-like ability. If the scholar is a cleric, this ability replaces the increase to her channel energy damage normally gained at 5th level—her channel energy damage increases to 3d6 at 7th level instead, and for the rest of her career as a cleric lags 1d6 behind normal. If the scholar is a wizard, this ability replaces her bonus feat for 5th level."
+        },
+        {
+          "level": 10,
+          "name": "Flash of Insight",
+          "description": "At 10th level, once per day, a scroll scholar can gain a +5 bonus on a single attack roll, caster level check, or saving throw as an immediate action. This decision must be made before the results of the roll are known, but can be made after the die is rolled. This ability can be used twice per day at 15th level, and 3 times per day at 20th level. This ability replaces the normal addition of a new 4th-level spell slot to the character’s spells per day— from this point on, the cleric or wizard has one fewer 4thlevel spell slot than other clerics or wizards."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:scrollmaster",
+      "package": "pathfinder-class:wizard",
+      "name": "Scrollmaster",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Scrollmaster",
+      "replaces_features": [
+        "arcane-bond",
+        "bonus-feat"
+      ],
+      "removed_features": [
+        "arcane-bond",
+        "bonus-feat"
+      ],
+      "removed_feature_clauses": [
+        "10th-level wizard bonus feat"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Scrollmaster",
+          "description": "Source Ultimate Magic pg. 89"
+        },
+        {
+          "level": 1,
+          "name": "Scroll Blade",
+          "description": "A scrollmaster can wield any paper, parchment, or cloth scroll as if it were a melee weapon. In the hands of the wizard, the scroll acts as a short sword with an enhancement bonus equal to 1/2 the level of the highest-level wizard spell on the scroll; a scroll with only a cantrip or 1st-level spell on it counts as a masterwork short sword. The scrollmaster is proficient in this weapon, and feats and abilities that affect short swords (such as Weapon Focus) apply to this weapon. A scrollmaster cannot wield two scrollblades at the same time."
+        },
+        {
+          "level": 1,
+          "name": "Scroll Shield",
+          "description": "A scrollmaster can wield any paper, parchment, or cloth scroll as if it were a light wooden shield. In the hands of the wizard, the scroll grants a +1 shield bonus with an enhancement bonus equal to 1/2 the level of the highest-level wizard spell on the scroll; a scroll with only a cantrip or 1st-level spell counts as a masterwork light shield sword. The scroll shield has no armor check penalty, arcane spell failure chance, or maximum Dexterity bonus. The scrollmaster is considered proficient in this shield. A scrollmaster can use a scrollblade in one hand and a scroll shield in the other hand."
+        },
+        {
+          "level": 10,
+          "name": "Improved Scroll Casting",
+          "description": "At 10th level, the scrollmaster can cast a wizard spell from a scroll and use his own Intelligence score and relevant feats to set the DC for the spell, and can use his own caster level if it is higher than that of the scroll (similar to a caster using a staff). The scrollmaster must have already deciphered the writing on the scroll to use this ability. This ability replaces the 10th-level wizard bonus feat."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:shadowcaster",
+      "package": "pathfinder-class:wizard",
+      "name": "Shadowcaster",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Shadowcaster",
+      "replaces_features": [
+        "arcane-bond",
+        "bonus-feat"
+      ],
+      "removed_features": [
+        "arcane-bond",
+        "bonus-feat"
+      ],
+      "removed_feature_clauses": [
+        "arcane bond",
+        "shadowcaster’s 5th-level wizard bonus feat",
+        "shadowcaster’s 10th-level wizard bonus feat"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Shadowcaster",
+          "description": "Source Inner Sea Magic pg. 39"
+        },
+        {
+          "level": 1,
+          "name": "Shadow Spells",
+          "description": "At 1st level, a shadowcaster uses his shadow to prepare additional spells. He must spend his entire period of spell preparation in dim illumination to use this ability. He may prepare a number of additional spell levels of spells equal to the level of the highestlevel wizard spell he can cast. For example, if he can cast 6th-level wizard spells, he could prepare six 1st-level spells, two 3rd level-spells, or any similar combination that adds up to a total of six spell levels. These spells are stored in his shadow. He can only cast these spells when he is in an area of normal light or dim light. He gains Shadowtongue as a bonus language. This ability replaces arcane bond."
+        },
+        {
+          "level": 5,
+          "name": "Shadowsight",
+          "description": "At 5th level, a shadowcaster gains darkvision 60 feet. This ability replaces the shadowcaster’s 5th-level wizard bonus feat."
+        },
+        {
+          "level": 10,
+          "name": "Shadowy Specialization",
+          "description": "At 10th level, when a shadowcaster casts shades, shadow conjuration, shadow evocation, and similar illusion spells that have a listed fraction of the strength of real effects, he increases the percentage of damage caused by the spell’s effect or summoned creatures by one-fifth (+20%) against creatures that make their saving throw against the effect, up to a maximum of 100% of the strength. For example, shadow evocation and shadow conjuration deal 40% normal damage on a successful save instead of 20%. This ability replaces the shadowcaster’s 10th-level wizard bonus feat."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:siege-mage",
+      "package": "pathfinder-class:wizard",
+      "name": "Siege Mage",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Siege Mage",
+      "replaces_features": [
+        "arcane-bond",
+        "arcane-school",
+        "cantrips",
+        "scribe-scroll"
+      ],
+      "removed_features": [
+        "arcane-bond",
+        "arcane-school",
+        "cantrips",
+        "scribe-scroll"
+      ],
+      "removed_feature_clauses": [
+        "scribe scroll",
+        "arcane bond",
+        "cantrips",
+        "but the siege mage gains the detect magic",
+        "read magic cantrips",
+        "places them in his spellbook",
+        "arcane school"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Siege Mage",
+          "description": "Source Ultimate Combat pg. 75"
+        },
+        {
+          "level": 1,
+          "name": "Siege Engineer",
+          "description": "At 1st level, the siege mage gains Siege Engineer as a bonus feat, even though he does not meet the prerequisites for that feat. This ability replaces scribe scroll."
+        },
+        {
+          "level": 1,
+          "name": "Siege Engine Bond",
+          "description": "At 1st level, a siege mage can bond with a single siege engine within 30 feet and line of sight as a standard action. He can utilize the power of this link to aim and fire the siege engine remotely (as long as he’s within 30 feet), though it still requires a crew to reload the siege engine. At 10th level, he can reload, aim, and fire the siege engine purely by the power of this link, and no longer needs a crew to control the siege engine. It still takes the normal required amount of time and actions to control a siege engine in this manner. This ability replaces arcane bond. The siege mage can end this bond with a free action. A siege mage can bond with a siege engine in this manner a number of times per day equal to his Intelligence modifier (minimum 1) but can only be bonded with one siege engine at a time."
+        },
+        {
+          "level": 1,
+          "name": "Empower Siege Engine",
+          "description": "As a swift action, a siege mage can sacrifice one of his spells to empower the next attack he makes before the end of his turn with a siege engine he is bonded with. When he does, the siege engine attack gains a bonus on its attack roll or targeting roll equal to the level of the spell he sacrificed, and a bonus to damage equal to 3 × the level of the spell. This ability replaces cantrips, but the siege mage gains the detect magic and read magic cantrips and places them in his spellbook. He can cast either of these as 1st-level spells."
+        },
+        {
+          "level": 1,
+          "name": "Siege School",
+          "description": "The strange rituals needed to empower all forms of siege engines takes a level of dedication and perseverance that limits a wizard’s time to unlock other arcane mysteries. At 1st level, the siege mage forsakes three schools of magic. Once chosen, these opposition schools cannot be changed. A siege mage who prepares spells from his opposition school must use two spell slots of that level to prepare the spell. In addition, the siege mage takes a –4 penalty on any skill checks made when crafting a magic item that has a spell from one of his opposition schools. This ability replaces arcane school."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:spell-sage",
+      "package": "pathfinder-class:wizard",
+      "name": "Spell Sage",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Spell Sage",
+      "replaces_features": [
+        "arcane-bond",
+        "arcane-school"
+      ],
+      "removed_features": [
+        "arcane-bond",
+        "arcane-school"
+      ],
+      "removed_feature_clauses": [
+        "arcane bond"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Spell Sage",
+          "description": "Source Advanced Class Guide pg. 133"
+        },
+        {
+          "level": 1,
+          "name": "Focused Spells",
+          "description": "At 1st level, once per day the spell sage’s understanding of spells allows him to increase his caster level by 4 for a single spell cast. He can do this twice per day at 8th level, and three times per day at 16th level. This ability replaces arcane bond."
+        },
+        {
+          "level": 2,
+          "name": "Spell Study",
+          "description": "At 2nd level, the sage’s understanding of the spells of bards, clerics, and druids is so great that he can use his own magic in an inefficient, roundabout way to duplicate those classes’ spells. Once per day, a spell sage can spontaneously cast any spell on the bard, cleric, or druid spell list as if it were a wizard spell he knew and had prepared. Casting the spell requires the spell sage to spend 1 full round per spell level of the desired spell (if the spell is on multiple spell lists indicated above, using the lowest level from among those lists) and requires expending two prepared spells of that spell level or higher; if the spell’s casting time is normally 1 full round or longer, this is added to the spell sage’s casting time. For example, if a spell sage wants to use spell study to cast cure light wounds (cleric spell level 1st), he must spend 2 full rounds casting and expend two prepared wizard spells of 1st level or higher."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:spellbinder",
+      "package": "pathfinder-class:wizard",
+      "name": "Spellbinder",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Spellbinder",
+      "replaces_features": [
+        "arcane-bond"
+      ],
+      "removed_features": [
+        "arcane-bond"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Spellbinder",
+          "description": "Source Advanced Race Guide pg. 25"
+        },
+        {
+          "level": 1,
+          "name": "Spell Bond",
+          "description": "At 1st level, a spellbinder selects any one spell that he knows as a bonded spell. As a full-round action, the spellbinder may replace a spell of the same or higher level as his bonded spell with his bonded spell. For example, a spellbinder who selects magic missile as his bonded spell could spend a full-round action to exchange any 1st-level or higher spell that he has prepared with magic missile. At 3rd level, and every two levels thereafter, a spellbinder may select another spell he knows and add it to his list of bonded spells, to a maximum of nine bonded spells at 17th level."
+        },
+        {
+          "level": 1,
+          "name": "Discoveries",
+          "description": "The following discoveries complement the spellbinder archetype: Fast Study, Split Slot."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:spellslinger",
+      "package": "pathfinder-class:wizard",
+      "name": "Spellslinger",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Spellslinger",
+      "replaces_features": [
+        "arcane-bond",
+        "arcane-school",
+        "cantrips",
+        "scribe-scroll"
+      ],
+      "removed_features": [
+        "arcane-bond",
+        "arcane-school",
+        "cantrips",
+        "scribe-scroll"
+      ],
+      "removed_feature_clauses": [
+        "scribe scroll",
+        "cantrips",
+        "but the spellslinger gains the detect magic",
+        "read magic cantrips",
+        "places them in his spellbook",
+        "arcane school"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Spellslinger",
+          "description": "Source Ultimate Combat pg. 75"
+        },
+        {
+          "level": 1,
+          "name": "Arcane Gun",
+          "description": "The spellslinger gains the Exotic Weapon Proficiency (firearms) feat, and one or two of his firearms can be arcane guns. Arcane guns are normal one-handed or two-handed firearms in the hands of others, as they were normal firearms before the spellslinger imbued them with magic. In a spellslinger’s hands, they both fire projectiles (bullets and pellets) and cast magic. At 1st level, the spellslinger decides whether he wants to have one or two arcane guns at a time. If the spellslinger chooses to have only one arcane gun at a time, spells fired through the arcane gun that require an attack roll have a ×3 critical hit multiplier."
+        },
+        {
+          "level": 1,
+          "name": "Gunsmith",
+          "description": "The spellslinger gains the Gunsmithing feat and a battered gun that is identical to the gun a gunslinger gains at first level. If the spellslinger chooses the ability to attune two arcane guns, he still only starts out with one gun. Like a gunslinger, a spellslinger can use the Gunsmithing feat to restore his battered gun. This ability replaces scribe scroll."
+        },
+        {
+          "level": 1,
+          "name": "Mage Bullets",
+          "description": "A spellslinger is adept at transferring spell energy into his arcane gun attacks. As a swift action, he can sacrifice a spell and transform that energy into a weapon bonus equal to the level of the spell sacrificed on a single barrel of his firearm. With that weapon bonus the spellslinger can apply any of the following to his arcane bond: enhancement bonuses (up to +5) and dancing, defending, distance, flaming, flaming burst, frost, ghost touch, icy burst, merciful, seeking, shock, shocking burst, spell storing, thundering, vicious, and wounding. An arcane gun gains no benefit from having two of the same weapon special abilities on the same barrel. The effect of the mage bullets ability lasts for a number of minutes equal to the level of the spell sacrificed, or until this ability is used again to assign the barrel different enhancements. This ability replaces cantrips, but the spellslinger gains the detect magic and read magic cantrips and places them in his spellbook. He can cast either of these as 1st-level spells."
+        },
+        {
+          "level": 1,
+          "name": "School of the Gun",
+          "description": "The rigor and care required by arcane guns is so great that a spellslinger forsakes four schools of magic. These opposition schools are chosen at 1st level and cannot be changed later. A spellslinger who prepares a spell from his opposition school must use two spell slots of that level to prepare the spell. In addition, the spellslinger takes a –4 penalty on any skill checks made when crafting a magic item that has a spell from one of his opposition schools as a prerequisite. This ability replaces arcane school."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:wizard:sphere-wizard",
+      "package": "pathfinder-class:wizard",
+      "name": "Sphere Wizard",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/sphere-wizard",
+      "replaces_features": [
+        "arcane-bond",
+        "arcane-school",
+        "spellcasting"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "spells class feature",
+        "arcane school"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The sphere wizard may combine spheres and talents to create magical effects. The sphere wizard is considered a High-Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the spells class feature."
+        },
+        {
+          "level": 1,
+          "name": "Spell Points",
+          "description": "The sphere wizard gains a small reservoir of energy he can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to his level + his casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Magic Talents",
+          "description": "A sphere wizard gains 3 magic talents every 2 levels. (2 at 1st level, 1 at 2nd level, 2 at 3rd level, 1 at 4th level, etc.)"
+        },
+        {
+          "level": 1,
+          "name": "Arcane Bond",
+          "description": "At 1st level, the sphere wizard may choose a familiar or a bonded object as any other wizard. If the sphere wizard chooses a bonded object, then he can use it to access magical knowledge he does not normally possess. As a standard action, he may grant himself the benefit of any one magic talent he does not possess. This effect lasts for 1 minute. If gaining a magic talent other than a base sphere, he must possess that talent’s base sphere and fulfill its prerequisites. He may do this once per day at 1st level, plus an additional once per day for every 4 class levels he possesses, up to a total of 6 times per day at 20th level. Multiple uses of this ability do not stack. If he uses this ability again before the previous duration has expired, it replaces the previous use. If the sphere wizard’s casting tradition includes the focus casting drawback, the bond can also be their focus, but does not have to be.\n\nThis alters arcane bond."
+        },
+        {
+          "level": 1,
+          "name": "Sphere Specialization",
+          "description": "A sphere wizard gains a sphere specialization of his choice from the list of sphere specializations included in the incanter class description. He treats his wizard levels as incanter levels for this purpose.\n\nThis replaces arcane school."
+        },
+        {
+          "level": 1,
+          "name": "Note",
+          "description": "This ability does not stack with an Incanter specialization (per discussion with an author)."
+        },
+        {
+          "level": 1,
+          "name": "Spheres of Power",
+          "description": "Casting: The sphere wizard may combine spheres and talents to create magical effects. The sphere wizard is considered a High-Caster and uses Intelligence as his casting ability modifier. (Note: All casters gain 2 bonus talents and may select a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the spells class feature."
+        },
+        {
+          "level": 1,
+          "name": "Recommended Casting Tradition",
+          "description": "The classic feel of the wizard can be recreated through selecting the traditional magic casting tradition."
+        }
+      ],
+      "detected_systems": [
+        "bond"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:spirit-binder",
+      "package": "pathfinder-class:wizard",
+      "name": "Spirit Binder",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Spirit Binder",
+      "replaces_features": [
+        "arcane-bond",
+        "arcane-school",
+        "bonus-feats",
+        "scribe-scroll"
+      ],
+      "removed_features": [
+        "arcane-bond",
+        "arcane-school",
+        "bonus-feats",
+        "scribe-scroll"
+      ],
+      "removed_feature_clauses": [
+        "Scribe Scroll",
+        "the wizard’s bonus feats"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Spirit Binder",
+          "description": "Source Familiar Folio pg. 9"
+        },
+        {
+          "level": 1,
+          "name": "Soulbound Familiar",
+          "description": "A spirit binder must select a familiar for his arcane bond. Unlike in a normal familiar-summoning ritual, a spirit binder created his special familiar through a dangerous ritual catalyzed by the death of a loved one. Before the loved one’s spirit passed on to the Boneyard, the spirit binder was able to bind the spirit to an animal or vermin, which then became his familiar."
+        },
+        {
+          "level": 1,
+          "name": "Arcane School",
+          "description": "A spirit binder can’t choose necromancy as an opposition school. This ability alters arcane school."
+        },
+        {
+          "level": 1,
+          "name": "Lost Talents",
+          "description": "A spirit binder’s soulbound familiar possesses some of the ability of the lost loved one, and it is capable of learning more. At 1st level, 5th level, and every 5 levels thereafter, the spirit binder’s familiar gains a new feat for which it meets the prerequisites. This ability replaces Scribe Scroll and the wizard’s bonus feats."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:spirit-whisperer",
+      "package": "pathfinder-class:wizard",
+      "name": "Spirit Whisperer",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Spirit Whisperer",
+      "replaces_features": [
+        "arcane-bond",
+        "arcane-school",
+        "bonus-feat",
+        "bonus-feats",
+        "spellbooks"
+      ],
+      "removed_features": [
+        "arcane-bond",
+        "arcane-school",
+        "bonus-feat",
+        "bonus-feats",
+        "spellbooks"
+      ],
+      "removed_feature_clauses": [
+        "arcane school",
+        "the bonus feat gained at 20th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Spirit Whisperer",
+          "description": "Source Advanced Class Guide pg. 133"
+        },
+        {
+          "level": 1,
+          "name": "Arcane Bond",
+          "description": "When a spirit whisperer chooses an arcane bond, he must choose the familiar arcane bond, and the familiar gains the spirit animal ability of his selected spirit (see spirit link, below). The spirit whisperer does not need a spellbook, but instead stores and prepares his spell by communing with the familiar as the witch’s familiar class feature (Advanced Player’s Guide 67). This ability alters arcane bond and replaces the spellbooks class feature."
+        },
+        {
+          "level": 1,
+          "name": "Spirit Link",
+          "description": "At 1st level, a spirit whisperer forms a mystical bond with a spirit. The spirit whisperer picks a spirit from the shaman’s list of spirits (see page 37). At 1st level, he gains a spirit ability granted by that spirit. At 8th level, he gains the greater spirit ability granted by that spirit. At 20th level, the spirit whisperer gains the manifestation ability granted by the spirit. He uses his wizard level as his shaman level for determining the effects and DCs of abilities granted by the spirit. In addition, he uses his Intelligence modifier in place of his Wisdom modifier for these abilities. He does not gain hexes, spirit magic spells, or the true spirit ability typically granted to a shaman by these spirits. This ability replaces arcane school and the bonus feat gained at 20th level."
+        },
+        {
+          "level": 5,
+          "name": "Spirit Hex",
+          "description": "At 5th level, a spirit whisperer can select one hex from the list of those granted by his chosen spirit. He uses his wizard level as his shaman level when determining the effects and DC of this hex. In addition, he uses his Intelligence modifier in place of his Wisdom modifier for these hexes. At 10th and 15th level, he can select another hex from those granted by his spirit. Each hex selected in this way replaces the bonus feat gained at that level. This ability alters bonus feats."
+        }
+      ],
+      "detected_systems": [
+        "hex",
+        "familiar"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:sword-binder",
+      "package": "pathfinder-class:wizard",
+      "name": "Sword Binder",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Sword Binder",
+      "replaces_features": [
+        "arcane-bond",
+        "arcane-school",
+        "bonus-feat",
+        "bonus-school-spell-slots"
+      ],
+      "removed_features": [
+        "arcane-bond",
+        "arcane-school",
+        "bonus-feat",
+        "bonus-school-spell-slots"
+      ],
+      "removed_feature_clauses": [
+        "10th level bonus feat"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Sword Binder",
+          "description": "Source Arcane Anthology pg. 11"
+        },
+        {
+          "level": 1,
+          "name": "Arcane Bond",
+          "description": "A sword binder must choose a sword as his bonded item. He gains proficiency with it. This alters arcane bond."
+        },
+        {
+          "level": 1,
+          "name": "Sword of the Mage",
+          "description": "A sword binder can send his bound sword to strike his foes. He gains the hand of the apprentice ability of the universalist school, but can use that ability only with his bound sword. His range with the ability is close (25 feet + 5 feet per 2 wizard levels he possesses), and he can use it a number of times per day equal to 3 + his Intelligence modifier + 1/2 his level."
+        },
+        {
+          "level": 10,
+          "name": "Telekinetic Sword",
+          "description": "At 10th level, a sword binder can control his bound sword (and only his sword) as per the sustained force option of telekinesis. While the sword is flying in this way, the sword binder can monitor the area around the sword with clairaudience/clairvoyance as a swift action. This ability can be used once per day at 10th level, and an additional time per day at 15th level and again at 20th level. This ability can be used for 2 rounds per sword binder level each day. This ability replaces the 10th level bonus feat."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:thassilonian-specialist",
+      "package": "pathfinder-class:wizard",
+      "name": "Thassilonian Specialist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Thassilonian Specialist",
+      "replaces_features": [
+        "lose-access-to-two-schools-of-magic"
+      ],
+      "removed_features": [
+        "lose-access-to-two-schools-of-magic"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Thassilonian Specialist",
+          "description": "Source Inner Sea Magic pg. 17"
+        },
+        {
+          "level": 1,
+          "name": "Benefits",
+          "description": "A Thassilonian specialist wizard receives two additional spell slots of each spell level he can cast. These bonus spell slots must both be used to prepare the same spell from the wizard’s school of specialization, allowing the wizard to cast that spell twice (as he has prepared the spell twice). The wizard cannot use these slots to prepare two different spells, even if they are of the school he is specialized in."
+        },
+        {
+          "level": 1,
+          "name": "Restrictions",
+          "description": "A Thassilonian specialist does not get to customize his choice for opposition schools—that choice is selected for him when he chooses his specialization. These restrictions are more significant than those most wizards follow, and are known as prohibited schools. A Thassilonian wizard can never prepare a spell that is in one of his prohibited schools—he treats these spells as if they were not on the wizard spell list. If using a spell trigger or spell completion item to cast a spell from one of his prohibited schools, he must use the Use Magic Device skill to do so."
+        },
+        {
+          "level": 1,
+          "name": "Thassilonian Magic",
+          "description": "While the concept of wizard specializations along the classically recognized schools of magic certainly dates back to the time of Azlant, and perhaps beyond into the dim recesses of time before humanity rose to prominence, it was the runelords of Thassilon who explored school specialization to its full extreme."
+        },
+        {
+          "level": 1,
+          "name": "Envy (Abjuration)",
+          "description": "The art of suppressing magic other than your own. Prohibited Schools: evocation, necromancy."
+        },
+        {
+          "level": 1,
+          "name": "Gluttony (Necromancy)",
+          "description": "Magic that manipulates the physical body to provide for an unending hunger for life. Prohibited Schools: abjuration, enchantment."
+        },
+        {
+          "level": 1,
+          "name": "Greed (Transmutation)",
+          "description": "Magically transforming things into objects of greater value or utility, and enhancing the physical self. Prohibited Schools: enchantment, illusion."
+        },
+        {
+          "level": 1,
+          "name": "Lust (Enchantment)",
+          "description": "Magically controlling and dominating other creatures to satisfy your desires, and manipulating others’ minds, emotions, and wills. Prohibited Schools: necromancy, transmutation."
+        },
+        {
+          "level": 1,
+          "name": "Pride (Illusion)",
+          "description": "Perfecting your own appearance and domain through trickery and illusions. Prohibited Schools: conjuration, transmutation."
+        },
+        {
+          "level": 1,
+          "name": "Sloth (Conjuration)",
+          "description": "Calling agents and minions to perform your deeds for you, or creating what you need as you need it. Prohibited Schools: evocation, illusion."
+        },
+        {
+          "level": 1,
+          "name": "Wrath (Evocation)",
+          "description": "Mastery of the raw destructive power of magic, and channeling those destructive forces. Prohibited Schools: abjuration, conjuration."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:undead-master",
+      "package": "pathfinder-class:wizard",
+      "name": "Undead Master",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Undead Master",
+      "replaces_features": [
+        "alignment",
+        "arcane-bond",
+        "arcane-school",
+        "bonus-feats",
+        "scribe-scroll"
+      ],
+      "removed_features": [
+        "alignment",
+        "arcane-bond",
+        "arcane-school",
+        "bonus-feats",
+        "scribe-scroll"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Undead Master",
+          "description": "Source Horror Adventures pg. 75"
+        },
+        {
+          "level": 1,
+          "name": "Necromantic Focus",
+          "description": "An undead master must be of an evil alignment. If he becomes nonevil, he can still use his powers but can’t progress any further as a wizard. Most undead masters specialize in the necromancy school, and an undead master can’t have necromancy as an opposition school.\n\nThis alters arcane school and alignment."
+        },
+        {
+          "level": 1,
+          "name": "Necropolitan",
+          "description": "An undead master gains a bonus equal to half his wizard level (minimum +1) on Diplomacy and Knowledge checks regarding undead creatures. Because of his obsessive focus on the undead, he takes a –2 penalty when attempting such checks regarding living creatures."
+        },
+        {
+          "level": 1,
+          "name": "Corpse Bond",
+          "description": "An undead master can forge an arcane bond with an object, but that object must be made at least partially of bone. Alternatively, he can animate a corpse companion, as per the undead lord cleric archetype (Pathfinder RPG Ultimate Magic 32). He can’t gain a familiar."
+        },
+        {
+          "level": 1,
+          "name": "Command Undead",
+          "description": "An undead master gains Command Undead as a bonus feat, treating his wizard level as his cleric level. If he lacks the ability to channel negative energy for the purpose of Command Undead, he can expend 3 uses of any 1st-level arcane school ability that normally has a number of uses per day equal to 3 + his Intelligence modifier, rather than a use of channel energy. If he’s a necromancer with the power over undead ability, he instead gains Improved Channel."
+        },
+        {
+          "level": 1,
+          "name": "Reanimator",
+          "description": "An undead master adds the following spells to his spellbook at the given wizard levels: 1st—repair undeadACG; 3rd—lesser animate deadUM; 5th—animate dead; 7th—undead anatomy IUM; 9th—create undead; 11th—undeath to death; 13th—create greater undead; 15th—undead anatomy IVUM; 17th—cursed earthUM. He can spontaneously cast any of these spells by sacrificing a prepared spell of the same level or higher. The undead master can cast lesser animate dead, animate dead, create undead, and create greater undead as if they were 1 level lower than their normal wizard spell level; this does not alter their level for the purpose of item crafting and the like."
+        },
+        {
+          "level": 20,
+          "name": "Lich-Loved",
+          "description": "At 20th level, an undead master gains the benefits of the undead sorcerer bloodline’s one of us ability."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:wind-listener",
+      "package": "pathfinder-class:wizard",
+      "name": "Wind Listener",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Wind Listener",
+      "replaces_features": [
+        "arcane-bond",
+        "arcane-school",
+        "bonus-feat",
+        "class-skills"
+      ],
+      "removed_features": [
+        "arcane-bond",
+        "arcane-school",
+        "bonus-feat",
+        "class-skills"
+      ],
+      "removed_feature_clauses": [
+        "arcane bond",
+        "bonus feat gained at 5th level",
+        "bonus feat gained at 10th level",
+        "bonus feat gained at 15th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Wind Listener",
+          "description": "Source Advanced Race Guide pg. 158"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A wind listener adds Perception to his list of class skills."
+        },
+        {
+          "level": 1,
+          "name": "Arcane School",
+          "description": "A wind listener cannot select divination or illusion as a prohibited school."
+        },
+        {
+          "level": 1,
+          "name": "Spontaneous Divination",
+          "description": "At 1st level, a wind listener can reshape stored spell energy into divination spells he did not prepare ahead of time. The wind listener can \"lose\" any prepared spell that is not a cantrip in order to cast a divination spell of the same spell level or lower. The new spell must be one the wind listener knows and is capable of casting. Spells cast with this ability increase their casting time to a full-round action (if the spell’s normal casting time is longer than a full-round action, it remains unchanged). This ability replaces arcane bond."
+        },
+        {
+          "level": 5,
+          "name": "Abjuration Sense",
+          "description": "At 5th level, a wind listener develops a sixth sense for spotting spells designed to guard against his investigations. He gains a bonus on Perception checks equal to 1/2 his level to notice spells of the abjuration school and on Spellcraft checks to identify abjuration effects, spells, and magic items. This ability replaces the bonus feat gained at 5th level."
+        },
+        {
+          "level": 10,
+          "name": "Wispy Form",
+          "description": "At 10th level, the wind listener gains the ability to become airy and translucent as a standard action, gaining DR 10/magic and the effects of greater invisibility for a number of rounds per day equal to his level. These rounds need not be consecutive. Like the natural invisibility universal monster ability , this ability is not subject to invisibility purge. This ability replaces the bonus feat gained at 10th level."
+        },
+        {
+          "level": 15,
+          "name": "Listening to the Wind",
+          "description": "At 15th level, the wind listener can call upon spirits of the air to uncover lost lore about a legendary person, place, or thing. Invoking the spirits takes 10 minutes, during which time the wind listener must be free of distractions and able to concentrate. Once called, the spirits seek out information on the subject of the wind listener’s inquiries. This functions as the spell legend lore (caster level equal to the wind listener’s level), except that the wind listener is free to engage in other activities while spirits investigate on his behalf. The time required for the air spirits to return with this information is equal to what the casting time of the spell legend lore would have been if the wind listener had cast it. The wind listener can use this ability once per week, and only if he does not currently have air spirits searching for information. If the air spirits are currently searching for information, the wind listener can end their task early as a standard action, dismissing the magical effect and not returning any information. This ability replaces the bonus feat gained at 15th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:worldseeker",
+      "package": "pathfinder-class:wizard",
+      "name": "Worldseeker",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Wizard Worldseeker",
+      "replaces_features": [
+        "arcane-bond",
+        "bonus-feat",
+        "school",
+        "scribe-scroll"
+      ],
+      "removed_features": [
+        "arcane-bond",
+        "bonus-feat",
+        "school",
+        "scribe-scroll"
+      ],
+      "removed_feature_clauses": [
+        "Scribe Scroll",
+        "school ability normally gained at 6th or 8th level",
+        "bonus feat gained at 15th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Worldseeker",
+          "description": "Source Planar Adventures pg. 21"
+        },
+        {
+          "level": 1,
+          "name": "Walk the Planes (Sp, Su)",
+          "description": "A worldseeker learns every plane’s place in the Great Beyond and trains to survive even on the harshest of them. She gains a +2 bonus on Knowledge (planes) checks and is constantly under the effects of endure elements.\n\nThis replaces Scribe Scroll."
+        },
+        {
+          "level": 8,
+          "name": "Planar Adaptation",
+          "description": "At 8th level, a worldseeker is continually protected from planar environments as by planar adaptation. At 15th level, she can extend that benefit to all allies within 30 feet of her.\n\nThis replaces the school ability normally gained at 6th or 8th level."
+        },
+        {
+          "level": 5,
+          "name": "Planar Associates",
+          "description": "A worldseeker’s travels and dealings across the planes allow her to make connections she can call upon when necessary to gain assistance without needing to resort to planar binding. A worldseeker must choose a familiar for her arcane bond. At 5th level, she gains Improved Familiar as a bonus feat and must choose an outsider familiar that matches her alignment exactly; she can choose an outsider in this way even if it normally requires a 7th-level spellcaster as its master."
+        },
+        {
+          "level": 15,
+          "name": "Planar Redoubt",
+          "description": "At 15th level, a worldseeker creates a planar redoubt, a personal demiplane to which she can retreat to rest and plan. This functions like lesser create demiplane, except the demiplane is up to a single 50-foot cube in size and is permanent.\n\nThis replaces the bonus feat gained at 15th level."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

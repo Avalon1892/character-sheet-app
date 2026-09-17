@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "key": "rogue",
+  "class_key": "pathfinder-class:rogue",
+  "class_name": "Rogue",
+  "governing_ability": "dexterity",
+  "optional_blocks": ["inquisitor_features"],
+  "external_systems": [
+    "rogue_sneak_attack",
+    "rogue_talents",
+    "advanced_rogue_talents"
+  ],
+  "resource_modules": [
+    {
+      "key": "rogue_context",
+      "title": "Rogue Situational Features",
+      "governing_ability": "dexterity",
+      "resources": [
+        {
+          "key": "trapfinding_applies",
+          "name": "Trapfinding Applies",
+          "feature_tokens": ["trapfinding"],
+          "progression": "one",
+          "description": "Enable while locating a trap with Perception or disabling one with Disable Device. The Rogue may also disarm magical traps.",
+          "can_activate": true,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": false,
+          "tracks_uses": false
+        },
+        {
+          "key": "trap_sense_applies",
+          "name": "Trap Sense Applies",
+          "feature_tokens": ["trap-sense"],
+          "progression": "one",
+          "description": "Enable against a trap. The retained Rogue level determines the Reflex-save and dodge AC bonus.",
+          "can_activate": true,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": false,
+          "tracks_uses": false
+        }
+      ]
+    }
+  ],
+  "passive_effects": [
+    {
+      "key": "rogue-trapfinding-perception",
+      "feature_tokens": ["trapfinding"],
+      "targets": ["skill:perception", "skill:disable_device"],
+      "progression": "half_level_minimum_one",
+      "bonus_type": "untyped",
+      "source": "Rogue: Trapfinding",
+      "requires_resource_active": "trapfinding_applies"
+    },
+    {
+      "key": "rogue-trap-sense-reflex",
+      "feature_tokens": ["trap-sense"],
+      "targets": ["reflex", "armor_class", "flat_footed_ac", "touch_ac"],
+      "progression": "third_level",
+      "bonus_type": "dodge",
+      "source": "Rogue: Trap Sense (traps only)",
+      "minimum_level": 3,
+      "requires_resource_active": "trap_sense_applies"
+    }
+  ],
+  "notes": "Sneak Attack is a live attack-context toggle and Rogue Talents use the shared recurring power picker. Advanced talents unlock at Rogue level 10 and archetype replacements remove only the affected slots or systems."
+}

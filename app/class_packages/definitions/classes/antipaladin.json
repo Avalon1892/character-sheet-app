@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "key": "antipaladin",
+  "class_key": "pathfinder-class:antipaladin",
+  "class_name": "Antipaladin",
+  "governing_ability": "charisma",
+  "optional_blocks": ["inquisitor_features"],
+  "external_systems": [
+    "antipaladin_smite",
+    "touch_of_corruption",
+    "antipaladin_cruelties",
+    "channel_negative_energy",
+    "fiendish_boon",
+    "antipaladin_spellcasting"
+  ],
+  "resource_modules": [],
+  "passive_effects": [],
+  "notes": "Smite Good, Touch of Corruption, Channel Negative Energy, retained Cruelties, prepared divine spellcasting, and archetype exchanges use the shared class-resource, spell, companion, and replacement systems."
+}

@@ -1,0 +1,246 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "key": "spheres-archetype:pathfinder-class:antipaladin:antimage",
+      "governing_ability": "intelligence",
+      "resource_modules": [
+        {
+          "key": "antimage",
+          "title": "Nullmagic",
+          "governing_ability": "intelligence",
+          "resources": [
+            {
+              "key": "nullmagic",
+              "name": "Nullmagic",
+              "feature_tokens": ["nullmagic-power"],
+              "progression": "half_level_plus_ability_minimum_one",
+              "description": "Nullmagic points equal half Antipaladin level plus Intelligence modifier (minimum 1), refresh after 8 hours, and pay for Disrupt, Counterspell, the bastion, and nullshaping techniques."
+            }
+          ]
+        }
+      ],
+      "choice_providers": [
+        {
+          "key": "antimage-nullshaping",
+          "label": "Nullshaping Techniques",
+          "feature_tokens": ["nullshaping-techniques"],
+          "minimum": 0,
+          "maximum_levels": [3, 6, 9, 12, 15, 18],
+          "fixed_options": [
+            {"key": "counterspell", "name": "Counterspell", "description": "Gain a qualifying counterspell feat; may be selected more than once from 6th level."},
+            {"key": "cleanse", "name": "Cleanse", "description": "From 9th level, counterspell a qualifying effect on yourself as a free action once per turn."},
+            {"key": "expanded-nullmagic", "name": "Expanded Nullmagic", "description": "Increase the nullmagic pool by 3; this technique stacks."},
+            {"key": "mageguard-training", "name": "Mageguard Training", "description": "Gain Disruptive and later Spellbreaker without their normal prerequisites."},
+            {"key": "nullmagic-glide", "name": "Nullmagic Glide", "description": "Spend nullmagic while moving to pass through movement-restricting magic."},
+            {"key": "nullmagic-shell", "name": "Nullmagic Shell", "description": "Spend nullmagic for short-lived DR and energy resistance against magical or supernatural sources."},
+            {"key": "nullmagic-shutdown", "name": "Nullmagic Shutdown", "description": "From 14th level, spend nullmagic to become untargetable by creature-targeting spell effects for a short duration."},
+            {"key": "pacified-disruption", "name": "Pacified Disruption", "description": "Designated allies may use items you have disrupted."},
+            {"key": "permit-assistance", "name": "Permit Assistance", "description": "Voluntarily allow helpful magic to bypass your spell resistance or immunity."},
+            {"key": "physical-training", "name": "Physical Training", "description": "Gain two combat talents; may be selected a second time from 12th level."},
+            {"key": "rites-against-conjurations", "name": "Rites Against Conjurations", "description": "Spend nullmagic to ward yourself against contact by summoned creatures."}
+          ],
+          "description": "Choose one technique at 3rd level and every 3 levels thereafter. Technique prerequisites remain visible in their descriptions."
+        }
+      ],
+      "system_features": ["nullmagic-power", "nullshaping-techniques"]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:antipaladin:avowed",
+      "resource_modules": [
+        {
+          "key": "avowed",
+          "title": "Avowed Devotion",
+          "governing_ability": "charisma",
+          "resources": [
+            {"key": "smite", "name": "Smite", "feature_tokens": ["smite"], "progression": "one_plus_every_three_after_one", "description": "One use at 1st level plus one at 4th level and every 3 levels thereafter. The selected pledge alignment determines valid adversaries.", "can_activate": true, "activate_on_spend": true, "custom_choice_label": "Current smite target"},
+            {"key": "divine_touch", "name": "Divine Touch", "feature_tokens": ["divine-touch"], "progression": "half_level_plus_ability_minimum_one", "description": "Daily uses equal half class level plus casting ability modifier. The pledge alignment determines the touch effect."},
+            {"key": "channel_divinity", "name": "Channel Divinity", "feature_tokens": ["channel-divinity"], "progression": "zero", "description": "Each use spends two Divine Touch uses; the pledge alignment determines the channel effect.", "external_cost_key": "divine_touch", "use_cost": 2}
+          ]
+        }
+      ],
+      "choice_providers": [
+        {
+          "key": "avowed-alignment",
+          "label": "Pledge Alignment",
+          "feature_tokens": ["pledge-alignment"],
+          "fixed_options": [
+            {"key": "chaos", "name": "Chaos"}, {"key": "evil", "name": "Evil"},
+            {"key": "good", "name": "Good"}, {"key": "law", "name": "Law"},
+            {"key": "neutral", "name": "True Neutral"}
+          ],
+          "description": "Choose an alignment the Avowed possesses; it controls Smite, Divine Touch, Channel Divinity, and pledge abilities."
+        },
+        {
+          "key": "avowed-pledge",
+          "label": "Avowed Pledge",
+          "feature_tokens": ["pledge"],
+          "fixed_options": [
+            {"key": "agency", "name": "Pledge of Agency"}, {"key": "animism", "name": "Pledge of Animism"},
+            {"key": "antimagic", "name": "Pledge of Antimagic"}, {"key": "condemnation", "name": "Pledge of Condemnation"},
+            {"key": "continuity", "name": "Pledge of Continuity"}, {"key": "cruelty", "name": "Pledge of Cruelty"},
+            {"key": "discretion", "name": "Pledge of Discretion"}, {"key": "freedom", "name": "Pledge of Freedom"},
+            {"key": "justice", "name": "Pledge of Justice"}, {"key": "legend", "name": "Pledge of Legend"},
+            {"key": "many", "name": "Pledge of Many"}, {"key": "order", "name": "Pledge of Order"},
+            {"key": "purity", "name": "Pledge of Purity"}
+          ],
+          "description": "The pledge grants its class skill and level 3, 6, 8, and 20 abilities."
+        },
+        {
+          "key": "avowed-divine-bond",
+          "label": "Avowed Divine Bond",
+          "feature_tokens": ["divine-bond"],
+          "minimum_class_level": 5,
+          "fixed_options": [
+            {"key": "spiritual-armament", "name": "Spiritual Armament", "description": "Enhance a chosen weapon, armor, or shield."},
+            {"key": "spiritual-ally", "name": "Spiritual Ally", "description": "Gain an intelligent animal companion using full Avowed level."}
+          ]
+        }
+      ],
+      "audit_ignore_mechanics": ["bond", "mercy"],
+      "system_features": ["smite", "divine-touch", "channel-divinity"]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:antipaladin:champion-of-the-cause",
+      "choice_providers": [
+        {
+          "key": "champion-cause-bond",
+          "label": "Champion's Bond",
+          "feature_tokens": ["divine-bond", "fiendish-boon"],
+          "minimum_class_level": 5,
+          "fixed_options": [
+            {"key": "incarnation", "name": "Incarnation Form", "description": "Gain the Alteration sphere and a deity-linked incarnation trait."},
+            {"key": "herald", "name": "Divine Herald", "description": "Gain a Bound Creature herald whose Conjuration statistics use class level as caster level."}
+          ]
+        }
+      ]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:antipaladin:grand-purifier",
+      "choice_providers": [
+        {
+          "key": "grand-purifier-condemnations",
+          "label": "Condemnations",
+          "feature_tokens": ["condemnation"],
+          "minimum": 0,
+          "maximum_levels": [3, 6, 9, 12, 15, 18],
+          "fixed_options": [
+            {"key": "aggravated", "name": "Aggravated"}, {"key": "bleeding", "name": "Bleeding"},
+            {"key": "confused", "name": "Confused"}, {"key": "crippled", "name": "Crippled"},
+            {"key": "dazed", "name": "Dazed"}, {"key": "entombed", "name": "Entombed"},
+            {"key": "exiled", "name": "Exiled"}, {"key": "fatigued", "name": "Fatigued"},
+            {"key": "illuminated", "name": "Illuminated"}, {"key": "lowered", "name": "Lowered"},
+            {"key": "maimed", "name": "Maimed"}, {"key": "pained", "name": "Pained"},
+            {"key": "shaken", "name": "Shaken"}, {"key": "slowed", "name": "Slowed"},
+            {"key": "teleported", "name": "Teleported"}
+          ],
+          "description": "Choose one condemnation at 3rd level and every 3 levels thereafter. One may be added to an attack action by spending a spell point or martial focus."
+        }
+      ]
+    },
+
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:mutagenic-mauler",
+      "resource_modules": [
+        {
+          "key": "mutagenic_mauler",
+          "title": "Mutagenic Mauler",
+          "governing_ability": "strength",
+          "resources": [
+            {"key": "mutagen", "name": "Mutagen", "feature_tokens": ["mutagen"], "progression": "one", "description": "Prepare one mutagen using Brawler level as Alchemist level. Choose the enhanced physical ability when activating it; Greater Mutagen unlocks at 12th level.", "can_activate": true, "activate_on_spend": true, "choice_options": ["Strength", "Dexterity", "Constitution"], "recover_on_full_rest": false}
+          ]
+        }
+      ],
+      "system_features": ["mutagen"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:snakebite-striker",
+      "resource_modules": [
+        {
+          "key": "snakebite_striker",
+          "title": "Snakebite Striker",
+          "governing_ability": "dexterity",
+          "resources": [
+            {"key": "sneak_attack", "name": "Sneak Attack Applies", "feature_tokens": ["sneak-attack"], "progression": "one", "description": "Toggle when the target is flanked or denied Dexterity to AC. Damage advances at Brawler levels 1, 6, 10, 12, and 20.", "can_activate": true, "recover_on_full_rest": false, "end_on_full_rest": false, "extra_damage_levels": [1, 6, 10, 12, 20], "extra_damage_die": "d6", "extra_damage_type": "precision"}
+          ]
+        }
+      ],
+      "system_features": ["sneak-attack"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:strangler",
+      "resource_modules": [
+        {
+          "key": "strangler",
+          "title": "Strangler",
+          "governing_ability": "strength",
+          "resources": [
+            {"key": "sneak_attack", "name": "Strangle Damage Applies", "feature_tokens": ["strangle"], "progression": "one", "description": "Toggle after a successful grapple check to damage or pin. Strangle damage advances at levels 1, 2, 8, and 15.", "can_activate": true, "recover_on_full_rest": false, "end_on_full_rest": false, "extra_damage_levels": [1, 2, 8, 15], "extra_damage_die": "d6", "extra_damage_type": "precision"}
+          ]
+        }
+      ],
+      "system_features": ["strangle"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:wild-child",
+      "system_features": ["animal-companion"],
+      "choice_handling": "automatic",
+      "choice_handling_note": "The Wild Child companion uses full Brawler level as effective Druid level. Exchanged bonus-feat slots are removed by the shared advancement resolver."
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:winding-path-renegade",
+      "choice_providers": [
+        {
+          "key": "winding-path-school",
+          "label": "School Focus",
+          "feature_tokens": ["school-focus"],
+          "minimum_class_level": 2,
+          "fixed_options": [
+            {"key": "unblinking-flame", "name": "Mystery of Unblinking Flame", "description": "Enhancement speed, grapple fire, and liquid-flame escape abilities."},
+            {"key": "unfolding-wind", "name": "Mystery of Unfolding Wind", "description": "Longer range increments, Deflect Arrows, supernatural leaps, and projectile redirection."},
+            {"key": "untwisting-iron", "name": "Mystery of Untwisting Iron", "description": "Masterwork metal gear, metal crafting benefits, and adamantine attacks."}
+          ]
+        }
+      ],
+      "audit_ignore_mechanics": ["mystery"]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:brawler:prescient-pugilist",
+      "choice_providers": [
+        {
+          "key": "prescient-combat-sphere",
+          "label": "Prescient Combat Sphere",
+          "feature_tokens": ["prescient-combat"],
+          "fixed_options": [
+            {"key": "boxing", "name": "Boxing", "description": "Gain Boxing as the bonus combat sphere; unlocks Patience portent strikes."},
+            {"key": "open-hand", "name": "Open Hand", "description": "Gain Open Hand as the bonus combat sphere; unlocks Finesse portent strikes."}
+          ],
+          "description": "Divination must be the first magic sphere. Choose Boxing or Open Hand as the bonus combat sphere."
+        }
+      ],
+      "audit_ignore_mechanics": ["mystery"]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:brawler:mechanized-brawler",
+      "choice_providers": [
+        {
+          "key": "mechanized-technical-combinations",
+          "label": "Technical Combinations",
+          "feature_tokens": ["technical-combination"],
+          "minimum": 0,
+          "maximum_levels": [4, 4, 8, 12, 16, 20],
+          "fixed_options": [
+            {"key": "create-opening", "name": "Create Opening"}, {"key": "evade", "name": "Evade [reaction]"},
+            {"key": "fatality", "name": "Fatality"}, {"key": "lightning-motion", "name": "Lightning Motion"},
+            {"key": "rapid-followup", "name": "Rapid Followup"}, {"key": "restock", "name": "Restock"},
+            {"key": "ringer", "name": "Ringer"}, {"key": "overturn", "name": "Overturn"},
+            {"key": "push", "name": "Push"}, {"key": "retry", "name": "Retry"},
+            {"key": "seize", "name": "Seize"}, {"key": "spree", "name": "Spree"},
+            {"key": "withstand", "name": "Withstand [reaction]"}
+          ],
+          "description": "Choose two combinations at 4th level and another every 4 levels thereafter. Selections may change when gizmos are maintained each day."
+        }
+      ]
+    }
+  ]
+}

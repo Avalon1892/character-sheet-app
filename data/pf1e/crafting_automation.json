@@ -1,0 +1,1394 @@
+{
+  "version": 1,
+  "entries": {
+    "craft:aon:item:advancing": {
+      "review": ""
+    },
+    "craft:aon:item:alchemist-s-atlatl": {
+      "review": ""
+    },
+    "craft:aon:item:aldori-dueling-armor": {
+      "review": ""
+    },
+    "craft:aon:item:alluring-golden-apple": {
+      "review": ""
+    },
+    "craft:aon:item:amorphous": {
+      "review": ""
+    },
+    "craft:aon:item:amulet-of-dragon-s-breath": {
+      "review": ""
+    },
+    "craft:aon:item:anarchic": {
+      "alignment": "chaotic",
+      "review": ""
+    },
+    "craft:aon:item:aquatic-cummerbund": {
+      "review": ""
+    },
+    "craft:aon:item:arachnid-goggles": {
+      "review": ""
+    },
+    "craft:aon:item:arachnid-s-fang": {
+      "review": ""
+    },
+    "craft:aon:item:archon-s-torch": {
+      "review": ""
+    },
+    "craft:aon:item:armiger-s-panoply": {
+      "review": ""
+    },
+    "craft:aon:item:armor-of-the-pious": {
+      "review": ""
+    },
+    "craft:aon:item:arrow-slicer": {
+      "review": ""
+    },
+    "craft:aon:item:assassin-s-sight": {
+      "review": ""
+    },
+    "craft:aon:item:assassin-s-sight-greater": {
+      "review": ""
+    },
+    "craft:aon:item:avalanche-sling-staff": {
+      "review": ""
+    },
+    "craft:aon:item:axiomatic": {
+      "alignment": "lawful",
+      "review": ""
+    },
+    "craft:aon:item:balm-of-impish-grace": {
+      "review": ""
+    },
+    "craft:aon:item:bastard-s-sting": {
+      "alignment": "evil",
+      "review": ""
+    },
+    "craft:aon:item:belt-of-mighty-hurling-lesser": {
+      "review": ""
+    },
+    "craft:aon:item:bitter-widow-s-veil": {
+      "review": ""
+    },
+    "craft:aon:item:blackfingers-apron": {
+      "review": ""
+    },
+    "craft:aon:item:bloodstained-gloves": {
+      "review": ""
+    },
+    "craft:aon:item:bottle-of-shifting-sand": {
+      "review": ""
+    },
+    "craft:aon:item:bracelets-of-defiant-wind": {
+      "review": ""
+    },
+    "craft:aon:item:bracers-of-falcon-s-aim": {
+      "review": ""
+    },
+    "craft:aon:item:branding-iron-of-tracking": {
+      "review": ""
+    },
+    "craft:aon:item:breaking": {
+      "spell_any": [
+        [
+          "break",
+          "shatter"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:brinya-s-love": {
+      "review": ""
+    },
+    "craft:aon:item:burdenless": {
+      "review": ""
+    },
+    "craft:aon:item:burning": {
+      "review": ""
+    },
+    "craft:aon:item:calistrian-kiss": {
+      "review": ""
+    },
+    "craft:aon:item:caller-s-feather": {
+      "spell_any": [
+        [
+          "planar ally",
+          "planar binding"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:candle-of-abaddon": {
+      "alignment": "evil",
+      "review": ""
+    },
+    "craft:aon:item:cassock-of-the-black-monk": {
+      "review": ""
+    },
+    "craft:aon:item:cave-dweller-s-greataxe": {
+      "review": ""
+    },
+    "craft:aon:item:caver-s-bolt": {
+      "review": ""
+    },
+    "craft:aon:item:celestial-armor": {
+      "alignment": "good",
+      "review": ""
+    },
+    "craft:aon:item:celestial-plate-armor": {
+      "alignment": "good",
+      "review": ""
+    },
+    "craft:aon:item:chariot-of-the-conqueror": {
+      "review": ""
+    },
+    "craft:aon:item:choker-of-the-siphoning-scorpion": {
+      "review": ""
+    },
+    "craft:aon:item:clandestine-voucher": {
+      "review": ""
+    },
+    "craft:aon:item:cloak-of-the-sneaky-scoundrel": {
+      "review": ""
+    },
+    "craft:aon:item:closing-offer": {
+      "review": ""
+    },
+    "craft:aon:item:cloud-engineer-badge": {
+      "review": ""
+    },
+    "craft:aon:item:cockatrice-grit": {
+      "spell_any": [
+        [
+          "calcific flesh",
+          "flesh to stone"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:cocoon-cloak": {
+      "review": ""
+    },
+    "craft:aon:item:collar-of-obedience": {
+      "spell_any": [
+        [
+          "charm animal",
+          "mind fog"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:conserving": {
+      "review": ""
+    },
+    "craft:aon:item:contract-rings": {
+      "review": ""
+    },
+    "craft:aon:item:corpse-puppet": {
+      "review": ""
+    },
+    "craft:aon:item:crag-linnorm-plate": {
+      "review": ""
+    },
+    "craft:aon:item:crook-of-unseen-forces": {
+      "review": ""
+    },
+    "craft:aon:item:cutlass-of-waves": {
+      "review": ""
+    },
+    "craft:aon:item:cutthroat-s-apprentice": {
+      "review": ""
+    },
+    "craft:aon:item:cyclonic": {
+      "review": ""
+    },
+    "craft:aon:item:dagger-of-doubling": {
+      "review": ""
+    },
+    "craft:aon:item:daggermark-blade": {
+      "review": ""
+    },
+    "craft:pathfinder:weapons-and-ammo:SaqK3M2iajFdkajc": {
+      "spell_any": [
+        [
+          "summon monster IV",
+          "summon nature's ally IV"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:darklands-goggles": {
+      "review": ""
+    },
+    "craft:aon:item:darkskull": {
+      "alignment": "evil",
+      "review": ""
+    },
+    "craft:aon:item:dazzling": {
+      "review": ""
+    },
+    "craft:aon:item:defending": {
+      "spell_any": [
+        [
+          "shield",
+          "shield of faith"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:dervish-sikke": {
+      "review": ""
+    },
+    "craft:aon:item:designating-greater": {
+      "review": ""
+    },
+    "craft:aon:item:designating-lesser": {
+      "review": ""
+    },
+    "craft:aon:item:devil-s-key": {
+      "alignment": "good",
+      "review": ""
+    },
+    "craft:aon:item:diabolus-bell": {
+      "review": ""
+    },
+    "craft:aon:item:dimensional-grenade": {
+      "review": ""
+    },
+    "craft:aon:item:dinosaur-killer": {
+      "review": ""
+    },
+    "craft:aon:item:dirgesinger-s-choir": {
+      "alignment": "evil",
+      "review": ""
+    },
+    "craft:aon:item:discordant-piccolo": {
+      "review": ""
+    },
+    "craft:aon:item:distracting": {
+      "review": ""
+    },
+    "craft:aon:item:distracting-greater": {
+      "review": ""
+    },
+    "craft:aon:item:dragon-s-tail": {
+      "review": ""
+    },
+    "craft:aon:item:driving": {
+      "review": ""
+    },
+    "craft:aon:item:dry-load": {
+      "review": ""
+    },
+    "craft:aon:item:dry-load-powder-horn": {
+      "review": ""
+    },
+    "craft:aon:item:dueling-cuffs": {
+      "review": ""
+    },
+    "craft:aon:item:dust-bolt": {
+      "review": ""
+    },
+    "craft:aon:item:eagle-cape": {
+      "review": ""
+    },
+    "craft:aon:item:effigy-of-anubis": {
+      "review": ""
+    },
+    "craft:aon:item:elemental-storing-stone": {
+      "review": ""
+    },
+    "craft:aon:item:elephant-shield": {
+      "review": ""
+    },
+    "craft:aon:item:elixir-of-dragon-breath": {
+      "review": ""
+    },
+    "craft:aon:item:enchanted-eelskin": {
+      "review": ""
+    },
+    "craft:aon:item:enervative-shadowcraft-weapon": {
+      "review": ""
+    },
+    "craft:aon:item:evidentiary-dust": {
+      "review": ""
+    },
+    "craft:aon:item:evolving": {
+      "review": ""
+    },
+    "craft:aon:item:eyes-of-keen-sight": {
+      "review": ""
+    },
+    "craft:aon:item:eyes-of-the-damned": {
+      "review": ""
+    },
+    "craft:aon:item:fanged-falchion": {
+      "alignment": "evil",
+      "review": ""
+    },
+    "craft:aon:item:feather-step-slippers": {
+      "review": ""
+    },
+    "craft:aon:item:fist-of-the-pit": {
+      "review": ""
+    },
+    "craft:aon:item:flying-platform": {
+      "review": ""
+    },
+    "craft:aon:item:focused-shadowcraft-weapon": {
+      "review": ""
+    },
+    "craft:aon:item:folding": {
+      "review": ""
+    },
+    "craft:aon:item:fortification-heavy": {
+      "spell_any": [
+        [
+          "limited wish",
+          "miracle"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:fortification-light": {
+      "spell_any": [
+        [
+          "limited wish",
+          "miracle"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:fortification-moderate": {
+      "spell_any": [
+        [
+          "limited wish",
+          "miracle"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:frontovik-s-gas-mask": {
+      "review": ""
+    },
+    "craft:aon:item:frost": {
+      "spell_any": [
+        [
+          "chill metal",
+          "ice storm"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:frost-thunder-hammer": {
+      "review": ""
+    },
+    "craft:aon:item:frostbite-sling": {
+      "review": ""
+    },
+    "craft:aon:item:frozen-crossbow": {
+      "review": ""
+    },
+    "craft:aon:item:fuming-blood-sabre": {
+      "review": ""
+    },
+    "craft:aon:item:gale-armor": {
+      "review": ""
+    },
+    "craft:aon:item:getaway-boots": {
+      "review": ""
+    },
+    "craft:pathfinder:items:LhK9F6eKvWKfwQyw": {
+      "review": ""
+    },
+    "craft:aon:item:ghoul-stone": {
+      "review": ""
+    },
+    "craft:aon:item:globe-of-moonlight": {
+      "review": ""
+    },
+    "craft:aon:item:gloves-of-personal-purity": {
+      "review": ""
+    },
+    "craft:aon:item:goblin-fire-drum-greater": {
+      "review": ""
+    },
+    "craft:aon:item:goblin-fire-drum-normal": {
+      "review": ""
+    },
+    "craft:aon:item:golden-judge-s-breastplate": {
+      "review": ""
+    },
+    "craft:aon:item:gorthek-masks": {
+      "review": ""
+    },
+    "craft:aon:item:gourd-of-fire-burping": {
+      "spell_any": [
+        [
+          "burning hands",
+          "produce flame"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:grasping-bolas": {
+      "spell_any": [
+        [
+          "animate rope",
+          "entangle"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:greenblood-scourge": {
+      "review": ""
+    },
+    "craft:aon:item:groundbreaker-cloak": {
+      "review": ""
+    },
+    "craft:aon:item:guerrilla-bandanna": {
+      "review": ""
+    },
+    "craft:aon:item:gunfighter-s-poncho": {
+      "review": ""
+    },
+    "craft:aon:item:habit-of-the-winter-explorer": {
+      "review": ""
+    },
+    "craft:aon:item:harp-of-shattering": {
+      "review": ""
+    },
+    "craft:aon:item:headband-of-fortune-s-favor": {
+      "spell_any": [
+        [
+          "ill omen",
+          "prayer"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:headband-of-ponderous-recollection": {
+      "review": ""
+    },
+    "craft:aon:item:holy": {
+      "alignment": "good",
+      "review": ""
+    },
+    "craft:aon:item:holy-avenger": {
+      "alignment": "good",
+      "review": ""
+    },
+    "craft:aon:item:horseshoes-of-sacred-silver": {
+      "alignment": "good",
+      "review": ""
+    },
+    "craft:aon:item:hourglass-quarterstaff": {
+      "review": ""
+    },
+    "craft:aon:item:husk-dart": {
+      "review": ""
+    },
+    "craft:aon:item:icelink-chainmail": {
+      "review": ""
+    },
+    "craft:aon:item:icy-burst": {
+      "spell_any": [
+        [
+          "chill metal",
+          "ice storm"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:pathfinder:items:h1GslSKVNZbAYoxs": {
+      "review": ""
+    },
+    "craft:aon:item:instant-muzzle": {
+      "review": ""
+    },
+    "craft:aon:item:interfering": {
+      "review": ""
+    },
+    "craft:aon:item:ironmorph-dust": {
+      "review": ""
+    },
+    "craft:aon:item:jaunt-boots": {
+      "review": ""
+    },
+    "craft:aon:item:judicial-hammer": {
+      "review": ""
+    },
+    "craft:aon:item:kalistocrat-s-gloves": {
+      "review": ""
+    },
+    "craft:aon:item:kinsight-goggles": {
+      "review": ""
+    },
+    "craft:aon:item:labrys-of-the-stone-idol": {
+      "review": ""
+    },
+    "craft:aon:item:lacerating-rapier": {
+      "review": ""
+    },
+    "craft:aon:item:lantern-of-concealment": {
+      "review": ""
+    },
+    "craft:aon:item:lash-of-the-howler": {
+      "review": ""
+    },
+    "craft:aon:item:legbreaker": {
+      "review": ""
+    },
+    "craft:aon:item:legion-armor": {
+      "review": ""
+    },
+    "craft:aon:item:lepidstadt-investigator-s-hat": {
+      "review": ""
+    },
+    "craft:aon:item:levitating-land-mine": {
+      "review": ""
+    },
+    "craft:aon:item:liberator-s-rod": {
+      "review": ""
+    },
+    "craft:aon:item:life-link-badge": {
+      "review": ""
+    },
+    "craft:aon:item:lizardmarked-blade": {
+      "review": ""
+    },
+    "craft:aon:item:loathsome-mirror": {
+      "review": ""
+    },
+    "craft:aon:item:locust-cuirass": {
+      "review": ""
+    },
+    "craft:aon:item:luck-blade-0-wishes": {
+      "spell_any": [
+        [
+          "miracle",
+          "wish"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:luck-blade-1-wish": {
+      "spell_any": [
+        [
+          "miracle",
+          "wish"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:luck-blade-2-wishes": {
+      "spell_any": [
+        [
+          "miracle",
+          "wish"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:luck-blade-3-wishes": {
+      "spell_any": [
+        [
+          "miracle",
+          "wish"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:lucky-drunk-s-mail": {
+      "review": ""
+    },
+    "craft:aon:item:maelstrom-shield": {
+      "review": ""
+    },
+    "craft:aon:item:maintenance-overseer-s-ring": {
+      "review": ""
+    },
+    "craft:aon:item:manual-of-bodily-health-1": {
+      "spell_any": [
+        [
+          "wish",
+          "miracle"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:manual-of-bodily-health-2": {
+      "spell_any": [
+        [
+          "wish",
+          "miracle"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:manual-of-bodily-health-3": {
+      "spell_any": [
+        [
+          "wish",
+          "miracle"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:manual-of-bodily-health-4": {
+      "spell_any": [
+        [
+          "wish",
+          "miracle"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:manual-of-bodily-health-5": {
+      "spell_any": [
+        [
+          "wish",
+          "miracle"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:manual-of-gainful-exercise-1": {
+      "spell_any": [
+        [
+          "wish",
+          "miracle"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:manual-of-gainful-exercise-2": {
+      "spell_any": [
+        [
+          "wish",
+          "miracle"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:manual-of-gainful-exercise-3": {
+      "spell_any": [
+        [
+          "wish",
+          "miracle"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:manual-of-gainful-exercise-4": {
+      "spell_any": [
+        [
+          "wish",
+          "miracle"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:manual-of-gainful-exercise-5": {
+      "spell_any": [
+        [
+          "wish",
+          "miracle"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:manual-of-quickness-of-action-1": {
+      "spell_any": [
+        [
+          "wish",
+          "miracle"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:manual-of-quickness-of-action-2": {
+      "spell_any": [
+        [
+          "wish",
+          "miracle"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:manual-of-quickness-of-action-3": {
+      "spell_any": [
+        [
+          "wish",
+          "miracle"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:manual-of-quickness-of-action-4": {
+      "spell_any": [
+        [
+          "wish",
+          "miracle"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:manual-of-quickness-of-action-5": {
+      "spell_any": [
+        [
+          "wish",
+          "miracle"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:marker-s-monocle": {
+      "review": ""
+    },
+    "craft:aon:item:marrowcracker": {
+      "review": ""
+    },
+    "craft:aon:item:master-vidlian-s-squeeze-box": {
+      "review": ""
+    },
+    "craft:aon:item:mastering": {
+      "review": ""
+    },
+    "craft:aon:item:merciful-vambraces": {
+      "review": ""
+    },
+    "craft:aon:item:merging": {
+      "review": ""
+    },
+    "craft:aon:item:migrus-locker": {
+      "spell_any": [
+        [
+          "reincarnate",
+          "stone to flesh"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:monk-s-robe": {
+      "spell_any": [
+        [
+          "righteous might",
+          "transformation"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:mountebank-s-megaphone": {
+      "review": ""
+    },
+    "craft:aon:item:murktouch-cloak": {
+      "review": ""
+    },
+    "craft:aon:item:music-box-trap": {
+      "review": ""
+    },
+    "craft:aon:item:naga-scale-bindi": {
+      "review": ""
+    },
+    "craft:aon:item:nagaji-scale-polish": {
+      "spell_any": [
+        [
+          "imbue with spell ability",
+          "mnemonic enhancer"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:nimble-shot": {
+      "review": ""
+    },
+    "craft:aon:item:numerian-resistance-plate": {
+      "review": ""
+    },
+    "craft:aon:item:ominous": {
+      "spell_any": [
+        [
+          "doom",
+          "scare"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:ornament-of-healing-light": {
+      "review": ""
+    },
+    "craft:aon:item:painspike-armor": {
+      "review": ""
+    },
+    "craft:aon:item:pale-maiden-0-wishes": {
+      "spell_any": [
+        [
+          "miracle",
+          "wish"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:pale-maiden-1-wish": {
+      "spell_any": [
+        [
+          "miracle",
+          "wish"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:pale-maiden-2-wishes": {
+      "spell_any": [
+        [
+          "miracle",
+          "wish"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:pale-maiden-3-wishes": {
+      "spell_any": [
+        [
+          "miracle",
+          "wish"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:pantheistic-clasp": {
+      "review": ""
+    },
+    "craft:aon:item:pauper-s-robes": {
+      "review": ""
+    },
+    "craft:aon:item:pelt-of-the-demon-mother": {
+      "review": ""
+    },
+    "craft:aon:item:penetrating": {
+      "review": ""
+    },
+    "craft:aon:item:penumbra-tattoo": {
+      "review": ""
+    },
+    "craft:aon:item:perfection-leather": {
+      "review": ""
+    },
+    "craft:aon:item:perfectionist-shavtoosh": {
+      "review": ""
+    },
+    "craft:aon:item:periapt-of-devotion": {
+      "review": ""
+    },
+    "craft:aon:item:perilous-gloves": {
+      "review": ""
+    },
+    "craft:aon:item:phalanx-shield": {
+      "review": ""
+    },
+    "craft:aon:item:phantasmal": {
+      "review": ""
+    },
+    "craft:aon:item:phoenix-feather": {
+      "alignment": "good",
+      "review": ""
+    },
+    "craft:aon:item:pirate-s-arm": {
+      "review": ""
+    },
+    "craft:aon:item:planefarer-s-band": {
+      "review": ""
+    },
+    "craft:aon:item:poison-popcushion": {
+      "review": ""
+    },
+    "craft:aon:item:poltergeist-knot": {
+      "review": ""
+    },
+    "craft:aon:item:preyfinder": {
+      "review": ""
+    },
+    "craft:aon:item:propitious-metumbe": {
+      "review": ""
+    },
+    "craft:aon:item:pyroclastic-spike": {
+      "review": ""
+    },
+    "craft:aon:item:quicksand-cloak": {
+      "review": ""
+    },
+    "craft:aon:item:raiment-of-chains": {
+      "review": ""
+    },
+    "craft:aon:item:ramming": {
+      "review": ""
+    },
+    "craft:aon:item:redeemed": {
+      "alignment": "good",
+      "review": ""
+    },
+    "craft:aon:item:restful": {
+      "review": ""
+    },
+    "craft:aon:item:rimeheart-amulet": {
+      "review": ""
+    },
+    "craft:aon:item:ring-of-the-faithful-dead": {
+      "review": ""
+    },
+    "craft:aon:item:ring-of-the-grasping-grave": {
+      "review": ""
+    },
+    "craft:aon:item:ring-of-three-wishes": {
+      "spell_any": [
+        [
+          "miracle",
+          "wish"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:rod-of-the-aboleth": {
+      "review": ""
+    },
+    "craft:aon:item:rod-of-the-python": {
+      "alignment": "good",
+      "review": ""
+    },
+    "craft:aon:item:rod-of-the-viper": {
+      "alignment": "evil",
+      "review": ""
+    },
+    "craft:pathfinder:items:6DhqaqxvKCOCRY4h": {
+      "alignment": "chaotic",
+      "review": ""
+    },
+    "craft:aon:item:rusting-teeth-of-the-rough-beast": {
+      "review": ""
+    },
+    "craft:aon:item:rythius-the-kyton-scourge": {
+      "alignment": "good",
+      "review": ""
+    },
+    "craft:aon:item:saddle-of-the-sky-river": {
+      "review": ""
+    },
+    "craft:aon:item:saliharion": {
+      "review": ""
+    },
+    "craft:aon:item:sandals-of-quick-reaction": {
+      "review": ""
+    },
+    "craft:aon:item:sapling-rod": {
+      "review": ""
+    },
+    "craft:aon:item:sapping": {
+      "review": ""
+    },
+    "craft:aon:item:scarab-shield": {
+      "review": ""
+    },
+    "craft:aon:item:scepter-of-heaven": {
+      "alignment": "good",
+      "review": ""
+    },
+    "craft:aon:item:scope-of-stormsight": {
+      "review": ""
+    },
+    "craft:aon:item:scorpion-tail-whip": {
+      "review": ""
+    },
+    "craft:aon:item:sea-banshee-coat": {
+      "review": ""
+    },
+    "craft:aon:item:seaborne": {
+      "review": ""
+    },
+    "craft:aon:item:seafoam-shawl": {
+      "review": ""
+    },
+    "craft:aon:item:second-chance": {
+      "review": ""
+    },
+    "craft:aon:item:seer-s-tea": {
+      "spell_any": [
+        [
+          "augury",
+          "divination"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:serpentine-choker": {
+      "review": ""
+    },
+    "craft:aon:item:shadowcraft-weapon": {
+      "review": ""
+    },
+    "craft:aon:item:shattering": {
+      "spell_any": [
+        [
+          "break",
+          "shatter"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:shepsi-ak-s-funerary-mask": {
+      "review": ""
+    },
+    "craft:aon:item:shock": {
+      "spell_any": [
+        [
+          "call lightning",
+          "lightning bolt"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:shocking-burst": {
+      "spell_any": [
+        [
+          "call lightning",
+          "lightning bolt"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:skullcrusher-gauntlets": {
+      "review": ""
+    },
+    "craft:aon:item:slippers-of-the-triton": {
+      "review": ""
+    },
+    "craft:aon:item:smuggler-s-sling": {
+      "review": ""
+    },
+    "craft:aon:item:snakebite": {
+      "review": ""
+    },
+    "craft:aon:item:sniping": {
+      "review": ""
+    },
+    "craft:aon:item:snowshoes-of-northern-pursuit": {
+      "review": ""
+    },
+    "craft:aon:item:soultether-ring": {
+      "spell_any": [
+        [
+          "soul bind",
+          "true resurrection"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:spendthrift-spectacles": {
+      "review": ""
+    },
+    "craft:pathfinder:items:X1UZmjTV5TT0qdl7": {
+      "review": ""
+    },
+    "craft:aon:item:staff-of-defense": {
+      "alignment": "lawful",
+      "review": ""
+    },
+    "craft:aon:item:staff-of-wings": {
+      "review": ""
+    },
+    "craft:aon:item:starfaring-robes": {
+      "review": ""
+    },
+    "craft:aon:item:steaming": {
+      "review": ""
+    },
+    "craft:aon:item:steel-mind-cap": {
+      "review": ""
+    },
+    "craft:aon:item:summon-bane": {
+      "spell_any": [
+        [
+          "summon monster IV",
+          "summon nature's ally IV"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:summoner-s-robe": {
+      "spell_any": [
+        [
+          "summon monster IX",
+          "summon nature's ally IX"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:sun-blade": {
+      "alignment": "good",
+      "review": ""
+    },
+    "craft:aon:item:surefooted-shield": {
+      "review": ""
+    },
+    "craft:aon:item:swarm-bullet": {
+      "review": ""
+    },
+    "craft:aon:item:sword-of-tempests": {
+      "spell_any": [
+        [
+          "summon monster IV",
+          "summon nature's ally IV"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:sword-of-vengeance": {
+      "alignment": "good",
+      "review": ""
+    },
+    "craft:aon:item:talisman-of-spying": {
+      "review": ""
+    },
+    "craft:aon:item:talmandor-blade": {
+      "alignment": "good",
+      "review": ""
+    },
+    "craft:aon:item:talonstrike-sword": {
+      "spell_any": [
+        [
+          "dimensional anchor, shield",
+          "shield of faith"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:pathfinder:weapons-and-ammo:62WMCpS2zAVnC5ny": {
+      "review": ""
+    },
+    "craft:aon:item:thorned-manacles": {
+      "review": ""
+    },
+    "craft:aon:item:tome-of-clear-thought-1": {
+      "spell_any": [
+        [
+          "miracle",
+          "wish"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:tome-of-clear-thought-2": {
+      "spell_any": [
+        [
+          "miracle",
+          "wish"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:tome-of-clear-thought-3": {
+      "spell_any": [
+        [
+          "miracle",
+          "wish"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:tome-of-clear-thought-4": {
+      "spell_any": [
+        [
+          "miracle",
+          "wish"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:tome-of-clear-thought-5": {
+      "spell_any": [
+        [
+          "miracle",
+          "wish"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:tome-of-leadership-and-influence-1": {
+      "spell_any": [
+        [
+          "miracle",
+          "wish"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:tome-of-leadership-and-influence-2": {
+      "spell_any": [
+        [
+          "miracle",
+          "wish"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:tome-of-leadership-and-influence-3": {
+      "spell_any": [
+        [
+          "miracle",
+          "wish"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:tome-of-leadership-and-influence-4": {
+      "spell_any": [
+        [
+          "miracle",
+          "wish"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:tome-of-leadership-and-influence-5": {
+      "spell_any": [
+        [
+          "miracle",
+          "wish"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:tome-of-understanding-1": {
+      "spell_any": [
+        [
+          "miracle",
+          "wish"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:tome-of-understanding-2": {
+      "spell_any": [
+        [
+          "miracle",
+          "wish"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:tome-of-understanding-3": {
+      "spell_any": [
+        [
+          "miracle",
+          "wish"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:tome-of-understanding-4": {
+      "spell_any": [
+        [
+          "miracle",
+          "wish"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:tome-of-understanding-5": {
+      "spell_any": [
+        [
+          "miracle",
+          "wish"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:torc-of-enmity": {
+      "review": ""
+    },
+    "craft:aon:item:toxin-sponge": {
+      "review": ""
+    },
+    "craft:aon:item:traitorous-blaster": {
+      "review": ""
+    },
+    "craft:aon:item:traveler-s-translator": {
+      "review": ""
+    },
+    "craft:aon:item:true-love-locket": {
+      "review": ""
+    },
+    "craft:aon:item:truecolor-dye": {
+      "spell_any": [
+        [
+          "detect good",
+          "detect evil"
+        ]
+      ],
+      "review": ""
+    },
+    "craft:aon:item:truefrost-elixir": {
+      "review": ""
+    },
+    "craft:aon:item:unbound": {
+      "alignment": "chaotic",
+      "review": ""
+    },
+    "craft:aon:item:unholy": {
+      "alignment": "evil",
+      "review": ""
+    },
+    "craft:aon:item:ushabti-of-the-willing-servant": {
+      "review": ""
+    },
+    "craft:aon:item:vagrant-s-hood": {
+      "review": ""
+    },
+    "craft:aon:item:veiled-chain": {
+      "review": ""
+    },
+    "craft:aon:item:vengeful-kiss": {
+      "review": ""
+    },
+    "craft:aon:item:vigilant": {
+      "alignment": "lawful",
+      "review": ""
+    },
+    "craft:aon:item:virulent": {
+      "review": ""
+    },
+    "craft:aon:item:volatile-vaporizer-1st": {
+      "review": ""
+    },
+    "craft:aon:item:volatile-vaporizer-2nd": {
+      "review": ""
+    },
+    "craft:aon:item:volatile-vaporizer-3rd": {
+      "review": ""
+    },
+    "craft:aon:item:vulnerability-bolt": {
+      "review": ""
+    },
+    "craft:aon:item:warbringer": {
+      "review": ""
+    },
+    "craft:aon:item:wayfinder-of-the-stars": {
+      "review": ""
+    },
+    "craft:aon:item:wayfinder-of-zephyrs": {
+      "review": ""
+    },
+    "craft:aon:item:weirding-watch": {
+      "review": ""
+    },
+    "craft:aon:item:wind-caller-compass": {
+      "review": ""
+    },
+    "craft:aon:item:winter-wolf-headband": {
+      "review": ""
+    },
+    "craft:aon:item:xanthuun-tablets": {
+      "review": ""
+    }
+  }
+}

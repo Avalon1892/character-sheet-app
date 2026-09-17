@@ -1,0 +1,1982 @@
+{
+  "version": 1,
+  "class_key": "pathfinder-class:occultist",
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:ancestral-aspirant",
+      "package": "pathfinder-class:occultist",
+      "name": "Ancestral Aspirant",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist Ancestral Aspirant",
+      "replaces_features": [
+        "class-skills",
+        "implements",
+        "object-reading",
+        "outside-contact"
+      ],
+      "removed_features": [
+        "class-skills",
+        "implements",
+        "object-reading",
+        "outside-contact"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Ancestral Aspirant",
+          "description": "Source Ultimate Intrigue pg. 67"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "An ancestral aspirant adds Bluff and Knowledge (nobility) to his list of class skills, instead of Knowledge (planes) and Profession.\n\nThis alters the occultist’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Family Jewels",
+          "description": "An ancestral aspirant’s implements are always objects connected to his family history. One of his starting implements must be an implement from the enchantment school."
+        },
+        {
+          "level": 1,
+          "name": "Emotional Reading",
+          "description": "An ancestral aspirant doesn’t care much about objects that didn’t belong to his ancestors, but he is keenly attuned to his relatives and fellow nobles, allowing him to read the emotions of others. If he spends 1 minute examining a creature, he learns one fact, chosen by the GM, about the creature’s current emotions. Since emotional auras are complex, this ability is unlikely to reveal the secret feelings of a professional spy; instead, it only touches upon surface emotions."
+        },
+        {
+          "level": 12,
+          "name": "Courtly Contacts",
+          "description": "Ancestral aspirants have contacts among courtly circles rather than otherworldly circles. This works similarly to outside contact except for the following differences: First, he doesn’t need to use a magic circle or make a payment (though he still expends 1 point of mental focus from his enchantment implement). Second, he can use those contacts to gather information for him (as per the Diplomacy skill to gather information) without spending the time himself, rather than asking a question and receiving a result similar to a divination. He can ask more questions over the same time period at 12th level and every 4 levels thereafter, as normal with outside contact. At 16th level, instead of delivering messages and objects, the courtly contacts can spread vicious rumors and gossip about a target throughout a settlement, causing any creatures in the settlement whose attitude toward the target wasn’t helpful to have its attitude toward the target worsened by one step. These baseless rumors last 1 week or until the target spends 8 hours refuting them and succeeds at a Diplomacy check (DC = 10 + the ancestral aspirant’s occultist level + his Intelligence modifier)."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:battle-host",
+      "package": "pathfinder-class:occultist",
+      "name": "Battle Host",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist Battle Host",
+      "replaces_features": [
+        "aura-sight",
+        "binding-circles",
+        "class-skills",
+        "fast-circles",
+        "implement-mastery",
+        "implements",
+        "magic-circles",
+        "magic-item-skill",
+        "mental-focus",
+        "object-reading",
+        "outside-contact",
+        "shift-focus",
+        "spellcasting",
+        "weapon-armor-proficiency"
+      ],
+      "removed_features": [
+        "aura-sight",
+        "binding-circles",
+        "class-skills",
+        "fast-circles",
+        "implement-mastery",
+        "implements",
+        "magic-circles",
+        "magic-item-skill",
+        "mental-focus",
+        "object-reading",
+        "outside-contact",
+        "shift-focus",
+        "spellcasting",
+        "weapon-armor-proficiency"
+      ],
+      "removed_feature_clauses": [
+        "occultist’s weapon",
+        "armor proficiency",
+        "shift focus",
+        "magic circles",
+        "binding circles",
+        "fast circles",
+        "aura sight",
+        "outside contact"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Battle Host",
+          "description": "Source Occult Adventures pg. 100"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A battle host adds Knowledge (local) (Int) and Knowledge (nobility) (Int) as class skills. This alters the occultist’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "A battle host is proficient with all simple and martial weapons and with all types of armor (heavy, light, and medium) and shields (including tower shields). This replaces the occultist’s weapon and armor proficiency."
+        },
+        {
+          "level": 1,
+          "name": "Panoply Bond",
+          "description": "At 1st level, a battle host forms a supernatural bond with a specif ic weapon, suit of armor, or shield. This selection is permanent and can never be changed. The bonded item is masterwork quality and the battle host begins play with it at no cost. The bonded item is immune to the broken condition for as long as the battle host lives. If a battle host dies and is restored to life, the bonded item is also restored if it was destroyed. Any magic powers associated with a battle host’s bonded item function only for the battle host; in the hands of anyone else it is only a masterwork item. The bonded item starts as an implement for any single school of magic at 1st level, and gains access to additional schools of magic at 2nd, 10th, 14th, and 18th levels, granting the battle host access to base focus powers and resonant powers accordingly. The battle host’s bonded item serves as his implement component to cast occultist spells of all the schools that he knows. However, he must split his mental focus among the schools he knows for the purpose of determining resonant powers and using focus powers, even though he possesses only one physical item as an implement. This ability alters implements, mental focus, spellcasting, and implement mastery."
+        },
+        {
+          "level": 2,
+          "name": "Battle Skill",
+          "description": "At 2nd level, a battle host’s magic item skill ability applies only on checks with weapons, armor, and shields. This ability alters magic item skill."
+        },
+        {
+          "level": 2,
+          "name": "Battle Reading",
+          "description": "At 2nd level, a battle host can use object reading on only weapons, armor, and shields. This ability alters object reading."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Feats",
+          "description": "At 4th, 8th, 12th, and 16th levels, a battle host gains a bonus feat in addition to those gained from normal advancement. These bonus feats must be selected from those listed as combat feats. The battle host must meet the prerequisites of these bonus feats. This ability replaces shift focus, magic circles, binding circles, and fast circles."
+        },
+        {
+          "level": 5,
+          "name": "Spirit Warrior",
+          "description": "At 5th level, a battle host can call forth the spirit of a dead warrior who once owned his bonded item. Calling the spirit is a standard action, and unlike the use of most spell-like abilities, it doesn’t provoke an attack of opportunity. This ability functions as spiritual ally (Pathfinder RPG Advanced Player’s Guide 246), using the battle host’s occultist level as his caster level and his Intelligence modifier instead of his Wisdom modifier to determine the spell’s effects. The battle host can summon a spirit warrior once per day at 5th level, plus one additional time per day for every 4 occultist levels he possesses beyond 5th. This ability replaces aura sight."
+        },
+        {
+          "level": 6,
+          "name": "Heroic Splendor",
+          "description": "At 6th level, a battle host can draw power from his bonded item to imbue himself with superhuman strength, agility, or resilience. As a swift action, a battle host can grant himself a +4 insight bonus to Strength, Dexterity, or Constitution for 1 minute. The battle host can use this ability once per day at 6th level, plus one additional time per day for every 4 occultist levels he possesses beyond 6th. If he activates heroic splendor again before the duration expires, the new use of heroic splendor replaces the old use. This ability replaces outside contact."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:construct-collector",
+      "package": "pathfinder-class:occultist",
+      "name": "Construct Collector",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist Construct Collector",
+      "replaces_features": [
+        "binding-circles",
+        "fast-circles",
+        "focus-power",
+        "magic-circles",
+        "outside-contact"
+      ],
+      "removed_features": [
+        "binding-circles",
+        "fast-circles",
+        "focus-power",
+        "magic-circles",
+        "outside-contact"
+      ],
+      "removed_feature_clauses": [
+        "focus power selected at 3rd level",
+        "9th level",
+        "and 15th level",
+        "magic circles",
+        "outside contact",
+        "binding circles",
+        "fast circles"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Construct Collector",
+          "description": "Source Construct Handbook pg. 11"
+        },
+        {
+          "level": 3,
+          "name": "Constructed Focus",
+          "description": "At 3rd level, a construct collector can harvest components from destroyed constructs to fuel his implements. Harvesting a component takes 1 minute. A construct collector can harvest a number of active components equal to his Intelligence modifier per day. An active component is infused with 1 point of generic mental focus, which the construct collector can expend to activate any focus power at that power’s normal cost, as opposed to the increased cost normally associated with generic mental focus. This otherwise functions as expending focus saved inside a construct collector’s body. Once this mental focus is expended, the component becomes inactive and is useless. An unused component does not lose its mental focus, even after a construct collector refreshes his mental focus. A construct collector can initially have only one active component at a time. He can have two active components at a time at 9th level and three active components at a time at 15th level.\n\nThis replaces the focus power selected at 3rd level, 9th level, and 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Repower Construct",
+          "description": "At 8th level, a construct collector can use his mental focus to restore and gain control of a construct. As an immediate action, he can expend a number of points of generic mental focus (minimum 2 points) to prevent a construct within 30 feet from becoming destroyed when reduced to 0 or fewer hit points. The construct immediately regains a number of hit points equal to half of the construct collector’s current hit points (minimum 1). The construct follows all of the construct collector’s orders until the end of the collector’s next turn or until reduced to 0 or fewer hit points. Afterwards, the construct is completely destroyed and cannot be repowered again, even by another construct collector. At 12th level, the construct is instead completely destroyed after a number of rounds equal to the number of points of generic mental focus expended. At 16th level, the construct is instead completely destroyed after a number of minutes equal to the number of points of generic mental focus expended.\n\nThis replaces magic circles, outside contact, binding circles, and fast circles."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:curator",
+      "package": "pathfinder-class:occultist",
+      "name": "Curator",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist Curator",
+      "replaces_features": [
+        "binding-circles",
+        "fast-circles",
+        "focus-power",
+        "implements",
+        "magic-circles",
+        "outsider-contact",
+        "shift-focus"
+      ],
+      "removed_features": [
+        "binding-circles",
+        "fast-circles",
+        "focus-power",
+        "implements",
+        "magic-circles",
+        "outsider-contact",
+        "shift-focus"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Curator",
+          "description": "Source Adventurer's Guide pg. 32"
+        },
+        {
+          "level": 1,
+          "name": "Extensive Collection",
+          "description": "At 1st level, a curator acquires a collection of esoteric relics that function as occultist implements associated with two schools of magic; he must select these schools and their associated spells when he gains this feature. As a move action, the curator can empower a single piece of his collection, choosing one of the two selected schools, gaining that school’s focus power, and accessing the selected spells for 10 minutes. The curator can empower only a single relic at a time in this way, and activating this ability a second time ends any other relic’s ongoing benefits. A curator’s relic collection has a number of points of mental focus equal to his Intelligence modifier. Empowered relics are automatically invested with these mental focus points; expending a relic’s mental focus reduces this total for the day. A curator can use this ability once per day. He can use it an additional time per day at 2nd level and every 4 levels thereafter. At 6th level and again at 14th level, a curator chooses two additional schools of magic—in addition to their spells— and adds them to his collection."
+        },
+        {
+          "level": 1,
+          "name": "Split Focus",
+          "description": "A curator has a number of points of mental focus equal to only his occultist level."
+        },
+        {
+          "level": 3,
+          "name": "Adaptable Powers",
+          "description": "At 3rd level, a curator learns one focus power from each of the schools associated with his extensive collection. Whenever he activates his collection, he can use those focus powers associated with his selected school of magic while the relic remains empowered. Whenever the curator would learn another focus power for an implement, he can instead select two new focus powers from different schools associated with his extensive relic collection."
+        },
+        {
+          "level": 4,
+          "name": "Relic Resistance",
+          "description": "At 4th level, a curator develops a resistance to harmful items. He never gains negative levels due to his alignment as a result of wielding or wearing magic items, and he gains a +4 bonus on Will saves to resolve personality conflicts with intelligent magic items. Whenever a cursed item’s harmful condition would trigger, a curator can attempt a Will save (DC = 10 + the item’s CL) to suppress the curse just long enough to discard the item before it activates. Finally, when identifying an item, a curator needs to exceed the item’s DC by only 5 (instead of 10) to determine whether the item is cursed."
+        },
+        {
+          "level": 8,
+          "name": "Complex Collection",
+          "description": "At 8th level, a curator can empower two relics that are in his collection simultaneously, and he gains the benefits of both. When he does so, he must allocate his relic collection’s mental focus between the two relics."
+        },
+        {
+          "level": 8,
+          "name": "Mental Catalog",
+          "description": "At 8th level, the points of mental focus invested in the curator’s relic collection increase by 2. This total increases by 1 additional point at 12th level and 16th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:esoteric-initiate",
+      "package": "pathfinder-class:occultist",
+      "name": "Esoteric Initiate",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist Esoteric Initiate",
+      "replaces_features": [
+        "aura-sight",
+        "implements",
+        "mental-focus",
+        "shift-focus"
+      ],
+      "removed_features": [
+        "aura-sight",
+        "implements",
+        "mental-focus",
+        "shift-focus"
+      ],
+      "removed_feature_clauses": [
+        "aura sight"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Esoteric Initiate",
+          "description": "Source Disciple's Doctrine pg. 8"
+        },
+        {
+          "level": 1,
+          "name": "Implements of the Palatine Eye",
+          "description": "An esoteric initiate has formed a supernatural bond with a set of the order’s writings collected into a book. If the book is damaged, it is restored to full hit points when the initiate’s mental focus refreshes. If the book is lost or destroyed, the initiate can replace it with another similar one, but doing so requires an 8-hour ritual that binds the new book to him."
+        },
+        {
+          "level": 5,
+          "name": "Symbolism",
+          "description": "At 5th level, an initiate who spends 1 minute carefully studying any written work can understand its gist even if he doesn’t speak the language in which the text is written. A number of times per day equal to the initiate’s occultist level, the initiate can cast comprehend languages as a spell-like ability to read a written work, using his occultist level as his caster level. If he uses symbolism to read a portion of the work that contains a hidden message or a cypher, he is automatically granted a Linguistics check with a bonus equal to his occultist level to decipher the message.\n\nThis replaces aura sight."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:extemporaneous-channeler",
+      "package": "pathfinder-class:occultist",
+      "name": "Extemporaneous Channeler",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist Extemporaneous Channeler",
+      "replaces_features": [
+        "binding-circles",
+        "fast-circles",
+        "magic-circles",
+        "mental-focus",
+        "outside-contact",
+        "shift-focus",
+        "weapon-proficiencies"
+      ],
+      "removed_features": [
+        "binding-circles",
+        "fast-circles",
+        "magic-circles",
+        "mental-focus",
+        "outside-contact",
+        "shift-focus",
+        "weapon-proficiencies"
+      ],
+      "removed_feature_clauses": [
+        "magic circles",
+        "outside contact",
+        "binding circles",
+        "fast circles"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Extemporaneous Channeler",
+          "description": "Source Martial Arts Handbook pg. 8"
+        },
+        {
+          "level": 1,
+          "name": "Weapon Proficiency",
+          "description": "An extemporaneous channeler is proficient with all simple weapons.\n\nThis alters the occultist’s weapon proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Improvisational Combatant",
+          "description": "An extemporaneous channeler does not incur any penalties for using an improvised weapon. She is considered to have the Catch Off-Guard and Throw Anything feats for the purpose of meeting prerequisites."
+        },
+        {
+          "level": 1,
+          "name": "Fleeting Focus",
+          "description": "An extemporaneous channeler’s studies of the changing nature of objects give her more mental focus, which she learns to quickly invest in her implements throughout the day, but which she struggles to maintain. When an extemporaneous channeler refreshes her mental focus, she must spend 1 hour preparing her implements for spellcasting but does not immediately invest them with her generic focus, which is equal to her occultist level + twice her Intelligence modifier. At any point during the day, she can shift any amount of her generic focus to any number of her implements by concentrating for 1 round while touching her implements. After every 10 minutes, her invested implements each lose 1 point of mental focus, as if it had been expended on a focus power. If the extemporaneous channeler uses her withdraw focus ability to remove focus before a full 10-minute increment has elapsed, each implement still loses 1 point of mental focus as if it had been invested for that entire increment.\n\nThis alters mental focus."
+        },
+        {
+          "level": 1,
+          "name": "Transformative Resonance",
+          "description": "An extemporaneous channeler can expend 1 point of generic focus as a swift action to allow her generic focus to resonate in her improvised weapons. For 1 minute, the extemporaneous channeler grants any item she uses as an improvised weapon a +1 enhancement bonus on attack and damage rolls for every 3 points of generic focus she has in her body. She can give it a maximum bonus of +1 at 1st level; the maximum bonus increases by 1 for every 4 levels after 1st, to a maximum of +5 at 17th level. The extemporaneous channeler can imbue the item with any one weapon special ability with an equivalent enhancement bonus less than or equal to her maximum bonus by reducing the granted enhancement bonus by the appropriate amount, such as reducing a +2 bonus to a +1 flaming enchantment. She chooses the special ability when she activates this power, but she can spend 1 point of generic focus as a swift action to change it, which also resets the duration of the power. The item must have an enhancement bonus of at least +1 (either on its own or from her imbuing it) to gain a weapon special ability. This ability stacks with any other effect that grants an enhancement bonus to an improvised weapon, such as gloves of improvised might, to a maximum of +5."
+        },
+        {
+          "level": 4,
+          "name": "Withdraw Focus",
+          "description": "At 4th level, an extemporaneous channeler can, as a standard action, shift any amount of focus from any number of implements back into herself as generic focus. Doing so costs her no loss of focus (other than what’s lost due to her fleeting focus ability). Unlike expending focus normally, this shift can reduce the effect of a resonant power in the implement from which the mental focus was taken.\n\nThis alters shift focus."
+        },
+        {
+          "level": 8,
+          "name": "Improvised Spell",
+          "description": "At 8th level, an extemporaneous channeler learns to use her implements to improvise a spell similar to one she already knows. Once per day, an extemporaneous channeler can cast an occultist spell from an implement school she knows as if it were one of her spells known, expending a spell slot of the same level and an amount of generic focus equal to the spell’s level to cast the desired spell. A spell cast as an improvised spell always has a minimum casting time of 1 round, regardless of the casting time of the spell. At 12th level, an extemporaneous channeler can use this ability twice per day. At 17th level, she can use this ability three times per day.\n\nThis replaces magic circles, outside contact, binding circles, and fast circles."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:geomancer",
+      "package": "pathfinder-class:occultist",
+      "name": "Geomancer",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist Geomancer",
+      "replaces_features": [
+        "aura-sight",
+        "class-skills",
+        "focus-powers",
+        "implements",
+        "magic-item-skill",
+        "mental-focus"
+      ],
+      "removed_features": [
+        "aura-sight",
+        "class-skills",
+        "focus-powers",
+        "implements",
+        "magic-item-skill",
+        "mental-focus"
+      ],
+      "removed_feature_clauses": [
+        "magic item skill",
+        "aura sight",
+        "focus power gained at 7th level",
+        "focus power gained at 13th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Geomancer",
+          "description": "Source Ultimate Wilderness pg. 66"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A geomancer adds Knowledge (geography), Knowledge (nature), and Survival to his list of class skills instead of Disable Device, Knowledge (engineering), and Knowledge (religion).\n\nThis alters the occultist’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Geomantic Focus",
+          "description": "When a geomancer invests mental focus into his implements for the day, he can store some of it in the surrounding terrain. As long as he remains in physical contact with the terrain, he gains the survivalist resonant power and the ability to use the terrain stride, dominion, and wall of terrain focus powers as appropriate for his level.\n\nThis alters mental focus."
+        },
+        {
+          "level": 1,
+          "name": "Geomancy",
+          "description": "A geomancer learns one fewer implement school at 1st level. Instead, the spells that he knows are partially determined by the type of terrain he is currently in (and the level of spells he can cast). When he leaves a type of terrain, he loses knowledge of the spells that terrain grants and instead knows the spells granted by the new type of terrain he has entered. If a specific terrain falls into more than one category, the geomancer chooses which list of spells he receives when he enters the terrain. The spells at each spell level for the various types of terrain are listed below."
+        },
+        {
+          "level": 1,
+          "name": "Cold",
+          "description": "1st—frostbite, 2nd—frigid touch, 3rd—sleet storm, 4th—creeping ice, 5th—icy prison, 6th—freezing sphere."
+        },
+        {
+          "level": 1,
+          "name": "Desert",
+          "description": "1st—sun metal, 2nd—shifting sand, 3rd—cup of dust, 4th—fire shield, 5th—flame strike, 6th—sirocco."
+        },
+        {
+          "level": 1,
+          "name": "Forest",
+          "description": "1st—entangle, 2nd—tree shape, 3rd—speak with plants, 4th—arboreal hammer, 5th—tree stride, 6th—liveoak."
+        },
+        {
+          "level": 1,
+          "name": "Jungle",
+          "description": "1st—nauseating dart, 2nd—sickening entanglement, 3rd—venomous bolt, 4th—poison, 5th—snake staff, 6th—swarm skin."
+        },
+        {
+          "level": 1,
+          "name": "Mountain",
+          "description": "1st—stone fist, 2nd—stone call, 3rd—stone shape, 4th—obsidian flow, 5th—cave fangs, 6th—move earth."
+        },
+        {
+          "level": 1,
+          "name": "Plains",
+          "description": "1st—mount, 2nd—gust of wind, 3rd—plant growth, 4th—aspect of the stag, 5th—control winds, 6th—whip of ants."
+        },
+        {
+          "level": 1,
+          "name": "Planes (Other Than the Material Plane)",
+          "description": "1st—endure elements, 2nd—rope trick, 3rd—blink, 4th—dimensional anchor, 5th—planar adaptation, 6th—plane shift."
+        },
+        {
+          "level": 1,
+          "name": "Swamp",
+          "description": "1st—mudball, 2nd—burst of nettles, 3rd—lily pad stride, 4th—slowing mud, 5th—insect plague, 6th—mass fester."
+        },
+        {
+          "level": 1,
+          "name": "Underground",
+          "description": "1st—expeditious excavation, 2nd—darkvision, 3rd—meld into stone, 4th—echolocation, 5th—suffocation, 6th—conjure black pudding."
+        },
+        {
+          "level": 1,
+          "name": "Urban",
+          "description": "1st—urban grace, 2nd—share language, 3rd—urban step, 4th—zone of silence, 5th—telepathic bond, 6th—statue."
+        },
+        {
+          "level": 1,
+          "name": "Water",
+          "description": "1st—air bubble, 2nd—slipstream, 3rd—water breathing, 4th—fluid form, 5th—geyser, 6th—control water.\n\nThis alters implements."
+        },
+        {
+          "level": 2,
+          "name": "Survivalist",
+          "description": "At 2nd level, a geomancer gains a +1 bonus on Survival checks for every point of mental focus invested in the terrain (to a maximum equal to his occultist level).\n\nThis replaces magic item skill."
+        },
+        {
+          "level": 5,
+          "name": "Terrain Stride",
+          "description": "At 5th level, as a swift action, a geomancer can expend 1 point of mental focus invested in the terrain to increase all of his movement speeds by 10 feet. At 5th level, the geomancer can expend 2 points of mental focus invested in the terrain to instead increase all of his movement speeds by 20 feet. This affects only movement speeds he already has.\n\nThis replaces aura sight."
+        },
+        {
+          "level": 7,
+          "name": "Dominion",
+          "description": "At 7th level, as a standard action, a geomancer can expend 1 or more points of mental focus invested in the terrain to infuse himself and each of his allies within 30 feet of him with the might of the land. Affected creatures gain a +1 morale bonus on attack rolls, damage rolls, and Fortitude saves for every point of mental focus expended. These bonuses last for 1 minute and can’t exceed one-quarter the geomancer’s occultist level.\n\nThis replaces the focus power gained at 7th level."
+        },
+        {
+          "level": 13,
+          "name": "Wall of Terrain",
+          "description": "At 13th level, as a standard action, a geomancer can expend 3 points of mental focus invested in the terrain to fashion a solid wall of the surrounding terrain, no matter its actual composition. This functions as per wall of stone, using the geomancer’s occultist level as his caster level. By expending an extra point of generic mental focus, he can increase the hardness of the wall to 10 and give it an extra 5 hit points per inch of thickness.\n\nThis replaces the focus power gained at 13th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:occultist:glory-seeker",
+      "package": "pathfinder-class:occultist",
+      "name": "Glory Seeker",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/glory-seeker",
+      "replaces_features": [
+        "armor-proficiencies",
+        "aura-sight",
+        "binding-circles",
+        "fast-circles",
+        "focus-powers-normally-at",
+        "implement-mastery",
+        "implements",
+        "level",
+        "magic-circles",
+        "magic-item-skill",
+        "occultists-class-skills",
+        "outside-contact",
+        "weapon"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "focus powers normally gained at 3rd",
+        "7th",
+        "11th",
+        "15th",
+        "and 19th level",
+        "magic item skill",
+        "magic circles",
+        "binding circles",
+        "fast circles",
+        "aura sight",
+        "outside contact"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A glory seeker adds Knowledge (local), Knowledge (geography), and Intimidate to his list of class skills, instead of Fly, Knowledge (planes), and Use Magic Device.\n\nThis alters the occultist’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Glory seeker are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis alters weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A glory seeker is considered a Proficient practitioner, gaining spheres and talents as appropriate. Glory seekers use Intelligence as their practitioner modifier. This ability replaces the focus powers normally gained at 3rd, 7th, 11th, 15th, and 19th level."
+        },
+        {
+          "level": 1,
+          "name": "Spoils of War",
+          "description": "At 1st level, the glory seeker draws out power from objects he has taken in battle and conquest. He can select an object he has claimed from a defeated enemy, taken from a settlement, or otherwise won through his own efforts to serve as a spoil of war. Each spoil of war functions as the glory seeker’s implement for its associated implement school. A spoil of war that fits multiple implement categories can only function for one implement school at a time but can be attuned to another appropriate implement school when the glory seeker regains mental focus. Spoils of war can be integrated into another item, such as an ornament or magic item, but otherwise do not take up an item slot unless worn and used for their normal benefits. A glory seeker can collect as many spoils of war as he desires, but still selects one appropriate item from that school’s list to be his implement for the day for each implement school he knows. Some spoils of war take the shape of an otherwise normally usable item, such as a sword or shield. The glory seeker does not need to wield or present a spoil of war to benefit or use its focus powers, or cast spells from its associated implement school, but does need to have the spoil of war visibly on his person. For example, a glory seeker with a shield, serving as an implement for the abjuration school, does not need to wield the shield, but it must be visible on his person, such as strapped to his back or worn at the hip. This ability alters implements."
+        },
+        {
+          "level": 1,
+          "name": "Note",
+          "description": "A “spoil of war” is left intentionally vague. A player should not be restricted from claiming an object as a spoil of war, as long as they “earned” it, which can be anything from slaying a hero-general in combat to winning a prize at a local carnival. GMs should try to work with their players, and let them build fun stories around their spoils of war, but not hamper their ability to collect them."
+        },
+        {
+          "level": 1,
+          "name": "Author's Note",
+          "description": "Glory Seeker was written well before the reliquary keeper occultist was even a twinkle in someone's eyes. As such, the adjustments to implements are framed for a SoM, vancian-casting occultist. An occultist using the reliquary keeper archetype or any other spherecasting occultist archetype defers to that archetype's restrictions on casting and using magic sphere effects, should there be any. For a glory seeker combined with the reliquary keeper archetype, the glory seeker does not need to draw and have a relic in hand (as glory seeker lifts this restriction with spoils of war normally), but would need to still spend the action to \"draw\" one and designate an active one at any given time to have access to the customized talents."
+        },
+        {
+          "level": 2,
+          "name": "Eye for Value",
+          "description": "At 2nd level, a glory seeker’s talent for uncovering relics and antiquities grants him a bonus when appraising things. He gains a bonus on all Appraise checks equal to 1/2 his occultist level. This ability replaces magic item skill."
+        },
+        {
+          "level": 3,
+          "name": "Soldier of Fortune",
+          "description": "At 3rd level, a glory seeker can expend 1 point of mental focus as a standard action to gain the benefit of a combat talent he does not possess from a combat sphere associated with his implements. This effect lasts until the glory seeker refreshes his mental focus. If the glory seeker does not have the base sphere, he must choose the base sphere before selecting a combat talent related to that sphere. The glory seeker must meet any of the talent’s prerequisites (if an advanced talent). The glory seeker can only benefit from 1 extra combat talent from this ability, and if the glory seeker uses this ability again before regaining mental focus, it replaces the previous talent. Each implement school is associated with different combat spheres, detailed below:"
+        },
+        {
+          "level": 1,
+          "name": "Abjuration",
+          "description": "Guardian, Shield, Open Hand"
+        },
+        {
+          "level": 1,
+          "name": "Conjuration",
+          "description": "Barrage, Barroom, Tech"
+        },
+        {
+          "level": 1,
+          "name": "Divination",
+          "description": "Dual Wielding, Equipment, Scout"
+        },
+        {
+          "level": 1,
+          "name": "Enchantment",
+          "description": "Beastmastery, Leadership, Scoundrel, Warleader"
+        },
+        {
+          "level": 1,
+          "name": "Evocation",
+          "description": "Alchemy, Berserker, Trap"
+        },
+        {
+          "level": 1,
+          "name": "Illusion",
+          "description": "Boxing, Fencing, Sniper"
+        },
+        {
+          "level": 1,
+          "name": "Necromancy",
+          "description": "Duelist, Lancer, Gladiator"
+        },
+        {
+          "level": 1,
+          "name": "Transmutation",
+          "description": "Athletics, Brute, Wrestling This ability replaces magic circles, binding circles, and fast circles."
+        },
+        {
+          "level": 5,
+          "name": "Communicator",
+          "description": "At 5th level, the glory seeker is able to negotiate and convey ideas with ease, and may cast tongues as a spell-like ability once per day. At 12th level, the glory seeker gains tongues as a constant spelllike ability. This ability replaces aura sight."
+        },
+        {
+          "level": 7,
+          "name": "Greater Soldier of Fortune",
+          "description": "At 7th level and every 4 levels thereafter, the glory seeker increases the maximum number of talents he may gain with the soldier of fortune ability by 1. The glory seeker must still pay mental focus for each individual talent, and only gains the benefits of a single talent with each use of soldier of fortune. The glory seeker cannot choose to lose a talent that is a prerequisite for another talent gained using this ability."
+        },
+        {
+          "level": 8,
+          "name": "Expedition Master",
+          "description": "At 8th level, the glory seeker gains the commander’s call in a specialist logistic specialty ability, treating his glory seeker level as his commander level for the purposes of this ability. The glory seeker gains access to a unique network of contacts, replacing the network normally available to a commander. The following options are available to a glory seeker: Cartographer - The glory seeker gains the services of a mapmaker. This specialist functions the same as the commander’s scouting specialist, but may only use the detailed map option. The cartographer provides a detailed map of wilderness territory, including pathways, dungeons, and the lairs of dangerous beasts. The cartographer is able to successfully map up to 1 square mile of territory each day. Unlike the normal scouting specialist, the cartographer can also provide maps of towns and cities, but when scouting towns unfriendly to the glory seeker, may only be able to provide rough and incomplete information. Priest - The glory seeker gains the services of a man of the cloth. This specialist functions the same as the commander’s medical specialist, but may only be a cleric matching the glory seeker’s faith. If the glory seeker does not have a faith, the priest will match his ideals as closely as possible. The priest can provide medical treatment to the glory seeker and up to 5 other individuals, using any abilities they possess to heal the injuries and negative conditions affecting these targets. The glory seeker must still pay for any expensive material components necessary for spells or abilities the priest performs. Smithy - The glory seeker gains the services of a skilled blacksmith. This specialist functions the same as the commander’s equipment specialist, and may provide his maintenance class feature for the glory seeker and up to 5 other individuals in preparation for the following day. In addition, the blacksmith can use his reforge ability to repair or reforge one magic item in the commander’s possession. Trailblazer - The glory seeker gains the services of a skilled ranger. This ranger accompanies the glory seeker and can provide the glory seeker with Survival checks to move through the wilderness, hunt for food and supplies, and warn of dangerous natural hazards. The ranger is capable of attempting Knowledge (geography) and Survival checks with a DC of 10 plus your glory seeker level. At 16th level, the glory seeker may call in an additional specialist each week. This ability replaces outside contact."
+        },
+        {
+          "level": 20,
+          "name": "Mastery of Conquest",
+          "description": "At 20th level, the glory seeker increases the DC of any sphere effects from the associated spheres of the implement school he chooses to master by 4. This ability alters implement mastery."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:haunt-collector",
+      "package": "pathfinder-class:occultist",
+      "name": "Haunt Collector",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist Haunt Collector",
+      "replaces_features": [
+        "aura-sight",
+        "binding-circles",
+        "fast-circles",
+        "implements",
+        "magic-circles",
+        "outside-contact"
+      ],
+      "removed_features": [
+        "aura-sight",
+        "binding-circles",
+        "fast-circles",
+        "implements",
+        "magic-circles",
+        "outside-contact"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Haunt Collector",
+          "description": "Source Horror Adventures pg. 62"
+        },
+        {
+          "level": 2,
+          "name": "Possessed Possessions",
+          "description": "At 2nd level, and every 4 occultist levels thereafter, when the haunt collector chooses an implement school he doesn’t already know, instead of using implements as normal for that school, he can gain access to a haunted implement—a powerful, spirit-possessed item collected during his travels. When he selects a haunted implement, he forsakes the resonant power from the item’s implement group and instead selects a spirit from the medium’s list of spirits (Pathfinder RPG Occult Adventures 33), gaining that spirit’s seance boon in place of the resonant power. He can also call upon the implement’s haunting entity as a swift action to temporarily gain bonuses on all checks associated with the selected legendary spirit’s spirit bonus for 1 round. This spirit bonus is equal to 1/2 the amount of mental focus invested in the implement, to a maximum bonus of 1 + 1 for every 4 occultist levels the haunt collector has. He can call upon this spirit bonus a number of times per day equal to the amount of mental focus invested in the implement, though invoking it doesn’t expend any mental focus. Once the spirit type is selected for an implement, it cannot be changed."
+        },
+        {
+          "level": 5,
+          "name": "Hauntist",
+          "description": "At 5th level, a haunt collector with at least one haunted implement gains the medium’s haunt channeler class feature (Occult Adventures 31), with an effective medium level equal to his occultist level – 2."
+        },
+        {
+          "level": 8,
+          "name": "Spirit Speaker",
+          "description": "At 8th level, a haunt collector with at least one haunted implement can commune with the spirits once per day. By holding a seance for 10 minutes, he can ask questions of a destroyed undead or a neutralized or destroyed haunt. To use this ability on a corporeal undead, the haunt collector must have the creature’s head in his possession. For a haunt or incorporeal undead, this seance must be held in the haunt’s location or where the incorporeal undead was destroyed. Treat this ability as speak with hauntACG or as speak with dead (but affecting only destroyed undead rather than only corpses), using the haunt collector’s occultist level as the caster level. He can perform this seance one additional time per day at 12th level, and again at 16th level and 20th level."
+        },
+        {
+          "level": 1,
+          "name": "Extricate Haunt",
+          "description": "The haunt collector can temporarily exorcise his haunted implements’ possessing entities to spontaneously create phenomena similar to haunts and imbue them with spells the occultist knows. As a full-round action that provokes attacks of opportunity, the haunt collector expends 1 point of mental focus to extricate an implement’s spirit and infuse an adjacent square with its ghostly presence while granting it the power to deliver a spell from the implement’s associated school (whose range is touch or greater) on the haunt collector’s behalf. This action consumes the spell just as if it had been cast, but the energy is held in check by the created haunt until triggered by conditions set forth by the haunt collector. The conditions needed to trigger the haunt’s spell effect must be clear, although they can be general, using the guidelines of the magic mouth spell. The haunt is stationary, and once the conditions for the trigger are met, the spell is discharged normally, though it now originates from the haunt’s square."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:occultist:lauriger",
+      "package": "pathfinder-class:occultist",
+      "name": "Lauriger",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/lauriger",
+      "replaces_features": [
+        "magic-talents",
+        "occultist-s-normal-class-skills",
+        "proficiencies",
+        "relics"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "occultist's normal class skills",
+        "magic talents: Champion’s Relics: For any of the lauriger’s relics",
+        "they may select combat or skill talents in place of magic talents"
+      ],
+      "compatibility": {
+        "requires": [
+          "spheres-archetype:pathfinder-class:occultist:reliquary-keeper",
+          "spheres-archetype:spheres-class:warden:keeper"
+        ],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Laurigers are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis alters proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Trade Tradition",
+          "description": "If this is this character’s first level in any class, the lauriger may select a trade tradition of their choice, and have an adroit trade rank.\n\nThis replaces the occultist's normal class skills."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "A lauriger gains combat, magic, or skill talents (some of which are required to be [utility] talents) using the trained talent progression. A lauriger uses his casting ability modifier as his practitioner modifier and operative modifier.\n\nThis replaces magic talents: Champion’s Relics: For any of the lauriger’s relics, they may select combat or skill talents in place of magic talents. In addition, the lauriger may select one of the following alternate options in place of the normal relic progression."
+        },
+        {
+          "level": 1,
+          "name": "This replaces magic talents",
+          "description": "Champion’s Relics: For any of the lauriger’s relics, they may select combat or skill talents in place of magic talents. In addition, the lauriger may select one of the following alternate options in place of the normal relic progression."
+        },
+        {
+          "level": 1,
+          "name": "Arenarius",
+          "description": "The lauriger does not gain any talents from the blended training class feature and gains 1 fewer relic at 1st level (he may still gain talents from relics as normal). As a move action, the lauriger may spend 1 point of mental focus stored in a relic to grant himself the benefit of any one combat, magic, or skill talent he does not possess from one of the relic’s associated spheres. This effect lasts for 1 minute. The lauriger must possess that talent’s base sphere and meet any prerequisites (if an advanced talent). Multiple uses of this ability do not stack."
+        },
+        {
+          "level": 1,
+          "name": "Hieronica",
+          "description": "The lauriger does not gain additional relics beyond the two at 1st level. However, the lauriger counts their caster level of spheres associated with their relics as equal to their lauriger level and their base attack bonus as equal to their lauriger level for the purpose of combat spheres associated with their relics."
+        },
+        {
+          "level": 1,
+          "name": "Rudiarius",
+          "description": "The lauriger does not gain talents from any of their relics, but gains combat, magic, or skill talents using the virtuoso talent progression rather than the trained talent progression\n\nThis alters relics."
+        },
+        {
+          "level": 1,
+          "name": "Implement Spheres and Schools Expanded",
+          "description": "While a GM can create their own mappings, below are some suggestions for some spheres that may work with certain implement schools:"
+        },
+        {
+          "level": 1,
+          "name": "Abjuration",
+          "description": "Creation, Guardian, Nature, Navigation, Open Hand, Protection, Shield, Spellhacking"
+        },
+        {
+          "level": 1,
+          "name": "Conjuration",
+          "description": "Artifice, Barrage, Barroom, Conjuration, Creation, Life, Nature, Tech, Tinker, Warp"
+        },
+        {
+          "level": 1,
+          "name": "Divination",
+          "description": "Divination, Dual Wielding, Equipment, Fate, Investigation, Pilot, Scout, Study, Time, Vocation"
+        },
+        {
+          "level": 1,
+          "name": "Enchantment",
+          "description": "Beastmastery, Bluster, Communication, Faction, Leadership, Mind, Scoundrel, War, Warleader"
+        },
+        {
+          "level": 1,
+          "name": "Evocation",
+          "description": "Alchemy, Berserker, Dark, Destruction, Light, Mana, Technomancy, Trap"
+        },
+        {
+          "level": 1,
+          "name": "Illusion",
+          "description": "Boxing, Dark, Fallen Fey, Fencing, Illusion, Infiltration, Performance, Sniper, Subterfuge"
+        },
+        {
+          "level": 1,
+          "name": "Necromancy",
+          "description": "Blood, Body Control, Death, Duelist, Gladiator, Lancer, Life, Survivalism"
+        },
+        {
+          "level": 1,
+          "name": "Transmutation",
+          "description": "Alteration, Athletics, Bear, Brute, Enhancement, Herbalism, Telekinesis, Time, Weather, Wrestling"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:naturalist",
+      "package": "pathfinder-class:occultist",
+      "name": "Naturalist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist Naturalist",
+      "replaces_features": [
+        "binding-circles",
+        "class-skills",
+        "fast-circles",
+        "magic-circles",
+        "mental-focus",
+        "outside-contact"
+      ],
+      "removed_features": [
+        "binding-circles",
+        "class-skills",
+        "fast-circles",
+        "magic-circles",
+        "mental-focus",
+        "outside-contact"
+      ],
+      "removed_feature_clauses": [
+        "outside contact",
+        "binding circles"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Naturalist",
+          "description": "Source Ultimate Wilderness pg. 66"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A naturalist adds Knowledge (nature) to his list of class skills instead of Knowledge (planes).\n\nThis alters the occultist’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Natural Focus",
+          "description": "A naturalist can always hear the spirits of nature whispering in his ears, and sometimes those whispers contain helpful advice. As a free action, a naturalist can expend 1 point of generic mental focus before rolling an ability check, saving throw, or skill check to add 1d6 to the result. The naturalist must be conscious and aware to use this ability, and he can use this ability at most once per round."
+        },
+        {
+          "level": 8,
+          "name": "Tree Talker",
+          "description": "At 8th level, a naturalist can cast speak with plants three times per day as a spell-like ability with a caster level equal to his occultist level. In addition, when the naturalist uses this power, he can whisper a message of 25 or fewer words to the surrounding plant life and designate a creature with which he is familiar. The next time that creature is on the same plane of existence and in an area of similar vegetation, it receives the message.\n\nThis replaces outside contact."
+        },
+        {
+          "level": 12,
+          "name": "Reflect on the Land",
+          "description": "At 12th level, a naturalist can cast commune with nature once per day as a spell-like ability with a caster level equal to his occultist level.\n\nThis replaces binding circles."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:necroccultist",
+      "package": "pathfinder-class:occultist",
+      "name": "Necroccultist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist Necroccultist",
+      "replaces_features": [
+        "aura-sight",
+        "implement-mastery",
+        "implements",
+        "object-reading",
+        "outside-contact"
+      ],
+      "removed_features": [
+        "aura-sight",
+        "implement-mastery",
+        "implements",
+        "object-reading",
+        "outside-contact"
+      ],
+      "removed_feature_clauses": [
+        "object reading",
+        "aura sight",
+        "outside contact"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Necroccultist",
+          "description": "Source Occult Adventures pg. 100"
+        },
+        {
+          "level": 1,
+          "name": "Necromantic Bond",
+          "description": "At 1st level, a necroccultist gains access to only the necromancy school of implements. He must select necromancy for his implement mastery. Each time he gains an occultist level, a necroccultist can add one necromancy spell from the wizard spell list to his occultist spell list and his list of spells known. The necroccultist can’t choose a spell of a higher level than he is able to cast, and he adds the spell at the same spell level it appears on the wizard spell list. At 14th level, he doesn’t gain an additional school of implements. Instead, at 14th level, the DCs of saving throws to resist a necroccultist’s necromancy spells and necromancy focus powers increase by 2. This ability alters implements and implement mastery."
+        },
+        {
+          "level": 2,
+          "name": "Deadspeaker",
+          "description": "At 2nd level, as a full-round action that provokes attacks of opportunity, a necroccultist can learn the answers to a specific set of questions concerning a dead or undead creature. The necroccultist must consume at least one drop of the creature’s blood, a small portion of its flesh, or a fragment of one of its bones as a part of this action. This ability otherwise functions as blood biography (Advanced Player’s Guide 206), using the necroccultist’s occultist level as his caster level. The necroccultist can use this ability once per day at 2nd level, plus one additional time per day for every 2 occultist levels thereafter. This ability replaces object reading."
+        },
+        {
+          "level": 5,
+          "name": "Ghostly Horde",
+          "description": "At 5th level, a necroccultist can spend 1 point of mental focus from a necromancy implement to summon a mob of ghostly spirits to harass his enemies. Summoning the ghostly horde is a standard action that doesn’t provoke attacks of opportunity. The ghostly horde appears within 60 feet of the necroccultist, fills an area 20 feet in diameter, and always hovers a few inches off the ground (thus ignoring any difficult terrain). The necroccultist can command the ghostly horde to move up to 30 feet each round as a move action, though the farthest edge of the ghostly horde can never be more than 60 feet from the necroccultist. Any creature caught inside the ghostly horde takes 1d6 points of damage per 2 occultist levels at the start of its turn (up to a maximum of 10d6 points of damage at 20th level). A successful Fortitude save (DC = 10 + 1/2 the necroccultist’s occultist level + the necroccultist’s Intelligence modifier) halves this damage. This damage is not negative energy—it manifests in the form of physical wounds and aches as if from supernatural aging. Nonliving creatures and creatures immune to magical aging are immune to this damage, but otherwise the damage bypasses all forms of damage reduction. The ghostly horde remains for 1 round, though at the beginning of his turn, the necroccultist can expend 1 point of mental focus as a swift action to extend the duration for 1 additional round. The necroccultist can use this ability once per day at 5th level, plus one additional time per day for every 5 occultist levels thereafter. This ability replaces aura sight."
+        },
+        {
+          "level": 8,
+          "name": "Life Drain",
+          "description": "At 8th level, a necroccultist can expend 1 point of mental focus from a necromancy implement to unleash a life-draining ray as a ranged touch attack that causes the target to accrue 1d4 negative levels. The ray has a range of 60 feet. The negative levels last a number of minutes equal to the necroccultist’s occultist level. For each negative level this attack gives a target, the necroccultist regains a number of hit points equal to his occultist level. The necroccultist can use this ability once per day at 8th level, plus one additional time per day for every 3 occultist levels thereafter. This ability replaces outside contact."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:occult-historian",
+      "package": "pathfinder-class:occultist",
+      "name": "Occult Historian",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist Occult Historian",
+      "replaces_features": [
+        "aura-sight",
+        "focus-power",
+        "object-reading",
+        "outside-contact-2"
+      ],
+      "removed_features": [
+        "aura-sight",
+        "focus-power",
+        "object-reading",
+        "outside-contact-2"
+      ],
+      "removed_feature_clauses": [
+        "focus power gained at 3rd level",
+        "outside contact 2",
+        "3",
+        "and 4"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Occult Historian",
+          "description": "Source Ultimate Wilderness pg. 67"
+        },
+        {
+          "level": 2,
+          "name": "Ruin Reading",
+          "description": "At 2nd level, an occult historian can glean secrets from ruined structures. She must spend 1 minute examining and touching part of the structure (such as a wall or a doorframe). At the end of the minute, the occult historian attempts a Knowledge (history) check. If the ruin has been claimed as a lair for a creature, the DC of this check is equal to 10 + the CR of the most powerful creature in the ruin. If the ruin holds a magic item (or multiple magic items), the DC of this check is equal to 11 + the highest caster level of all the magic items in the ruin. If the occult historian succeeds at the check, she learns the layout of the area of the ruin within 30 feet of her (including any secret doors), as well as a piece of information about the structure’s history (as determined by the GM)."
+        },
+        {
+          "level": 3,
+          "name": "Trap Sense",
+          "description": "At 3rd level, an occult historian gains trap sense +1, as per the rogue class feature of the same name. This bonus improves by 1 for every 3 occultist levels gained after 3rd, to a maximum of +6 at 18th level. This replaces the focus power gained at 3rd level."
+        },
+        {
+          "level": 12,
+          "name": "Crumbling Strike",
+          "description": "At 12th level, an occult historian can channel the erosion of countless ages into a single melee strike. As a full-round action, the occult historian can make a melee attack against a single target at her highest base attack bonus. If she hits, she deals 2d6 points of damage per occultist level she has (maximum 40d6). If the target succeeds at a Fortitude save (the save DC is equal to 10 + half the occult historian’s occultist level + her Intelligence modifier), it takes only 5d6 points of damage. A creature slain by this attack crumbles to dust. The occult historian can use this ability once per day, plus an additional time per day at 16th and 20th levels.\n\nThis replaces outside contact 2, 3, and 4."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:panoply-savant",
+      "package": "pathfinder-class:occultist",
+      "name": "Panoply Savant",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist Panoply Savant",
+      "replaces_features": [
+        "binding-circles",
+        "fast-circles",
+        "magic-circles",
+        "outside-contact",
+        "shift-focus"
+      ],
+      "removed_features": [
+        "binding-circles",
+        "fast-circles",
+        "magic-circles",
+        "outside-contact",
+        "shift-focus"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Panoply Savant",
+          "description": "Source Psychic Anthology pg. 28"
+        },
+        {
+          "level": 1,
+          "name": "Panoply Specialization",
+          "description": "At 1st level, the panoply savant must choose (but doesn’t learn how to use) a single panoply. When learning new implement schools, he must choose either schools associated with his chosen panoply or the chosen panoply itself. Once he has learned to use the chosen panoply, he can learn any further implement schools freely."
+        },
+        {
+          "level": 4,
+          "name": "Panoply Focus",
+          "description": "At 4th level, a panoply savant gains 1 additional point of mental focus each day, which can be invested only in implements associated with his chosen panoply. At 8th level, and every 4 occultist levels thereafter, the number of additional points of mental focus he gains increases by 1 (to a maximum of 5 points at 20th level)."
+        },
+        {
+          "level": 8,
+          "name": "Implement Specialist",
+          "description": "At 8th level, a panoply savant learns to use his mastery over the implements in his chosen panoply to unlock greater power from magic items associated with that panoply. For a number of times per day equal to 3 + his Intelligence modifier, when he uses a magic item that matches one of his chosen panoply’s associated implements (crystal balls, robes, and wands for the mage’s paraphernalia, for instance) and produces a spell effect, he can have the item use his caster level instead of its own. If the magic item doesn’t produce a spell effect, the panoply savant can use his caster level against attempts to dispel that item. Additionally, if the item has any abilities that can be used at least three times per day or has three or more daily charges, the panoply savant can spend 1 minute quietly meditating on the item and expend 2 points of mental focus to restore one daily use or one charge to the item."
+        },
+        {
+          "level": 8,
+          "name": "Panoptic Harmony",
+          "description": "At 8th level, a panoply savant can empower his abilities by harnessing the harmonic resonance between his chosen panoply’s associated implements. Whenever he casts a spell or uses a focus power with one of his chosen panoply’s associated implements, he treats it as though his caster level were 2 higher than it actually is, but only if on his previous turn, he cast a spell with or used a focus power from a different one of his chosen panoply’s associated implements."
+        },
+        {
+          "level": 12,
+          "name": "Panoptic Call",
+          "description": "At 12th level, a panoply savant’s mastery over his chosen panoply’s associated implements is so strong that he can call similar items to him. By taking a standard action and expending 1 point of mental focus from any of his chosen panoply’s associated implements, he can cause a single item he can currently see that matches one of his chosen panoply’s associated implements (such as a weapon or shield for the tools of the warrior) to fly through the air toward him at a rate of 30 feet per round, landing in his outstretched hand. If the item is unattended, the panoply savant automatically succeeds, but if it is held or worn, he must attempt a special disarm or stealAPG combat maneuver check, using his occultist level as his base attack bonus and his Intelligence modifier in place of his Strength modifier. If the item in question is an implement he currently has 1 or more points of focus invested in, he gains a bonus on this combat maneuver check equal to twice the amount of focus currently invested in it."
+        },
+        {
+          "level": 16,
+          "name": "Combined Powers",
+          "description": "At 16th level, whenever a panoply savant uses a focus power from one of his chosen panoply’s associated implements, he can expend 2 additional points of mental focus to also use a focus power from one of his chosen panoply’s other associated implements as part of the same action. The second focus power must take the same amount of time or less to activate than the first focus power, and the panoply savant must expend the normal mental focus cost to use the second focus power."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:planar-harmonizer",
+      "package": "pathfinder-class:occultist",
+      "name": "Planar Harmonizer",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist Planar Harmonizer",
+      "replaces_features": [
+        "aura-sight",
+        "focus-power",
+        "implement-mastery",
+        "implements",
+        "magic-circles",
+        "magic-item-skill",
+        "shift-focus"
+      ],
+      "removed_features": [
+        "aura-sight",
+        "focus-power",
+        "implement-mastery",
+        "implements",
+        "magic-circles",
+        "magic-item-skill",
+        "shift-focus"
+      ],
+      "removed_feature_clauses": [
+        "magic item skill",
+        "shift focus",
+        "the focus power gained at 7th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Planar Harmonizer",
+          "description": "Source Plane-Hopper's Handbook pg. 7"
+        },
+        {
+          "level": 14,
+          "name": "Conductor",
+          "description": "A planar harmonizer gains access to only the conjuration school of implements, gaining a common tuning fork as her implement. She must select conjuration for her implement mastery. Each time she gains an occultist level, a planar harmonizer can add one conjuration spell from the wizard spell list to her occultist spell list and her list of spells known. The planar harmonizer can’t choose a spell of a higher level than she is able to cast, and she adds the spell at the same spell level it appears on the wizard spell list. Additionally, she adds plane shift to her list as a 5th-level occultist spell. At 14th level, she doesn’t gain an additional school of implements. Instead, at 14th level, the DCs of saving throws to resist a planar harmonizer’s conjuration spells and conjuration focus powers increase by 2. All future implements that a planar harmonizer gains are common tuning forks.\n\nThis alters implements and implement mastery."
+        },
+        {
+          "level": 2,
+          "name": "Planar Scholar",
+          "description": "At 2nd level, a planar harmonizer deepens her knowledge about other worlds. She gains a bonus on Knowledge (planes) checks equal to half her occultist level.\n\nThis replaces magic item skill."
+        },
+        {
+          "level": 4,
+          "name": "Harmonic Shield",
+          "description": "At 4th level, a planar harmonizer learns to cloak herself in the essence of her home plane. She doesn’t take penalties on Intelligence-, Wisdom-, or Charisma-based checks for being on a plane whose alignment traits clash with her own alignment. At 7th level, she can expend 1 point of mental focus to gain the benefits of planar adaptation for 1 minute per occultist level. At 11th level, the duration of this protection extends to 1 hour per occultist level.\n\nThis replaces shift focus and the focus power gained at 7th level."
+        },
+        {
+          "level": 5,
+          "name": "Outside Messenger",
+          "description": "At 5th level, a planar harmonizer gains the magic circles class feature. Whenever she creates a magic circle, she can expend 1 additional point of mental focus (either generic focus or focus from any one of her implements) to focus the circle inward and lure that outsider to the circle (similar to using lesser planar binding). This functions as the outside contact occultist ability, except the information gained can be anything that might be learned through an augury spell.\n\nThis alters magic circles and replaces aura sight and the focus power gained at 5th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:psychodermist",
+      "package": "pathfinder-class:occultist",
+      "name": "Psychodermist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist Psychodermist",
+      "replaces_features": [
+        "aura-sight",
+        "binding-circles",
+        "class-skills",
+        "fast-circles",
+        "implements",
+        "magic-item-skill",
+        "object-reading",
+        "outside-contact"
+      ],
+      "removed_features": [
+        "aura-sight",
+        "binding-circles",
+        "class-skills",
+        "fast-circles",
+        "implements",
+        "magic-item-skill",
+        "object-reading",
+        "outside-contact"
+      ],
+      "removed_feature_clauses": [
+        "outside contact"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Psychodermist",
+          "description": "Source Monster Hunter's Handbook pg. 25"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A psychodermist loses Disable Device, Knowledge (engineering), Knowledge (history), and Sleight of Hand as class skills, and adds Heal, Knowledge (nature), Knowledge (local), and Survival as class skills.\n\nThis alters the occultist’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Trophies",
+          "description": "At 1st level, a psychodermist learns how to siphon power from pieces of creatures he has slain. The psychodermist gains Harvest Parts as a bonus feat, and he can select one monster part per implement school he knows to become a permanently preserved trophy so long as it remains in his possession. Each trophy functions as the psychodermist’s implement for its associated implement school. A trophy that fits multiple implement categories, such as a hand with clawed fingers, can function for only one implement school at a time. A trophy can be integrated into another item, such as an ornament or a magic item, but otherwise does not take up a magic item slot, even when worn. A psychodermist can replace trophies with new ones harvested from slain foes, although doing so causes the old trophies to rot at their normal rate. In order to craft a trophy, the psychodermist must have been present during the creature’s death."
+        },
+        {
+          "level": 2,
+          "name": "Monster Hunting Lore",
+          "description": "At 2nd level, a psychodermist gains a bonus equal to half his occultist level on skill checks made to craft trophies and Knowledge checks made to identify the abilities and weaknesses of creatures."
+        },
+        {
+          "level": 2,
+          "name": "Discern Death",
+          "description": "At 2nd level, as a full-round action that provokes attacks of opportunity, a psychodermist can glean information from a creature’s corpse. The psychodermist must study at least one drop of the creature’s blood, a small portion of its flesh, or a fragment of one of its bones as a part of this action. This ability otherwise functions as blood biographyAPG, using the psychodermist’s occultist level as his caster level. The psychodermist can use this ability once per day at 2nd level, plus one additional time per day for every 3 levels beyond 2nd."
+        },
+        {
+          "level": 5,
+          "name": "Seek Prey",
+          "description": "At 5th level, a psychodermist can supernaturally detect creatures around him as a standard action. This functions as the spell aura sightACG, except the duration is 1 round and the psychodermist learns the locations and power of all auras of a specific creature type, similar to detect undead except the psychodermist can choose any creature type represented among the trophies he has selected for that day."
+        },
+        {
+          "level": 8,
+          "name": "Residual Hatred",
+          "description": "At 8th level, a psychodermist can tap into the psychic death throes of the monsters his trophies are derived from, increasing his efficiency at slaying similar beasts. The psychodermist can spend mental focus invested in a trophy to gain the ranger’s favored enemy class feature against the kind of creature from which the trophy was crafted. The favored enemy bonus applies against the specific creature variety, not the creature type; a psychodermist could use a red dragon scale trophy to gain favored enemy (red dragon), but not favored enemy (dragon). Each point of mental focus spent grants a cumulative +2 favored enemy bonus, with a maximum bonus equal to +2 for every 5 psychodermist levels he has. This benefit lasts until the psychodermist regains his mental focus.\n\nThis replaces outside contact."
+        },
+        {
+          "level": 12,
+          "name": "Manifest Abilities",
+          "description": "At 12th level, a psychodermist can use the latent energy within his trophies to replicate his victims’ special abilities. As a standard action, he can spend 1 point of mental focus invested in a trophy to gain one of that creature’s special abilities that could be granted by the spell monstrous physique IIIUM. At 16th level, the psychodermist adds abilities offered by monstrous physique IVUM to the options he can select using this ability. The saving throw DC for these special abilities is equal to 10 + half the psychodermist’s level + his Intelligence modifier."
+        },
+        {
+          "level": 1,
+          "name": "Abjuration",
+          "description": "Chitin, hides, scales, and other natural armor."
+        },
+        {
+          "level": 1,
+          "name": "Conjuration",
+          "description": "Gizzards, glands, hearts, livers, and other internal organs."
+        },
+        {
+          "level": 1,
+          "name": "Divination",
+          "description": "Ears, eyes, tongues, and other sensory organs."
+        },
+        {
+          "level": 1,
+          "name": "Enchantment",
+          "description": "Feathers, fur, hair, spines, and other decorative features."
+        },
+        {
+          "level": 1,
+          "name": "Evocation",
+          "description": "Claws, fangs, horns, and other natural weapons."
+        },
+        {
+          "level": 1,
+          "name": "Illusion",
+          "description": "Fingers, tendrils, toes, and other prehensile digits."
+        },
+        {
+          "level": 1,
+          "name": "Necromancy",
+          "description": "Bones, bile, and life-sustaining fluids, such as blood."
+        },
+        {
+          "level": 1,
+          "name": "Transmutation",
+          "description": "Feet, hands, paws, wings, and other appendages tied to locomotion."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:reliquarian",
+      "package": "pathfinder-class:occultist",
+      "name": "Reliquarian",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist Reliquarian",
+      "replaces_features": [
+        "focus-powers",
+        "implements",
+        "knacks",
+        "mental-focus",
+        "spellcasting",
+        "weapon-proficiencies"
+      ],
+      "removed_features": [
+        "focus-powers",
+        "implements",
+        "knacks",
+        "mental-focus",
+        "spellcasting",
+        "weapon-proficiencies"
+      ],
+      "removed_feature_clauses": [
+        "knacks"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Reliquarian",
+          "description": "Source Occult Origins pg. 14"
+        },
+        {
+          "level": 1,
+          "name": "Faithful",
+          "description": "A reliquarian must worship a deity, and must be within one step of her deity’s alignment, along either the law/chaos axis or the good/evil axis. A reliquarian is proficient with her deity’s favored weapon in addition to her normal weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Spells",
+          "description": "A reliquarian’s spells are considered divine spells, not psychic spells. The reliquarian’s spells use verbal components instead of thought components, and somatic components instead of emotional components, and she uses a sacred implement (see below) as a divine focus. This ability alters the occultist’s spells."
+        },
+        {
+          "level": 1,
+          "name": "Domain",
+          "description": "A reliquarian gains access to one of her deity’s domains. She treats her occultist level as her cleric level for the purposes of access to domain powers and their strength. Additionally, the reliquarian adds the domain’s spells to her occultist spell list and her spells known."
+        },
+        {
+          "level": 1,
+          "name": "Diminished Focus Power",
+          "description": "A reliquarian learns only the base focus power from one implement school at 1st level. She gains additional focus powers as normal. This ability alters focus powers."
+        },
+        {
+          "level": 1,
+          "name": "Sacred Implements",
+          "description": "A reliquarian gains one implement school at 1st level. Additionally, the reliquarian gains a relic of her god, typically a holy symbol of significant age, a fixture from a lost temple, or bone or hair from a prominent historical figure of the religion. This grants the reliquarian access to one of her deity’s domains, as detailed above. Without this implement, the reliquarian cannot use her domain powers and must succeed at a Concentration check to cast spells from her domain. All of a reliquarian’s future implements must be somehow representative of her faith. This ability modifies implements."
+        },
+        {
+          "level": 1,
+          "name": "Orisons",
+          "description": "A reliquarian gains one orison, or 0-level divine spell, each time she selects an implement school (including when she again selects a school that she has already learned to use.) These orisons otherwise behave as an occultist’s knacks. This ability replaces knacks."
+        },
+        {
+          "level": 1,
+          "name": "Divine Focus",
+          "description": "A reliquarian uses her Wisdom modifier, rather than her Intelligence modifier, to determine the amount of mental focus available to her each day. This ability modifies mental focus."
+        }
+      ],
+      "detected_systems": [
+        "domain"
+      ]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:occultist:reliquary-keeper",
+      "package": "pathfinder-class:occultist",
+      "name": "Reliquary Keeper",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/reliquary-keeper",
+      "replaces_features": [
+        "aura-sight",
+        "binding-circles",
+        "but-may-be-altered-or-replaced-by-other-archetypes",
+        "conjuration-resonant-power",
+        "fast-circles",
+        "implement-mastery",
+        "implements",
+        "knacks",
+        "magic-circles",
+        "magic-item-skill",
+        "outside-contact",
+        "psychic-fog",
+        "spellcasting"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "spell casting",
+        "knacks",
+        "implements",
+        "but may be altered or replaced by other archetypes",
+        "conjuration resonant power",
+        "magic item skill",
+        "aura sight",
+        "magic circles",
+        "outside contact",
+        "binding circles",
+        "fast circles",
+        "implement mastery"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "A reliquary keeper may combine sphere and talents to create magical effects. A reliquary keeper is considered a Mid-Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.) This replaces spell casting and knacks."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "A reliquary keeper gains a small reservoir of energy he can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to her level + his casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Magic Talents",
+          "description": "A reliquary keeper gains a magic talent at every even level."
+        },
+        {
+          "level": 1,
+          "name": "Relic",
+          "description": "The reliquary keeper is a protector of rare and precious objects, known as relics, and is able to draw the innate history and magical energies from them. At 1st level, the reliquary keeper chooses two objects to treat as relics. After this choice has been made, it cannot be changed. At 4th level, and every 4 levels thereafter, the reliquary keeper chooses one additional object to treat as a relic. If the relic is a weapon, armor, or shield, the reliquary keeper must be proficient with them to gain their benefits. Whenever the reliquary keeper gains a relic, she must choose an implement school for that relic to belong to, granting the base focus power for the implement school. Additionally, each relic grants a single sphere or talent, which must possess the base sphere before additional talents of that sphere may be added, unless the reliquary keeper possesses that sphere. Whenever a reliquary keeper casts a sphere effect using talents granted by one of his relics, he must have the corresponding relic in his possession and present the relic to the target or area of effect. The reliquary keeper may only benefit from one relic’s benefits at a time. A relic may be activated as part of drawing, recovering, or otherwise drawing upon its power to provide its benefits; usually as a standard action. If the active relic would be disarmed, stowed, destroyed, or otherwise no longer wielded, the reliquary keeper loses access to the relic’s benefits immediately. At 5th level and every 4 levels thereafter, each relic gains an additional talent. Whenever the reliquary keeper rests to regain spell points, he may change any and all of these additional talents (but not other talents), losing the previous ones and gaining new spheres and talents in their place. A relic is otherwise treated as an implement.\n\nThis replaces implements, but may be altered or replaced by other archetypes."
+        },
+        {
+          "level": 1,
+          "name": "Special",
+          "description": "Occultist panoply selected as relics grant magic talents belonging to one of the implement schools associated with the panoply. Because a panoply is not its own relic, and is instead composed of a combination of relics from the panoply’s associated implement schools, the panoply may grant magic talents without first possessing the base sphere if one of the associated relics already grants the base sphere. A reliquary keeper must hold or have access to both associated relics to use talents granted by the panoply. For example, a reliquary keeper selects the trappings of the warrior panoply, having already learned to use the abjuration and transmutation implement schools. The reliquary keeper’s transmutation relic already grants the Enhancement base sphere, so the trappings of the warrior panoply may grant additional Enhancement sphere talents without needing to first select the base sphere."
+        },
+        {
+          "level": 1,
+          "name": "About Relics",
+          "description": "A relic is generally an object of some importance; whether it be of sentimental or historic value, this should be a detail to work out with the GM and yourself to add a unique flair. Perhaps you wield a shattered blade of a tyrannical lieutenant that fuels a burning hatred within a character? Or a censer passed down through generations, finally passed onto yourself? In any case, a relic can vary in importance or significance where the GM and the player see fit. If a relic is destroyed, the GM should work with you to quickly allow you to replace the destroyed relic, whether it be through repairing the destroyed relic to a semblance of its original state or seeking out something of similar importance. This process should be appropriate for the entire table."
+        },
+        {
+          "level": 1,
+          "name": "Implement Schools And Spheres",
+          "description": "Due to Spheres of Power using a more varied approach to magic and how it is divided, most implement schools will not seamlessly transition to most spheres. While a GM can create their own mappings, below are some suggestions for some spheres that may work with certain implement schools:"
+        },
+        {
+          "level": 1,
+          "name": "Abjuration",
+          "description": "Creation, Nature, Protection"
+        },
+        {
+          "level": 1,
+          "name": "Conjuration",
+          "description": "Conjuration, Creation, Life, Nature, Warp"
+        },
+        {
+          "level": 1,
+          "name": "Divination",
+          "description": "Divination, Fate, Time"
+        },
+        {
+          "level": 1,
+          "name": "Enchantment",
+          "description": "Fallen Fey, Mind, War"
+        },
+        {
+          "level": 1,
+          "name": "Evocation",
+          "description": "Dark, Destruction, Light, Mana"
+        },
+        {
+          "level": 1,
+          "name": "Illusion",
+          "description": "Dark, Fallen Fey, Illusion, Mind"
+        },
+        {
+          "level": 1,
+          "name": "Necromancy",
+          "description": "Blood, Death, Life"
+        },
+        {
+          "level": 1,
+          "name": "Transmutation",
+          "description": "Alteration, Enhancement, Telekinesis, Time, Weather"
+        },
+        {
+          "level": 1,
+          "name": "Resonant Powers",
+          "description": "The following resonant powers have been altered (or changed entirely) to function within Spheres of Power."
+        },
+        {
+          "level": 1,
+          "name": "Intense Focus",
+          "description": "Instead of benefiting evocation spells, this resonant power instead affects all sphere effects that deal damage."
+        },
+        {
+          "level": 1,
+          "name": "Necromantic Focus",
+          "description": "This resonant power counts as the reanimate Death sphere ability for the purposes of other talents and effects."
+        },
+        {
+          "level": 1,
+          "name": "Reaching Foci",
+          "description": "The relic empowers the bearer’s reach with magic. The bearer may add 5 feet to the range of all sphere effects cast using this relic for every 1 point of mental focus stored in the relic (to a maximum bonus equal to his class level).\n\nThis replaces the conjuration resonant power."
+        },
+        {
+          "level": 1,
+          "name": "Focus Powers",
+          "description": "The following focus powers have been altered (or changed entirely) to function within Spheres of Power."
+        },
+        {
+          "level": 1,
+          "name": "Author's Note",
+          "description": "A reliquary keeper may use his casting ability modifier instead of his Intelligence modifier when determining the number of mental focus points he possesses, in addition to the saving throw DC for his focus powers."
+        },
+        {
+          "level": 1,
+          "name": "Flesh Mend",
+          "description": "This focus power counts as Life Sphere’s cure ability for the purposes of (vitality) talents."
+        },
+        {
+          "level": 1,
+          "name": "Future Gaze",
+          "description": "This functions as the future gaze focus power, except that it functions as the Augury (divine) Divination sphere talent."
+        },
+        {
+          "level": 1,
+          "name": "Globe of Negation (Sp) (requires reliquary keeper 11)",
+          "description": "As a standard action, choose three spheres and expend 3 points of mental focus to create a globe of negation. This globe is 10 feet in diameter and grants all allies within this globe a +4 morale bonus to saving throws and AC against abilities of the chosen spheres. The globe lasts for 1 round per 2 class levels he possesses. Abilities originating within the globe are unaffected by it."
+        },
+        {
+          "level": 1,
+          "name": "Object Seer",
+          "description": "This functions as the object seer focus power, except that it functions as the Object Reading (divine) Divination sphere talent."
+        },
+        {
+          "level": 7,
+          "name": "Summon Fog",
+          "description": "The fog created functions as the Nature sphere (water) package Fog sphere effect. At 7th level, he may spend an additional point of mental focus to add additional effects to the fog, choosing one additional effect from the Fog Mastery talent as though he possessed the appropriate Nature sphere package.\n\nThis alters psychic fog."
+        },
+        {
+          "level": 1,
+          "name": "Tear Space",
+          "description": "This functions as the side step focus power, except that the fissure created functions as the Wormhole (space) Warp sphere talent."
+        },
+        {
+          "level": 2,
+          "name": "Historian",
+          "description": "At 2nd level, the reliquary keeper’s knowledge of history is extensive, especially when regarding lost items and esoteric artifacts. He gains a bonus on all Knowledge (history) checks equal to 1/2 his class level. Additionally, the reliquary keeper may use Knowledge (history) instead of Spellcraft when attempting to determine the properties of a magical item.\n\nThis replaces magic item skill, but may be altered or replaced by other archetypes."
+        },
+        {
+          "level": 5,
+          "name": "Ritualist",
+          "description": "At 5th level, the reliquary keeper gains the Craft Ritual feat.\n\nThis replaces aura sight, but may be altered or replaced by other archetypes."
+        },
+        {
+          "level": 8,
+          "name": "Greater Ritualist",
+          "description": "At 8th level, the reliquary keeper gains the Ritual Caster feat.\n\nThis replaces magic circles, but may be altered or replaced by other archetypes."
+        },
+        {
+          "level": 8,
+          "name": "Routine Rituals",
+          "description": "At 8th level, the reliquary keeper’s expertise with rituals has reached the point where some rituals are simply routine for him. Once per day whenever the reliquary keeper would cast a ritual, he may treat the spell level of the ritual as being two lower for the purposes of determining its casting time (minimum 1 minute). He may use this ability an additional time per day at 12th and 16th level.\n\nThis replaces outside contact, but may be altered or replaced by other archetypes."
+        },
+        {
+          "level": 10,
+          "name": "Relic of Power",
+          "description": "At 10th level, the reliquary keeper may tap into the deepest aspects of a relic, gaining untapped knowledge and power from his relics. As a full-round action, the reliquary keeper may spend 2 mental focus to change one talent granted by a relic.\n\nThis replaces binding circles, but may be altered or replaced by other archetypes."
+        },
+        {
+          "level": 16,
+          "name": "Perfected Rituals",
+          "description": "At 16th level, the reliquary keeper’s knowledge of rituals becomes so in-depth that most rituals come naturally to him. Whenever the reliquary keeper would research a ritual, the development cost is halved. Additionally, when the reliquary keeper would use his routine rituals class feature, it instead treats the spell level of the ritual as being four lower for the purposes of determining its casting time.\n\nThis replaces fast circles, but may be altered or replaced by other archetypes."
+        },
+        {
+          "level": 20,
+          "name": "Relic Mastery",
+          "description": "At 20th level, the reliquary keeper’s bond with one of his relics becomes especially intense. The reliquary keeper selects one relic. Whenever he uses a focus power or sphere ability from the relic, the DC to resist any of the effects increases by 4, and treats his occultist level as 4 higher when determining the effects and duration of the focus powers within the relic. Additionally, the reliquary keeper gains 4 extra points of mental focus, but these points must always be invested in the chosen relic. The hardness of each of the reliquary keeper’s relics increase by 20 as long as the item has at least 1 point of mental focus stored within it. If the chosen relic is destroyed or lost, it returns to the reliquary’s keeper whenever he rests to regain his spell points.\n\nThis replaces implement mastery, but may be altered or replaced by other archetypes."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:secret-broker",
+      "package": "pathfinder-class:occultist",
+      "name": "Secret Broker",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist Secret Broker",
+      "replaces_features": [
+        "binding-circles",
+        "class-skills",
+        "fast-circles",
+        "implement-mastery",
+        "implements",
+        "magic-circles",
+        "magic-item-skill",
+        "shift-focus"
+      ],
+      "removed_features": [
+        "binding-circles",
+        "class-skills",
+        "fast-circles",
+        "implement-mastery",
+        "implements",
+        "magic-circles",
+        "magic-item-skill",
+        "shift-focus"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Secret Broker",
+          "description": "Source Ultimate Intrigue pg. 68"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A secret broker adds Bluff and all remaining Knowledge skills to her list of class skills.\n\nThis alters the occultist’s class skills."
+        },
+        {
+          "level": 2,
+          "name": "Knowledge Is Power",
+          "description": "The secret broker starts play possessing a single divination implement, typically a ledger of secrets. She gains new implements as normal at 2nd level and every 4 levels thereafter, and they can be of any school. A secret broker’s third eye resonant power grants an insight bonus on Profession and Sense Motive checks equal to the bonus it grants on Perception checks, and an insight bonus on all Knowledge checks equal to half that bonus. She must select divination with implement mastery."
+        },
+        {
+          "level": 2,
+          "name": "Broker Secrets",
+          "description": "At 2nd level, a secret broker can trade her secrets to another. For the purpose of this ability, an object’s secret is composed of pieces of information gained from a single object through object reading, object seer, psychometry, or read object that the occultist didn’t otherwise know and hasn’t shared with another, written somewhere, or otherwise recorded or found a way to recover should she forget them and lose possession of the object. The secret broker can willingly use this ability in tandem with handing the object over to another creature in order to transfer the object’s secret to that creature. The secret broker forgets the object’s secret and the creature instantly learns the object’s secret."
+        },
+        {
+          "level": 4,
+          "name": "Share Memory",
+          "description": "At 4th level, a secret broker learns to use her knowledge transference powers more flexibly, allowing her to use share memoryUM at will, but only with willing targets."
+        },
+        {
+          "level": 8,
+          "name": "Steal Secret",
+          "description": "At 8th level, a secret broker learns how to steal a secret from an unwilling target. This works as her share memory ability, except it allows her to access memories from unwilling targets. A target that succeeds at its saving throw against a secret broker’s steal secret ability is forever after immune to that secret broker’s steal secret ability."
+        },
+        {
+          "level": 12,
+          "name": "Erase Secret",
+          "description": "At 12th level, a secret broker can expend 1 point of mental focus from her divination implement in order to erase a fact from someone’s mind by touch. This works similarly to modify memory to erase the memory of an event, except the effect is instantaneous and leaves no magical trace (it can still be removed by break enchantment, psychic surgeryOA, limited wish, miracle, or wish) and the secret broker can remove only one fact, such as “The queen and the general are having an affair” rather than a 5-minute event. Erasing the memory of a fact does not prevent the target from learning the fact again, or even potentially from deducing the fact again from evidence, given time."
+        },
+        {
+          "level": 16,
+          "name": "Purge Secret",
+          "description": "At 16th level, a secret broker can expend 3 points of mental focus from her divination implement to apply her erase secret ability to up to one creature per level within 30 feet of her."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:sha-ir",
+      "package": "pathfinder-class:occultist",
+      "name": "Sha'ir",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist Sha'ir",
+      "replaces_features": [
+        "aura-sight",
+        "implement-mastery",
+        "implements",
+        "magic-item-skill",
+        "mental-focus",
+        "object-reading",
+        "outside-contact",
+        "spellcasting"
+      ],
+      "removed_features": [
+        "aura-sight",
+        "implement-mastery",
+        "implements",
+        "magic-item-skill",
+        "mental-focus",
+        "object-reading",
+        "outside-contact",
+        "spellcasting"
+      ],
+      "removed_feature_clauses": [
+        "magic item skill",
+        "object reading",
+        "aura sight"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Sha'ir",
+          "description": "Source Occult Adventures pg. 102"
+        },
+        {
+          "level": 1,
+          "name": "Jin",
+          "description": "At 1st level, a sha’ir learns how to contact a jin—a minor, insubstantial genie that makes its home on the elemental planes. She learns how to contact a second jin at 6th level and a third jin at 14th level. Each of these jin is connected to one of the eight schools of magic, just like an occultist implement, but also to the air, earth, fire, or water school (Advanced Player’s Guide 142). Each jin works like a living implement for both of its schools. To provide the implement component for a spell or focus power, a jin must be within 30 feet of its master."
+        },
+        {
+          "level": 2,
+          "name": "Augment Jin (Sp, Su)",
+          "description": "Starting at 2nd level, a sha’ir’s jin uses its master’s base saving throws if they are better than its own, and it uses either its own hit point total or 1/2 its master’s hit points, whichever is higher. At 4th level, a sha’ir can concentrate for 1 full round and expend 1 point of mental focus stored in a jin to grant that jin all the statistics of a Small elemental of its type for 1 round per occultist level (this includes gaining any of the following abilities, if applicable: air mastery, burn, drench, earth glide, earth mastery, vortex, water mastery, and whirlwind). At 8th level, she can instead expend 2 points of mental focus to give one of her jin all the statistics of a Medium elemental. At 10th level, the cost of giving a jin the statistics of a Medium elemental decreases to 1 point of mental focus, and the sha’ir can give a jin all the statistics of a Large elemental for 2 points of mental focus. At 12th level, the cost of giving a jin the statistics of a Large elemental decreases to 1 point of mental focus and the sha’ir can give a jin the statistics of a Huge elemental for 2 points of mental focus. At 14th level, the cost of giving a jin the statistics of a Huge elemental decreases to 1 point of mental focus and the sha’ir can give a jin the statistics of a greater elemental for 2 points of mental focus. At 16th level, the sha’ir can give a jin the statistics of an elder elemental for 3 points of mental focus. This ability replaces magic item skill and object reading."
+        },
+        {
+          "level": 7,
+          "name": "Manifest Jin",
+          "description": "At 7th level, the sha’ir can designate one of her jin and manifest its powers, allowing it to count as a Small elemental at all times, as if using augment jin to augment it to a Small elemental but with a permanent duration. By concentrating for 1 full round, she can change which of her jin she manifests in this way. This ability replaces aura sight."
+        },
+        {
+          "level": 8,
+          "name": "Jin Spy",
+          "description": "At 8th level, when a sha’ir gains her outside contact ability, instead of learning the true names of outsiders, she can ask one or more of her jin to perform tasks. She chooses from the same tasks listed under outside contact (as appropriate to her occultist level). This doesn’t require negotiation or gifts, but the jin is not available to the sha’ir during the time it spends performing these tasks. This ability alters outside contact."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:silksworn",
+      "package": "pathfinder-class:occultist",
+      "name": "Silksworn",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist Silksworn",
+      "replaces_features": [
+        "armor-proficiency",
+        "binding-circles",
+        "class-skills",
+        "fast-circles",
+        "implement-mastery",
+        "implements",
+        "knacks",
+        "magic-circles",
+        "outside-contact",
+        "spellcasting",
+        "weapon"
+      ],
+      "removed_features": [
+        "armor-proficiency",
+        "binding-circles",
+        "class-skills",
+        "fast-circles",
+        "implement-mastery",
+        "implements",
+        "knacks",
+        "magic-circles",
+        "outside-contact",
+        "spellcasting",
+        "weapon"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Silksworn",
+          "description": "Source Heroes of the High Court pg. 29"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A silksworn adds Bluff and Knowledge (nobility) to his list of class skills, instead of Knowledge (engineering) and Knowledge (planes).\n\nThis alters the occultist’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Spells",
+          "description": "A silksworn’s spells are considered arcane spells, not psychic spells, and his spells use verbal and somatic components instead of thought and emotion components.\n\nThis alters the occultist’s spells."
+        },
+        {
+          "level": 1,
+          "name": "Implements",
+          "description": "When a silksworn chooses an implement school, he does not choose a specific object. Instead, a silksworn must be wearing an ostentatious garment or magic item worth 10 gp or more of the appropriate type and in the appropriate slot: abjuration (wrists), conjuration (shoulders), divination (eyes), enchantment (neck), evocation (hands), illusion (head), necromancy (chest), and transmutation (feet). A silksworn who does not meet this requirement is treated as lacking the appropriate implement for the purpose of his class features, including spellcasting.\n\nThis alters the occultist’s implements."
+        },
+        {
+          "level": 1,
+          "name": "Cantrips",
+          "description": "Each time he selects an implement school, a silksworn gains one cantrip, or 0-level arcane spell (including when he selects a school that he has already learned to use). These cantrips otherwise behave as an occultist’s knacks."
+        },
+        {
+          "level": 1,
+          "name": "Mental Focus",
+          "description": "The silksworn’s available mental focus is equal to his occultist level + his Intelligence modifier + his Charisma modifier."
+        },
+        {
+          "level": 1,
+          "name": "Devoted Mystic",
+          "description": "A silksworn is proficient with only simple weapons and isn’t proficient with any armor or shields. At 1st level, the silksworn gains access to four implement schools instead of two. At 2nd level and every 4 occultist levels thereafter, the silksworn gains access to an additional implement school, to a maximum of nine schools at 18th level. At 8th, 12th, and 16th levels, the silksworn increases the number of spells of each level he can cast each day by one. This does not allow the silksworn to cast spells of a level he does not yet have access to."
+        },
+        {
+          "level": 8,
+          "name": "Silksworn Eloquence",
+          "description": "At 8th level, a silksworn gains a +1 bonus on Bluff and Diplomacy checks for each magical article of clothing occupying one of his implement schools’ magic item slots."
+        },
+        {
+          "level": 12,
+          "name": "Silksworn Deception",
+          "description": "At 12th level, a silksworn can hide his speech and gestures within his extravagant clothing. Whenever the silksworn casts a spell, he can attempt a Bluff check opposed by Sense Motive checks from those observing him. Those who fail are unaware of his spellcasting, unless an effect obviously originates from the silksworn."
+        },
+        {
+          "level": 16,
+          "name": "Silksworn Arcana",
+          "description": "At 16th level, when a silksworn casts a spell while wearing a magic article of clothing in the appropriate school’s magic item slot, the spell’s saving throw DC increases by 2."
+        },
+        {
+          "level": 20,
+          "name": "Implement Mastery",
+          "description": "At 20th level, a silksworn chooses two implement schools instead of one, and implement mastery’s effects apply to both. The silksworn gains 4 additional points of mental focus for each school’s implement.\n\nThis alters the occultist’s implement mastery."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:talisman-crafter",
+      "package": "pathfinder-class:occultist",
+      "name": "Talisman Crafter",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist Talisman Crafter",
+      "replaces_features": [
+        "aura-sight",
+        "focus-powers",
+        "implements",
+        "magic-item-skill",
+        "object-reading",
+        "shift-focus"
+      ],
+      "removed_features": [
+        "aura-sight",
+        "focus-powers",
+        "implements",
+        "magic-item-skill",
+        "object-reading",
+        "shift-focus"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Talisman Crafter",
+          "description": "Source Horror Adventures pg. 63"
+        },
+        {
+          "level": 1,
+          "name": "Talismanic Implements",
+          "description": "The talisman crafter doesn’t gain normal implements; rather, after refreshing her mental focus, she spends 1 hour crafting a number of small master talismans out of cast metal, parchment, wax, or wood, inscribing them with esoteric seals and investing them with power to serve as her implements for casting occultist spells of the schools she knows. The talisman crafter selects schools as normal (two at 1st level and an additional one at 2nd level and every 4 occultist levels thereafter). She creates one master talisman for each implement school she knows, unless she selected that implement school multiple times, in which case she needs one master talisman per time she has selected that school. The talisman crafter splits her mental focus among the schools she knows and generic focus as normal."
+        },
+        {
+          "level": 2,
+          "name": "Spellbound Tailsman",
+          "description": "At 2nd level, a talisman crafter can inscribe spellbound talismans in addition to her master talismans, infusing small tokens she crafts with psychic spells she knows that normally affect one or more target creatures (but not spells that target the caster, spells that affect an area, spells that create effects, or other such spells). When the occultist infuses a talisman with one of her spells, she expends the spell slot just as if she had cast the spell and expends any material components necessary. The talisman crafter can hurl this prepared talisman as a standard action that provokes an attack of opportunity and that requires the same thought and emotion components (Occult Adventures 144) as the original spell. Even if she can normally throw objects without provoking an attack of opportunity, throwing a talisman still provokes an attack of opportunity unless she also succeeds at a concentration check to cast defensively. The thrown talisman has a range of 20 feet, and the occultist must succeed at a ranged touch attack to hit her target. If she hits the target,the spell affects it normally, and the creature receives the normal saving throw (if any) against the spell effect. This allows the talisman crafter to deliver touch spells at range through the spellbound talisman. Alternatively, the talisman crafter can touch the talisman to a target creature as a melee touch attack (for a willing target, she automatically hits); this attack doesn’t provoke an attack of opportunity as long as she succeeds at a concentration check to cast defensively. If an inscribed talisman’s spell would normally target more than one creature, its DC increases by 2."
+        },
+        {
+          "level": 4,
+          "name": "Shared Talisman",
+          "description": "At 4th level, a talisman crafter can expend 1 point of generic mental focus to create a spellbound talisman that anyone can activate. As long as the spellbound talisman exists, it continues to occupy one of the occultist’s spell slots, but can be used by another creature to trigger its effects. Whoever triggers the effect, a shared talisman does not require thought or emotion components, and it doesn’t provoke attacks of opportunity for casting a spell (though it still does so as normal if thrown)."
+        },
+        {
+          "level": 5,
+          "name": "Warding Seal",
+          "description": "At 5th level, a talisman crafter can inscribe a warding seal, infusing an inscribed glyph with psychic energy. Inscribing the seal follows the rules for drawing magic circles, takes 1 minute, and requires the occultist to expend 1 point of mental focus (either generic focus or focus from any one of her implements). As a full-round action that provokes attacks of opportunity, the talisman crafter expends 1 point of mental focus to scribe a special seal, infusing the glyph with a psychic spell she knows that affects one or more creatures and expending the spell slot just as if she had cast the spell. This seal holds the spell energy in check until it’s triggered by conditions set forth when the seal is crafted or until the occultist refreshes her mental focus. The seal functions as the spell glyph option of the glyph of warding spell. At 17th level, the talisman crafter’s fast circles ability applies to her warding seals, and she treats the ability as the greater spell glyph option of the greater glyph of warding spell."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:tome-eater",
+      "package": "pathfinder-class:occultist",
+      "name": "Tome Eater",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Occultist Tome Eater",
+      "replaces_features": [
+        "aura-sight",
+        "binding-circles",
+        "fast-circles",
+        "implement",
+        "implement-mastery",
+        "implements",
+        "magic-circles",
+        "mental-focus",
+        "outside-contact",
+        "shift-focus",
+        "spellcasting"
+      ],
+      "removed_features": [
+        "aura-sight",
+        "binding-circles",
+        "fast-circles",
+        "implement",
+        "implement-mastery",
+        "implements",
+        "magic-circles",
+        "mental-focus",
+        "outside-contact",
+        "shift-focus",
+        "spellcasting"
+      ],
+      "removed_feature_clauses": [
+        "aura sight"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Tome Eater",
+          "description": "Source Occult Adventures pg. 102"
+        },
+        {
+          "level": 1,
+          "name": "Bonded Tome",
+          "description": "At 1st level, a tome eater forms a supernatural bond with a specific book. She can replace her bonded tome with another book at any time, though the tome eater must perform a 24-hour binding ritual to attune herself to the new book."
+        },
+        {
+          "level": 1,
+          "name": "Devour Books and Scrolls",
+          "description": "A tome eater can devour books and scrolls in order to gain various benefits. Devouring a book or scroll is a full-round action that provokes attacks of opportunity. A devoured book or scroll is absorbed into the tome eater’s body and completely destroyed."
+        },
+        {
+          "level": 5,
+          "name": "Word Sense (Sp, Su)",
+          "description": "At 5th level, a tome eater is constantly under the effect of read magic. Additionally, she can automatically detect the general topic of a piece of writing, and whether that writing is a magical scroll or tome, simply by looking at it. If she spends 1 round concentrating on a text within 30 feet per 100 pages of the text, she can gain a sense of a text’s contents as if she had skimmed the text. This ability replaces aura sight."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

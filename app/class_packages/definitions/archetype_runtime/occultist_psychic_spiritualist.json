@@ -1,0 +1,153 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:battle-host",
+      "choice_provider_overrides": [{"key": "occultist-implements", "label": "Panoply Bond Schools", "minimum_levels": [1, 2, 10, 14, 18], "maximum_levels": [1, 2, 10, 14, 18]}],
+      "choice_providers": [{"key": "battle-host-bonded-item", "label": "Panoply Bond Item", "feature_tokens": ["panoply-bond"], "minimum": 1, "maximum": 1, "fixed_options": [{"key": "weapon", "name": "Bonded Weapon"}, {"key": "armor", "name": "Bonded Armor"}, {"key": "shield", "name": "Bonded Shield"}]}]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:necroccultist",
+      "choice_provider_overrides": [{"key": "occultist-implements", "label": "Necromancy Implements", "minimum_levels": [1, 1, 2, 6, 10, 18], "maximum_levels": [1, 1, 2, 6, 10, 18]}],
+      "choice_option_filters": [{"key": "occultist-implements", "include_names": ["Necromancy"]}],
+      "choice_handling": "automatic",
+      "choice_handling_note": "Implement slots are restricted to Necromancy and omit the normal 14th-level implement; the generated class-feature timeline supplies its remaining necromancy powers."
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:panoply-savant",
+      "choice_providers": [{"key": "panoply-savant-specialization", "label": "Panoply Specialization", "feature_tokens": ["panoply-specialization"], "option_families": ["occultist_panoply"], "minimum": 1, "maximum": 1}],
+      "choice_handling": "automatic",
+      "choice_handling_note": "The chosen panoply is stored as a structured class choice; implement-school eligibility remains visible in its complete rules description."
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:reliquarian",
+      "choice_provider_overrides": [{"key": "occultist-implements", "label": "Sacred Implements", "minimum_levels": [1, 2, 6, 10, 14, 18], "maximum_levels": [1, 2, 6, 10, 14, 18]}],
+      "choice_providers": [{"key": "reliquarian-domain", "label": "Sacred Implement Domain", "feature_tokens": ["sacred-implements"], "option_families": ["domain"], "minimum": 1, "maximum": 1, "catalog_class_name": "Cleric"}],
+      "spell_grant_choice_providers": ["reliquarian-domain"],
+      "system_features": ["domain"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:silksworn",
+      "resource_adjustments": [{"resource_key": "mental_focus", "name": "Silksworn Mental Focus", "description": "Maximum mental focus equals Occultist level + Intelligence modifier + Charisma modifier."}],
+      "choice_handling": "automatic",
+      "choice_handling_note": "Implement choices use the shared selector; the class timeline records the required worn item slot for every implement school."
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:occultist:glory-seeker",
+      "resource_modules": [{"key": "glory_seeker", "title": "Glory Seeker", "governing_ability": "intelligence", "resources": [{"key": "soldier_of_fortune", "name": "Soldier of Fortune Talents", "feature_tokens": ["soldier-of-fortune"], "progression": "one_plus_every_four_after_three", "description": "Spend 1 mental focus per temporary combat talent. Capacity is one at 3rd level plus one every 4 levels thereafter.", "custom_choice_label": "Current temporary combat talents", "tracks_uses": false, "recover_on_full_rest": false}]}],
+      "choice_handling": "automatic",
+      "choice_handling_note": "Martial tradition and Proficient combat-talent advancement use the shared Spheres workflow."
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:occultist:lauriger",
+      "choice_providers": [{"key": "lauriger-relic-path", "label": "Alternate Relic Progression", "feature_tokens": ["champions-relics"], "minimum": 0, "maximum": 1, "fixed_options": [{"key": "standard", "name": "Standard Champion's Relics"}, {"key": "arenarius", "name": "Arenarius"}, {"key": "hieronica", "name": "Hieronica"}, {"key": "rudiarius", "name": "Rudiarius"}]}],
+      "choice_handling": "automatic",
+      "choice_handling_note": "Trade tradition, martial tradition, blended talent budget, relic talents, and the selected alternate relic progression stay separate and rules-visible."
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:occultist:reliquary-keeper",
+      "choice_providers": [{"key": "reliquary-keeper-relic-schools", "label": "Relic Implement Schools", "feature_tokens": ["relic"], "option_families": ["occultist_implement"], "minimum_levels": [1, 1, 4, 8, 12, 16, 20], "maximum_levels": [1, 1, 4, 8, 12, 16, 20], "maximum": 7}],
+      "choice_handling": "automatic",
+      "choice_handling_note": "Casting tradition, Mid-Caster level, spell pool, magic talent budget, and relic-linked sphere talents use shared Spheres systems."
+    },
+
+    {
+      "key": "pathfinder-archetype:pathfinder-class:psychic:amnesiac",
+      "choice_handling": "automatic",
+      "choice_handling_note": "The changing spell-recollection state remains a daily character record rather than creating permanent spells known; the full replacement text is retained on the feature timeline."
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:psychic:esoteric-starseeker",
+      "choice_providers": [{"key": "esoteric-starseeker-constellation", "label": "Esoteric Starseeker Constellation", "feature_tokens": ["esoteric-starseeker"], "minimum": 1, "maximum": 1, "fixed_options": [{"key": "dragon", "name": "Dragon"}, {"key": "follower", "name": "Follower"}, {"key": "mother", "name": "Mother"}, {"key": "newcomer", "name": "Newcomer"}, {"key": "rider", "name": "Rider"}, {"key": "stranger", "name": "Stranger"}]}]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:psychic:formless-adept",
+      "choice_handling": "automatic",
+      "choice_handling_note": "Formless Spell occupies the replaced 1st-level amplification slot and the authored form-only bonus spells are retained on the automatic feature timeline."
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:psychic:ascendant-mind",
+      "system_features": ["phrenic-pool", "phrenic-powers", "psychic-nexus"],
+      "choice_handling": "automatic",
+      "choice_handling_note": "This archetype removes spellcasting, discipline, discipline spells, selectable amplifications, and Remade Self. Its level-gated phrenic powers and nexus remain on the generated feature timeline while the shared phrenic pool tracks their costs."
+    },
+
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:drowned-channeler",
+      "system_features": ["phantom"],
+      "choice_handling": "automatic",
+      "choice_handling_note": "The retained phantom sheet represents the drowned phantom; its water subtype, swim speed, and altered tether/manifestation appear in the replacement feature description."
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:exciter",
+      "system_features": ["phantom"],
+      "choice_handling": "automatic",
+      "choice_handling_note": "The emotional focus choice is retained while Merged Phantom prevents external manifestation as specified by the feature timeline."
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:fractured-mind",
+      "choice_handling": "automatic",
+      "choice_handling_note": "Charisma replaces Wisdom for casting. Emotional Power spell-like abilities are determined by the selected emotional focus and remain visible at their gain levels."
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:phantom-blade",
+      "choice_providers": [{"key": "phantom-blade-weapon", "label": "Phantom Weapon Type", "feature_tokens": ["phantom-weapon"], "minimum": 1, "maximum": 1, "fixed_options": [{"key": "custom-proficient-weapon", "name": "Selected Proficient Weapon", "description": "Record the chosen simple or martial weapon type in the class-choice notes."}]}],
+      "resource_modules": [{"key": "phantom_blade", "title": "Phantom Blade", "governing_ability": "wisdom", "resources": [{"key": "ectoplasmic_pool", "name": "Ectoplasmic Pool", "feature_tokens": ["ectoplasmic-pool"], "progression": "half_level_plus_ability_minimum_one", "description": "Points equal half Spiritualist level + Wisdom modifier; restored with daily spells."}]}]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:spiritualist:martial-spiritualist",
+      "choice_providers": [{"key": "martial-spiritualist-learned-hand", "label": "Learned Hand Spheres", "feature_tokens": ["learned-hand"], "minimum_levels": [3, 8, 13, 18], "maximum_levels": [3, 8, 13, 18], "maximum": 4, "fixed_options": [{"key": "alchemy", "name": "Alchemy"}, {"key": "athletics", "name": "Athletics"}, {"key": "barrage", "name": "Barrage"}, {"key": "barroom", "name": "Barroom"}, {"key": "beastmastery", "name": "Beastmastery"}, {"key": "berserker", "name": "Berserker"}, {"key": "boxing", "name": "Boxing"}, {"key": "brute", "name": "Brute"}, {"key": "dual-wielding", "name": "Dual Wielding"}, {"key": "duelist", "name": "Duelist"}, {"key": "equipment", "name": "Equipment"}, {"key": "fencing", "name": "Fencing"}, {"key": "gladiator", "name": "Gladiator"}, {"key": "guardian", "name": "Guardian"}, {"key": "lancer", "name": "Lancer"}, {"key": "leadership", "name": "Leadership"}, {"key": "open-hand", "name": "Open Hand"}, {"key": "scoundrel", "name": "Scoundrel"}, {"key": "scout", "name": "Scout"}, {"key": "shield", "name": "Shield"}, {"key": "sniper", "name": "Sniper"}, {"key": "tech", "name": "Tech"}, {"key": "trap", "name": "Trap"}, {"key": "warleader", "name": "Warleader"}, {"key": "wrestling", "name": "Wrestling"}]}],
+      "choice_handling": "automatic",
+      "choice_handling_note": "Martial tradition and Proficient combat-talent advancement use shared Spheres systems. Learned Hand choices are stored independently from the ordinary talent budget."
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:spiritualist:psychomancer",
+      "choice_providers": [{"key": "psychomancer-spirit-magic", "label": "Spirit Sphere", "feature_tokens": ["spirit-magic"], "minimum": 1, "maximum": 1, "fixed_options": [{"key": "death", "name": "Death Sphere"}, {"key": "life", "name": "Life Sphere"}, {"key": "mind", "name": "Mind Sphere"}]}],
+      "choice_handling": "automatic",
+      "choice_handling_note": "Casting tradition, Mid-Caster progression, spell pool, magic talent budget, and the chosen full-level spirit sphere use shared Spheres systems."
+    },
+
+    {"key": "pathfinder-archetype:pathfinder-class:occultist:ancestral-aspirant", "choice_handling": "automatic", "choice_handling_note": "Ancestral implement and focus changes are retained on the resolved class-feature timeline."},
+    {"key": "pathfinder-archetype:pathfinder-class:occultist:construct-collector", "choice_handling": "automatic", "choice_handling_note": "Construct-linked implement and focus changes are retained on the resolved class-feature timeline."},
+    {"key": "pathfinder-archetype:pathfinder-class:occultist:curator", "choice_handling": "automatic", "choice_handling_note": "Curator replacement abilities are level-gated on the resolved feature timeline."},
+    {"key": "pathfinder-archetype:pathfinder-class:occultist:esoteric-initiate", "choice_handling": "automatic", "choice_handling_note": "Esoteric Initiate replacement abilities are level-gated on the resolved feature timeline."},
+    {"key": "pathfinder-archetype:pathfinder-class:occultist:extemporaneous-channeler", "choice_handling": "automatic", "choice_handling_note": "Improvised implement and channeling changes are retained on the resolved feature timeline."},
+    {"key": "pathfinder-archetype:pathfinder-class:occultist:geomancer", "choice_handling": "automatic", "choice_handling_note": "Geomancer location-dependent effects remain situational and rules-visible on the feature timeline."},
+    {"key": "pathfinder-archetype:pathfinder-class:occultist:haunt-collector", "choice_handling": "automatic", "choice_handling_note": "Haunted implements and haunt powers remain attached to the selected implements and resolved feature timeline."},
+    {"key": "pathfinder-archetype:pathfinder-class:occultist:naturalist", "choice_handling": "automatic", "choice_handling_note": "Natural Focus spends generic mental focus through the shared pool; situational terrain powers remain on the feature timeline."},
+    {"key": "pathfinder-archetype:pathfinder-class:occultist:occult-historian", "choice_handling": "automatic", "choice_handling_note": "Occult Historian replacement abilities are level-gated on the resolved feature timeline."},
+    {"key": "pathfinder-archetype:pathfinder-class:occultist:planar-harmonizer", "choice_handling": "automatic", "choice_handling_note": "Planar attunement remains a daily situational choice recorded by the class feature."},
+    {"key": "pathfinder-archetype:pathfinder-class:occultist:psychodermist", "choice_handling": "automatic", "choice_handling_note": "Trophy implement choices and their creature-specific effects remain in the resolved feature descriptions."},
+    {"key": "pathfinder-archetype:pathfinder-class:occultist:secret-broker", "choice_handling": "automatic", "choice_handling_note": "Secret Broker information and implement changes are retained on the feature timeline."},
+    {"key": "pathfinder-archetype:pathfinder-class:occultist:sha-ir", "choice_handling": "automatic", "choice_handling_note": "Sha'ir implement and outsider-contact changes remain on the resolved feature timeline."},
+    {"key": "pathfinder-archetype:pathfinder-class:occultist:talisman-crafter", "choice_handling": "automatic", "choice_handling_note": "Talismanic implements use the normal implement-school selector; created talismans remain character-specific inventory records."},
+    {"key": "pathfinder-archetype:pathfinder-class:occultist:tome-eater", "choice_handling": "automatic", "choice_handling_note": "Tome implement and consumed-writing abilities remain on the resolved feature timeline."},
+
+    {"key": "pathfinder-archetype:pathfinder-class:psychic:magaambyan-telepath", "choice_handling": "automatic", "choice_handling_note": "Magaambyan Telepath replacements and bonus spells remain on the level-gated feature timeline."},
+    {"key": "pathfinder-archetype:pathfinder-class:psychic:mutation-mind", "choice_handling": "automatic", "choice_handling_note": "Mutation selections replace amplification slots and remain explicit on the generated feature timeline."},
+    {"key": "pathfinder-archetype:pathfinder-class:psychic:psychic-duelist", "choice_handling": "automatic", "choice_handling_note": "Psychic duel resources and replacement amplifications remain on the feature timeline."},
+    {"key": "pathfinder-archetype:pathfinder-class:psychic:psychic-marauder", "choice_handling": "automatic", "choice_handling_note": "Psychic Marauder mindscape replacements remain level-gated on the feature timeline."},
+    {"key": "pathfinder-archetype:pathfinder-class:psychic:terror-weaver", "choice_handling": "automatic", "choice_handling_note": "Fear-linked spell and amplification replacements remain on the feature timeline."},
+
+    {"key": "pathfinder-archetype:pathfinder-class:spiritualist:fated-guide", "choice_handling": "automatic", "choice_handling_note": "Fated Guide replacement abilities remain level-gated on the feature timeline."},
+    {"key": "pathfinder-archetype:pathfinder-class:spiritualist:ectoplasmatist", "choice_handling": "automatic", "choice_handling_note": "Ectoplasmic lash forms, spiritual combat, armor, and level-scaled weapon benefits replace the phantom systems and remain on the resolved feature timeline."},
+    {"key": "pathfinder-archetype:pathfinder-class:spiritualist:geist-channeler", "system_features": ["phantom"], "choice_handling": "automatic", "choice_handling_note": "The phantom page remains available for the archetype's geist variant."},
+    {"key": "pathfinder-archetype:pathfinder-class:spiritualist:grim-apostle", "system_features": ["phantom"], "choice_handling": "automatic", "choice_handling_note": "The phantom page remains available for the archetype's altered phantom."},
+    {"key": "pathfinder-archetype:pathfinder-class:spiritualist:hag-haunted", "choice_handling": "automatic", "choice_handling_note": "Hag-haunted replacements remain level-gated on the feature timeline."},
+    {"key": "pathfinder-archetype:pathfinder-class:spiritualist:haunted", "system_features": ["phantom"], "choice_handling": "automatic", "choice_handling_note": "Usurp Manifestation changes the phantom bond without removing its independent sheet."},
+    {"key": "pathfinder-archetype:pathfinder-class:spiritualist:involutionist", "system_features": ["phantom"], "choice_handling": "automatic", "choice_handling_note": "The altered phantom remains represented by the shared phantom sheet."},
+    {"key": "pathfinder-archetype:pathfinder-class:spiritualist:necrologist", "choice_handling": "automatic", "choice_handling_note": "Necrologist replacement abilities remain level-gated on the feature timeline."},
+    {"key": "pathfinder-archetype:pathfinder-class:spiritualist:onmyoji", "choice_handling": "automatic", "choice_handling_note": "Divine spellcasting presentation and ofuda requirements are resolved by the archetype profile and timeline."},
+    {"key": "pathfinder-archetype:pathfinder-class:spiritualist:plague-eater", "system_features": ["phantom"], "choice_handling": "automatic", "choice_handling_note": "The altered phantom remains represented by the shared phantom sheet."},
+    {"key": "pathfinder-archetype:pathfinder-class:spiritualist:priest-of-the-fallen", "system_features": ["phantom"], "choice_handling": "automatic", "choice_handling_note": "Fallen-spirit variants remain represented by the shared phantom sheet and feature timeline."},
+    {"key": "pathfinder-archetype:pathfinder-class:spiritualist:quintessentialist", "system_features": ["phantom"], "choice_handling": "automatic", "choice_handling_note": "The quintessentialist's altered manifestation remains represented by the shared companion record."},
+    {"key": "pathfinder-archetype:pathfinder-class:spiritualist:scourge", "system_features": ["phantom"], "choice_handling": "automatic", "choice_handling_note": "The scourge phantom remains represented by the shared phantom sheet."},
+    {"key": "pathfinder-archetype:pathfinder-class:spiritualist:seeker-of-enlightenment", "choice_handling": "automatic", "choice_handling_note": "Enlightenment replacements remain level-gated on the feature timeline."},
+    {"key": "pathfinder-archetype:pathfinder-class:spiritualist:shadow-caller", "system_features": ["phantom"], "choice_handling": "automatic", "choice_handling_note": "The shadow phantom remains represented by the shared phantom sheet."},
+    {"key": "pathfinder-archetype:pathfinder-class:spiritualist:soul-warden", "choice_handling": "automatic", "choice_handling_note": "Soul Warden replacement abilities remain level-gated on the feature timeline."},
+    {"key": "pathfinder-archetype:pathfinder-class:spiritualist:totem-spiritualist", "system_features": ["phantom"], "choice_handling": "automatic", "choice_handling_note": "The totem-bound phantom remains represented by the shared phantom sheet."},
+    {"key": "pathfinder-archetype:pathfinder-class:spiritualist:usher-of-lost-souls", "system_features": ["phantom"], "choice_handling": "automatic", "choice_handling_note": "The altered phantom remains represented by the shared phantom sheet."},
+    {"key": "pathfinder-archetype:pathfinder-class:spiritualist:ward-spiritualist", "system_features": ["phantom", "implements"], "choice_providers": [{"key": "ward-spiritualist-implement", "label": "Ward Implement School", "feature_tokens": ["ward-implement"], "option_families": ["occultist_implement"], "minimum": 1, "maximum": 1}], "choice_handling": "automatic", "choice_handling_note": "The ward implement has its own one-school choice and the shared phantom sheet applies the kami phantom's d8 Hit Dice, three-quarter BAB, and ectoplasmic-only manifestation."},
+    {"key": "pathfinder-archetype:pathfinder-class:spiritualist:zeitgeist-binder", "system_features": ["phantom"], "choice_handling": "automatic", "choice_handling_note": "The zeitgeist phantom remains represented by the shared phantom sheet."}
+  ]
+}

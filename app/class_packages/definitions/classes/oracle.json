@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "key": "oracle",
+  "class_key": "pathfinder-class:oracle",
+  "class_name": "Oracle",
+  "governing_ability": "charisma",
+  "optional_blocks": ["inquisitor_features", "spells_known", "spell_level_overview"],
+  "external_systems": ["traditional_spontaneous_casting", "oracle_mystery", "oracle_curse", "oracle_revelations"],
+  "resource_modules": [],
+  "passive_effects": [],
+  "spell_grant_choice_providers": ["oracle-mystery", "oracle-curse"],
+  "notes": "Mystery and curse are shared class-choice providers; revelations are a mystery-filtered recurring power provider."
+}

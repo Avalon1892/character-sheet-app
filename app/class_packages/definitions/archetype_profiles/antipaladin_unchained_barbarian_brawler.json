@@ -1,0 +1,188 @@
+{
+  "version": 1,
+  "description": "Hand-reviewed class profiles for Antipaladin, Unchained Barbarian, Brawler, and their Pathfinder and Spheres archetypes.",
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:antipaladin:tyrant",
+      "class_modifications": {
+        "statistics": {
+          "add_class_skills": ["diplomacy"],
+          "remove_class_skills": ["ride"]
+        }
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:antipaladin:antimage",
+      "sphere_capabilities": {"grants": ["martial"], "removes": []},
+      "class_modifications": {
+        "statistics": {
+          "skill_points": 4,
+          "add_class_skills": ["knowledge_arcana", "perception"],
+          "remove_class_skills": ["diplomacy", "knowledge_religion"]
+        },
+        "casting": {"traditional": false, "progression": "", "spells": ""},
+        "advancement": {"talent_progression": "Proficient", "talent_kinds": ["martial"]},
+        "capabilities": {"grants": ["martial"], "removes": ["traditional_spells"]},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      },
+      "choices": [
+        {
+          "key": "antimage-training",
+          "level": 1,
+          "name": "Combat Training",
+          "minimum": 1,
+          "maximum": 1,
+          "options": [
+            {"key": "retain-smite", "name": "Proficient — retain Smite Magic", "class_modifications": {"advancement": {"talent_progression": "Proficient", "talent_kinds": ["martial"]}}},
+            {"key": "expert-training", "name": "Expert — exchange Smite Magic and Aura of Spellhunt", "class_modifications": {"advancement": {"talent_progression": "Expert", "talent_kinds": ["martial"]}}}
+          ]
+        }
+      ]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:antipaladin:avowed",
+      "sphere_capabilities": {"grants": ["magic", "martial"], "removes": []},
+      "class_modifications": {
+        "casting": {"sphere_progression": "Low", "traditional": false, "ability": "charisma", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "High", "talent_kinds": ["magic", "martial"]},
+        "capabilities": {"grants": ["magic", "martial"], "removes": ["traditional_spells"]},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:antipaladin:blood-soaked-demon",
+      "sphere_capabilities": {"grants": ["martial"], "removes": []},
+      "class_modifications": {
+        "advancement": {"talent_progression": "Proficient", "talent_kinds": ["martial"]},
+        "capabilities": {"grants": ["martial"], "removes": []},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:antipaladin:champion-of-the-cause",
+      "sphere_capabilities": {"grants": ["magic", "martial"], "removes": []},
+      "class_modifications": {
+        "casting": {"sphere_progression": "Low", "traditional": false, "ability": "charisma", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "High", "talent_kinds": ["magic", "martial"]},
+        "capabilities": {"grants": ["magic", "martial"], "removes": ["traditional_spells"]},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:antipaladin:grand-purifier",
+      "sphere_capabilities": {"grants": ["magic", "martial"], "removes": []},
+      "class_modifications": {
+        "casting": {"sphere_progression": "Low", "traditional": false, "ability": "charisma", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "Adept", "talent_kinds": ["martial"]},
+        "capabilities": {"grants": ["magic", "martial"], "removes": ["traditional_spells"]},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:antipaladin:soulrender",
+      "sphere_capabilities": {"grants": ["magic"], "removes": []},
+      "class_modifications": {
+        "casting": {"sphere_progression": "Low", "traditional": false, "ability": "charisma", "type": "sphere", "spells": ""},
+        "capabilities": {"grants": ["magic"], "removes": ["traditional_spells"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:antipaladin:sphere-antipaladin",
+      "sphere_capabilities": {"grants": ["magic"], "removes": []},
+      "class_modifications": {
+        "casting": {"sphere_progression": "Low", "traditional": false, "ability": "charisma", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "Low", "talent_kinds": ["magic"]},
+        "capabilities": {"grants": ["magic"], "removes": ["traditional_spells"]}
+      }
+    },
+
+    {
+      "key": "spheres-archetype:pathfinder-class:barbarian-unchained:painted-savage",
+      "sphere_capabilities": {"grants": ["martial"], "removes": []},
+      "class_modifications": {
+        "advancement": {"talent_progression": "Proficient", "talent_kinds": ["martial"]},
+        "capabilities": {"grants": ["martial"], "removes": []},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:barbarian-unchained:super-soldier",
+      "sphere_capabilities": {"grants": ["martial"], "removes": []},
+      "class_modifications": {
+        "advancement": {"talent_progression": "Proficient", "talent_kinds": ["martial"]},
+        "capabilities": {"grants": ["martial"], "removes": []},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      },
+      "choices": [
+        {
+          "key": "super-soldier-practitioner-ability",
+          "level": 1,
+          "name": "Practitioner Ability",
+          "minimum": 1,
+          "maximum": 1,
+          "options": [
+            {"key": "charisma", "name": "Charisma"},
+            {"key": "intelligence", "name": "Intelligence"},
+            {"key": "wisdom", "name": "Wisdom"}
+          ]
+        }
+      ]
+    },
+
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:battle-dancer",
+      "class_modifications": {
+        "statistics": {"add_class_skills": ["perform"], "remove_class_skills": ["knowledge_dungeoneering"]},
+        "proficiencies": {"mode": "modify", "remove_armor": ["Shields"]}
+      }
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:constructed-pugilist",
+      "class_modifications": {"statistics": {"add_class_skills": ["craft"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:snakebite-striker",
+      "class_modifications": {"statistics": {"add_class_skills": ["bluff", "stealth"], "remove_class_skills": ["intimidate"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:steel-breaker",
+      "class_modifications": {"statistics": {"add_class_skills": ["knowledge_engineering"], "remove_class_skills": ["knowledge_dungeoneering"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:strangler",
+      "class_modifications": {"statistics": {"add_class_skills": ["stealth"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:wild-child",
+      "class_modifications": {"statistics": {"add_class_skills": ["heal"]}}
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:brawler:brutal-pummeler",
+      "sphere_capabilities": {"grants": ["martial"], "removes": []},
+      "class_modifications": {
+        "advancement": {"talent_progression": "Adept", "talent_kinds": ["martial"]},
+        "capabilities": {"grants": ["martial"], "removes": []},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:brawler:mechanized-brawler",
+      "sphere_capabilities": {"grants": ["martial"], "removes": []},
+      "class_modifications": {
+        "advancement": {"talent_progression": "Expert", "talent_kinds": ["martial"]},
+        "capabilities": {"grants": ["martial"], "removes": []},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:brawler:prescient-pugilist",
+      "sphere_capabilities": {"grants": ["magic", "martial"], "removes": []},
+      "class_modifications": {
+        "casting": {"sphere_progression": "Low", "traditional": false, "ability": "wisdom", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "High", "talent_kinds": ["magic", "martial"]},
+        "capabilities": {"grants": ["magic", "martial"], "removes": []},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    }
+  ]
+}

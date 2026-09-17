@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "key": "incanter",
+  "class_key": "spheres-class:incanter",
+  "class_name": "Incanter",
+  "governing_ability": "intelligence",
+  "catalog_profile": {
+    "weapon_proficiencies": ["Simple weapons"],
+    "armor_proficiencies": [],
+    "proficiencies": {"weapons": ["Simple weapons"], "armor": []},
+    "advancement": {"talent_progression": "One-And-A-Half", "talent_kinds": ["magic"]},
+    "feature_descriptions": {
+      "bonus talent": "The Incanter gains one additional magic talent at 1st level and every odd Incanter level thereafter.",
+      "specializations": "At 1st level, the Incanter may spend up to 5 specialization points. Specializations exchange the listed bonus-feat levels for focused class abilities."
+    }
+  },
+  "optional_blocks": ["magic_spheres", "spell_points"],
+  "external_systems": ["sphere_casting", "incanter_specializations"],
+  "bonus_feat_levels": [1,2,4,6,8,10,12,14,16,18,20],
+  "bonus_feat_label": "Incanter bonus feats",
+  "resource_modules": [
+    {
+      "key":"incanter","title":"Incanter Specializations","governing_ability":"intelligence","resources":[
+        {"key":"specialization_points","name":"Specialization Points","feature_tokens":["specializations"],"progression":"five","description":"Five-point specialization budget. Selected specializations consume 1–3 points each and replace the exact bonus-feat levels listed by their total cost.","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false}
+      ]
+    }
+  ],
+  "passive_effects": [],
+  "choice_providers": [
+    {
+      "key":"incanter-specializations","label":"Incanter Specializations","feature_tokens":["specializations"],"minimum":0,"maximum":5,"point_budget":5,"description":"Choose specializations totaling no more than 5 points. Point costs are shown with each option; repeated Cleric Domain selections must use different domains.",
+      "fixed_options":[
+        {"key":"cleric-domain","name":"Cleric Domain","category":"Domain","cost":1},{"key":"familiar","name":"Familiar","category":"Companion","cost":1},{"key":"admixture-adept","name":"Admixture Adept","category":"Magic","cost":2},{"key":"channel-energy","name":"Channel Energy","category":"Divine","cost":2},{"key":"fey-servant","name":"Fey Servant","category":"Companion","cost":2},{"key":"omnimental-familiar","name":"Omnimental Familiar","category":"Companion","cost":2},{"key":"lay-on-hands","name":"Lay on Hands","category":"Divine","cost":2},{"key":"master-of-mysteries","name":"Master of Mysteries","category":"Magic","cost":2},{"key":"merciful-healer","name":"Merciful Healer","category":"Divine","cost":2},{"key":"sorcerer-bloodline","name":"Sorcerer Bloodline","category":"Bloodline","cost":2},{"key":"sphere-specialization","name":"Sphere Specialization","category":"Magic","cost":3},{"key":"sword-birth","name":"Sword Birth","category":"Combat","cost":3}
+      ]
+    }
+  ],
+  "notes":"High sphere casting, spell points, magic-talent budgets, and bonus feats are shared systems. Specialization selections are stored independently so future specializations can be added as data."
+}

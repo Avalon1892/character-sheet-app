@@ -1,0 +1,1296 @@
+{
+  "version": 1,
+  "class_key": "spheres-class:symbiat",
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:symbiat:battlemind",
+      "package": "spheres-class:symbiat",
+      "name": "Battlemind",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/battlemind",
+      "replaces_features": [
+        "armor-proficiencies",
+        "battlefield-sense",
+        "esp",
+        "magic-talents",
+        "mental-powers",
+        "weapon"
+      ],
+      "removed_features": [
+        "battlefield-sense",
+        "esp",
+        "mental-powers"
+      ],
+      "removed_feature_clauses": [
+        "mental powers",
+        "battlefield sense",
+        "ESP"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Battleminds are proficient with simple weapons, as well as light armor. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis modifies weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "A battlemind gains a combat or magic talent every time he gains a class level. A battlemind uses his casting ability modifier as his practitioner modifier.\n\nThis modifies magic talents. The battlemind does not gain pushed movement."
+        },
+        {
+          "level": 1,
+          "name": "Psychic Leader",
+          "description": "A battlemind gains the Leadership sphere as a bonus combat talent, selecting the (cohort) package. If he possesses the Leadership sphere but not the (cohort) package, he gains the Expanded Leadership talent, selecting the (cohort) package. If the (cohort) package is already possessed, he instead gains another talent from that sphere. If he is incapable of selecting the cohort package due to a drawback, he uses the bonus talent to buy off that drawback.\n\nThis replaces mental powers."
+        },
+        {
+          "level": 1,
+          "name": "Cohort Telepathy",
+          "description": "At 1st level, the battlemind’s cohorts are considered to be under the effects of his mind link whenever they are within medium range (100 feet + 10 feet per class level) of him. This ability does not expend any rounds of psionics.\n\nThis replaces battlefield sense."
+        },
+        {
+          "level": 2,
+          "name": "Commanding Mind Link",
+          "description": "At 2nd level, creatures under the effects of the battlemind’s mind link count as his cohorts for the purpose of interacting with (cohort) talents, though do not count against the cohort Hit Dice limit. This does not allow you to make permanent changes, such as through the Drill Sergeant talent.\n\nThis replaces ESP."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:symbiat:bloodscarred",
+      "package": "spheres-class:symbiat",
+      "name": "Bloodscarred",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/bloodscarred",
+      "replaces_features": [
+        "class-skills",
+        "greater-psionics",
+        "mental-powers",
+        "psionics"
+      ],
+      "removed_features": [
+        "greater-psionics",
+        "mental-powers",
+        "psionics"
+      ],
+      "removed_feature_clauses": [
+        "mental powers",
+        "greater psionics",
+        "psionics ability"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Charismatic",
+          "description": "A bloodscarred uses Charisma for any class ability normally based on Intelligence."
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A bloodscarred loses Linguistics (Int) as a class skill and gains Bluff (Cha) as a class skill."
+        },
+        {
+          "level": 1,
+          "name": "Vampire Touched",
+          "description": "A bloodscarred gains the Blood sphere as a bonus magic talent and uses his class level as his caster level with the Blood sphere. This stacks normally with caster levels gained from other sources.\n\nThis replaces mental powers."
+        },
+        {
+          "level": 1,
+          "name": "Vampiric Heritage",
+          "description": "As the bloodscarred increases in power, his vampiric heritage manifests itself more strongly. The bloodscarred gains the following abilities at the indicated levels:"
+        },
+        {
+          "level": 20,
+          "name": "Greater Domination",
+          "description": "At 20th level, the bloodscarred may spend 2 rounds of his dominate ability to control a dominated creature for 1 hour per level without concentration. Dominated creatures receive new saving throws to end the effect each hour instead of each round.\n\nThis replaces greater psionics.\n\nClass Skills: A bloodscarred does not gain Linguistics as a class skill but does gain Bluff as a class skill. This modifies class skills.\n\nCharismatic: A bloodscarred uses Charisma for his casting ability modifier and for any class ability normally based on Intelligence.\n\nVampire Touched: An bloodscarred gains the Blood sphere as a bonus magic talent and uses his class level as his caster level with the Blood sphere. This stacks normally with caster levels gained from other sources. If it is already possessed, he instead gains a talent belonging to the Blood sphere.\n\nThis replaces mental powers.\n\nVampiric Heritage: As the bloodscarred increases in power, his vampiric heritage manifests itself more strongly. The bloodscarred gains the following abilities at the indicated levels:\n\nDivine Undead: At 1st level, a bloodscarred may spend a full-round action to divine for the presence of undead as if using the Divination sphere divine ability and the Death sphere alternate divination option. Treat the bloodscarred’s class level as his caster level for this ability. This stacks normally with caster levels gained from other sources.\n\nFangs: At 1st level, the bloodscarred gains a bite attack (primary, 1d6 Medium, 1d4 Small).\n\nAt 7th level, this bite attack inflicts 1 Constitution damage. A Fortitude save (DC 10 + 1/2 class level + Charisma modifier) negates this damage.\n\nAt 13th level, the bloodscarred gains temporary hit points equal to the damage inflicted with his bite attack if the damaged creature would be susceptible to his blood control. The temporary hit points from multiple bite attacks do not stack. Additionally, the Constitution damage inflicted by his bite now increases to 1d2.\n\nAt 19th level, the Constitution damage inflicted by the bloodscarred’s bite increases to 1d4.\n\nWall Cling: At 3rd level, the bloodscarred gains a climb speed of 20 ft. (including a +8 racial bonus on Climb skill checks); furthermore, he need not make Climb checks to traverse a vertical or horizontal surface (even upside down). If he already possesses a climb speed it is increased by +10 feet.\n\nNight Eye: At 6th level, the bloodscarred gains darkvision 60 feet. If he already has darkvision, the range of his darkvision increases by 30 feet.\n\nMist Form: At 7th level, the bloodscarred may transform into a mist as a standard action for a number of rounds per day equal to his class level. The bloodscarred and all his gear become insubstantial, misty, and translucent. His armor (including natural armor) become worthless, though his size, Dexterity, deflection bonuses, and armor bonuses from force effects still apply.\n\nThe bloodscarred gains DR 10/magic and becomes immune to poison, sneak attacks, and critical hits. While in mist form, he can’t attack or cast spells or sphere abilities that require components he can’t supply while in mist form, such as verbal, somatic, material, or focus components. The bloodscarred also loses supernatural abilities while in mist form. If he has a touch spell or sphere ability ready to use, that spell or ability is discharged harmlessly when the mist form is in effect. Ending this effect is a free action.\n\nWhile in mist form the bloodscarred can’t run, but it can fly at a speed of 20 ft. + 5 ft. per 5 class levels and automatically succeeds on all Fly skill checks. He can pass through small holes or narrow openings, even mere cracks, with all he was wearing or holding in his hands, as long as the effect persists. The bloodscarred is subject to the effects of wind, and he can’t enter water or other liquid. He also can’t manipulate objects or activate items, even those carried along with his mist form. Continuously active items remain active, though in some cases their effects may be moot.\n\nAt 17th level, the bloodscarred is no longer limited to the number of rounds per day he may spend in mist form. If the bloodscarred is reduced to 0 or fewer hit points, he may choose to enter mistform as a free action even when it is not his turn. He automatically stabilizes as part of this transformation.\n\nDominate: At 9th level, as a standard action, the bloodscarred may force another to do his bidding. This functions as the Mind Control advanced talent of the Mind sphere, except the creature must have a number of Hit Dice equal to or less than the bloodscarred’s class level. The target is allowed a Will saving throw to resist (DC 10 + 1/2 class level + Charisma modifier), and on a failure receives a new saving throw each round to throw off the effect. The bloodscarred may dominate targets for a number of rounds per day equal to his class level. These rounds do not need to be consecutive. He must spend a round of this ability each round to concentrate as a standard action to maintain control over a dominated creature.\n\nAt 16th level, the bloodscarred may maintain this effect as a free action each round.\n\nInured to Death: At 11th level, the bloodscarred ignores the effects of negative levels, though still dies if he accumulates more negative levels than Hit Dice. If he already possesses the ability to ignore negative levels, instead increase the number of negative levels required to kill him by his Charisma modifier.\n\nThis replaces the psionics ability.\n\nGreater Domination: At 20th level, the bloodscarred may spend 2 rounds of his dominate ability to control a dominated creature for 1 hour per level without concentration. Dominated creatures receive new saving throws to end the effect each hour instead of each round.\n\nThis replaces greater psionics.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:symbiat:cerebral-singer",
+      "package": "spheres-class:symbiat",
+      "name": "Cerebral Singer",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/cerebral-singer",
+      "replaces_features": [
+        "battlefield-relay",
+        "casting",
+        "danger-sense",
+        "esp",
+        "greater-mind-link",
+        "improved-mind-link",
+        "mental-powers",
+        "mind-link",
+        "symbiat-s-normal-class-skills",
+        "telekinetic-colossus",
+        "telekinetic-edge"
+      ],
+      "removed_features": [
+        "battlefield-relay",
+        "danger-sense",
+        "esp",
+        "greater-mind-link",
+        "improved-mind-link",
+        "mental-powers",
+        "mind-link",
+        "symbiat-s-normal-class-skills",
+        "telekinetic-colossus",
+        "telekinetic-edge"
+      ],
+      "removed_feature_clauses": [
+        "mental powers",
+        "symbiat's normal class skills",
+        "ESP",
+        "danger sense"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "Whenever the cerebral singer would gain a magic talent from his class levels, he may instead choose to gain a skill talent. The cerebral singer uses his casting ability modifier as his operative modifier.\n\nThis alters casting."
+        },
+        {
+          "level": 1,
+          "name": "Psionics",
+          "description": "A cerebral singer uses sound and music as templates to hone his psionic abilities. These psionic abilities are considered mindaffecting effects, and use the cerebral singer's Mind sphere or Performance sphere DC for any effects that require a saving throw, whichever is higher."
+        },
+        {
+          "level": 1,
+          "name": "Soulsinger",
+          "description": "The cerebral singer gains the Performance skill sphere and the Mind magic sphere as bonus spheres at 1st level. The cerebral singer must choose the (lyric) package for the Performance sphere.\n\nThis replaces mental powers."
+        },
+        {
+          "level": 1,
+          "name": "Trade Tradition",
+          "description": "If this is this character's first level in any class, the cerebral singer may select a trade tradition of their choice, and have a competent trade rank.\n\nThis replaces the symbiat's normal class skills."
+        },
+        {
+          "level": 2,
+          "name": "Personable",
+          "description": "A cerebral singer is able to passively glean the best way of conversing with individuals using subtle psionics. Beginning at 2nd level, he gains an insight bonus to Diplomacy and Sense Motive checks equal to 2 + 1 per 5 symbiat levels he possesses, and unlocks skill leverage with these skills.\n\nThis replaces ESP."
+        },
+        {
+          "level": 3,
+          "name": "Euphonic Thrum",
+          "description": "At 3rd level, a cerebral singer gains a +2 bonus to saving throws attempted against Performance sphere abilities, sonic, and language-dependent effects. These bonuses increase by 1 for every 4 symbiat levels beyond 3rd.\n\nThis replaces danger sense.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nSpheres of Guile by Drop Dead Studios\n\nUsing Spheres of Guile\n\nClasses\n\nAdvisor (DRS)\nAgent\nConduit (DRS)\nCourser\nEnvoy\n\nGenius\nMastermind\nProfessional\n\nSpheres\n\nArtifice\nBluster\nBody Control\nCommunication\nFaction\n\nHerbalism\nInfiltration\nInvestigation\nNavigation\nPerformance\n\nSpellhacking\nStudy\nSubterfuge\nSurvivalism\nVocation\n\nOther Rules\n\nOperative Feats\nOperative Gear\nSkill Rules\nTrade Traditions\nRunning Guile Games\n\nGet Spheres of Guile"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:symbiat:champion-symbiat",
+      "package": "spheres-class:symbiat",
+      "name": "Champion Symbiat",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/champion-symbiat",
+      "replaces_features": [
+        "magic-talents",
+        "proficiencies",
+        "symbiats-normal-class-skills"
+      ],
+      "removed_features": [
+        "magic-talents",
+        "symbiats-normal-class-skills"
+      ],
+      "removed_feature_clauses": [
+        "magic talents class feature",
+        "symbiat’s normal class skills"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "A champion symbiat gains a combat or magic talent every time they gain a caster level. Champion symbiats use their casting ability modifier as their practitioner modifier.\n\nAddendum: [SM—] Alternatively, A champion symbiat may gain a combat, magic, or skill talent (some of which are required to be utility talents) at the listed levels using the journeyman talent progression. A champion symbiat may exchange the danger sense, uncanny dodge, and improved uncanny dodge class features to instead gain talents as per the virtuoso talent progression. A champion symbiat uses his casting ability modifier as his practitioner modifier.\n\nThis replaces the magic talents class feature."
+        },
+        {
+          "level": 1,
+          "name": "Greater Training",
+          "description": "The champion symbiat may choose to exchange the danger sense, uncanny dodge, and improved uncanny dodge class features to improve their blended training, gaining a combat or magic talent at every class level (instead of every time they gain a caster level).\n\nThis optionally replaces danger sense, uncanny dodge, and improved uncanny dodge. A champion symbiat may not take this option if they possess an archetype that would alter or replace the exchanged class features."
+        },
+        {
+          "level": 1,
+          "name": "Nuanced Psionics",
+          "description": "All symbiat class features use the champion symbiat’s casting ability score to calculate their effects rather than Intelligence."
+        },
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Champion symbiats are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis alters proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Trade Tradition",
+          "description": "If this is this character’s first level in any class, the champion symbiat may select a trade tradition of their choice, and have a competent trade rank. The champion symbiat gains a number of skill ranks at each level equal to 4 + their Intelligence modifier.\n\nThis replaces the symbiat’s normal class skills."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:symbiat:chronomancer",
+      "package": "spheres-class:symbiat",
+      "name": "Chronomancer",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/chronomancer",
+      "replaces_features": [
+        "mental-powers",
+        "psionics",
+        "pushed-movement"
+      ],
+      "removed_features": [
+        "mental-powers",
+        "pushed-movement"
+      ],
+      "removed_feature_clauses": [
+        "mental powers",
+        "pushed movement"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Chronomancy",
+          "description": "The chronomancer gains the Time and Warp spheres as bonus magic talents.\n\nThis replaces mental powers."
+        },
+        {
+          "level": 1,
+          "name": "Psionics",
+          "description": "The chronomancer’s powers are fundamentally different than those of most symbiats. The chronomancer does not gain any of the psionic effects normally available to the symbiat, and instead gains access to the following psionic effects:"
+        },
+        {
+          "level": 3,
+          "name": "Enhanced Teleportation",
+          "description": "Starting at 3rd level, the chronomancer’s mastery of time and space begins to become instinctual and inform all his uses of related magic. The chronomancer increases the maximum distance he can travel when using the teleport ability by 10 feet and extends the duration of all alter time effects by 1 round; if an alter time effect would normally have a duration measured in minutes or hours, the effect is instead extended by 1 minute or 1 hour, as appropriate. The range of his teleport ability increases by an additional 10 feet and the duration of his alter time effects increase by an additional 1 round for every three chronomancer levels he possesses beyond 3rd.\n\nThis replaces pushed movement.\n\nAuthor's Note: This ability functions similarly to a \"lingering\" talent. Effects that could have their durations regularly extended, or concentrated on, have their durations extended this way. \"Instantaneous\" effects and effects with a fixed duration, such as the Time sphere Steal Time talent, do not have their durations extended by this class feature.\n\nWhile the power most symbiats gain from bonding with psionic aberrations grants them enhanced mental capabilities, some symbiats attract even stranger and more unusual beings. Granted power over time and space itself, these “chronomancers” have unparallelled power over reality.\n\nChronomancy: The chronomancer gains the Time and Warp spheres as bonus magic talents. If he has either of these spheres already, he receives instead a bonus talent from that sphere instead.\n\nThis replaces mental powers.\n\nPsionics (Su): The chronomancer’s powers are fundamentally different than those of most symbiats. The chronomancer does not gain any of the psionic effects normally available to the symbiat, and instead gains access to the following psionic effects:\n\nRapid Teleportation: Whenever the chronomancer uses the teleport ability of the Warp sphere to transport only himself and up to a light load, he may do so as a move action instead of a standard action. If the chronomancer possesses the Quick Teleport talent, he may instead use the teleport ability as a swift action, so long as he teleports only himself and up to a medium load. The chronomancer does not need to expend a standard action to activate this ability as normal for a psionic effect, but each use of this ability expends one 1 round from his total psionic effect rounds per day.\n\nTemporal Feedback Loop: The chronomancer may trap one enemy within 60 ft. in a time-altering effect that causes them to experience the same moment during multiple timelines, to the enemy’s detriment. The target is allowed a Will saving throw (DC 10 + 1/2 the chronomancer’s class level + his Intelligence modifier) to resist this effect. A target who fails their saving throw against this effect must roll twice for every attack roll, saving throw, skill check, or ability check they make while under the effects of this ability, taking the lower result. Regardless of whether the target succeeds or fails at their saving throw, each use of this ability consumes a minimum of 1 round of the chronomancer’s psionics. At 13th level, the chronomancer may target and maintain this effect against up to two creatures at once when using this ability. At 19th level, the chronomancer may target up to and maintain this effect against up to three creatures at once.\n\nWarp Dodge: The chronomancer can use their mastery of time and space to help protect himself and his allies from detrimental effects. So long as this effect is active, as an immediate action the chronomancer may grant himself or an ally within 60 ft. a bonus to a single saving throw equal to 1/2 his class level (minimum 1). The chronomancer may use this ability after the roll is made, but must use this ability before the result of the saving throw is known.\n\nTimeline Link: Starting at 3rd level, the chronomancer gains the ability to create a minor temporal paradox that allows him to create a situation where he has already given an ally advice on how to accomplish a task. Choose one ally within 60 feet; whenever that ally makes a skill check using a skill the chronomancer is trained in, he may use the aid another action to assist them with the check as a free action that can be taken even when it’s not his turn, and regardless of his current condition (though this ability must be active and the chronomancer must be conscious). The chronomancer may change the target of this ability as part of the free action used to maintain his psionic effects each round. At 10th level, the chronomancer may share this ability with all allies within 60 feet.\n\nWarp Edge: From 6th level on, the chronomancer gains the ability to apply a spatial distortion to the edge of his weapon, or the weapon of an ally within 60 ft., allowing it to more easily pass through armor and deal grievous blows. Creatures benefiting from this psionic effect gain a +2 circumstance bonus to attack rolls and a +4 bonus to damage rolls with any weapon they wield. At 9th level and every three levels thereafter, the chronomancer may affect one additional target with this ability. Creatures who move more than 60 ft. away from the chronomancer immediately lose all benefits of this ability until they are once more within 60 ft. of the chronomancer.\n\nTemporal Accord: At 7th level, the chronomancer gains the ability to create a special localized time stream around himself and his allies. Whenever the party rolls for initiative, all allies within 30 ft. of the chronomancer may take the highest initiative roll from amongst themselves and add their own modifiers to it (for example, the chronomancer and three of his allies roll initiative and their results are 7, 10, 13, and 16; all affected allies may choose to take 16 and add their own initiative modifiers).\n\nWhenever multiple allies within 30 ft. are required to make a Reflex saving throw from the same effect (such as multiple allies being within the area of the same fireball spell) they may all roll their saving throw and take the highest result from amongst themselves, applying their own modifiers.\n\nImproved Rapid Teleportation: At 9th level, the chronomancer gains Group Teleport from the Warp sphere; if he already possesses this talent from another source, he may instead take any Time or Warp talent he qualifies for. In addition, the chronomancer may now use the action economy increases from his rapid teleportation ability even when teleporting multiple creatures, as long as he pays the appropriate costs as detailed in Group Teleport.\n\nTemporal Armor: Upon reaching 11th level, the chronomancer gains the ability to surround himself and nearby allies in a shifting field of broken causality that protects them from harm. While this ability is active, the chronomancer and all allies within 30 ft. gain a +4 insight bonus to their AC and Reflex saving throws.\n\nChronomantic Mastery: At 16th level, the chronomancer gains Improved Haste from the Time sphere; if he already possesses this talent from another source, he may instead take any Time or Warp talent he qualifies for. In addition, whenever the chronomancer uses the haste ability from the Time sphere, he may expend two rounds of his psionics to grant the target an extra move action, 1 additional attack of opportunity, and increases the bonus to attack rolls granted by Improved Haste from +1 to +4 for the duration of the haste effect.\n\nGreater Temporal Accord: From 19th level on, the chronomancer may use spells and sphere effects on any target benefiting from either his timeline link or temporal accord abilities, regardless of distance, line of sight, or line of effect.\n\nThis alters psionics.\n\nEnhanced Teleportation: Starting at 3rd level, the chronomancer’s mastery of time and space begins to become instinctual and inform all his uses of related magic. The chronomancer increases the maximum distance he can travel when using the teleport ability by 10 ft. and extends the duration of all alter time effects by 1 round; if an alter time effect would normally have a duration measured in minutes or hours, the effect is instead extended by 1 minute or 1 hour, as appropriate. The range of his teleport ability increases by an additional 10 ft. and the duration of his alter time effects increase by an additional 1 round for every three chronomancer levels he possesses beyond 3rd.\n\nThis replaces pushed movement.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:symbiat:egregore",
+      "package": "spheres-class:symbiat",
+      "name": "Egregore",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/egregore",
+      "replaces_features": [
+        "mental-powers",
+        "psionic-fortress",
+        "pushed-movement",
+        "telekinetic-colossus",
+        "telekinetic-edge",
+        "telekinetic-manipulation"
+      ],
+      "removed_features": [
+        "psionic-fortress",
+        "pushed-movement",
+        "telekinetic-colossus",
+        "telekinetic-edge",
+        "telekinetic-manipulation"
+      ],
+      "removed_feature_clauses": [
+        "pushed movement",
+        "telekinetic manipulation",
+        "telekinetic edge",
+        "psionic fortress",
+        "telekinetic colossus"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Mental Powers",
+          "description": "The egregore gains the Mind sphere as a bonus magic talent, and uses his class level as his caster level for this sphere. This stacks normally with caster levels from other sources.\n\nThis alters mental powers."
+        },
+        {
+          "level": 1,
+          "name": "Psionics",
+          "description": "The egregore’s psionics work differently, on a more purely mental level."
+        },
+        {
+          "level": 3,
+          "name": "Splintering Strike",
+          "description": "At 3rd level, an egregore who successfully deals damage to any enemy within 30 feet with a weapon or natural attack to a target may, as an immediate action, create a connection to the target’s mind. The egregore increases the DC of any mind-affecting abilities he uses against the target by 1, and he gains a +1 insight bonus to saving throws against the mind-affecting abilities of the target. These bonuses increase by +1 for every 3 levels after 3rd, to a maximum of +6 at 18th level.\n\nHe also receives an insight bonus to Bluff, Intimidate, Perception, Sense Motive, and Stealth checks equal to double this amount against the splintered creature. In addition, the egregore is mentally aware of the splintered creature’s presence, and knows exactly where they are at all times, and what conditions they currently have.\n\nThis splinter lasts for 1 hour per class level, or until the egregore ends the splinter as a free action. At 3rd level, the egregore may not have more than 1 splinter active at a time, and must immediately dismiss an existing splinter when he creates a new one. At 9th level, he may have 2 splinters active at once. At 15th level, he may have 3 splinters active at once.\n\nAt 6th level, the egregore learns to use his connection to deliver Mind sphere abilities from any distance. He may use any lesser charm he possesses on a splintered creature that he could normally influence with (charm) talents, but if the charm fails or the splintered creature succeeds at their saving throw, the splinter ends. At 12th level, he may deliver greater charms he possesses this way, and at 18th level, he may deliver powerful charms he possesses this way. This is a mind-affecting ability.\n\nThis replaces pushed movement.\n\nMental Powers: The egregore gains the Mind sphere as a bonus magical talent, and uses his class level as his caster level. This stacks normally with caster levels from other sources. If the egregore has the Mind sphere already, they may choose another Mind sphere magical talent in its place.\n\nThis modifies mental powers.\n\nPsionics: The egregore’s psionics work differently, on a more purely mental level.\n\nCoordination:\n\nAt 1st level, the egregore can read the mind of all allies within 60 ft., allowing them to analyze tactical data on their attacks. Whenever an ally within 60 ft. damages an enemy, until the end of the egregore’s next turn, the egregore receives a bonus to damage rolls equal to his class level against that enemy and automatically confirms all critical hits against them. This effect does not work against creatures immune to precision damage. Multiple allies damaging the same enemy do not confer this bonus to the egregore multiple times in a round.\n\nThis replaces telekinetic manipulation.\n\nExtension:\n\nAt 6th level, the egregore may connect with the minds of his allies to deliver mental attacks against their common enemies. So long as this effect is active, the egregore may, as an immediate action, use a lesser charm against an enemy that an ally within 60 ft. has made a successful melee attack against. At 16th level, they may use a greater charm. They may not expand the charm used to affect other targets using Group Charm or the like.\n\nThis replaces telekinetic edge.\n\nAssimilation:\n\nAt 11th level, the egregore can mentally link all allies within 60 ft., stabilizing their group mind. Each ally gains a bonus to their Will saves equal to the number of linked allies within range to a maximum of the egregore’s Int modifier.\n\nThis replaces psionic fortress.\n\nTrepanation:\n\nAt 16th level, the egregore can disappear from the battlefield to become pure thought, and reside within the mind of an ally within 30 ft. This is a move action. While inside their ally, they may only use their psionics ability and Mind sphere abilities. They can not be targeted or attacked while inside their ally, but if the ally is rendered unconscious or killed, they are immediately ejected. The ally can likewise eject them at will. While the egregore is within the mind of the ally, the ally gains a +2 enhancement bonus to Intelligence, Reflex saves, and Will saves, and may also use the egregore’s magic defense score in place of their own.\n\nThis replaces telekinetic colossus.\n\nSplintering Strike (Su): At 3rd level, an egregore who successfully deals damage to any enemy within 30 ft. with a weapon or natural attack to a target may, as an immediate action, create a connection to the target’s mind. The egregore increases the DC of any mind-affecting abilities they use against the target by 1, and they gain a +1 insight bonus to saving throws against the mind-affecting abilities of the target. These bonuses increase by +1 for every 3 levels after the 3rd, to a maximum of +6 at 18th level.\n\nThey also receive an insight bonus to Bluff, Intimidate, Perception, Sense Motive, and Stealth checks equal to double this amount against the splintered creature. In addition, the egregore is mentally aware of the splintered creature’s presence, and knows exactly where they are at all times, and what conditions they currently have.\n\nThis splinter lasts for 1 hour per class level, or until the egregore ends the splinter as a free action. At 3rd level, the egregore may not have more than 1 splinter active at a time, and must immediately dismiss an existing splinter when they create a new one. At 9th level, they may have 2 splinters active at once. At 15th level, they may have 3 splinters active at once.\n\nAt 6th level, the egregore learns to use their connection to deliver Mind sphere abilities from any distance. They may use any lesser charm they possess on a splintered creature that they could normally influence with charm talents, but if the charm fails or the splintered creature passes their saving throw, the splinter ends. At 12th level, they may deliver greater charms they possess this way, and at 18th level, they may deliver powerful charms they possess this way.\n\nThis is a mind-affecting ability.\n\nThis replaces pushed movement.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:symbiat:gravecrawler",
+      "package": "spheres-class:symbiat",
+      "name": "Gravecrawler",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/gravecrawler",
+      "replaces_features": [
+        "danger-sense",
+        "greater-psionics",
+        "mental-powers",
+        "psionics",
+        "trap-sense"
+      ],
+      "removed_features": [
+        "danger-sense",
+        "greater-psionics",
+        "mental-powers",
+        "psionics",
+        "trap-sense"
+      ],
+      "removed_feature_clauses": [
+        "mental powers",
+        "psionics",
+        "danger sense",
+        "greater psionics",
+        "trap sense"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Corrupted Powers",
+          "description": "A gravecrawler gains the Death and Mind spheres as bonus talents.\n\nThis replaces mental powers."
+        },
+        {
+          "level": 1,
+          "name": "Implant Drone",
+          "description": "As a standard action, a gravecrawler can touch a creature (requiring a melee touch attack for a non-willing creature) and place one member of his hive on them, which immediately burrows into its new host’s body, causing no damage beyond slight discomfort. Once the gravecrawler has implanted a drone in a creature, it remains active for up to 1 day per class level. He can have a number of drones active at a time equal to his casting ability modifier or half his class level (whichever is higher). If the gravecrawler attempts to implant a drone beyond his limit, one existing drone dies immediately (his choice). The gravecrawler is considered to be implanted with one of his own drones, but this does not count towards the limit. If a host dies, the implanted drone dies as well. A gravecrawler can only affect drones he implanted, not those implanted by other gravecrawlers. If a gravecrawler dies, all his implanted drones die. By concentrating as a standard action, the gravecrawler can determine the direction and distance to one of his drones and are aware of any conditions affecting their host (unharmed, wounded, disabled, staggered, unconscious, dying, nauseated, panicked, stunned, poisoned, diseased, confused, etc.) as long as he and the drone are on the same plane of existence. Creatures with an implanted drone give off an aura equal to the gravecrawler’s class level that can be detected by Divine Undead. A drone can be removed by effects that remove disease (such as Restore Health); the DC to remove a drone for such effects is equal to his swarm powers DC (see below). Creatures that are immune to disease may still be affected by his drones.\n\nThis replaces psionics."
+        },
+        {
+          "level": 1,
+          "name": "Swarm Powers",
+          "description": "Each gravecrawler carries within his body a unique insectile colony with a variety of potential powers. At 1st level, a gravecrawler gains 2 abilities from the following list; at 3rd level and every 3rd level thereafter, he gains an additional ability from this list. The saving throw for any swarm power is equal to 10 + 1/2 his gravecrawler level + his casting ability modifier. All swarm powers are considered supernatural abilities unless stated otherwise. He cannot choose a swarm power more than once unless stated otherwise. He must meet all prerequisites before selecting a swarm power. At 7th level, a gravecrawler can use any swarm power that normally requires a standard action as a move action instead. At 13th level, a gravecrawler can use such a swarm power as a swift action."
+        },
+        {
+          "level": 10,
+          "name": "Burrowing",
+          "description": "The gravecrawler gains a burrow speed of 15 feet. As a standard action, he can spend a spell point to grant any creature with an implanted drone an equal burrow speed for 1 minute per level. At 10th level, the burrow speed increases to 30 feet."
+        },
+        {
+          "level": 1,
+          "name": "Cocoon",
+          "description": "The gravecrawler can unleash a torrent of filaments that bind and shield a creature. As a standard action, the gravecrawler targets a creature within close range; an unwilling creature may attempt a saving throw (Reflex negates). On a failed save, the creature is entombed in a cocoon with hit points equal to the gravecrawler’s level for 1 minute. Damage dealt to the creature is applied to the cocoon first. As long as the cocoon lasts, the creature gains DR/adamantine equal to half the gravecrawler’s level (rounded down, minimum 1), is flat-footed, and can take no actions besides a Strength or Escape Artist check to break or wriggle free as a standard action (DC 10 + his gravecrawler level + his casting ability modifier)."
+        },
+        {
+          "level": 5,
+          "name": "Cocoon, Flexible (requires cocoon)",
+          "description": "When the gravecrawler places a cocoon on himself, he is not flat-footed and is only staggered. The DC for the Strength and Escape Artist checks to break out of his own cocoon are halved for him. At 5th level, his allies gain these benefits when he places a cocoon on them."
+        },
+        {
+          "level": 1,
+          "name": "Cocoon, Healing (requires cocoon)",
+          "description": "Whenever the gravecrawler entombs a creature with his cocoon, he can spend a spell point as a free action to grant that creature fast healing equal to his gravecrawler level for as long as they remain within the cocoon."
+        },
+        {
+          "level": 1,
+          "name": "Cocoon, Mind Warp (requires cocoon)",
+          "description": "When the gravecrawler entombs a creature in a cocoon, he can implant one of his Mind sphere charms into its subconscious. At any time within 1 day per class level, he can spend an immediate action and pay any spell point cost to cause that charm to take effect, granting a save as normal, so long as the target is on the same plane as him. A creature may only have one implanted charm at a time; implanting a second requires a magic skill check to replace the one currently implanted."
+        },
+        {
+          "level": 1,
+          "name": "Cocoon, Spray (requires cocoon)",
+          "description": "The gravecrawler may spend a spell point when he uses his cocoon ability to affect all creatures within a 30-foot cone or 60-foot line (Reflex negates). He does not make an attack roll when using cocoon in this fashion."
+        },
+        {
+          "level": 1,
+          "name": "Corrupting Drones",
+          "description": "Any creature with an implanted drone takes a -2 penalty to saving throws against the gravecrawler’s swarm powers, Mind sphere effects, and Death sphere effects. As a standard action, the gravecrawler can spend a spell point to double these penalties for 1 minute."
+        },
+        {
+          "level": 1,
+          "name": "Damaging Drone",
+          "description": "The gravecrawler may attempt to implant drones into a target in place of making an attack, meaning he may do as an attack of opportunity, in place of multiple attacks during a full attack, etc. In addition, he may attempt to implant drones as a thrown weapon; doing so requires a ranged touch attack with a range increment of 20 feet. When affecting a target with a drone, he can choose to have the drone deal damage equal to 1d8 + his gravecrawler level when imbedding itself into a target."
+        },
+        {
+          "level": 1,
+          "name": "Discorporation (requires gravecrawler 3)",
+          "description": "As a standard action, the gravecrawler can discorporate into a mass of writhing insects, functioning as the Swarm Shape Alteration talent with caster level equal to his class level (or caster level for the Death sphere, whichever is higher) and lasting for 1 minute with no concentration needed. The distraction ability’s DC is equal to his swarm power’s DC. He gains the Divided Self trait, but he may not select other traits. He may spend a move action to end this effect early. He may spend 2 spell points to use this ability as an immediate action."
+        },
+        {
+          "level": 10,
+          "name": "Distributed Mind (requires two minds)",
+          "description": "Whenever the gravecrawler or a creature with an implanted drone fails a saving throw against a mind-affecting effect, the gravecrawler may spend a spell point as an immediate action to allow them to reroll their saving throw with a +2 bonus. They must accept the result of the reroll, even if it is worse. At 10th level, the bonus increases to +4."
+        },
+        {
+          "level": 1,
+          "name": "Enduring Drones",
+          "description": "The gravecrawler’s drones have no maximum duration. When he dies, his drones do not immediately die; they become dormant for a number of days equal to his class level. If he is resurrected within this time, they become active again. In addition, the DC of effects to remove his drones is increased by 2. This does not affect the number of drones he may have active at once."
+        },
+        {
+          "level": 1,
+          "name": "Energizing Drones",
+          "description": "As a standard action, the gravecrawler can spend a spell point to grant all allies with an implanted drone a +2 bonus to attack rolls, damage rolls, saving throws, skill checks, and ability checks for a number of rounds equal to his casting ability modifier. These bonuses are doubled against foes with an implanted drone."
+        },
+        {
+          "level": 1,
+          "name": "Expanded Swarm",
+          "description": "The gravecrawler may have an additional 2 implanted drones at a time. He may take this swarm power multiple times; its effects stack."
+        },
+        {
+          "level": 1,
+          "name": "Hive Senses",
+          "description": "The gravecrawler gains blindsight 10 feet. As a standard action, he can spend a spell point to grant any creature with an implanted drone equal blindsight for 1 minute. A gravecrawler must be at least 6th level before choosing this swarm power. This swarm power can be taken up to 3 times; each time it is taken, the gravecrawler’s blindsight increases by 10 feet, to a maximum of 30 feet."
+        },
+        {
+          "level": 1,
+          "name": "Hive Network (requires gravecrawler 9)",
+          "description": "The gravecrawler may use hive workers, swarm powers, Mind, and Death sphere effects on any creature with an implanted drone regardless of distance or line of effect."
+        },
+        {
+          "level": 1,
+          "name": "Hive Network, Improved (require gravecrawler 18, hive network)",
+          "description": "The gravecrawler may use any sphere effects on any creature with an implanted drone, as long both are on the same plane."
+        },
+        {
+          "level": 1,
+          "name": "Mobile Drones (requires burrowing or improved wings)",
+          "description": "Whenever the gravecrawler grants a creature a fly or burrow speed using his swarm powers, all mindless undead he reanimated and control gain the same movement ability and speed."
+        },
+        {
+          "level": 1,
+          "name": "Revolting Embrace (requires discorporation)",
+          "description": "The gravecrawler gains the benefit of the Improved Grapple feat, even if he does not meet the prerequisites; if he already possesses the Improved Grapple feat, he may gain Improved Unarmed Strike or a feat that requires Improved Unarmed Strike or Improved Grapple that he qualifies for (if any). Whenever he succeeds on a grapple check, he may spend a swift action to expel squirming larvae onto the creature he is grappling, causing them to take damage equal to his swarm damage and be affected by his distraction ability (requiring a saving throw as normal)."
+        },
+        {
+          "level": 1,
+          "name": "Wings",
+          "description": "The gravecrawler grows primitive wings, causing him to take no damage from falling (as if subject to a constant featherfall effect). While in midair, he can move up to 5 feet in any horizontal direction for every 1 foot he falls, at a speed of 60 feet per round. He cannot gain height with these wings alone. If subjected to a strong wind or any other effect that causes a creature with gliding wings to rise, he can take advantage of the updraft to increase the distance he can glide."
+        },
+        {
+          "level": 1,
+          "name": "Wings, Improved (requires gravecrawler 5, wings)",
+          "description": "The gravecrawler’s wings harden and strengthen, granting him a fly speed of 30 feet (poor). As a standard action, he can spend a spell point to grant any creature with an implanted drone an equal fly speed.\n\nThis replaces danger sense."
+        },
+        {
+          "level": 1,
+          "name": "Hive Workers",
+          "description": "At 1st level, undead that a gravecrawler reanimates are considered to have an implanted drone. This does not count against the total number of drones a gravecrawler can have implanted at once. At 3rd level, a gravecrawler can affect mindless creatures with his Mind sphere abilities as long as they have a drone implanted. In addition, when a creature with an implanted drone dies, its drone survives for an additional round per class level. During this time, he can reanimate the host’s corpse as long as he is within long range (400 feet + 40 feet per caster level) and have line of sight and effect."
+        },
+        {
+          "level": 7,
+          "name": "Swarm Simulacrum",
+          "description": "At 7th level, the gravecrawler can spend a standard action to link a mindless undead he controls to a creature with an implanted drone for 1 round per class level. The mindless undead gains a +4 circumstance bonus to attack and damage rolls and a +4 deflection bonus to AC as long as it is within 10 feet of the linked creature, and the mindless undead’s initiative is changed to be equal to its linked creature. If both linked creatures threaten the same target, they are considered to be flanking the target regardless of position. If either of the linked creatures takes damage, the gravecrawler can spend an immediate action to transfer half of the damage to the other (after damage reduction, resistances, or immunities are applied for the original target). This damage can not be reduced further. The gravecrawler can use this ability once per day, and one additional time per day at 10th level and every 3 levels thereafter (to a maximum of 5 times a day at 19th level). The gravecrawler cannot link a mindless undead with another mindless undead with this ability, and creatures cannot be linked to more than one target at a time."
+        },
+        {
+          "level": 20,
+          "name": "Hive Transference",
+          "description": "At 20th level, if a gravecrawler is killed, he may attempt a DC 25 Will save as an immediate action. If he succeeds, one implanted drone of his choice does not die (or become dormant, if he has the enduring drones swarm power), and his consciousness passes into it. He may not take any actions besides the following: Whenever his host is adjacent to humanoid corpse, he may choose to unburrow from the host, drop to the corpse, and infest it. Destroying the corpse during this time kills the gravecrawler, and he cannot attempt to use hive transference in this state. After 24 hours, the gravecrawler rises, reborn in his new body (as a reincarnate spell, using the corpse’s race).\n\nThis replaces greater psionics."
+        },
+        {
+          "level": 1,
+          "name": "New Feat",
+          "description": "Extra Swarm Powers: Prerequisite: Swarm powers class feature."
+        },
+        {
+          "level": 1,
+          "name": "Benefit",
+          "description": "You gain an additional swarm power you qualify for."
+        },
+        {
+          "level": 1,
+          "name": "Special",
+          "description": "This feat can be taken multiple times."
+        },
+        {
+          "level": 1,
+          "name": "The Necromancer's Handbook",
+          "description": "Unlike most symbiats, a gravecrawler is created when a host becomes infested with psychic insects or aberrations that often appear similar to worms, cicadas, scarabs, or maggots."
+        },
+        {
+          "level": 5,
+          "name": "Cocoon, Flexible",
+          "description": "When the gravecrawler places a cocoon on himself, he is not flat-footed and is only staggered. The DC for the Strength and Escape Artist checks to break out of his own cocoon are halved for him. At 5th level, his allies gain these benefits when he places a cocoon on them. A gravecrawler must have the cocoon swarm power before choosing this swarm power."
+        },
+        {
+          "level": 1,
+          "name": "Cocoon, Healing",
+          "description": "Whenever the gravecrawler entombs a creature with his cocoon, he can spend a spell point as a free action to grant that creature fast healing equal to his gravecrawler level for as long as they remain within the cocoon."
+        },
+        {
+          "level": 1,
+          "name": "Cocoon, Mind Warp",
+          "description": "When you entomb a creature in a cocoon, you can implant one of your Mind sphere charms into its subconscious. At any time within 1 day per class level, you can spend an immediate action and pay any spell point cost to cause that charm to take effect, granting a save as normal, so long as the target is on the same plane as you. A creature may only have one implanted charm at a time. A gravecrawler must have the cocoon swarm power before choosing this swarm power."
+        },
+        {
+          "level": 1,
+          "name": "Cocoon, Spray",
+          "description": "You may spend a spell point when you use your cocoon ability to affect all creatures within a 30-ft. cone or 60-ft. line (Reflex negates). You do not make an attack roll when using cocoon in this fashion. A gravecrawler must have the cocoon swarm power before choosing this swarm power."
+        },
+        {
+          "level": 1,
+          "name": "Discorporation",
+          "description": "As a standard action, the gravecrawler can discorporate into a mass of writhing insects, functioning as the Swarm Transformation Alteration talent with caster level equal to your class level (or caster level for the Death sphere, whichever is higher) and lasting for 1 minute with no concentration needed. The distraction ability’s DC is equal to your swarm power’s DC. You gain the Divided Self trait, but you may not select other traits. You may spend a move action to end this effect early. You may spend 2 spell points to use this ability as an immediate action. A gravecrawler must be at least 3rd level before choosing this swarm power."
+        },
+        {
+          "level": 10,
+          "name": "Distributed Mind",
+          "description": "Whenever the gravecrawler or a creature with an implanted drone fails a saving throw against a mind-affecting effect, the gravecrawler may spend a spell point as an immediate action to allow them to reroll their saving throw with a +2 bonus. They must accept the result of the reroll, even if it is worse. At 10th level, the bonus increases to +4. The gravecrawler must have the two minds class feature before choosing this swarm power."
+        },
+        {
+          "level": 1,
+          "name": "Hive Network",
+          "description": "The gravecrawler may use hive workers, swarm powers, Mind, and Death sphere effects on any creature with an implanted drone regardless of distance or line of effect. A gravecrawler must be at least 9th level before choosing this swarm power."
+        },
+        {
+          "level": 1,
+          "name": "Hive Network, Improved",
+          "description": "The gravecrawler may use any sphere effects on any creature with an implanted drone, as long both are on the same plane. A gravecrawler must be at least 18th level and possess the hive network swarm power before choosing this swarm power."
+        },
+        {
+          "level": 1,
+          "name": "Mobile Drones",
+          "description": "Whenever you grant a creature a fly or burrow speed using your swarm powers, all mindless undead you reanimated and control gain the same movement ability and speed. A gravecrawler must have the burrowing or improved wings swarm power before choosing this swarm power."
+        },
+        {
+          "level": 1,
+          "name": "Revolting Embrace",
+          "description": "The gravecrawler gains the benefit of the Improved Grapple feat, even if he does not meet the prerequisites; if he already possesses the Improved Grapple feat, he may gain Improved Unarmed Strike or a feat that requires Improved Unarmed Strike or Improved Grapple that he qualifies for (if any). Whenever you succeed on a grapple check, you may spend a swift action to expel squirming larvae onto to the creature you are grappling, causing them to take damage equal to your swarm damage and be affected by your distraction ability (requiring a saving throw as normal). A gravecrawler must have the discorporation swarm power before choosing this swarm power."
+        },
+        {
+          "level": 1,
+          "name": "Wings, Improved",
+          "description": "The gravecrawler’s wings harden and strengthen, granting him a fly speed of 30 ft. (poor). As a standard action, he can spend a spell point to grant any creature with an implanted drone an equal fly speed. A gravecrawler must have the wings swarm power and be at least 5th level before choosing this swarm power.\n\nThis replaces trap sense."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:symbiat:hekatonkheires",
+      "package": "spheres-class:symbiat",
+      "name": "Hekatonkheires",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/hekatonkheires",
+      "replaces_features": [
+        "greater-psionics",
+        "mental-powers"
+      ],
+      "removed_features": [
+        "greater-psionics",
+        "mental-powers"
+      ],
+      "removed_feature_clauses": [
+        "mental powers",
+        "greater psionics",
+        "Mental Powers",
+        "Greater Psionics"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Telekinetic Might",
+          "description": "A hekatonkheires gains the Telekinesis sphere as a bonus magic talent, and uses his hekatonkheires level as his caster level with the Telekinesis sphere. This stacks normally with caster levels gained from other sources.\n\nThis replaces mental powers."
+        },
+        {
+          "level": 1,
+          "name": "Thousand Unseen Hands",
+          "description": "At 1st level a hekatonkheires gains Mind Limb as a bonus feat, except he gains two limbs instead of one. He may use both of them as part of the same swift action, and both are capable of holding and manipulating items. In addition, his mind limbs add 5 feet to his reach.\n\nAt 3rd level a hekatonkheires can use his mind limbs to attack. He treats them as two secondary tentacle attacks that deal 1d4 slashing damage, and uses his casting ability modifier instead of his Strength modifier on attack and damage rolls with these tentacle attacks. His tentacle attacks possess reach equal to his mind limbs. A mind limb that is holding an object cannot be used to make a tentacle attack. Unlike most natural weapons, increased size does not improve the damage die of these tentacles.\n\nAt 6th level the mind limbs grow stronger and more capable. While they cannot be used to make additional attacks (except as tentacle attacks), they may be used to wield weapons and shields and activate magic items, though they must take the normal action required to use these items and cannot effectively utilize them as a mind limb’s swift action. In addition, his tentacle attacks now deal 1d6 damage instead of 1d4.\n\nAt 9th level a hekatonkheires gains two additional mind limbs. He may still only use two of his mind limbs as a single swift action, but may choose to use any two, and each arm is equally capable of manipulating objects. He now has four tentacle attacks.\n\nAt 12th level a hekatonkheires adds an additional 5 feet to the reach of his mind limbs, and increases the damage of his tentacle attacks to 2d6.\n\nAt 15th level, a hekatonkheires gains six additional smaller mind limbs. These limbs do not gain any of the normal bonuses from the thousands unseen hands feature (such as additional reach or the ability to manipulate weapons and shields), but they may perform certain actions as swift actions as described in the Mind Limb feat. He can still only use a limited number of mind limbs as a single swift action, but three of these smaller limbs count only as a single limb - allowing him to activate two stronger mind limbs, one strong mind limb and three smaller mind limbs, or six smaller mind limbs as a swift action.\n\nAt 18th level the mind limbs gain a +6 enhancement bonus to their effective Strength, increasing carrying capacity with them and adding +3 to attack and damage with the natural weapons they provide. A hekatonkheires now deals 3d6 damage with his tentacle attacks.\n\nThis ability and its improvements replace psionics."
+        },
+        {
+          "level": 20,
+          "name": "Independent Mind",
+          "description": "At 20th level, a hekatonkheires uses a free action instead of a swift action to use his mind limbs (including the six smaller limbs gained at level 15). He may only use each limb once per turn, but may use each limb individually at any point during his turn.\n\nThis ability replaces greater psionics.\n\nTelekinetic Might: A hekatonkheires gains the Telekinesis sphere as a bonus magic talent, and uses her symbiat level as her caster level with the Telekinesis sphere. This stacks normally with caster levels gained from other sources.\n\nThis ability replaces Mental Powers.\n\nThousand Unseen Hands (Su): At 1st level a hekatonkheires gains Mind Limb as a bonus feat, except she gains two limbs instead of one. She may use both of them as part of the same swift action, and both are capable of holding and manipulating items. In addition, her mind limbs add 5 ft to their reach.\n\nThis ability and its following improvements replace Psionics.\n\nAt 3rd level a hekatonkheires can use her mind limbs to attack. She treats them as two secondary tentacle attacks that deal 1d4 slashing damage, and uses her casting ability modifier instead of her Strength modifier on attack and damage rolls with these tentacle attacks. Her tentacle attacks possess reach equal to her mind limbs. A mind limb that is holding an object cannot be used to make a tentacle attack. Unlike most natural weapons, increased size does not improve the damage die of these tentacles.\n\nAt 6th level the mind limbs grow stronger and more capable. While they cannot be used to make additional attacks (except as tentacle attacks), they may be used to wield weapons and shields and activate magic items, though they must take the normal action required to use these items and cannot effectively utilize them as a mind limb’s swift action. In addition, her tentacle attacks now deal 1d6 damage instead of 1d4.\n\nAt 9th level a hekatonkheires gains two additional mind limbs. She may still only use two of her mind limbs as a single swift action, but may choose to use any two, and each arm is equally capable of manipulating objects. She now has four tentacle attacks.\n\nAt 12th level a hekatonkheires adds an additional 5 ft to the reach of her mind limbs, and increases the damage of her tentacle attacks to 2d6.\n\nAt 15th level, a hekatonkheires gains six additional smaller mind limbs. These limbs do not gain any of the normal bonuses from the Thousand Unseen Hands feature (such as additional reach or the ability to manipulate weapons and shields), but they may perform certain actions as swift actions as described in the Mind Limb feat. You can still only use a limited number of mind limbs as a single swift action, but three of these smaller limbs count only as a single limb - allowing you to activate two stronger mind limbs, one strong mind limb and three smaller mind limbs, or six smaller mind limbs as a swift action.\n\nAt 18th level the mind limbs gain a +6 enhancement bonus to their effective Strength, increasing carrying capacity with them and adding +3 to attack and damage with the natural weapons they provide. A hekatonkheires now deals 3d6 damage with her tentacle attacks.\n\nIndependent Mind: At 20th level, a hekatonkheires uses a free action instead of a swift action to use her mind limbs (including the six smaller limbs gained at level 15). She may only use each limb once per turn, but may use each limb individually at any point during her turn.\n\nThis ability replaces Greater Psionics.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:symbiat:invidian",
+      "package": "spheres-class:symbiat",
+      "name": "Invidian",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/invidian",
+      "replaces_features": [
+        "mental-powers",
+        "psionic-fortress",
+        "pushed-movement",
+        "telekinetic-colossus",
+        "telekinetic-edge",
+        "telekinetic-manipulation"
+      ],
+      "removed_features": [
+        "mental-powers",
+        "psionic-fortress",
+        "pushed-movement",
+        "telekinetic-colossus",
+        "telekinetic-edge",
+        "telekinetic-manipulation"
+      ],
+      "removed_feature_clauses": [
+        "mental powers",
+        "pushed movement",
+        "telekinetic manipulation",
+        "telekinetic edge",
+        "psionic fortress",
+        "telekinetic colossus"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blackened Psyche",
+          "description": "An invidian’s inner demon empowers him with strength and subtlety far beyond what most casters can achieve. If a blackened psyche effect calls for a saving throw, the DC is equal to 10 + 1/2 his indivian level + his casting ability modifier. This functions and counts as the symbiat’s psionics ability, with the following modifications:"
+        },
+        {
+          "level": 1,
+          "name": "Dark Passenger",
+          "description": "At 1st level, an invidian gains the Mind and Dark spheres as bonus magic talents. This ability replaces mental powers."
+        },
+        {
+          "level": 1,
+          "name": "Shadow Leap",
+          "description": "At 1st level the invidian gains Step Through Darkness as a bonus talent. He is constantly under the effects of this (meld) talent and does not need to spend any spell points to activate its effect. At 3rd level he increases the range of his personal Step Through Darkness by +10 feet, and another +10 feet for every three invidian levels possessed beyond 3rd, to a maximum of +60 feet at 18th level.\n\nThis ability replaces pushed movement.\n\nDark Passenger: At 1st level, an invidian gains the Mind and Dark spheres as bonus magic talents. If the invidian has one or both spheres already, he gains a bonus talent in that sphere instead. This ability replaces mental powers.\n\nBlackened Psyche (Su): An invidian’s inner demon empowers him with strength and subtlety far beyond what most casters can achieve. If a blackened psyche effect calls for a saving throw, the DC is is equal to 10 + 1/2 the invidian’s level + his Intelligence modifier. This functions and counts as the symbiat’s psionics ability, with the following modifications:\n\nShadow Manipulation: The invidian may use his influence over shadows to manipulate the battlefield. So long as this effect is active, the invidian may, as an immediate action, grant concealment to an ally within 60 ft. of him until the beginning of the invidian’s next turn. The miss chance for this concealment is 20% + 5% for every three levels in invidian. Darkvision and see in darkness do not thwart this ability, but creatures that lack the ability to see are immune to this effect.\n\nThis replaces telekinetic manipulation.\n\nJumping at Shadows: At 6th level, the invidian may attempt to make an opponent jump at their own shadow, flinching away from perceived movement at just the right moment to leave them open to another attack. One target within 60 ft. counts as being flanked for one attack of the invidian’s choice each round. The invidian may affect an additional target at 9th level and every 3 levels thereafter, to a maximum of 5 targets at 18th level. In place of an additional target, he may affect an additional attack on the same target. Darkvision and see in darkness do not thwart this ability, but creatures that lack the ability to see are immune to this effect.\n\nThis replaces telekinetic edge.\n\nAfraid of the Dark: At 11th level, through subtle manipulation of psyche and clever use of lighting, the invidian can influence the minds of her enemies. Opponents within 60 ft. of the invidian must make a Will save or become shaken until they leave the area of effect or the invidian ends the ability. Re-entering the area of effect forces a new saving throw. This is a fear effect, and escalates fear conditions already on a target.\n\nThis replaces psionic fortress.\n\nShadow Puppetry: At 16th level, the invidian may bind and manipulate a target’s shadow to hinder their movements. The invidian may affect one creature within 60 ft., plus an additional creature for every 2 levels beyond 16th. The target must make a Will save every round at the beginning of its turn or be staggered and take a -6 penalty to Strength and Dexterity for 1 round.\n\nThis replaces telekinetic colossus.\n\nShadow Leap: At 1st level the invidian gains Step Through Darkness as a bonus talent. He is constantly under the effects of this (meld) talent and does not need to spend any spell points to activate its effect. At 3rd level he increases the range of his personal Step Through Darkness by +10 ft., and another +10 ft. for every three invidian levels possessed beyond 3rd, to a maximum of +60 ft. at 18th level.\n\nThis ability replaces pushed movement.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:symbiat:malefactor",
+      "package": "spheres-class:symbiat",
+      "name": "Malefactor",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/malefactor",
+      "replaces_features": [
+        "esp",
+        "mental-powers",
+        "psionic-fortress",
+        "pushed-movement",
+        "share-capacity",
+        "share-expertise",
+        "telekinetic-colossus",
+        "telekinetic-edge"
+      ],
+      "removed_features": [
+        "esp",
+        "mental-powers",
+        "psionic-fortress",
+        "pushed-movement",
+        "share-capacity",
+        "share-expertise",
+        "telekinetic-colossus",
+        "telekinetic-edge"
+      ],
+      "removed_feature_clauses": [
+        "mental powers",
+        "ESP",
+        "pushed movement"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Ill Omen",
+          "description": "A malefactor gains the Fate sphere as a bonus magic talent and uses his class level as his caster level with the Fate sphere. This stacks normally with caster levels gained from other sources.\n\nThis replaces mental powers."
+        },
+        {
+          "level": 1,
+          "name": "Ominous Presence",
+          "description": "A malefactor may choose to use Charisma for any class ability normally based on Intelligence. This decision is made when the character first gains their malefactor level."
+        },
+        {
+          "level": 1,
+          "name": "Unfortunate Psionics",
+          "description": "A malefactor gains the following effects he may create with his psionics:"
+        },
+        {
+          "level": 2,
+          "name": "Sinking Feeling",
+          "description": "A malefactor’s presence is enough to put people on edge, but their wrath is uniquely terrifying. Beginning at 2nd level, he gains a bonus to Intimidate and Sense Motive checks equal to 1/2 his symbiat level.\n\nThis replaces ESP."
+        },
+        {
+          "level": 3,
+          "name": "Resilient Woe",
+          "description": "Bad luck is not easily removed through violence. At 3rd level, the malefactor gains Diehard as a bonus feat even if they do not meet the prerequisites. At 6th level, the malefactor gains DR 1/- which improves by 1 at 9th level and every 3 levels thereafter.\n\nThis replaces pushed movement.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:symbiat:mistwalker",
+      "package": "spheres-class:symbiat",
+      "name": "Mistwalker",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/mistwalker",
+      "replaces_features": [
+        "esp",
+        "greater-psionics",
+        "mental-powers",
+        "symbiats-class-skills",
+        "two-minds"
+      ],
+      "removed_features": [
+        "esp",
+        "greater-psionics",
+        "mental-powers",
+        "two-minds"
+      ],
+      "removed_feature_clauses": [
+        "mental powers",
+        "ESP",
+        "two minds",
+        "greater psionics"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A mistwalker gains Bluff as a class skill instead of Sense Motive.\n\nThis alters the symbiat’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Cunning Mists",
+          "description": "At 1st level, the mistwalker gains their choice between the Illusion sphere or Mind sphere, gaining that sphere as a bonus sphere and treats their class level as their caster level for that sphere. This stacks normally with caster levels gained from other sources.\n\nThis ability replaces mental powers."
+        },
+        {
+          "level": 1,
+          "name": "Mist Form",
+          "description": "At 1st level, the mistwalker gains the ability to assume their mist form. The mistwalker may assume this form as a move action and may return to their normal form as a free action. This ability functions as the Alteration sphere Swarm Shape Gaseous Body trait (Gravecaller’s Handbook), using the mistwalker’s class level as their Alteration sphere caster level when determining its effects. The mistwalker may only assume their mist form while unencumbered.\n\nUnlike the normal Gaseous Body trait, the mistwalker’s mist form has a number of exceptions. The mistwalker’s physical form is not suppressed while transformed; the mistwalker may manipulate their worn and held equipment normally, does not lose their armor or natural armor bonus, and any abilities which require the mistwalker’s physical body are not suppressed. A mistwalker in mist form cannot manipulate objects not in their possession, and if an object is separated from the mistwalker (such as being set down), it returns to its normal, physical state. In addition, while in their mist form, the mistwalker may still speak and cast spells with physical components.\n\nAs the mistwalker gains levels, the mistwalker gains access to new abilities which augment and improve the mistwalker’s capabilities with their mist form."
+        },
+        {
+          "level": 1,
+          "name": "Sneak Attack",
+          "description": "At 1st level, the mistwalker gains the sneak attack ability, as the rogue sneak attack class feature. The mistwalker’s sneak attack damage is 1d6 at 1st level, increasing by +1d6 at 5th level and every 4 levels thereafter. If the mistwalker gains sneak attack damage dice from another source, the sneak attack damage dice stacks."
+        },
+        {
+          "level": 2,
+          "name": "Mist’s Insight",
+          "description": "At 2nd level, the mistwalker’s presence of mind is bolstered by the mist’s influence. The mistwalker gains a bonus to Bluff and Perception checks equal to 1/2 their symbiat level. In addition, the mistwalker gains mistsight, as the mistsight universal monster rule, allowing the mistwalker to see clearly through fog, mist, murky water, smoke and other similar conditions, ignoring the miss chance for these obstructions.\n\nThis ability replaces ESP."
+        },
+        {
+          "level": 3,
+          "name": "Mind-Drenching Mists",
+          "description": "At 3rd level, the mistwalker’s magic sphere abilities are more potent against those who have been put off balance. Whenever the mistwalker casts a spell or magic sphere effect against a creature that is denied its Dexterity bonus to AC against the mistwalker’s attacks, increase that spell or magic sphere effect’s DC by +1. This bonus increases by +1 at 7th level and every 4 levels thereafter."
+        },
+        {
+          "level": 5,
+          "name": "Misty Escape",
+          "description": "At 5th level, whenever the mistwalker succeeds at a Reflex saving throw, the mistwalker may assume their mist form as an immediate action.\n\nAt 12th level, the mistwalker may assume their mist form as an immediate action after succeeding at any saving throw.\n\nThis ability replaces two minds."
+        },
+        {
+          "level": 14,
+          "name": "Projected Mist",
+          "description": "At 14th level, the mistwalker gains the ability to project a portion of their power as a mist sensor, which they can see and experience stimulus through. As a fullround action, the mistwalker can create the mist sensor at any point they can see. While the mist sensor is active, the mistwalker can view the area from the sensor as though they were there. The mist sensor can travel without hindrance at a rate of 30 feet each round in any direction, and may be moved with mental instructions from the mistwalker each round as a free action or given commands (such as “follow that person” or “go to the end of the hallway”). The mist sensor can travel in any direction, but must remain within long range of the mistwalker (400 feet + 40 feet per mistwalker level). The mist sensor cannot pass through solid barriers, but may pass through any space the mistwalker could in their mist form. The mistwalker may dismiss the mist sensor as a free action, and creating a new one dismisses an active mist sensor.\n\nThe mist sensor is difficult to perceive but may be detected as though it were a scrying sensor (Perception DC 20 + the mistwalker’s level + their casting ability modifier) and dispelled. If the mist sensor is dispelled or otherwise destroyed, the mistwalker cannot create a new mist sensor unless they spend 2 spell points as part of creating a new sensor."
+        },
+        {
+          "level": 20,
+          "name": "Truth In The Mists",
+          "description": "At 20th level, the mistwalker’s mist form becomes a true second skin. The mistwalker can enter their mist form as a free action once per round, and may use quick shift whenever they enter their mist form. In addition, while in their mistform, the mistwalker gains regeneration 5 (electricity).\n\nThis ability replaces greater psionics."
+        }
+      ],
+      "detected_systems": [
+        "sneak_attack"
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:symbiat:operative",
+      "package": "spheres-class:symbiat",
+      "name": "Operative",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/operative",
+      "replaces_features": [
+        "armor-proficiency",
+        "esp",
+        "greater-psionics",
+        "mental-powers",
+        "psionics",
+        "pushed-movement",
+        "symbiat-skill-list",
+        "two-minds",
+        "weapon"
+      ],
+      "removed_features": [
+        "esp",
+        "greater-psionics",
+        "mental-powers",
+        "psionics",
+        "two-minds"
+      ],
+      "removed_feature_clauses": [
+        "mental powers",
+        "psionics",
+        "ESP",
+        "two minds",
+        "greater psionics"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Covert Training",
+          "description": "The operative gains the Illusion and War spheres as bonus magic talents.\n\nThis replaces mental powers."
+        },
+        {
+          "level": 1,
+          "name": "High Speed",
+          "description": "Ungifted in telekinesis, the pushed movement of the operative is a result of rigorous physical training and is an extraordinary (Ex) ability rather than a supernatural (Su) one. The improved speed is also halved gaining only +5 feet for every 3 class levels.\n\nThis alters pushed movement."
+        },
+        {
+          "level": 1,
+          "name": "Logistics",
+          "description": "At first level and every 3 levels thereafter the operative may gain one of the following: a bonus magic talent from the Illusion or War spheres, a teamwork feat, a squadron feat, or any feat that has the Illusion or War sphere as a prerequisite. The operative must meet all prerequisites for feats and talents gained from this feature.\n\nThis replaces psionics."
+        },
+        {
+          "level": 1,
+          "name": "Low Drag",
+          "description": "The operative gains a bonus on Perception and Stealth checks equal to half his operative level.\n\nThis replaces ESP."
+        },
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "The operative loses proficiency with the longsword, shortbow and shields. Operatives instead gain proficiency with the chakram, garrote, shuriken and all crossbows.\n\nThis alters weapon and armor proficiency."
+        },
+        {
+          "level": 1,
+          "name": "Skills",
+          "description": "The operative gains Bluff (Cha) and Disguise (Cha) as class skills but loses Knowledge (religion) (Int) and Fly (Dex) as class skills.\n\nThis alters the symbiat skill list."
+        },
+        {
+          "level": 5,
+          "name": "Always Ready",
+          "description": "Beginning at 5th level, once per round the operative may use an illusion, mandate, totem, or trick as a move action. The operative may also spend 2 spell points to use an Illusion or War sphere effect as an immediate action, even if flat-footed. If using an immediate action on a sphere effect during a surprise round, he may otherwise only take free actions on his surprise round turn. Sphere effects created using this ability have a maximum duration of 1 round.\n\nThis replaces two minds."
+        },
+        {
+          "level": 20,
+          "name": "Rapid Deployment",
+          "description": "At 20th level, once per round the operative may use a mandate, totem, or trick as a free action. Sphere effects created using this ability have a maximum duration of 1 round.\n\nThis replaces greater psionics.\n\nSkills: The operative gains Bluff and Disguise as class skills but loses Knowledge (religion) and Fly as class skills.\n\nThis modifies the symbiat skill list.\n\nProficiencies: The operative loses proficiency with the longsword, shortbow and shields. Operatives instead gain proficiency with the chakram, garrote, shuriken and all crossbows.\n\nThis modifies weapon and armor proficiency.\n\nCovert Training: The Operative gains the Illusion and War spheres as bonus magical talents.\n\nThis replaces mental powers.\n\nLogistics: At first level and every 3 levels thereafter the operative may gain one of the following: A bonus magical talent from the Illusion or War spheres, a teamwork feat, squadron feat, or any feat that has the Illusion or War sphere talents as a prerequisite. The operative must meet all prerequisites for feats and talents gained from this feature.\n\nThis replaces psionics.\n\nLow Drag (Ex): The operative gains a bonus on Perception and Stealth equal to half his symbiat level.\n\nThis replaces ESP.\n\nHigh Speed (Ex): Ungifted in telekinesis, the pushed movement of the operative is a result of rigorous physical training and is an extraordinary (Ex) ability rather than a supernatural (Su) one. The improved speed is also halved gaining only +5 ft. for every 3 class levels.\n\nThis modifies pushed movement.\n\nAlways Ready (Ex): Beginning at 5th level, once per round the operative may use an illusion, trick, totem or mandate as a move action. The operative may also spend 2 spell points to use an Illusion or War sphere effect as an immediate action, even if flat-footed. If using an immediate action on a sphere effect during a surprise round, you may only take free actions on your surprise round turn. Sphere effects created using this ability have a maximum duration of 1 round.\n\nThis replaces two minds.\n\nRapid Deployment (Ex): Beginning at 20th level, once per round the operative may use a trick, totem or mandate as a free action. Sphere effects created using this ability have a maximum duration of 1 round.\n\nThis replaces greater psionics.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:symbiat:synapse",
+      "package": "spheres-class:symbiat",
+      "name": "Synapse",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/synapse",
+      "replaces_features": [
+        "mental-powers",
+        "pushed-movement",
+        "telekinetic-colossus",
+        "telekinetic-edge",
+        "telekinetic-manipulation"
+      ],
+      "removed_features": [
+        "mental-powers",
+        "pushed-movement",
+        "telekinetic-colossus",
+        "telekinetic-edge",
+        "telekinetic-manipulation"
+      ],
+      "removed_feature_clauses": [
+        "mental powers"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Synapse Psionics",
+          "description": "A synapse gains the following psionic abilities:"
+        },
+        {
+          "level": 1,
+          "name": "Twisted Mind",
+          "description": "A synapse gains the Mind and Warp spheres as bonus magic talents.\n\nThese replaces mental powers."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:symbiat:technopath",
+      "package": "spheres-class:symbiat",
+      "name": "Technopath",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/technopath",
+      "replaces_features": [
+        "danger-sense",
+        "esp",
+        "mental-powers",
+        "psionic-fortress",
+        "pushed-movement",
+        "telekinetic-colossus",
+        "telekinetic-edge",
+        "telekinetic-manipulation"
+      ],
+      "removed_features": [
+        "danger-sense",
+        "esp",
+        "mental-powers",
+        "psionic-fortress",
+        "pushed-movement",
+        "telekinetic-colossus",
+        "telekinetic-edge",
+        "telekinetic-manipulation"
+      ],
+      "removed_feature_clauses": [
+        "Mental Powers",
+        "ESP",
+        "telekinetic manipulation",
+        "telekinetic edge",
+        "psionic fortress",
+        "telekinetic colossus",
+        "Danger Sense",
+        "Pushed Movement"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Technopathy",
+          "description": "A technopath gains the Mind and Technomancy spheres as bonus magic talents at 1st level and gains Program Puppeteer as a bonus feat. This replaces Mental Powers."
+        },
+        {
+          "level": 1,
+          "name": "Technological Insight",
+          "description": "A technopath is well-versed in the functions of machinery, and gains a bonus on Knowledge (Engineering) checks and Craft (mechanical) checks equal to ½ his level. This ability replaces ESP"
+        },
+        {
+          "level": 1,
+          "name": "A technopath gains the following psionics at the listed levels",
+          "description": "Fluid Assets: At 1st level, a technopath may have any sprites they have created transfer to any eligible targets within range as an immediate action. The sprites can still act normally after being transferred in this way.\n\nThis replaces telekinetic manipulation."
+        },
+        {
+          "level": 6,
+          "name": "Optimize",
+          "description": "At 6th level, the technopath can cause a piece of equipment to grant a +2 insight bonus on attack rolls and damage rolls to any attacks made with it and to increase any bonuses it grants to AC and saving throws by 2. The technopath may affect an additional target at 9th level and every 3 levels thereafter, to a maximum of 5 targets at 18th level.\n\nThis replaces telekinetic edge."
+        },
+        {
+          "level": 11,
+          "name": "Cybernetic Network",
+          "description": "At 11th level, the technopath can interlink the senses of himself and other creatures around him. All allies within 60 feet of the technopath share any of the following abilities that the technopath possesses: Evasion, uncanny dodge, improved uncanny dodge, and improved evasion.\n\nThis replaces psionic fortress."
+        },
+        {
+          "level": 16,
+          "name": "Omnilink",
+          "description": "At 16th level, the technopath can tap into the minds and senses of a vast number of entities to triangulate the positions of everything in his environment. The technopath becomes aware of everything within medium range as if he had touchsight out to that range (as per the Advanced Alternate Divination advanced talent from the Divination sphere). He is also considered to have line of sight and line of effect on anything that he perceives with this ability. At 18th level and every 2 levels thereafter, the technopath can choose to grant this ability to one additional ally that he can perceive.\n\nThis replaces telekinetic colossus."
+        },
+        {
+          "level": 3,
+          "name": "Countermeasures",
+          "description": "At 3rd level, a technopath gains a +1 bonus on saving throws against technological effects and a +1 dodge bonus to AC against attacks from technological weapons and constructs. These bonuses increase by +1 every three symbiat levels thereafter. This ability replaces Danger Sense and Pushed Movement."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:symbiat:telekinetic-warrior",
+      "package": "spheres-class:symbiat",
+      "name": "Telekinetic Warrior",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/telekinetic-warrior",
+      "replaces_features": [
+        "battlefield-relay",
+        "esp",
+        "mental-powers"
+      ],
+      "removed_features": [
+        "battlefield-relay",
+        "esp",
+        "mental-powers"
+      ],
+      "removed_feature_clauses": [
+        "mental powers",
+        "ESP"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Psionics",
+          "description": "A telekinetic warrior gains the following effects he may create with his psionics:"
+        },
+        {
+          "level": 1,
+          "name": "Telekinetic Mastery",
+          "description": "A telekinetic warrior gains the Telekinesis sphere as a bonus talent at 1st level, and uses his class level as his caster level with this sphere. This stacks normally with caster levels gained from other sources.\n\nThis replaces mental powers."
+        },
+        {
+          "level": 1,
+          "name": "Telekinetic Movement",
+          "description": "A telekinetic warrior gains a bonus equal to 1/2 his class level to all Acrobatics and Fly checks.\n\nThis replaces ESP."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:symbiat:vector",
+      "package": "spheres-class:symbiat",
+      "name": "Vector",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/vector",
+      "replaces_features": [
+        "all-granted-by-psionics",
+        "armor-proficiencies",
+        "battlefield-sense",
+        "evasion",
+        "greater-psionics",
+        "improved-evasion",
+        "magic-talents",
+        "mental-powers",
+        "psionics",
+        "weapon"
+      ],
+      "removed_features": [
+        "all-abilities-granted-by-psionics",
+        "battlefield-sense",
+        "greater-psionics",
+        "mental-powers",
+        "psionics"
+      ],
+      "removed_feature_clauses": [
+        "mental powers",
+        "battlefield sense",
+        "psionics",
+        "all abilities granted by psionics",
+        "greater psionics"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Vectors are proficient with simple weapons, as well as light armor. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis modifies weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "Whenever a vector would gain a magic talent from his class levels (not the 2 bonus talents gained when first gaining the casting class feature), he may instead choose to gain a combat talent. A vector uses his casting ability modifier as his practitioner modifier.\n\nThis modifies magic talents."
+        },
+        {
+          "level": 1,
+          "name": "Maneuver Specialist",
+          "description": "At 1st level, the vector gains the Telekinesis sphere and either Telekinetic Maneuver or Steal as bonus talents. If any are already possessed, he instead gains another talent from the Telekinesis sphere in its place.\n\nThis replaces mental powers."
+        },
+        {
+          "level": 1,
+          "name": "Mental Maneuvers",
+          "description": "The vector is a master of mixing mental power with the advanced martial techniques of a more dedicated physical practitioner. At 1st level, the vector gains their choice of Brute, Scoundrel, or Wrestling as a bonus sphere. If he already possesses Brute, Scoundrel, or Wrestling, he can choose to gain either one of those spheres that he does not possess or a talent from one of those spheres. The vector treats his base attack bonus as being equal to his class level for determining the effects of Brute, Scoundrel, and Wrestling sphere talents. This stacks with other sources of base attack bonus normally.\n\nThis replaces battlefield sense."
+        },
+        {
+          "level": 7,
+          "name": "Kinetic Overload",
+          "description": "A vector can flood his body with kinetic energy to achieve feats of telekinetic power others can’t imagine. A vector may enter kinetic overload as a move action and remain in it for a total number of rounds per day equal to 4 + his casting ability modifier. Every level gained beyond 1st grants him an additional 2 rounds he may remain in kinetic overload. Once in kinetic overload, the vector may remain in it as a free action each round. Kinetic overload cannot be disrupted, but it ends immediately if the vector is killed, stunned, knocked unconscious, or otherwise prevented from taking a mental free action to maintain it each round. At 7th level, a vector can start kinetic overload as a swift action instead of a move action. At 13th level, a vector can start kinetic overload as a free action. While in kinetic overload, the vector emits a display. The nature of this display various between individuals; some glow, shedding light as a torch, others emit a constant hum, while some cause nearby objects to vibrate. Regardless, the display is obvious to creatures within 30 ft. of the vector. The extreme energies of kinetic overload allow the vector to empower his telekinetic maneuvers. While in kinetic overload, the vector ignores the -5 penalty to CMB when using Telekinetic Maneuver and Steal and treats maneuvers performed using those talents as if he had performed them normally for the purposes of the Brute, Scoundrel, and Wrestling spheres. Should these sphere abilities grant additional maneuver attempts, the vector may perform them using Telekinetic Maneuver or Steal as appropriate. He may also use the shove ability of the Brute sphere, the marked target ability of the Scoundrel sphere, and the snag ability of the Wrestling sphere on any creature within telekinesis range. Any attack made with such ability may use the vector’s casting ability modifier in place of his Strength modifier and his caster level in place of his base attack bonus. When a Brute, Scoundrel, or Wrestling talent would grant the vector an attack against a target within his telekinesis range as the result of performing a maneuver, he may choose to make a ranged attack roll to pummel his target in place of the attack, dealing 1d6 + his casting ability modifier bludgeoning damage. This damage increases by 1d6 at 3rd level and every two levels thereafter and counts as magic. The vector may use his casting ability modifier in place of his Dexterity modifier when determining his attack bonus on this attack. This attack does not provoke an attack of opportunity for casting nor for being a ranged attack. If the vector possesses Divided Mind, he may spend a spell point as normal to apply it to uses of the shove ability of the Brute sphere, the marked target ability of the Scoundrel sphere, and the snag ability of the Wrestling sphere. He may spend a spell point as normal to apply it to additional maneuvers granted by the abilities of the Brute, Scoundrel, and Wrestling spheres. If the additional spell point is not spent, only one creature may be targeted with the additional granted maneuvers. As the vector progresses, he gains additional abilities while in kinetic overload."
+        },
+        {
+          "level": 1,
+          "name": "Focused Push",
+          "description": "At 1st level, while in kinetic overload the vector gains a +1 insight bonus on caster level when using Telekinetic Maneuver and Steal and on CMD. This bonus increases by +1 for every 4 class levels possessed to a maximum of +6 at 20th level."
+        },
+        {
+          "level": 3,
+          "name": "Unconscious Deflection",
+          "description": "At 3rd level, while in kinetic overload the vector gains a +1 deflection bonus to AC. This increases by +1 at 6th level and every 3 levels thereafter to a maximum of +6 at 18th level."
+        },
+        {
+          "level": 7,
+          "name": "Force Trample",
+          "description": "At 7th level, the vector may add overrun to the list of maneuvers he may perform with Telekinetic Maneuver, hurling himself a distance of up to close range as part of the casting. He may use this ability even if he does not possess Telekinetic Maneuver. This ability may not be combined with Divided Mind."
+        },
+        {
+          "level": 9,
+          "name": "Overpowering Force",
+          "description": "At 9th level, the vector may expend martial focus as part of using Telekinetic Maneuver (or Steal, if possessed) to have that use of the talent ignore any spell resistance the targets may posses."
+        },
+        {
+          "level": 11,
+          "name": "Focusing Overload",
+          "description": "At 11th level, the vector may spend two rounds of kinetic overload when using Telekinetic Maneuver or Steal to force all targets to roll their Will save twice and take the worse result."
+        },
+        {
+          "level": 16,
+          "name": "Kinetic Burst",
+          "description": "At 16th level, while in kinetic overload, the vector may expend martial focus as a fullround action to perform a bullrush maneuver with his Telekinetic Maneuvers talent against all hostile creatures within close range.\n\nThis replaces psionics and all abilities granted by psionics. Favored class bonuses, feats, and abilities that would add rounds to psionics or otherwise affect the duration of psionics (such as the Extra Psionics or Lingering Psionics feats) instead modify Kinetic Overload. Kinetic overload counts as possessing psionics for the purpose of meeting the prerequisites of such feats."
+        },
+        {
+          "level": 1,
+          "name": "Kinetic Evasion",
+          "description": "The vector’s evasion and improved evasion abilities function only while kinetic overload is active, but may be used in any armor.\n\nThis modifies evasion and improved evasion."
+        },
+        {
+          "level": 20,
+          "name": "Earthshaker",
+          "description": "At 20th level, the vector may use his kinetic overload ability and abilities that require expending rounds of kinetic overload at will. If he possesses feats or other abilities that would grant additional rounds or otherwise increase the duration of kinetic overload, he may immediately retrain them at no cost.\n\nThis replaces greater psionics."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:symbiat:warmonger",
+      "package": "spheres-class:symbiat",
+      "name": "Warmonger",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/warmonger",
+      "replaces_features": [
+        "armor-proficiencies",
+        "danger-sense",
+        "mental-powers",
+        "psionic-fortress",
+        "telekinetic-colossus",
+        "telekinetic-edge",
+        "telekinetic-manipulation",
+        "trapsense",
+        "weapon"
+      ],
+      "removed_features": [
+        "danger-sense",
+        "mental-powers",
+        "psionic-fortress",
+        "telekinetic-colossus",
+        "telekinetic-edge",
+        "telekinetic-manipulation",
+        "trapsense"
+      ],
+      "removed_feature_clauses": [
+        "mental powers",
+        "danger sense"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "A Genius for War",
+          "description": "The warmonger gains the War sphere with the Personal Conflict drawback twice, gaining Call to Arms and Totemic Aura as normal. The warmonger uses his class level as his caster level for this sphere. This stacks normally with caster levels from other sources.\n\nAny totem the warmonger creates attached himself has a radius of 60 feet. In addition, allies within 60 feet of him may spend momentum from his momentum pool.\n\nThis replaces mental powers."
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "The warmonger removes Fly (Dex) from his list of class skills and adds Bluff (Cha) to his list of class skills."
+        },
+        {
+          "level": 1,
+          "name": "Psionics",
+          "description": "The warmonger gains the following psionic abilities:"
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiencies",
+          "description": "The warmonger is proficient with all simple weapons, plus the longsword, rapier, sap, short sword, shortbow, and whip. He is not proficient with any armor or shields.\n\nThis alters weapon and armor proficiencies."
+        },
+        {
+          "level": 3,
+          "name": "Opening Move",
+          "description": "At 3rd level, the warmonger’s experience allows him to react faster to combat. He gains a +1 competence bonus to initiative. This increases by +1 every 3 levels, to a maximum of +6 at 18th level.\n\nThis replaces danger sense."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

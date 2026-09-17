@@ -1,0 +1,148 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:fighter:aerial-assaulter",
+      "passive_effects": [{"key": "aerial-expertise-fly", "feature_tokens": ["aerial-expertise"], "targets": ["skill:fly"], "progression": "fighter_bravery", "bonus_type": "untyped", "source": "Fighter (Aerial Assaulter): Aerial Expertise", "minimum_level": 2}]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:fighter:armiger",
+      "resource_modules": [{"key": "armiger_context", "title": "Armiger Conviction", "governing_ability": "strength", "resources": [{"key": "ardent_applies", "name": "Ardent Applies", "feature_tokens": ["ardent"], "progression": "one", "description": "Enable for a Will save against a charm effect.", "can_activate": true, "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": false}]}],
+      "passive_effects": [{"key": "armiger-ardent", "feature_tokens": ["ardent"], "targets": ["will"], "progression": "fighter_bravery", "bonus_type": "untyped", "source": "Fighter (Armiger): Ardent (charm only)", "minimum_level": 2, "requires_resource_active": "ardent_applies"}]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:fighter:dragonheir-scion",
+      "audit_ignore_mechanics": ["bloodline"],
+      "resource_modules": [{"key": "dragonheir_context", "title": "Dragonheir Scion", "governing_ability": "strength", "resources": [{"key": "fearful_might_applies", "name": "Fearful Might Applies", "feature_tokens": ["fearful-might"], "progression": "one", "description": "Enable when using Intimidate to demoralize a foe.", "can_activate": true, "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": false}]}],
+      "passive_effects": [
+        {"key": "dragonheir-natural-armor", "feature_tokens": ["draconic-defense"], "targets": ["armor_class", "flat_footed_ac"], "progression": "dragonheir_natural_armor", "bonus_type": "natural armor", "source": "Fighter (Dragonheir Scion): Draconic Defense", "minimum_level": 3},
+        {"key": "dragonheir-fearful-might", "feature_tokens": ["fearful-might"], "targets": ["skill:intimidate"], "progression": "dragonheir_fearful_might", "bonus_type": "untyped", "source": "Fighter (Dragonheir Scion): Fearful Might", "requires_resource_active": "fearful_might_applies"}
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:fighter:high-guardian",
+      "resource_modules": [{"key": "high_guardian", "title": "High Guardian", "governing_ability": "strength", "resources": [
+        {"key": "obligation", "name": "Obligation", "feature_tokens": ["obligation"], "progression": "zero", "description": "Record the ally selected after one minute of concentration. The choice can be changed after the next daily recovery.", "custom_choice_label": "Protected ally", "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": false},
+        {"key": "unassailable_allegiance_applies", "name": "Unassailable Allegiance Applies", "feature_tokens": ["unassailable-allegiance"], "progression": "one", "description": "Enable for a Will save against a compulsion.", "can_activate": true, "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": false}
+      ]}],
+      "passive_effects": [{"key": "high-guardian-allegiance", "feature_tokens": ["unassailable-allegiance"], "targets": ["will"], "progression": "fighter_bravery", "bonus_type": "untyped", "source": "Fighter (High Guardian): Unassailable Allegiance", "minimum_level": 2, "requires_resource_active": "unassailable_allegiance_applies"}],
+      "choice_handling": "transient",
+      "choice_handling_note": "Obligation is a daily target recorded in the live High Guardian tracker rather than a permanent advancement choice."
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:fighter:mutation-warrior",
+      "resource_modules": [{"key": "mutation_warrior", "title": "Mutation Warrior", "governing_ability": "intelligence", "resources": [{"key": "mutagen", "name": "Mutagen", "feature_tokens": ["mutagen"], "progression": "one", "description": "One mutagen per daily preparation. Choose Strength, Dexterity, or Constitution when activating it; selected discoveries modify the shared mutagen rules.", "can_activate": true, "activate_on_spend": true, "choice_options": ["Strength", "Dexterity", "Constitution"]}]}],
+      "power_providers": [{"key": "mutation-warrior-discoveries", "label": "Mutagen Discoveries", "family": "alchemist_discovery", "feature_tokens": ["mutagen-discovery"], "slot_levels": [7, 11, 15, 19], "option_names": ["Feral Mutagen", "Grand Mutagen", "Greater Mutagen", "Infuse Mutagen", "Nauseating Flesh", "Preserve Organs", "Rag Doll Mutagen", "Spontaneous Healing", "Tentacle", "Vestigial Arm", "Wings"], "description": "Choose one of the Mutation Warrior's permitted discoveries at 7th level and every 4 levels thereafter."}],
+      "system_features": ["mutagen", "mutagen-discovery"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:fighter:opportunist",
+      "choice_providers": [{"key": "opportunist-cunning-edges", "label": "Cunning Edges", "feature_tokens": ["cunning-edge"], "minimum": 0, "maximum": 5, "maximum_levels": [4, 8, 12, 16, 20], "description": "Choose one edge at 4th level and every 4 levels thereafter.", "fixed_options": [
+        {"key": "alchemical-admixture", "name": "Alchemical Admixture"}, {"key": "alchemical-refinement", "name": "Alchemical Refinement"}, {"key": "bombs", "name": "Bombs"}, {"key": "clouded-shift", "name": "Clouded Shift"}, {"key": "poison-use", "name": "Poison Use"}, {"key": "rogue-talent", "name": "Rogue Talent"}
+      ]}],
+      "resource_modules": [{"key": "opportunist_bombs", "title": "Opportunist Bombs", "governing_ability": "intelligence", "resources": [{"key": "bombs", "name": "Bombs", "feature_tokens": ["cunning-edge"], "progression": "ability_modifier_minimum_one", "description": "Bombs per day equal Intelligence modifier (minimum 1); damage is 1d6 plus 1d6 per 3 Fighter levels.", "requires_choice_provider": "opportunist-cunning-edges", "requires_choice_option": "class-choice-fixed:opportunist-cunning-edges:bombs"}]}],
+      "audit_ignore_mechanics": ["rogue_talent"]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:fighter:runesinger",
+      "choice_providers": [{"key": "runesinger-runes", "label": "Runes", "feature_tokens": ["runes"], "minimum": 2, "maximum": 2, "description": "Choose two distinct runes at 1st level. Each rune carries one attack ability and one movement ability and refreshes one minute after use.", "fixed_options": [
+        {"key": "cunning", "name": "Cunning"}, {"key": "earth", "name": "Earth"}, {"key": "flame", "name": "Flame"}, {"key": "glory", "name": "Glory"}, {"key": "light", "name": "Light"}, {"key": "lightning", "name": "Lightning"}, {"key": "pain", "name": "Pain"}, {"key": "shadow", "name": "Shadow"}, {"key": "smoke", "name": "Smoke"}, {"key": "soul", "name": "Soul"}, {"key": "strength", "name": "Strength"}, {"key": "thunder", "name": "Thunder"}, {"key": "time", "name": "Time"}, {"key": "water", "name": "Water"}, {"key": "wind", "name": "Wind"}, {"key": "wood", "name": "Wood"}
+      ]}],
+      "resource_modules": [{"key": "runesinger", "title": "Runes", "governing_ability": "charisma", "resources": [{"key": "bright_runes", "name": "Bright Runes", "feature_tokens": ["runes"], "progression": "two", "description": "Tracks how many of the two selected runes are currently bright. Each rune refreshes independently one minute after it is used."}]}],
+      "system_features": ["runes"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:fighter:savage-warrior",
+      "resource_modules": [{"key": "savage_warrior_context", "title": "Savage Warrior", "governing_ability": "strength", "resources": [{"key": "natural_savagery_applies", "name": "Natural Savagery Applies", "feature_tokens": ["natural-savagery"], "progression": "one", "description": "Enable while resolving attacks, damage, CMB, and CMD that use the Savage Warrior's natural weapons or grapple.", "can_activate": true, "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": false}]}],
+      "passive_effects": [{"key": "savage-natural-savagery", "feature_tokens": ["natural-savagery"], "targets": ["attack", "damage", "cmb", "cmd"], "progression": "savage_natural_savagery", "bonus_type": "untyped", "source": "Fighter (Savage Warrior): Natural Savagery", "minimum_level": 5, "requires_resource_active": "natural_savagery_applies"}]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:fighter:skirmisher",
+      "passive_effects": [{"key": "skirmisher-mobility", "feature_tokens": ["mobility-training"], "targets": ["armor_class", "touch_ac"], "progression": "skirmisher_mobility", "bonus_type": "dodge", "source": "Fighter (Skirmisher): Mobility Training", "minimum_level": 3, "requires_unencumbered": true}]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:fighter:soldier",
+      "choice_providers": [
+        {"key": "soldier-conditioning", "label": "Conditioning", "feature_tokens": ["conditioning"], "minimum": 0, "maximum": 4, "maximum_levels": [2, 8, 14, 20], "description": "Choose one conditioning at 2nd level and every 6 levels thereafter. Alert, Athletic, and Suspicion may each be selected twice where the rules permit.", "fixed_options": [{"key": "alert", "name": "Alert"}, {"key": "athletic", "name": "Athletic"}, {"key": "attuned", "name": "Attuned"}, {"key": "courage", "name": "Courage"}, {"key": "endurance", "name": "Endurance"}, {"key": "erudite", "name": "Erudite"}, {"key": "rationale", "name": "Rationale"}, {"key": "subtlety", "name": "Subtlety"}, {"key": "suspicion", "name": "Suspicion"}]},
+        {"key": "soldier-sphere-specialization", "label": "Sphere Specialization", "feature_tokens": ["sphere-specialization"], "minimum": 1, "maximum": 1, "description": "Choose one Conscript sphere specialization; Fighter levels count as Conscript levels.", "fixed_options": [{"key": "alchemy", "name": "Alchemy"}, {"key": "athletics", "name": "Athletics"}, {"key": "barrage", "name": "Barrage"}, {"key": "barroom", "name": "Barroom"}, {"key": "beastmastery", "name": "Beastmastery"}, {"key": "berserker", "name": "Berserker"}, {"key": "boxing", "name": "Boxing"}, {"key": "brute", "name": "Brute"}, {"key": "dual-wielding", "name": "Dual Wielding"}, {"key": "duelist", "name": "Duelist"}, {"key": "equipment", "name": "Equipment"}, {"key": "fencing", "name": "Fencing"}, {"key": "gladiator", "name": "Gladiator"}, {"key": "guardian", "name": "Guardian"}, {"key": "lancer", "name": "Lancer"}, {"key": "leadership", "name": "Leadership"}, {"key": "open-hand", "name": "Open Hand"}, {"key": "scoundrel", "name": "Scoundrel"}, {"key": "scout", "name": "Scout"}, {"key": "shield", "name": "Shield"}, {"key": "sniper", "name": "Sniper"}, {"key": "trap", "name": "Trap"}, {"key": "warleader", "name": "Warleader"}, {"key": "wrestling", "name": "Wrestling"}]}
+      ],
+      "system_features": ["conditioning", "sphere-specialization"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:fighter:viking",
+      "power_providers": [{"key": "viking-rage-powers", "label": "Rage Powers (in place of bonus feats)", "family": "rage_power", "feature_tokens": ["rage-powers"], "slot_levels": [6, 8, 10, 12, 14, 16, 18, 20], "description": "At each listed Fighter bonus-feat level, choose either the normal bonus feat or one Rage Power. Leaving a slot empty preserves the feat choice."}],
+      "system_features": ["rage", "rage-powers"]
+    },
+
+    {
+      "key": "pathfinder-archetype:pathfinder-class:rogue:deadly-courtesan",
+      "resource_modules": [{"key": "deadly_courtesan", "title": "Deadly Courtesan Performance", "governing_ability": "charisma", "resources": [{"key": "bardic_performance", "name": "Bardic Performance", "feature_tokens": ["bardic-performance"], "progression": "level_minus_one_plus_ability_minimum_one", "description": "Rounds per day equal Rogue level - 1 + Charisma modifier (minimum 1). Fascinate begins at 2nd level and Inspire Competence at 3rd.", "can_activate": true, "choice_options": ["Fascinate", "Inspire Competence", "Performance Strike"]}]}],
+      "system_features": ["bardic-performance"]
+    },
+    {"key": "pathfinder-archetype:pathfinder-class:rogue:cat-burglar", "audit_ignore_mechanics": ["phantom"]},
+    {"key": "pathfinder-archetype:pathfinder-class:rogue:makeshift-scrapper", "audit_ignore_mechanics": ["ninja_trick"]},
+    {"key": "pathfinder-archetype:pathfinder-class:rogue:phantom-thief", "audit_ignore_mechanics": ["phantom"]},
+    {
+      "key": "pathfinder-archetype:pathfinder-class:rogue:snoop",
+      "resource_modules": [{"key": "snoop", "title": "Snoop Inspiration", "governing_ability": "intelligence", "resources": [{"key": "inspiration", "name": "Inspiration", "feature_tokens": ["inspiration"], "progression": "half_level_plus_ability_minimum_one", "description": "Pool equal to half Rogue level + Intelligence modifier (minimum 1). It can be spent only on skill checks."}]}],
+      "power_providers": [{"key": "snoop-investigator-talents", "label": "Investigator Talents (in place of Rogue Talents)", "family": "investigator_talent", "feature_tokens": ["investigator-talents"], "slot_levels": [2, 4, 6, 8, 10, 12, 14, 16, 18, 20], "option_names": ["Eidetic Recollection", "Empathy", "Hidden Agendas", "Inspired Alertness", "Inspired Intimidator", "Item Lore", "Underworld Inspiration"], "description": "Each Rogue Talent slot may instead contain one of the Snoop's permitted Investigator Talents."}],
+      "system_features": ["inspiration", "investigator-talents"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:rogue:swashbuckler",
+      "resource_modules": [{"key": "rogue_swashbuckler_context", "title": "Swashbuckler Rogue", "governing_ability": "dexterity", "resources": [{"key": "daring_applies", "name": "Daring Applies", "feature_tokens": ["daring"], "progression": "one", "description": "Enable for Acrobatics checks or saving throws against fear.", "can_activate": true, "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": false}]}],
+      "passive_effects": [{"key": "rogue-swashbuckler-daring", "feature_tokens": ["daring"], "targets": ["skill:acrobatics", "will"], "progression": "third_level", "bonus_type": "morale", "source": "Rogue (Swashbuckler): Daring", "minimum_level": 3, "requires_resource_active": "daring_applies"}]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:rogue:underground-chemist",
+      "power_providers": [{"key": "underground-chemist-discoveries", "label": "Discoveries (in place of Advanced Talents)", "family": "alchemist_discovery", "feature_tokens": ["discovery"], "slot_levels": [10, 12, 14, 16, 18, 20], "option_names": ["Concentrate Poison", "Dilution", "Enhance Potion", "Extend Potion", "Mummification", "Nauseating Flesh", "Poison Conversion", "Preserve Organs", "Spontaneous Healing", "Sticky Poison"], "description": "At each Advanced Talent slot, choose either the normal talent or one permitted Alchemist discovery."}],
+      "system_features": ["discovery"]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:rogue:snake-oil-salesman",
+      "resource_modules": [{"key": "snake_oil_context", "title": "Snake Oil Salesman", "governing_ability": "charisma", "resources": [{"key": "sales_pitch_applies", "name": "Sales Pitch Applies", "feature_tokens": ["soul-of-a-salesman"], "progression": "one", "description": "Enable when Bluff is used to convince someone to buy the salesman's products or trust him.", "can_activate": true, "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": false}]}],
+      "passive_effects": [
+        {"key": "snake-oil-appraise", "feature_tokens": ["soul-of-a-salesman"], "targets": ["skill:appraise"], "progression": "half_level_minimum_one", "bonus_type": "untyped", "source": "Rogue (Snake Oil Salesman): Soul of a Salesman"},
+        {"key": "snake-oil-bluff", "feature_tokens": ["soul-of-a-salesman"], "targets": ["skill:bluff"], "progression": "half_level_minimum_one", "bonus_type": "untyped", "source": "Rogue (Snake Oil Salesman): Soul of a Salesman", "requires_resource_active": "sales_pitch_applies"}
+      ],
+      "system_features": ["soul-of-a-salesman"]
+    },
+
+    {
+      "key": "pathfinder-archetype:pathfinder-class:sorcerer:crossblooded",
+      "choice_provider_overrides": [{"key": "sorcerer-bloodline", "minimum": 2, "maximum": 2, "label": "Crossblooded Bloodlines", "description": "Choose two different bloodlines. Both class skills and bloodline arcanas apply; later power, spell, and feat choices come from either lineage as the archetype specifies."}],
+      "choice_providers": [
+        {"key": "crossblooded-bonus-spell-3", "label": "Crossblooded Bonus Spell (3rd)", "feature_tokens": ["crossblooded"], "minimum": 1, "maximum": 1, "minimum_class_level": 3, "depends_on": "sorcerer-bloodline", "options_from_dependency": true, "description": "Choose which selected bloodline supplies the 3rd-level bloodline spell."},
+        {"key": "crossblooded-bonus-spell-5", "label": "Crossblooded Bonus Spell (5th)", "feature_tokens": ["crossblooded"], "minimum": 1, "maximum": 1, "minimum_class_level": 5, "depends_on": "sorcerer-bloodline", "options_from_dependency": true, "description": "Choose which selected bloodline supplies the 5th-level bloodline spell."},
+        {"key": "crossblooded-bonus-spell-7", "label": "Crossblooded Bonus Spell (7th)", "feature_tokens": ["crossblooded"], "minimum": 1, "maximum": 1, "minimum_class_level": 7, "depends_on": "sorcerer-bloodline", "options_from_dependency": true, "description": "Choose which selected bloodline supplies the 7th-level bloodline spell."},
+        {"key": "crossblooded-bonus-spell-9", "label": "Crossblooded Bonus Spell (9th)", "feature_tokens": ["crossblooded"], "minimum": 1, "maximum": 1, "minimum_class_level": 9, "depends_on": "sorcerer-bloodline", "options_from_dependency": true, "description": "Choose which selected bloodline supplies the 9th-level bloodline spell."},
+        {"key": "crossblooded-bonus-spell-11", "label": "Crossblooded Bonus Spell (11th)", "feature_tokens": ["crossblooded"], "minimum": 1, "maximum": 1, "minimum_class_level": 11, "depends_on": "sorcerer-bloodline", "options_from_dependency": true, "description": "Choose which selected bloodline supplies the 11th-level bloodline spell."},
+        {"key": "crossblooded-bonus-spell-13", "label": "Crossblooded Bonus Spell (13th)", "feature_tokens": ["crossblooded"], "minimum": 1, "maximum": 1, "minimum_class_level": 13, "depends_on": "sorcerer-bloodline", "options_from_dependency": true, "description": "Choose which selected bloodline supplies the 13th-level bloodline spell."},
+        {"key": "crossblooded-bonus-spell-15", "label": "Crossblooded Bonus Spell (15th)", "feature_tokens": ["crossblooded"], "minimum": 1, "maximum": 1, "minimum_class_level": 15, "depends_on": "sorcerer-bloodline", "options_from_dependency": true, "description": "Choose which selected bloodline supplies the 15th-level bloodline spell."},
+        {"key": "crossblooded-bonus-spell-17", "label": "Crossblooded Bonus Spell (17th)", "feature_tokens": ["crossblooded"], "minimum": 1, "maximum": 1, "minimum_class_level": 17, "depends_on": "sorcerer-bloodline", "options_from_dependency": true, "description": "Choose which selected bloodline supplies the 17th-level bloodline spell."},
+        {"key": "crossblooded-bonus-spell-19", "label": "Crossblooded Bonus Spell (19th)", "feature_tokens": ["crossblooded"], "minimum": 1, "maximum": 1, "minimum_class_level": 19, "depends_on": "sorcerer-bloodline", "options_from_dependency": true, "description": "Choose which selected bloodline supplies the 19th-level bloodline spell."}
+      ],
+      "suppress_spell_grant_choice_providers": ["sorcerer-bloodline"],
+      "spell_grant_choice_providers": ["crossblooded-bonus-spell-3", "crossblooded-bonus-spell-5", "crossblooded-bonus-spell-7", "crossblooded-bonus-spell-9", "crossblooded-bonus-spell-11", "crossblooded-bonus-spell-13", "crossblooded-bonus-spell-15", "crossblooded-bonus-spell-17", "crossblooded-bonus-spell-19"],
+      "spell_grant_levels": {"crossblooded-bonus-spell-3": 3, "crossblooded-bonus-spell-5": 5, "crossblooded-bonus-spell-7": 7, "crossblooded-bonus-spell-9": 9, "crossblooded-bonus-spell-11": 11, "crossblooded-bonus-spell-13": 13, "crossblooded-bonus-spell-15": 15, "crossblooded-bonus-spell-17": 17, "crossblooded-bonus-spell-19": 19},
+      "passive_effects": [{"key": "crossblooded-will", "feature_tokens": ["crossblooded"], "targets": ["will"], "progression": "minus_two", "bonus_type": "untyped", "source": "Sorcerer (Crossblooded): Conflicting Urges"}],
+      "system_features": ["crossblooded"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:sorcerer:eldritch-scrapper",
+      "resource_modules": [{"key": "eldritch_scrapper", "title": "Eldritch Scrapper", "governing_ability": "charisma", "resources": [{"key": "martial_flexibility", "name": "Martial Flexibility", "feature_tokens": ["martial-flexibility"], "progression": "three_plus_half_level", "description": "Daily feat selections equal 3 + half Sorcerer level. Action and simultaneous-feat limits improve at levels 6, 10, 12, and 20."}]}],
+      "system_features": ["martial-flexibility"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:sorcerer:seeker",
+      "resource_modules": [{"key": "seeker_context", "title": "Seeker", "governing_ability": "charisma", "resources": [{"key": "tinkering_applies", "name": "Tinkering Applies", "feature_tokens": ["tinkering"], "progression": "one", "description": "Enable while locating or disabling magical traps. The Seeker may use Disable Device on magical traps.", "can_activate": true, "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": false}]}],
+      "passive_effects": [{"key": "seeker-tinkering", "feature_tokens": ["tinkering"], "targets": ["skill:perception", "skill:disable_device"], "progression": "half_level_minimum_one", "bonus_type": "untyped", "source": "Sorcerer (Seeker): Tinkering", "requires_resource_active": "tinkering_applies"}]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:sorcerer:sphere-sorcerer",
+      "choice_providers": [{"key": "sphere-sorcerer-focus-sphere", "label": "Focus Sphere", "feature_tokens": ["focus-sphere"], "minimum": 0, "maximum": 1, "description": "A Sphere Sorcerer may replace an unsuitable bloodline arcana with one Focus Sphere, gaining its base sphere and +1 caster level with that sphere.", "fixed_options": [{"key": "alteration", "name": "Alteration"}, {"key": "conjuration", "name": "Conjuration"}, {"key": "creation", "name": "Creation"}, {"key": "dark", "name": "Dark"}, {"key": "death", "name": "Death"}, {"key": "destruction", "name": "Destruction"}, {"key": "divination", "name": "Divination"}, {"key": "enhancement", "name": "Enhancement"}, {"key": "fate", "name": "Fate"}, {"key": "illusion", "name": "Illusion"}, {"key": "life", "name": "Life"}, {"key": "light", "name": "Light"}, {"key": "mind", "name": "Mind"}, {"key": "nature", "name": "Nature"}, {"key": "protection", "name": "Protection"}, {"key": "telekinesis", "name": "Telekinesis"}, {"key": "time", "name": "Time"}, {"key": "war", "name": "War"}, {"key": "warp", "name": "Warp"}, {"key": "weather", "name": "Weather"}]}],
+      "passive_effects": [{"key": "sphere-sorcerer-sorcerous-blood", "feature_tokens": ["sorcerous-blood"], "targets": ["spell_points"], "progression": "level", "bonus_type": "untyped", "source": "Sorcerer (Sphere Sorcerer): Sorcerous Blood"}],
+      "system_features": ["focus-sphere", "sorcerous-blood"]
+    }
+  ]
+}

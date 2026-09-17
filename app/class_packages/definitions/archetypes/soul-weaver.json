@@ -1,0 +1,564 @@
+{
+  "version": 1,
+  "class_key": "spheres-class:soul-weaver",
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:soul-weaver:banshee",
+      "package": "spheres-class:soul-weaver",
+      "name": "Banshee",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/banshee",
+      "replaces_features": [
+        "aid-dead",
+        "blessed-soul",
+        "blessing-blight",
+        "channel-energy",
+        "curious-spirit",
+        "death",
+        "lovelorn-soul",
+        "master-of-life",
+        "temporary-resurrection"
+      ],
+      "removed_features": [
+        "aid-dead",
+        "blessed-soul",
+        "blessing-blight",
+        "curious-spirit",
+        "death",
+        "lovelorn-soul",
+        "master-of-life",
+        "temporary-resurrection"
+      ],
+      "removed_feature_clauses": [
+        "master of life",
+        "death"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Channel Negative Energy",
+          "description": "A banshee must choose to channel negative energy, and when she does, she cannot choose to target undead.\n\nThis alters channel energy."
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "The banshee loses Heal as a class skill and gains Bluff as a class skill."
+        },
+        {
+          "level": 1,
+          "name": "Master of Manipulation",
+          "description": "At 1st level, the banshee gains the Mind sphere as a bonus sphere at 1st level.\n\nThis replaces master of life and death."
+        },
+        {
+          "level": 1,
+          "name": "Sorrowful Nexus",
+          "description": "The banshee draws souls of sorrow and despair towards her, causing their nexus powers to become twisted with sadness, becoming closer to a real banshee."
+        },
+        {
+          "level": 2,
+          "name": "Sorrow",
+          "description": "At 2nd level, the banshee may touch a target and expend a use of channel energy to place a sorrow within them. The target is allowed a Will save (DC 10 + 1/2 soul weaver level + her casting ability modifier), and on a failure, is instilled with sadness and apathy, becoming pale and sluggish. Sorrow is considered a magical curse and is permanent until removed by magic.\n\nA creature with sorrow suffers a -2 penalty to all saves against mind-affecting, emotion and fear effects, bound nexus powers, or sorrow abilities. A banshee may concentrate at any time to discover what creatures within close range are afflicted by her sorrow."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:soul-weaver:cycle-watcher",
+      "package": "spheres-class:soul-weaver",
+      "name": "Cycle Watcher",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/cycle-watcher",
+      "replaces_features": [
+        "aid-dead",
+        "blessing-blight",
+        "bound-nexus",
+        "channel-energy-but-still-counts-as-channel-energy",
+        "death",
+        "gravewalker",
+        "master-of-life",
+        "summon-spirit-i",
+        "summon-spirit-ii",
+        "summon-spirit-iii",
+        "summon-spirit-iv",
+        "summon-spirit-v",
+        "temporary-resurrection",
+        "trap-soul"
+      ],
+      "removed_features": [
+        "aid-dead",
+        "blessing-blight",
+        "death",
+        "gravewalker",
+        "master-of-life",
+        "summon-spirit-i",
+        "summon-spirit-ii",
+        "summon-spirit-iii",
+        "summon-spirit-iv",
+        "summon-spirit-v",
+        "temporary-resurrection",
+        "trap-soul"
+      ],
+      "removed_feature_clauses": [
+        "master of life",
+        "death",
+        "blessing/blight",
+        "gravewalker"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Cyclical Nexus",
+          "description": "The souls commanded by a cycle watcher manifest as vestiges of times long past and civilizations yet to be. Several of the abilities granted by the cycle watcher’s bound nexus are altered as follows."
+        },
+        {
+          "level": 1,
+          "name": "Observer of the Passage",
+          "description": "At 1st level, the cycle watcher gains either the Divination sphere or the Time sphere as a bonus sphere.\n\nThis replaces master of life and death."
+        },
+        {
+          "level": 1,
+          "name": "Void Channel",
+          "description": "At 1st level, instead of choosing to channel positive or negative energy, the cycle watcher chooses to channel ephemera or eternity."
+        },
+        {
+          "level": 2,
+          "name": "Ephemera/Eternities",
+          "description": "Cycle watchers command the life and death of ages and ideas rather than those of individual creatures. At 2nd level, a cycle watcher who chose to channel ephemera may grant ephemera to targets, while a soul weaver who chose to channel eternity may give eternities. A target may only be under one ephemera or eternity at a time. Applying an ephemera to a target with eternity or vice-versa dispels both effects, leaving neither. For the purpose of feats, magic items, and other such effects, ephemera count as blights and eternities count as blessings.\n\nThis replaces blessing/blight."
+        },
+        {
+          "level": 20,
+          "name": "Tear Down the Gate",
+          "description": "At 20th level, the cycle watcher may reach into the endless cycle for 1 minute as a free action. This can be done 3 times per day. While in this state, the cycle watcher gains DR 10/- and gains a number of temporary spell points every round equal to their casting ability modifier. These temporary spell points expire when this state ends.\n\nThis replaces gravewalker."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:soul-weaver:dual-channeler",
+      "package": "spheres-class:soul-weaver",
+      "name": "Dual Channeler",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/dual-channeler",
+      "replaces_features": [
+        "blessing-blight",
+        "bound-nexus",
+        "channel-energy",
+        "death",
+        "master-of-life"
+      ],
+      "removed_features": [
+        "bound-nexus"
+      ],
+      "removed_feature_clauses": [
+        "bound nexus"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Channel Energy",
+          "description": "A dual channeler gains channel energy as the cleric class feature, but can channel both positive and negative energy. The dual channeler must choose each time she channels energy if she will channel positive or negative energy, as well as whether to target living or undead creatures as normal. This counts as possessing the Versatile Channeler feat.\n\nThis alters channel energy"
+        },
+        {
+          "level": 1,
+          "name": "Master of Life and Death",
+          "description": "A dual channeler gains both the Life and Death spheres at 1st level.\n\nThis alters master of life and death."
+        },
+        {
+          "level": 1,
+          "name": "Peerless Channeler",
+          "description": "The dual channeler’s mastery of energy grants her the following abilities."
+        },
+        {
+          "level": 1,
+          "name": "Potent Channeler",
+          "description": "The dual channeler gains 2 additional uses of channel energy per day. This number increases by 1 for every 2 dual channeler levels possessed. In addition, the dual channeler counts as worshipping any deity and possessing any alignment when meeting the prerequisites for channeling feats.\n\nThis replaces bound nexus."
+        },
+        {
+          "level": 2,
+          "name": "Blessing/Blight",
+          "description": "At 2nd level, the dual channeler may grant both blessings and blights, and gains access to both sets of abilities as she gains levels. The dual channeler counts as having the Blessing/Blight Versatility feat.\n\nThis alters blessing/blight."
+        }
+      ],
+      "detected_systems": [
+        "channel_energy",
+        "blessing"
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:soul-weaver:ghost-sovereign",
+      "package": "spheres-class:soul-weaver",
+      "name": "Ghost Sovereign",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/ghost-sovereign",
+      "replaces_features": [
+        "blessed-soul",
+        "blessings",
+        "blights",
+        "bound-nexus",
+        "gravewalker",
+        "iii",
+        "summon-spirit-i"
+      ],
+      "removed_features": [
+        "blessed-soul",
+        "blessings",
+        "blights",
+        "gravewalker",
+        "iii",
+        "summon-spirit-i"
+      ],
+      "removed_feature_clauses": [
+        "blessings",
+        "blights",
+        "gravewalker"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "The ghost sovereign loses Heal (Wis) as a class skill and gains Knowledge (nobility) (Int) as a class skill."
+        },
+        {
+          "level": 2,
+          "name": "Royal Command",
+          "description": "Like any soul weaver, a ghost sovereign can influence the souls of any ensouled creature, causing powerful effects to allies and enemies. At 2nd level, a ghost sovereign may give royal commands to any ensouled creature."
+        },
+        {
+          "level": 2,
+          "name": "The Twilight Kingdom",
+          "description": "Each ghost sovereign has a twilight kingdom which she will eventually become the ruler of (either by dying or by reaching 20th level). The kingdom is an area covering several square miles and has a physical appearance similar to wherever the ghost sovereign grew up. The population is approximately 2000 spirits, mostly of the same species as the ghost sovereign.\n\nWhere the kingdom exists varies. It might be a demiplane within the astral plane, or somewhere on an outer plane, or it might even exist within the mind of the sovereign herself (making her physical presence in the kingdom paradoxical, but somehow still possible). Treat the twilight kingdom as if the ghost sovereign had created it using the Create Demiplane talent. Within the kingdom, the sovereign’s power is god-like: she can transform her own shape into whatever form she wishes and alter the planar traits of kingdom itself at will.\n\nPhysical matter can not exist within the kingdom, save for the personal possessions of the ghost sovereign when she chooses to visit. Likewise, living beings other than the ghost sovereign can not enter the kingdom. Animated creatures can not enter the kingdom, nor can undead.\n\nClass Skills: The ghost sovereign loses Heal as a class skill and gains Knowledge (Nobility) as a class skill.\n\nRoyal Command (Su): Like any soul weaver, a ghost sovereign can influence the souls of any ensouled creature, causing powerful effects to allies and enemies. At 2nd level, a ghost sovereign may give royal commands to any ensouled creature.\n\nProclamation: At 2nd level, the ghost sovereign may choose an ensouled creature within close range and proclaim them a friend or enemy of the court. This is a standard action and requires that the ghost sovereign to expend a use of their Channel Energy ability. Only allies can be friends of the court. Friends of the court receive a +2 circumstance bonus to attacks rolls and AC against all of the ghost sovereign’s enemies, while all of the ghost sovereign’s allies receive the same bonus against enemies of the court. The proclamation lasts a number of rounds equal to half the ghost sovereign’s level plus their Charisma modifier. Allies only benefit from these bonuses while within close range of the ghost sovereign.\n\nConscription: At 6th level, a ghost sovereign may spend a swift action to conscript an ally within close range and have them make an attack on an enemy as if that enemy had provoked an attack of opportunity from them. Either the ally or the target enemy must be under the effects of a proclamation from the ghost sovereign.\n\nMobilization: At 10th level, whenever a ghost sovereign conscripts an ally, the ghost sovereign may also expend a move action to allow the ally to move their speed using any movement mode available to them before an attack. The ally’s movement can draw attacks of opportunity normally.\n\nDevastation: At 14th level, when the ghost sovereign proclaims, the bonuses from the proclamation increase from +2 to +5.\n\nMilitarization: At 18th level, a ghost sovereign may conscript as a standard action in order to have their ally make a full-round attack. The ally may move their speed using any movement mode available to them before the attack if the ghost sovereign expends their own move action as well. This movement draws attacks of opportunity normally. The ghost sovereign can not use this ability and conscription on the same turn.\n\nThis replaces blessings and blights.\n\nSummon Twilight Courtier: At 4th level, the ghost sovereign can expend a soul to summon a member of their court to the nearest unoccupied square. The courtier appears as a finely dressed and slightly translucent member of the sovereign’s race, and counts as a summoned creature. It remains for a number of rounds equal to the sovereign’s Charisma modifier.\n\nThe ghost sovereign has 3 possible types of courtier they can summon at any given time. Each of these courtier types is designed as if they were creatures summoned using the Conjuration sphere, with the ghost sovereign possessing a caster level equal to their class level. Each is a medium-sized biped creature with the Undead Creature form talent, gained twice. They receive 3 hit points per hit die, are incorporeal, and can fly 30 ft. (perfect). Although undead, they still possess and use their Constitution attribute, and if the ghost sovereign channels positive energy, they are healed by positive energy and vulnerable to negative energy. If the ghost sovereign can channel both positive and negative energy, they they are healed by both positive and negative energy. Twilight courtiers receive knowledge (nobility) as a bonus class skill, and any natural or manufactured weapons they receive from (form) talents gain the ghost-touch weapon property. Although incorporeal, they still have a Strength score and use it to determine damage, and can manipulate unattended objects.\n\nThe player may design their three types of courtier, and may change the design whenever they level. For every 4 class levels the ghost sovereign possesses, they may add an additional form talent to their courtier. They may choose any of the following form talents: Armored Companion, Battle Creature, Capable Companion, Fortified Companion, Magical Companion, Mystical Companion, Powerful Companion, Quick Companion, Roguish Creature, Sage Companion, Shield Bearer, Skillful Companion, Spell-warded Companion, Staff-wielding Companion, Trap-Breaking Companion or Willful Companion. When choosing feats for their courtier, they may not choose feats with a limited number of daily uses, such as Stunning Fist.\n\nThis modifies bound nexus and replaces summon spirit I, II, III, IV and V.\n\nMerciful Soul: At 8th level, the ghost sovereign may expend a soul to rally themselves or any ally they can see with no totem or mandate needed. They may use any (rally) talent, even ones they do not possess. They must pay the any spell costs normally associated with the rally.\n\nThis modifies bound nexus and replaces blessed soul.\n\nEternal Rule (Su): At 20th level, the ghost sovereign inherits their kingdom in the spirit world. They may cross the barrier between life and death as an act of will. Whenever the ghost sovereign dies, they spontaneously come back from the dead 24 hours later (if not resurrected by some other means sooner). The process leaves them with 1 permanent negative level, but they are are otherwise completely healed and rested. They may appear in any location they choose that they have visited. They do not have their original equipment with them.\n\nThey may also choose to disappear from the living world as a standard action, teleporting themselves to their kingdom. By crossing into the afterlife willingly, they get to retain their equipment, and gain no negative energy level for coming back. They still must wait 24 hours before they can return.\n\nThis replaces gravewalker.\n\nThe Twilight Kingdom: Each ghost sovereign has a twilight kingdom which they will eventually become the ruler of (either by dying or by reaching 20th level). The kingdom is an area covering several square miles and has a physical appearance similar to wherever the ghost sovereign grew up. The population is approximately 2000 spirits, mostly of the same species as the ghost sovereign.\n\nWhere the kingdom exists varies. It might be a demiplane within the astral plane, or somewhere on an outer plane, or it might even exist within the mind of the sovereign herself (making her physical presence in the kingdom paradoxical, but somehow still possible). Treat the twilight kingdom as if the ghost sovereign had created it using the Create Demiplane talent. Within the kingdom, the sovereign’s power is god-like: they can transform their own shape into whatever form they wish and alter the planar traits of kingdom itself at will.\n\nPhysical matter can not exist within the kingdom, save for the personal possessions of the ghost sovereign when she chooses to visit. Likewise, living beings other than the ghost sovereign can not enter the kingdom. Animated creatures can not enter the kingdom, nor can undead.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        },
+        {
+          "level": 4,
+          "name": "Summon Twilight Courtier",
+          "description": "At 4th level, the ghost sovereign can expend a soul to summon a member of her court to the nearest unoccupied square. The courtier appears as a finely dressed and slightly translucent member of the sovereign’s race, and counts as a summoned creature. It remains for a number of rounds equal to the sovereign’s casting ability modifier (minimum 1).\n\nThe ghost sovereign has 3 possible types of courtier she can summon at any given time. Each of these courtier types is designed as if they were creatures summoned using the Conjuration sphere, with the ghost sovereign possessing a caster level equal to her class level. Each is a Medium-sized biped creature with the Undead Creature (type) talent, gained twice.\n\nThey receive 3 hit points per Hit Die, are incorporeal, and can fly 30 feet (perfect). Although undead, they still possess and use their Constitution score, and if the ghost sovereign channels positive energy, they are healed by positive energy and vulnerable to negative energy. If the ghost sovereign can channel both positive and negative energy, then they are healed by both positive and negative energy. Twilight courtiers receive Knowledge (nobility) (Int) as a bonus class skill, and any natural or manufactured weapons they receive from (form) talents gain the ghost touch weapon special ability. Although incorporeal, they still have a Strength score and use it to determine damage, and can manipulate unattended objects.\n\nThe player may design their three types of courtier, and may change the design whenever they level. Courtiers cannot possess companion archetypes.\n\nFor every 4 class levels the ghost sovereign possesses, she may add an additional form talent to her courtier. She may choose any of the following (form) talents: Armored Companion, Battle Creature, Capable Companion, Fortified Companion, Implement Bearer, Magical Companion, Mystical Companion, Powerful Companion, Quick Companion, Roguish Creature, Sage Companion, Shield Bearer, Skillful Companion, Spell-Warded Companion, Trapbreaking Companion or Willful Companion. When choosing feats for her courtier, she may not choose feats with a limited number of daily uses, such as Stunning Fist.\n\nThis alters bound nexus and replaces summon spirit I, II, III, IV and V."
+        },
+        {
+          "level": 8,
+          "name": "Merciful Soul",
+          "description": "At 8th level, the ghost sovereign may expend a soul to rally herself or any ally she can see with no totem or mandate needed. She may use any (rally) talent, even ones she does not possess. She must pay any spell costs normally associated with the rally.\n\nThis alters bound nexus and replaces blessed soul."
+        },
+        {
+          "level": 20,
+          "name": "Eternal Rule",
+          "description": "At 20th level, the ghost sovereign inherits her kingdom in the spirit world. She may cross the barrier between life and death as an act of will. Whenever the ghost sovereign dies, she spontaneously comes back from the dead 24 hours later (if not resurrected by some other means sooner). The process leaves her with 1 permanent negative level, but she is otherwise completely healed and rested. She may appear in any location she chooses that she has visited. She does not have her original equipment with her.\n\nShe may also choose to disappear from the living world as a standard action, teleporting herself to her kingdom. By crossing into the afterlife willingly, she gets to retain her equipment, and gains no negative level for coming back. She still must wait 24 hours before she can return.\n\nThis replaces gravewalker."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:soul-weaver:lichling",
+      "package": "spheres-class:soul-weaver",
+      "name": "Lichling",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/lichling",
+      "replaces_features": [
+        "blessing-blight",
+        "channel-energy"
+      ],
+      "removed_features": [
+        "blessing-blight",
+        "channel-energy"
+      ],
+      "removed_feature_clauses": [
+        "channel energy",
+        "blessing/blight"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Living Death",
+          "description": "A lichling uses her casting ability modifier in place of her Constitution modifier when determining the number of hit points gained from her lichling levels. She may also use her casting ability modifier in place of her Constitution modifier when calculating her Fortitude saving throw.\n\nThis replaces channel energy."
+        },
+        {
+          "level": 2,
+          "name": "Touch of Corruption",
+          "description": "Beginning at 2nd level, a lichling may touch a target and fill it with negative energy. Each day she can use this ability a number of times equal to 1/2 her lichling level + her casting ability modifier. Using this ability is a standard action that does not provoke an attack of opportunity, but may be used on herself as a swift action. The lichling must make a touch attack against an unwilling target. If successful, this ability deals 1d6 points of damage per 2 lichling levels to the target. If used on an undead target, this instead heals the undead 1d6 hit points per 2 lichling levels. This ability is modified by any feat, spell, or effect that specifically works with the lay on hands paladin class feature. A lichling may spend a feat to gain an antipaladin cruelty, using her lichling level as her effective antipaladin level for this purpose.\n\nThe lichling may also channel negative energy as a cleric by spending 2 uses of her touch of corruption. The lichling uses her lichling level as her effective cleric level when channeling negative energy. This ability is based on casting ability.\n\nThis replaces blessing/blight."
+        },
+        {
+          "level": 6,
+          "name": "Negative Energy Affinity",
+          "description": "At 6th level, the lichling is healed by negative energy and harmed by positive energy, as if she were undead."
+        },
+        {
+          "level": 10,
+          "name": "Undead Resistances",
+          "description": "At 10th level, the lichling gains a +2 bonus to all saving throws vs. death effects, mind-altering effects, energy drain, disease, paralysis, poison, and sleep. These bonuses increase to +4 at 14th level, and +6 at 18th level."
+        },
+        {
+          "level": 20,
+          "name": "True Undeath",
+          "description": "At 20th level, a lichling ceases to age (becoming effectively immortal), and gains immunity to age effects, bleed effects, nonlethal damage, ability drain, and energy drain. Unintelligent undead ignore the lichling, treating her as one of their own unless attacked.\n\nSpheres of Power: Expanded Options\n\n$4.99\n\nLiving Death (Ex): A lichling uses her Charisma modifier in place of her Constitution modifier when determining the number of hit points gained from her soul weaver levels. She may also use her Charisma modifier in place of her Constitution modifier when calculating her Fortitude saving throw.\n\nThis replaces channel energy.\n\nTouch of Corruption (Su): Beginning at 2nd level, a lichling may touch a target and fill it with negative energy.\n\nEach day she can use this ability a number of times equal to 1/2 her soul weaver level + her Charisma modifier. Using this ability is a standard action that does not provoke an attack of opportunity, but may be used on herself as a swift action. The lichling must make a touch attack against an unwilling target. If successful, this ability deals 1d6 points of damage per 2 soul weaver levels to the target. If used on an undead target, this instead heals the undead 1d6 hit points per 2 soul weaver levels. This ability is modified by any feat, spell, or effect that specifically works with the lay on hands paladin class feature.\n\nFor example, the Extra Lay On Hands feat grants a lichling 2 additional uses of the touch of corruption class feature.\n\nA lichling may spend a feat to gain an antipaladin cruelty, using her soul weaver level as her effective antipaladin level for this purpose.\n\nThe lichling may also channel negative energy as a cleric by spending 2 uses of her touch of corruption. The lichling uses her soul weaver level as her effective cleric level when channeling negative energy. This is a Charisma-based ability.\n\nThis replaces blessing/blight.\n\nNegative Energy Affinity (Ex): At 6th level, the lichling is healed by negative energy and harmed by positive energy, as if she was undead.\n\nUndead Resistances: At 10th level, the lichling gains a +2 bonus to all saving throws vs death effects, mind-altering effects, energy drain, disease, paralysis, poison, and sleep. These bonuses increase to +4 at 14th level, and +6 at 18th level.\n\nTrue Undeath (Ex): At 20th level, a lichling ceases to age (becoming effectively immortal), and gains immunity to age effects, bleed effects, nonlethal damage, ability drain, and energy drain. Unintelligent undead ignore the soul weaver, treating her as one of their own unless attacked.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:soul-weaver:pharmakon",
+      "package": "spheres-class:soul-weaver",
+      "name": "Pharmakon",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/pharmakon",
+      "replaces_features": [
+        "blessing-blight",
+        "death",
+        "master-of-life"
+      ],
+      "removed_features": [
+        "blessing-blight",
+        "death",
+        "master-of-life"
+      ],
+      "removed_feature_clauses": [
+        "master of life",
+        "death",
+        "blessing/blight class feature"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Medicine Man",
+          "description": "At 1st level, a pharmakon gains the Life sphere and Affliction talent as bonus talents, as well as the Limited Restoration (restore) drawback. This drawback does not grant an additional talent. If the pharmakon already possesses the Life sphere, then the Affliction talent is gained as a bonus talent with no drawback. When using the Affliction talent, the pharmakon may spend uses of channel energy in place of spell points.\n\nThis replaces master of life and death."
+        },
+        {
+          "level": 2,
+          "name": "Iatrogen",
+          "description": "At 2nd level, and every 4 additional levels thereafter (6th, 10th, 14th, etc.), the pharmakon gains an iatrogen of her choice. An iatrogen is an effect similar to a usage of the Affliction talent, but is much more potent and powerful. Each iatrogen can only be powered by spending uses of channel energy in place of spell points, including when combined with talents that allow the affecting of multiple creatures. Whenever a iatrogen calls for a saving throw, the DC is equal to 10 + 1/2 her pharmakon level + her casting ability modifier. If the pharmakon uses any iatrogen on a creature who is already under the effect of 3 or more different iatrogenic effects, the target must succeed at a Fortitude save or drop to -1 hit points and begin dying."
+        },
+        {
+          "level": 1,
+          "name": "Exsanguination",
+          "description": "The pharmakon can use the Affliction talent to inflict 1d6 bleed damage, plus an additional 1d6 bleed damage per (cure) talent she possesses."
+        },
+        {
+          "level": 1,
+          "name": "Malignance",
+          "description": "The pharmakon inflicts a 1d6 ability penalty to a single ability score of her choice. If the pharmakon possesses at least two (cure) talents, she instead inflicts this ability penalty to all ability scores. This ability penalty lasts a number of rounds equal to her pharmakon level (Fortitude negates). Ability penalties from malignance do not stack with themselves."
+        },
+        {
+          "level": 1,
+          "name": "Neurasthenia",
+          "description": "The pharmakon inflicts the frightened (or panicked, if already frightened) condition for a number of rounds equal to her pharmakon level (Will negates). This is a mind affecting fear effect."
+        },
+        {
+          "level": 1,
+          "name": "Opisthotonus",
+          "description": "The pharmakon inflicts the staggered condition for a number of rounds equal to her pharmakon level (Fortitude negates). If the target is already under the effect of the staggered condition, it is instead paralyzed for a single round."
+        },
+        {
+          "level": 1,
+          "name": "Polysynapsis",
+          "description": "The pharmakon grants a target twice the temporary hit points she can normally grant via the invigorate Life sphere ability. These temporary hit points can bring a target’s current hit points above their total hit points. However, when the duration expires (the pharmakon may end the duration prematurely as a free action), the creature loses hit points equal to the number of temporary hit points granted in addition to the temporary hit points."
+        },
+        {
+          "level": 1,
+          "name": "Sepsis",
+          "description": "The pharmakon inflicts a disease onto the target, as per the Inflict Disease talent from the Death sphere."
+        },
+        {
+          "level": 1,
+          "name": "Syncope",
+          "description": "The pharmakon inflicts temporary negative levels onto the target, as per the Drain talent from the Death sphere.\n\nThis replaces the blessing/blight class feature."
+        },
+        {
+          "level": 1,
+          "name": "Author's Note",
+          "description": "For the purpose of interacting with other Life sphere talents and abilities, any time that you may normally use the Affliction talent, you may instead use an Iatrogen as a special use of that talent."
+        },
+        {
+          "level": 1,
+          "name": "New Feat",
+          "description": "Extra Iatrogen: Prerequisite: Iatrogen class feature."
+        },
+        {
+          "level": 1,
+          "name": "Benefit",
+          "description": "Gain an additional iatrogen for which you meet the prerequisites. You may take this feat multiple times. The effects stack."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:soul-weaver:shaman",
+      "package": "spheres-class:soul-weaver",
+      "name": "Shaman",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/shaman",
+      "replaces_features": [],
+      "removed_features": [],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Casting Ability Modifier",
+          "description": "Shamans use Wisdom instead of Charisma as their casting ability modifier, and for all class-related purposes, including the number of times per day they may channel energy."
+        },
+        {
+          "level": 1,
+          "name": "Tradition",
+          "description": "Spiritual Magic: Shamans possess the Skilled Casting and Painful Magic drawbacks, as well as the Deathful Magic boon. They may further refine their tradition by taking additional drawbacks and boons. The shaman channels the power of spirits through routines and rituals as a paranormal practitioner. At character creation, the shaman must choose Profession: Medicine, or a Craft or Perform skill of her choice through which to call the spirits into action. This decision cannot be changed. In order to use any sphere ability, the shaman must first succeed on a check of the chosen skill. This could include a brief demonstration of proficiency, such as mimicking the movements of a healer, tracing the pattern of a beaded bracelet with one finger, or reciting an ancient tribal chant."
+        },
+        {
+          "level": 4,
+          "name": "Summon Spirit",
+          "description": "In addition to the other options a shaman may summon with their summon spirit bound nexus powers, they may also summon ghosts (NPCs with a random class and the ghost template). At 4th level they may expend a soul to summon a weak ghost (a ghost with 1 level in a random NPC class). At 8th level they may summon 1 lesser ghost or two weak ghosts (a lesser ghost has 2 or fewer levels in a random PC class). At 12th level they may summon 1 common ghost, 2 lesser ghosts, or 4 weak ghosts (a common ghost possesses 4 or fewer levels in a random PC class.) At 16th level, they may summon 1 greater ghost, 2 common ghosts, 4 lesser ghosts, or 4 weak ghosts (a greater ghost possesses 7 or fewer levels in a random PC class). At 20th level, they may summon 1 grand ghost, 2 greater ghosts, or 4 common ghosts, lesser ghosts, or weak ghosts (a grand ghost possesses 12 or fewer levels in a random PC class). A shaman cannot summon forth the ghost of a specific person unless they possess the soul of that person in their nexus, via Trap Soul. If the shaman expends a creature’s trapped soul to summon a single ghost using summon spirit, it manifests as the target appeared in life, including race, class, and items. This ghost has as many character levels as the target had in life, or as many as summon spirit permits, whichever is fewer."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:soul-weaver:shepherd-of-the-lost",
+      "package": "spheres-class:soul-weaver",
+      "name": "Shepherd of the Lost",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/shepherd-of-the-lost",
+      "replaces_features": [
+        "death",
+        "iii",
+        "master-of-life",
+        "summon-spirit-i",
+        "summon-spirit-ii"
+      ],
+      "removed_features": [
+        "death",
+        "iii",
+        "master-of-life",
+        "summon-spirit-i",
+        "summon-spirit-ii"
+      ],
+      "removed_feature_clauses": [
+        "master of life",
+        "death",
+        "summon spirit II",
+        "V"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "For Their Flock",
+          "description": "The shepherd of the lost gains the following abilities at the indicated levels, granting her new ways to interact with her bound nexus souls or housed soul. These abilities are otherwise treated as additional bound nexus abilities."
+        },
+        {
+          "level": 1,
+          "name": "Guide to the Lost",
+          "description": "At 1st level, the shepherd of the lost gains the incanter Death sphere sub-specialization guide of the dead. The shepherd of the lost treats her soul weaver level as her incanter level when determining the benefits of this sphere specialization.\n\nA housed soul raised by the shepherd of the lost can be healed by the soul weaver’s positive energy abilities and sphere effects. For more information on housed souls, see the sidebar on housed souls included with the Death sphere sub-specialization guide of the dead.\n\nThis ability replaces master of life and death and summon spirit II and V."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:soul-weaver:totemist",
+      "package": "spheres-class:soul-weaver",
+      "name": "Totemist",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/totemist",
+      "replaces_features": [
+        "blessing-blight",
+        "channel-energy",
+        "death",
+        "master-of-life"
+      ],
+      "removed_features": [
+        "blessing-blight",
+        "channel-energy",
+        "death",
+        "master-of-life"
+      ],
+      "removed_feature_clauses": [
+        "channel energy",
+        "master of life",
+        "death"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Channel Balance",
+          "description": "A totemist, like any other soul weaver, may channel spiritual energy that affect nearby creatures.\n\nChanneling balance causes a burst that affects all creatures differently in a 30-foot radius centered on the totemist. Creatures in the area who are wounded (at or below 1/2 maximum hit points) gain fast healing (for 1 minute). Creatures who are healthy or grazed (above 1/2 maximum hit points) take bleed damage (until they receive healing or a successful Heal check). The amount of bleed damage and fast healing is 1, increasing by 1 for every two totemist levels beyond 1st (2 at 3rd, 3 at 5th, and so on).\n\nChanneling balance is a standard action that does not provoke an attack of opportunity. A totemist can choose whether or not to include herself in this effect. Channel balance counts as channel energy class feature for the purpose of qualifying for and using channeling feats, and the totemist has an effective channel energy of 1d6 per bleed/fast healing. Channel balance also counts as both positive and negative channel energy for this purpose of meeting feat prerequisites. She may use this ability a number of times per day equal to 3 + her casting ability modifier (minimum 1).\n\nThis replaces channel energy."
+        },
+        {
+          "level": 1,
+          "name": "Master of Fate",
+          "description": "The totemist gains the Fate sphere as a bonus sphere at 1st level.\n\nThis replaces master of life and death."
+        },
+        {
+          "level": 2,
+          "name": "Spirit Totem",
+          "description": "Beginning at 2nd level, the totemist learns new ways to call upon the spirits of nature to aid their allies in various tasks. The list of abilities they gain is as follows:"
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

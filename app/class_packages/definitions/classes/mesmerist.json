@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "key": "mesmerist",
+  "class_key": "pathfinder-class:mesmerist",
+  "class_name": "Mesmerist",
+  "governing_ability": "charisma",
+  "optional_blocks": ["inquisitor_features", "spells_known", "spell_level_overview"],
+  "external_systems": [
+    "traditional_spontaneous_casting",
+    "hypnotic_stare",
+    "painful_stare",
+    "mesmerist_tricks",
+    "bold_stare",
+    "touch_treatment"
+  ],
+  "resource_modules": [],
+  "passive_effects": [
+    {
+      "key": "consummate_liar",
+      "feature_tokens": ["consummate-liar"],
+      "targets": ["skill:bluff"],
+      "progression": "half_level_minimum_one",
+      "bonus_type": "untyped",
+      "source": "Mesmerist: Consummate Liar"
+    },
+    {
+      "key": "towering_ego",
+      "feature_tokens": ["towering-ego"],
+      "targets": ["will"],
+      "progression": "ability_modifier_nonnegative",
+      "ability": "charisma",
+      "bonus_type": "untyped",
+      "source": "Mesmerist: Towering Ego",
+      "minimum_level": 2
+    }
+  ],
+  "power_providers": [
+    {
+      "key": "mesmerist-tricks",
+      "label": "Mesmerist Tricks",
+      "family": "mesmerist_trick",
+      "feature_tokens": ["mesmerist-tricks", "mesmerist-trick"],
+      "slot_levels": [1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20],
+      "description": "Choose one Mesmerist trick at 1st level and every even level. Masterful tricks become available at 12th level."
+    },
+    {
+      "key": "mesmerist-bold-stares",
+      "label": "Bold Stares",
+      "family": "bold_stare",
+      "feature_tokens": ["bold-stare"],
+      "slot_levels": [3, 7, 11, 15, 19],
+      "description": "Choose one Bold Stare improvement at 3rd level and every 4 levels thereafter."
+    }
+  ],
+  "notes": "Hypnotic Stare, Painful Stare, trick implants, Touch Treatment, recurring Mesmerist Tricks, and Bold Stares are separate modular systems so archetype exchanges remove only the affected feature."
+}

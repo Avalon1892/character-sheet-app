@@ -1,0 +1,2266 @@
+{
+  "version": 1,
+  "class_key": "pathfinder-class:hunter",
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:aquatic-beastmaster",
+      "package": "pathfinder-class:hunter",
+      "name": "Aquatic Beastmaster",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter Aquatic Beastmaster",
+      "replaces_features": [
+        "animal-focus",
+        "improved-empathic-link",
+        "wild-empathy"
+      ],
+      "removed_features": [
+        "animal-focus",
+        "improved-empathic-link",
+        "wild-empathy"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Aquatic Beastmaster",
+          "description": "Source Blood of the Sea pg. 22"
+        },
+        {
+          "level": 1,
+          "name": "Animal Focus",
+          "description": "An aquatic beastmaster emulates animals found beneath the waves. This functions as animal focus, but it allows only the following choices."
+        },
+        {
+          "level": 8,
+          "name": "Crab",
+          "description": "The creature gains a +4 competence bonus on Swim checks and a +2 competence bonus on grapple combat maneuver checks. These bonuses increase to +6 and +4, respectively, at 8th level and to +8 and +6 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Dolphin",
+          "description": "The creature gains a +4 competence bonus on Knowledge checks to identify the abilities and weaknesses of creatures. This bonus increases to +6 at 8th level and to +8 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Eel",
+          "description": "The creature gains a +2 enhancement bonus to Dexterity. This bonus increases to +4 at 8th level and to +6 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Manta Ray",
+          "description": "The creature gains a +4 competence bonus on Stealth checks and a +2 bonus on saving throws against poison. These bonuses increase to +6 and +4, respectively, at 8th level and to +8 and +6 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Octopus",
+          "description": "The creature gains a +4 competence bonus on Swim checks and a +2 competence bonus on grapple combat maneuver checks. These bonuses increase to +6 and +4, respectively, at 8th level and to +8 and +6 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Orca",
+          "description": "The creature gains a +2 enhancement bonus to Strength. This bonus increases to +4 at 8th level and to +6 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Shark",
+          "description": "The creature gains a +4 competence bonus on Survival checks to track a creature to which the hunter or her animal companion has dealt damage in the past 24 hours. This bonus increases to +6 at 8th level and to +8 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Snake",
+          "description": "The creature gains a +2 bonus on attack rolls when making attacks of opportunity and a +2 dodge bonus to AC against attacks of opportunity. These bonuses increase to +4 at 8th level and to +6 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Turtle",
+          "description": "The creature gains a +2 enhancement bonus to its natural armor bonus. This bonus increases to +4 at 8th level and to +6 at 15th level. (A creature without natural armor has an effective natural armor bonus of +0.)"
+        },
+        {
+          "level": 1,
+          "name": "Wild Empathy",
+          "description": "An aquatic beastmaster’s wild empathy functions only on creatures that have a swim speed or the aquatic or water subtype. However, she can improve the attitude of any such creature with Intelligence 2 or less regardless of type, including mindless creatures."
+        },
+        {
+          "level": 4,
+          "name": "Oceanic Defense",
+          "description": "At 4th level, an aquatic beastmaster gains a +4 bonus on saving throws against spells with the water descriptor and the extraordinary or supernatural abilities of creatures with the aquatic or water subtype whenever her animal companion is within 60 feet."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:hunter:beast-bender",
+      "package": "pathfinder-class:hunter",
+      "name": "Beast Bender",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/beast-bender",
+      "replaces_features": [
+        "animal-focus",
+        "armor-proficiencies",
+        "hunter-tactics",
+        "master-hunter",
+        "one-with-wild",
+        "second-animal-focus",
+        "spellcasting",
+        "swift-tracker",
+        "track",
+        "weapon",
+        "wild-empathy"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "spells class feature",
+        "track",
+        "swift tracker",
+        "one with the wild",
+        "animal focus",
+        "second animal focus",
+        "wild empathy",
+        "hunter tactics",
+        "master hunter"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Beast benders are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis alters weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The beast bender may combine spheres and talents to create magical effects. The beast bender is considered a Mid-Caster and uses Wisdom as her casting ability modifier. (Note: All casters gain 2 bonus talents and may select a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the spells class feature."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "The beast bender gains a small reservoir of energy she can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to her class level + her casting ability modifier. This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "A beast bender gains a combat or magic talent every time she gains a class level. Beast benders use their casting ability modifier as their practitioner modifier.\n\nThis replaces track, swift tracker, and one with the wild."
+        },
+        {
+          "level": 1,
+          "name": "Alter Beast",
+          "description": "The beast bender gains the Alteration and Beastmastery spheres as bonus talents. If she already possesses either sphere, she gains a bonus talent from that sphere in its place. She must select the (handle animal) package of the Beastmastery sphere if gaining the sphere for the first time or gain it via taking the Extra Beastmastery Package talent with her bonus talent if it is not already possessed. She treats her class level as her caster level when applying shapeshift to her animal allies. This stacks normally with caster levels gained from other sources.\n\nThis replaces animal focus and second animal focus."
+        },
+        {
+          "level": 1,
+          "name": "Rapid Alteration",
+          "description": "When applying shapeshift to her animal allies, and only her animal allies, the casting time becomes a move action. The beast bender may concentrate on a shapeshift affecting only her animal allies as a move action.\n\nThis replaces wild empathy."
+        },
+        {
+          "level": 3,
+          "name": "Pack Tactics",
+          "description": "At 3rd level, the beast bender automatically grants her teamwork feats to up to 1 + her casting ability modifier (minimum 2 creatures) animal allies that are under the effects of her shapeshift. They do not need to meet the prerequisites of the shared feats. The selected animal allies may be changed as a swift action.\n\nThis replaces hunter tactics."
+        },
+        {
+          "level": 20,
+          "name": "Morph Master",
+          "description": "At 20th level, when the beast bender applies shapeshift to her animal allies, the effect is extraordinary and the duration becomes permanent.\n\nThis replaces master hunter."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:hunter:beastmaster",
+      "package": "pathfinder-class:hunter",
+      "name": "Beastmaster",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/beastmaster",
+      "replaces_features": [
+        "animal-companion",
+        "animal-focus",
+        "armor-proficiencies",
+        "greater-empathic-link",
+        "hunter-tactics",
+        "improved-empathic-link",
+        "orisons",
+        "precise-companion",
+        "raise-animal-companion",
+        "second-animal-focus",
+        "spellcasting",
+        "weapon",
+        "wild-empathy"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "spellcasting",
+        "orisons",
+        "wild empathy",
+        "animal focus",
+        "precise companion",
+        "hunter tactics",
+        "improved empathic link",
+        "second animal focus",
+        "raise animal companion",
+        "greater empathic link"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Beastmasters are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis modifies weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A beastmaster is considered an Adept practitioner, gaining spheres and talents as appropriate. Beastmasters use Charisma as their practitioner modifier.\n\nThis replaces spellcasting."
+        },
+        {
+          "level": 1,
+          "name": "Beast Trainer",
+          "description": "At 1st level, the beastmaster gains the Beastmastery sphere as a bonus sphere and uses her class level in place of her base attack bonus when determining any benefits from this sphere, including the DCs of any associated abilities and talents. She must select the (handle animal) Beastmastery package. If she already possesses the Beastmastery sphere, but not the (handle animal) Beastmastery package, she gains that package. If that package is already possessed, she instead gains a talent from that sphere as a bonus talent.\n\nThis replaces orisons."
+        },
+        {
+          "level": 1,
+          "name": "Battle Companion",
+          "description": "The beastmaster’s animal companion starts with light armor proficiency and is combat trained, but does not gain the share spells ability, though it still qualifies for companion archetypes as if it possessed share spells.\n\nThis modifies animal companion."
+        },
+        {
+          "level": 1,
+          "name": "Handler",
+          "description": "At 1st level, the beastmaster gains Animal Empathy from the Beastmastery sphere as a bonus talent.\n\nThis replaces wild empathy."
+        },
+        {
+          "level": 1,
+          "name": "Commanding",
+          "description": "At 1st level, whenever the beastmaster pushes or handles an animal ally, she may push or handle a number of additional animal allies equal to her Charisma modifier (minimum 1 additional). If different actions are required to push or handle the creatures (such as for a tame creature versus an animal companion), the longer time must be used.\n\nThis replaces animal focus."
+        },
+        {
+          "level": 2,
+          "name": "Deadly Pack",
+          "description": "At 2nd level, the beastmaster gains Pack Attack from the Beastmaster sphere as a bonus talent.\n\nThis replaces precise companion."
+        },
+        {
+          "level": 3,
+          "name": "Pack Tactics",
+          "description": "At 3rd level, the beastmaster automatically grants her teamwork feats to 1 + her Charisma modifier (minimum 2 creatures) animal allies within close range (25 ft. +5 ft. per 2 class levels). They do not need to meet the prerequisites of the shared feats. The selected animal allies may be changed as a swift action.\n\nThis replaces hunter tactics."
+        },
+        {
+          "level": 4,
+          "name": "Beastfriend",
+          "description": "At 4th level, all creatures of the animal type have a starting disposition toward the beastmaster of no worse than indifferent and will not attack the beastmaster or her allies within close range (25 ft. + 5 ft. per 2 levels) unless commanded to or attacked by the beastmaster or her allies first. She may also improve a creature’s disposition by 2 steps when using the Animal Empathy talent by increasing the DC of the check by 10.\n\nThis replaces improved empathic link."
+        },
+        {
+          "level": 8,
+          "name": "Rapid Empathy",
+          "description": "At 8th level, the beastmaster reduces the time required to use her Animal Empathy talent to a full-round action. Additionally, the beastmaster may reduce the time required to tame a creature with the trainer ability of the Beastmastery sphere to 2 hours by increasing the DC of the Handle Animal check by 10. If she possesses the Bolster Beast talent, she may apply that same DC increase to that check to reduce the time required to 30 minutes. If she possesses the Purposeful Training talent, she may reduce the time required to use the retraining option of that talent to 1 hour.\n\nThis replaces second animal focus."
+        },
+        {
+          "level": 10,
+          "name": "Ready Replacement",
+          "description": "At 10th level, the beastmaster gains the Adopt Animal Ally feat as a bonus feat even if she does not meet the prerequisites. If she already possesses that feat, she may instead gain any feat she qualifies for.\n\nThis replaces raise animal companion."
+        },
+        {
+          "level": 14,
+          "name": "Beastlord",
+          "description": "At 14th level, all creatures of the animal type have a starting disposition toward the beastmaster of at least friendly. Any animal that is commanded to attack the beastmaster or her allies within close range must first succeed on a Will save (DC 10 + 1/2 the beastmaster’s level + her Charisma modifier) or spend its turn cowering. Any creature not of the animal type with animal intelligence (Intelligence 1 or 2) and any mindless plants or vermin have a starting disposition of at least indifferent and will not attack the beastmaster or her allies within close range unless commanded to or attacked by the beastmaster or her allies first.\n\nThis replaces greater empathic link."
+        },
+        {
+          "level": 20,
+          "name": "True Beastmaster",
+          "description": "At 20th level, a beastmaster reduces the time required to use her Animal Empathy talent to a move action. She also reduces the time required to use her trainer Beastmastery sphere ability to 1 hour and may train any number of creatures in that time, though still may not exceed the HD limitations of that ability. If she possesses the Bolster Beast talent, she may apply that talent to any number of tame creatures with 1 minute of effort."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:chameleon-adept",
+      "package": "pathfinder-class:hunter",
+      "name": "Chameleon Adept",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter Chameleon Adept",
+      "replaces_features": [
+        "class-skills",
+        "hunters-tactics",
+        "one-with-wild",
+        "precise-companion",
+        "raise-animal-companion",
+        "teamwork-feats",
+        "wild-empathy",
+        "woodland-stride"
+      ],
+      "removed_features": [
+        "class-skills",
+        "hunters-tactics",
+        "one-with-wild",
+        "precise-companion",
+        "raise-animal-companion",
+        "teamwork-feats",
+        "wild-empathy",
+        "woodland-stride"
+      ],
+      "removed_feature_clauses": [
+        "teamwork feats",
+        "hunter’s tactics",
+        "wild empathy",
+        "precise companion",
+        "woodland stride",
+        "raise animal companion"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Chameleon Adept",
+          "description": "Source Ultimate Wilderness pg. 52"
+        },
+        {
+          "level": 1,
+          "name": "Skills",
+          "description": "A chameleon adept adds Diplomacy to her list of class skills.\n\nThis alters the hunter’s class skills."
+        },
+        {
+          "level": 3,
+          "name": "Shifting Companion",
+          "description": "At 3rd level as a standard action, a chameleon adept can cause her companion to assume a humanoid form of the same race as herself. This functions as alter self, except it is used on an adjacent animal companion to have it assume a humanoid form. The companion always assumes the same form, selected when the hunter reaches 3rd level. The hunter can change this form when she gains a new level, but the companion loses the old form and can’t resume it unless the chameleon adept chooses that form when she reaches a new level. The companion is no more intelligent or less savage than normal; the hunter still needs to control it as normal, and it still can’t activate magic items or wield manufactured weapons. The hunter can use this ability for 10 minutes per day per hunter level. This duration does not need to be consecutive, but it must be spent in 10-minute increments.\n\nThis replaces teamwork feats and hunter’s tactics."
+        },
+        {
+          "level": 1,
+          "name": "Terrain Chameleon",
+          "description": "Choose one type of terrain from the ranger’s list of favored terrains. When in the specified type of terrain, a chameleon adept gains a bonus equal to half her hunter level on Stealth checks.\n\nThis replaces wild empathy."
+        },
+        {
+          "level": 2,
+          "name": "Savage Diplomacy",
+          "description": "At 2nd level, while in humanoid form, a chameleon adept’s animal companion grants its master a +2 circumstance bonus on Diplomacy and Intimidate checks. Savage diplomacy functions only as long as the creature being influenced can see both the companion and the master. This bonus increases by 1 at 5th level and every 4 levels thereafter, to a maximum of +6 at 17th level.\n\nThis replaces precise companion."
+        },
+        {
+          "level": 5,
+          "name": "Animal Shape",
+          "description": "At 5th level as a standard action, a chameleon adept can assume a form superficially identical to her animal companion’s animal form. She gains no bonuses or natural attacks while in this form, only forms of movement. Her size category does not change. This is a polymorph effect. She can assume this form for 1 minute per level per day, in 1-minute increments. She can dismiss this ability at any point as a standard action.\n\nThis replaces woodland stride."
+        },
+        {
+          "level": 10,
+          "name": "Improved Shifting Companion",
+          "description": "At 10th level, a chameleon adept’s animal companion improves its ability to change shape. It can use wild shape, as a druid of half the hunter’s level, to gain the effects of beast shape I. Unlike a druid’s wild shape, this ability does not improve to encompass larger or smaller animals or elementals.\n\nThis replaces raise animal companion."
+        },
+        {
+          "level": 17,
+          "name": "One with the Wild",
+          "description": "At 17th level, when the companion is using wild shape to appear as a different type of animal, it counts as being in that animal focus for the purpose of one with the wild.\n\nThis alters one with the wild."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:colluding-scoundrel",
+      "package": "pathfinder-class:hunter",
+      "name": "Colluding Scoundrel",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter Colluding Scoundrel",
+      "replaces_features": [
+        "animal-focus",
+        "master-hunter",
+        "second-animal-focus"
+      ],
+      "removed_features": [
+        "animal-focus",
+        "master-hunter",
+        "second-animal-focus"
+      ],
+      "removed_feature_clauses": [
+        "second animal focus",
+        "master hunter"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Colluding Scoundrel",
+          "description": "Source Antihero's Handbook pg. 11"
+        },
+        {
+          "level": 8,
+          "name": "Scapegoat",
+          "description": "A colluding scoundrel is adept at redirecting a foe’s hostility toward another creature, creating openings for her own attacks. A number of times per day equal to her hunter level, as a swift action, she can target one foe within 30 feet and designate one willing ally adjacent to that foe as a scapegoat. For the following minute, the target takes a –2 penalty on attacks against any creature other than the designated scapegoat, and the target has a 10% spell failure chance on spells that don’t target the scapegoat or include the scapegoat in their area of effect. The penalty increases to –4 at 8th level and –6 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Backstabber",
+          "description": "At 8th level, a colluding scoundrel deals 2d6 additional points of damage on attacks against a target threatened by an ally currently designated as the scapegoat. This increases to 3d6 points of damage at 15th level. This is precision damage and is not multiplied on a critical hit, but it does stack with sneak attack and similar effects.\n\nThis replaces second animal focus."
+        },
+        {
+          "level": 20,
+          "name": "Master Backstabber",
+          "description": "At 20th level, a colluding scoundrel is a master at dispatching distracted targets. As a standard action, she can make a single attack against a foe that is taking the penalties of her scapegoat ability and is adjacent to an ally currently designated as the scapegoat. If the attack hits, the target takes damage normally and must succeed at a Fortitude saving throw (DC = 10 + half the colluding scoundrel’s level + her Wisdom modifier) or be slain. Whether or not the target succeeds, it cannot be targeted by this ability again (by any colluding scoundrel) for 24 hours.\n\nThis replaces master hunter."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:courtly-hunter",
+      "package": "pathfinder-class:hunter",
+      "name": "Courtly Hunter",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter Courtly Hunter",
+      "replaces_features": [
+        "animal-companion",
+        "animal-focus",
+        "bonus-tricks",
+        "class-skills",
+        "hunter-tactics",
+        "precise-companion",
+        "teamwork-feats"
+      ],
+      "removed_features": [
+        "animal-companion",
+        "animal-focus",
+        "bonus-tricks",
+        "class-skills",
+        "hunter-tactics",
+        "precise-companion",
+        "teamwork-feats"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Courtly Hunter",
+          "description": "Source Ultimate Intrigue pg. 64"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A courtly hunter adds Bluff, Diplomacy, and Sense Motive to her list of class skills, instead of Knowledge (geography), Knowledge (nature), and Survival.\n\nThis alters the hunter’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Courtly Companion",
+          "description": "A courtly hunter’s animal companion was touched by either the fey or the nature spirits that form leshys and answer to commune with nature, granting it its own intelligence. The companion’s type changes to magical beast (augmented animal), but this doesn’t change any of its statistics and it counts as an animal, not as a magical beast, for the purposes of determining all effects, prerequisites, and so on. It does not learn tricks, but it does have an Intelligence score equal to that of a familiar belonging to a wizard of the courtly hunter’s hunter level. Levels in other classes that grant animal companions do not stack with levels of courtly hunter for the purpose of determining the abilities of her courtly companion."
+        },
+        {
+          "level": 1,
+          "name": "Refined Focus",
+          "description": "A courtly hunter has access to a different set of animal aspects with her animal focus. She does not gain access to the bear, bull, frog, monkey, snake, stag, tiger, or wolf aspects. Instead, she gains access to the following aspects."
+        },
+        {
+          "level": 8,
+          "name": "Beaver",
+          "description": "The creature gains a +4 competence bonus on Craft checks. This bonus increases to +6 at 8th level and +8 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Chameleon",
+          "description": "The creature gains a +4 competence bonus on Disguise checks. This bonus increases to +6 at 8th level and +8 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Eagle",
+          "description": "The creature gains a +2 enhancement bonus to Charisma. This bonus increases to +4 at 8th level and +6 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Fox",
+          "description": "The creature gains a +4 competence bonus on Bluff checks. This bonus increases to +6 at 8th level and +8 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Frilled Lizard",
+          "description": "The creature gains a +4 competence bonus on Intimidate checks. This bonus increases to +6 at 8th level and +8 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Octopus",
+          "description": "The creature gains a +4 competence bonus on Escape Artist checks. This bonus increases to +6 at 8th level and +8 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Raccoon",
+          "description": "The creature gains a +4 competence bonus on Sleight of Hand checks. This bonus increases to +6 at 8th level and +8 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Songbird",
+          "description": "The creature gains a +4 competence bonus on Perform checks. This bonus increases to +6 at 8th level and +8 at 15th level."
+        },
+        {
+          "level": 2,
+          "name": "Subtle Companion",
+          "description": "At 2nd level, a courtly hunter can transform her animal companion into a similar Tiny animal to allow it hide easily or even blend in and act as a spy. For instance, a tiger could be transformed into a housecat, a wolf could be transformed into a Tiny dog, a dire bat could be transformed into a Tiny flying fox, and so on. This functions as a polymorph effect, and the animal companion gains a +2 size bonus to Dexterity and a –4 size penalty to Strength (use the polymorph table on page 212 of the Pathfinder RPG Core Rulebook to adjust its ability score if the animal companion is larger than Medium). As a standard action, the courtly hunter can touch her animal companion to transform it."
+        },
+        {
+          "level": 3,
+          "name": "Skill Bond",
+          "description": "At 3rd level, a courtly hunter’s animal companion gains the courtly hunter’s class skills as class skills. Her animal companion can use the courtly hunter’s skill ranks in a skill in place of its own, but only to a maximum of the courtly hunter’s hunter level (for instance, if a character had 3 levels in courtly hunter and 5 ranks in Diplomacy, her animal companion could either share 3 ranks with skill bond or use its own ranks, whichever would result in a higher total skill bonus)."
+        },
+        {
+          "level": 7,
+          "name": "Alternate Form",
+          "description": "At 7th level, the courtly hunter’s animal companion learns an additional subtle form. When the courtly hunter gains this ability, she chooses a Tiny animal. When under the effects of the subtle companion ability, the courtly hunter’s animal companion can change between a shrunken, more innocuous version of its original shape or the shape of the chosen animal as a standard action. When it transforms, it loses abilities dependent on its original shape and gains abilities from its new shape as beast shape II. At 13th and 19th levels, the courtly hunter can select an additional form to add to the animal companion’s list of choices while it is in its polymorphed form."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:divine-hunter",
+      "package": "pathfinder-class:hunter",
+      "name": "Divine Hunter",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter Divine Hunter",
+      "replaces_features": [
+        "alignment",
+        "class-skills",
+        "hunter-tactics",
+        "teamwork-feats"
+      ],
+      "removed_features": [
+        "alignment",
+        "class-skills",
+        "hunter-tactics",
+        "teamwork-feats"
+      ],
+      "removed_feature_clauses": [
+        "hunter tactics"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Divine Hunter",
+          "description": "Source Advanced Class Guide pg. 95"
+        },
+        {
+          "level": 1,
+          "name": "Alignment",
+          "description": "A divine hunter’s alignment must be within one step of her deity’s, along either the law/chaos axis or the good/evil axis. A divine hunter can otherwise be of any alignment."
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A divine hunter gains Knowledge (religion) as a class skill, but she does not gain Knowledge (dungeoneering) as a class skill."
+        },
+        {
+          "level": 3,
+          "name": "Domain",
+          "description": "At 3rd level, a divine hunter learns to call upon the power of her deity. The divine hunter must select one domain from those available to her deity. She gains the granted powers of this domain, using her hunter level – 2 as her cleric level for determining when the powers are gained and what effects they have. Once she chooses this domain, it cannot be changed."
+        },
+        {
+          "level": 3,
+          "name": "Otherworldly Companion",
+          "description": "At 3rd level, a hunter’s companion takes on otherworldly features. If the divine hunter is good (or worships a good deity), the animal companion gains the celestial template. If the hunter is evil (or worships an evil deity), the animal companion gains the fiendish template. If the hunter is neutral and worships a neutral deity, she must choose either the celestial or fiendish template; once this choice is made, it cannot be changed. The companion's CR is considered to be equal to its Hit Dice for the purpose of the celestial or fiendish template. This ability replaces hunter tactics."
+        }
+      ],
+      "detected_systems": [
+        "domain"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:feral-hunter",
+      "package": "pathfinder-class:hunter",
+      "name": "Feral Hunter",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter Feral Hunter",
+      "replaces_features": [
+        "animal-companion",
+        "animal-focus",
+        "bonus-tricks",
+        "greater-empathic-link",
+        "hunter-tactics",
+        "improved-empathic-link",
+        "master-of-wild",
+        "precise-companion",
+        "raise-animal-companion",
+        "speak-with-master",
+        "teamwork-feats"
+      ],
+      "removed_features": [
+        "animal-companion",
+        "animal-focus",
+        "bonus-tricks",
+        "greater-empathic-link",
+        "hunter-tactics",
+        "improved-empathic-link",
+        "master-of-wild",
+        "precise-companion",
+        "raise-animal-companion",
+        "speak-with-master",
+        "teamwork-feats"
+      ],
+      "removed_feature_clauses": [
+        "bonus tricks",
+        "improved empathic link",
+        "greater empathic link",
+        "master of the wild",
+        "raise animal companion class abilities",
+        "teamwork feats gained at 6th",
+        "9th",
+        "12th",
+        "15th",
+        "and 18th levels"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Feral Hunter",
+          "description": "Source Advanced Class Guide pg. 95"
+        },
+        {
+          "level": 1,
+          "name": "Solitary",
+          "description": "Unlike most hunters, a feral hunter does not gain an animal companion."
+        },
+        {
+          "level": 1,
+          "name": "Feral Focus",
+          "description": "At 1st level, a feral hunter gains a limited ability to change her shape into hybrid animal forms. This functions as the animal focus class feature, except that the hunter always applies the animal aspect to herself, and there is no limit to this ability’s duration. She can end this ability as a free action."
+        },
+        {
+          "level": 1,
+          "name": "Precise Summoned Animal",
+          "description": "This functions like the precise companion class ability, except the hunter grants all her teamwork feats to all animals she summons with summon nature’s ally. This ability alters precise companion."
+        },
+        {
+          "level": 4,
+          "name": "Wild Shape",
+          "description": "At 4th level, a feral hunter gains the ability to change shape. This ability functions like the druid wild shape ability, except the hunter can take only animal forms (not elemental or plant forms). The hunter’s effective druid level is equal to her class level. This ability replaces the bonus tricks, improved empathic link, greater empathic link, master of the wild, and raise animal companion class abilities."
+        },
+        {
+          "level": 6,
+          "name": "Summon Pack",
+          "description": "Starting at 6th level, whenever a feral hunter casts a summon nature’s ally spell to summon one or more animals, she summons one additional animal of the same type. The summoned creature or creatures must be animals and must be of the same type as the hunter’s current aspect or of a similar type (bears for bear aspect, dogs or wolves for wolf aspect, great cats for the tiger aspect, and so on). The additional creature immediately vanishes if the hunter chooses a different aspect or ends his feral focus ability. She can increase the duration of any one summon nature's ally spell affected by this ability to 1 minute per level. She can have only one spell with a duration increased by this ability active at a time. This ability replaces the teamwork feats gained at 6th, 9th, 12th, 15th, and 18th levels."
+        }
+      ],
+      "detected_systems": [
+        "wild_shape"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:feykiller",
+      "package": "pathfinder-class:hunter",
+      "name": "Feykiller",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter Feykiller",
+      "replaces_features": [
+        "animal-focus",
+        "improed-empathic-link",
+        "one-with-wild",
+        "speak-with-master",
+        "wild-empathy"
+      ],
+      "removed_features": [
+        "animal-focus",
+        "improed-empathic-link",
+        "one-with-wild",
+        "speak-with-master",
+        "wild-empathy"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Feykiller",
+          "description": "Source Legacy of the First World pg. 13"
+        },
+        {
+          "level": 1,
+          "name": "Animal Focus",
+          "description": "A feykiller emulates animals that grant her the ability to unmask fey trickery. She adds the following choices to her animal focus ability instead of the bear, frog, monkey, mouse, and snake choices."
+        },
+        {
+          "level": 8,
+          "name": "Crow",
+          "description": "The creature gains a +4 competence bonus on Knowledge checks to identify the abilities and weaknesses of creatures. This bonus increases to +6 at 8th level and +8 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Goat",
+          "description": "The creature gains a +2 competence bonus on saving throws against enchantment spells and spell-like abilities. This bonus increases to +4 at 8th level and +6 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Mongoose",
+          "description": "The creature gains a +2 competence bonus on grapple combat maneuver checks and on saving throws against poison. These bonuses increase to +4 at 8th level and +6 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Shark",
+          "description": "The creature gains a +4 competence bonus on Survival checks to track a creature that has taken damage from the hunter or her animal companion in the past 24 hours. This bonus increases to +6 at 8th level and +8 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Turtle",
+          "description": "The creature gains a +2 enhancement bonus to its natural armor bonus. This bonus increases to +4 at 8th level and +6 at 15th level. (A creature without natural armor has an effective natural armor bonus of +0.)"
+        },
+        {
+          "level": 7,
+          "name": "Iron Talons",
+          "description": "Through training and prayer, a feykiller imbues her animal companion with an enhanced ability to fight fey. One of the animal companion’s natural attacks, as selected by the feykiller, is treated as cold iron for the purpose of overcoming damage reduction. At 7th level, all of her animal companion’s natural attacks are treated as cold iron."
+        },
+        {
+          "level": 4,
+          "name": "Resist Nature’s Lure",
+          "description": "At 4th level, a feykiller gains the resist nature’s lure druid class feature whenever her animal companion is within 60 feet."
+        },
+        {
+          "level": 17,
+          "name": "Grounded",
+          "description": "At 17th level, a feykiller gains a +4 insight bonus on saving throws against illusion and enchantment effects, and she is immune to illusion and enchantment effects created by fey. This ability functions only when her animal companion is within 60 feet."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:flood-flourisher",
+      "package": "pathfinder-class:hunter",
+      "name": "Flood Flourisher",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter Flood Flourisher",
+      "replaces_features": [
+        "hunter-tactics",
+        "swift-tracker",
+        "teamwork-feats",
+        "woodland-stride"
+      ],
+      "removed_features": [
+        "hunter-tactics",
+        "swift-tracker",
+        "teamwork-feats",
+        "woodland-stride"
+      ],
+      "removed_feature_clauses": [
+        "hunter tactics",
+        "teamwork feat gained at 3rd level",
+        "woodland stride",
+        "teamwork feat gained at 6th level",
+        "swift tracker",
+        "teamwork feat gained at 9th level",
+        "teamwork feat gained at 12th level",
+        "teamwork feat gained at 15th level",
+        "teamwork feat gained at 18th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Flood Flourisher",
+          "description": "Source People of the Wastes pg. 20"
+        },
+        {
+          "level": 1,
+          "name": "Twin Hunters",
+          "description": "Each time a flood flourisher gains a benefit from this archetype, she also grants the benefit to her animal companion.\n\nThis replaces hunter tactics."
+        },
+        {
+          "level": 3,
+          "name": "Skilled Ambusher",
+          "description": "At 3rd level, a flood flourisher gains either Athletic or Stealthy as a bonus feat.\n\nThis replaces the teamwork feat gained at 3rd level."
+        },
+        {
+          "level": 5,
+          "name": "Watery Stride",
+          "description": "At 5th level, a flood flourisher and her animal companion gain a swim speed equal to their base land speed (maximum 30 feet). A flood flourisher or animal companion that already has a swim speed instead gains a +10 bonus on Acrobatics checks to avoid provoking attacks of opportunity from swimming out of a threatened square.\n\nThis replaces woodland stride."
+        },
+        {
+          "level": 6,
+          "name": "Water Striker",
+          "description": "At 6th level, a flood flourisher gains the benefits of either Shot on the Run or Spring Attack, even if she does not meet either of the feats’ prerequisites. She gains the benefits of this feat only while using her swim speed.\n\nThis replaces the teamwork feat gained at 6th level."
+        },
+        {
+          "level": 8,
+          "name": "Submerged Stealth",
+          "description": "At 8th level, a flood flourisher learns how to ambush targets from beneath the muck, becoming a silent threat. While in a deep bog, the flood flourisher can use cover from the water to attempt Stealth checks with no penalties from the natural environment. While in a deep bog, as long as she moves no more than 5 feet in a round, she has tremorsense out to a range of 30 feet against anything that moves within the same body of water. While underwater in a deep bog, she can hold her breath for a number of minutes equal to 6 times her Constitution score before she risks drowning.\n\nThis replaces swift tracker."
+        },
+        {
+          "level": 9,
+          "name": "Aquatic Action",
+          "description": "At 9th level, a flood flourisher gains the benefits of the aquatic action vigilante talent.\n\nThis replaces the teamwork feat gained at 9th level."
+        },
+        {
+          "level": 12,
+          "name": "Sudden Strike",
+          "description": "At 12th level, a flood flourisher can better take advantage of the element of surprise. She can take a full round’s worth of actions during the surprise round, rather than a single standard action or move action.\n\nThis replaces the teamwork feat gained at 12th level."
+        },
+        {
+          "level": 15,
+          "name": "Fast Submerged Stealth",
+          "description": "At 15th level, a flood flourisher can move up to her full swim speed with no penalty while using Stealth in a deep bog, and she can maintain her tremorsense from her submerged stealth while doing so.\n\nThis replaces the teamwork feat gained at 15th level."
+        },
+        {
+          "level": 18,
+          "name": "Fast Swimmer",
+          "description": "At 18th level, a flood flourisher increases her swim speed by 20 feet.\n\nThis replaces the teamwork feat gained at 18th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:forester",
+      "package": "pathfinder-class:hunter",
+      "name": "Forester",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter Forester",
+      "replaces_features": [
+        "animal-companion",
+        "animal-focus",
+        "bonus-tricks",
+        "greater-empathic-link",
+        "hunter-tactics",
+        "improved-empathic-link",
+        "precise-companion",
+        "raise-animal-companion",
+        "speak-with-master"
+      ],
+      "removed_features": [
+        "animal-companion",
+        "animal-focus",
+        "bonus-tricks",
+        "greater-empathic-link",
+        "hunter-tactics",
+        "improved-empathic-link",
+        "precise-companion",
+        "raise-animal-companion",
+        "speak-with-master"
+      ],
+      "removed_feature_clauses": [
+        "animal companion",
+        "precise companion",
+        "hunter tactics",
+        "improved empathic link",
+        "bonus tricks",
+        "raise animal companion",
+        "speak with master",
+        "greater empathic link"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Forester",
+          "description": "Source Ultimate Wilderness pg. 52"
+        },
+        {
+          "level": 1,
+          "name": "Animal Focus",
+          "description": "As a forester has no animal companion, the aspects granted by this ability always apply to the forester herself, just as if a normal hunter’s companion were dead.\n\nThis alters animal focus."
+        },
+        {
+          "level": 5,
+          "name": "Favored Terrain",
+          "description": "A forester gains the ranger’s favored terrain ability. She gains her first favored terrain at 5th level and a new favored terrain every 4 levels thereafter. In addition, at each such interval, the bonuses on initiative checks and skill checks in one favored terrain (including the one just selected, if so desired) increase by 2. Starting at 5th level, a forester adds half her favored terrain bonus on damage rolls while in her favored terrain and fighting a creature native to that terrain.\n\nThis replaces animal companion."
+        },
+        {
+          "level": 2,
+          "name": "Bonus Feat",
+          "description": "At 2nd level, a forester gains one bonus combat feat. She must meet the prerequisites for this feat as normal. She gains an additional bonus combat feat at 7th, 13th, and 19th levels.\n\nThis replaces precise companion."
+        },
+        {
+          "level": 3,
+          "name": "Tactician",
+          "description": "At 3rd level as a standard action, a forester can grant the benefits of one teamwork feat to all allies within 30 feet who can see and hear her. Allies retain the use of this bonus feat for 3 rounds plus 1 round for every 2 levels the forester has. Allies do not need to meet the prerequisites of these bonus feats. The forester can use this ability once per day at 3rd level, plus one additional time per day at 7th level and every 5 levels thereafter.\n\nThis replaces hunter tactics."
+        },
+        {
+          "level": 4,
+          "name": "Evasion",
+          "description": "At 4th level, a forester can avoid even magical and unusual attacks with great agility. If she makes a successful Reflex saving throw against an attack that normally deals half damage on a successful save, she instead takes no damage. Evasion can be used only if the forester is wearing light armor, medium armor, or no armor. A helpless forester does not gain the benefit of evasion.\n\nThis replaces improved empathic link."
+        },
+        {
+          "level": 7,
+          "name": "Camouflage",
+          "description": "At 7th level, a forester can use the Stealth skill to hide in any of her favored terrains, even if the terrain doesn’t grant cover or concealment.\n\nThis replaces bonus tricks."
+        },
+        {
+          "level": 10,
+          "name": "Breath of Life",
+          "description": "At 10th level, a forester can cast breath of life once per day as a spell-like ability.\n\nThis replaces raise animal companion."
+        },
+        {
+          "level": 11,
+          "name": "Improved Evasion",
+          "description": "At 11th level, a forester’s evasion improves. Improved evasion works like evasion, except while the forester still takes no damage on a successful Reflex saving throw against attacks, she takes only half damage on a failed save. A helpless forester does not gain the benefit of improved evasion.\n\nThis replaces speak with master."
+        },
+        {
+          "level": 14,
+          "name": "Hide in Plain Sight",
+          "description": "At 14th level, while in any of her favored terrains, a forester can use the Stealth skill even while being observed.\n\nThis replaces greater empathic link."
+        }
+      ],
+      "detected_systems": [
+        "favored_terrain"
+      ]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:hunter:greenrunner",
+      "package": "pathfinder-class:hunter",
+      "name": "Greenrunner",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/greenrunner",
+      "replaces_features": [
+        "animal-companion",
+        "hunter-tactics",
+        "precise-companion",
+        "spellcasting",
+        "teamwork-feats",
+        "wild-empathy"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "teamwork feats",
+        "hunter tactics",
+        "wild empathy",
+        "precise companion",
+        "spells class feature"
+      ],
+      "compatibility": {
+        "requires": [
+          "spheres-archetype:pathfinder-class:hunter:sphere-hunter"
+        ],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A greenrunner is considered an Adept practitioner, gaining spheres and talents as appropriate. A greenrunner uses her casting ability modifier as her practitioner modifier.\n\nThis replaces teamwork feats and hunter tactics."
+        },
+        {
+          "level": 1,
+          "name": "Animal Companion",
+          "description": "At 1st level, the greenrunner gains the Beastmastery sphere as a bonus sphere. She must select the (handle animal) package. If she already possesses the Beastmastery sphere, but not the (handle animal) package, she gains that package, and if that package is already possessed, she gains a talent from that sphere as a bonus talent. The greenrunner uses her class level as her base attack bonus with this sphere to determine its effects, but not for attack rolls. The greenrunner also gains the animal companion talent of the Beastmastery sphere, and uses her full base attack bonus as her druid class level for her animal companion (not her base attack bonus -3). She may choose a martial beast animal companion if desired. A greenrunner may teach her companion hunter’s tricks from the skirmisher ranger archetype as a standard hunter can. This alters the animal companion class feature."
+        },
+        {
+          "level": 1,
+          "name": "Handler",
+          "description": "At 1st level, the greenrunner gains Animal Empathy from the Beastmastery sphere as a bonus talent.\n\nThis replaces wild empathy."
+        },
+        {
+          "level": 2,
+          "name": "Shared Magic",
+          "description": "At 2nd level, as long as her animal companion is within line of sight, the greenrunner may treat them as being in range of any of her sphere abilities that target one creature. In addition, whenever the greenrunner uses such an ability on herself, she may spend a spell point as a free action to have it affect her animal companion as well.\n\nThis replaces precise companion."
+        },
+        {
+          "level": 1,
+          "name": "Archetypes of Power",
+          "description": "The first rule of the greenrunner is to never stop moving. Death is a state of being. It is standing still, being at peace, and lying down to rest. The greenrunner naturally attracts a companion as energetic and impatient as he is."
+        },
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The greenrunner may combine spheres and talents to create magical effects. The greenrunner is considered a Mid-Caster and uses Wisdom as his casting ability modifier. (Note: All casters gain 2 bonus talents and may select a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the spells class feature."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "The greenrunner gains a small reservoir of energy he can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to his class level + his Wisdom modifier. This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Magic Talents",
+          "description": "A greenrunner gains a magic talent every time he gains a caster level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:hunter:master-of-the-hunt",
+      "package": "pathfinder-class:hunter",
+      "name": "Master of the Hunt",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/master-of-the-hunt",
+      "replaces_features": [
+        "animal-companion",
+        "animal-focus",
+        "armor-proficiencies",
+        "but-does-not-prevent-her-from-also-taking-archetype-that-replaces-them",
+        "class-skills",
+        "hunter-tactics",
+        "master-hunter",
+        "replaces-bonus-tricks",
+        "second-animal-focus",
+        "spellcasting",
+        "teamwork-feats",
+        "weapon"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "spells class feature",
+        "animal focus",
+        "second animal focus",
+        "master hunter"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Masters of the hunt are proficient with simple weapons, as well as bucklers. In addition, if this is the character’s first level in any class, they may select a martial tradition of their choice.\n\nThis alters weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "The master of the hunt gains Bluff (Cha), Diplomacy (Cha), and Knowledge (nobility) (Int) as class skills, but loses Heal (Wis) and Knowledge (dungeoneering) (Int) as class skills. She also gains Sylvan as a bonus language known.\n\nThis alters class skills."
+        },
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The master of the hunt may combine spheres and talents to create magical effects. The master of the hunt is considered a Mid-Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the spells class feature."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "The master of the hunt gains a small reservoir of energy she can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to her class level + her Charisma modifier. This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "A master of the hunt gains a combat or magic talent every time she gains a caster level. A master of the hunt uses her casting ability modifier as her practitioner modifier."
+        },
+        {
+          "level": 1,
+          "name": "Fairy Companion",
+          "description": "The master of the hunt’s animal companion is touched by the sidhe and does not learn tricks, but it does have an Intelligence score equal to that of a familiar belonging to a wizard of the master of the hunt’s hunter level. It also speaks Sylvan (but not Common) and gains skill points equal 6 + its Intelligence modifier per Hit Die. Its class skills are Acrobatics (Dex), Bluff (Cha), Climb (Str), Craft (Int), Diplomacy (Cha), Disguise (Cha), Escape Artist (Dex), Fly (Dex), Knowledge (geography) (Int), Knowledge (local) (Int), Knowledge (nature) (Int), Perception (Wis), Perform (Cha), Sense Motive (Wis), Sleight of Hand (Dex), Stealth (Dex), Swim (Str), and Use Magic Device (Cha).\n\nThis alters the animal companion class feature and replaces bonus tricks."
+        },
+        {
+          "level": 1,
+          "name": "Hound of Flidais",
+          "description": "At 1st level, the master of the hunt gains the Fallen Fey sphere or a talent from this sphere as a bonus talent and treats her class level as her caster level for this sphere. This stacks normally with caster levels gained from other classes. At 5th, 9th, 13th, and 17th level she gains a bonus talent from the Fallen Fey sphere. The master of the hunt’s animal companion is always considered to be under the effect of the master of the hunt’s fey-link and she may grant it a fey-blessing as though she had the Share Link talent. Any fey-blessings she grants her animal companion remain until she regains spell points, and she may grant it the Nature Connection fey-blessing without spending a spell point once per day.\n\nThis replaces animal focus and second animal focus."
+        },
+        {
+          "level": 1,
+          "name": "Shared Training",
+          "description": "Whenever the master of the hunt would gain a bonus teamwork feat from her hunter levels, she may instead gain a bonus combat talent. If she chooses a base sphere or if her animal companion possesses the talent’s base sphere, the animal companion also gains that talent. This ability alters hunter tactics and teamwork feats, but does not prevent her from also taking an archetype that replaces them."
+        },
+        {
+          "level": 20,
+          "name": "Sidhe Ascension",
+          "description": "At 20th level the master of the hunt is always considered to be under the effect of her fey-link. Any fey-blessings she places on herself remain until she regains spell points, and once per day she may grant herself the Nature Connection fey-blessing without spending a spell point. As long as her animal companion is within close range of her, she may expend her martial focus as a swift action to grant both her animal companion and herself a fey-blessing she knows. She must pay any additional spell point costs associated with the fey-blessing. This fey-blessing lasts 1 minute, and she cannot use this ability again for 1 hour. This ability replaces master hunter."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:packmaster",
+      "package": "pathfinder-class:hunter",
+      "name": "Packmaster",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter Packmaster",
+      "replaces_features": [
+        "animal-companion",
+        "animal-focus",
+        "master-hunter",
+        "second-animal-focus",
+        "teamwork-feats"
+      ],
+      "removed_features": [
+        "animal-companion",
+        "animal-focus",
+        "master-hunter",
+        "second-animal-focus",
+        "teamwork-feats"
+      ],
+      "removed_feature_clauses": [
+        "animal focus",
+        "second animal focus",
+        "master hunter"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Packmaster",
+          "description": "Source Advanced Class Guide pg. 96"
+        },
+        {
+          "level": 1,
+          "name": "Pack Bond",
+          "description": "A packmaster can have more than one animal companion, but she must divide her effective druid level between her companions to determine the abilities of each one. For example, a 4th-level packmaster can have one 4th-level animal companion, two 2nd-level companions, one 3rd-level companion and one 1st-level companion, or four 1st-level companions."
+        },
+        {
+          "level": 1,
+          "name": "Pack Focus",
+          "description": "This ability functions like animal focus, with the following exceptions. A packmaster can apply her animal aspect to only one of her animal companions at a time without it counting against the number of minutes per day she can use that ability. When using animal focus on herself or her other animal companion, the ability counts against her minutes per day as normal. She can have only two animal aspects in effect at a time—one that counts against her minutes per day and one that doesn’t—and they can’t both target the same companion. Unless both her companions are dead, the hunter can’t apply the companion’s aspect to herself (and thereby gain the benefit of its unlimited duration). This ability replaces animal focus."
+        },
+        {
+          "level": 3,
+          "name": "Teamwork Feat",
+          "description": "At 3rd level or any level at which a packmaster would gain a bonus teamwork feat, she can instead increase the number of her animal companions that gain the benefits of her precise companion, woodland stride, and teamwork feats by 1. She can select this ability multiple times. This ability alters teamwork feats."
+        },
+        {
+          "level": 8,
+          "name": "Second Pack Focus",
+          "description": "At 8th level, the hunter gains an ability that functions like the second animal focus, but the hunter can either assign each companion one aspect each or assign both aspects to the same companion. The foci on the companions don’t need to be the same, nor do they need to be the same as the one assigned to the packmaster. This ability replaces second animal focus."
+        },
+        {
+          "level": 20,
+          "name": "Master of the Pack",
+          "description": "At 20th level, a packmaster and her animal companions can always move at full speed while using Survival to follow tracks without penalty. Each day when a packmaster gains new spells for the day, she chooses one animal focus to be active on herself or one of her animal companions for the entire day (if all of her animal companions are dead, she instead chooses two animal foci to be active on herself for the entire day). This focus is in addition to her pack focus class ability. This ability replaces master hunter."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:patient-ambusher",
+      "package": "pathfinder-class:hunter",
+      "name": "Patient Ambusher",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter Patient Ambusher",
+      "replaces_features": [
+        "class-skills",
+        "hunter-tactics",
+        "nature-training",
+        "raise-animal-companion",
+        "teamwork-feats",
+        "wild-empathy"
+      ],
+      "removed_features": [
+        "class-skills",
+        "hunter-tactics",
+        "nature-training",
+        "raise-animal-companion",
+        "teamwork-feats",
+        "wild-empathy"
+      ],
+      "removed_feature_clauses": [
+        "nature training",
+        "wild empathy",
+        "hunter tactics class feature",
+        "teamwork feats",
+        "raise animal companion"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Patient Ambusher",
+          "description": "Source Ultimate Wilderness pg. 53, Magic Tactics Toolbox pg. 14"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A patient ambusher adds Disable Device to her list of class skills.\n\nThis alters the hunter’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Trapfinding",
+          "description": "A patient ambusher adds half her hunter level (minimum +1) on Perception checks to locate traps and on Disable Device skill checks. A patient ambusher can use Disable Device to disarm magic traps.\n\nThis replaces nature training and wild empathy."
+        },
+        {
+          "level": 3,
+          "name": "Snare Trap (Ex or Su)",
+          "description": "At 3rd level, a patient ambusher learns how to create a snare trap. The patient ambusher can use this and other learned traps a total number of times per day equal to half her hunter level + her Wisdom modifier. This snare trap otherwise functions the same as the ranger snare trap detailed in Pathfinder RPG Ultimate Magic.\n\nThis replaces the hunter tactics class feature."
+        },
+        {
+          "level": 3,
+          "name": "Additional Traps (Ex or Su)",
+          "description": "At 3rd level and every 3 hunter levels thereafter, a patient ambusher can learn a new type of trap, selected from the list of ranger traps presented on pages 64–65 of Ultimate Magic. Once a trap is learned, it can’t be unlearned and replaced with a different type of trap. The patient ambusher cannot learn an individual trap more than once.\n\nThis replaces teamwork feats."
+        },
+        {
+          "level": 10,
+          "name": "Launch Trap",
+          "description": "At 10th level, a patient ambusher can affix a magical ranger trap to an arrow, a crossbow bolt, or a thrown weapon, allowing her to set the trap remotely or use it as a direct attack. Attaching the trap to the projectile is part of the full-round action to create a new trap. The trapped projectile is fired or thrown in the normal manner. If fired at a square, the trap is treated as if the hunter had set the trap in that square, except the DC is 5 lower than normal. If the trap is fired at a creature, the target takes damage from the ranged weapon and is treated as if it had triggered the trap (attempting a saving throw, if any). The attack has a maximum range of 60 feet, and penalties from range increments apply on the attack roll. The duration of the trap starts when it is created, not when it is triggered.\n\nThis replaces raise animal companion."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:pelagic-hunter",
+      "package": "pathfinder-class:hunter",
+      "name": "Pelagic Hunter",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter Pelagic Hunter",
+      "replaces_features": [
+        "animal-companion",
+        "animal-focus",
+        "woodland-stride"
+      ],
+      "removed_features": [
+        "animal-companion",
+        "animal-focus",
+        "woodland-stride"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Pelagic Hunter",
+          "description": "Source Aquatic Adventures pg. 54"
+        },
+        {
+          "level": 1,
+          "name": "Pelagic Companion",
+          "description": "A pelagic hunter must select an aquatic animal companion.\n\nThis alters animal companion."
+        },
+        {
+          "level": 1,
+          "name": "Pelagic Focus",
+          "description": "Unlike with a normal hunter’s animal focus, pelagic focus allows the hunter to contact magical deep sea creatures instead of animals, using the options below instead of the normal hunter options.\n\nThis alters animal focus."
+        },
+        {
+          "level": 8,
+          "name": "Aboleth",
+          "description": "The creature gains a +1 morale bonus on saves against divine spells and spell-like abilities. This bonus increases to +2 at 8th level and +3 at 15th level."
+        },
+        {
+          "level": 12,
+          "name": "Cetus",
+          "description": "The creature gains Lunge as a bonus feat. At 12th level, instead of gaining Lunge, the creature increases its reach by 5 feet."
+        },
+        {
+          "level": 8,
+          "name": "Charybdis",
+          "description": "The creature’s attacks ignore the first 5 points of hardness. This improves to ignore the first 7 points of hardness at 8th level and the first 10 points of hardness at 15th level."
+        },
+        {
+          "level": 12,
+          "name": "Deep One",
+          "description": "The creature reduces pressure damage it takes (see page 48) by 10. At 12th level, the creature is immune to damage from changing pressure."
+        },
+        {
+          "level": 8,
+          "name": "Hippocampus",
+          "description": "The creature gains a +4 competence bonus on Swim checks. This bonus increases to +6 at 8th level and +8 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Kraken",
+          "description": "The creature gains the jet ability (Pathfinder RPG Bestiary 2 298) with a speed equal to its unmodified base land speed or four times its swim speed (if it has one), whichever is higher. If it has a swim speed, at 8th level, the jet ability’s speed increases to five times its swim speed, and at 15th level, the speed increases to seven times its swim speed."
+        },
+        {
+          "level": 12,
+          "name": "Reefclaw",
+          "description": "The creature gains Diehard as a bonus feat. At 12th level, instead of gaining Diehard, the creature gains the ferocity ability (Pathfinder RPG Bestiary 300)."
+        },
+        {
+          "level": 8,
+          "name": "Scylla",
+          "description": "The creature’s attacks deal 1 point of bleed damage in addition to their normal damage. At 8th level, the bleed damage increases to 1d3, and at 15th level, it increases to 1d6."
+        },
+        {
+          "level": 1,
+          "name": "Sea Serpent",
+          "description": "The creature is considered to be under a nondetection spell it cast on itself, with a caster level equal to the pelagic hunter’s class level."
+        },
+        {
+          "level": 8,
+          "name": "Selkie",
+          "description": "The creature gains a +4 competence bonus on Bluff checks. This bonus increases to +6 at 8th level and +8 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Shoggoth",
+          "description": "The creature gains a +2 competence bonus on Perception checks and reduces the flanking bonuses of creatures flanking it by 1. This Perception bonus increases to +3 at 8th level and +4 at 15th level. At 12th level, the creature can’t be flanked."
+        },
+        {
+          "level": 8,
+          "name": "Siyokoy",
+          "description": "The creature’s attacks deal 1 additional point of electricity damage. At 8th level, the electricity damage increases to 1d3, and at 15th level, it increases to 1d6."
+        },
+        {
+          "level": 5,
+          "name": "Blood to Water",
+          "description": "At 5th level, when a pelagic hunter or her animal companion bleeds underwater into the surrounding water (whether from piercing or slashing damage, a bleed effect, or another effect that causes blood to spill), the blood transmutes into ordinary water within 1 round. This prevents sharks and other predators with keen scent from being drawn to the pelagic hunter’s position by the blood and makes it harder for such creatures to track her."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:hunter:pellucid-hunter",
+      "package": "pathfinder-class:hunter",
+      "name": "Pellucid Hunter",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/pellucid-hunter",
+      "replaces_features": [
+        "animal-companion",
+        "animal-focus",
+        "bonus-tricks",
+        "hunters-normal-class-skills",
+        "one-with-wild",
+        "precise-companion",
+        "wild-empathy",
+        "woodland-stride"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "hunter’s normal class skills",
+        "wild empathy",
+        "woodland stride",
+        "precise companion",
+        "bonus tricks",
+        "one with the wild"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Trade Tradition",
+          "description": "If this is this character’s first level in any class, the pellucid hunter may select a trade tradition of their choice, and have an adroit trade rank.\n\nThis replaces the hunter’s normal class skills."
+        },
+        {
+          "level": 1,
+          "name": "Performer",
+          "description": "At 1st level, the pellucid hunter gains the Performance sphere as a bonus skill sphere, and must choose the (instrumental) or (lyric) package.\n\nThis replaces wild empathy."
+        },
+        {
+          "level": 1,
+          "name": "Crystalline Companion",
+          "description": "The pellucid hunter’s animal companion has a crystalline appearance and quality, usually due to being suffused with energies from the Plane of Earth or an earth spirit. The companion’s type changes to magical beast (augmented animal), but also counts as an animal (not a magical beast) for the purposes of determining all effects, prerequisites, and so on. Levels in other classes that grant animal companions stack with levels of pellucid hunter for the purposes of determining the abilities of her crystalline companion.\n\nThis alters animal companion."
+        },
+        {
+          "level": 1,
+          "name": "Crystalline Focus",
+          "description": "Unlike with a normal hunter’s animal focus, a pellucid hunter can establish a deep connection to crystals instead of animals, using the options below instead of the normal hunter options."
+        },
+        {
+          "level": 1,
+          "name": "Amber",
+          "description": "The creature gains a +2 resistance bonus on saving throws against emotion effects, increasing by 2 at 8th and 15th level."
+        },
+        {
+          "level": 1,
+          "name": "Amethyst",
+          "description": "The creature gains a +2 resistance bonus on saving throws against non-emotion mind-affecting effects, increasing by 2 at 8th and 15th level."
+        },
+        {
+          "level": 1,
+          "name": "Emerald",
+          "description": "The creature increases their size category by one step for the purposes of determining their carrying capacity and for combat maneuvers (for their size modifiers as well as when determining what targets they can affect, and who can affect them) and similar abilities that have effects dependent on size, plus an additional step at 8th and 15th level."
+        },
+        {
+          "level": 1,
+          "name": "Diamond",
+          "description": "The creature gains a +2 enhancement bonus to Constitution, increasing by 2 at 8th and 15th level."
+        },
+        {
+          "level": 1,
+          "name": "Jade",
+          "description": "The creature gains a +4 competence bonus to Appraise checks and ignores any penalties associated with middle age, old age, or venerable age. This bonus increases by 2 at 8th and 15th level."
+        },
+        {
+          "level": 1,
+          "name": "Moonstone",
+          "description": "The creature gains a +4 competence bonus to Sense Motive checks, increasing by 2 at 8th and 15th level."
+        },
+        {
+          "level": 1,
+          "name": "Obsidian",
+          "description": "The creature gains a +4 resistance bonus on saving throws against effects that inflict the confused, dazed, staggered, or stunned conditions or any disorientation condition. This bonus increases by 2 at 8th and 15th level."
+        },
+        {
+          "level": 1,
+          "name": "Onyx",
+          "description": "The creature gains a +4 resistance bonus on saving throws against death, necromancy, and negative energy effects, increasing by 2 at 8th and 15th level."
+        },
+        {
+          "level": 1,
+          "name": "Ruby",
+          "description": "The creature gains a +2 enhancement bonus to Strength, increasing by 2 at 8th and 15th level."
+        },
+        {
+          "level": 1,
+          "name": "Sapphire",
+          "description": "The creature gains a +2 enhancement bonus to Wisdom, increasing by 2 at 8th and 15th level."
+        },
+        {
+          "level": 1,
+          "name": "Quartz",
+          "description": "The creature gains a +2 enhancement bonus to Intelligence, increasing by 2 at 8th and 15th level.\n\nThis alters animal focus."
+        },
+        {
+          "level": 5,
+          "name": "Stone Stride",
+          "description": "At 5th level, the pellucid hunter and her animal companion can move through areas of rubble or scree (or similar sources of nonmagical difficult terrain that is made of stone) at her normal speed and without taking damage or suffering any other impairment. This also allows the pellucid hunter to reduce the Escape Artist DC to squeeze through a half-width, confined, or tight space made of stone, earth, sand, glass, or a similar mineral material by 10.\n\nThis replaces woodland stride."
+        },
+        {
+          "level": 2,
+          "name": "Resonant Companion",
+          "description": "At 2nd level, whenever the pellucid hunter uses a Peformance sphere instrumental or lyric, she can treat her animal companion to be the source of the ability for the purposes of determining the affected area (for an instrumental) or range (for a lyric) of the ability. Additionally, the pellucid hunter’s animal companion can put ranks in Perform skills, and treats Perform as a class skill. The animal companion can use its own body as an instrument (including singing) when using the Perform skill.\n\nThis replaces precise companion."
+        },
+        {
+          "level": 7,
+          "name": "Reverberating Companion",
+          "description": "At 7th level, whenever the pellucid hunter uses her resonant companion ability to treat it as the source of an instrumental or lyric, the pellucid hunter can also target her companion with the same lyric as a free action, or the companion can maintain the instrumental instead of the pellucid hunter by spending its own actions. At 13th level, whenever the pellucid hunter uses a Performance sphere ability, her animal companion can spend an immediate action to accompany the ability, increasing the saving throw DC of the ability by 1 or granting a +2 bonus as if from aid another on a required Perform check.\n\nThis replaces bonus tricks."
+        },
+        {
+          "level": 17,
+          "name": "One with the Music",
+          "description": "At 17th level, the pellucid hunter gains a +4 insight bonus on saving throws against auditory, sonic, and language-dependent effects, and she is immune to the deafened and fascinated conditions. This ability only functions when her animal companion is within 60 feet. At 19th level, these benefits also apply to the pellucid hunter’s crystalline companion as long as it is within 60 feet of her.\n\nThis replaces one with the wild."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:plant-master",
+      "package": "pathfinder-class:hunter",
+      "name": "Plant Master",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter Plant Master",
+      "replaces_features": [
+        "animal-companion",
+        "animal-focus",
+        "master-hunter",
+        "one-with-wild",
+        "wild-empathy"
+      ],
+      "removed_features": [
+        "animal-companion",
+        "animal-focus",
+        "master-hunter",
+        "one-with-wild",
+        "wild-empathy"
+      ],
+      "removed_feature_clauses": [
+        "animal companion",
+        "animal focus",
+        "one with the wild"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Plant Master",
+          "description": "Source Ultimate Wilderness pg. 53"
+        },
+        {
+          "level": 1,
+          "name": "Plant Companion",
+          "description": "A plant master forms a mystic bond with a plant companion. A plant master can begin play with any plant companion (see page 182 and page 26 of the Pathfinder RPG Advanced Race Guide). Except for the companion being a creature of the plant type, this ability otherwise works like the druid’s animal companion.\n\nThis replaces animal companion."
+        },
+        {
+          "level": 1,
+          "name": "Plant Focus",
+          "description": "A plant master can take on the aspect of a plant as a swift action. He must select one type of plant to emulate, gaining a bonus or special ability based on the type of plant emulated and his hunter level. The plant master can use this ability for a number of minutes per day equal to his level. This duration does not need to be consecutive but must be spent in 1-minute increments. He can emulate only one plant at a time."
+        },
+        {
+          "level": 8,
+          "name": "Assassin Vine",
+          "description": "The creature gains a +2 bonus on combat maneuver checks to grapple. This bonus increases to +3 at 8th level and +4 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Brambles",
+          "description": "When the creature is hit by an unarmed strike or natural attack, the attacker takes 1 point of piercing damage. This increases to 2 points at 8th level and 3 points at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Creeping Vine",
+          "description": "The creature gains a +4 competence bonus on Climb checks. This bonus increases to +6 at 8th level and +8 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Giant Flytrap",
+          "description": "The creature gains a +4 competence bonus on Stealth checks. This bonus increases to +6 at 8th level and +8 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Mushroom",
+          "description": "The creature gains a +4 enhancement bonus on saves against poison. This bonus increases to +6 at 8th level and +8 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Oak",
+          "description": "The creature gains a +2 enhancement bonus to CMD. This bonus increases to +4 at 8th level and +6 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Shrieker",
+          "description": "The creature gains darkvision with a range of 60 feet. At 8th level, the range increases by 30 feet. At 15th level, the creature also gains blindsense with a range of 10 feet."
+        },
+        {
+          "level": 8,
+          "name": "Spore",
+          "description": "The creature gains a +4 competence bonus on Fly checks. This bonus increases to +6 at 8th level and +8 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Water Lily",
+          "description": "The creature gains a +4 competence bonus on Swim checks. This bonus increases to +6 at 8th level and +8 at 15th level.\n\nThis replaces animal focus."
+        },
+        {
+          "level": 1,
+          "name": "Green Empathy",
+          "description": "A plant master can improve the attitude of a plant creature. Green empathy functions like a Diplomacy check to improve the attitude of a person. The plant master rolls 1d20 and adds his hunter level and his Charisma modifier to determine the wild empathy check result. The typical wild plant creature has a starting attitude of indifferent. To use green empathy, the plant master and the plant creature must be within 30 feet of each other under normal conditions. Generally, influencing a plant creature in this way takes 1 minute, but as with influencing people, it might take more or less time."
+        },
+        {
+          "level": 17,
+          "name": "Plant Shield",
+          "description": "At 17th level, a plant master and his companion are distasteful to plant creatures. Creatures of the plant type with an Intelligence score of 2 or lower will not willingly attack either the plant master or his companion unless magically compelled to do so or the plant master or his companion attacks the creature first.\n\nThis replaces one with the wild."
+        },
+        {
+          "level": 20,
+          "name": "Master Hunter",
+          "description": "At 20th level, when a plant master prepares spells for the day, he chooses one plant focus to be active for the entire day.\n\nThis alters master hunter."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:primal-companion-hunter",
+      "package": "pathfinder-class:hunter",
+      "name": "Primal Companion Hunter",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter Primal Companion Hunter",
+      "replaces_features": [
+        "animal-focus",
+        "master-hunter",
+        "second-animal-focus"
+      ],
+      "removed_features": [
+        "animal-focus",
+        "master-hunter",
+        "second-animal-focus"
+      ],
+      "removed_feature_clauses": [
+        "master hunter"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Primal Companion Hunter",
+          "description": "Source Advanced Class Guide pg. 97"
+        },
+        {
+          "level": 8,
+          "name": "Primal Transformation",
+          "description": "At first level, a primal companion hunter can awaken a primal creature from within his animal companion as a swift action. The animal companion gains a pool of 2 evolution points (Advanced Player’s Guide 60) that can be used to temporarily give the companion evolutions as if it were an eidolon. A primal companion hunter uses her hunter level to determine her effective summoner level for the purpose of qualifying for evolutions and determining their effects. At 8th level, the number of evolution points in her pool increases to 4, and at 15th level, it increases to 6."
+        },
+        {
+          "level": 8,
+          "name": "Primal Surge",
+          "description": "At 8th level, once per day as a swift action, a primal companion hunter can touch her animal companion and grant it one evolution that costs up to 4 evolution points. The companion must meet the prerequisites of the selected evolution. Unlike the evolutions from primal transformation, this evolution is not set; it can be changed each time the hunter uses this ability. Using primal surge activates the primal transformation ability on the companion if it isn’t already active. This effect lasts until the hunter ends the primal transformation. This does not allow a companion to exceed its maximum number of natural attacks."
+        },
+        {
+          "level": 20,
+          "name": "Primal Master",
+          "description": "At 20th level, a primal companion hunter becomes in tune with his primal nature. He can activate his companion’s primal aspect as a free action. When using primal surge, he can grant his companion two evolutions instead of one (each costing up to 4 evolution points). This ability replaces master hunter."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:roof-runner",
+      "package": "pathfinder-class:hunter",
+      "name": "Roof Runner",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter Roof Runner",
+      "replaces_features": [
+        "armor-proficieny",
+        "class-skills",
+        "master-hunter",
+        "swift-tracker",
+        "track",
+        "woodland-stride"
+      ],
+      "removed_features": [
+        "armor-proficieny",
+        "class-skills",
+        "master-hunter",
+        "swift-tracker",
+        "track",
+        "woodland-stride"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Roof Runner",
+          "description": "Source Ultimate Intrigue pg. 65"
+        },
+        {
+          "level": 1,
+          "name": "Skilled",
+          "description": "A roof runner adds Acrobatics, Escape Artist, and Sleight of Hand to her list of class skills.\n\nThis alters the hunter’s class skills and replaces the hunter’s proficiency with medium armor and shields."
+        },
+        {
+          "level": 2,
+          "name": "Natural Leaper",
+          "description": "At 2nd level, a roof runner adds half her hunter level on Acrobatics checks to jump."
+        },
+        {
+          "level": 5,
+          "name": "Shingle Stride",
+          "description": "At 5th level, a roof runner and her animal companion can move at full speed without penalty when using Acrobatics to cross narrow or uneven surfaces, and climb at half speed (instead of one-quarter speed) without taking the – 5 penalty."
+        },
+        {
+          "level": 8,
+          "name": "Alley Ghost",
+          "description": "At 8th level, a roof runner gains the benefits of the fast stealth rogue talent."
+        },
+        {
+          "level": 20,
+          "name": "Master Climber",
+          "description": "At 20th level, a roof runner gains a climb speed equal to her base land speed, instead of being able to move at full speed while tracking."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:scarab-stalker",
+      "package": "pathfinder-class:hunter",
+      "name": "Scarab Stalker",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter Scarab Stalker",
+      "replaces_features": [
+        "animal-focus",
+        "woodland-stride"
+      ],
+      "removed_features": [
+        "animal-focus",
+        "woodland-stride"
+      ],
+      "removed_feature_clauses": [
+        "woodland stride"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Scarab Stalker",
+          "description": "Source Ultimate Wilderness pg. 55, Advanced Class Origins pg. 13"
+        },
+        {
+          "level": 1,
+          "name": "Sacred Animal Focus",
+          "description": "A scarab stalker can select from the bull, falcon, and snake animal foci, as well as the following new animal foci."
+        },
+        {
+          "level": 8,
+          "name": "Bee",
+          "description": "The creature gains a +4 competence bonus on Fly checks. This bonus increases to +6 at 8th level and +8 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Cat",
+          "description": "The creature gains a +4 competence bonus on Acrobatics checks. This bonus increases to +6 at 8th level and +8 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Cow",
+          "description": "The creature gains a +1 resistance bonus on Fortitude saving throws. This bonus increases to +2 at 8th level and +3 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Crocodile",
+          "description": "The creature gains a +4 competence bonus on Swim checks. This bonus increases to +6 at 8th level and +3 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Ibis",
+          "description": "The creature gains a +2 resistance bonus on saving throws against disease. This bonus increases to +4 at 8th level and +6 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Jackal",
+          "description": "The creature gains a +4 competence bonus on Survival checks. This bonus increases to +6 at 8th level and +8 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Kite",
+          "description": "The creature recovers 1 additional hit point whenever it receives magical healing. This increases to 2 additional hit points at 8th level and 3 additional hit points at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Leopard",
+          "description": "The creature gains a +4 competence bonus on Escape Artist checks. This bonus increases to +6 at 8th level and +8 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Lion",
+          "description": "The creature gains a +4 competence bonus on Intimidate checks. This bonus increases to +6 at 8th level and +8 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Ram",
+          "description": "The creature gains a +1 bonus on damage rolls when making charge attacks. This bonus increases to +2 at 8th level and +3 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Scarab Beetle",
+          "description": "The creature gains a +1 enhancement bonus to its natural armor bonus. This bonus increases to +2 at 8th level and +3 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Scorpion",
+          "description": "The creature gains a +2 resistance bonus on saving throws against poison. This bonus increases to +4 at 8th level and +6 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Sha",
+          "description": "The creature ignores the Perception penalty from sandstorms and can see twice as far in sandstorms. This increases to three times as far at 8th level and four times as far at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Uraeus",
+          "description": "The creature gains a +2 resistance bonus on saving throws against breath weapons. This bonus increases to +4 at 8th level and +6 at 15th level.\n\nThis alters animal focus."
+        },
+        {
+          "level": 5,
+          "name": "Desert Walker",
+          "description": "At 5th level, a scarab stalker and her animal companion can move through desert terrain at normal speed without taking damage or suffering any other impairments unless that terrain has been enchanted or magically manipulated.\n\nThis replaces woodland stride."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:hunter:sphere-hunter",
+      "package": "pathfinder-class:hunter",
+      "name": "Sphere Hunter",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/sphere-hunter",
+      "replaces_features": [
+        "spellcasting"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "spells class feature"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The sphere hunter may combine spheres and talents to create magical effects. The sphere hunter is considered a Mid-Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.) This replaces the spells class feature."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "The sphere hunter gains a small reservoir of energy she can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to her class level + her casting ability modifier. This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Magic Talents",
+          "description": "A sphere hunter gains 3/4ths of a magic talent every level (the same progression as she gains caster levels)."
+        },
+        {
+          "level": 1,
+          "name": "Spheres of Power",
+          "description": "Expanded Options"
+        },
+        {
+          "level": 1,
+          "name": "Recommended Casting Tradition",
+          "description": "The classic feel of the hunter can be recreated through taking the verbal casting and animal shaman (Mind) drawbacks."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:totem-bonded",
+      "package": "pathfinder-class:hunter",
+      "name": "Totem-Bonded",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter Totem-Bonded",
+      "replaces_features": [
+        "animal-companion",
+        "animal-focus"
+      ],
+      "removed_features": [
+        "animal-companion",
+        "animal-focus"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Totem-Bonded",
+          "description": "Source Adventurer's Guide pg. 131"
+        },
+        {
+          "level": 1,
+          "name": "Primeval Companion",
+          "description": "The totem-bonded adopts a powerful animal native to the region—often one suited to the cold tundra—selected from the following list: aurochs, badgerB2, bear, big cat, elkB3, giant ravenB6, mastodon, rhinoceros, walrusB4, wolf, or any creature categorized as megafauna. At the GM’s discretion, she can select other animal companions."
+        },
+        {
+          "level": 1,
+          "name": "Shared Strength",
+          "description": "At 1st level, the connection the totem-bonded has with her animal companion allows them to draw upon one another’s strength. The totem-bonded can activate this ability as a swift action, and she can use it for a number of minutes per day equal to her level. This duration does not need to be consecutive, but it must be spent in 1-minute increments. The effect ends immediately if the animal companion is ever more than 100 feet away from the totem-bonded."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:treestrider",
+      "package": "pathfinder-class:hunter",
+      "name": "Treestrider",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter Treestrider",
+      "replaces_features": [
+        "animal-companion",
+        "animal-focus",
+        "precise-companion",
+        "raise-animal-companion",
+        "second-animal-focus"
+      ],
+      "removed_features": [
+        "animal-companion",
+        "animal-focus",
+        "precise-companion",
+        "raise-animal-companion",
+        "second-animal-focus"
+      ],
+      "removed_feature_clauses": [
+        "animal focus",
+        "second animal focus",
+        "precise companion",
+        "raise animal companion"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Treestrider",
+          "description": "Source Ultimate Wilderness pg. 55"
+        },
+        {
+          "level": 1,
+          "name": "Animal Companion",
+          "description": "As a free action, a treestrider must select an ape as her animal companion.\n\nThis alters animal companion."
+        },
+        {
+          "level": 8,
+          "name": "Brachiation",
+          "description": "A treestrider can gain a climb speed equal to half her base speed as a free action for 1 minute per hunter level per day. This duration must be spent in 1-minute increments. In addition, she can use her climb speed to move through the canopies of forests or jungles, provided the limbs of the trees are strong enough to support her weight. The treestrider’s companion gains a +10-foot enhancement bonus to its climb speed. At 8th level, the treestrider’s climb speed increases to equal her base speed, the duration of her brachiation increases to 10 minutes per hunter level per day (usable in 10-minute increments), and the enhancement bonus to her companion’s climb speed increases to +20 feet. At 15th level, she can use brachiation with no limit on the duration.\n\nThis replaces animal focus and second animal focus."
+        },
+        {
+          "level": 2,
+          "name": "Improved Unarmed Strike",
+          "description": "At 2nd level, a treestrider gains Improved Unarmed Strike as a bonus feat.\n\nThis replaces precise companion."
+        },
+        {
+          "level": 10,
+          "name": "Tree Stride",
+          "description": "At 10th level, a treestrider can use a full-round action to move between two trees, as per the spell tree stride. Unlike the spell, this ability has a duration of instantaneous and the treestrider can make only a single transfer. She can bring her animal companion with her, but if she does, her companion can’t take any actions that round. Tree stride can be used a number of times per day equal to 3 + the hunter’s Wisdom modifier.\n\nThis replaces raise animal companion."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:uprooter-scout",
+      "package": "pathfinder-class:hunter",
+      "name": "Uprooter Scout",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter Uprooter Scout",
+      "replaces_features": [
+        "greater-empathic-link",
+        "improved-empathic-link",
+        "one-with-wild",
+        "raise-animal-companion",
+        "speak-with-master"
+      ],
+      "removed_features": [
+        "greater-empathic-link",
+        "improved-empathic-link",
+        "one-with-wild",
+        "raise-animal-companion",
+        "speak-with-master"
+      ],
+      "removed_feature_clauses": [
+        "improved empathic link",
+        "speak with master",
+        "greater empathic link",
+        "raise animal companion",
+        "one with the wild"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Uprooter Scout",
+          "description": "Source Advanced Class Origins pg. 13"
+        },
+        {
+          "level": 6,
+          "name": "Lore of the Blight",
+          "description": "At 6th level, an Uprooter scout and her animal companion gain a +2 bonus on initiative checks and on Knowledge (geography), Perception, Stealth, and Survival skill checks when she’s in the Abyss or Abysstainted terrain (such as Tanglebriar or the Worldwound). When she travels through this terrain, she leaves no trail and can’t be tracked (though she can leave a trail if she so chooses). This bonus increases to +4 at 11th level and +6 at 16th level. This ability replaces improved empathic link, speak with master, and greater empathic link."
+        },
+        {
+          "level": 10,
+          "name": "Unnatural Stride",
+          "description": "At 10th level, the Uprooter scout and her animal companion learn how to move through undergrowth (as woodland stride) that has been enchanted, corrupted, or magically manipulated. This ability replaces raise animal companion."
+        },
+        {
+          "level": 17,
+          "name": "Demon’s End",
+          "description": "At 17th level, even demons must respect the number of their kindred an Uprooter scout has slain, and lesser demons quake before her. The Uprooter scout and her companion can attempt to demoralize a demon as a swift action, rolling 1d20 and adding the scout’s level and her Charisma modifier to determine the Intimidate check result. This ability replaces one with the wild."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:urban-hunter",
+      "package": "pathfinder-class:hunter",
+      "name": "Urban Hunter",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter Urban Hunter",
+      "replaces_features": [
+        "animal-companion",
+        "class-skills",
+        "hunter-tactics",
+        "one-with-wild",
+        "teamwork-feat",
+        "woodland-stride"
+      ],
+      "removed_features": [
+        "animal-companion",
+        "class-skills",
+        "hunter-tactics",
+        "one-with-wild",
+        "teamwork-feat",
+        "woodland-stride"
+      ],
+      "removed_feature_clauses": [
+        "hunter tactics",
+        "teamwork feat",
+        "woodland stride",
+        "one with the wild"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Urban Hunter",
+          "description": "Source Heroes of the Streets pg. 25"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "An urban hunter adds Diplomacy (Cha), Knowledge (local) (Int), and Sense Motive (Wis) as class skills, and removes Knowledge (nature) (Int) and Survival (Wis). This alters the hunter’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Animal Companion",
+          "description": "Urban hunters have animal companions that are domesticated animals or animals native to a major city. The urban hunter must select her animal companion from the following list: axe beakB3, badger, bird, camel, dire rat, dog, horse, llama (Pathfinder Player Companion: Animal Archive 28), ostrich (Pathfinder Campaign Setting: Osirion, Legacy of Pharaohs 55), pony, ramB2, or trumpeter swanB4. In urban settings, an urban hunter’s animal companion seems domesticated and likely harmless to anyone who has not seen it in combat (potentially reducing the DC of Diplomacy checks to convince anyone to allow it into secure areas). It draws no more attention than a friendly dog, loyal horse, or similar tame animal."
+        },
+        {
+          "level": 3,
+          "name": "Captor",
+          "description": "At 3rd level, an urban hunter and her animal companion take no penalties when dealing nonlethal damage with weapons or natural attacks. At 6th level and every 3 levels thereafter, the urban hunter selects a bonus feat from the following list to be gained by both the hunter and her animal companion: Improved Bull Rush, Improved Dirty TrickAPG, Improved Disarm, Improved Grapple, and Improved Trip. At 12th level, the hunter can also select from the following feats: Combat Patrol, Combat Reflexes, Disarming StrikeAPG, Greater Bull Rush, Greater Dirty TrickAPG, Greater Disarm, Greater Grapple, Greater Trip, and Lunge. Neither the hunter nor her animal companion needs to meet the prerequisites for these bonus feats. This ability replaces hunter tactics and teamwork feat."
+        },
+        {
+          "level": 5,
+          "name": "Animal Insight",
+          "description": "At 5th level, an urban hunter and her animal companion learn to combine their insights to defeat deception and manipulation. As long as they are within 30 feet of each other, both hunter and animal companion gain an insight bonus on Sense Motive checks equal to half the urban hunter’s hunter level. They also gain a +2 insight bonus on Will saving throws against illusions and mindaffecting effects. This ability replaces woodland stride."
+        },
+        {
+          "level": 17,
+          "name": "Frightful Ferocity",
+          "description": "At 17th level, an urban hunter and her animal companion can each attempt an Intimidate check to demoralize a foe as a swift action. This ability replaces one with the wild."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:verminous-hunter",
+      "package": "pathfinder-class:hunter",
+      "name": "Verminous Hunter",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Hunter Verminous Hunter",
+      "replaces_features": [
+        "animal-companion",
+        "animal-focus",
+        "wild-empathy",
+        "woodland-stride"
+      ],
+      "removed_features": [
+        "animal-companion",
+        "animal-focus",
+        "wild-empathy",
+        "woodland-stride"
+      ],
+      "removed_feature_clauses": [
+        "woodland stride"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Verminous Hunter",
+          "description": "Source Advanced Class Guide pg. 98"
+        },
+        {
+          "level": 1,
+          "name": "Vermin Companion",
+          "description": "At 1st level, a verminous hunter must choose a vermin companion instead of an animal companion (Ultimate Magic 36). This ability alters animal companion. The hunter tactics class ability allows a verminous hunter to grant her teamwork feats to a mindless vermin companion."
+        },
+        {
+          "level": 1,
+          "name": "Vermin Empathy",
+          "description": "A verminous hunter gains the wild empathy ability, but can use it only to influence vermin (not animals or magical beasts). This ability alters wild empathy."
+        },
+        {
+          "level": 1,
+          "name": "Vermin Focus",
+          "description": "A verminous hunter can take on the aspect of a vermin. This functions as animal focus, but allows only the following choices."
+        },
+        {
+          "level": 8,
+          "name": "Ant",
+          "description": "The creature gains a +2 enhancement bonus to Strength. This bonus increases to +4 at 8th level and +6 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Beetle",
+          "description": "The creature gains a +2 enhancement bonus to its natural armor bonus. This bonus increases to +4 at 8th level and +6 at 15th level. (A creature without natural armor has an effective natural armor bonus of +0.)"
+        },
+        {
+          "level": 8,
+          "name": "Centipede",
+          "description": "The creature gains a +2 competence bonus on Climb checks and a +2 bonus to CMD against pull, push, reposition, and trip combat maneuvers. These bonuses increase to +4 at 8th level and +6 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Cockroach",
+          "description": "The creature gains a +4 bonus on saves against cold dangers, disease, heat dangers, starvation, thirst, and on Constitution checks to avoid suffocation. These bonuses increase to +6 at 8th level and +8 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Crab",
+          "description": "The creature gains a +4 competence bonus on Swim checks and a +2 competence bonus on grapple combat maneuver checks. These bonuses increase to +6 and +4 respectively at 8th level, and +8 and +6 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Flea",
+          "description": "The creature gains a +4 competence bonus on saves against disease and Acrobatics checks to jump. These bonuses increase to +6 at 8th level and +8 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Fly",
+          "description": "The creature gains a +2 bonus on Perception checks and on Acrobatics checks to balance or fall safely. These bonuses increase to +4 at 8th level and +6 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Leech",
+          "description": "The creature gains a +2 competence bonus on grapple combat maneuver checks, and deals 1 point of bleed damage every time it succeeds at a grapple combat maneuver check to damage an opponent. These benefits increase to a +4 bonus and 3 points of bleed at 8th level, and a +6 bonus and 5 points of bleed at 15th level. Bleed damage from this ability does not stack with itself."
+        },
+        {
+          "level": 8,
+          "name": "Mantis",
+          "description": "The creature gains a +2 bonus on attack of opportunity attack rolls and a +2 competence bonus on grapple combat maneuver checks. These bonuses increase to +4 at 8th level and +6 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Moth",
+          "description": "The creature gains darkvision to a range of 60 feet. At 8th level, the range increases by 30 feet. At 15th level, the creature gains blindsense to a range of 10 feet."
+        },
+        {
+          "level": 8,
+          "name": "Phasmid",
+          "description": "The creature gains low-light vision and a +4 competence bonus on Stealth checks in forests or plains. This bonus increases to +6 at 8th level and +8 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Scorpion",
+          "description": "The creature gains a +2 competence bonus on Stealth checks and grapple combat maneuver checks. These bonuses increase to +6 and +4 respectively at 8th level, and +8 and +6 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Spider",
+          "description": "The creature gains a +2 competence bonus on Stealth checks, saving throws against web effects (magical or otherwise), and checks to break free of webs. This bonus increases to +4 at 8th level and +6 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Wasp",
+          "description": "The creature gains a +4 competence bonus on Perception checks. This bonus increases to +6 at 8th level and +8 at 15th level."
+        },
+        {
+          "level": 8,
+          "name": "Worm",
+          "description": "The creature gains a 25% chance to treat any critical hit or sneak attack as a normal hit (as the fortification armor special ability). This increases to 50% at 8th level, and 75% at 15th level."
+        },
+        {
+          "level": 5,
+          "name": "Swarm Stride",
+          "description": "At 5th level, a verminous hunter learns to move through vermin without danger. He can safely pass through swarms of vermin and does not take swarm damage while within a vermin swarm’s space. In addition, he is immune to a swarm’s distraction ability. If the hunter or his animal companion attacks a swarm, they lose this protection against only that swarm. This ability replaces woodland stride."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

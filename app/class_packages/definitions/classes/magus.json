@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "key": "magus",
+  "class_key": "pathfinder-class:magus",
+  "class_name": "Magus",
+  "governing_ability": "intelligence",
+  "optional_blocks": ["inquisitor_features", "spells_known", "spell_level_overview"],
+  "external_systems": [
+    "traditional_prepared_casting",
+    "magus_spellbook",
+    "arcane_pool",
+    "spell_combat",
+    "spellstrike",
+    "magus_arcana"
+  ],
+  "resource_modules": [],
+  "passive_effects": [],
+  "bonus_feat_levels": [5, 11, 17],
+  "bonus_feat_label": "Magus bonus feats",
+  "notes": "Prepared spells, Arcane Pool, retained Magus Arcana slots, and Magus bonus-feat budgets use shared systems. Spell Combat and Spellstrike remain visible as retained class abilities whose attack-specific choices are made when an attack is used."
+}

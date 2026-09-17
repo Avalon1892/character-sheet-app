@@ -1,0 +1,657 @@
+{
+  "version": 1,
+  "class_key": "spheres-class:scholar",
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:scholar:astrologian",
+      "package": "spheres-class:scholar",
+      "name": "Astrologian",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/astrologian",
+      "replaces_features": [
+        "advanced-medical-training",
+        "combat-training",
+        "expert-medical-training",
+        "material-impositions",
+        "medical-training",
+        "problem-solver"
+      ],
+      "removed_features": [
+        "advanced-medical-training",
+        "combat-training",
+        "expert-medical-training",
+        "material-impositions",
+        "medical-training",
+        "problem-solver"
+      ],
+      "removed_feature_clauses": [
+        "combat training",
+        "problem solver class feature",
+        "medical training",
+        "advanced medical training",
+        "expert medical training",
+        "material impositions"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "An astrologian gains a small reservoir of energy she can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to her level + her casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "The astrologian gains a talent every even level. This talent may be spent on either magic talents or combat talents. Astrologians use their casting ability modifier as their practitioner modifier. In addition, the astrologian may not select the amateur arcanist knack.\n\nThis replaces combat training."
+        },
+        {
+          "level": 1,
+          "name": "Reading The Stars",
+          "description": "An astrologian gains the Divination sphere as a bonus magic talent and uses her class level as her caster level with the Divination sphere. This stacks normally with caster levels gained from other sources.\n\nThis replaces the problem solver class feature."
+        },
+        {
+          "level": 1,
+          "name": "Astrology",
+          "description": "At 1st level, the astrologian gains the astrology scholar knack. The pool of insight points granted by this knack is equal to the astrologian’s class level + her Intelligence modifier. The Astrologian is not considered to have the scholar knack class feature until 2nd level. This ability replaces medical training, advanced medical training, and expert medical training."
+        },
+        {
+          "level": 3,
+          "name": "Invoke Zodiac",
+          "description": "At 3rd level and every 2 levels thereafter an astrologian learns how to invoke one zodiac sign from the list chosen below. Unless stated otherwise, invoking a zodiac sign is a standard action that provokes attacks of opportunity and expends the astrologian’s martial focus. Invoking a zodiac sign requires concentration, if the astrologian is interrupted, she must succeed at a concentration check or she fails to invoke the zodiac sign and the action is wasted. A zodiac sign is considered to have a caster level equal to the astrologian’s class level for the purpose of concentration DCs. If the zodiac sign grants a save, the DC is equal to 10 + 1/2 the astrologian’s class level + her Intelligence bonus. Zodiac signs with invoked abilities interfere with each other’s energies and effects; if the astrologian invokes a zodiac sign while a previous sign is still in effect, the previous sign immediately ends. Creatures affected by a zodiac sign do not lose the effects of the invoked sign when moving more than 30 feet away from the astrologian. Unless otherwise noted, zodiac signs are supernatural effects.\n\nThis replaces material impositions."
+        },
+        {
+          "level": 1,
+          "name": "Note",
+          "description": "A zodiac sign's effects last for one minute unless noted otherwise."
+        },
+        {
+          "level": 4,
+          "name": "Amateur Arcana",
+          "description": "At 4th level the astrologian is treated as possessing the amateur arcanist knack for the purpose of qualifying for scholar knacks, feats, and similar effects."
+        },
+        {
+          "level": 20,
+          "name": "Idealized Zodiac",
+          "description": "At 20th level, the astrologian chooses any one zodiac sign she can invoke; the astrologian no longer needs to expend her martial focus for uses of this zodiac sign, never provokes an attack of opportunity for invoking it, and may activate it as a swift action. If the astrologian chooses a Zodiac sign that has a number of uses limited by the astrologian’s Intelligence modifier, the ability is no longer restricted in number of uses per day. In addition the astrologian’s insight pool is increased to double her class level plus her Intelligence modifier."
+        },
+        {
+          "level": 1,
+          "name": "Scholar Knacks",
+          "description": "The astrologian has exclusive access to the following scholar knacks:"
+        },
+        {
+          "level": 10,
+          "name": "Elemental Sign Adept",
+          "description": "Whenever you invoke a zodiac sign you may expend one insight point to grant all creatures benefiting from the sign resistance 5 corresponding to the zodiac sign’s associated element. A sign’s associated element is noted in Table 1-1. This resistance increases by 5 at 10th level and every 4 levels thereafter."
+        },
+        {
+          "level": 1,
+          "name": "Table 1-1",
+          "description": "Sign: Element: Resistance: Opposes: Aries: Fire: Fire: Water: Taurus: Earth: Acid: Air: Gemini: Air: Electricity: Earth: Cancer: Water: Cold: Fire: Leo: Fire: Fire: Water: Virgo: Earth: Acid: Air: Libra: Air: Electricity: Earth: Scorpio: Water: Cold: Fire: Sagittarius: Fire: Fire: Water: Capricorn: Earth: Acid: Air: Aquarius: Air: Electricity: Earth: Pisces: Water: Cold: Fire: Elemental Sign Mastery: While the astrologian has a sign active, she may expend one insight point to invoke a sign from an opposing elemental group as normal. The second sign does not end the effects of the already active sign. The astrologian must possess the elemental sign adept knack to select this knack."
+        },
+        {
+          "level": 1,
+          "name": "Extra Zodiac Sign",
+          "description": "The astrologian gains the ability to invoke one zodiac sign she does not already possess. This knack may be selected up to three times, each time selecting a new zodiac sign to invoke. The astrologian must be at least 6th level before selecting this knack."
+        },
+        {
+          "level": 1,
+          "name": "Zodiac Artist",
+          "description": "Whenever the astrologian invokes a zodiac sign, she may spend one insight point instead of expending martial focus."
+        },
+        {
+          "level": 18,
+          "name": "Zodiac Signs",
+          "description": "Aries: Aries is the sign of the ram; and represents bluntness, energy, and boldness. The astrologian can invoke this sign to grant all allies within 30 feet a +2 bonus on Will saves and to CMD for 1 minute. This bonus increases by 1 for every 3 levels the astrologian possesses beyond 3rd, to a maximum to a maximum of +7 at 18th level. In addition, once per minute each ally affected by this sign gains the ability to make a charge as a standard action. This charge does not incur a penalty to armor class, and the charge bonus to hit is increased by 2. When making this charge, a creature cannot move further than their land speed."
+        },
+        {
+          "level": 1,
+          "name": "Aquarius",
+          "description": "Aquarius is the sign of the water-bearer; and represents open mindedness, creativity, and a free spirit. When the astrologian invokes this sign all allies within 30 feet are granted the ability to breathe water as though it were air for 10 minutes per level the astrologian possesses. In addition, once per minute a creature under the effect of this sign may move up to half their speed with any movement modes they possess as a move action without provoking attacks of opportunity"
+        },
+        {
+          "level": 19,
+          "name": "Cancer",
+          "description": "Cancer is the sign of the crab; and represents introversion, the subconscious, and sensitivity. The astrologian can invoke this sign to grant all allies within 30 feet a +1 bonus on Sense Motive checks for 1 minute. This bonus increases by 1 for every two levels the astrologian has attained, to a maximum of +10 at 19th level. In addition, once per minute an ally affected by this sign may become invisible, as the spell, as an immediate action in response to being affected by an attack or spell for one round per 4 levels the astrologian possesses. The attack or spell is still suffered normally. This invisibility may only be used a number of times per day equal to the astrologian’s Intelligence modifier."
+        },
+        {
+          "level": 6,
+          "name": "Capricorn",
+          "description": "Capricorn is the sign of the sea-goat; and represents forethought, discipline, and self-control. When the astrologian invokes this sign all allies within 30 feet are granted increased healing. For 1 minute, when any creature affected by this sign provides or receives any instantaneous healing, they heal an additional 1 point per caster level of the effect. If a source of healing does not have a caster level, the creature instead heals an additional point of damage per die of healing. If a source of healing does not use dice, the healing is still increased by 1. Noninstantaneous sources of healing, such as fast healing or regeneration are increased by 1, regardless of caster level. This bonus does not stack with itself. In addition, once per minute as a standard action a creature under the effect of this sign may gain fast healing 2 for 1 minute. This fast healing increases by 1 at 6th level and every 6 levels thereafter. A creature may only benefit from this ability a number of times per day equal to the astrologian’s Intelligence modifier."
+        },
+        {
+          "level": 1,
+          "name": "Gemini",
+          "description": "Gemini is the sign of the twins, and represents personability, unpredictability, and communication. When the astrologian invokes this sign she chooses two allies, both of which are within 30 feet of her, and forms a bond between them for 1 minute. This bonded pair gains telepathy at an unlimited distance for the duration of this ability, but may only use it to communicate with the other member of the bonded pair. When these two perform any action that is based on teamwork that involves both of them, they increase any numerical effect from the action by 1. This applies to flanking, the aid another action, teamwork feats, War sphere mandates, and similar abilities. In addition, once per minute each member of the bonded pair may use the aid another action as an immediate action, but only to assist the other member of the pair."
+        },
+        {
+          "level": 19,
+          "name": "Leo",
+          "description": "Leo is the sign of the lion, and represents natural authority, pride, and competition. The astrologian can invoke this sign to grant all allies within 30 feet a +1 bonus on Diplomacy checks for 1 minute. This bonus increases by 1 per 2 astrologian levels, to a maximum of +10 at 19th level. In addition, once per minute an ally affected by this sign may add a +2 bonus to any opposed roll as a free action. This bonus increases by 1 for every 4 levels the astrologian has attained, to a maximum of +7 at 20th level."
+        },
+        {
+          "level": 1,
+          "name": "Libra",
+          "description": "Libra is the sign of the scales; and represents harmony, reasoning, and balance. The astrologian can invoke this sign to grant all allies within 30 feet the ability to roll twice on Knowledge checks and take the higher result for 1 minute. In addition, once per minute as an immediate action, an ally affected by this sign may learn a specific piece of information about a creature they have observed in the past 24 hours, as though succeeding at a Knowledge check. The information gained by this ability does not interfere with normal Knowledge checks, and does not count as identifying them for effects that specify as such, such as the Scout sphere. This may not be used again on a specific kind of creature, such as dogs or owlbears, until the astrologian has gained another astrologian level. Subsequent uses of this ability provided by the same astrologian provide the same information until the astrologian gains another astrologian level."
+        },
+        {
+          "level": 1,
+          "name": "Pisces",
+          "description": "Pisces is the sign of the fish; and represents motion, spontaneity, and intuition. When the astrologian invokes this sign all allies within 30 feet gain a swim speed equal to their base speed for 10 minutes per level the astrologian possesses. In addition, once per minute a creature under the effect of this sign may take 20 on a Swim check. Using this ability takes no additional time and may be used even when threatened or distracted."
+        },
+        {
+          "level": 4,
+          "name": "Sagittarius",
+          "description": "Sagittarius is the sign of the centaur; and represents freedom, risk taking, and independence. The astrologian can invoke this sign to grant all allies within 30 feet a +1 bonus on ranged attack rolls and a 10 feet enhancement bonus to all movement modes they possess. These bonuses increase by +1 and +10 feet at 4th level and every 4 levels thereafter. In addition, once per minute as a free action that can be taken even when they are unable to take other actions, a creature may gain the benefits of the Freedom word from the Fate sphere."
+        },
+        {
+          "level": 1,
+          "name": "Scorpio",
+          "description": "Scorpio is the sign of the scorpion; and represents passion, persistence, and pride. The astrologian can invoke this sign to affect any allies within 30 feet with increased morale. Any ally affected by this sign increases any morale bonuses they are benefiting from by 1. In addition, once per minute as a free action an ally affected by this sign may double a morale bonus for a single roll."
+        },
+        {
+          "level": 20,
+          "name": "Taurus",
+          "description": "Taurus is the sign of the bull; and represents practicality, stubbornness, and focus. The astrologian can invoke this sign to grant all allies within 30 feet a +2 bonus on retried skill checks, such as attempting to pick a lock again after failing. This bonus increases by 1 per 4 levels the astrologian has attained, to a maximum of +7 at 20th level. This bonus lasts for 10 minutes. In addition, once per minute allies affected by this sign may retry a failed skill check as a free action, if they succeed at the second skill check then they suffer no penalty for failing the original skill check, and if they fail the second skill check they are only considered to have failed a single check. A single character may only benefit from this retry a number of times per day equal to the astologian’s Intelligence modifier."
+        },
+        {
+          "level": 18,
+          "name": "Virgo",
+          "description": "Virgo is the sign of the virgin; and represents Intelligence, hard work, and organization. The astrologian can invoke this sign to grant all allies within 30 feet a +1 insight bonus when taking 10. This ability lasts for 1 minute. For every 3 levels beyond 3rd the astrologian has attained this bonus increases by 1, to a maximum of +6 at 18th level. In addition, once per minute an ally affected by this sign may take 10 even when they would otherwise be unable to, such as when threatened or distracted, and on checks that would not normally allow taking 10 such as Use Magic Device checks, attack rolls, or saving throws. A single creature may only be affected by this ability a number of times per day equal to the astrologian’s Intelligence modifier."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:scholar:caller",
+      "package": "spheres-class:scholar",
+      "name": "Caller",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/caller",
+      "replaces_features": [
+        "advanced-medical-training",
+        "careful-packer",
+        "expert-medical-training",
+        "medical-training",
+        "one-of-talents-from-problem-solver"
+      ],
+      "removed_features": [
+        "advanced-medical-training",
+        "careful-packer",
+        "expert-medical-training",
+        "medical-training",
+        "one-of-talents-gained-from-problem-solver"
+      ],
+      "removed_feature_clauses": [
+        "careful packer",
+        "medical training",
+        "one of the talents gained from problem solver",
+        "advanced medical training",
+        "expert medical training"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Caution",
+          "description": "This archetype relies on advanced talents from the Conjuration sphere and as such may not be appropriate for games where those talents are otherwise disallowed."
+        },
+        {
+          "level": 1,
+          "name": "Bargainer",
+          "description": "The caller may use her Intelligence modifier in place of her Charisma modifier when determining the DCs for Charisma checks made by outsiders and for making opposed Charisma checks against outsiders when using the Call Planar Creature advanced talent.\n\nThis replaces careful packer."
+        },
+        {
+          "level": 1,
+          "name": "Calling",
+          "description": "At 1st level, the caller may use the Call Planar Creature of the Conjuration sphere as a spell-like ability with a 1 hour casting time. The caller uses her class level as her caster level for this ability.\n\nThis replaces medical training."
+        },
+        {
+          "level": 1,
+          "name": "Diagram",
+          "description": "At 1st level, the caller may use the Diagram advanced talent of the Conjuration sphere as a spell-like ability with its normal casting time.\n\nThis replaces the one of the talents gained from problem solver."
+        },
+        {
+          "level": 5,
+          "name": "Master Bargainer",
+          "description": "At 5th level, the caller receives a 25% discount whenever bargaining for the services of a creature called with the Call Planar Creature advanced talent.\n\nThis replaces the advanced medical training."
+        },
+        {
+          "level": 9,
+          "name": "Master Bargainer",
+          "description": "At 9th level, the caller reduces the time required to use her Calling ability to 10 minutes.\n\nThis replaces the expert medical training."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:scholar:doctor",
+      "package": "spheres-class:scholar",
+      "name": "Doctor",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/doctor",
+      "replaces_features": [
+        "careful-packer",
+        "material-imposition-normally",
+        "material-imposition-normally-at-level"
+      ],
+      "removed_features": [
+        "careful-packer",
+        "material-imposition-normally-17th-level",
+        "material-imposition-normally-3rd-level",
+        "material-imposition-normally-7th-level"
+      ],
+      "removed_feature_clauses": [
+        "careful packer",
+        "material imposition normally gained at 3rd level",
+        "material imposition normally gained at 7th level",
+        "material imposition normally gained at 17th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Chemical Reliance",
+          "description": "Doctors must take the (formulae) package of the Alchemy sphere with their problem solver class feature, and cannot take any drawbacks that prevent them from doing so. If the doctor has already taken a drawback that would prevent them from taking the (formulae) package of the Alchemy sphere before taking their first level in this class, they do not gain the Scout sphere from their problem solver class feature and instead use that talent to buy off their drawback."
+        },
+        {
+          "level": 1,
+          "name": "Inoculations",
+          "description": "Starting at 1st level, the doctor learns to protect her allies from the effects of her abilities. At the start of each day, the doctor can select a number of allies up to her Intelligence bonus (minimum 1); both the doctor and the chosen allies are immune to the negative effects, including hit point damage, of the doctor’s alchemical items and material impositions. Positive effects of alchemical items and material impositions, such as hit point healing, still affect the doctor and her allies normally.\n\nThis replaces careful packer.\n\nAuthor's Note: Inoculations does not make allies immune to neutral or \"lingering\" effects of an alchemical item or material imposition, subject to GM discretion. Allies would not be immune to an Improved Smoke Bomb's smoke (smoke is not a \"negative\" effect) or Instant Foam's foam (the now-movement blocking foam is not a \"negative\" effect), but would be immune to any poisons added to the Improved Smoke Bomb or (by GM discretion) automatically succeed on the Reflex saving throw initially offered by Instant Foam. Other lingering effects may be ignored at GM discretion, such as lingering difficult terrain, etc."
+        },
+        {
+          "level": 3,
+          "name": "Revitalizing Compounds",
+          "description": "From 3rd level on, whenever the doctor prepares an alchemical item, she may make a Heal check as part of the preparation process and expend one use of a healer’s kit as though using the hit point healing option of her medical training class feature; the scholar may take 10 on this check, but cannot take 20. Whenever the doctor or an ally benefiting from her inoculations class feature is within the area affected by the use of an alchemical item modified by this ability, they regain hit points as though they had benefited from a use of the doctor’s medical training class feature with a Heal check equal to the one used when preparing the alchemical item, but all creatures that would normally be damaged by the alchemical item take only half damage (minimum 1), and gain a +2 bonus on any saving throws to resist its effects. This ability can be used to augment alchemical items that normally affect only a single creature, such as the Salve formulae created by the Alchemy sphere. Creatures healed by this ability count each instance of healing received in this manner against the total number of times per day they may be affected by the doctor’s medical training class feature.\n\nThis replaces the material imposition normally gained at 3rd level."
+        },
+        {
+          "level": 7,
+          "name": "Regenerative Mists",
+          "description": "At 7th level, the doctor learns how to pack her flashbangs with a special compound that creates a mist which can interact with her inoculations to create remarkable healing effects. The scholar can expend her martial focus and one use of a healer’s kit when using a flashbang to have it create a fine, clear mist that hangs in a 30 ft. radius sphere centered on the target of her flashbang. This mist remains active for a number of rounds equal to the doctor’s Intelligence modifier and cannot penetrate solid surfaces such as walls and solid floors, though it can spill through open windows or highly porous surfaces. The doctor and any creature benefiting from her innoculations gains fast healing equal to half the doctor’s class level (rounded down) each round they begin their turn within the area of the mist. If the doctor begins and ends her turn within the area of the regenerative mists, she may regain her martial focus as an immediate action at any point before the start of her next turn.\n\nThis replaces the material imposition normally gained at 7th level."
+        },
+        {
+          "level": 17,
+          "name": "Chemical Resurrection",
+          "description": "Upon reaching 17th level, the doctor can use her advanced knowledge of anatomy, chemical compounds, and advanced healing techniques to restore a creature to life regardless of the length of time it has been dead.\n\nThe corpse to be revived does not need to be intact, but must represent a significant portion of the deceased creature, such as a skeleton, torso, or head (but not a finger or toe). Reviving a creature with this ability requires 25,000 gp worth of expensive chemical components and takes 10 minutes. Upon completion of this process, the creature is immediately restored to full hit points, vigor, and health, with no negative levels (or Constitution points) and all of the prepared spells, spell points, or similar resources possessed by the creature when it died.\n\nThe doctor can use this technique to revive someone killed by a death effect or someone who has been turned into an undead creature and then destroyed. This ability can also resurrect elementals or outsiders, but it can’t resurrect constructs, undead creatures, or creatures that have already been returned to life through alternative means. If the soul of a creature targeted by this ability is unwilling or unable to return, the process restores their body but creates only a fully intact inanimate corpse.\n\nThis replaces the material imposition normally gained at 17th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:scholar:engineer",
+      "package": "spheres-class:scholar",
+      "name": "Engineer",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/engineer",
+      "replaces_features": [
+        "advanced-medical-training",
+        "expert-medical-training",
+        "flashbangs",
+        "medical-training",
+        "problem-solver"
+      ],
+      "removed_features": [
+        "flashbangs",
+        "problem-solver"
+      ],
+      "removed_feature_clauses": [
+        "problem solver",
+        "flashbangs"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Engineer (Scholar Archetype)",
+          "description": "An applied mind in a dedicated field can yield great and terrifying results. Often the wonders of science begin to mimic the fantasy of magic when done correctly.\n\n– Contributed in part by Omoikane13, DRS Community\n\nTechnical Studies: At 1st level, the engineer gains the Tinker sphere as a bonus sphere.\n\nThis replaces problem solver.\n\nHandyman (Ex): At 1st level, the engineer may use their Tinker sphere associated skill in place of the Heal skill when using the medical training class feature. The engineer’s medical training class feature restores half as many hit points when used on a living creature.\n\nThe engineer may now use their medical training class feature to repair constructs or unattended objects, restoring its hit points. This may remove the broken condition from an object but cannot remove the destroyed condition unless the engineer would be able to restore a living creature back to life.\n\nThis alters medical training, advanced medical training, and expert medical training.\n\nHigh-Yield Blasters (Ex): At 2nd level, the engineer gains the Tinker sphere Technological Weapons talent as a bonus talent. The engineer may craft a blaster gizmo as a personal gizmo, allowing them to access to the following personal battery use ability:\n\nPersonal Battery Use [Material Infusion] (1 battery): When using a blaster as a standard action (or as part of a special attack action with a blaster add-on), you may expend martial focus in addition to the battery cost to use this personal battery use.\n\nIf you do, instead of the blaster’s normal effects, you add a material imposition [explosive] effect to the blaster. The blaster’s damage dealt is unchanged (including whether it is a saving throw to halve or negate the damage taken), but the damage type and any additional effects the blaster would do are modified appropriately (such as having Disruption Set to add a disruptor effect). If an [explosive] would not deal any additional damage (such as belladonna barrier’s [explosive] effect), the blaster no longer deals damage but still applies the [explosive]’s other effects through the blaster shape.\n\nA target that fails their saving throw against the blaster is treated as though they were successfully hit with a flashbang and failed their saving throw for any [explosive] effects. If the blaster shape would not require a saving throw (such as the ray blaster shape), the target is granted a Fortitude save for any of the [explosive]’s additional effects. The engineer uses their class level to determine the material imposition’s [explosive] effects, including saving throw DC and any miscellaneous effects of the [explosive].\n\nFor example, a blaster with the volley blaster shape could replace its normal blaster damage type with the brimstone material imposition’s [explosive] effect. The volley blaster would now deal fire damage and fill the area with smoke for each struck target that failed their saving throw.\n\nThis replaces flashbangs.\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nUltimate Engineering by Drop Dead Studios and Diamond Recreational Studios\n\nUltimate Engineering Hub Page\n\nRules and Information\n\nUsing Tinker Sphere\nUsing Spheres of Might\nSkill Rules\n\nTinker Sphere\n\nGizmo Feats\nMastering Gizmos\nAI and Mechanoids\n\nTinker Traditions\nTinker Optional and Variant Rules\nInventioneering\n\nGet Ultimate Engineering\n\nGet Diamond Spheres: Expanded Tinker and Silverminds"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:scholar:fell-archaeologist",
+      "package": "spheres-class:scholar",
+      "name": "Fell Archaeologist",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/fell-archaeologist",
+      "replaces_features": [
+        "",
+        "levels-as-well-as-mastered-imposition",
+        "material-impositions-at",
+        "problem-solver-but-may-be-replaced-by-any-that"
+      ],
+      "removed_features": [
+        "15th-levels-as-well-as-mastered-imposition",
+        "9th",
+        "material-impositions-at-3rd"
+      ],
+      "removed_feature_clauses": [
+        "material impositions at 3rd",
+        "9th",
+        "and 15th levels as well as mastered imposition"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Dungeon Delver",
+          "description": "At 1st level, in place of one of the talents gained from problem solver, the fell archaeologist gains the Trap sphere as a bonus sphere.\n\nThis alters problem solver but may be replaced by any ability that replaces or alters problem solver."
+        },
+        {
+          "level": 3,
+          "name": "Forsaken Lore",
+          "description": "At 3rd level, the fell archaeologist gains the ability to harness otherworldly sources for information, often coming at the expense of her own free will. The fell archaeologist may suffer 2 points of Wisdom burn as a free action (even when it is not her turn) to activate one of the following abilities. There is no limit to the number of times forsaken lore may be used so long as the fell archaeologist is willing to suffer Wisdom burn for each instance of use. Ability burn functions as ability score damage, but may not be removed by any means other than 8 hours of resting, which removes all burn.\n\nDefensive Intuition: The fell archaeologist may add her Intelligence modifier on a single saving throw in addition to the normal modifier for the saving throw.\n\nStrange Knowledge: The fell archaeologist rolls twice on a single Intelligence-, Wisdom-, or Charisma-based skill check, taking the higher result.\n\nAt 9th level, the fell archaeologist gains access to the following abilities with forsaken lore:\n\nMagical Amplification: The fell archaeologist gains a +2 bonus to her caster level for a single effect. This effect may be used as part of activating a magic item to increase the item’s caster level by the same amount. At 15th level, this bonus increases to +4.\n\nMagical Assurance: The fell archaeologist can treat a single Use Magic Device check as if she had rolled a natural 20 on the die.\n\nAt 15th level, the fell archaeologist gains access to the following abilities with forsaken lore:\n\nInto the Shroud: The fell archaeologist may become ethereal as a move action for a number of rounds equal to her scholar level. She may return to her material state prematurely as a move action. An ethereal creature is invisible, insubstantial, and capable of moving in any direction, even up or down (albeit at half normal speed when moving up or down). An ethereal creature can move through solid objects, including living creatures. An ethereal creature can see and hear on the Material Plane, but everything looks gray and ephemeral. Sight and hearing onto the Material Plane are limited to 60 feet. Force effects and abjurations affect an ethereal creature normally. Their effects extend onto the Ethereal Plane from the Material Plane, but not vice versa. An ethereal creature cannot attack material creatures, and spells you cast while ethereal affect only other ethereal things. Certain material creatures or objects have attacks or effects that work on the Ethereal Plane. An ethereal creature treats other ethereal creatures and ethereal objects as if they were material.\n\nOvercharge Magic: When using a magic sphere effect or magic item, the fell archaeologist may roll twice on any attack rolls, damage rolls, concentration checks, and magic skill checks made as part of the effect, taking the higher result in each case. If the effect allows a saving throw, targets must roll twice and take the lower result.\n\nAt 20th level, the fell archaeologist may use forsaken lore as an immediate action to immediately take a standard action even when it is not her turn.\n\nThis replaces the material impositions at 3rd, 9th, and 15th levels as well as mastered imposition.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:scholar:harmacist",
+      "package": "spheres-class:scholar",
+      "name": "Harmacist",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/harmacist",
+      "replaces_features": [
+        "advanced-medical-training",
+        "but-otherwise-counts-as-flashbangs",
+        "class",
+        "expert-medical-training",
+        "favored-class-bonuses",
+        "including-for-feat-prerequisites",
+        "knack-chosen",
+        "knack-chosen-at-level",
+        "mastered-imposition",
+        "material-imposition",
+        "material-imposition-at-level",
+        "medical-training",
+        "or-other-archetypes-that",
+        "other-archetypes-that",
+        "problem-solver",
+        "scholars-knack",
+        "scholars-knack-chosen",
+        "scholars-knack-chosen-at-level"
+      ],
+      "removed_features": [
+        "advanced-medical-training",
+        "expert-medical-training",
+        "knack-chosen",
+        "mastered-imposition",
+        "material-imposition-3rd-level",
+        "medical-training",
+        "problem-solver",
+        "scholars-knack-chosen"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "New Scholar Knacks",
+          "description": "The harmacist gains exclusive access to the following scholar knacks:"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:scholar:slime-savant",
+      "package": "spheres-class:scholar",
+      "name": "Slime Savant",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/slime-savant",
+      "replaces_features": [
+        "careful-packer",
+        "material-imposition",
+        "material-imposition-at-level",
+        "problem-solver",
+        "scholars-knack",
+        "scholars-knack-at-level"
+      ],
+      "removed_features": [
+        "careful-packer",
+        "material-imposition-3rd-level",
+        "problem-solver",
+        "scholars-knack-2nd-level"
+      ],
+      "removed_feature_clauses": [
+        "problem solver",
+        "careful packer",
+        "scholar’s knack gained at 2nd level",
+        "the material imposition gained at 3rd level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Esoteric Alchemy",
+          "description": "The slime savant gains the Alchemy and Beastmastery spheres as bonus combat talents at 1st level. She must select the (handle animal) package and gains the Monster Tamer drawback, selecting the ooze type. If she already possesses the (handle animal) Beastmastery package, she instead gains the Broad Skills talent. If she already possesses the Beastmastery sphere but not the (handle animal) package, she gains Extra Beastmastery Package and the (handle animal) package with the drawback as above.\n\nThis replaces problem solver."
+        },
+        {
+          "level": 1,
+          "name": "Ooze Handler",
+          "description": "Through extensive study and practice, the slime savant has acquired an impressive understanding of the stimulus/response reactions of oozes. She uses her Intelligence modifier on Handle Animal checks made on creatures of the ooze type. When handling or pushing a creature of the ooze type with the Handle Animal skills, a slime savant may handle or push additional creatures of that type equal to her Intelligence modifier, using the longest action type required for the included creatures.\n\nThis replaces careful packer."
+        },
+        {
+          "level": 2,
+          "name": "Ooze Expertise",
+          "description": "At 2nd level, a slime savant gains the ooze material imposition. At 3rd level, the slime savant may maintain a number of active oozes granted by the ooze material imposition equal to her intelligence modifier. Attempting to activate an ooze in excess of this number causes the a previous ooze of the her choice to immediately return to its vial. Additionally, she may grow a number of oozes during an eight hour rest equal to her Intelligence modifier.\n\nThis replaces the scholar’s knack gained at 2nd level and the material imposition gained at 3rd level."
+        },
+        {
+          "level": 1,
+          "name": "Oozecrafter",
+          "description": "A slime savant of at least 6th level may gain the Craft Ooze feat as a bonus feat in place of a scholar’s knack even if she does not meet the prerequisites. When crafting an ooze, the ooze has a starting disposition towards the slime savant of friendly."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:scholar:stitcher",
+      "package": "spheres-class:scholar",
+      "name": "Stitcher",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/stitcher",
+      "replaces_features": [
+        "combat-training",
+        "flashbangs",
+        "knack",
+        "knack-at-level",
+        "knacks",
+        "medical-training",
+        "problem-solver"
+      ],
+      "removed_features": [
+        "combat-training",
+        "knack-2nd-level",
+        "knack-6th-level",
+        "problem-solver"
+      ],
+      "removed_feature_clauses": [
+        "combat training",
+        "problem solver class feature",
+        "knack gained at 6th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {
+        "casting": {
+          "sphere_progression": "Low"
+        }
+      },
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "The stitcher gains a talent every even level. This talent may be spent on either magic talents or combat talents. Stitchers use their casting ability modifier as their practitioner modifier.\n\nThis ability replaces combat training."
+        },
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "A stitcher may combine spheres and talents to create magical effects. A stitcher is considered a Low-Caster."
+        },
+        {
+          "level": 1,
+          "name": "Medicine For All",
+          "description": "At 1st level, the stitcher may use the Heal skill or her medical training class feature on an undead creature as though it were a living creature, such as using the Heal skill to provide long-term care on a mindless undead even though mindless undead do not regain hit points from resting. This does not allow the stitcher to use expert medical training to heal a destroyed undead.\n\nThis ability alters medical training."
+        },
+        {
+          "level": 1,
+          "name": "Scholar Knacks",
+          "description": "The stitcher gains exclusive access to the following scholar knack:"
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "A stitcher gains a small reservoir of energy she can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to her class level + his casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Threads And Thaumaturgy",
+          "description": "At 1st level, the stitcher gains the Death sphere as a bonus magic talent and uses her class level as her caster level with the Death sphere. This stacks normally with caster levels gained from other sources. The stitcher cannot select a drawback which removes the reanimate ability, and if she possesses a drawback that removes the reanimate ability, she must buy back that drawback with this bonus talent.\n\nThis ability replaces the problem solver class feature."
+        },
+        {
+          "level": 2,
+          "name": "Corpsecrafter’s Science",
+          "description": "At 2nd level, the stitcher may use a flashbang, including one modified by the explosive descriptor, as though it were an alchemical item when creating an alchemy-implanted creature. Treat a flashbang implanted this way as a splash weapon when determining the template’s abilities. The stitcher must expend martial focus as normal when using a flashbang or material imposition this way.\n\nThis ability alters flashbangs."
+        },
+        {
+          "level": 2,
+          "name": "Stitcher’s Knacks",
+          "description": "At 2nd level, the stitcher gains a bonus Death sphere talent and Unliving Chemister as a bonus feat, even if she does not meet the prerequisites. If the stitcher already has the Unliving Chemister feat, she instead gains a bonus Death sphere talent.\n\nIf the stitcher spends at least 1 minute preparing a corpse, such as by treating it with chemicals, stitching its skin back together, engraving the body with runes, or other appropriate effects (such as those thematic to the stitcher’s casting tradition), the duration of the stitcher’s reanimate sphere effect is increased by 50% on that corpse. This bonus does not stack with the increase granted by the Extend Spell feat. These preparations must be made each time the corpse is reanimated to gain this benefit. A stitcher can only have a number of corpses prepared this way equal to her practitioner modifier; preparing a new body in excess of this number causes any preparations on the oldest corpse to be undone.\n\nAt 4th level, the stitcher counts as possessing the amateur arcanist knack for the purposes of qualifying for scholar knacks, feats, and other similar effects.\n\nThis ability alters knacks and replaces the knack gained at 2nd level."
+        },
+        {
+          "level": 6,
+          "name": "Stitcher’s Trade Secrets",
+          "description": "At 6th level, the stitcher gains a bonus Death sphere talent and the ability to augment corpses she prepares with trade secrets, special techniques and modifications that grant reanimated undead additional abilities. Whenever the stitcher spends at least 1 minute preparing a corpse (as described in stitcher’s knacks), she may choose 1 trade secret, augmenting the corpse and the resulting undead created by the stitcher’s next use of reanimate on the corpse.\n\nApplying a trade secret to a corpse is done in a way suitable to the body with tools and resources the stitcher keeps on their person or in a portable alchemy lab. At 9th level, and every 3 levels thereafter, she may choose 1 additional trade secret. The trade secrets can be chosen more than once and stack unless otherwise stated. A trade secret’s DC is equal to 10 + 1/2 the stitcher’s scholar level + her practitioner modifier unless otherwise stated.\n\nCoagulated Marrow: The undead gains fast healing 1 (or increases any fast healing it possesses by 1).\n\nLimber And Flexible: The undead’s natural reach increases by +5 feet. This trade secret may only be chosen once.\n\nMuscle And Sinew: The undead’s Strength score increases by +2 and each movement speed the undead possesses increases by +5 feet. This trade secret can be picked once at 6th level and an additional time every 6 levels thereafter.\n\nPickled: The undead gains the stench universal monster rule with a radius of 10 feet. The stench ability’s DC is equal to the stitcher’s trade secrets DC. Each time this trade secret is selected, the radius of the stench ability increases by 10 feet. The stitcher is immune to the stench aura from this trade secret.\n\nStimulated Nerve-Endings: The undead’s Dexterity score increases by +2 and the number of attacks of opportunity the undead can make in a round increases by 1. This trade secret can be picked once at 6th level and an additional time every 6 levels thereafter.\n\nTough Stitching: The undead gains an additional 10 hit points. You may choose to only increase the undead’s hit points by 5 to instead increase any damage reduction the undead possesses by 2.\n\nVocal Chords: The undead gains the ability to speak a single language the stitcher knows. If the undead is mindless, it can communicate simple concepts (such as positions, colors, directions). In addition, the undead gains the ability to loudly shriek as a standard action, producing a 30-foot cone that staggers creatures for 1 round on a failed saving throw (Fortitude negates), and must wait 1d4 rounds between uses. This is a pain and sonic effect. Each time this trade secret is selected, increase the cone’s size by 30 feet.\n\nThis ability replaces the knack gained at 6th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:scholar:surveyor",
+      "package": "spheres-class:scholar",
+      "name": "Surveyor",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/surveyor",
+      "replaces_features": [
+        "advanced-medical-training",
+        "basic-medical-training",
+        "combat-training",
+        "expert-medical-training",
+        "flashbangs",
+        "mastered-imposition",
+        "problem-solver",
+        "scholars-normal-class-skills"
+      ],
+      "removed_features": [
+        "advanced-medical-training",
+        "basic-medical-training",
+        "expert-medical-training",
+        "flashbangs",
+        "problem-solver",
+        "scholars-normal-class-skills"
+      ],
+      "removed_feature_clauses": [
+        "problem solver",
+        "basic medical training",
+        "advanced medical training",
+        "expert medical training",
+        "scholar’s normal class skills",
+        "flashbangs"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "Whenever a surveyor would gain a combat talent from her class levels, she may instead choose to gain a skill talent. A surveyor uses her operative modifier as her practitioner ability modifier.\n\nThis alters combat training."
+        },
+        {
+          "level": 1,
+          "name": "Surveillance Specialty",
+          "description": "At 1st level, the surveyor gains the Investigation and Navigation spheres as bonus talents.\n\nThis replaces problem solver."
+        },
+        {
+          "level": 1,
+          "name": "Surveyor’s Edge",
+          "description": "At 1st level, the surveyor gains the Study sphere as a bonus sphere and Speculative Analysis as a bonus feat. When using Speculative Analysis, the insight bonus and additional notions gained from the feat increase by 1 at 5th level and every 4 levels thereafter. This replaces basic medical training, advanced medical training, and expert medical training."
+        },
+        {
+          "level": 1,
+          "name": "Trade Tradition",
+          "description": "If this is this character’s first level in any class, the surveyor may select a trade tradition of their choice, and have an adroit trade rank.\n\nThis replaces the scholar’s normal class skills."
+        },
+        {
+          "level": 2,
+          "name": "Field Preparation",
+          "description": "At 2nd level, the surveyor gains Detailed Charting as a bonus feat.\n\nWhenever the surveyor uses Detailed Charting, she can also use a material imposition that affects an area as part of the action spent to use Detailed Charting, extending the material imposition’s area to include both its normal area and the analyzed area.\n\nAdditionally, whenever the surveyor makes an attack against an analyzed target or within an analyzed area, she can expend martial focus to apply an [explosive] effect from a material imposition she possesses to the attack as if it were a flashbang.\n\nAt 5th level, the surveyor can use Detailed Charting as a move action instead of a standard action.\n\nThis replaces flashbangs."
+        },
+        {
+          "level": 20,
+          "name": "Master Surveyor",
+          "description": "At 20th level, the surveyor chooses any one material imposition she knows; the surveyor no longer needs to expend her martial focus for uses of this imposition, never provokes an attack of opportunity for activating it, and may activate it as a swift action. In addition, when using Detailed Charting, she may instead choose to use your pathing and treat all squares within as being analyzed.\n\nThis alters mastered imposition.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nSpheres of Guile by Drop Dead Studios\n\nUsing Spheres of Guile\n\nClasses\n\nAdvisor (DRS)\nAgent\nConduit (DRS)\nCourser\nEnvoy\n\nGenius\nMastermind\nProfessional\n\nSpheres\n\nArtifice\nBluster\nBody Control\nCommunication\nFaction\n\nHerbalism\nInfiltration\nInvestigation\nNavigation\nPerformance\n\nSpellhacking\nStudy\nSubterfuge\nSurvivalism\nVocation\n\nOther Rules\n\nOperative Feats\nOperative Gear\nSkill Rules\nTrade Traditions\nRunning Guile Games\n\nGet Spheres of Guile"
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

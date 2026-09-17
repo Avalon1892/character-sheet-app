@@ -1,0 +1,413 @@
+{
+  "version": 1,
+  "key": "mountebank",
+  "class_key": "spheres-class:mountebank",
+  "class_name": "Mountebank",
+  "governing_ability": "charisma",
+  "governing_ability_choice_provider": "mountebank-casting-ability",
+  "catalog_profile": {
+    "weapon_proficiencies": [
+      "Simple weapons"
+    ],
+    "armor_proficiencies": [
+      "Light armor",
+      "Bucklers"
+    ],
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons"
+      ],
+      "armor": [
+        "Light armor",
+        "Bucklers"
+      ]
+    },
+    "casting": {
+      "sphere_progression": "Mid",
+      "ability": "charisma",
+      "traditional": false
+    },
+    "advancement": {
+      "talent_progression": "High",
+      "talent_kinds": [
+        "magic",
+        "martial"
+      ],
+      "talent_bonus_levels": [
+        1
+      ],
+      "required_first_sphere": "Scoundrel"
+    },
+    "capabilities": [
+      "magic",
+      "martial"
+    ],
+    "feature_descriptions": {
+      "thief's mark +1": "Marked targets grant a +1 circumstance bonus on attack and damage rolls for 1 minute.",
+      "thief's mark +2": "The Thief's Mark attack and damage bonus increases to +2.",
+      "thief's mark +3": "The Thief's Mark attack and damage bonus increases to +3.",
+      "thief's mark +4": "The Thief's Mark attack and damage bonus increases to +4.",
+      "thief's mark +5": "The Thief's Mark attack and damage bonus increases to +5."
+    }
+  },
+  "optional_blocks": [
+    "magic_spheres",
+    "spell_points",
+    "martial_talents",
+    "martial_focus"
+  ],
+  "external_systems": [
+    "spell_points",
+    "thiefs_mark",
+    "social_talents",
+    "skill_unlocks"
+  ],
+  "resource_modules": [
+    {
+      "key": "mountebank",
+      "title": "Mountebank",
+      "governing_ability": "charisma",
+      "grantable": false,
+      "resources": [
+        {
+          "key": "thiefs_mark",
+          "name": "Thief's Mark",
+          "feature_tokens": [
+            "thief-s-mark"
+          ],
+          "progression": "one",
+          "description": "Enable and record the currently marked creature. The bonus lasts 1 minute.",
+          "can_activate": true,
+          "custom_choice_label": "Marked creature",
+          "tracks_uses": false,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": true
+        },
+        {
+          "key": "thiefs_mark_bonus",
+          "name": "Thief's Mark Bonus",
+          "feature_tokens": [
+            "thief-s-mark"
+          ],
+          "progression": "mountebank_thiefs_mark",
+          "description": "Circumstance bonus to attack and damage against the current marked creature.",
+          "tracks_uses": false,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": false
+        },
+        {
+          "key": "thiefs_mark_targets",
+          "name": "Thief's Mark Uses per Creature",
+          "feature_tokens": [
+            "thief-s-mark"
+          ],
+          "progression": "ability_modifier_minimum_one",
+          "description": "Maximum uses against the same creature in 24 hours, equal to the casting ability modifier.",
+          "tracks_uses": false,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": false
+        },
+        {
+          "key": "creative_strike",
+          "name": "Creative Strike Bonus",
+          "feature_tokens": [
+            "creative-strike"
+          ],
+          "progression": "mountebank_creative_strike",
+          "description": "Damage bonus when replacing the weapon's normal ability modifier; equal to casting modifier, capped by class level.",
+          "can_activate": true,
+          "tracks_uses": false,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": true
+        },
+        {
+          "key": "secretive_spell",
+          "name": "Secretive Spell DC Bonus",
+          "feature_tokens": [
+            "secretive-spell"
+          ],
+          "progression": "mountebank_secretive_spell",
+          "description": "Save DC bonus against a foe denied Dexterity to AC.",
+          "can_activate": true,
+          "tracks_uses": false,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": true
+        },
+        {
+          "key": "lord_of_shade",
+          "name": "Lord of Shade Rounds",
+          "feature_tokens": [
+            "lord-of-shade"
+          ],
+          "progression": "ability_modifier_minimum_one",
+          "description": "Rounds of special invisibility after expending martial focus.",
+          "tracks_uses": false,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": false
+        }
+      ]
+    }
+  ],
+  "passive_effects": [
+    {
+      "key": "mountebank-mark-attack",
+      "feature_tokens": [
+        "thief-s-mark"
+      ],
+      "targets": [
+        "attack"
+      ],
+      "progression": "mountebank_thiefs_mark",
+      "bonus_type": "circumstance",
+      "source": "Mountebank: Thief's Mark",
+      "requires_resource_active": "thiefs_mark"
+    },
+    {
+      "key": "mountebank-mark-damage",
+      "feature_tokens": [
+        "thief-s-mark"
+      ],
+      "targets": [
+        "damage"
+      ],
+      "progression": "mountebank_thiefs_mark",
+      "bonus_type": "circumstance",
+      "source": "Mountebank: Thief's Mark",
+      "requires_resource_active": "thiefs_mark"
+    },
+    {
+      "key": "mountebank-mastery-int",
+      "feature_tokens": [
+        "skill-mastery"
+      ],
+      "targets": [
+        "intelligence"
+      ],
+      "progression": "two",
+      "bonus_type": "untyped",
+      "source": "Mountebank: Skill Mastery",
+      "minimum_level": 20
+    },
+    {
+      "key": "mountebank-mastery-cha",
+      "feature_tokens": [
+        "skill-mastery"
+      ],
+      "targets": [
+        "charisma"
+      ],
+      "progression": "two",
+      "bonus_type": "untyped",
+      "source": "Mountebank: Skill Mastery",
+      "minimum_level": 20
+    }
+  ],
+  "choice_providers": [
+    {
+      "key": "mountebank-casting-ability",
+      "label": "Casting and Practitioner Ability",
+      "feature_tokens": [
+        "casting"
+      ],
+      "minimum": 1,
+      "maximum": 1,
+      "fixed_options": [
+        {
+          "key": "intelligence",
+          "name": "Intelligence"
+        },
+        {
+          "key": "charisma",
+          "name": "Charisma"
+        }
+      ]
+    },
+    {
+      "key": "mountebank-skill-breaker",
+      "label": "Skill Breaker Skills",
+      "feature_tokens": [
+        "skill-breaker"
+      ],
+      "minimum_levels": [
+        5,
+        10,
+        15,
+        20
+      ],
+      "maximum_levels": [
+        5,
+        10,
+        15,
+        20
+      ],
+      "description": "Choose a skill to receive its skill unlocks at levels 5, 10, 15, and 20.",
+      "fixed_options": [
+        {
+          "key": "acrobatics",
+          "name": "Acrobatics"
+        },
+        {
+          "key": "appraise",
+          "name": "Appraise"
+        },
+        {
+          "key": "bluff",
+          "name": "Bluff"
+        },
+        {
+          "key": "climb",
+          "name": "Climb"
+        },
+        {
+          "key": "craft",
+          "name": "Craft"
+        },
+        {
+          "key": "diplomacy",
+          "name": "Diplomacy"
+        },
+        {
+          "key": "disable-device",
+          "name": "Disable Device"
+        },
+        {
+          "key": "disguise",
+          "name": "Disguise"
+        },
+        {
+          "key": "escape-artist",
+          "name": "Escape Artist"
+        },
+        {
+          "key": "fly",
+          "name": "Fly"
+        },
+        {
+          "key": "handle-animal",
+          "name": "Handle Animal"
+        },
+        {
+          "key": "heal",
+          "name": "Heal"
+        },
+        {
+          "key": "intimidate",
+          "name": "Intimidate"
+        },
+        {
+          "key": "knowledge-arcana",
+          "name": "Knowledge (arcana)"
+        },
+        {
+          "key": "knowledge-dungeoneering",
+          "name": "Knowledge (dungeoneering)"
+        },
+        {
+          "key": "knowledge-engineering",
+          "name": "Knowledge (engineering)"
+        },
+        {
+          "key": "knowledge-geography",
+          "name": "Knowledge (geography)"
+        },
+        {
+          "key": "knowledge-history",
+          "name": "Knowledge (history)"
+        },
+        {
+          "key": "knowledge-local",
+          "name": "Knowledge (local)"
+        },
+        {
+          "key": "knowledge-nature",
+          "name": "Knowledge (nature)"
+        },
+        {
+          "key": "knowledge-nobility",
+          "name": "Knowledge (nobility)"
+        },
+        {
+          "key": "knowledge-planes",
+          "name": "Knowledge (planes)"
+        },
+        {
+          "key": "knowledge-religion",
+          "name": "Knowledge (religion)"
+        },
+        {
+          "key": "linguistics",
+          "name": "Linguistics"
+        },
+        {
+          "key": "perception",
+          "name": "Perception"
+        },
+        {
+          "key": "perform",
+          "name": "Perform"
+        },
+        {
+          "key": "profession",
+          "name": "Profession"
+        },
+        {
+          "key": "ride",
+          "name": "Ride"
+        },
+        {
+          "key": "sense-motive",
+          "name": "Sense Motive"
+        },
+        {
+          "key": "sleight-of-hand",
+          "name": "Sleight of Hand"
+        },
+        {
+          "key": "spellcraft",
+          "name": "Spellcraft"
+        },
+        {
+          "key": "stealth",
+          "name": "Stealth"
+        },
+        {
+          "key": "survival",
+          "name": "Survival"
+        },
+        {
+          "key": "swim",
+          "name": "Swim"
+        },
+        {
+          "key": "use-magic-device",
+          "name": "Use Magic Device"
+        }
+      ]
+    }
+  ],
+  "power_providers": [
+    {
+      "key": "mountebank-social-talents",
+      "label": "Social Talents",
+      "family": "vigilante_social_talent",
+      "feature_tokens": [
+        "social-talent"
+      ],
+      "slot_levels": [
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        18,
+        20
+      ],
+      "description": "Choose a Vigilante social talent every even Mountebank level.",
+      "restrict_catalog_to_class": false
+    }
+  ],
+  "notes": "Illusion is a separate first-level bonus sphere; the first class-progression talent must acquire Scoundrel. Conditional mark and Secretive Spell bonuses require their live toggles."
+}

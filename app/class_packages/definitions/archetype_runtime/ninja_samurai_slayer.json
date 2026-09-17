@@ -1,0 +1,260 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:ninja:frozen-shadow",
+      "resource_modules": [{
+        "key": "frozen_shadow",
+        "title": "Frozen Shadow",
+        "governing_ability": "charisma",
+        "resources": [{
+          "key": "track_victim_illusion",
+          "name": "Track Victim vs. Illusion",
+          "feature_tokens": ["track-victim", "swift-tracker"],
+          "progression": "one",
+          "description": "Enable for a Will save to disbelieve an illusion affecting one or more creatures.",
+          "can_activate": true,
+          "tracks_uses": false,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": false
+        }]
+      }],
+      "passive_effects": [
+        {"key": "frozen-shadow-track-victim-survival", "feature_tokens": ["track-victim"], "targets": ["skill:survival", "skill:perception"], "progression": "half_level_minimum_one", "bonus_type": "untyped", "source": "Frozen Shadow: Track Victim", "minimum_level": 4},
+        {"key": "frozen-shadow-illusion-save", "feature_tokens": ["track-victim", "swift-tracker"], "targets": ["will"], "progression": "frozen_shadow_illusion_save", "bonus_type": "untyped", "source": "Frozen Shadow: Track Victim", "minimum_level": 4, "requires_resource_active": "track_victim_illusion"}
+      ],
+      "choice_handling": "automatic",
+      "choice_handling_note": "Hardy Killer spends the shared Ki pool and the exact tracking and illusion bonuses use reusable passive/toggle effects."
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:ninja:gunpowder-bombardier",
+      "resource_modules": [
+        {
+          "key": "gunpowder_bombardier",
+          "title": "Gunpowder Bombardier",
+          "governing_ability": "dexterity",
+          "resources": [
+            {
+              "key": "gunpowder_bomb",
+              "name": "Gunpowder Bomb",
+              "feature_tokens": ["gunpowder-bomb"],
+              "progression": "one",
+              "description": "Spend 1 Ki to throw the 20-foot-range, 10-foot-burst bomb; spend 1 additional Ki to enlarge its burst, and another for an available Explosive Impairment. Damage scales from 1d6 at 2nd level to 9d6 at 19th level.",
+              "external_cost_key": "ki_pool",
+              "tracks_uses": false,
+              "extra_damage_levels": [2, 5, 7, 9, 11, 13, 15, 17, 19],
+              "extra_damage_die": "d6",
+              "extra_damage_type": "bludgeoning"
+            }
+          ]
+        }
+      ],
+      "choice_handling": "transient",
+      "choice_handling_note": "Bomb radius, impairment and detonation delay are selected when the bomb is used; the shared Ki pool pays every selected option."
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:ninja:ghost-stepper",
+      "choice_handling": "automatic",
+      "choice_handling_note": "Ghostly Talent exchanges use the shared magic/martial talent pickers at their authored levels; retained full descriptions state each eligibility restriction."
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:ninja:hunting-serpent",
+      "resource_modules": [{
+        "key": "hunting_serpent",
+        "title": "Hunting Serpent",
+        "governing_ability": "charisma",
+        "resources": [{
+          "key": "death_mark",
+          "name": "Death Mark",
+          "feature_tokens": ["death-mark"],
+          "progression": "hunting_serpent_death_mark",
+          "description": "Daily death marks. Activate one on a foe damaged by Sneak Attack; its competence bonus scales with the available daily uses.",
+          "can_activate": true,
+          "activate_on_spend": true,
+          "custom_choice_label": "Marked creature"
+        }]
+      }],
+      "passive_effects": [
+        {"key": "hunting-serpent-relentless", "feature_tokens": ["relentless-pursuit"], "targets": ["skill:diplomacy", "skill:survival"], "progression": "third_level", "bonus_type": "untyped", "source": "Hunting Serpent: Relentless Pursuit", "minimum_level": 3},
+        {"key": "hunting-serpent-mark-attack", "feature_tokens": ["death-mark"], "targets": ["attack", "damage", "skill:survival"], "progression": "hunting_serpent_death_mark", "bonus_type": "competence", "source": "Hunting Serpent: Death Mark", "minimum_level": 4, "requires_resource_active": "death_mark"}
+      ],
+      "choice_handling": "automatic",
+      "choice_handling_note": "The death-mark target is stored on the live tracker; Certain Demise reads the same active target."
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:ninja:shinobi",
+      "choice_handling": "automatic",
+      "choice_handling_note": "The martial-tradition workflow grants Adept progression. Alchemy and Scout are granted as base spheres, or become in-sphere replacement talent choices when already owned."
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:ninja:shrouded-operative",
+      "choice_handling": "automatic",
+      "choice_handling_note": "Casting tradition, Mid-Caster progression, shared spell pool, blended magic/martial talent budget, and granted Scout and Illusion spheres use the shared Spheres systems."
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:samurai:fabled-blade",
+      "choice_providers": [
+        {
+          "key": "fabled-blade-style",
+          "label": "Famed Weapon Style",
+          "feature_tokens": ["famed-weapon-style"],
+          "minimum": 1,
+          "maximum": 1,
+          "fixed_options": [
+            {"key": "mountain-body", "name": "Mountain Body Style", "description": "Grants Body Control and its 5th- and 14th-level style benefits."},
+            {"key": "roaring-steel", "name": "Roaring Steel Style", "description": "Grants Bluster with Frightening Threat and its 5th- and 14th-level style benefits."},
+            {"key": "gilded-poet", "name": "Gilded Poet Style", "description": "Grants Performance with the lyric package and its 5th- and 14th-level style benefits."}
+          ]
+        }
+      ],
+      "choice_handling": "automatic",
+      "choice_handling_note": "Trade tradition and the selected Famed Weapon Style remain independent persisted choices."
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:samurai:yojimbo",
+      "choice_providers": [
+        {
+          "key": "yojimbo-armor-expertise",
+          "label": "Armor Expertise Type",
+          "feature_tokens": ["armor-expertise"],
+          "minimum": 1,
+          "maximum": 1,
+          "fixed_options": [
+            {"key": "selected-armor", "name": "Selected armor type", "description": "Record the exact armor type in the class-choice notes; Armor Training applies only while wearing it."}
+          ]
+        }
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:slayer:bloody-jake",
+      "choice_providers": [
+        {
+          "key": "bloody-jake-favored-terrain",
+          "label": "Favored Terrain",
+          "feature_tokens": ["favored-terrain"],
+          "minimum": 1,
+          "maximum": 1,
+          "fixed_options": [
+            {"key": "cold", "name": "Cold"},
+            {"key": "desert", "name": "Desert"},
+            {"key": "forest", "name": "Forest"},
+            {"key": "jungle", "name": "Jungle"},
+            {"key": "mountains", "name": "Mountains"},
+            {"key": "plains", "name": "Plains"},
+            {"key": "swamp", "name": "Swamp"}
+          ]
+        }
+      ],
+      "resource_modules": [
+        {
+          "key": "bloody_jake",
+          "title": "Bloody Jake",
+          "governing_ability": "charisma",
+          "resources": [
+            {
+              "key": "cruel_tricks",
+              "name": "Cruel Tricks",
+              "feature_tokens": ["cruel-tricks"],
+              "progression": "level_plus_ability_minimum_one",
+              "description": "Daily uses power Distant Voices, Lose Your Way, Something's Not Right, and The Woods Have Eyes."
+            },
+            {
+              "key": "favored_terrain",
+              "name": "Favored Terrain Applies",
+              "feature_tokens": ["favored-terrain"],
+              "progression": "one",
+              "description": "Enable while within the selected favored terrain. The terrain bonus starts at +2 and increases by +2 every 5 Slayer levels.",
+              "can_activate": true,
+              "tracks_uses": false,
+              "recover_on_full_rest": false,
+              "end_on_full_rest": false,
+              "requires_choice_provider": "bloody-jake-favored-terrain"
+            }
+          ]
+        }
+      ],
+      "passive_effects": [{
+        "key": "bloody-jake-favored-terrain-bonus",
+        "feature_tokens": ["favored-terrain"],
+        "targets": ["initiative", "skill:knowledge_geography", "skill:perception", "skill:stealth", "skill:survival"],
+        "progression": "bloody_jake_favored_terrain",
+        "bonus_type": "untyped",
+        "source": "Bloody Jake: Favored Terrain",
+        "minimum_level": 1,
+        "requires_resource_active": "favored_terrain"
+      }],
+      "system_features": ["favored terrain"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:slayer:cutthroat",
+      "choice_providers": [
+        {
+          "key": "cutthroat-street-stalker",
+          "label": "Street Stalker Skill",
+          "feature_tokens": ["street-stalker"],
+          "minimum": 1,
+          "maximum": 1,
+          "fixed_options": [
+            {"key": "acrobatics", "name": "Acrobatics"},
+            {"key": "climb", "name": "Climb"},
+            {"key": "knowledge-local", "name": "Knowledge (local)"}
+          ]
+        }
+      ],
+      "resource_modules": [{
+        "key": "cutthroat_context",
+        "title": "Cutthroat",
+        "governing_ability": "intelligence",
+        "resources": [
+          {"key": "street_stalker_acrobatics", "name": "Street Stalker (Urban)", "feature_tokens": ["street-stalker"], "progression": "one", "description": "Enable in an urban environment to apply the half-level bonus to the selected skill.", "can_activate": true, "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": false, "requires_choice_provider": "cutthroat-street-stalker", "requires_choice_option": "class-choice-fixed:cutthroat-street-stalker:acrobatics"},
+          {"key": "street_stalker_climb", "name": "Street Stalker (Urban)", "feature_tokens": ["street-stalker"], "progression": "one", "description": "Enable in an urban environment to apply the half-level bonus to the selected skill.", "can_activate": true, "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": false, "requires_choice_provider": "cutthroat-street-stalker", "requires_choice_option": "class-choice-fixed:cutthroat-street-stalker:climb"},
+          {"key": "street_stalker_knowledge_local", "name": "Street Stalker (Urban)", "feature_tokens": ["street-stalker"], "progression": "one", "description": "Enable in an urban environment to apply the half-level bonus to the selected skill.", "can_activate": true, "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": false, "requires_choice_provider": "cutthroat-street-stalker", "requires_choice_option": "class-choice-fixed:cutthroat-street-stalker:knowledge-local"}
+        ]
+      }],
+      "passive_effects": [
+        {"key": "cutthroat-street-stalker-acrobatics", "feature_tokens": ["street-stalker"], "targets": ["skill:acrobatics"], "progression": "half_level_minimum_one", "bonus_type": "untyped", "source": "Cutthroat: Street Stalker", "requires_resource_active": "street_stalker_acrobatics"},
+        {"key": "cutthroat-street-stalker-climb", "feature_tokens": ["street-stalker"], "targets": ["skill:climb"], "progression": "half_level_minimum_one", "bonus_type": "untyped", "source": "Cutthroat: Street Stalker", "requires_resource_active": "street_stalker_climb"},
+        {"key": "cutthroat-street-stalker-knowledge-local", "feature_tokens": ["street-stalker"], "targets": ["skill:knowledge_local"], "progression": "half_level_minimum_one", "bonus_type": "untyped", "source": "Cutthroat: Street Stalker", "requires_resource_active": "street_stalker_knowledge_local"}
+      ],
+      "choice_handling": "automatic",
+      "choice_handling_note": "The selected Street Stalker skill is persisted; its half-level bonus is situational to urban environments."
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:slayer:toxic-sniper",
+      "resource_modules": [
+        {
+          "key": "toxic_sniper",
+          "title": "Toxic Sniper",
+          "governing_ability": "wisdom",
+          "resources": [
+            {
+              "key": "grit",
+              "name": "Toxic Grit",
+              "feature_tokens": ["toxic-grit"],
+              "progression": "ability_modifier_minimum_one",
+              "description": "The Amateur Gunslinger grit pool granted at 2nd level; grit can fluctuate during play and begins each day at the Wisdom modifier (minimum 1)."
+            },
+            {
+              "key": "toxic_shots",
+              "name": "Toxic Shots",
+              "feature_tokens": ["toxic-shots"],
+              "progression": "half_level_plus_ability_minimum_one",
+              "description": "Daily toxic ammunition uses equal half Slayer level + Wisdom modifier. Applying a toxic shot increases the poison DC by 2."
+            }
+          ]
+        }
+      ],
+      "system_features": ["grit"]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:slayer:guild-assassin",
+      "choice_handling": "automatic",
+      "choice_handling_note": "The martial tradition, Adept practitioner advancement and granted Scout sphere use the shared Spheres workflow; delayed Studied Target and replaced talent slots come from the generated timeline."
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:slayer:mercenary",
+      "choice_handling": "automatic",
+      "choice_handling_note": "The martial tradition and Expert practitioner budget use the shared Spheres workflow. Fencing is the first class talent and Scout is granted automatically."
+    }
+  ]
+}

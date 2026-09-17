@@ -1,0 +1,2131 @@
+{
+  "version": 1,
+  "class_key": "pathfinder-class:spiritualist",
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:drowned-channeler",
+      "package": "pathfinder-class:spiritualist",
+      "name": "Drowned Channeler",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist Drowned Channeler",
+      "replaces_features": [
+        "bonded-manifestation",
+        "bonded-senses",
+        "call-spirit",
+        "calm-spirit",
+        "class-skills",
+        "detect-undead",
+        "etheric-tether",
+        "phantom",
+        "see-invisibility",
+        "shared-consciousness"
+      ],
+      "removed_features": [
+        "bonded-manifestation",
+        "bonded-senses",
+        "call-spirit",
+        "calm-spirit",
+        "class-skills",
+        "detect-undead",
+        "etheric-tether",
+        "phantom",
+        "see-invisibility",
+        "shared-consciousness"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Drowned Channeler",
+          "description": "Source Aquatic Adventures pg. 52"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A drowned channeler has Swim as a class skill instead of Fly.\n\nThis alters the spiritualist’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Drowned Phantom",
+          "description": "A drowned channeler has a drowned phantom. A drowned phantom’s ectoplasmic body drips with water and seems to bleed off watery droplets even its incorporeal form. A drowned phantom gains a swim speed of 30 feet in both forms and gains the water subtype in addition to the phantom subtype, meaning that it can use its natural slam attacks underwater without taking the penalty for bludgeoning attacks underwater. The drowned channeler’s etheric tether extends twice as far underwater, but only half as far above water. Additionally, the drowned phantom doesn’t grant any of the usual benefits while confined in the drowned channeler’s consciousness unless the drowned channeler is within 25 feet of an ocean, sea, lake, or other large body of water. Both forms of bonded manifestation grant the drowned phantom’s swim speed of 30 feet to the drowned channeler, and attacks from the ectoplasmic bonded manifestation’s tendrils don’t take the typical penalties for bludgeoning attacks underwater, as if the phantom itself made them."
+        },
+        {
+          "level": 2,
+          "name": "Drowned Spells",
+          "description": "At 2nd level, a drowned channeler adds control water, fluid formAPG, hydraulic pushAPG, hydraulic torrentAPG, life current*, pressure adaptation*, ride the wavesUM, slipstreamAPG, stabilize pressure*, unlife current*, water breathing, and wave form* to the spiritualist spell list at the same spell level as they appear on the cleric list or sorcerer/wizard list, whichever is lower. Spells marked with an asterisk (*) appear in the Aquatic Spells section of this book (see page 59). The drowned channeler must still select them as spells known as normal."
+        },
+        {
+          "level": 5,
+          "name": "Drowned Powers",
+          "description": "At 5th level, a drowned channeler can use hydraulic pushAPG as a spell-like ability once per day, with an additional use each day at 9th level and every 4 levels thereafter. At 7th level, she can use slipstreamAPG once per day as a spell-like ability, with an additional use each day at 11th level and every 4 levels thereafter. At 9th level, she can use ride the wavesUM once per day as a spell-like ability. Finally, at 16th level, she can use fluid formAPG once per day as a spell-like ability."
+        }
+      ],
+      "detected_systems": [
+        "phantom"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:ectoplasmatist",
+      "package": "pathfinder-class:spiritualist",
+      "name": "Ectoplasmatist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist Ectoplasmatist",
+      "replaces_features": [
+        "bonded-manifestation",
+        "dual-bond",
+        "empowered-consciousness",
+        "etheric-tether",
+        "fused-consciousness",
+        "greater-spiritual-interference",
+        "phantom",
+        "phantom-recall",
+        "shared-consciousness",
+        "spiritual-bond",
+        "spiritual-interference"
+      ],
+      "removed_features": [
+        "bonded-manifestation",
+        "dual-bond",
+        "empowered-consciousness",
+        "etheric-tether",
+        "fused-consciousness",
+        "greater-spiritual-interference",
+        "phantom",
+        "phantom-recall",
+        "shared-consciousness",
+        "spiritual-bond",
+        "spiritual-interference"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Ectoplasmatist",
+          "description": "Source Occult Adventures pg. 108"
+        },
+        {
+          "level": 1,
+          "name": "Ectoplasmic Lash",
+          "description": "At 1st level, as a full-round action an ectoplasmatist can manifest one or two lashes of ectoplasm tethered to her by wispy, ectoplasmic tendrils. If she manifests two lashes, she can wield them both as light melee weapons, each dealing 1d6 points of slashing damage (1d4 if the ectoplasmatist is Small) with a critical threat range and multiplier of 19–20/×2. If the ectoplasmatist manifests only one lash, she can manifest it either as a single one-handed melee weapon that deals 1d8 points of slashing damage (1d6 if the ectoplasmatist is Small) with a critical threat range and multiplier of 19–20/×2, or as a two-handed melee weapon that deals 2d6 points of bludgeoning damage (1d10 if the ectoplasmatist is Small) with a critical multiplier of ×2. Only the ectoplasmatist can wield or use these lashes. Dismissing any or all manifested lashes is a free action."
+        },
+        {
+          "level": 3,
+          "name": "Spiritual Combat",
+          "description": "At 3rd level, as a full-round action, an ectoplasmatist can make all of her attacks with a single light or one-handed ectoplasmic lash wielded in one hand, and also cast a single spiritualist spell with a casting time of one standard action as a free action either before or after making the ectoplasmic lash attacks. The ectoplasmatist takes a –2 penalty on her attack rolls when using spiritual combat. If she decides to cast the spell defensively, she can choose to take an additional penalty on her attack rolls up to her Wisdom bonus, and add the same amount as a circumstance bonus on her concentration check. If the concentration check fails, the spell is wasted, but the attacks still take the penalty."
+        },
+        {
+          "level": 4,
+          "name": "Ectoplasmic Armor",
+          "description": "At 4th level when an ectoplasmatist manifests her spiritual lash ability, tendrils of ectoplasmic material envelop her body, granting her a +4 armor bonus to AC."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:exciter",
+      "package": "pathfinder-class:spiritualist",
+      "name": "Exciter",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist Exciter",
+      "replaces_features": [
+        "bonded-senses",
+        "emotional-focus",
+        "etheric-tether",
+        "fused-consciousness",
+        "phantom",
+        "phantom-recall",
+        "spiritual-bond",
+        "spiritual-interference"
+      ],
+      "removed_features": [
+        "bonded-senses",
+        "emotional-focus",
+        "etheric-tether",
+        "fused-consciousness",
+        "phantom",
+        "phantom-recall",
+        "spiritual-bond",
+        "spiritual-interference"
+      ],
+      "removed_feature_clauses": [
+        "greater spiritual interference"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Exciter",
+          "description": "Source Horror Adventures pg. 68"
+        },
+        {
+          "level": 7,
+          "name": "Merged Phantom",
+          "description": "An exciter internalizes his phantom and merges it completely within his mind. He cannot fully manifest his phantom outside of his own body in incorporeal or ectoplasmic form. Emotional focus abilities that affect or require a manifested phantom are lost, except for any aura gained by the phantom at 7th level; if the phantom gains an aura at 7th level, this aura functions despite the phantom not being manifested, and is centered on the exciter."
+        },
+        {
+          "level": 1,
+          "name": "Rapture",
+          "description": "An exciter gains the ability to enter an ecstatic state in which he’s consumed and overwhelmed by his passions and driven into a fighting fury. This functions similarly to a bloodrager’s bloodrage (Pathfinder RPG Advanced Class Guide 15), treating his spiritualist level as his bloodrager level, though he doesn’t qualify for feats or other elements that require rage or bloodrage. When entering a rapture, the exciter loses all other benefits from having his phantom confined in his consciousness (such as the Skill Focus feats and bonus against mind-affecting effects), but he can choose to exchange the normal +4 morale bonus to his Strength and Constitution scores normally gained from bloodrage for a +4 morale bonus to his Dexterity and Charisma scores or a +2 morale bonus to his Strength, Dexterity, Constitution, and Charisma scores. In addition to the fatigue for ending a bloodrage, an exciter can’t enter a rapture again for 1 minute after ending his last rapture."
+        },
+        {
+          "level": 1,
+          "name": "Fast Movement",
+          "description": "An exciter’s land speed is faster than normal for his race by 10 feet. This benefit applies only when he is wearing light armor, medium armor, or no armor and is not carrying a heavy load. This doesn’t stack with the barbarian ability of the same name."
+        },
+        {
+          "level": 2,
+          "name": "Excitation",
+          "description": "At 2nd level, when an exciter is in a rapture, each round he can choose to intensify his emotional fury, expending 2 rounds of rapture instead of 1. When he uses excitation, he chooses one of the two abilities that his emotional focus would normally grant to a manifested phantom, such as strength focus and powerful strike for an anger phantom, or power from despair and miserable strike for a despair phantom. He gains these abilities until the beginning of his next turn. If the ability normally augments only a phantom’s slam attacks, it instead applies to the ectoplasmic tendrils that the spiritualist can sprout using his ectoplasmic bonded manifestation."
+        },
+        {
+          "level": 10,
+          "name": "Rapturous Rage",
+          "description": "At 10th level and every 4 spiritualist levels thereafter, an exciter can select one rage power for which he qualifies, treating his spiritualist level as his barbarian level for all purposes relating to that particular rage power (he still doesn’t qualify for the Extra Rage Power feat or any similar abilities)."
+        },
+        {
+          "level": 4,
+          "name": "Perfect Passion",
+          "description": "At 4th level, an exciter can cast psychic spells with an emotion component (Pathfinder RPG Occult Adventures 144) even while in his rapture. He can cast these spells defensively and attempt concentration checks for these spells without impairment, despite being in a rapture. He also can attempt Charisma- and Intelligence-based skill checks related to psychic spells with an emotion component while in his rapture. He cannot cast arcane or divine spells or psychic spells that have a thought component while in a rapture."
+        },
+        {
+          "level": 10,
+          "name": "Overwhelming Excitment",
+          "description": "At 10th level, an exciter can share the effects of his rapture with willing allies within 10 feet. He must expend 2 additional rounds of his rapture each round for each ally sharing its effects. The exciter’s allies share all effects of the rapture except the rage powers; each ally must end its turn within 10 feet of the exciter, or the effects of the rapture end for that ally and it becomes fatigued. Whenever he is not sharing the effects of his rapture with an ally, the exciter now retains the benefits of his phantom in his consciousness even during rapture."
+        },
+        {
+          "level": 12,
+          "name": "Greater Rapture",
+          "description": "At 12th level, an exciter increases the morale bonus his rapture grants to each applicable ability score by 2 and the morale bonus he gains on Will saves by 1. In addition, upon entering a rapture, he can apply the effects of a single spiritualist spell he knows with an emotion component to himself. The spell must have a range of touch or personal, and it must be a 1st- or 2nd-level spell. For every 3 spiritualist levels he has beyond 12th, the maximum spell level of this spell increases by 1. If he uses this ability to apply the effects of a spell again before the duration of the previous spell expires, the previous spell ends immediately.\n\nThis replaces greater spiritual interference."
+        }
+      ],
+      "detected_systems": [
+        "phantom"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:fated-guide",
+      "package": "pathfinder-class:spiritualist",
+      "name": "Fated Guide",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist Fated Guide",
+      "replaces_features": [
+        "antagonistic",
+        "bonded-manifestation",
+        "call-spirit",
+        "see-invisibility"
+      ],
+      "removed_features": [
+        "antagonistic",
+        "bonded-manifestation",
+        "call-spirit",
+        "see-invisibility"
+      ],
+      "removed_feature_clauses": [
+        "phantom’s antagonistic ability",
+        "see invisibility ability",
+        "call spirit ability"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Fated Guide",
+          "description": "Source Occult Origins pg. 18"
+        },
+        {
+          "level": 1,
+          "name": "Shepherd to the Dead",
+          "description": "A fated guide adds disrupt undead and sanctify corpseUM to her list of spells known."
+        },
+        {
+          "level": 1,
+          "name": "Phantom",
+          "description": "A phantom who bonds with a fated guide must have the remorse emotional focus (see page 19)."
+        },
+        {
+          "level": 1,
+          "name": "Divine Purpose",
+          "description": "A fated guide’s phantom gains Deific ObedienceISG as a bonus feat, though the spiritualist must obey her god’s obedience to gain any benefit. This replaces the phantom’s antagonistic ability."
+        },
+        {
+          "level": 1,
+          "name": "Thanatopic Bonded Manifestation",
+          "description": "A 3rd level, a fated guide can bond with her phantom to channel the influence of Pharasma and her servitors. When a spiritualist gains this ability, she must replace her ability to form either an ectoplasmic bonded manifestation or an incorporeal bonded manifestation."
+        },
+        {
+          "level": 1,
+          "name": "Iron Bond",
+          "description": "When the fated guide reaches 9th level, her phantom gains a +4 bonus on saving throws against banishment, dismissal, or other similar effects. This ability replaces the see invisibility ability."
+        },
+        {
+          "level": 1,
+          "name": "Undeniable Bond",
+          "description": "When the fated guide reaches 16th level, her phantom gains an additional +4 bonus on saving throws against banishment, dismissal, or other similar effects, for a total of +8. This ability replaces the call spirit ability."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:fractured-mind",
+      "package": "pathfinder-class:spiritualist",
+      "name": "Fractured Mind",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist Fractured Mind",
+      "replaces_features": [
+        "call-spirit",
+        "calm-spirit",
+        "detect-undead",
+        "see-invisibility",
+        "spellcasting"
+      ],
+      "removed_features": [
+        "call-spirit",
+        "calm-spirit",
+        "detect-undead",
+        "see-invisibility",
+        "spellcasting"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Fractured Mind",
+          "description": "Source Occult Adventures pg. 109"
+        },
+        {
+          "level": 1,
+          "name": "Emotional Spellcasting",
+          "description": "A fractured mind’s ability to cast spells is tied to the force of her own spirit rather than her connection to the spirit world. As a result, she uses her Charisma score rather than her Wisdom score to determine the highest spell level she can cast, the saving throw DCs of spells she casts, and her bonus spells per day. This ability alters spellcasting."
+        },
+        {
+          "level": 5,
+          "name": "Emotional Power",
+          "description": "The fractured mind gains a number of spell-like abilities, which are tied to her phantom’s emotional focus. She gains one spell-like ability at 5th level, a second at 7th level, a third at 9th level, and a fourth at 16th level. A fractured mind can use each of these abilities once per day, plus one additional time per day for every 4 spiritualist levels she possesses beyond the level at which she gained the spell-like ability. The saving throw DCs for these spell-like abilities are equal to 10 + 1/2 the fractured mind’s spiritualist class level + the fractured mind’s Charisma modifier, rather than being based on the spell’s level. The spell-like abilities granted by each emotional focus are listed below."
+        },
+        {
+          "level": 1,
+          "name": "Anger",
+          "description": "Enlarge person (5th), rage (7th), longstrider (9th), shout (16th)."
+        },
+        {
+          "level": 1,
+          "name": "Dedication",
+          "description": "Command (5th), spiritual weapon (7th), bless (9th), death ward (16th)."
+        },
+        {
+          "level": 1,
+          "name": "Despair",
+          "description": "BungleUM (5th), stricken heartACG (7th), doom (9th), crushing despair (16th)."
+        },
+        {
+          "level": 1,
+          "name": "Fear",
+          "description": "Bane (5th), mad hallucinationUM (7th), doom (9th), phantasmal killer (16th)."
+        },
+        {
+          "level": 1,
+          "name": "Hatred",
+          "description": "Doom (5th), inflict moderate wounds (7th), bane (9th), bestow curse (16th)."
+        },
+        {
+          "level": 1,
+          "name": "Jealousy",
+          "description": "Sanctuary (5th), resist energy (7th), entropic shield (9th), spell immunity (16th)."
+        },
+        {
+          "level": 1,
+          "name": "Zeal",
+          "description": "Bless (5th), spiritual weapon (7th), divine favor (9th), freedom of movement (16th)."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:geist-channeler",
+      "package": "pathfinder-class:spiritualist",
+      "name": "Geist Channeler",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist Geist Channeler",
+      "replaces_features": [
+        "bonded-manifestation",
+        "emotional-focus",
+        "phantom"
+      ],
+      "removed_features": [
+        "bonded-manifestation",
+        "emotional-focus",
+        "phantom"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Geist Channeler",
+          "description": "Source Occult Adventures pg. 109"
+        },
+        {
+          "level": 5,
+          "name": "Geistform Phantom",
+          "description": "A geist channeler’s phantom can’t manifest in ectoplasmic form, and is limited to manifesting in incorporeal form. As a result, the phantom has no Strength score, and has a starting Wisdom score of 12. Instead of gaining two slam attacks, it gains only a single slam attack that deals 1d8 points of damage. The slam attack’s damage increases to 1d10 points at 5th level, to 2d6 at 10th level, to 2d8 at 15th level, and 2d10 at 20th level (assuming the phantom is Medium). The phantom does not gain the magic attacks ability at 4th level."
+        },
+        {
+          "level": 1,
+          "name": "Emotionless",
+          "description": "A geist channeler’s phantom doesn’t have an emotional focus; instead, it is cold and devoid of emotions. The phantom gains a number of ranks in Knowledge (arcana) and Knowledge (religion) equal to its Hit Dice. While confined in the geist channeler’s consciousness, the phantom grants the geist channeler Skill Focus in each of these skills. The phantom has good Reflex and Will saves, and gains Iron Will as a bonus feat, as well as the following abilities."
+        },
+        {
+          "level": 5,
+          "name": "Unnerving Touch",
+          "description": "As a standard action, a geist channeler’s phantom can make a melee touch attack against a living creature, even if that creature is corporeal. If the attack hits, the target is shaken for 1d4+1 rounds. A successful Will save (DC = 10 + 1/2 the phantom’s Hit Dice + the phantom’s Charisma modifier) negates this effect. At 5th level, when the phantom can damage corporeal creatures with its slam attack, its slam attacks against living corporeal creatures gain this ability. Multiple attacks against the same creature don’t cause the creature to become frightened. This is a mind-affecting fear effect."
+        },
+        {
+          "level": 7,
+          "name": "Poltergeist’s Knack",
+          "description": "At 7th level, a geist channeler’s phantom can use telekinesis as a spell-like ability. It can use only the sustained force and violent thrust versions of this spell. The phantom can use this ability three times per day, plus one additional time at 10th level and every 3 levels thereafter (maximum seven times per day at 19th level). Its caster level for this spell-like ability is equal to the phantom’s Hit Dice."
+        },
+        {
+          "level": 12,
+          "name": "Spectral Protection",
+          "description": "At 12th level as a standard action, while a geist channeler’s phantom is confined within his psyche, he can call upon its power to project an aura of spectral energy that prevents incorporeal creatures from approaching him. This takes the form of a 30-foot-radius emanation centered on the geist channeler. Any incorporeal creature attempting to enter this area must succeed at a Will save (DC = 10 + 1/2 the geist channeler’s spiritualist class level + the geist channeler’s Wisdom modifier) or be unable to do so. This ability can be used only defensively, not aggressively; forcing the aura against an incorporeal creature collapses the aura. The geist channeler can use this ability for a number of minutes per day equal to his spiritualist level. The minutes don’t need to be continuous, but must be spent in 1-minute increments."
+        },
+        {
+          "level": 17,
+          "name": "Malevolent Possession",
+          "description": "At 17th level, a geist channeler’s phantom can invade the bodies of other creatures. This functions as possession (see page 181). To use this ability, the phantom must be adjacent to the target. The target can resist the effect with a successful Will save (DC = 10 + 1/2 the phantom’s Hit Dice + the phantom’s Charisma modifier). The phantom can use this ability once per day."
+        },
+        {
+          "level": 1,
+          "name": "Spiritual Manifestation",
+          "description": "Because of the nature of her phantom, a geist channeler can use the bonded manifestation ability to manifest his phantom only in incorporeal form. This ability alters bonded manifestation."
+        }
+      ],
+      "detected_systems": [
+        "phantom"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:grim-apostle",
+      "package": "pathfinder-class:spiritualist",
+      "name": "Grim Apostle",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist Grim Apostle",
+      "replaces_features": [
+        "emotional-focus",
+        "fused-consciousness",
+        "phantom",
+        "shared-consciousness"
+      ],
+      "removed_features": [
+        "emotional-focus",
+        "fused-consciousness",
+        "phantom",
+        "shared-consciousness"
+      ],
+      "removed_feature_clauses": [
+        "shared consciousness",
+        "fused consciousness"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Grim Apostle",
+          "description": "Source Pathfinder #144: Midwives to Death pg. 72"
+        },
+        {
+          "level": 1,
+          "name": "Grim Phantom",
+          "description": "The spirit linked to a grim apostle functions in all respects as a regular spiritualist’s phantom, but each day when the grim apostle regains her daily spell slots, she can choose which Horseman focus (see below) is dominant within the grim phantom."
+        },
+        {
+          "level": 1,
+          "name": "Hardened Soul",
+          "description": "At 1st level, while a grim phantom is confined in the grim apostle’s consciousness, the grim apostle gains a +4 bonus on saving throws against death effects and effects that would remove or subsume the grim apostle’s soul (such as possession or trap the soul). At 6th level and every 6 levels thereafter, this bonus increases by 2 (to a maximum of +10 at 18th level). This ability replaces shared consciousness and fused consciousness."
+        },
+        {
+          "level": 1,
+          "name": "Horseman Focus",
+          "description": "Instead of an emotional focus, a grim phantom has one of the following Horseman foci."
+        },
+        {
+          "level": 1,
+          "name": "Death",
+          "description": "Grim phantoms influenced by Charon, the Horseman of Death, are dark, almost shapeless specters."
+        },
+        {
+          "level": 1,
+          "name": "Skills",
+          "description": "The grim phantom gains ranks in Knowledge (history) and Stealth equal to its number of Hit Dice."
+        },
+        {
+          "level": 1,
+          "name": "Good Saves",
+          "description": "Fortitude and Will."
+        },
+        {
+          "level": 1,
+          "name": "Fleet",
+          "description": "The grim phantom gains Fleet as a bonus feat."
+        },
+        {
+          "level": 5,
+          "name": "Marked for Death",
+          "description": "When manifested in ectoplasmic form, the grim phantom gains a +1 bonus on attack rolls against a creature the grim apostle has hit with a melee or ranged attack since its last turn (the phantom’s “marked target”). Additionally, such an attack by the grim phantom deals an additional 1d6 points of negative energy damage. At 5th level and every 5 spiritualist levels thereafter, the negative energy damage increases by 1d6."
+        },
+        {
+          "level": 7,
+          "name": "Fatal Aura",
+          "description": "At 7th level, the grim phantom can create a 10-foot-radius aura as a swift action that makes healing more difficult. The DC of Heal checks to provide first aid and treat deadly wounds within the aura is increased by 5. Any creature within the aura that casts a conjuration (healing) spell, or casts another spell or uses an ability that restores hit points, must succeed at a Will saving throw or lose the spell or use of the ability. Ending the aura is a free action."
+        },
+        {
+          "level": 12,
+          "name": "No Escape",
+          "description": "At 12th level, the grim phantom gains the benefits of the Following Step, Step Up, and Step Up and Strike feats but only against its marked target (see above)."
+        },
+        {
+          "level": 17,
+          "name": "Killing Word",
+          "description": "At 17th level, the grim phantom can cast power word kill once per day as a spell-like ability."
+        },
+        {
+          "level": 1,
+          "name": "Famine",
+          "description": "Grim phantoms influenced by Trelmarixian, the Horseman of Famine, are gaunt with jackal-like features."
+        },
+        {
+          "level": 1,
+          "name": "Weapon Finesse",
+          "description": "The grim phantom gains Weapon Finesse as a bonus feat."
+        },
+        {
+          "level": 1,
+          "name": "Ravenous Bite",
+          "description": "The grim phantom’s natural attacks take the form of bites that deal piercing damage as a creature one size category larger than its current size. It also gains Power Attack as a bonus feat."
+        },
+        {
+          "level": 7,
+          "name": "Aura of Starvation",
+          "description": "At 7th level, the grim phantom can create a 10-foot-radius aura of starvation as a swift action. Enemies within the aura take a –2 penalty on attack and damage rolls. Ending the aura is a free action."
+        },
+        {
+          "level": 12,
+          "name": "Wail of the Hungry",
+          "description": "At 12th level, the grim phantom can cast waves of fatigue once per day as a spell-like ability."
+        },
+        {
+          "level": 17,
+          "name": "Distended Gullet",
+          "description": "At 17th level, as a swift action, the grim phantom in ectoplasmic form gains the swallow whole ability (4d8 negative energy damage, AC 17, one-tenth the phantom’s total hit points) for a number of rounds equal to its Charisma modifier. This ability can affect creatures no more than two size categories larger than the phantom. Each creature the grim phantom swallows is shunted into an extradimensional space that can hold any number of creatures. When the duration of this ability ends, any creatures still within the extradimensional space appear adjacent to the grim phantom. The grim phantom is exhausted for 1 hour after using this ability and can’t use it again during that time."
+        },
+        {
+          "level": 1,
+          "name": "Pestilence",
+          "description": "Grim phantoms influenced by Apollyon, the Horseman of Pestilence, often have rams’ skulls for heads."
+        },
+        {
+          "level": 1,
+          "name": "Great Fortitude",
+          "description": "The grim phantom gains Great Fortitude as a bonus feat."
+        },
+        {
+          "level": 1,
+          "name": "Weakening Strike",
+          "description": "A creature hit by the grim phantom’s slam attack must succeed at a Fortitude saving throw or take a –2 penalty on ability checks, attack rolls, saving throws, and skill checks for 1d4 rounds. This is a disease effect. Penalties from multiple hits don’t stack."
+        },
+        {
+          "level": 7,
+          "name": "Aura of Flies",
+          "description": "At 7th level, the grim phantom can surround itself with a cloud of biting flies as a swift action. Any creature that ends its turn adjacent to the grim phantom takes 1d6 piercing damage. This damage increases by 1d6 for every 4 spiritualist levels beyond 7th. Ending the aura is a free action."
+        },
+        {
+          "level": 12,
+          "name": "Contagious Touch",
+          "description": "At 12th level, the grim phantom can cast contagion three times per day as a spell-like ability."
+        },
+        {
+          "level": 17,
+          "name": "Virulent Attack",
+          "description": "At 17th level, any creature under the effects of the grim phantom’s weakening strike becomes a dangerous vector for disease. Any creature that ends its turn adjacent to the target creature is immediately exposed to any diseases the target creature has, no matter the normal method of contracting that disease. The creature must immediately attempt a saving throw against that disease, and the onset period doesn’t apply."
+        },
+        {
+          "level": 1,
+          "name": "War",
+          "description": "Grim phantoms influenced by Szuriel, the Horseman of War, look like sinister, black-winged angels."
+        },
+        {
+          "level": 1,
+          "name": "Strength Focus",
+          "description": "The grim phantom gains a +2 bonus to Strength and a –2 penalty to Dexterity. The phantom gains bonuses to Strength instead of Dexterity as the grim apostle gains spiritualist levels."
+        },
+        {
+          "level": 11,
+          "name": "Ruthless Combatant",
+          "description": "The grim phantom threatens a critical hit with its slam attack on a roll of 19–20. At 11th level, the phantom’s critical modifier with slam attacks increases to ×3. This doesn’t stack with Improved Critical or similar effects."
+        },
+        {
+          "level": 7,
+          "name": "Aura of Fury",
+          "description": "At 7th level, the grim phantom can create a 20-foot-radius aura as a swift action. Creatures within the aura gain a +2 bonus on melee attack rolls but take a –2 penalty to AC. Ending the aura is a free action."
+        },
+        {
+          "level": 12,
+          "name": "Bloodlust",
+          "description": "At 12th level, the grim phantom regains 1d6 hit points with each successful slam attack it makes."
+        },
+        {
+          "level": 17,
+          "name": "Juggernaut",
+          "description": "At 17th level, the grim phantom becomes immune to any effects that would cause it to become cowering, exhausted, fatigued, frightened, panicked, shaken, or slowed (as the slow spell)."
+        }
+      ],
+      "detected_systems": [
+        "phantom"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:hag-haunted",
+      "package": "pathfinder-class:spiritualist",
+      "name": "Hag-Haunted",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist Hag-Haunted",
+      "replaces_features": [
+        "fused-consciousness",
+        "greater-spiritual-interference",
+        "phantom",
+        "shared-consciousness",
+        "spellcasting",
+        "spiritual-interference"
+      ],
+      "removed_features": [
+        "fused-consciousness",
+        "greater-spiritual-interference",
+        "phantom",
+        "shared-consciousness",
+        "spellcasting",
+        "spiritual-interference"
+      ],
+      "removed_feature_clauses": [
+        "spiritual interference",
+        "greater spiritual interference"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Hag-Haunted",
+          "description": "Source Blood of the Coven pg. 23"
+        },
+        {
+          "level": 1,
+          "name": "Hag Phantom",
+          "description": "A hag phantom forms from the soul of a deceased hag. She always has an evil alignment, rather than matching the spiritualist’s alignment, and must select one of the following emotional focuses: anger, hatred, jealousy, or zeal. The hag phantom starts with a +2 bonus to Strength and Intelligence and has her own agenda—usually contrary to the spiritualist’s—though she recognizes that the spiritualist can unmanifest her, and therefore she typically hides suspicious actions from her spiritualist. When in the spiritualist’s consciousness, the hag phantom can grant the hag-haunted Spell Focus (necromancy) and Skill Focus (Bluff), but she often revokes them if the spiritualist banishes her there as a punishment, and she might use them as leverage to get what she wants. When the spiritualist reaches 10th level, the hag can also grant these feats while manifested, and when the spiritualist reaches 12th level, she can also grant Greater Spell Focus (necromancy).\n\nThis alters phantom and replaces shared consciousness and fused consciousness."
+        },
+        {
+          "level": 1,
+          "name": "Hag Spellcasting",
+          "description": "A hag-haunted spiritualist’s spells come from her connection to her hag phantom. Her spells are considered arcane rather than psychic, and they use verbal and somatic components instead of thought and emotion components. She still selects her spells known from the spiritualist class list."
+        },
+        {
+          "level": 4,
+          "name": "Death Curse",
+          "description": "A hag phantom is partially animated by the power of a hag’s dying curse, and at 4th level this grants her a death curse of her own. As an immediate action, whenever the hag phantom is slain and returned to the Ethereal Plane, the phantom can utter a curse on the creature that killed her, targeting it with bestow curse. At 6th level, the spiritualist gains bestow curse as an extra 3rd-level spell known. At 16th level, the spiritualist gains major curse as an additional 6th-level spell known.\n\nThis replaces spiritual interference and greater spiritual interference."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:haunted",
+      "package": "pathfinder-class:spiritualist",
+      "name": "Haunted",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist Haunted",
+      "replaces_features": [
+        "bonded-manifestation",
+        "dual-bond"
+      ],
+      "removed_features": [
+        "bonded-manifestation",
+        "dual-bond"
+      ],
+      "removed_feature_clauses": [
+        "dual bond"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Haunted",
+          "description": "Source Occult Adventures pg. 110"
+        },
+        {
+          "level": 3,
+          "name": "Usurp Manifestation",
+          "description": "At 3rd level, the haunted’s phantom begins to subtly subvert the relationship with its master, gaining rather than granting power from the connection. When fully manifested in ectoplasmic form, the phantom can use its usurp manifestation ability to draw upon the haunted’s body to strengthen its ectoplasmic might, temporarily weakening the spiritualist in order to increase its own power. The phantom must activate this ability as an immediate action at the start of the spiritualist’s turn, and it can use this ability a number of rounds per day equal to 3 + the haunted’s spiritualist level. The rounds don’t need to be consecutive, and the phantom can dismiss the effects of a usurped manifestation as a free action on its turn. While this ability is in effect, the haunted’s features become sunken and withdrawn, and she gains the nauseated condition until the effect ends. Conversely, the phantom surges in size and power, becoming one size category larger (as if affected by an enlarge person spell) and increasing its natural armor bonus to AC by 2 for the effect’s duration. If the spiritualist prevents or mitigates the nauseated condition, the phantom is unable to siphon energy and doesn’t gain the benefits of usurp manifestation."
+        },
+        {
+          "level": 8,
+          "name": "Usurp Spell",
+          "description": "At 8th level, while using usurp manifestation, the phantom can leech spell slots from the haunted to increase its own power. The phantom can reach through the etheric tether as a swift action to drain the nauseated haunted’s psychic spell energy, effectively taking any touch spell or spell with a target of “you” that the haunted knows and casting it on itself (assuming the haunted has not yet used up her allotment of spells per day for the spell’s level). This ability consumes two of the haunted’s spell slots of the appropriate level and otherwise follows the rules for the share spells and deliver touch spells abilities."
+        },
+        {
+          "level": 13,
+          "name": "Teleplasmic Surge",
+          "description": "At 13th level, when using usurp manifestation, the phantom gains a +2 morale bonus on attack rolls, saving throws, and skill checks."
+        },
+        {
+          "level": 18,
+          "name": "Ferocious Phantom",
+          "description": "At 18th level, when using usurp manifestation the phantom gains DR 10/slashing and spell resistance equal to 11 + the haunted’s spiritualist level (this spell resistance doesn’t apply to spells originating from the spiritualist or from the usurp spell ability)."
+        },
+        {
+          "level": 17,
+          "name": "Usurped Bond",
+          "description": "At 17th level, the haunted’s phantom can use usurp manifestation for a number of rounds per day equal to 3 + double the haunted’s spiritualist level. This ability replaces dual bond."
+        }
+      ],
+      "detected_systems": [
+        "phantom"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:involutionist",
+      "package": "pathfinder-class:spiritualist",
+      "name": "Involutionist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist Involutionist",
+      "replaces_features": [
+        "bonded-manifestation",
+        "detect-undead",
+        "emotional-focus",
+        "phantom",
+        "spellcasting",
+        "uses-of-calm-spirit"
+      ],
+      "removed_features": [
+        "bonded-manifestation",
+        "detect-undead",
+        "emotional-focus",
+        "phantom",
+        "spellcasting",
+        "uses-of-calm-spirit"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Involutionist",
+          "description": "Source Adventurer's Guide pg. 167"
+        },
+        {
+          "level": 1,
+          "name": "Divine Spellcasting",
+          "description": "An involutionist is a divine spellcaster. Her spells use verbal components instead of thought components and somatic components instead of emotional components. An involutionist’s spirit phantom is her conduit to the divine, and it serves as her divine focus; the involutionist must either be within 5 feet on her spirit phantom or absorb her phantom into her consciousness to cast spells that require a divine focus."
+        },
+        {
+          "level": 1,
+          "name": "Spirit Phantom",
+          "description": "An involutionist’s phantom is manifested from her own psyche and invested into the spirit-stuff of the world around her. Rather than an emotional focus, the involutionist selects a spirit from those available to the shaman (Pathfinder RPG Advanced Class Guide 35). A spirit phantom always has good Fortitude and Reflex saves, and it gains a number of ranks equal to the phantom’s Hit Dice in two skills depending on the spirit it represents, as summarized on the table below."
+        },
+        {
+          "level": 1,
+          "name": "SpiritAssociated Skills",
+          "description": "BattleIntimidate and Sense Motive: BonesHeal and Stealth: FlameAcrobatics and Intimidate: HeavensAcrobatics and Fly: LifeDiplomacy and Heal: LoreKnowledge (arcana) and Linguistics: NatureKnowledge (nature) and Survival: StoneAppraise and Knowledge (engineering): WavesDiplomacy and Swim: WindBluff and Sense Motive: When fully manifested, the involutionist’s spirit phantom gains the special ability normally applied to a shaman’s spirit animal. The spirit phantom also gains a single hex from the list of those provided by that spirit. At 7th, 12th, and 17th levels, the spirit phantom gains one additional hex from this list."
+        },
+        {
+          "level": 3,
+          "name": "Spirit Manifestation",
+          "description": "At 3rd level, when an involutionist uses her bonded manifestation ability, she can instead manifest her spirit phantom’s spirit animal special ability and use her spirit phantom’s hexes as if they were her own. Hexes used during this manifestation count toward any limited number of uses per day."
+        },
+        {
+          "level": 5,
+          "name": "Spirit Awareness",
+          "description": "At 5th level, an involutionist gains great insight into the spiritual influence people invest into the world around them. She can cast detect psychic significanceOA as a spell-like ability at will and analyze auraOA once per day as a spell-like ability (CL = her character level)."
+        },
+        {
+          "level": 11,
+          "name": "Involuate",
+          "description": "At 11th level, an involutionist gains the ability to awaken the latent spiritual energy in inanimate objects. She gains the ability to cast animate objects as a spell-like ability once per day (CL = her character level). At 15th and 19th levels, she can use this ability one additional time per day."
+        }
+      ],
+      "detected_systems": [
+        "phantom"
+      ]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:spiritualist:martial-spiritualist",
+      "package": "pathfinder-class:spiritualist",
+      "name": "Martial Spiritualist",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/martial-spiritualist",
+      "replaces_features": [
+        "bonded-manifestation",
+        "but-may-be-altered-or-replaced-by-other-archetypes",
+        "dual-bond",
+        "proficiencies"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "bonded manifestation",
+        "dual bond",
+        "but may be altered or replaced by other archetypes"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Martial spiritualists are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis alters proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A martial spiritualist may combine combat spheres and talents to create powerful martial techniques. Martial spiritualists are considered Proficient practitioners and use Wisdom as their practitioner modifier. If the martial spiritualist possesses an archetype that changes the ability score used for her casting or that grants spherecasting, she may use that ability score instead of her Wisdom as her practitioner modifier. For example, a fractured mind spiritualist (Occult Adventures pg. 109) could use Charisma as her practitioner modifier instead of her Wisdom."
+        },
+        {
+          "level": 3,
+          "name": "Learned Hand",
+          "description": "From the whispers of the spirits and remnants of past emotion and memory, the martial spiritualist learns to better harness their physical potentials. At 3rd level and every 5 levels thereafter, the martial spiritualist chooses one combat sphere. The spiritualist gains that sphere as a bonus combat sphere and uses her spiritualist level in place of her base attack bonus for the purposes of that sphere’s effects, but not for attacks made with talents from that sphere. This stacks normally with base attack bonus gained from other sources. If the martial spiritualist chooses a combat sphere she has already selected with this class feature, she instead gains a bonus combat talent in that sphere and a +1 bonus to attack rolls made with attack actions granted by that sphere and to the DCs of that combat sphere’s effects (such as the attack roll made with a brutal strike or the DC of an (exertion) talent). These benefits stack. This ability replaces bonded manifestation and dual bond, but may be altered or replaced by other archetypes."
+        },
+        {
+          "level": 2,
+          "name": "Greater Compatibility",
+          "description": "The martial spiritualist may choose to exchange both the combat training class feature granted by this archetype and the magic talents granted by a spiritualist archetype that grants spherecasting (such as the psychomancer archetype). If she does, the martial spiritualist gains the blended training class feature, gaining a combat or magic talent at every class level, and a bonus combat talent or magic talent from the Death, Life, or Mind sphere at 2nd level and every 4 levels thereafter."
+        },
+        {
+          "level": 1,
+          "name": "Note",
+          "description": "Greater compatibility assumes that the martial spiritualist archetype is being combined with the psychomancer archetype (a Mid-Caster gaining 3/4ths of a magic talent every level) to grant a combination of the 15 total magic talents and the 10 total combat talents as 20 blended talents plus 5 thematically appropriate talents. If the martial spiritualist archetype is combined with a spiritualist spherecasting archetype which grants more or less than 3/4ths of a magic talent every level, the resulting blended training, and any additional thematic talents, should be appropriately adjusted."
+        },
+        {
+          "level": 1,
+          "name": "Author's Note",
+          "description": "The author was mistaken when writing this archetype and believed that the psychomancer spiritualist did not alter proficiencies. Martial spiritualist and psychomancer should be considered compatible archetypes for the purposes of combining together despite the proficiency change overlap."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:necrologist",
+      "package": "pathfinder-class:spiritualist",
+      "name": "Necrologist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist Necrologist",
+      "replaces_features": [
+        "alignment",
+        "bonded-manifestation",
+        "devotion",
+        "greater-spiritual-interference",
+        "share-consciousness",
+        "share-spells",
+        "slam-damage-increase",
+        "spiritual-interference"
+      ],
+      "removed_features": [
+        "alignment",
+        "bonded-manifestation",
+        "devotion",
+        "greater-spiritual-interference",
+        "share-consciousness",
+        "share-spells",
+        "slam-damage-increase",
+        "spiritual-interference"
+      ],
+      "removed_feature_clauses": [
+        "slam damage increase gained at 5th level",
+        "necrologist’s slam damage increase gained at 13th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Necrologist",
+          "description": "Source Horror Adventures pg. 69"
+        },
+        {
+          "level": 1,
+          "name": "Alignment",
+          "description": "Only an evil character can contact a malevolent undead phantom and take the necrologist archetype. If a necrologist becomes nonevil, she can continue to take spiritualist levels, but her phantom ceases to give her benefits while in her consciousness, she can’t use bonded manifestation, and if she manifests the phantom, it is no longer loyal to her and likely attacks her and her allies.\n\nThis alters the spiritualist’s alignment."
+        },
+        {
+          "level": 1,
+          "name": "Spells",
+          "description": "A necrologist adds the following spells to her class list: 1st—hide from undead; 2nd—ghostly disguiseUM, haunting mistsUM; 3rd—haunting choirUM; 4th—lesser age resistanceUM; 5th—age resistanceUM; 6th—greater age resistance UM, create greater undead."
+        },
+        {
+          "level": 1,
+          "name": "Shared Conciousness",
+          "description": "A necrologist gains a bonus on saving throws against death effects, energy drain, and negative energy rather than against mind-affecting effects (and can shunt such an effect onto the phantom) when her undead phantom is contained within her consciousness."
+        },
+        {
+          "level": 1,
+          "name": "Undead Phantom",
+          "description": "A necrologist’s phantom is undead, rather than an outsider. It has normal undead immunities and no Constitution score; uses d8 Hit Dice, each of which is modified by the phantom’s Charisma modifier as normal; and gains the abilities below at the levels indicated. An undead phantom otherwise follows the standard phantom rules (for instance, its base attack bonus and skills don’t change to match undead)."
+        },
+        {
+          "level": 1,
+          "name": "Cling of the Grave",
+          "description": "An undead phantom can hold the charge on a touch spell of the necromancy school up to a maximum of 1 round per spiritualist level of the necrologist."
+        },
+        {
+          "level": 5,
+          "name": "Unnatural Aura",
+          "description": "At 5th level, animals do not willingly approach within 30 feet of a fully manifested undead phantom unless the necrologist succeeds at a Handle Animal, Ride, or wild empathy check (DC = 10 + 1/2 the necrologist’s spiritualist level + the phantom’s Charisma modifier).\n\nThis replaces the slam damage increase gained at 5th level."
+        },
+        {
+          "level": 6,
+          "name": "Channel Resistance",
+          "description": "At 6th level, a necrologist’s phantom gains a +4 bonus on saving throws to resist the effects of channel energy."
+        },
+        {
+          "level": 13,
+          "name": "Lifedrinker",
+          "description": "At 13th level, when a necrologist’s phantom reduces a creature to fewer than 0 hit points with an attack or spell, the necrologist can expend one use of her channel energy ability as a swift action to affect the same target with death knell. If the target fails its save, the necrologist can choose either herself or her phantom to gain the benefit of the spell.\n\nThis replaces the necrologist’s slam damage increase gained at 13th level."
+        },
+        {
+          "level": 1,
+          "name": "Bonded Manifestation",
+          "description": "A necrologist cannot use ectoplasmic bonded manifestation."
+        },
+        {
+          "level": 4,
+          "name": "Channel Energy",
+          "description": "At 4th level, a necrologist gains the ability to channel negative energy, with an effective cleric level equal to her spiritualist level – 3. She can use this ability a number of times per day equal to 1 + her Charisma modifier."
+        },
+        {
+          "level": 12,
+          "name": "Necropsychic Conduit",
+          "description": "At 12th level, a necrologist can cast psychic spells as if she had the Thanatopic SpellUM and Threnodic SpellUM metamagic feats, using her undead phantom as a conduit to pierce the defenses of undead creatures. If her phantom has been banished or is not within 30 feet of her when she casts the spells, however, these feats have no effect."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:onmyoji",
+      "package": "pathfinder-class:spiritualist",
+      "name": "Onmyoji",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist Onmyoji",
+      "replaces_features": [
+        "fused-consciousness",
+        "greater-spiritual-interference",
+        "shared-consciousness",
+        "spellcasting",
+        "spiritual-interference"
+      ],
+      "removed_features": [
+        "fused-consciousness",
+        "greater-spiritual-interference",
+        "shared-consciousness",
+        "spellcasting",
+        "spiritual-interference"
+      ],
+      "removed_feature_clauses": [
+        "shared consciousness",
+        "fused consciousness",
+        "spiritual interference",
+        "greater spiritual interference"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Onmyoji",
+          "description": "Source Occult Adventures pg. 111"
+        },
+        {
+          "level": 1,
+          "name": "Divine Spellcasting",
+          "description": "An onmyoji’s spellcasting ability comes from divine rather than psychic power. As a divine caster, the onmyoji’s spells use verbal components instead of thought components, and somatic components instead of emotional components, and she uses an ofuda as a divine focus. Ofudas are scrolls with holy writings written on parchment, cloth, or wood (having the same cost as a wooden holy symbol) or metal (having the same cost as a silver holy symbol). This ability alters spellcasting."
+        },
+        {
+          "level": 6,
+          "name": "Spiritual Resistance",
+          "description": "An onmyoji’s phantom provides her with protection from supernatural forces. While the phantom is confined within the onmyoji’s consciousness (not stranded on the Ethereal Plane or fully manifested), it grants her a +2 bonus on saving throws against the spell-like and supernatural abilities of fey, outsiders, and incorporeal undead. At 6th level and every 6 levels thereafter, this bonus increases by 1 (to a maximum of +5 at 18th level). This ability replaces shared consciousness and fused consciousness."
+        },
+        {
+          "level": 4,
+          "name": "Divine Teachings",
+          "description": "An onmyoji gains the ability to call upon her phantom to help her cast spells she normally couldn’t. At 4th level and every 3 levels thereafter, an onmyoji can choose a single spell from the cleric spell list with a spell level she is currently able to cast, and add that spell to her list of spells known, at the same spell level as it appears on the cleric spell list. Because the onmyoji relies on her phantom’s influence in order to cast these spells, she can cast spells added in this way only while the phantom is confined within her consciousness (not stranded on the Ethereal Plane or fully manifested). This ability replaces spiritual interference and greater spiritual interference."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:phantom-blade",
+      "package": "pathfinder-class:spiritualist",
+      "name": "Phantom Blade",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist Phantom Blade",
+      "replaces_features": [
+        "armor-proficiencies",
+        "bonded-manifestation",
+        "bonded-senses",
+        "dual-bond",
+        "empowered-consciousness",
+        "etheric-tether",
+        "fused-consciousness",
+        "greater-spiritual-interference",
+        "phantom",
+        "phantom-recall",
+        "shared-consciousness",
+        "spiritual-bond",
+        "spiritual-interference",
+        "weapon"
+      ],
+      "removed_features": [
+        "armor-proficiencies",
+        "bonded-manifestation",
+        "bonded-senses",
+        "dual-bond",
+        "empowered-consciousness",
+        "etheric-tether",
+        "fused-consciousness",
+        "greater-spiritual-interference",
+        "phantom",
+        "phantom-recall",
+        "shared-consciousness",
+        "spiritual-bond",
+        "spiritual-interference",
+        "weapon"
+      ],
+      "removed_feature_clauses": [
+        "phantom",
+        "phantom recall",
+        "spiritual bond",
+        "dual bond",
+        "etheric tether",
+        "shared consciousness",
+        "fused consciousness",
+        "empowered consciousness",
+        "bonded senses",
+        "bonded manifestation"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Phantom Blade",
+          "description": "Source Psychic Anthology pg. 4"
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "A phantom blade is proficient with all simple and martial weapons. She is also proficient with light and medium armor. This ability alters the spiritualist’s weapon and armor proficiency."
+        },
+        {
+          "level": 1,
+          "name": "Phantom Weapon",
+          "description": "A phantom blade begins play with an ectoplasmic sentient weapon known as a phantom weapon whose weapon type is chosen by the phantom blade. The weapon type must be one with which the phantom blade is proficient. A phantom weapon functions similarly to the black blade of the bladebound magus archetype (Pathfinder RPG Ultimate Magic 47) except as noted on the Phantom Weapon Progression table on page 6 and in the descriptions below. A phantom blade with this class feature can’t have a phantom of any kind, even from another class.\n\nThis replaces phantom, phantom recall, spiritual bond, and dual bond."
+        },
+        {
+          "level": 1,
+          "name": "Spell Combat",
+          "description": "A phantom blade can cast spells and wield her phantom weapon at the same time. This functions as the magus’s spell combat class ability (Ultimate Magic 10).\n\nThis replaces etheric tether, shared consciousness, fused consciousness, and empowered consciousness."
+        },
+        {
+          "level": 2,
+          "name": "Spellstrike",
+          "description": "At 2nd level, a phantom blade can deliver spells through her phantom weapon. This functions like the magus’s spellstrike class ability (Ultimate Magic 10) except the only weapon the spiritualist can use to deliver spells is her phantom weapon.\n\nThis replaces bonded senses."
+        },
+        {
+          "level": 3,
+          "name": "Spirit of War",
+          "description": "At 3rd level and every 5 spiritualist levels thereafter, a phantom blade gains a bonus combat feat. The spiritualist must meet the prerequisites for these feats, but she treats her spiritualist level as her base attack bonus (in addition to base attack bonuses gained from other classes and racial Hit Dice) for the purpose of qualifying for these feats. The phantom blade also treats her spiritualist level as her fighter level for the purpose of selecting feats with a minimum number of fighter levels as a prerequisite.\n\nThis replaces bonded manifestation."
+        },
+        {
+          "level": 4,
+          "name": "Etheric Focus",
+          "description": "At 4th level, the phantom blade can use her phantom weapon to aid her in casting spells with thought components. She can center herself (Pathfinder RPG Occult Adventures 144) as a swift action. At 12th level, the spiritualist can center herself as a free action."
+        },
+        {
+          "level": 1,
+          "name": "Phantom Weapon Ability Descriptions",
+          "description": "A phantom weapon has special abilities (or imparts abilities to its wielder) depending on the wielder’s spiritualist level. These abilities are cumulative. A phantom weapon normally refuses to use any of its abilities when wielded by anyone other than its phantom blade, and acts as an incorporeal masterwork weapon of its type."
+        },
+        {
+          "level": 1,
+          "name": "Alertness",
+          "description": "While the phantom blade is wielding or harboring her phantom weapon, she gains the Alertness feat."
+        },
+        {
+          "level": 1,
+          "name": "Phantom Touch",
+          "description": "A phantom weapon is always treated as a ghost touch weapon, regardless of weapon type or any other abilities modifying the weapon. If the phantom weapon would ever be destroyed, it is instead harbored in the spiritualist’s consciousness for 24 hours."
+        },
+        {
+          "level": 1,
+          "name": "Telepathy",
+          "description": "While the phantom blade is wielding or carrying her phantom weapon, she can communicate telepathically with the weapon."
+        },
+        {
+          "level": 1,
+          "name": "Weapon of the Mind",
+          "description": "The phantom blade can harbor her phantom weapon in her consciousness or manifest it in its ectoplasmic form. The phantom blade can manifest the weapon through a ritual that takes 1 minute to perform. Harboring the phantom weapon requires a full-round action. While the weapon is harbored, the phantom blade gains Improved Unarmed Strike as a bonus feat and treats her unarmed strike damage as a monk of her level – 2. If the phantom blade already has this feat, she instead gains Weapon Focus (unarmed strike). The phantom blade’s unarmed strikes gain the phantom weapon’s enhancement bonus and other abilities when the weapon is harbored. The phantom weapon also recovers a number of hit points equal to its ego score every hour that it is harbored."
+        },
+        {
+          "level": 3,
+          "name": "Quick Manifest",
+          "description": "At 3rd level, the phantom blade can manifest her phantom weapon as a swift action."
+        },
+        {
+          "level": 5,
+          "name": "Ectoplasmic Pool",
+          "description": "At 5th level, the phantom blade gains a reservoir of excess ethereal energy and ectoplasm that she can draw upon to improve her phantom weapon. This pool has a number of ectoplasmic points equal to half her spiritualist level + her Wisdom modifier. The pool refreshes once per day when the spiritualist refreshes her daily spells."
+        },
+        {
+          "level": 7,
+          "name": "Reshape",
+          "description": "At 7th level, a phantom blade can change the weapon type of her phantom weapon when she refreshes her daily spells."
+        },
+        {
+          "level": 9,
+          "name": "Phantom Tether",
+          "description": "At 9th level, a phantom blade can spend 1 ectoplasmic point as a swift action to instantly recall her phantom weapon to her hand or consciousness from as far as 1 mile away."
+        },
+        {
+          "level": 13,
+          "name": "Quick Reshape",
+          "description": "At 13th level, a phantom blade can spend 1 ectoplasmic point to reshape her phantom weapon as a full-round action, 2 ectoplasmic points to reshape her weapon as a standard action, 3 ectoplasmic points to reshape her weapon as a move action, and 4 ectoplasmic points to reshape her weapon as a swift action."
+        },
+        {
+          "level": 17,
+          "name": "Etheric Strikes",
+          "description": "At 17th level, a phantom blade can spend 1 ectoplasmic point as a swift action to allow her phantom weapon to ignore a number of points of damage reduction equal to twice her Wisdom modifier or twice the weapon’s Charisma modifier, whichever is higher."
+        },
+        {
+          "level": 19,
+          "name": "Soul Eater",
+          "description": "At 19th level, the phantom blade and her weapon can feast on the energy of departing souls. Each time she kills a living or incorporeal creature with her phantom weapon, she can pick one of the following effects: she gains a +2 bonus on attack and damage rolls for 1 round, she recovers one 1st- or 2nd-level spell slot, or she gains a number of temporary hit points equal to the phantom weapon’s ego (these temporary hit points last until lost or 1 minute, whichever is shorter). The creature killed must have a number of Hit Dice equal to or greater than half the phantom blade’s spiritualist level for this to occur. Spiritualist Class LevelEnhancement BonusChaInt/WisEgoSpecial"
+        }
+      ],
+      "detected_systems": [
+        "phantom"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:plague-eater",
+      "package": "pathfinder-class:spiritualist",
+      "name": "Plague Eater",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist Plague Eater",
+      "replaces_features": [
+        "call-spirit",
+        "calm-spirit",
+        "detect-undead",
+        "fused-consciousness",
+        "greater-spiritual-interference",
+        "phantom",
+        "see-invisibility",
+        "shared-consciousness",
+        "spiritual-interference"
+      ],
+      "removed_features": [
+        "call-spirit",
+        "calm-spirit",
+        "detect-undead",
+        "fused-consciousness",
+        "greater-spiritual-interference",
+        "phantom",
+        "see-invisibility",
+        "shared-consciousness",
+        "spiritual-interference"
+      ],
+      "removed_feature_clauses": [
+        "detect undead",
+        "calm spirit",
+        "fused consciousness",
+        "call spirit"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Plague Eater",
+          "description": "Source Heroes of Golarion pg. 12"
+        },
+        {
+          "level": 1,
+          "name": "Plague Ward",
+          "description": "A plague eater does not bond with a single spirit, but rather a group of spirits gathered around her psychic presence. The spiritualist can meditate on an emotional focus during her 8-hour rest and bond with a spirit from her community with a matching focus. A spirit associated with the chosen emotion links with the spiritualist and acts as her phantom until the plague eater changes her emotional focus with another 8-hour rest. The changing roster of spirits dilutes the bond between the plague eater and her community, and the manifesting phantom has a level 1 lower than the spiritualist’s level (minimum level 1)."
+        },
+        {
+          "level": 4,
+          "name": "Spiritual Inoculation",
+          "description": "At 4th level, whenever a plague eater is within reach of her ectoplasmic manifested phantom, she gains a +4 circumstance bonus on saving throws against disease.\n\nThis alters spiritual interference."
+        },
+        {
+          "level": 5,
+          "name": "Remove Sickness",
+          "description": "At 5th level, a plague eater’s understanding of disease grows to the point where she can cast remove sickness at will as a spell-like ability with a caster level equal to her spiritualist level.\n\nThis replaces detect undead."
+        },
+        {
+          "level": 7,
+          "name": "Disfiguring Touch",
+          "description": "At 7th level, a plague eater can inflict upon others the superficial disfigurement associated with plague by casting disfiguring touch as a spell-like ability once per day. At 11th level and every 4 levels thereafter, the spiritualist can use this ability an additional time per day (to a maximum of four times per day at 19th level).\n\nThis replaces calm spirit."
+        },
+        {
+          "level": 9,
+          "name": "Remove Disease",
+          "description": "At 9th level, a plague eater gains the ability to purge disease from herself and others. She gains the ability to cast remove disease as a spell-like ability three times per day."
+        },
+        {
+          "level": 10,
+          "name": "This ability replaces see invisibility",
+          "description": "Fused Well-Being (Su): At 10th level, a plague eater always gains the benefits of bonded senses when her phantom is manifested. She also gains the skill ranks and bonus to resist disease granted by the spirit’s emotional focus, even when her phantom is manifested.\n\nThis replaces fused consciousness."
+        },
+        {
+          "level": 12,
+          "name": "Greater Spiritual Inoculation",
+          "description": "At 12th level, the plague eater becomes immune to disease, including supernatural and magical diseases. In addition, whenever a manifested phantom is in ectoplasmic form, each of the plague eater’s allies within the phantom’s reach gains a +4 circumstance bonus on saving throws against disease."
+        },
+        {
+          "level": 16,
+          "name": "Withdraw Affliction",
+          "description": "At 16th level, a plague eater can reach into a body, remove an affliction directly from the flesh, and use the diseased matter as a weapon. She can cast withdraw affliction once per day as a spell-like ability with a caster level equal to her spiritualist level.\n\nThis replaces call spirit."
+        }
+      ],
+      "detected_systems": [
+        "phantom"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:priest-of-the-fallen",
+      "package": "pathfinder-class:spiritualist",
+      "name": "Priest of the Fallen",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist Priest of the Fallen",
+      "replaces_features": [
+        "bonded-manifestation",
+        "dual-bond",
+        "empowered-consciousness",
+        "fused-consciouness",
+        "phantom",
+        "phantom-recall",
+        "shared-consciousness"
+      ],
+      "removed_features": [
+        "bonded-manifestation",
+        "dual-bond",
+        "empowered-consciousness",
+        "fused-consciouness",
+        "phantom",
+        "phantom-recall",
+        "shared-consciousness"
+      ],
+      "removed_feature_clauses": [
+        "bonded manifestation",
+        "phantom recall",
+        "dual bond"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Priest of the Fallen",
+          "description": "Source Heroes of Golarion pg. 17"
+        },
+        {
+          "level": 1,
+          "name": "Mythmaker",
+          "description": "A priest of the fallen can channel many different hero-god phantoms, though only one at a time. These spirits will not suffer being confined in a mortal’s consciousness and must be manifested in ectoplasmic or incorporeal form or they return to the Ethereal Plane. They each have an emotional focus depending on their personality and retain some of their hero-god powers, determined by their mythic archetype. A priest of the fallen can channel a hero-god phantom with a ritual that takes 1 minute to perform. A priest of the fallen can channel only one herogod phantom per 24 hours, but once channeled, a hero-god phantom remains until a new one is channeled."
+        },
+        {
+          "level": 12,
+          "name": "Archmage",
+          "description": "The phantom gains magic missile and sleep as spell-like abilities. It can use each spell-like ability a number of times per day equal to its Hit Dice, which it uses in place of a caster level. At 12th level, it can also cast fireball and hold person each once per day."
+        },
+        {
+          "level": 12,
+          "name": "Champion",
+          "description": "The phantom gains Weapon Focus (slam) as a bonus feat. At 12th level, it gains Greater Weapon Focus (slam) and Weapon Specialization (slam) as bonus feats."
+        },
+        {
+          "level": 12,
+          "name": "Guardian",
+          "description": "The phantom gains a +2 natural armor bonus when it manifests in its ectoplasmic form, and a +2 deflection bonus to AC when it manifests in its incorporeal form. At 12th level, the phantom increases its maximum hit points by twice its number of Hit Dice."
+        },
+        {
+          "level": 12,
+          "name": "Hierophant",
+          "description": "The phantom gains bane and bless as spell-like abilities. It can use each spell-like ability a number of times per day equal to its Hit Dice, which it uses in place of a caster level. At 12th level, it can also cast prayer and searing light each once per day."
+        },
+        {
+          "level": 12,
+          "name": "Marshal",
+          "description": "The phantom can fill its allies with its triumphant spirit as a standard action, granting them a +1 morale bonus on saving throws against charm and fear effects and a +1 competence bonus on attack and weapon damage rolls for a number of rounds per day equal to 2 + its Charisma modifier. These rounds need not be consecutive. At 12th level, if the phantom is hit by an attack of opportunity, it can use an immediate action to allow an ally to make an attack of opportunity against the creature that attacked the phantom if it’s within the ally’s melee reach."
+        },
+        {
+          "level": 12,
+          "name": "Trickster",
+          "description": "The phantom gains the sneak attack rogue class feature as a rogue of a level equal to the phantom’s Hit Dice. It can use the sneak attack ability a number of times per day equal to its Dexterity modifier (minimum 1). At 12th level, whenever the phantom is in darkness or dim light, it can move at full speed without taking a penalty on Stealth checks.\n\nThis alters phantom and replaces shared consciousness."
+        },
+        {
+          "level": 3,
+          "name": "Channel Energy",
+          "description": "At 3rd level, a priest of the fallen can channel her phantom’s divine energy. This functions as the cleric’s channel energy class feature, except that the amount of damage dealt or hit points restored is equal to 1d6 points plus an additional 1d6 points for every 2 spiritualist levels beyond 3rd. The priest of the fallen decides to channel positive or negative energy based on her alignment. A neutral priest of the fallen can channel either positive or negative energy, but once this choice is made, it cannot be changed. She can use this ability a number of times per day equal to her Charisma modifier (minimum 1).\n\nThis replaces bonded manifestation."
+        },
+        {
+          "level": 6,
+          "name": "Phantom Call",
+          "description": "At 6th level, once per day, a priest of the fallen can summon a fully manifested hero-god phantom from the Ethereal Plane as a standard action. If she already has a hero-god phantom manifested, that phantom vanishes back to the Ethereal Plane.\n\nThis replaces phantom recall."
+        },
+        {
+          "level": 10,
+          "name": "Fused Consciousness",
+          "description": "At 10th level, this ability functions as usual, except the phantom retreats to the Ethereal Plane rather than the priest’s consciousness.\n\nThis alters fused consciousness."
+        },
+        {
+          "level": 17,
+          "name": "Masterful Faith",
+          "description": "At 17th level, a priest of the fallen chooses any two cleric domains and receives their full benefits, treating her spiritualist level as her cleric level. She adds the domain spells to her spells known.\n\nThis replaces dual bond."
+        },
+        {
+          "level": 20,
+          "name": "True Legend",
+          "description": "At 20th level, a priest of the fallen is strong enough to confine a phantom in her consciousness as a standard action. On the start of her following turn, she gains access to all standard spiritualist abilities involving a confined phantom. She can confine her phantom for a number of rounds per day equal to 4 + her Wisdom modifier.\n\nThis alters empowered consciousness."
+        }
+      ],
+      "detected_systems": [
+        "phantom"
+      ]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:spiritualist:psychomancer",
+      "package": "pathfinder-class:spiritualist",
+      "name": "Psychomancer",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/psychomancer",
+      "replaces_features": [
+        "armor-proficiencies",
+        "call-spirits",
+        "calm-spirits",
+        "detect-undead",
+        "see-invisible",
+        "spellcasting",
+        "weapon"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "spells class feature",
+        "calm spirits",
+        "detect undead",
+        "see invisible",
+        "call spirits"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiencies",
+          "description": "The psychomancer is proficient with simple weapons and light armor only.\n\nThis alters weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The psychomancer may combine spheres and talents to create magical effects. The psychomancer is considered a Mid-Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the spells class feature."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "The psychomancer gains a small reservoir of energy she can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to her class level + her casting ability modifier. This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Magic Talents",
+          "description": "A psychomancer gains 3/4ths of a magic talent every level (the same progression as she gains caster levels)."
+        },
+        {
+          "level": 1,
+          "name": "Spirit Magic",
+          "description": "At 1st level, the psychomancer begins her quest to free her own spirit. She does so by choosing to specialize in one of three forms of magic. The psychomancer chooses either the Death, Life, or Mind sphere as her spirit sphere. She gains her spirit sphere as a bonus magic talent (or a talent from it if she possesses the base sphere already), and uses her class level as her caster level with that sphere. This stacks normally with caster levels gained from other sources. Once chosen, this decision can not be changed.\n\nThis replaces calm spirits."
+        },
+        {
+          "level": 5,
+          "name": "Spirit Sight",
+          "description": "At 5th level, she gains blindsight to a range of 10 feet. This ability only allows her to detect living creatures and undead creatures. This sight also tells her whether a creature is living or undead. Constructs and other creatures that are neither living nor undead cannot be seen with this ability. The range of this ability increases by 5 feet at 7th level, and by an additional 5 feet for every four levels beyond 7th to a maximum of 30 feet at 19th level. As a move action, she may double the range of her spirit sense for 1 round.\n\nThis replaces detect undead."
+        },
+        {
+          "level": 9,
+          "name": "Spirit Walk",
+          "description": "At 9th level, the psychomancer gains the Project Spirit advanced talent of the Death sphere. When she uses this talent, she may use her class level as her caster level if it is higher. The psychomancer’s phantom must remain within range of either her body or her projected spirit. If the phantom returns to the psychomancer’s consciousness, the psychomancer’s projected spirit gains the benefits.\n\nThis replaces see invisible."
+        },
+        {
+          "level": 16,
+          "name": "Spirit Form",
+          "description": "At 16th level, the psychomancer becomes more adept at projecting her spirit. While she is spirit walking, the psychomancer can take on an incorporeal or ectoplasmic form just as her phantom can. While ectoplasmic, she gains the same damage reduction a phantom would. Changing from incorporeal to ectoplasmic form or the reverse requires a full-round action.\n\nThis replaces call spirits."
+        },
+        {
+          "level": 1,
+          "name": "Archetypes of Power",
+          "description": "When a person lives with a spirit, they become acutely aware of their own essence, just beneath the surface of the skin. The psychomancer is interested not only with his bond to his spirit, but his own spiritual evolution, and seeks to unlock his soul from the prison of his flesh."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:quintessentialist",
+      "package": "pathfinder-class:spiritualist",
+      "name": "Quintessentialist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist Quintessentialist",
+      "replaces_features": [
+        "phantom",
+        "spellcasting"
+      ],
+      "removed_features": [
+        "phantom",
+        "spellcasting"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Quintessentialist",
+          "description": "Source Distant Realms pg. 53"
+        },
+        {
+          "level": 1,
+          "name": "Unfocused Spellcasting",
+          "description": "A quintessentialist’s sheared mind has difficulty focusing on even the simplest spells. All of her spells have a minimum casting time of 1 round, even if casting a spell would normally take less time, such as a standard action."
+        },
+        {
+          "level": 1,
+          "name": "Exemplar",
+          "description": "Instead of bonding to the phantom of a dead soul, a quintessentialist forges her best qualities into a spiritual aspect called an exemplar, which resides in her subconscious mind at all times rather than on the Ethereal Plane. An exemplar uses the quintessentialist’s ability scores when fully manifested rather than those of a standard phantom, but otherwise advances as a phantom. The exemplar can cast any of the spiritualist’s spells while fully manifested, sharing the same spells known and spell slots, and does not suffer from the quintessentialist’s unfocused spellcasting ability."
+        }
+      ],
+      "detected_systems": [
+        "phantom"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:scourge",
+      "package": "pathfinder-class:spiritualist",
+      "name": "Scourge",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist Scourge",
+      "replaces_features": [
+        "calm-spirit",
+        "devotion",
+        "greater-spiritual-interference",
+        "spiritual-interference"
+      ],
+      "removed_features": [
+        "calm-spirit",
+        "devotion",
+        "greater-spiritual-interference",
+        "spiritual-interference"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Scourge",
+          "description": "Source Haunted Heroes Handbook pg. 22"
+        },
+        {
+          "level": 4,
+          "name": "Spell Scourge",
+          "description": "At 4th level, when a scourge’s phantom damages a creature, it causes severe pain, requiring that creature to succeed at a concentration check (DC = 20 + spell level) to use spells, spell-like abilities, and other abilities that require concentration for 1 round. The phantom gains a +2 bonus on attack and damage rolls when making attacks of opportunity. Any creature threatened by the scourge’s phantom takes a –2 penalty on concentration checks."
+        },
+        {
+          "level": 6,
+          "name": "Endure Torment",
+          "description": "At 6th level, a scourge’s phantom gains immunity to pain effects and gains a +4 bonus on saving throws against effects that could cause it to become staggered or stunned."
+        },
+        {
+          "level": 7,
+          "name": "Inflict Pain",
+          "description": "At 7th level, a scourge can use inflict painOA as a spell-like ability once per day, plus one additional use per day for every 4 spiritualist levels beyond 7th. If her phantom is fully manifested, it can also use this ability, though doing so takes the phantom a full-round action, and it still counts against the scourge’s daily uses of this ability."
+        },
+        {
+          "level": 12,
+          "name": "Ectoplasmic Swarm",
+          "description": "At 12th level, as a standard action, a scourge with a phantom manifested in ectoplasmic form can command it to break apart in a gruesome display of gore and agony, transforming it into a swarm of Diminutive ectoplasmic organs and viscera. The phantom gains the swarm subtype, dealing its unmodified slam damage die as damage for its swarm attack. Its distraction DC is equal to 10 + 1/2 the phantom’s Hit Dice + its Constitution modifier. In this form, the phantom is too diffuse to use inflict painOA or any of its abilities from emotional focus (even passive abilities)."
+        }
+      ],
+      "detected_systems": [
+        "phantom"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:seeker-of-enlightenment",
+      "package": "pathfinder-class:spiritualist",
+      "name": "Seeker of Enlightenment",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist Seeker of Enlightenment",
+      "replaces_features": [
+        "call-spirit",
+        "calm-spirit",
+        "detect-undead",
+        "fused-consciousness",
+        "see-invisibility",
+        "shared-consciousness"
+      ],
+      "removed_features": [
+        "call-spirit",
+        "calm-spirit",
+        "detect-undead",
+        "fused-consciousness",
+        "see-invisibility",
+        "shared-consciousness"
+      ],
+      "removed_feature_clauses": [
+        "shared consciousness",
+        "detect undead",
+        "calm spirit",
+        "see invisibility",
+        "fused consciousness",
+        "call spirit"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Seeker of Enlightenment",
+          "description": "Source Disciple's Doctrine pg. 22"
+        },
+        {
+          "level": 12,
+          "name": "Echoes of Expertise",
+          "description": "A seeker of enlightenment gains a bonus equal to her spiritualist level on checks attempted with the two skills determined by her phantom’s emotional focus. When the phantom is confined to the seeker of enlightenment’s consciousness, it grants a +2 bonus on saving throws against mind-affecting effects; at 12th level, this bonus increases to +4. Once per day as a free action, the seeker of enlightenment can attempt a check with any Knowledge skill, including one in which she is not trained, and add her spiritualist level as a bonus on the check.\n\nThis replaces shared consciousness."
+        },
+        {
+          "level": 5,
+          "name": "Words of the Past",
+          "description": "At 5th level, a seeker of enlightenment’s connection with her past lives becomes so strong that she can cast comprehend languages at will as a spell-like ability, with a caster level equal to her spiritualist level.\n\nThis replaces detect undead."
+        },
+        {
+          "level": 7,
+          "name": "Karmic Insight",
+          "description": "At 7th level, a seeker of enlightenment gains the ability to understand which actions will push her toward ultimate understanding. She can cast augury as a spell-like ability once per day. At 11th level and every 4 levels thereafter, she can use this ability an additional time per day (to a maximum of four times per day at 19th level).\n\nThis replaces calm spirit."
+        },
+        {
+          "level": 9,
+          "name": "Pinpoint Influence",
+          "description": "At 9th level, a seeker of enlightenment gains the ability to track objects that are important to her goal of enlightenment. She can cast locate object as a spell-like ability once per day, with a duration of 10 minutes.\n\nThis replaces see invisibility."
+        },
+        {
+          "level": 10,
+          "name": "Echoes of Mastery",
+          "description": "At 10th level, a seeker of enlightenment gains the bonus on saving throws from echoes of expertise even when her phantom is manifested. Additionally, once per day, she can take 20 on any Knowledge check, including one in which she is not trained.\n\nThis replaces fused consciousness."
+        },
+        {
+          "level": 16,
+          "name": "Knowledge of the Ancestors",
+          "description": "At 16th level, a seeker of enlightenment learns how to tap into the knowledge of her past lives. She can cast legend lore as a spell-like ability once per day.\n\nThis replaces call spirit."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:shadow-caller",
+      "package": "pathfinder-class:spiritualist",
+      "name": "Shadow Caller",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist Shadow Caller",
+      "replaces_features": [
+        "emotional-focus",
+        "empowered-consciousness",
+        "etheric-tether",
+        "fused-consciousness",
+        "phantom",
+        "phantom-recall",
+        "see-invisibility",
+        "shared-consciousness"
+      ],
+      "removed_features": [
+        "emotional-focus",
+        "empowered-consciousness",
+        "etheric-tether",
+        "fused-consciousness",
+        "phantom",
+        "phantom-recall",
+        "see-invisibility",
+        "shared-consciousness"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Shadow Caller",
+          "description": "Source Ultimate Intrigue pg. 50"
+        },
+        {
+          "level": 1,
+          "name": "Shadowcaster",
+          "description": "A shadow caller adds darkness and deeper darkness to their class spell list as 2nd- and 3rd-level spells, respectively. When her shade (see below) inhabits her shadow, the shadow caller’s effective caster level is one higher when she casts all spells with the shadow or darkness descriptor."
+        },
+        {
+          "level": 1,
+          "name": "Shade",
+          "description": "A shadow caller gains a special kind of phantom known as a shade. A shade functions as a phantom, except as noted below. A shade is from the Shadow Plane instead of the Ethereal Plane. A shade is not confined to the shadow caller’s consciousness, but instead inhabits her shadow."
+        },
+        {
+          "level": 1,
+          "name": "Emotionless",
+          "description": "A shadow caller’s shade lacks an emotional focus; it is cold and devoid of all emotions. The shade gains a number of ranks in Intimidate and Stealth equal to its Hit Dice. The shadow caller gains Skill Focus in each of these skills while the shade inhabits her shadow. The shade has good Reflex and Will saves, gains Lightning Reflexes as a bonus feat, and gains the following abilities."
+        },
+        {
+          "level": 1,
+          "name": "Weakening Touch",
+          "description": "A shade’s slam attack causes its victim to take a –2 penalty to Strength for 1 round. As a standard action, a shade in incorporeal form can deliver the penalty as a touch attack. This penalty does not stack with itself. This is a negative energy effect."
+        },
+        {
+          "level": 1,
+          "name": "Shadow Caster",
+          "description": "When the shadow caller reaches 12th level, her shade gains the ability to cast either shadow conjuration or shadow evocation once per day. It uses its Hit Dice as its caster level, and the DC for these spells equals 10 + 1/2 the shade’s Hit Dice + its Charisma modifier. Instead of the normal spell level and percentage of reality for the two spells, the maximum spell level of the duplicated spell is 4th level, and the effects are 40% real. When the shadow caller reaches 18th level, the maximum spell level improves to 6th level and effects are 60% real."
+        },
+        {
+          "level": 1,
+          "name": "Midnight Shroud",
+          "description": "When the shadow caller reaches 17th level, her shade’s umbral shroud also lowers the light level in its range to darkness, regardless of the prevailing conditions; this counts as a 7th-level darkness spell for the purpose of adjudicating light and darkness effects."
+        },
+        {
+          "level": 12,
+          "name": "Inhabit Shadow",
+          "description": "A shade resides within a shadow caller’s own shadow. When the shade is summoned, the shadow caller does not cast a shadow under any circumstances. Creatures that don’t normally cast shadows (such as vampires) cannot be shadow callers. While the shade inhabits its master’s shadow, the shadow caller gains a +4 circumstance bonus on Stealth checks against creatures without darkvision or the see in darkness ability; at 12th level, this bonus increases to +8. Additionally, the shadow caller gains darkvision 60 feet while her shade inhabits her shadow. If the shadow caller already has darkvision, its range increases by 30 feet."
+        },
+        {
+          "level": 1,
+          "name": "Shadow Bound",
+          "description": "A shadow caller’s shade remains stable while adjacent to the shadow caller, or while up to 5 feet away from the shadow caller for every 5 levels the shadow caller possesses. If the shade moves beyond this distance, it is automatically dismissed back to the Shadow Plane (preventing the shade from being summoned back for 24 hours) unless the shadow caller concentrates as per the etheric tether ability. However, if both the shadow caller and shade are in areas of total darkness, the shade can move any distance from the shadow caller. If the shade is beyond its maximum distance and enters an area of dim or brighter illumination, it immediately returns to the Shadow Plane and cannot be summoned for 24 hours."
+        },
+        {
+          "level": 6,
+          "name": "Shadow Jump",
+          "description": "At 6th level, when a shadow caller’s shade inhabits her shadow, she can travel between shadows as per the shadowdancer’s shadow jump ability. Each day, she can travel a total of 40 feet per spiritualist level in this way and, as with a shadowdancer, the distance is rounded to the nearest 10-foot increment."
+        },
+        {
+          "level": 9,
+          "name": "See in Darkness",
+          "description": "At 9th level, a shadow caller can gain the see in darkness universal monster ability as a standard action. She can use this ability for a number of rounds per day equal to her spiritualist level, though these rounds need not be consecutive."
+        },
+        {
+          "level": 10,
+          "name": "Umbral Aura (Su, Sp)",
+          "description": "At 10th level, a shadow caller is wreathed in an aura of darkness while her shade inhabits her shadow, gaining 50% concealment against creatures without darkvision or the see in darkness ability. Additionally, the shadow caller’s square and all adjacent squares are treated as areas of dim illumination while she benefits from this ability; this second effect counts as a 4th-level darkness spell for the purpose of adjudicating light and darkness effects. While her shade inhabits her shadow, the shadow caller can hide in plain sight, even if an observing creature has darkvision or see in darkness."
+        },
+        {
+          "level": 20,
+          "name": "Living Darkness",
+          "description": "At 20th level, a shadow caller becomes a creature of absolute darkness. When using her incorporeal bonded manifestation, she is immune to cold and mind-affecting effects and gains an incorporeal touch attack that she can use as a standard action to deal 20d6 points of negative energy damage. When the shadow caller damages a creature with this ability, she gains 5d6 temporary hit points (Fortitude half; DC = 20 + her Wisdom modifier), so long as she doesn’t already have any temporary hit points gained via this ability). Temporary hit points gained this way disappear after 1 hour."
+        }
+      ],
+      "detected_systems": [
+        "phantom"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:soul-warden",
+      "package": "pathfinder-class:spiritualist",
+      "name": "Soul Warden",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist Soul Warden",
+      "replaces_features": [
+        "bonded-manifestation",
+        "bonded-senses",
+        "dual-bond",
+        "empowered-consciousness",
+        "etheric-tether",
+        "fused-consciousness",
+        "greater-spiritual-interference",
+        "phantom",
+        "phantom-recall",
+        "shared-consciousness",
+        "spiritual-interference"
+      ],
+      "removed_features": [
+        "bonded-manifestation",
+        "bonded-senses",
+        "dual-bond",
+        "empowered-consciousness",
+        "etheric-tether",
+        "fused-consciousness",
+        "greater-spiritual-interference",
+        "phantom",
+        "phantom-recall",
+        "shared-consciousness",
+        "spiritual-interference"
+      ],
+      "removed_feature_clauses": [
+        "phantom",
+        "etheric tether",
+        "shared consciousness",
+        "spiritual interference",
+        "fused consciousness",
+        "greater spiritual interference",
+        "bonded manifestation",
+        "bonded manifestation increases",
+        "dual bond",
+        "empowered consciousness"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Soul Warden",
+          "description": "Source Planar Adventures pg. 20"
+        },
+        {
+          "level": 1,
+          "name": "Nosoi Scribe",
+          "description": "At 1st level, a soul warden gains a fledgling nosoi familiar. Treat this as a raven familiar until the soul warden reaches 4th level, at which point it is treated as a nosoi (as though the soul warden had taken the Improved Familiar feat). The familiar uses the soul warden’s spiritualist level as its Hit Dice for the purpose of determining the effects and duration of its haunting melody ability and all other effects related to its HD. At 10th level, the nosoi scribe gains the ability to use its touch the spirit world ability three times per day, instead of once per day. At 12th level, it also gains the Repose domain’s ward against death ability.\n\nThis replaces phantom, etheric tether, shared consciousness, spiritual interference, fused consciousness, and greater spiritual interference."
+        },
+        {
+          "level": 2,
+          "name": "Psychopomp’s Bond",
+          "description": "A soul warden’s bond with her nosoi scribe is stronger than usual for a master and familiar. At 2nd level, she can use bonded senses with her nosoi scribe, and at 6th level, she can use phantom recall to recall her nosoi scribe to her side.\n\nThis alters bonded senses and phantom recall."
+        },
+        {
+          "level": 3,
+          "name": "Warding Vessel",
+          "description": "At 3rd level, a soul warden can allow a spirit, soul, or incorporeal creature to hide inside her. While within the soul warden, the warded creature can communicate with the soul warden, and it can be targeted only by effects that could target a creature possessing another creature’s body. The warded creature has no other influence over the soul warden or her body. If the soul warden is reduced below 0 hit points, the warded creature is expelled.\n\nThis replaces bonded manifestation."
+        },
+        {
+          "level": 8,
+          "name": "Phantom Elegy",
+          "description": "At 8th level, a soul warden’s nosoi scribe learns to sing elegies that build on the soul warden’s conduit to her former phantom. This allows it to create an effect identical to the 7th-level aura ability of an anger, dedication, despair, fear, hatred, jealousy, or zeal phantom, except that the phantom elegy is also a sonic effect and continues only as long as the nosoi scribe sings. Each round of phantom elegy uses 1 round of the nosoi scribe’s haunting melody. At 17th level, the nosoi scribe can blend any two of the phantom aura abilities into a single phantom elegy, although it uses 3 rounds of its haunting melody for each round it does so.\n\nThis replaces bonded manifestation increases and dual bond."
+        },
+        {
+          "level": 20,
+          "name": "Algea Call",
+          "description": "At 20th level, as a standard action once per hour, a soul warden’s nosoi scribe can summon countless other nosoi, which flock together to form an algea. This transformation lasts for 1 minute, after which the nosoi scribe returns unharmed, unless the algea is brought to 0 hit points or killed, in which case the nosoi scribe returns unconscious at 0 hit points. This is a summoning effect.\n\nThis replaces empowered consciousness."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:totem-spiritualist",
+      "package": "pathfinder-class:spiritualist",
+      "name": "Totem Spiritualist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist Totem Spiritualist",
+      "replaces_features": [
+        "dual-bond",
+        "phantom",
+        "see-invisibility",
+        "shared-consiousness"
+      ],
+      "removed_features": [
+        "dual-bond",
+        "phantom",
+        "see-invisibility",
+        "shared-consiousness"
+      ],
+      "removed_feature_clauses": [
+        "dual bond"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Totem Spiritualist",
+          "description": "Source Psychic Anthology pg. 6"
+        },
+        {
+          "level": 1,
+          "name": "Phantom Animal",
+          "description": "A totem spiritualist calls upon spirits of nature known as phantom animals to assist her in her journeys. A phantom animal functions like an animal companion except as noted in the descriptions below."
+        },
+        {
+          "level": 1,
+          "name": "Shared Instincts",
+          "description": "A totem spiritualist doesn’t gain Skill Focus feats while a phantom animal is confined in her consciousness. She instead gains a number of bonus ranks in Knowledge (nature) equal to the phantom animal’s Hit Dice."
+        },
+        {
+          "level": 9,
+          "name": "Animal Senses",
+          "description": "At 9th level, a totem spiritualist shares her phantom animal’s senses. If her phantom animal has any of the following abilities, she gains them whenever the phantom animal is harbored in her consciousness: blindsense, darkvision, low-light vision, and scent."
+        },
+        {
+          "level": 17,
+          "name": "Twin Phantoms",
+          "description": "At 17th level, the totem spiritualist can call upon two of her phantom animals at once. As a standard action, she can manifest a second phantom animal. The phantom animal remains for a number of rounds per day equal to her spiritualist level and can be dismissed as a free action. This duration does not need to be consecutive.\n\nThis replaces dual bond."
+        }
+      ],
+      "detected_systems": [
+        "phantom"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:usher-of-lost-souls",
+      "package": "pathfinder-class:spiritualist",
+      "name": "Usher of Lost Souls",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist Usher of Lost Souls",
+      "replaces_features": [
+        "bonded-senses",
+        "greater-spiritual-interference",
+        "see-invisibility",
+        "spiritual-bond",
+        "spiritual-interference"
+      ],
+      "removed_features": [
+        "bonded-senses",
+        "greater-spiritual-interference",
+        "see-invisibility",
+        "spiritual-bond",
+        "spiritual-interference"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Usher of Lost Souls",
+          "description": "Source Psychic Anthology pg. 7"
+        },
+        {
+          "level": 1,
+          "name": "Etheric Channel",
+          "description": "An usher of lost souls can focus ethereal energies to channel waves of disruption. The spiritualist can channel positive energy a number of times per day equal to 3 + her Charisma modifier (minimum 1). She channels energy like a cleric of her spiritualist level, except the channeled energy can be used only to harm undead or haunts. This otherwise functions as channel energy for the purposes of feats and abilities. The spiritualist does not require a holy symbol to use this ability."
+        },
+        {
+          "level": 2,
+          "name": "Spirit Senses",
+          "description": "At 2nd level, an usher of lost souls gains a bonus equal to half her spiritualist level on Perception checks to detect haunts and incorporeal creatures and on Sense Motive checks to determine whether a creature is possessed, under the effects of an enchantment or curse, or otherwise magically controlled."
+        },
+        {
+          "level": 1,
+          "name": "Disrupting Phantom",
+          "description": "When an usher of lost souls reaches 4th level, her phantom gains the ability to directly harm haunts. The phantom can make an attack while within a haunt’s area against an AC equal to 10 + the haunt’s caster level. On a hit, the phantom deals its slam damage to the haunt; the haunt is immune to critical hits from the phantom. When an usher of lost souls reaches 12th level, her phantom can deal critical hits to a haunt, and the critical threat range for its slam attacks against haunts increases to 19–20."
+        },
+        {
+          "level": 9,
+          "name": "Locate Haunts",
+          "description": "At 9th level, an usher of lost souls can locate inactive haunts. As a standard action, she can enhance her vision to detect haunts within 60 feet of her. A haunt’s area glows with a bright light for an untriggered haunt or dim light for a haunt that is waiting to reset. She can use this ability for 10 minutes per day per spiritualist level. This duration doesn’t need to be consecutive, but it must be spent in 10-minute increments."
+        },
+        {
+          "level": 14,
+          "name": "Disruptive Influence",
+          "description": "At 14th level, the usher of lost souls can put spirits to rest. She can use one of her uses of calm spiritOA to instead cast purge spiritOA as a spell-like ability. She can expend two uses of her etheric channel to cast either of these spells as a spell-like ability."
+        }
+      ],
+      "detected_systems": [
+        "phantom"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:ward-spiritualist",
+      "package": "pathfinder-class:spiritualist",
+      "name": "Ward Spiritualist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist Ward Spiritualist",
+      "replaces_features": [
+        "bonded-senses",
+        "greater-spiritual-interference",
+        "phantom",
+        "phantom-recall",
+        "spellcasting"
+      ],
+      "removed_features": [
+        "bonded-senses",
+        "greater-spiritual-interference",
+        "phantom",
+        "phantom-recall",
+        "spellcasting"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Ward Spiritualist",
+          "description": "Source Wilderness Origins pg. 18"
+        },
+        {
+          "level": 1,
+          "name": "Kami Phantom",
+          "description": "The ward spiritualist’s phantom is less powerful than most, but it has an innate connection to its ward. The ward spiritualist’s phantom is a kami phantom, functioning as normal for a phantom, except that its base attack bonus is equal to three-quarters its Hit Dice (as a rogue) and its Hit Dice are d8s instead of d10s. Additionally, a kami phantom cannot manifest as incorporeal, only ectoplasmic.\n\nThis alters phantom."
+        },
+        {
+          "level": 1,
+          "name": "Ward Implement",
+          "description": "The ward spiritualist gains a single implement school of her choice, as an occultist, along with its resonant focus power and base focus power. The ward spiritualist does not gain additional spells from her ward implement, and it always starts each day with mental focus invested equal to half her class level (minimum 1)."
+        },
+        {
+          "level": 3,
+          "name": "Merged Manifestation",
+          "description": "At 3rd level, the ward spiritualist learns how to merge her kami phantom with her ward implement. This functions as bonded manifestation, except that she does not choose ectoplasmic or incorporeal. Instead, she gains different benefits depending on whether she has a physical implement or is her own implement."
+        }
+      ],
+      "detected_systems": [
+        "phantom",
+        "implements"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:zeitgeist-binder",
+      "package": "pathfinder-class:spiritualist",
+      "name": "Zeitgeist Binder",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Spiritualist Zeitgeist Binder",
+      "replaces_features": [
+        "bonded-senses",
+        "call-spirit",
+        "calm-spirit",
+        "detect-undead",
+        "fused-consciousness",
+        "phantom",
+        "see-invisibility"
+      ],
+      "removed_features": [
+        "bonded-senses",
+        "call-spirit",
+        "calm-spirit",
+        "detect-undead",
+        "fused-consciousness",
+        "phantom",
+        "see-invisibility"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Zeitgeist Binder",
+          "description": "Source Ultimate Intrigue pg. 51"
+        },
+        {
+          "level": 1,
+          "name": "Zeitgeist",
+          "description": "A zeitgeist binder’s phantom is called a zeitgeist. In addition to an emotion, a zeitgeist is tied to one aspect of its settlement: corruption, crime, economy, law, lore, or society (Pathfinder RPG GameMastery Guide 204). In order to select an aspect, that aspect of the settlement must have a positive modifier (for instance, a settlement with a negative lore modifier or a modifier of 0 could not manifest a lore zeitgeist). Although a zeitgeist personifies a single chosen settlement, a zeitgeist binder can call it anywhere, but outside the bounds of its settlement, it loses the benefits of its settlement aspect and settlement avatar abilities."
+        },
+        {
+          "level": 1,
+          "name": "Settlement Aspect",
+          "description": "A zeitgeist binder gains a number of spell-like abilities tied to her zeitgeist’s settlement aspect. Other than being based on Wisdom instead of Charisma, these work the same way as the fractured mind’s emotional power ability (Pathfinder RPG Occult Adventures 109). The masterwork transformation spell-like ability does not ignore the material component."
+        },
+        {
+          "level": 1,
+          "name": "Corruption",
+          "description": "Conditional favor (5th), false belief (7th), charm person (9th), mass suggestion (16th)."
+        },
+        {
+          "level": 1,
+          "name": "Crime",
+          "description": "Crime of opportunity (5th), pilfering handUC (7th), demand offeringOA (9th), crime wave (16th)."
+        },
+        {
+          "level": 1,
+          "name": "Economy",
+          "description": "Crafter’s fortuneAPG (5th), masterwork transformationAPG (7th), beguiling gift (9th), major creation (16th)."
+        },
+        {
+          "level": 1,
+          "name": "Law",
+          "description": "Detect chaos (5th), arrow of lawUM (7th), peacebondUC (9th), mark of justice (16th)."
+        },
+        {
+          "level": 1,
+          "name": "Lore",
+          "description": "Object readingOA (5th), hypercognitionOA (7th), heightened awarenessACG (9th), legend lore (16th)."
+        },
+        {
+          "level": 1,
+          "name": "Society",
+          "description": "Cultural adaptation (5th), rumormonger (7th), share languageAPG (9th), coordinated effortAPG (16th)."
+        },
+        {
+          "level": 1,
+          "name": "Settlement Avatar",
+          "description": "When a zeitgeist binder reaches 2nd level, the zeitgeist becomes a living avatar of the settlement. As a standard action, it can project its senses out into the settlement, perceiving the general pulse of its chosen aspect throughout the whole settlement as well as anything involving its aspect that is occurring within 50 feet per spiritualist level. The sensing works like enter imageAPG, so the zeitgeist attempts a Perception check at a – 10 penalty to notice any particular activity within range. The zeitgeist can use this ability for a number of rounds per day equal to the zeitgeist binder’s spiritualist level. These rounds need not be consecutive."
+        }
+      ],
+      "detected_systems": [
+        "phantom"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "key": "warpriest",
+  "class_key": "pathfinder-class:warpriest",
+  "class_name": "Warpriest",
+  "governing_ability": "wisdom",
+  "optional_blocks": ["inquisitor_features", "spells_known", "spells_prepared", "spell_level_overview"],
+  "external_systems": ["traditional_prepared_casting", "warpriest_blessings", "warpriest_fervor", "warpriest_channel_energy", "sacred_weapon", "sacred_armor", "warpriest_bonus_feats"],
+  "resource_modules": [],
+  "passive_effects": [],
+  "notes": "Blessings, fervor, channel energy, sacred weapon and armor duration, prepared divine casting, and combat-feat slots use the existing shared rules engines. Archetype overlays replace or narrow those systems declaratively."
+}

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "key": "kineticist",
+  "class_key": "pathfinder-class:kineticist",
+  "class_name": "Kineticist",
+  "governing_ability": "constitution",
+  "optional_blocks": ["inquisitor_features"],
+  "external_systems": ["kineticist_burn", "elemental_focus", "wild_talents", "infusions", "elemental_overflow", "gather_power"],
+  "resource_modules": [],
+  "passive_effects": [],
+  "notes": "Burn capacity and recovery, elemental choices, infusions, utility wild talents, and archetype element restrictions use the existing shared class-choice, power, and resource engines."
+}

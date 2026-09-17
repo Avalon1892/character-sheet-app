@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "key": "hedgewitch",
+  "class_key": "spheres-class:hedgewitch",
+  "class_name": "Hedgewitch",
+  "governing_ability": "casting",
+  "catalog_profile": {
+    "weapon_proficiencies": ["Simple weapons"],
+    "armor_proficiencies": ["Light armor"],
+    "proficiencies": {"weapons": ["Simple weapons"], "armor": ["Light armor"]},
+    "advancement": {"talent_progression": "Mid", "talent_kinds": ["magic"]},
+    "feature_descriptions": {
+      "path benefit": "Gain the path benefit from each of the two selected Hedgewitch paths.",
+      "path power": "Gain the path power from each of the two selected Hedgewitch paths.",
+      "path secrets": "The selected paths add their associated secrets to the legal Hedgewitch Secret choices.",
+      "path mastery": "At 20th level, gain the mastery of each selected Hedgewitch path."
+    }
+  },
+  "optional_blocks": ["magic_spheres", "spell_points"],
+  "external_systems": ["spell_points", "hedgewitch_paths", "hedgewitch_secrets"],
+  "choice_providers": [
+    {
+      "key": "hedgewitch-paths", "label": "Hedgewitch Paths", "feature_tokens": ["paths"],
+      "minimum": 2, "maximum": 2,
+      "fixed_options": [
+        {"key":"academia","name":"Academia"},{"key":"astrology","name":"Astrology"},{"key":"black-magic","name":"Black Magic"},{"key":"charlatanism","name":"Charlatanism"},{"key":"combat","name":"Combat"},{"key":"covenant","name":"Covenant"},{"key":"dreamwalker","name":"Dreamwalker"},{"key":"exorcism","name":"Exorcism"},{"key":"font-of-inspiration","name":"Font of Inspiration"},{"key":"fortune","name":"Fortune"},{"key":"green-magic","name":"Green Magic"},{"key":"herbology","name":"Herbology"},{"key":"lamentation","name":"Lamentation"},{"key":"magonian","name":"Magonian"},{"key":"spiritualism","name":"Spiritualism"},{"key":"tempest-tost","name":"Tempest-Tost"},{"key":"temporal-traveler","name":"Temporal Traveler"},{"key":"tinker","name":"Tinker"},{"key":"transmuter","name":"Transmuter"},{"key":"umbral","name":"Umbral"}
+      ],
+      "description": "Choose two paths at 1st level. Their class skills, benefits, powers, secret lists, and 20th-level masteries are retained in the class rules and Codex."
+    },
+    {
+      "key": "hedgewitch-secrets", "label": "Hedgewitch Secrets", "feature_tokens": ["secret"],
+      "minimum": 0, "maximum_levels": [2,4,6,8,10,12,14,16,18,20],
+      "fixed_options": [
+        {"key":"amateur-hedgewitch","name":"Amateur Hedgewitch"},{"key":"champion","name":"Champion"},{"key":"combat-talent","name":"Combat Talent"},{"key":"familiar","name":"Familiar","granted_features":[{"name":"Familiar","effective_level_offset":0}]},{"key":"fetish","name":"Fetish"},{"key":"magical-skill","name":"Magical Skill"},{"key":"poppet","name":"Poppet"},{"key":"skillful-insights","name":"Skillful Insights"},{"key":"skill-talent","name":"Skill Talent"},{"key":"volatile-mood","name":"Volatile Mood"},{"key":"arcane-builder","name":"Arcane Builder"},{"key":"extra-magic-item","name":"Extra Magic Item"},{"key":"metamagic-master","name":"Metamagic Master"}
+      ],
+      "description": "Choose one general or path secret at every even level. Grand secrets become legal at 10th level; path-specific options remain governed by the two selected paths."
+    }
+  ],
+  "notes": "The normal sphere spell-point service remains authoritative. Paths and secrets are persisted by the shared class-choice system; their complete rules are available from the selected feature detail and Codex."
+}

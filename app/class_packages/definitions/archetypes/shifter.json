@@ -1,0 +1,1069 @@
+{
+  "version": 1,
+  "class_key": "spheres-class:shifter",
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:shifter:apex-shifter",
+      "package": "spheres-class:shifter",
+      "name": "Apex Shifter",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/apex-shifter",
+      "replaces_features": [
+        "boundless-communication",
+        "endless-communication",
+        "endurance",
+        "extended-transformation",
+        "greater-transformation",
+        "immunity-to-disease",
+        "immunity-to-poison",
+        "lingering-transformation",
+        "second-skin",
+        "steal-language"
+      ],
+      "removed_features": [
+        "boundless-communication",
+        "endless-communication",
+        "endurance",
+        "immunity-to-disease",
+        "immunity-to-poison",
+        "lingering-transformation",
+        "second-skin",
+        "steal-language"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Apex Shifter Bestial Traits",
+          "description": "The following bestial traits are available to all Shifters unless noted otherwise, but were published alongside the Apex Shifter."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:shifter:beastlord",
+      "package": "spheres-class:shifter",
+      "name": "Beastlord",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/beastlord",
+      "replaces_features": [
+        "lingering-transformation",
+        "quick-transformation"
+      ],
+      "removed_features": [
+        "lingering-transformation",
+        "quick-transformation"
+      ],
+      "removed_feature_clauses": [
+        "quick transformation",
+        "lingering transformation"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Beastlord",
+          "description": "At 1st level, the beastlord gains the Mind sphere as a bonus talent and treats her class level as her caster level for this sphere. This stacks normally with caster levels gained from other sources. The beastlord is treated as an animal for the purposes of being affected by the charms and other mind-affecting effects of other magic users, and may affect animals, vermin, and magical beasts with her own mind-affecting effects.\n\nThis replaces quick transformation."
+        },
+        {
+          "level": 4,
+          "name": "Hunter’s Call",
+          "description": "At 4th level, the beastlord may spend 2 spell points to target any number of animals, magical beasts, and vermin at medium range. The targets must succeed at a Will save or else it will treat her words and actions favorably (targets who cannot understand her language can only obey simple instructions).\n\nThe beastlord can give the targets orders, but she must win an opposed Charisma check to convince the creature to do something it would not ordinarily do. Non-mindless targets never follow suicidal or obviously harmful orders, though intelligent targets may be convinced that something dangerous is worth doing.\n\nOnly 2 Hit Dice of creatures per caster level may be affected with this ability, and the creatures only remain under the beastlord’s control for 1 hour per caster level. A magical beast’s Hit Dice count as 1.5 Hit Dice for determining this. The beastlord may establish a preferred order for influencing creatures in this manner, but by default creatures with the least Hit Dice are affected first. Creatures with greater than animal intelligence will remember that they were influenced in this way, and they may seek revenge after the effect ends.\n\nThis ability replaces lingering transformation.\n\nBeastlord: At 1st level, the beastlord gains the Mind sphere as a bonus talent and treats her class level as her caster level for this sphere. This stacks normally with caster levels gained from other sources. The beastlord is treated as an animal for the purposes of being affected by the charms and other mind-affecting effects of other magic users, and may affect animals, vermin, and magical beasts with her own mind-affecting effects.\n\nThis replaces quick transformation.\n\nHunter’s Call (Su): At 4th level, the beastlord may spend 2 spell points to target any number of animals, magical beasts, and vermin at medium range. The targets must make a Will save or else it will treat her words and actions favorably (targets who can’t understand her language can only obey simple instructions). The beastlord can give the targets orders, but she must win an opposed Charisma check to convince the creature to do something it wouldn’t ordinarily do. Non-mindless targets never follow suicidal or obviously harmful orders, though intelligent targets may be convinced that something dangerous is worth doing.\n\nOnly 2 HD of creatures per caster level may be affected with this ability, and the creatures only remain under the beastlord’s control for 1 hour per caster level. A magical beast’s HD count as 1.5 HD for determining this. The beastlord may establish a preferred order for influencing creatures in this manner, but by default creatures with the least HD are affected first. Creatures with greater than animal intelligence will remember that they were influenced in this way, and they may seek revenge after the effect ends.\n\nThis ability replaces lingering transformation.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:shifter:beastmind",
+      "package": "spheres-class:shifter",
+      "name": "Beastmind",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/beastmind",
+      "replaces_features": [
+        "endurance",
+        "enhanced-physicality",
+        "immunity-to-disease",
+        "immunity-to-poison"
+      ],
+      "removed_features": [
+        "endurance",
+        "enhanced-physicality",
+        "immunity-to-disease",
+        "immunity-to-poison"
+      ],
+      "removed_feature_clauses": [
+        "endurance",
+        "enhanced physicality",
+        "immunity to poison",
+        "immunity to disease"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 3,
+          "name": "Mental Transformation",
+          "description": "At 3rd level, the beastmind’s transformations affect her mind as well as her body, increasing her abilities. While shapeshifted, the beastmind gains a +1 bonus to Acrobatics, Climb, Survival, and Swim checks. This increases by 1 for every 8 beastmind levels thereafter, to a maximum of +3 at 19th level.\n\nThis ability replaces endurance."
+        },
+        {
+          "level": 7,
+          "name": "Enhanced Psychology",
+          "description": "At 7th level, the beastmind gains a +2 inherent bonus to her casting ability score. This increases to +4 at 13th level, and +6 at 19th level.\n\nThis replaces enhanced physicality."
+        },
+        {
+          "level": 8,
+          "name": "Shifting Mind",
+          "description": "At 8th level, the beastmind’s mental transformations allow her to escape from magical effects that would otherwise control or mislead her. If the beastmind is affected by a mind-affecting spell or effect and fails her saving throw, she may attempt it again 1 round later at the same DC. The beastmind only gets one such extra chance to succeed on a saving throw.\n\nThis replaces immunity to poison."
+        },
+        {
+          "level": 12,
+          "name": "Bestial Mind",
+          "description": "At 12th level, the beastmind’s ability to shift her mind can fool even magical effects. As a free action, the beastmind may change what creature type or subtype she counts as for the purpose of magical effects that depend on possessing a particular creature type. This lasts until changed.\n\nThis replaces immunity to disease.\n\nSpheres of Power: Expanded Options\n\n$4.99\n\nMental Transformation (Ex): At 2nd level, the beastmind’s transformations affect his mind as well as his body, increasing his abilities. While shapeshifted, the beastmind gain a +1 bonus to Acrobatics, Climb, Survival, and Swim skill checks. This increases by 1 for every 8 shifter levels thereafter, to a maximum of +3 at 18th level.\n\nThis ability replaces endurance.\n\nEnhanced Psychology (Ex): At 7th level, the beastmind gains a +2 inherent bonus to his Wisdom score. This increases to +4 at 13th level, and +6 at 19th level.\n\nThis replaces enhanced physicality.\n\nShifting Mind (Su): At 8th level, the beastmind’s mental transformations allow him to escape from magical effects that would otherwise control or mislead him. If the beastmind is affected by a mind-affecting spell or effect and fails his saving throw, he may attempt it again 1 round later at the same DC. The beastmind only get one such extra chance to succeed on a saving throw.\n\nThis replaces immunity to poison.\n\nBestial Mind (Su): At 12th level, the beastmind’s ability to shift his mind can fool even magical effects. As a free action, the beastmind may change what creature type or subtype he counts as for the purpose of magical effects that depend on possessing a particular creature type. This change lasts for 1 hour, but may be renewed as often as desired.\n\nThis replaces immunity to disease.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:shifter:champion-shifter",
+      "package": "spheres-class:shifter",
+      "name": "Champion Shifter",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/champion-shifter",
+      "replaces_features": [
+        "magic-talents",
+        "proficiencies"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Champion shifters are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis alters proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "A champion shifter gains a combat or magic talent every time they gain a caster level. A champion shifter uses their casting ability modifier as their practitioner modifier.\n\nThis alters magic talents."
+        },
+        {
+          "level": 1,
+          "name": "Skill Training (requires Spheres of Guile)",
+          "description": "As an optional exchange, the shifter may choose to gain a bonus magic talent every even level (instead of according to Table: The Shifter). If they do, they may select combat, magic, or skill talents with their blended training, the champion shifter gains a utility talent that can be spent on combat, magic, or skill talents at every odd level. The champion shifter uses their casting ability modifier as both their practitioner and operative modifier. If the champion shifter chooses to exchange their class skills for a trade tradition, the champion shifter’s trade rank is competent."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:shifter:dimension-shifter",
+      "package": "spheres-class:shifter",
+      "name": "Dimension Shifter",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/dimension-shifter",
+      "replaces_features": [
+        "boundless-communication",
+        "endless-communication",
+        "endurance",
+        "extended-transformation",
+        "greater-transformation",
+        "lingering-transformation",
+        "quick-transformation",
+        "second-skin",
+        "steal-language",
+        "wild-empathy"
+      ],
+      "removed_features": [
+        "boundless-communication",
+        "endless-communication",
+        "endurance",
+        "extended-transformation",
+        "greater-transformation",
+        "lingering-transformation",
+        "quick-transformation",
+        "second-skin",
+        "steal-language",
+        "wild-empathy"
+      ],
+      "removed_feature_clauses": [
+        "wild empathy",
+        "endurance",
+        "quick transformation",
+        "lingering transformation",
+        "steal language",
+        "extended transformation",
+        "boundless communication",
+        "endless communication",
+        "greater transformation",
+        "second skin"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [
+          "spheres-archetype:spheres-class:shifter:martial-shifter"
+        ],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blink",
+          "description": "The dimension shifter gains Blink as a bonus magic talent, even if she does not possess the Warp sphere. She uses her dimension shifter level as her caster level for this ability. This stacks normally with caster levels gained from other sources.\n\nThis replaces wild empathy."
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A dimension shifter adds Knowledge (planes) (Int) to her list of class skills and removes Handle Animal (Cha) from her list of class skills."
+        },
+        {
+          "level": 1,
+          "name": "Ghostly Sight",
+          "description": "At third level a dimension shifter can perceive the ethereal plane from the material when she blinks, allowing her to see and hear ethereal creatures and objects normally. This ability to perceive the ethereal plane is limited to a 30-foot range. A dimension shifter can easily tell the difference between what is ethereal and material.\n\nThis replaces endurance."
+        },
+        {
+          "level": 2,
+          "name": "Dimension Shifting",
+          "description": "When a dimension shifter shapeshifts herself and only herself, she may cause herself to blink as part of the same action. She may also maintain both effects on herself as a single concentration action, and may spend a single spell point to maintain both effects on herself without concentration for 1 minute per caster level.\n\nThis replaces quick transformation. When combined with the martial shifter archetype, the Dimension Shifter gains the dimension shifting feature at 2nd level instead of 1st."
+        },
+        {
+          "level": 4,
+          "name": "Dive",
+          "description": "At 4th level a dimension shifter may spend a spell point to take a special move action referred to as a dive. She moves up to 30 feet and may choose to move through solid objects, allowing her to pass through solid walls or sink through floors. She may not pass through force effects or other surfaces that would block incorporeal or ethereal creatures. If she would end her action inside a solid object she takes 1d6 damage and is shunted to the nearest open space.\n\nThis replaces lingering transformation."
+        },
+        {
+          "level": 5,
+          "name": "Ghostly Touch",
+          "description": "At 5th level a dimension shifter can easily interact with other dimensions when she blinks. While blinking she can interact with ethereal and incorporeal creatures as if they were solid, allowing her natural attacks to count as magical and deal full damage to incorporeal creatures. In addition, she applies her natural armor against the touch attacks of incorporeal creatures.\n\nThis replaces steal language."
+        },
+        {
+          "level": 9,
+          "name": "Submerge",
+          "description": "At 9th level a dimension shifter may linger within an object after using dive. As long as she is adjacent to open space at the end of her dive, she may end her action inside of a solid object. She can see into adjacent space unobscured while submerged, and can remain submerged for up to one minute per dimension shifter level. She may exit the object at any point as part of normal movement (spending 5 feet of her movement to move into any adjacent unoccupied space), or may use dive again to continue moving through solid objects.\n\nThis replaces extended transformation."
+        },
+        {
+          "level": 11,
+          "name": "Ghostly Claws",
+          "description": "At 11th level a dimension shifter can cause her attacks to effortlessly pass through defenses when she blinks. Once per turn while blinking, she may choose to resolve a single natural attack as a touch attack. Also, she may spend a spell point as a free action to resolve all her natural attacks as touch attacks until the beginning of her next turn.\n\nThis replaces boundless communication."
+        },
+        {
+          "level": 15,
+          "name": "Ghostly Presence",
+          "description": "At 15th level a dimension shifter’s presence on the material is much more selective when she blinks. She may spend a spell point as an immediate action to halve all damage done to her until the beginning of her turn, though this does not apply to force effects, ghost touch weapons, or other effects that would ignore her blink miss chance. In addition, she can choose to become nearly weightless as a free or immediate action, making her immune to fall damage and fail to set off traps or other effects that would be triggered by weight.\n\nThis replaces endless communication."
+        },
+        {
+          "level": 17,
+          "name": "Deep Dive",
+          "description": "At 17th level a dimension shifter can dive as a full-round action instead of a move action, allowing her to move up to 60 feet instead of 30 feet. In addition, she may remain within an object after diving for up to one hour per dimension shifter level.\n\nThis replaces greater transformation."
+        },
+        {
+          "level": 20,
+          "name": "Effortless Dive",
+          "description": "At 20th level a dimension shifter no longer needs to spend a spell point to dive, and may remain within solid objects for any length of time.\n\nThis replaces second skin.\n\nThe Worldwalker's Handbook\n\n$4.99\n\nAuthor’s Note: Dimension Shifter is explicitly compatible with the Martial Shifter archetype from Champions of the Spheres, despite its modification of the quick transformation feature. However, when combined with Martial Shifter the Dimension Shifter gains the dimension shifting feature at 2nd level instead of 1st.\n\nA dimension shifter learns to transform her body into a ghostly substance. She shifts through dimensions as easily as shifting between forms.\n\nClass Skills: A dimension shifter adds Knowledge (planes) to her list of class skills and removes Handle Animal from her list of class skills.\n\nBlink: The dimension shifter gains Blink as a bonus magic talent, even if she does not possess the Warp sphere. She may use her dimension shifter level as her caster level for this ability if it is higher.\n\nThis replaces wild empathy.\n\nDimension Shifting: When a dimension shifter shapeshifts herself and only herself, she may cause herself to blink as part of the same action. She may also maintain both effects on herself as a single concentration action, and may spend a single spell point to maintain both effects on herself without concentration for 1 minute per caster level.\n\nThis replaces quick transformation.\n\nGhostly Sight (Su): At 3rd level a dimension shifter can perceive the ethereal plane from the material when she blinks, allowing her to see and hear ethereal creatures and objects normally. This ability to perceive the ethereal plane is limited to a 30-ft. range. A dimension shifter can easily tell the difference between what is ethereal and material.\n\nThis replaces endurance.\n\nDive (Su): At 4th level a dimension shifter may spend a spell point to take a special move action referred to as a dive. She moves up to 30 ft. and may choose to move through solid objects, allowing her to pass through solid walls or sink through floors. She may not pass through force effects or other surfaces that would block incorporeal or ethereal creatures. If she would end her action inside a solid object she takes 1d6 damage and is shunted to the nearest open space.\n\nThis replaces lingering transformation.\n\nGhostly Touch (Su): At 5th level a dimension shifter can easily interact with other dimensions when she blinks. While blinking she can interact with ethereal and incorporeal creatures as if they were solid, allowing her natural attacks to count as magical and deal full damage to incorporeal creatures. In addition, she applies her natural armor against the touch attacks of incorporeal creatures.\n\nThis replaces steal language.\n\nSubmerge (Su): At 9th level a dimension shifter may linger within an object after using dive. As long as she is adjacent to open space at the end of her dive, she may end her action inside of a solid object. She can see into adjacent space unobscured while submerged, and can remain submerged for up to one minute per dimension shifter level. She may exit the object at any point as part of normal movement (spending 5 ft. of her movement to move into any adjacent unoccupied space), or may use dive again to continue moving through solid objects.\n\nThis replaces extended transformation.\n\nGhostly Claws (Su): At 11th level a dimension shifter can cause her attacks to effortlessly pass through defenses when she blinks. Once per turn while blinking, she may choose to resolve a single natural attack as a touch attack. Also, she may spend a spell point as a free action to resolve all her natural attacks as touch attacks until the beginning of her next turn.\n\nThis replaces boundless communication.\n\nGhostly Presence (Su): At 15th level a dimension shifter’s presence on the material is much more selective when she blinks. She may spend a spell point as an immediate action to halve all damage done to her until the beginning of her turn, though this does not apply to force effects, ghost touch weapons, or other effects that would ignore her blink miss chance. In addition, she can choose to become nearly weightless as a free or immediate action, making her immune to fall damage and fail to set off traps or other effects that would be triggered by weight.\n\nThis replaces endless communication.\n\nDeep Dive (Su): At 17th level a dimension shifter can dive as a full-round action instead of a move action, allowing her to move up to 60 ft. instead of 30 feet. In addition, she may remain within an object after diving for up to one hour per dimension shifter level.\n\nThis replaces greater transformation.\n\nEffortless Dive (Su): At 20th level a dimension shifter no longer needs to spend a spell point to dive, and may remain within solid objects for any length of time.\n\nThis replaces second skin.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:shifter:elemental-scion",
+      "package": "spheres-class:shifter",
+      "name": "Elemental Scion",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/elemental-scion",
+      "replaces_features": [
+        "bestial-trait",
+        "bestial-trait-at-level",
+        "bestial-traits",
+        "boundless-communication",
+        "endless-communication-class",
+        "quick-transformation",
+        "shapeshifter",
+        "steal-language",
+        "wild-empathy"
+      ],
+      "removed_features": [
+        "bestial-trait-6th-level",
+        "boundless-communication",
+        "endless-communication-class-abilities",
+        "quick-transformation",
+        "steal-language",
+        "wild-empathy"
+      ],
+      "removed_feature_clauses": [
+        "quick transformation",
+        "steal language",
+        "boundless communication",
+        "endless communication class abilities",
+        "wild empathy",
+        "the bestial trait gained at 6th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "The elemental scion loses Handle Animal (Cha) and Knowledge (geography) (Int) as class skills and gains Diplomacy (Cha) and Knowledge (planes) (Int) as class skills."
+        },
+        {
+          "level": 1,
+          "name": "Destructive Gift",
+          "description": "When the elemental scion is under the effects of Elemental Transformation, she gains one (blast type) talent from a blast type group associated with her current elemental type (chosen every time she shapeshifts as outlined in the chart below) and treats her class level as her caster level for destructive blasts using that blast type.\n\nElemental Form\nAvailable Blast Type Groups\n\nAir\nAir, electric, thunder\n\nEarth\nAcid, crystal, stone\n\nFire\nFire, light\n\nWater\nCold, crystal (in the form of ice)\n\nThis replaces the quick transformation, steal language, boundless communication, and endless communication class abilities."
+        },
+        {
+          "level": 1,
+          "name": "Elemental Adept",
+          "description": "At 1st level, when only affecting herself with a shapeshift, the elemental scion does not need to spend an additional spell point when granting the form of an elemental with Elemental Transformation to gain the ability to negate critical hits and precision damage.\n\nAt 6th level, when only affecting herself with a shapeshift, the elemental scion also reduces the spell point cost of a shapeshift sphere effect granting the form of an elemental with Elemental Transformation by 1 spell point (minimum 0 spell points).\n\nThis replaces wild empathy."
+        },
+        {
+          "level": 1,
+          "name": "Elemental Shapeshifter",
+          "description": "At first level, the elemental scion gains the Alteration sphere and the Beast Soul drawback, gaining the Elemental Transformation talent as her bonus talent. If the elemental scion already possesses the Alteration sphere, then she gains the Elemental Transformation talent without the drawback. The elemental scion uses her class level as her caster level for the Alteration sphere.\n\nThis alters shapeshifter."
+        },
+        {
+          "level": 6,
+          "name": "Destructive Traits",
+          "description": "The elemental scion may take Destruction talents in place of bestial traits.\n\nThis alters bestial traits.\n\nClass Skills: The elemental scion loses Handle Animal and Knowledge (geography) as class skills and gains Diplomacy and Knowledge (planes) as class skills.\n\nCasting Ability Modifier: The elemental scion uses Charisma as her casting ability modifier.\n\nElemental Shapeshifter: At first level, the elemental scion gains the Alteration sphere and the Elemental Transformation talent as a bonus magic talents, as well as the Beast Soul drawback.\n\nThis drawback does not grant an additional talent and may be bought off as normal. If the elemental scion already possesses the Alteration sphere, then she gains the Elemental Transformation talent without the drawback. If both talents are already possessed, then the elemental scion may choose any Alteration sphere talent as a bonus talent. The elemental scion uses her class level as her caster level for this sphere.\n\nThis modifies shapeshifter.\n\nElemental Adept: The elemental scion may use a lesser form of the Elemental Transformation talent, where the spell point cost is removed, but she does not gain the ability increase from any form. In addition, the air elemental loses its flight speed (but does fall at a rate of 60 ft per round, allowing it to ignore falling damage), the earth elemental form does not gain the earth glide ability, the fire elemental’s burn ability is reduced by one die size, and the water elemental does not gain the vortex ability.\n\nAt 6th level, when only affecting herself, the elemental scion reduces the cost of the Elemental Transformation talent by one spell point.\n\nThis replaces wild empathy, and the bestial trait gained at 6th level.\n\nDestructive Gift: When the elemental scion is under the effects of Elemental Transformation, she temporarily gains a +1 bonus to her caster level when making a destructive blast modified by any blast type talent from a blast type group associated with her current elemental type, as outlined in the chart below. This bonus increases by an additional +1 at 5th level and every 4 levels thereafter, to a maximum of +5 at 17th level.\n\nElemental Form\nAvailable Blast Type Groups\n\nAir\nAir, Electric, Thunder\n\nEarth\nAcid, Crystal, Stone\n\nFire\nFire, Light\n\nWater\nCold, Crystal (in the form of ice)\n\nThis replaces the quick transformation, steal language, boundless communication, and endless communication class abilities.\n\nDestructive Traits: The elemental scion may take Destruction talents in place of bestial traits.\n\nThis modifies bestial traits.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:shifter:famine-spirit",
+      "package": "spheres-class:shifter",
+      "name": "Famine Spirit",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/famine-spirit",
+      "replaces_features": [
+        "boundless-communication",
+        "endless-communication",
+        "endurance",
+        "enhanced-attacks",
+        "enhanced-physicality",
+        "extended-transformation",
+        "greater-transformation",
+        "lingering-transformation",
+        "replaces-endurance",
+        "second-skin",
+        "shapeshifter",
+        "steal-language",
+        "wild-empathy"
+      ],
+      "removed_features": [
+        "boundless-communication",
+        "endless-communication",
+        "endurance",
+        "enhanced-physicality",
+        "extended-transformation",
+        "greater-transformation",
+        "lingering-transformation",
+        "replaces-endurance",
+        "second-skin",
+        "shapeshifter",
+        "steal-language"
+      ],
+      "removed_feature_clauses": [
+        "shapeshifter",
+        "endurance",
+        "lingering transformation",
+        "enhanced physicality",
+        "extended transformation",
+        "greater transformation",
+        "second skin",
+        "replaces endurance"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Fearsome Transformation",
+          "description": "At 1st level, a famine spirit gains the Alteration and Death spheres as bonus magic talents. She does not gain an enhanced caster level with either sphere.\n\nThis replaces shapeshifter."
+        },
+        {
+          "level": 1,
+          "name": "Parched Tongue",
+          "description": "The famine spirit’s speech calls out to those who share her hunger. At 1st level, this ability functions as wild empathy, except it can be used only on undead with an Intelligence of 2 or less (including mindless undead). Undead typically have a starting attitude of hostile.\n\nAt 5th level, undead with an Intelligence of 2 or less do not attack the famine spirit unless she moves within 15 feet of them or attacks them, and she can use parched tongue on undead regardless of their Intelligence.\n\nAt 11th level, the famine spirit can use parched tongue as a standard action against undead with an Intelligence of 2 or less.\n\nAt 15th level, undead with an Intelligence score of 2 or less do not notice the famine spirit unless she attacks them or targets them with parched tongue.\n\nThis alters wild empathy and replaces steal language, endless communication and boundless communication."
+        },
+        {
+          "level": 3,
+          "name": "Fearsome Bite",
+          "description": "At 3rd level, the famine spirit gains the bite bestial trait. If she already possesses this bestial trait, she may gain another of her choice instead. The famine spirit’s bite attack also gains the grab special ability.\n\nThis replaces endurance."
+        },
+        {
+          "level": 4,
+          "name": "Enhanced Chomp",
+          "description": "At 4th level, the famine spirit gains enhanced attacks, but only for her bite attack. In addition, anyone slain by a famine spirit’s bite attack becomes more difficult to bring back from the dead, as the famine spirit swallows a portion of their soul. The body comes under the effects of a curse with a caster level equal to the famine spirit’s class level; spellcasters attempting to bring a creature back from the dead must succeed at a magical skillcheck with a DC equal to 15 + the famine spirit’s class level or the sphere-effect or spell fails and any material component is wasted. Casting remove curse, using the Break Enchantment Life talent, or using another effect that removes curses the round before attempting to bring the creature back from the dead negates this chance. The DC to remove the curse is 10 + the famine spirit’s level.\n\nThis alters enhanced attacks."
+        },
+        {
+          "level": 4,
+          "name": "Infectious Maw",
+          "description": "At 4th level, a famine spirit gains the swallow whole ability with her bite attack. Creatures she has swallowed take 1d6 acid damage per round + 1 per class level. Creatures who have suffered this damage come under the effects of a curse with a caster level equal to the famine spirit’s class level that urges them to consume flesh; similar to starvation damage, this damage cannot be recovered until 24 hours have passed or the target spends a full-round action consuming the corpse of a creature with Intelligence 3 or higher - until then, not even magic that restores hit points heals this damage. She may use her class level as her base attack bonus for the purpose of grapple and swallow whole CMB and CMD checks; this stacks normally with base attack bonus gained from other sources. She can swallow creatures up to her size category.\n\nAt 7th level, the famine spirit can both grab and swallow creatures up to one size larger than her size category. The hit points needed for swallowed creatures to cut their way free increases by 10% (to 20% of total hit points, in most cases). In addition, if a creature dies in her stomach, she can reanimate that creature and regurgitate it into an unoccupied adjacent square by spending a spell point as a move action. This functions as the Death sphere ability, using her normal caster level.\n\nAt 13th level, the famine spirit gains a +2 AC bonus to her interior. In addition, if a creature dies in her stomach with Hit Dice at least half hers, she can spend a spell point as a move action to digest the creature, restoring hit points equal to twice the creature’s Hit Dice.\n\nAt 19th level, the famine spirit can swallow creatures up to two sizes larger than her size category. She also gains the fast swallow ability with her bite attack, and the hit points needed for swallowed creatures to cut their way free increases by 10% again (to 30% of total hit points).\n\nThis replaces lingering transformation and enhanced physicality."
+        },
+        {
+          "level": 8,
+          "name": "Ravenous Bite",
+          "description": "At 8th level, the famine spirit gains Vital Strike as a bonus feat. She can only use this feat in conjunction with her bite attack. Her bite attack deals increased base damage, as shown on the table below:\n\nTable: Bite Damage\n\nClass Level\nRavenous Bite Base Damage (Medium creature)\n\n8th–11th\n1d8\n\n12th–15th\n1d10\n\n16th–19th\n2d6\n\n20th\n2d8\n\nAt 11th level, the famine spirit gains the benefit of Improved Vital Strike, even if she does not meet the prerequisites. She can only use this feat in conjunction with her bite attack. Zombies and variant zombies she reanimates (such as plague zombies and fast zombies) gain a bite attack that deals damage (or their normal bite damage, whichever is greater) as the chart above instead of a slam attack.\n\nAt 16th level, the famine spirit gains Greater Vital Strike as a bonus feat, even if she does not meet the prerequisites. She can only use this feat in conjunction with her bite attack.\n\nThis replaces extended transformation and greater transformation."
+        },
+        {
+          "level": 20,
+          "name": "Insatiable Consumption",
+          "description": "At 20th level, whenever a famine spirit uses Greater Vital Strike with a bite attack, it functions as a vorpal weapon. In addition, any creature that she decapitates with this ability or dies while swallowed whole has their soul consumed.\n\nA creature with its soul consumed cannot be resurrected until the famine spirit is slain, unless the caster first uses a wish spell, miracle spell, or similar magic to free the creature’s soul.\n\nThis replaces second skin.\n\nThe Necromancer's Handbook\n\n$4.99\n\nThe famine spirit is a terrible being, walking a path between life and death filled with nothing but hunger. These beasts consume all, eating not only flesh, but souls as well.\n\nFearsome Bite (Ex): At 1st level, a famine spirit gains the Alteration and Death spheres as bonus magic talents. If he already possesses one of these spheres, he may gain a talent from that sphere instead. He does not gain an enhanced caster level with either sphere.\n\nThis replaces shapeshifter.\n\nParched Tongue: The famine spirit’s speech calls out to those who share his hunger. At 1st level, this ability functions as wild empathy, except it can be used only on undead with an Intelligence of 2 or less (including mindless undead). Undead typically have a starting attitude of hostile.\n\nAt 5th level, undead with an Intelligence of 2 or less do not attack you unless you move within 15 ft. of them or attack them, and you can use parched tongue on undead regardless of their Intelligence.\n\nAt 11th level, you can use parched tongue as a standard action against undead with an Intelligence of 2 or less.\n\nAt 15th level, undead with an Intelligence score of 2 or less do not notice you unless you attack them or target them with parched tongue.\n\nThis alters wild empathy and replaces steal language, endless communication and boundless communication\n\nFearsome Bite (Ex): At 3rd level, the famine spirit gains the bite bestial trait. If he already possesses this bestial trait, he may gain another of his choice instead. The famine spirit’s bite attack also gains the grab special ability.\n\nThis replaces replaces endurance.\n\nEnhanced Chomp (Su): At 4th level, the famine spirit gains enhanced attacks, but only for his bite attack.\n\nIn addition, anyone slain by a famine spirit’s bite attack becomes more difficult to bring back from the dead, as the famine spirit swallows a portion of their soul. The body comes under the effects of a curse with a caster level equal to the famine spirit’s class level; spellcasters attempting to bring a creature back from the dead must make an MSB check with a DC equal to 15 + the famine spirit’s class level or the sphere-effect or spell fails and any material component is wasted. Casting remove curse, using the Break Enchantment Life talent, or using another effect that removes curses the round before attempting to bring the creature back from the dead negates this chance. The DC to remove the curse is 10 + the famine spirit’s level.\n\nThis alters enhanced attacks.\n\nInfectious Maw (Su): At 4th level, a famine spirit gains the swallow whole ability with his bite attack. Creatures he has swallowed take 1d6 acid damage per round + 1 per class level. Creatures who have suffered this damage come under the effects of a curse with a caster level equal to the famine spirit’s class level that urges them to consume flesh; similar to starvation damage, this damage cannot be recovered until 24 hours have passed or the target spends a full-round action consuming the corpse of a creature with Intelligence 3 or higher - until then, not even magic that restores hit points heals this damage.\n\nHe may use his class level as his base attack bonus for the purpose of grapple and swallow whole CMB and CMD checks; this stacks with base attack bonus gained from other sources as normal. He can swallow creatures up to his size category.\n\nAt 7th level, he can swallow creatures up to one size larger than his size category. The hit points needed for swallowed creatures to cut their way free increases by 10% (to 20% of total hit points, in most cases). In addition, if a creature dies in his stomach, he can reanimate that creature and regurgitate it into an unoccupied adjacent square by spending a spell point as a move action. This functions as the Death sphere ability, using his normal caster level.\n\nAt 13th level, he gains a +2 AC bonus to his interior. In addition, if a creature dies in his stomach with Hit Dice at least half his, he can spend a spell point as a move action to digest the creature, restoring hit points equal to twice the creature’s Hit Dice.\n\nAt 19th level, he can swallow creatures up to two sizes larger than his size category. He also gains the fast swallow ability with his bite attack, and the hit points needed for swallowed creatures to cut their way free increases by 10% again (to 30% of total hit points).\n\nThis replaces lingering transformation and enhanced physicality.\n\nRavenous Bite (Ex): At 8th level, he gains Vital Strike as a bonus feat. He can only use this feat in conjunction with his bite attack. His bite attack deals increased base damage, as shown on the table below:\n\nTable: Bite Damage\n\nClass Level\nRavenous Bite Base Damage (Medium creature)\n\n8th–11th\n1d8\n\n12th–15th\n1d10\n\n16th–19th\n2d6\n\n20th\n2d8\n\nAt 11th level, he gains the benefit of Improved Vital Strike, even if he does not meet the prerequisites. He can only use this feat in conjunction with his bite attack. Zombies and variant zombies he reanimates (such as plague zombies and fast zombies) gain a bite attack that deals damage (or their normal bite damage, whichever is greater) as the chart above instead of a slam attack.\n\nAt 16th level, he gains Greater Vital Strike as a bonus feat, even if he does not meet the prerequisites. He can only use this feat in conjunction with his bite attack.\n\nThis replaces extended transformation and greater transformation.\n\nInsatiable Consumption (Su): At 20th level, whenever a famine spirit uses Greater Vital Strike with a bite attack, it functions as a vorpal weapon. In addition, any creature that he decapitates with this ability or dies while swallowed whole has their soul consumed.\n\nA creature with its soul consumed cannot be resurrected until the famine spirit is slain, unless the caster first uses a wish spell, miracle spell, or similar magic to free the creature’s soul.\n\nThis replaces second skin.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:shifter:fey-incarnate",
+      "package": "spheres-class:shifter",
+      "name": "Fey Incarnate",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/fey-incarnate",
+      "replaces_features": [
+        "enhanced-physicality",
+        "second-skin",
+        "shapeshifter"
+      ],
+      "removed_features": [
+        "enhanced-physicality",
+        "second-skin",
+        "shapeshifter"
+      ],
+      "removed_feature_clauses": [
+        "shapeshifter",
+        "enhanced physicality",
+        "second skin"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "The fey incarnate loses Climb (Str) as a class skill."
+        },
+        {
+          "level": 1,
+          "name": "Fair Form",
+          "description": "When the fey incarnate grants herself and only herself the Blank Transformation and includes at least one trait from the Fey Body (body) talent, she may apply a fey-link to herself as part of the same action."
+        },
+        {
+          "level": 1,
+          "name": "Of the Fair Folk",
+          "description": "The fey incarnate gains the Alteration sphere and the Fallen Fey sphere as bonus spheres. The Alteration sphere automatically gains the Beast Soul and Lycanthropic drawbacks, granting a single bonus talent which must be Fey Body (body). If any of these are already possessed, either a bonus talent of either sphere may be taken or one of the drawbacks may be removed. The fey incarnate uses her class level as her caster level for the Fallen Fey sphere when applying effects to herself, as well as when using the Blank Transformation on herself and including at least one trait from the Fey Body (body) talent. This stacks normally with caster levels gained from other sources.\n\nThis replaces shapeshifter."
+        },
+        {
+          "level": 1,
+          "name": "Sidhe Link",
+          "description": "The fey incarnate may take (fey-blessing) talents in place of bestial traits."
+        },
+        {
+          "level": 7,
+          "name": "Enhanced Presence",
+          "description": "At 7th level, the fey incarnate’s body begins to more closely resemble the fair creatures of Faerie. She gains a +2 inherent bonus to her casting ability score. This increases to +4 at 13th level, and +6 at 19th level.\n\nThis replaces enhanced physicality."
+        },
+        {
+          "level": 20,
+          "name": "Fey Apotheosis",
+          "description": "At 20th level, the fey incarnate’s type changes to fey. Do not recalculate hit points, base attack bonus, skill points or other statistics. The fey incarnate gains low-light vision if she does not already possess it. If she already possesses low-light vision, instead increase its effectiveness, allowing her to see three times as far instead of twice as far.\n\nWhenever she grants herself the blank form and includes at least one trait from the Fey Body talent, it is considered an extraordinary ability instead of a magical effect. This means it does not provoke an attack of opportunity, cannot be dispelled or countered, and can be used within an antimagic field.\n\nChanges to herself never cost a spell point and always have an unlimited duration. Fey-blessings the fey incarnate casts on herself expire 1 hour per caster level after being cast.\n\nThis replaces second skin.\n\nThe Fey Binder's Handbook\n\n$4.99\n\nWhether it is because they are tired of the drudgery of mortal life, or because they have been captivated by the sheer wonder of the fey, those souls known as fey incarnate have made it their life’s goal to truly become one of the fey, body and soul. At first most start out as minor shapeshifters, but as time moves on, they learn to infuse their forms with more and more of the stuff of the Faerie realms, until one day they can truly join the ranks of the Fair Folk.\n\nClass Skills: The fey incarnate loses Climb as a class skill and gains Bluff as a class skill.\n\nCasting Ability Modifier: The fey incarnate uses Charisma as her casting ability modifier.\n\nOf the Fair Folk: The fey incarnate gains the Alteration sphere and the Fallen Fey sphere as bonus spheres. The Alteration sphere automatically gains the Beast Soul and Lycanthropic drawbacks, granting a single bonus talent which must be Fey Transformation. If any of these are already possessed, either a bonus talent of either sphere may be taken or one of the drawbacks may be removed. The fey incarnate uses her class level as her caster level for the Fallen Fey sphere when applied to herself and for the Alteration sphere when applying the form from the Fey Transformation talent. This stacks normally with caster levels gained from other sources.\n\nThis replaces shapeshifter.\n\nFair Form: When the fey incarnate casts shapeshift using the Fey Transformation talent on herself and only herself, she may apply a fey-link to herself as part of the same action.\n\nSidhe Link: The fey incarnate may take (fey-blessing) talents in place of bestial traits.\n\nEnhanced Presence (Ex): At 7th level, the fey incarnate’s body begins to more closely resemble the fair creatures of Faerie. She gains a +2 inherent bonus to her Charisma score. This increases to +4 at 13th level, and +6 at 19th level.\n\nThis replaces enhanced physicality.\n\nFey Apotheosis (Ex): At 20th level, the fey incarnate’s type changes to fey. Do not recalculate hit points, base attack bonus, skill points or other statistics. The fey incarnate gains low-light vision if she does not already possess it. If she already possesses low-light vision, instead increase its effectiveness, allowing her to see three times as far instead of twice as far. Whenever she changes her own form with the Fey Transformation talent, it is considered an extraordinary ability instead of a magical effect. This means it does not provoke an attack of opportunity, cannot be dispelled or countered, and can be used within an antimagic field. Changes to herself never cost a spell point and always have an unlimited duration. Fey-blessings the fey incarnate casts on herself expire 1 hour per caster level after being cast.\n\nThis replaces second skin.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:shifter:forceful-shifter",
+      "package": "spheres-class:shifter",
+      "name": "Forceful Shifter",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/forceful-shifter",
+      "replaces_features": [
+        "quick-transformation",
+        "shifters-casting",
+        "shifters-normal-base-attack-bonus"
+      ],
+      "removed_features": [
+        "a-shifters-normal-base-attack-bonus",
+        "quick-transformation"
+      ],
+      "removed_feature_clauses": [
+        "a shifter’s normal base attack bonus",
+        "quick transformation"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {
+        "casting": {
+          "sphere_progression": "Low"
+        }
+      },
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Base Attack Bonus",
+          "description": "A forceful shifter’s base attack bonus from shifter levels is equal to their shifter level. This replaces a shifter’s normal base attack bonus."
+        },
+        {
+          "level": 1,
+          "name": "Diminished Magic",
+          "description": "A forceful shifter is considered a Low-Caster rather than a Mid-Caster. If she possesses a shifter class feature that would grant a caster level equal to her class level with a sphere, she is instead considered a Mid-Caster in that sphere.\n\nThis alters the shifter’s casting."
+        },
+        {
+          "level": 1,
+          "name": "Hit Dice",
+          "description": "A forceful shifter uses d10s in place of d8s for its Hit Dice."
+        },
+        {
+          "level": 2,
+          "name": "Form of Choice",
+          "description": "When a forceful shifter would gain the quick transformation class feature, she may instead choose to gain either Eternal Transformation or Transformation as a bonus feat. If she already possesses either of these feats, she must immediately retrain them for no cost.\n\nThis replaces quick transformation. When combined with the martial shifter archetype, the Forceful Shifter gains the form of choice feature at 2nd level instead of 1st.\n\nWiki Note: Form of choice is an optional ability and does not make the Forceful Shifter incompatible with archetypes that replace quick transformation such as the Paragon Shifter."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:shifter:martial-shifter",
+      "package": "spheres-class:shifter",
+      "name": "Martial Shifter",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/martial-shifter",
+      "replaces_features": [
+        "bestial-trait",
+        "bestial-trait-at-level",
+        "magic-talents",
+        "proficiencies",
+        "quick-transformation"
+      ],
+      "removed_features": [
+        "bestial-trait-2nd-level"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Martial shifters are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis modifies proficiencies and replaces the bestial trait gained at 2nd level."
+        },
+        {
+          "level": 2,
+          "name": "Delayed Speed",
+          "description": "A martial shifter gains the quick transformation ability at 2nd level instead of 1st level.\n\nThis modifies quick transformation."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "Whenever a martial shifter would gain a magic talent from her class levels (not the 2 bonus talents gained when first gaining the casting class feature), she may instead choose to gain a combat talent. A martial shifter uses her casting ability modifier as her practitioner modifier.\n\nThis modifies magic talents."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:shifter:night-terror",
+      "package": "spheres-class:shifter",
+      "name": "Night Terror",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/night-terror",
+      "replaces_features": [
+        "boundless-communication",
+        "endless-communication",
+        "quick-transformation",
+        "shapeshifter",
+        "steal-language",
+        "wild-empathy"
+      ],
+      "removed_features": [
+        "boundless-communication",
+        "endless-communication",
+        "steal-language",
+        "wild-empathy"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Bestial Traits",
+          "description": "The night terror shifter has unique and exclusive access to the following bestial traits:"
+        },
+        {
+          "level": 1,
+          "name": "Nightforms",
+          "description": "The following nightforms are available to the night terror archetype for shifter. Unless otherwise stated, the saving throw DC of a nightform is equal to 10 + 1/2 the night terror’s class level + the night terror’s casting ability modifier.\n\nA nightform is a supernatural effect (unless otherwise stated)."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:shifter:nocturnal-predator",
+      "package": "spheres-class:shifter",
+      "name": "Nocturnal Predator",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/nocturnal-predator",
+      "replaces_features": [
+        "boundless-communication",
+        "counts-as-quick-transformation",
+        "endless-communication",
+        "endurance",
+        "enhanced-physicality",
+        "shapeshifter",
+        "steal-language",
+        "wild-empathy"
+      ],
+      "removed_features": [
+        "boundless-communication",
+        "endless-communication",
+        "endurance",
+        "enhanced-physicality",
+        "steal-language",
+        "wild-empathy"
+      ],
+      "removed_feature_clauses": [
+        "wild empathy",
+        "steal language",
+        "boundless communication",
+        "endless communication",
+        "endurance",
+        "enhanced physicality"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Hidden Transformation",
+          "description": "When within an area of dim light, darkness, or supernatural darkness, the nocturnal predator may use the Alteration sphere to apply a shapeshift to herself and only herself as a move action. Maintaining this effect through concentration only requires a move action each round as long as the nocturnal predator begins her turn in an area of dim light, darkness, or supernatural darkness.\n\nThis ability alters and counts as quick transformation."
+        },
+        {
+          "level": 1,
+          "name": "I Am the Night",
+          "description": "At 1st level the nocturnal predator gains a bonus to Stealth equal to 1/2 her class level and nightvision as a bonus bestial trait.\n\nAt 10th level a nocturnal predator can use the Stealth skill even while being observed. As long as she is within 10 feet of an area of dim light or darkness, a nocturnal predator can hide herself from view in the open without the need for cover or concealment. She cannot, however, hide in her own shadow.\n\nThis replaces wild empathy, steal language, boundless communication, and endless communication."
+        },
+        {
+          "level": 1,
+          "name": "Rogue Talents",
+          "description": "A nocturnal predator can select rogue talents in place of bestial traits, using her nocturnal predator levels as rogue levels when determining their effects.\n\nShadowshifter: At 1st level the nocturnal predator gains the Alteration sphere and Dark sphere as bonus magic talents. The nocturnal predator uses his class level as her caster level for the Dark sphere and Alteration sphere. This stacks normally with caster levels gained from other sources. He also gains the Lycanthropic drawback and the Photophobic Casting drawback, but no bonus talents. If the nocturnal predator already has the Alteration sphere from another source, he does not gain the Lycanthropic drawback. If the nocturnal predator already has the Dark sphere from another source, he does not gain the Photophobic drawback. This modifies shapeshifter.\n\nHidden Transformation: When within an area of dim light, darkness, or supernatural darkness, the shifter may use the Alteration sphere to apply a shapeshift to herself and only herself as a move action. Maintaining this effect through concentration only requires a move action each round as long as the nocturnal predator begins its turn in an area of dim light, darkness, or supernatural darkness.\n\nThis ability modifies and counts as quick transformation.\n\nSneak Attack: At 3rd level, if a nocturnal predator catches an opponent unable to defend itself effectively from his natural attacks, he can strike a vital spot for extra damage. The nocturnal predator’s natural attacks deal extra damage any time his target would be denied a Dexterity bonus to AC (whether the target actually has a Dexterity bonus or not), or when the nocturnal predator flanks her target. This additional damage is 1d6 at 3rd level, and increases by 1d6 every 3 levels thereafter.\n\nShould the nocturnal predator score a critical hit with a sneak attack, this additional damage is not multiplied. A nocturnal predator may only make sneak attacks using his natural attacks. A nocturnal predator may deal nonlethal damage with a sneak attack if the natural attack he is using deals nonlethal damage, including by taking a -4 to the attack roll. Ranged natural attacks can count as sneak attacks only if the target is within 30 ft.\n\nThe nocturnal predator must be able to see the target well enough to pick out a vital spot and must be able to reach such a spot. A nocturnal predator cannot use sneak attack while striking a creature with concealment.\n\nThis replaces endurance and enhanced physicality.\n\nI Am the Night: At 1st level the nocturnal predator gains a bonus to Stealth equal to 1/2 his class level and Nightvision as a bonus Bestial trait.\n\nAt 10th level a nocturnal predator can use the Stealth skill even while being observed. As long as he is within 10 ft. of an area of dim light or darkness, a nocturnal predator can hide himself from view in the open without the need for cover or concealment. He cannot, however, hide in his own shadow.\n\nThis replaces wild empathy, steal language, boundless communication, and endless communication.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        },
+        {
+          "level": 1,
+          "name": "Shadowshifter",
+          "description": "At 1st level the nocturnal predator gains the Alteration sphere and Dark sphere as bonus magic talents. The nocturnal predator uses her class level as her caster level for the Dark sphere and Alteration sphere. This stacks normally with caster levels gained from other sources. She also gains the Lycanthropic drawback, with no bonus talent. If the nocturnal predator already has either the Dark sphere or the Alteration sphere, she only gains the missing sphere and does not gain the Lycanthropic drawback. If she already has both, she instead gains one bonus talent from either sphere.\n\nThis alters shapeshifter."
+        },
+        {
+          "level": 3,
+          "name": "Sneak Attack",
+          "description": "At 3rd level, if a nocturnal predator catches an opponent unable to defend itself effectively from her natural attacks, she can strike a vital spot for extra damage. The nocturnal predator’s natural attacks deal extra damage any time her target would be denied a Dexterity bonus to AC (whether the target actually has a Dexterity bonus or not), or when the nocturnal predator flanks her target. This additional damage is 1d6 at 3rd level, and increases by 1d6 every 3 levels thereafter.\n\nShould the nocturnal predator score a critical hit with a sneak attack, this additional damage is not multiplied. A nocturnal predator may only make sneak attacks using her natural attacks. A nocturnal predator may deal nonlethal damage with a sneak attack if the natural attack she is using deals nonlethal damage, including by taking a -4 to the attack roll. Ranged natural attacks can count as sneak attacks only if the target is within 30 feet\n\nThe nocturnal predator must be able to see the target well enough to pick out a vital spot and must be able to reach such a spot. A nocturnal predator cannot use sneak attack while striking a creature with concealment.\n\nThis replaces endurance and enhanced physicality."
+        }
+      ],
+      "detected_systems": [
+        "sneak_attack",
+        "rogue_talent"
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:shifter:pack-master",
+      "package": "spheres-class:shifter",
+      "name": "Pack Master",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/pack-master",
+      "replaces_features": [
+        "bestial-trait",
+        "bestial-trait-at-level",
+        "lingering-transformation",
+        "quick-transformation",
+        "second-skin"
+      ],
+      "removed_features": [
+        "bestial-trait-6th-level",
+        "lingering-transformation",
+        "quick-transformation",
+        "second-skin"
+      ],
+      "removed_feature_clauses": [
+        "quick transformation",
+        "lingering transformation",
+        "bestial trait gained at 6th level",
+        "second skin"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Animal Companion",
+          "description": "A pack master gains an animal companion, as the druid class feature, using her pack master level as her effective druid level. The pack master may have more than one animal companion, but she must divide up her effective druid level between her companions to determine the abilities of each companion.\n\nFor example, a pack master with an effective druid level of 4 can have one 4th-level companion, two 2nd-level companions, or one 1st-level and one 3rd-level companion.\n\nEach time a pack master’s effective druid level increases, she must decide how to allocate the increase among her animal companions (including the option of adding a new 1st-level companion). Once an effective druid level is allocated to a particular companion, it cannot be redistributed while that companion is in the pack master’s service (she must release a companion or wait until a companion dies to allocate its levels to another companion). The share spells animal companion ability does not give the pack master the ability to grant a single magical effect to all of her animal companions.\n\nThis replaces quick transformation and lingering transformation."
+        },
+        {
+          "level": 6,
+          "name": "Improved Empathic Link",
+          "description": "At 6th level, the pack master gains an empathic link with all of her animal companions. This functions like an empathic link with a familiar, except the pack master can also see through a companion’s eyes as a swift action, maintaining this connection as long as she likes (as long as the companion is within 1 mile) and ending it as a free action. The pack master can only see through the eyes of one companion at a time, and is blinded while maintaining this connection.\n\nThis replaces the bestial trait gained at 6th level."
+        },
+        {
+          "level": 20,
+          "name": "Pack Lord",
+          "description": "At 20th level, each of the pack master’s animal companions gains a +4 bonus to her effective druid level, to a maximum equal to the pack master’s effective druid level. This replaces second skin.\n\nSpheres of Power: Expanded Options\n\n$4.99\n\nAnimal Companion (Ex): A pack master gains an animal companion, as the druid class feature, using his shifter level as his effective druid level. The pack master may have more than one animal companion, but he must divide up his effective druid level between his companions to determine the abilities of each companion.\n\nFor example, a pack master with an effective druid level of 4 can have one 4th-level companion, two 2nd-level companions, or one 1st-level and one 3rd-level companion.\n\nEach time a pack master’s effective druid level increases, he must decide how to allocate the increase among his animal companions (including the option of adding a new 1st-level companion). Once an effective druid level is allocated to a particular companion, it cannot be redistributed while that companion is in the shifter’s service (he must release a companion or wait until a companion dies to allocate its levels to another companion). The share spells animal companion ability does not give the shifter the ability to grant a single magical effect to all of his animal companions.\n\nThis replaces quick transformation and lingering transformation.\n\nImproved Empathic Link (Su): At 6th level, the pack master gains an empathic link with all of his animal companions. This functions like an empathic link with a familiar, except the pack master can also see through a companion’s eyes as a swift action, maintaining this connection as long as he likes (as long as the companion is within 1 mile) and ending it as a free action. The pack master can only see through the eyes of one companion at a time, and is blinded while maintaining this connection.\n\nThis replaces the bestial trait gained at 6th level.\n\nPack Lord (Ex): At 20th level, each of the pack master’s animal companions gains a +4 bonus to their effective druid level, to a maximum equal to the pack master’s effective druid level.\n\nThis replaces second skin.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": [
+        "animal_companion"
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:shifter:paragon",
+      "package": "spheres-class:shifter",
+      "name": "Paragon",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/paragon-shifter",
+      "replaces_features": [
+        "boundless-communication",
+        "endless-communication",
+        "extended-transformation",
+        "greater-transformation",
+        "immunity-to-disease-but-can-be-replaced-by-archetypes-which",
+        "immunity-to-poison",
+        "lingering-transformation",
+        "magic-talents",
+        "proficiencies",
+        "quick-transformation",
+        "second-skin",
+        "shapeshifter",
+        "shifters-saving-throws",
+        "steal-language",
+        "wild-empathy"
+      ],
+      "removed_features": [
+        "boundless-communication",
+        "endless-communication",
+        "extended-transformation",
+        "greater-transformation",
+        "lingering-transformation",
+        "quick-transformation",
+        "second-skin",
+        "shapeshifter",
+        "steal-language",
+        "wild-empathy"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Paragon Bestial Traits",
+          "description": "The following bestial traits are only available to paragons."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:shifter:protean",
+      "package": "spheres-class:shifter",
+      "name": "Protean",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/protean",
+      "replaces_features": [
+        "endurance",
+        "extended-transformation",
+        "greater-transformation",
+        "quick-transformation",
+        "shapeshifter"
+      ],
+      "removed_features": [
+        "endurance",
+        "extended-transformation",
+        "greater-transformation",
+        "quick-transformation"
+      ],
+      "removed_feature_clauses": [
+        "quick transformation",
+        "extended transformation",
+        "greater transformation",
+        "endurance"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Aura",
+          "description": "At 1st level, a protean radiates an aura of chaos as a cleric of her class level."
+        },
+        {
+          "level": 1,
+          "name": "Breadth of Form",
+          "description": "At 1st level, a protean may tap her inner connection to the primordial chaos to unlock forms she has never learned. As a standard action, a protean may grant herself the benefit of any one Alteration sphere magic talent she does not possess. The protean must meet the prerequisites for any talent gained with this ability. This effect lasts for 1 minute. A protean may use this ability a number of times per day equal to 3 + 1/2 her protean level (minimum 4). Multiple uses of this ability do not stack. If a protean uses this ability again before the previous duration has expired, it replaces the previous use. At 5th level, a protean may use this ability to gain the benefits of two Alteration sphere talents at the same time. She may select one magic talent as a move action or two magic talents as a standard action. A protean may use one of these magic talents to meet a prerequisite of the second magic talent; doing so means that she cannot replace a talent currently fulfilling another’s prerequisite without also replacing those talents that require it. Each individual magic talent selected counts toward her daily uses of this ability. At 9th level, a protean may gain the benefits of two Alteration sphere talents as a move action or one magic talent as a swift action. At 13th level, a protean may use this ability to gain the benefits of three Alteration sphere talents at the same time. She may select one magic talent as a free action, two magic talents as a swift action, or three magic talents as a move action. A protean may use one of the magic talents to meet a prerequisite of the second and third magic talents and use the second magic talent to meet a prerequisite of the third magic talent. Each individual magic talent selected counts toward a daily uses of this ability. At 17th level, a protean may gain the benefit of two Alteration sphere talents as a free action or three talents as a swift action. Each individual magic talent selected counts toward her daily uses of this ability.\n\nThis replaces quick transformation, extended transformation, and greater transformation."
+        },
+        {
+          "level": 1,
+          "name": "Author's Note",
+          "description": "This ability grants the knowledge of (access to) Alteration talents similar to the hedgewitch's spiritualism path ability. Breadth of Form does not grant the \"effects\" of talents selected this way."
+        },
+        {
+          "level": 3,
+          "name": "Quick Transformation",
+          "description": "At 3rd level the protean gains quick transformation as the shifter class feature. This replaces endurance."
+        },
+        {
+          "level": 1,
+          "name": "New Feat",
+          "description": "Extra Breadth Of Form: Prerequisite: Breadth of form class feature."
+        },
+        {
+          "level": 1,
+          "name": "Benefit",
+          "description": "Increase the number of times per day you may use breadth of form by 2. You may take this feat multiple times. The effects stack."
+        },
+        {
+          "level": 1,
+          "name": "The Shapeshifter's Handbook",
+          "description": "Chaotic Shifter: At 1st level, a protean gains the Alteration sphere as a bonus magic talent. He also gains the Beast Soul drawback with the Anarchic Transformation talent, gaining Anarchic Transformation as normal. If he already possesses the Alteration sphere, he gains Anarchic Transformation as a bonus talent with no drawback. If both are already possessed, then he may choose any Alteration sphere talent as a bonus talent.\n\nThis modifies shapeshifter."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:shifter:radiant-protean",
+      "package": "spheres-class:shifter",
+      "name": "Radiant Protean",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/radiant-protean",
+      "replaces_features": [
+        "endurance",
+        "immunity-to-poison",
+        "wild-empathy"
+      ],
+      "removed_features": [
+        "endurance",
+        "immunity-to-poison",
+        "wild-empathy"
+      ],
+      "removed_feature_clauses": [
+        "wild empathy class feature",
+        "endurance class feature",
+        "immunity to poison class feature"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A radiant protean removes Handle Animal (Cha) from her list of class skills."
+        },
+        {
+          "level": 1,
+          "name": "Luminous Shapeshifter",
+          "description": "At first level, the radiant protean gains the Light sphere as a bonus magic talent. The radiant protean uses her class level as her caster level for this sphere. This stacks normally with caster levels gained from other sources. In addition, she gains the Touch Of Light drawback. This drawback does not grant an additional talent and may be bought off as normal. If the radiant protean already possesses the Light sphere, then she does not gain the Touch of Light drawback nor a bonus magic talent.\n\nThis replaces the wild empathy class feature."
+        },
+        {
+          "level": 3,
+          "name": "Bioluminescent Transformation",
+          "description": "At 3rd level the radiant protean gains Bioluminescent Transformation as a bonus feat. If she already possesses that feat, then she may gain any feat she meets the prerequisites for instead.\n\nThis replaces the endurance class feature."
+        },
+        {
+          "level": 8,
+          "name": "Prismatic Hide",
+          "description": "At 8th level, the radiant protean may shift her coloration easily whenever she is subject to a shapeshift. So long as she moves no more than half her normal speed, she gains a bonus on Stealth checks equal to half her caster level. This does not stack with invisibility or the camouflage trait.\n\nThis replaces the immunity to poison class feature.\n\nClass Skills: A radiant protean adds Bluff to her list of class skills and removes Handle Animal from her list of class skills.\n\nLuminous Shapeshifter: At first level, the radiant protean gains the Light sphere as a bonus magic talent. The radiant protean uses her class level as her caster level for this sphere. This stacks normally with caster levels gained from other sources. In addition, she gains the Touch of Light drawback. This drawback does not grant an additional talent and may be bought off as normal. If the radiant protean already possesses the Light sphere, then she does not gain the Touch of Light drawback nor a bonus magic talent.\n\nThis replaces the wild empathy class feature.\n\nBioluminescent Transformation: At 3rd level the radiant protean gains Bioluminescent Transformation as a bonus feat. If she already possesses that feat, then she may gain any feat she meets the prerequisites for instead.\n\nThis replaces the endurance class feature.\n\nPrismatic Hide: At 8th level, the radiant protean gains access to the following unique traits which she can add to her shapeshift forms:\n\nCamouflage: So long as the creature moves no more than half its normal speed, it gains a bonus on Stealth checks equal to half your caster level.\n\nThreat Display: With a sudden, intense shift and focus of its coloration, a creature may use the demoralize function of Intimidate as a swift action.\n\nThis replaces the immunity to poison class feature.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:shifter:spellvampire",
+      "package": "spheres-class:shifter",
+      "name": "Spellvampire",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/spellvampire",
+      "replaces_features": [
+        "bestial-talent",
+        "bestial-talent-at-level",
+        "bestial-trait",
+        "bestial-trait-at-level",
+        "boundless-communication",
+        "endless-communication",
+        "endurance",
+        "lingering-transformation",
+        "quick-transformation",
+        "shapeshifter",
+        "steal-language"
+      ],
+      "removed_features": [
+        "bestial-talent-12th-level",
+        "bestial-talent-16th-level",
+        "bestial-talent-20th-level",
+        "bestial-talent-8th-level",
+        "bestial-trait-2nd-level",
+        "endurance",
+        "lingering-transformation",
+        "quick-transformation"
+      ],
+      "removed_feature_clauses": [
+        "bestial trait gained at 2nd level",
+        "quick transformation",
+        "endurance",
+        "lingering transformation",
+        "bestial talent gained at 8th level",
+        "bestial talent gained at 12th level",
+        "bestial talent gained at 16th level",
+        "bestial talent gained at 20th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Fang-fueled Language",
+          "description": "A spellvampire may only use her steal language ability by first biting a creature. The same limitation exists for her boundless communication and endless communication features, but she may permanently communicate with such creatures after biting them.\n\nThis alters steal language, boundless communication and endless communication."
+        },
+        {
+          "level": 1,
+          "name": "Hunger Within",
+          "description": "At 1st level, the spellvampire gains a bite attack. This is a primary attack that deals 1d6 damage (1d4 Small), and uses 1-1/2 her strength bonus when dealing damage if it is the only attack made on the spellvampire’s turn. When dealing damage with this bite attack, she may choose to reduce the damage she deals to 0.\n\nThis replaces the bestial trait gained at 2nd level"
+        },
+        {
+          "level": 1,
+          "name": "Quick Study",
+          "description": "A spellvampire may study a creature using the Mimicry talent as a swift action without spending a spell point, and may spend a spell point to study a creature as a free action that can be taken outside of her turn. If the spellvampire would gain a talent she already knows, she instead can apply an extra trait when transforming into the (transformation) talent gained, and increases her caster level by 1 when shapeshifting into it.\n\nThis replaces quick transformation."
+        },
+        {
+          "level": 1,
+          "name": "Theft-bound",
+          "description": "A spellvampire gains the Alteration sphere and the Mimicry talent as bonus magic talents, and uses her class level as her caster level when using shapeshift to apply a (transformation) talent she has gained from the Mimicry talent, even with traits added from talents not gained from the Mimicry talent.\n\nThis alters shapeshifter."
+        },
+        {
+          "level": 3,
+          "name": "Empress of the Essences",
+          "description": "At 3rd level, a spellvampire gains the Mana sphere as a bonus sphere, as well as the Weapon-Bound drawback, granting the Manasurge Strike talent as normal. The spellvampire may only use her bite attack to deliver her Mana sphere effects.\n\nThis replaces endurance."
+        },
+        {
+          "level": 4,
+          "name": "Face Stealer",
+          "description": "At 4th level, the spellvampire begins to learn how to utilize her innate shapeshifting prowess. When she makes a bite attack as a standard action or greater on a creature she has studied, she may spend a spell point to shapeshift as a free action that can be taken outside of her turn, although she must use the talent gained from the Mimicry talent. When shapeshifting in this way, the shapeshift remains without concentration, as if she had spent a spell point.\n\nThis replaces lingering transformation."
+        },
+        {
+          "level": 8,
+          "name": "Mind Stealer",
+          "description": "At 8th level, the spellvampire learns to steal more than just a creature’s visage. She learns to make a special expunge that she may only deliver through her bite attack. The creature must attempt a Fortitude save against her Mana sphere DC. On failure, the spellvampire can choose between one of two effects: She may immediately drain 1d2 spell points from the creature, removing that many spell points from the creature and gaining as many spell points (but not temporary ones) that were removed. This increases by one dice step at 12th level and every four levels thereafter. Alternatively, she may steal the knowledge of one magical talent that creature knows for 24 hours. For this duration, the creature loses the ability to utilize this magical talent, and the spellvampire can use it as if she possessed it, using the creature’s caster level with the sphere (up to a maximum of the spellvampire’s class level). If the spellvampire does not possess the base sphere needed to learn that talent, she instead gains the base sphere. If the spellvampire does not possess the required prerequisites, she gains instead one of the prerequisites she qualifies for. If she does not qualify for any talent, she gains no talent.\n\nThe spellvampire can only attempt to use mind stealer once per day per creature, and can only drain a number of additional spell points each day equal to half her class level. She may only retain knowledge of two talents, plus an additional talent at 12th level and every four levels thereafter. Any additional use requires her to lose a stolen talent that she does not use as a prerequisite to any other talent.\n\nThis replaces the bestial talent gained at 8th level."
+        },
+        {
+          "level": 12,
+          "name": "Power Stealer",
+          "description": "Starting at 12th level, when the spellvampire utilizes her mind stealer ability on a creature and the creature fails its save, she may instead choose to steal one of that creature’s natural attacks, immunities, or extraordinary abilities. The exact abilities that can be chosen are up to the GM’s discretion, but should be abilities such as the barbarian’s rage ability, the rogue’s sneak attack ability, or a dragon’s breath weapon. Such abilities can only be retained for 1 minute, and the spellvampire can only retain the use of one such ability at a time. Abilities with a specific number of roundly uses instead only lose uses equal to the spellvampire’s level, and the spellvampire may utilize them for that many rounds. Natural attacks that are stolen adjust their damage dice to fit the spellvampire’s size, reducing them or increasing them as normal.\n\nThe spellvampire cannot use this ability on creatures with a higher CR than her class levels.\n\nThis replaces the bestial talent gained at 12th level."
+        },
+        {
+          "level": 16,
+          "name": "God Stealer",
+          "description": "Starting at 16th level, when the spellvampire utilizes her mind stealer ability on a creature and the creature fails its save, she may instead choose to steal any of that creature’s supernatural or spell-like abilities, retaining use of them for half the uses the creature had remaining of them, or for 24 hours. The spellvampire may now use her caster level when utilizing any magical talents she has stolen and additionally and may now retain extraordinary abilities, immunities or natural attacks for 24 hours.\n\nThe spellvampire may use power stealer and god stealer on creatures up to CR 20.\n\nThis replaces the bestial talent gained at 16th level."
+        },
+        {
+          "level": 20,
+          "name": "Forever Evolving",
+          "description": "At 20th level, the spellvampire reaches the pinnacle of her thievery. The spellvampire may spend a spell point to retain any magical talent, supernatural ability, extraordinary ability, immunity, or natural attack at the start of each day for an additional day. She may keep any such abilities indefinitely as long as she spends a spell point for each ability at the start of each day. Additionally, she no longer has a limit of how many magical talents she may store, or how many spell points she may drain each day. The original creature does not regain the use of any stolen abilities as long as the spellvampire retains them.\n\nThe spellvampire may use power stealer and god stealer on creatures on any CR.\n\nThis replaces the bestial talent gained at 20th level.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

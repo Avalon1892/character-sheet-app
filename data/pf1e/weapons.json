@@ -1,0 +1,18 @@
+{
+  "source": "Pathfinder RPG Core Rulebook",
+  "source_url": "https://www.aonprd.com/EquipmentWeapons.aspx",
+  "entries": [
+    {"key":"dagger","name":"Dagger","attack_type":"Melee","ability":"strength","damage_dice":"1d4","damage_ability":"strength","damage_multiplier":1.0,"critical":"19-20/x2","weight":1},
+    {"key":"club","name":"Club","attack_type":"Melee","ability":"strength","damage_dice":"1d6","damage_ability":"strength","damage_multiplier":1.0,"critical":"20/x2","weight":3},
+    {"key":"heavy_mace","name":"Heavy mace","attack_type":"Melee","ability":"strength","damage_dice":"1d8","damage_ability":"strength","damage_multiplier":1.0,"critical":"20/x2","weight":8},
+    {"key":"longspear","name":"Longspear","attack_type":"Melee","ability":"strength","damage_dice":"1d8","damage_ability":"strength","damage_multiplier":1.5,"critical":"20/x3","weight":9},
+    {"key":"longsword","name":"Longsword","attack_type":"Melee","ability":"strength","damage_dice":"1d8","damage_ability":"strength","damage_multiplier":1.0,"critical":"19-20/x2","weight":4},
+    {"key":"rapier","name":"Rapier","attack_type":"Melee","ability":"strength","damage_dice":"1d6","damage_ability":"strength","damage_multiplier":1.0,"critical":"18-20/x2","weight":2},
+    {"key":"greataxe","name":"Greataxe","attack_type":"Melee","ability":"strength","damage_dice":"1d12","damage_ability":"strength","damage_multiplier":1.5,"critical":"20/x3","weight":12},
+    {"key":"greatsword","name":"Greatsword","attack_type":"Melee","ability":"strength","damage_dice":"2d6","damage_ability":"strength","damage_multiplier":1.5,"critical":"19-20/x2","weight":8},
+    {"key":"shortbow","name":"Shortbow","attack_type":"Ranged","ability":"dexterity","damage_dice":"1d6","damage_ability":null,"damage_multiplier":0.0,"critical":"20/x3","weight":2},
+    {"key":"longbow","name":"Longbow","attack_type":"Ranged","ability":"dexterity","damage_dice":"1d8","damage_ability":null,"damage_multiplier":0.0,"critical":"20/x3","weight":3},
+    {"key":"light_crossbow","name":"Light crossbow","attack_type":"Ranged","ability":"dexterity","damage_dice":"1d8","damage_ability":null,"damage_multiplier":0.0,"critical":"19-20/x2","weight":4},
+    {"key":"sling","name":"Sling","attack_type":"Ranged","ability":"dexterity","damage_dice":"1d4","damage_ability":"strength","damage_multiplier":1.0,"critical":"20/x2","weight":0}
+  ]
+}

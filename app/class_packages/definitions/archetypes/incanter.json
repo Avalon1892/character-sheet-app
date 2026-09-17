@@ -1,0 +1,183 @@
+{
+  "version": 1,
+  "class_key": "spheres-class:incanter",
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:incanter:archmage",
+      "package": "spheres-class:incanter",
+      "name": "Archmage",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/archmage",
+      "replaces_features": [
+        "",
+        "bonus-feat",
+        "bonus-feat-at",
+        "bonus-feats",
+        "bonus-feats-at",
+        "bonus-magic-talent",
+        "bonus-magic-talent-at-level",
+        "level"
+      ],
+      "removed_features": [
+        "12th",
+        "14th",
+        "16th-level",
+        "18th",
+        "20th-level",
+        "2nd",
+        "6th",
+        "bonus-feat-1st",
+        "bonus-feats-8th"
+      ],
+      "removed_feature_clauses": [
+        "bonus feat gained at 1st",
+        "2nd",
+        "6th",
+        "12th",
+        "14th",
+        "18th and 20th level",
+        "bonus feats gained at 8th and 16th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Manabound Education",
+          "description": "The archmage must select the Mana sphere with the bonus magic talent gained at 1st level.\n\nThis alters the bonus magic talent gained at 1st level."
+        },
+        {
+          "level": 1,
+          "name": "Master of All Arcane Arts",
+          "description": "The archmage begins with a single sphere selected to gain the benefits of a single sphere specialization of his choice, chosen normally from the list of specializations. Each time he rests and regains his spell points, he may choose to change the specialization to another; losing the benefits of the first, including the bonus talent or sphere gained from selecting the specialization.\n\nThe archmage never gains the 20th level ability from choosing a sphere specialization.\n\nThis replaces the bonus feat gained at 1st, 2nd, 6th, 12th, 14th, 18th and 20th level."
+        },
+        {
+          "level": 1,
+          "name": "Private Studies",
+          "description": "The archmage may still gain a single specialization point. If he does, he does not gain a bonus feat at 4th and 12th level."
+        },
+        {
+          "level": 4,
+          "name": "Tutor",
+          "description": "Starting 1st level, the archmage may select a single willing creature to be considered his student by spending 1 minute of time quickly lecturing them on magical arts. He may change his student once per day after resting to regain spell points. The archmage may create a manabond with his student as a free action by spending 1 spell point, and increases his Mana sphere caster level by 1 when determining the effects of any manabonds or (amp) effects that target his student.\n\nAt 4th level, the student gains access to the archmage’s specialization ability. This grants the student a +1 bonus to their caster level and the sphere as a bonus sphere. If the student already possesses the sphere they instead gain the same talent selected by the archmage, or a different talent within that sphere if they already possess that talent. If the talent may be taken multiple times, the student may choose whether to select that talent or another if they have already taken it. If the student already has the same specialization as the archmage (such as from their own incanter levels, or another archmage), they gain no benefits from this ability.\n\nAdditionally, the student is treated as if they were the archmage for the purpose of their specialization ability. This grants the student any passive benefits from the ability, and allows them to use the ability (using the archmage’s level and casting ability modifier). For abilities that grant subordinates or the ability to create them, the student instead shares that subordinate, treating them as one of their owners and gaining any benefits from commanding them that the archmage does (such as the +4 bonus on Handle Animal checks with an animal companion, or handling them as a free action). Any uses of such abilities draw from the archmage’s maximum uses per day, and the student cannot utilize the ability if the archmage has no remaining uses.\n\nBeginning at 8th level, whenever the archmage forms a manabond with his student, he may apply the effects of two (manabond) talents, rather than just one.\n\nThis replaces the bonus feats gained at 8th and 16th level."
+        },
+        {
+          "level": 20,
+          "name": "Perfect Educator",
+          "description": "At 20th level, archmage can have multiple students at a time, up to a number equal to his casting ability modifier.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:incanter:frostweaver",
+      "package": "spheres-class:incanter",
+      "name": "Frostweaver",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/frostweaver",
+      "replaces_features": [
+        "bonus-feats",
+        "bonus-magic-talents-incanter-gains-at-every-odd-level",
+        "incanter-specializations",
+        "incanters-class-skills"
+      ],
+      "removed_features": [
+        "bonus-magic-talents-incanter-gains-at-every-odd-level"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Frostweaver Variant Options",
+          "description": "The frostweaver archetype is thematically keyed to cold. However, presented here are rules for creating variants of the frostweaver. Players may select from variations on Table: Frostweaver Alternate Options for thematically altered options of this archetype.\n\nA variant frostweaver gains a different Nature sphere package at 1st level and also determines the effects of the variant frostweaver’s abilities that reference the cold descriptor, cold damage, cold resistance and other similar things as well as other changes listed below and summarized in Table: Frostweaver Alternative Options.\n\nBecause the frostweaver is thematically entwined around “cold” as a concept, playing a frostweaver variant requires some creativity. Frostweaver class features otherwise still function the same. For example, the icy barrier ice charm will still form a solid wall or hemisphere with the same hit points and hardness, even if the variant’s theme is fire. Players are encouraged to find ways to flavor these abilities to match the new element, such as a fire variant’s icy barrier ice charm forming “solid fire” or a metal variant’s icension ice charm being made up of small pieces of metal is key to succeeding with a frostweaver variant.\n\nConverting to a Variant Frostweaver:\n\nThe following changes are made when creating a variant frostweaver major changes are as follows, and are summarized below in Table: Frostweaver Alternate Options:\n\nServant of Winter: Servant of Winter grants the Nature sphere package according to the chosen variant at 1st level.\n\nSpell Descriptor: Class features which refer to the cold descriptor change according to the chosen variant. This includes the frost mote class feature, frost mote augmentation, the ice charms freeze magic, heart of ice, and cold wave, and the frozen 20th level capstone.\n\nEnergy Damage Type: Class features which refer to cold damage, cold resistance, and vulnerability to cold change according to the chosen variant. This includes the ice charms ice friend, winter’s kiss, freeze magic, heart of ice, and cold wave as well as the primordial cold blessing of winter.\n\nIce Crystal Step: The ice crystal step ice charm allows the variant frostweaver to teleport between two sources which would be appropriate for that variant’s Nature package. GMs should treat this similarly to the Warp sphere Limited Warp drawback limited to areas appropriate for the chosen variant’s Nature package. For example, a variant air frostweaver could teleport between areas with air while a variant metal frostweaver could teleport between areas with metal, but also dirt or sand as appropriate for the recover ore sphere effect.\n\nBlessings of Winter: Refer to Table: Frostweaver Alternative Options for changes to the following blessings of winter: glacial mysteries, the cold never bothered you anyways, whispers of frost. Glacial mysteries and whispers of frost grant access to a different oracle mystery or shaman spirit. The cold never bothered you anyways interacts with a different weather type.\n\nSpecial: For metal and plant variant frostweavers, the following changes should be taken in addition to those above:\n\nMetal and plant variant frostweavers should treat effects from their variant’s Nature package as though they had the earth descriptor for the purposes of frostweaver class features as well as thematically similar effects from other spheres, such as the Shrapnel Blast blast type as a “metal” effect or the Mantle Of Spring fey-blessing verdant step as a “plant” effect.\n\nInstead of cold damage, the metal and plant variants treat slashing and bludgeoning as their respective variant’s damage type. Effects which refer to cold damage instead reference that physical damage type instead.\n\nFeatures which refer to energy resistance (e.g. ice friend and heart of ice) instead grant damage reduction equal to half the energy resistance granted (minimum 1) which is bypassed by their variant’s damage type (DR/slashing for metal variants and DR/bludgeoning for plant variants).\n\nFeatures which involve vulnerability to cold (e.g. cold wave) instead increase physical damage taken of that type by 50%, to a maximum of the variant frostweaver’s level. For example, a creature made “vulnerable to slashing” who takes 30 points of slashing damage would suffer up to 15 additional points of slashing damage, to a maximum of the frostweaver’s class level.\n\nFor the primordial cold blessing of winter, instead of cold damage, half of any slashing or bludgeoning damage dealt (by a metal or plant variant’s sphere effects, spells, spell-like abilities, and supernatural abilities respectively) bypasses any damage reduction or immunity a creature might possess.\n\nTable: Frostweaver Alternative Options\n\nServant of Winter\nSpell Descriptor\nDamage Type\nIce Crystal Step\nGlacial Mysteries\nThe Cold Never Bothered You Anyways\nWhispers of Frost\n\nFrostweaver (Cold)\n(Water) package\nCold\nCold\nIce, snow, or source of water\nWinter mystery\nCold Weather severity\nFrost spirit\n\nCloudspinner (Air)\n(Air) package\nAir\nElectricity\nOpen air, fog\nWind mystery\nWind Weather severity\nWind spirit\n\nStonespeaker (Earth)\n(Earth) package\nEarth\nAcid\nDirt, stone, sand\nStone mystery\nAridity Weather severity\nStone spirit\n\nFlamekindler (Fire)\n(Fire) package\nFire\nFire\nFire, lava, ash\nFlame mystery\nHeat Weather severity\nFlame spirit\n\nIngotshaper (Metal)\n(Metal) package\nEarth\nSlashing\nMetal, dirt, sand\nMetal mystery\nAridity Weather severity\nBattle spirit\n\nBloomtender (Plant)\n(Plant) package\nEarth\nBludgeoning\nGrass, trees, other plantlife\nWood mystery\nPrecipitation Weather severity\nWood spirit"
+        },
+        {
+          "level": 1,
+          "name": "New Feats",
+          "description": "The following are feats exclusive to the frostweaver."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:incanter:reincarnated-master",
+      "package": "spheres-class:incanter",
+      "name": "Reincarnated Master",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/reincarnated-master",
+      "replaces_features": [
+        "bonus-feat",
+        "bonus-feat-at-level"
+      ],
+      "removed_features": [
+        "bonus-feat-14th-level",
+        "bonus-feat-2nd-level",
+        "bonus-feat-4th-level",
+        "bonus-feat-6th-level",
+        "bonus-feat-8th-level"
+      ],
+      "removed_feature_clauses": [
+        "bonus feat gained at 2nd level",
+        "bonus feat gained at 4th level",
+        "bonus feat gained at 6th level",
+        "bonus feat gained at 8th level",
+        "bonus feat gained at 14th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 2,
+          "name": "Mysterious Stranger",
+          "description": "At 2nd level, a reincarnated master adds half his reincarnated master level (minimum 1) to the DC of Sense Motive, Diplomacy, and Knowledge checks to learn about him.\n\nThis replaces the bonus feat gained at 2nd level."
+        },
+        {
+          "level": 2,
+          "name": "Specializations",
+          "description": "A reincarnated master may still gain up to two specialization points worth of incanter specializations. One specialization point replaces the bonus feats gained at 1st, 10th, and 20th level. A second specialization point replaces the bonus feats gained at 12th, 16th, and 18th levels.\n\nSpheres of Power: Expanded Options\n\n$4.99\n\n(Note: This archetype is a repurposing of the ‘reincarnated druid’ from the Pathfinder Roleplaying Game Ultimate Magic book. As the Incanter class is designed to integrate many parts of other classes, this is designed to serve as an example for how different archetypes from other classes may be applied to the incanter.)\n\nMysterious Stranger (Ex): At 2nd level, a reincarnated master adds half his incanter level (minimum: 1) to the DC of Sense Motive, Diplomacy, and Knowledge checks to learn about him.\n\nThis replaces the bonus feat gained at 2nd level.\n\nResist Death’s Touch: At 4th level, the reincarnated master gains a +4 bonus to saving throws against death effects, energy drain, and necromancy effects, and to stabilization checks when dying.\n\nThis replaces the bonus feat gained at 4th level.\n\nMany Lives (Ex): At 6th level, if the reincarnated master is killed, he automatically reincarnates as the spell 1 day later. The reincarnated master appears in a safe location within 1 mile of his previous body. For one week, the reincarnated master always knows the direction and distance to his old body.\n\nIf he is killed during these 7 days, he remains dead and does not reincarnate. The many lives ability does not function if the reincarnated master is slain by a death effect. Any attempt to bring the reincarnated master back from the dead always results in his being reincarnated.\n\nThis replaces the bonus feat gained at 6th level.\n\nCheat Death (Ex): At 8th level, once per day, the reincarnated master may reroll a save against a death effect, energy drain, or necromancy effect before the result of the roll is revealed, or reroll a failed stabilization check while dying. He must take the result of the second roll, even if it is worse.\n\nThis replaces the bonus feat gained at 8th level.\n\nTongue of the Sun and Moon (Ex): At 14th level, the reincarnated master can speak with any living creature.\n\nThis replaces the bonus feat gained at 14th level.\n\nSpecializations: A reincarnated master may still gain up to two specialization points worth of incanter specializations. One specialization point replaces the bonus feats gained at 1st, 10th, and 20th level. A second specialization point replaces the bonus feats gained at 12th, 16th, and 18th levels.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        },
+        {
+          "level": 4,
+          "name": "Resist Death’s Touch",
+          "description": "At 4th level, the reincarnated master gains a +4 bonus to saving throws against death effects, energy drain, and necromancy effects, and to stabilization checks when dying.\n\nThis replaces the bonus feat gained at 4th level."
+        },
+        {
+          "level": 6,
+          "name": "Many Lives",
+          "description": "At 6th level, if the reincarnated master is killed, he automatically reincarnates as the spell 1 day later. The reincarnated master appears in a safe location within 1 mile of his previous body. For one week, the reincarnated master always knows the direction and distance to his old body.\n\nIf he is killed during these 7 days, he remains dead and does not reincarnate. The many lives ability does not function if the reincarnated master is slain by a death effect. Any attempt to bring the reincarnated master back from the dead always results in his being reincarnated.\n\nThis replaces the bonus feat gained at 6th level."
+        },
+        {
+          "level": 8,
+          "name": "Cheat Death",
+          "description": "At 8th level, once per day, the reincarnated master may reroll a save against a death effect, energy drain, or necromancy effect before the result of the roll is revealed, or reroll a failed stabilization check while dying. He must take the result of the second roll, even if it is worse.\n\nThis replaces the bonus feat gained at 8th level."
+        },
+        {
+          "level": 14,
+          "name": "Tongue of the Sun and Moon",
+          "description": "At 14th level, the reincarnated master can speak with any living creature.\n\nThis replaces the bonus feat gained at 14th level."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

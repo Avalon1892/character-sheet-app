@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:commander:dreadlord",
+      "class_modifications": {
+        "statistics": {
+          "add_class_skills": ["knowledge_arcana", "knowledge_religion", "spellcraft", "use_magic_device"],
+          "remove_class_skills": ["climb", "knowledge_engineering", "survival", "swim"]
+        },
+        "advancement": {
+          "talent_kinds": ["martial", "magic"],
+          "replacement_magic_sphere": "Death",
+          "replacement_magic_category": "reanimate"
+        }
+      },
+      "feature_additions": [
+        {
+          "level": 1,
+          "name": "Reanimator's Training",
+          "description": "Whenever a class-granted martial talent is gained, it may instead become a Death-sphere magic talent that affects reanimate. This choice is made separately for each talent."
+        },
+        {
+          "level": 1,
+          "name": "Dread Minions",
+          "description": "Create dread minions through reanimate at an effective caster level equal to Commander level without spending spell points; sustaining them ties up one martial focus."
+        }
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:sentinel:darkness-defender",
+      "class_modifications": {
+        "advancement": {
+          "talent_bonus_levels": [1]
+        }
+      }
+    },
+    {
+      "key": "spheres-archetype:spheres-class:sentinel:iron-revenant",
+      "class_modifications": {
+        "advancement": {
+          "talent_progression": "Adept",
+          "talent_bonus_levels": [1, 2]
+        }
+      }
+    },
+    {
+      "key": "spheres-archetype:spheres-class:sentinel:laughing-hyena",
+      "class_modifications": {
+        "advancement": {
+          "practitioner_ability": "charisma",
+          "required_first_sphere": "Gladiator"
+        }
+      }
+    }
+  ]
+}

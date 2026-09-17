@@ -1,0 +1,562 @@
+{
+  "version": 1,
+  "class_key": "spheres-class:commander",
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:commander:administrator",
+      "package": "spheres-class:commander",
+      "name": "Administrator",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/administrator",
+      "replaces_features": [
+        "any-number-of-instances-of-battlefield-specialist",
+        "combat-training",
+        "commander",
+        "commanders-normal-class-skills",
+        "lingering-commands",
+        "logistic-specialty"
+      ],
+      "removed_features": [
+        "any-number-of-instances-of-battlefield-specialist",
+        "commanders-normal-class-skills",
+        "lingering-commands",
+        "logistic-specialty"
+      ],
+      "removed_feature_clauses": [
+        "commander’s normal class skills"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "Whenever an administrator would gain a combat talent from his class levels, he may instead choose to gain a skill talent. An administrator uses his practitioner modifier as his operative ability modifier.\n\nThis alters combat training."
+        },
+        {
+          "level": 1,
+          "name": "Clear Communicator",
+          "description": "At 1st level, the administrator gains either the Communication sphere or the Warleader sphere as a bonus sphere. Creatures affected by the administrator’s rapport are considered to be under the effects of the administrator’s tactics for the purpose of the enhanced tactics class feature.\n\nThis alters commander."
+        },
+        {
+          "level": 1,
+          "name": "Engaging Words",
+          "description": "In place of lingering commands, the administrator may select the following option."
+        },
+        {
+          "level": 1,
+          "name": "Trade Tradition",
+          "description": "If this is this character’s first level in any class, the administrator may select a trade tradition of their choice, and have an adroit trade rank.\n\nThis replaces the commander’s normal class skills."
+        },
+        {
+          "level": 1,
+          "name": "Utility Expertise",
+          "description": "In place of any number of instances of battlefield specialist and logistic specialty, the administrator may choose to gain a [utility] talent at the level where they would gain a battlefield specialist or logistic specialty option.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nSpheres of Guile by Drop Dead Studios\n\nUsing Spheres of Guile\n\nClasses\n\nAdvisor (DRS)\nAgent\nConduit (DRS)\nCourser\nEnvoy\n\nGenius\nMastermind\nProfessional\n\nSpheres\n\nArtifice\nBluster\nBody Control\nCommunication\nFaction\n\nHerbalism\nInfiltration\nInvestigation\nNavigation\nPerformance\n\nSpellhacking\nStudy\nSubterfuge\nSurvivalism\nVocation\n\nOther Rules\n\nOperative Feats\nOperative Gear\nSkill Rules\nTrade Traditions\nRunning Guile Games\n\nGet Spheres of Guile"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:commander:bearon",
+      "package": "spheres-class:commander",
+      "name": "Bearon",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/bearon",
+      "replaces_features": [
+        "commander",
+        "enhanced-tactics",
+        "lingering-commands"
+      ],
+      "removed_features": [
+        "commander",
+        "enhanced-tactics",
+        "lingering-commands"
+      ],
+      "removed_feature_clauses": [
+        "commander",
+        "lingering commands",
+        "enhanced tactics"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Essence of Bear",
+          "description": "At 1st level, the bearon gains the Bear sphere and the Bear With Me bear talent as bonus magic talents. If the bearon possess either of these magic talents already, he may instead gain different Bear sphere talents of his choice. Additionally, the bearon gains a spell pool equal to his Practitioner modifier, +1 per 2 commander levels (minimum 1). If the bearon gains a spell pool from another source, they instead use their other spell pool, +1 spell point per 2 commander levels. The bearon treats his class level as his caster level for the Bear sphere. This stacks normally with caster levels gained from other sources. Essence of Bear counts as casting for all purposes, except unless the bearon possess casting from another source or possesses the Advanced Magic Training feat, they can only gain Bear sphere talents with the Extra Magic Talent feat.\n\nThis replaces commander and lingering commands."
+        },
+        {
+          "level": 2,
+          "name": "Enhanced Bear",
+          "description": "The bearon gains a bonus magic talent from the bear sphere at 2nd level and every 2 levels thereafter. Additionally, the bearon can use the Bear With Me talent on allies within close range, rather than only through touch, and can even affect multiple targets at once, provided he spends a spell point for each granted bear spirit. Whenever an ally is benefiting from the bearon’s Bear With Me talent, the bearon can also grant that ally access to his Bearacteristic talents, even those that normally require an action to activate. At any time, the bearon may spend the action required to use a bearacteristic (a standard action, in the case of an attack action) and spend any required spell points to allow one target under the effects of his bear spirit to activate and use that bearacteristic, even if it is not their turn.\n\nThis replaces enhanced tactics."
+        },
+        {
+          "level": 1,
+          "name": "Call In A Bear",
+          "description": "The bearon’s network of contacts stretches beyond the cities and settlements and extends deep into the wilds. The following options replace those granted by the call in a specialist logistics specialty:"
+        },
+        {
+          "level": 1,
+          "name": "Care Bear",
+          "description": "The bearon gains the service of a bear whose tender fur and caring disposition lifts the spirits of any who interact with it. The presence of this bear doubles the effectiveness of healing effects used outside of combat, and grants a +2 benefit to all caster level or magical skill checks made to overcome or remove poison, disease, curses, or any other harmful effects."
+        },
+        {
+          "level": 1,
+          "name": "Circus Bear",
+          "description": "The bearon gains the service of a bear with expert levels, whose combined CR + class levels are equal to the bearon’s class level -3. This bear possesses a bonus to one Perform skill plus one other non-Intelligence skill of the bearon’s choice equal to the commander’s class level. The circus bear will not follow the commander into combat or dangerous locations, but otherwise will perform skill checks with its skills however the commander directs."
+        },
+        {
+          "level": 1,
+          "name": "Honey Bear",
+          "description": "The bearon gains the service of a bear that who will gather food from the wild on behalf of the bearon. This bear can provide food and shelter for up to 1 Medium humanoid per class level per day without slowing down the party’s movement. This bear can also forage for food while the party is engaged in other activities, providing them with sufficient food whenever they return to a pre-determined campsite where the honey bear is waiting."
+        },
+        {
+          "level": 1,
+          "name": "Silly Old Bear",
+          "description": "The bearon gains the service of a bear sage; this bear has an Intelligence of 10, speaks common, and has a bonus to all Knowledge checks equal to the commander’s class level. This bear can perform any Knowledge check on behalf of the commander, or can spend 5 days researching a single question (effectively taking 20 on that particular Knowledge check)."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:commander:braveheart",
+      "package": "spheres-class:commander",
+      "name": "Braveheart",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/braveheart",
+      "replaces_features": [
+        "battlefield-specialist",
+        "lingering-commands",
+        "logistic-specialty"
+      ],
+      "removed_features": [
+        "battlefield-specialist",
+        "lingering-commands",
+        "logistic-specialty"
+      ],
+      "removed_feature_clauses": [
+        "lingering commands",
+        "battlefield specialist",
+        "logistic specialty"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Battle Fanfare",
+          "description": "A braveheart gains Battle Fanfare as a bonus feat, which he may use even if he doesn’t meet the feat’s prerequisites. This replaces lingering commands."
+        },
+        {
+          "level": 1,
+          "name": "Raging Song",
+          "description": "A braveheart gains the raging song class feature, which functions as the skald class feature. As a standard action, the braveheart may inspire his allies to feats of strength and ferocity. At 1st level, a braveheart can use this ability for a number of rounds per day equal to 3 + his Charisma modifier. For each level thereafter, he can use raging song for 2 additional rounds per day. At 7th level, a braveheart can start a raging song as a move action instead of a standard action. At 13th level, a braveheart can start a raging song as a swift action instead. The braveheart treats his class levels as skald levels when determining the power of his raging songs, as well as determining what rage songs he knows. However, when a raging song calls for a Perform check, the braveheart may substitute a check with a Diplomacy check; the braveheart may use rallying cries, shouts, and screams in place of the Perform skill. If the braveheart possesses skald levels, these levels stack when determining the power of the raging songs he possesses, as well as determining what rage songs he knows.\n\nThis replaces battlefield specialist and logistic specialty."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:commander:courtly-tactician",
+      "package": "spheres-class:commander",
+      "name": "Courtly Tactician",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/courtly-tactician",
+      "replaces_features": [
+        "battlefield-specialist",
+        "logistic-specialty"
+      ],
+      "removed_features": [
+        "logistic-specialty"
+      ],
+      "removed_feature_clauses": [
+        "logistic specialty"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 9,
+          "name": "Courtly Tactician (Commander Archetype)",
+          "description": "Every good lord’s war room staffs the finest tactical minds and genius, strategists able to carefully plan their next move\n\nAlignment: A courtly tactician must be monarchist. A courtly tactician who is no longer a monarchist cannot take additional levels in this class.\n\nWell-Mapped Specialty (Ex): The courtly tactician does not select specific terrains. Instead, the courtly tactician may spend 24 hours (which may include traveling, resting, and other light activity) while within a terrain to prepare for that terrain, treating it as a selected terrain for the battlefield specialist ability. The courtly tactician may only have a single prepared terrain this way.\n\nAt 9th level, the courtly tactician need only spend 8 hours to prepare for a terrain. The courtly tactician may now prepare for a terrain by using a map (or similar aide) as a reference to that type of terrain.\n\nAt 15th level, the courtly tactician need only spend 1 hour to prepare for a terrain.\n\nThis alters battlefield specialist.\n\nField Policies (Ex): At 7th level, as a move action, the courtly tactician may gain the benefits of a single kingking courtier for 1 hour per courtly tactician level (excluding body doubles). The courtly tactician may use this ability once per day, plus 1 additional time every 6 levels thereafter. If the courtly tactician uses this ability to select a courtier while already benefiting from this ability, the previous selection is lost (and any related benefits end).\n\nFor the purposes of courtiers, the courtly tactician treats their effective kingking level as equal to half their courtly tactician level and uses their practitioner modifier as their nobility ability modifier.\n\nThis replaces logistic specialty.\n\nSpecial – Future Kingking: The courtly tactician uses the greater of their effective kingking level and their actual kingking level when determining the effects of a courtier ability granted by field policies. If the courtly tactician would have the same courtier twice, they use the higher of their effective kingking level and actual kingking level to determine its effects.\n\nFor example, a courtly tactician 10 / kingking 2 would have an effective kingking level of 5 and actual kingking level of 2, so their effective kingking level for courtiers selected using field policies would be 5.\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:commander:dreadlord",
+      "package": "spheres-class:commander",
+      "name": "Dreadlord",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/dreadlord",
+      "replaces_features": [
+        "all-instances-of-battlefield-specialist",
+        "lingering-commands"
+      ],
+      "removed_features": [
+        "all-instances-of-battlefield-specialist",
+        "lingering-commands"
+      ],
+      "removed_feature_clauses": [
+        "lingering commands",
+        "all instances of battlefield specialist"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "The dreadlord adds Knowledge (arcana) (Int), Knowledge (religion) (Int), Spellcraft (Int), and Use Magic Device (Cha) to his list of class skills but removes Climb (Str), Knowledge (engineering) (Int), Survival (Wis), and Swim (Str)."
+        },
+        {
+          "level": 1,
+          "name": "Reanimator’s Training",
+          "description": "Whenever the dreadlord would gain a martial talent from his class levels (not including those gained from a tradition), he may instead choose to gain a magic talent from the Death sphere. This talent must affect the reanimate ability. He may make this choice each time he would gain a new combat talent. The dreadlord qualifies to take the Extra Magic Talent feat for talents from the Death sphere that affect the reanimate ability."
+        },
+        {
+          "level": 1,
+          "name": "Dread Minions",
+          "description": "At 1st level, the dreadlord may create an undead servant known as a dread minion from a suitable corpse with a 1 minute ritual. This functions as the reanimate ability of the Death sphere, granting any bonuses from talents that modify reanimate that the dreadlord possesses. The dreadlord’s effective caster level for this ability is equal to his class level. These caster levels do not stack with caster levels gained from other sources. The dreadlord may have multiple dread minions created at one time, up to the limits of the reanimate ability. This ability does not cost any spell points. A dread minion persists until it is destroyed or the dreadlord dismisses it as a free action. The dreadlord loses martial focus when using this ability and reduces the number of martial focuses he is able to maintain by 1 (minimum 0) for its duration. The dreadlord’s dread minions can benefit from any morale bonuses, teamwork feats, or mind-affecting effects the dreadlord’s shouts, tactics, and class features would bestow. The dreadlord may spend 1 minute to restore a dread minion within his reach to its maximum hit points.\n\nThis replaces lingering commands and all instances of battlefield specialist."
+        },
+        {
+          "level": 1,
+          "name": "Call In A Dark Specialist",
+          "description": "The dreadlord’s network of contacts is a bit… different from that of a normal commander. The following options replace those granted by the call in a specialist logistics specialty: Cultist—The dreadlord gains the services of an expert whose class level is equal to the commander’s class level -3. This specialist will create a shrine that focuses negative energy, granting any undead created within its area (20-ft. radius) the benefits of the Empowered Reanimate talent. If the caster already possesses that talent, the undead instead gain +2 hit points per Hit Die and increase their turn resistance by +2. This shrine takes 1d6 hours to prepare, may not be moved once created, and lasts for up to 5 days or until it has been used to reanimate a number of Hit Dice of undead equal to five times the dreadlord’s class level. This shrine does not count as a permanent fixture for the purposes of the desecrate spell and the bonuses it grants do not stack with those from that spell. Grave Robber—The dreadlord gains the services of a commoner whose class level is equal to the dreadlord’s class level -3. This specialist will seek out corpses of creatures with total Hit Dice not exceeding five times the dreadlord’s level. No corpse may have Hit Dice exceeding the dreadlord’s level. All creatures must exist within a 20-mile radius. This requires 1 day for animal, humanoid, or vermin corpses or 1d6 days for creatures of other creature types. Necromancer—The dreadlord gains the services of an incanter specialized in the Death sphere whose class level is equal to the dreadlord’s class level -3. This necromancer will lend the dreadlord the use of a number of 1 Hit Die humanoid skeletons or zombies equal to twice the dreadlord’s class level for up to 5 days. Alternately, if using the advanced talents option, the necromancer may cast the Summon Spirit advanced talent of the Death sphere up to 5 times. These undead follow the dreadlord’s commands and are affected by his Warleader sphere abilities, enhanced tactics, and group focus as if they were his dread minions, though they do not count against the Hit Dice limits of his dread minion ability. Should these skeletons or zombies be destroyed or otherwise not returned, this option is not available for 1 month. Vampire—The dreadlord gains the services of a vampire with aristocrat NPC class levels whose CR is equal to the dreadlord’s class level -3. This vampire will use its dominate ability up to 5 times, ordering the dominated creatures to follow the dreadlord’s commands for the duration of the effect."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:commander:emissary-cs",
+      "package": "spheres-class:commander",
+      "name": "Emissary [CS]",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/emissary",
+      "replaces_features": [
+        "clear-communicator"
+      ],
+      "removed_features": [
+        "clear-communicator"
+      ],
+      "removed_feature_clauses": [
+        "clear communicator"
+      ],
+      "compatibility": {
+        "requires": [
+          "spheres-archetype:spheres-class:commander:administrator"
+        ],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Inspiration",
+          "description": "An emissary gains an inspiration pool as the investigatorACG class ability. An emissary uses his commander level as his investigator level when determining the effects of this ability. Instead of free uses of inspiration on Knowledge, Linguistics, or Spellcraft skill checks, the emissary can use inspiration on Bluff, Diplomacy, Intimidate, Knowledge (local), Linguistics, Perform, and Sense Motive checks without expending a use of inspiration, provided he is trained in the relevant skill.\n\nAdditionally, the emissary can choose an investigator talent instead of an enhanced tactic.\n\nThis replaces clear communicator.\n\nNote: If the emissary gains an inspiration pool from another source, he adds his commander level to his investigator level when calculating his inspiration pool (and may still only add the associated ability score modifier once).\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nSpheres of Guile by Drop Dead Studios\n\nUsing Spheres of Guile\n\nClasses\n\nAdvisor (DRS)\nAgent\nConduit (DRS)\nCourser\nEnvoy\n\nGenius\nMastermind\nProfessional\n\nSpheres\n\nArtifice\nBluster\nBody Control\nCommunication\nFaction\n\nHerbalism\nInfiltration\nInvestigation\nNavigation\nPerformance\n\nSpellhacking\nStudy\nSubterfuge\nSurvivalism\nVocation\n\nOther Rules\n\nOperative Feats\nOperative Gear\nSkill Rules\nTrade Traditions\nRunning Guile Games\n\nGet Spheres of Guile"
+        }
+      ],
+      "detected_systems": [
+        "inspiration"
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:commander:feylord",
+      "package": "spheres-class:commander",
+      "name": "Feylord",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/feylord",
+      "replaces_features": [
+        "base-attack-bonus",
+        "battlefield-specialist",
+        "call-in-specialist",
+        "combat-training",
+        "replacing-specialist-options"
+      ],
+      "removed_features": [
+        "battlefield-specialist",
+        "combat-training"
+      ],
+      "removed_feature_clauses": [
+        "combat training",
+        "battlefield specialist"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {
+        "casting": {
+          "sphere_progression": "Low"
+        }
+      },
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Level",
+          "description": "This archetype can only be taken at 1st level."
+        },
+        {
+          "level": 1,
+          "name": "Base Attack Bonus",
+          "description": "A feylord gains base attack bonus equal to an incanter of his class level.\n\nThis modifies base attack bonus."
+        },
+        {
+          "level": 1,
+          "name": "Hit Dice",
+          "description": "A feylord uses d6 for his Hit Die."
+        },
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The feylord may combine spheres and talents to create magical effects. The feylord is considered a Low-Caster and uses Charisma as his casting ability modifier. (Note: All casters gain 2 bonus talents and may select a casting tradition the first time they gain the casting class feature.)"
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "The feylord gains a small reservoir of energy he can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to his level + his casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "A feylord gains a combat or magic talent every time he gains a level. A feylord uses his casting ability modifier as his practitioner modifier.\n\nThis replaces combat training."
+        },
+        {
+          "level": 1,
+          "name": "Changeling Revealed",
+          "description": "At first level, the feylord’s type changes to fey. Do not recalculate hit points, base attack bonus, skill points or other statistics. The feylord gains low-light vision if he does not already possess it. If he already possesses low-light vision, this instead increases its effectiveness, allowing him to see three times as far instead of twice as far."
+        },
+        {
+          "level": 3,
+          "name": "Fey Affinity",
+          "description": "At 3rd level, the feylord treats his class level as his caster level when determining the effects of fey-link and fey blessings cast on himself. This stacks normally with caster levels from other sources.\n\nThis replaces battlefield specialist."
+        },
+        {
+          "level": 7,
+          "name": "Fey Subjects",
+          "description": "At 7th level, when selecting a logistics specialty, instead of drawing on a network of past connections, the feylord can call his former subjects. If using options for the kingdom building rules found in Ultimate Campaign, only one fey subject option may be used in each kingdom turn. Fairy Guide - The feylord gains the service of a sprite with expert NPC class levels with a CR equal to his class level -3. This sprite knows the local fey population well, allowing the feylord to treat the disposition of all creatures of the fey type as one step higher, to a maximum of friendly, for up to 5 days. The sprite also gives a bonus equal to its Hit Dice on all gather information checks to determine information about fey creatures in the area. Alternatively, if using the optional Traveling Through Faerie rules found in Section 8, this sprite will guide the feylord for up to 5 days and knows the location of any fairy rings in the area. Once in Fairie, it can always identify the ring or mound closest to the desired destination. The chances of any random encounter while in Faerie are reduced by half. Gremlin Plague - For 5 days, a settlement no larger than a village can be plagued by gremlins. The size of the settlement affect increases by 1 every 3 class levels after 7th. Any creature that spends at least 1 day in the settlement during this time is fatigued from the constant stress and annoyance of the gremlin’s antics. If using the kingdom building rules found in Ultimate Campaign, the gremlins can be called upon once per kingdom turn to increase unrest in a single settlement within the above size restrictions by 1, +1 per 5 class levels."
+        },
+        {
+          "level": 1,
+          "name": "Gremlin Sappers - The feylord gains the service of a number of tunneler gremlins (see Section 7",
+          "description": "Bestiary) equal to his class level -3. For 5 days, each tunneler can provide the labor of 5 humans for projects that consist primarily of digging, such as making ditches, mines, or tunnels. Alternately, the tunnelers can be tasked with undermining a target structure, traveling up to 4 days to reach the structure, then spending up to 12 hours undermining the structure or part of the structure per their undermine ability. If using the kingdom building rules found in Ultimate Campaign, the tunnelers can be called upon once per turn to halve the BP cost of building a canal (in a single hex), or a single mine or quarry or to eliminate the cost of demolishing a single structure."
+        },
+        {
+          "level": 1,
+          "name": "Menehune Builders - The feylord can call upon the services of a number of menehune (see Section 7",
+          "description": "Bestiary) equal to his class level -3. For 5 days, these menehune can each supply the labor of 10 humans for any construction project. If using the kingdom building rules found in Ultimate Campaign, the menehune can be called upon once per turn to reduce the BP cost of building a single structure by 2, +1 per 3 class levels beyond 7th level. This cannot reduce the cost of a structure below 1 BP.\n\nThis modifies call in a specialist, replacing the specialist options."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:commander:noble",
+      "package": "spheres-class:commander",
+      "name": "Noble",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/noble",
+      "replaces_features": [
+        "commander",
+        "enhanced-tactics",
+        "lingering-commands"
+      ],
+      "removed_features": [
+        "commander",
+        "lingering-commands"
+      ],
+      "removed_feature_clauses": [
+        "commander",
+        "lingering commands"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Lordly Station",
+          "description": "A noble gains the Leadership sphere as a bonus sphere at 1st level, selecting the (cohort) package. If the Leadership sphere is possessed but the (cohort) package is not, he instead gains the Expanded Leadership talent to gain the (cohort) package. If the (cohort) package is already possessed, he instead gains a bonus combat talent. If he is incapable of selecting it due to a drawback, he uses the bonus talent to buy off the drawback.\n\nThis replaces commander."
+        },
+        {
+          "level": 1,
+          "name": "Inspiring Master",
+          "description": "The noble’s Leadership sphere cohorts gain temporary hit points equal to twice the noble’s class level. These temporary hit points regenerate at a rate of 1 per class level each minute. Additionally, the Leadership sphere cohorts gain a +1 morale bonus on attacks, damage, and saving throws while within medium range of the noble (100 feet + 10 feet per class level). This bonus increases by +1 at 5th, 11th, and 17th levels.\n\nThis replaces lingering commands."
+        },
+        {
+          "level": 1,
+          "name": "Subordinate Tactics",
+          "description": "Any enhanced tactics that normally apply to a creature currently benefiting from a shout or tactic instead apply to the noble’s Leadership sphere cohorts when they are within medium range of him (100 feet + 10 feet per class level).\n\nThis modifies enhanced tactics."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:commander:vanguard",
+      "package": "spheres-class:commander",
+      "name": "Vanguard",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/vanguard",
+      "replaces_features": [
+        "enhanced-tactics"
+      ],
+      "removed_features": [
+        "enhanced-tactics"
+      ],
+      "removed_feature_clauses": [
+        "enhanced tactics"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 2,
+          "name": "Aid Allies",
+          "description": "At 2nd level, whenever the vanguard uses the aid another action, his ally receives a +3 bonus to his armor class, attack roll, saving throw, or skill check. At 8th level, and every six levels thereafter, this bonus increases by an additional +1. This does not stack with other things that increase the vanguard’s aid another bonus.\n\nThis replaces enhanced tactics."
+        },
+        {
+          "level": 4,
+          "name": "Expert Aid",
+          "description": "At 4th level, the vanguard may use the aid another action as a move action rather than a standard action. At 10th level, the vanguard may use aid another on an adjacent ally as a swift action. At 16th level, the vanguard may use aid another as an immediate action. The vanguard cannot use the same application of aid another on the same ally more than once per round."
+        },
+        {
+          "level": 6,
+          "name": "Magnanimous Aid",
+          "description": "At 6th level, whenever the vanguard uses the aid another action to increase an ally’s attack or AC, that bonus applies to all attacks made/received from the specified creature, rather than only the first attack. When using the aid another action to increase an ally’s saving throw, that bonus applies to all saving throws of that particular type the target makes during the next round. At 12th level, any bonuses to attack or AC granted by the vanguard’s aid another action applies to attacks against or originating from all creatures for the next round, rather than only vs. a single target. Bonuses to saving throws apply to all saving throws made the following round, regardless of type. At 18th level, the bonuses granted by the vanguard’s aid another action last for 2 rounds rather than 1."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:commander:visionary-general",
+      "package": "spheres-class:commander",
+      "name": "Visionary General",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/visionary-general",
+      "replaces_features": [
+        "battlefield-specialist",
+        "combat-training",
+        "enhanced-tactics",
+        "group-focus",
+        "lingering-commands"
+      ],
+      "removed_features": [
+        "battlefield-specialist",
+        "combat-training",
+        "group-focus"
+      ],
+      "removed_feature_clauses": [
+        "combat training",
+        "battlefield specialist",
+        "group focus"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {
+        "casting": {
+          "sphere_progression": "Low"
+        }
+      },
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "A visionary general gains a combat or magic talent every time he gains a class level. Visionary generals use their casting ability modifier as their practitioner modifier.\n\nThis replaces combat training."
+        },
+        {
+          "level": 1,
+          "name": "Calm Leadership",
+          "description": "The visionary general can only use enhanced tactics on allies affected by his tactics granted by the Warleader sphere. The visionary general cannot use enhanced tactics on allies affected by his shouts.\n\nThis alters enhanced tactics."
+        },
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The visionary general may combine spheres and talents to create magical effects. The visionary general is considered a Low-Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.)"
+        },
+        {
+          "level": 1,
+          "name": "Glimpse Glory",
+          "description": "At 1st level, the visionary general gains the Divination sphere as a bonus sphere and uses his class level as his caster level for (sense) talents from the Divination sphere. This stacks normally with caster levels gained from other sources. The visionary general cannot select a drawback which removes the sense ability, and if he possesses a drawback which removes the sense ability, he must buy back that drawback with this bonus talent."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "A visionary general gains a small reservoir of energy he can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to his level + his casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Visionary Commands",
+          "description": "The benefits of lingering commands only applies to the visionary general’s tactics. The visionary general’s shouts, and their benefits, are not affected by lingering commands.\n\nThis alters lingering commands."
+        },
+        {
+          "level": 3,
+          "name": "Shared Vision",
+          "description": "At 3rd level, whenever the visionary general begins or maintains a tactic, he may spend a spell point as a free action and choose one (sense) talent he possesses. All allies in the radius of your tactic gain the benefits of the chosen sense for as long as they benefit from your tactic (including persisting rounds from lingering commands). Spending a spell point this way counts towards the normal spell point cost for the chosen (sense) talent, but the visionary general must pay any additional spell point costs beyond the first, such as paying an additional spell point for Blindfolded Oracle’s blindsight option or paying the second spell point for the Alternate Divinations, Advanced advanced talent touchsight option.\n\nThe visionary general may share a (sense) with this ability for as long as he maintains the tactic. If the visionary general spends an action to change which (tactic) he is using while maintaining the tactic, the chosen (sense) does not change. When the visionary general shares a (sense) with this ability again, any previously shared (sense) immediately ends.\n\nAllies under the effects of a sense granted by this ability cannot dismiss the sense for additional effects (such as nature sense or prescience).\n\nThis ability replaces battlefield specialist."
+        },
+        {
+          "level": 3,
+          "name": "Sight And Strategy",
+          "description": "At 3rd level, and every 6 levels thereafter, the visionary general gains a (sense) talent as a bonus talent."
+        },
+        {
+          "level": 5,
+          "name": "General’s Inspiration",
+          "description": "At 5th level, allies benefiting from your tactics gain a +1 circumstance bonus to their attack rolls, damage rolls, saving throws, AC, and CMD. This bonus increases by +1 at level 11 and every 6 levels thereafter.\n\nThis ability replaces group focus.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps"
+        }
+      ],
+      "detected_systems": [
+        "inspiration"
+      ]
+    }
+  ]
+}

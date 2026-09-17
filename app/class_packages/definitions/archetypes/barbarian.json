@@ -1,0 +1,3010 @@
+{
+  "version": 1,
+  "class_key": "pathfinder-class:barbarian",
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:armored-hulk",
+      "package": "pathfinder-class:barbarian",
+      "name": "Armored Hulk",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Armored Hulk",
+      "replaces_features": [
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "fast movement",
+        "uncanny dodge",
+        "trap sense",
+        "improved uncanny dodge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Armored Hulk",
+          "description": "Source Ultimate Combat pg. 28"
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "An armored hulk gains proficiency in heavy armor."
+        },
+        {
+          "level": 1,
+          "name": "Indomitable Stance",
+          "description": "An armored hulk gains a +1 bonus on combat maneuver checks and to CMD for overrun combat maneuvers, and on Reflex saves against trample attacks. She also gains a +1 bonus to her AC against charge attacks and on attack and damage rolls against charging creatures. This ability replaces fast movement."
+        },
+        {
+          "level": 2,
+          "name": "Armored Swiftness",
+          "description": "At 2nd level, an armored hulk moves faster in medium and heavy armor. When wearing medium or heavy armor, an armored hulk can move 5 feet faster than normal, to a maximum of her speed. This ability replaces uncanny dodge."
+        },
+        {
+          "level": 3,
+          "name": "Resilience of Steel",
+          "description": "At 3rd level, an armored hulk is able to use her armor to help avoid deadly hits. While wearing heavy armor, she gains a +1 bonus to AC that applies only on critical hit confirmation rolls. This bonus increases by +1 every 3 levels beyond 3rd (maximum +6 at 18th level). This ability replaces trap sense."
+        },
+        {
+          "level": 5,
+          "name": "Improved Armored Swiftness",
+          "description": "At 5th level, an armored hulk’s land speed is faster than the norm for her race by +10 feet. This benefit applies when she is wearing any armor, including heavy armor, but not while carrying a heavy load. Apply this bonus before modifying the armored hulk’s speed because of any load carried or armor worn. This bonus stacks with any other bonuses to the barbarian’s land speed. This ability replaces improved uncanny dodge."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the armored hulk archetype: boasting taunt, greater guarded life, guarded life, guarded stance, increased damage reduction, no escape, overbearing advance, overbearing onslaught, reflexive dodge, rolling dodge, and unexpected strike."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:barbarian:barbearian",
+      "package": "pathfinder-class:barbarian",
+      "name": "Barbearian",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/barbearian",
+      "replaces_features": [
+        "but-otherwise-counts-as-rage-for-all-purposes",
+        "constitution-while-raging",
+        "fast-movement",
+        "greater-rage",
+        "mighty-rage",
+        "morale-bonus-to-strength",
+        "tireless-rage"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "fast movement",
+        "morale bonus to Strength",
+        "Constitution gained while raging",
+        "but otherwise counts as rage for all purposes",
+        "greater rage: Tireless Bear: At 17th level the barbearian is no longer fatigued after entering a rage",
+        "even if using the Angry Bear Bear sphere talent",
+        "mighty rage"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Bear?",
+          "description": "The barbearian gains Basic Magical Training as a bonus feat, selecting the Bear sphere. If she already possesses the casting class feature, she instead gains the Bear sphere or a talent from that sphere as a bonus talent. The barbearian may select talents from the Bear sphere in place of rage powers.\n\nThis replaces fast movement."
+        },
+        {
+          "level": 1,
+          "name": "Bear!",
+          "description": "While raging, the barbearian gain the benefits of a bear spirit. She treats her class level as her caster level for determining the effects of this bear spirit while raging, but the duration is always the length of the rage. These caster levels stack normally with those from other sources. Unlike most magical effects, the barbearian may use sphere effects from the Bear sphere while raging. When activating a bearacteristic while raging, the barbearian may spend 1 round of rage in place of a spell point. This replaces the morale bonus to Strength and Constitution gained while raging, but otherwise counts as rage for all purposes."
+        },
+        {
+          "level": 11,
+          "name": "Ursine Fury",
+          "description": "At 11th level, the barbearian gains a +1 bonus on melee attack rolls, melee damage rolls, and thrown weapon damage rolls while channeling a bear spirit.\n\nThis replaces greater rage: Tireless Bear: At 17th level the barbearian is no longer fatigued after entering a rage, even if using the Angry Bear Bear sphere talent."
+        },
+        {
+          "level": 17,
+          "name": "This replaces greater rage",
+          "description": "Tireless Bear: At 17th level the barbearian is no longer fatigued after entering a rage, even if using the Angry Bear Bear sphere talent.\n\nThis modifies tireless rage."
+        },
+        {
+          "level": 20,
+          "name": "Greater Ursine Fury",
+          "description": "At 20th level, the bonus the barbearian gains from their ursine fury increases to +2.\n\nThis replaces mighty rage."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:beastkin-berserker",
+      "package": "pathfinder-class:barbarian",
+      "name": "Beastkin Berserker",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Beastkin Berserker",
+      "replaces_features": [
+        "fast-movement",
+        "rage-power"
+      ],
+      "removed_features": [
+        "fast-movement",
+        "rage-power"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Beastkin Berserker",
+          "description": "Source Heroes of the Darklands pg. 21"
+        },
+        {
+          "level": 1,
+          "name": "Savage Rapport",
+          "description": "At 1st level, a beastkin berserker gains a spiritual connection to a specific kind of creature with the animal type (such as a badger or a triceratops). She adds half her level (minimum 1) on Handle Animal, Intimidate, and Sense Motive checks involving the chosen type of animal."
+        },
+        {
+          "level": 4,
+          "name": "Feral Transformation",
+          "description": "At 4th level, when entering a rage, a beastkin berserker can take the form of a Small or Medium animal. This functions as beast shape I, except the duration is for as long as the beastkin berserker rages and the animal must be one she has chosen with her savage rapport."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:barbarian:berserker",
+      "package": "pathfinder-class:barbarian",
+      "name": "Berserker",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/barbarian-berserker",
+      "replaces_features": [
+        "armor-proficiencies",
+        "level",
+        "rage-powers-at",
+        "weapon"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "rage powers gained at 2nd",
+        "6th",
+        "10th",
+        "14th",
+        "and 18th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Berserkers are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis modifies weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A berserker is considered a Proficient practitioner, gaining spheres and talents as appropriate. Berserkers use Charisma as their practitioner modifier. This ability replaces the rage powers gained at 2nd, 6th, 10th, 14th, and 18th level."
+        },
+        {
+          "level": 1,
+          "name": "Berserker",
+          "description": "Berserkers gain the Berserker sphere as a bonus sphere at 1st level; if the berserker already possesses this sphere, he may instead select any talent he qualifies for from it. Whenever the berserker uses his brutal strike ability, he may sacrifice 3 of his daily rounds of rage to add 1 additional (exertion) talent to the attack."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:breaker",
+      "package": "pathfinder-class:barbarian",
+      "name": "Breaker",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Breaker",
+      "replaces_features": [
+        "fast-movement",
+        "trap-sense"
+      ],
+      "removed_features": [
+        "fast-movement",
+        "trap-sense"
+      ],
+      "removed_feature_clauses": [
+        "fast movement",
+        "trap sense"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Breaker",
+          "description": "Source Advanced Player's Guide pg. 78"
+        },
+        {
+          "level": 1,
+          "name": "Destructive",
+          "description": "Whenever the breaker barbarian makes a melee attack that targets an unattended object or makes a sunder combat maneuver, she adds half her barbarian level (minimum +1) on the damage roll. This ability replaces fast movement."
+        },
+        {
+          "level": 3,
+          "name": "Battle Scavenger",
+          "description": "At 3rd level, the breaker barbarian suffers no penalty on attack rolls when using an improvised weapon or a weapon with the broken condition. In addition, she gains a +1 bonus on damage rolls with improvised or broken weapons for every three levels beyond 3rd. This ability replaces trap sense."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the breaker archetype: ground breaker, smasher, and strength surge*."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:brutal-pugilist",
+      "package": "pathfinder-class:barbarian",
+      "name": "Brutal Pugilist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Brutal Pugilist",
+      "replaces_features": [
+        "improved-uncanny-dodge",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "improved-uncanny-dodge",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "uncanny dodge",
+        "trap sense",
+        "improved uncanny dodge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Brutal Pugilist",
+          "description": "Source Advanced Player's Guide pg. 78"
+        },
+        {
+          "level": 2,
+          "name": "Savage Grapple",
+          "description": "At 2nd level, the brutal pugilist takes only half the normal penalties to Dexterity, attack rolls, and combat maneuver checks when she has the grappled condition. She can make an attack of opportunity against creatures trying to grapple her even if they possess the Improved Grapple feat or the grab special attack. If she hits with this attack of opportunity, she gains a +2 circumstance bonus to her CMD against the grapple attempt. She cannot make these attacks of opportunity once a grapple has succeeded. This ability replaces uncanny dodge."
+        },
+        {
+          "level": 3,
+          "name": "Pit Fighter",
+          "description": "At 3rd level, the brutal pugilist has learned combat tricks from fighting in pit brawls and gladiatorial arenas. She selects one combat maneuver and gains a +1 insight bonus on her CMB or to her CMD in that maneuver. This bonus increases to +2 if the barbarian is wearing no armor (shields are allowed). At every three levels after 3rd, the barbarian may select another combat maneuver and add this bonus on her CMB or to her CMD. This bonus can be applied to each maneuver no more than twice, once on CMB and once to CMD. This ability replaces trap sense."
+        },
+        {
+          "level": 5,
+          "name": "Improved Savage Grapple",
+          "description": "At 5th level, the brutal pugilist takes no penalties to Dexterity, attack rolls, and combat maneuver checks when she has the grappled condition. She also is treated as one size larger than her actual size when determining whether she can be grappled using the grab ability or swallowed by another creature. This ability replaces improved uncanny dodge."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the brutal pugilist archetype: animal fury*, brawler, greater brawler, knockback*, knockdown, overbearing advance, overbearing onslaught, and strength surge*."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:brutish-swamper",
+      "package": "pathfinder-class:barbarian",
+      "name": "Brutish Swamper",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Brutish Swamper",
+      "replaces_features": [
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "rage-power",
+        "skills",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "rage-power",
+        "skills",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "fast movement",
+        "uncanny dodge",
+        "improved uncanny dodge",
+        "trap sense",
+        "rage power normally gained at 6th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Brutish Swamper",
+          "description": "Source Ultimate Wilderness pg. 37"
+        },
+        {
+          "level": 1,
+          "name": "Swamp Skills",
+          "description": "A brutish swamper adds Knowledge (geography) and Knowledge (local) to her list of class skills.\n\nThis alters the barbarian’s skills."
+        },
+        {
+          "level": 1,
+          "name": "Marsh March",
+          "description": "A brutish swamper can move through the underbrush and muddy terrain of bogs and swamps at her normal speed without taking damage or suffering other impairments. Briars, mud, thorns, and overgrown areas that have been magically manipulated to impede motion, however, still affect her.\n\nThis replaces fast movement."
+        },
+        {
+          "level": 2,
+          "name": "Home",
+          "description": "At 2nd level, a brutish swamper gains a +2 bonus on initiative checks and Knowledge (geography), Perception, Stealth, and Survival checks when in swamps. This bonus increases by +1 at 5th level and again every 3 levels after 5th (up to a maximum bonus of +8 at 20th level).\n\nThis replaces uncanny dodge and improved uncanny dodge."
+        },
+        {
+          "level": 3,
+          "name": "Stubborn",
+          "description": "At 3rd level, a brutish swamper resists any attempts to change her attitude or compel her to action. Diplomacy and Intimidate checks against her take a –2 penalty, and no result can shift her attitude more than one step in a 24-hour period. These penalties increase by 2 for every 3 levels the brutish swamper has beyond 3rd.\n\nThis replaces trap sense."
+        },
+        {
+          "level": 6,
+          "name": "Wrastlin’",
+          "description": "At 6th level, while raging, a brutish swamper gains a +2 bonus to her CMD against grapple combat maneuvers and a +2 bonus on damage rolls made as part of successful grapple combat maneuver checks.\n\nThis replaces the rage power normally gained at 6th level."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the brutish swamper archetype: brawler, greater brawler, greater tyrant totem, lesser tyrant totem, lizard stride, low-light vision, superstition, and tyrant totem."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:cave-dweller",
+      "package": "pathfinder-class:barbarian",
+      "name": "Cave Dweller",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Cave Dweller",
+      "replaces_features": [
+        "damage-reduction",
+        "fast-movement",
+        "skills",
+        "trap-sense"
+      ],
+      "removed_features": [
+        "damage-reduction",
+        "fast-movement",
+        "skills",
+        "trap-sense"
+      ],
+      "removed_feature_clauses": [
+        "fast movement",
+        "trap sense",
+        "damage reduction"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Cave Dweller",
+          "description": "Source Ultimate Wilderness pg. 37"
+        },
+        {
+          "level": 1,
+          "name": "Skills",
+          "description": "A cave dweller gains Stealth as a class skill in place of Ride.\n\nThis alters the barbarian’s skills."
+        },
+        {
+          "level": 1,
+          "name": "Tight Tunnels",
+          "description": "Cave dwellers pursue prey through the winding tunnels of the deep, which rarely accommodate open sprints. A cave dweller can make a single turn up to 90 degrees while running (though not while charging). Additionally, a cave dweller takes no penalties to movement speed while squeezing.\n\nThis replaces fast movement."
+        },
+        {
+          "level": 3,
+          "name": "Tunnel Vision",
+          "description": "At 3rd level, a cave dweller’s senses become sharp in the dark. She gains darkvision to a range of 60 feet and a +1 bonus on Perception checks to detect ambushes, movement, and sound while in darkness. This bonus increases by 1 at 6th level and every 3 levels thereafter.\n\nThis replaces trap sense."
+        },
+        {
+          "level": 7,
+          "name": "Sun Walker",
+          "description": "At 7th level, a cave dweller gains a +1 dodge bonus to AC and on saving throws against effects with the light descriptor or that produce bright or sudden light. Any penalties on attack rolls, saving throws, or skill checks because of bright light are reduced by 1. At 10th level and every 3 levels after 10th, the bonus to AC and saving throws, as well as the reduction of light-based penalties, increases by 1.\n\nThis replaces damage reduction."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the cave dweller archetype: animal fury, bestial climber, eclipsing rage, greater eclipsing rage, greater ground breaker, ground breaker, night vision, raging climber, primal scent, and sprint."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:deepwater-rager",
+      "package": "pathfinder-class:barbarian",
+      "name": "Deepwater Rager",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Deepwater Rager",
+      "replaces_features": [
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "indomitable-will",
+        "tireless-rage",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "indomitable-will",
+        "tireless-rage",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Deepwater Rager",
+          "description": "Source Legacy of the First World pg. 28"
+        },
+        {
+          "level": 1,
+          "name": "Strong Lungs",
+          "description": "A deepwater rager can hold her breath for a number of rounds equal to four times her Constitution score, and she does not reduce the duration of her held breath by taking a standard action or a full-round action. Additionally, as long as she is able to speak, the deepwater rager adds her Constitution modifier to Intimidate skill checks in addition to her Charisma modifier."
+        },
+        {
+          "level": 2,
+          "name": "Spiraling Charge",
+          "description": "At 2nd level, a deepwater rager is not required to move in a straight line when she charges, provided that no space she moves into while charging is farther away from her target than the space that she is leaving. The deepwater rager must be able to see her target at the beginning of her charge and cannot use this ability while mounted."
+        },
+        {
+          "level": 5,
+          "name": "Disorienting Grapple",
+          "description": "At 5th level, a deepwater rager becomes an expert in flipping and spinning opponents as they are grappled. An opponent grappled by the deepwater rager gains the sickened condition for as long as it has the grappled condition. When the creature’s grappled condition ends, for any reason, it must succeed at an Acrobatics check (with a DC equal to the deepwater rager’s CMD) or fall prone."
+        },
+        {
+          "level": 14,
+          "name": "Crushing Grapple",
+          "description": "At 14th level, a deepwater rager gains the constrict special attack (Pathfinder RPG Bestiary 298), which deals an amount of damage equal to the damage her unarmed strike deals."
+        },
+        {
+          "level": 17,
+          "name": "Full Lungs",
+          "description": "At 17th level, a deepwater rager does not need to breathe while she is raging."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the deepwater rager archetype: battle roarACG, bestial swimmerUC, brawlerAPG, intimidating glare, raging swimmer, rolling dodge, and terrifying howl."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:dreadnought",
+      "package": "pathfinder-class:barbarian",
+      "name": "Dreadnought",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Dreadnought",
+      "replaces_features": [
+        "fast-movement",
+        "indomitable-will",
+        "rage",
+        "tireless-rage"
+      ],
+      "removed_features": [
+        "fast-movement",
+        "indomitable-will",
+        "rage",
+        "tireless-rage"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Dreadnought",
+          "description": "Source Horror Adventures pg. 47"
+        },
+        {
+          "level": 1,
+          "name": "Dead Calm",
+          "description": "A dreadnought can enter a dispassionate killing spree as a free action, granting her additional combat prowess. The dreadnought gains only half the usual bonuses from her rage but takes no penalty to her AC, can use all her normal skills and effects that require concentration, and is not fatigued when her rage ends. The dreadnought cannot enter a rage for 1 minute after she ends her rage, and she cannot charge or run while under the effects of her rage."
+        },
+        {
+          "level": 1,
+          "name": "Stead Gait",
+          "description": "A dreadnought advances steadily, shrugging off attempts to slow her advance. The dreadnought gains a +1 bonus on saving throws and to her CMD against effects that would slow or immobilize her. This bonus increases to +2 when she gains greater rage and +3 when she gains mighty rage."
+        },
+        {
+          "level": 14,
+          "name": "Fearless Killer",
+          "description": "Starting at 14th level, a dreadnought becomes implacable in her pursuit of slaughter. While in rage, she is immune to fear effects."
+        },
+        {
+          "level": 17,
+          "name": "Instant Dispassion",
+          "description": "At 17th level, a dreadnought can quickly turn her compassion on and off. She can enter a rage as soon as she wants after ending a previous rage."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:drunken-brute",
+      "package": "pathfinder-class:barbarian",
+      "name": "Drunken Brute",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Drunken Brute",
+      "replaces_features": [
+        "fast-movement"
+      ],
+      "removed_features": [
+        "fast-movement"
+      ],
+      "removed_feature_clauses": [
+        "fast movement"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Drunken Brute",
+          "description": "Source Advanced Player's Guide pg. 78"
+        },
+        {
+          "level": 1,
+          "name": "Raging Drunk",
+          "description": "While raging, the drunken brute can drink a potion, or a tankard of ale or similar quantity of alcohol, as a move action that does not provoke attacks of opportunity. A potion has its normal effect, while an alcoholic drink allows the barbarian to maintain her rage that round without expending a round of rage for the day (instead of the alcohol’s normal effects). For each alcoholic drink consumed while raging, the barbarian is nauseated for 1 round when her rage expires, in addition to the normal fatigue that follows a rage. Tireless rage does not negate this nauseated condition but the internal fortitude rage power does. This ability replaces fast movement."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the drunken brute archetype: boasting taunt, good for what ails you, internal fortitude*, liquid courage, moment of clarity*, roaring drunk, and staggering drunk."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:drunken-rager",
+      "package": "pathfinder-class:barbarian",
+      "name": "Drunken Rager",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Drunken Rager",
+      "replaces_features": [
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "rage-power",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "rage-power",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "uncanny dodge",
+        "trap sense",
+        "improved uncanny dodge",
+        "rage power gained at 12th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Drunken Rager",
+          "description": "Source Alchemy Manual pg. 12"
+        },
+        {
+          "level": 1,
+          "name": "Drunken Rage",
+          "description": "At 1st level, a drunken rager can drink a unit of ale or other strong alcohol while raging to gain 1 drunken rage point. The act of drinking is a standard action that does not provoke attacks of opportunity. At 1st level, the barbarian can have a maximum of 1 drunken rage point; this maximum increases by 1 every 2 levels thereafter. These drunken rage points last for 1 hour or until spent, whichever comes first. The barbarian can use drunken rage points only while raging. Unless otherwise noted, spending a drunken rage point is a free action."
+        },
+        {
+          "level": 2,
+          "name": "Staggering Evasion",
+          "description": "At 2nd level, as long as she has at least 1 drunken rage point, a drunken rager gains evasion, as the rogue class feature of the same name. This ability replaces uncanny dodge."
+        },
+        {
+          "level": 3,
+          "name": "Tolerance",
+          "description": "At 3rd level, as long as she has at least 1 drunken rage point, a drunken rager gains a +1 bonus on saves against effects that would nauseate, poison, or sicken her, as well as saves to avoid addiction or other ill effects associated with consuming alcohol. This bonus increases by 1 at 6th level and every 3 levels thereafter. This ability replaces trap sense."
+        },
+        {
+          "level": 5,
+          "name": "Improved Staggering Evasion",
+          "description": "At 5th level, as long as she has at least 2 drunken rage points, a drunken rager gains improved evasion, as the rogue advanced talent of the same name. This ability replaces improved uncanny dodge."
+        },
+        {
+          "level": 12,
+          "name": "Drunken Swing",
+          "description": "At 12th level, a drunken rager can spend 1 drunken rage point as a swift action before making a melee attack to drastically increase the deadliness of her attack. The critical threat range of her next attack that round increases by 1 (for example, a critical threat range of 20 would increase to 19–20). This ability does not stack with any other effect that expands the critical threat range of a weapon. At 16th level and again at 20th level, the barbarian can spend 1 additional drunken rage point to further increase the critical threat range of her next attack (to a maximum critical threat range increase of 3 at 20th level). This ability replaces the rage power gained at 12th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:elemental-kin",
+      "package": "pathfinder-class:barbarian",
+      "name": "Elemental Kin",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Elemental Kin",
+      "replaces_features": [
+        "trap-sense"
+      ],
+      "removed_features": [
+        "trap-sense"
+      ],
+      "removed_feature_clauses": [
+        "trap sense"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Elemental Kin",
+          "description": "Source Advanced Player's Guide pg. 78"
+        },
+        {
+          "level": 3,
+          "name": "Elemental Fury",
+          "description": "At 3rd level, whenever the elemental kin takes an amount of energy damage equal to or greater than her barbarian level while raging, she adds 1 to the total number of rounds that she can rage that day. At 6th level, and every three levels thereafter, the number of extra rounds per energy attack increases by +1, to a maximum of +6 rounds per energy attack at at 18th level. This ability replaces trap sense."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the elemental kin archetype: elemental rage, energy absorption, energy eruption, energy resistance, greater elemental rage, greater energy resistance, and lesser elemental rage."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:fearsome-defender",
+      "package": "pathfinder-class:barbarian",
+      "name": "Fearsome Defender",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Fearsome Defender",
+      "replaces_features": [
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "trapsense",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "trapsense",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Fearsome Defender",
+          "description": "Source Horror Adventures pg. 47"
+        },
+        {
+          "level": 1,
+          "name": "Intractable",
+          "description": "A combination of brainwashing and loyalty helps a fearsome defender resist pain and torture, enduring grueling combat or questioning without betraying her dark lord. A fearsome defender gains a +2 bonus on saving throws against painUM effects, and the DCs of checks to coerce her or demoralize her with Diplomacy or Intimidate increase by 2. Both the bonus and the increase to DCs increase by 2 when she gains greater rage and again by 2 when she gains mighty rage."
+        },
+        {
+          "level": 2,
+          "name": "Off the Leash",
+          "description": "Beginning at 2nd level, a fearsome defender simmers on the edge of bloody combat. Whenever she begins a rage, she can also draw an unconcealed weapon as part of the free action to begin raging."
+        },
+        {
+          "level": 3,
+          "name": "Silent Threat",
+          "description": "At 3rd level, a fearsome defender exudes hostility, creating a threatening atmosphere in her presence. The fearsome defender gains a +1 bonus on Intimidate checks, and the DCs of Intimidate checks to demoralize her allies within 30 feet increase by 1. Both the bonus and the increase to DCs increase by 1 at 6th level and every 3 barbarian levels thereafter."
+        },
+        {
+          "level": 5,
+          "name": "Bloodlust",
+          "description": "At 5th level, a fearsome defender’s eagerness for bloodshed makes her quicker to act in a fight. She adds her Charisma modifier to initiative checks and always acts during the surprise round. If the fearsome defender is surprised during the surprise round, she acts last in that round and then determines initiative order normally for the remainder of combat."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:feral-gnasher",
+      "package": "pathfinder-class:barbarian",
+      "name": "Feral Gnasher",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Feral Gnasher",
+      "replaces_features": [
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "rage-power",
+        "trap-sense-1-5",
+        "weapon-armor-proficiency"
+      ],
+      "removed_features": [
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "rage-power",
+        "trap-sense-1-5",
+        "weapon-armor-proficiency"
+      ],
+      "removed_feature_clauses": [
+        "fast movement",
+        "rage power gained at second level",
+        "trap sense +1",
+        "improved uncanny dodge",
+        "trap sense +2",
+        "trap sense +3",
+        "trap sense +5",
+        "trap sense +4"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Feral Gnasher",
+          "description": "Source Advanced Race Guide pg. 116"
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "A feral gnasher loses all martial weapon proficiencies except for greatclub and loses proficiency with medium armor."
+        },
+        {
+          "level": 1,
+          "name": "Savage Bite",
+          "description": "At 1st level, a feral gnasher gains a savage bite attack. This is a primary natural attack that deals 1d4 points of damage. If the goblin already has the hard head, big teeth racial trait, the damage increases to 1d6. At 10th level, the damage from a feral gnasher’s bite increases to 1d6 (or 1d8 if the goblin has the hard head, big teeth racial trait) and deals ×3 damage on a critical hit. This ability replaces fast movement."
+        },
+        {
+          "level": 2,
+          "name": "Impromptu Armament",
+          "description": "At 2nd level, a feral gnasher gains Throw Anything as a bonus feat and can pick up an unattended object that can be wielded in one hand as a free action. Additionally, the feral gnasher can take Catch Off-Guard in place of a rage power. This replaces the rage power gained at second level."
+        },
+        {
+          "level": 3,
+          "name": "Lockjaw",
+          "description": "At 3rd level, a feral gnasher gains the grab ability with her bite attack. A feral gnasher can use this ability on a creature up to one size category larger than she is. This replaces trap sense +1."
+        },
+        {
+          "level": 5,
+          "name": "Improvised Weapon Mastery",
+          "description": "At 5th level, a feral gnasher gains Improvised Weapon Mastery as a bonus feat. This replaces improved uncanny dodge."
+        },
+        {
+          "level": 6,
+          "name": "Improved Lockjaw",
+          "description": "At 6th level, as long as a feral gnasher is controlling the grapple with her lockjaw attack, she does not gain the grappled condition, but is unable to move or use her mouth for anything other than grappling. This ability replaces trap sense +2."
+        },
+        {
+          "level": 9,
+          "name": "Greater Lockjaw",
+          "description": "At 9th level and again at 15th level, the size of a creature a feral gnasher is able to use her lockjaw’s grab ability on increases by one size increment. This ability replaces trap sense +3 and trap sense +5."
+        },
+        {
+          "level": 12,
+          "name": "Wicked Improvisation",
+          "description": "At 12th level, a feral gnasher becomes more capable with improvised weapons and natural attacks. The feral gnasher gains a +1 competence bonus on damage rolls when using natural attacks or improvised weapons while raging. At 14th level and every two levels thereafter, the damage bonus increases by +1. This increase is not precision damage and is thus multiplied on a critical hit. This ability replaces trap sense +4."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the feral gnasher archetype: increased damage reduction, scent, superstition ; beast totem, beast totem (greater), beast totem (lesser) eater of magic, ghost rager."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:barbarian:ferocious-brute",
+      "package": "pathfinder-class:barbarian",
+      "name": "Ferocious Brute",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/ferocious-brute",
+      "replaces_features": [
+        "armor-proficiencies",
+        "danger-sense-or-trap-sense",
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "level",
+        "rage-powers-at",
+        "uncanny-dodge",
+        "weapon"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "uncanny dodge",
+        "improved uncanny dodge",
+        "the rage powers gained at 2nd",
+        "6th",
+        "10th",
+        "14th",
+        "and 18th level",
+        "fast movement",
+        "danger sense or trap sense"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Ferocious brutes are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis alters weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A ferocious brute is considered an Adept practitioner, gaining spheres and talents as appropriate. Ferocious brutes use Constitution as their practitioner modifier.\n\nThis replaces uncanny dodge, improved uncanny dodge, and the rage powers gained at 2nd, 6th, 10th, 14th, and 18th level."
+        },
+        {
+          "level": 1,
+          "name": "Horrifying Brute",
+          "description": "At 1st level, the ferocious brute gains the Berserker and Gladiator spheres as bonus spheres, as well as the Humble Combatant drawback, granting the Uncowed talent as normal. If the ferocious brute already possesses the Humble Combatant drawback or the Uncowed talent, she gains a bonus talent from the Gladiator sphere as well as the Berserker sphere instead.\n\nThis replaces fast movement."
+        },
+        {
+          "level": 4,
+          "name": "Stalwart",
+          "description": "At 4th level, a ferocious brute can use mental and physical resiliency to avoid certain attacks. Whenever the ferocious brute succeeds at a Fortitude or Will saving throw against an attack that has a partial effect on a successful save, she instead avoids the effect entirely. The ferocious brute does not gain the benefits of the stalwart ability if she is helpless.\n\nThis replaces danger sense or trap sense."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:flesheater",
+      "package": "pathfinder-class:barbarian",
+      "name": "Flesheater",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Flesheater",
+      "replaces_features": [
+        "greater-rage",
+        "mighty-rage",
+        "rage",
+        "rage-power"
+      ],
+      "removed_features": [
+        "greater-rage",
+        "mighty-rage",
+        "rage",
+        "rage-power"
+      ],
+      "removed_feature_clauses": [
+        "uncanny dodge",
+        "improved uncanny dodge",
+        "the 2nd- and 8th-level rage powers",
+        "greater rage",
+        "14th-level rage power",
+        "mighty rage"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Flesheater",
+          "description": "Source Occult Adventures pg. 114"
+        },
+        {
+          "level": 1,
+          "name": "Rage",
+          "description": "In additional to the standard bonuses and penalties of rage, a flesheater takes a –2 penalty to Intelligence while raging. The additional benefits and penalties from a flesheater’s abilities last only as long as her rage does, and she cannot use these abilities if they would bring the total penalty to Intelligence to an amount equal to or greater than her Intelligence score. This ability alters the rage ability."
+        },
+        {
+          "level": 2,
+          "name": "One Flesh",
+          "description": "At 2nd level when entering a rage, a flesheater can spend an additional round of rage and take an additional –2 penalty to Intelligence to take on a single ability of the valid consumed creature whose flesh she ate most recently. For the purpose of this ability, a valid consumed creature is any dead animal, dragon, humanoid, or magical beast that died and was consumed by the flesheater within the past 24 hours. She can choose any ability listed under beast shape I, as long as the creature possessed that ability. At 5th level, the flesheater can take on any number of the creature’s abilities that are listed under beast shape I. At 8th level, the flesheater can instead take on one of the creature’s abilities listed under beast shape II. The flesheater’s appearance alters to resemble the consumed creature, but she does not change shape. This is a polymorph effect. This ability replaces uncanny dodge, improved uncanny dodge, and the 2nd- and 8th-level rage powers."
+        },
+        {
+          "level": 11,
+          "name": "Unbound Rage",
+          "description": "At 11th level, a flesheater can draw in mass from the Ethereal Plane to enlarge herself when she enters a rage, as long as the creature whose flesh she last consumed was at least one size category larger than her base size. Unbound rage affects her as enlarge person, except she receives a +4 size bonus to Strength and an additional –2 penalty to Intelligence. This ability replaces greater rage."
+        },
+        {
+          "level": 14,
+          "name": "Feast",
+          "description": "At 14th level, a flesheater can use her one flesh and unbound rage abilities to emulate any one valid consumed creature of her choice, rather than only the one she consumed most recently. This ability replaces the 14th-level rage power."
+        },
+        {
+          "level": 20,
+          "name": "Unbound Form",
+          "description": "At 20th level, a flesheater can use her one flesh ability to assume the shape of a valid consumed creature. This ability functions as alter self, beast shape IV, form of the dragon III, or giant form II, as appropriate. This is a polymorph effect. This ability replaces mighty rage."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the flesheater archetype: animal fury, beast totemAPG (any), inspire ferocityAPG, internal fortitude, and terrifying howl."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:geminate-invoker",
+      "package": "pathfinder-class:barbarian",
+      "name": "Geminate Invoker",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Geminate Invoker",
+      "replaces_features": [
+        "alignment",
+        "class-skills",
+        "rage",
+        "rage-power",
+        "trap-sense"
+      ],
+      "removed_features": [
+        "alignment",
+        "class-skills",
+        "rage",
+        "rage-power",
+        "trap-sense"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Geminate Invoker",
+          "description": "Source Adventurer's Guide pg. 166"
+        },
+        {
+          "level": 1,
+          "name": "Contemplative",
+          "description": "A geminate invoker adds Knowledge (history), Knowledge (religion), and Linguistics to his list of class skills. Unlike most barbarians, a geminate invoker can be lawful, but must maintain a neutral element to his alignment. A geminate invoker who ceases to be neutral-aligned cannot activate his trance ability.\n\nThis alters the barbarian’s class skills and alignment."
+        },
+        {
+          "level": 1,
+          "name": "Trance",
+          "description": "As a free action, a geminate invoker can enter a self-imposed trance, ignoring the physical limits of his body. This ability functions similarly to a barbarian’s rage, except where noted below, and feats, spells, and abilities that affect a barbarian’s rage (such as the Extra Rage feat) apply to an geminate invoker’s trance. A geminate invoker gains rage powers as per a normal barbarian, but he can never gain totem rage powers via this ability."
+        },
+        {
+          "level": 3,
+          "name": "Haunt Channeler",
+          "description": "At 3rd level, a geminate invoker gains the power to sense and absorb lingering spiritual energy. This functions identically to the medium class ability of the same name, except the geminate invoker deals 1d6 points of damage to haunts for every 3 barbarian levels he has."
+        },
+        {
+          "level": 4,
+          "name": "Spirit Conduit",
+          "description": "At 4th level, a geminate invoker can invite a spirit into his body each time he enters a trance, gaining a lesser totem rage power for the duration of his trance. He can select a new totem each time he enters his trance, though the GM might rule that certain totem spirits are simply not available in certain locations (such as channeling a celestial totem in an evil god’s temple). Invoking a totem counter to his alignment (such as a neutral good character invoking a fiend totem) requires the geminate invoker to succeed at a DC 12 Charisma check each round to dominate the spirit. Failure indicates the spirit escapes, immediately ending the trance. At 8th level, the geminate invoker gains a second totem rage power, though it must use the previously granted lesser totem rage power as a prerequisite. At 12th level, he also gains the greater totem rage power that uses the previously granted powers as prerequisites."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:giant-stalker",
+      "package": "pathfinder-class:barbarian",
+      "name": "Giant Stalker",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Giant Stalker",
+      "replaces_features": [
+        "rage",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "rage",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Giant Stalker",
+          "description": "Source Adventurer's Guide pg. 130"
+        },
+        {
+          "level": 1,
+          "name": "Harangue Giant",
+          "description": "While raging, a giant stalker can speak Giant. If the giant stalker already knows Giant, she gains a +2 bonus on Intimidate checks when speaking Giant while raging."
+        },
+        {
+          "level": 1,
+          "name": "Smell Giants",
+          "description": "A 2nd level, a giant stalker gains the scent special ability, but with regard only to humanoids with the giant subtype."
+        },
+        {
+          "level": 3,
+          "name": "Giant Baiter",
+          "description": "At 3rd level, a raging giant stalker can take a move action to erupt into a violent or vulgar display directed at a single giant within 60 feet. This display is infused with secret magical traditions that draw upon the Mammoth Lords’ ancestral enmities toward giants. A targeted giant must succeed at a Will save (DC = 10 + half the giant stalker’s barbarian level + the giant stalker’s Constitution modifier) or be compelled to focus its attacks on the giant stalker; this ability can also affect non-giant creatures that are Large or larger, though such creatures gain a +4 bonus on the Will save to resist the effect. This compulsion ends if the giant stalker is out of sight or inaccessible to the giant’s attacks. While baited, a giant is distracted and enraged by the insults—a giant stalker gains a +1 dodge bonus to her AC against any giant she has successfully baited. Once baited, a giant remains baited for a number of rounds equal to the giant stalker’s Constitution modifier, or until the giant stalker’s rage ends (whichever comes first). If the giant stalker baits a different giant, any previously baited giant is no longer baited. A giant that successfully saves against baiting is immune to that giant stalker’s giant baiter ability for 24 hours. This is a language-dependent mind affecting effect."
+        },
+        {
+          "level": 1,
+          "name": "Giant Stalker Rage Powers",
+          "description": "A giant stalker gains access to the following rage powers."
+        },
+        {
+          "level": 1,
+          "name": "Giant Stalker Defense",
+          "description": "When raging, a giant stalker does not take a penalty to Armor Class against attacks from giants."
+        },
+        {
+          "level": 1,
+          "name": "Topple Giant",
+          "description": "When raging, the giant stalker does not provoke attacks of opportunity when she attempts to trip a giant, and can attempt to trip a giant that is up to two size categories larger than she is."
+        },
+        {
+          "level": 1,
+          "name": "Underfoot",
+          "description": "When raging, the giant stalker can attempt to enter a giant’s space, provided she is at least one size category smaller than the giant. This does not provoke an attack of opportunity. Doing so takes a move action and requires a successful combat maneuver check against the giant’s CMD. If she succeeds, she enters a square in the giant’s space. If she makes an attack against the giant while sharing its space, the giant is treated as being flat-footed against her. At the end of her turn, she exits the giant’s space into any square adjacent to the giant’s space."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:hateful-rager",
+      "package": "pathfinder-class:barbarian",
+      "name": "Hateful Rager",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Hateful Rager",
+      "replaces_features": [
+        "rage",
+        "rage-power",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "rage",
+        "rage-power",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "improved uncanny dodge",
+        "trap sense +3"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Hateful Rager",
+          "description": "Source Advanced Race Guide pg. 54"
+        },
+        {
+          "level": 2,
+          "name": "Reduced Rage",
+          "description": "At 2nd level and every level thereafter, a hateful rager only gains 1 additional round of rage per day instead of the normal 2 additional rounds of rage per day."
+        },
+        {
+          "level": 2,
+          "name": "Favored Enemy",
+          "description": "At 2nd level, a hateful rager selects a favored enemy. This ability works identically to the ranger ability of the same name. At 8th, 14th, and 20th level, the hateful rager selects another favored enemy and increases her bonus against one favored enemy type, as described in the ranger class."
+        },
+        {
+          "level": 5,
+          "name": "Feed the Rage",
+          "description": "At 5th level, a hateful rager gains 1 additional round of rage for each favored enemy she knocks unconscious or kills in combat. These current rounds of rage can only be used to add to the duration of her rage, and disappear when the rage ends. This ability replaces improved uncanny dodge."
+        },
+        {
+          "level": 9,
+          "name": "Amplified by Hate",
+          "description": "At 9th level, a hateful rager adds half her favored enemy bonus to the DC of any rage power she uses against a favored enemy. This ability replaces trap sense +3."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the hateful rager archetype: intimidating glare, roused anger, terrifying howl; come and get me, inspire ferocity, overbearing advance, reckless abandon ."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:hurler",
+      "package": "pathfinder-class:barbarian",
+      "name": "Hurler",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Hurler",
+      "replaces_features": [
+        "fast-movement"
+      ],
+      "removed_features": [
+        "fast-movement"
+      ],
+      "removed_feature_clauses": [
+        "fast movement"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Hurler",
+          "description": "Source Advanced Player's Guide pg. 78"
+        },
+        {
+          "level": 1,
+          "name": "Skilled Thrower",
+          "description": "The hurler is skilled at throwing objects in combat. Increase the range increment of any thrown weapon or object by 10 feet. This ability replaces fast movement."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the hurler archetype: hurling, greater hurling, hurling charge, lesser hurling, strength surge*, and surprise accuracy*."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:invulnerable-rager",
+      "package": "pathfinder-class:barbarian",
+      "name": "Invulnerable Rager",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Invulnerable Rager",
+      "replaces_features": [
+        "damage-reduction",
+        "improved-uncanny-dodge",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "damage-reduction",
+        "improved-uncanny-dodge",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "uncanny dodge",
+        "improved uncanny dodge",
+        "damage reduction",
+        "trap sense"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Invulnerable Rager",
+          "description": "Source Advanced Player's Guide pg. 79"
+        },
+        {
+          "level": 2,
+          "name": "Invulnerability",
+          "description": "At 2nd level, the invulnerable rager gains DR/— equal to half her barbarian level. This damage reduction is doubled against nonlethal damage. This ability replaces uncanny dodge, improved uncanny dodge, and damage reduction."
+        },
+        {
+          "level": 3,
+          "name": "Extreme Endurance",
+          "description": "At 3rd level, the invulnerable rager is inured to either hot or cold climate effects (choose one) as if using endure elements. In addition, the barbarian gains 1 point of fire or cold resistance for every three levels beyond 3rd. This ability replaces trap sense."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the invulnerable rager archetype: come and get me, guarded life, inspire ferocity, reckless abandon, and renewed vigor*."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:jungle-rager",
+      "package": "pathfinder-class:barbarian",
+      "name": "Jungle Rager",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Jungle Rager",
+      "replaces_features": [
+        "damage-reduction",
+        "improved-uncanny-dodge",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "damage-reduction",
+        "improved-uncanny-dodge",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "uncanny dodge",
+        "trap sense",
+        "improved uncanny dodge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Jungle Rager",
+          "description": "Source Inner Sea Combat pg. 39"
+        },
+        {
+          "level": 2,
+          "name": "Home Ground Advantage",
+          "description": "At 2nd level, a jungle rager learns how to make optimal use of the natural cover of her homeland. She chooses a specific terrain type from the ranger list of favored terrains. When in this terrain, she increases her bonus to AC and on Reflex saving throws gained from cover, partial cover, and improved cover (but not soft cover) by 1. In this terrain, she also increases the miss chance caused by concealment for attacks against her by 5%. This ability replaces uncanny dodge."
+        },
+        {
+          "level": 3,
+          "name": "Jungle Endurance",
+          "description": "At 3rd level, a jungle rager gains a +1 bonus on Fortitude saves to resist the effects of hot weather and diseases. This bonus increases by +1 every 3 barbarian levels after 3rd. This ability replaces trap sense."
+        },
+        {
+          "level": 5,
+          "name": "Home Ground Supremacy",
+          "description": "At 5th level, a jungle rager becomes even more capable when navigating and fighting in her preferred terrain. She gains the woodland stride ranger ability, though this ability works only in the terrain she selected for the home ground advantage ability. In this terrain, she gains an additional +1 bonus to AC when benefiting from cover or improved cover (but not soft cover). This ability replaces improved uncanny dodge."
+        },
+        {
+          "level": 8,
+          "name": "Damage Reduction",
+          "description": "A jungle rager gains this ability at 8th level, except her effective barbarian level for the ability is equal to her barbarian level – 1. In addition, this damage reduction is doubled against damage dealt by creatures with the swarm subtype. This ability otherwise functions as the barbarian ability of the same name."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the jungle rager archetype: animal fury, bestial climber, hive totem, internal fortitude, low-light vision, night vision, raging climber, scent, sharpened accuracy, and surprise accuracy."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:mad-dog",
+      "package": "pathfinder-class:barbarian",
+      "name": "Mad Dog",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Mad Dog",
+      "replaces_features": [
+        "damage-reduction",
+        "improved-uncanny-dodge",
+        "indomitable-will",
+        "rage",
+        "rage-power",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "damage-reduction",
+        "improved-uncanny-dodge",
+        "indomitable-will",
+        "rage",
+        "rage-power",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "rage powers gained at 2nd",
+        "6th",
+        "10th",
+        "14th",
+        "and 18th level",
+        "uncanny dodge",
+        "improved uncanny dodge",
+        "indomitable will"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Mad Dog",
+          "description": "Source Animal Archive pg. 7"
+        },
+        {
+          "level": 1,
+          "name": "War Beast",
+          "description": "At 1st level, a mad dog gains the service of an animal companion, using the barbarian’s level as her effective druid level. This ability replaces the rage powers gained at 2nd, 6th, 10th, 14th, and 18th level."
+        },
+        {
+          "level": 2,
+          "name": "Pack Tactics",
+          "description": "At 2nd level, a mad dog and her war beast gain a +4 bonus on attack rolls while flanking the same opponent (instead of the normal +2 bonus). This ability replaces uncanny dodge."
+        },
+        {
+          "level": 4,
+          "name": "Rage",
+          "description": "A mad dog gains this ability at 4th level, except that her effective barbarian level for the ability is equal to her barbarian level – 3."
+        },
+        {
+          "level": 5,
+          "name": "Ferocious Fetch",
+          "description": "At 5th level, a mad dog’s war beast gains Improved Drag as a bonus feat. As a swift action, a mad dog can command her war beast to move toward an opponent within 30 feet and attempt a drag combat maneuver to pull the target back toward the mad dog. The war beast can move before and after performing the maneuver, but this movement counts toward the war beast’s total movement during its turn. This ability replaces improved uncanny dodge."
+        },
+        {
+          "level": 10,
+          "name": "Damage Reduction",
+          "description": "At 10th level, a mad dog gains damage reduction. At 13th level and every 3 barbarian levels thereafter, this damage reduction rises by 1, to a maximum of DR 4/— at 19th level. A mad dog’s war beast gains the same damage reduction as the mad dog."
+        },
+        {
+          "level": 14,
+          "name": "Throat Cutter",
+          "description": "At 14th level, whenever her war beast succeeds at a bull rush, drag, grapple, overrun, or trip combat maneuver against an opponent threatened by the mad dog, a mad dog can take an attack of opportunity against that opponent. This ability replaces indomitable will."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the mad dog archetype: animal fury, beast totem, bestial leaper, primal scent, raging leaper, reckless abandon, scent, sprint, swift foot, and terrifying howl. The following new rage powers also complement this archetype:"
+        },
+        {
+          "level": 1,
+          "name": "Ferocious Beast",
+          "description": "While the barbarian is raging, her animal companion also gains the benefits of rage (including greater rage, mighty rage, and tireless rage), though the barbarian must spend 1 additional round of rage per round if her companion begins or ends its turn adjacent to her, and 2 additional rounds of rage per round if not."
+        },
+        {
+          "level": 1,
+          "name": "Ferocious Beast, Greater",
+          "description": "While the barbarian is raging, her animal companion shares the benefits of the barbarian’s rage powers that are constant in effect. It gains no benefit from rage powers that require actions to activate, even if they are free actions. A barbarian must have the ferocious beast rage power and be at least 8th level to select this rage power."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:mooncursed",
+      "package": "pathfinder-class:barbarian",
+      "name": "Mooncursed",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Mooncursed",
+      "replaces_features": [
+        "greater-rage",
+        "improved-uncanny-dodge",
+        "mighty-rage",
+        "race",
+        "rage"
+      ],
+      "removed_features": [
+        "greater-rage",
+        "improved-uncanny-dodge",
+        "mighty-rage",
+        "race",
+        "rage"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Mooncursed",
+          "description": "Source Horror Adventures pg. 47"
+        },
+        {
+          "level": 1,
+          "name": "Race",
+          "description": "A mooncursed must either be a humanoid or monstrous humanoid."
+        },
+        {
+          "level": 1,
+          "name": "Shifting Rage",
+          "description": "A mooncursed can call upon an animal totem or inner curse, transforming her into a savage beast. Starting at 1st level, she chooses bear, boar, crocodile, shark, tiger, or wolf. Once chosen, this animal can’t be changed. When using rounds of her shifting rage, instead of the usual bonuses and penalties from rage, the mooncursed transforms into a Medium version of this animal’s form as if under the influence of beast shape I, treating her class level as her caster level whenever relevant. Other aspects of rage aside from the bonuses and penalties, such as the skill restrictions on skills and effects that require concentration, still apply during a shifting rage."
+        },
+        {
+          "level": 5,
+          "name": "Hybrid Rage",
+          "description": "Beginning at 5th level, a mooncursed can choose to assume a hybrid of her base type and alternate form instead of her usual alternate form during her shifting rage. If she does, the animal’s forelimbs (or pectoral fins for the shark) remain hands able to manipulate objects and wield weapons as well as human hands do, she can walk on two legs (the shark’s tail fins remain legs), and she can talk."
+        },
+        {
+          "level": 11,
+          "name": "Greater Shifting Rage",
+          "description": "At 11th level, a mooncursed can assume larger alternate and hybrid forms. This functions like beast shape II, and it allows the mooncursed to take on a Medium or Large version of her animal’s form."
+        },
+        {
+          "level": 20,
+          "name": "Mighty Shifting Rage",
+          "description": "At 20th level, a mooncursed can assume even larger alternate and hybrid forms. This functions like beast shape III, and it allows the mooncursed to take on a Medium, Large, or Huge version of her animal’s form."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:mounted-fury",
+      "package": "pathfinder-class:barbarian",
+      "name": "Mounted Fury",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Mounted Fury",
+      "replaces_features": [
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "fast movement",
+        "uncanny dodge",
+        "improved uncanny dodge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Mounted Fury",
+          "description": "Source Advanced Player's Guide pg. 79"
+        },
+        {
+          "level": 1,
+          "name": "Fast Rider",
+          "description": "The speed of any mount the barbarian rides is increased by 10 feet. This ability replaces fast movement."
+        },
+        {
+          "level": 5,
+          "name": "Bestial Mount",
+          "description": "At 5th level, the mounted fury gains the service of a feral mount. This ability functions as a druid’s animal companion, using the barbarian’s level –4 as her effective druid level. This companion must be one that she is capable of riding and is suitable as a mount. A Medium barbarian can select a camel or a horse. A Small barbarian can select a pony or a wolf, but can also select a boar or a dog if she is at least 8th level. Whenever a barbarian is raging while mounted on her bestial mount, the mount gains a +2 morale bonus to its Strength. This ability replaces uncanny dodge and improved uncanny dodge."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the mounted fury archetype: ferocious mount, ferocious trample, greater ferocious mount, greater ferocious trample, and spirit steed."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:numerian-liberator",
+      "package": "pathfinder-class:barbarian",
+      "name": "Numerian Liberator",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Numerian Liberator",
+      "replaces_features": [
+        "class-skills",
+        "improved-uncanny-dodge",
+        "indomitable-will",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "class-skills",
+        "improved-uncanny-dodge",
+        "indomitable-will",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "uncanny dodge",
+        "improved uncanny dodge",
+        "indomitable will"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Numerian Liberator",
+          "description": "Source People of the River pg. 6"
+        },
+        {
+          "level": 1,
+          "name": "Class Skill",
+          "description": "A Numerian liberator gains Stealth as a class skill and removes Climb from her list of barbarian class skills."
+        },
+        {
+          "level": 2,
+          "name": "Hard Hitter",
+          "description": "At 2nd level, a Numerian liberator can make devastating attacks against objects and foes with breakable components. Damage dealt by the barbarian’s attacks ignores an amount of an object’s or creature’s hardness (if any) equal to 1/2 her class level. This ability replaces the uncanny dodge."
+        },
+        {
+          "level": 5,
+          "name": "Disruptor",
+          "description": "At 5th level, for any foes in a Numerian liberator’s threatened area, the DC to cast spells defensively increases by 1. The DC increases by 1 again for every 5 levels thereafter (to a maximum increase of 4 at 20th level). If the barbarian gains the disruptive rage power, the two abilities stack. This ability replaces improved uncanny dodge."
+        },
+        {
+          "level": 14,
+          "name": "Hide from Constructs",
+          "description": "At 14th level, a Numerian liberator can control her movement, breathing, body temperature, and other physiological signs to confuse the artificial visions of constructs. At will, the barbarian can make herself undetectable to constructs as if she were affected by a hide from undead spell that instead hides the subject from constructs. Intelligent constructs receive a Will save (DC 10 + 1/2 the barbarian’s level + the barbarian’s Constitution modifier) to see through this effect. The barbarian must expend 1 round of rage for each round she uses this ability. This ability replaces indomitable will."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the Numerian liberator archetype: deadly accuracy, energy absorption (fire), energy resistance (fire), greater energy resistance (fire), gearbreaker, guarded stance, lethal accuracy, lowlight vision, night vision, rolling dodge, reflexive dodge, surprise accuracy."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:pack-hunter",
+      "package": "pathfinder-class:barbarian",
+      "name": "Pack Hunter",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Pack Hunter",
+      "replaces_features": [
+        "rage-power",
+        "trap-sense"
+      ],
+      "removed_features": [
+        "rage-power",
+        "trap-sense"
+      ],
+      "removed_feature_clauses": [
+        "trap sense",
+        "rage power normally gained at 6th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Pack Hunter",
+          "description": "Source Ultimate Wilderness pg. 38"
+        },
+        {
+          "level": 1,
+          "name": "Bonus Feats",
+          "description": "Whenever a pack hunter would gain a new rage power, she can instead select a teamwork feat. She must still meet the prerequisites for the teamwork feat.\n\nThis alters rage power."
+        },
+        {
+          "level": 3,
+          "name": "In and Out",
+          "description": "At 3rd level, a pack hunter gains a +1 dodge bonus to AC against attacks of opportunity. This bonus increases by 1 for every 3 barbarian levels after 3rd (to a maximum bonus of +6 at 18th level).\n\nThis replaces trap sense."
+        },
+        {
+          "level": 6,
+          "name": "Sympathetic Rage",
+          "description": "At 6th level, if an ally within 30 feet is bloodraging or raging, a pack hunter counts as raging even if knocked unconscious. She has to have been raging when incapacitated to maintain her rage, and she ceases raging normally if she depletes her maximum number of rounds of rage in a day.\n\nThis replaces the rage power normally gained at 6th level."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the pack hunter archetype: contagious rage, increased damage reduction, no escape, pack rage, quick reflexes, and unexpected strike."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:pack-rager",
+      "package": "pathfinder-class:barbarian",
+      "name": "Pack Rager",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Pack Rager",
+      "replaces_features": [
+        "damage-reduction",
+        "rage-power"
+      ],
+      "removed_features": [
+        "damage-reduction",
+        "rage-power"
+      ],
+      "removed_feature_clauses": [
+        "rage powers gained at 2nd",
+        "6th",
+        "10th",
+        "14th",
+        "and 18th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Pack Rager",
+          "description": "Source Monster Codex pg. 92"
+        },
+        {
+          "level": 2,
+          "name": "Bonus Feat",
+          "description": "At 2nd level and every 4 levels thereafter, the pack rager can take a bonus teamwork feat. This teamwork feat must also be a combat feat. This ability replaces the rage powers gained at 2nd, 6th, 10th, 14th, and 18th level."
+        },
+        {
+          "level": 7,
+          "name": "Raging Tactician",
+          "description": "At 7th level, while a pack rager is raging, she grants a single teamwork feat she knows to all allies within 30 feet who can see and hear her. She chooses the feat at the start of the rage, and cannot change it during the rage. An ally who moves more than 30 feet away from the raging pack rager loses access to the feat, but regains it again each time he moves back within 30 feet of the raging pack rager. Allies do not need to meet the prerequisites of these teamwork feats."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:barbarian:painted-savage",
+      "package": "pathfinder-class:barbarian",
+      "name": "Painted Savage",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/painted-savage",
+      "replaces_features": [
+        "armor-proficiencies",
+        "danger-sense-for-unchained-barbarians",
+        "fast-movement",
+        "greater-rage",
+        "mighty-rage",
+        "rage",
+        "rage-power",
+        "tireless-rage",
+        "trap-sense-for-barbarians",
+        "weapon"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "trap sense for barbarians",
+        "danger sense for unchained barbarians",
+        "fast movement",
+        "rage",
+        "mighty rage",
+        "greater rage",
+        "tireless rage"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Painted savages are proficient with simple weapons, as well as bucklers. In addition, if this is the character’s first level in any class, they may select a martial tradition of their choice.\n\nThis modifies weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A painted savage is considered a Proficient practitioner, gaining spheres and talents as appropriate. Painted savages use Constitution as their practitioner modifier. This ability replaces trap sense for barbarians and danger sense for unchained barbarians."
+        },
+        {
+          "level": 1,
+          "name": "Muscles of Steel",
+          "description": "When wearing no armor and unencumbered, the painted savage adds her Strength bonus (if any) as a natural armor bonus to her AC; this bonus cannot exceed her class level. (A 1st level painted savage with 16 Strength gains only a +1 natural armor bonus to her armor class from this class feature.) This bonus to AC does not stack with other sources of natural armor, but stacks with the armor bonus granted from the Unarmored Training talent. She loses these bonuses when she wears light, medium, or heavy armor, or when she carries a medium or heavy load."
+        },
+        {
+          "level": 1,
+          "name": "Enduring Temper",
+          "description": "At 1st level, a painted savage gains Berserker as a bonus sphere and Combat Stamina as a bonus feat. If the painted savage already possess the Combat Stamina feat from another source, she instead gains either an additional talent from the Berserker sphere, or a feat that has Combat Stamina as a prerequisite as a bonus feat.\n\nThis replaces fast movement."
+        },
+        {
+          "level": 1,
+          "name": "Mystical Tattoos",
+          "description": "A painted savage is recognized by the full-body tattoos that she has inked on her body. While many of the tattoos are purely decorative, others have mystical power to them. At 1st level the painted savage gains the ability to unlock certain tattoos granting herself increased strength, speed, and endurance. As a swift action, the painted savage may grant herself a +2 bonus to either her Strength, Dexterity, or Constitution score for a number of rounds equal to her Constitution modifier, or for 1 minute if the painted savage spends 5 points from her stamina pool when activating the ability. At 3rd level, and every 3 levels thereafter, the bonus granted by this ability increases by an additional +2. The painted savage may apply all of this bonus to a single physical ability score, or divide it in units of +2 between multiple physical ability scores; regardless of how the painted savage assigns this bonus, she cannot add more than +10 to a given ability score. At 4th level, and every 4 levels thereafter, the painted savage gains one (enhance) talent from the Enhancement sphere as a bonus talent. The painted savage may take (enhance) talents from the Enhancement sphere without possessing the Enhancement base sphere. She may utilize mystic tattoos to use any (enhance) talent she knows as a swift action. When using mystic tattoos in this way, she may only target her own body or tattoos she possesses and their effects last for only a number of rounds equal to the painted savage’s Constitution modifier, or for 1 minute if the painted savage spends 5 points from her stamina pool when activating the ability. The effective caster level of (enhance) talents or abilities used this way is equal to her painted savage level, this does not stack with caster levels from other sources. The save DC for (enhance) talents used this way is 10 + 1/2 her painted savage level + her Constitution modifier.\n\nThis replaces rage, mighty rage, greater rage, and tireless rage."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "A painted savage may spend 2 stamina points from her stamina pool when under the effect of mystical tattoos. This allows the painted savage to be treated as if under the effects of a rage, though she gains none of the other benefits or drawbacks of raging. This effect lasts for the remaining duration of the mystical tattoos effect. New instances of mystical tattoos will require additional stamina to be spent. Rage powers that require additional rage rounds may instead use 5 points from her stamina pool per required rage round. In addition, whenever the painted savage would gain a rage power from her class levels, she may instead gain a bonus talent from the Berserker sphere.\n\nThis modifies rage powers."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:primal-hunter",
+      "package": "pathfinder-class:barbarian",
+      "name": "Primal Hunter",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Primal Hunter",
+      "replaces_features": [
+        "fast-movement",
+        "rage"
+      ],
+      "removed_features": [
+        "fast-movement",
+        "rage"
+      ],
+      "removed_feature_clauses": [
+        "fast movement"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Primal Hunter",
+          "description": "Source Ranged Tactics Toolbox pg. 11"
+        },
+        {
+          "level": 1,
+          "name": "Exceptional Pull",
+          "description": "At 1st level, a primal hunter gains Exceptional Pull as a bonus feat, even if she doesn’t meet the requirements. At 11th and 20th levels, the strength rating of weapons she wields increases by 1 (weapons without a strength rating are not affected). This ability replaces fast movement."
+        },
+        {
+          "level": 11,
+          "name": "Focused Rage",
+          "description": "While raging, a primal hunter gains a +2 bonus on attack rolls with ranged weapons. This bonus increases to +3 at 11th level and to +4 at 20th level. While raging, a primal hunter can attempt Stealth checks but doesn’t gain a morale bonus on Will saves. This ability alters rage."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the primal hunter archetype: deadly accuracyUC, lethal accuracyUC, reflexive dodgeUC, rolling dodge, sharpened accuracyUC, surprise accuracy."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:raging-cannibal",
+      "package": "pathfinder-class:barbarian",
+      "name": "Raging Cannibal",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Raging Cannibal",
+      "replaces_features": [
+        "damage-reduction",
+        "improved-uncanny-dodge",
+        "rage-power",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "damage-reduction",
+        "improved-uncanny-dodge",
+        "rage-power",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "uncanny dodge",
+        "trap sense",
+        "improved uncanny dodge",
+        "damage reduction"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Raging Cannibal",
+          "description": "Source Ultimate Wilderness pg. 38, Champions of Corruption pg. 27"
+        },
+        {
+          "level": 2,
+          "name": "Animal Fury",
+          "description": "At 2nd level, a raging cannibal must select animal fury as her first rage power.\n\nThis alters the barbarian’s 2nd-level rage power."
+        },
+        {
+          "level": 2,
+          "name": "Consume Vigor",
+          "description": "At 2nd level, when a raging cannibal reduces a creature of the same creature type as herself to 0 or fewer hit points with her bite attack during combat while raging, she can consume a chunk of its body to gain a portion of its power. If the creature’s CR equals or exceeds her barbarian level, the raging cannibal gains 1 additional round of rage. She can never consume the same creature’s vigor more than once. At 5th level and every 3 levels thereafter, the raging cannibal gains 1 additional round of rage each time she uses this ability.\n\nThis replaces uncanny dodge."
+        },
+        {
+          "level": 3,
+          "name": "Intimidating Gouge",
+          "description": "At 3rd level, when a raging cannibal confirms a critical hit against a creature of the same creature type as herself with her bite attack while raging, she gains a bonus on Intimidate checks equal to half her barbarian level for the duration of the rage.\n\nThis replaces trap sense."
+        },
+        {
+          "level": 5,
+          "name": "Feed from Fury",
+          "description": "At 5th level, a raging cannibal is empowered by eating her enemies during combat. When a raging cannibal confirms a critical hit against a creature of the same creature type as herself with her bite attack while raging, she gains a number of temporary hit points equal to her barbarian level. These temporary hit points stack with other temporary hit points gained from this ability but not with those from other sources. These temporary hit points fade after a period of time equal to 10 minutes per barbarian level.\n\nThis replaces improved uncanny dodge."
+        },
+        {
+          "level": 6,
+          "name": "Razor-Toothed Fury",
+          "description": "At 6th level, a raging cannibal’s bite becomes even more fearsome. When using her bite attack, the raging cannibal can take a –1 penalty on her attack roll to add 2 points of bleed damage to the damage dealt. At 10th level and every 4 levels thereafter, the attack penalty increases by 1 and the bleed damage increases by 2 points.\n\nThis replaces damage reduction."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the raging cannibal archetype: internal fortitude, intimidating glare, primal scent, scent, and terrifying howl."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:savage-barbarian",
+      "package": "pathfinder-class:barbarian",
+      "name": "Savage Barbarian",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Savage Barbarian",
+      "replaces_features": [
+        "damage-reduction",
+        "trap-sense"
+      ],
+      "removed_features": [
+        "damage-reduction",
+        "trap-sense"
+      ],
+      "removed_feature_clauses": [
+        "trap sense",
+        "damage reduction"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Savage Barbarian",
+          "description": "Source Advanced Player's Guide pg. 79"
+        },
+        {
+          "level": 3,
+          "name": "Naked Courage",
+          "description": "At 3rd level, the savage barbarian gains a +1 dodge bonus to AC and a +1 morale bonus on saving throws against fear when wearing no armor (shields are allowed). This bonus increases by +1 for every six levels after 3rd. This ability replaces trap sense."
+        },
+        {
+          "level": 7,
+          "name": "Natural Toughness",
+          "description": "At 7th level, the savage barbarian gains a +1 natural armor bonus to AC when wearing no armor (shields are allowed). This bonus increases by +1 for every three levels beyond 7th. This ability replaces damage reduction."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the savage barbarian archetype: flesh wound, guarded stance, increased damage reduction, intimidating glare, rolling dodge, superstition, and terrifying howl."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:savage-technologist",
+      "package": "pathfinder-class:barbarian",
+      "name": "Savage Technologist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Savage Technologist",
+      "replaces_features": [
+        "class-skills",
+        "improved-uncanny-dodge",
+        "rage",
+        "uncanny-dodge",
+        "weapon-armor-proficiencies"
+      ],
+      "removed_features": [
+        "class-skills",
+        "improved-uncanny-dodge",
+        "rage",
+        "uncanny-dodge",
+        "weapon-armor-proficiencies"
+      ],
+      "removed_feature_clauses": [
+        "Uncanny Dodge",
+        "Improved Uncanny Dodge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Savage Technologist",
+          "description": "Source Technology Guide pg. 13"
+        },
+        {
+          "level": 1,
+          "name": "Class skills",
+          "description": "Acrobatics (Dex), Climb (Str), Craft (Int), Diplomacy (Cha), Intimidate (Cha), Knowledge (local) (Int), Perception (Wis), Sense Motive Wis), Ride (Dex), Survival (Wis), and Swim (Str)."
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "A savage technologist is proficient with all simple and martial weapons, all firearms, light armor, and shields (except tower shields)."
+        },
+        {
+          "level": 1,
+          "name": "Rage",
+          "description": "A savage technologist can enter rage as a barbarian, except she gains a morale bonus to Strength and Dexterity instead of Strength and Constitution, and she does not take a penalty to Armor Class. She retains the bonus on Will saving throws. When a barbarian ability would increase the savage technologist’s Strength while raging, it increases her Dexterity instead. This ability alters rage."
+        },
+        {
+          "level": 2,
+          "name": "Sword and Gun",
+          "description": "At 2nd level, when a raging savage technologist wields a one-handed firearm in one hand and a light or one-handed melee weapon in the other, she can make ranged attacks with the firearm without provoking attacks of opportunity. She also gains the benefits of the Two-Weapon Fighting feat, but only if all attacks are made with those weapons. This ability replaces Uncanny Dodge."
+        },
+        {
+          "level": 3,
+          "name": "Primal Magnetism",
+          "description": "At 3rd level, a savage technologist adds her Strength modifier on Diplomacy checks when interacting with tribal cultures. She can expend 2 rounds of rage (even if not raging) to add a bonus equal to 1/2 his barbarian level on a Diplomacy check."
+        },
+        {
+          "level": 5,
+          "name": "Crack Shot",
+          "description": "At 5th level, a savage technologist adds her Dexterity modifier to her damage rolls when making ranged attacks with a firearm while raging. This ability replaces Improved Uncanny Dodge."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:scarred-rager",
+      "package": "pathfinder-class:barbarian",
+      "name": "Scarred Rager",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Scarred Rager",
+      "replaces_features": [
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "fast movement",
+        "uncanny dodge",
+        "trap sense",
+        "improved uncanny dodge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Scarred Rager",
+          "description": "Source Ultimate Combat pg. 29"
+        },
+        {
+          "level": 1,
+          "name": "Terrifying Visage",
+          "description": "A scarred rager adds 1/2 her barbarian level on Intimidate checks against humanoids who are not members of barbarian tribes. When dealing with barbarians, the scarred rager may choose to add this bonus on Diplomacy checks instead. The DC of any fear effect created by the scarred rager also increases by 1. This ability replaces fast movement."
+        },
+        {
+          "level": 2,
+          "name": "Tolerance",
+          "description": "At 2nd level, a scarred rager who fails a save against an effect that causes her to become nauseated, sickened, fatigued, or exhausted can make a second save to negate the effect on the start of her next turn. Only one additional save is allowed. If the effect does not allow a saving throw, its duration is halved instead (minimum of 1 round). This ability replaces uncanny dodge."
+        },
+        {
+          "level": 3,
+          "name": "Scarification",
+          "description": "At 3rd level, a scarred rager can ignore 1 point of bleed damage per round. This amount increases by 1 every three levels beyond 3rd. At 15th level, a scarred rager can ignore 1 bleed effect each round. This ability replaces trap sense."
+        },
+        {
+          "level": 5,
+          "name": "Improved Tolerance",
+          "description": "At 5th level, a scarred rager’s tolerance ability also applies to effects that would cause her to become dazed, frightened, shaken, or stunned. This replaces improved uncanny dodge."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the scarred rager archetype: auspicious mark, body bludgeon, come and get me, increased damage reduction, inspire ferocity, internal fortitude, intimidating glare, reckless abandon, regenerative vigor, renewed life, renewed vigor, renewed vitality, roused anger, and terrifying howl."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:sea-reaver",
+      "package": "pathfinder-class:barbarian",
+      "name": "Sea Reaver",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Sea Reaver",
+      "replaces_features": [
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "fast movement",
+        "uncanny dodge",
+        "trap sense",
+        "improved uncanny dodge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Sea Reaver",
+          "description": "Source Ultimate Combat pg. 29"
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "A sea reaver is not proficient with medium armor."
+        },
+        {
+          "level": 1,
+          "name": "Marine Terror",
+          "description": "A sea reaver can hold her breath for a number of rounds equal to four times her Constitution score. In addition, a sea reaver can move normally though squares of standing water or bog that is 1 foot deep. It does not cost her extra movement to traverse these terrains. Lastly, a sea reaver ignores the normal cover bonus to AC when attacking creatures that are partially immersed in water. This ability replaces fast movement."
+        },
+        {
+          "level": 2,
+          "name": "Eyes of the Storm",
+          "description": "At 2nd level, a sea reaver ignores any concealment provided by fog, rain, sleet, mist, wind, or other weather effects that is less than total concealment, and any penalties weather applies on Perception checks are halved. This ability replaces uncanny dodge."
+        },
+        {
+          "level": 3,
+          "name": "Savage Sailor",
+          "description": "At 3rd level, a sea reaver gains a +1 bonus on Acrobatics, Climb, Profession (sailor), Survival, and Swim checks made in aquatic terrain, including aboard a ship or along shorelines. These bonuses improve by +1 every three levels after 3rd. This ability replaces trap sense."
+        },
+        {
+          "level": 5,
+          "name": "Sure-Footed",
+          "description": "At 5th level, a sea reaver takes no penalties when moving across slick surfaces, whether natural or magical (e.g., grease, ice storm, and sleet storm). She is not at risk of falling, is not denied her Dexterity bonus when moving across such areas, and does not treat them as difficult terrain. This ability replaces improved uncanny dodge."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the sea reaver archetype: bestial leaper, bestial swimmer, come and get me, hurling charge, raging leaper, raging swimmer, rolling dodge, and smasher."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:sharptooth",
+      "package": "pathfinder-class:barbarian",
+      "name": "Sharptooth",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Sharptooth",
+      "replaces_features": [
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "rage-power",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "rage-power",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "fast movement",
+        "both uncanny dodge",
+        "improved uncanny dodge",
+        "trap sense",
+        "rage powers normally gained at 6th and 12th levels"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Sharptooth",
+          "description": "Source Ultimate Wilderness pg. 39"
+        },
+        {
+          "level": 5,
+          "name": "Swim Like a Fish",
+          "description": "A sharptooth gains a swim speed of 10 feet. At 5th level and every 5 levels thereafter, her swim speed increases by 5 feet.\n\nThis replaces fast movement."
+        },
+        {
+          "level": 2,
+          "name": "Scent of Blood",
+          "description": "At 2nd level, a sharptooth gains scent as per the universal monster rule. At 5th level, she also gains keen scent as per universal monster rule.\n\nThis replaces both uncanny dodge and improved uncanny dodge."
+        },
+        {
+          "level": 3,
+          "name": "Ocean Breath",
+          "description": "At 3rd level, a sharptooth counts her Constitution score as 1 higher for the purposes of holding her breath. She also gains a +1 bonus on Constitution checks to continue holding her breath. This bonus and the addition to her effective Constitution score both increase by 1 at 6th level and every 3 levels thereafter, to a maximum bonus of +6 at 18th level.\n\nThis replaces trap sense."
+        },
+        {
+          "level": 6,
+          "name": "Blood in the Water",
+          "description": "At 6th level, a sharptooth can tear the flesh from living creatures. Her attacks add 3 points of bleed damage while she is raging. At 12th level, this bleed damage increases to equal her Constitution modifier if it’s higher.\n\nThis replaces the rage powers normally gained at 6th and 12th levels."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the sharptooth archetype: animal fury, bleeding blow, contagious rage, pack rage, powerful blow, primal scent, raging swimmer, and scent."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:shoanti-burn-rider",
+      "package": "pathfinder-class:barbarian",
+      "name": "Shoanti Burn Rider",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Shoanti Burn Rider",
+      "replaces_features": [
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "rage-power",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "rage-power",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "fast movement",
+        "uncanny dodge",
+        "trap sense",
+        "rage powers gained at 4th",
+        "8th",
+        "12th",
+        "and 16th level",
+        "improved uncanny dodge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Shoanti Burn Rider",
+          "description": "Source Inner Sea Combat pg. 44"
+        },
+        {
+          "level": 1,
+          "name": "Flame Runner",
+          "description": "At 1st level, once per rage, a burn rider can goad her mount into a burst of incredible speed. The mount’s speed increases by 10 feet until the end of the burn rider’s turn. This bonus to speed increases by 10 feet at 9th level and again at 15th level. This ability replaces fast movement."
+        },
+        {
+          "level": 2,
+          "name": "Cinder Sight",
+          "description": "At 2nd level, a Shoanti burn rider can see through fire, fog, and smoke without penalty as long as the light is sufficient to allow her to see normally. This ability replaces uncanny dodge."
+        },
+        {
+          "level": 3,
+          "name": "Cinder Dance",
+          "description": "At 3rd level, when a burn rider succeeds at a Reflex save to avoid fire damage, she can spend an immediate action to move up to half her speed. If the burn rider ends this movement outside the area of effect, she takes no damage from the effect. After this sudden movement, the burn rider is staggered until the end of her next turn. If the burn rider is mounted, her mount makes the movement instead, and both the mount and the burn rider are staggered until the end of the burn rider’s next turn. This ability replaces trap sense."
+        },
+        {
+          "level": 4,
+          "name": "Mount",
+          "description": "At 4th level, a burn rider gains a loyal mount. This ability functions like the druid’s animal companion ability (as described in the nature bond class feature), except that the burn rider always gains a horse or pony (though she can gain additional options at the GM’s discretion) and her effective druid level is equal to her Shoanti burn rider level – 3. This ability replaces the rage powers gained at 4th, 8th, 12th, and 16th level."
+        },
+        {
+          "level": 5,
+          "name": "Give Me Fire",
+          "description": "At 5th level, if a Shoanti burn rider takes fire damage while raging, she regains 1 round of rage. The burn rider regains the round of rage only if the fire damage bypasses or exceeds any energy resistance or other protections in effect. The burn rider can only regain 1 round of rage per round. This ability replaces improved uncanny dodge."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the Shoanti burn rider archetype: elemental rage, energy resistance, ferocious mount, ferocious trample, increased damage reduction, low-light vision, night vision, renewed vigor, scent, spirit steed, sprint, and swift foot."
+        }
+      ],
+      "detected_systems": [
+        "burn"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:superstitious",
+      "package": "pathfinder-class:barbarian",
+      "name": "Superstitious",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Superstitious",
+      "replaces_features": [
+        "damage-reduction",
+        "trap-sense"
+      ],
+      "removed_features": [
+        "damage-reduction",
+        "trap-sense"
+      ],
+      "removed_feature_clauses": [
+        "trap sense",
+        "damage reduction"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Superstitious",
+          "description": "Source Advanced Player's Guide pg. 79"
+        },
+        {
+          "level": 3,
+          "name": "Sixth Sense",
+          "description": "At 3rd level, the superstitious barbarian gains a +1 bonus on initiative and a +1 insight bonus to AC during surprise rounds. This bonus increases by +1 for every three levels after 3rd. This ability replaces trap sense."
+        },
+        {
+          "level": 7,
+          "name": "Keen Senses",
+          "description": "At 7th level, the superstitious barbarian gains low-light vision (triple normal vision range in dim light if she already has low-light vision). At 10th level, she gains darkvision 60 feet (or adds 60 feet to the range of any darkvision already possessed). At 13th level, she gains scent. At 16th level, she gains blindsense 30 feet. At 19th level, she gains blindsight 30 feet. This ability replaces damage reduction."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the superstitious archetype: clear mind, disruptive, roused anger, spellbreaker, superstition, and witch hunter."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:titan-mauler",
+      "package": "pathfinder-class:barbarian",
+      "name": "Titan Mauler",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Titan Mauler",
+      "replaces_features": [
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "indomitable-will",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "fast-movement",
+        "improved-uncanny-dodge",
+        "indomitable-will",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "fast movement",
+        "uncanny dodge",
+        "trap sense",
+        "improved uncanny dodge",
+        "indomitable will"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Titan Mauler",
+          "description": "Source Ultimate Combat pg. 30"
+        },
+        {
+          "level": 1,
+          "name": "Errata Link",
+          "description": "In lands overrun by giants, dragons, and other hulking beasts, entire fellowships of barbarians hone tactics and traditions with one purpose—to bring low these massive foes. While her enemies’ size makes the creatures strong, the titan mauler is even stronger, taking up weapons from her fallen foes that no lesser warrior can lift, and using them when she beseeches the spirits to grant her increased size and greater ferocity against her titanic foes."
+        },
+        {
+          "level": 1,
+          "name": "Big Game Hunter",
+          "description": "A titan mauler gains a +1 bonus on attack rolls and a +1 dodge bonus to AC in melee with creatures larger than themselves. This ability replaces fast movement."
+        },
+        {
+          "level": 2,
+          "name": "Jotungrip",
+          "description": "At 2nd level, a titan mauler may choose to wield a two-handed melee weapon in one hand with a –2 penalty on attack rolls while doing so. The weapon must be appropriately sized for her, and it is treated as one-handed when determining the effect of Power Attack, Strength bonus to damage, and the like. This ability replaces uncanny dodge."
+        },
+        {
+          "level": 3,
+          "name": "Massive Weapons",
+          "description": "At 3rd level, a titan mauler becomes skilled in the use of massive weapons looted from her titanic foes. She can use two-handed weapons meant for creatures one size category larger, but the penalty for doing so is increased by 4. However, the attack roll penalty for using weapons too large for her size is reduced by 1, and this reduction increases by 1 for every three levels beyond 3rd (to a minimum of 0). This ability replaces trap sense."
+        },
+        {
+          "level": 5,
+          "name": "Evade Reach",
+          "description": "At 5th level, as a swift action, a titan mauler may choose one creature within her line of sight. Until the end of her turn, that target’s reach is treated as if it were 5 feet shorter with respect to reaching the titan mauler, and this reduction increases by 5 feet for every five levels beyond 5th. This ability replaces improved uncanny dodge."
+        },
+        {
+          "level": 14,
+          "name": "Titanic Rage",
+          "description": "At 14th level, a titan mauler may choose to gain the benefits of enlarge person when she enters a rage. While using titanic rage, she must spend 2 rounds of rage per round, and she becomes exhausted rather than fatigued when the rage ends. This ability replaces indomitable will."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the titan mauler archetype: body bludgeon, greater ground breaker, ground breaker, knockback, mighty swing, powerful blow, smasher, and strength surge."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:totem-warrior",
+      "package": "pathfinder-class:barbarian",
+      "name": "Totem Warrior",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Totem Warrior",
+      "replaces_features": [
+        "none"
+      ],
+      "removed_features": [
+        "none"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Totem Warrior",
+          "description": "Source Advanced Player's Guide pg. 79"
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The totem warrior is based entirely upon his totem rage powers. In addition to the totem powers themselves, the following rage powers complement the totem warrior archtype (depending on the totem chosen): animal fury, low-light vision, night vision, raging climber, raging leaper, raging swimmer, and swift foot."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:barbarian:tranquil-barbarian",
+      "package": "pathfinder-class:barbarian",
+      "name": "Tranquil Barbarian",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/tranquil-barbarian",
+      "replaces_features": [],
+      "removed_features": [],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Alignment",
+          "description": "A tranquil barbarian must be Lawful. If she ever ceases to be Lawful, she loses this archetype."
+        },
+        {
+          "level": 1,
+          "name": "Inner Peace",
+          "description": "A tranquil barbarian can adopt a mindset of pure inner peace and express this through her body for a number of rounds per day equal to 4 + her Constitution modifier. At each level after 1st, she can achieve inner peace for an additional 2 rounds per day. Temporary increases to Constitution, such as those gained from spells like bear’s endurance, do not increase the total number of rounds that the tranquil barbarian can achieve inner peace per day. A barbarian can adopt inner peace as a free action. The total number of rounds of inner peace per day is renewed after resting for 8 hours, although these hours do not need to be consecutive. While in a state of inner peace, a barbarian can push her body faster and more precisely than is otherwise possible. The tranquil barbarian gains a +2 bonus on all melee and ranged attack rolls, and gains a +2 dodge bonus to AC. She also gains a +2 bonus to Reflex and Will saving throws, and to Dexterity-based skill checks. Just as with a normal rage, a tranquil barbarian in a state of inner peace cannot use any skills and abilities tied to mental ability scores, as the void she must hold in her mind forbids all thought but the moment. The mental effort to attain inner peace, combined with the effects of pushing one’s body to heightened levels, leaves a tranquil barbarian fatigued after she ends the state of inner peace for a number of rounds equal to 2 times the number of rounds spent in the state of inner peace. Ending inner peace is a free action. A tranquil barbarian cannot achieve inner peace while fatigued or exhausted, but can otherwise achieve inner peace multiple times during a single encounter or combat. If a barbarian falls unconscious, her inner peace immediately ends. Inner peace counts as rage for the purpose of all feats and barbarian abilities. When the tranquil barbarian gains greater rage and mighty rage, these increase the bonuses gained from inner peace to +3 and +4 respectively."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:true-primitive",
+      "package": "pathfinder-class:barbarian",
+      "name": "True Primitive",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian True Primitive",
+      "replaces_features": [
+        "fast-movement",
+        "trap-sense"
+      ],
+      "removed_features": [
+        "fast-movement",
+        "trap-sense"
+      ],
+      "removed_feature_clauses": [
+        "fast movement",
+        "trap sense"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "True Primitive",
+          "description": "Source Ultimate Combat pg. 30"
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "A true primitive is proficient with hide armor and armors made from bone. A true primitive is also proficient with bone shields and the following weapons: battleaxe, blowgun, club, greatclub, handaxe, longspear, shortspear, sling, and spear."
+        },
+        {
+          "level": 1,
+          "name": "Illiteracy",
+          "description": "A true primitive cannot read or write, and her superstition about such things leads her to refuse to ever learn to read or write, even if she multiclasses into other classes."
+        },
+        {
+          "level": 5,
+          "name": "Favored Terrain",
+          "description": "A true primitive has a favored terrain representing her native homeland. This ability functions as the ranger class feature, and the true primitive’s bonuses in that terrain improve by +2 at 5th level and every five levels thereafter. However, she does not gain any additional favored terrains. This ability replaces fast movement."
+        },
+        {
+          "level": 3,
+          "name": "Trophy Fetish",
+          "description": "A true primitive collects teeth, bones, hair, and other trophies from vanquished enemies, representing their power and strength. At 3rd level, a true primitive can attach a trophy fetish to one of the traditional true primitive weapons listed above. When wielding that weapon, the true primitive gains a +1 morale bonus on damage rolls. Furthermore, if that weapon has the fragile property, once per day, the true primitive can ignore the effects of a single natural 1 roll. A trophy fetish can also be attached to a suit of hide or bone armor, granting the true primitive a +1 morale bonus on saving throws. Furthermore, if that armor has the fragile property, once per day, the true primitive can chose not to have the armor break on the confirmation of a critical hit made against her. Every five levels beyond 3rd, a true primitive can use an additional trophy fetish. Multiple trophy fetishes can be attached to the same armor or weapon; their effects stack. A trophy fetish can be sundered (hardness 5, 1 hit point) but is not damaged by area attacks or attacks that do not specifically target it. It has no effect if attached to other types of weapons or armor. This ability replaces trap sense."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the true primitive archetype: animal fury, eater of magic, ghost rager, low-light vision, night vision, primal scent, scent, spell sunder, sunder enchantment, superstition, and witch hunter."
+        }
+      ],
+      "detected_systems": [
+        "favored_terrain"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:untamed-rager",
+      "package": "pathfinder-class:barbarian",
+      "name": "Untamed Rager",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Untamed Rager",
+      "replaces_features": [
+        "damage-reduction",
+        "improved-uncanny-dodge",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "damage-reduction",
+        "improved-uncanny-dodge",
+        "trap-sense",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "uncanny dodge",
+        "trap sense",
+        "improved uncanny dodge",
+        "damage reduction"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Untamed Rager",
+          "description": "Source Dirty Tactics Toolbox pg. 15"
+        },
+        {
+          "level": 2,
+          "name": "Despicable Tactics",
+          "description": "At 2nd level, the untamed rager gains Improved Dirty Trick as a bonus feat. This ability replaces uncanny dodge."
+        },
+        {
+          "level": 3,
+          "name": "Feral Appearance",
+          "description": "At 3rd level, the untamed rager gains a +1 bonus on Intimidate checks. This bonus increases by 1 every 3 barbarian levels thereafter. This ability replaces trap sense."
+        },
+        {
+          "level": 5,
+          "name": "Deplorable Tactics",
+          "description": "At 5th level, the untamed rager gains Greater Dirty Trick as a bonus feat. This ability replaces improved uncanny dodge."
+        },
+        {
+          "level": 7,
+          "name": "Dishonorable",
+          "description": "At 7th level and every 3 barbarian levels thereafter, the untamed rager gains a +1 bonus on combat maneuver checks when performing dirty tricks and to her CMD to resist others’ dirty tricks. This ability replaces damage reduction."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:urban-barbarian",
+      "package": "pathfinder-class:barbarian",
+      "name": "Urban Barbarian",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Urban Barbarian",
+      "replaces_features": [
+        "fast-movement",
+        "rage"
+      ],
+      "removed_features": [
+        "fast-movement",
+        "rage"
+      ],
+      "removed_feature_clauses": [
+        "fast movement"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Urban Barbarian",
+          "description": "Source Ultimate Combat pg. 31"
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "An urban barbarian is not proficient with medium armor."
+        },
+        {
+          "level": 1,
+          "name": "Skills",
+          "description": "An urban barbarian does not gain Handle Animal (Cha), Knowledge (nature) (Int), or Survival (Wis) as class skills; instead, she gains Diplomacy (Cha), Knowledge (local) (Int), Knowledge (nobility) (Int), Linguistics (Int), and Profession (Wis) as class skills."
+        },
+        {
+          "level": 1,
+          "name": "Crowd Control",
+          "description": "At 1st level, an urban barbarian gains a +1 bonus on attack rolls and a +1 dodge bonus to AC when adjacent to two or more enemies. In addition, her movement is not impeded by crowds, and she gains a bonus equal to 1/2 her barbarian level on Intimidate checks to influence crowds. This ability replaces fast movement."
+        },
+        {
+          "level": 1,
+          "name": "Controlled Rage",
+          "description": "When an urban barbarian rages, instead of making a normal rage she applies a +4 morale bonus to her Strength, Dexterity, or Constitution. This bonus increases to +6 when she gains greater rage and +8 when she gains mighty rage. She may apply the full bonus to one ability score or may split the bonus between several scores in increments of +2. When using a controlled rage, an urban barbarian gains no bonus on Will saves, takes no penalties to AC, and can still use Intelligence-, Dexterity-, and Charisma-based skills. This ability otherwise follows the normal rules for rage."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the urban barbarian archetype: boasting taunt, clear mind, deadly accuracy, guarded stance, intimidating glare, lethal accuracy, no escape, quick reflexes, perfect clarity, sharpened accuracy, surprise accuracy, and unexpected strike."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:wild-rager",
+      "package": "pathfinder-class:barbarian",
+      "name": "Wild Rager",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Wild Rager",
+      "replaces_features": [
+        "improved-uncanny-dodge",
+        "rage",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "improved-uncanny-dodge",
+        "rage",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "uncanny dodge",
+        "improved uncanny dodge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Wild Rager",
+          "description": "Source Ultimate Combat pg. 31"
+        },
+        {
+          "level": 1,
+          "name": "Uncontrolled Rage",
+          "description": "A wild rager’s rage functions as normal, except that when she reduces a creature to 0 or fewer hit points, she must attempt a Will save (DC 10 + 1/2 the barbarian’s level + the barbarian’s Constitution modifier) or become confused. For the remainder of her current turn, she attacks the nearest creature other than herself. On the following round, refer to the confusion spell to determine her actions. At the end of this round, and each round thereafter, she can attempt a new saving throw to end the confusion effect. The rounds during which she is confused do not count against the rounds she has spent raging that day, but she cannot end her rage voluntarily, nor can she use rage powers while confused."
+        },
+        {
+          "level": 2,
+          "name": "Wild Fighting",
+          "description": "At 2nd level, even when not raging, wild ragers often fight with reckless, savage abandon. A wild rager using the full-attack action can make one extra attack per round at her highest base attack bonus. Until the beginning of her next turn, however, she takes a –2 penalty on attack rolls and –4 penalty to AC. This ability replaces uncanny dodge."
+        },
+        {
+          "level": 5,
+          "name": "Rage Conversion",
+          "description": "At 5th level, a wild rager who fails a saving throw against any mind-affecting effect can attempt a new saving throw at the beginning of her next turn. If the save succeeds, that effect ends and she instead rages and becomes confused as noted above. This ability replaces improved uncanny dodge."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the wild rager archetype: animal fury, bloody blow, body bludgeon, brawler, crippling blow, greater brawler, intimidating glare, mighty swing, no escape, powerful blow, and quick reflexes."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:barbarian:wildborn",
+      "package": "pathfinder-class:barbarian",
+      "name": "Wildborn",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Barbarian Wildborn",
+      "replaces_features": [
+        "damage-reduction",
+        "rage-power",
+        "trap-sense",
+        "weapon-armor-proficiencies"
+      ],
+      "removed_features": [
+        "damage-reduction",
+        "rage-power",
+        "trap-sense",
+        "weapon-armor-proficiencies"
+      ],
+      "removed_feature_clauses": [
+        "trap sense"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Wildborn",
+          "description": "Source Ultimate Wilderness pg. 39"
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiencies",
+          "description": "A wildborn is proficient with leather and hide armors (but not shields) and all simple weapons that can be crafted from bone, stone, or wood. In addition, a wildborn gains Improved Unarmed Strike and Catch Off-Guard as bonus feats at 1st level. If she uses any other kind of weapon or armor, she loses her abilities from this archetype (except illiteracy) for the next 24 hours.\n\nThis alters the barbarian’s normal weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Illiteracy",
+          "description": "A wildborn cannot read or write. She can learn to read or write a language only if she takes a level in another class, and even then only by taking 1 or more ranks in Linguistics."
+        },
+        {
+          "level": 3,
+          "name": "Live Off the Land",
+          "description": "At 3rd level, a wildborn can survive capably in the wilderness without any sort of manufactured equipment or gear. She adds half her barbarian level as a bonus on Survival checks to hunt or gather food and gains a +1 bonus on Fortitude saves to resist the effects of extreme temperatures or other environmental effects; the Fortitude save bonus increases by 1 at 6th level and every 3 levels thereafter.\n\nThis replaces trap sense."
+        },
+        {
+          "level": 4,
+          "name": "Bonus Feats",
+          "description": "At 4th level, 10th level and 16th level, a wildborn can choose a bonus feat from the following rather than select a rage power: Alertness, Animal Affinity, Athletic, Great Fortitude, Improvised Weapon Mastery, Iron Will, Lightning Reflexes, Self-Sufficient, Stealthy, or Throw Anything.\n\nThis alters rage powers."
+        },
+        {
+          "level": 7,
+          "name": "Inexhaustible",
+          "description": "Wildborn live ruggedly and sleep lightly. At 7th level, a wildborn recovers nonlethal damage for each minute of rest as if an hour had passed. She applies twice her damage reduction gained from barbarian levels against nonlethal damage.\n\nThis alters damage reduction."
+        },
+        {
+          "level": 1,
+          "name": "Rage Powers",
+          "description": "The following rage powers complement the wildborn archetype: animal fury, beast totem, bestial climber, bestial swimmer, greater beast totem, lesser beast totem, low-light vision, raging climber, raging leaper, raging swimmer, and swift foot."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:barbarian:worldsoul-incarnate",
+      "package": "pathfinder-class:barbarian",
+      "name": "Worldsoul Incarnate",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/worldsoul-incarnate",
+      "replaces_features": [
+        "fast-movement",
+        "greater-rage",
+        "indomitable-will",
+        "mighty-rage",
+        "rage",
+        "tireless-rage"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "fast movement",
+        "greater rage",
+        "indomitable will",
+        "tireless rage",
+        "mighty rage"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Rapture",
+          "description": "A worldsoul incarnate can tap into the forces of nature and channel them through her body, filling herself with euphoric rapture. At 1st level, a worldsoul incarnate can be enraptured for a number of rounds per day equal to 4 + her Constitution modifier, and she can be enraptured for 2 additional rounds per day per class level thereafter. Temporary increases to Constitution, such as from the Enhancement sphere, do not increase the total number of rounds that a worldsoul incarnate can be enraptured per day. The total number of rounds of rapture per day is renewed after resting for 8 hours, although these hours need not be consecutive. While enraptured, a worldsoul incarnate cannot use any Charisma-, Dexterity-, or Intelligence-based skill (except Acrobatics, Fly, Intimidate, and Ride) or any ability that requires patience or concentration (such as spherecasting). She also takes a -2 penalty to her AC. The worldsoul incarnate can enter rapture as a free action, and can maintain rapture each round as a free action, so long as she is conscious. Whenever a rapture ends, the worldsoul incarnate is fatigued for 1d4+1 rounds. A worldsoul incarnate cannot enter a new rapture while fatigued or exhausted, but can otherwise become enraptured multiple times per day. Rapture counts as the rage ability for purposes of prerequisites, and may be augmented by rage powers.\n\nThis alters rage."
+        },
+        {
+          "level": 1,
+          "name": "Primal Channeling",
+          "description": "While enraptured, the worldsoul incarnate may channel primal energy to create powerful supernatural effects. Whenever she spends a free action to enter or maintain rapture, she gains a number of vitality points equal to her class level. She may spend vitality points to achieve many different effects at once. At the end of her turn, she loses all unspent vitality points."
+        },
+        {
+          "level": 1,
+          "name": "Fight or Flight",
+          "description": "As a free action, the worldsoul incarnate may spend a vitality point to gain a +4 dodge bonus until the beginning of her next turn against an enemy of her choice that she can see. She may acquire this bonus against multiple targets in a single round, but not multiple times against the same target in the same round."
+        },
+        {
+          "level": 1,
+          "name": "Hurricane Strike",
+          "description": "As a full-round action, the worldsoul incarnate may spend 14 vitality points to summon forth ghostly spirits that echo her physical form, each of which makes a single attack before disappearing. The worldsoul incarnate may make a single melee attack against every enemy within 20 feet she can see. These attacks are at her full base attack bonus."
+        },
+        {
+          "level": 1,
+          "name": "Life Force",
+          "description": "The worldsoul incarnate may spend any number of vitality points as a free action to gain an equal number of temporary hit points. This ability can only be used if she is injured, and cannot raise her current hit points plus her temporary hit points to be higher than her maximum hit points. The temporary hit points last until the end of rapture, and stack with themselves and with temporary hit points from other sources."
+        },
+        {
+          "level": 1,
+          "name": "Mighty Blow",
+          "description": "The worldsoul incarnate may spend 1 vitality point as a free action to add a +2 circumstance bonus to any attack roll (including attack rolls to confirm critical hits) or damage roll made with a melee or thrown weapon, or to add a +2 circumstance bonus to any skill or attribute check that uses her Strength, Dexterity or Constitution, or to add +2 to a combat maneuver roll. The decision to use this ability is made after dice are rolled, but before the results are announced. Although this ability can be used multiple times per turn, it can only be used once per die roll."
+        },
+        {
+          "level": 1,
+          "name": "Primal Ascension",
+          "description": "The worldsoul incarnate may spend 20 vitality points as a standard action to benefit from the restore ability of the Life sphere, using her class level as her caster level. This removes all conditions, all attribute damage and drain, and removes all temporary negative levels."
+        },
+        {
+          "level": 1,
+          "name": "Restoring Force",
+          "description": "The worldsoul incarnate may spend 11 vitality points as a swift action to benefit from the restore ability of the Life sphere, using her class level as her caster level."
+        },
+        {
+          "level": 1,
+          "name": "Sunder Magic",
+          "description": "As a swift action, the worldsoul incarnate may spend 17 vitality points to dispel any number of magical effects that currently afflict her."
+        },
+        {
+          "level": 1,
+          "name": "Surge of Movement",
+          "description": "The worldsoul incarnate may spend 2 vitality points as a free action to move 5 feet. This movement draws attacks of opportunity normally and ignores difficult terrain. She may do this multiple times in a turn."
+        },
+        {
+          "level": 1,
+          "name": "Vicious Cycle",
+          "description": "The worldsoul incarnate may spend 8 vitality points as a free action to make an attack at her full base attack bonus against a target she has already successfully hit with an attack this turn."
+        },
+        {
+          "level": 1,
+          "name": "Vital Force",
+          "description": "The worldsoul incarnate may spend 5 vitality points as a free action to regain 1 hit point.\n\nThis replaces fast movement, greater rage, indomitable will, tireless rage, and mighty rage."
+        },
+        {
+          "level": 1,
+          "name": "Rapture Powers",
+          "description": "The worldsoul incarnate may choose any of the following powers in place of a rage power:"
+        },
+        {
+          "level": 1,
+          "name": "Channel Energy",
+          "description": "The worldsoul incarnate may release a massive wave of primal energy. She gains the channel energy ability as a cleric of equal level, using her casting ability to determine the saving throw DC of her channeled energy. She may only channel positive energy. The worldsoul incarnate must expend 4 rounds of her rapture to channel energy."
+        },
+        {
+          "level": 1,
+          "name": "Elation (requires worldsoul incarnate 10)",
+          "description": "The worldsoul incarnate gains a fly speed equal to her base land speed with good maneuverability."
+        },
+        {
+          "level": 1,
+          "name": "Natural Grace (requires worldsoul incarnate 6)",
+          "description": "Whenever the worldsoul incarnate enters rapture, she may choose a combat feat for which she meets the prerequisites. She gains the use of this feat for the duration of the rapture. She may choose a different feat whenever she enters rapture, provided at least 1 minute has passed since she has last left rapture."
+        },
+        {
+          "level": 1,
+          "name": "Primal Aura (requires worldsoul incarnate 4)",
+          "description": "While she is enraptured, she may give off an aura of positive energy that causes her and all living and undead creatures within 20 feet to glow slightly, giving them a penalty on Stealth checks equal to her class level and negating all bonuses usually bestowed by invisibility, blink effects, darkness, or similar effects. While the aura is in effect, she gains a +5 circumstance bonus to Intimidate checks, and sheds bright light to a distance of 20 feet around her, and normal light another 20 feet beyond that. The light harms creatures vulnerable to natural sunlight as if it were natural sunlight."
+        },
+        {
+          "level": 1,
+          "name": "Primal Stamina (requires Combat Stamina)",
+          "description": "During her turn, the worldsoul incarnate may spend vitality in place of stamina points. She must spend 2 vitality points in place of each stamina point she wishes to spend."
+        },
+        {
+          "level": 1,
+          "name": "Elation (requires 10th Level)",
+          "description": "The worldsoul incarnate gains a fly speed equal to her base land speed with good maneuverability."
+        },
+        {
+          "level": 1,
+          "name": "Natural Grace (requires 6th Level)",
+          "description": "Whenever the worldsoul incarnate enters rapture, she may choose a combat feat for which she meets the prerequisites. She gains the use of this feat for the duration of the rapture. She may choose a different feat whenever she enters rapture, provided at least 1 minute has passed since she has last left rapture."
+        },
+        {
+          "level": 1,
+          "name": "Primal Aura (requires 4th Level)",
+          "description": "While she is enraptured, she may give off an aura of positive energy that causes her and all living and undead creatures within 20 ft. to glow slightly, giving them a penalty on Stealth checks equal to her class level and negating all bonuses usually bestowed by invisibility, blink effects, darkness, or similar effects. While the aura is in effect, she gains a +5 circumstance bonus to Intimidate checks, and sheds bright light to a distance of 20 ft. around her, and normal light another 20 ft. beyond that. The light harms creatures vulnerable to natural sunlight as if it were natural sunlight."
+        },
+        {
+          "level": 1,
+          "name": "Primal Stamina (requires Combat Stamina feat)",
+          "description": "During her turn, the worldsoul incarnate may spend vitality in place of stamina points. She must spend 2 vitality points in place of each stamina point she wishes to spend."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

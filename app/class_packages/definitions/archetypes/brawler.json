@@ -1,0 +1,1504 @@
+{
+  "version": 1,
+  "class_key": "pathfinder-class:brawler",
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:battle-dancer",
+      "package": "pathfinder-class:brawler",
+      "name": "Battle Dancer",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler Battle Dancer",
+      "replaces_features": [
+        "ac-bonus",
+        "armor-proficiencies",
+        "brawler-s-cunning",
+        "brawler-s-flurry",
+        "class-skills",
+        "knockout"
+      ],
+      "removed_features": [
+        "ac-bonus",
+        "armor-proficiencies",
+        "brawler-s-cunning",
+        "brawler-s-flurry",
+        "class-skills",
+        "knockout"
+      ],
+      "removed_feature_clauses": [
+        "brawler’s cunning",
+        "AC bonus",
+        "knockout"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Battle Dancer",
+          "description": "Source Martial Arts Handbook pg. 4"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A battle dancer gains Perform (all) as a class skill instead of Knowledge (dungeoneering).\n\nThis alters the brawler’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Armor Proficiency",
+          "description": "A battle dancer isn’t proficient with shields.\n\nThis alters the brawler’s armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Dancer’s Cunning",
+          "description": "A battle dancer can treat her Charisma score as her Intelligence score for the purpose of meeting the prerequisites of combat feats. In addition, she can attempt a Perform (dance) check instead of a Bluff check to feint in combat, and her unarmed strikes are considered to have the performance weapon special quality.\n\nThis replaces brawler’s cunning."
+        },
+        {
+          "level": 1,
+          "name": "Rolling Flurry",
+          "description": "When a battle dancer uses her brawler’s flurry, she must move 5 feet before each melee attack or combat maneuver. If she is unable to move 5 feet, she can’t attempt any further attacks or combat maneuvers. She can’t exceed her maximum speed. This movement does not provoke attacks of opportunity if the brawler would be able to take a 5-foot step normally; if she would be unable to (for instance, if she were in difficult terrain), the movement provokes attacks of opportunity as normal unless she succeeds at the appropriate Acrobatics checks. While using this ability, she can still take her normal 5-foot step before or after making her attacks.\n\nThis alters brawler’s flurry."
+        },
+        {
+          "level": 4,
+          "name": "Dancing Dodge",
+          "description": "At 4th level, when an opponent attempts a melee attack against a battle dancer, the battle dancer can expend one use of an attack of opportunity as an immediate action to move 5 feet, granting the battle dancer a dodge bonus to AC equal to her Charisma modifier (minimum 0) against the triggering attack. The attack is still resolved normally, even if the battle dancer’s movement takes her out of the triggering attack’s reach. This movement is not a 5-foot step and provokes attacks of opportunity from creatures other than the one that triggered this ability, though the battle dancer can attempt an Acrobatics check to avoid provoking the attacks. A battle dancer can use this ability a number of times per day equal to half her level. She can use this ability only while wearing light armor or no armor, and while carrying no heavier than a light load.\n\nThis replaces AC bonus."
+        },
+        {
+          "level": 4,
+          "name": "Sparring Partners",
+          "description": "At 4th level, once per day when a battle dancer gains a flanking bonus on an attack while using her rolling flurry ability, the ally providing the flank gains a flanking bonus on its next attack against that opponent, even if the battle dancer moves out of a flanking position. If either the opponent or the ally moves more than 5 feet before the ally’s attack, the flanking bonus is lost. This ability works only if the ally is on the opposite side of an opponent during the battle dancer’s attack, not if a flanking bonus is gained in some other way, such as through Gang Up. A battle dancer can use this ability one additional time per day at 10th level and at 16th level.\n\nThis replaces knockout."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:bouncer",
+      "package": "pathfinder-class:brawler",
+      "name": "Bouncer",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler Bouncer",
+      "replaces_features": [
+        "bonus-feat",
+        "close-weapon-mastery",
+        "martial-flexibility"
+      ],
+      "removed_features": [
+        "bonus-feat",
+        "close-weapon-mastery",
+        "martial-flexibility"
+      ],
+      "removed_feature_clauses": [
+        "bonus feat gained at 2nd level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Bouncer",
+          "description": "Source Inner Sea Taverns pg. 58"
+        },
+        {
+          "level": 1,
+          "name": "Crowd Control",
+          "description": "When in a bar fight, a bouncer has her tenacity reduced by the crowd at the end of a round by the minimum possible amount. In addition, when she takes the mix it up action, she reduces the tenacity of the crowd by an additional amount equal to her brawler level."
+        },
+        {
+          "level": 1,
+          "name": "Lesser Flexibility",
+          "description": "A bouncer can use her martial flexibility only a number of times per day equal to 2 + half her brawler level (minimum 3 times per day).\n\nThis alters martial flexibility."
+        },
+        {
+          "level": 2,
+          "name": "Drunk Handler",
+          "description": "At 2nd level, a bouncer gains a +2 circumstance bonus on Intimidate and Sense Motive checks against foes that are tipsy or worse. In addition, when in a bar fight, she ignores damage reduction against nonlethal damage her targets have from being drunk or worse.\n\nThis replaces the bonus feat gained at 2nd level."
+        },
+        {
+          "level": 4,
+          "name": "Drunk Knockout",
+          "description": "At 4th level, a bouncer can use one use of her knockout ability to attempt a similar maneuver in a bar fight against a major participant who is drunk or worse. She must declare her intent before attempting her brawling check, and if she hits and reduces the target’s tenacity, that target must succeed at a Fortitude saving throw (DC = 10 + half the bouncer’s brawler level + the higher of the bouncer’s Strength or Dexterity modifiers) or immediately be reduced to 0 tenacity."
+        },
+        {
+          "level": 5,
+          "name": "Bar Fight Mastery",
+          "description": "At 5th level, in addition to the benefits of close weapon mastery, when a bouncer confirms a critical hit against a major participant in a bar fight, she also reduces the tenacity of the crowd by her normal brawling damage amount (this amount isn’t doubled).\n\nThis alters close weapon mastery."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:brawler:brutal-pummeler",
+      "package": "pathfinder-class:brawler",
+      "name": "Brutal Pummeler",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/brutal-pummeler",
+      "replaces_features": [
+        "ac-bonus",
+        "all-instances-of-brawlers-flurry",
+        "armor-proficiencies",
+        "bonus-feats-at",
+        "close-weapon-mastery",
+        "level",
+        "unarmed-strike",
+        "weapon"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "unarmed strike class feature",
+        "the bonus feats gained at 2nd",
+        "8th",
+        "14th",
+        "and 20th level",
+        "AC bonus class feature",
+        "all instances of brawler’s flurry",
+        "close weapon mastery class feature"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Brutal pummelers are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis modifies weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A brutal pummeler is considered an adept practitioner, gaining spheres and talents as appropriate. Brutal pummelers use Wisdom as their practitioner modifier. This ability replaces the unarmed strike class feature and the bonus feats gained at 2nd, 8th, 14th, and 20th level."
+        },
+        {
+          "level": 1,
+          "name": "Close Combat",
+          "description": "At 1st level, the brutal pummeler gains the Boxing and Open Hand combat spheres as bonus talents. If the brutal pummeler already possesses one of these base spheres, she may instead choose any one combat talent she qualifies for from either sphere.\n\nThis replaces the AC bonus class feature."
+        },
+        {
+          "level": 1,
+          "name": "Brawler’s Pummel",
+          "description": "From 2nd level on, whenever the brutal pummeler uses the attack action to attack with an unarmed strike, a weapon from the close fighter weapon group, or a weapon with the monk special feature, she may make one additional attack with an unarmed strike, a weapon from the close fighter weapon group, or a weapon with the monk special feature as a free action, but both attacks take a -2 penalty. The brutal pummeler must decide whether or not to use this ability before making the first attack roll for her attack action. Attacks made using this ability apply the brutal pummeler’s full Strength bonus to the damage roll, regardless of whether the weapon is wielded with two hands or with an off-hand. This extra attack cannot be used with the extra attack granted by the Dual Wielding sphere or similar abilities such as the street fighter monk archetype’s flurry strike.\n\nThis replaces all instances of brawler’s flurry."
+        },
+        {
+          "level": 5,
+          "name": "Pinpoint Targeting",
+          "description": "At 5th level, a brutal pummeler gains Unarmed Training as a bonus talent; if they already have this talent, they may select another talent of their choice. This replaces the close weapon mastery class feature."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:constructed-pugilist",
+      "package": "pathfinder-class:brawler",
+      "name": "Constructed Pugilist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler Constructed Pugilist",
+      "replaces_features": [
+        "bonus-combat-feats",
+        "class-skills",
+        "martial-flexibility"
+      ],
+      "removed_features": [
+        "bonus-combat-feats",
+        "class-skills",
+        "martial-flexibility"
+      ],
+      "removed_feature_clauses": [
+        "martial flexibility"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Constructed Pugilist",
+          "description": "Source People of the Wastes pg. 8"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A constructed pugilist gains Craft (weapons) as a class skill.\n\nThis alters the brawler’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Constructed Limb",
+          "description": "A constructed pugilist begins play with a special prosthetic limb built for fighting and typically made of iron, steel, stone, or wood, with the corresponding hardness and hit points (see Table 7-13). She treats attacks with this limb as unarmed strikes that gain all the benefits of the brawler’s unarmed strike class feature. She treats the limb as a light weapon and is proficient with it. Removing or reattaching the constructed limb takes 10 minutes."
+        },
+        {
+          "level": 1,
+          "name": "Limb Modification",
+          "description": "A constructed pugilist chooses one of the following limb modifications at 1st level and another at 6th, 10th, 12th, and 20th levels. These modifications do not require the constructed pugilist to rebuild her constructed limb.\n\nThis replaces martial flexibility."
+        },
+        {
+          "level": 1,
+          "name": "Flex Limb",
+          "description": "The limb is divided into jointed segments held in place with rigid rods. As a standard action, the constructed pugilist can release the rods and turn her limb into a whiplike appendage. In this mode, the prosthesis can be used to make trip attempts, and it grants a +2 bonus on disarm attempts made using it. The constructed pugilist doesn’t run the risk of dropping her limb if she fails. Returning the limb to its rigid form takes a standard action. As a standard action, a constructed pugilist with both flex limb and limb extender can activate or deactivate one of those limb modifications or both simultaneously; when the constructed pugilist has both flex limb and limb extender activated, she gains the benefits of reach with the flex limb abilities."
+        },
+        {
+          "level": 1,
+          "name": "Grapnel Arm",
+          "description": "The constructed pugilist can fire a grappling hook built into her prosthesis. The grappling hook is attached to a 40-foot-long fine chain affixed to the limb. The constructed pugilist can attack with the grappling hook as a standard action, making a ranged touch attack against the target. The grappling hook can’t be used as part of a full attack. On a successful hit, the grappling hook deals no damage, but it functions as though it had the grapple weapon special feature (Pathfinder RPG Ultimate Equipment 22), except it requires only a hit (not a critical hit) and the grapple ends if the constructed pugilist moves more than 40 feet away from the grappled creature. The constructed limb can’t be used to make melee attacks until the grappling hook has been reloaded (a standard action)."
+        },
+        {
+          "level": 1,
+          "name": "Limb Extender",
+          "description": "As a standard action, the constructed pugilist can activate an extender, giving her limb the reach weapon special feature. Returning the limb to its normal length is a standard action."
+        },
+        {
+          "level": 1,
+          "name": "Shielding Limb",
+          "description": "The constructed pugilist learns to block blows with her mechanical limb. She gains a +2 shield bonus to AC, though she loses this bonus anytime she loses her Dexterity bonus to AC."
+        },
+        {
+          "level": 1,
+          "name": "Tight Grip",
+          "description": "Special tensors allow the constructed pugilist to lock her grip in place. When using her constructed limb, the constructed pugilist gains a +1 bonus on Climb checks and combat maneuver checks to disarm and grapple, as well as to her CMD against attempts to disarm items held in the limb. This modification can be chosen only if the limb includes a hand or other gripping appendage."
+        },
+        {
+          "level": 1,
+          "name": "Vicious Blades",
+          "description": "Razor-sharp blades on the surface of the limb cause it to deal bludgeoning and slashing damage and increase its critical threat range to 19–20. A constructed pugilist who has the vicious spikes limb modification can’t select this modification."
+        },
+        {
+          "level": 1,
+          "name": "Vicious Spikes",
+          "description": "Long spikes protrude from the limb, causing it to deal bludgeoning and piercing damage and increasing its critical multiplier to ×3. A constructed pugilist who has the vicious blades limb modification can’t select this modification."
+        },
+        {
+          "level": 2,
+          "name": "Bonus Item Creation Feats",
+          "description": "At 2nd level, a constructed pugilist adds Craft Magic Arms and Armor, Master Craftsman (Craft [weapons]), and Skill Focus (Craft [weapons]) to the list of bonus feats she can choose (instead of just combat feats).\n\nThis alters bonus combat feats."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:exemplar",
+      "package": "pathfinder-class:brawler",
+      "name": "Exemplar",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler Exemplar",
+      "replaces_features": [
+        "ac-bonus",
+        "brawlers-strike",
+        "close-weapon-mastery",
+        "maneuver-training",
+        "unarmed-strike"
+      ],
+      "removed_features": [
+        "ac-bonus",
+        "brawlers-strike",
+        "close-weapon-mastery",
+        "maneuver-training",
+        "unarmed-strike"
+      ],
+      "removed_feature_clauses": [
+        "unarmed strike",
+        "close weapon mastery",
+        "maneuver training",
+        "AC bonus",
+        "brawler’s strike"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Exemplar",
+          "description": "Source Advanced Class Guide pg. 86"
+        },
+        {
+          "level": 1,
+          "name": "Call to Arms",
+          "description": "At 1st level, an exemplar can expend a use of martial flexibility to rouse her allies into action. All allies within 30 feet are no longer flat-footed, even if they are surprised. Using this ability is a move action. At 6th level, the exemplar can use it as a swift action instead. At 10th level, she can use it as a free action. At 12th level, she can use it as an immediate action. This ability replaces unarmed strike and close weapon mastery."
+        },
+        {
+          "level": 3,
+          "name": "Inspiring Prowess",
+          "description": "At 3rd level, an exemplar gains the ability to use certain bardic performances. She can use this ability for a number of rounds per day equal to 3 + her Charisma modifier; this increases by 1 round per brawler level thereafter. The exemplar’s effective bard level for this ability is equal to her brawler level – 2. At 3rd level, the exemplar can use inspire courage. At 11th level, the exemplar can use inspire greatness. At 15th level, the exemplar can use inspire heroics. Instead of the Perform skill, she activates this ability with impressive flourishes and displays of martial talent (this uses visual components). This ability otherwise functions as bardic performance; feats and other effects that affect bardic performance (such as the Extra Performance feat) apply to it. This ability replaces maneuver training and AC bonus."
+        },
+        {
+          "level": 5,
+          "name": "Field Instruction",
+          "description": "At 5th level, as a standard action an exemplar can grant a teamwork feat to all allies within 30 feet who can see and hear her. This teamwork feat must be one the exemplar knows or has gained with the martial flexibility ability. Allies retain the use of this teamwork feat for 3 rounds + 1 round for every 2 brawler levels. If the granted teamwork feat is one gained from martial flexibility, this duration ends immediately if the exemplar loses access to that feat. Allies don’t need to meet the prerequisites of this teamwork feat. The exemplar can use this ability once per day at 5th level, plus one additional time per day at 9th, 12th, and 17th level. This ability otherwise counts as the cavalier’s tactician class feature; feats and other effects which affect tactician (such as Practiced Tactician) apply to it. This ability replaces brawler’s strike."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:feral-striker",
+      "package": "pathfinder-class:brawler",
+      "name": "Feral Striker",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler Feral Striker",
+      "replaces_features": [
+        "martial-flexibility"
+      ],
+      "removed_features": [
+        "martial-flexibility"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Feral Striker",
+          "description": "Source Ultimate Wilderness pg. 42"
+        },
+        {
+          "level": 1,
+          "name": "Feral Aspect",
+          "description": "This functions as the shifter aspect class feature of the shifter, except the feral striker can choose only from the bear, bull, falcon, snake, stag, tiger, and wolf aspects. She has access to only the minor versions all these aspects."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:hinyasi",
+      "package": "pathfinder-class:brawler",
+      "name": "Hinyasi",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler Hinyasi",
+      "replaces_features": [
+        "armor-proficiencies",
+        "bonus-feat",
+        "close-weapon-mastery",
+        "knockout"
+      ],
+      "removed_features": [
+        "armor-proficiencies",
+        "bonus-feat",
+        "close-weapon-mastery",
+        "knockout"
+      ],
+      "removed_feature_clauses": [
+        "bonus combat feat gained at 2nd level",
+        "close weapon mastery"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Hinyasi",
+          "description": "Source Blood of the Ancients pg. 9"
+        },
+        {
+          "level": 1,
+          "name": "Humble Beginnings",
+          "description": "A hinyasi gains her choice of Catch Off-Guard or Throw Anything as a bonus feat. She is not proficient with shields.\n\nThis alters the brawler’s armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Improvisation Training",
+          "description": "A hinyasi is skilled at fighting with improvised weapons. She deals damage equal to her unarmed strike damage while fighting with an improvised weapon. A hinyasi treats improvised weapons as weapons from the close fighter weapon group.\n\nThis replaces the bonus combat feat gained at 2nd level."
+        },
+        {
+          "level": 4,
+          "name": "Improvised Maneuver",
+          "description": "At 4th level, a hinyasi learns to confound and befuddle her opponents with improvised weapons. She chooses one of the following combat maneuvers: bull rush, drag, disarm, sunder, reposition, or trip. When she hits an opponent with an improvised weapon, the hinyasi can perform her chosen combat maneuver against the same target as a free action. She takes a –4 penalty on the combat maneuver check, and she can’t attempt an improvised maneuver check more than once per round. This combat maneuver still provokes attacks of opportunity unless the hinyasi has a feat or ability that allows her to perform it without provoking attacks of opportunity."
+        },
+        {
+          "level": 5,
+          "name": "Improvisation Mastery",
+          "description": "At 5th level, a hinyasi picks one type of improvised weapon (light, onehanded, or two-handed) and gains a +2 bonus on attack and damage rolls with that type of weapon.\n\nThis replaces close weapon mastery."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:living-avalanche",
+      "package": "pathfinder-class:brawler",
+      "name": "Living Avalanche",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler Living Avalanche",
+      "replaces_features": [
+        "ac-bonus",
+        "awesome-blow",
+        "bonus-feats",
+        "improved-awesome-blow",
+        "maneuver-training"
+      ],
+      "removed_features": [
+        "ac-bonus",
+        "awesome-blow",
+        "bonus-feats",
+        "improved-awesome-blow",
+        "maneuver-training"
+      ],
+      "removed_feature_clauses": [
+        "bonus feats gained at 2nd and 5th levels",
+        "brawler’s AC bonus",
+        "awesome blow",
+        "improved awesome blow"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Living Avalanche",
+          "description": "Source Ultimate Wilderness pg. 42"
+        },
+        {
+          "level": 2,
+          "name": "Earth Discipline",
+          "description": "At 2nd level, a living avalanche gains Improved Overrun as a bonus feat, even if she doesn’t meet the prerequisites. At 5th level, she gains Improved Bull Rush as a bonus feat, even if she doesn’t meet the prerequisites.\n\nThis replaces the bonus feats gained at 2nd and 5th levels."
+        },
+        {
+          "level": 3,
+          "name": "Landslide",
+          "description": "At 3rd level, a living avalanche must choose overrun as her first combat maneuver for maneuver training. At 7th level, she must choose bull rush as her second combat maneuver for maneuver training. She doesn’t gain training in any new combat maneuvers at later levels, but her bonuses on combat maneuver checks and to CMD for bull rush and overrun combat maneuvers increase as normal. She gains the following benefits at the listed levels."
+        },
+        {
+          "level": 4,
+          "name": "Unyielding",
+          "description": "At 4th level, when a living avalanche wears light armor or no armor, she gains DR 1/adamantine. This damage reduction increases by 1 at 9th, 13th, and 18th levels.\n\nThis replaces the brawler’s AC bonus."
+        },
+        {
+          "level": 16,
+          "name": "Avalanche",
+          "description": "At 16th level, a living avalanche can attempt to overrun multiple creatures as a full-round action. The living avalanche moves up to twice her speed in a straight line and attempts an overrun combat maneuver against each creature in her path, as long as that creature is no more than two size categories larger than herself. Each creature she succeeds against is knocked prone and takes damage as if the living avalanche hit it with a close weapon she is wielding or an unarmed strike. If she fails her combat maneuver check against a creature, she stops her movement in the space directly in front of the creature.\n\nThis replaces awesome blow."
+        },
+        {
+          "level": 20,
+          "name": "Improved Avalanche",
+          "description": "At 20th level, if a living avalanche rolls a natural 20 on an overrun combat maneuver check as part of the avalanche ability, she can immediately attempt to confirm the critical hit by attempting another combat maneuver check with the same modifiers as the previous one; if the critical hit is confirmed, the attack deals double damage.\n\nThis replaces improved awesome blow."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:brawler:mechanized-brawler",
+      "package": "pathfinder-class:brawler",
+      "name": "Mechanized Brawler",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/mechanized-brawler",
+      "replaces_features": [
+        "armor-proficiencies",
+        "awesome-blow",
+        "bonus-feats",
+        "brawlers-flurry",
+        "brawlers-strike",
+        "close-weapon-mastery",
+        "improved-awesome-blow",
+        "knockout-blow",
+        "unarmed-strikes",
+        "weapon"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "bonus feats class features",
+        "unarmed strikes",
+        "brawler’s flurry",
+        "knockout blow",
+        "awesome blow",
+        "improved awesome blow",
+        "brawler’s strike",
+        "close weapon mastery"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "The mechanized brawler is proficient with simple weapons, as well as light armor. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis modifies weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A mechanized brawler is considered an expert practitioner, gaining spheres and talents as appropriate. A mechanized brawler may use Wisdom or the ability score governing their Tinker sphere associated skill as their practitioner modifier.\n\nThis replaces the bonus feats class features."
+        },
+        {
+          "level": 1,
+          "name": "Real Steel",
+          "description": "At 1st level the mechanized brawler gains the Tinker sphere, selecting the (augmentation) package, and Arsenal Set as a bonus talent. The mechanized brawler treats the Tinker sphere as though it were an unarmed combat sphere (granting them the benefits of the Improved Unarmed Strike feat and counting their Tinker sphere talents towards their improved unarmed damage progression, as normal for an “unarmed” sphere).\n\nThis replaces unarmed strikes."
+        },
+        {
+          "level": 2,
+          "name": "Mechanized Follow-Through",
+          "description": "At 2nd level, the mechanized brawler gains the Dual Wielding sphere as a bonus talent and the Gizmo Attack feat as a bonus feat.\n\nThis replaces brawler’s flurry."
+        },
+        {
+          "level": 4,
+          "name": "Technical Combination",
+          "description": "At 4th level, whenever the mechanized brawler makes an attack action or attack of opportunity using a prosthetic limb (or a weapon attached to their prosthetic arsenal), the target becomes “marked” until the end of their next turn. This mark is applied regardless of whether the attack was successful. Marking a target again removes the prior mark. The mechanized brawler’s ranged attacks against a marked target do not provoke attacks of opportunity and take no penalty for attacks made for firing into melee. The mechanized brawler may perform technical combinations, unique combat actions, by expending the mark from a marked target (removing the mark in the process) after they attack a marked target or include the marked target in a gizmo’s area of effect. The mechanized brawler may perform a technical combination once per round. Using a technical combination is a free action that is taken after the triggering attack or action, and can be taken even when it is not the mechanized brawler’s turn (unless otherwise stated). Certain technical combinations may have alternate triggering conditions as listed, such as technical combinations allowing the mechanized brawler to react to danger. A technical combination cannot be triggered as part of “the same” attack and its riding effects (such as a blaster add-on modification’s effects following up an attack, or the Brute sphere’s Follow-Through talent). Additional or separate attacks may qualify for a technical combination as normal. The mechanized brawler gains access to 2 technical combinations, +1 additional selection for every 4 levels past the 4th. The mechanized brawler may change their selected technical combinations once per day when they first maintain their gizmos. A full list of technical combinations are listed below.\n\nThis replaces knockout blow, awesome blow, and improved awesome blow."
+        },
+        {
+          "level": 5,
+          "name": "Steel Strike",
+          "description": "At 5th level, the mechanized brawler gains Compounding Arsenal as a bonus feat. In addition, the mechanized brawler may use their unarmed strike’s damage dice in place of the damage dice weapon attached to their prosthetic arsenal.\n\nThis replaces brawler’s strike and close weapon mastery."
+        },
+        {
+          "level": 9,
+          "name": "Technical Mastery",
+          "description": "At 9th level, the mechanized brawler may apply their mark as part of any attack (not just an attack action or attack of opportunity), although they cannot mark this way more than once per round. If the target is battered, they are marked for the duration of battered or until expended (but always a minimum of 1 round)."
+        },
+        {
+          "level": 16,
+          "name": "Rapid Technique",
+          "description": "At 16th level, the mechanized brawler may expend their martial focus to use a technical combination against a marked target without needing to successfully attack or affect the target. This is a free action (unless the technical combination would require additional actions)."
+        },
+        {
+          "level": 1,
+          "name": "Technical Combinations",
+          "description": "The following are the technical combinations which may be selected by the mechanized brawler. Unless otherwise stated, the saving throw DC of a technical combination is equal to 10 + 1/2 the mechanized brawler’s level + the mechanized brawler’s practitioner ability modifier. [Reaction]: Some technical combinations have the [reaction] tag. These technical combinations may be used when a marked target fulfills the [reaction]’s triggering condition. These technical combinations resolve before the triggering action."
+        },
+        {
+          "level": 1,
+          "name": "Personal Battery Abilities",
+          "description": "Technical combinations with an associated personal battery use may be used as part of using the technical combination (requiring no further actions, unless modified by the mechanized brawler’s Tinker tradition). The decision to use one of these personal battery uses is made when using the technical combination."
+        },
+        {
+          "level": 1,
+          "name": "Technical Combinations and Range",
+          "description": "If a technical combination would allow the mechanized brawler to perform an attack or combat maneuver, the mechanized brawler must threaten or have the target within their natural reach, unless the attack may explicitly be made with a ranged weapon."
+        },
+        {
+          "level": 1,
+          "name": "Create Opening",
+          "description": "The marked target provokes an attack of opportunity from one of the mechanized brawler’s allies."
+        },
+        {
+          "level": 1,
+          "name": "Personal Battery Use [Exploit] (1 battery)",
+          "description": "The ally’s attack of opportunity gains a circumstance bonus to the attack roll equal to +1 per 4 mechanized brawler levels."
+        },
+        {
+          "level": 1,
+          "name": "Evade [reaction]",
+          "description": "Trigger: The mechanized brawler is attacked by the marked target or included in an area of effect created by the marked target. Before the marked target’s attack or effect resolves, the mechanized brawler immediately gains a +1 dodge bonus to their AC and to their Reflex saving throws, +1 per 4 mechanized brawler levels past the 4th, until the end of the current turn. For the duration, if an attack misses the mechanized brawler or the mechanized brawler succeeds on a Reflex saving throw against an area of effect, the mechanized brawler may immediately take a 5-foot step."
+        },
+        {
+          "level": 1,
+          "name": "Personal Battery Use [Flow Rider] (2 batteries)",
+          "description": "This technical combination’s benefits last until the start of the mechanized brawler’s next turn (not just the end of the current turn)."
+        },
+        {
+          "level": 1,
+          "name": "Fatality",
+          "description": "Prerequisite: Mechanized brawler 20th level"
+        },
+        {
+          "level": 1,
+          "name": "Trigger",
+          "description": "The marked target was critically hit or the triggering attack was a special attack action. The marked target must make a Fortitude saving throw or die. Immunity to death effects or effects that require Fortitude saving throws that can’t affect objects instead grants a +4 bonus on this save. Regardless of whether or not the save is made, the target creature is immune to this technical combination ability for 24 hours."
+        },
+        {
+          "level": 1,
+          "name": "Personal Battery Use [Mort Ex Machina] (2 batteries)",
+          "description": "The target does not gain immunity to this technical combination if they successfully save against it."
+        },
+        {
+          "level": 1,
+          "name": "Lightning Motion",
+          "description": "The mechanized brawler may move up to half their speed, +5 feet per 4 mechanized brawler levels. This movement does not provoke attacks of opportunity from the marked target."
+        },
+        {
+          "level": 1,
+          "name": "Personal Battery Use [Time Dilator] (requires Mobility Set) (1 battery)",
+          "description": "The mechanized brawler’s movement does not provoke from any creature, not just the marked target."
+        },
+        {
+          "level": 1,
+          "name": "Rapid Followup",
+          "description": "Trigger: The triggering attack was a successful weapon attack with a prosthetic limb or attached weapon in a prosthetic arsenal. The mechanized brawler may make a melee or ranged touch attack against the marked target using a prosthetic limb or attached weapon in a prosthetic arsenal (and may withdraw such a weapon as part of using it). If successful, instead of the weapon’s normal damage, the marked target takes 1d10 damage, +1d10 per damage per 4 mechanized brawler levels and becomes battered for 1 round. This damage is instead of the weapon’s normal damage, but is treated as an attack made with that weapon (such as determining whether it bypasses damage reduction or additional effects or abilities of a successful attack with the weapon, such as bonus damage from the flaming special weapon ability, and so on)."
+        },
+        {
+          "level": 1,
+          "name": "Restock",
+          "description": "The mechanized brawler regains their martial focus and may choose to also perform one of the following options: Draw or store a weapon. Withdraw or store an attached weapon from a prosthetic arsenal (including storing a currently active attached weapon to immediately withdraw a different attached weapon). Reload a weapon that could be reloaded as a standard action (or less). Reloading this way does not provoke attacks of opportunity. (requires Compounding Arsenal) Use the Compounding Arsenal feat to reassign the properties of a prosthetic arsenal’s attached weapon."
+        },
+        {
+          "level": 1,
+          "name": "Personal Battery Use [Visit The Armory] (1 battery)",
+          "description": "The mechanized brawler may choose up to three options (and may select the same one multiple times, such as reloading multiple weapons). The reload option may be selected twice to reload a weapon that could be reloaded as a full-round action (or less)."
+        },
+        {
+          "level": 1,
+          "name": "Ringer",
+          "description": "Prerequisite: Berserker sphere (any (exertion) talent)."
+        },
+        {
+          "level": 1,
+          "name": "Personal Battery Use [Reverberating Ringer] (1 battery)",
+          "description": "When the battered condition would end on the target due to its duration expiring, the target must succeed at a Fortitude saving throw or be battered for 1 additional round. Effects that specifically remove battered remove battered normally."
+        },
+        {
+          "level": 1,
+          "name": "Overturn",
+          "description": "Prerequisite: Open Hand sphere. The mechanized brawler may make a trip combat maneuver against the marked target as an immediate action, with a +1 circumstance bonus per 4 mechanized brawler levels."
+        },
+        {
+          "level": 1,
+          "name": "Personal Battery Use [-The Opposition] (1 battery)",
+          "description": "This trip attempt may instead be performed as a free action. The mechanized brawler may choose a square adjacent to them for the tripped target to land in (provided the target can occupy that square normally)."
+        },
+        {
+          "level": 1,
+          "name": "Push",
+          "description": "Prerequisite: Brute sphere. The mechanized brawler may make a bull rush, drag, or reposition combat maneuver against the marked target as an immediate action, with a +1 circumstance bonus per 4 mechanized brawler levels. They may not move with the target as part of this combat maneuver."
+        },
+        {
+          "level": 1,
+          "name": "Personal Battery Use [-The Boundaries] (1 battery)",
+          "description": "This bull rush, drag, or reposition attempt may instead be performed as a free action. A maneuver performed this way may still have a (manhandle) talent applied to it."
+        },
+        {
+          "level": 1,
+          "name": "Retry",
+          "description": "Trigger: The mechanized brawler’s attack missed. The mechanized brawler may immediately attempt a new attack against the marked target using the same weapon used to make the marking attack."
+        },
+        {
+          "level": 1,
+          "name": "Personal Battery Use [Stack The Odds] (1 battery)",
+          "description": "The mechanized brawler rolls the new attack twice, keeping the better result."
+        },
+        {
+          "level": 1,
+          "name": "Seize",
+          "description": "Prerequisite: Wrestling sphere. The mechanized brawler may make a grapple combat maneuver against the marked target as an immediate action, with a +1 circumstance bonus per 4 mechanized brawler levels."
+        },
+        {
+          "level": 1,
+          "name": "Personal Battery Use [-The Opportunity] (1 battery)",
+          "description": "This grapple attempt may instead be performed as a free action. The mechanized brawler may choose to immediately use a (slam) talent as a free action after initiating this grapple."
+        },
+        {
+          "level": 1,
+          "name": "Spree",
+          "description": "Trigger: The marked target is killed, rendered unconscious, or otherwise incapacitated by the triggering attack. The mechanized brawler may immediately choose another creature they can see, marking them. The mechanized brawler may then, as an immediate action, move up to 10 feet (provided that they move closer to the newly marked target)."
+        },
+        {
+          "level": 1,
+          "name": "Personal Battery Use [Run Them Down] (1 battery)",
+          "description": "The mechanized brawler may instead move up to 10 feet, +10 feet per 4 mechanized brawler levels (still moving directly towards the marked target)."
+        },
+        {
+          "level": 1,
+          "name": "Withstand [reaction]",
+          "description": "Trigger: The mechanized brawler is damaged by the marked target. Immediately after the marked target damages the mechanized brawler, the mechanized brawler gains a number of temporary hit points equal to their practitioner modifier plus their mechanized brawler level. These temporary hit points are gained before the brawler would be reduced to 0 or less, and may keep the mechanized brawler alive. These temporary hit points expire at the end of the mechanized brawler’s next turn."
+        },
+        {
+          "level": 1,
+          "name": "Personal Battery Use [Suck It Up] (requires Medical Set) (1 battery)",
+          "description": "When these temporary hit points expire, the mechanized brawler heals a number of hit points equal to the remaining temporary hit points."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:mutagenic-mauler",
+      "package": "pathfinder-class:brawler",
+      "name": "Mutagenic Mauler",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler Mutagenic Mauler",
+      "replaces_features": [
+        "ac-bonus",
+        "martial-flexibility"
+      ],
+      "removed_features": [
+        "ac-bonus",
+        "martial-flexibility"
+      ],
+      "removed_feature_clauses": [
+        "AC bonus"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Mutagenic Mauler",
+          "description": "Source Advanced Class Guide pg. 86"
+        },
+        {
+          "level": 1,
+          "name": "Mutagen",
+          "description": "At 1st level, a mutagenic mauler discovers how to create a mutagen that she can imbibe in order to heighten her physical prowess, though at the cost of her personality. This functions as an alchemist’s mutagen and uses the brawler’s class level as her alchemist level for this ability (alchemist levels stack with brawler levels for determining the effect of this ability). A mutagenic mauler counts as an alchemist for the purpose of imbibing a mutagen prepared by someone else."
+        },
+        {
+          "level": 4,
+          "name": "Beastmorph",
+          "description": "Starting at 4th level, a mutagenic mauler gains additional abilities when using her mutagen. At 4th level, she gains low-light vision and a +10 enhancement bonus to her base speed. At 9th level, she gains darkvision to a range of 30 feet and a climb speed of 15 feet. At 13th level, the enhancement bonus to her base speed increases to +15 feet and she gains the scent ability within 30 feet. At 18th level, her climb speed increases to 30 feet, and the enhancement bonus to her base speed increases to +20 feet. This ability replaces AC bonus."
+        }
+      ],
+      "detected_systems": [
+        "mutagen"
+      ]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:brawler:prescient-pugilist",
+      "package": "pathfinder-class:brawler",
+      "name": "Prescient Pugilist",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/prescient-pugilist",
+      "replaces_features": [
+        "ac-bonus",
+        "armor-proficiencies",
+        "bonus-feats",
+        "brawlers-flurry",
+        "close-weapon-mastery",
+        "unarmed-strike",
+        "weapon"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "AC bonus class feature",
+        "bonus feats class feature",
+        "unarmed strike",
+        "brawler’s flurry",
+        "close weapon mastery"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "The prescient pugilist is proficient with simple weapons, as well as light armor and bucklers. In addition, if this is the character’s first level in any class, she may select a martial tradition of his choice.\n\nThis alters weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The prescient pugilist may combine spheres and talents to create magic effects. The prescient pugilist is considered a Low-Caster. (Note: All casters gain 2 bonus talents and may select a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the AC bonus class feature."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "The prescient pugilist gains a small reservoir of energy she can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to her level + her casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "A prescient pugilist gains a combat or magic talent every time she gains a class level. A prescient pugilist uses her casting ability modifier as her practitioner ability modifier.\n\nThis replaces the bonus feats class feature."
+        },
+        {
+          "level": 1,
+          "name": "Prescient Combat",
+          "description": "At 1st level, the prescient pugilist must choose the Divination sphere with the first talent she gains from this class, and gains either the Boxing sphere or Open Hand sphere as a bonus combat sphere. Additionally, the talents she possesses within the Divination sphere count towards her unarmed damage progression.\n\nThis replaces unarmed strike."
+        },
+        {
+          "level": 2,
+          "name": "Portent Strike",
+          "description": "At 2nd level, the prescient pugilist can make a portent strike with a melee weapon as a special attack action or as part of readying a counter punch. If she performs a portent strike by readying a counter punch, it is considered a special attack action. When doing so, she adds one of the following benefits to her portent strike, depending on what spheres she possesses. If she possesses more than one of the listed spheres, she may choose from either of them whenever she uses her portent strike ability. The prescient pugilist can choose from the following portent strikes:"
+        },
+        {
+          "level": 1,
+          "name": "Gauging Strike",
+          "description": "If her portent strike successfully deals damage to the target, the prescient pugilist learns one of the following pieces of information from the damaged creature (Will negates): their AC, their CMD, one of their saving throw bonuses, a vulnerability, an immunity, or a resistance (and its value). The prescient pugilist can spend a spell point as an immediate action when she uses this ability to also gain the benefits of one of the following alternate divinations from the Divination sphere for 1 round (even if she does not possess the talent), but only affecting the damaged creature (Will negates): Detect Faetouched, Divine Alignment, Divine Allegiance, Divine Charm, Divine Fate, Divine Illusions, Divine Life, Divine Mana Capacity, Divine Shadow, Divine Shapechanger, Divine Undead, or Divine Unnaturals."
+        },
+        {
+          "level": 1,
+          "name": "Finesse (Open Hand)",
+          "description": "Unerring Blow: If the attack roll made as part of her portent strike would have a natural roll equal to or lower than her practitioner modifier (minimum 2), she is treated as if she had rolled an amount equal to her practitioner modifier (minimum 2) + 1 instead. A natural roll of a 1 still results in an automatic failure. Additionally, if her attack roll as part of the portent strike misses the creature by 5 or less, the attack becomes a glancing hit. A glancing hit deals its weapon’s damage dice, but does not add any additional damage modifiers (such as her Strength bonus or using the Power Attack or Vital Strike feats), nor does it add additional damage or effects that trigger from a successful attack (such as poison)."
+        },
+        {
+          "level": 8,
+          "name": "Split Sight",
+          "description": "At 8th level, the prescient pugilist chooses two possible enemies for the attack, then rolls a d20 for each target. She then chooses which target to attack, using the d20 rolled for that enemy as their attack roll. If she successfully hits the chosen target, she gains a +2 insight bonus to her AC and saving throws made against attacks and abilities originating from both enemies until the beginning of her next turn. This bonus increases by 1 for every 10 brawler levels she possesses."
+        },
+        {
+          "level": 15,
+          "name": "Lingering Vigilance",
+          "description": "At 15th level, the prescient pugilist ignores the miss chance for anything less than total concealment the target may possess, and treats total concealment as if the target had normal concealment (20% miss chance). Additionally, if the prescient pugilist’s attack is successful, she may spend a spell point to be able to pinpoint the damaged creature’s exact location for a number of rounds equal to her practitioner modifier, as long as they remain on the same plane."
+        },
+        {
+          "level": 1,
+          "name": "Patience (Boxing)",
+          "description": "Farsighted Trigger: The prescient pugilist rolls one d20 as part of readying her counter punch. Whenever she would trigger her counter punch, she may either replace her attack roll with the d20 rolled as part of using this ability, or make her attack roll as normal. If her portent strike successfully hits the target, she may reroll all rolled 1s and 2s when rolling her weapon damage dice for all damage rolls she makes until the beginning of her next turn."
+        },
+        {
+          "level": 8,
+          "name": "Patience Makes Perfect",
+          "description": "At 8th level, if the prescient pugilist triggers her counter punch, she can instead decide to wait for another trigger. If she manages to trigger her counter punch again before the start of her turn, the critical threat range of the counter punch increases by 1, in addition to maximizing the damage dealt by her counter punch. This includes bonus damage dice from a successful critical hit, but not from Vital Strike or similar effects. The increase to critical threat range applies after other modifiers, such as the keen weapon property or the Improved Critical feat"
+        },
+        {
+          "level": 15,
+          "name": "Precognitive Smash",
+          "description": "At 15th level, if her portent strike successfully hits the target, they become unable to benefit from dodge or insight bonuses until the end of prescient pugilist’s next turn; she can spend a spell point as a free action that can be taken outside of her turn when she triggers this ability to force the target to succeed at a Will saving throw (against her Boxing sphere DC) or be flat-footed until the end of the prescient pugilist’s next turn. This effect can be removed by the Restore Spirit talent of the Life sphere.\n\nThis replaces brawler’s flurry."
+        },
+        {
+          "level": 5,
+          "name": "Extrasensory Striker",
+          "description": "At 5th level, whenever the prescient pugilist would successfully damage a creature when using her portent strike ability, she may use her sense ability as an immediate action as long as she casts it before the end of her turn. The prescient pugilist must pay any costs associated with the chosen (sense) talent as normal, and reduces the duration of the sense to 1 round per caster level she possesses. Additionally, the prescient pugilist may expend her martial focus as part of using a portent strike to apply two of the listed benefits instead of one.\n\nThis replaces close weapon mastery."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:shield-champion",
+      "package": "pathfinder-class:brawler",
+      "name": "Shield Champion",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler Shield Champion",
+      "replaces_features": [
+        "brawlers-strike",
+        "maneuver-training",
+        "weapon-armor-proficiencies"
+      ],
+      "removed_features": [
+        "brawlers-strike",
+        "maneuver-training",
+        "weapon-armor-proficiencies"
+      ],
+      "removed_feature_clauses": [
+        "brawler’s weapon",
+        "armor proficiencies",
+        "maneuver training gained at 15th and 19th levels"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Shield Champion",
+          "description": "Source Advanced Class Guide pg. 86"
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "A shield champion is proficient with all simple weapons and with shields as weapons. She is also proficient with light armor, and with bucklers, light shields, and heavy shields. This replaces the brawler’s weapon and armor proficiencies."
+        },
+        {
+          "level": 3,
+          "name": "Throw Shield",
+          "description": "At 3rd level, a shield champion can throw a heavy or light shield as a normal (nonimprovised) thrown weapon with a range increment of 10 feet or the shield’s range increment, whichever is greater. The thrown shield deals the same damage as a shield bash, and any damage increases from shield spikes apply to this attack. A shield champion is treated as having the Far Shot feat for the purpose of determining range increment penalties for throwing a shield."
+        },
+        {
+          "level": 15,
+          "name": "Champion Defense",
+          "description": "At 15th level, once per day when she would be reduced to 0 or fewer hit points by damage in combat from a weapon, unarmed, or natural attack, the shield champion can attempt to absorb all the damage with her shield. To use this ability, the shield champion must attempt a Fortitude saving throw, with the DC equal to the damage dealt. If it succeeds, she takes only half damage from the blow; otherwise, she takes full damage. She must be aware of the attack and able to react to it in order to use this ability—if she is denied her Dexterity bonus to AC, she can’t use this ability. At 19th level, she can use this ability twice per day. This ability replaces the maneuver training gained at 15th and 19th levels."
+        },
+        {
+          "level": 5,
+          "name": "Returning Shield",
+          "description": "At 5th level, a shield champion can throw a shield so it ricochets off her target (and possibly other solid objects) to return to her at the end of her turn. This ability functions whether or not the shield champion hits her opponent or moves on her turn. The shield deals no damage to targets it bounces off other than the original target of the shield champion’s attack. Other circumstances can prevent the shield from returning to the shield champion, such as an opponent using a readied action to catch the shield, or the shield sticking to a mimic’s adhesive. The shield champion can opt to not have a thrown shield return to her, in which case it falls to the ground as it normally would. If the shield has the returning weapon special ability, she can use either that or this ability."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:snakebite-striker",
+      "package": "pathfinder-class:brawler",
+      "name": "Snakebite Striker",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler Snakebite Striker",
+      "replaces_features": [
+        "class-skills",
+        "maneuver-training",
+        "martial-flexibility"
+      ],
+      "removed_features": [
+        "class-skills",
+        "maneuver-training",
+        "martial-flexibility"
+      ],
+      "removed_feature_clauses": [
+        "martial flexibility",
+        "maneuver training gained at 3rd and 7th levels",
+        "maneuver training gained at 11th and 19th levels"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Snakebite Striker",
+          "description": "Source Advanced Class Guide pg. 88"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "The snakebite striker gains Bluff and Stealth as class skills, but does not gain Intimidate as a class skill."
+        },
+        {
+          "level": 1,
+          "name": "Sneak Attack",
+          "description": "At 1st level, the snakebite striker can make a sneak attack. This is as the rogue ability of the same name. At 1st level, her sneak attack damage is +1d6. This increases by 1d6 at 6th, 10th, 12th, and 20th levels. If she gets a sneak attack bonus from another source, the bonuses on damage stack. This ability replaces martial flexibility."
+        },
+        {
+          "level": 3,
+          "name": "Snake Feint",
+          "description": "At 3rd level, a snakebite striker who uses a standard action to move can combine that move with a feint. If she is able to feint as a move action (such as from having the Improved Feint feat), she can combine a move action to move with her feint. At 11th level, once per round she can declare her square and one adjacent square as the origin of her attacks until her next turn (allowing her to use one or both squares to determine whether she or allies are flanking an opponent). At 15th level, she counts an additional adjacent square for this purpose. This ability replaces maneuver training gained at 3rd and 7th levels."
+        },
+        {
+          "level": 11,
+          "name": "Opportunist",
+          "description": "At 11th level, once per round the snakebite striker can make an attack of opportunity against an opponent who has just been struck for damage in melee by another character. This attack counts as an attack of opportunity for that round. She cannot use this ability more than once per round, even if she has the Combat Reflexes feat or a similar ability. At 19th level, she can use this ability twice per round. This ability replaces the maneuver training gained at 11th and 19th levels."
+        }
+      ],
+      "detected_systems": [
+        "sneak_attack"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:steel-breaker",
+      "package": "pathfinder-class:brawler",
+      "name": "Steel-Breaker",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler Steel-Breaker",
+      "replaces_features": [
+        "brawlers-strike",
+        "class-skills",
+        "maneuver-training"
+      ],
+      "removed_features": [
+        "brawlers-strike",
+        "class-skills",
+        "maneuver-training"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Steel-Breaker",
+          "description": "Source Advanced Class Guide pg. 88"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "The steel-breaker gains Knowledge (engineering) as a class skill, and does not gain Knowledge (dungeoneering) as a class skill."
+        },
+        {
+          "level": 5,
+          "name": "Exploit Weakness",
+          "description": "At 5th level, as a swift action a steel-breaker can observe a creature or object to find its weak point by succeeding at a Wisdom check, adding her brawler level against a DC of 10 + the object’s hardness or the target’s CR. If it succeeds, the steel-breaker gains a +2 bonus on attack rolls until the end of her turn, and any attacks she makes until the end of her turn ignore the creature or object’s DR or hardness."
+        },
+        {
+          "level": 3,
+          "name": "Sunder Training",
+          "description": "At 3rd level, a steel-breaker receives additional training in sunder combat maneuvers. She gains a +2 bonus when attempting a sunder combat maneuver checks and a +2 bonus to her CMD when defending against this maneuver. At 7th level, these bonuses increase by 1, and she gains a +2 bonus on disarm combat maneuver checks and a +2 bonus to her CMD when defending against a disarm maneuver. At 11th, 15th, and 19th levels, all of these bonuses increase by 1. This ability alters maneuver training."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:strangler",
+      "package": "pathfinder-class:brawler",
+      "name": "Strangler",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler Strangler",
+      "replaces_features": [
+        "ac-bonus",
+        "awesome-blow",
+        "brawlers-flurry",
+        "class-skills",
+        "improved-awesome-blow",
+        "knockout"
+      ],
+      "removed_features": [
+        "ac-bonus",
+        "awesome-blow",
+        "brawlers-flurry",
+        "class-skills",
+        "improved-awesome-blow",
+        "knockout"
+      ],
+      "removed_feature_clauses": [
+        "unarmed strike",
+        "brawler’s flurry",
+        "AC bonus",
+        "awesome blow",
+        "improved awesome blow"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Strangler",
+          "description": "Source Advanced Class Guide pg. 88"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A strangler gains Stealth as a class skill."
+        },
+        {
+          "level": 1,
+          "name": "Strangle",
+          "description": "At 1st level, a strangler deals +1d6 sneak attack damage whenever she succeeds at a grapple check to damage or pin an opponent. The strangler is always considered flanking her target for the purpose of using this ability. This damage increases by +1d6 at 2nd, 8th and 15th levels. This ability replaces unarmed strike and brawler’s flurry."
+        },
+        {
+          "level": 2,
+          "name": "Practiced Strangler",
+          "description": "At 2nd level, when a strangler has the grappled condition, she does not take a –4 penalty to Dexterity and does not lose her Dexterity bonus to AC. At 9th level, a grappling or grappled strangler still threatens an area and is still able to make attacks of opportunity while grappling or grappled; when pinned, she is not denied her Dexterity bonus and does not take a –4 penalty to Armor Class. This ability replaces AC bonus."
+        },
+        {
+          "level": 4,
+          "name": "Sleeper Hold",
+          "description": "At 4th level, a strangler can instantly render a pinned opponent unconscious. This works like the knockout ability, but requires a successful grapple combat maneuver check against the pinned opponent and does not have to damage the opponent. Creatures that do not need to breathe, are immune to critical hits, or are immune to nonlethal damage are immune to this ability. At 10th level, a strangler can use this ability twice per day. At 16th level, she can use it three times per day. This alters knockout."
+        },
+        {
+          "level": 16,
+          "name": "Neckbreaker",
+          "description": "At 16th level, a strangler can attempt to instantly kill a pinned opponent as a standard action. This works like the sleeper hold ability, but imposes a –5 penalty on her grapple combat maneuver check. If the opponent succeeds at its Fortitude save, the strangler deals damage as if she had attempted the grapple check to damage her opponent; if the opponent fails its Fortitude save, it dies. Creatures that are immune to critical hits are immune to this ability. At 20th level, the strangler can attempt this as a move action instead of a standard can. This ability replaces awesome blow and improved awesome blow."
+        }
+      ],
+      "detected_systems": [
+        "sneak_attack"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:strong-side-boxer",
+      "package": "pathfinder-class:brawler",
+      "name": "Strong-Side Boxer",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler Strong-Side Boxer",
+      "replaces_features": [
+        "ac-bonus",
+        "close-weapon-mastery",
+        "maneuver-training"
+      ],
+      "removed_features": [
+        "ac-bonus",
+        "close-weapon-mastery",
+        "maneuver-training"
+      ],
+      "removed_feature_clauses": [
+        "brawler’s AC bonus",
+        "maneuver training",
+        "close weapon mastery"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Strong-Side Boxer",
+          "description": "Source Martial Arts Handbook pg. 16"
+        },
+        {
+          "level": 5,
+          "name": "Shield-Hand",
+          "description": "A strong-side boxer can use her off hand as if it were a buckler, gaining a +1 natural armor bonus to her AC as long as she does not use her off hand to make attacks. At 5th level and every 5 levels thereafter, this bonus increases by 1, to a maximum of +5 at 20th level. While using her off hand in this manner, the strong-side boxer treats that hand as a buckler for the purposes of other feats and abilities (though she is also considered to have a free hand).\n\nThis replaces the brawler’s AC bonus."
+        },
+        {
+          "level": 3,
+          "name": "Strong-Side Fist",
+          "description": "A strong-side boxer can spend 1 minute to wrap one of her hands in rope or cord. The strong-side boxer can carry items or wield weapons in a wrapped hand, but she takes a –2 penalty on Dexteritybased skill checks that requires the use of that hand (such as Disable Device and Sleight of Hand checks). Unwrapping a hand is a move action that provokes attacks of opportunity. At 3rd level, as a full-round action that provokes attacks of opportunity, a strong-side boxer can dip her wrapped hand in resin and then crushed glass or small metal spikes, which remain on her wrapped hand for 1 hour. If she chooses crushed glass, she can deal slashing damage with her unarmed strikes; if she chooses spikes, she can deal piercing damage with her unarmed strikes for the duration. Whether she chooses crushed glass or metal spikes, she deals an additional 1 point of bleed damage with her unarmed strikes. At 7th level, the bleed damage increases to 1d4. At 11th level, the bleed damage increases to 1d6. At 15th level, the bleed damage increases to 2d4. At 19th level, the bleed damage is multiplied on a critical hit. Bleed damage from this ability does not stack with bleed damage from other sources.\n\nThis replaces maneuver training."
+        },
+        {
+          "level": 5,
+          "name": "Lead Leg",
+          "description": "At 5th level, a strong-side boxer can spend 1 minute to wrap one of her legs in a chain, and can thereafter use the chain-wrapped leg both defensively and offensively. While her leg is wrapped, she is considered to be wearing a chain shirt, gaining all the appropriate bonuses and penalties. The chain can be enchanted as armor and is treated as masterwork. Once per round while wearing the chain, she can apply a +4 circumstance bonus to a trip attempt as an immediate action.\n\nThis replaces close weapon mastery."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:turfer",
+      "package": "pathfinder-class:brawler",
+      "name": "Turfer",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler Turfer",
+      "replaces_features": [
+        "knockout",
+        "maneuver-training"
+      ],
+      "removed_features": [
+        "knockout",
+        "maneuver-training"
+      ],
+      "removed_feature_clauses": [
+        "knockout"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Turfer",
+          "description": "Source Ultimate Wilderness pg. 42"
+        },
+        {
+          "level": 3,
+          "name": "Favored Turf",
+          "description": "At 3rd level, a turfer chooses a type of terrain from the ranger’s favored terrain list. When in that type of terrain, she gains a +2 bonus on initiative checks and a +1 bonus on combat maneuver checks and to CMD."
+        },
+        {
+          "level": 4,
+          "name": "Terrain Mastery",
+          "description": "At 4th level, a turfer gains the benefits of endure elements and a +10-foot enhancement bonus to her base speed, but only in her favored terrains. In addition, she can move through difficult terrain in her favored terrains at her normal speed without taking damage or suffering any other impairment, but she can’t do so through difficult terrain that has been magically manipulated. At 10th and 16th levels, her enhancement bonus to her base speed increases by 10 feet within her favored terrains. The turfer loses this ability if she wears medium or heavy armor or carries a medium or heavy load.\n\nThis replaces knockout."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:ulfen-beast-wrestler",
+      "package": "pathfinder-class:brawler",
+      "name": "Ulfen Beast-Wrestler",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler Ulfen Beast-Wrestler",
+      "replaces_features": [
+        "ac-bonus",
+        "maneuver-training"
+      ],
+      "removed_features": [
+        "ac-bonus",
+        "maneuver-training"
+      ],
+      "removed_feature_clauses": [
+        "AC bonus"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Ulfen Beast-Wrestler",
+          "description": "Source Advanced Class Origins pg. 10"
+        },
+        {
+          "level": 3,
+          "name": "Beast Training",
+          "description": "At 3rd level, an Ulfen beast-wrestler selects a creature type from the Ranger Favored Enemies table. The only humanoid subtype the beast-wrestler can select is giant. She gains a +2 bonus on combat maneuver checks and to her CMD against creatures of the type she selected."
+        },
+        {
+          "level": 4,
+          "name": "Beast Defenses",
+          "description": "At 4th level, when facing enemies she selected with beast training, the beast-wrestler gains a bonus to AC equal to 1/2 her beast training bonus against that creature. This ability replaces AC bonus."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:venomfist",
+      "package": "pathfinder-class:brawler",
+      "name": "Venomfist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler Venomfist",
+      "replaces_features": [
+        "close-weapon-mastery",
+        "knockout",
+        "unarmed-strike"
+      ],
+      "removed_features": [
+        "close-weapon-mastery",
+        "knockout",
+        "unarmed-strike"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Venomfist",
+          "description": "Source Ultimate Wilderness pg. 43"
+        },
+        {
+          "level": 1,
+          "name": "Venomous Strike",
+          "description": "A venomfist’s unarmed strikes deal damage as a creature one size category smaller (1d4 at first level for Medium venomfists). If she hits with her first unarmed strike in a round, the target must succeed at a Fortitude saving throw (DC = 10 + half the venomfist’s brawler level + her Constitution modifier) or take an additional amount of damage equal to the venomfist’s Constitution modifier. The venomfist is immune to this toxin."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:verdant-grappler",
+      "package": "pathfinder-class:brawler",
+      "name": "Verdant Grappler",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler Verdant Grappler",
+      "replaces_features": [
+        "bonus-feats",
+        "close-weapon-mastery",
+        "maneuver-training"
+      ],
+      "removed_features": [
+        "bonus-feats",
+        "close-weapon-mastery",
+        "maneuver-training"
+      ],
+      "removed_feature_clauses": [
+        "bonus feat gained at 2nd level",
+        "alters maneuver training",
+        "close weapon mastery",
+        "combat feat gained at 11th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Verdant Grappler",
+          "description": "Source Ultimate Wilderness pg. 43"
+        },
+        {
+          "level": 2,
+          "name": "Green Grasp",
+          "description": "At 2nd level, a verdant grappler gains Improved Grapple as a bonus feat. At 3rd level, she must choose grapple as her first combat maneuver for maneuver training. When she pins a creature, she can cause roots and vines to burst from the ground (no matter the surrounding terrain), allowing the verdant grappler to attempt to tie up the creature without needing to retrieve rope or use a hand to hold the rope; as usual, a tied-up creature is pinned and not helpless. The verdant grappler must remain within 30 feet of the tied-up creature, or the vines automatically release it. She can tie up only one creature at a time with green grasp.\n\nThis replaces the bonus feat gained at 2nd level and alters maneuver training."
+        },
+        {
+          "level": 5,
+          "name": "Thorny Embrace",
+          "description": "At 5th level, when a verdant grappler uses green grasp to tie up a creature, she can have the roots and vines grow vicious thorns that automatically damage the tiedup creature each round at the start of the verdant grappler’s turn. The thorns deal damage equal to the base unarmed strike damage of a brawler 4 levels lower than the verdant grappler.\n\nThis replaces close weapon mastery."
+        },
+        {
+          "level": 11,
+          "name": "Phytological Anatomy",
+          "description": "At 11th level, the verdant grappler transforms partially into a plant. She gains a +2 bonus on saving throws against mind-affecting, paralysis, poison, polymorph, sleep, and stunning effects.\n\nThis replaces the combat feat gained at 11th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:wild-child",
+      "package": "pathfinder-class:brawler",
+      "name": "Wild Child",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler Wild Child",
+      "replaces_features": [
+        "bonus-combat-feats",
+        "class-skills",
+        "close-weapon-mastery",
+        "maneuver-training"
+      ],
+      "removed_features": [
+        "bonus-combat-feats",
+        "class-skills",
+        "close-weapon-mastery",
+        "maneuver-training"
+      ],
+      "removed_feature_clauses": [
+        "bonus combat feats gained at 2nd",
+        "8th",
+        "14th",
+        "and 20th levels",
+        "close weapon mastery",
+        "bonus combat feats gained at 5th",
+        "11th",
+        "and 17th levels"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Wild Child",
+          "description": "Source Advanced Class Guide pg. 89"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A wild child gains Heal as a class skill."
+        },
+        {
+          "level": 1,
+          "name": "Animal Companion",
+          "description": "At 1st level, a wild child forms a bond with a loyal companion that accompanies the wild child on his adventures. A wild child can begin play with any of the animals available to a druid. The wild child uses his brawler level as his effective druid level for determining the abilities of his animal companion. This ability replaces the bonus combat feats gained at 2nd, 8th, 14th, and 20th levels."
+        },
+        {
+          "level": 5,
+          "name": "Hunter’s Tricks",
+          "description": "At 5th level, a wild child can expend a use of martial flexibility to use a trick from the ranger skirmisher archetype. Each time he activates this ability, the wild child can use a different hunter trick. He cannot choose any tricks that rely on ranged attacks. Activating this ability is not an action, but using the trick might require the wild child to use an action of a different type. This ability replaces close weapon mastery."
+        },
+        {
+          "level": 1,
+          "name": "Maneuver Training",
+          "description": "Whenever the wild child chooses a new maneuver for this ability, his animal companion also learns a trick to make use of this combat maneuver. For example, if the wild child chooses maneuver training (dirty trick), his animal companion also learns a trick that allows it to use the dirty trick combat maneuver. He cannot choose any tricks that rely on ranged attacks. This bonus trick doesn’t count against the animal companion’s total tricks known and does not take any time or checks to train. Should the wild child gain a new animal companion (such as if the previous one dies), this new animal companion begins with the same number of bonus tricks. This ability alters maneuver training."
+        },
+        {
+          "level": 5,
+          "name": "Wild Tricks",
+          "description": "The wild child has learned a number of tricks to aid his allies and his animal companion, as well as to hinder his opponents. At 5th level and every 6 levels thereafter, the wild child learns one hunter’s trick. He cannot choose any tricks that rely on ranged attacks. The wild child can use these tricks a number of times per day equal to 1/2 his brawler level + his Constitution modifier. This ability otherwise follows the rules of the hunter’s tricks ability, including all action costs. This ability replaces the bonus combat feats gained at 5th, 11th, and 17th levels."
+        }
+      ],
+      "detected_systems": [
+        "animal_companion"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:brawler:winding-path-renegade",
+      "package": "pathfinder-class:brawler",
+      "name": "Winding Path Renegade",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Brawler Winding Path Renegade",
+      "replaces_features": [
+        "ac-bonus",
+        "bonus-feat"
+      ],
+      "removed_features": [
+        "ac-bonus",
+        "bonus-feat"
+      ],
+      "removed_feature_clauses": [
+        "AC bonus"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Winding Path Renegade",
+          "description": "Source Adventurer's Guide pg. 105, Advanced Class Origins pg. 11"
+        },
+        {
+          "level": 2,
+          "name": "School Focus",
+          "description": "At 2nd level, a winding path renegade continues the training she left behind, gaining the benefits of the mystery taught at her old monastery. As the winding path renegade progresses in her self-guided training, she gains a deeper understanding of her chosen monastery’s mystery, which grants her new powers."
+        },
+        {
+          "level": 2,
+          "name": "Mystery of Unblinking Flame",
+          "description": "At 2nd level, the winding path renegade increases her speed by 10 feet (this is treated as an enhancement bonus). If she uses her monk moves class ability to gain fast movement, the abilities stack with each other. At 8th level, if the winding path renegade begins her turn with the grappled condition, she can deal 2d6 points of fire damage to all other creatures in the grapple as a free action. At 14th level, the winding path renegade becomes as difficult to contain as a flame. Once per day as a full-round action, she can transform into liquid flame, instantly escaping all bonds as if under the effect of freedom of movement and moving up to her speed. When moving as part of this ability, she can move through creatures’ squares freely and doesn’t provoke attacks of opportunity. She deals 10d6 points of fire damage to any creature whose square she enters during this movement. A successful Reflex saving throw (DC = 10 + half her brawler level + her Dexterity bonus) halves this damage."
+        },
+        {
+          "level": 2,
+          "name": "Mystery of Unfolding Wind",
+          "description": "At 2nd level, the winding path renegade adds 10 to the range increments of ranged weapons she wields and gains Deflect Arrows as a bonus feat. At 8th level, she can harness the power of the wind to make enormous leaps. As a move action, she can leap without attempting an Acrobatics check, jumping any distance up to her speed (upward movement counts as double, as when flying). She can leap in this way a number of times per day equal to her class level. At 14th level, when using the Deflect Arrows feat, the winding path renegade can send one projectile back at her attacker, using the same attack roll and damage roll the attacker rolled against her. Even if the deflected attack had more than one projectile (as with Manyshot), the winding path renegade sends only one projectile back at the attacker. The others are deflected as normal."
+        },
+        {
+          "level": 2,
+          "name": "Mystery of Untwisting Iron",
+          "description": "At 2nd level, metal weapons and armor in the winding path renegade’s possession are treated as masterwork unless they have the broken condition. At 8th level, the winding path renegade gains a bonus equal to half her level on Craft checks involving metal, and she gains the benefits of the Master Craftsman and Craft Arms and Armor feats when crafting items made of metal. At 14th level, any weapon the winding path renegade wields is treated as adamantine."
+        },
+        {
+          "level": 4,
+          "name": "Monk Moves",
+          "description": "At 4th level, a winding path renegade can use her martial flexibility ability to gain the benefits of certain monk abilities as well as combat feats. Each ability counts as one combat feat for this purpose, and the winding path renegade is treated as a monk of a level equal to her brawler level for the purpose of determining the effects of these abilities. The winding path renegade gains access to these abilities at the levels listed on the Monk Moves table above. She does not gain a ki pool, and she can’t use powers that require ki. The winding path renegade must be wearing light or no armor to benefit from this ability. This ability replaces AC bonus."
+        },
+        {
+          "level": 1,
+          "name": "Monk AbilityLevel Gained",
+          "description": "Evasion4th: Fast movement4th: Slow fall4th: High jump5th: Improved evasion9th"
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

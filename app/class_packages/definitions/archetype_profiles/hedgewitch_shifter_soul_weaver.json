@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "entries": [
+    {"key":"spheres-archetype:spheres-class:hedgewitch:iron-mage","class_modifications":{"statistics":{"skill_points":4,"fort_progression":"Good","reflex_progression":"Poor","will_progression":"Good","add_class_skills":["intimidate","knowledge_history","knowledge_nobility"]},"advancement":{"talent_bonus_levels":[1],"required_first_sphere":"War"}}},
+    {"key":"spheres-archetype:spheres-class:hedgewitch:martial-hedgewitch","sphere_capabilities":{"grants":["martial"],"removes":[]},"class_modifications":{"statistics":{"add_class_skills":["acrobatics","climb","swim"]},"advancement":{"talent_progression":"Five-Fourths","talent_kinds":["magic","martial"],"talent_bonus_levels":[1]},"capabilities":{"grants":["martial"],"removes":[]},"proficiencies":{"mode":"replace","weapons":["Simple weapons"],"armor":["Light armor","Bucklers"]}}},
+    {"key":"spheres-archetype:spheres-class:hedgewitch:triple-goddess","removed_features":["paths"],"class_modifications":{"advancement":{"talent_bonus_levels":[1,1]}}},
+
+    {"key":"spheres-archetype:spheres-class:shifter:champion-shifter","sphere_capabilities":{"grants":["magic","martial"],"removes":[]},"class_modifications":{"advancement":{"talent_progression":"Mid","talent_kinds":["magic","martial"],"talent_bonus_levels":[1]},"capabilities":{"grants":["martial"],"removes":[]},"proficiencies":{"mode":"replace","weapons":["Simple weapons"],"armor":["Light armor","Bucklers"]}}},
+    {"key":"spheres-archetype:spheres-class:shifter:dimension-shifter","class_modifications":{"statistics":{"add_class_skills":["knowledge_planes"],"remove_class_skills":["handle_animal"]},"advancement":{"talent_bonus_levels":[1,1]}}},
+    {"key":"spheres-archetype:spheres-class:shifter:elemental-scion","class_modifications":{"statistics":{"add_class_skills":["diplomacy","knowledge_planes"],"remove_class_skills":["handle_animal","knowledge_geography"]},"casting":{"ability":"charisma"},"advancement":{"talent_bonus_levels":[1]}}},
+    {"key":"spheres-archetype:spheres-class:shifter:fey-incarnate","class_modifications":{"statistics":{"add_class_skills":["bluff"],"remove_class_skills":["climb"]},"casting":{"ability":"charisma"},"advancement":{"talent_bonus_levels":[1,1]}}},
+    {"key":"spheres-archetype:spheres-class:shifter:martial-shifter","sphere_capabilities":{"grants":["martial"],"removes":[]},"class_modifications":{"advancement":{"talent_progression":"Mid","talent_kinds":["magic","martial"],"talent_bonus_levels":[1]},"capabilities":{"grants":["martial"],"removes":[]},"proficiencies":{"mode":"replace","weapons":["Simple weapons"],"armor":["Light armor","Bucklers"]}}},
+    {"key":"spheres-archetype:spheres-class:shifter:paragon","sphere_capabilities":{"grants":["magic","martial"],"removes":[]},"class_modifications":{"advancement":{"talent_progression":"Low","talent_kinds":["magic","martial"],"talent_bonus_levels":[1]},"capabilities":{"grants":["martial"],"removes":[]},"proficiencies":{"mode":"replace","weapons":["Simple weapons"],"armor":["Light armor","Bucklers"]}}},
+    {"key":"spheres-archetype:spheres-class:shifter:radiant-protean","class_modifications":{"statistics":{"add_class_skills":["bluff"],"remove_class_skills":["handle_animal"]},"advancement":{"talent_bonus_levels":[1,1]}}},
+
+    {"key":"spheres-archetype:spheres-class:soul-weaver:banshee","class_modifications":{"statistics":{"add_class_skills":["bluff"],"remove_class_skills":["heal"]},"advancement":{"talent_bonus_levels":[1]}}},
+    {"key":"spheres-archetype:spheres-class:soul-weaver:ghost-sovereign","class_modifications":{"statistics":{"add_class_skills":["knowledge_nobility"],"remove_class_skills":["heal"]}}}
+  ]
+}

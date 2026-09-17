@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "key": "alchemist",
+  "class_key": "pathfinder-class:alchemist",
+  "class_name": "Alchemist",
+  "governing_ability": "intelligence",
+  "optional_blocks": ["inquisitor_features", "spells_known", "spell_level_overview"],
+  "external_systems": [
+    "traditional_prepared_casting",
+    "alchemist_formula_book",
+    "alchemist_bombs",
+    "alchemist_mutagen",
+    "alchemist_discoveries"
+  ],
+  "resource_modules": [],
+  "passive_effects": [],
+  "notes": "Extract preparation uses the shared prepared-casting book. Bombs, mutagen choices and their live modifiers, discoveries, and grand discoveries are resolved by the retained-feature-aware class systems."
+}

@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "key": "scholar",
+  "class_key": "spheres-class:scholar",
+  "class_name": "Scholar",
+  "governing_ability": "intelligence",
+  "catalog_profile": {
+    "weapon_proficiencies": ["Simple weapons"],
+    "armor_proficiencies": ["Light armor", "Bucklers"],
+    "proficiencies": {"weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]},
+    "advancement": {"talent_progression": "Proficient", "talent_kinds": ["martial"], "talent_bonus_levels": [1,1]}
+  },
+  "optional_blocks": ["martial_talents", "martial_focus"],
+  "external_systems": ["martial_focus", "medical_training", "scholar_knacks", "material_impositions"],
+  "resource_modules": [{
+    "key":"scholar","title":"Scholar Fieldwork","governing_ability":"intelligence","resources":[
+      {"key":"medical_training_attempts","name":"Medical Training — Attempts per Target","feature_tokens":["medical-training"],"progression":"ability_modifier_minimum_one","description":"Maximum daily attempts against each individual creature. A failed Heal check still consumes that creature's attempt; this is deliberately not treated as one global pool.","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false},
+      {"key":"flashbang_save_dc","name":"Flashbang Save DC","feature_tokens":["flashbangs"],"progression":"ten_plus_half_level_plus_ability","description":"Fortitude save DC for Flashbangs: 10 + half Scholar level + Intelligence modifier.","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false},
+      {"key":"flashbang_range","name":"Flashbang Range (ft.)","feature_tokens":["flashbangs"],"progression":"thirty_plus_ten_level","description":"Ranged-touch range of Flashbangs: 30 feet + 10 feet per Scholar level.","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false}
+    ]
+  }],
+  "passive_effects": [],
+  "choice_providers": [
+    {"key":"scholar-knacks","label":"Scholar's Knacks","feature_tokens":["scholars-knack"],"minimum":0,"maximum_levels":[2,4,6,8,10,12,14,16,18,20],"description":"Choose a knack at every even Scholar level. Prerequisites and repeat limits remain visible in the published description.","fixed_options":[
+      {"key":"academic-knowledge","name":"Academic Knowledge"},{"key":"aeronautics","name":"Aeronautics"},{"key":"amateur-arcanist","name":"Amateur Arcanist"},{"key":"animal-training-large","name":"Animal Training, Large"},{"key":"animal-training-small","name":"Animal Training, Small","granted_features":[{"level":1,"name":"Familiar","description":"Gain a familiar using Scholar level, without share spells, deliver touch spells, or scry on familiar."}]},{"key":"arcane-studies-i","name":"Arcane Studies I"},{"key":"arcane-studies-ii","name":"Arcane Studies II"},{"key":"arcane-studies-iii","name":"Arcane Studies III"},{"key":"astrology","name":"Astrology","granted_features":[{"level":1,"name":"Astrology Insight Pool","description":"Daily insight points equal half Scholar level plus Intelligence modifier.","resource":{"progression":"half_level_plus_ability_minimum_one","ability":"intelligence"}}]},{"key":"breakthrough-historian","name":"Breakthrough Historian"},{"key":"chronomancy-amateur","name":"Chronomancy, Amateur"},{"key":"chronomancy","name":"Chronomancy"},{"key":"chronomancy-advanced","name":"Chronomancy, Advanced"},{"key":"crafting-genius","name":"Crafting Genius"},{"key":"cunning-socialite","name":"Cunning Socialite"},{"key":"cunning-attacker","name":"Cunning Attacker"},{"key":"experimental-evolution","name":"Experimental Evolution"},{"key":"expert-healing","name":"Expert Healing"},{"key":"genetic-modification","name":"Genetic Modification"},{"key":"humane-studies","name":"Humane Studies"},{"key":"lightning-rod","name":"Lightning Rod"},{"key":"lightning-rod-improved","name":"Lightning Rod, Improved"},{"key":"liquefying-injections","name":"Liquefying Injections"},{"key":"martial-study","name":"Martial Study"},{"key":"nautical-exploration","name":"Nautical Exploration"},{"key":"poisoncraft","name":"Poisoncraft"},{"key":"rapid-alchemy","name":"Rapid Alchemy"},{"key":"ritual-crafter","name":"Ritual Crafter"},{"key":"ritual-student","name":"Ritual Student"},{"key":"studied-technique","name":"Studied Technique"},{"key":"survival-training","name":"Survival Training"},{"key":"trick-arrows","name":"Trick Arrows"}
+    ]},
+    {"key":"scholar-material-impositions","label":"Material Impositions","feature_tokens":["material-imposition"],"minimum":0,"maximum_levels":[3,5,7,9,11,13,15,17,19],"description":"Choose one imposition at 3rd level and every two levels thereafter.","fixed_options":[
+      {"key":"ammonium-nitrate","name":"Ammonium Nitrate"},{"key":"arcsilver","name":"Arcsilver"},{"key":"aspect-infusion","name":"Aspect Infusion"},{"key":"belladonna-barrier","name":"Belladonna Barrier"},{"key":"black-cat","name":"Black Cat"},{"key":"brimstone","name":"Brimstone"},{"key":"circle-of-salt","name":"Circle of Salt"},{"key":"cordyceps-mycelium","name":"Cordyceps Mycelium"},{"key":"crystalline-focus","name":"Crystalline Focus"},{"key":"dowsing-rod","name":"Dowsing Rod"},{"key":"gold","name":"Gold"},{"key":"howling-herbology","name":"Howling Herbology"},{"key":"lead","name":"Lead"},{"key":"lodestone","name":"Lodestone"},{"key":"magnesium","name":"Magnesium"},{"key":"neon","name":"Neon"},{"key":"ooze","name":"Ooze"},{"key":"phlogiston","name":"Phlogiston"},{"key":"quicksilver","name":"Quicksilver"},{"key":"quintessence","name":"Quintessence"},{"key":"silver","name":"Silver"},{"key":"thermite","name":"Thermite"},{"key":"tungsten","name":"Tungsten"}
+    ]},
+    {"key":"scholar-mastered-imposition","label":"Mastered Imposition","feature_tokens":["mastered-imposition"],"minimum_levels":[20],"maximum_levels":[20],"depends_on":"scholar-material-impositions","options_from_dependency":true,"description":"At level 20, choose one known material imposition to master."}
+  ],
+  "notes":"Alchemy and Scout from Problem Solver are included as two class-granted martial talent allowances. Choice-granted resources and familiars use shared providers."
+}

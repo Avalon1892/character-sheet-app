@@ -1,0 +1,184 @@
+{
+  "version": 1,
+  "description": "Hand-reviewed profile changes for Crimson Dancer, Mountebank, Reaper, and their archetypes.",
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:mountebank:back-alley-grifter",
+      "class_modifications": {
+        "advancement": {
+          "talent_progression": "High",
+          "talent_kinds": [
+            "magic",
+            "martial"
+          ],
+          "talent_bonus_levels": [
+            1,
+            1
+          ],
+          "required_first_sphere": ""
+        }
+      }
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mountebank:mental-manipulator",
+      "class_modifications": {
+        "advancement": {
+          "talent_progression": "High",
+          "talent_kinds": [
+            "magic",
+            "martial"
+          ],
+          "talent_bonus_levels": [
+            1
+          ],
+          "required_first_sphere": "Mind"
+        }
+      },
+      "feature_level_overrides": {
+        "Controlling Enhancement": 1
+      }
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mountebank:phantom-thief",
+      "class_modifications": {
+        "advancement": {
+          "talent_progression": "High",
+          "talent_kinds": [
+            "magic",
+            "martial"
+          ],
+          "talent_bonus_levels": [
+            1
+          ],
+          "required_first_sphere": "Scout"
+        }
+      }
+    },
+    {
+      "key": "spheres-archetype:spheres-class:reaper:chem-dog",
+      "sphere_capabilities": {
+        "grants": [
+          "martial"
+        ],
+        "removes": [
+          "magic"
+        ]
+      },
+      "class_modifications": {
+        "casting": {
+          "sphere_progression": "",
+          "traditional": false,
+          "ability": "",
+          "type": "",
+          "spells": ""
+        },
+        "advancement": {
+          "talent_progression": "Expert",
+          "talent_kinds": [
+            "martial"
+          ],
+          "talent_bonus_levels": [
+            1
+          ],
+          "talent_replaces_base": true
+        },
+        "capabilities": {
+          "grants": [
+            "martial"
+          ],
+          "removes": [
+            "magic"
+          ]
+        }
+      }
+    },
+    {
+      "key": "spheres-archetype:spheres-class:reaper:hunt-master",
+      "sphere_capabilities": {
+        "grants": [
+          "martial"
+        ],
+        "removes": [
+          "magic"
+        ]
+      },
+      "class_modifications": {
+        "casting": {
+          "sphere_progression": "",
+          "traditional": false,
+          "ability": "",
+          "type": "",
+          "spells": ""
+        },
+        "advancement": {
+          "talent_progression": "Expert",
+          "talent_kinds": [
+            "martial"
+          ],
+          "talent_bonus_levels": [
+            1
+          ],
+          "talent_replaces_base": true,
+          "required_first_sphere": "Warleader"
+        },
+        "capabilities": {
+          "grants": [
+            "martial"
+          ],
+          "removes": [
+            "magic"
+          ]
+        }
+      }
+    },
+    {
+      "key": "spheres-archetype:spheres-class:reaper:flagellant",
+      "class_modifications": {
+        "statistics": {
+          "reflex_progression": "Good"
+        }
+      }
+    },
+    {
+      "key": "spheres-archetype:spheres-class:reaper:machine-cultist",
+      "class_modifications": {
+        "statistics": {
+          "add_class_skills": [
+            "disable_device",
+            "knowledge_engineering"
+          ],
+          "remove_class_skills": [
+            "knowledge_nature",
+            "ride"
+          ]
+        }
+      }
+    },
+    {
+      "key": "spheres-archetype:spheres-class:reaper:mythos-hunter",
+      "class_modifications": {
+        "advancement": {
+          "talent_bonus_levels": [
+            1
+          ],
+          "required_first_sphere": "Scout"
+        }
+      },
+      "feature_exclude_names": [
+        "This replaces bloodletter",
+        "This replaces blood hunter and engorged scent"
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:reaper:partisan",
+      "class_modifications": {
+        "advancement": {
+          "talent_bonus_levels": [
+            1
+          ],
+          "required_first_sphere": "Gladiator"
+        }
+      }
+    }
+  ]
+}

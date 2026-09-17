@@ -1,0 +1,200 @@
+{
+  "version": 1,
+  "class_key": "pathfinder-class:oracle",
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:dual-cursed-oracle",
+      "suppress_choice_class_skills": ["oracle-mystery"],
+      "choice_provider_overrides": [
+        {
+          "key": "oracle-curse",
+          "minimum": 2,
+          "maximum": 2,
+          "label": "Oracle's Curses",
+          "description": "Choose two curses. One progresses normally; the curse selected in the linked Stunted Curse choice never gains its later benefits."
+        }
+      ],
+      "choice_providers": [
+        {
+          "key": "dual-cursed-stunted-curse",
+          "label": "Stunted Curse",
+          "feature_tokens": ["oracle-s-curse"],
+          "minimum": 1,
+          "maximum": 1,
+          "depends_on": "oracle-curse",
+          "options_from_dependency": true,
+          "description": "Choose which of the two curses does not improve as Oracle level increases."
+        }
+      ],
+      "system_features": ["dual-cursed-stunted-curse"]
+    },
+    {"key": "pathfinder-archetype:pathfinder-class:oracle:ancient-lorekeeper", "suppress_choice_class_skills": ["oracle-mystery"]},
+    {"key": "pathfinder-archetype:pathfinder-class:oracle:community-guardian", "suppress_choice_class_skills": ["oracle-mystery"]},
+    {"key": "pathfinder-archetype:pathfinder-class:oracle:cyclopean-seer", "suppress_choice_class_skills": ["oracle-mystery"]},
+    {"key": "pathfinder-archetype:pathfinder-class:oracle:enlightened-philosopher", "suppress_choice_class_skills": ["oracle-mystery"]},
+    {"key": "pathfinder-archetype:pathfinder-class:oracle:river-soul", "suppress_choice_class_skills": ["oracle-mystery"]},
+    {"key": "pathfinder-archetype:pathfinder-class:oracle:stargazer", "suppress_choice_class_skills": ["oracle-mystery"]},
+    {"key": "pathfinder-archetype:pathfinder-class:oracle:tree-soul", "suppress_choice_class_skills": ["oracle-mystery"]},
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:planar-oracle",
+      "choice_providers": [
+        {
+          "key": "planar-oracle-plane",
+          "label": "Outer Plane Affinity",
+          "feature_tokens": ["planar-resistance"],
+          "minimum": 1,
+          "maximum": 1,
+          "description": "Choose the permanent Outer Plane with which the Oracle has affinity.",
+          "fixed_options": [
+            {"key": "abaddon", "name": "Abaddon", "description": "Neutral evil Outer Plane."},
+            {"key": "abyss", "name": "The Abyss", "description": "Chaotic evil Outer Plane."},
+            {"key": "axis", "name": "Axis", "description": "Lawful neutral Outer Plane."},
+            {"key": "boneyard", "name": "The Boneyard", "description": "Neutral Outer Plane."},
+            {"key": "elysium", "name": "Elysium", "description": "Chaotic good Outer Plane."},
+            {"key": "heaven", "name": "Heaven", "description": "Lawful good Outer Plane."},
+            {"key": "hell", "name": "Hell", "description": "Lawful evil Outer Plane."},
+            {"key": "maelstrom", "name": "The Maelstrom", "description": "Chaotic neutral Outer Plane."},
+            {"key": "nirvana", "name": "Nirvana", "description": "Neutral good Outer Plane."}
+          ]
+        },
+        {
+          "key": "planar-oracle-energy",
+          "label": "Associated Energy",
+          "feature_tokens": ["planar-resistance"],
+          "minimum": 1,
+          "maximum": 1,
+          "depends_on": "planar-oracle-plane",
+          "description": "Choose an energy type associated with the selected plane. Planar Resistance grants resistance 10, increasing to 20 at level 11 and immunity at level 20.",
+          "fixed_options": [
+            {"key": "acid", "name": "Acid", "description": "Associated acid resistance."},
+            {"key": "cold", "name": "Cold", "description": "Associated cold resistance."},
+            {"key": "electricity", "name": "Electricity", "description": "Associated electricity resistance."},
+            {"key": "fire", "name": "Fire", "description": "Associated fire resistance."}
+          ]
+        }
+      ],
+      "system_features": ["planar-resistance"]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:oracle:augur",
+      "resource_modules": [
+        {
+          "key": "augur",
+          "title": "Augur Kismet",
+          "governing_ability": "charisma",
+          "resources": [
+            {
+              "key": "kismet",
+              "name": "Kismet",
+              "feature_tokens": ["kismet"],
+              "progression": "ability_modifier_minimum_one",
+              "description": "A fluctuating pool equal to Charisma modifier (minimum 1). Spend it on retained deeds; qualifying natural 1s restore it."
+            }
+          ]
+        }
+      ],
+      "system_features": ["kismet"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:ocean-s-echo",
+      "resource_modules": [
+        {
+          "key": "ocean_echo",
+          "title": "Ocean's Echo — Inspiring Song",
+          "governing_ability": "charisma",
+          "resources": [
+            {
+              "key": "inspiring_song",
+              "name": "Inspiring Song",
+              "feature_tokens": ["inspiring-song"],
+              "progression": "level_plus_ability_minimum_one",
+              "description": "Rounds per day equal Oracle level + Charisma modifier (minimum 1). Uses Perform (sing) and grants the retained Inspire Courage, Inspire Competence, or Inspire Heroics performance.",
+              "can_activate": true,
+              "choice_options": ["Inspire Courage", "Inspire Competence", "Inspire Heroics"],
+              "use_requires_active": true
+            }
+          ]
+        }
+      ],
+      "power_providers": [],
+      "system_features": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:pei-zin-practitioner",
+      "resource_modules": [
+        {
+          "key": "pei_zin",
+          "title": "Pei Zin Practitioner — Healer's Way",
+          "governing_ability": "charisma",
+          "resources": [
+            {
+              "key": "healers_way",
+              "name": "Healer's Way",
+              "feature_tokens": ["healers-way"],
+              "progression": "one_plus_ability",
+              "description": "Uses per day equal 1 + Charisma modifier. Heal 1d6 hit points per two Oracle levels (minimum 1d6); self-use is a swift action and use on another creature is a standard action."
+            }
+          ]
+        }
+      ],
+      "power_providers": [],
+      "system_features": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:shigenjo",
+      "resource_modules": [],
+      "power_providers": [],
+      "system_features": ["ki-pool"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:psychic-searcher",
+      "resource_modules": [],
+      "power_providers": [
+        {
+          "key": "psychic-searcher-talents",
+          "label": "Psychic Talents",
+          "family": "investigator_talent",
+          "feature_tokens": ["psychic-talent"],
+          "slot_levels": [3],
+          "option_names": ["Amazing Inspiration", "Eidetic Recollection", "Empathy", "Inspired Alertness", "Item Lore", "Perceptive Tracking", "Tenacious Inspiration"],
+          "description": "Choose the investigator talent granted at 3rd level. Later revelation slots may be exchanged individually under the archetype's printed rule."
+        }
+      ],
+      "system_features": ["inspiration", "psychic-talent"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:warsighted",
+      "resource_modules": [],
+      "power_providers": [],
+      "system_features": ["martial-flexibility"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:spirit-guide",
+      "suppress_choice_class_skills": ["oracle-mystery"],
+      "choice_providers": [
+        {
+          "key": "oracle-spirit-guide-spirit",
+          "label": "Bonded Spirit",
+          "feature_tokens": ["bonded-spirit"],
+          "option_families": ["shaman_spirit"],
+          "minimum": 1,
+          "maximum": 1,
+          "description": "Choose the Shaman spirit bonded for the current day. At Oracle 4 its spirit-magic spells become temporary spells known up to the spell levels the Oracle can cast; later spirit abilities remain documented with the choice."
+        }
+      ],
+      "power_providers": [],
+      "spell_grant_choice_providers": ["oracle-spirit-guide-spirit"],
+      "skill_rules": [
+        {
+          "key": "spirit-guide-knowledge-skills",
+          "feature_tokens": ["spirit-guide-class-skills"],
+          "minimum_level": 1,
+          "rule": "grant_class_skills",
+          "class_skills": ["knowledge_arcana", "knowledge_dungeoneering", "knowledge_engineering", "knowledge_geography", "knowledge_history", "knowledge_local", "knowledge_nature", "knowledge_nobility", "knowledge_planes", "knowledge_religion"],
+          "source": "Oracle (Spirit Guide): Class Skills"
+        }
+      ],
+      "system_features": ["spirit-guide-class-skills"]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "version":1,"key":"sage","class_key":"spheres-class:sage","class_name":"Sage","governing_ability":"wisdom",
+  "catalog_profile":{"weapon_proficiencies":["Simple weapons"],"armor_proficiencies":[],"proficiencies":{"weapons":["Simple weapons"],"armor":[]},"casting":{"sphere_progression":"High","ability":"wisdom","traditional":false},"advancement":{"talent_progression":"Low","talent_kinds":["magic","martial"],"talent_bonus_levels":[1,3,5,7,9,11,13,15,17,19]},"capabilities":{"grants":["magic","martial"],"removes":[]}},
+  "optional_blocks":["magic_spheres","spell_points","martial_focus"],"external_systems":["ki_pool","meditation","chi_gong","esoteric_training","esoteries"],"bonus_feat_levels":[3,6,9,12,15,18],"bonus_feat_label":"Sage Skill Focus feats",
+  "resource_modules":[{"key":"sage","title":"Sage","governing_ability":"wisdom","grantable":false,"resources":[
+    {"key":"ki_pool","name":"Ki Pool","feature_tokens":["ki-pool"],"progression":"level_plus_ability_minimum_one","description":"Ki equals Sage level + Wisdom modifier and also functions as the Sage spell pool."},
+    {"key":"meditation_dice","name":"Meditation Dice","feature_tokens":["meditation"],"progression":"half_level_minimum_one","description":"After one hour, gain half Sage level (minimum 1) bonus d6s for checks, saves, or CMD defense."},
+    {"key":"chi_gong_dice","name":"Chi Gong","feature_tokens":["chi-gong"],"progression":"odd_level_dice","description":"Number of d6s dealt by chi gong or added to an unarmed/natural attack; it may instead patch-heal up to half maximum HP.","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false},
+    {"key":"esotery_dc","name":"Sage Save DC","feature_tokens":["esotery"],"progression":"ten_plus_half_level_plus_ability","description":"10 + half Sage level + Wisdom modifier.","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false},
+    {"key":"ki_speed","name":"Ki Speed","feature_tokens":["ki-pool"],"progression":"zero","description":"Spend 1 ki as a swift action for +20 feet speed for 1 round.","tracks_uses":false,"external_cost_key":"ki_pool","use_cost":1,"can_activate":true,"activate_on_spend":true},
+    {"key":"ki_defense","name":"Ki Defense","feature_tokens":["ki-pool"],"progression":"zero","description":"Spend 1 ki as a swift action for +4 dodge AC for 1 round.","tracks_uses":false,"external_cost_key":"ki_pool","use_cost":1,"can_activate":true,"activate_on_spend":true}
+  ]}],
+  "passive_effects":[
+    {"key":"sage-ac-wisdom","feature_tokens":["ki-pool"],"targets":["armor_class","touch_ac","flat_footed_ac","cmd"],"progression":"ability_modifier_nonnegative","ability":"wisdom","bonus_type":"untyped","source":"Sage: AC Bonus (Wisdom)","requires_unarmored":true,"requires_unencumbered":true},
+    {"key":"sage-ac-level","feature_tokens":["ki-pool"],"targets":["armor_class","touch_ac","flat_footed_ac","cmd"],"progression":"quarter_level","bonus_type":"untyped","source":"Sage: AC Bonus (level)","requires_unarmored":true,"requires_unencumbered":true},
+    {"key":"sage-ki-speed","feature_tokens":["ki-pool"],"targets":["land_speed"],"progression":"twenty","bonus_type":"untyped","source":"Sage: Ki Speed","requires_resource_active":"ki_speed"},
+    {"key":"sage-ki-defense","feature_tokens":["ki-pool"],"targets":["armor_class","touch_ac","flat_footed_ac","cmd"],"progression":"four","bonus_type":"dodge","source":"Sage: Ki Defense","requires_resource_active":"ki_defense"}
+  ],
+  "choice_providers":[
+    {"key":"sage-esoteric-training","label":"Esoteric Training","feature_tokens":["esoteric-training"],"minimum_levels":[1,8,16],"maximum_levels":[1,8,16],"fixed_options":[{"key":"chakra-disruptor","name":"Chakra Disruptor"},{"key":"enhancer","name":"Enhancer"},{"key":"infuser","name":"Infuser"},{"key":"ki-blaster","name":"Ki Blaster"},{"key":"ki-convergent","name":"Ki Convergent"},{"key":"manipulator","name":"Manipulator"}],"description":"Choose an esoteric training package at levels 1, 8, and 16."},
+    {"key":"sage-esoteries","label":"Esoteries","feature_tokens":["esotery"],"minimum_levels":[2,4,6,8,10,12,14,16,18,20],"maximum_levels":[2,4,6,8,10,12,14,16,18,20],"custom_option_label":"Qualifying esotery","description":"Choose one qualifying esotery at every even Sage level."},
+    {"key":"sage-signature-technique","label":"Signature Technique","feature_tokens":["signature-technique"],"minimum_levels":[20],"maximum_levels":[20],"fixed_options":[{"key":"desiccate-essence","name":"Desiccate Essence (Manipulator)"},{"key":"devastation-wave","name":"Devastation Wave (Ki Blaster)"},{"key":"heart-stopper","name":"Heart Stopper (Chakra Disruptor)"},{"key":"physical-perfection","name":"Physical Perfection (Enhancer)"},{"key":"primordial-convergence","name":"Primordial Convergence (Ki Convergent)"},{"key":"spiders-web","name":"Spider's Web (Infuser)"}],"description":"Choose the signature technique matching a known esoteric training package."}
+  ],
+  "notes":"Printed combat talents plus ten odd-level style talents yield 20 selections. Ki doubles as spell pool; magic talents use High-Caster level."
+}

@@ -1,0 +1,183 @@
+{
+  "version": 1,
+  "description": "Hand-reviewed class-profile changes. This file is never generated from descriptive rules prose.",
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bard:arrowsong-minstrel",
+      "class_modifications": {
+        "proficiencies": {
+          "mode": "modify",
+          "add_weapons": ["Longbows"],
+          "remove_weapons": ["Longsword", "Rapier", "Whip"]
+        }
+      }
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bard:dwarven-scholar",
+      "class_modifications": {
+        "proficiencies": {
+          "mode": "modify",
+          "remove_armor": ["Shields", "Shields (except tower shields)"]
+        }
+      },
+      "choices": [
+        {
+          "key": "dwarven-weapon",
+          "level": 1,
+          "name": "Dwarven Weapon Proficiency",
+          "description": "Choose one weapon with the word dwarven in its name.",
+          "minimum": 1,
+          "maximum": 1,
+          "options": [
+            {"key": "boulder-helmet", "name": "Dwarven Boulder Helmet", "class_modifications": {"proficiencies": {"add_weapons": ["Dwarven Boulder Helmet"]}}},
+            {"key": "chain-flail", "name": "Dwarven Chain-Flail", "class_modifications": {"proficiencies": {"add_weapons": ["Dwarven Chain-Flail"]}}},
+            {"key": "dorn-dergar", "name": "Dwarven Dorn-Dergar", "class_modifications": {"proficiencies": {"add_weapons": ["Dwarven Dorn-Dergar"]}}},
+            {"key": "double-waraxe", "name": "Dwarven Double Waraxe", "class_modifications": {"proficiencies": {"add_weapons": ["Dwarven Double Waraxe"]}}},
+            {"key": "giant-sticker", "name": "Dwarven Giant-Sticker", "class_modifications": {"proficiencies": {"add_weapons": ["Dwarven Giant-Sticker"]}}},
+            {"key": "heavy-axe-gauntlet", "name": "Dwarven Heavy Axe-Gauntlet", "class_modifications": {"proficiencies": {"add_weapons": ["Dwarven Heavy Axe-Gauntlet"]}}},
+            {"key": "heavy-pelletbow", "name": "Dwarven Heavy Pelletbow", "class_modifications": {"proficiencies": {"add_weapons": ["Dwarven Heavy Pelletbow"]}}},
+            {"key": "light-axe-gauntlet", "name": "Dwarven Light Axe-Gauntlet", "class_modifications": {"proficiencies": {"add_weapons": ["Dwarven Light Axe-Gauntlet"]}}},
+            {"key": "light-pelletbow", "name": "Dwarven Light Pelletbow", "class_modifications": {"proficiencies": {"add_weapons": ["Dwarven Light Pelletbow"]}}},
+            {"key": "longaxe", "name": "Dwarven Longaxe", "class_modifications": {"proficiencies": {"add_weapons": ["Dwarven Longaxe"]}}},
+            {"key": "longhammer", "name": "Dwarven Longhammer", "class_modifications": {"proficiencies": {"add_weapons": ["Dwarven Longhammer"]}}},
+            {"key": "maulaxe", "name": "Dwarven Maulaxe", "class_modifications": {"proficiencies": {"add_weapons": ["Dwarven Maulaxe"]}}},
+            {"key": "ram-hammer", "name": "Dwarven Ram Hammer", "class_modifications": {"proficiencies": {"add_weapons": ["Dwarven Ram Hammer"]}}},
+            {"key": "sphinx-hammer", "name": "Dwarven Sphinx Hammer", "class_modifications": {"proficiencies": {"add_weapons": ["Dwarven Sphinx Hammer"]}}},
+            {"key": "urgrosh", "name": "Dwarven Urgrosh", "class_modifications": {"proficiencies": {"add_weapons": ["Dwarven Urgrosh"]}}},
+            {"key": "war-shield", "name": "Dwarven War-Shield", "class_modifications": {"proficiencies": {"add_weapons": ["Dwarven War-Shield"]}}},
+            {"key": "waraxe", "name": "Dwarven Waraxe", "class_modifications": {"proficiencies": {"add_weapons": ["Dwarven Waraxe"]}}}
+          ]
+        }
+      ]
+    },
+    {"key": "pathfinder-archetype:pathfinder-class:bard:cultivator", "class_modifications": {"statistics": {"add_class_skills": ["survival"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:bard:luring-piper", "class_modifications": {"statistics": {"add_class_skills": ["survival"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:bard:solacer", "class_modifications": {"statistics": {"add_class_skills": ["heal"], "remove_class_skills": ["appraise"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:inquisitor:cloaked-wolf", "class_modifications": {"statistics": {"add_class_skills": ["sleight_of_hand"], "remove_class_skills": ["intimidate"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:inquisitor:sworn-of-the-eldest", "class_modifications": {"casting": {"ability": "charisma"}}},
+    {"key": "pathfinder-archetype:pathfinder-class:inquisitor:oathkeeper", "class_modifications": {"statistics": {"add_class_skills": ["appraise"], "remove_class_skills": ["knowledge_nature"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:inquisitor:royal-accuser", "class_modifications": {"statistics": {"add_class_skills": ["knowledge_local"], "remove_class_skills": ["knowledge_nature"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:inquisitor:suit-seeker", "class_modifications": {"statistics": {"add_class_skills": ["knowledge_history", "use_magic_device"], "remove_class_skills": ["knowledge_dungeoneering", "ride", "survival"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:inquisitor:umbral-stalker", "class_modifications": {"statistics": {"add_class_skills": ["acrobatics"], "remove_class_skills": ["diplomacy"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:inquisitor:urban-infiltrator", "class_modifications": {"statistics": {"add_class_skills": ["disable_device", "knowledge_history", "knowledge_local", "knowledge_nobility"], "remove_class_skills": ["knowledge_dungeoneering", "knowledge_nature"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:oracle:ancient-lorekeeper", "class_modifications": {"statistics": {"add_class_skills": ["knowledge_arcana", "knowledge_local"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:oracle:community-guardian", "class_modifications": {"statistics": {"add_class_skills": ["knowledge_local", "linguistics", "perception", "survival"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:oracle:cyclopean-seer", "class_modifications": {"statistics": {"add_class_skills": ["linguistics", "knowledge_all"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:oracle:dual-cursed-oracle", "class_modifications": {"statistics": {}}},
+    {"key": "pathfinder-archetype:pathfinder-class:oracle:enlightened-philosopher", "class_modifications": {"statistics": {"add_class_skills": ["linguistics", "knowledge_all"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:oracle:keleshite-prophet", "class_modifications": {"statistics": {"add_class_skills": ["perception", "perform", "knowledge_all"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:oracle:ocean-s-echo", "class_modifications": {"statistics": {"add_class_skills": ["bluff", "intimidate", "knowledge_nature", "perform"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:oracle:river-soul", "class_modifications": {"statistics": {"add_class_skills": ["escape_artist", "knowledge_nature", "survival", "swim"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:oracle:shigenjo", "class_modifications": {"statistics": {"add_class_skills": ["survival"], "remove_class_skills": ["diplomacy"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:oracle:spirit-guide", "class_modifications": {"statistics": {"add_class_skills": ["knowledge_all"]}}},
+    {"key": "pathfinder-archetype:pathfinder-class:oracle:stargazer", "class_modifications": {"statistics": {"add_class_skills": ["knowledge_nature", "perception", "survival"]}}},
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:tree-soul",
+      "class_modifications": {
+        "statistics": {"add_class_skills": ["acrobatics", "climb", "knowledge_nature", "survival"]},
+        "proficiencies": {"mode": "modify", "add_armor": ["Medium armor", "Wooden shields (except tower shields)"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:bard:champion-bard",
+      "class_modifications": {
+        "casting": {"sphere_progression": "Mid", "traditional": false, "ability": "charisma", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "Mid", "talent_kinds": ["magic", "martial"]},
+        "capabilities": {"grants": ["magic", "martial"], "removes": ["traditional_spells"]},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:bard:corteggiare",
+      "feature_level_overrides": {
+        "Music is Magic": 1,
+        "Choir Performance": 1,
+        "Magical Flourish": 1,
+        "Wonderful Harmony": 6,
+        "Miracle Melody": 12
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:bard:kung-fu-exemplar",
+      "class_modifications": {
+        "casting": {"sphere_progression": "Mid", "traditional": false, "ability": "charisma", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "High", "talent_kinds": ["magic", "martial"]},
+        "capabilities": {"grants": ["magic", "martial"], "removes": ["traditional_spells"]},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:bard:sovereign-piper",
+      "class_modifications": {
+        "casting": {"sphere_progression": "Mid", "traditional": false, "ability": "charisma", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "High", "talent_kinds": ["magic", "martial"]},
+        "capabilities": {"grants": ["magic", "martial"], "removes": ["traditional_spells"]},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:bard:sphere-bard",
+      "class_modifications": {
+        "casting": {"sphere_progression": "Mid", "traditional": false, "ability": "charisma", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "Mid", "talent_kinds": ["magic"]},
+        "capabilities": {"grants": ["magic"], "removes": ["traditional_spells"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:bard:minstrel",
+      "class_modifications": {
+        "casting": {"sphere_progression": "", "traditional": false, "ability": "", "type": "none", "spells": ""},
+        "advancement": {"talent_kinds": ["martial"]},
+        "capabilities": {"grants": ["martial"], "removes": ["magic", "traditional_spells"]},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:bard:musician",
+      "class_modifications": {
+        "advancement": {"talent_kinds": ["magic", "martial", "skill"]},
+        "capabilities": {"grants": ["skill"], "removes": []}
+      },
+      "compatibility": {
+        "requires": ["spheres-archetype:pathfinder-class:bard:champion-bard"],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:inquisitor:champion-inquisitor",
+      "class_modifications": {
+        "casting": {"sphere_progression": "Mid", "traditional": false, "ability": "wisdom", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "Mid", "talent_kinds": ["magic", "martial"]},
+        "capabilities": {"grants": ["magic", "martial"], "removes": ["traditional_spells"]},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons", "Deity's favored weapon"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:inquisitor:sphere-inquisitor",
+      "class_modifications": {
+        "casting": {"sphere_progression": "Mid", "traditional": false, "ability": "wisdom", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "Mid", "talent_kinds": ["magic"]},
+        "capabilities": {"grants": ["magic"], "removes": ["traditional_spells"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:oracle:sphere-oracle",
+      "class_modifications": {
+        "casting": {"sphere_progression": "High", "traditional": false, "ability": "charisma", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "High", "talent_kinds": ["magic"]},
+        "capabilities": {"grants": ["magic"], "removes": ["traditional_spells"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:prodigy:battle-born",
+      "class_modifications": {
+        "statistics": {"hit_die": 10, "bab_progression": "Full"},
+        "casting": {"sphere_progression": "", "traditional": false, "ability": "", "type": "none", "spells": ""},
+        "advancement": {"talent_progression": "High", "talent_kinds": ["martial"]},
+        "capabilities": {"grants": ["martial"], "removes": ["magic", "traditional_spells"]}
+      }
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "key": "psychic",
+  "class_key": "pathfinder-class:psychic",
+  "class_name": "Psychic",
+  "governing_ability": "intelligence",
+  "optional_blocks": ["inquisitor_features", "spells_known", "spell_level_overview"],
+  "external_systems": ["traditional_spontaneous_casting", "psychic_discipline", "phrenic_pool", "phrenic_amplifications"],
+  "resource_modules": [
+    {
+      "key": "psychic_spell_like_abilities",
+      "title": "Psychic Abilities",
+      "governing_ability": "intelligence",
+      "resources": [
+        {"key": "detect_thoughts", "name": "Detect Thoughts", "feature_tokens": ["detect-thoughts"], "progression": "one", "description": "One free daily use; an unused spell slot of 1st level or higher can supply additional uses."},
+        {"key": "telepathic_bond", "name": "Telepathic Bond", "feature_tokens": ["telepathic-bond"], "progression": "one", "description": "One free daily use; an unused spell slot of 4th level or higher can supply additional uses."}
+      ]
+    }
+  ],
+  "choice_providers": [
+    {
+      "key": "psychic-remade-self",
+      "label": "Remade Self",
+      "feature_tokens": ["remade-self"],
+      "minimum": 1,
+      "maximum": 1,
+      "minimum_class_level": 20,
+      "fixed_options": [
+        {"key": "arcane-sight", "name": "Arcane Sight"},
+        {"key": "fly", "name": "Fly"},
+        {"key": "haste", "name": "Haste"},
+        {"key": "heroism", "name": "Heroism"},
+        {"key": "nondetection", "name": "Nondetection"},
+        {"key": "tongues", "name": "Tongues"}
+      ],
+      "description": "Choose the permanent spell-like effect gained at 20th level. The choice cannot normally be changed."
+    }
+  ],
+  "power_providers": [
+    {
+      "key": "psychic-phrenic-amplifications",
+      "label": "Phrenic Amplifications",
+      "family": "phrenic_amplification",
+      "feature_tokens": ["phrenic-amplifications"],
+      "slot_levels": [1, 3, 7, 11, 15, 19],
+      "description": "Choose one amplification at 1st, 3rd, and every 4 levels thereafter. Major amplifications become eligible at 11th level."
+    }
+  ],
+  "spell_grant_choice_providers": ["psychic-discipline"],
+  "notes": "Psychic discipline, discipline spells and powers, phrenic pool ability, amplifications, and spell-slot alternatives remain separate systems."
+}

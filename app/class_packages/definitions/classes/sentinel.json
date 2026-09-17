@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "key": "sentinel",
+  "class_key": "spheres-class:sentinel",
+  "class_name": "Sentinel",
+  "governing_ability": "wisdom",
+  "catalog_profile": {
+    "weapon_proficiencies": ["Simple weapons"],
+    "armor_proficiencies": ["Light armor", "Bucklers"],
+    "proficiencies": {"weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]},
+    "advancement": {"talent_progression": "Expert", "talent_kinds": ["martial"], "talent_bonus_levels": [1]}
+  },
+  "optional_blocks": ["martial_talents", "martial_focus"],
+  "external_systems": ["martial_focus", "guardian_challenge", "sentinel_reserve"],
+  "resource_modules": [{
+    "key":"sentinel","title":"Sentinel Defense","governing_ability":"wisdom","resources":[
+      {"key":"guardian_challenge","name":"Guardian Challenge","feature_tokens":["guardian-challenge"],"progression":"sentinel_challenge_bonus","description":"Activate against the currently challenged creature. The attack and damage bonus improves at levels 5, 9, 13, and 17.","can_activate":true,"custom_choice_label":"Challenged creature","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false},
+      {"key":"sentinel_reserve","name":"Sentinel's Reserve","feature_tokens":["sentinels-reserve"],"progression":"half_level_plus_ability_minimum_one","description":"Daily reserve points equal half Sentinel level + Wisdom modifier (minimum 1). Full Rest restores the pool."},
+      {"key":"second_wind","name":"Second Wind","feature_tokens":["second-wind"],"progression":"zero","description":"Spend 1 reserve point as a swift action to heal 1d6 per two Sentinel levels + Wisdom modifier, normally up to half maximum HP. Halve the healing to regain martial focus; later features expand its conditions and limits.","external_cost_key":"sentinel_reserve","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false},
+      {"key":"dedicated_defense","name":"Dedicated Defense DR/-","feature_tokens":["dedicated-defense"],"progression":"sentinel_dedicated_defense","description":"Stacking DR/- gained at level 2 and improved every four levels.","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false},
+      {"key":"guard_wall","name":"Guard Wall","feature_tokens":["guard-wall"],"progression":"sentinel_guard_wall","description":"Enable after ending the turn without moving more than 5 feet. Grants the displayed circumstance bonus to CMD.","can_activate":true,"tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":true},
+      {"key":"diamond_aegis","name":"Diamond Aegis","feature_tokens":["diamond-aegis"],"progression":"zero","description":"At level 16, spend 1 reserve point as a free action after failing a saving throw to reroll it; the second result must be kept.","external_cost_key":"sentinel_reserve","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false}
+    ]
+  }],
+  "passive_effects": [
+    {"key":"guardian-challenge-attack","feature_tokens":["guardian-challenge"],"targets":["attack"],"progression":"sentinel_challenge_bonus","bonus_type":"untyped","source":"Sentinel: Guardian Challenge","requires_resource_active":"guardian_challenge"},
+    {"key":"guardian-challenge-damage","feature_tokens":["guardian-challenge"],"targets":["damage"],"progression":"sentinel_challenge_bonus","bonus_type":"untyped","source":"Sentinel: Guardian Challenge","requires_resource_active":"guardian_challenge"},
+    {"key":"guard-wall-cmd","feature_tokens":["guard-wall"],"targets":["cmd"],"progression":"sentinel_guard_wall","bonus_type":"circumstance","source":"Sentinel: Guard Wall","requires_resource_active":"guard_wall"},
+    {"key":"wise-reflexes-initiative","feature_tokens":["wise-reflexes"],"targets":["initiative"],"progression":"ability_modifier","ability":"wisdom","replaces_ability":"dexterity","replacement_cap_progression":"level","only_if_better":true,"bonus_type":"untyped","source":"Sentinel: Wise Reflexes"},
+    {"key":"wise-reflexes-save","feature_tokens":["wise-reflexes"],"targets":["reflex"],"progression":"ability_modifier","ability":"wisdom","replaces_ability":"dexterity","replacement_cap_progression":"level","only_if_better":true,"bonus_type":"untyped","source":"Sentinel: Wise Reflexes"}
+  ],
+  "choice_providers": [],
+  "notes":"Guardian (challenge package) is included as the class-granted martial talent allowance. Reserve actions and ability substitution use shared resource/effect adapters."
+}

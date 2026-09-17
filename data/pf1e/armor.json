@@ -1,0 +1,24 @@
+{
+  "source": "Pathfinder RPG Core Rulebook",
+  "source_url": "https://www.aonprd.com/EquipmentArmor.aspx",
+  "entries": [
+    {"key":"padded","name":"Padded armor","category":"Armor","weight":10,"ac_bonus":1,"bonus_type":"armor","max_dex_bonus":8,"armor_check_penalty":0},
+    {"key":"leather","name":"Leather armor","category":"Armor","weight":15,"ac_bonus":2,"bonus_type":"armor","max_dex_bonus":6,"armor_check_penalty":0},
+    {"key":"studded_leather","name":"Studded leather","category":"Armor","weight":20,"ac_bonus":3,"bonus_type":"armor","max_dex_bonus":5,"armor_check_penalty":1},
+    {"key":"chain_shirt","name":"Chain shirt","category":"Armor","weight":25,"ac_bonus":4,"bonus_type":"armor","max_dex_bonus":4,"armor_check_penalty":2},
+    {"key":"hide","name":"Hide armor","category":"Armor","weight":25,"ac_bonus":4,"bonus_type":"armor","max_dex_bonus":4,"armor_check_penalty":3},
+    {"key":"scale_mail","name":"Scale mail","category":"Armor","weight":30,"ac_bonus":5,"bonus_type":"armor","max_dex_bonus":3,"armor_check_penalty":4},
+    {"key":"chainmail","name":"Chainmail","category":"Armor","weight":40,"ac_bonus":6,"bonus_type":"armor","max_dex_bonus":2,"armor_check_penalty":5},
+    {"key":"breastplate","name":"Breastplate","category":"Armor","weight":30,"ac_bonus":6,"bonus_type":"armor","max_dex_bonus":3,"armor_check_penalty":4},
+    {"key":"splint_mail","name":"Splint mail","category":"Armor","weight":45,"ac_bonus":7,"bonus_type":"armor","max_dex_bonus":0,"armor_check_penalty":7},
+    {"key":"banded_mail","name":"Banded mail","category":"Armor","weight":35,"ac_bonus":7,"bonus_type":"armor","max_dex_bonus":1,"armor_check_penalty":6},
+    {"key":"half_plate","name":"Half-plate","category":"Armor","weight":50,"ac_bonus":8,"bonus_type":"armor","max_dex_bonus":0,"armor_check_penalty":7},
+    {"key":"full_plate","name":"Full plate","category":"Armor","weight":50,"ac_bonus":9,"bonus_type":"armor","max_dex_bonus":1,"armor_check_penalty":6},
+    {"key":"buckler","name":"Buckler","category":"Shield","weight":5,"ac_bonus":1,"bonus_type":"shield","max_dex_bonus":null,"armor_check_penalty":1},
+    {"key":"light_wooden_shield","name":"Light wooden shield","category":"Shield","weight":5,"ac_bonus":1,"bonus_type":"shield","max_dex_bonus":null,"armor_check_penalty":1},
+    {"key":"light_steel_shield","name":"Light steel shield","category":"Shield","weight":6,"ac_bonus":1,"bonus_type":"shield","max_dex_bonus":null,"armor_check_penalty":1},
+    {"key":"heavy_wooden_shield","name":"Heavy wooden shield","category":"Shield","weight":10,"ac_bonus":2,"bonus_type":"shield","max_dex_bonus":null,"armor_check_penalty":2},
+    {"key":"heavy_steel_shield","name":"Heavy steel shield","category":"Shield","weight":15,"ac_bonus":2,"bonus_type":"shield","max_dex_bonus":null,"armor_check_penalty":2},
+    {"key":"tower_shield","name":"Tower shield","category":"Shield","weight":45,"ac_bonus":4,"bonus_type":"shield","max_dex_bonus":2,"armor_check_penalty":10}
+  ]
+}

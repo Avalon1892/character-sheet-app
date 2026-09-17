@@ -1,0 +1,2475 @@
+{
+  "version": 1,
+  "class_key": "pathfinder-class:gunslinger",
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:gunslinger:black-powder-vaulter",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Black Powder Vaulter",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger Black Powder Vaulter",
+      "replaces_features": [
+        "deadeye",
+        "expert-loading",
+        "gunslinger-initiative",
+        "gunslinger-s-dodge",
+        "startling-shot"
+      ],
+      "removed_features": [
+        "deadeye",
+        "expert-loading",
+        "gunslinger-initiative",
+        "gunslinger-s-dodge",
+        "startling-shot"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Black Powder Vaulter",
+          "description": "Source Martial Arts Handbook pg. 10"
+        },
+        {
+          "level": 1,
+          "name": "Deeds",
+          "description": "A black powder vaulter gains the following deeds."
+        },
+        {
+          "level": 3,
+          "name": "Mobile Reload",
+          "description": "If a black powder vaulter has at least 1 grit point, she can reload a firearm as part of a move action to move, provided that the action to reload that firearm with that type of ammunition would normally take only a move action or swift action. At 3rd level, she can use this deed while also using the shot on the run deed."
+        },
+        {
+          "level": 1,
+          "name": "Daring Vault",
+          "description": "A black powder vaulter can spend 1 grit point as a swift action to increase her land speed by 20 feet (gaining the appropriate bonus on Acrobatics checks to jump) until the end of her turn. If the black powder vaulter jumps while affected by this deed, she can make a second jump while midair if she is adjacent to a wall, column, or other solid, permanent structure. The second jump counts as having a running start even if the direction is different from the first jump."
+        },
+        {
+          "level": 3,
+          "name": "Shot on the Run",
+          "description": "At 3rd level, if the black powder vaulter has at least 1 grit point, she gains the benefits of the Shot on the Run feat. She gains this benefit only when making an attack with a firearm with which she is proficient. At 7th level, she can use the targeting deed as part of the same full-round action as using Shot on the Run."
+        },
+        {
+          "level": 7,
+          "name": "Art of the Gun",
+          "description": "At 7th level, if the black powder vaulter has at least 1 grit point, she doesn’t provoke attacks of opportunity when attacking with a firearm or reloading a firearm. Additionally, whenever she is wielding a firearm, she counts as threatening an area around her as though she were wielding a melee weapon. If an opponent provokes an attack of opportunity from her, she can use the pistol-whip deed as her attack of opportunity, spending 1 grit point as normal. Alternatively, if her firearm is loaded, she can spend 1 grit point to fire her gun as her attack of opportunity."
+        },
+        {
+          "level": 11,
+          "name": "Dual Shot on the Run",
+          "description": "At 11th level, the black powder vaulter can make two attacks with firearms while using the shot on the run deed."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:gunslinger:blatherskite",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Blatherskite",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger Blatherskite",
+      "replaces_features": [
+        "class-skills",
+        "gunslinger-initiative",
+        "gunslinger-s-dodge",
+        "pistol-whip",
+        "startling-shot"
+      ],
+      "removed_features": [
+        "class-skills",
+        "gunslinger-initiative",
+        "gunslinger-s-dodge",
+        "pistol-whip",
+        "startling-shot"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blatherskite",
+          "description": "Source Antihero's Handbook pg. 9"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A blatherskite gains Escape Artist and Stealth as class skills, but he doesn’t gain Handle Animal and Intimidate as class skills.\n\nThis alters the gunslinger’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Deeds",
+          "description": "A blatherskite swaps four deeds for the following."
+        },
+        {
+          "level": 1,
+          "name": "Blatherskite’s Stagger",
+          "description": "At 1st level as an immediate action, when a ranged attack would normally miss a blatherskite, he can allow it to hit him and dramatically stagger a few steps backward, moving up to 10 feet directly away from the attacker. This movement provokes attacks of opportunity as normal. The attack deals the minimum amount of damage (as though the attacker had rolled a natural 1 on each damage die)."
+        },
+        {
+          "level": 3,
+          "name": "Blatherskite’s Initiative",
+          "description": "At 3rd level, the blatherskite gains benefits as long as he has at least 1 grit point. The blatherskite gains a +2 bonus on initiative checks. Furthermore, if he is trained in Stealth (and as long as he is not paralyzed, prone, or otherwise immobilized), he can take a 5-foot step and attempt a Stealth check to hide as part of the initiative check, provided there is an object or a larger creature to hide behind; if he spends 1 grit point, he can move up to half his speed instead of taking only a 5-foot step as part of the initiative check."
+        },
+        {
+          "level": 3,
+          "name": "Cheap Shot",
+          "description": "At 3rd level, if the blatherskite has at least 1 grit point and makes a successful attack against an unarmed target with a firearm that is not making a scattering shot, he deals 1d6 additional points of damage. This is precision damage and is not multiplied on a critical hit."
+        },
+        {
+          "level": 7,
+          "name": "Blatherskite’s Surprise",
+          "description": "At 7th level, when the blatherskite succeeds at a saving throw against a spell or an effect that would cause him to be blinded, confused, dazed, fascinated, frightened, nauseated, paralyzed, or stunned, he can allow the effect to affect him normally. As long as he has at least 1 grit point, as an immediate action he can cause the creature from which the effect originated to lose its Dexterity bonus to AC for a number of rounds equal to half the duration of the effect (in rounds) or half the gunslinger’s level, whichever is lower (minimum 1 round). If he instead spends 1 grit point, he does not need to allow the effect to affect him normally to use this deed."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:gunslinger:bolt-ace",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Bolt Ace",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger Bolt Ace",
+      "replaces_features": [
+        "deadeye",
+        "expert-loading",
+        "grit",
+        "gun-training",
+        "gunsmith",
+        "lightning-reload",
+        "menacing-shot",
+        "quick-clear",
+        "startling-shot",
+        "utility-shot",
+        "weapon-proficiencies"
+      ],
+      "removed_features": [
+        "deadeye",
+        "expert-loading",
+        "grit",
+        "gun-training",
+        "gunsmith",
+        "lightning-reload",
+        "menacing-shot",
+        "quick-clear",
+        "startling-shot",
+        "utility-shot",
+        "weapon-proficiencies"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Bolt Ace",
+          "description": "Source Advanced Class Guide pg. 94"
+        },
+        {
+          "level": 1,
+          "name": "Crossbow Maven",
+          "description": "A bolt ace is proficient with all crossbows instead of all firearms and begins play with a masterwork crossbow of her choice. This ability alters the gunslinger’s weapon proficiencies and replaces gunsmith."
+        },
+        {
+          "level": 1,
+          "name": "Grit",
+          "description": "A bolt ace regains grit when she scores a critical hit or deals a killing blow with any kind of crossbow. This ability modifies the grit class feature."
+        },
+        {
+          "level": 1,
+          "name": "Deeds",
+          "description": "A bolt ace can perform the following deeds with a crossbow instead of a firearm: gunslinger initiative, pistol-whip, dead shot, targeting, bleeding wound, death’s shot, and stunning shot. The bolt ace swaps the following deeds."
+        },
+        {
+          "level": 1,
+          "name": "Sharp Shoot",
+          "description": "At 1st level, a bolt ace can resolve an attack against touch AC instead of normal AC when firing a crossbow at a target within its first range increment. Performing this deed costs 1 grit point. This deed's cost cannot be reduced by any ability or effect that reduces the amount of grit points a deed costs (such as Signature Deed). This deed replaces deadeye."
+        },
+        {
+          "level": 1,
+          "name": "Vigilant Loading",
+          "description": "At 1st level, as long as a bolt ace has at least 1 grit point, she does not provoke attacks of opportunity when loading a crossbow. This deed replaces quick clear."
+        },
+        {
+          "level": 3,
+          "name": "Shooter’s Resolve",
+          "description": "At 3rd level, a bolt ace can spend 1 grit point when making a crossbow attack as a standard action and ignore the effects of concealment (though not total concealment) and cover (other than total cover) against that shot. This deed replaces utility shot."
+        },
+        {
+          "level": 7,
+          "name": "Distracting Shot",
+          "description": "At 7th level, a bolt ace can spend 1 grit point and choose to miss a target that she could normally attack within her range with a crossbow attack. When she does, the target loses its Dexterity bonus to AC (if any) for 1 round. This deed replaces startling shot."
+        },
+        {
+          "level": 11,
+          "name": "Vigilant Shooter",
+          "description": "At 11th level, as long as a bolt ace spends 1 grit point when she does so, she does not provoke attacks of opportunity when firing a crossbow. This deed replaces expert loading."
+        },
+        {
+          "level": 11,
+          "name": "Inexplicable Reload",
+          "description": "At 11th level, loading a crossbow becomes unthinking and automatic for a bolt ace. As long as she has at least 1 grit point, she always starts each round of combat (even a surprise round) with her crossbow loaded. Also the amount of time needed to reload a crossbow decreases by one step: a standard action becomes a move action, a move action becomes a swift action, a swift action becomes a free action, and a free action becomes not an action. This deed replaces lightning reload."
+        },
+        {
+          "level": 15,
+          "name": "Pinning Shot",
+          "description": "At 15th level, the bolt ace can spend 1 grit point while shooting a crossbow and attempt to pin down its target with the bolt. If the crossbow attack hits, it pins the target to a nearby object, to a wall, or to the ground, entangling and staggering the target. While pinned by the bolt, the target cannot move out of its space until it takes a standard action to free itself from the pinning bolt, except by means of teleportation. This deed replaces menacing shot."
+        },
+        {
+          "level": 5,
+          "name": "Crossbow Training",
+          "description": "Starting at 5th level, a bolt ace can select one specific type of crossbow, such as hand crossbow or heavy crossbow. She gains a bonus on damage rolls equal to her Dexterity modifier with that crossbow. Furthermore, when she scores a critical hit with that type of crossbow, her critical modifier increases by 1 (a  2 becomes a  3, for example)."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:gunslinger:buccaneer",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Buccaneer",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger Buccaneer",
+      "replaces_features": [
+        "dead-shot-deed",
+        "grit",
+        "gun-training-1",
+        "lightning-reload-deed",
+        "nimble",
+        "pistol-whip-deed",
+        "quick-clear-deed"
+      ],
+      "removed_features": [
+        "dead-shot-deed",
+        "grit",
+        "gun-training-1",
+        "lightning-reload-deed",
+        "nimble",
+        "pistol-whip-deed",
+        "quick-clear-deed"
+      ],
+      "removed_feature_clauses": [
+        "quick clear deed",
+        "pistol whip deed",
+        "dead shot deed",
+        "lightning reload deed",
+        "nimble ability",
+        "gun training 1",
+        "gun training 2",
+        "gun training 4"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Buccaneer",
+          "description": "Source Advanced Race Guide pg. 73"
+        },
+        {
+          "level": 1,
+          "name": "Deeds",
+          "description": "A buccaneer swaps four of the normal gunslinger deeds for the following deeds."
+        },
+        {
+          "level": 1,
+          "name": "Seadog’s Gait",
+          "description": "At 1st level, the buccaneer gains Sea Legs as a bonus feat. If she spends 1 grit point, she can ignore difficult terrain until the end of her turn. This replaces the quick clear deed."
+        },
+        {
+          "level": 3,
+          "name": "Pirate’s Jargon",
+          "description": "At 3rd level, the buccaneer’s baffling palaver of nautical jargon and piratical cant provides a +2 bonus on Bluff and Intimidate checks. Furthermore, she can spend a swift action and 1 grit point to cause a single living creature within 30 feet to make a Will saving throw (DC = 10 + 1/2 her buccaneer level + her Charisma modifier) or become confused for 1 round. This is a mind-affecting language-dependent effect. This replaces the pistol whip deed."
+        },
+        {
+          "level": 7,
+          "name": "Rope Swing",
+          "description": "At 7th level, as long as the buccaneer has at least 1 grit point, she gains a bonus on Acrobatics and Climb checks equal to her gunslinger level when climbing or swinging on a rope. If she spends 1 grit point, her move while climbing or swinging on a rope does not provoke attacks of opportunity. This replaces the dead shot deed."
+        },
+        {
+          "level": 11,
+          "name": "Captain’s Curse",
+          "description": "At 11th level, a buccaneer can spend 2 grit points to use old salt’s curse as a spell-like ability. At 15th level, she may use black mark instead. The caster level for these spell-like abilities is equal to the buccaneer’s class level, and the save DC is equal to 10 + her buccaneer level + her Charisma modifier. This replaces the lightning reload deed."
+        },
+        {
+          "level": 1,
+          "name": "Grit",
+          "description": "Like the sea itself, a buccaneer is a force of nature. Instead of using her Wisdom modifier to determine the number of grit points she gains at the start of each day, she uses her Charisma modifier. This ability works in all other ways like the gunslinger’s grit class feature."
+        },
+        {
+          "level": 2,
+          "name": "Liquid Courage",
+          "description": "At 2nd level, a buccaneer gains the ability to fortify her grit with strong drink. The act of drinking is a standard action that provokes attacks of opportunity, and each drink provides 1 grog point. Grog points can be used in place of grit points to fuel deeds or grit feats (including those requiring a minimum of 1 grit point to use). The buccaneer can gain a maximum number of grog points each day equal to her Constitution modifier (minimum 1), and they last for 1 hour or until used, whichever comes first. She gains a morale bonus on saves against fear and a dodge bonus to AC against attacks of opportunity equal to her current grog point total. This ability replaces the nimble ability."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Feat",
+          "description": "In addition to combat and grit feats, a buccaneer can select from the following feats as her bonus feats: Expert Driver (water vehicles only), Master Siege Engineer, Siege Engineer, Siege Gunner, Skilled Driver (water vehicles only)."
+        },
+        {
+          "level": 5,
+          "name": "Exotic Pet",
+          "description": "At 5th level, a buccaneer gains a familiar as a wizard of half the buccaneer’s class level (though the exotic pet never gains the ability to deliver touch spells or share spells). This pet is typically a monkey or parrot (use the stats for a raven familiar). Such animals are useful scouts, even in the thick of combat. As long as the pet is within 30 feet of the buccaneer, the buccaneer also gains the benefit of evasion. This ability replaces gun training 1."
+        },
+        {
+          "level": 9,
+          "name": "Sword and Pistol",
+          "description": "At 9th level, a buccaneer gains Sword and Pistol as a bonus feat even if she does not meet the prerequisites. This ability replaces gun training 2."
+        },
+        {
+          "level": 13,
+          "name": "Gun Training",
+          "description": "A buccaneer gains this ability only at 13th level with a single type of firearm."
+        },
+        {
+          "level": 17,
+          "name": "Raider’s Riposte",
+          "description": "At 17th level, whenever an enemy misses a buccaneer with an attack of opportunity, it provokes an attack of opportunity from the buccaneer. This ability replaces gun training 4."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:gunslinger:bushwhacker",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Bushwhacker",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger Bushwhacker",
+      "replaces_features": [
+        "bonus-feats",
+        "grit",
+        "targeting-deed",
+        "utility-shot-deed"
+      ],
+      "removed_features": [
+        "bonus-feats",
+        "grit",
+        "targeting-deed",
+        "utility-shot-deed"
+      ],
+      "removed_feature_clauses": [
+        "bonus feats the gunslinger gains at 4th",
+        "8th",
+        "12th",
+        "16th",
+        "and 20th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Bushwhacker",
+          "description": "Source Advanced Race Guide pg. 134"
+        },
+        {
+          "level": 1,
+          "name": "Trembling Grit",
+          "description": "At 1st level, at the start of each day, a bushwhacker gains grit points equal to her Wisdom modifier – 1 (minimum of 1). In addition to all the ways any gunslinger can regain grit, a bushwhacker who reduces a helpless or unaware opponent to 0 hit points or fewer also regains 1 grit point. This expands the way in which the bushwhacker gains grit points, so a bushwhacker who gains grit points in this way only gains 1 grit point for reducing a helpless or unaware opponent, not 2 grit points. This otherwise works like the gunslinger’s grit ability and alters that ability."
+        },
+        {
+          "level": 1,
+          "name": "Craven Deeds",
+          "description": "A bushwhacker replaces some of her deeds with the following deeds. This ability otherwise works like the gunslinger’s deed ability and alters that ability."
+        },
+        {
+          "level": 3,
+          "name": "Shifty Shot",
+          "description": "At 3rd level, a bushwhacker with at least 1 grit point deals 1d6 points of extra damage when using her firearm to attack opponents denied their Dexterity bonus to AC (whether the target actually has a Dexterity bonus or not). Except for the requirement that she must use a firearm and must have at least 1 grit point to use it, this deed otherwise works identically to a rogue’s sneak attack class feature (including the requirement that she must be within 30 feet of her target to deal this extra damage), and stacks with the sneak shot ability (see below) and sneak attack. This deed replaces the utility shot deed."
+        },
+        {
+          "level": 7,
+          "name": "Long Range Shifty Shot",
+          "description": "At 7th level, a bushwhacker can double the range at which she deals extra damage from a sneak attack or shifty shot (from 30 feet to 60 feet) with a firearm by spending 1 grit point. When she spends this grit point, she must still have at least 1 grit point left to deal extra damage from shifty shot if she is using this deed. This deed replaces the targeting deed."
+        },
+        {
+          "level": 4,
+          "name": "Sneak Shot",
+          "description": "At 4th level and every four levels thereafter, a bushwhacker deals 1d6 points of extra damage when using a firearm to attack opponents who are unable to properly defend themselves. Unlike with the shifty shot ability, she deals this extra damage regardless of whether or not she has any grit points when making the attack. Except for the requirement that she makes a firearm attack, this works identically to a rogue’s sneak attack class feature. This extra damage stacks with sneak attack and the damage from shifty shot. This ability replaces the bonus feats the gunslinger gains at 4th, 8th, 12th, 16th, and 20th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:gunslinger:clockstopper",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Clockstopper",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/clockstopper",
+      "replaces_features": [
+        "armor-proficiencies",
+        "dead-shot",
+        "grit",
+        "gunslinger-initiative",
+        "gunslingers-dodge",
+        "gunslingers-normal-weapon",
+        "lightning-reload-deeds",
+        "pistol-whip-deed",
+        "slingers-luck-deed",
+        "startling-shot-deed",
+        "true-grit"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "gunslinger’s dodge",
+        "gunslinger initiative",
+        "dead shot",
+        "lightning reload deeds",
+        "grit",
+        "pistol-whip deed",
+        "startling shot deed",
+        "slinger’s luck deed",
+        "true grit"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "The clockstopper is proficient with simple weapons and the type of firearm she chooses with the gunsmith class feature (blunderbuss, musket, or pistol), as well as light armor. In addition, if this is her first level in any class, she may select a martial tradition of her choice.\n\nThis alters the gunslinger’s normal weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "The clockstopper gains a talent at 1st level, 2nd level, and every even level thereafter. This talent may be spent on either magic talents or combat talents. The clockstopper is considered a Low-Caster. This counts as the casting class feature. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the gunslinger’s dodge, gunslinger initiative, dead shot, and lightning reload deeds."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "At 1st level, the clockstopper gains a small reservoir of magical energy she can use to create truly wondrous effects, called a spell pool. This pool contains a number of points equal to her level + her casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest. The clockstopper may spend spell points as though they were grit points when using any of her deeds. For the purpose of feat prerequisites, the clockstopper satisfies the prerequisites as if she were a grit or panache user.\n\nThis replaces grit."
+        },
+        {
+          "level": 1,
+          "name": "Time Magic",
+          "description": "The clockstopper gains the Time sphere as a bonus talent at 1st level."
+        },
+        {
+          "level": 1,
+          "name": "Deeds",
+          "description": "A clockstopper swaps some deeds for the following."
+        },
+        {
+          "level": 3,
+          "name": "Fast-Time Reload",
+          "description": "Starting at 3rd level, as long as the clockstopper is under the effects of a haste spell or alter time effect, she may reload a one-handed firearm as a free action or a two-handed firearm as a swift action. This replaces the pistol-whip deed."
+        },
+        {
+          "level": 7,
+          "name": "Leaping Shot",
+          "description": "Starting at 7th level, the clockstopper gains Leaping Shot Deed as a bonus feat, even if she would not normally qualify for it. If the clockstopper already has the Leaping Shot Deed feat, she can immediately swap it for another feat for which she qualifies. This replaces the startling shot deed."
+        },
+        {
+          "level": 15,
+          "name": "Rewind",
+          "description": "At 15th level, the clockstopper gains the Second Chance talent from the Time sphere as a bonus talent. In addition, whenever the clockstopper uses an alter time effect on herself, she may choose to have the duration automatically doubled; if the effect normally requires concentration, it instead lasts for a number of rounds equal to the clockstopper’s caster level. These increases only affect the clockstopper if the effect would normally affect multiple targets (such as when using the Mass Time talent).\n\nThis replaces the slinger’s luck deed."
+        },
+        {
+          "level": 20,
+          "name": "Slow-Time",
+          "description": "Upon reaching 20th level, whenever the clockstopper is under the effects of an active Haste or haste, she gains a +4 circumstance bonus to attack rolls, damage rolls, and saving throws in addition to the ability’s normal effects. The clockstopper also gains these benefits on attacks made against enemies under the effects of Slow or slow, and to saving throws against spells and abilities created by such enemies.\n\nThis replaces true grit. All gunslingers need speed. That’s a simple fact. But there are some that find the more mundane methods of getting faster to be insufficient, and instead turn to the arcane arts to improve their odds. Those who focus on magic that bends time are commonly called clockstoppers. The term is used as a derogatory term by those spellcasters who considered these warriors to be amateurs at best and arrogant upstarts at worst. Most clockstoppers don’t care however, stating that their meager mastery of magic is more than enough to finish the job when combined with their mastery of firearms."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:gunslinger:commando",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Commando",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger Commando",
+      "replaces_features": [
+        "bonus-feat",
+        "class-skills",
+        "expert-loading",
+        "gun-training",
+        "lightning-reload",
+        "slinger-s-luck",
+        "utility-shot"
+      ],
+      "removed_features": [
+        "bonus-feat",
+        "class-skills",
+        "expert-loading",
+        "gun-training",
+        "lightning-reload",
+        "slinger-s-luck",
+        "utility-shot"
+      ],
+      "removed_feature_clauses": [
+        "nimble",
+        "bonus feat gained at 4th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Commando",
+          "description": "Source Ultimate Wilderness pg. 91"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A commando gains Knowledge (geography), Knowledge (nature), and Stealth as class skills instead of Knowledge (engineering), Knowledge (local), and Sleight of Hand.\n\nThis alters the gunslinger’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Deeds",
+          "description": "A commando gains the following deeds; each of these deeds replaces an existing deed."
+        },
+        {
+          "level": 3,
+          "name": "Trap Shot",
+          "description": "At 3rd level, the commando can spend 1 point of grit and target a 5-foot square with her firearm. If she succeeds at an attack against an AC of 10, she triggers a single trap within that 5-foot square, even if she is unaware of the trap. If there are multiple traps within the same 5-foot square, the commando must declare which trap she is triggering; otherwise it is determined randomly. If a creature is occupying the same square as the triggered trap, the trap affects the creature as if it had triggered the trap."
+        },
+        {
+          "level": 11,
+          "name": "Sniping Shot",
+          "description": "At 11th level, the commando can spend 1 point of grit as a swift action to negate the –20 penalty on Stealth checks when sniping until the start of her next turn."
+        },
+        {
+          "level": 11,
+          "name": "Camouflage",
+          "description": "At 11th level, as long as the commando has 1 point of grit, she gains the camouflage ranger class feature."
+        },
+        {
+          "level": 15,
+          "name": "Hide in Plain Sight",
+          "description": "At 15th level, as long as the commando has 1 point of grit, she gains the hide in plain sight ranger class feature."
+        },
+        {
+          "level": 2,
+          "name": "Favored Terrain",
+          "description": "At 2nd level, a commando gains the favored terrain ranger class feature. At 6th level and every 4 levels thereafter, the commando can pick an additional favored terrain.\n\nThis replaces nimble."
+        },
+        {
+          "level": 4,
+          "name": "Track",
+          "description": "At 4th level, a commando adds half her level on Survival checks to follow tracks. This replaces the bonus feat gained at 4th level."
+        },
+        {
+          "level": 5,
+          "name": "Trapsmith",
+          "description": "At 5th level, a commando can learn how to create one ranger trap in place of gaining the next level of gun training. A commando can use a known trap a number of times per day equal to her Wisdom bonus (minimum 1). The DC for a commando’s trap is equal to 10 + half her commando level + her Wisdom bonus, and it lasts 1 day per 2 levels she has. A commando can set only extraordinary ranger traps with this ability; as with extraordinary ranger traps, the trap DC for these traps has a –2 penalty.\n\nThis alters gun training."
+        }
+      ],
+      "detected_systems": [
+        "favored_terrain"
+      ]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:gunslinger:cursed-stranger",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Cursed Stranger",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/cursed-stranger",
+      "replaces_features": [
+        "expert-loading-deed",
+        "grit",
+        "gunslinger-initiative-deed",
+        "gunsmith",
+        "quick-clear-deed"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "quick clear deed",
+        "gunslinger initiative deed",
+        "expert loading deed"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Jinxed Hands",
+          "description": "As a subject of a powerful curse, a cursed stranger must learn to feed off of misfortune and shift the worst effects of the affliction to her foes. At 1st level, any firearm the cursed stranger holds gains the broken condition, and cannot be fixed by any means while she continues to hold it (even a Creation sphere Repair ability). As long as she has at least 1 point of grit remaining, a misfire does not automatically count as a miss (though a natural 1 does, as normal), and her firearms never explode on a misfire. Any time she misfires a weapon, she regains a point of grit, but misfiring while attacking a helpless creature, a creature that has fewer Hit Dice than half the cursed stranger’s character level, or against any target other than a creature (into the air, at an inanimate object, etc.) does not restore grit. She does not regain grit for confirming a critical hit with a firearm.\n\nThis alters the grit and gunsmith class features."
+        },
+        {
+          "level": 1,
+          "name": "Deeds",
+          "description": "A cursed stranger swaps some deeds for the following."
+        },
+        {
+          "level": 1,
+          "name": "Cursed Bullets (Su) [curse]",
+          "description": "Whenever the cursed stranger makes an attack with a firearm, she may spend a point of grit to infuse the attack with a portion of the malignant curse that affects her. Whenever the cursed stranger strikes a target with a cursed bullet, the target must succeed at a Fortitude save (DC 10 + 1/2 her cursed stranger level + her modifier used for her grit pool) or suffer a -2 penalty to attack rolls, damage rolls, saves, ability checks, and skill checks for 1 minute. This is a curse effect and cannot be removed early except with the Break Enchantment Life talent (or similar effects), upon the cursed stranger’s death, or by her choice as a free action. Penalties from multiple cursed bullets do not stack.\n\nThis replaces the quick clear deed."
+        },
+        {
+          "level": 3,
+          "name": "Cursed Grave",
+          "description": "At 3rd level, whenever a creature suffering from a cursed bullet is killed or the attack made with a cursed bullet kills the target, the cursed stranger can spend a point of grit as an immediate action to reanimate it (as the Death sphere ability), using the cursed stranger’s class level as her caster level and the modifier used for her grit pool as her casting ability modifier.\n\nThis replaces the gunslinger initiative deed."
+        },
+        {
+          "level": 11,
+          "name": "Cursed Bullets, Improved",
+          "description": "At 11th level, the penalty inflicted by the cursed stranger’s cursed bullets doubles to -4.\n\nThis replaces the expert loading deed."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Feats",
+          "description": "The cursed stranger can choose and gain any Death sphere talent that augments reanimate as a bonus feat, in addition to combat feats and grit feats."
+        },
+        {
+          "level": 1,
+          "name": "The Necromancer's Handbook",
+          "description": "Curses are truly terrible things, and even those who somehow manage to rid themselves of such unnatural afflictions are sometimes the worse off for it. Cursed strangers are gunslingers who are afflicted by a powerful curse, but are able to suppress it within themselves. These methods are not entirely perfect, and the curse still “leaks out” in small ways - bringing woe and ruin to all who are struck by their cursed bullets."
+        },
+        {
+          "level": 1,
+          "name": "Cursed Bullets",
+          "description": "Whenever the cursed stranger makes an attack with a firearm, she may spend a point of grit to infuse the attack with a portion of the malignant curse that affects her. Whenever the cursed stranger strikes a target with a cursed bullet, the target must pass a Fortitude save (DC 10 + 1/2 the cursed stranger’s class level + her Wisdom modifier) or suffer a -2 penalty to attack rolls, damage rolls, saves, ability checks, and skill checks for 1 minute. This is a curse effect and cannot be removed early except with the Break Enchantment Life talent (or similar effects), upon the cursed stranger’s death, or by her choice as a free action. Penalties from multiple cursed bullets do not stack. This replaces the quick clear deed."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:gunslinger:experimental-gunsmith",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Experimental Gunsmith",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger Experimental Gunsmith",
+      "replaces_features": [
+        "gun-training",
+        "gunsmith",
+        "gunsmithing"
+      ],
+      "removed_features": [
+        "gun-training",
+        "gunsmith",
+        "gunsmithing"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Experimental Gunsmith",
+          "description": "Source Advanced Race Guide pg. 34"
+        },
+        {
+          "level": 1,
+          "name": "Experimental Firearm",
+          "description": "At 1st level, an experimental gunsmith begins play with an experimental firearm. This acts as the gunslinger’s gunsmith ability, but the firearm the experimental gunsmith begins with has one innovation (see below). Further, the experimental gunsmith is treated as having the Gunsmithing feat, but only in regard to his beginning firearm (or the construction of a replacement firearm of the same design, if the original is lost). This ability otherwise works like the standard gunslinger’s gunsmith and Gunsmithing abilities and replaces those abilities."
+        },
+        {
+          "level": 1,
+          "name": "Innovations",
+          "description": "An experimental gunsmith starts play with one innovation she can make to her experimental firearms, selected from the list below. This innovation is a radical change to the typical design of a firearm, and comes with both additional benefits and noteworthy drawbacks. The experimental gunsmith can maintain only one experimental firearm modified with one or more innovations, as it requires constant adjustments and much of her time is spent maintaining the weapon. If the experimental gunsmith takes the Gunsmithing feat, she can create other firearms using a single innovation she knows (or add one innovation to an existing firearm), though such weapons become unreliable over time. The misfire value of such weapons increases by 1 for each week after its creation, although the experimental gunsmith can return the misfire rate to normal by spending 1 day maintaining the weapon and spending 50 gp in raw materials. For the purposes of crafting such firearms, each innovation is treated as the masterwork weapon quality (with a value of 300 gp)."
+        },
+        {
+          "level": 1,
+          "name": "Expanded Capacity",
+          "description": "The experimental gunsmith increases her firearm’s capacity by one (generally by adding another barrel, depending on the weapon’s design). She also increases its weight by 50%. Because of the complexity of increasing its capacity, her weapon is more prone to misfire, and its misfire value increases by 1 (this is in addition to any misfire increase if the weapon is made with the Gunsmithing feat)."
+        },
+        {
+          "level": 1,
+          "name": "Expanded Chamber",
+          "description": "The experimental gunsmith’s firearm has a much larger than normal chamber for black powder, allowing her to use 2 doses of powder with each shot. The weapon grants a +1 circumstance bonus on damage rolls. However, when the weapon misfires, it causes a flashburn. This is the same as the weapon exploding (dealing damage from a corner of the experimental gunsmith’s square), except the weapon is not automatically destroyed. If a broken weapon misfires, it is destroyed as normal."
+        },
+        {
+          "level": 1,
+          "name": "Grapple Launcher",
+          "description": "The experimental gunsmith’s firearm includes a special set of rails that allows her to slide a grappling hook over the barrel and fire it as a full-round action. The grappling hook anchors into anything she successfully hits with an attack roll, and the DC of the Strength check required to pull the grappling hook loose is equal to her attack roll to lodge it in place. A Disable Device check can remove it with a +5 bonus on the check, and a creature struck by the hook can escape it with a combat maneuver check or Escape Artist check with a +5 bonus on the check. The firearm is powerful enough to fire a hook trailing up to 100 feet of rope, but throws off the balance of the experimental gunsmith’s firearm, reducing its range increment by 50%."
+        },
+        {
+          "level": 1,
+          "name": "Recoilless",
+          "description": "The experimental gunsmith’s firearm includes a series of gears, springs, and pistons designed to reduce its recoil and thus improve accuracy. The range increment of the weapon increases by 10 feet. However, the system is fragile, and easily damaged. Anytime the weapon misfires, this system becomes broken and does not function until the experimental gunsmith spends 1 hour repairing it."
+        },
+        {
+          "level": 1,
+          "name": "Vial Launcher",
+          "description": "The experimental gunsmith adds a special tube onto her firearm that can hold 1 vial of alchemical material, such as alchemist’s fire, a tanglefoot bag, or a thunderstone. A special trigger allows her to channel the force of black powder into this tube to launch the vial as a ranged attack with half the range increment of her firearm. The experimental gunsmith can take this action in place of any single ranged attack, and may use the same attack bonus that she can apply to the firearm. If the alchemical substance has a save DC, it becomes 10 + 1/2 her experimental gunsmith level + her Wisdom modifier when she launches the vial from her firearm. This increase only applies to the initial saving throw. If additional saving throws are called for, they are resolved as normal. Reloading the tube is a time-consuming process and requires two full-round actions. If the weapon misfires while loaded with an alchemical substance, it detonates with the experimental gunsmith (and the firearm) as the target."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:gunslinger:firebrand",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Firebrand",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger Firebrand",
+      "replaces_features": [
+        "bonus-feats",
+        "dead-shot",
+        "deadeye",
+        "grit",
+        "gun-training",
+        "gunsmith"
+      ],
+      "removed_features": [
+        "bonus-feats",
+        "dead-shot",
+        "deadeye",
+        "grit",
+        "gun-training",
+        "gunsmith"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Firebrand",
+          "description": "Source Elemental Master's Handbook pg. 4"
+        },
+        {
+          "level": 1,
+          "name": "Gunsmith",
+          "description": "At 1st level, a firebrand gains a dragon pistol (Pathfinder RPG Ultimate Equipment 45) as her battered firearm."
+        },
+        {
+          "level": 1,
+          "name": "Wild Card",
+          "description": "A firebrand uses her Charisma instead of Wisdom to determine the number of grit points she gains at the start of each day and to determine the DCs of her gunslinger deeds. A firebrand treats direct hits with her bombs as firearm attacks for the purpose of regaining grit (see the bombs ability on page 5). This ability works in all other ways like the gunslinger’s grit class feature. This ability alters grit."
+        },
+        {
+          "level": 1,
+          "name": "Deeds",
+          "description": "A firebrand gains the following deeds."
+        },
+        {
+          "level": 1,
+          "name": "Dragon Fire",
+          "description": "A firebrand is a master of the volatile substance known as dragon’s breath. At 1st level, as a swift action, the firebrand can spend 1 grit point to add her Charisma modifier to the DCs of all dragon’s breath cartridges (Ultimate Equipment 42) she fires until the end of her turn. Her attacks with dragon’s breath cartridges misfire only if a 1 is rolled on two or more of the damage dice."
+        },
+        {
+          "level": 7,
+          "name": "Big Boom!",
+          "description": "At 7th level, a firebrand can channel her explosive potential into a mighty blast. As a standard action, the firebrand shoots a 30-foot cone of fire from the barrel of her gun. The firebrand designates one creature in the squares affected by the cone to be the target and makes an attack roll with her firearm against that creature; on a hit, the target takes damage as if it were directly hit by both the firebrand’s firearm and her bomb. Creatures in all other squares in the cone (as well as the target’s square, if the gunslinger’s attack missed) take splash damage as if they were in the area of the firebrand’s bomb, with a Reflex saving throw for half damage. (The DC of this saving throw is equal to 10 + half the firebrand’s gunslinger level + the firebrand’s Charisma modifier.) Using this deed costs 2 grit points and expends one of the firebrand’s daily uses of bombs (see the bombs ability on page 5), as well as the appropriate ammunition for the firearm attack; ammunition that does not require an attack roll cannot be used this way."
+        },
+        {
+          "level": 4,
+          "name": "Scorched Earth",
+          "description": "The firebrand knows how to make dragon’s breath burn white-hot. At 4th level and every 4 levels thereafter, the fire damage of the first dragon’s breath cartridge fired by the firebrand each round increases by 1d6 (to a maximum total of 7d6 at 20th level)."
+        },
+        {
+          "level": 5,
+          "name": "Bombs",
+          "description": "At 5th level, the firebrand gains the bombs ability as an alchemist of her gunslinger level – 4, using her Charisma modifier in place of her Intelligence modifier to determine her number of bombs per day and the DC to avoid splash damage. The firebrand adds her Charisma modifier to her bombs’ damage instead of her Intelligence modifier, even if she has the throw anything class feature. In addition, the firebrand’s bombs are always under the effect of the explosive bombs discovery. Firebrand levels do not stack with levels in other classes with the bombs class feature."
+        }
+      ],
+      "detected_systems": [
+        "grit_panache_luck",
+        "bombs"
+      ]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:gunslinger:game-hunter",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Game Hunter",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/game-hunter",
+      "replaces_features": [
+        "armor-proficiencies",
+        "bleeding-wound",
+        "bonus-feat-at-level",
+        "bonus-feats-at",
+        "dead-shot",
+        "gunslingers-dodge-deed",
+        "gunslingers-normal-class-skills",
+        "level",
+        "menacing-shot-deeds",
+        "slingers-luck-deed",
+        "targeting-deed",
+        "utility-shot",
+        "weapon"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "gunslinger’s normal class skills",
+        "dead shot",
+        "bleeding wound",
+        "menacing shot deeds",
+        "gunslinger’s dodge deed",
+        "utility shot",
+        "the bonus feat gained at 8th level",
+        "targeting deed",
+        "slinger’s luck deed",
+        "bonus feat gained at 4th level",
+        "bonus feats gained at 12th and 20th level",
+        "bonus feat gained at 16th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Trade Tradition",
+          "description": "If this is this character’s first level in any class, the game hunter may select a trade tradition of their choice, and have a competent trade rank.\n\nThis replaces the gunslinger’s normal class skills."
+        },
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Game hunters are proficient with simple weapons, all firearms, and light armor. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis modifies weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Hunter",
+          "description": "At 1st level, the game hunter gains the Survivalism sphere as a bonus skill sphere, but must choose the (harvest) package."
+        },
+        {
+          "level": 2,
+          "name": "Blended Training",
+          "description": "A game hunter gains a combat or skill talent at 2nd level and every even level thereafter, and a utility talent that can be spent on a combat or skill talent at 1st level and every odd level thereafter. A game hunter uses his operative modifier as his practitioner modifier; game hunters that use an ability modifier other than Wisdom to determine their grit pool instead use that ability modifier.\n\nThis replaces the dead shot, bleeding wound, and menacing shot deeds."
+        },
+        {
+          "level": 1,
+          "name": "Hunter’s Deeds",
+          "description": "The game hunter is a deadly stalker of her prey, ensuring that they do not get away and if they do, they do not get far. The game hunter gains different deeds than a normal gunslinger, as listed below:"
+        },
+        {
+          "level": 1,
+          "name": "In My Sights",
+          "description": "At 1st level, as long as the game hunter has at least 1 grit point, he gains the benefits of the Covering Fire Sniper sphere talent (even if he does not possess the base sphere); if he already possesses the Covering Fire talent, he can use the talent as a move action, or as a swift action by expending martial focus.\n\nThis replaces the gunslinger’s dodge deed."
+        },
+        {
+          "level": 3,
+          "name": "Close the Distance",
+          "description": "At 3rd level, whenever the game hunter would make an attack of opportunity with a firearm that is provoked by an enemy’s movement, he can instead expend an attack of opportunity and 1 grit point to move up to his speed (after the provoking creature completes their movement). The game hunter must end this movement so that the provoking creature is within his threatened area, or as close as possible if he is unable to reach the creature. This movement does not provoke attacks of opportunity from the provoking creature, and may only be used against an individual creature once per round. At 8th level, the game hunter can still make their attack of opportunity against the provoking creature before choosing to use this deed.\n\nThis replaces utility shot and the bonus feat gained at 8th level."
+        },
+        {
+          "level": 7,
+          "name": "Hemorrhaging Shot",
+          "description": "At 7th level, whenever the game hunter successfully damages a living creature with a firearm, she can spend 1 grit point as a free action usable outside of her turn to have the creature suffer an amount of bleed damage equal to her gunslinger level, and have their movement speed reduced by half its base speed (minimum 0 feet) for a number of rounds equal to her operative modifier. A successful Reflex save halves the bleed damage and reduces the duration of the speed penalty to 1 round. Additionally, for 1 hour after the creature stops bleeding, the DC required to track the creature reduces by 5.\n\nThis replaces the targeting deed."
+        },
+        {
+          "level": 15,
+          "name": "Wildlurker",
+          "description": "At 15th level, as long as the game hunter has 1 point of grit, she can use the Stealth skill even while being observed, and gains greensight for up to 60 feet, allowing her to see through thick plant matter as though it were transparent.\n\nThis replaces the slinger’s luck deed."
+        },
+        {
+          "level": 4,
+          "name": "Big Game Hunter",
+          "description": "At 4th level, the game hunter gains the Survivalism sphere Souvenir talent as a bonus talent. When the game hunter wears a souvenir talisman, she gains the favored enemy class feature against the component’s associated creature type, treating her gunslinger level as her ranger level for determining its effects.\n\nThis replaces the bonus feat gained at 4th level."
+        },
+        {
+          "level": 12,
+          "name": "Quarry",
+          "description": "At 12th level, the game hunter can spend a standard action to choose a creature she can see as her quarry. Whenever she is following the tracks of her quarry, the game hunter can take 10 on her Survival checks while moving at normal speed (without penalty). In addition, she receives a +2 insight bonus to attack rolls made against her quarry, and all critical threats are automatically confirmed. The game hunter can have no more than one quarry at a time, and the creature’s type must be the associated creature type of a talisman she is wearing. She can dismiss this quarry as a free action, but she cannot select a new quarry for 24 hours; or 1 hour if the game hunter sees proof that her quarry is dead. At 20th level, as long as she has a quarry, she only needs to sleep 1 hour per day to gain the benefits of 8 hours of sleep, and does not need to eat or drink to survive, nor does she suffer the penalties for dehydration or starvation. Additionally, she can take 20 while using Survival to track her quarry, and her insight bonus to attack her quarry increases to +4.\n\nThis replaces the bonus feats gained at 12th and 20th level."
+        },
+        {
+          "level": 16,
+          "name": "Deadly Hunter",
+          "description": "At 16th level, as long as the game hunter is wearing a souvenir talisman, she increases her critical threat range of all firearm attacks made against creature’s of the component’s associated creature type as being 1 higher; this bonus is applied after all other types.\n\nThis replaces the bonus feat gained at 16th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:gunslinger:glass-eye-gunmage",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Glass-Eye Gunmage",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/glass-eye-gunmage",
+      "replaces_features": [
+        "any-one-deed-at-level",
+        "gunslingers-bonus-feats",
+        "skills"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "any one deed gained at 1st level",
+        "any one deed gained at 3rd level",
+        "gunslinger’s bonus feats"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Skills",
+          "description": "A glass-eye gunmage adds Knowledge (arcana) (Int) and Spellcraft (Int) to her list of class skills and removes Knowledge (local) (Int) and Sleight of Hand (Dex) from her list of class skills.\n\nThis alters skills."
+        },
+        {
+          "level": 1,
+          "name": "Deeds",
+          "description": "A glass-eye gunmage swaps some deeds for the following. She may choose to swap out any deed she would normally gain from her class at the same level, as specified in the new deed descriptions."
+        },
+        {
+          "level": 1,
+          "name": "Lens Array",
+          "description": "At 1st level the glass-eye gunmage uses her magic to become more perceptive, enhancing her vision with magic lenses. As long as the glass-eye gunmage has at least 1 grit she gains a +2 bonus to Perception checks. In addition, the glass-eye gunmage can spend 1 grit point as an immediate action to reroll a Perception check. She must choose to reroll before the result of the original roll is known, and must take the result of the reroll even if it is worse than the original roll.\n\nThis replaces any one deed gained at 1st level."
+        },
+        {
+          "level": 3,
+          "name": "Constant Vigilance",
+          "description": "At 3rd level, the glass-eye gunmage is never caught off guard. As long as she has at least 1 grit, she ignores penalties to Perception checks for being distracted or asleep. In addition, she can spend 1 grit point at the beginning of a battle (even during a surprise round) to not be treated as flat-footed before she has had a chance to act.\n\nThis replaces any one deed gained at 3rd level."
+        },
+        {
+          "level": 4,
+          "name": "Lens Prodigy",
+          "description": "At 4th level and every four levels thereafter, the glass-eye gunmage gains a single (lens) talent of her choice from the Light sphere. For the purposes of this talent her glass-eye gunmage levels are treated as casting class levels when determining MSB and MSD. She is treated as having a caster level equal to her glass-eye gunmage level and uses the ability that determines her grit points for her casting ability modifier. This stacks normally with caster levels gained from other sources. If a specific use of this talent would require one or more spell points, she may spend an equal number of grit points instead. This ability replaces the gunslinger’s bonus feats."
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A glass-eye gunmage adds Knowledge (arcana) and Spellcraft to his list of class skills and removes Knowledge (local) and Sleight of Hand from his list of class skills."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:gunslinger:graveslinger",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Graveslinger",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger Graveslinger",
+      "replaces_features": [
+        "bleeding-wound",
+        "bonus-feat",
+        "deadeye",
+        "menacing-shot",
+        "startling-shot"
+      ],
+      "removed_features": [
+        "bleeding-wound",
+        "bonus-feat",
+        "deadeye",
+        "menacing-shot",
+        "startling-shot"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Graveslinger",
+          "description": "Source Pathfinder #139: The Dead Road pg. 65"
+        },
+        {
+          "level": 1,
+          "name": "Deeds",
+          "description": "A graveslinger gains the following deeds."
+        },
+        {
+          "level": 1,
+          "name": "Ghostbane Shot",
+          "description": "At 1st level, once per day by spending 10 minutes to combine mundane ammunition with a mixture of grave dirt and powdered bone, the graveslinger can prepare a number of special bullets equal to her graveslinger level plus her Wisdom modifier (minimum 1). When attacking incorporeal undead, these bullets are treated as if they had the ghost touch special ability. These bullets function only for the graveslinger, and if not fired within 24 hours, the bullets become inert, losing their ghost touch special ability."
+        },
+        {
+          "level": 7,
+          "name": "Ectoplasmic Anchor",
+          "description": "At 7th level, an incorporeal undead creature hit by one of the graveslinger's ghostbane shots becomes infused with ectoplasm, interfering with its defenses and mobility. The creature must succeed at a Will save (DC = 10 + half the graveslinger's level + the graveslinger's Wisdom modifier) or become semicorporeal for 1 round. A semicorporeal creature takes half damage (50%) from nonmagical attack forms, and it takes full damage from magic weapons, spells, spell-like effects, and supernatural effects. During this time, it cannot enter or pass through solid objects."
+        },
+        {
+          "level": 11,
+          "name": "Undead Hunter",
+          "description": "At 11th level, the graveslinger's ghostbane shots are treated as if they also had the undead bane special ability."
+        },
+        {
+          "level": 15,
+          "name": "Staggering Shot",
+          "description": "At 15th level, when a graveslinger confirms a critical hit against an undead creature with one of her ghostbane shots, the creature is staggered for 1 round."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:gunslinger:gulch-gunner",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Gulch Gunner",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger Gulch Gunner",
+      "replaces_features": [
+        "class-skills",
+        "deadeye-deed",
+        "grit",
+        "gun-training",
+        "menacing-shot-deed",
+        "pistol-whip-deed"
+      ],
+      "removed_features": [
+        "class-skills",
+        "deadeye-deed",
+        "grit",
+        "gun-training",
+        "menacing-shot-deed",
+        "pistol-whip-deed"
+      ],
+      "removed_feature_clauses": [
+        "ability to regain grit from a critical hit with a firearm",
+        "gun training ability gained at 9th",
+        "13th",
+        "and 17th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Gulch Gunner",
+          "description": "Source Advanced Race Guide pg. 152"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A gulch gunner adds Disable Device, Escape Artist, and Knowledge (dungeoneering) to her list of class skills and removes Knowledge (local), Ride, and Swim from her list of class skills."
+        },
+        {
+          "level": 1,
+          "name": "Grit",
+          "description": "At 1st level, a gulch gunner gains grit as a standard gunslinger. However, the close-combat focus of the gulch gunner results in a slightly different set of circumstances for regaining grit."
+        },
+        {
+          "level": 1,
+          "name": "Daring Adjacent Shot",
+          "description": "The first time each round the gulch gunner makes a ranged firearm attack against an adjacent foe and provokes an attack of opportunity, she regains 1 grit point. Making an adjacent firearm attack against a helpless or unaware creature or on a creature that has fewer Hit Dice than half the gulch gunner’s character level does not restore grit, nor do ranged attacks using some ability that prevents the gulch gunner from provoking an attack of opportunity. This ability replaces the ability to regain grit from a critical hit with a firearm."
+        },
+        {
+          "level": 1,
+          "name": "Deeds",
+          "description": "A gulch gunner has some unique deeds, which replace some of the standard gunslinger deeds as listed in each entry. These deeds follow all the general rules and restrictions of gunslinger deeds."
+        },
+        {
+          "level": 1,
+          "name": "Flash and Shock",
+          "description": "At 1st level, the gulch gunner can take advantage of the flash and sound of a firearm to throw off an attacker’s aim at close range. When she makes an attack against a foe within her firearm’s first range increment, she may spend 1 grit point to gain a +4 circumstance bonus to AC against that opponent until the beginning of her next turn. She can only perform this deed while wearing medium, light, or no armor, and while carrying no more than a light load. This deed replaces the deadeye deed."
+        },
+        {
+          "level": 3,
+          "name": "Powder Burns",
+          "description": "At 3rd level, the gulch gunner learns to maximize the damage dealt by a firearm at extremely close range. When the gulch gunner successfully hits an adjacent foe with a ranged firearm attack, she may spend 1 grit point to deal an additional 1d6 points of fire damage from the muzzle flash of her weapon. The target must also make a Reflex save (DC 10 + 1/2 the gulch gunner’s level + the gulch gunner’s Wisdom modifier) or catch on fire. This deed replaces the pistol whip deed."
+        },
+        {
+          "level": 15,
+          "name": "Staggering Shot",
+          "description": "At 15th level, when the gulch gunner hits an adjacent target with a ranged firearm attack, the target must also make a Fortitude save (DC 10 + 1/2 the gulch gunner’s level + the gulch gunner’s Wisdom modifier) or be staggered for 1d4 rounds. This deed replaces the menacing shot deed."
+        },
+        {
+          "level": 9,
+          "name": "Belly Shot",
+          "description": "At 9th level, a gulch gunner can press her firearm directly against a vulnerable location of an adjacent target, dealing additional damage. When the gulch gunner successfully hits an adjacent target with a ranged firearm attack, she deals +1d6 points of damage. This damage increases to +2d6 at 13th level and to +3d6 at 17th level. Creatures immune to precision damage, critical hits, or sneak attacks do not take this additional damage. This ability replaces the gun training ability gained at 9th, 13th, and 17th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:gunslinger:gun-scavenger",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Gun Scavenger",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger Gun Scavenger",
+      "replaces_features": [
+        "gunsmith",
+        "nimble",
+        "quick-clear-deed",
+        "targeting-deed"
+      ],
+      "removed_features": [
+        "gunsmith",
+        "nimble",
+        "quick-clear-deed",
+        "targeting-deed"
+      ],
+      "removed_feature_clauses": [
+        "nimble"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Gun Scavenger",
+          "description": "Source Inner Sea Combat pg. 38"
+        },
+        {
+          "level": 1,
+          "name": "Gunsmith",
+          "description": "The gun scavenger’s starting weapon is a mishmash of pieces that even other gunpowder enthusiasts fail to comprehend. Anyone other than the gun scavenger treats her starting weapon as broken, even if she uses the Gunsmithing feat (Ultimate Combat 103) to repair it. This ability works in all other ways like the gunslinger’s gunsmith class feature."
+        },
+        {
+          "level": 1,
+          "name": "Go By Feel",
+          "description": "A gun scavenger’s intuitive and unique style leaves her firearms prone to misfire, whether as a result of using too much powder, using imperfectly milled parts, or any number of other minor inconsistencies. When using a firearm, a gun scavenger cannot reduce that firearm’s misfire chance to 0; it can always misfire on a natural 1."
+        },
+        {
+          "level": 1,
+          "name": "Deeds",
+          "description": "A gun scavenger gains the following deeds at the listed level."
+        },
+        {
+          "level": 1,
+          "name": "Change Out",
+          "description": "At 1st level, as a full-round action, a gun scavenger can remove the broken condition from a single firearm she is currently wielding, as long as that condition was gained by a firearm misfire. When she does, she can replace the broken part with a specialized, short-lived component that does one of the following: gives the firearm the scatter weapon quality (Ultimate Combat 137); increases the damage dealt by the pistolwhip deed by one die size; or increases the firearm’s range increment by 10 feet. A firearm with such a modification increases its misfire chance cumulatively by 1 each time it is fired until it misfires. When it does misfire, the effects of the temporary component are lost. A gun scavenger must have at least 1 grit point to perform this deed. Alternatively, if the gun scavenger spends 1 grit point to perform a change out, she can either perform the change out as a standard action instead of a full-round action, or perform the change out on a firearm that isn’t broken. This deed replaces the quick clear deed."
+        },
+        {
+          "level": 7,
+          "name": "Jury-Rig",
+          "description": "At 7th level, as a standard action, a gun scavenger can adjust a firearm she is currently wielding to fire in an unconventional way. She can spend 1 grit point to grant her firearm one of the following magic weapon enhancements for 1 round per gunslinger level: distance, flaming, glameredUE, or thundering. If she spends 2 grit points, she can instead grant the firearm flaming burst or stalkingUE. Multiple uses of this ability don’t stack with themselves. This deed replaces the targeting deed."
+        },
+        {
+          "level": 2,
+          "name": "Arbitrary Aim",
+          "description": "Starting at 2nd level, a gun scavenger’s attacks with firearms are difficult to predict. When shooting a firearm at a creature that has a dodge or insight bonus to its Armor Class, the gun scavenger treats the combined bonus as if it were 1 lower. This value increases by 1 for every 4 levels beyond 2nd level (to a maximum of 5 at 20th level). This ability replaces nimble."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:gunslinger:gun-tank",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Gun Tank",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger Gun Tank",
+      "replaces_features": [
+        "armor-proficiency",
+        "bonus-feats-level",
+        "evasive-deed",
+        "every-4-levels-after",
+        "gunslingers-dodge-deed",
+        "nimble"
+      ],
+      "removed_features": [
+        "armor-proficiency",
+        "bonus-feats-level",
+        "evasive-deed",
+        "every-4-levels-after",
+        "gunslingers-dodge-deed",
+        "nimble"
+      ],
+      "removed_feature_clauses": [
+        "nimble",
+        "bonus feats the gunslinger gains at 4th level",
+        "every four levels thereafter"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Gun Tank",
+          "description": "Source Ultimate Combat pg. 50"
+        },
+        {
+          "level": 1,
+          "name": "Armor Proficiency",
+          "description": "A gun tank is proficient with all armors and shields, including tower shields."
+        },
+        {
+          "level": 1,
+          "name": "Deeds",
+          "description": "A gun tank swaps a pair of deeds for the following. The new deed descriptions include information on which deeds from the gunslinger class feature these new deeds replace."
+        },
+        {
+          "level": 1,
+          "name": "Gun Tank’s Resolve",
+          "description": "At 1st level, the gun tank can shrug off the most serious of attacks. When the gun tank is wearing medium or heavy armor and is subject to a critical hit or sneak attack, she can spend 1 grit point as an immediate action to attempt to negate the critical hit or sneak attack damage. At 1st level, she has a 25% chance of doing so. At 10th level, the chance increases to 50%. At 15th level, the chance increases to 75%. While a gun tank’s resolve does not stack with the fortification armor special ability, it does work in concert with that armor special ability or similar effects, so a gun tank can use this ability even after the armor of fortification has failed to negate the critical hit or sneak attack damage. This deed replaces the gunslinger’s dodge deed."
+        },
+        {
+          "level": 15,
+          "name": "Gun Tank’s Resilience",
+          "description": "At 15th level, when the gun tank has at least 1 grit point and makes a successful Fortitude saving throw against an attack that would deal half damage or have a partial effect, she takes no damage or other effects from that attack. Furthermore, she gains a +2 bonus on all saving throws against fear and mind-affecting effects. This deed replaces the evasive deed."
+        },
+        {
+          "level": 2,
+          "name": "Bullet Defection",
+          "description": "A gun tank is adept at modifying and using her armor to stop firearm attacks. Starting at 2nd level, a gun tank wearing medium or heavy armor gains half the armor’s bonus plus the armor’s enhancement bonus (if any) as a deflection bonus against any non-siege firearm or splash weapon attack (including the alchemist’s bomb class ability). This ability has no affect on spells, spell-like abilities, or supernatural abilities that make a touch attack. This ability replaces nimble."
+        },
+        {
+          "level": 4,
+          "name": "Armor Training",
+          "description": "At 4th level, a gun tank learns to be more maneuverable while wearing armor. Whenever she is wearing armor, the armor check penalty is reduced by 1 (to a minimum of 0) and the maximum Dexterity bonus allowed by her armor increases by 1. Every four levels thereafter (8th, 12th, and 16th), the bonus increases by 1, to a maximum of a –4 reduction of the armor check penalty and a +4 increase to the maximum Dexterity bonus allowed. This ability stacks with the fighter class ability of the same name. If the gun tank has both class features, she takes the most advantageous benefit of the two class features. This ability replaces the bonus feats the gunslinger gains at 4th level and every four levels thereafter."
+        }
+      ],
+      "detected_systems": [
+        "armor_training"
+      ]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:gunslinger:gunfighter",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Gunfighter",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/gunfighter",
+      "replaces_features": [
+        "armor-proficiencies",
+        "bleeding-wound",
+        "bonus-feat-normally-at-level",
+        "dead-shot",
+        "gunslingers-martial-weapon-proficiency",
+        "menacing-shot-deeds",
+        "pistol-whip-deed",
+        "targeting-deed",
+        "weapon"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "gunslinger’s martial weapon proficiency",
+        "the dead shot",
+        "bleeding wound",
+        "menacing shot deeds",
+        "pistol-whip deed",
+        "bonus feat normally gained at 8th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Gunfighters are proficient with simple weapons, all firearms, and light armor. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis modifies weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A gunfighter is considered an adept practitioner, gaining spheres and talents as appropriate. Gunfighters use Wisdom as their practitioner modifier; gunfighters who use an ability modifier other than Wisdom to determine their grit pool instead use that ability modifier.\n\nThis replaces the gunslinger’s martial weapon proficiency, and the dead shot, bleeding wound, and menacing shot deeds."
+        },
+        {
+          "level": 3,
+          "name": "Gun Strike",
+          "description": "At 3rd level, the gunfighter gains Gun Kata from the Equipment sphere, even if she would not normally qualify for it. If the gunfighter already possesses Gun Kata, she may instead select any one combat talent she qualifies for.\n\nThis replaces the pistol-whip deed."
+        },
+        {
+          "level": 7,
+          "name": "Rapid Targeting",
+          "description": "At 7th level, the gunfighter may use her targeting deed as an attack action. This ability modifies the targeting deed."
+        },
+        {
+          "level": 1,
+          "name": "Up Close and Personal",
+          "description": "Whenever the gunfighter successfully makes a ranged attack against an opponent while that opponent is threatening her, she regains 1 grit point.\n\nThis replaces the bonus feat normally gained at 8th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:gunslinger:gunner-squire",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Gunner Squire",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger Gunner Squire",
+      "replaces_features": [
+        "gunslinger-initiative",
+        "gunslinger-s-dodge",
+        "nimble"
+      ],
+      "removed_features": [
+        "gunslinger-initiative",
+        "gunslinger-s-dodge",
+        "nimble"
+      ],
+      "removed_feature_clauses": [
+        "nimble +1"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Gunner Squire",
+          "description": "Source Knights of the Inner Sea pg. 20"
+        },
+        {
+          "level": 1,
+          "name": "Deeds",
+          "description": "A gunner squire swaps a pair of deeds for the following. two deeds The new deed descriptions include information on which deeds from the gunslinger class feature these new deeds replace."
+        },
+        {
+          "level": 1,
+          "name": "Spotter",
+          "description": "At 1st level, as a standard action, a gunner squire can spend 1 grit point to pinpoint a target within her line of sight and inform her knightly liege of the target’s exact location. During the knight’s next turn, if he makes a ranged attack against the pinpointed target and would take a penalty on his attack roll due to range, he may reduce this penalty by an amount equal to his gunner squire’s Wisdom modifier (to a minimum penalty of 0). The gunner squire must be adjacent to her liege and able to communicate to use this deed, though a knight may move away from the gunner squire during his turn and still gain the benefits of this deed. This deed replaces the gunslinger’s dodge deed."
+        },
+        {
+          "level": 3,
+          "name": "Side Arm",
+          "description": "At 3rd level, as a full-round action, a gunner squire can spend 1 grit point to reload a one-handed or two-handed firearm she is holding. If the firearm has multiple barrels, she can reload a number of barrels per round equal to her Dexterity modifier (minimum 1). A gunner squire equipped with alchemical cartridges (see Ultimate Equipment) can use this deed to reload multiple firearms at once, dividing the number of barrels she’s able to reload among the firearms she is carrying however she wishes, even if this would mean stowing and retrieving multiple firearms from her equipment with one action. Abilities, deeds, and feats that decrease reloading time (such as Rapid Reload) do not improve this deed. This deed replaces gunslinger initiative."
+        },
+        {
+          "level": 2,
+          "name": "Safe Handling",
+          "description": "At 2nd level, as a full-round action, a gunner squire can temporarily ensure the safety of a firearm she is holding, reducing its misfire chance by 1 (to a minimum of 0) on the next attack roll made with that firearm. This reduction does not stack with itself. This reduction occurs after any increases are calculated for firing with the broken condition, or for any other effect that might increase the misfire value of a firearm. This ability replaces nimble +1."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:gunslinger:junkshot",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Junkshot",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/junkshot",
+      "replaces_features": [
+        "gunsmith",
+        "pistol-whip-deed"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "gunsmith",
+        "pistol-whip deed (or the gun strike ability granted by the gunfighter archetype)"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Firearm Cobbler",
+          "description": "At 1st level, the junkshot gains the Tinker sphere as a bonus sphere, selecting the (modification) package, and Arsenal Set as a bonus talent. The junkshot is proficient with any firearm they craft using the Arsenal Set talent.\n\nThis replaces gunsmith."
+        },
+        {
+          "level": 3,
+          "name": "Modified Guns, Bullets, and More",
+          "description": "At 3rd level, the junkshot gains the Tinker sphere Weapon Modifications talent as a bonus talent. In addition, the junkshot adds the following effects to the gizmos granted by the Weapon Modifications talent. A gizmo crafted with one of these additional effects is a personal gizmo, only functioning in the junkshot's hands."
+        },
+        {
+          "level": 1,
+          "name": "Rapid Refiner",
+          "description": "While the rapid refiner is active (and improving the junkshot’s attacks), the junkshot’s attacks with the attached weapon count as a chosen damage type or material (in addition to their normal damage type and material) for overcoming damage reduction. The junkshot may choose the following at the indicated level, chosen each time they use the rapid refiner as a swift action (or free action with the battery use ability): 3rd level: bludgeoning, piercing, slashing 7th level: cold iron, silver 11th level: alignment (good, evil, lawful, chaotic) 15th level: adamantine This does not allow the junkshot to bypass damage reduction that is unbypassable (i.e. DR 5/–)."
+        },
+        {
+          "level": 1,
+          "name": "Retractable Cording",
+          "description": "The junkshot may reload the attached weapon 1 step faster, retrieving the weapon as part of reloading it (i.e. a weapon that requires a full-round action to reload could be reloaded as a standard action as part of using the retractable cording to retrieve the weapon). This reload speed reduction stacks with other sources of reload speed reduction (such as the Rapid Reload feat or Ranged Set speed loader gizmo)."
+        },
+        {
+          "level": 1,
+          "name": "Weapon Customization",
+          "description": "The junkshot may add melee-only weapon special features to an attached ranged weapon (such as brace, grapple, sunder, or trip); a ranged weapon with the reach special feature would have increased threatened reach when used as a melee weapon (such as with the Equipment sphere Gun Kata talent, not increased ranged increments). The junkshot may perform ranged combat maneuvers and other appropriate actions with the attached weapon if it is granted the appropriate weapon special feature (i.e. distracting to perform a ranged feint, trip to perform a ranged trip)."
+        },
+        {
+          "level": 1,
+          "name": "Note - “Origin Point for Maneuvers”",
+          "description": "For the purposes of this ability, a maneuver performed at range is considered to be performed in the square closest to the target from where the attack was performed (generally the square after drawing a direct line, unless the attack’s trajectory was changed, etc.). A grapple maneuver performed this way causes the target to gain the grapple condition, otherwise functioning as the Sniper sphere Pinning Shot talent.\n\nThis replaces the pistol-whip deed (or the gun strike ability granted by the gunfighter archetype)."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:gunslinger:maverick",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Maverick",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger Maverick",
+      "replaces_features": [
+        "dodge",
+        "gunslinger-initiative",
+        "pistol-whip"
+      ],
+      "removed_features": [
+        "dodge",
+        "gunslinger-initiative",
+        "pistol-whip"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Maverick",
+          "description": "Source Ultimate Intrigue pg. 64"
+        },
+        {
+          "level": 1,
+          "name": "Deeds",
+          "description": "A maverick gains the following three deeds."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:gunslinger:musket-master",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Musket Master",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger Musket Master",
+      "replaces_features": [
+        "gun-training-1-4",
+        "gunslingers-dodge-deed",
+        "gunsmith",
+        "utility-shot-deed",
+        "weapon-proficiency"
+      ],
+      "removed_features": [
+        "gun-training-1-4",
+        "gunslingers-dodge-deed",
+        "gunsmith",
+        "utility-shot-deed",
+        "weapon-proficiency"
+      ],
+      "removed_feature_clauses": [
+        "gun training 1",
+        "2",
+        "3",
+        "and 4"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Musket Master",
+          "description": "Source Ultimate Combat pg. 50"
+        },
+        {
+          "level": 1,
+          "name": "Weapon Proficiency",
+          "description": "Instead of proficiency with all firearms, a musket master only gains proficiency with two-handed firearms. She must take the Exotic Weapon Proficiency (firearm) feat to gain proficiency with one-handed firearms and firearm siege engines."
+        },
+        {
+          "level": 1,
+          "name": "Gunsmith",
+          "description": "A musket master must take a musket when she chooses a battered firearm at 1st level."
+        },
+        {
+          "level": 1,
+          "name": "Deeds",
+          "description": "A musket master swaps a pair of deeds for the following."
+        },
+        {
+          "level": 1,
+          "name": "Steady Aim",
+          "description": "At 1st level, as long as a musket master has at least 1 grit point, she can take a move-equivalent action to increase the accuracy of a two-handed firearm. When she does, she increases the range increment of the firearm she is firing by 10 feet. This stacks with other abilities that increase her range increment. This deed replaces the gunslinger’s dodge deed."
+        },
+        {
+          "level": 3,
+          "name": "Fast Musket",
+          "description": "At 3rd level, as long as the musket master has 1 grit point, she can reload any two-handed firearm as if it were a one-handed firearm. This deed replaces the utility shot deed."
+        },
+        {
+          "level": 1,
+          "name": "Rapid Reloader",
+          "description": "At 1st level, a musket master gains Rapid Reload (muskets) as a bonus feat."
+        },
+        {
+          "level": 5,
+          "name": "Musket Training",
+          "description": "Starting at 5th level, a musket master increases her skill with two-handed firearms. She gains a bonus on damage rolls equal to her Dexterity modifier, and when she misfires with a two-handed firearm, the misfire value increases by 2 instead of 4. Every four levels thereafter (9th, 13th, and 17th), the bonus on damage rolls increases by +1. This replaces gun training 1, 2, 3, and 4."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:gunslinger:mysterious-stranger",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Mysterious Stranger",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger Mysterious Stranger",
+      "replaces_features": [
+        "grit",
+        "gun-training-1",
+        "nimble",
+        "quick-clear-deed"
+      ],
+      "removed_features": [
+        "grit",
+        "gun-training-1",
+        "nimble",
+        "quick-clear-deed"
+      ],
+      "removed_feature_clauses": [
+        "bleeding wound deed",
+        "nimble",
+        "gun training 1"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Mysterious Stranger",
+          "description": "Source Ultimate Combat pg. 51"
+        },
+        {
+          "level": 1,
+          "name": "Grit",
+          "description": "A mysterious stranger is a force to be reckoned with. Instead of using her Wisdom to determine the number of grit points she gains at the start of each day, she uses Charisma. This ability works in all other ways like the gunslinger’s grit class feature."
+        },
+        {
+          "level": 1,
+          "name": "Deeds",
+          "description": "A mysterious stranger swaps a pair of deeds for the following."
+        },
+        {
+          "level": 1,
+          "name": "Focused Aim",
+          "description": "At 1st level, as a swift action, the mysterious stranger can spend 1 grit point to gain a bonus on all firearm damage rolls equal to her Charisma modifier (minimum 1) with all firearm attacks she makes until the end of her turn. At 7th level, when she uses the dead shot deed, she multiplies this bonus by the number of hits she made while rolling the Dead Shot attack. This deed replaces the quick clear deed."
+        },
+        {
+          "level": 11,
+          "name": "Clipping Shot",
+          "description": "At 11th level, when the mysterious stranger misses with a firearm attack, she can spend 1 grit point to deal half the damage that attack would have dealt if it were a hit (roll damage normally). She can decide to use this deed and spend the grit point after making the attack. This deed has no effect if the attack used the dead shot deed. The cost of using this deed cannot be reduced with the Signature Deed feat, the true grit class feature, or any similar effect. This replaces the bleeding wound deed."
+        },
+        {
+          "level": 2,
+          "name": "Lucky",
+          "description": "Starting at 2nd level, a mysterious stranger gains a +1 luck bonus on Will saving throws. This bonus increases by +1 for every four levels beyond 2nd level (to a maximum of +5 at 20th level). This ability replaces nimble."
+        },
+        {
+          "level": 5,
+          "name": "Stranger’s Fortune",
+          "description": "Starting at 5th level, a mysterious stranger can ignore a firearm misfire a number of times per day equal to her Charisma bonus. She can use this ability as a free action. This ability replaces gun training 1."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:gunslinger:pistolero",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Pistolero",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger Pistolero",
+      "replaces_features": [
+        "deadeye-deed",
+        "gun-training-1-4",
+        "gunsmith",
+        "menacing-shot-deed",
+        "startling-shot-deed",
+        "weapon-proficiency"
+      ],
+      "removed_features": [
+        "deadeye-deed",
+        "gun-training-1-4",
+        "gunsmith",
+        "menacing-shot-deed",
+        "startling-shot-deed",
+        "weapon-proficiency"
+      ],
+      "removed_feature_clauses": [
+        "gun training 1 to 4"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Pistolero",
+          "description": "Source Ultimate Combat pg. 51"
+        },
+        {
+          "level": 1,
+          "name": "Errata Link",
+          "description": "While most gunslingers have favorite firearms, there are those rare ones who choose to specialize in one-handed firearms exclusively. These gunslingers are called pistoleros. While they lack the flexibility of being able to pick up any kind of firearm and use it with reasonable proficiency, they are crackerjack shots with pistols and similar firearms. Their skill and aim with these firearms at close range is second to none, and they rarely misfire with these weapons."
+        },
+        {
+          "level": 1,
+          "name": "Weapon Proficiency",
+          "description": "Instead of proficiency with all firearms, a pistolero only gains proficiency with one-handed firearms. She must take Exotic Weapon Proficiency (firearm) to gain proficiency with two-handed firearms and firearm siege engines."
+        },
+        {
+          "level": 1,
+          "name": "Gunsmith",
+          "description": "A pistolero must take a pistol when she chooses a battered firearm at 1st level."
+        },
+        {
+          "level": 1,
+          "name": "Deeds",
+          "description": "A pistolero swaps a trio of deeds for the following."
+        },
+        {
+          "level": 1,
+          "name": "Up Close and Deadly",
+          "description": "At 1st level, when the pistolero hits a target with a one-handed firearm that is not making a scatter shot, she can spend 1 grit point to deal 1d6 points of extra damage on a hit. If she misses with the attack, she grazes the target, dealing half the extra damage anyway. This is precision damage and is not multiplied if the attack is a critical hit. This precision damage increases to 2d6 at 5th level, to 3d6 at 10th level, to 4d6 at 15th level, and to 5d6 at 20th level. This precision damage stacks with sneak attack and other forms of precision damage. The cost of using this deed cannot be reduced with the Signature Deed feat, the true grit class feature, or any similar effect. This deed replaces the deadeye deed."
+        },
+        {
+          "level": 7,
+          "name": "Deadeye",
+          "description": "At 7th level, the pistolero gains the deadeye deed, which is normally a 1st-level gunslinger deed. This deed replaces the startling shot deed."
+        },
+        {
+          "level": 11,
+          "name": "Twin Shot Knockdown",
+          "description": "At 11th level, when the pistolero hits a single target with two or more one-handed firearm attacks during her turn, she can spend 1 grit point to knock the target prone. She can choose to spend the grit point after the attacks are made. This deed replaces the bleeding wound deed."
+        },
+        {
+          "level": 5,
+          "name": "Pistol Training",
+          "description": "Starting at 5th level, a pistolero increases her skill with one-handed firearms. She gains a bonus on damage rolls equal to her Dexterity modifier, and when she misfires with a one-handed firearm, the misfire value increases by 2 instead of 4. Every four levels thereafter (9th, 13th, and 17th), the bonus on damage rolls increases by +1. This ability replaces gun training 1 to 4."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:gunslinger:planar-rifter",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Planar Rifter",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger Planar Rifter",
+      "replaces_features": [
+        "dead-shot",
+        "deadeye",
+        "death-s-shot",
+        "grit",
+        "gun-training",
+        "menacing-shot",
+        "nimble"
+      ],
+      "removed_features": [
+        "dead-shot",
+        "deadeye",
+        "death-s-shot",
+        "grit",
+        "gun-training",
+        "menacing-shot",
+        "nimble"
+      ],
+      "removed_feature_clauses": [
+        "nimble",
+        "gun training"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Planar Rifter",
+          "description": "Source Plane-Hopper's Handbook pg. 6"
+        },
+        {
+          "level": 1,
+          "name": "Infused Grit",
+          "description": "Each day when a planar rifter recovers grit, he can attune his grit pool to one of the following subtypes: air, chaotic, earth, evil, fire, good, lawful, or water. Whenever he is on a plane that has an alignment or elemental trait, he can switch his attunement to match one of that plane’s traits as a standard action. After reducing an outsider to 0 hit points or below, he can switch his attunement to match one of that outsider’s subtypes as a free action. He regains grit as normal from critical hits, but killing blows replenish his grit pool only if the target is an outsider.\n\nThis alters grit."
+        },
+        {
+          "level": 1,
+          "name": "Deeds",
+          "description": "A planar rifter gains the following deeds."
+        },
+        {
+          "level": 1,
+          "name": "Infused Bullet",
+          "description": "At 1st level, a planar rifter’s bullets carry the essence of a plane to which his grit pool is attuned, striking true against creatures that shrink from that plane’s nature. As long as he has at least 1 point in his grit pool, he gains the following benefits: if he infuses his bullets with an alignment, his bullet’s damage counts as that alignment for the purposes of overcoming DR; if he infuses his bullets with an element, half of his bullet’s damage changes to an energy type determined by the element infused: acid (earth), cold (water), electricity (air), or fire (fire)."
+        },
+        {
+          "level": 7,
+          "name": "Planar Surge",
+          "description": "At 7th level, a planar rifter can spend 1 grit point as a swift action to change the attunement of his grit pool to any alignment or element. This new attunement remains for 1 minute, after which time the grit pool becomes unattuned."
+        },
+        {
+          "level": 15,
+          "name": "Breaching Shot",
+          "description": "At 15th level, a planar rifter can fire bullets with such precision that he tears temporary rifts between planes. As a standard action, he can spend 3 grit points to shoot at a location within his firearm’s first range increment and tear a 10-foot-radius portal to a plane of his choice. The rift leads to a random location on the plane that is between 5 and 500 miles from his intended destination, as plane shift. The rift remains open for 1 minute, during which time any number of willing creatures can pass through. It is a one-way rift, and it is insufficiently stable to reveal details about the environment on the other side."
+        },
+        {
+          "level": 19,
+          "name": "Banishing Shot",
+          "description": "At 19th level, whenever a planar rifter confirms a critical hit against an extraplanar target, he can spend 1 grit to deal normal damage, and the target must succeed at a Will saving throw with a DC equal to 20 + the planar rifter’s Wisdom modifier. On a failed saving throw, the target is returned to its original plane as per the banishment spell."
+        },
+        {
+          "level": 2,
+          "name": "Planar Resistance",
+          "description": "At 2nd level, when a planar rifter infuses his grit with the essence of a plane, he gains protection against that plane’s dangers. If he attunes his grit pool to chaos, good, evil, or law, he gains resistance to magical effects that deal damage based on the chosen alignment, such as holy smite, order’s wrath, a paladin’s smite evil attack, or an unholy weapon. If he attunes his grit pool to air, earth, fire, or water, he gains protection against the energy type associated with that element (see infused bullet). He reduces the amount of damage taken from attacks of the chosen type by 2 points per gunslinger level.\n\nThis replaces nimble."
+        },
+        {
+          "level": 5,
+          "name": "Planar Strike",
+          "description": "At 5th level, as long as he has at least 1 point in his grit pool, a planar rifter’s weapon attacks deal an extra 1d6 points of damage of the same damage type reduced by his planar resistance. Aligned damage harms only creatures of an opposed alignment. At 13th level, this damage increases to 2d6.\n\nThis replaces gun training."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:gunslinger:scatter-gunner",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Scatter Gunner",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger Scatter Gunner",
+      "replaces_features": [
+        "dead-shot",
+        "deadeye",
+        "gunsmith",
+        "targeting",
+        "utility-shot"
+      ],
+      "removed_features": [
+        "dead-shot",
+        "deadeye",
+        "gunsmith",
+        "targeting",
+        "utility-shot"
+      ],
+      "removed_feature_clauses": [
+        "utility shot deed",
+        "dead shot deed",
+        "targeting deed"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Scatter Gunner",
+          "description": "Source People of the Wastes pg. 12"
+        },
+        {
+          "level": 1,
+          "name": "Scatter Specialist",
+          "description": "A scatter gunner must take a blunderbuss or dragon pistol when he chooses a battered firearm at 1st level.\n\nThis alters gunsmith."
+        },
+        {
+          "level": 1,
+          "name": "Deeds",
+          "description": "A scatter gunner gains the following deeds, each of which functions only when he uses a weapon with the scatter weapon quality to make a scattering shot."
+        },
+        {
+          "level": 3,
+          "name": "Scatter Artist",
+          "description": "At 3rd level, when using a firearm to make a scattering shot, a scatter gunner can spend 1 grit point to add one of the following effects to his attack."
+        },
+        {
+          "level": 1,
+          "name": "Restricted Barrel",
+          "description": "The scattering shot attacks all creatures in a line rather than in a cone. The line's length is twice the length of the weapon's cone (30 feet for most early firearms)."
+        },
+        {
+          "level": 1,
+          "name": "Shaped Blast",
+          "description": "Select one additional square adjacent to the scattering shot's area of effect; creatures in this square are also affected by the scattering shot."
+        },
+        {
+          "level": 1,
+          "name": "Vortex",
+          "description": "The firearm releases an explosive torrent of air in the scattering shot's affected area for 1 round, creating a strong wind effect (25 mph) that can disperse fog and smoke effects such as those created by fog cloud.\n\nThis replaces the utility shot deed."
+        },
+        {
+          "level": 7,
+          "name": "Overload",
+          "description": "At 7th level, a scatter gunner knows just how to hold his weapon to maximize its devastating scattering effects. As a full-round action, a scatter gunner can make a scattering shot to fire a concentrated payload of pellets that strains his firearm. This doubles the area affected by the scattering shot (a 30-foot cone for most early firearms), increases the firearm's misfire value by 2, and causes each successful attack to deal an additional 1d6 points of damage that is not multiplied on a critical hit. This additional damage increases to 2d6 at 13th level and 3d6 at 19th level. The scatter gunner must spend 1 grit point to perform this deed.\n\nThis replaces the dead shot deed."
+        },
+        {
+          "level": 7,
+          "name": "Satchel Shot",
+          "description": "At 7th level, as a full-round action, a scatter gunner can load and fire an explosive shell, consuming ammunition as though he had made a scattering shot. This functions like throwing a splash weapon at a grid intersection but uses his firearm's range increment, attack bonus, and magic special abilities (if any). The shell affects creatures in a 10-foot radius as though the scatter gunner had made a scattering shot against them, and damaged creatures must succeed at a Reflex save (DC = 10 + half the scatter gunner's level + the scatter gunner's Dexterity modifier) or catch fire (Pathfinder RPG Core Rulebook 444). This replaces the targeting deed."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:gunslinger:siege-gunner",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Siege Gunner",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger Siege Gunner",
+      "replaces_features": [
+        "bonus-feats",
+        "deadeye",
+        "grit",
+        "gunslinger-initiative",
+        "nimble"
+      ],
+      "removed_features": [
+        "bonus-feats",
+        "deadeye",
+        "grit",
+        "gunslinger-initiative",
+        "nimble"
+      ],
+      "removed_feature_clauses": [
+        "nimble",
+        "deadeye",
+        "gunslinger initiative",
+        "gunslinger’s normal bonus feats"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Siege Gunner",
+          "description": "Source Inner Sea Combat pg. 45"
+        },
+        {
+          "level": 1,
+          "name": "Grit",
+          "description": "A siege gunner relies less on luck and intuition and more on cold calculation and wit. The number of grit points a siege gunner gains each day and her maximum grit are based on the siege gunner’s Intelligence modifier rather than her Wisdom modifier."
+        },
+        {
+          "level": 2,
+          "name": "Engineer Training",
+          "description": "A siege gunner is trained in all aspects of siegecraft, including the workings of siege engines and knowledge of the structures that are often the target of their assaults. Starting at 2nd level, a siege gunner gains a bonus on Knowledge (engineering) checks equal to 1/2 her gunslinger level. This ability replaces nimble."
+        },
+        {
+          "level": 1,
+          "name": "Deeds",
+          "description": "A siege gunner swaps a pair of deeds of her choosing for the following."
+        },
+        {
+          "level": 1,
+          "name": "Targeted Blast",
+          "description": "At 1st level, when using a firearm or siege engine that targets an area rather than a specific creature, the siege gunner can spend 1 grit point to focus the brunt of the blast on a single creature within the target area. The target creature takes 1 additional point of damage for each level the siege gunner possesses. This is precision damage and is not multiplied on a critical hit. At 5th level and for every 5 levels the siege gunner possesses beyond that, she can select an additional creature to target with this bonus damage. Targets must be selected before any attack rolls or saving throws are made. This ability replaces deadeye."
+        },
+        {
+          "level": 3,
+          "name": "Scattershot",
+          "description": "At 3rd level, if the siege gunner has at least 1 grit point, she can increase the effectiveness of scattering shots from hand-held firearms and blast shots from siege engines. The cone radius of scattering shots or blast shots increases by 5 feet for every three levels the siege gunner possesses (to a maximum of 30 feet at 18th level). This ability replaces gunslinger initiative."
+        },
+        {
+          "level": 4,
+          "name": "Bonus Feats",
+          "description": "At 4th level, a siege gunner gains Siege EngineerUC as a bonus feat. At 8th level, she gains Master Siege EngineerUC as a bonus feat. She does not need to meet the prerequisites for these feats. At 12th level and for every 4 levels thereafter, the siege gunner gains a bonus feat in addition to those gained by normal advancement. These additional bonus feats must be combat or grit feats, and she must meet the prerequisites as normal. This replaces the gunslinger’s normal bonus feats."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:gunslinger:space-marine",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Space Marine",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/space-marine",
+      "replaces_features": [
+        "bleeding-wound",
+        "dead-shot",
+        "gunsmith",
+        "menacing-shot-deeds",
+        "space-marines-martial-weapon-proficiency"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "space marine’s martial weapon proficiency",
+        "the dead shot",
+        "bleeding wound",
+        "menacing shot deeds",
+        "gunsmith"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Space marines are proficient with simple weapons, all crossbows and firearms, and light armor. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice."
+        },
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A space marine is considered an adept practitioner, gaining spheres and talents as appropriate. Space marines use Wisdom as their practitioner modifier; space marines who use an ability modifier other than Wisdom to determine their grit pool instead use that ability modifier.\n\nThis replaces the space marine’s martial weapon proficiency, and the dead shot, bleeding wound, and menacing shot deeds."
+        },
+        {
+          "level": 1,
+          "name": "Standard Issue",
+          "description": "The space marine is a marksman trained in proper care and field maintenance of his ranged weaponry. At 1st level, the space marine gains the Tech sphere as a bonus sphere, although she must gain with it the Mechanical Ranged Weaponry (gadget, moddable) talent. In addition, the space marine gains the Alternate Element Pack (accessory) as a bonus talent. If she already possesses either of these talents, she instead gains additional talents from that sphere.\n\nThis replaces gunsmith. If using the gunfighter archetype (from Spheres of Might), or another archetype granting the Combat Training class feature, change the space marine to only replace gunsmith for the standard issue class feature."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:gunslinger:spellshot-engineer",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Spellshot Engineer",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/spellshot-engineer",
+      "replaces_features": [
+        "bleeding-wounds-deed",
+        "bonus-feats",
+        "cheat-death-deed-at-level",
+        "deadeye-deed-at-level",
+        "deadshot-deed-at-level",
+        "deaths-shot-deed",
+        "evasive-deed-at-level",
+        "expert-loading-deed-at-level",
+        "grit",
+        "gun-training-1",
+        "gunslingers-dodge-deed",
+        "gunsmith",
+        "nimble",
+        "pistol-whip-deed-at-level",
+        "quick-clear-deed-at-level",
+        "specific-listed-deed-that-would-be-at-that-level",
+        "targeting-deed-at-level",
+        "utility-shot-deed-at-level"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "grit class feature",
+        "gun training 1",
+        "2",
+        "3",
+        "and 4",
+        "bonus feats",
+        "nimble",
+        "gunslinger’s dodge deed",
+        "the bleeding wounds deed",
+        "the death’s shot deed",
+        "specific listed deed that would be gained at that level",
+        "quick clear deed at 1st level",
+        "deadeye deed at 1st level",
+        "utility shot deed at 3rd level",
+        "pistol-whip deed at 3rd level",
+        "deadshot deed at 7th level",
+        "targeting deed at 7th level",
+        "expert loading deed at 11th level",
+        "evasive deed at 15th level",
+        "cheat death deed at 19th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Spellshots are proficient with simple weapons, all firearms, and light armor. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice."
+        },
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The spellshot may combine spheres and talents to create magical effects. The spellshot is considered a Low-Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the grit class feature."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "At 1st level, the spellshot gains a small reservoir of magical energy she can use to create truly wondrous effects, called a spell pool. This pool contains a number of points equal to her level + her casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest. The spellshot may spend spell points as though they were grit points when using any of her deeds or other abilities (such as feats) that require grit. For the purpose of feat requirements, the spellshot satisfies the requirements as if she were a grit or panache user."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "A spellshot gains a combat or magic talent every time she gains a class level. A spellshot uses their casting ability modifier as their practitioner modifier.\n\nThis replaces gun training 1, 2, 3, and 4 and bonus feats."
+        },
+        {
+          "level": 1,
+          "name": "Magical Firearm Tinkerer",
+          "description": "A spellshot is a magical engineer who has mastered the fusion of technology and magic. At 1st level, they gain the Gunsmithing feat and a battered firearm as normal, but they additionally form a magical bond with their firearm. They may modify their firearm as if they possessed all item creation feats (such as by enhancing it, or adding weapon special abilities) using their spellshot levels in place of their caster level, and they become capable of channeling their sphere effects through the firearm, detailed below. The bonded firearm is never destroyed due to a misfire, although its misfire range can never be reduced below 1. The bonded firearm serves as both a weapon and a magical implement. As part of casting any sphere effect that requires a ranged touch attack or affects a burst-, cone- or line-shaped area, the spellshot can channel the magic through her bonded firearm if it is currently in hand. Channeling the magic through her firearm grants the sphere effect an enhancement bonus equal to the firearm’s enhancement bonus to the caster level of the sphere effect (up to a maximum of +1, increasing by 1 at 5th level and every four levels thereafter). This only affects the sphere effect cast through the firearm, not other sphere effects potentially modifying it (such as dual-sphere feats or (amp) effects). The firearm may have implement special abilities applied to it as well as weapon special abilities. The firearm does not have a specific affiliated sphere for the purpose of any implements that require one to be applied, but otherwise functions as normal. If the implement special ability alters sphere effects cast, they only alter sphere effects channeled through the firearm. If the spellshot has any strike talents, she may channel them through her firearm as normal, and doing so causes the sphere effect to deal x3 damage on a successful critical hit. Using this ability is particularly dangerous, and if any attack rolls related to the sphere effect are a natural 1, or any saving throws are a natural 20, the bonded firearm misfires. If the spellshot’s firearm has the broken condition when being used to channel a sphere effect, that sphere effect suffers a -2 penalty to the caster level. This penalty cannot reduce the sphere effect’s caster level below 1. The spellshot can change her bonded weapon as part of an 8 hour ritual if her bonded weapon is ever lost or destroyed.\n\nThis alters gunsmith."
+        },
+        {
+          "level": 1,
+          "name": "Theory of Maximized Risk",
+          "description": "At 1st level, the spellshot must select the Mana sphere as their first talent, as well as the Incongruent drawback, picking any one (amp) talent of her choice as the talent chosen from the drawback. If she already possesses the Mana sphere, she instead gains one (amp) talent as a bonus talent and no drawback. If she has a drawback preventing the use of (amp) talents, she buys it off instead. The spellshot uses her class levels in place of her Mana sphere caster level when utilizing (amp) talents, stacking with other sources normally. When the spellshot fires an amplified sphere effect through her firearm, she gains a +1 competence bonus to her caster level with that sphere effect for every (amp) used in the sphere effect. At 11th level, when applying an (amp) effect to a sphere effect channeled through her bonded firearm, she may spend a spell point to apply two (amp) effects instead of just one. This bypasses the normal rule for how many (amp) effects can apply to one sphere effect. This causes her firearm to automatically misfire if all creatures affected by the sphere effect succeed at their saving throws, or she misses on all attack rolls as part of the sphere effect. At 19th level, she may instead apply three (amp) effects by spending two additional spell points. This causes her firearm to automatically misfire after resolving the attack and sphere effect.\n\nThis replaces nimble."
+        },
+        {
+          "level": 1,
+          "name": "True Spellshot",
+          "description": "The spellshot gains a bonus talent at 1st level, although this bonus talent may only be used to select a strike talent from a sphere she already possesses. She may change this talent to a different strike talent each time she gains a new spellshot level."
+        },
+        {
+          "level": 1,
+          "name": "Jampacked Arcane Rifling",
+          "description": "The spellshot gains access to the Packed Spell (amp) at 1st level, the Chockablock Spell (amp) at 11th level, and the Hellfire Spell (amp) at 19th level:"
+        },
+        {
+          "level": 1,
+          "name": "Packed Spell (amp)",
+          "description": "You may amplify a sphere effect that uses a strike talent using a firearm. The misfire range of the firearm is reduced by 1 (minimum 0) and the range increment of the firearm is increased by 50% while making attacks as part of the amplified sphere effect. This amp is gained at 1st level."
+        },
+        {
+          "level": 1,
+          "name": "Chockablock Spell (amp)",
+          "description": "You may amplify a sphere effect that uses a strike talent using a firearm by spending a spell point. The firearm’s misfire range increases by 2, and in addition to the sphere effect the firearm shoots out a line, covering all squares in the direction of the target of the amplified sphere effect, with a range equal to the firearm’s range increment. All creatures the affected squares suffer fire damage equal to 2 per die of damage rolled as part of the amplified sphere effect. A Reflex save against your Mana sphere DC negates this extra damage."
+        },
+        {
+          "level": 1,
+          "name": "Hellfire Spell (amp)",
+          "description": "You may amplify a sphere effect that uses a strike talent using a firearm. For each spell point used in any (amp) talents as part of the amplified sphere effect, as well as for each spell point used on the sphere effect itself, the firearm deals an additional 1d12 damage. Half of this damage is dealt to the spherecaster that created the sphere effect.\n\nThis replaces the gunslinger’s dodge deed, the bleeding wounds deed and the death’s shot deed."
+        },
+        {
+          "level": 1,
+          "name": "Spellshot’s Deeds",
+          "description": "The spellshot knows an array of magical tricks and techniques to enhance their use of firearms. A spellshot may select any of the following deeds to learn upon reaching the class level listed in the deed’s description. This replaces the specific listed deed that would be gained at that level. Additionally, the spellshot revels in her success; after reducing a creature with Hit Dice greater than or equal to half of her spellshot levels to 0 or fewer hit points, or confirming a critical hit on such a creature, the next deed she utilizes costs 1 less spell point."
+        },
+        {
+          "level": 1,
+          "name": "Elemental Bullets",
+          "description": "The spellshot can spend a spell point to infuse her firearm for 10 minutes per class level as a swift action. This causes her ranged attacks with her bonded firearm to deal additional damage equal to her casting ability modifier. Additionally, when infusing her firearm, she may choose acid, cold, electricity or fire. The bonus damage dealt by this ability is changed to that energy type. This does not stack with other abilities that would add her casting ability modifier to damage such as the Primal Blast feat.\n\nThis replaces the quick clear deed at 1st level."
+        },
+        {
+          "level": 5,
+          "name": "Thermoarcanic Powder",
+          "description": "As long as the spellshot has at least 1 spell point, they may magically manifest ammunition as they reload their weapon, requiring no physical ammunition to reload and treating all of her firearm attacks as magical. This ammunition can only be utilized by the spellshot’s bonded firearm. Additionally, the spellshot may spend 1 spell point to enhance their bonded firearm for 10 minutes per spellshot level as a standard action, granting it a +1 enhancement bonus, increasing by 1 at 5th level and every four levels thereafter. If the spellshot possesses the Deep Enhancement talent, the duration increases to 1 hour per spellshot level.\n\nThis replaces the deadeye deed at 1st level."
+        },
+        {
+          "level": 1,
+          "name": "Illusory Rifling",
+          "description": "The spellshot can spend a spell point as a swift action to quickly feign attacking a creature with illusory bullets. This causes her target to be treated as if the spellshot successfully feinted them, unless they succeed at a Will save (DC equal to 10 + 1/2 the spellshot’s level + her casting ability modifier). If the creature possesses any ability that allows them to deflect or negate a ranged attack (such as Deflect Arrows), they automatically use that ability on the illusory bullet, wasting it.\n\nThis replaces the utility shot deed at 3rd level."
+        },
+        {
+          "level": 7,
+          "name": "Infused Magnetism",
+          "description": "The spellshot can spend a spell point as part of making a firearm attack to magnetize her bullet. If the creature is wearing metal armor or is largely composed of metal, she gains a +2 competence bonus on the attack. If the attack strikes, the magnetized bullet lodges within the creature until removed. Any attacks made with metal-tipped weapons or firearms against that creature gain a +2 competence bonus to the attack roll as long as the bullet is still lodged. Removing the bullet requires a standard action and a DC 15 Heal check. The bonus provided by this deed increases by 1 at 7th level and every 4 levels thereafter.\n\nThis replaces the pistol-whip deed at 3rd level."
+        },
+        {
+          "level": 1,
+          "name": "Supernatural Sniping",
+          "description": "If the spellshot possesses the Sniper sphere, she may spend a spell point as part of utilizing a sphere effect with a strike talent to treat that attack as a deadly shot, treating the sphere effect as if it were a (snipe) talent. If the spellshot has the Spell Attack feat, she may utilize this deed without spending a spell point.\n\nThis replaces the deadshot deed at 7th level."
+        },
+        {
+          "level": 1,
+          "name": "Temporal Flux",
+          "description": "The spellshot can spend 1 spell point as a free action to greatly increase the speed of which she reloads her firearm for 10 minutes per spellshot level. During this time, she reduces the time it takes to reload a one-handed or two-handed firearm to a swift action. If she possesses the Expert Reloading talent, she instead reduces the time it takes to reload a one-handed or two-handed firearm to a free action.\n\nThis replaces the targeting deed at 7th level."
+        },
+        {
+          "level": 1,
+          "name": "Dimensional Gait",
+          "description": "Once per turn after successfully striking a creature with a firearm attack, if the spellshot has at least 1 spell point remaining, she may choose to shift herself directly towards or away from her target, teleporting up to 10 feet away or towards them. She may spend a spell point as part of this teleport to increase the distance to 30 feet. She may not teleport to a location she cannot see unless she possesses the Unseeing Teleport talent from the Warp sphere.\n\nThis replaces the expert loading deed at 11th level."
+        },
+        {
+          "level": 1,
+          "name": "Vigorous Aiming",
+          "description": "The spellshot can spend a spell point as a standard action to infuse her firearm for a number of rounds equal to her spellshot level. This causes her bullets to invigorate her as she lands attacks. Each time the spellshot successfully strikes a creature with Hit Dice equal to or greater than her spellshot levels with a firearm attack, she heals for 2d6 hit points. She may redirect this healing to a willing creature within 30 feet of herself. If the firearm attack was an attack action, she instead heals for 4d6 hit points.\n\nThis replaces the evasive deed at 15th level."
+        },
+        {
+          "level": 1,
+          "name": "Retribution",
+          "description": "By stealing the lifeforce of a fallen enemy, the spellshot can revive her fallen allies. When landing the killing blow on an enemy, the spellshot may spend three spell points to drain that creature’s life force. The creature is allowed a Fortitude save (DC equal to 10 + 1/2 the spellshot’s level + her casting ability modifier) to resist this, otherwise the creature’s soul is used to fuel the life of another. The spellshot may then choose for a single living creature within her first range increment to be healed for 1d8 hit points per Hit Dice of the slain creature. She may also target the corpse of an ally that has been slain in the past 10 minutes, bringing them back to life as per the Resurrection advanced talent of the Life sphere. The fallen ally must have Hit Dice equal to or less than the soul used to revive it, otherwise the revival attempt fails.\n\nThis replaces the cheat death deed at 19th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:gunslinger:techslinger",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Techslinger",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger Techslinger",
+      "replaces_features": [
+        "deadeye",
+        "expert-loading",
+        "gun-training",
+        "quick-clear"
+      ],
+      "removed_features": [
+        "deadeye",
+        "expert-loading",
+        "gun-training",
+        "quick-clear"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Techslinger",
+          "description": "Source Technology Guide pg. 13"
+        },
+        {
+          "level": 1,
+          "name": "Deeds",
+          "description": "Techslingers have access to all gunslinger deeds, except as noted below for new deeds that replace standard gunslinger deeds."
+        },
+        {
+          "level": 1,
+          "name": "Covet Charge",
+          "description": "At 1st level, a techslinger can spend 1 grit point to use 1 charge fewer than normal when firing a technological weapon (minimum 0), as long as the weapon has enough charges remaining to be fired at least once. This deed replaces deadeye."
+        },
+        {
+          "level": 1,
+          "name": "Reliable",
+          "description": "At 1st level, a techslinger can spend 1 grit point as a free action to prevent a timeworn firearm from glitching. This deed replaces quick clear."
+        },
+        {
+          "level": 11,
+          "name": "Charge Recycling",
+          "description": "At 11th level, by spending 1 grit point, a techslinger can grant 1 temporary charge to a technological firearm, even if the firearm normally can no longer be recharged. This charge must be used within 1 hour or it fades. The techslinger can grant temporary charges to multiple firearms as long as she has enough grit, but temporary charges do not stack with themselves in the same firearm. At 15th level, the techslinger can grant 2 temporary charges when she uses this deed, and at 19th level, she can grant 3 temporary charges. This deed replaces expert loading."
+        },
+        {
+          "level": 11,
+          "name": "Heavy Weaponry Deeds",
+          "description": "At 11th level, as long as the techslinger has at least 1 grit point, she can treat a heavy weapon as a firearm for the purpose of using deeds."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Feats",
+          "description": "A techslinger can select Technologist as a bonus feat, even though it’s neither a combat nor a grit feat."
+        },
+        {
+          "level": 5,
+          "name": "Technic Training",
+          "description": "Starting at 5th level, a techslinger can select one specific type of advanced technology firearm (such as a laser pistol, mindrender, stun gun, or zero rifle). Thereafter, she gains a bonus equal to her Dexterity modifier on damage rolls when using that firearm. Furthermore, she treats all detrimental glitches of timeworn versions of her selected firearm as a result of no glitch. (She can retain the effects of beneficial glitches if she wishes.)"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:gunslinger:thronewarden",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Thronewarden",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger Thronewarden",
+      "replaces_features": [
+        "bleeding-wound",
+        "bonus-feat",
+        "class-skills",
+        "nimble",
+        "startling-shot"
+      ],
+      "removed_features": [
+        "bleeding-wound",
+        "bonus-feat",
+        "class-skills",
+        "nimble",
+        "startling-shot"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Thronewarden",
+          "description": "Source Heroes of the High Court pg. 8"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A thronewarden adds Sense Motive to her list of class skills, instead of Bluff.\n\nThis alters the gunslinger’s class skills."
+        },
+        {
+          "level": 2,
+          "name": "Hair-Trigger Reflexes",
+          "description": "At 2nd level, as long as she has at least 1 grit point, a thronewarden can act in a surprise round even if she doesn’t notice her enemies, though she remains flat-footed until she acts. In addition, she gains a +1 bonus on initiative checks. This bonus increases by 1 for every 4 gunslinger levels beyond 2nd. Finally, at 10th level, she can spend 1 grit point to take both a standard action and a move action (or a full-round action) during the surprise round."
+        },
+        {
+          "level": 4,
+          "name": "Eye for Trouble",
+          "description": "At 4th level, a thronewarden can spend 1 grit point when she attempts a Perception or Sense Motive check to roll 1d6 and add the result to the check. She can do this after she attempts the check but only before the result is revealed."
+        },
+        {
+          "level": 1,
+          "name": "Deeds",
+          "description": "A thronewarden has access to the following deeds."
+        },
+        {
+          "level": 7,
+          "name": "Warning Shot",
+          "description": "At 7th level as a standard action, a thronewarden with at least 1 grit point can purposely miss a creature that she could normally target with a firearm attack and make it second-guess its actions. The creature is staggered on its next turn. If a thronewarden uses this ability in a surprise round on a creature that has not yet acted, that creature instead loses its surprise-round action if it has one."
+        },
+        {
+          "level": 11,
+          "name": "Opening Shot",
+          "description": "At 11th level as a standard action, a thronewarden can call her allies to action in a surprise round by spending 1 grit point and shooting a firearm into the air. Any allies within 30 feet who would not normally be able to act in the surprise round can act at the end of the surprise round (their order is determined by their initiative results; they act in normal initiative order in following rounds). Allies who would normally act in the surprise round but who have not yet acted can take a full round’s worth of actions instead of just a move or standard action."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:gunslinger:wandslinger",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Wandslinger",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/wandslinger",
+      "replaces_features": [
+        "dead-shot",
+        "deadeye",
+        "expert-loading",
+        "gun-training",
+        "gunsmith",
+        "lightning-reload",
+        "quick-clear"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "gunsmith",
+        "quick clear",
+        "expert loading",
+        "deadeye",
+        "gun training",
+        "dead shot",
+        "lightning reload"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "The wandslinger loses Knowledge (engineering) (Int) as a class skill and gains Spellcraft (Int) and Use Magic Device (Cha)."
+        },
+        {
+          "level": 1,
+          "name": "Tools of Destruction",
+          "description": "The wandslinger may create and use wands keyed to the Destruction sphere as if she possessed that sphere, the Craft Spell Engine feat, and a caster level equal to her class level. She may not use this ability to create wands with a caster level higher than her class level. She may use the ability modifier she uses to determine grit capacity as her casting ability modifier if she does not already possess one, and adds her casting ability modifier to the DCs of any destructive blasts she casts from a wand. The wandslinger may add Destruction sphere talents that she does not possess to a wand she is crafting at no penalty. In addition, the wandslinger begins play with a battered wand keyed to the Destruction sphere – this wand has a caster level of 2 and functions only for the wandslinger. For the purposes of all gunslinger class features, a wandslinger treats wands as one-handed firearms. This ability replaces gunsmith."
+        },
+        {
+          "level": 11,
+          "name": "Gritty Activation",
+          "description": "A wandslinger may recharge wands by expending a grit point in place of a spell point. In addition, once per round when casting a destructive blast from a wand, a wandslinger may expend 1 grit point in place of one of the wand’s spell points. At 11th level she may use this ability twice per round. This ability replaces quick clear and expert loading."
+        },
+        {
+          "level": 1,
+          "name": "Steady Aim",
+          "description": "At 1st level, as long as a wandslinger has at least 1 grit point, she can take a move-equivalent action or spend a grit point to increase the accuracy of a wand of the Destruction sphere. When she does, she increases the range of the destructive blast by 5 feet per class level. This stacks with other abilities that increase her range increment.\n\nThis replaces deadeye."
+        },
+        {
+          "level": 5,
+          "name": "Wand Training",
+          "description": "Starting at 5th level, a wandslinger gains a bonus equal to her Dexterity modifier on damage rolls with destructive blasts cast from wands, and may use her class level in place of the wand’s caster level when determining the save DC of any destructive blast she casts from a wand. At 9th level whenever the wandslinger casts a spell from a wand she may increase its caster level by +1, even if it is not keyed to the Destruction sphere. This increases by an additional +1 for every 4 class levels after 9th to a maximum of +3 at 17th level. This ability replaces gun training."
+        },
+        {
+          "level": 7,
+          "name": "Dead Blast",
+          "description": "At 7th level a wandslinger gains the Destruction talent Gather Energy, even if she does not possess the Destruction sphere. She may apply this talent to destructive blasts cast from wands as if they contained that talent. This ability replaces dead shot."
+        },
+        {
+          "level": 11,
+          "name": "Two-Wand Fighting",
+          "description": "At 11th level a wandslinger may activate two wands as a full-round action, one in each hand, as long as their combined caster levels (before wand training) do not exceed her class level. This ability replaces lightning reload."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:gunslinger:wyrm-sniper",
+      "package": "pathfinder-class:gunslinger",
+      "name": "Wyrm Sniper",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Gunslinger Wyrm Sniper",
+      "replaces_features": [
+        "class-skills",
+        "lightning-reload-deed",
+        "menacing-shot-deed",
+        "starling-shot-deed"
+      ],
+      "removed_features": [
+        "class-skills",
+        "lightning-reload-deed",
+        "menacing-shot-deed",
+        "starling-shot-deed"
+      ],
+      "removed_feature_clauses": [
+        "gunslinger’s menacing shot deed"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Wyrm Sniper",
+          "description": "Source Dragonslayer's Handbook pg. 23"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A wyrm sniper adds Knowledge (arcana) to her list of class skills, in addition to the normal gunslinger class skills."
+        },
+        {
+          "level": 1,
+          "name": "Artillery Proficiency",
+          "description": "Wyrm snipers are proficient with light siege engines, in addition to the normal gunslinger weapon proficiencies. See page 26 of this book for new anti-dragon siege weaponry."
+        },
+        {
+          "level": 1,
+          "name": "Deeds",
+          "description": "A wyrm sniper swaps a trio of deeds for the following deeds."
+        },
+        {
+          "level": 7,
+          "name": "Munitions Master",
+          "description": "At 7th level, a wyrm sniper can spend 1 grit point to reduce the number of full-round actions (or move actions, if the sniper has the Master Siege Engineer feat) required to load a light siege engine by 1. This deed replaces the gunslinger’s startling shot deed."
+        },
+        {
+          "level": 11,
+          "name": "Skeleton Crew",
+          "description": "At 11th level, as long as a wyrm sniper has at least 1 grit point, she treats all light siege engines as requiring a crew of one fewer than normal to operate (minimum 1). This deed replaces the gunslinger’s lightning reload deed."
+        },
+        {
+          "level": 15,
+          "name": "Anti-Air Targeting",
+          "description": "At 15th level, whenever a wyrm sniper targets a creature’s wings with the targeting deed, the wyrm sniper completely disables one of the creature’s wings on a successful hit. If the wyrm sniper hits her target, the creature falls to the ground, regardless of its altitude, taking the appropriate amount of falling damage as a result. As long as the target has at least one functioning wing, it may attempt a DC 20 Fly check to gain the benefits of feather fall instead of plummeting to the ground. In either case, it must succeed at a Reflex save (DC 10 + 1/2 the wyrm sniper’s level + the wyrm sniper’s Wisdom modifier) or fall prone when reaching the ground. This ability replaces the gunslinger’s menacing shot deed."
+        },
+        {
+          "level": 4,
+          "name": "Siege Commander",
+          "description": "At 4th level, a wyrm sniper may select the Siege Commander combat feat as her bonus feat, even if she does not meet the prerequisites."
+        },
+        {
+          "level": 5,
+          "name": "Heavy Gunner",
+          "description": "Starting at 5th level, a wyrm sniper may select one specific type of light siege weapon (such as a ballista or light bombard) in place of a specific type of firearm as part of her gun training class ability. Every 4 levels thereafter (9th, 13th, and 17th), when she can pick a new type of firearm for the gun training class ability, the gunslinger may again select another type of light siege engine."
+        },
+        {
+          "level": 12,
+          "name": "Master Siege Engineer",
+          "description": "At 12th level, a wyrm sniper may select the Master Siege Engineer combat feat as her bonus feat, even if she does not meet the feat’s prerequisites."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

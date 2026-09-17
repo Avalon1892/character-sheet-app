@@ -1,0 +1,344 @@
+{
+  "version": 1,
+  "class_key": "spheres-class:hedgewitch",
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:hedgewitch:dendrite",
+      "package": "spheres-class:hedgewitch",
+      "name": "Dendrite",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/dendrite",
+      "replaces_features": [],
+      "removed_features": [],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Languages",
+          "description": "Dendrites gain Druidic as a bonus language at 1st level. A dendrite who teaches Druidic to a non-dendrite loses all of their casting class feature and all class powers."
+        },
+        {
+          "level": 1,
+          "name": "Casting Ability Modifier",
+          "description": "Dendrites use Constitution as their casting ability modifier, as they possess the Fortified Casting boon."
+        },
+        {
+          "level": 1,
+          "name": "Tradition",
+          "description": "Dendrite Rites: As the reincarnation of an ancient master of the living world, the power to sculpt the forces of nature is literally in a dendrite’s blood. As a result, using magic physically weakens her the more she uses it. The dendrite possesses the Fortified Casting boon and Draining Casting drawback. All dendrite magic is accomplished through speaking the language of the Strangers (Druidic). Dendrites possess the Verbal Casting drawback. A dendrite may further refine their tradition by selecting additional drawbacks and boons."
+        },
+        {
+          "level": 1,
+          "name": "Hedgewitch Paths",
+          "description": "Dendrites possess the Green Magic and Herbology paths."
+        },
+        {
+          "level": 1,
+          "name": "Secrets",
+          "description": "A dendrite may only take the following secrets: Animal Companion, Animal Friend, Share Health, Share Senses, Alchemy (may only gain the Dilution, Spontaneous Healing, Healing Touch, Enhance Potion, Extend Potion, Eternal Potion, Elixir of Life, or Concentrate Poison discoveries. These discoveries apply to Herbology concoctions as if they were potions), Extra Concoctions, Potent Concoctions, Store Potion, Surgeon, or Swift Poison."
+        },
+        {
+          "level": 1,
+          "name": "Peer into the Past",
+          "description": "The dendrite’s meditations reveal significant details from one of her former lives. During any hour in which you rest, you may roll any one Knowledge check, even if you do not have ranks in it, with a bonus equal to your Constitution modifier. If the dendrite uses this ability while awake, she enters a deep trance and is treated as if she were asleep. Throughout this hour, the dendrite is entirely unaware of her surroundings, though any significant interruption (taking damage, someone speaking louder than normal volume, weather severity 4 or higher, etc.) will break her concentration and waste the effect. Peer into the past may not be used more than once in a 24-hour period. This ability may be used to reroll a failed Knowledge check, but only once per question."
+        },
+        {
+          "level": 1,
+          "name": "Grand Secrets",
+          "description": "The dendrite may select any of the following as grand secrets: Venum Immunity, Wild Vitality, Animal Herald, Instant Poison, Miracle Man. In addition, they may select the following new grand secret:"
+        },
+        {
+          "level": 1,
+          "name": "Ancient Echoes",
+          "description": "A dendrite must possess Peer into the Past to gain this grand secret. As the dendrite’s memories of her former lives flow into her waking mind, her past and present become one. Whenever you use your peer into the past ability, you gain a bonus to your Knowledge checks equal to your dendrite level. In addition, your peer into the past ability takes one minute instead of one hour, and may be used a number of times per day equal to your Constitution modifier."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:hedgewitch:dragonblooded-mortal",
+      "package": "spheres-class:hedgewitch",
+      "name": "Dragonblooded Mortal",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/dragonblooded-mortal",
+      "replaces_features": [
+        "saving-throws"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Dragon Heritage",
+          "description": "A dragonblooded mortal gains a host of different abilities depending on which dragon’s power they carry. Choose one of the following dragons. As a dragonblooded mortal gains levels, she gains different abilities depending on the dragon selected.\n\nDragon Type\nEnergy Type\nBreath Shape\n\nBlack\nAcid\n60-ft. line\n\nBlue\nElectricity\n60-ft. line\n\nGreen\nAcid\n30-ft. cone\n\nRed\nFire\n30-ft. cone\n\nWhite\nCold\n30-ft. cone\n\nBrass\nFire\n60-ft. line\n\nBronze\nElectricity\n60-ft. line\n\nCopper\nAcid\n60-ft. line\n\nGold\nFire\n30-ft. cone\n\nSilver\nCold\n30-ft. cone"
+        },
+        {
+          "level": 1,
+          "name": "Dragonform",
+          "description": "A dragonblooded mortal gains the following abilities as she gains levels."
+        },
+        {
+          "level": 1,
+          "name": "Paths",
+          "description": "Choosing the dragonblooded mortal archetype replaces one of the character’s Paths."
+        },
+        {
+          "level": 1,
+          "name": "Saving Throws",
+          "description": "A dragonblooded mortal has all good saving throws. This alters saving throws."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:hedgewitch:entropic-sage",
+      "package": "spheres-class:hedgewitch",
+      "name": "Entropic Sage",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/entropic-sage",
+      "replaces_features": [
+        "armor-proficiencies",
+        "hedgewitchs-weapon"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Enlightenment in Oblivion",
+          "description": "An entropic sage has contemplated the mysteries of the universe, seeing all creation crumbling to dust and drawing strength from this certainty, channeling the forces of destruction for their own ends. Some seek to hasten the end, hoping to reset a great cosmic cycle; some revel in destruction and seek the nothingness of obliteration; others simply find it a useful tool for their temporary gain.\n\nAt first level, an entropic sage gains the Destruction sphere and Energy Strike talent as bonus talents, as well as the Focused Shape drawback. This drawback does not grant an additional talent and may be bought off as normal. If the entropic sage already possesses the Destruction sphere, then the Energy Strike talent is gained as a bonus talent with no drawback. If both are already possessed, then she may choose any talent from the Destruction sphere as a bonus talent. The entropic sage may always take a talent from this sphere in place of a secret.\n\nAt 1st level, the entropic sage gains the Improved Unarmed Strike feat as a bonus feat. Also, when unarmored and unencumbered, the entropic sage adds her casting modifier bonus (if any) to her AC (including flat-footed and touch) and to her CMD. These bonuses increase by +1 for every 4 entropic sage levels. This does not stack with similar abilities, such as possessed by the monk.\n\nThe entropic sage may treat her caster level as equal to her class level when using Energy Strike with her unarmed strikes or weapons from the monk weapon group. This stacks normally with caster levels gained from other sources. Using Energy Strike this way does not provoke attacks of opportunity.\n\nAt 5th level, the entropic sage’s unarmed strike does damage as a monk of half her level.\n\nAt 9th level, the entropic sage gains the Improved Spell Combat feat as a bonus feat, even if she does not meet the requirements.\n\nAt 13th level, the entropic sage may use the Improved Spell Combat feat without spending a spell point.\n\nAt 17th level, when the entropic sage reduces a creature to 0 or fewer hit points, its body is destroyed as per the Disintegrate advanced talent."
+        },
+        {
+          "level": 1,
+          "name": "Paths",
+          "description": "Choosing the entropic sage archetype replaces one of the character’s Paths."
+        },
+        {
+          "level": 1,
+          "name": "Secrets",
+          "description": "The entropic sage gains exclusive access to the following secrets:"
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "An entropic sage is proficient with simple weapons and two weapons chosen from the monk weapons group at first level, but not armor.\n\nThis alters the hedgewitch’s weapon and armor proficiencies."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:hedgewitch:guileful-hedgewitch",
+      "package": "spheres-class:hedgewitch",
+      "name": "Guileful Hedgewitch",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/guileful-hedgewitch",
+      "replaces_features": [
+        "guileful-hedgewitchs-normal-class-skills"
+      ],
+      "removed_features": [
+        "guileful-hedgewitchs-normal-class-skills"
+      ],
+      "removed_feature_clauses": [
+        "guileful hedgewitch’s normal class skills"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Skill Expertise",
+          "description": "The guileful hedgewitch is a Journeyman operative, gaining skill spheres and talents as normal.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nSpheres of Guile by Drop Dead Studios\n\nUsing Spheres of Guile\n\nClasses\n\nAdvisor (DRS)\nAgent\nConduit (DRS)\nCourser\nEnvoy\n\nGenius\nMastermind\nProfessional\n\nSpheres\n\nArtifice\nBluster\nBody Control\nCommunication\nFaction\n\nHerbalism\nInfiltration\nInvestigation\nNavigation\nPerformance\n\nSpellhacking\nStudy\nSubterfuge\nSurvivalism\nVocation\n\nOther Rules\n\nOperative Feats\nOperative Gear\nSkill Rules\nTrade Traditions\nRunning Guile Games\n\nGet Spheres of Guile"
+        },
+        {
+          "level": 1,
+          "name": "Trade Tradition",
+          "description": "If this is this character’s first level in any class, the guileful hedgewitch may select a trade tradition of their choice, and have an adroit trade rank.\n\nThis replaces the guileful hedgewitch’s normal class skills. This archetype may be combined with other archetypes that alter class skills. When doing so, those additional class skills are granted in addition to the trade tradition. This does not replace the additional class skills gained from the guileful hedgewitch’s path."
+        },
+        {
+          "level": 1,
+          "name": "Traditions",
+          "description": "Choosing the guileful hedgewitch archetype replaces one of the character’s paths."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:hedgewitch:iron-mage",
+      "package": "spheres-class:hedgewitch",
+      "name": "Iron Mage",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/iron-mage",
+      "replaces_features": [
+        "saving-throws"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Authority",
+          "description": "The iron mage can call upon reserves of personal strength and tactical skill to perform her tactical duties more effectively and to inspire her comrades to greater feats of daring. At the start of each day, an iron mage gains a number of authority points equal to her casting ability modifier.\n\nHer authority changes throughout the day, but cannot go higher than this amount, barring special abilities. The iron mage spends authority by using commands, and regains it by succeeding in her goals.\n\nWhenever an enemy within 60 feet of the iron mage is reduced to 0 or fewer hit points by the iron mage or one of her allies during combat, she regains 1 point of authority. The enemy must have at least half as many Hit Dice as the iron mage for them to regain authority, and they must not be helpless unless she or her allies made them helpless."
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "The iron mage adds Intimidate (Cha), Knowledge (history) (Int), and Knowledge (nobility) (Int) to her class skill list. The iron mage gains 4 + Int modifier skills per level."
+        },
+        {
+          "level": 1,
+          "name": "Commands",
+          "description": "Once per round, the iron mage may use a command to enhance her War sphere and other abilities. The iron mage has many different commands available to her, each with its own action cost. Once a command has been used, she can not use another until next turn. If she uses a command outside of her turn, it uses up this action for her next turn, and she can not use another command until after her next turn has ended. The iron mage may not use commands while she is dazed or stunned.\n\nThe iron mage gains access to all commands presented here as she levels:"
+        },
+        {
+          "level": 1,
+          "name": "Grand Path Secrets",
+          "description": "The iron mage gains exclusive access to the following grand secrets:"
+        },
+        {
+          "level": 1,
+          "name": "Military Tradition",
+          "description": "The iron mage gains the War sphere as a bonus talent, and uses her class level as her caster level with that sphere. This stacks normally with caster levels gained from other sources. In addition, at 1st level she gains a bonus feat. This feat must be used to acquire an armor proficiency, shield proficiency, or weapon proficiency she qualifies for, or the Improved Unarmed Strike combat feat. If using Spheres of Might, this may be spent to gain an Equipment sphere talent."
+        },
+        {
+          "level": 1,
+          "name": "Path Secrets",
+          "description": "The iron mage gains exclusive access to the following secrets:"
+        },
+        {
+          "level": 1,
+          "name": "Paths",
+          "description": "Choosing the iron mage archetype replaces one of the character’s Paths."
+        },
+        {
+          "level": 1,
+          "name": "Saving Throws",
+          "description": "The iron mage has good Fortitude and Will saves, and poor Reflex saves.\n\nThis alters saving throws."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:hedgewitch:martial-hedgewitch",
+      "package": "spheres-class:hedgewitch",
+      "name": "Martial Hedgewitch",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/martial-hedgewitch",
+      "replaces_features": [
+        "proficiencies",
+        "secrets"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Traditions",
+          "description": "Choosing the martial hedgewitch archetype replaces one of the character’s paths."
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "The martial hedgewitch gains Acrobatics, Climb, and Swim as class skills."
+        },
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Martial hedgewitches are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis modifies proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A martial hedgewitch may combine combat spheres and talents to create powerful martial techniques. Martial hedgewitches gain a combat talent at 1st level and every 2 levels thereafter and use their casting ability modifier as their practitioner modifier."
+        },
+        {
+          "level": 1,
+          "name": "Secrets",
+          "description": "A martial hedgewitch may take the Extra Combat Talent feat or any feat which requires possessing combat talents in place of a secret. She must meet all the prerequisites for these feats as normal.\n\nThis modifies secrets."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:hedgewitch:triple-goddess",
+      "package": "spheres-class:hedgewitch",
+      "name": "Triple Goddess",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/triple-goddess",
+      "replaces_features": [],
+      "removed_features": [],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Maiden, Mother, Crone",
+          "description": "A triple goddess commands the powers of Life, Death, and Fate, seeing the strands of people’s lives and manipulating them to her desires. The triple goddess uses her class level as her caster level with the Life, Death, and Fate spheres. This stacks normally with caster levels gained from other sources.\n\nAt 1st level, the triple goddess gains 2 bonus magic talents that must be spent in either the Life, Death, or Fate spheres.\n\nAt 10th level, whenever the triple goddess rests to regain spell points, she may change one magic talent she possesses in either the Life, Death, or Fate sphere, replacing them with another talent from that same sphere."
+        },
+        {
+          "level": 1,
+          "name": "Paths",
+          "description": "Choosing the triple goddess archetype replaces one of the character’s Paths."
+        },
+        {
+          "level": 5,
+          "name": "Thread of Life",
+          "description": "Beginning at 5th level, a triple goddess can sense, manipulate and eventually even sever a creature’s thread of life. She gains access to the following abilities as she gains levels, and can use the following abilities a total number of times per day equal to 1 + 1 for every 4 triple goddess levels she possesses beyond 5th.\n\nAt 5th level, the triple goddess may control the weaving of fate. As a standard action she can touch a creature and grant them either good luck or bad luck. If good luck, once a round for the duration of the effect the target may roll a d20 twice and take the more favorable result. The target must announce they are using this benefit before any roll is made. If granting bad luck, for the duration of the effect, the target must make her first d20 roll twice and take the less favorable result. Bestowing good or bad luck on an unwilling creature requires a touch attack. This effect lasts a number of rounds equal to 1/2 her triple goddess level.\n\nAt 9th level, the triple goddess can touch a creature as a standard action and examine the cord of its life to gain an advantage. During the next round the triple goddess gains a +20 circumstance bonus to a single d20 roll made against the target whose cord she examined, such as an attack roll or skill check. This ability can be used in or out of combat but requires a touch attack against an unwilling target.\n\nAt 13th level, the triple goddess may spend a standard action to touch a creature and sever its connection to fate. The target must succeed at a Will save against a DC equal to 10 + 1/2 her triple goddess level + her casting ability modifier. If the target fails this saving throw, it becomes permanently sickened and staggered. These conditions may only be removed through the Break Enchantment Life talent, a break enchantment or remove curse spell, a wish or miracle spell, or other, similar means.\n\nAt 17th level, a triple goddess gains the ultimate power over life itself: The power to end it. The triple goddess may spend a standard action to make a touch attack against a single creature and cut the cord of its life. The target receives a Will save against a DC equal to 10 + 1/2 her triple goddess level + her casting ability modifier. If the target succeeds in its Will save it is staggered for 1d4 rounds and the triple goddess cannot attempt to cut her cord again for 24 hours. If the target’s saving throw fails, it dies. This is a death effect.\n\nSpheres of Power: Expanded Options\n\n$4.99\n\nTraditions: Choosing the Triple Goddess archetype replaces one of the character’s traditions.\n\nMaiden, Mother, Crone (Su): A triple goddess commands the powers of Life, Death, and Fate, seeing the strands of people’s lives and manipulating them to her desires. At first level, a triple goddess gains 2 of the following spheres, or magic talents contained within these spheres: Life, Death, and Fate. The triple goddess uses her class level as her caster level with these three spheres. This stacks normally with caster levels gained from other sources.\n\nAt 10th level, whenever the triple goddess rests to regain spell points, she may change one magic talent she possesses in either the Life, Death, or Fate sphere, replacing them with another talent from that same sphere.\n\nThread of Life (Su): Beginning at 5th level, a triple goddess can sense, manipulate and eventually even sever a creature’s thread of life. She gains access to the following abilities as she gains levels, and can use the following abilities a total number of times per day equal to 1 + 1 for every 4 hedgewitch levels she possesses beyond 5th.\n\nAt 5th level, the triple goddess may control the weaving of fate. As a standard action she can touch a creature and grant them either good luck or bad luck. If good luck, once a round for the duration of the effect the target may roll a d20 and take the more favorable result. The target must announce they are using this benefit before any roll is made. If granting bad luck, for the duration of the effect, the target must make her first d20 roll twice and take the less favorable result. Bestowing good or bad luck on an unwilling creature requires a touch attack. This effect lasts a number of rounds equal to 1⁄2 the triple goddess’s class level.\n\nAt 9th level, the triple goddess can touch a creature as a standard action and examine the cord of its life to gain an advantage. During the next round the triple goddess gains a +20 circumstance bonus to a single d20 roll made against the target whose cord she examined, such as an attack roll or skill check.\n\nThis ability can be used in or out of combat but requires a touch attack against an unwilling target.\n\nAt 13th level, the triple goddess may spend a standard action to touch a creature and sever its connection to fate. The target must pass a Will save against a DC equal to 10 + 1⁄2 the triple goddess’s class level + the triple goddess’s Wisdom modifier. If the target fails this saving throw, it becomes permanently sickened and staggered. These conditions may only be removed through the Break Enchantment Life talent, a break enchantment or remove curse spell, a wish or miracle spell, or other, similar means.\n\nAt 17th level, a triple goddess gains the ultimate power over life itself: The power to end it. The triple goddess may spend a standard action to make a touch attack against a single creature and cut the cord of its life. The target receives a Will save against a DC equal to 10 + 1⁄2 the triple goddess’s class level + the triple goddess’s Wisdom modifier. If the target succeeds in her Will save she is staggered for 1d4 rounds and the triple goddess cannot attempt to cut her cord again for 24 hours. If the target’s saving throw fails, she dies.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

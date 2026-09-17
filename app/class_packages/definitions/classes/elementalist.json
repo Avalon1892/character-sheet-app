@@ -1,0 +1,34 @@
+{
+  "version":1,
+  "key":"elementalist",
+  "class_key":"spheres-class:elementalist",
+  "class_name":"Elementalist",
+  "governing_ability":"charisma",
+  "catalog_profile":{
+    "weapon_proficiencies":["Simple weapons","Martial weapons"],
+    "armor_proficiencies":["Light armor"],
+    "proficiencies":{"weapons":["Simple weapons","Martial weapons"],"armor":["Light armor"]},
+    "advancement":{"talent_progression":"Mid","talent_kinds":["magic"],"talent_bonus_levels":[1]}
+  },
+  "optional_blocks":["magic_spheres","spell_points","martial_focus"],
+  "external_systems":["sphere_casting","martial_focus","favored_element"],
+  "bonus_feat_levels":[2,6,10,14,18],
+  "bonus_feat_label":"Elementalist combat feats",
+  "resource_modules":[{
+    "key":"elementalist","title":"Elementalist Features","governing_ability":"charisma","resources":[
+      {"key":"elemental_resistance","name":"Elemental Resistance","feature_tokens":["elemental-defense","energy-body"],"progression":"elementalist_resistance","description":"Resistance to acid, cold, electricity, and fire; Energy Body raises this to 20 at level 20.","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false},
+      {"key":"elemental_movement","name":"Elemental Movement","feature_tokens":["elemental-movement"],"progression":"elementalist_movement_choices","description":"Choose swim 30 ft., fly 20 ft. (average), burrow 15 ft., or +20 ft. land speed. Gain another choice at levels 13 and 19; every selected movement increases by 10 ft. at those levels.","choice_options":["Land","Swim","Fly","Burrow"],"maximum_choices_progression":"elementalist_movement_choices","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false}
+    ]
+  }],
+  "passive_effects":[
+    {"key":"elementalist-dodge","feature_tokens":["dodge-bonus"],"targets":["ac","touch_ac"],"progression":"elementalist_dodge","bonus_type":"dodge","source":"Elementalist: Dodge Bonus","minimum_level":4},
+    {"key":"elementalist-land","feature_tokens":["elemental-movement"],"targets":["land_speed"],"progression":"elementalist_land_movement","bonus_type":"untyped","source":"Elementalist: Elemental Movement (land)","requires_resource_key":"elemental_movement","requires_resource_choice":"Land"},
+    {"key":"elementalist-swim","feature_tokens":["elemental-movement"],"targets":["swim_speed"],"progression":"elementalist_swim_movement","bonus_type":"untyped","source":"Elementalist: Elemental Movement (swim)","requires_resource_key":"elemental_movement","requires_resource_choice":"Swim"},
+    {"key":"elementalist-fly","feature_tokens":["elemental-movement"],"targets":["fly_speed"],"progression":"elementalist_fly_movement","bonus_type":"untyped","source":"Elementalist: Elemental Movement (fly)","requires_resource_key":"elemental_movement","requires_resource_choice":"Fly"},
+    {"key":"elementalist-burrow","feature_tokens":["elemental-movement"],"targets":["burrow_speed"],"progression":"elementalist_burrow_movement","bonus_type":"untyped","source":"Elementalist: Elemental Movement (burrow)","requires_resource_key":"elemental_movement","requires_resource_choice":"Burrow"}
+  ],
+  "choice_providers":[{
+    "key":"elementalist-favored-elements","label":"Favored Elements","feature_tokens":["favored-element"],"minimum":0,"maximum":3,"minimum_levels":[3,9,15],"maximum_levels":[3,9,15],"description":"Choose a Destruction blast-type group at levels 3, 9, and 15. Earlier favored groups gain the larger published damage scaling.","fixed_options":[{"key":"acid","name":"Acid"},{"key":"air","name":"Air"},{"key":"cold","name":"Cold"},{"key":"crystal","name":"Crystal"},{"key":"electric","name":"Electric"},{"key":"fire","name":"Fire"},{"key":"force","name":"Force"},{"key":"light","name":"Light"},{"key":"negative","name":"Negative"},{"key":"plant","name":"Plant"},{"key":"sonic","name":"Sonic"},{"key":"stone","name":"Stone"}]
+  }],
+  "notes":"Destruction from Weave Energy is represented as a class-granted talent allowance. Favored elements and elemental movements use shared choice/resource systems."
+}

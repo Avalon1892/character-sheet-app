@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "key": "spiritualist",
+  "class_key": "pathfinder-class:spiritualist",
+  "class_name": "Spiritualist",
+  "governing_ability": "wisdom",
+  "optional_blocks": ["inquisitor_features", "spells_known", "spell_level_overview"],
+  "external_systems": ["traditional_spontaneous_casting", "phantom", "emotional_focus", "bonded_manifestation"],
+  "resource_modules": [
+    {
+      "key": "spiritualist_bond",
+      "title": "Spiritualist Bond",
+      "governing_ability": "wisdom",
+      "resources": [
+        {"key": "bonded_senses", "name": "Bonded Senses Rounds", "feature_tokens": ["bonded-senses"], "progression": "level", "description": "Rounds per day equal Spiritualist level; the phantom must be manifested on the same plane.", "can_activate": true, "use_requires_active": true},
+        {"key": "bonded_manifestation", "name": "Bonded Manifestation Rounds", "feature_tokens": ["bonded-manifestation"], "progression": "spiritualist_bonded_manifestation", "description": "Rounds per day equal 3 + Spiritualist level, increasing to 3 + twice level with Dual Bond.", "can_activate": true, "use_requires_active": true, "choice_options": ["Ectoplasmic", "Incorporeal"]},
+        {"key": "phantom_recall", "name": "Phantom Recall", "feature_tokens": ["phantom-recall"], "progression": "one_plus_every_four_after_six", "description": "One daily use at 6th level plus one additional use per 4 levels beyond 6th."},
+        {"key": "calm_spirit", "name": "Calm Spirit", "feature_tokens": ["calm-spirit"], "progression": "one_plus_every_four_after_seven", "description": "One daily use at 7th level plus one at 11th, 15th, and 19th level."},
+        {"key": "see_invisibility", "name": "See Invisibility", "feature_tokens": ["see-invisibility"], "progression": "one", "description": "One 10-minute daily use."},
+        {"key": "call_spirit", "name": "Call Spirit", "feature_tokens": ["call-spirit"], "progression": "one", "description": "One daily use from 16th level."}
+      ]
+    }
+  ],
+  "passive_effects": [],
+  "choice_providers": [
+    {
+      "key": "spiritualist-emotional-focus",
+      "label": "Phantom Emotional Focus",
+      "feature_tokens": ["phantom"],
+      "option_families": ["phantom_focus"],
+      "minimum": 1,
+      "maximum": 1,
+      "description": "Choose the phantom's emotional focus. It determines the phantom's skills, good saves, ability adjustment, and level-scaled powers."
+    }
+  ],
+  "notes": "The Phantom is a full bonded-companion provider with an independently saved sheet; emotional focus and manifestation resources remain attached to the retained Phantom feature."
+}

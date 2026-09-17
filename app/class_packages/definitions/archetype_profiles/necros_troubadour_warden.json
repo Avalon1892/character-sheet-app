@@ -1,0 +1,36 @@
+{
+  "version":1,
+  "entries":[
+    {
+      "key":"spheres-archetype:spheres-class:necros:brutal-necromancer",
+      "class_modifications":{
+        "statistics":{"hit_die":10,"bab_progression":"Full"},
+        "casting":{"sphere_progression":"Low"}
+      }
+    },
+    {
+      "key":"spheres-archetype:spheres-class:troubadour:polymath",
+      "sphere_capabilities":{"grants":["magic","martial","skill"],"removes":[]},
+      "class_modifications":{
+        "advancement":{"talent_progression":"Journeyman","talent_kinds":["magic","martial","skill"],"talent_replaces_base":true},
+        "capabilities":{"grants":["skill"],"removes":[]}
+      },
+      "choices":[{
+        "key":"polymath-training-progression","level":1,"name":"Polymath Training Progression","minimum":1,"maximum":1,
+        "description":"Use journeyman blended training, or exchange Greater Actor and Master Actor for virtuoso blended training.",
+        "options":[
+          {"key":"journeyman","name":"Journeyman Training — retain Greater Actor and Master Actor","class_modifications":{"advancement":{"talent_progression":"Journeyman","talent_kinds":["magic","martial","skill"]}}},
+          {"key":"virtuoso","name":"Virtuoso Training — replace Greater Actor and Master Actor","class_modifications":{"advancement":{"talent_progression":"Virtuoso","talent_kinds":["magic","martial","skill"]}}}
+        ]
+      }]
+    },
+    {
+      "key":"spheres-archetype:spheres-class:warden:keeper",
+      "sphere_capabilities":{"grants":["magic"],"removes":["martial"]},
+      "class_modifications":{
+        "advancement":{"talent_progression":"High","talent_kinds":["magic"],"talent_bonus_levels":[1,1],"required_first_sphere":""},
+        "capabilities":{"grants":["magic"],"removes":["martial"]}
+      }
+    }
+  ]
+}

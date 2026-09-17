@@ -1,0 +1,2641 @@
+{
+  "version": 1,
+  "class_key": "pathfinder-class:cleric",
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:angelfire-apostle",
+      "package": "pathfinder-class:cleric",
+      "name": "Angelfire Apostle",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Angelfire Apostle",
+      "replaces_features": [
+        "alignment",
+        "armor-proficiency",
+        "channel-energy",
+        "spellcasting"
+      ],
+      "removed_features": [
+        "alignment",
+        "armor-proficiency",
+        "channel-energy",
+        "spellcasting"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Angelfire Apostle",
+          "description": "Source Healer's Handbook pg. 7"
+        },
+        {
+          "level": 1,
+          "name": "Armor Proficiency",
+          "description": "Angelfire apostles are not proficient with medium armor."
+        },
+        {
+          "level": 1,
+          "name": "Diminished Spellcasting",
+          "description": "An angelfire apostle is less concerned with the traditional divine magic that many religious adherents receive. The angelfire apostle receives one fewer spell slot at each spell level. When an angelfire apostle gets no spells per day at a spell level, he can cast domain spells of that level normally, but can only cast nondomain spells of that level if he gets them as bonus spells."
+        },
+        {
+          "level": 1,
+          "name": "Extra Channel",
+          "description": "At 1st level, the angelfire apostle gains Extra Channel as a bonus feat."
+        },
+        {
+          "level": 1,
+          "name": "Channel Angelfire",
+          "description": "An angelfire apostle must be of good or neutral alignment and must choose to channel positive energy, even if his deity is neutral or if he is not devoted to a particular deity. When an angelfire apostle channels positive energy, affected nongood creatures are dazzled for 1 round, with no saving throw for this effect, in addition to experiencing the normal effects of channel energy."
+        },
+        {
+          "level": 5,
+          "name": "Versatile Healing Channel",
+          "description": "At 5th level, the angelfire apostle can spend two uses of his channel energy ability to cast remove blindness/deafness or lesser restoration as a spell-like ability. At 7th level, he can choose remove disease or remove paralysis. At 9th level, he can choose neutralize poison. At 11th level, he can choose breath of life. At 13th level, he can choose heal. At 15th level, he can choose regenerate. At 17th level, he can choose restoration but cannot affect permanent negative levels. At 19th level, he can choose resurrection but can affect only a target that has been dead no more than 1 round per his cleric level."
+        },
+        {
+          "level": 9,
+          "name": "Cleansing Flames",
+          "description": "At 9th level, the angelfire apostle becomes a direct conduit for the righteous power of his deity. Whenever the angelfire apostle casts a spell that belongs to the healing subschool that is a lower spell level than the highest spell he can cast, he can unleash a blast of flames as a swift action by expending one use of his channel energy ability. The flames last for 1 round and fill a contiguous area equal to one 10-foot cube per level of the healing spell cast (at least one side of the cube must be adjacent to the angelfire apostle’s space). The flames deal 1d4 points of damage per spell level. Half of the damage is fire damage, and half is raw divine power not subject to fire resistance or immunity. Any creature in the area can halve the damage with a successful Reflex saving throw against the spell’s DC. The angelfire apostle can use this ability a number of times per day equal to his Charisma modifier."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:appeaser",
+      "package": "pathfinder-class:cleric",
+      "name": "Appeaser",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Appeaser",
+      "replaces_features": [
+        "alignment",
+        "aura",
+        "channel-energy",
+        "domains",
+        "spellcasting"
+      ],
+      "removed_features": [
+        "alignment",
+        "aura",
+        "channel-energy",
+        "domains",
+        "spellcasting"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Appeaser",
+          "description": "Source Agents of Evil pg. 15"
+        },
+        {
+          "level": 1,
+          "name": "Aura",
+          "description": "An appeaser always has an evil aura regardless of his actual alignment. This alters aura."
+        },
+        {
+          "level": 5,
+          "name": "Channel Utility",
+          "description": "An appeaser channels negative energy, but also gains limited access to positive energy. At 5th level, an appeaser can channel positive energy as a full-round action, but he treats his cleric level as if it were 4 lower when determining the amount of damage he can deal to undead and the amount of hit points he can restore to living creatures. This ability alters channel energy."
+        },
+        {
+          "level": 1,
+          "name": "Divine Apologist",
+          "description": "An appeaser must worship an evil god. His alignment must be within one step of his deity’s, but he himself cannot have an evil alignment. An appeaser cannot cast any spells with the good or evil descriptor. This alters the cleric’s alignment and spells."
+        },
+        {
+          "level": 1,
+          "name": "Mollified Domain",
+          "description": "At 1st level, an appeaser gains no domain or domain bonus spells. Once per day as a standard action, he can sacrifice his own force of will to gain divine providence. Doing so deals 1d3 points of Charisma damage to the appeaser, and allows him to select a single domain offered by his deity (except the Evil domain or its subdomains). The appeaser gains access to any granted powers offered by the domain he would otherwise qualify for, and can sacrifice a prepared spell to cast a domain spell from that domain just as if he were spontaneously casting a cure or inflict spell. He retains access to this domain for a number of minutes equal to 1/2 the appeaser’s cleric level + plus his Wisdom modifier. Any domain abilities that can be used a limited number of times per day can be used only once each time that particular domain is invoked."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:asmodean-advocate",
+      "package": "pathfinder-class:cleric",
+      "name": "Asmodean Advocate",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Asmodean Advocate",
+      "replaces_features": [
+        "domains"
+      ],
+      "removed_features": [
+        "domains"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Asmodean Advocate",
+          "description": "Source Dirty Tactics Toolbox pg. 16"
+        },
+        {
+          "level": 1,
+          "name": "Pact-Bound",
+          "description": "An Asmodean advocate must choose Asmodeus as her deity and select the Trickery domain. She does not gain a second domain. If she ever changes her deity, she loses this archetype and becomes a normal ex-cleric. This ability alters domains."
+        },
+        {
+          "level": 1,
+          "name": "Serpent",
+          "description": "At 1st level, an Asmodean advocate gains a familiar as the arcane bond class feature, using her cleric level as her wizard level. She must choose a viper familiar. The viper speaks one language of the Asmodean advocate’s choice as a supernatural ability."
+        },
+        {
+          "level": 1,
+          "name": "Devil in the Details",
+          "description": "At 1st level, an Asmodean advocate learns to choose her words so carefully that even when she says something designed to deceive listeners, the words are phrased to be technically true. She can use her Profession (barrister) skill for Bluff and Diplomacy checks. This benefit also extends to her familiar. The Asmodean advocate gains an insight bonus equal to 1/2 her cleric level (minimum +1) on Linguistics checks related to forgeries and on all Profession (barrister) checks."
+        },
+        {
+          "level": 8,
+          "name": "Shoulder Devil",
+          "description": "At 8th level, an Asmodean advocate can choose an imp familiar as though she had the Improved Familiar feat."
+        }
+      ],
+      "detected_systems": [
+        "familiar"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:blossoming-light",
+      "package": "pathfinder-class:cleric",
+      "name": "Blossoming Light",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Blossoming Light",
+      "replaces_features": [
+        "alignment",
+        "armor-proficiency",
+        "channel-energy",
+        "domains"
+      ],
+      "removed_features": [
+        "alignment",
+        "armor-proficiency",
+        "channel-energy",
+        "domains"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blossoming Light",
+          "description": "Source Adventurer's Guide pg. 112"
+        },
+        {
+          "level": 1,
+          "name": "Promise of Faith",
+          "description": "A blossoming light vows to trust in her deity’s protection over arms and armor. She is not proficient with any armor or shields. The blossoming light cannot use or benefit from any of her class features (including spellcasting) while wearing armor or using a shield, or for 1 minute thereafter."
+        },
+        {
+          "level": 1,
+          "name": "Promise of Purity",
+          "description": "A blossoming light must be truly pure of heart. She must be good-aligned and worship a nonevil deity. If the blossoming light willfully commits an evil act, she loses all class features (including spellcasting) until she atones.\n\nThis alters the cleric’s alignment."
+        },
+        {
+          "level": 1,
+          "name": "Luminous Font",
+          "description": "A blossoming light forsakes her deity’s deeper mysteries to focus on benevolence, healing, and bringing light to darkness. A blossoming light still selects domains and retains access to domain powers, but does not gain domain spell slots. Blossoming lights are beacons of goodness, guiding others to follow their own best natures. A blossoming light adds half her level on Diplomacy checks against good creatures or to convince an evil creature to take an action against its evil nature."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:cardinal",
+      "package": "pathfinder-class:cleric",
+      "name": "Cardinal",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Cardinal",
+      "replaces_features": [
+        "armor-proficieny",
+        "base-attack-bonus",
+        "class-skills",
+        "domain",
+        "skill-ranks",
+        "spontaneous-casting"
+      ],
+      "removed_features": [
+        "armor-proficieny",
+        "base-attack-bonus",
+        "class-skills",
+        "domain",
+        "skill-ranks",
+        "spontaneous-casting"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Cardinal",
+          "description": "Source Ultimate Intrigue pg. 64"
+        },
+        {
+          "level": 1,
+          "name": "Armor Proficiency",
+          "description": "A cardinal is proficient in light armor, but not shields."
+        },
+        {
+          "level": 1,
+          "name": "Political Skill",
+          "description": "A cardinal adds Bluff, Intimidate, Knowledge (geography), and Knowledge (local) to her list of class skills. She gains a number of skill ranks equal to 6 + her Intelligence modifier at each level, instead of the normal 2 + her Intelligence modifier. However, she gains only one domain, and her base attack bonus from cleric levels is equal to half her class level (which is the same as for a sorcerer or wizard)."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:channeler-of-the-unknown",
+      "package": "pathfinder-class:cleric",
+      "name": "Channeler of the Unknown",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Channeler of the Unknown",
+      "replaces_features": [
+        "armor-proficiency",
+        "aura",
+        "channel-energy",
+        "domains",
+        "spellcasting",
+        "spontaneous-casting",
+        "weapon"
+      ],
+      "removed_features": [
+        "armor-proficiency",
+        "aura",
+        "channel-energy",
+        "domains",
+        "spellcasting",
+        "spontaneous-casting",
+        "weapon"
+      ],
+      "removed_feature_clauses": [
+        "cleric’s aura"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Channeler of the Unknown",
+          "description": "Source Antihero's Handbook pg. 12"
+        },
+        {
+          "level": 1,
+          "name": "EX-CLASS ARCHETYPES",
+          "description": "The following archetype can be taken by an ex-cleric immediately upon becoming an ex-cleric, regardless of character level, replacing some or all of the lost class abilities. If another archetype the character had before she became an ex-cleric replaces the same ability as the ex-class archetype, she loses the old archetype in favor of the new one; otherwise, she can retain both archetypes as normal. Channelers of the unknown can gain further levels in the cleric class, even though becoming an ex-cleric normally prohibits further advancement in the class. While an ex-member of a class can recant her failings and atone for her fall from her original class (typically involving an atonement spell), her acceptance of her ex-class archetype means she must atone both for her initial fall and for further straying from the path. As a result, such a character must be the target of two atonement spells or a similar effect to regain her lost class features. Upon doing so, she immediately loses this archetype and regains her original class (and archetype, if she had one)."
+        },
+        {
+          "level": 1,
+          "name": "Spells",
+          "description": "A channeler of the unknown has one fewer spell slot per spell level in which she can prepare spells than normal. She is no longer restricted by alignment descriptors, and she gains access to all spells on the cleric spell list, even spells her alignment would normally prohibit.\n\nThis alters the cleric’s spells."
+        },
+        {
+          "level": 1,
+          "name": "Unknown Aura",
+          "description": "A channeler of the unknown never radiates an alignment aura, as if under the effect of a permanent undetectable alignment spell.\n\nThis replaces the cleric’s aura."
+        },
+        {
+          "level": 1,
+          "name": "Channel Entropy",
+          "description": "A channeler of the unknown can channel entropy as a cleric channels negative or positive energy, releasing a wave of twisting void that harms creatures in the area of effect. The amount of damage dealt is equal to that an evil cleric of her level would deal by channeling negative energy, except it affects living, unliving, and undead creatures alike. This functions in all other ways as a cleric’s channel energy class feature, including benefiting from feats that affect channel energy (such as Selective Channeling).\n\nThis alters channel energy."
+        },
+        {
+          "level": 1,
+          "name": "Power of the Unknown",
+          "description": "A channeler of the unknown has lost the benefit of the domains granted by her deity, but the unknown entity that answers her supplications instead grants her the benefits of one domain from the following list: Darkness, Destruction, Luck, Madness, or Void. Instead of a single domain spell slot, the channeler of the unknown gains two domain spell slots per spell level she can cast. A channeler of the unknown cannot select a subdomain in place of the domain available to her.\n\nThis alters the cleric’s domains."
+        },
+        {
+          "level": 1,
+          "name": "Spontaneous Casting",
+          "description": "Instead of converting prepared spells into cure or inflict spells, a channeler of the unknown can channel stored spell energy into her domain spells. She can lose a prepared spell, including a domain spell, to spontaneously cast a domain spell of the same spell level or lower.\n\nThis alters spontaneous casting."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:cloistered-cleric",
+      "package": "pathfinder-class:cleric",
+      "name": "Cloistered Cleric",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Cloistered Cleric",
+      "replaces_features": [
+        "domains",
+        "spellcasting",
+        "weapon-armor-proficiencies"
+      ],
+      "removed_features": [
+        "domains",
+        "spellcasting",
+        "weapon-armor-proficiencies"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Cloistered Cleric",
+          "description": "Source Ultimate Magic pg. 31"
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "Cloistered clerics are proficient with light armor and with the following weapons: club, heavy mace, light mace, quarterstaff, and sling. They are not proficient with shields."
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "The cloistered cleric’s class skills are Appraise (Int), Craft (Int), Diplomacy (Cha), Heal (Wis), Knowledge (all) (Int), Linguistics (Int), Profession (Wis), Sense Motive (Wis), and Spellcraft (Int)."
+        },
+        {
+          "level": 1,
+          "name": "Skill Ranks per Level",
+          "description": "4 + Int modifier."
+        },
+        {
+          "level": 1,
+          "name": "Diminished Spellcasting",
+          "description": "A cloistered cleric chooses only one domain from her deity’s list of domains, and her number of non-domain spells per day for each spell level is one less than normal (for example, a 4th-level cloistered cleric has three cantrips, two 1st-level spells, one 1st-level domain spell, one 2nd-level spell, and one 2nd-level domain spell). If this reduces the number of spells per day for that level to 0, she gains only the bonus spells she would be entitled to based on her Wisdom score for that level, plus her domain spell for that level."
+        },
+        {
+          "level": 1,
+          "name": "Breadth of Knowledge",
+          "description": "At 1st level, a cloistered cleric gains a bonus on Knowledge skill checks equal to half her class level (minimum +1) and can make Knowledge skill checks untrained."
+        },
+        {
+          "level": 2,
+          "name": "Well-Read",
+          "description": "At 2nd level, a cloistered cleric gains a +2 bonus on skill checks, caster level checks, and saving throws if such rolls pertain to mundane or magical glyphs, runes, scrolls, symbols, and other writings."
+        },
+        {
+          "level": 3,
+          "name": "Verbal Instruction",
+          "description": "At 3rd level, a cloistered cleric can use the aid another action to assist an ally within 30 feet on a skill or ability check. The ally must be able to hear and understand the cleric’s instructions. For every three class levels beyond 3rd, the cloistered cleric can instruct one additional ally. If all allies are not engaged in the same task, using this ability is a full-round action rather than a standard action."
+        },
+        {
+          "level": 4,
+          "name": "Scribe Scroll",
+          "description": "At 4th level, a cloistered cleric gains Scribe Scroll as a bonus feat."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:crashing-wave",
+      "package": "pathfinder-class:cleric",
+      "name": "Crashing Wave",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Crashing Wave",
+      "replaces_features": [
+        "bonus-languages",
+        "channel-energy",
+        "deity",
+        "spontaneous-casting"
+      ],
+      "removed_features": [
+        "bonus-languages",
+        "channel-energy",
+        "deity",
+        "spontaneous-casting"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Crashing Wave",
+          "description": "Source Blood of the Sea pg. 23"
+        },
+        {
+          "level": 1,
+          "name": "Sworn to the Sea",
+          "description": "A crashing wave must select Gozreh as her deity."
+        },
+        {
+          "level": 1,
+          "name": "Speech of the Sea",
+          "description": "A crashing wave’s bonus language options include Aquan in addition to the bonus languages available to the character from her race. The crashing wave does not gain Abyssal, Celestial, or Infernal as bonus language options."
+        },
+        {
+          "level": 1,
+          "name": "Balanced Channel",
+          "description": "At 1st level, a crashing wave can channel the pure balance of the ocean—its wildness, its calm, its cruelty, and its gentleness. This energy can be used to harm or heal creatures, as the crashing wave chooses. Channeling this energy causes a 30-foot-radius burst centered on the cleric. Using balanced channel is a standard action that does not provoke attacks of opportunity. A crashing wave can choose whether to include herself in the effect. The cleric must be able to present her holy symbol to use this ability, and she can channel energy a number of times equal to 3 + her Charisma modifier."
+        },
+        {
+          "level": 1,
+          "name": "Spontaneous Casting",
+          "description": "A crashing wave does not gain the ability to spontaneously cast cure or inflict spells by sacrificing prepared spells. However, a crashing wave can spontaneously cast the following spells by sacrificing a prepared spell of the noted level or higher."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:crusader",
+      "package": "pathfinder-class:cleric",
+      "name": "Crusader",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Crusader",
+      "replaces_features": [
+        "domains",
+        "spellcasting"
+      ],
+      "removed_features": [
+        "domains",
+        "spellcasting"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Crusader",
+          "description": "Source Ultimate Combat pg. 40"
+        },
+        {
+          "level": 1,
+          "name": "Diminished Spellcasting",
+          "description": "A crusader chooses only one domain and gains one fewer spell of each level than normal. If this reduces the number to 0, she may cast spells of that level only if they are domain spells or if her Wisdom allows bonus spells of that level."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Feat",
+          "description": "A crusader gains a bonus feat at 1st level, then again at 5th level and every five levels thereafter (to a maximum of five at 20th level). These bonus feats must be chosen from the following list: Heavy Armor Proficiency, Improved Shield Bash, Martial Weapon Proficiency, Saving Shield, Shield Focus, Tower Shield Proficiency, and Weapon Focus*. At 10th level, a crusader may also choose from the following feats: Exotic Weapon Proficiency, Greater Shield Focus, Greater Weapon Focus*, Improved Critical*, Shield Slam, Shield Specialization, and Weapon Specialization*. At 20th level, a crusader may also choose from the following feats: Greater Shield Specialization and Greater Weapon Specialization*. Bonus feats marked with an asterisk (*) must be applied to the favored weapon of the crusader's deity. A crusader need not meet the normal class- or level-based prerequisites for these bonus feats."
+        },
+        {
+          "level": 8,
+          "name": "Legion’s Blessing",
+          "description": "At 8th level, a crusader gains the ability to confer beneficial spells quickly to a large group of allies. As a full-round action, the crusader may confer the effects of a single harmless spell with a range of touch to a number of creatures equal to half her cleric level. The spell’s range remains touch, so all intended recipients must be within the crusader’s reach when the spell is cast. Using the legion’s blessing expends the prepared spell, but it also requires the crusader to sacrifice another prepared spell three levels higher, as when spontaneously using a cure or inflict spell. The higher-level spell is not cast but is simply lost, its magical energy used to power the legion’s blessing."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:demonic-apostle",
+      "package": "pathfinder-class:cleric",
+      "name": "Demonic Apostle",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Demonic Apostle",
+      "replaces_features": [
+        "channel-energy",
+        "domains"
+      ],
+      "removed_features": [
+        "channel-energy",
+        "domains"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Demonic Apostle",
+          "description": "Source Advanced Race Guide pg. 104"
+        },
+        {
+          "level": 1,
+          "name": "Demonic Magic",
+          "description": "A demonic apostle must choose to channel negative energy, and must select either the Chaos or Evil domain or the Demon subdomain as her sole domain."
+        },
+        {
+          "level": 1,
+          "name": "Demonic Familiar",
+          "description": "At 1st level, a demonic apostle gains a familiar as a wizard equal to her cleric level, or if she already has a familiar, her cleric levels stack to determine the familiar’s abilities. At 3rd level, her familiar gains the fiendish template. At 7th level, the demonic apostle exchanges her familiar for a quasit without the need to take the Improved Familiar feat."
+        },
+        {
+          "level": 1,
+          "name": "Demonic Channel",
+          "description": "At 1st level, a demonic apostle can channel demonic energy to damage creatures of lawful and good alignment, or, at higher levels, bolster the abilities of chaotic evil allies."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:divine-paragon",
+      "package": "pathfinder-class:cleric",
+      "name": "Divine Paragon",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Divine Paragon",
+      "replaces_features": [
+        "aura",
+        "domain"
+      ],
+      "removed_features": [
+        "aura",
+        "domain"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Divine Paragon",
+          "description": "Source Divine Anthology pg. 15"
+        },
+        {
+          "level": 1,
+          "name": "Devoted Domain",
+          "description": "A divine paragon is intensely devoted to a single deity, and her alignment must be identical to her deity’s alignment. She gains Deific ObedienceISG as a bonus feat, even if she doesn’t meet the feat’s prerequisites. She gains access to her boons at an accelerated rate (see below) rather than the standard HD-based rate granted by Deific Obedience (and as such cannot benefit from the accelerated rate granted by the Diverse Obedience feat)."
+        },
+        {
+          "level": 1,
+          "name": "Divine Brand",
+          "description": "At 1st level, a mark appears somewhere on the divine paragon’s body. The mark’s location varies by individual and faith, but takes the form of the deity’s holy symbol and generally appears in a location easy to display, such as on the hand, forearm, chest, or face. An uncovered divine brand functions as a holy (or unholy) symbol and as a divine focus for spellcasting. The divine paragon’s aura is even more powerful than a typical cleric’s as a result of her devotion, and her cleric level is treated as 1 higher for the purpose of determining the strength of her aura when it is viewed by spells like detect good."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:divine-scourge",
+      "package": "pathfinder-class:cleric",
+      "name": "Divine Scourge",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Divine Scourge",
+      "replaces_features": [
+        "channel-energy",
+        "domains"
+      ],
+      "removed_features": [
+        "channel-energy",
+        "domains"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Divine Scourge",
+          "description": "Source Magic Tactics Toolbox pg. 23"
+        },
+        {
+          "level": 1,
+          "name": "Curser",
+          "description": "A divine scourge must take the curse subdomain (Pathfinder RPG Advanced Player’s Guide 88) as a domain, regardless of the actual domains offered by her deity. The divine scourge does not receive a second domain."
+        },
+        {
+          "level": 3,
+          "name": "Divine Hexes",
+          "description": "At 3rd level and every 4 cleric levels thereafter, a divine scourge can select the following hexes from the witchAPG class hex list, up to a maximum of five hexes at 19th level: blight, cursed wound (Pathfinder Player Companion: Blood of the Moon 15), evil eye, misfortune, scarUM, slumber, and unnerve beastsUM."
+        },
+        {
+          "level": 1,
+          "name": "At 11th level, a divine scourge can instead select from the following list of major hexes",
+          "description": "agony, hoarfrostUM, infected woundsUM, nightmares, and retributions."
+        }
+      ],
+      "detected_systems": [
+        "hex"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:divine-strategist",
+      "package": "pathfinder-class:cleric",
+      "name": "Divine Strategist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Divine Strategist",
+      "replaces_features": [
+        "channel-energy",
+        "domains"
+      ],
+      "removed_features": [
+        "channel-energy",
+        "domains"
+      ],
+      "removed_feature_clauses": [
+        "channel energy"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Divine Strategist",
+          "description": "Source Ultimate Combat pg. 40"
+        },
+        {
+          "level": 1,
+          "name": "Domains",
+          "description": "A divine strategist gains only a single domain."
+        },
+        {
+          "level": 20,
+          "name": "Master Tactician",
+          "description": "A divine strategist can always act in a surprise round even if she fails to make a Perception check to notice enemies, though she is considered flat-footed until she acts. In addition, the divine strategist gains a bonus on initiative checks equal to 1/2 her cleric level. At 20th level, a divine strategist’s initiative roll is automatically a natural 20. Allies able to see and hear the divine strategist gain a bonus on initiative checks equal to 1/4 the divine strategist’s level. This is a language-dependent ability. This ability replaces channel energy."
+        },
+        {
+          "level": 4,
+          "name": "Caster Support",
+          "description": "A divine strategist can use the aid another action to assist another divine spellcaster, granting a +2 circumstance bonus on caster level checks and concentration checks until the beginning of the divine strategist’s next turn. This bonus increases by +1 at 4th level and every four levels thereafter (to a maximum of +7 at 20th level). The allied caster must remain adjacent to the divine strategist to gain this benefit. Caster support can be used to assist arcane spellcasters or characters using magical items, but they gain only half the normal bonus."
+        },
+        {
+          "level": 8,
+          "name": "Tactical Expertise",
+          "description": "At 8th level, a divine strategist knows how to take best advantage of tactical opportunities. Whenever she is flanking or makes an attack of opportunity, she may add her Intelligence bonus (if any) as a bonus on the attack roll. In addition, once per day as a swift action she may add her Intelligence modifier as a bonus on any single d20 roll made as part of a readied action. She can use this ability one additional time per day for every two levels after 8th."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:ecclesitheurge",
+      "package": "pathfinder-class:cleric",
+      "name": "Ecclesitheurge",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Ecclesitheurge",
+      "replaces_features": [
+        "channel-energy",
+        "domain",
+        "weapon-armor-proficiencies"
+      ],
+      "removed_features": [
+        "channel-energy",
+        "domain",
+        "weapon-armor-proficiencies"
+      ],
+      "removed_feature_clauses": [
+        "cleric’s weapon",
+        "armor proficiencies"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Ecclesitheurge",
+          "description": "Source Advanced Class Guide pg. 91"
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "An ecclesitheurge is proficient with the club, dagger, heavy crossbow, light crossbow, and quarterstaff, but he’s not proficient with any type of armor or shield. This replaces the cleric’s weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Ecclesitheurge’s Vow",
+          "description": "At 1st level, an ecclesitheurge makes a vow to his deity to be protected solely by his faith, not by armor or shields. An ecclesitheurge who wears armor or uses a shield is unable to use his blessing of the faithful ability, use cleric domain powers, or cast cleric spells."
+        },
+        {
+          "level": 1,
+          "name": "Blessing of the Faithful",
+          "description": "As a standard action, the ecclesitheurge can bless one ally within close range (25 ft. + 5 ft./2 levels). A blessed ally gains a +2 sacred or profane bonus (depending on whether the ecclesitheurge channels positive or negative energy) on attack rolls, skill checks, ability checks, or saving throws or to AC until the ecclesitheurge’s next turn. The ecclesitheurge can expend 1 use of channel energy when activating this ability to increase the duration to a number of rounds equal to the number of dice of his channel energy."
+        },
+        {
+          "level": 1,
+          "name": "Domain Mastery",
+          "description": "At 1st level, when an ecclesitheurge chooses his cleric domains, he designates one as his primary domain and the other as his secondary domain. An ecclesitheurge can use his non-domain spell slots to prepare spells from his primary domain's spell list."
+        },
+        {
+          "level": 3,
+          "name": "Bonded Holy Symbol",
+          "description": "At 3rd level, an ecclesitheurge forms a powerful bond with a holy symbol of his deity, which functions identically to a wizard’s bonded object except it can be used to cast cleric and domain spells (instead of wizard spells) and the ecclesitheurge can grant his bonded holy symbol only magic abilities appropriate for a holy symbol or a neck slot item."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:elder-mythos-cultist",
+      "package": "pathfinder-class:cleric",
+      "name": "Elder Mythos Cultist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Elder Mythos Cultist",
+      "replaces_features": [
+        "alignment",
+        "channel-energy",
+        "channel-energy-increase",
+        "domains",
+        "spontaneous-casting"
+      ],
+      "removed_features": [
+        "alignment",
+        "channel-energy",
+        "channel-energy-increase",
+        "domains",
+        "spontaneous-casting"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Elder Mythos Cultist",
+          "description": "Source Horror Adventures pg. 48"
+        },
+        {
+          "level": 1,
+          "name": "Alignment",
+          "description": "An Elder Mythos cultist must be chaotic evil or chaotic neutral.\n\nThis alters the cleric’s required alignment."
+        },
+        {
+          "level": 1,
+          "name": "Deities",
+          "description": "An Elder Mythos cultist must worship an Outer God or Great Old One."
+        },
+        {
+          "level": 1,
+          "name": "Domain",
+          "description": "An Elder Mythos cultist receives only a single domain, chosen from the following list: Chaos, Madness, or Void. He can choose any subdomain of those domains offered by an Outer God or Great Old One he worships."
+        },
+        {
+          "level": 1,
+          "name": "Forbidden Knowledge",
+          "description": "An Elder Mythos cultist gains a +2 profane bonus on all Knowledge (arcana), Knowledge (dungeoneering), Knowledge (history), Knowledge (planes), and Knowledge (religion) checks, and can attempt these checks untrained. This bonus doubles if the check is related to the Elder Mythos."
+        },
+        {
+          "level": 1,
+          "name": "Unhinged Mind",
+          "description": "Bartering sanity for unspeakable knowledge, an Elder Mythos cultist props up his crumbling sanity with a darkly enigmatic personality. An Elder Mythos cultist uses Charisma instead of Wisdom as his key spellcasting ability score (to determine his spell DCs, bonus spells per day, bonus on concentration checks, and so on), to determine the effects and umber of uses of his domain powers, and to modify his Will saving throws. However, because of the fragile state of his mind, the Elder Mythos cultist takes a –2 penalty on Will saves to resist mind-affecting effects. An Elder Mythos cultist automatically fails any save to resist the effects of confusion, insanity, and nightmare, and other similar effects so long as the effect’s caster level is higher than his character level."
+        },
+        {
+          "level": 1,
+          "name": "Channel the Void",
+          "description": "At 1st level, when an Elder Mythos cultist channels energy, he taps into the unthinkable void between the stars. This is similar to channeling negative energy, but instead of healing undead, this blast of energy harms and devours living beings, corporeal non-skeletal undead, and constructs crafted from flesh (such as flesh golems). This is not negative energy damage; instead, the damage manifests in the form of wounds from supernatural deterioration and rot. A creature that would take damage from this energy can attempt a Fortitude save to halve the damage, rather than a Will save. At 8th level, a creature that both fails the Fortitude save and would be killed or destroyed by this effect is entirely disintegrated, leaving behind only a trace of fine dust. A disintegrated creature's equipment is unaffected. This ability still counts as channel energy, but it counts as neither positive nor negative energy specifically (for example, the Elder Mythos cultist couldn't take the Turn Undead or Command Undead feat). For the purposes of feats that require channel energy but refer to what happens if the character channels positive or negative energy, this ability alters the listed effect for negative energy. For instance, an Elder Mythos cultist could use Channel Smite to damage living or fleshy creatures with his melee attack."
+        },
+        {
+          "level": 5,
+          "name": "Maddening Gaze",
+          "description": "At 5th level, as a standard action, an Elder Mythos cultist can focus his gaze on a single living creature within 30 feet and inundate the creature’s mind with visions of alien horror. The target takes 2 points of Wisdom damage and becomes confused and sickened for 1d4 rounds. A successful Will save (DC = 10 + 1/2 the Elder Mythos cultist’s cleric level + his Charisma modifier) negates the Wisdom damage and the confusion effect, though the target is sickened for 1 round. This gaze attack is a mind-affecting effect. An Elder Mythos cultist can use this ability once per day at 5th level, plus an additional time per day for every 3 cleric levels thereafter."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:evangelist",
+      "package": "pathfinder-class:cleric",
+      "name": "Evangelist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Evangelist",
+      "replaces_features": [
+        "channel-energy",
+        "domains",
+        "spontaneous-casting"
+      ],
+      "removed_features": [
+        "channel-energy",
+        "domains",
+        "spontaneous-casting"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Evangelist",
+          "description": "Source Ultimate Combat pg. 40"
+        },
+        {
+          "level": 1,
+          "name": "Single-Minded",
+          "description": "An evangelist focuses her skills and learning on proclamation rather than the fine details of the church’s deeper mysteries or martial training. Thus, she may select only one domain and does not gain Medium Armor Proficiency or Shield Proficiency."
+        },
+        {
+          "level": 1,
+          "name": "Public Speaker",
+          "description": "An evangelist gains Perform as a class skill. In addition, she is trained to project her voice with great skill and effect; the DC to hear her speak in difficult conditions is reduced by an amount equal to her class level plus her Charisma modifier (minimum 0)."
+        },
+        {
+          "level": 1,
+          "name": "Sermonic Performance",
+          "description": "An evangelist gains the ability to deliver a select number of supernatural and spell-like performances through the force and power of her divinely inspired preaching and exhortation. This ability is similar in all respects to bardic performance as used by a bard of the same level (including interactions with feats, spells, and prestige classes), using Perform (oratory) as the evangelist’s performance skill. However, an evangelist gains only the following types of bardic performance: countersong, fascinate, and inspire courage at 1st level; inspire greatness at 9th level; and inspire heroics at 15th level. Sermonic performance replaces the 1st-, 9th-, and 15th-level channel energy abilities. This caps the cleric’s channel energy damage at 7d6 points."
+        },
+        {
+          "level": 1,
+          "name": "Spontaneous Casting",
+          "description": "An evangelist does not gain the ability to spontaneously cast cure or inflict spells by sacrificing prepared spells. However, an evangelist can spontaneously cast the following spells by sacrificing a prepared spell of the noted level or above:"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:cleric:faithful-shepherd",
+      "package": "pathfinder-class:cleric",
+      "name": "Faithful Shepherd",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/faithful-shepherd",
+      "replaces_features": [
+        "channel-energy",
+        "domain-bonus-spells",
+        "spellcasting",
+        "spontaneous-casting"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "spells class feature",
+        "domain bonus spells",
+        "spontaneous casting"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The faithful shepherd may combine spheres and talents to create magical effects. The faithful shepherd is considered a Mid-Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the spells class feature."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "The faithful shepherd gains a small reservoir of energy she can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to her level + her casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Magic Talents",
+          "description": "A faithful shepherd gains 3/4ths of a magic talent every level (the same progression as she gains caster levels)."
+        },
+        {
+          "level": 1,
+          "name": "Keep the Flock",
+          "description": "The faithful shepherd gains the Life and Protection spheres as bonus magic talents.\n\nThis replaces domain bonus spells."
+        },
+        {
+          "level": 1,
+          "name": "Positive Channeling",
+          "description": "A faithful shepherd must choose positive energy as the energy she channels with her channel energy class feature. The faithful shepherd uses her casting ability modifier in place of Charisma to determine uses per day, saving throw DC, and all other effects when channeling energy.\n\nThis alters channel energy."
+        },
+        {
+          "level": 1,
+          "name": "Divine Works",
+          "description": "The faithful shepherd has been gifted by her deity with minor miracles she can use to protect and heal her allies - and to spread the good word. The faithful shepherd gains 1 divine work at 1st level, and an additional divine work every odd level after the 1st, for a total of 10 at 19th level. Each divine work may be chosen once only. She may choose from the following works:"
+        },
+        {
+          "level": 1,
+          "name": "Aid the Faithful",
+          "description": "Whenever the faithful shepherd uses an ability that heals an ally within the area of one of her wards, that ally gains additional hit points equal to the faithful shepherd’s casting ability modifier. This cannot add more healing than the original ability healed, and does not apply to abilities that grant fast healing or regeneration."
+        },
+        {
+          "level": 1,
+          "name": "Ask for a Sign (Su) (requires faithful shepherd 3)",
+          "description": "As a standard action, the faithful shepherd may spend a use of her channel energy ability to create a sign. The sign appears in the air over the shepherd, and remains in one location, active for a number of rounds equal to her casting ability modifier. The sign duplicates the effect of one of the exorcist hedgewitch’s sanctions, chosen when the sign is created, as if the shepherd were a hedgewitch of equal level. She may only have one sign active at a time; using this ability ends any previous sign, and she may not use a sign that would affect herself."
+        },
+        {
+          "level": 1,
+          "name": "Condemn the Unholy (Su) (requires faithful shepherd 7)",
+          "description": "As a standard action, the faithful shepherd may spend a use of her channel energy ability to force an extraplanar creature within 30 feet back to its proper plane of existence if it fails a Will save versus a DC equal to 10 + 1/2 the faithful shepherd’s class level + her casting ability modifier. If the effect is successful, the creature is instantly teleported away to its native plane of existence."
+        },
+        {
+          "level": 1,
+          "name": "Divine Guidance",
+          "description": "With her deity’s favored weapon, the faithful shepherd can use her casting ability modifier instead of her Strength or Dexterity modifier on attack rolls."
+        },
+        {
+          "level": 1,
+          "name": "Divine Inspiration",
+          "description": "By communing with her deity, the faithful shepherd gains access to expanded knowledge. As a standard action, she may spend a use of her channel energy ability to gain an insight bonus to a Knowledge skill of her choice equal to 1/2 her class level. This bonus lasts until she rests and regains the uses of her channel energy ability. She may use this ability multiple times, each time choosing a different Knowledge skill."
+        },
+        {
+          "level": 1,
+          "name": "Give Heart",
+          "description": "Whenever the faithful shepherd creates a ward, she may invigorate every ally within the area of the ward as a free action. This is considered only one use of the invigorate ability, regardless of the number of allies affected."
+        },
+        {
+          "level": 1,
+          "name": "Grant Protection (Ex) (requires faithful shepherd 5)",
+          "description": "The faithful shepherd gains a talent from the Protection sphere that she qualifies for. Whenever she rests for 8 hours and regains spell points, she may change which Protection sphere talent she gains from this work."
+        },
+        {
+          "level": 1,
+          "name": "Hand of the Gods (Ex) (requires faithful shepherd 5)",
+          "description": "The faithful shepherd gains a channeling feat that she qualifies for. Whenever she rests for 8 hours and regains spell points, she may change which channeling feat she gains from this work."
+        },
+        {
+          "level": 1,
+          "name": "Heal the Sick",
+          "description": "When the faithful shepherd heals with her channel energy ability, she may include any ally with an aegis she created in the effect of her channel energy, as long as they are within line of sight."
+        },
+        {
+          "level": 1,
+          "name": "Holy Presence",
+          "description": "The faithful shepherd may choose a (consecration) talent from the Fate sphere. She may create a ward that duplicates the effects of that consecration within its boundary. This ward is a Protection sphere talent, and uses the faithful shepherd’s Protection caster level to determine effects. If creating the consecration would normally require a spell point to be spent, she must still spend that spell point."
+        },
+        {
+          "level": 1,
+          "name": "Instill Virtue (Su) (requires faithful shepherd 3)",
+          "description": "The weapons of any ally under the effect of any aegis the faithful shepherd created are considered aligned (with the faithful shepherd’s alignment) for the purposes of overcoming damage reduction."
+        },
+        {
+          "level": 1,
+          "name": "Keep the Faith (Su) (requires faithful shepherd 3)",
+          "description": "The faithful shepherd may spend a standard action to create a 30-foot aura that gives special protection to herself and any allies within range. When she creates this aura, she chooses a (ward) talent she possesses other than the base sphere barrier ability: she and all allies within are protected as if they were within a ward of this type cast by the faithful shepherd. The aura is not a true ward and can not trigger effects related to wards, and enemies are not affected by the aura. The aura remains until the faithful shepherd chooses a different (ward) talent to create an aura with or until she dies, and can last indefinitely. Only one aura may be in effect at any given time."
+        },
+        {
+          "level": 1,
+          "name": "Minister to the Faithful (Su) (requires faithful shepherd 9)",
+          "description": "Any ally within a 30-foot radius of the faithful shepherd or inside one of her wards may, as a standard action, use one of the faithful shepherd’s Life or Protection sphere abilities on herself. The sphere effect must have a casting time of one standard action or less. The sphere effect is cast as if the faithful shepherd had herself cast it, and is considered her effect. Any spell points used are lost by the faithful shepherd. This sphere effect may only target the ally and can not be combined with abilities that allow sphere abilities to target multiple creatures. The faithful shepherd must be willing to allow this to happen, but does not need to be conscious or aware."
+        },
+        {
+          "level": 1,
+          "name": "Omniscience (Ex) (requires faithful shepherd 7)",
+          "description": "As a standard action, the faithful shepherd may spend a use of her channel energy ability to grant herself the benefit of any one magic talent or channeling feat she does not possess. This effect lasts for 1 minute. She must meet all of the feat’s prerequisites, or if gaining a magic talent other than a base sphere, she must possess that talent’s base sphere. Multiple uses of this ability do not stack. If she uses this ability again before the previous duration has expired, it replaces the previous use."
+        },
+        {
+          "level": 1,
+          "name": "Pray for a Miracle",
+          "description": "The faithful shepherd can use any (succor) talent she possesses on any ally within 30 feet or the range of her Protection abilities (whichever is farther) without sacrificing an aegis. She must instead spend a spell point."
+        },
+        {
+          "level": 1,
+          "name": "Punish the Unfaithful",
+          "description": "The faithful shepherd gains a circumstance bonus to damage equal to her casting ability modifier with all melee attacks made on enemies within a ward she created."
+        },
+        {
+          "level": 1,
+          "name": "Purify the Sinners",
+          "description": "The faithful shepherd may choose a (totem) talent from the War sphere. She may create a ward that duplicates the effects of that totem within its boundary. This ward is a Protection sphere talent, and uses the faithful shepherd’s Protection caster level to determine effects. If creating the totem would normally require a spell point to be spent, she must still spend that spell point."
+        },
+        {
+          "level": 1,
+          "name": "Serve Life (Ex) (requires faithful shepherd 5)",
+          "description": "The faithful shepherd gains a talent from the Life sphere that she qualifies for. Whenever she rests for 8 hours and regains spell points, she may change which Life sphere talent she gains from this work."
+        },
+        {
+          "level": 1,
+          "name": "Show Mercy",
+          "description": "When the faithful shepherd channels energy, she uses d8s instead of d6s to determine the effect."
+        },
+        {
+          "level": 1,
+          "name": "Take on Suffering",
+          "description": "As an immediate action, the faithful shepherd may spend a spell point to redirect a ranged attack or ranged ability targeting an ally within 30 feet to herself. This decision may be made after it is determined if the attack hits the ally."
+        },
+        {
+          "level": 1,
+          "name": "Tireless Devotion (Ex) (requires faithful shepherd 9)",
+          "description": "The faithful shepherd may use Protection and Life sphere abilities even while dazed, nauseated, or stunned. Whenever she is under any of these effects, she may still take a standard action in order to use a sphere ability. If the character is nauseated, this standard action is in place of the move action usually allowed. She must spend an extra spell point to do this, in addition to the normal costs of the ability.\n\nThis replaces spontaneous casting."
+        },
+        {
+          "level": 1,
+          "name": "New Feats",
+          "description": "Extra Divine Works: Prerequisite: Divine works class feature."
+        },
+        {
+          "level": 1,
+          "name": "Benefit",
+          "description": "You may choose an additional option from the list of possible divine works class features. You may choose this feat multiple times. Each time, choose another divine work."
+        },
+        {
+          "level": 1,
+          "name": "Extra Magic Talent",
+          "description": "Prerequisite: Basic Magic Training or casting class feature."
+        },
+        {
+          "level": 1,
+          "name": "Extra Spell Points",
+          "description": "Prerequisite: Spell pool."
+        },
+        {
+          "level": 1,
+          "name": "Sphere Focus",
+          "description": "Prerequisite: Casting class feature."
+        },
+        {
+          "level": 1,
+          "name": "The Abjurer's Handbook",
+          "description": "The faithful shepherd believes that to get others to follow them, he must be in front. He puts himself in harm’s way so that he can tend to his flock. As a master of healing and protecting magic, he is well equipped to protect himself even without his martial skills, but his strongest ability is the strength that sustains his allies."
+        },
+        {
+          "level": 1,
+          "name": "Ask for a Sign (Su) (requires 3rd level)",
+          "description": "As a standard action, the faithful shepherd may spend a use of his channel energy ability to create a sign. The sign appears in the air over the shepherd, and remains in one location, active for a number of rounds equal to his casting ability modifier. The sign duplicates the effect of one of the exorcist hedgewitch’s sanctions, chosen when the sign is created, as if the shepherd were a hedgewitch of equal level. He may only have one sign active at a time; using this ability ends any previous sign, and he may not use a sign that would affect himself."
+        },
+        {
+          "level": 1,
+          "name": "Condemn the Unholy (Su) (requires 7th level)",
+          "description": "As a standard action, the faithful shepherd may spend a use of his channel energy ability to force an extraplanar creature within 30 ft. back to its proper plane of existence if it fails a Will save versus a DC equal to 10 + 1/2 the faithful shepherd’s class level + his casting ability modifier. If the effect is successful, the creature is instantly teleported away to its native plane of existence."
+        },
+        {
+          "level": 1,
+          "name": "Grant Protection (Ex) (requires 5th level)",
+          "description": "The faithful shepherd gains a talent from the Protection sphere that he qualifies for. Whenever he rests for 8 hours and regains spell points, he may change which Protection sphere talent he gains from this work."
+        },
+        {
+          "level": 1,
+          "name": "Hand of the Gods (Ex) (requires 5th level)",
+          "description": "The faithful shepherd gains a channeling feat that he qualifies for. Whenever he rests for 8 hours and regains spell points, he may change which channeling feat he gains from this work."
+        },
+        {
+          "level": 1,
+          "name": "Instill Virtue (Su) (requires 3rd level)",
+          "description": "The weapons of any ally under the effect of any aegis the faithful shepherd created are considered aligned (with the faithful shepherd’s alignment) for the purposes of overcoming damage reduction."
+        },
+        {
+          "level": 1,
+          "name": "Keep the Faith (Su) (requires 3rd level)",
+          "description": "The faithful shepherd may spend a standard action to create a 30 ft. aura that gives special protection to himself and any allies within range. When he creates this aura, he chooses a (ward) talent he possesses other than the barrier ward: he and all allies within are protected as if they were within a ward of this type cast by a caster with a caster level equal to the faithful shepherd’s class level. The aura is not a true ward and can not trigger effects related to wards, and enemies are not affected by the aura. The aura remains until the faithful shepherd chooses a different (ward) talent to create an aura with or until he dies, and can last indefinitely. Only one aura may be in effect at any given time."
+        },
+        {
+          "level": 1,
+          "name": "Minister to the Faithful (Su) (requires 9th level)",
+          "description": "Any ally within a 30 ft. radius of the faithful shepherd or inside one of his wards may, as a standard action, use one of the faithful shepherd’s Life or Protection sphere abilities on himself. The sphere effect must have a casting time of one standard action or less. The sphere effect is cast as if the faithful shepherd had himself cast it, and is considered his effect. Any spell points used are lost by the faithful shepherd. This sphere effect may only target the ally and can not be combined with abilities that allow sphere abilities to target multiple creatures. The faithful shepherd must be willing to allow this to happen, but does not need to be conscious or aware."
+        },
+        {
+          "level": 1,
+          "name": "Omniscience (Ex) (requires 7th level)",
+          "description": "As a standard action, you may spend a use of your channel energy ability to grant yourself the benefit of any one magic talent or channeling feat you don’t possess. This effect lasts for 1 minute. You must meet all of the feat’s prerequisites, or if gaining a magic talent other than a base sphere, you must possess that talent’s base sphere. Multiple uses of this ability do not stack. If you use this ability again before the previous duration has expired, it replaces the previous use."
+        },
+        {
+          "level": 1,
+          "name": "Serve Life (Ex) (requires 5th level)",
+          "description": "The faithful shepherd gains a talent from the Life sphere that he qualifies for. Whenever he rests for 8 hours and regains spell points, he may change which Life sphere talent he gains from this work."
+        },
+        {
+          "level": 1,
+          "name": "Tireless Devotion (Ex) (requires 9th level)",
+          "description": "The faithful shepherd may use Protection and Life sphere abilities even while dazed, nauseated, or stunned. Whenever he is under any of these effects, he may still take a standard action in order to use a sphere ability. If the character is nauseated, this standard action is in place of the move action usually allowed. He must spend an extra spell point to do this, in addition to the normal costs of the ability.\n\nThis replaces spontaneous casting."
+        }
+      ],
+      "detected_systems": [
+        "channel_energy"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:fiendish-vessel",
+      "package": "pathfinder-class:cleric",
+      "name": "Fiendish Vessel",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Fiendish Vessel",
+      "replaces_features": [
+        "channel-energy",
+        "domains"
+      ],
+      "removed_features": [
+        "channel-energy",
+        "domains"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Fiendish Vessel",
+          "description": "Source Advanced Race Guide pg. 170"
+        },
+        {
+          "level": 1,
+          "name": "Alignment",
+          "description": "Unlike normal clerics, a fiendish vessel’s alignment must match her patron’s."
+        },
+        {
+          "level": 1,
+          "name": "Domains",
+          "description": "A fiendish vessel must select the Daemon, Demon, or Devil subdomain ( 88–90) as one of her domain choices, based on the fiendish patron she chooses to serve."
+        },
+        {
+          "level": 1,
+          "name": "Channel Evil",
+          "description": "At 1st level, a fiendish vessel, rather than channeling positive or negative energy, instead channels the pure evil power of her fiendish patron. This ability is similar to channeling negative energy, but instead of healing undead and dealing damage to living creatures, this blast of evil energy automatically heals evil creatures and debilitates good creatures within its burst."
+        },
+        {
+          "level": 3,
+          "name": "Fiendish Familiar",
+          "description": "At 3rd level, a fiendish vessel’s patron rewards her with a fiendish servant. The fiendish vessel gains an imp, quasit, or cacodaemon familiar based on the patron she worships. This ability is identical to the wizard’s arcane bond with a familiar and the Improved Familiar feat, using the fiendish vessel’s character level in place of the wizard level."
+        },
+        {
+          "level": 3,
+          "name": "Fiendish Augury",
+          "description": "At 3rd level, the fiendish vessel can ask the familiar whether a particular course of action will bring good or bad results for her in the immediate future. This ability acts like the augury spell, with a caster level equal to the fiendish vessel’s level, with the familiar acting as the mouthpiece for the spell. This ability can be used once per day."
+        },
+        {
+          "level": 9,
+          "name": "Fiendish Divination",
+          "description": "At 9th level, the fiendish vessel can use a more powerful form of divination to gain intelligence from her patron through her fiendish familiar. This ability acts like the divination spell, with a caster level equal to the fiendish vessel’s level; the familiar acts as the mouthpiece for the spell. This ability can be used once per day."
+        },
+        {
+          "level": 13,
+          "name": "Extra Divination",
+          "description": "At 13th level, the fiendish vessel can gain intelligence from her patron more often each day. She can use fiendish divination up to 3 times per day."
+        },
+        {
+          "level": 1,
+          "name": "Fiendish Summoning",
+          "description": "When casting summon monster spells, a fiendish vessel is limited to summoning fiendish creatures and evil outsiders of the same alignment as her patron."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:forgemaster",
+      "package": "pathfinder-class:cleric",
+      "name": "Forgemaster",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Forgemaster",
+      "replaces_features": [
+        "channel-energy",
+        "domains"
+      ],
+      "removed_features": [
+        "channel-energy",
+        "domains"
+      ],
+      "removed_feature_clauses": [
+        "channel energy"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Forgemaster",
+          "description": "Source Advanced Race Guide pg. 15"
+        },
+        {
+          "level": 1,
+          "name": "Artificer",
+          "description": "A forgemaster gains only one domain, which must be the Artifice domain (not including subdomains). If she worships a deity, it must grant the Artifice domain."
+        },
+        {
+          "level": 1,
+          "name": "Steel Spells",
+          "description": "A forgemaster adds the following spells to her spell list: 1st—crafter’s curse, crafter’s fortune, lead blades; 2nd—chill metal, heat metal, shatter; 3rd—keen edge, versatile weapon; 8th—iron body, repel metal or stone."
+        },
+        {
+          "level": 1,
+          "name": "Divine Smith",
+          "description": "Whenever a forgemaster casts a spell that targets a weapon, shield, or armor, the spell takes effect at +1 caster level. If the spell has one or more metamagic feats applied, she reduces the total level adjustment to the spell by 1 (minimum 0)."
+        },
+        {
+          "level": 1,
+          "name": "Runeforger",
+          "description": "A forgemaster may inscribe mystical runes upon a suit of armor, shield, or weapon as full-round action, using this ability a number of times per day equal to 3 + her Intelligence modifier. These runes last 1 round per cleric level, but inscribing the same rune twice on an item increases this duration to 1 minute per level, three times to 10 minutes per level, and four times to 1 hour per level. Erase affects runes as magical writing. A forgemaster learns forgemaster’s blessing at 1st level and may learn one additional rune at 2nd level and every 2 levels thereafter. Only one type of rune marked with an asterisk (*) may be placed on an item at any given time. This ability replaces channel energy."
+        },
+        {
+          "level": 1,
+          "name": "Ancient Splendor",
+          "description": "The inscribed weapon, armor, or shield grants a +2 circumstance bonus on Diplomacy and Intimidate checks (+4 when interacting with dwarves)."
+        },
+        {
+          "level": 1,
+          "name": "Bloodthirst*",
+          "description": "The inscribed piercing or slashing weapon functions as if it had the wounding special ability, even if nonmagical. The forgemaster must be at least 4th level before learning this rune."
+        },
+        {
+          "level": 1,
+          "name": "Deathstrike",
+          "description": "The inscribed weapon stores a death knell spell that triggers immediately if a blow from the weapon reduces a target to negative hit points. This expends all deathstrike runes on the weapon. The forgemaster must be at least 4th level before learning this rune."
+        },
+        {
+          "level": 1,
+          "name": "Durability",
+          "description": "The inscribed item’s hardness increases by an amount equal to the forgemaster’s Wisdom modifier, and its hit points increase by an amount equal to twice her level."
+        },
+        {
+          "level": 1,
+          "name": "Featherlight",
+          "description": "The inscribed item’s weight is halved; a metal item’s weight is reduced to 1/4 normal. If inscribed on a suit of armor, its armor check penalty for Acrobatics, Climb, and Jump checks is halved."
+        },
+        {
+          "level": 1,
+          "name": "Forgemaster’s Blessing",
+          "description": "The inscribed nonmagical item functions as a masterwork item."
+        },
+        {
+          "level": 1,
+          "name": "Ghostglyph*",
+          "description": "The inscribed weapon, shield, or armor gains the ghost touch special ability. The forgemaster must be at least 4th level before learning this rune."
+        },
+        {
+          "level": 1,
+          "name": "Glowglyph",
+          "description": "The inscribed item sheds light as a torch. As a standard action, the bearer can command the rune to erupt in a burst of light as a shield with the blinding special ability with a burst radius of 5 feet per glowglyph rune inscribed on the item. This expends all glowglyph runes on the item."
+        },
+        {
+          "level": 1,
+          "name": "Invulnerability*",
+          "description": "The inscribed armor grants its wearer DR/magic equal to 1/2 her cleric level. The forgemaster must be at least 8th level before learning this rune."
+        },
+        {
+          "level": 1,
+          "name": "Powerstrike*",
+          "description": "The inscribed weapon’s critical threat range doubles. This does not stack with keen edge, Improved Critical, or similar effects. The forgemaster must be at least 6th level before learning this rune."
+        },
+        {
+          "level": 1,
+          "name": "Return*",
+          "description": "The inscribed weapon gains the returning weapon special ability. The forgemaster must be at least 4th level before learning this rune."
+        },
+        {
+          "level": 1,
+          "name": "Spellguard",
+          "description": "The inscribed item gains spell resistance equal to 11 + her cleric level. This applies only to effects targeting the item itself."
+        },
+        {
+          "level": 1,
+          "name": "Spellglyph*",
+          "description": "The inscribed weapon gains the spell storing special ability. The forgemaster must be at least 4th level before learning this rune."
+        },
+        {
+          "level": 1,
+          "name": "Thief-Curse",
+          "description": "The forgemaster designates one creature as the rightful owner of an item. Any other creature that intentionally grasps the item is cursed (as bestow curse) for the duration of the rune. The forgemaster must be at least 6th level before learning this rune."
+        },
+        {
+          "level": 1,
+          "name": "Tracer",
+          "description": "For as long as the rune lasts, the cleric may sense its location at will as a standard action, as if using locate object."
+        },
+        {
+          "level": 3,
+          "name": "Craft Magic Arms and Armor",
+          "description": "The forgemaster gains this as a bonus feat at 3rd level."
+        },
+        {
+          "level": 5,
+          "name": "Master Smith",
+          "description": "At 5th level, a forgemaster can craft mundane metal items quickly, using half their gp value to determine progress, and can craft magical metal items in half the normal amount of time."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:foundation-of-faith",
+      "package": "pathfinder-class:cleric",
+      "name": "Foundation of Faith",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Foundation of Faith",
+      "replaces_features": [
+        "channel-energy"
+      ],
+      "removed_features": [
+        "channel-energy"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Foundation of Faith",
+          "description": "Source Elemental Master's Handbook pg. 8"
+        },
+        {
+          "level": 1,
+          "name": "Channel Energy",
+          "description": "A foundation of faith does not gain the channel energy ability."
+        },
+        {
+          "level": 1,
+          "name": "Bastion",
+          "description": "A foundation of faith is an unbreakable obstacle, unmoved by threats and violence alike. At 1st level, the foundation of faith adds her Constitution bonus to her CMD and to the DC of attempts to use the Intimidate skill against her."
+        },
+        {
+          "level": 3,
+          "name": "Granite Focus",
+          "description": "A foundation of faith’s focus is truly impressive. At 3rd level, the foundation of faith can take a move action to center herself. If she does, she adds her Constitution modifier to any concentration checks attempted as part of casting cleric spells until the end of her turn."
+        },
+        {
+          "level": 5,
+          "name": "Rooted Vitality",
+          "description": "At 5th level, a foundation of faith draws healing from the earth. As a swift action while standing on natural or worked stone, the foundation of faith can gain fast healing 1. This effect lasts for a number of rounds equal to the foundation of faith’s Constitution modifier or until the foundation of faith loses contact with the natural or worked stone. At 7th level, this ability increases to fast healing 2, and it increases by an additional point every 2 levels thereafter (to a maximum of fast healing 8 at 19th level)."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:herald-caller",
+      "package": "pathfinder-class:cleric",
+      "name": "Herald Caller",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Herald Caller",
+      "replaces_features": [
+        "armor-proficiencies",
+        "class-skills",
+        "domains"
+      ],
+      "removed_features": [
+        "armor-proficiencies",
+        "class-skills",
+        "domains"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Herald Caller",
+          "description": "Source Monster Summoner's Handbook pg. 7"
+        },
+        {
+          "level": 1,
+          "name": "Skill Ranks per Level",
+          "description": "4 + Int modifier. This alters the cleric’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Dedicated Summoner",
+          "description": "A herald caller depends on summoned allies to overcome her foes, which affords her little experience with the martial pursuits typical of other clerics and a narrower spiritual focus. A herald caller can choose only one domain from her deity’s list of domains, rather than the normal two domains, and she doesn’t gain proficiency with medium armor or shields. This ability alters the cleric’s domains and armor proficiencies."
+        },
+        {
+          "level": 5,
+          "name": "Call Heralds",
+          "description": "A herald caller can channel stored spell energy into summoning spells that she hasn’t prepared ahead of time. She can lose a prepared spell in order to cast any summon monster spell of the same level or lower. She gains a +1 bonus on concentration checks to cast a summon monster spell defensively. This bonus increases to +2 at 5th level, and increases by 1 every 5 cleric levels thereafter."
+        },
+        {
+          "level": 1,
+          "name": "Divine Heralds",
+          "description": "A herald caller can use summon monster spells only to summon creatures particularly appropriate to her deity. This includes all creatures listed as summon monster options for priests of her deity (see Expanded Summoning for Priests on page 30), creatures whose alignment matches at least one aspect of her deity’s alignment, and creatures of an elemental subtype that matches a domain granted by the deity (if any). When summoning a creature that is normally summoned with the celestial or fiendish template, a herald caller of a chaotic deity can instead summon it with the entropic template, and a herald caller of a lawful deity can instead summon it with the resolute template (see pages 292–293 of Pathfinder RPG Bestiary 2 for more information on these simple templates)."
+        },
+        {
+          "level": 4,
+          "name": "Mighty Heralds",
+          "description": "At 4th level, a herald caller receives Augment Summoning as a bonus feat, and is considered to have Spell Focus (conjuration) for the purposes of prerequisites for feats that have Augment Summoning as a prerequisite (such as Evolved Summoned Monster on page 146 of the Pathfinder RPG Advanced Class Guide). At 8th level, she gains Superior Summoning (Pathfinder RPG Ultimate Magic 157) as a bonus feat."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:hidden-priest",
+      "package": "pathfinder-class:cleric",
+      "name": "Hidden Priest",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Hidden Priest",
+      "replaces_features": [
+        "domain-power"
+      ],
+      "removed_features": [
+        "domain-power"
+      ],
+      "removed_feature_clauses": [
+        "one of the cleric’s two 8th-level domain powers (his choice)"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Hidden Priest",
+          "description": "Source Inner Sea Magic pg. 35"
+        },
+        {
+          "level": 1,
+          "name": "False Arcanist",
+          "description": "At 1st level, a hidden priest is able to disguise his cleric spellcasting, presenting it as arcane magic of some kind. Typically, this is as alchemist, bard, sorcerer, or wizard magic, and the cleric disguises the words and gestures of the cleric spell with accoutrements appropriate to his apparent profession. He must make a skill check (DC 10 + twice the level of the spell) to disguise his casting and successfully cast the spell. The type of skill check depends on the type of caster he pretends to be: Craft (alchemy) for alchemist, Perform for bard, Knowledge (arcana) for sorcerer or wizard. Using Spellcraft to identify the spell works normally, though unless the observer beats the DC by 10 or more, she doesn’t suspect the source of the magic is divine."
+        },
+        {
+          "level": 8,
+          "name": "Unseen Devotion",
+          "description": "At 8th level, a hidden priest can apply the Silent Spell and Still Spell feats to a spell he is about to cast. This does not alter the level of the spell or the casting time. He can use this ability once per day at 8th level and one additional time per day for every four additional cleric levels beyond 8th. Even though this ability does not modify the spell’s actual level, he cannot use this ability to cast a spell whose modified spell level would be above the level of the highest-level spell that he is capable of casting. This ability always applies both feats (the cleric cannot use it to just apply one or the other). This ability replaces one of the cleric’s two 8th-level domain powers (his choice)."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:idealist",
+      "package": "pathfinder-class:cleric",
+      "name": "Idealist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Idealist",
+      "replaces_features": [
+        "channel-energy",
+        "spontaneous-casting"
+      ],
+      "removed_features": [
+        "channel-energy",
+        "spontaneous-casting"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Idealist",
+          "description": "Source Planar Adventures pg. 15"
+        },
+        {
+          "level": 1,
+          "name": "Planar Bond",
+          "description": "At 1st level, an idealist must choose one plane as his planar bond. This plane must be his deity’s home plane. An idealist can spontaneously cast the 1st-, 4th-, and 7th-level spells listed below for his chosen plane (provided he can cast spells of that level), in addition to cure or inflict spells."
+        },
+        {
+          "level": 1,
+          "name": "Abaddon",
+          "description": "Protection from good, unholy blight, and blasphemy."
+        },
+        {
+          "level": 1,
+          "name": "Abyss",
+          "description": "Doom, unholy blight, and blasphemy."
+        },
+        {
+          "level": 1,
+          "name": "Astral",
+          "description": "Summon monster I, dismissal, and lesser create demiplane."
+        },
+        {
+          "level": 1,
+          "name": "Axis",
+          "description": "Protection from chaos, order’s wrath, and dictum."
+        },
+        {
+          "level": 1,
+          "name": "Boneyard",
+          "description": "Deathwatch, death ward, and arbitrament."
+        },
+        {
+          "level": 1,
+          "name": "Elysium",
+          "description": "Remove fear, freedom of movement, and word of chaos."
+        },
+        {
+          "level": 1,
+          "name": "Ethereal",
+          "description": "Obscuring mist, sending, and ethereal jaunt."
+        },
+        {
+          "level": 1,
+          "name": "First World",
+          "description": "Entropic shield, giant vermin, and regenerate."
+        },
+        {
+          "level": 1,
+          "name": "Heaven",
+          "description": "Sanctuary, discern lies, and holy word."
+        },
+        {
+          "level": 1,
+          "name": "Hell",
+          "description": "Command, tongues, and dictum."
+        },
+        {
+          "level": 1,
+          "name": "Maelstrom",
+          "description": "Protection from law, chaos hammer, and word of chaos."
+        },
+        {
+          "level": 1,
+          "name": "Nirvana",
+          "description": "Protection from evil, holy smite, and holy word."
+        },
+        {
+          "level": 1,
+          "name": "Plane of Air",
+          "description": "Alter winds, air walk, and control weather."
+        },
+        {
+          "level": 1,
+          "name": "Plane of Earth",
+          "description": "Magic stone, stoneskin, and statue."
+        },
+        {
+          "level": 1,
+          "name": "Plane of Fire",
+          "description": "Produce flame†, wall of fire, and delayed blast fireball."
+        },
+        {
+          "level": 1,
+          "name": "Plane of Water",
+          "description": "Hydraulic push, control water, and vortex."
+        },
+        {
+          "level": 1,
+          "name": "Shadow Plane",
+          "description": "Cause fear, shadow conjuration†, and destruction."
+        },
+        {
+          "level": 1,
+          "name": "Other (Including Positive and Negative Energy Planes, Material Plane or Demiplane)",
+          "description": "Work with your GM to select three spells that match the themes of the deity you worship."
+        },
+        {
+          "level": 19,
+          "name": "Invoke Realm",
+          "description": "When an idealist channels energy, she channels raw essence rather than positive or negative energy, superimposing a portion of her deity’s planar realm over her location. This effect extends out to a radius of 10 feet, plus 5 feet for every 2 cleric levels she has beyond 1st, to a maximum radius of 55 feet at 19th level. This effect lasts for 1 round plus 1 round per point of the idealist’s Charisma bonus. While this effect is active, the idealist gains a +1 bonus on Diplomacy checks against creatures who worship her deity and a +1 bonus on Intimidate checks against creatures who do not. This bonus increases by 1 at 5th level and every 5 levels thereafter."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:iron-priest",
+      "package": "pathfinder-class:cleric",
+      "name": "Iron Priest",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Iron Priest",
+      "replaces_features": [
+        "channel-energy",
+        "class-skills",
+        "spellcasting"
+      ],
+      "removed_features": [
+        "channel-energy",
+        "class-skills",
+        "spellcasting"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Iron Priest",
+          "description": "Source Technology Guide pg. 12"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "The iron priest’s class skills are Appraise (Int), Craft (Int), Diplomacy (Cha), Disable Device (Dex), Heal (Wis), Knowledge (engineering) (Int), Knowledge (history) (Int), Knowledge (local), Knowledge (religion) (Int), Linguistics (Int), Profession (Wis), Spellcraft (Int), and Survival (Wis)."
+        },
+        {
+          "level": 1,
+          "name": "Channel Energy",
+          "description": "When an iron priest channels energy to heal or harm living creatures, she heals or harms constructs with the clockwork or robot subtypes as well. Constructs without those subtypes are also affected, but gain only half the normal amount of healing or take only half the normal amount of damage, as appropriate. An iron priest cannot harm or heal undead with channel energy. This ability alters channel energy."
+        },
+        {
+          "level": 1,
+          "name": "Spontaneous Casting",
+          "description": "An iron priest can spontaneously cast make whole and greater make whole in place of cure/inflict moderate wounds and cure/inflict critical wounds, regardless of whether she channels positive or negative energy. This ability alters casting."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:cleric:kindred-keeper",
+      "package": "pathfinder-class:cleric",
+      "name": "Kindred Keeper",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/kindred-keeper",
+      "replaces_features": [
+        "armor-proficiencies",
+        "clerics-normal-class-skills",
+        "domains",
+        "either-life-or-protection-sphere-at-level-for-faithful-shepherds",
+        "magic-talents-as-well-as-necromantic-focus-for-sphere-clerics",
+        "weapon"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "cleric’s normal class skills: Blended Training: A kindred keeper gains a magic",
+        "combat",
+        "or skill talent (some of which are required to be [utility] talents) at the listed levels using the journeyman talent progression",
+        "magic talents as well as necromantic focus for sphere clerics",
+        "either the Life or Protection sphere gained at 1st level for faithful shepherds"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [
+          [
+            "spheres-archetype:pathfinder-class:cleric:faithful-shepherd",
+            "spheres-archetype:pathfinder-class:cleric:sphere-cleric"
+          ]
+        ],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "This archetype requires either the sphere cleric or faithful shepherd archetype",
+          "description": "Proficiencies: Kindred keepers are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, she may select a martial tradition of their choice.\n\nThis modifies weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Trade Tradition",
+          "description": "If this is this character’s first level in any class, the kindred keeper may select a trade tradition of their choice, and have a competent trade rank. The kindred keeper gains 2 additional skill ranks per cleric level.\n\nThis replaces the cleric’s normal class skills: Blended Training: A kindred keeper gains a magic, combat, or skill talent (some of which are required to be [utility] talents) at the listed levels using the journeyman talent progression."
+        },
+        {
+          "level": 1,
+          "name": "This replaces the cleric’s normal class skills",
+          "description": "Blended Training: A kindred keeper gains a magic, combat, or skill talent (some of which are required to be [utility] talents) at the listed levels using the journeyman talent progression.\n\nThis replaces magic talents as well as necromantic focus for sphere clerics and either the Life or Protection sphere gained at 1st level for faithful shepherds."
+        },
+        {
+          "level": 1,
+          "name": "Focused Domain",
+          "description": "A kindred keeper selects one fewer domain than normal.\n\nThis modifies domains."
+        },
+        {
+          "level": 1,
+          "name": "Kindred Insights",
+          "description": "At 1st level, a kindred keeper gains the Communication sphere and must select Communication Coach as their (rapport) talent. If the creature is part of a community that the kindred keeper is also a member of (such as sharing a common faith, home, or lineage at GM discretion), the kindred keeper is treated as knowing their motivation for the purpose of building a rapport."
+        },
+        {
+          "level": 4,
+          "name": "Kindred Confluence",
+          "description": "At 4th level, when forming a rapport that uses Communication Coach, the kindred keeper may spend a use of channel energy to share any magic, combat, or skill talent she knows instead of just a talent from the Communication sphere. At 8th level, the kindred keeper may use Communication Coach to share any talent known by any creature she has a rapport with, not just one she knows. This allows her to share the selected talent with herself. At 12th level, the kindred keeper’s Communication Coach does not count towards the number of rapport effects that can be applied to the kindred keeper’s rapport (the kindred keeper can still only maintain one instance of Communication Coach at a time). In addition, the kindred keeper may share one additional talent with Communication Coach (to a maximum of 2). At 16th level, the kindred keeper may share three talents with Communication Coach rather than two. In addition, she may spend a swift action and a use of channel energy to change any talents chosen with Communication Coach. At 20th level, the kindred keeper may share five talents with Communication Coach."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:lawspeaker",
+      "package": "pathfinder-class:cleric",
+      "name": "Lawspeaker",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Lawspeaker",
+      "replaces_features": [
+        "alignment",
+        "domains"
+      ],
+      "removed_features": [
+        "alignment",
+        "domains"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Lawspeaker",
+          "description": "Source Blood of the Ancients pg. 9"
+        },
+        {
+          "level": 1,
+          "name": "Alignment",
+          "description": "A lawspeaker must be lawful."
+        },
+        {
+          "level": 1,
+          "name": "Divine Judgment",
+          "description": "A lawspeaker must select the Law domain or any subdomain of Law offered by her deity. She does not gain a second domain.\n\nThis alters domains."
+        },
+        {
+          "level": 1,
+          "name": "Circumvent Obfuscation",
+          "description": "As a standard action, a lawspeaker can expend two uses of channel energy to expose truths and banish falsehoods. The energy manifests as a spell-like ability, and this action does not count as channeling for the purposes of abilities and feats. Unless listed otherwise, the resulting abilities use the lawspeaker’s cleric level as her caster level and have the same range and required components as the corresponding spell. The spell-like abilities available are cumulative and are listed below at the level at which the lawspeaker can first access them."
+        },
+        {
+          "level": 1,
+          "name": "Level 1",
+          "description": "Calm emotions."
+        },
+        {
+          "level": 1,
+          "name": "Level 3",
+          "description": "Zone of truth."
+        },
+        {
+          "level": 1,
+          "name": "Level 5",
+          "description": "Invisibility purge."
+        },
+        {
+          "level": 1,
+          "name": "Level 7",
+          "description": "Discern lies."
+        },
+        {
+          "level": 1,
+          "name": "Level 9",
+          "description": "True seeing (self only)."
+        },
+        {
+          "level": 1,
+          "name": "Level 11",
+          "description": "Greater dispel magic (30-foot burst; targets only illusion spells, polymorph effects, and spells granting a bonus on Bluff and Disguise checks)."
+        },
+        {
+          "level": 1,
+          "name": "Level 13",
+          "description": "Communal tongues."
+        },
+        {
+          "level": 1,
+          "name": "Level 15",
+          "description": "Discern location."
+        },
+        {
+          "level": 1,
+          "name": "Level 17",
+          "description": "Antimagic field (30-foot radius)."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:mendevian-priest",
+      "package": "pathfinder-class:cleric",
+      "name": "Mendevian Priest",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Mendevian Priest",
+      "replaces_features": [
+        "domains"
+      ],
+      "removed_features": [
+        "domains"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Mendevian Priest",
+          "description": "Source Inner Sea Magic pg. 36"
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "A Mendevian priest is proficient with all simple weapons, light armor, medium armor, heavy armor, shields (except tower shields), and the favored weapon of her deity."
+        },
+        {
+          "level": 1,
+          "name": "Diminished Spellcasting",
+          "description": "A Mendevian priest chooses only one domain from her deity’s list of domains rather than the normal two domains. In all other respects, this works like and replaces the standard cleric domain ability."
+        },
+        {
+          "level": 1,
+          "name": "Demonic Knowledge",
+          "description": "At 1st level, when making Knowledge (planes) checks regarding demons, demonic cults, and their magic, a Mendevian priest gains a bonus on the check equal to half her class level (minimum +1) and can make these Knowledge skill checks untrained."
+        },
+        {
+          "level": 4,
+          "name": "Teamwork Feat",
+          "description": "At 4th level and 8th level, the Mendevian priest gains a bonus feat. This must be a teamwork feat, Alignment Channel, Greater Spell Penetration, Leadership, or Spell Penetration. The cleric must meet the prerequisites of the selected bonus feat."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:merciful-healer",
+      "package": "pathfinder-class:cleric",
+      "name": "Merciful Healer",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Merciful Healer",
+      "replaces_features": [
+        "channel-energy",
+        "domains"
+      ],
+      "removed_features": [
+        "channel-energy",
+        "domains"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Merciful Healer",
+          "description": "Source Ultimate Combat pg. 41"
+        },
+        {
+          "level": 1,
+          "name": "Willing Healer",
+          "description": "A merciful healer must choose the Healing domain. She does not gain a second domain. If the cleric worships a deity, that deity must be one that grants the Healing domain. A merciful healer must channel positive energy."
+        },
+        {
+          "level": 1,
+          "name": "Channel Energy",
+          "description": "As the cleric ability, save that a merciful healer must channel positive energy, and when she does, she cannot choose to target undead. This ability is otherwise identical to the cleric ability of the same name."
+        },
+        {
+          "level": 1,
+          "name": "Combat Medic",
+          "description": "A merciful healer does not provoke attacks of opportunity when using the Heal skill to stabilize another creature or casting healing spells."
+        },
+        {
+          "level": 3,
+          "name": "Merciful Healing",
+          "description": "At 3rd level, a merciful healer can channel positive energy to relieve one or more harmful conditions. The merciful healer chooses one of the following harmful conditions at 3rd level: fatigued, shaken, or sickened. When the merciful healer channels energy she can remove the chosen condition from one living creature that she heals within her channel energy burst. At 6th level, she can choose another condition. It can be one of those she didn’t choose at 3rd level, or one of the following conditions: dazed, diseased, or staggered. She can remove the selected condition or the one she chose at 3rd level from up to two creatures within her channel energy burst. She gains another condition at 9th level, and can choose an above condition or one of the following conditions: cursed, exhausted, frightened, nauseated, or poisoned. She can remove that condition, or a condition she previously chose, from one or two creatures within the burst. Finally, at 12th level, she can choose a lower-level condition or one of the following conditions: blinded, deafened, paralyzed, or stunned. She can remove that condition or one she previously chose from one, two, or three creatures within her channel energy burst. Feats and effects that affect a paladin’s mercy also affect this ability."
+        },
+        {
+          "level": 8,
+          "name": "True Healer",
+          "description": "At 8th level, when a merciful healer channels holy energy, she can choose to apply the benefits of merciful healing or to reroll any 1s when determining how much damage she heals with the holy energy. She must choose which benefit to take before she rolls to see how much damage she heals."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:roaming-exorcist",
+      "package": "pathfinder-class:cleric",
+      "name": "Roaming Exorcist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Roaming Exorcist",
+      "replaces_features": [
+        "channel-energy",
+        "domains",
+        "skill-ranks",
+        "weapon-armor-proficiencies"
+      ],
+      "removed_features": [
+        "channel-energy",
+        "domains",
+        "skill-ranks",
+        "weapon-armor-proficiencies"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Roaming Exorcist",
+          "description": "Source Undead Slayer's Handbook pg. 18"
+        },
+        {
+          "level": 1,
+          "name": "Skill Ranks per Level",
+          "description": "4 + Int modifier."
+        },
+        {
+          "level": 1,
+          "name": "Dedicated Wanderer",
+          "description": "A roaming exorcist is dedicated to her cause and affords no time to other pursuits typical of clerics. A roaming exorcist must choose to channel positive energy. She may choose only one domain from her deity’s list of domains, rather than the normal two domains, and she does not gain Medium Armor Proficiency or Shield Proficiency."
+        },
+        {
+          "level": 1,
+          "name": "Unseen Revealed",
+          "description": "At 1st level, a roaming exorcist gains a bonus equal to 1/2 her cleric level (minimum +1) on Perception checks to detect haunts and incorporeal creatures and on Sense Motive checks to determine whether a creature is possessed, under the effects of an enchantment or curse, or otherwise magically controlled."
+        },
+        {
+          "level": 2,
+          "name": "Spirit Sleuth",
+          "description": "At 2nd level, upon interacting with a rejuvenating spirit or haunt for the first time (such as by attacking the spirit or channeling energy to damage the haunt), a roaming exorcist can attempt a Sense Motive check as a free action to determine the specific course of action required to permanently neutralize the spirit or haunt (DC = 10 + the undead creature’s Hit Dice or the haunt’s CR)."
+        },
+        {
+          "level": 5,
+          "name": "Curse Seeker",
+          "description": "At 5th level, a roaming exorcist can more readily identify cursed items. When identifying a magic item, the roaming exorcist needs to exceed the item’s DC by only 5 (instead of by 10) in order to determine whether the item is cursed."
+        },
+        {
+          "level": 8,
+          "name": "Dispossession",
+          "description": "At 8th level, a roaming exorcist can expend one use of her channel energy ability to force a possessing creature from its host body. The exorcist must make a melee touch attack against the possessed creature; if successful, the roaming exorcist deals damage to the possessing creature as if it were targeted by the roaming exorcist’s channel energy ability (regardless of the possessing creature’s creature type), and the possession effect ceases as the possessing creature is ejected from the host body. A successful Will save (DC = the roaming exorcist’s channel energy DC) halves the damage taken, and the possessing creature resists being ejected from its host."
+        },
+        {
+          "level": 11,
+          "name": "Curse Eater",
+          "description": "At 11th level, a roaming exorcist gains Improved Disarm as a bonus feat, regardless of whether she meets the feat’s prerequisites. The roaming exorcist gains a +2 bonus on combat maneuver checks to disarm a creature of a magic item she knows to be cursed. If the roaming exorcist successfully disarms a creature of a cursed item without using a weapon, she may automatically pick up the disarmed cursed item without immediately succumbing to the item’s curse. She may wield or hold this cursed item for a number of rounds equal to her Charisma modifier (minimum 1 round)—during which time she may use the item normally, as if it were not cursed—before the item’s curse manifests again."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:sacred-attendant",
+      "package": "pathfinder-class:cleric",
+      "name": "Sacred Attendant",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Sacred Attendant",
+      "replaces_features": [
+        "armor-proficiency",
+        "channel-energy",
+        "domains"
+      ],
+      "removed_features": [
+        "armor-proficiency",
+        "channel-energy",
+        "domains"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Sacred Attendant",
+          "description": "Source Healer's Handbook pg. 4"
+        },
+        {
+          "level": 1,
+          "name": "Channel Beauty",
+          "description": "Whenever a sacred attendant channels energy to heal, she can opt to reduce the number of dice she rolls by 1 or more. For every die the sacred attendant subtracts, each of the targets of the channeled energy is healed of 1 point of Charisma damage."
+        },
+        {
+          "level": 1,
+          "name": "Domains",
+          "description": "The sacred attendant can choose only one domain from those belonging to her deity."
+        },
+        {
+          "level": 2,
+          "name": "Nimble",
+          "description": "The sacred attendant gains a +1 dodge bonus to AC and CMD when unarmored, unencumbered, and not denied her Dexterity bonus to AC (regardless of whether she has a Dexterity bonus). At 2nd level and every 4 cleric levels thereafter, the dodge bonus increases by 1 (to a maximum of +6 at 18th level)."
+        },
+        {
+          "level": 1,
+          "name": "Nurture Grace",
+          "description": "The sacred attendant can coax forth the charm and beauty within a willing, touched creature as a standard action. For 1 round, the subject gains an enhancement bonus equal to 1/2 the sacred attendant’s cleric level (minimum +1) on Charisma checks and Charismabased skill checks. The sacred attendant can spend two uses of this ability to instead counsel a subject for 10 minutes; in this case, the ability’s duration lasts for 1 day. The sacred attendant can use this ability a number of times per day equal to 3 + her Wisdom modifier."
+        },
+        {
+          "level": 8,
+          "name": "Inspiring Camaraderie",
+          "description": "At 8th level, as a swift action whenever a sacred attendant casts a cure spell (a spell with “cure” in its name) that targets a single ally, the sacred attendant can infuse that ally with inspired vigor. For a number of rounds equal to 1/2 the sacred attendant’s cleric level, the ally’s attack rolls gain a competence bonus equal to the sacred attendant’s cleric level. These rounds begin as soon as the sacred attendant uses this ability and elapse consecutively. The sacred attendant can use this ability once per day at 8th level, and an additional time per day for every 4 cleric levels beyond 8th."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:scroll-scholar",
+      "package": "pathfinder-class:cleric",
+      "name": "Scroll Scholar",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Scroll Scholar",
+      "replaces_features": [
+        "channel-energy-level-increase",
+        "level-domain-power",
+        "spell-slot"
+      ],
+      "removed_features": [
+        "channel-energy-level-increase",
+        "level-domain-power",
+        "spell-slot"
+      ],
+      "removed_feature_clauses": [
+        "one of the 1st-level granted powers from her domains—the character gets to choose which of her two 1st-level granted powers it replaces",
+        "diviner’s fortune (if a diviner) or hand of the apprentice (if a universalist)",
+        "increase to her channel energy damage normally gained at 5th level—her channel energy damage increases to 3d6 at 7th level instead",
+        "for the rest of her career as a cleric lags 1d6 behind normal",
+        "her bonus feat for 5th level",
+        "normal addition of a new 4th-level spell slot to the character’s spells per day— from this point on",
+        "the cleric or wizard has one fewer 4thlevel spell slot than other clerics or wizards"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Scroll Scholar",
+          "description": "Source Pathfinder Society Field Guide pg. 26"
+        },
+        {
+          "level": 1,
+          "name": "Diligent Student",
+          "description": "At 1st level, a scroll scholar chooses one Knowledge skill. This becomes a class skill if it is not already one. The scroll scholar adds half her class level to all Knowledge checks of this type (minimum 1). At 5th level and every five levels thereafter, a scroll scholar chooses 1 additional Knowledge skill to receive this bonus. For clerics, this ability replaces one of the 1st-level granted powers from her domains—the character gets to choose which of her two 1st-level granted powers it replaces. For wizards, this ability replaces diviner’s fortune (if a diviner) or hand of the apprentice (if a universalist)."
+        },
+        {
+          "level": 5,
+          "name": "Secrets Revealed",
+          "description": "At 5th level, a scroll scholar gains the ability to cast comprehend languages and identify as spelllike abilities. Her caster level is equal to her character level in whatever class she took the scroll scholar archetype for. She can cast these spells once per day each at 5th level, twice per day each at 7th level, and three times per day each at 9th level. At 11th level, one of these spell-like abilities (scholar’s choice) becomes a constant spell-like ability, and at 13th level, the second one becomes a constant spell-like ability. If the scholar is a cleric, this ability replaces the increase to her channel energy damage normally gained at 5th level—her channel energy damage increases to 3d6 at 7th level instead, and for the rest of her career as a cleric lags 1d6 behind normal. If the scholar is a wizard, this ability replaces her bonus feat for 5th level."
+        },
+        {
+          "level": 10,
+          "name": "Flash of Insight",
+          "description": "At 10th level, once per day, a scroll scholar can gain a +5 bonus on a single attack roll, caster level check, or saving throw as an immediate action. This decision must be made before the results of the roll are known, but can be made after the die is rolled. This ability can be used twice per day at 15th level, and 3 times per day at 20th level. This ability replaces the normal addition of a new 4th-level spell slot to the character’s spells per day— from this point on, the cleric or wizard has one fewer 4thlevel spell slot than other clerics or wizards."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:separatist",
+      "package": "pathfinder-class:cleric",
+      "name": "Separatist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Separatist",
+      "replaces_features": [
+        "domains"
+      ],
+      "removed_features": [
+        "domains"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Separatist",
+          "description": "Source Ultimate Magic pg. 32"
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "Separatists do not gain proficiency in their deity’s favored weapon (though they are not prohibited from using it or learning its use)."
+        },
+        {
+          "level": 1,
+          "name": "Forbidden Rites",
+          "description": "A separatist selects one domain from her deity’s domain list, and a second domain that is not on her deity’s domain list. This second domain cannot be an alignment domain that doesn’t match the cleric’s or her deity’s alignment. For example, a lawful good separatist cleric of a neutral good deity cannot choose the Chaos or Evil domain with this ability, but can select the Lawful domain even though her deity isn’t lawful."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:cleric:sphere-cleric",
+      "package": "pathfinder-class:cleric",
+      "name": "Sphere Cleric",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/sphere-cleric",
+      "replaces_features": [
+        "domains",
+        "spellcasting",
+        "spontaneous-casting"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "spells class feature",
+        "spontaneous casting"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The sphere cleric may combine spheres and talents to create magical effects. The sphere cleric is considered a High-Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the spells class feature."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "The sphere cleric gains a small reservoir of energy she can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to her level + her casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 2,
+          "name": "Magic Talents",
+          "description": "A sphere cleric gains 1 magic talent at 2nd level and every 2 levels thereafter."
+        },
+        {
+          "level": 1,
+          "name": "Necromantic Focus",
+          "description": "A sphere cleric who chooses to channel positive energy at 1st level gains the Life sphere as a bonus magic talent. A sphere cleric who chooses to channel negative energy gains the Death sphere as a bonus magic talent. She gains an additional talent from this sphere at 3rd, 7th, 11th, 15th, and 19th level.\n\nThis replaces spontaneous casting."
+        },
+        {
+          "level": 1,
+          "name": "Domains",
+          "description": "A sphere cleric gains domains as normal, but does not gain domain spells. Instead, she gains a bonus magic talent at 1st level, chosen from the spheres associated with her selected domains. She gains an additional magic talent from one of those domains at 5th, 9th, 13th, and 17th level.\n\nThis alters the domains class feature."
+        },
+        {
+          "level": 1,
+          "name": "Domain",
+          "description": "Associated Sphere: Air: Weather: Animal: Alteration: Artifice: Creation: Chaos: Fate: Charm: Mind: Community: Protection: Darkness: Dark: Death: Death: Destruction: Destruction: Earth: Nature: Erosion: Creation: Evil: Fate: Fire: Nature: Glory: Enhancement: Good: Fate: Healing: Life: Knowledge: Divination: Law: Fate: Liberation: Warp: Luck: Fate: Madness: Mind: Magic: Divination: Nobility: War: Plant: Nature: Protection: Protection: Repose: Life: Ruins: Destruction: Rune: Enhancement: Scalykind: Alteration: Strength: Enhancement: Sun: Light: Travel: Warp: Trickery: Illusion: Vermin: Alteration: Void: Warp: War: War: Water: Nature: Weather: Weather: Spheres of Power: Casting: The sphere cleric may combine spheres and talents to create magical effects. The sphere cleric is considered a High-Caster and uses Wisdom as his casting ability modifier. (Note: All casters gain 2 bonus talents and may select a casting tradition the first time they gain the casting class feature.) This replaces the spells class feature."
+        },
+        {
+          "level": 1,
+          "name": "Recommended Casting Tradition",
+          "description": "The classic feel of the cleric can be recreated through taking the divine petitioner casting tradition."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:stoic-caregiver",
+      "package": "pathfinder-class:cleric",
+      "name": "Stoic Caregiver",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Stoic Caregiver",
+      "replaces_features": [
+        "channel-energy",
+        "domains"
+      ],
+      "removed_features": [
+        "channel-energy",
+        "domains"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Stoic Caregiver",
+          "description": "Source Healer's Handbook pg. 6"
+        },
+        {
+          "level": 1,
+          "name": "Positive Channeler",
+          "description": "A stoic caregiver must choose to channel positive energy, even if she worships a deity who is neutral or if she is not devoted to a particular deity. A stoic caregiver cannot worship a deity who is evil."
+        },
+        {
+          "level": 1,
+          "name": "Domains",
+          "description": "A stoic caregiver chooses only one domain."
+        },
+        {
+          "level": 1,
+          "name": "Midwife Training",
+          "description": "A stoic caregiver is an expert at caring for lives that are in the process of being formed as well as the bodies of those who expect to usher new life into the world. The stoic caregiver gains a +2 bonus on Heal checks to treat expectant mothers and children. Any Heal check by the stoic caregiver that deals damage to the patient always deals the minimum amount of damage."
+        },
+        {
+          "level": 1,
+          "name": "Fated Cures",
+          "description": "Creatures must roll twice and take the lower result when they make any saving throws against a stoic caregiver’s spells of the healing subschool."
+        },
+        {
+          "level": 6,
+          "name": "Three-Aspect Channel",
+          "description": "At 6th level, a stoic caregiver can channel positive energy to heal and harm simultaneously. When she does so, she restores only 1/2 the usual amount of hit points and deals only 1/2 the usual number of points of damage (or 1/4 on a successful saving throw)."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:cleric:tech-priest",
+      "package": "pathfinder-class:cleric",
+      "name": "Tech Priest",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/tech-priest",
+      "replaces_features": [
+        "channel-energy",
+        "domains",
+        "proficiencies",
+        "replaces-necromantic-focus"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [
+          "spheres-archetype:pathfinder-class:cleric:sphere-cleric"
+        ],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "A tech priest is proficient with all simple weapons, as well as light armor and bucklers. Tech priests are also proficient with the favored weapon of their deity. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice. The tech priest uses their casting ability modifier as their practitioner modifier.\n\nThis modifies proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Machinery Focus",
+          "description": "The tech priest does not gain bonus Life or Death sphere talents and instead gains the TInker sphere as a bonus sphere. In addition, the tech priest must select at least one Tinker domain (and may select Tinker domains regardless of their deity’s domain portfolio).\n\nThis alters domains and replaces necromantic focus."
+        },
+        {
+          "level": 1,
+          "name": "Technodivinity Conduit",
+          "description": "The tech priest’s channel energy is usable a number of times per day equal to 3 + their Charisma modifier + their casting ability modifier (if the tech priest’s casting ability modifier is Charisma, this allows the tech priest to add their Charisma modifier twice).\n\nThis alters channel energy."
+        },
+        {
+          "level": 1,
+          "name": "Technoclergy Marvels",
+          "description": "At 1st level and every odd level thereafter, the tech priest selects a singular tech priest marvel (chosen from below). If a technoclergy marvel grants the tech priest abilities, they are treated as personal gizmos (or personal battery abilities), and are subject to the tech priest’s Tinker tradition as appropriate. If a technoclergy marvel grants a sacred or profane bonus, it grants a sacred bonus if the tech priest channels positive energy and a profane bonus if the tech priest channels negative energy. Technoclergy marvels with the [channel] tag are treated as using channel energy and expends 1 use as appropriate; these abilities may also be modified by the Quick Channel feat (or similar abilities), allowing the tech priest to use them as a move action."
+        },
+        {
+          "level": 1,
+          "name": "Assistant (requires tech priest 5)",
+          "description": "The tech priest gains a familiar and the Improved Familiar feat as a bonus feat. The tech priest may craft and implant 1 gizmo in their familiar, with that gizmo not counting against the tech priest’s gizmo limit, +1 additional gizmo per 10 tech priest levels."
+        },
+        {
+          "level": 1,
+          "name": "Channeled Savant (Su) [channel]",
+          "description": "The tech priest gains Tinker Savvy as a bonus talent. The tech priest may expend a use of channel energy when attempting any skill check to substitute that skill with their TInker sphere associated skill. If attempting a Tinker sphere associated skill check, the tech priest instead gains a sacred or profane bonus on that check equal to 2 + 1/2 their tech priest level."
+        },
+        {
+          "level": 1,
+          "name": "Conductive Armaments (Su) [channel]",
+          "description": "The tech priest gains Technological Weapons as a bonus talent. The tech priest may channel energy using a blaster gizmo as their focus to have their channel energy use the gizmo’s blaster shape to determine its area of effect (depleting a battery to increase the blaster shape’s effects as normal). Alternatively, the tech priest may expend a use of channel energy as part of using a blaster gizmo to add +2 damage per tech priest level to the blaster’s damage. This bonus damage is only applied to a target a single time, even if they would be hit by multiple instances of the blaster’s damage in a single turn (such as the volley blaster shape)."
+        },
+        {
+          "level": 1,
+          "name": "Energy Solutions (Su) [channel]",
+          "description": "The tech priest gains Energy Set as a bonus talent. In addition, the tech priest may channel energy to directly power a gizmo in their possession or within their natural reach, granting it a single charge lasting 1 minute per tech priest level. This charge may be expended as though it were a battery crafted by the tech priest (lasting for the gizmo’s normal battery use ability’s duration, as normal for a battery)."
+        },
+        {
+          "level": 1,
+          "name": "Expanded Domain (requires tech priest 5)",
+          "description": "The tech priest selects and gains an additional Tinker domain. This technoclergy marvel may be selected multiple times."
+        },
+        {
+          "level": 1,
+          "name": "Gizmo Feat",
+          "description": "The tech priest gains a single gizmo feat of their choice. The tech priest must meet the feat’s prerequisites as normal."
+        },
+        {
+          "level": 7,
+          "name": "Glorious Evolution (requires (augmentation) package)",
+          "description": "The tech priest gains Prosthetics Mastery as a bonus talent. The tech priest may craft 1 supplemental prosthetic as a personal gizmo, +1 at 7th level and every 5 tech priest levels after. A supplemental prosthetic crafted this way does not count against the tech priest’s gizmo limit, and if the supplemental prosthetic would grant a competence bonus, it instead grants a sacred or profane bonus."
+        },
+        {
+          "level": 1,
+          "name": "Miraculous Assembly (Su) [channel] (requires tech priest 11)",
+          "description": "The tech priest may channel energy to immediately create a gizmo they could normally craft. The resulting gizmo does not count against the tech priest’s gizmo limit. This gizmo is a temporary fabrication and lasts for 1 round per tech priest level. Alternatively, the tech priest may expend a use of channel energy when maintaining their gizmos to craft a gizmo in excess of their normal gizmo limit, which lasts until the tech priest rests and regains their resources. The tech priest may only craft a single gizmo this way."
+        },
+        {
+          "level": 1,
+          "name": "Multidisciplinary Doctrine",
+          "description": "The tech priest gains two utility talents of their choice, which may be from non-Tinker spheres."
+        },
+        {
+          "level": 1,
+          "name": "Restoration Protocols (Su) [channel]",
+          "description": "The tech priest gains Repair Kits as a bonus talent. In addition, the tech priest may channel energy to briefly empower a single repair kit gizmo (rolling their channel energy’s results as normal). If the empowered repair kit is used within the next minute per tech priest level, the recipient gains temporary hit points equal to the channel energy’s results in addition to the repair kit’s effects. These temporary hit points last 1 hour per tech priest level."
+        },
+        {
+          "level": 1,
+          "name": "Sanctified Engines (Su) [channel] (requires (transportation) package)",
+          "description": "The tech priest priest may channel energy to directly empower a mechanoid, granting it a +1 sacred or profane bonus on attack rolls, damage rolls, and saving throws, +1 per 5 tech priest levels. This bonus lasts for 1 round per class level. If the tech priest is piloting that mechanoid, they may expend a use of channel energy as part of piloting that mechanoid (instead of needing to channel energy as a separate action); if they use this ability as part of piloting, the effect’s duration ends if the mechanoid is no longer continuously piloted by the tech priest (or expires normally)."
+        },
+        {
+          "level": 1,
+          "name": "Seeker Doctrine (Su) [channel] (requires (transmission) package)",
+          "description": "The tech priest gains Transmission Mastery as a bonus talent. While using a detector, if the detector pinpoints one or more valid targets, the tech priest may channel energy to outline each pinpointed target with a faint glow for 1 round per tech priest level. This glow is visible, even in the darkness, allowing creatures to see and target the outlined creature as though they were visible, penalizing the target’s Stealth by 2 per tech priest level and preventing the target from benefitting from concealment."
+        },
+        {
+          "level": 1,
+          "name": "Technofaith Healing",
+          "description": "The tech priest gains Medical Set as a bonus talent. In addition, effects the tech priest creates that could ordinarily only heal living or undead creatures may also heal constructs and repair gizmos (as though they were living or undead, whichever is beneficial to receive such healing). This includes applications of the Life sphere, channel energy, and so on."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:theologian",
+      "package": "pathfinder-class:cleric",
+      "name": "Theologian",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Theologian",
+      "replaces_features": [
+        "domains"
+      ],
+      "removed_features": [
+        "domains"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Theologian",
+          "description": "Source Ultimate Magic pg. 32"
+        },
+        {
+          "level": 1,
+          "name": "Focused Domain",
+          "description": "A theologian chooses only one domain from her deity’s portfolio rather than the normal two domains. All level-dependent effects of the granted powers from the theologian’s domain function as if she were two cleric levels higher than her actual cleric level. This does not allow her to gain domain-granted powers earlier than normal."
+        },
+        {
+          "level": 5,
+          "name": "Domain Secret",
+          "description": "At 5th level, the theologian chooses one domain spell. That spell becomes permanently modified with one of the following metamagic feats: Bouncing Spell, Disruptive Spell, Ectoplasmic Spell, Enlarge Spell, Extend Spell, Focused Spell, Intensified Spell, Silent Spell, Still Spell. This metamagic feat does not increase the level of the spell. Once chosen, this modification cannot be changed. The domain specialist need not have the metamagic feat to apply it to a spell using this ability. At every 5 levels after 5th, the domain specialist may choose an additional domain spell to modify in this way. She cannot modify the same spell more than once."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:triadic-priest",
+      "package": "pathfinder-class:cleric",
+      "name": "Triadic Priest",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Triadic Priest",
+      "replaces_features": [
+        "domains"
+      ],
+      "removed_features": [
+        "domains"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Triadic Priest",
+          "description": "Source Blood of the Coven pg. 19"
+        },
+        {
+          "level": 1,
+          "name": "Triadic Bond",
+          "description": "A triadic priest can perform a 10-minute ritual with exactly two allies in order to create an enduring bond between them that lasts until the triadic priest either dissolves the bond (a process that takes 1 minute of concentration) or creates a new bond. When performing the bonding ritual, the triadic priest can also include any of her allies’ familiars or spirit animals; these creatures gain the benefits of the bonded channeler ability and the drawbacks of being in the bond, but they are not treated as bonded allies for the purpose of the triadic priest’s bonded domain. Only intelligent and fully independent creatures can serve as her two bonded companions. Animal companions, eidolons, familiars, phantoms, and similar nonsentient or dependent creatures are not suitable."
+        },
+        {
+          "level": 1,
+          "name": "Bonded Channeler",
+          "description": "When a triadic priest uses her channel energy ability, she must choose to affect either only her bonded allies or everyone except her bonded allies."
+        },
+        {
+          "level": 1,
+          "name": "Bonded Domain",
+          "description": "A triadic priest selects only one domain granted by her deity. However, while she is within 10 feet of least one of her bonded allies, she gains the following benefits.\n\nThis alters the domains class feature."
+        },
+        {
+          "level": 1,
+          "name": "Bonded Power",
+          "description": "A triadic priest gains either a witch’s coven hex or the Allied Spellcaster feat as a bonus feat."
+        },
+        {
+          "level": 1,
+          "name": "Bonded Unity",
+          "description": "As a move action, a triadic priest can share one teamwork feat she has with up to two bonded companions that are within 10 feet of her. Her bonded companions do not need to meet the feat’s prerequisites and gain the benefits of the feat for 1 round plus 1 additional round for every 5 class levels the triadic priest has. A bonded companion can gain only one teamwork feat in this way at a time. The triadic priest can use this ability a number of times per day equal to 3 + her Wisdom modifier."
+        },
+        {
+          "level": 8,
+          "name": "Bonded Ritual",
+          "description": "A triadic priest can prepare any of the spells below as though they were domain spells, though she can cast these domain spells only while she is within 10 feet of one of her bonded allies. At 8th level, once per day while within 10 feet of both her bonded allies, a triadic priest can cast any one of her domain spells of a spell level she can cast, whether she has prepared the spell or not, without expending a spell slot. If one of these domain spells has a casting time of more than one standard action, the triadic priest must succeed at a concentration check (DC = 20 + double the spell’s level) or lose the spell if at any point during the casting she does not have a bonded ally within 10 feet."
+        },
+        {
+          "level": 1,
+          "name": "Domain Spells",
+          "description": "1st—ill omen, 2nd—blindness/deafness, 3rd—bestow curse, 4th—charm monster, 5th—baleful polymorph, 6th—control weather, 7th—forcecage, 8th—mind blank, 9th—astral projection."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:undead-lord",
+      "package": "pathfinder-class:cleric",
+      "name": "Undead Lord",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Undead Lord",
+      "replaces_features": [
+        "domains"
+      ],
+      "removed_features": [
+        "domains"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Undead Lord",
+          "description": "Source Ultimate Magic pg. 32"
+        },
+        {
+          "level": 1,
+          "name": "Death Magic",
+          "description": "An undead lord must select the Death domain (and the Undead subdomain, if available in the campaign). She does not gain a second domain. In all other respects, this works like and replaces the standard cleric’s domain ability."
+        },
+        {
+          "level": 1,
+          "name": "Corpse Companion",
+          "description": "With a ritual requiring 8 hours, an undead lord can animate a single skeleton or zombie whose Hit Dice do not exceed her cleric level. This corpse companion automatically follows her commands and does not need to be controlled by her. She cannot have more than one corpse companion at a time. It does not count against the number of Hit Dice of undead controlled by other methods. She can use this ability to create a variant skeleton such as a bloody or burning skeleton, but its Hit Dice cannot exceed half her cleric level. She can dismiss her companion as a standard action, which destroys it."
+        },
+        {
+          "level": 10,
+          "name": "Bonus Feats",
+          "description": "All undead lords gain Command Undead as a bonus feat. In addition, at 10th level, she may select one of the following as a bonus feat: Channel Smite, Extra Channel, Improved Channel, Quick Channel, Skeleton Summoner, Undead Master."
+        },
+        {
+          "level": 8,
+          "name": "Unlife Healer",
+          "description": "At 8th level, the undead lord’s spells, spell-like abilities, and supernatural abilities used to heal undead heal an extra 50% damage. At 16th level, these effects automatically heal the maximum possible damage for the effect + the extra 50%. This does not stack with abilities or feats such as Empower Spell or Maximize Spell."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:cleric:varisian-pilgrim",
+      "package": "pathfinder-class:cleric",
+      "name": "Varisian Pilgrim",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Cleric Varisian Pilgrim",
+      "replaces_features": [
+        "altered-domain",
+        "domain-power",
+        "medium-armor-shield-proficiency"
+      ],
+      "removed_features": [
+        "altered-domain",
+        "domain-power",
+        "medium-armor-shield-proficiency"
+      ],
+      "removed_feature_clauses": [
+        "cleric’s proficiency with medium armor",
+        "shields— she retains proficiency with light armor only",
+        "an 8th-level domain power of the Varisian pilgrim’s choice"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Varisian Pilgrim",
+          "description": "Source Inner Sea Magic pg. 42"
+        },
+        {
+          "level": 1,
+          "name": "Fortunate Road",
+          "description": "At 1st level, a Varisian pilgrim must select the Chaos, Community, Liberation, Luck, Travel, or Weather domain (or the Exploration, Fate, Freedom, Trade, or Seasons subdomains from the Advanced Player’s Guide, if available in the campaign) as one of her domains. If the cleric worships a deity that doesn’t normally grant one of these domains, she gains access to this domain but can only pick this one domain—she effectively loses the option to pick a second domain. As a result, very few clerics who worship deities who don’t grant access to one of the domains or subdomains listed above opt to become Varisian pilgrims. In all other respects, this works like and replaces the standard cleric’s domain ability."
+        },
+        {
+          "level": 1,
+          "name": "Caravan Bond",
+          "description": "At 1st level, by leading a group prayer for 1 minute, a Varisian pilgrim can select a number of traveling companions equal to her cleric level + her Wisdom bonus. She may use her domain-granted powers on any of these traveling companions as if they were her. She can use these abilities on her traveling companions at a range of up to 30 feet, even if the ability normally requires her touch. This ability replaces the cleric’s proficiency with medium armor and shields— she retains proficiency with light armor only."
+        },
+        {
+          "level": 8,
+          "name": "Blessing of the Harrow",
+          "description": "At 8th level, once per day the pilgrim may perform a harrowing for herself or another creature. This is otherwise identical to the blessing of the harrow from the harrower prestige class (Inner Sea World Guide 276). This replaces an 8th-level domain power of the Varisian pilgrim’s choice."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

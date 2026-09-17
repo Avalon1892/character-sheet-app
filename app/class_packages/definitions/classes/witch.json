@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "key": "witch",
+  "class_key": "pathfinder-class:witch",
+  "class_name": "Witch",
+  "governing_ability": "intelligence",
+  "optional_blocks": ["inquisitor_features", "spells_known", "spells_prepared", "spell_level_overview", "pet"],
+  "external_systems": ["traditional_prepared_casting", "witch_familiar_spellbook", "witch_patron", "witch_hexes"],
+  "spell_grant_choice_providers": ["witch-patron"],
+  "resource_modules": [],
+  "passive_effects": [],
+  "notes": "The prepared-casting engine uses the familiar as the Witch spellbook. Patron spells, familiar progression, ordinary hexes, major hexes, and grand hexes are supplied by the shared choice and power-provider systems and automatically respect archetype replacements."
+}

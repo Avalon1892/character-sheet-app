@@ -1,0 +1,299 @@
+{
+  "version": 1,
+  "class_key": "spheres-class:sage",
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:sage:battleshifter",
+      "package": "spheres-class:sage",
+      "name": "Battleshifter",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/battleshifter",
+      "replaces_features": [
+        "esotery-normally",
+        "esotery-normally-at-level",
+        "skill-focus-feat-normally",
+        "skill-focus-feat-normally-at-level"
+      ],
+      "removed_features": [
+        "esotery-normally-20th-level",
+        "esotery-normally-2nd-level",
+        "esotery-normally-6th-level",
+        "skill-focus-feat-normally-3rd-level"
+      ],
+      "removed_feature_clauses": [
+        "esotery normally gained at 2nd level",
+        "Skill Focus feat normally gained at 3rd level",
+        "esotery normally gained at 6th level",
+        "esotery normally gained at 20th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Physical Focus",
+          "description": "A battleshifter must choose enhancer as his 1st level esoteric training."
+        },
+        {
+          "level": 2,
+          "name": "Advanced Form Manipulation",
+          "description": "At 2nd level, the battleshifter gains the Alteration sphere as a bonus style talent. In addition, the battleshifter may use the Alteration sphere to apply a shapeshift to himself and only himself as a move action. Maintaining this effect through concentration only requires a move action each round.\n\nThis replaces the esotery normally gained at 2nd level."
+        },
+        {
+          "level": 1,
+          "name": "Keen Senses",
+          "description": "From 3rd level on, the battleshifter’s efforts to perfect his physical form have sharpened his senses to an uncanny edge. The battleshifter gains Alertness as a bonus feat. If you already possess Alertness, you may gain Skill Focus as a bonus feat instead.\n\nThis replaces the Skill Focus feat normally gained at 3rd level."
+        },
+        {
+          "level": 1,
+          "name": "Implacable Resilience",
+          "description": "From 6th level on, the battleshifter becomes virtually impossible to kill as long as he has ki remaining. Whenever an attack would reduce the battleshifter to -1 or fewer hit points, the damage instead reduces his ki pool at a rate of 1 ki point per 5 points of damage beyond that required to reduce him to 0 hit points (rounded up; so an attack that would have reduced the battleshifter to -13 hit points would instead reduce his ki pool by 3). If the battleshifter has no ki remaining, he takes any remaining damage as normal.\n\nThis replaces the esotery normally gained at 6th level."
+        },
+        {
+          "level": 20,
+          "name": "Final Form",
+          "description": "At 20th level, the battleshifter must choose physical perfection as his signature technique. In addition, whenever the battleshifter targets himself with an effect from the Alteration or Enhancement spheres, it is considered an extraordinary ability instead of a magical effect. This means it does not provoke an attack of opportunity, cannot be dispelled or countered, and can be used within an antimagic field.\n\nThis replaces the esotery normally gained at 20th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:sage:confluence",
+      "package": "spheres-class:sage",
+      "name": "Confluence",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/confluence",
+      "replaces_features": [
+        "",
+        "esoteric-training",
+        "esoteric-training-at",
+        "ki-pool",
+        "level",
+        "skill-focus-bonus-feat",
+        "skill-focus-bonus-feat-at-level",
+        "style-talents"
+      ],
+      "removed_features": [
+        "12th-level",
+        "16th-level",
+        "esoteric-training-8th",
+        "skill-focus-bonus-feat-3rd-level"
+      ],
+      "removed_feature_clauses": [
+        "skill focus bonus feat gained at 3rd level and 12th level",
+        "esoteric training gained at 8th and 16th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Confluence Esoteries",
+          "description": "The confluence gains the following unique esotery he may choose from:"
+        },
+        {
+          "level": 1,
+          "name": "Martial Arts",
+          "description": "The confluence must choose the Boxing, Brute, Open Hand, or Wrestling sphere with the style talent gained at first level. Additionally, the confluence treats his sage level as his base attack bonus when calculating his combat maneuver bonus and combat maneuver defense; this stacks with base attack bonus gained from other classes.\n\nThis alters style talents."
+        },
+        {
+          "level": 1,
+          "name": "Natural Focus",
+          "description": "The confluence must choose ki convergent as his 1st level esoteric training."
+        },
+        {
+          "level": 1,
+          "name": "Restricted Ki",
+          "description": "The confluence cannot spend 1 ki point to increase his speed or grant himself a dodge bonus to AC.\n\nThis alters ki pool."
+        },
+        {
+          "level": 3,
+          "name": "Elemental Séance",
+          "description": "At 3rd level, the confluence gains the Nature sphere Speak With The Elements talent as a bonus talent. Once per day, whenever the confluence would use the Speak With The Elements talent he may spend 1 additional ki point to gain further insights when speaking with an appropriate elemental source, asking it up to one question per three sage levels he possesses. Unlike the talent, these questions can be detailed and specific, and can answer relevant questions to all experiences the elemental source has had within 1 mile per sage level he possesses. The confluence may use this ability an additional time per day for every 3 sage levels beyond 3rd.\n\nThis replaces the skill focus bonus feat gained at 3rd level and 12th level."
+        },
+        {
+          "level": 3,
+          "name": "Primordial Attunement",
+          "description": "Starting at 3rd level, the confluence becomes attuned to the primordial world around him, gaining incredible power over the elements. The confluence chooses a primordial attunement from below, gaining the initiate ability associated with the primordial attunement. At 5th level and every 2 levels thereafter, the confluence gains access to the next tier of a primordial attunement he already possesses (adept and master), or chooses the initiate ability of a new primordial attunement. The confluence cannot gain the master ability before 9th level, and must possess the associated Nature sphere package (or sphere) before selecting a primordial attunement.\n\nThis replaces the esoteric training gained at 8th and 16th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:sage:resolute",
+      "package": "spheres-class:sage",
+      "name": "Resolute",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/resolute",
+      "replaces_features": [
+        "ac-bonus",
+        "esotery",
+        "esotery-at-level",
+        "proficiencies"
+      ],
+      "removed_features": [
+        "ac-bonus",
+        "esotery-4th-level"
+      ],
+      "removed_feature_clauses": [
+        "esotery gained at 4th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Combat-Hardened",
+          "description": "Resolutes are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nAt 1st level, the resolute gains Toughness as a bonus feat, or a single feat of their choice if they already possess Toughness. At 12th level, the bonus hit points gained from the Toughness feat are doubled.\n\nThis alters proficiencies and replaces AC bonus."
+        },
+        {
+          "level": 4,
+          "name": "Stalwart",
+          "description": "At 4th level, if the resolute succeeds at a Fortitude or Will saving throw against an attack that has a reduced effect on a successful save, he instead avoids the effect entirely. A helpless resolute does not gain the benefit of the stalwart ability.\n\nThis replaces the esotery gained at 4th level.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:sage:votary",
+      "package": "spheres-class:sage",
+      "name": "Votary",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/votary",
+      "replaces_features": [
+        "",
+        "levels",
+        "style-talents",
+        "style-talents-at"
+      ],
+      "removed_features": [
+        "13th",
+        "19th-levels",
+        "7th",
+        "style-talents-1st"
+      ],
+      "removed_feature_clauses": [
+        "style talents gained at 1st",
+        "7th",
+        "13th",
+        "and 19th levels"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 7,
+          "name": "Devout Vows",
+          "description": "A votary’s intense dedication enables him to reach a greater degree of physical and spiritual purification than many others. When taking Oaths, a votary may benefit from up to 11 Oath points’ worth of Oath boons rather than 10. This improves to 12 Oath points at 7th level, 13 Oath points at 13th level, and 14 Oath points at 19th level. In addition, the votary can select among the following unique Oath boons in addition to normal Oath boons (note that the sage’s ki pool counts as a spell pool for the purpose of gaining additional points for taking drawbacks). If the votary possesses Absolute Poverty, he gains 4 free Oath points worth of Oath boons rather than the typical benefits of this class feature."
+        },
+        {
+          "level": 4,
+          "name": "Complex Training (Ex) (3 points)",
+          "description": "The votary gains an additional esoteric training option at 4th level."
+        },
+        {
+          "level": 1,
+          "name": "Deep Meditation (Ex) (1 point)",
+          "description": "The number of bonus dice granted by the meditation class feature increases to his votary level from 1/2 his votary level. The maximum number of bonus dice you can gain increases to his votary level."
+        },
+        {
+          "level": 1,
+          "name": "Elaborate Esotery (Ex) (see text)",
+          "description": "The votary gains additional esotery depending on how many Oath points he spends on this Oath boon, to a maximum of 5."
+        },
+        {
+          "level": 1,
+          "name": "Oath Points Spent",
+          "description": "Bonus Esotery 1 Esotery at 7th and 13th levels 2 Esotery at 1st, 7th, 13th, and 19th levels 3 Esotery at 1st, 5th, 7th, 13th, 17th, and 19th levels 4 Esotery at 1st, 5th, 7th, 9th, 11th, 13th, 17th, and 19th levels 5"
+        },
+        {
+          "level": 1,
+          "name": "Esotery at every odd-numbered level",
+          "description": "This replaces the style talents gained at 1st, 7th, 13th, and 19th levels."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:sage:wand-master",
+      "package": "spheres-class:sage",
+      "name": "Wand Master",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/wand-master",
+      "replaces_features": [
+        "",
+        "esotery-normally",
+        "esotery-normally-at-level",
+        "ki-pool",
+        "level",
+        "sages-class-skills",
+        "style-talents-normally",
+        "style-talents-normally-at"
+      ],
+      "removed_features": [
+        "9th-level",
+        "esotery-normally-4th-level",
+        "style-talents-normally-3rd"
+      ],
+      "removed_feature_clauses": [
+        "style talents normally gained at 3rd and 9th level",
+        "esotery normally gained at 4th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "The wand master gains Spellcraft (Int) and Use Magic Device (Cha) as class skills but does not gain Diplomacy (Cha) or Intimidate (Cha).\n\nThis alters the sage’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Ki Magic",
+          "description": "Starting at 1st level, the wand master may expend a point of ki from his ki pool as part of the Use Magic Device check to activate a wand, gaining a +5 insight bonus on the check. The wand master does not gain the ability to increase his speed by 20 feet. In addition, a wand master may expend a point of ki when activating a wand in place of expending one of the wand’s charges or spell points.\n\nThis alters the ki pool class feature."
+        },
+        {
+          "level": 9,
+          "name": "Chi Gong Wand Strike",
+          "description": "From 3rd level on, whenever the wand master succeeds at the free melee touch attack granted by a touch spell cast through a wand, he may add his chi gong damage to the spell’s normal effects, dealing its normal damage type. At 9th level, whenever the wand master delivers his chi gong damage in this manner, he treats the attack as an attack action.\n\nThis replaces the style talents normally gained at 3rd and 9th level."
+        },
+        {
+          "level": 4,
+          "name": "Retaliatory Wand Magic",
+          "description": "Starting at 4th level, whenever the wand master succeeds at a Spellcraft check to recognize a spell or magical effect, he may spend a point of ki as an immediate action to activate a wand he is currently holding that could target the caster of the spell or effect. If a spell or effect in his wand matches the spell or effect that triggered this ability, he may attempt to counterspell the spell instead of targeting the caster with the wand’s normal effect. In addition, the wand master gains CounterspellSoP as a bonus feat.\n\nThis replaces the esotery normally gained at 4th level."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "key": "sorcerer",
+  "class_key": "pathfinder-class:sorcerer",
+  "class_name": "Sorcerer",
+  "governing_ability": "charisma",
+  "optional_blocks": ["inquisitor_features", "spells_known", "spell_level_overview"],
+  "external_systems": [
+    "traditional_spontaneous_casting",
+    "sorcerer_bloodline",
+    "bloodline_spells",
+    "bloodline_powers",
+    "bloodline_bonus_feats"
+  ],
+  "bonus_feat_levels": [7, 13, 19],
+  "bonus_feat_label": "Sorcerer bloodline bonus feats",
+  "resource_modules": [],
+  "passive_effects": [],
+  "spell_grant_choice_providers": ["sorcerer-bloodline"],
+  "notes": "The bloodline selector projects bloodline class skills, arcana, powers, bonus spells, and bonus-feat options. Spells known and per-day slots remain separate and use the shared spontaneous-casting engine."
+}

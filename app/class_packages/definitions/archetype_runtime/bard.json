@@ -1,0 +1,319 @@
+{
+  "version": 1,
+  "class_key": "pathfinder-class:bard",
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bard:pitax-academy-of-grand-arts",
+      "choice_providers": [
+        {
+          "key": "pitax-focused-performance",
+          "label": "Focused Performance",
+          "feature_tokens": ["focused-performance"],
+          "minimum": 1,
+          "maximum": 1,
+          "description": "Choose the single Perform category that receives and may use the archetype's Extra Performance benefits.",
+          "fixed_options": [
+            {"key": "act", "name": "Act", "description": "Extra Performance rounds apply only to Perform (act)."},
+            {"key": "comedy", "name": "Comedy", "description": "Extra Performance rounds apply only to Perform (comedy)."},
+            {"key": "dance", "name": "Dance", "description": "Extra Performance rounds apply only to Perform (dance)."},
+            {"key": "keyboard", "name": "Keyboard Instruments", "description": "Extra Performance rounds apply only to Perform (keyboard instruments)."},
+            {"key": "oratory", "name": "Oratory", "description": "Extra Performance rounds apply only to Perform (oratory)."},
+            {"key": "percussion", "name": "Percussion Instruments", "description": "Extra Performance rounds apply only to Perform (percussion instruments)."},
+            {"key": "sing", "name": "Sing", "description": "Extra Performance rounds apply only to Perform (sing)."},
+            {"key": "string", "name": "String Instruments", "description": "Extra Performance rounds apply only to Perform (string instruments)."},
+            {"key": "wind", "name": "Wind Instruments", "description": "Extra Performance rounds apply only to Perform (wind instruments)."}
+          ]
+        }
+      ],
+      "resource_adjustments": [
+        {
+          "resource_key": "bardic_performance",
+          "maximum_bonus_progression": "pitax_extra_performance_rounds",
+          "description": "Base Bardic Performance rounds plus 6 focused rounds at 2nd level and another 6 at 8th, 14th, and 20th. The bonus rounds may be used only with the chosen Focused Performance category."
+        }
+      ],
+      "system_features": ["focused-performance"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bard:busker",
+      "resource_modules": [
+        {
+          "key": "busker",
+          "title": "Busker Stunts",
+          "governing_ability": "charisma",
+          "resources": [
+            {
+              "key": "busker_stunts",
+              "name": "Busker Stunt",
+              "feature_tokens": ["busker-stunts"],
+              "progression": "four_plus_ability",
+              "description": "Rounds per day equal 4 + Charisma modifier. Select and maintain one retained stunt at a time.",
+              "can_activate": true,
+              "use_requires_active": true,
+              "choice_options": ["Quick Hands", "Patter", "Living Statue", "Fascinate", "Suggestion", "Glorious Presence"]
+            }
+          ]
+        }
+      ],
+      "passive_effects": [
+        {"key": "quick-hands-attack", "feature_tokens": ["busker-stunts"], "targets": ["attack"], "progression": "archaeologist_luck_bonus", "bonus_type": "untyped", "source": "Bard (Busker): Quick Hands", "requires_resource_active": "busker_stunts", "requires_resource_choice": "Quick Hands"},
+        {"key": "quick-hands-defense", "feature_tokens": ["busker-stunts"], "targets": ["armor_class", "reflex"], "progression": "archaeologist_luck_bonus", "bonus_type": "dodge", "source": "Bard (Busker): Quick Hands", "requires_resource_active": "busker_stunts", "requires_resource_choice": "Quick Hands"},
+        {"key": "quick-hands-acrobatics", "feature_tokens": ["busker-stunts"], "targets": ["skill:acrobatics"], "progression": "archaeologist_luck_bonus", "bonus_type": "competence", "source": "Bard (Busker): Quick Hands", "requires_resource_active": "busker_stunts", "requires_resource_choice": "Quick Hands"}
+      ],
+      "system_features": ["busker-stunts"]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:bard:minstrel",
+      "resource_modules": [
+        {
+          "key": "minstrel",
+          "title": "Minstrel Passion",
+          "governing_ability": "charisma",
+          "resources": [
+            {
+              "key": "passion",
+              "name": "Passion",
+              "feature_tokens": ["passion"],
+              "progression": "one_plus_ability_minimum_one",
+              "description": "A fluctuating pool equal to 1 + practitioner modifier (minimum 1). Spend it on retained Passion abilities; restore it after one minute of rest or through the feature's natural-roll and martial-focus triggers."
+            }
+          ]
+        }
+      ],
+      "system_features": ["passion"]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:bard:musician",
+      "choice_providers": [
+        {
+          "key": "musician-muse",
+          "label": "Musician's Muse",
+          "feature_tokens": ["musician-s-muse"],
+          "minimum": 1,
+          "maximum": 1,
+          "description": "Choose the permanent creative style and its associated Performance package.",
+          "fixed_options": [
+            {"key": "improvisation", "name": "Improvisation", "description": "Associated package: any. Grants Segue and the Improvisation muse progression."},
+            {"key": "intensity", "name": "Intensity", "description": "Associated package: any. Grants Passionate Heart and the Intensity muse progression."},
+            {"key": "harmony", "name": "Harmony", "description": "Associated package: Instrumental or Lyric. Grants Rouser of Spirits and the Harmony muse progression."},
+            {"key": "grandeur", "name": "Grandeur", "description": "Associated package: Act or Dance. Grants Broad Appeal and the Grandeur muse progression."}
+          ]
+        }
+      ],
+      "system_features": ["musician-s-muse"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bard:arcane-duelist",
+      "resource_modules": [
+        {
+          "key": "arcane_duelist",
+          "title": "Arcane Duelist Bond",
+          "governing_ability": "charisma",
+          "resources": [
+            {
+              "key": "arcane_bond",
+              "name": "Bonded Weapon Spell",
+              "feature_tokens": ["arcane-bond"],
+              "progression": "one",
+              "description": "Once per day, cast one additional known spell through the selected bonded weapon.",
+              "custom_choice_label": "Bonded weapon"
+            }
+          ]
+        }
+      ],
+      "system_features": ["arcane-bond"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bard:magician",
+      "resource_modules": [
+        {
+          "key": "magician",
+          "title": "Magician Bond",
+          "governing_ability": "charisma",
+          "resources": [
+            {
+              "key": "arcane_bond",
+              "name": "Bonded Object Spell",
+              "feature_tokens": ["arcane-bond"],
+              "progression": "one",
+              "description": "Once per day, cast one additional known spell through the selected non-weapon bonded object.",
+              "choice_options": ["Amulet", "Ring", "Staff", "Wand"]
+            }
+          ]
+        }
+      ],
+      "system_features": ["arcane-bond"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bard:negotiator",
+      "power_providers": [
+        {
+          "key": "negotiator-rogue-talents",
+          "label": "Negotiator Rogue Talents",
+          "family": "rogue_talent",
+          "feature_tokens": ["rogue-talents"],
+          "slot_levels": [2, 6, 10, 14, 18],
+          "excluded_description_patterns": ["sneak attack"],
+          "description": "Choose a Rogue talent at 2nd level and every 4 levels thereafter. Advanced talents unlock at 10th level. Talents that modify Sneak Attack are unavailable."
+        }
+      ],
+      "system_features": ["rogue-talents"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bard:archaeologist",
+      "resource_modules": [
+        {
+          "key": "archaeologist",
+          "title": "Archaeologist Class Systems",
+          "governing_ability": "charisma",
+          "resources": [
+            {
+              "key": "archaeologists_luck",
+              "name": "Archaeologist's Luck",
+              "feature_tokens": ["archaeologist-s-luck"],
+              "progression": "four_plus_ability",
+              "description": "Rounds per day equal 4 + Charisma modifier. While active, its luck bonus applies to attacks, weapon damage, saves, and skills and scales at levels 5, 11, and 17.",
+              "can_activate": true,
+              "use_requires_active": true
+            }
+          ]
+        }
+      ],
+      "power_providers": [
+        {
+          "key": "archaeologist-rogue-talents",
+          "label": "Rogue Talents",
+          "family": "rogue_talent",
+          "feature_tokens": ["rogue-talents"],
+          "slot_levels": [4, 8, 12, 16, 20],
+          "description": "Choose one Rogue talent at 4th level and every 4 Bard levels thereafter; advanced talents become available from 12th level."
+        }
+      ],
+      "passive_effects": [
+        {
+          "key": "archaeologists-luck",
+          "feature_tokens": ["archaeologist-s-luck"],
+          "targets": ["attack", "damage", "fortitude", "reflex", "will", "skills"],
+          "target_family": "",
+          "progression": "archaeologist_luck_bonus",
+          "bonus_type": "luck",
+          "source": "Bard (Archaeologist): Archaeologist's Luck",
+          "requires_resource_active": "archaeologists_luck"
+        },
+        {
+          "key": "clever-explorer",
+          "feature_tokens": ["clever-explorer"],
+          "targets": ["skill:disable_device", "skill:perception"],
+          "target_family": "",
+          "progression": "half_level_minimum_one",
+          "bonus_type": "untyped",
+          "source": "Bard (Archaeologist): Clever Explorer",
+          "minimum_level": 2
+        }
+      ],
+      "system_features": ["archaeologist-s-luck"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bard:hoaxer",
+      "resource_modules": [],
+      "power_providers": [
+        {
+          "key": "hoaxer-hexes",
+          "label": "Hoaxer Hexes",
+          "family": "witch_hex",
+          "feature_tokens": ["hoaxer-hexes"],
+          "slot_levels": [1, 3, 6, 9, 12, 15, 18],
+          "option_names": ["Blight", "Charm", "Evil Eye", "Fortune", "Healing", "Misfortune", "Slumber", "Unnerve Beasts", "Agony", "Hoarfrost", "Ice Tomb", "Infected Wounds", "Nightmares", "Retribution", "Speak in Dreams"],
+          "description": "Choose from the Hoaxer's restricted hex list. Major options unlock at 12th level."
+        }
+      ],
+      "system_features": ["hoaxer-hexes"]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:bard:kung-fu-exemplar",
+      "resource_modules": [],
+      "power_providers": [
+        {
+          "key": "kung-fu-exemplar-ki-powers",
+          "label": "Ki Powers",
+          "family": "ki_power",
+          "feature_tokens": ["ki-powers"],
+          "slot_levels": [4, 6, 8, 10, 12, 14, 16, 18, 20],
+          "description": "Choose one Unchained Monk ki power at 4th level and every 2 levels thereafter. Spell points pay ki costs one-for-one."
+        }
+      ],
+      "system_features": ["ki-powers"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bard:celebrity",
+      "resource_modules": [
+        {
+          "key": "celebrity_fame",
+          "title": "Celebrity Fame",
+          "governing_ability": "charisma",
+          "resources": [
+            {
+              "key": "famous_region",
+              "name": "Famous Region",
+              "feature_tokens": ["famous"],
+              "progression": "zero",
+              "description": "Record the current settlement or region in which Famous applies. Its population limit and Diplomacy/Intimidate bonus scale at Bard levels 1, 5, 9, 13, and 17.",
+              "custom_choice_label": "Settlement or region name",
+              "tracks_uses": false,
+              "recover_on_full_rest": false,
+              "end_on_full_rest": false
+            }
+          ]
+        }
+      ],
+      "system_features": ["famous"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bard:chelish-diva",
+      "resource_modules": [
+        {
+          "key": "chelish_diva_fame",
+          "title": "Chelish Diva Fame",
+          "governing_ability": "charisma",
+          "resources": [
+            {
+              "key": "famous_region",
+              "name": "Famous Region",
+              "feature_tokens": ["famous"],
+              "progression": "zero",
+              "description": "Record the current settlement or region in which Famous applies. Its population limit and Bluff/Intimidate bonus scale at Bard levels 1, 5, 9, 13, and 17.",
+              "custom_choice_label": "Settlement or region name",
+              "tracks_uses": false,
+              "recover_on_full_rest": false,
+              "end_on_full_rest": false
+            }
+          ]
+        }
+      ],
+      "system_features": ["famous"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bard:voice-of-the-wild",
+      "choice_providers": [
+        {"key": "voice-wild-nature-magic-1", "label": "Nature Magic (1st)", "feature_tokens": ["nature-magic"], "minimum": 1, "maximum": 1, "minimum_class_level": 1, "spell_lists": ["Druid", "Ranger"], "minimum_spell_level": 1, "maximum_spell_level": 1, "description": "Choose the 1st-level Druid or Ranger spell learned as a Bard spell known at level 1."},
+        {"key": "voice-wild-nature-magic-4", "label": "Nature Magic (4th)", "feature_tokens": ["nature-magic"], "minimum": 1, "maximum": 1, "minimum_class_level": 4, "spell_lists": ["Druid", "Ranger"], "maximum_spell_level": 2, "description": "Choose a Druid or Ranger spell of a level the Bard can cast at level 4."},
+        {"key": "voice-wild-nature-magic-7", "label": "Nature Magic (7th)", "feature_tokens": ["nature-magic"], "minimum": 1, "maximum": 1, "minimum_class_level": 7, "spell_lists": ["Druid", "Ranger"], "maximum_spell_level": 3, "description": "Choose a Druid or Ranger spell of a level the Bard can cast at level 7."},
+        {"key": "voice-wild-nature-magic-10", "label": "Nature Magic (10th)", "feature_tokens": ["nature-magic"], "minimum": 1, "maximum": 1, "minimum_class_level": 10, "spell_lists": ["Druid", "Ranger"], "maximum_spell_level": 4, "description": "Choose a Druid or Ranger spell of a level the Bard can cast at level 10."},
+        {"key": "voice-wild-nature-magic-13", "label": "Nature Magic (13th)", "feature_tokens": ["nature-magic"], "minimum": 1, "maximum": 1, "minimum_class_level": 13, "spell_lists": ["Druid", "Ranger"], "maximum_spell_level": 5, "description": "Choose a Druid or Ranger spell of a level the Bard can cast at level 13."},
+        {"key": "voice-wild-nature-magic-16", "label": "Nature Magic (16th)", "feature_tokens": ["nature-magic"], "minimum": 1, "maximum": 1, "minimum_class_level": 16, "spell_lists": ["Druid", "Ranger"], "maximum_spell_level": 6, "description": "Choose a Druid or Ranger spell of a level the Bard can cast at level 16."}
+      ],
+      "spell_grant_choice_providers": ["voice-wild-nature-magic-1", "voice-wild-nature-magic-4", "voice-wild-nature-magic-7", "voice-wild-nature-magic-10", "voice-wild-nature-magic-13", "voice-wild-nature-magic-16"],
+      "system_features": ["nature-magic"]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:bard:beast-piper",
+      "choice_handling": "automatic",
+      "choice_handling_note": "The required Beastmastery (handle animal) package is fixed by the archetype rather than selected from multiple legal options."
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:bard:shadowsinger",
+      "choice_handling": "transient",
+      "choice_handling_note": "Inspire or discourage is chosen separately for each target when the emotion effect is used; it is not a persistent character-build choice."
+    }
+  ]
+}

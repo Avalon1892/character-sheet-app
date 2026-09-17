@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:blacksmith:disciple-of-goibniu",
+      "class_modifications": {
+        "statistics": {"add_class_skills": ["knowledge_nature"], "remove_class_skills": ["climb"]}
+      },
+      "feature_additions": [
+        {"level": 1, "name": "Hidden Weapons", "description": "May use Glamered Equipment during maintenance."},
+        {"level": 1, "name": "Gregarious Smith", "description": "May exchange a smithing insight for an eligible vigilante social talent."},
+        {"level": 2, "name": "Cold Iron Specialist", "description": "Uses full class level on the relevant Profession checks and treats crafted or modified equipment as cold iron when beneficial."}
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:blacksmith:iron-chef",
+      "class_modifications": {},
+      "feature_additions": [
+        {"level": 1, "name": "Recipes", "description": "Prepare a recipe with one entree and one flavor. It feeds the chef plus a number of allies based on Constitution; additional flavors and entrees unlock with level."},
+        {"level": 1, "name": "Chef's Insights", "description": "Chef insights are available whenever a smithing insight is gained."}
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:elementalist:admixture-savant",
+      "class_modifications": {
+        "statistics": {"add_class_skills": ["knowledge_all"], "remove_class_skills": ["acrobatics", "bluff", "climb", "intimidate", "swim"]},
+        "casting": {"ability": "intelligence"}
+      }
+    },
+    {
+      "key": "spheres-archetype:spheres-class:elementalist:martial-elementalist",
+      "sphere_capabilities": {"grants": ["martial"], "removes": []},
+      "class_modifications": {
+        "advancement": {"talent_progression": "Five-Fourths", "talent_kinds": ["magic", "martial"]},
+        "capabilities": {"grants": ["martial"], "removes": []},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:spheres-class:elementalist:soul-adept",
+      "class_modifications": {
+        "statistics": {"add_class_skills": ["knowledge_religion"], "remove_class_skills": ["escape_artist"]},
+        "advancement": {"talent_bonus_levels": [1, 2]}
+      },
+      "feature_additions": [
+        {"level": 2, "name": "Phantasmal Energy", "description": "Gain the Death sphere as a bonus magic talent."},
+        {"level": 7, "name": "Wraith Form", "description": "Become incorporeal for a limited number of rounds per day."}
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:elementalist:twinsoul-elementalist",
+      "class_modifications": {"advancement": {"talent_bonus_levels": [1, 1]}},
+      "feature_additions": [
+        {"level": 1, "name": "Elemental Conduit", "description": "Gain Conjuration and Destruction sphere access and designate a mage-archetype companion as the elemental conduit."},
+        {"level": 2, "name": "Destructive Capacitor", "description": "Channel destructive energy and temporary spell points into the elemental conduit."}
+      ]
+    }
+  ]
+}

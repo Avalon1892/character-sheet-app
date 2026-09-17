@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "key": "samurai",
+  "class_key": "pathfinder-class:samurai",
+  "class_name": "Samurai",
+  "governing_ability": "charisma",
+  "optional_blocks": ["inquisitor_features", "animal_companion"],
+  "external_systems": ["samurai_order", "challenge", "resolve", "samurai_mount", "samurai_banner"],
+  "resource_modules": [
+    {
+      "key": "samurai_tactics",
+      "title": "Samurai Tactics",
+      "governing_ability": "charisma",
+      "resources": [
+        {
+          "key": "honorable_stand",
+          "name": "Honorable Stand",
+          "feature_tokens": ["honorable-stand"],
+          "progression": "one_at_eleven_two_at_sixteen",
+          "description": "Daily uses of Honorable Stand. Activate it against the current challenge target; its immunities, consciousness rule and resolve-powered reroll remain in the feature description.",
+          "can_activate": true,
+          "activate_on_spend": true,
+          "custom_choice_label": "Honorable stand target"
+        },
+        {
+          "key": "banner_fear",
+          "name": "Banner vs. Fear Applies",
+          "feature_tokens": ["banner", "greater-banner", "banner-sam", "greater-banner-sam"],
+          "progression": "one",
+          "description": "Enable when the Samurai's visible banner benefits the character against fear.",
+          "can_activate": true,
+          "tracks_uses": false,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": false
+        },
+        {
+          "key": "banner_charge",
+          "name": "Banner Charge Applies",
+          "feature_tokens": ["banner", "greater-banner", "banner-sam", "greater-banner-sam"],
+          "progression": "one",
+          "description": "Enable while charging within sight of the Samurai's displayed banner.",
+          "can_activate": true,
+          "tracks_uses": false,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": false
+        }
+      ]
+    }
+  ],
+  "passive_effects": [
+    {
+      "key": "samurai-banner-fear",
+      "feature_tokens": ["banner", "greater-banner", "banner-sam", "greater-banner-sam"],
+      "targets": ["will"],
+      "progression": "cavalier_banner_bonus",
+      "bonus_type": "morale",
+      "source": "Samurai: Banner vs. Fear",
+      "minimum_level": 5,
+      "requires_resource_active": "banner_fear"
+    },
+    {
+      "key": "samurai-banner-charge",
+      "feature_tokens": ["banner", "greater-banner", "banner-sam", "greater-banner-sam"],
+      "targets": ["attack"],
+      "progression": "cavalier_banner_charge_bonus",
+      "bonus_type": "morale",
+      "source": "Samurai: Banner on Charge",
+      "minimum_level": 5,
+      "requires_resource_active": "banner_charge"
+    }
+  ],
+  "choice_providers": [
+    {
+      "key": "samurai-order",
+      "label": "Order",
+      "feature_tokens": ["order", "order-sam"],
+      "option_families": ["order"],
+      "minimum": 1,
+      "maximum": 1,
+      "description": "Choose the Samurai order that grants edicts, challenge benefits, class skills, and order abilities."
+    },
+    {
+      "key": "samurai-weapon-expertise",
+      "label": "Weapon Expertise",
+      "feature_tokens": ["weapon-expertise"],
+      "minimum": 1,
+      "maximum": 1,
+      "minimum_class_level": 3,
+      "fixed_options": [
+        {"key": "katana", "name": "Katana"},
+        {"key": "longbow", "name": "Longbow"},
+        {"key": "naginata", "name": "Naginata"},
+        {"key": "wakizashi", "name": "Wakizashi"}
+      ],
+      "description": "Choose the weapon that receives free-action drawing, +2 critical confirmation, and fighter-level equivalence for weapon-specific feat prerequisites."
+    }
+  ],
+  "bonus_feat_levels": [6, 12, 18],
+  "bonus_feat_label": "Samurai combat bonus feats",
+  "notes": "Order, Challenge, Resolve, Weapon Expertise, banner benefits, bonus feats, and the full-level Mount companion are separate reusable systems."
+}

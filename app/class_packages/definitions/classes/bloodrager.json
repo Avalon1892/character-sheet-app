@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "key": "bloodrager",
+  "class_key": "pathfinder-class:bloodrager",
+  "class_name": "Bloodrager",
+  "governing_ability": "charisma",
+  "optional_blocks": ["inquisitor_features", "spells_known", "spell_level_overview"],
+  "external_systems": ["traditional_spontaneous_casting", "bloodrage", "bloodrager_bloodline", "bloodline_powers", "bloodline_spells", "bloodline_bonus_feats", "bloodrager_fast_movement", "bloodrager_damage_reduction"],
+  "resource_modules": [],
+  "passive_effects": [],
+  "notes": "Bloodrage rounds and active modifiers, spontaneous four-level casting, bloodline choice and grants, bonus feats, fast movement, and damage reduction are provided by the shared class systems and disappear automatically when an archetype exchanges them."
+}

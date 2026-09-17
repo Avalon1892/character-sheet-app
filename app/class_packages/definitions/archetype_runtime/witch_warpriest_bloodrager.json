@@ -1,0 +1,108 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bloodrager:rageshaper",
+      "choice_handling": "transient",
+      "choice_handling_note": "Bestial Aspect chooses which granted natural-attack kind is enlarged whenever the polymorph spell is used; it is not a permanent advancement choice.",
+      "resource_modules": [{"key": "rageshaper", "title": "Rageshaper", "governing_ability": "charisma", "resources": [{"key": "bestial_aspect", "name": "Bestial Aspect", "feature_tokens": ["bestial-aspect"], "progression": "one", "description": "While a polymorph effect grants natural attacks, choose one attack kind whose damage die increases by one step. At 9th level, newly granted movement modes gain a +10-foot enhancement bonus.", "can_activate": true, "choice_options": ["Bite", "Claw", "Gore", "Hoof", "Slam", "Sting", "Tail", "Tentacle", "Other"], "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": true}]}],
+      "system_features": ["bestial-aspect"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:bloodrager:steelblood",
+      "resource_modules": [{"key": "steelblood", "title": "Steelblood Armor", "governing_ability": "charisma", "resources": [{"key": "armor_training", "name": "Armor Training Rank", "feature_tokens": ["armor-training"], "progression": "armor_training_from_five", "description": "While armored, reduce armor check penalty and increase maximum Dexterity by this rank: +1 at 5th level and another +1 at 9th, 13th, and 17th.", "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": false}]}],
+      "system_features": ["armor-training"]
+    },
+
+    {
+      "key": "pathfinder-archetype:pathfinder-class:warpriest:champion-of-the-faith",
+      "choice_providers": [{"key": "champion-faith-alignment", "label": "Chosen Alignment", "feature_tokens": ["chosen-alignment"], "minimum": 1, "maximum": 1, "fixed_options": [{"key": "chaos", "name": "Chaos"}, {"key": "evil", "name": "Evil"}, {"key": "good", "name": "Good"}, {"key": "law", "name": "Law"}], "description": "Choose an alignment component shared with the Warpriest's deity. The corresponding blessing is mandatory and smite opposes this alignment."}],
+      "system_features": ["smite"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:warpriest:disenchanter",
+      "choice_handling": "automatic",
+      "choice_handling_note": "Restricted bonus feats are selected through the shared feat picker, which applies the Disenchanter's level-dependent list and existing feat-slot budget."
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:warpriest:feral-champion",
+      "choice_provider_overrides": [{"key": "warpriest-blessings", "minimum": 1, "maximum": 1, "label": "Feral Blessing"}],
+      "choice_option_filters": [{"key": "warpriest-blessings", "include_names": ["Animal Blessing"]}],
+      "resource_modules": [{"key": "feral_champion", "title": "Feral Champion", "governing_ability": "wisdom", "resources": [{"key": "wild_shape", "name": "Wild Shape", "feature_tokens": ["wild-shape"], "progression": "wild_shape_from_seven", "description": "Wild shape begins at 7th level with effective Druid level equal to Warpriest level - 3. It gains another daily use every 4 levels and cannot assume elemental or plant forms."}]}],
+      "system_features": ["wild-shape"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:warpriest:jistkan-magistrate",
+      "choice_provider_overrides": [{"key": "warpriest-blessings", "minimum": 1, "maximum": 1, "label": "Elemental Binder Blessing"}],
+      "choice_option_filters": [{"key": "warpriest-blessings", "include_names": ["Air Blessing", "Earth Blessing", "Fire Blessing", "Water Blessing"]}],
+      "choice_handling": "automatic",
+      "choice_handling_note": "The retained blessing picker is restricted to exactly one Air, Earth, Fire, or Water blessing; it also determines spontaneous elemental summons and Channel Element damage."
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:warpriest:molthuni-arsenal-chaplain",
+      "choice_provider_overrides": [{"key": "warpriest-blessings", "minimum": 1, "maximum": 1, "label": "War Blessing"}],
+      "choice_option_filters": [{"key": "warpriest-blessings", "include_names": ["War Blessing"]}],
+      "resource_modules": [{"key": "arsenal_chaplain", "title": "Arsenal Chaplain", "governing_ability": "wisdom", "resources": [{"key": "weapon_training_applies", "name": "Sacred Weapon Training Applies", "feature_tokens": ["weapon-training"], "progression": "weapon_training_from_five", "description": "The Fighter weapon-training bonus is +1 at 5th level and improves every 4 levels, but applies only to sacred weapons for which the character has Weapon Focus.", "can_activate": true, "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": false}]}],
+      "passive_effects": [{"key": "arsenal-chaplain-attack", "feature_tokens": ["weapon-training"], "targets": ["attack"], "progression": "weapon_training_from_five", "bonus_type": "untyped", "source": "Molthuni Arsenal Chaplain: Weapon Training", "minimum_level": 5, "requires_resource_active": "weapon_training_applies"}, {"key": "arsenal-chaplain-damage", "feature_tokens": ["weapon-training"], "targets": ["damage"], "progression": "weapon_training_from_five", "bonus_type": "untyped", "source": "Molthuni Arsenal Chaplain: Weapon Training", "minimum_level": 5, "requires_resource_active": "weapon_training_applies"}],
+      "system_features": ["weapon-training"]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:warpriest:champion-warpriest",
+      "choice_providers": [{"key": "champion-warpriest-domain", "label": "Sacred Talent Domain", "feature_tokens": ["sacred-talent"], "option_families": ["domain"], "minimum": 1, "maximum": 1, "catalog_class_name": "Cleric", "description": "Choose one domain granted by the deity. Its associated sphere is gained as the Champion Warpriest's Sacred Talent."}],
+      "system_features": ["domain", "sacred-talent"]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:warpriest:divine-heretic",
+      "choice_providers": [{"key": "divine-heretic-domain-sphere", "label": "Second Domain Sphere", "feature_tokens": ["domain-spheres"], "minimum": 1, "maximum": 1, "fixed_options": [{"key": "alteration", "name": "Alteration"}, {"key": "conjuration", "name": "Conjuration"}, {"key": "creation", "name": "Creation"}, {"key": "dark", "name": "Dark"}, {"key": "death", "name": "Death"}, {"key": "destruction", "name": "Destruction"}, {"key": "divination", "name": "Divination"}, {"key": "enhancement", "name": "Enhancement"}, {"key": "fate", "name": "Fate"}, {"key": "illusion", "name": "Illusion"}, {"key": "life", "name": "Life"}, {"key": "light", "name": "Light"}, {"key": "mind", "name": "Mind"}, {"key": "nature", "name": "Nature"}, {"key": "protection", "name": "Protection"}, {"key": "telekinesis", "name": "Telekinesis"}, {"key": "time", "name": "Time"}, {"key": "war", "name": "War"}, {"key": "warp", "name": "Warp"}, {"key": "weather", "name": "Weather"}], "description": "War, Totemic Aura, and Personal Conflict are fixed. Choose the second domain sphere; both domain spheres use Warpriest level as caster level."}],
+      "system_features": ["domain"]
+    },
+
+    {
+      "key": "pathfinder-archetype:pathfinder-class:witch:alley-witch",
+      "choice_provider_overrides": [{"key": "witch-patron", "minimum": 0, "maximum": 0}],
+      "resource_modules": [{"key": "alley_witch", "title": "Alley Witch", "governing_ability": "intelligence", "resources": [{"key": "speak_to_city", "name": "Speak to the City", "feature_tokens": ["speak-to-the-city"], "progression": "speak_to_city_bonus", "description": "Record the bonded settlement. While within it, this value applies to initiative, Knowledge (local), Perception, Stealth, and Sense Motive. A new city requires 30 days and replaces the old rapport.", "can_activate": true, "custom_choice_label": "Bonded settlement", "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": false}]}],
+      "choice_handling": "automatic",
+      "choice_handling_note": "The fixed Crowd Patron spell list needs no selection; the editable Speak to the City tracker records the one settlement chosen by the character."
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:witch:hagbound",
+      "choice_option_filters": [{"key": "witch-patron", "include_names": ["Deception Patron", "Jynx Patron", "Moon Patron", "Occult Patron", "Plague Patron", "Shadow Patron", "Strength Patron", "Vengeance Patron", "Winter Patron"]}],
+      "passive_effects": [{"key": "hagbound-strength", "feature_tokens": ["hunched-muscle"], "targets": ["ability:strength"], "progression": "hagbound_strength", "bonus_type": "size", "source": "Hagbound: Hunched Muscle", "minimum_level": 2}],
+      "choice_handling": "automatic",
+      "choice_handling_note": "The retained Patron picker is restricted to the nine patrons permitted by Hagbound; tailoring Vile Curse is a per-use narrative choice."
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:witch:invoker",
+      "audit_ignore_mechanics": ["revelation"],
+      "resource_modules": [{"key": "invoker", "title": "Invoke Patron", "governing_ability": "intelligence", "resources": [{"key": "invoke_patron", "name": "Invoke Patron", "feature_tokens": ["invoke-patron"], "progression": "level", "description": "Minutes per day equal Witch level. Select one patron facet while active, two different facets from 10th level. Each facet's magnitude improves at 8th and 16th level.", "can_activate": true, "activate_on_spend": true, "choice_options": ["Bondage", "Bridge", "Crisis", "Curiosity", "Decisions", "Fortune", "Paradise", "Rapture", "Reckoning", "Revelation"]}]}],
+      "system_features": ["invoke-patron"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:witch:medium",
+      "choice_option_filters": [{"key": "witch-patron", "include_names": ["Ancestors Patron", "Death Patron", "Occult Patron", "Spirits Patron"]}]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:witch:putrefactor",
+      "choice_option_filters": [{"key": "witch-patron", "include_names": ["Animals Patron", "Death Patron", "Plague Patron", "Rot Patron"]}],
+      "choice_handling": "automatic",
+      "choice_handling_note": "The Patron picker is restricted to Animals, Death, Plague, or Rot. Familiar species remains editable on the Pet page and is restricted by the feature text to house centipede, rat, scarlet spider, or toad."
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:witch:white-haired-witch",
+      "power_providers": [{"key": "white-haired-witch-rogue-talents", "label": "White-Haired Witch Rogue Talents", "family": "rogue_talent", "feature_tokens": ["rogue-talents"], "slot_levels": [10, 12, 14, 16, 18, 20], "option_names": ["Assault Leader", "Combat Trick", "Finesse Rogue", "Major Magic", "Minor Magic", "Positioning Attack", "Resiliency", "Surprise Attack", "Weapon Training", "Another Day", "Defensive Roll", "Improved Evasion", "Opportunist", "Redirect Attack", "Slippery Mind", "Thoughtful Reexamining"], "description": "Gain one listed Rogue talent at 10th level and every 2 levels thereafter. Advanced options unlock for the 18th- and 20th-level slots."}],
+      "system_features": ["rogue-talent"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:witch:wyrm-witch",
+      "choice_provider_overrides": [{"key": "witch-patron", "minimum": 1, "maximum": 1, "label": "Draconic Patronage", "description": "Choose the draconic patron whose nine spells are stored in the bonded hoard.", "option_families": [], "fixed_options": [
+        {"key": "chromatic", "name": "Chromatic", "bonus_spells": [{"class_level": 2, "spell_level": 1, "name": "Cause Fear"}, {"class_level": 4, "spell_level": 2, "name": "Hold Person"}, {"class_level": 6, "spell_level": 3, "name": "Suggestion"}, {"class_level": 8, "spell_level": 4, "name": "Aura of Doom"}, {"class_level": 10, "spell_level": 5, "name": "Dominate Person"}, {"class_level": 12, "spell_level": 6, "name": "Geas/Quest"}, {"class_level": 14, "spell_level": 7, "name": "Mass Hold Person"}, {"class_level": 16, "spell_level": 8, "name": "Frightful Aspect"}, {"class_level": 18, "spell_level": 9, "name": "Overwhelming Presence"}]},
+        {"key": "esoteric", "name": "Esoteric", "bonus_spells": [{"class_level": 2, "spell_level": 1, "name": "Memory Lapse"}, {"class_level": 4, "spell_level": 2, "name": "Psychic Reading"}, {"class_level": 6, "spell_level": 3, "name": "Nondetection"}, {"class_level": 8, "spell_level": 4, "name": "Hypercognition"}, {"class_level": 10, "spell_level": 5, "name": "Mind Probe"}, {"class_level": 12, "spell_level": 6, "name": "Telepathy"}, {"class_level": 14, "spell_level": 7, "name": "Insanity"}, {"class_level": 16, "spell_level": 8, "name": "Screen"}, {"class_level": 18, "spell_level": 9, "name": "Bilocation"}]},
+        {"key": "imperial", "name": "Imperial", "bonus_spells": [{"class_level": 2, "spell_level": 1, "name": "Endure Elements"}, {"class_level": 4, "spell_level": 2, "name": "Gust of Wind"}, {"class_level": 6, "spell_level": 3, "name": "Hydraulic Torrent"}, {"class_level": 8, "spell_level": 4, "name": "Obsidian Flow"}, {"class_level": 10, "spell_level": 5, "name": "Fickle Winds"}, {"class_level": 12, "spell_level": 6, "name": "Move Earth"}, {"class_level": 14, "spell_level": 7, "name": "Reverse Gravity"}, {"class_level": 16, "spell_level": 8, "name": "Wall of Lava"}, {"class_level": 18, "spell_level": 9, "name": "World Wave"}]},
+        {"key": "metallic", "name": "Metallic", "bonus_spells": [{"class_level": 2, "spell_level": 1, "name": "Protection from Evil"}, {"class_level": 4, "spell_level": 2, "name": "Weapon of Awe"}, {"class_level": 6, "spell_level": 3, "name": "Heroism"}, {"class_level": 8, "spell_level": 4, "name": "Dispel Evil"}, {"class_level": 10, "spell_level": 5, "name": "Commune"}, {"class_level": 12, "spell_level": 6, "name": "Greater Heroism"}, {"class_level": 14, "spell_level": 7, "name": "Limited Wish"}, {"class_level": 16, "spell_level": 8, "name": "Holy Aura"}, {"class_level": 18, "spell_level": 9, "name": "Miracle"}]},
+        {"key": "outer", "name": "Outer", "bonus_spells": [{"class_level": 2, "spell_level": 1, "name": "Deja Vu"}, {"class_level": 4, "spell_level": 2, "name": "Darkness"}, {"class_level": 6, "spell_level": 3, "name": "Blink"}, {"class_level": 8, "spell_level": 4, "name": "Black Tentacles"}, {"class_level": 10, "spell_level": 5, "name": "Mindwipe"}, {"class_level": 12, "spell_level": 6, "name": "Shadow Walk"}, {"class_level": 14, "spell_level": 7, "name": "Lunar Veil"}, {"class_level": 16, "spell_level": 8, "name": "Orb of the Void"}, {"class_level": 18, "spell_level": 9, "name": "Weird"}]},
+        {"key": "primal", "name": "Primal", "bonus_spells": [{"class_level": 2, "spell_level": 1, "name": "Burning Hands"}, {"class_level": 4, "spell_level": 2, "name": "Elemental Touch"}, {"class_level": 6, "spell_level": 3, "name": "Elemental Aura"}, {"class_level": 8, "spell_level": 4, "name": "Planar Adaptation"}, {"class_level": 10, "spell_level": 5, "name": "Elemental Body II"}, {"class_level": 12, "spell_level": 6, "name": "Chain Lightning"}, {"class_level": 14, "spell_level": 7, "name": "Vortex"}, {"class_level": 16, "spell_level": 8, "name": "Polar Ray"}, {"class_level": 18, "spell_level": 9, "name": "Fiery Body"}]}
+      ]}],
+      "system_features": ["bonded-hoard"]
+    }
+  ]
+}

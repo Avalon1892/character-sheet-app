@@ -1,0 +1,999 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:mountebank:back-alley-grifter",
+      "resource_modules": [
+        {
+          "key": "back_alley_grifter",
+          "title": "Back Alley Grifter",
+          "governing_ability": "casting",
+          "resources": [
+            {
+              "key": "tension",
+              "name": "Tension",
+              "feature_tokens": [
+                "tension"
+              ],
+              "progression": "grifter_tension",
+              "description": "Maximum tension equals the casting ability modifier (minimum 1), plus Tension Boost. It falls to 0 after one minute outside combat.",
+              "recover_on_full_rest": true,
+              "end_on_full_rest": false,
+              "recovery_progression": "zero",
+              "use_increases": true,
+              "restore_toward_zero": true
+            },
+            {
+              "key": "tension_boost",
+              "name": "Tension Boost",
+              "feature_tokens": [
+                "tension-boost"
+              ],
+              "progression": "mountebank_tension_boost",
+              "description": "Additional maximum tension: +1 at 3rd level, increasing at 7th, 13th, and 19th.",
+              "tracks_uses": false,
+              "recover_on_full_rest": false,
+              "end_on_full_rest": false
+            },
+            {
+              "key": "rising_tension",
+              "name": "Rising Tension per Turn",
+              "feature_tokens": [
+                "rising-tension"
+              ],
+              "progression": "mountebank_rising_tension",
+              "description": "Tension gained at the start of each turn: 1 at level 11 and 2 at level 16.",
+              "tracks_uses": false,
+              "recover_on_full_rest": false,
+              "end_on_full_rest": false
+            }
+          ]
+        }
+      ],
+      "choice_providers": [
+        {
+          "key": "grifter-bare-knuckles",
+          "label": "Bare Knuckles",
+          "feature_tokens": [
+            "bare-knuckles"
+          ],
+          "minimum": 1,
+          "maximum": 1,
+          "fixed_options": [
+            {
+              "key": "boxing",
+              "name": "Boxing Sphere"
+            },
+            {
+              "key": "brute",
+              "name": "Brute Sphere"
+            },
+            {
+              "key": "open-hand",
+              "name": "Open Hand Sphere"
+            }
+          ],
+          "description": "Choose the combat sphere granted by Bare Knuckles."
+        },
+        {
+          "key": "grifter-striker-arts",
+          "label": "Striker Arts",
+          "feature_tokens": [
+            "striker-arts"
+          ],
+          "minimum_levels": [
+            2,
+            6,
+            10,
+            14,
+            18
+          ],
+          "maximum_levels": [
+            2,
+            6,
+            10,
+            14,
+            18
+          ],
+          "options_from_provider": "striker-arts"
+        }
+      ],
+      "system_features": [
+        "tension",
+        "tension-technique"
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mountebank:mental-manipulator",
+      "resource_modules": [
+        {
+          "key": "mental_manipulator",
+          "title": "Mental Manipulator",
+          "governing_ability": "casting",
+          "resources": [
+            {
+              "key": "controlling_attack_bonus",
+              "name": "Commanded Creature — Attack Bonus",
+              "feature_tokens": [
+                "controlling-enhancement"
+              ],
+              "progression": "mountebank_thiefs_mark",
+              "description": "Bonus to the commanded creature's attack roll, not to the Mountebank's own attacks.",
+              "tracks_uses": false,
+              "recover_on_full_rest": false,
+              "end_on_full_rest": false
+            },
+            {
+              "key": "controlling_damage_bonus",
+              "name": "Commanded Creature — Damage Bonus",
+              "feature_tokens": [
+                "controlling-enhancement"
+              ],
+              "progression": "mountebank_controlling_damage",
+              "description": "Bonus to the commanded creature's damage roll.",
+              "tracks_uses": false,
+              "recover_on_full_rest": false,
+              "end_on_full_rest": false
+            }
+          ]
+        }
+      ],
+      "system_features": [
+        "mind-control"
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mountebank:phantom-thief",
+      "resource_modules": [
+        {
+          "key": "phantom_thief",
+          "title": "Phantom Thief",
+          "governing_ability": "casting",
+          "resources": [
+            {
+              "key": "analytical_gaze",
+              "name": "Analytical Gaze Applies",
+              "feature_tokens": [
+                "analytical-gaze"
+              ],
+              "progression": "ability_modifier_minimum_one",
+              "description": "Uses per creature equal the casting ability modifier. Enable while attacking a creature successfully identified with Scout.",
+              "can_activate": true,
+              "recover_on_full_rest": false,
+              "end_on_full_rest": true
+            }
+          ]
+        }
+      ],
+      "passive_effects": [
+        {
+          "key": "phantom-thief-damage",
+          "feature_tokens": [
+            "analytical-gaze"
+          ],
+          "targets": [
+            "damage"
+          ],
+          "progression": "two",
+          "bonus_type": "untyped",
+          "source": "Phantom Thief: Analytical Gaze",
+          "requires_resource_active": "analytical_gaze"
+        }
+      ],
+      "power_providers": [
+        {
+          "key": "phantom-thief-rogue-talents",
+          "label": "Rogue Talents",
+          "family": "rogue_talent",
+          "feature_tokens": [
+            "rogue-talents"
+          ],
+          "slot_levels": [
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ],
+          "description": "Choose one legal Rogue talent every even Mountebank level. Advanced talents unlock when the archetype rules permit them.",
+          "restrict_catalog_to_class": false
+        }
+      ],
+      "system_features": [
+        "rogue_talent"
+      ],
+      "audit_ignore_mechanics": [
+        "phantom"
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:reaper:chem-dog",
+      "resource_modules": [
+        {
+          "key": "chem_dog",
+          "title": "Chem Dog",
+          "governing_ability": "casting",
+          "resources": [
+            {
+              "key": "chem_dog_points",
+              "name": "Chem Dog Class-Feature Points",
+              "feature_tokens": [
+                "martial-soul"
+              ],
+              "progression": "level_plus_ability_minimum_one",
+              "description": "Class-feature-only pool equal to Reaper level + practitioner modifier; it cannot power sphere abilities."
+            },
+            {
+              "key": "flashbang_save_dc",
+              "name": "Flashbang Save DC",
+              "feature_tokens": [
+                "flashbangs"
+              ],
+              "progression": "ten_plus_half_level_plus_ability",
+              "description": "Flashbang Fortitude save DC using practitioner modifier.",
+              "tracks_uses": false,
+              "recover_on_full_rest": false,
+              "end_on_full_rest": false
+            },
+            {
+              "key": "flashbang_range",
+              "name": "Flashbang Range (ft.)",
+              "feature_tokens": [
+                "flashbangs"
+              ],
+              "progression": "thirty_plus_ten_level",
+              "description": "Flashbang range: 30 feet + 10 feet per Reaper level.",
+              "tracks_uses": false,
+              "recover_on_full_rest": false,
+              "end_on_full_rest": false
+            }
+          ]
+        }
+      ],
+      "choice_providers": [
+        {
+          "key": "reaper-casting-ability",
+          "label": "Practitioner Ability",
+          "feature_tokens": [
+            "martial-soul"
+          ],
+          "minimum": 1,
+          "maximum": 1,
+          "fixed_options": [
+            {
+              "key": "intelligence",
+              "name": "Intelligence"
+            },
+            {
+              "key": "wisdom",
+              "name": "Wisdom"
+            },
+            {
+              "key": "charisma",
+              "name": "Charisma"
+            }
+          ]
+        },
+        {
+          "key": "chem-dog-material-impositions",
+          "label": "Material Impositions",
+          "feature_tokens": [
+            "material-imposition"
+          ],
+          "minimum_levels": [
+            3,
+            7,
+            11,
+            15,
+            19
+          ],
+          "maximum_levels": [
+            3,
+            7,
+            11,
+            15,
+            19
+          ],
+          "description": "Choose material impositions at levels 3, 7, 11, 15, and 19.",
+          "options_from_provider": "scholar-material-impositions"
+        }
+      ],
+      "system_features": [
+        "flashbang",
+        "material-imposition"
+      ],
+      "choice_provider_overrides": [
+        {
+          "key": "reaper-techniques",
+          "minimum_levels": [
+            4,
+            6,
+            8,
+            10,
+            14,
+            16,
+            18,
+            20
+          ],
+          "maximum_levels": [
+            4,
+            6,
+            8,
+            10,
+            14,
+            16,
+            18,
+            20
+          ]
+        }
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:reaper:disciple-of-the-monstrous-arts",
+      "resource_modules": [
+        {
+          "key": "monstrous_disciple",
+          "title": "Disciple of the Monstrous Arts",
+          "governing_ability": "casting",
+          "resources": [
+            {
+              "key": "combat_empowerment",
+              "name": "Combat Empowerment Applies",
+              "feature_tokens": [
+                "combat-empowerment"
+              ],
+              "progression": "one",
+              "description": "Enable while using a magic sphere effect as part of an attack action; its caster-level bonus scales from +1 to +5.",
+              "can_activate": true,
+              "tracks_uses": false,
+              "recover_on_full_rest": false,
+              "end_on_full_rest": true
+            }
+          ]
+        }
+      ],
+      "passive_effects": [
+        {
+          "key": "monstrous-combat-empowerment",
+          "feature_tokens": [
+            "combat-empowerment"
+          ],
+          "targets": [
+            "caster_level"
+          ],
+          "progression": "reaper_prey_casting",
+          "bonus_type": "untyped",
+          "source": "Disciple of the Monstrous Arts: Combat Empowerment",
+          "minimum_level": 3,
+          "requires_resource_active": "combat_empowerment"
+        }
+      ],
+      "system_features": [
+        "combat-empowerment",
+        "stance"
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:reaper:flagellant",
+      "resource_modules": [
+        {
+          "key": "flagellant",
+          "title": "Flagellant",
+          "governing_ability": "casting",
+          "resources": [
+            {
+              "key": "worldly_distance",
+              "name": "Worldly Distance Natural Armor",
+              "feature_tokens": [
+                "worldly-distance"
+              ],
+              "progression": "flagellant_natural_armor",
+              "description": "Natural armor bonus granted at level 5 and improved at levels 10, 15, and 20.",
+              "tracks_uses": false,
+              "recover_on_full_rest": false,
+              "end_on_full_rest": false
+            }
+          ]
+        }
+      ],
+      "passive_effects": [
+        {
+          "key": "flagellant-natural-armor",
+          "feature_tokens": [
+            "worldly-distance"
+          ],
+          "targets": [
+            "armor_class",
+            "flat_footed_ac"
+          ],
+          "progression": "flagellant_natural_armor",
+          "bonus_type": "natural_armor",
+          "source": "Flagellant: Worldly Distance",
+          "minimum_level": 5
+        }
+      ],
+      "system_features": [
+        "solitude"
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:reaper:hunt-master",
+      "resource_modules": [
+        {
+          "key": "hunt_master",
+          "title": "Hunt Master",
+          "governing_ability": "casting",
+          "resources": [
+            {
+              "key": "hunt_master_points",
+              "name": "Hunt Master Class-Feature Points",
+              "feature_tokens": [
+                "martial-soul"
+              ],
+              "progression": "level_plus_ability_minimum_one",
+              "description": "Class-feature-only pool equal to Reaper level + practitioner modifier; it cannot power sphere abilities."
+            },
+            {
+              "key": "unified_host",
+              "name": "Unified Host Applies",
+              "feature_tokens": [
+                "unified-host"
+              ],
+              "progression": "one",
+              "description": "Enable while allies benefit from the Hunt Master's unified-host banner effects.",
+              "can_activate": true,
+              "tracks_uses": false,
+              "recover_on_full_rest": false,
+              "end_on_full_rest": true
+            }
+          ]
+        }
+      ],
+      "choice_providers": [
+        {
+          "key": "reaper-casting-ability",
+          "label": "Practitioner Ability",
+          "feature_tokens": [
+            "martial-soul"
+          ],
+          "minimum": 1,
+          "maximum": 1,
+          "fixed_options": [
+            {
+              "key": "intelligence",
+              "name": "Intelligence"
+            },
+            {
+              "key": "wisdom",
+              "name": "Wisdom"
+            },
+            {
+              "key": "charisma",
+              "name": "Charisma"
+            }
+          ]
+        },
+        {
+          "key": "hunt-master-banner",
+          "label": "Banner",
+          "feature_tokens": [
+            "banner"
+          ],
+          "minimum": 1,
+          "maximum": 1,
+          "fixed_options": [
+            {
+              "key": "lucky-fox",
+              "name": "Standard of the Lucky Fox",
+              "description": "Improves critical confirmation rolls and saves against forced movement or movement impediments."
+            },
+            {
+              "key": "stalwart-oak",
+              "name": "Standard of the Stalwart Oak",
+              "description": "Improves CMD and attacks against creatures threatening an ally."
+            },
+            {
+              "key": "pack-dog",
+              "name": "Standard of the Pack Dog",
+              "description": "Improves flanking attacks and saves against charm and compulsion."
+            },
+            {
+              "key": "swift-steed",
+              "name": "Standard of the Swift Steed",
+              "description": "Improves one movement speed and charge attacks, and removes the normal charge AC penalty."
+            }
+          ],
+          "description": "Choose the Hunt Master's banner at level 2; it can be redesigned during eight hours of work."
+        }
+      ],
+      "system_features": [
+        "banner",
+        "master-technique"
+      ],
+      "choice_provider_overrides": [
+        {
+          "key": "reaper-techniques",
+          "minimum_levels": [
+            4,
+            6,
+            8,
+            10,
+            14,
+            16,
+            18,
+            20
+          ],
+          "maximum_levels": [
+            4,
+            6,
+            8,
+            10,
+            14,
+            16,
+            18,
+            20
+          ]
+        }
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:reaper:machine-cultist",
+      "resource_modules": [
+        {
+          "key": "machine_cultist",
+          "title": "Machine Cultist",
+          "governing_ability": "casting",
+          "resources": [
+            {
+              "key": "flesh_is_weak_dr",
+              "name": "The Flesh Is Weak — DR/Adamantine",
+              "feature_tokens": [
+                "the-flesh-is-weak"
+              ],
+              "progression": "machine_cultist_dr",
+              "description": "Damage reduction overcome by adamantine, beginning at 2 and increasing by 2 every four levels.",
+              "tracks_uses": false,
+              "recover_on_full_rest": false,
+              "end_on_full_rest": false
+            }
+          ]
+        }
+      ],
+      "choice_providers": [
+        {
+          "key": "machine-integrated-invention",
+          "label": "Integrated Inventions",
+          "feature_tokens": [
+            "integrated-perfection"
+          ],
+          "minimum_levels": [
+            5,
+            9,
+            13,
+            17
+          ],
+          "maximum_levels": [
+            5,
+            9,
+            13,
+            17
+          ],
+          "fixed_options": [
+            {
+              "key": "exocortex",
+              "name": "Exocortex"
+            },
+            {
+              "key": "grand-gadget",
+              "name": "Grand Gadget"
+            },
+            {
+              "key": "improved-armor",
+              "name": "Improved Armor"
+            },
+            {
+              "key": "improved-backpack",
+              "name": "Improved Backpack"
+            },
+            {
+              "key": "improved-boots",
+              "name": "Improved Boots"
+            },
+            {
+              "key": "improved-crossbow",
+              "name": "Improved Crossbow"
+            },
+            {
+              "key": "improved-firearm",
+              "name": "Improved Firearm"
+            },
+            {
+              "key": "improved-gloves",
+              "name": "Improved Gloves"
+            },
+            {
+              "key": "improved-goggles",
+              "name": "Improved Goggles"
+            },
+            {
+              "key": "improved-melee-weapon",
+              "name": "Improved Melee Weapon"
+            },
+            {
+              "key": "improved-shield",
+              "name": "Improved Shield"
+            },
+            {
+              "key": "improved-suit",
+              "name": "Improved Suit"
+            },
+            {
+              "key": "mechanical-arm",
+              "name": "Mechanical Arm"
+            },
+            {
+              "key": "siege-engine",
+              "name": "Siege Engine"
+            },
+            {
+              "key": "vehicle",
+              "name": "Vehicle"
+            }
+          ],
+          "description": "Choose integrated Technician inventions at levels 5, 9, 13, and 17. Independent Invention is not legal."
+        }
+      ],
+      "system_features": [
+        "damage-reduction",
+        "integrated-invention",
+        "technical-insight"
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:reaper:magekiller",
+      "resource_modules": [
+        {
+          "key": "magekiller",
+          "title": "Magekiller",
+          "governing_ability": "casting",
+          "resources": [
+            {
+              "key": "spell_eater",
+              "name": "Spell Eater Applies",
+              "feature_tokens": [
+                "spell-eater"
+              ],
+              "progression": "one",
+              "description": "Enable when Spell Eater's temporary defense and recovery effects apply.",
+              "can_activate": true,
+              "tracks_uses": false,
+              "recover_on_full_rest": false,
+              "end_on_full_rest": true
+            }
+          ]
+        }
+      ],
+      "system_features": [
+        "spell-sunder",
+        "spell-eater"
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:reaper:mythos-hunter",
+      "choice_providers": [
+        {
+          "key": "mythos-hunter-story",
+          "label": "Favored Myth or Story",
+          "feature_tokens": [
+            "eye-for-stories"
+          ],
+          "minimum": 1,
+          "maximum": 1,
+          "fixed_options": [
+            {
+              "key": "recorded-story",
+              "name": "Recorded favored myth or story",
+              "description": "Edit the saved choice description to record the exact myth or story selected with the GM."
+            }
+          ],
+          "description": "Record the specific myth, legend, or story selected for Eye for Stories."
+        }
+      ],
+      "system_features": [
+        "bardic-masterpiece",
+        "mythos"
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:reaper:partisan",
+      "choice_providers": [
+        {
+          "key": "partisan-organization",
+          "label": "Favored Organization",
+          "feature_tokens": [
+            "organized-prey"
+          ],
+          "minimum": 1,
+          "maximum": 1,
+          "fixed_options": [
+            {
+              "key": "recorded-organization",
+              "name": "Recorded favored organization",
+              "description": "Edit the saved choice description to record the exact organization and its qualifying members."
+            }
+          ],
+          "description": "Record the organization selected for Organized Prey."
+        },
+        {
+          "key": "partisan-emotions",
+          "label": "Emotions",
+          "feature_tokens": [
+            "emotions"
+          ],
+          "minimum_levels": [
+            2,
+            5,
+            8,
+            11,
+            14,
+            17,
+            20
+          ],
+          "maximum_levels": [
+            2,
+            5,
+            8,
+            11,
+            14,
+            17,
+            20
+          ],
+          "description": "Choose emotions at levels 2, 5, 8, 11, 14, 17, and 20.",
+          "options_from_provider": "eliciter-emotions"
+        }
+      ],
+      "power_providers": [
+        {
+          "key": "partisan-social-talents",
+          "label": "Social Talents",
+          "family": "vigilante_social_talent",
+          "feature_tokens": [
+            "social-talents"
+          ],
+          "slot_levels": [
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ],
+          "description": "A Reaper Technique slot may instead be spent on a legal Vigilante social talent.",
+          "restrict_catalog_to_class": false
+        }
+      ],
+      "system_features": [
+        "vigilante_social_talent",
+        "emotion"
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:crimson-dancer:crimson-tempest",
+      "choice_provider_overrides": [
+        {
+          "key": "crimson-path",
+          "minimum": 1,
+          "maximum": 1,
+          "fixed_options": [
+            {
+              "key": "class-choice-fixed:crimson-path:crimson-reaper",
+              "name": "The Crimson Reaper",
+              "description": "Initiation: The crimson reaper increases the damage her burst ability deals by 1d8, plus an additional 1d8 at 6th level and every 3 levels thereafter.\nUnderstanding: When the crimson reaper kills a creature with her burst ability, she may immediately spend an immediate action and 2 points of vitae to cause the blood to rush towards another creature within her line of sight. That creature must succeed at a Fortitude save against her burst ability, or suffer the same amount of damage the first creature was dealt, as well as inflicting an amount of bloodletting bleed equal to the amount of bleed damage the original creature was suffering from before their death. This ability counts as if using the burst ability on a creature.\nRevelation: When the crimson reaper successfully uses the burst ability on a creature, she may also mark them for one minute as an immediate action. Marked creatures are treated as if they were suffering from the maximum amount of bloodletting bleed the crimson reaper can apply when determining the effects of any crimson dancer class feature, and are exsanguinated. This ability allows the crimson reaper to use another burst on marked creatures even if they are not actually bleeding. The crimson reaper may only have one creature marked at any given time, and may not mark another creature if they already have an active mark. Marks can only be removed by causing a marked creature to fall unconscious or by slaying them.\nSecret of Blood: Absorbed by their focus, the crimson reaper stops at nothing to kill their prey. When the crimson reaper has a creature marked, she gains DR 5/- against all attacks made by creatures that are not marked. If she takes a move action to move in a way that would place her adjacent to a marked creature, she does not need to attempt Acrobatics checks to move through the squares of other creatures, and may spend 2 points of vitae when moving through another creature’s square to perform an overrun maneuver on them as a free action.\nSecret of Heart: The crimson reaper absorbs those she marks for death. When a marked creature with Hit Dice equal to half the crimson reaper’s level or more dies to her burst or decimation features, she may steal a part of their body as a free action. For each ability score the creature had that was higher than the crimson reaper's, she gains a +2 alchemical bonus to that ability score. For each movement speed that creature possessed that was higher than the crimson reapers, she gains a +10-foot bonus to that movement speed if she also possesses it.\nThese bonuses cannot increase the crimson reaper’s speeds or ability scores higher than the base creature’s, and can stack up to 3 times. At 19th level, these bonuses can stack up to 4 times, to a maximum of +8 to each ability score, or +40 feet to each movement speed. These bonuses remain for 24 hours.\nSecret of Soul: The crimson reaper’s soul is unleashed as she pulverizes her foes. When the crimson reaper attempts a decimation attack against a marked creature, she does not need to expend her martial focus. If a marked creature survives a decimation attack, the crimson reaper can expend all of her vitae to attempt a crimson decapitation as an immediate action. The creature must succeed at a saving throw against the crimson reaper’s burst ability or otherwise suffer damage as normal. For every 6 points of vitae spent as part of the crimson decapitation, the creature suffers additional damage as if she failed a save against the burst ability. Damage dealt with a crimson decapitation is additional damage dealt by the decimation attack.\nRealization: The crimson reaper’s fury sparks aflame when she kills her quarry. Once per day, when a marked target dies due to the crimson reaper’s decimation attack, she may spend an immediate action and 4 points of vitae to immediately cause any number of creatures within line of sight to suffer from her burst, and become marked. For one minute after using this ability, she has no limit on the number of creatures she may have marked at the same time. After this time, all creatures she has currently marked lose their marks.",
+              "granted_features": [
+                {
+                  "level": 3,
+                  "name": "The Crimson Reaper — Initiation",
+                  "description": "The crimson reaper increases the damage her burst ability deals by 1d8, plus an additional 1d8 at 6th level and every 3 levels thereafter."
+                },
+                {
+                  "level": 7,
+                  "name": "The Crimson Reaper — Understanding",
+                  "description": "When the crimson reaper kills a creature with her burst ability, she may immediately spend an immediate action and 2 points of vitae to cause the blood to rush towards another creature within her line of sight. That creature must succeed at a Fortitude save against her burst ability, or suffer the same amount of damage the first creature was dealt, as well as inflicting an amount of bloodletting bleed equal to the amount of bleed damage the original creature was suffering from before their death. This ability counts as if using the burst ability on a creature."
+                },
+                {
+                  "level": 10,
+                  "name": "The Crimson Reaper — Revelation",
+                  "description": "When the crimson reaper successfully uses the burst ability on a creature, she may also mark them for one minute as an immediate action. Marked creatures are treated as if they were suffering from the maximum amount of bloodletting bleed the crimson reaper can apply when determining the effects of any crimson dancer class feature, and are exsanguinated. This ability allows the crimson reaper to use another burst on marked creatures even if they are not actually bleeding. The crimson reaper may only have one creature marked at any given time, and may not mark another creature if they already have an active mark. Marks can only be removed by causing a marked creature to fall unconscious or by slaying them."
+                },
+                {
+                  "level": 13,
+                  "name": "The Crimson Reaper — Secret of Blood",
+                  "description": "Absorbed by their focus, the crimson reaper stops at nothing to kill their prey. When the crimson reaper has a creature marked, she gains DR 5/- against all attacks made by creatures that are not marked. If she takes a move action to move in a way that would place her adjacent to a marked creature, she does not need to attempt Acrobatics checks to move through the squares of other creatures, and may spend 2 points of vitae when moving through another creature’s square to perform an overrun maneuver on them as a free action."
+                },
+                {
+                  "level": 16,
+                  "name": "The Crimson Reaper — Secret of Heart",
+                  "description": "The crimson reaper absorbs those she marks for death. When a marked creature with Hit Dice equal to half the crimson reaper’s level or more dies to her burst or decimation features, she may steal a part of their body as a free action. For each ability score the creature had that was higher than the crimson reaper's, she gains a +2 alchemical bonus to that ability score. For each movement speed that creature possessed that was higher than the crimson reapers, she gains a +10-foot bonus to that movement speed if she also possesses it.\nThese bonuses cannot increase the crimson reaper’s speeds or ability scores higher than the base creature’s, and can stack up to 3 times. At 19th level, these bonuses can stack up to 4 times, to a maximum of +8 to each ability score, or +40 feet to each movement speed. These bonuses remain for 24 hours."
+                },
+                {
+                  "level": 19,
+                  "name": "The Crimson Reaper — Secret of Soul",
+                  "description": "The crimson reaper’s soul is unleashed as she pulverizes her foes. When the crimson reaper attempts a decimation attack against a marked creature, she does not need to expend her martial focus. If a marked creature survives a decimation attack, the crimson reaper can expend all of her vitae to attempt a crimson decapitation as an immediate action. The creature must succeed at a saving throw against the crimson reaper’s burst ability or otherwise suffer damage as normal. For every 6 points of vitae spent as part of the crimson decapitation, the creature suffers additional damage as if she failed a save against the burst ability. Damage dealt with a crimson decapitation is additional damage dealt by the decimation attack."
+                },
+                {
+                  "level": 20,
+                  "name": "The Crimson Reaper — Realization",
+                  "description": "The crimson reaper’s fury sparks aflame when she kills her quarry. Once per day, when a marked target dies due to the crimson reaper’s decimation attack, she may spend an immediate action and 4 points of vitae to immediately cause any number of creatures within line of sight to suffer from her burst, and become marked. For one minute after using this ability, she has no limit on the number of creatures she may have marked at the same time. After this time, all creatures she has currently marked lose their marks."
+                }
+              ]
+            },
+            {
+              "key": "class-choice-fixed:crimson-path:scarlet-dancer",
+              "name": "The Scarlet Dancer",
+              "description": "Initiation: The scarlet dancer increases the amount of bleed damage she deals when applying bloodletting to her Charisma modifier.\nUnderstanding: When the scarlet dancer causes an enemy to become exsanguinated, she may spend 2 points of vitae as a free action to make an attack against an enemy within reach that is not exsanguinated.\nRevelation: A crimson dancer who knows their limits can maintain a calm, stable attitude even in the face of death, and instead embrace a delicate and graceful form of combat. Once per turn, when the scarlet dancer causes a nonbleeding creature to begin bleeding with a melee weapon due to her bloodletting feature, or would inflict her bloodletting on an exsanguinated creature with a melee weapon, she may move up to 10 feet as a free action. This movement does not provoke attacks of opportunity from bleeding creatures, and she may move through squares occupied by a creature bleeding from her bloodletting feature without an Acrobatics check.\nSecret of Blood: The scarlet dancer flourishes upon the velvet floor. Once per round, while adjacent to a bleeding creature, the scarlet dancer may spend 1 vitae as a swift action to move into an unoccupied square that is adjacent to a creature that is not exsanguinated within close range (25 + 5 per 2 crimson dancer levels) and within her line of sight. This movement is considered to be a supernatural teleportation effect.\nIf the scarlet dancer possesses the Blood Fountain (bleed) talent, the crimson dancer may use this ability while adjacent to, or standing on, a square filled with bloody terrain.\nSecret of Heart: The scarlet dancer always moves gracefully, and never ceases to stop her dance. The scarlet dancer’s base speeds can never be reduced by an effect (including wearing heavy armor or encumbrance). She may also spend 4 vitae points as an immediate action to ignore any effect or condition that would impede her movement for one round, as per the Freedom (word) talent of the Fate sphere. This is a supernatural effect.\nSecret of Soul: The scarlet dancer’s soul becomes truly free, and capable of performing a sacred technique known as the sanguine dance. As a full-round action, the scarlet dancer immediately drains all of her stored vitae. For each 6 points of vitae drained, she can dash forward, moving in a single direction up to 60 feet (this movement does not provoke attacks of opportunity), attacking each creature she passes through with her decimate special attack action (without needing to expend focus). Each dash must be performed sequentially, and a creature already struck by an attack cannot be attacked again.\nAfter performing the sanguine dance, the scarlet dancer cannot perform it again for 24 hours and she loses any remaining vitae she may have had. The scarlet dancer cannot use other abilities that allow her to move while performing the sanguine dance, she must finish all dashes sequentially without additional movement, and if she is subject to forced movement, she may not utilize any additional dashes she had remaining.\nRealization: The scarlet dancer becomes unbound. She can move into a space occupied by a creature suffering from her bloodletting, or any adjacent spaces, without consuming movement, requiring an Acrobatics check, or provoking attacks of opportunities as part of any action made to move.\nAdditionally, the scarlet dancer can treat any creature suffering from her bloodletting as if they were exsanguinated, if it would be beneficial to her.",
+              "granted_features": [
+                {
+                  "level": 3,
+                  "name": "The Scarlet Dancer — Initiation",
+                  "description": "The scarlet dancer increases the amount of bleed damage she deals when applying bloodletting to her Charisma modifier."
+                },
+                {
+                  "level": 7,
+                  "name": "The Scarlet Dancer — Understanding",
+                  "description": "When the scarlet dancer causes an enemy to become exsanguinated, she may spend 2 points of vitae as a free action to make an attack against an enemy within reach that is not exsanguinated."
+                },
+                {
+                  "level": 10,
+                  "name": "The Scarlet Dancer — Revelation",
+                  "description": "A crimson dancer who knows their limits can maintain a calm, stable attitude even in the face of death, and instead embrace a delicate and graceful form of combat. Once per turn, when the scarlet dancer causes a nonbleeding creature to begin bleeding with a melee weapon due to her bloodletting feature, or would inflict her bloodletting on an exsanguinated creature with a melee weapon, she may move up to 10 feet as a free action. This movement does not provoke attacks of opportunity from bleeding creatures, and she may move through squares occupied by a creature bleeding from her bloodletting feature without an Acrobatics check."
+                },
+                {
+                  "level": 13,
+                  "name": "The Scarlet Dancer — Secret of Blood",
+                  "description": "The scarlet dancer flourishes upon the velvet floor. Once per round, while adjacent to a bleeding creature, the scarlet dancer may spend 1 vitae as a swift action to move into an unoccupied square that is adjacent to a creature that is not exsanguinated within close range (25 + 5 per 2 crimson dancer levels) and within her line of sight. This movement is considered to be a supernatural teleportation effect.\nIf the scarlet dancer possesses the Blood Fountain (bleed) talent, the crimson dancer may use this ability while adjacent to, or standing on, a square filled with bloody terrain."
+                },
+                {
+                  "level": 16,
+                  "name": "The Scarlet Dancer — Secret of Heart",
+                  "description": "The scarlet dancer always moves gracefully, and never ceases to stop her dance. The scarlet dancer’s base speeds can never be reduced by an effect (including wearing heavy armor or encumbrance). She may also spend 4 vitae points as an immediate action to ignore any effect or condition that would impede her movement for one round, as per the Freedom (word) talent of the Fate sphere. This is a supernatural effect."
+                },
+                {
+                  "level": 19,
+                  "name": "The Scarlet Dancer — Secret of Soul",
+                  "description": "The scarlet dancer’s soul becomes truly free, and capable of performing a sacred technique known as the sanguine dance. As a full-round action, the scarlet dancer immediately drains all of her stored vitae. For each 6 points of vitae drained, she can dash forward, moving in a single direction up to 60 feet (this movement does not provoke attacks of opportunity), attacking each creature she passes through with her decimate special attack action (without needing to expend focus). Each dash must be performed sequentially, and a creature already struck by an attack cannot be attacked again.\nAfter performing the sanguine dance, the scarlet dancer cannot perform it again for 24 hours and she loses any remaining vitae she may have had. The scarlet dancer cannot use other abilities that allow her to move while performing the sanguine dance, she must finish all dashes sequentially without additional movement, and if she is subject to forced movement, she may not utilize any additional dashes she had remaining."
+                },
+                {
+                  "level": 20,
+                  "name": "The Scarlet Dancer — Realization",
+                  "description": "The scarlet dancer becomes unbound. She can move into a space occupied by a creature suffering from her bloodletting, or any adjacent spaces, without consuming movement, requiring an Acrobatics check, or provoking attacks of opportunities as part of any action made to move.\nAdditionally, the scarlet dancer can treat any creature suffering from her bloodletting as if they were exsanguinated, if it would be beneficial to her."
+                }
+              ]
+            },
+            {
+              "key": "class-choice-fixed:crimson-path:tempests-song",
+              "name": "The Tempest's Song",
+              "description": "Initiation: The tempest's song can fuse a single ranged weapon with her body by spending an hour focusing on it. Doing so causes the ranged weapon to be absorbed into the tempest's song, and it can no longer be used or held. However, as long as she has this weapon fused, she may treat her wind blades as if they possessed the enhancement bonus the weapon had, as well as any enchantments that would still apply to her wind blades. The tempest's song can fuse with another ranged weapon while she has one already fused, but doing so expels the first weapon from her body, allowing her to use it normally.\nUnderstanding: The wind can carry the tempest's song wherever she pleases. As a move action, the tempest's song can spend 1 point of vitae or 1 spell point to be lifted by the winds, moving to any location within medium range (100 feet, +10 feet per class level), as long as the space she begins and ends in have a Wind severity level of 2 or higher, even if the space between does not. She can increase the action required to be a standard action to instead move one willing creature within reach.\nRevelation: Uniting with the wind, the tempest song’s wind blades become empowered. When dealing damage with her wind blades, the damage becomes bludgeoning, piercing and slashing rather than just slashing. Additionally, each time she deals damage to a creature with her wind blade, she may spend a free action to move that creature 5 feet in any direction. She may not move a creature into an intrinsically dangerous location or into a square threatened by a creature that does not already threaten her target, and this movement does not provoke attacks of opportunity. The tempest's song can use her wind blades in an area of Wind severity of 1, but doing so causes her wind blades to only deal 1d4 damage.\nSecret of Blood: Blood fuses with wind, blowing away all that lives. When a creature suffering from her bloodletting bleed begins their turn, the crimson tempest may spend 2 points of vitae and an immediate action to empower her winds and force that target to move away. The creature must succeed at a Fortitude save against her Weather sphere DC, or otherwise lose their move action for that turn and immediately moves up to their speed in any direction of their choice, but they must move to a location with a Wind severity level of 1. If the creature cannot move to such a location, they suffer damage as if struck by her wind blade instead.\nSecret of Heart: The tempest’s song merges her body with the wind. She gains the Borne Aloft (mantle) talent as a bonus talent, and always benefits from its effects, even if she does not have an active mantle. She always treats an area of Wind of severity level 2 as if it were severity level 3 for the purposes of this ability.\nSecret of Soul: By harnessing their fury, the tempest's song breathes unforgiving winds. Once per day, as a full-round action, the tempest’s song can spend all vitae she has remaining to call down the wind on her foes. If at least 6 points of vitae were spent, the immediate area within a 60-foot radius around her becomes a Wind severity of level 5, unless it was already greater, and all creatures must succeed at a Reflex save against the tempest’s song Weather sphere DC or fall prone. This remains for 1 round, plus an additional round for every 3 points spent as part of this ability. During this time, at the start of the tempest's song’s turn each round, all creatures in the area immediately suffer damage as if struck by the tempest's song’s wind blade, and must succeed at another Reflex save or fall prone. The tempest's song cannot move while using this ability, and she gains a +10 bonus to her combat maneuver defense to any attempt to move her forcefully, as well as a +5 bonus to any saves made against an effect that would move her. If the tempest's song is moved while using this ability, it immediately ends.\nRealization: At a call, the tempest's song can unravel the world. The tempest's song is always treated as if she was in an area of Wind severity 7 for the purposes of calculating the damage of her wind blade. Additionally, exsanguinated creatures are considered as if they were in an area of Wind severity 7 for the purposes of the tempest's song’s shroud.",
+              "granted_features": [
+                {
+                  "level": 3,
+                  "name": "The Tempest's Song — Initiation",
+                  "description": "The tempest's song can fuse a single ranged weapon with her body by spending an hour focusing on it. Doing so causes the ranged weapon to be absorbed into the tempest's song, and it can no longer be used or held. However, as long as she has this weapon fused, she may treat her wind blades as if they possessed the enhancement bonus the weapon had, as well as any enchantments that would still apply to her wind blades. The tempest's song can fuse with another ranged weapon while she has one already fused, but doing so expels the first weapon from her body, allowing her to use it normally."
+                },
+                {
+                  "level": 7,
+                  "name": "The Tempest's Song — Understanding",
+                  "description": "The wind can carry the tempest's song wherever she pleases. As a move action, the tempest's song can spend 1 point of vitae or 1 spell point to be lifted by the winds, moving to any location within medium range (100 feet, +10 feet per class level), as long as the space she begins and ends in have a Wind severity level of 2 or higher, even if the space between does not. She can increase the action required to be a standard action to instead move one willing creature within reach."
+                },
+                {
+                  "level": 10,
+                  "name": "The Tempest's Song — Revelation",
+                  "description": "Uniting with the wind, the tempest song’s wind blades become empowered. When dealing damage with her wind blades, the damage becomes bludgeoning, piercing and slashing rather than just slashing. Additionally, each time she deals damage to a creature with her wind blade, she may spend a free action to move that creature 5 feet in any direction. She may not move a creature into an intrinsically dangerous location or into a square threatened by a creature that does not already threaten her target, and this movement does not provoke attacks of opportunity. The tempest's song can use her wind blades in an area of Wind severity of 1, but doing so causes her wind blades to only deal 1d4 damage."
+                },
+                {
+                  "level": 13,
+                  "name": "The Tempest's Song — Secret of Blood",
+                  "description": "Blood fuses with wind, blowing away all that lives. When a creature suffering from her bloodletting bleed begins their turn, the crimson tempest may spend 2 points of vitae and an immediate action to empower her winds and force that target to move away. The creature must succeed at a Fortitude save against her Weather sphere DC, or otherwise lose their move action for that turn and immediately moves up to their speed in any direction of their choice, but they must move to a location with a Wind severity level of 1. If the creature cannot move to such a location, they suffer damage as if struck by her wind blade instead."
+                },
+                {
+                  "level": 16,
+                  "name": "The Tempest's Song — Secret of Heart",
+                  "description": "The tempest’s song merges her body with the wind. She gains the Borne Aloft (mantle) talent as a bonus talent, and always benefits from its effects, even if she does not have an active mantle. She always treats an area of Wind of severity level 2 as if it were severity level 3 for the purposes of this ability."
+                },
+                {
+                  "level": 19,
+                  "name": "The Tempest's Song — Secret of Soul",
+                  "description": "By harnessing their fury, the tempest's song breathes unforgiving winds. Once per day, as a full-round action, the tempest’s song can spend all vitae she has remaining to call down the wind on her foes. If at least 6 points of vitae were spent, the immediate area within a 60-foot radius around her becomes a Wind severity of level 5, unless it was already greater, and all creatures must succeed at a Reflex save against the tempest’s song Weather sphere DC or fall prone. This remains for 1 round, plus an additional round for every 3 points spent as part of this ability. During this time, at the start of the tempest's song’s turn each round, all creatures in the area immediately suffer damage as if struck by the tempest's song’s wind blade, and must succeed at another Reflex save or fall prone. The tempest's song cannot move while using this ability, and she gains a +10 bonus to her combat maneuver defense to any attempt to move her forcefully, as well as a +5 bonus to any saves made against an effect that would move her. If the tempest's song is moved while using this ability, it immediately ends."
+                },
+                {
+                  "level": 20,
+                  "name": "The Tempest's Song — Realization",
+                  "description": "At a call, the tempest's song can unravel the world. The tempest's song is always treated as if she was in an area of Wind severity 7 for the purposes of calculating the damage of her wind blade. Additionally, exsanguinated creatures are considered as if they were in an area of Wind severity 7 for the purposes of the tempest's song’s shroud."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "system_features": [
+        "vitae",
+        "bloodletting",
+        "crimson-path"
+      ],
+      "resource_adjustments": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:crimson-dancer:primeval",
+      "choice_provider_overrides": [
+        {
+          "key": "crimson-path",
+          "minimum": 1,
+          "maximum": 1,
+          "fixed_options": [
+            {
+              "key": "class-choice-fixed:crimson-path:lost-ravager",
+              "name": "Path of the Lost Ravager",
+              "description": "Initiation: The primeval is imbued with necrotic, hateful energy. By spending 2 points of vitae as a free action, the primeval can enter a bloodcraze, which modifies her other abilities. While in a bloodcraze, the primeval gains DR 2/-, which increases by 1 at 8th level and every 5 levels thereafter, and stacks with other sources of similar damage reduction. At the start of each of her turns while in a bloodcraze, the primeval must spend 1 point of vitae or else exit her bloodcraze.\nUnderstanding: The primeval can extract powerful essences from dead, and even living bodies. The primeval can take a move action to cannibalize (which provokes attacks of opportunity) the corpse of a creature within their natural reach, or a living creature that is helpless, dealing damage as if she struck with her bite attack. Alternatively, she can take a full-round action and expend her martial focus as well as spend 2 points of vitae to cannibalize a helpless creature as part of using her consumption special attack action. The creature must succeed at a Fortitude save equal to 10 + the damage dealt or otherwise be slain as their soul is cannibalized by the primeval. Cannibalizing a creature grants the primeval the ability to answer a number of questions equal to her Charisma modifier based off the dead creature’s memories, as per the Read Mind talent of the Mind sphere, as well as the benefits of slaying a creature as per the consumption feature if she chose to cannibalize a creature with it. This act also provides the primeval with a number of temporary hit points equal to twice the dead creature’s Hit Dice, which last for 10 minutes. A corpse can only be cannibalized once per month, even if its body is regenerated by magic or the creature is revived and slain again. Creatures slain by this ability are particularly difficult to bring back to life, requiring a magic skill check against a DC of 11 + the primeval’s level, otherwise the attempt fails. Creatures brought back to life remember the haunting memory of the primeval, and are shaken for 24 hours after being revived.\nIf the primeval is in a bloodcraze when using this ability, she rigorously devours the body in a gruesome and horrific fashion. All enemies in a 30-foot radius suffer a -2 penalty to their attack rolls, saving throws, ability checks, skill checks and weapon damage rolls for a number of rounds equal to the primeval’s Charisma modifier. This is a fear effect.\nRevelation: Creatures attempting a Heal check on a target with rot points suffer a -1 penalty on the check for each rot point. Additionally, if a creature fails a Heal check to remove rot points, the creature with rot points immediately suffers nonlethal damage equal to the amount of rot points they possess. Exsanguinated creatures cannot benefit from fast healing.\nIf an exsanguinated creature possesses regeneration that is weak to a type of damage, they are treated as if they are actively suffering damage of that type for as long as they are exsanguinated.\nSecret of Blood: The primeval’s maw can make even the purest hearts falter. As a standard action, the primeval may make a bite attack against a creature within reach and spend 2 points of vitae. If the primeval deals damage to a creature, they must succeed at a Fortitude save or be stunned for 1d4+1 rounds.\nIf the primeval was bloodcrazed when performing this attack, the target must attempt an additional Will save. On failure, rather than be stunned, the target immediately falls under control of the primeval, attacking any creatures in the vicinity that are hostile to her for the duration. The primeval may command the creature with basic orders (such as ‘go’, ‘fight’, ‘help me’, etc.), but the creature will not obey obviously suicidal commands, and if not given any orders will simply attack creatures hostile to the primeval.\nSecret of Heart: The void within the primeval coats her body. While in a bloodcraze, the primeval’s body is covered in an immutable black substance, granting her spell resistance equal to 11 + her class level. Whenever this spell resistance successfully prevents a hostile sphere effect from affecting her, she gains 2 points of vitae if that sphere effect required at least 1 spell point to be created.\nSecret of Soul: The horrible energy within the primeval corrupts all it touches. When the primeval utilizes her consumption special attack, she may spend 6 points of vitae to empower the dark energy within it. If her target fails their Fortitude save against the consumption special attack, they must immediately succeed at a Will save against the same DC or have their powers be tainted by the energy. As long as that creature possesses rot points, they must attempt a new Will save any time they attempt to utilize a supernatural or magical ability that requires a swift action or greater to activate. If they fail, they lose the action and any resources involved (such as spell points, or limited uses of the ability) to use the ability, and the ability does not function.\nIf the primeval is bloodcrazed when using this ability, the primeval treats the creature as if they had the maximum amount of rot points she can apply when determining the penalties bestowed by the consumption special attack.\nRealization: The primeval’s rot points can no longer be removed with a Heal check, and require ten points of healing or ten temporary hit points per point of rot point to be removed.",
+              "granted_features": [
+                {
+                  "level": 3,
+                  "name": "Path of the Lost Ravager — Initiation",
+                  "description": "The primeval is imbued with necrotic, hateful energy. By spending 2 points of vitae as a free action, the primeval can enter a bloodcraze, which modifies her other abilities. While in a bloodcraze, the primeval gains DR 2/-, which increases by 1 at 8th level and every 5 levels thereafter, and stacks with other sources of similar damage reduction. At the start of each of her turns while in a bloodcraze, the primeval must spend 1 point of vitae or else exit her bloodcraze."
+                },
+                {
+                  "level": 7,
+                  "name": "Path of the Lost Ravager — Understanding",
+                  "description": "The primeval can extract powerful essences from dead, and even living bodies. The primeval can take a move action to cannibalize (which provokes attacks of opportunity) the corpse of a creature within their natural reach, or a living creature that is helpless, dealing damage as if she struck with her bite attack. Alternatively, she can take a full-round action and expend her martial focus as well as spend 2 points of vitae to cannibalize a helpless creature as part of using her consumption special attack action. The creature must succeed at a Fortitude save equal to 10 + the damage dealt or otherwise be slain as their soul is cannibalized by the primeval. Cannibalizing a creature grants the primeval the ability to answer a number of questions equal to her Charisma modifier based off the dead creature’s memories, as per the Read Mind talent of the Mind sphere, as well as the benefits of slaying a creature as per the consumption feature if she chose to cannibalize a creature with it. This act also provides the primeval with a number of temporary hit points equal to twice the dead creature’s Hit Dice, which last for 10 minutes. A corpse can only be cannibalized once per month, even if its body is regenerated by magic or the creature is revived and slain again. Creatures slain by this ability are particularly difficult to bring back to life, requiring a magic skill check against a DC of 11 + the primeval’s level, otherwise the attempt fails. Creatures brought back to life remember the haunting memory of the primeval, and are shaken for 24 hours after being revived.\nIf the primeval is in a bloodcraze when using this ability, she rigorously devours the body in a gruesome and horrific fashion. All enemies in a 30-foot radius suffer a -2 penalty to their attack rolls, saving throws, ability checks, skill checks and weapon damage rolls for a number of rounds equal to the primeval’s Charisma modifier. This is a fear effect."
+                },
+                {
+                  "level": 10,
+                  "name": "Path of the Lost Ravager — Revelation",
+                  "description": "Creatures attempting a Heal check on a target with rot points suffer a -1 penalty on the check for each rot point. Additionally, if a creature fails a Heal check to remove rot points, the creature with rot points immediately suffers nonlethal damage equal to the amount of rot points they possess. Exsanguinated creatures cannot benefit from fast healing.\nIf an exsanguinated creature possesses regeneration that is weak to a type of damage, they are treated as if they are actively suffering damage of that type for as long as they are exsanguinated."
+                },
+                {
+                  "level": 13,
+                  "name": "Path of the Lost Ravager — Secret of Blood",
+                  "description": "The primeval’s maw can make even the purest hearts falter. As a standard action, the primeval may make a bite attack against a creature within reach and spend 2 points of vitae. If the primeval deals damage to a creature, they must succeed at a Fortitude save or be stunned for 1d4+1 rounds.\nIf the primeval was bloodcrazed when performing this attack, the target must attempt an additional Will save. On failure, rather than be stunned, the target immediately falls under control of the primeval, attacking any creatures in the vicinity that are hostile to her for the duration. The primeval may command the creature with basic orders (such as ‘go’, ‘fight’, ‘help me’, etc.), but the creature will not obey obviously suicidal commands, and if not given any orders will simply attack creatures hostile to the primeval."
+                },
+                {
+                  "level": 16,
+                  "name": "Path of the Lost Ravager — Secret of Heart",
+                  "description": "The void within the primeval coats her body. While in a bloodcraze, the primeval’s body is covered in an immutable black substance, granting her spell resistance equal to 11 + her class level. Whenever this spell resistance successfully prevents a hostile sphere effect from affecting her, she gains 2 points of vitae if that sphere effect required at least 1 spell point to be created."
+                },
+                {
+                  "level": 19,
+                  "name": "Path of the Lost Ravager — Secret of Soul",
+                  "description": "The horrible energy within the primeval corrupts all it touches. When the primeval utilizes her consumption special attack, she may spend 6 points of vitae to empower the dark energy within it. If her target fails their Fortitude save against the consumption special attack, they must immediately succeed at a Will save against the same DC or have their powers be tainted by the energy. As long as that creature possesses rot points, they must attempt a new Will save any time they attempt to utilize a supernatural or magical ability that requires a swift action or greater to activate. If they fail, they lose the action and any resources involved (such as spell points, or limited uses of the ability) to use the ability, and the ability does not function.\nIf the primeval is bloodcrazed when using this ability, the primeval treats the creature as if they had the maximum amount of rot points she can apply when determining the penalties bestowed by the consumption special attack."
+                },
+                {
+                  "level": 20,
+                  "name": "Path of the Lost Ravager — Realization",
+                  "description": "The primeval’s rot points can no longer be removed with a Heal check, and require ten points of healing or ten temporary hit points per point of rot point to be removed."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "system_features": [
+        "vitae",
+        "bloodletting",
+        "crimson-path"
+      ],
+      "resource_adjustments": [
+        {
+          "resource_key": "bloodletting",
+          "name": "Rot Points on Current Target"
+        }
+      ]
+    }
+  ]
+}

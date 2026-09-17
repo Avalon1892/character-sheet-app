@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "key": "shifter",
+  "class_key": "spheres-class:shifter",
+  "class_name": "Shifter",
+  "governing_ability": "wisdom",
+  "catalog_profile": {
+    "weapon_proficiencies": ["Simple weapons"],
+    "armor_proficiencies": ["Light armor"],
+    "proficiencies": {"weapons": ["Simple weapons"], "armor": ["Light armor"]},
+    "advancement": {"talent_progression": "Mid", "talent_kinds": ["magic"], "talent_bonus_levels": [1]},
+    "feature_descriptions": {"spell points":"The shared sphere spell pool equals Shifter level + casting ability modifier (minimum 1) and refreshes after a full rest."}
+  },
+  "optional_blocks": ["magic_spheres", "spell_points"],
+  "external_systems": ["spell_points", "alteration_shapeshift", "bestial_traits"],
+  "resource_modules": [{
+    "key": "shifter", "title": "Shifter", "governing_ability": "wisdom", "resources": [
+      {"key":"self_shapeshift","name":"Self Shapeshift","feature_tokens":["quick-transformation","shapeshifter"],"progression":"one","description":"Track whether the Shifter's self-only Alteration shapeshift is active. It uses full Shifter level as Alteration caster level and may be applied as a move action.","can_activate":true,"tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":true},
+      {"key":"enhanced_physicality","name":"Enhanced Physicality","feature_tokens":["enhanced-physicality"],"progression":"shifter_enhanced_physicality","description":"Enhancement bonus to Strength, Dexterity, or Constitution while under a shapeshift; +1 at 7th, +2 at 13th, and +3 at 19th.","choice_options":["Strength","Dexterity","Constitution"],"can_activate":true,"tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":true}
+    ]
+  }],
+  "choice_providers": [{
+    "key":"shifter-bestial-traits","label":"Bestial Traits","feature_tokens":["bestial-trait"],"minimum":0,"maximum_levels":[2,4,6,8,10,12,14,16,18,20],
+    "fixed_options":[
+      {"key":"accommodating-form","name":"Accommodating Form"},{"key":"adaptation","name":"Adaptation"},{"key":"improved-adaptation","name":"Improved Adaptation"},{"key":"greater-adaptation","name":"Greater Adaptation"},{"key":"animal-advisor","name":"Animal Advisor","granted_features":[{"name":"Familiar","effective_level_offset":0}]},{"key":"animal-hide","name":"Animal Hide"},{"key":"animal-trainer","name":"Animal Trainer"},{"key":"animal-master","name":"Animal Master"},{"key":"barding","name":"Barding"},{"key":"bestial-rage","name":"Bestial Rage"},{"key":"bestial-speed","name":"Bestial Speed"},{"key":"bite","name":"Bite"},{"key":"champion","name":"Champion"},{"key":"claws","name":"Claws"},{"key":"combat-talent","name":"Combat Talent"},{"key":"defensive-shift","name":"Defensive Shift"},{"key":"earthglide","name":"Earthglide"},{"key":"elemental-kin","name":"Elemental Kin"},{"key":"evasion","name":"Evasion"},{"key":"ferocious","name":"Ferocious"},{"key":"flight","name":"Flight"},{"key":"greater-flight","name":"Flight, Greater"},{"key":"gore","name":"Gore"},{"key":"grab","name":"Grab"},{"key":"home-in-nature","name":"Home in Nature"},{"key":"home-in-underground","name":"Home in the Underground"},{"key":"home-in-water","name":"Home in Water"},{"key":"improved-evasion","name":"Improved Evasion"},{"key":"improved-natural-armor","name":"Improved Natural Armor"},{"key":"improved-natural-attack","name":"Improved Natural Attack"},{"key":"jumper","name":"Jumper"},{"key":"living-death","name":"Living Death"},{"key":"magical-attacks","name":"Magical Attacks"},{"key":"melded-equipment","name":"Melded Equipment"},{"key":"multiattack","name":"Multiattack"},{"key":"nightvision","name":"Nightvision"},{"key":"perfect-flight","name":"Perfect Flight"},{"key":"permanent-size-change","name":"Permanent Size Change"},{"key":"poison","name":"Poison"},{"key":"improved-poison","name":"Poison, Improved"},{"key":"pounce","name":"Pounce"},{"key":"powerful-charge","name":"Powerful Charge"},{"key":"prey","name":"Prey"},{"key":"quick-healing","name":"Quick Healing"},{"key":"scent","name":"Scent"},{"key":"shape-weapon","name":"Shape Weapon"},{"key":"snatch","name":"Snatch"},{"key":"spider-climb","name":"Spider Climb"},{"key":"spines","name":"Spines"},{"key":"sprint","name":"Sprint"},{"key":"superior-senses","name":"Superior Senses"},{"key":"taste-for-blood","name":"Taste for Blood"},{"key":"tracker","name":"Tracker"},{"key":"trip","name":"Trip"},{"key":"undead-kin","name":"Undead Kin"},{"key":"web","name":"Web"}
+    ],
+    "description":"Choose a bestial trait at every even Shifter level. Level and prerequisite legality is retained from the published trait descriptions."
+  }],
+  "notes":"Shapeshifter's Alteration sphere is represented by the first-level bonus talent allowance. The active form and Enhanced Physicality are live shared resources; bestial traits use persistent class choices."
+}

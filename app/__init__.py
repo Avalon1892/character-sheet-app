@@ -1,0 +1,2 @@
+"""Character Sheet desktop application."""
+

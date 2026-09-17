@@ -1,0 +1,164 @@
+{
+  "version": 1,
+  "class_key": "pathfinder-class:wizard",
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:arcane-bomber",
+      "resource_adjustments": [
+        {"resource_key": "bombs", "choice_options": ["Acid", "Cold", "Electricity", "Fire"], "maximum_choices_levels": [1], "description": "Bombs per day equal Wizard level + Intelligence modifier. Choose acid, cold, electricity, or fire permanently; bomb damage scales by combined qualifying bomb levels."}
+      ],
+      "system_features": ["bomb"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:arcane-warden",
+      "choice_option_filters": [{"key": "arcane-school", "include_names": ["Universalist School"]}]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:exploiter-wizard",
+      "power_providers": [
+        {"key": "exploiter-wizard-exploits", "label": "Arcanist Exploits", "family": "arcanist_exploit", "feature_tokens": ["exploiter-exploit"], "slot_levels": [1, 5, 9, 13, 17], "description": "Choose one Arcanist exploit at 1st level and every 4 Wizard levels thereafter. Wizard level counts as Arcanist level for effects, DCs, and prerequisites."}
+      ],
+      "system_features": ["arcane-reservoir", "exploiter-exploit"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:familiar-adept",
+      "choice_provider_overrides": [
+        {"key": "arcane-bond", "minimum": 1, "maximum": 1},
+        {"key": "opposition-schools", "minimum": 3, "maximum": 3}
+      ],
+      "choice_option_filters": [{"key": "arcane-bond", "include_names": ["Familiar"]}],
+      "system_features": ["familiar"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:hallowed-necromancer",
+      "choice_option_filters": [{"key": "arcane-school", "include_names": ["Necromancy School"]}],
+      "resource_modules": [
+        {"key": "hallowed_necromancer", "title": "Hallowed Necromancer", "governing_ability": "intelligence", "resources": [
+          {"key": "positive_touch", "name": "Positive Touch", "feature_tokens": ["positive-touch"], "progression": "three_plus_ability", "description": "Daily empowered positive-touch uses equal 3 + Intelligence modifier. Sacrifice a prepared necromancy spell to cast a same-or-lower cure spell that harms undead only; spending two uses also activates Death Bane where applicable."}
+        ]}
+      ],
+      "system_features": ["positive-touch", "death-bane"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:pact-wizard-ff",
+      "choice_provider_overrides": [{"key": "opposition-schools", "minimum": 3, "maximum": 3}],
+      "choice_option_filters": [
+        {"key": "arcane-bond", "include_names": ["Familiar"]},
+        {"key": "opposition-schools", "exclude_names": ["Conjuration School"]}
+      ],
+      "choice_providers": [
+        {"key": "pact-wizard-outsider-patron", "label": "Outsider Patron", "feature_tokens": ["pact"], "minimum": 1, "maximum": 1, "description": "Choose the outsider subtype of the patron and future improved familiar.", "fixed_options": [
+          {"key": "agathion", "name": "Agathion"}, {"key": "angel", "name": "Angel"}, {"key": "archon", "name": "Archon"}, {"key": "azata", "name": "Azata"}, {"key": "daemon", "name": "Daemon"}, {"key": "demon", "name": "Demon"}, {"key": "devil", "name": "Devil"}, {"key": "div", "name": "Div"}, {"key": "inevitable", "name": "Inevitable"}, {"key": "protean", "name": "Protean"}, {"key": "psychopomp", "name": "Psychopomp"}
+        ]}
+      ],
+      "system_features": ["familiar", "pact"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:pact-wizard-hhh",
+      "choice_providers": [
+        {"key": "pact-wizard-patron", "label": "Witch Patron", "feature_tokens": ["patron-spells"], "option_families": ["witch_patron"], "minimum": 1, "maximum": 1, "description": "Choose a Witch patron. Its patron spells are added to the spellbook at the appropriate levels and can be used for spontaneous conversion."}
+      ],
+      "spell_grant_choice_providers": ["pact-wizard-patron"],
+      "system_features": ["patron-spells"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:runesage",
+      "choice_option_filters": [
+        {"key": "arcane-school", "include_names": ["Universalist School"]},
+        {"key": "arcane-bond", "include_names": ["Bonded Object"]}
+      ],
+      "choice_providers": [
+        {"key": "runesage-specialization", "label": "Runic Specialization", "feature_tokens": ["runic-focus"], "minimum": 1, "maximum": 1, "description": "Choose the Thassilonian school represented by the current runic focus.", "fixed_options": [
+          {"key": "envy", "name": "Envy (Abjuration)"}, {"key": "gluttony", "name": "Gluttony (Necromancy)"}, {"key": "greed", "name": "Greed (Transmutation)"}, {"key": "lust", "name": "Lust (Enchantment)"}, {"key": "pride", "name": "Pride (Illusion)"}, {"key": "sloth", "name": "Sloth (Conjuration)"}, {"key": "wrath", "name": "Wrath (Evocation)"}
+        ]}
+      ],
+      "system_features": ["runic-focus"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:spellbinder",
+      "audit_ignore_mechanics": ["alchemist_discovery"],
+      "choice_providers": [
+        {"key": "spellbinder-bonded-spells", "label": "Bonded Spells", "feature_tokens": ["spell-bond"], "minimum": 1, "maximum": 9, "maximum_levels": [1, 3, 5, 7, 9, 11, 13, 15, 17], "spell_lists": ["Wizard"], "description": "Choose one known Wizard spell at 1st level and every 2 levels thereafter. A bonded spell can replace a prepared spell of the same or higher level as a full-round action."}
+      ],
+      "system_features": ["spell-bond"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:spirit-whisperer",
+      "choice_option_filters": [{"key": "arcane-bond", "include_names": ["Familiar"]}],
+      "choice_providers": [
+        {"key": "spirit-whisperer-spirit", "label": "Shaman Spirit", "feature_tokens": ["spirit-link"], "option_families": ["shaman_spirit"], "minimum": 1, "maximum": 1, "description": "Choose the Shaman spirit that grants the familiar's spirit-animal ability and the Wizard's spirit, greater, and manifestation abilities."}
+      ],
+      "power_providers": [
+        {"key": "spirit-whisperer-hexes", "label": "Spirit Hexes", "family": "shaman_hex", "feature_tokens": ["spirit-hex"], "slot_levels": [5, 10, 15, 20], "description": "Choose hexes from the selected spirit at the archetype's listed levels; Wizard level and Intelligence determine their effects and DCs."}
+      ],
+      "system_features": ["familiar", "spirit-link", "spirit-hex"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:wizard:wind-listener",
+      "choice_option_filters": [{"key": "opposition-schools", "exclude_names": ["Divination School", "Illusion School"]}]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:wizard:cosmic-sage",
+      "choice_handling": "automatic",
+      "choice_handling_note": "Cosmic Sage requires Sphere Wizard; its apparent bond references use the Sphere Wizard's existing Arcane Bond selection rather than a second archetype choice."
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:wizard:sphere-wizard",
+      "choice_providers": [
+        {
+          "key": "sphere-wizard-specialization",
+          "label": "Sphere Specialization",
+          "feature_tokens": ["sphere-specialization"],
+          "minimum": 1,
+          "maximum": 1,
+          "description": "Choose one Incanter sphere specialization. Wizard levels count as Incanter levels for all granted specialization abilities.",
+          "fixed_options": [
+            {"key": "alteration", "name": "Alteration"},
+            {"key": "bioreaver", "name": "Alteration — Bioreaver"},
+            {"key": "bear-blood", "name": "Bear Blood"},
+            {"key": "conjuration", "name": "Conjuration"},
+            {"key": "creation", "name": "Creation"},
+            {"key": "dark", "name": "Dark"},
+            {"key": "death", "name": "Death"},
+            {"key": "guide-of-the-dead", "name": "Death — Guide of the Dead"},
+            {"key": "lingering-spirits-and-housed-souls", "name": "Death — Lingering Spirits and Housed Souls"},
+            {"key": "destruction", "name": "Destruction"},
+            {"key": "divination", "name": "Divination"},
+            {"key": "precognition", "name": "Divination — Precognition"},
+            {"key": "recollection", "name": "Divination — Recollection"},
+            {"key": "tactician", "name": "Divination — Tactician"},
+            {"key": "enhancement", "name": "Enhancement"},
+            {"key": "fallen-fey", "name": "Fallen Fey"},
+            {"key": "fate", "name": "Fate"},
+            {"key": "illusion", "name": "Illusion"},
+            {"key": "life", "name": "Life"},
+            {"key": "light", "name": "Light"},
+            {"key": "mana", "name": "Mana"},
+            {"key": "mind", "name": "Mind"},
+            {"key": "nature", "name": "Nature"},
+            {"key": "aeromancer", "name": "Nature — Aeromancer"},
+            {"key": "ferromancer", "name": "Nature — Ferromancer"},
+            {"key": "hydromancer", "name": "Nature — Hydromancer"},
+            {"key": "phytomancer", "name": "Nature — Phytomancer"},
+            {"key": "pyromancer", "name": "Nature — Pyromancer"},
+            {"key": "terramancer", "name": "Nature — Terramancer"},
+            {"key": "protection", "name": "Protection"},
+            {"key": "lattice-weaver", "name": "Protection — Lattice Weaver"},
+            {"key": "technomancy", "name": "Technomancy"},
+            {"key": "technomancy-energy", "name": "Technomancy — Energy"},
+            {"key": "telekinesis", "name": "Telekinesis"},
+            {"key": "time", "name": "Time"},
+            {"key": "acceleration", "name": "Time — Acceleration"},
+            {"key": "war", "name": "War"},
+            {"key": "warp", "name": "Warp"},
+            {"key": "weather", "name": "Weather"}
+          ]
+        }
+      ],
+      "resource_adjustments": [
+        {"resource_key": "bonded_object_spell", "name": "Bonded Object Talent", "maximum_bonus_progression": "quarter_level", "description": "As a standard action, gain one qualifying magic talent for 1 minute. Uses per day equal 1 + one additional use per 4 Wizard levels."}
+      ],
+      "system_features": ["arcane-bond"]
+    }
+  ]
+}

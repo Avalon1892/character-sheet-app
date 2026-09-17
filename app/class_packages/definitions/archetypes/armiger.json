@@ -1,0 +1,511 @@
+{
+  "version": 1,
+  "class_key": "spheres-class:armiger",
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:armiger:antiquarian",
+      "package": "spheres-class:armiger",
+      "name": "Antiquarian",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/antiquarian",
+      "replaces_features": [
+        "base-attack-bonus",
+        "customize-weapon",
+        "enhanced-customization",
+        "lightning-assault",
+        "rapid-assault"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {
+        "casting": {
+          "sphere_progression": "Mid"
+        }
+      },
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "New Prowesses",
+          "description": "The following prowesses are available exclusively to antiquarians:\n\nFocused Assault: (Requires Rapid Assault) The antiquarian may forgo additional attacks from rapid assault to instead increase the potency of her next sphere effect. She gains a +2 bonus on caster level for each additional attack her rapid assault would have granted her on the next sphere effect she casts before the end of her next turn.\n\nSpellbreaker: (Requires 5th level) The antiquarian may add the Counterspell feat, or any feat with it as a prerequisite, to a customized weapon in place of a talent. The antiquarian counts her class levels as casting class levels when making counterspell checks while such a weapon is her active weapon. The antiquarian must meet the prerequisites for feats granted in this way, treating her class levels as casting class levels for this purpose.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:armiger:awakener",
+      "package": "spheres-class:armiger",
+      "name": "Awakener",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/awakener",
+      "replaces_features": [
+        "rapid-assault",
+        "unlimited-assault"
+      ],
+      "removed_features": [
+        "rapid-assault",
+        "unlimited-assault"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Prowess",
+          "description": "The following prowesses are available exclusively to awakeners.\n\nExpansive Spirit: The awakener may select a Conjuration sphere (form) talent and apply it to one of her weapon spirits. The awakener may dismiss this talent from an existing weapon spirit and select a new talent as part of customizing a weapon. This prowess may be taken more than once; each time an additional talent is granted.\n\nMental Link: The awakener gains a telepathic link with her weapon spirits. She may choose to receive full sensory input from one of her weapon spirits, even when it is not manifest, perceiving the area around the customized weapon. This requires a full-round action and renders the awakener flat-footed until the start of her next turn. The awakener does not benefit from any magical effects she is under nor any extraordinary senses she possesses, but does benefit from effects and extraordinary senses the weapon spirit possesses. The awakener uses her own Perception modifier for any Perception checks made while receiving sensory input this way.\n\nQuery Spirit: (Requires mental link) The awakener may spend a move action to retry any Intelligence-based skill check using the skill and ability modifiers of the weapon spirit tied to her active weapon.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:armiger:battlefield-tinker",
+      "package": "spheres-class:armiger",
+      "name": "Battlefield Tinker",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/battlefield-tinker",
+      "replaces_features": [
+        "customized-weapon",
+        "enhanced-customization",
+        "quick-change",
+        "rapid-assault",
+        "unlimited-assault"
+      ],
+      "removed_features": [
+        "enhanced-customization",
+        "quick-change",
+        "rapid-assault",
+        "unlimited-assault"
+      ],
+      "removed_feature_clauses": [
+        "rapid assault",
+        "enhanced customization",
+        "unlimited assault"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "The battlefield tinker gains Disable Device (Dex) and Knowledge (engineering) (Int) as class skills, but does not gain Intimidate (Cha) and Survival (Wis)."
+        },
+        {
+          "level": 1,
+          "name": "Improbable Weapon",
+          "description": "At 1st level, the battlefield tinker learns to create a unique invention, cobbled from various weapons to suit her unique specifications. The battlefield tinker chooses one weapon or shield with which she is proficient. She may add up to two other weapons to the chosen item. Each weapon acts as a mode for the improbable weapon, being wielded and dealing damage as that weapon. Modes may be switched between as a free action. The improbable weapon requires as many hands to wield as the largest component weapon (so combining a kukri, sap, and scorpion whip counts as a light weapon, while a longbow, greataxe, and longspear would require two hands). If any mode occupies a hand, that hand counts as occupied for all purposes (such as spellcasting or reloading a weapon) while the improbable weapon is in use (so a buckler combined with a pistol and cestus would occupy a hand as a pistol). Each mode is treated as a different customized weapon set for the purpose of how it interacts with armiger class features. Each mode of the improbable weapon grants an additional talent at 11th and 19th levels. An improbable weapon can never have an additional weapon or shield added to it via improvements. An improbable weapon uses the same rules as a technician’s invention for the purpose of rebuilding it, but does not count against the total number of inventions the character can possess if they possess the invention class feature.\n\nThis modifies customized weapon and replaces quick change."
+        },
+        {
+          "level": 1,
+          "name": "Insights",
+          "description": "A battlefield tinker can select a technical insight (as a technician) in place of a prowess. The battlefield tinker must meet the prerequisites of a technical insight, and cannot select a technical insight that requires prerequisite technician levels unless those levels are gained from another source."
+        },
+        {
+          "level": 5,
+          "name": "Tinkering",
+          "description": "At 5th level, the battlefield tinker may apply an improvement to each mode of her improbable weapon from a technician invention type corresponding to that mode (so an improbable weapon with a heavy crossbow, light shield, and longsword mode could gain an improvement from the improved crossbow, improved shield, and improved melee weapon inventions respectively). Improvements are only active when the weapon is in the corresponding mode, and the battlefield tinker treats her armiger levels as technician levels when determining the strength of these improvements. The improbable weapon gains an additional improvement for each mode every 5 levels thereafter.\n\nThis replaces rapid assault."
+        },
+        {
+          "level": 5,
+          "name": "Share enhancement",
+          "description": "At 5th level, the improbable weapon is treated as having an enhancement bonus equal to that of the highest enhancement bonus of its components.\n\nThis replaces enhanced customization."
+        },
+        {
+          "level": 20,
+          "name": "Tech Storm",
+          "description": "At 20th level, the battlefield tinker is no longer required to expend martial focus to activate her lightning assault ability. Additionally, as a full-round action she may make one attack action with each mode of her improbable weapon.\n\nThis replaces unlimited assault."
+        },
+        {
+          "level": 1,
+          "name": "Gadgeteer",
+          "description": "The battlefield tinker may select a single gadget from the technician’s list of gadgets. She may use a gadget a number of times per day equal to her practitioner modifier. The battlefield tinker uses her practitioner modifier in place of her Intelligence to determine the save DC of her gadgets. This prowess may be taken more than once; each time a different gadget is selected and the battlefield tinker may use gadgets one additional time per day."
+        },
+        {
+          "level": 1,
+          "name": "Trapfinding",
+          "description": "the battlefield tinker adds 1/2 her level on Perception checks to locate traps and on all Disable Device checks (minimum +1). The battlefield tinker can use Disable Device to disarm magic traps."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:armiger:bladewalker",
+      "package": "spheres-class:armiger",
+      "name": "Bladewalker",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/bladewalker",
+      "replaces_features": [
+        "bladewalker-gains-her-first-prowess-at-level",
+        "prowess-normally",
+        "prowess-normally-at-level",
+        "prowess-normally-bladewalker-gains-her-first-prowess",
+        "unlimited-assault"
+      ],
+      "removed_features": [
+        "prowess-normally-2nd-level-bladewalker-gains-her-first-prowess",
+        "prowess-normally-4th-level",
+        "unlimited-assault"
+      ],
+      "removed_feature_clauses": [
+        "prowess normally gained at 2nd level; the bladewalker gains her first prowess at 6th level",
+        "prowess normally gained at 4th level",
+        "unlimited assault class feature"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 2,
+          "name": "Warp Specialist",
+          "description": "At 2nd level, the bladewalker gains the Warp sphere with the Personal Warp drawback (including the bonus talent normally granted for taking a drawback). The bladewalker does not gain additional talents for gaining class levels but treats her class levels as Mid-Caster levels when using the Warp sphere and may use either Intelligence, Wisdom, or Charisma as her casting ability modifier (chosen at the time she gains this class feature). These caster levels stack normally with those gained from other sources. The bladewalker may take the Extra Magic Talent feat, but only to gain additional talents from the Warp sphere unless she has the casting class feature from another source. In addition, the bladewalker gains a pool of spell points equal to 1 + her casting ability modifier. If the bladewalker’s armiger levels grant her a spell pool from another source (such as the antiquarian archetype’s spell pool class feature), she gains only the larger of the two pools; she does not add them together. This pool replenishes once per day after 8 hours of rest.\n\nThis replaces the prowess normally gained at 2nd level; the bladewalker gains her first prowess at 6th level."
+        },
+        {
+          "level": 1,
+          "name": "Blade’s Path",
+          "description": "From 4th level on, whenever the bladewalker successfully damages an enemy or object with an attack made with one of her customized weapons, she may spend 1 spell point as an immediate action to instantly teleport to an unoccupied square adjacent to the target of that attack. When using this ability the bladewalker may also instantly recover a thrown weapon used in the attack as long as she has a hand free; ammunition that is destroyed or consumed by a successful attack cannot be recovered in this manner.\n\nThis replaces the prowess normally gained at 4th level."
+        },
+        {
+          "level": 20,
+          "name": "Path of Blades",
+          "description": "Upon reaching 20th level the bladewalker no longer needs to spend a spell point or use an immediate action to use the teleportation ability granted by her blade’s path ability; whenever the bladewalker damages an opponent with one of her customized weapons, she may instantly teleport to an unoccupied square adjacent to the target of that attack and retrieve any thrown weapon used in the attack as a free action that can be taken even when it’s not her turn. In addition, whenever the bladewalker successfully damages the same opponent with attacks made from two different locations while using her blade’s path ability, that opponent is flat-footed against all attacks until the start of the bladewalker’s next turn.\n\nThis replaces the unlimited assault class feature."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:armiger:bounty-hunter",
+      "package": "spheres-class:armiger",
+      "name": "Bounty Hunter",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/bounty-hunter",
+      "replaces_features": [
+        "customized-weapons",
+        "quick-change",
+        "rapid-assault"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Tools of the Trade",
+          "description": "At 1st level, a bounty hunter gains Bounty Hunter’s Tools from the Equipment sphere as a bonus talent. If she already possesses this talent, she may instead choose any other talent from the Equipment sphere as a bonus talent. A bounty hunter may only use her customized weapons and quick change abilities with simple weapons and weapons listed in this talent.\n\nThis modifies customized weapons and quick change."
+        },
+        {
+          "level": 5,
+          "name": "Rapid Subdual",
+          "description": "At 5th level the bounty hunter may attempt to initiate a grapple or perform a drag or reposition maneuver against the target of the action that triggered the rapid assault in place of one of the attacks granted by rapid assault.\n\nThis modifies rapid assault."
+        },
+        {
+          "level": 1,
+          "name": "Cuffs",
+          "description": "The bounty hunter may treat a pair of manacles as a flail with the grapple and nonlethal special features and is proficient in their use in this way. Such manacles are a valid choice to be a customized weapon. The bounty hunter may have manacles enchanted as melee weapons, which increase their escape DCs by 2 per +1 enhancement."
+        },
+        {
+          "level": 1,
+          "name": "Dead or Alive",
+          "description": "The bounty hunter may choose to deal lethal damage with nonlethal weapons and nonlethal damage with lethal weapons without penalty."
+        },
+        {
+          "level": 1,
+          "name": "Grappler",
+          "description": "The bounty hunter may expend martial focus to attempt to initiate a grapple as a swift action after dealing damage to a creature with a customized weapon with the grapple special feature."
+        },
+        {
+          "level": 1,
+          "name": "Hog Tie",
+          "description": "The bounty hunter may make a grapple check to tie up or apply manacles to a pinned or helpless target as a move action. The CMB penalty for doing so to a target that the bounty hunter is grappling is reduced to -5 (normally -10)."
+        },
+        {
+          "level": 1,
+          "name": "Net Adept",
+          "description": "The bounty hunter gains Net Master from the Equipment sphere as a bonus talent. If she already possesses that talent, she instead gains another talent from that sphere. While controlling a customized net via the trailing rope, the customized net continues to benefit from the bounty hunter’s enhanced customization bonus even if she draws and activates another weapon. Controlling the trailing rope in this way requires at least 1 hand."
+        },
+        {
+          "level": 1,
+          "name": "Tracker",
+          "description": "The bounty hunter gains a competence bonus equal to half her class level on Survival checks made to track creatures as well as to Diplomacy checks made to gather information on fugitives and known lawbreakers."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:armiger:machinehead",
+      "package": "spheres-class:armiger",
+      "name": "Machinehead",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/machinehead",
+      "replaces_features": [
+        "customize-weapon",
+        "prowess",
+        "prowess-at-level",
+        "quick-change"
+      ],
+      "removed_features": [
+        "prowess-2nd-level"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "New Prowesses",
+          "description": "The following prowesses are available exclusively to the machinehead:"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:armiger:stancemaster",
+      "package": "spheres-class:armiger",
+      "name": "Stancemaster",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/stancemaster",
+      "replaces_features": [
+        "but-otherwise-counts-as-customized-weapons",
+        "enhanced-customization",
+        "focusing-switch",
+        "lightning-assault",
+        "lightning-change",
+        "quick-change",
+        "rapid-assault",
+        "unlimited-assault"
+      ],
+      "removed_features": [
+        "but-otherwise-counts-as-customized-weapons",
+        "enhanced-customization",
+        "focusing-switch",
+        "lightning-assault",
+        "lightning-change",
+        "quick-change",
+        "rapid-assault",
+        "unlimited-assault"
+      ],
+      "removed_feature_clauses": [
+        "but otherwise counts as customized weapons",
+        "quick change",
+        "enhanced customization",
+        "focusing switch",
+        "rapid assault",
+        "lightning change",
+        "lightning assault",
+        "unlimited assault"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Stances",
+          "description": "At 1st level, the stancemaster knows three stances. Entering a stance requires a swift or a move action and ends any previous stances. Each stance grants martial talents as per the armiger’s customized weapon feature. Stances can be modified or replaced in the same way that a customized weapon can be modified or replaced. If a talent requires making a choice as part of its selection (such as the Critical Genius talent of the Equipment sphere), the choice is made at the time the stance is customized. The stancemaster gains an additional stance whenever an additional customized weapon would normally be gained.\n\nThis replaces but otherwise counts as customized weapons."
+        },
+        {
+          "level": 1,
+          "name": "Sequence",
+          "description": "At 1st level, the stancemaster gains the sequence, integrated techniques, and inspired sequence abilities of a prodigy of her level. These levels stack with prodigy levels for determining the maximum length of her sequence."
+        },
+        {
+          "level": 1,
+          "name": "Stance Change (link)",
+          "description": "The stancemaster changes stances as a move or swift action.\n\nThis replaces quick change and enhanced customization."
+        },
+        {
+          "level": 1,
+          "name": "Prowess",
+          "description": "Prowesses that allow adding a talent to a customized weapon instead allow adding it to a stance. Prowesses that modify a customized weapon, such as skilled weapon or variable prowess, instead modify a selected stance. The practiced initiative prowess functions whenever a stance is active."
+        },
+        {
+          "level": 3,
+          "name": "Focusing Stance",
+          "description": "At 3rd level, whenever the stancemaster succeeds on a combat maneuver, confirms a critical hit, or reduces a foe to 0 or fewer hit points, she may regain martial focus by activating a stance as an immediate action.\n\nThis replaces focusing switch."
+        },
+        {
+          "level": 5,
+          "name": "Unbroken Sequence",
+          "description": "At 5th level, when the stancemaster’s sequence would be ended by the dazed, helpless, paralyzed, stunned, or unconscious conditions, she may expend martial focus to prevent the sequence from ending due to that condition for a number of rounds equal to her practitioner modifier.\n\nThis replaces rapid assault."
+        },
+        {
+          "level": 7,
+          "name": "Lightning Stance",
+          "description": "At 7th level, once per round the stancemaster may change her stance as a free action even when it is not her turn.\n\nThis replaces lightning change."
+        },
+        {
+          "level": 15,
+          "name": "Flawless Sequence",
+          "description": "At 15th level, the stancemaster does not lose a link in her sequence if she fails to add a link since the beginning of her previous turn and no longer needs to expend martial focus to prevent her sequence ending from the dazed, helpless, paralyzed, stunned, or unconscious conditions. Using a (finish) still ends the sequence as normal.\n\nThis replaces lightning assault."
+        },
+        {
+          "level": 20,
+          "name": "True Mastery",
+          "description": "At 20th level, when the stancemaster starts a sequence, it automatically begins with a number of links equal to half her practitioner ability modifier. The stancemaster may change her stance as a free action on her turn a number of times equal to her practitioner modifier.\n\nThis replaces unlimited assault."
+        },
+        {
+          "level": 1,
+          "name": "Quick Draw",
+          "description": "The stancemaster gains the Quickdraw feat and may stow a weapon as part of changing stances."
+        },
+        {
+          "level": 1,
+          "name": "Stance Fusion",
+          "description": "The stancemaster gains a style feat of her choice as a bonus feat. She must meet the prerequisites of the feat, but may treat her class levels as monk levels. These levels stack with monk levels from other sources. The stancemaster may switch stances as part of the action required to initiate a style. Activating or changing a style as a swift action completes the stance change (link). This prowess may be taken multiple times; each time it grants an additional style feat or a feat that has a style feat as a prerequisite. All prerequisites for such feats must be met normally."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:armiger:taskmaster",
+      "package": "spheres-class:armiger",
+      "name": "Taskmaster",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/taskmaster",
+      "replaces_features": [
+        "customized-weapons",
+        "enhanced-customization",
+        "enhanced-customization-taskmaster-s-config",
+        "focusing-switch",
+        "lightning-assault",
+        "lightning-change",
+        "quick-change",
+        "rapid-assault",
+        "taskmaster-s-config",
+        "unlimited-assault"
+      ],
+      "removed_features": [
+        "lightning-assault",
+        "quick-change",
+        "rapid-assault",
+        "unlimited-assault"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Taskmaster Armiger Prowesses",
+          "description": "Note: The taskmaster armiger does not possess weapons to customize; many armiger prowess options that allow the armiger to customize a new type of weapon may not function normally for the taskmaster.\n\nThe taskmaster armiger gains exclusive access to the following prowess options:\n\nArtificial Assistance: The taskmaster gains the Tinker sphere Multifunctional Gizmos talent as a bonus talent. In addition, the taskmaster’s task center may be a host gizmo for the taskmaster’s other routines, including Artificial Intelligence (despite being a routine itself).\n\nAn AI installed in the taskmaster’s task center treats the taskmaster as its host gizmo for all purposes (sharing the taskmaster’s senses, etc.), may communicate with the taskmaster telepathically, and may activate or use any gizmo in the taskmaster’s possession (as though it were also their host gizmo). Installed AI cannot compete with the taskmaster for control of their body, and may only control the taskmaster’s body if the taskmaster allows it (treated as the AI piloting the taskmaster, as though the taskmaster were a mechanoid). The AI cannot take physical actions that the taskmaster has already taken (i.e. a move action to move if the taskmaster already moved, standard action to attack if the taskmaster already used their standard action, and so on), but may use and operate gizmos in the taskmaster’s possession. While piloting the taskmaster, an AI is subject to any effects (bonuses, penalties, conditions, etc.) the taskmaster is under; if the taskmaster is dead, the AI treats the taskmaster as a deactivated gizmo.\n\nThe taskmaster’s AI counts as possessing the currently active task-set’s talents for all purposes. If the AI is not installed in the taskmaster’s task center (and instead in a mechanoid or other host), the AI must be able to hear and see the taskmaster to benefit from the taskmaster’s active task-set.\n\nSpecial - (Transmission) Package: If the taskmaster possesses the (transmission) package, the task center now also functions as a transmitter which transmits a signal to share its active task-set talents to the taskmaster’s AI (no longer requiring hearing and sight).\n\nHigh-Complexity Pathways (requires Config. Overclock): The taskmaster gains their choice of either the Tinker sphere Disruption Set or Technological Weapons talent as a bonus talent. The taskmaster gains the following overclock:\n\nMagitech Properties (1+ rounds): As a swift action, the taskmaster overclocks 1 or more task-sets. The taskmaster grants one weapon, shield, or armor in their possession a single special ability whose total enhancement value is equal to or less than 1 + 1 per 5 levels after 5th. The chosen special ability must be from the list of special abilities available to an armorist (Ultimate Spheres of Power). This overclock lasts a number of rounds equal to 1 + the taskmaster’s practitioner modifier.\n\nRenewable Energy (requires Config. Overclock): The taskmaster gains the Tinker sphere Energy Set talent as a bonus talent. In addition, whenever the taskmaster uses charged focus, in addition to the normal benefits of charged focus, the taskmaster may reduce the inactive duration of each overclocked task-set by 1 round (this may restore an overclocked task-set to being usable).\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nUltimate Engineering by Drop Dead Studios and Diamond Recreational Studios\n\nUltimate Engineering Hub Page\n\nRules and Information\n\nUsing Tinker Sphere\nUsing Spheres of Might\nSkill Rules\n\nTinker Sphere\n\nGizmo Feats\nMastering Gizmos\nAI and Mechanoids\n\nTinker Traditions\nTinker Optional and Variant Rules\nInventioneering\n\nGet Ultimate Engineering\n\nGet Diamond Spheres: Expanded Tinker and Silverminds"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:armiger:witchwarper-cs",
+      "package": "spheres-class:armiger",
+      "name": "Witchwarper [CS]",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/witchwarper",
+      "replaces_features": [
+        "armiger-s-normal-class-skills",
+        "combat-training",
+        "customized-weapon",
+        "enhanced-customization"
+      ],
+      "removed_features": [
+        "armiger-s-normal-class-skills",
+        "combat-training",
+        "customized-weapon",
+        "enhanced-customization"
+      ],
+      "removed_feature_clauses": [
+        "combat training",
+        "customized weapon",
+        "armiger's normal class skills",
+        "enhanced customization"
+      ],
+      "compatibility": {
+        "requires": [
+          "pathfinder-archetype:pathfinder-class:investigator:antiquarian",
+          "spheres-archetype:spheres-class:armiger:antiquarian"
+        ],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {
+        "casting": {
+          "sphere_progression": "Mid"
+        }
+      },
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "A witchwarper gains a combat, magic, or skill talent (some of which are required to be utility talents) using the trained talent progression. A witchwarper’s casting ability modifier determines her operative and practitioner modifiers.\n\nThis replaces combat training."
+        },
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The witchwarper may combine spheres and talents to create magical effects. The witchwarper is considered a Mid-Caster. (Note: All casters gain 2 bonus talents and may select a casting tradition the first time they gain the casting class feature.)"
+        },
+        {
+          "level": 1,
+          "name": "Infinite Worlds",
+          "description": "At 1st level, the witchwarper selects three casting traditions, any of which may be a casting tradition she already possesses. These casting traditions must all grant the witchwarper the same number of bonus spell points, and the witchwarper gains bonus spell points from only a single casting tradition. Only one of these casting traditions is the witchwarper’s active casting tradition, but the witchwarper can make one of her other casting traditions active as a swift or move action.\n\nAny spell the witchwarper casts uses her active casting tradition for the purpose of determining drawbacks and boons.A witchwarper retains sphere-specific drawbacks and any talents gained from them between all traditions. If the witchwarper takes any feats or talents that require a specific drawback, she only gains the benefits of these feats while that drawback is part of her active tradition.\n\nEach casting tradition grants combat, magic, or skill talents as per the armiger’s customized weapon feature. Casting traditions can be modified or replaced in the same way that a customized weapon can be modified or replaced. If a talent requires making a choice as part of its selection (such as the Critical Genius talent of the Equipment sphere), the choice is made at the time the casting tradition is customized. The witchwarper gains an additional casting tradition whenever an additional customized weapon would normally be gained.\n\nThis replaces customized weapon."
+        },
+        {
+          "level": 1,
+          "name": "Trade Tradition",
+          "description": "If this is the character’s first level, they choose a trade traditionSoG. Their trade rank is competent. If this is not the character’s first level, they instead choose one trade talent from the Vocation sphere as a bonus talent.\n\nThis replaces the armiger's normal class skills."
+        },
+        {
+          "level": 5,
+          "name": "Focused Enhancement",
+          "description": "At 5th level, whenever the witchwarper assumes a casting tradition, she selects either a single sphere or a single weapon. If she selects a magic sphere, she increases any enhancement bonus to her caster level in that sphere by 1. If she selects a combat or skill sphere, she increases any enhancement bonus to her save DCs for that sphere by 1. If she selects a weapon, she increases that weapon's enhancement bonus by 1. These bonuses increase by 1 at 9th level and every 4 levels thereafter but cannot cause the total enhancement bonus on the sphere or weapon to exceed +5.\n\nThis replaces enhanced customization.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nSpheres of Guile by Drop Dead Studios\n\nUsing Spheres of Guile\n\nClasses\n\nAdvisor (DRS)\nAgent\nConduit (DRS)\nCourser\nEnvoy\n\nGenius\nMastermind\nProfessional\n\nSpheres\n\nArtifice\nBluster\nBody Control\nCommunication\nFaction\n\nHerbalism\nInfiltration\nInvestigation\nNavigation\nPerformance\n\nSpellhacking\nStudy\nSubterfuge\nSurvivalism\nVocation\n\nOther Rules\n\nOperative Feats\nOperative Gear\nSkill Rules\nTrade Traditions\nRunning Guile Games\n\nGet Spheres of Guile"
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

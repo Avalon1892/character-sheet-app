@@ -1,0 +1,24 @@
+{
+  "version":1,
+  "entries":[
+    {
+      "key":"spheres-archetype:spheres-class:armorist:ferrous-emissary",
+      "resource_modules":[{"key":"ferrous_emissary","title":"Ferrous Emissary Training","governing_ability":"wisdom","resources":[{"key":"weapon_training","name":"Weapon Training","feature_tokens":["weapon-training"],"progression":"weapon_training_from_five","description":"Choose the retained weapon group and enable this row while using it; the scaling attack and damage bonus follows the archetype's Weapon Training progression.","can_activate":true,"custom_choice_label":"Trained weapon group","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false}]}],
+      "system_features":["weapon-training"]
+    },
+    {
+      "key":"spheres-archetype:spheres-class:armorist:living-weapon",
+      "resource_modules":[{"key":"living_weapon","title":"Living Weapon","governing_ability":"wisdom","resources":[
+        {"key":"weapon_training","name":"Weapon Training","feature_tokens":["weapon-training"],"progression":"weapon_training_from_five","description":"Choose the retained weapon group and enable this row while resolving attacks with that group.","can_activate":true,"custom_choice_label":"Trained weapon group","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false},
+        {"key":"bound_aegis_properties","name":"Bound Aegis Properties","feature_tokens":["bound-aegis"],"progression":"zero","description":"Record the selected weapon, armor, and shield special abilities and which armored aegis forms are separately bound.","custom_choice_label":"Weapon / armor / shield properties","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false}
+      ]}],
+      "system_features":["weapon-training","bound-aegis"]
+    },
+    {
+      "key":"spheres-archetype:spheres-class:incanter:frostweaver",
+      "choice_providers":[{"key":"frostweaver-variant","label":"Frostweaver Element","feature_tokens":["frostweaver-variant-options"],"minimum":1,"maximum":1,"description":"Choose the Nature package and matching descriptor used by Servant of Winter and every Frostweaver feature.","fixed_options":[{"key":"water","name":"Water / Cold"},{"key":"air","name":"Air / Electricity"},{"key":"earth","name":"Earth / Acid"},{"key":"fire","name":"Fire / Fire"},{"key":"metal","name":"Metal"},{"key":"plant","name":"Plant"}]}],
+      "resource_modules":[{"key":"frostweaver","title":"Frostweaver","governing_ability":"intelligence","resources":[{"key":"frost_motes","name":"Frost Motes","feature_tokens":["frost-motes","frostweaver-variant-options"],"progression":"ability_modifier_minimum_one","description":"Maximum frost motes equal the casting ability modifier (minimum 1). Full Rest restores the pool; qualifying failed saves, Wintry Reclamation, and one-hour communion may restore motes during play."}]}],
+      "system_features":["frost-motes","familiar"]
+    }
+  ]
+}

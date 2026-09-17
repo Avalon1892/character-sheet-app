@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "key": "blacksmith",
+  "class_key": "spheres-class:blacksmith",
+  "class_name": "Blacksmith",
+  "governing_ability": "constitution",
+  "catalog_profile": {
+    "weapon_proficiencies": ["Simple weapons"],
+    "armor_proficiencies": ["Light armor", "Bucklers"],
+    "proficiencies": {"weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]},
+    "advancement": {"talent_progression": "Expert", "talent_kinds": ["martial"], "talent_bonus_levels": [1]}
+  },
+  "optional_blocks": ["martial_talents", "martial_focus"],
+  "external_systems": ["martial_focus", "maintenance", "crafting"],
+  "resource_modules": [{
+    "key": "blacksmith",
+    "title": "Blacksmith Workshop",
+    "governing_ability": "constitution",
+    "resources": [
+      {"key":"maintenance_allies","name":"Maintenance Allies","feature_tokens":["maintenance"],"progression":"blacksmith_maintenance_allies","description":"Number of allies who may receive maintenance after the party's rest.","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false},
+      {"key":"maintenance","name":"Active Maintenance","feature_tokens":["maintenance"],"progression":"blacksmith_maintenance_count","description":"Choose the maintenance benefits currently applied. One may be maintained per affected creature initially, with one additional maintenance at levels 9, 13, and 17.","choice_options":["Armor Maintenance","Clarifying Reinforcements","Cobbling","Fortifying Reinforcements","Heavy-Duty Reinforcement","Pack Straps","Polish","Quickening Reinforcements","Sharpen Weapons","Swarm Proofing"],"maximum_choices_progression":"blacksmith_maintenance_count","can_activate":true,"tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":true},
+      {"key":"thunderous_blows","name":"Thunderous Blows","feature_tokens":["thunderous-blows"],"progression":"one","description":"Enable when an attack action or attack of opportunity is a successful sunder attempt or attacks a construct or object.","can_activate":true,"tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false,"extra_damage_levels":[1,3,5,7,9,11,13,15,17,19],"extra_damage_die":"d6","extra_damage_type":"untyped"},
+      {"key":"skilled_craftsman_repair","name":"Skilled Craftsman Repair","feature_tokens":["skilled-craftsman"],"progression":"twice_level","description":"Hit points restored to a damaged object as a standard action. Profession (blacksmith) substitutes for relevant Craft and Spellcraft checks.","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false}
+    ]
+  }],
+  "passive_effects": [
+    {"key":"armor-maintenance","feature_tokens":["maintenance"],"targets":["ac"],"progression":"blacksmith_maintenance_bonus","bonus_type":"untyped","source":"Blacksmith: Armor Maintenance","requires_resource_active":"maintenance","requires_resource_choice":"Armor Maintenance"},
+    {"key":"clarifying-reinforcements","feature_tokens":["maintenance"],"targets":["will"],"progression":"blacksmith_maintenance_bonus","bonus_type":"competence","source":"Blacksmith: Clarifying Reinforcements","requires_resource_active":"maintenance","requires_resource_choice":"Clarifying Reinforcements"},
+    {"key":"fortifying-reinforcements","feature_tokens":["maintenance"],"targets":["fortitude"],"progression":"blacksmith_maintenance_bonus","bonus_type":"competence","source":"Blacksmith: Fortifying Reinforcements","requires_resource_active":"maintenance","requires_resource_choice":"Fortifying Reinforcements"},
+    {"key":"quickening-reinforcements","feature_tokens":["maintenance"],"targets":["reflex"],"progression":"blacksmith_maintenance_bonus","bonus_type":"competence","source":"Blacksmith: Quickening Reinforcements","requires_resource_active":"maintenance","requires_resource_choice":"Quickening Reinforcements"},
+    {"key":"sharpen-weapons","feature_tokens":["maintenance"],"targets":["damage"],"progression":"blacksmith_weapon_maintenance_bonus","bonus_type":"untyped","source":"Blacksmith: Sharpen Weapons","requires_resource_active":"maintenance","requires_resource_choice":"Sharpen Weapons"}
+  ],
+  "choice_providers": [{
+    "key":"blacksmith-insights","label":"Smithing Insights","feature_tokens":["smithing-insight"],"minimum":0,"maximum":10,"minimum_levels":[2,4,6,8,10,12,14,16,18,20],"maximum_levels":[2,4,6,8,10,12,14,16,18,20],"description":"Choose one smithing insight at 2nd level and every two levels thereafter. Repeatable insights and their prerequisites remain subject to their published rules.",
+    "fixed_options":[
+      {"key":"alchemical-maintenance","name":"Alchemical Maintenance"},{"key":"animal-grooming","name":"Animal Grooming"},{"key":"armorclad-mastery","name":"Armorclad Mastery"},{"key":"crafting-competence","name":"Crafting Competence"},{"key":"double-edged-sword","name":"Double-Edged Sword"},{"key":"durable","name":"Durable"},{"key":"economic-crafting","name":"Economic Crafting"},{"key":"expanded-crafting","name":"Expanded Crafting"},{"key":"gunsmith","name":"Gunsmith"},{"key":"hammer-down","name":"Hammer Down"},{"key":"hampering-dents","name":"Hampering Dents"},{"key":"heat-forged","name":"Heat Forged"},{"key":"hobbling-strikes","name":"Hobbling Strikes"},{"key":"makers-know-how","name":"Maker's Know How"},{"key":"master-shieldsmith","name":"Master Shieldsmith"},{"key":"painful-shred","name":"Painful Shred"},{"key":"penetrating-blows","name":"Penetrating Blows"},{"key":"practiced-power","name":"Practiced Power"},{"key":"rune-charged-maintenance","name":"Rune-Charged Maintenance"},{"key":"satisfying-crunch","name":"Satisfying Crunch"},{"key":"shieldsmith","name":"Shieldsmith"},{"key":"siegesmith","name":"Siegesmith"},{"key":"stunning-strikes","name":"Stunning Strikes"},{"key":"tangling-wreckage","name":"Tangling Wreckage"},{"key":"toolsmith","name":"Toolsmith"},{"key":"toymaker","name":"Toymaker"}
+    ]
+  }],
+  "notes":"The maintenance selector and effects use the shared resource/effect engines. Equipment Specialist's mandatory Equipment talent is included in the advancement budget."
+}

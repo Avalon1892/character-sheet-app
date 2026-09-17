@@ -1,0 +1,16 @@
+{
+  "version":1,"key":"eliciter","class_key":"spheres-class:eliciter","class_name":"Eliciter","governing_ability":"charisma",
+  "catalog_profile":{"weapon_proficiencies":["Simple weapons","Longsword","Rapier","Sap","Shortsword","Shortbow","Whip"],"armor_proficiencies":["Light armor","Shields"],"proficiencies":{"weapons":["Simple weapons","Longsword","Rapier","Sap","Shortsword","Shortbow","Whip"],"armor":["Light armor","Shields"]},"advancement":{"talent_progression":"Mid","talent_kinds":["magic"],"talent_bonus_levels":[1]},"feature_descriptions":{"Enchanter":"Gain the Mind sphere, or a Mind talent if already known.","Emotion":"Choose a new minor emotion or advance a known emotion subject to its tier prerequisites."}},
+  "optional_blocks":["magic_spheres","spell_points"],"external_systems":["spell_points","hypnotism","emotions"],
+  "resource_modules":[{"key":"eliciter","title":"Eliciter","governing_ability":"charisma","grantable":false,"resources":[
+    {"key":"hypnotism","name":"Hypnotism","feature_tokens":["hypnotism"],"progression":"three_plus_half_level","description":"Daily uses equal 3 + half Eliciter level. Choose an available effect before spending a use.","choice_options":["Fascinate","Liberate","Terrorize","Inspire Greatness","Insanity","Inspire Heroics","Reverence","Domination"]},
+    {"key":"hypnotism_dc","name":"Hypnotism / Emotion DC","feature_tokens":["hypnotism"],"progression":"eliciter_save_dc","description":"10 + half Eliciter level + Charisma modifier + Persuasive bonus.","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false},
+    {"key":"convincing","name":"Convincing — Take 20","feature_tokens":["convincing"],"progression":"eliciter_convincing","description":"Take 20 without additional time on Bluff, Diplomacy, Intimidate, or Sense Motive. Uses improve at levels 13 and 17."}
+  ]}],
+  "passive_effects":[
+    {"key":"persuasive","feature_tokens":["persuasive"],"targets":["skill:bluff","skill:diplomacy","skill:intimidate"],"progression":"eliciter_persuasive","bonus_type":"untyped","source":"Eliciter: Persuasive"},
+    {"key":"defensive-empathy","feature_tokens":["defensive-empathy"],"targets":["skill:sense_motive"],"progression":"eliciter_persuasive","bonus_type":"untyped","source":"Eliciter: Defensive Empathy","minimum_level":3}
+  ],
+  "choice_providers":[{"key":"eliciter-emotions","label":"Emotions","feature_tokens":["emotion"],"minimum_levels":[2,5,8,11,14,17,20],"maximum_levels":[2,5,8,11,14,17,20],"fixed_options":[{"key":"apathy","name":"Apathy"},{"key":"courage","name":"Courage"},{"key":"enmity","name":"Enmity"},{"key":"fear","name":"Fear"},{"key":"grief","name":"Grief"},{"key":"joy","name":"Joy"},{"key":"love","name":"Love"},{"key":"serenity","name":"Serenity"}],"description":"Select a new minor emotion or advance a known emotion. Lesser requires level 5, greater level 8, and master level 11."}],
+  "notes":"Mid casting, Mind-sphere entry, spell points, hypnotism, Persuasive, emotions, and Convincing use shared declarations."
+}

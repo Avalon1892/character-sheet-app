@@ -1,0 +1,651 @@
+{
+  "version": 1,
+  "class_key": "spheres-class:sentinel",
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:sentinel:adamant-guardian",
+      "package": "spheres-class:sentinel",
+      "name": "Adamant Guardian",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/adamant-guardian",
+      "replaces_features": [
+        "deathless-challenge",
+        "defenders-soul",
+        "empowering-challenge",
+        "eternal-challenge",
+        "final-challenge",
+        "guardian-challenge",
+        "instant-challenge",
+        "invincible-soul",
+        "sentinels-imposition",
+        "sentinels-surge",
+        "sentinels-wrath"
+      ],
+      "removed_features": [
+        "deathless-challenge",
+        "empowering-challenge",
+        "eternal-challenge",
+        "final-challenge",
+        "guardian-challenge",
+        "instant-challenge",
+        "invincible-soul",
+        "sentinels-imposition",
+        "sentinels-surge",
+        "sentinels-wrath"
+      ],
+      "removed_feature_clauses": [
+        "guardian challenge",
+        "sentinel’s imposition",
+        "deathless challenge",
+        "eternal challenge",
+        "empowering challenge",
+        "sentinel’s wrath",
+        "instant challenge",
+        "sentinel’s surge",
+        "invincible soul",
+        "final challenge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Adamant Soul",
+          "description": "An adamant guardian gains the (patrol) package instead of the (challenge) package from the Guardian sphere. This ability modifies defender’s soul."
+        },
+        {
+          "level": 1,
+          "name": "Adamant Patrol",
+          "description": "At 1st level, whenever an adamant guardian sets up a patrol, she deals an additional +1 damage with all attacks made within the area of her patrol. At 5th level and every four levels afterwards, this bonus increases by +1, to a maximum of +5 at 17th level. This ability replaces guardian challenge."
+        },
+        {
+          "level": 4,
+          "name": "Active Imposition",
+          "description": "At 4th level, an adamant guardian selects 1 of the following triggers: Take a 5 ft. step"
+        },
+        {
+          "level": 12,
+          "name": "Make an attack roll against an ally other than herself",
+          "description": "Cast a spell or spell-like ability defensively: Once per round, when a creature takes the action described in her chosen trigger, it provokes an attack of opportunity from her. At 12th level and again at 20th level, the adamant guardian gains an additional trigger, although she may not make more than a single attack of opportunity due to the triggers from this class feature. This ability replaces sentinel’s imposition."
+        },
+        {
+          "level": 8,
+          "name": "Undying Patrol",
+          "description": "At 8th level, once per round while an adamant guardian has a patrol active, if she would be reduced to 0 or fewer hit points by damage other than her damage pool, she can make a Fortitude save with a DC equal to 5 + the amount of damage she would take which would reduce her to 0 or fewer hit points (for example, if the adamant guardian had 10 hit points and took 24 damage, the Fortitude save’s DC would be 19). If this save is successful, she negates that damage, remaining at 1 hit point. At 14th level, she may use this ability an additional time per round. This ability replaces deathless challenge and eternal challenge."
+        },
+        {
+          "level": 11,
+          "name": "Buffering Defense",
+          "description": "At 11th level, whenever an adamant guardian sets up a patrol, she gains a number of temporary hit points equal to her adamant guardian level + her Wisdom modifier; these temporary hit points last for 1 round or until lost, whichever comes first. This ability replaces empowering challenge."
+        },
+        {
+          "level": 12,
+          "name": "Opportunist’s Wrath",
+          "description": "At 12th level, whenever an adamant guardian makes an attack of opportunity benefiting from her opportunistic offense class feature, she rolls damage twice and chooses whichever result she desires. This ability replaces sentinel’s wrath."
+        },
+        {
+          "level": 15,
+          "name": "Lasting Patrol",
+          "description": "At 15th level, if an adamant guardian reduces the hit points of a creature within their patrol to 0 or lower, at the beginning of her next round, she can spend a move action to maintain her patrol for an additional round. If the creature has less Hit Dice than half of her sentinel level, this ability does not activate. This ability replaces instant challenge."
+        },
+        {
+          "level": 17,
+          "name": "Patroller’s Surge",
+          "description": "At 17th level, once per round when an adamant guardian reduces a creature to 0 hit points while inside of the area of their patrol, she is treated as though she used her second wind. If the creature has less Hit Dice than half of her sentinel level, this ability does not activate. This ability replaces sentinel’s surge."
+        },
+        {
+          "level": 19,
+          "name": "Adamantine Patrol",
+          "description": "At 19th level, whenever an adamant guardian has a patrol up, any damage reduction she possesses is doubled and she is immune to critical hits and sneak attack. This ability replaces invincible soul."
+        },
+        {
+          "level": 20,
+          "name": "Last Stand",
+          "description": "At 20th level, an adamant guardian gain an additional amount uses of her undying patrol class feature per round equal to her Wisdom modifier. This ability replaces final challenge."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:sentinel:darkness-defender",
+      "package": "spheres-class:sentinel",
+      "name": "Darkness Defender",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/darkness-defender",
+      "replaces_features": [
+        "counter-critical",
+        "dedicated-defense",
+        "guard-wall",
+        "guardian-challenge",
+        "sentinels-imposition",
+        "wise-reflexes"
+      ],
+      "removed_features": [
+        "counter-critical",
+        "dedicated-defense",
+        "guard-wall",
+        "sentinels-imposition",
+        "wise-reflexes"
+      ],
+      "removed_feature_clauses": [
+        "wise reflexes",
+        "dedicated defense",
+        "guard wall",
+        "sentinel’s imposition",
+        "counter critical"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Reckless Stance",
+          "description": "At 1st level, a darkness defender gains the Berserker sphere; if she already possesses this sphere, she instead gains a Berserker combat talent of her choice. When using the berserking ability from the Berserker sphere, the penalty applies to both the darkness defender’s AC and Reflex saves.\n\nThis replaces wise reflexes."
+        },
+        {
+          "level": 1,
+          "name": "Violent Challenge",
+          "description": "At 1st level, whenever a darkness defender is using the berserking ability, she deals an additional +1 damage to creatures she has challenged. At 4th level and every 3 levels afterwards, this additional damage increases by +1."
+        },
+        {
+          "level": 2,
+          "name": "Reckless Defense",
+          "description": "At 2nd level, whenever the darkness defender is using the berserking ability, she gains DR 2/- (this damage reduction stacks with similar damage reduction, such as that granted by wearing adamantine armor or the barbarian class feature). At 3rd level and every 3 levels afterwards, this damage reduction increases by 1. This ability replaces dedicated defense."
+        },
+        {
+          "level": 2,
+          "name": "Defend Other",
+          "description": "At 2nd level, a darkness defender gains Defend Other as a bonus talent; if they already possess this talent, they may select a different Guardian sphere talent. This ability replaces guard wall."
+        },
+        {
+          "level": 4,
+          "name": "Selfless Defense",
+          "description": "At 4th level, a darkness defender can spend an attack of opportunity in place of an immediate action to use their Defend Other talent. This ability replaces sentinel’s imposition."
+        },
+        {
+          "level": 6,
+          "name": "Frightening Response",
+          "description": "At 6th level, whenever a darkness defender receives damage while using her Defend Other talent, the creature who dealt that damage takes a -2 penalty on combat maneuver checks for 1 round (this penalty does not stack with itself). At 9th level and every 4 levels afterwards, this penalty increases by -1. This ability replaces counter critical."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:sentinel:darkthrone",
+      "package": "spheres-class:sentinel",
+      "name": "Darkthrone",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/darkthrone",
+      "replaces_features": [
+        "combat-talents",
+        "counter-critical",
+        "dedicated-defense",
+        "invincible-soul",
+        "other-sentinel-which-use-sentinels-practitioner-modifier-instead-use-darkthrones-casting-modifier",
+        "sentinels-reserve",
+        "wise-reflexes",
+        "wise-reflexes-other-sentinel-class-features-which-use-sentinels-practitioner-modifier-instead-use-darkthrones-casting-modifier"
+      ],
+      "removed_features": [
+        "counter-critical",
+        "dedicated-defense",
+        "invincible-soul",
+        "wise-reflexes-other-sentinel-class-features-which-use-sentinels-practitioner-modifier-instead-use-darkthrones-casting-modifier"
+      ],
+      "removed_feature_clauses": [
+        "counter-critical",
+        "invincible soul"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {
+        "casting": {
+          "sphere_progression": "Low"
+        }
+      },
+      "choices": [],
+      "features": [
+        {
+          "level": 19,
+          "name": "Monument of Night",
+          "description": "The monument of night is created in a single square and does not move if the square would move (unless a sufficiently large vehicle or object, subject to GM discretion). The monument of night does not block line of sight or impede movement but may be modified by (zone) talents, granted (darkness) or (blot) options, and so on.\n\nThe monument of night has the following statistics:\n\nHit Points: 10 + twice the darkthrone’s class level + the darkthrone’s casting ability modifier.\n\nAC: 10 + the darkthrone’s class level + the darkthrone’s casting ability modifier\n\nHardness: 5 + 1/2 the darkthrone’s class level\n\nThe monument of night is destroyed if its hit points become 0 (ending the darkthrone’s ecliptic patrol and dispelling any gloom attached to it). If the monument of night would be required to make a saving throw to avoid damage, the monument of night uses the sentinel’s relevant saving throw bonus (as though it were an attended magic item).\n\nThis replaces counter-critical.\n\nNighthold (Su): At 19th level, the darkthrone gains immunity to critical hits, sneak attack, and other precision damage originating from creatures under the effects of the darkthrone’s Dark sphere effects (including effects created by the Shadow Defender feat); this includes creatures affected by the darkthrone’s blinding challenge or inside the radius of their ecliptic patrol.\n\nThis replaces invincible soul."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:sentinel:dimensional-defender",
+      "package": "spheres-class:sentinel",
+      "name": "Dimensional Defender",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/dimensional-defender",
+      "replaces_features": [
+        "dedicated-defense",
+        "guard-wall",
+        "guardians-challenge",
+        "sentinels-imposition",
+        "sentinels-reserve"
+      ],
+      "removed_features": [
+        "dedicated-defense",
+        "guard-wall",
+        "guardians-challenge",
+        "sentinels-imposition",
+        "sentinels-reserve"
+      ],
+      "removed_feature_clauses": [
+        "guardian’s challenge",
+        "sentinel’s reserve",
+        "guard wall",
+        "dedicated defense",
+        "sentinel’s imposition"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Dimensional Step",
+          "description": "At 1st level, the dimensional defender gains the Warp sphere with the Personal Warp drawback (including the bonus talent normally granted for taking a drawback). The dimensional defender does not gain additional talents for gaining class levels but treats her class levels as Mid-Caster levels when using the Warp sphere and uses Wisdom as her casting ability modifier. These caster levels stack normally with those gained from other sources. The dimensional defender may take the Extra Magic Talent feat, but only to gain additional talents from the Warp sphere unless she has the Casting class feature from another source.\n\nThis replaces guardian’s challenge."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "A dimensional defender gains a small reservoir of energy she can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to her level + her casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest. Any abilities that cost points from the sentinel’s reserve instead cost spell points.\n\nThis replaces sentinel’s reserve."
+        },
+        {
+          "level": 2,
+          "name": "Emergency Step",
+          "description": "At 2nd level, the dimensional defender gains Emergency Teleport as a bonus talent. If she already possesses that talent, she gains another Warp talent as a bonus talent.\n\nThis replaces guard wall."
+        },
+        {
+          "level": 2,
+          "name": "Shuffle",
+          "description": "At 2nd level, when a creature under the effects of the dimensional defender’s challenge targets an allied creature within the dimensional defender’s teleport range with an attack roll, the dimensional defender may spend a spell point as an immediate action to swap places with that ally, becoming the target of the effect.\n\nThis replaces dedicated defense."
+        },
+        {
+          "level": 4,
+          "name": "Warping Imposition",
+          "description": "At 4th level, whenever a creature under the effects of the dimensional defender’s challenge makes an attack that does not include the dimensional defender as a target, the dimensional defender may spend a spell point as an immediate action to teleport up to her teleport range to a square that puts that creature in her threatened area and make an attack of opportunity against it.\n\nThis replaces sentinel’s imposition."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:sentinel:garrison",
+      "package": "spheres-class:sentinel",
+      "name": "Garrison",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/garrison",
+      "replaces_features": [
+        "defenders-determination",
+        "diamond-aegis",
+        "second-wind",
+        "sentinel-s-surge",
+        "sentinels-poise",
+        "sentinels-reserve"
+      ],
+      "removed_features": [
+        "defenders-determination",
+        "diamond-aegis",
+        "second-wind",
+        "sentinel-s-surge",
+        "sentinels-poise",
+        "sentinels-reserve"
+      ],
+      "removed_feature_clauses": [
+        "sentinel’s reserve",
+        "second wind",
+        "defender’s determination",
+        "sentinel’s poise",
+        "diamond aegis",
+        "sentinel's surge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Military Jurisdiction",
+          "description": "At 1st level, a garrison gains the Leadership sphere (followers) package as a bonus talent, as well as the Sedentary drawback. If the garrison already possesses the Leadership sphere, then the Base of Operations talent is gained as a bonus talent with no drawback. If both the Leadership sphere and Base of Operations talent are already possessed, then she may choose any talent from the Leadership sphere as a bonus talent. Establishing a settlement with your Base of Operations talent creates an area of military jurisdiction. All NPCs in a settlement with military jurisdiction have a starting attitude toward her that is one category better, as long as each person’s initial attitude would have at least been indifferent (see the Diplomacy skill description). Once she has gained jurisdiction in a settlement, she gains a +4 circumstance bonus on Intimidate checks, and a +1 circumstance bonus on Diplomacy checks to recruit with the Leadership sphere. These bonuses applies only while she is within 1 mile per garrison level of a settlement in which she has gained jurisdiction.\n\nThis replaces sentinel’s reserve."
+        },
+        {
+          "level": 3,
+          "name": "Military Entourage",
+          "description": "Beginning at 3rd level, the garrison gains the service of a number of loyal allies who can help her gather information or perform minor tasks. Inside her area of military jurisdiction, a garrison gains a competence bonus on Diplomacy checks to gather information equal to half her garrison level. In addition, if the garrison wants, she can task her friends to help cover for her by spreading false tales of her location and activities to others. This has the effect of increasing the DC of Diplomacy checks to gather information about the garrison and Survival checks to track her by an amount equal to her level. This lasts for 1 day, and can be used only once per week. Finally, once per day, the garrison can ask her allies to perform a minor task for her. This usually involves delivering a message, purchasing a piece of mundane gear worth 100 gp or less (which the garrison must pay for), or retrieving an object owned by the garrison (that would be easily accessible by the ally). This task might take other forms as well, subject to GM discretion, but can never involve combat or danger.\n\nThis replaces second wind."
+        },
+        {
+          "level": 7,
+          "name": "Greater Jurisdiction",
+          "description": "At 7th level, the garrison is rewarded with jurisdiction on a broader scale. She can reduce the time it takes to establish a settlement with Base of Operations from 1d4 months to 1d4 weeks. The circumstance bonus on Intimidate checks from her jurisdiction increases to +6 and her circumstance bonus on Diplomacy checks increases to +2.\n\nThis replaces defender’s determination."
+        },
+        {
+          "level": 13,
+          "name": "Fortified Residence",
+          "description": "Beginning at 13th level, the garrison can establish a fortified residence in each of her areas of military jurisdiction, and she can change it every time she changes her area of jurisdiction. This fortified residence must be an area no larger in volume than a cube that is a number of feet per side equal to 10 feet per garrison level. The residential residence can be arranged any way she likes and it can be part of a larger building, like a secret room or an underground cave. Objects and creatures within this fortified residence can’t be located by any effect that is less powerful than a discern location spell, and is protected from scrying effects (though not mundane snooping) like a mage’s private sanctum.\n\nThis replaces sentinel’s poise."
+        },
+        {
+          "level": 16,
+          "name": "Expansive Jurisdiction",
+          "description": "At 16th level, the military jurisdiction of the garrison is expanded even further. She can reduce the time it takes to establish a settlement with Base of Operations from 1d4 weeks to 1d4 days. The circumstance bonus on Intimidate checks from her jurisdiction increases to +8 and her circumstance bonus on Diplomacy checks increases to +3.\n\nThis replaces diamond aegis."
+        },
+        {
+          "level": 17,
+          "name": "Returning Jurisdiction",
+          "description": "At 17th level, the garrison’s influence is never truly forgotten. This makes it easier to establish her military jurisdiction in a place she has established it before. In any settlement where the garrison previously gained military jurisdiction, it takes only 1d4 hours, rather than 1d4 days, to gain jurisdiction again.\n\nThis replaces sentinel's surge."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:sentinel:iron-revenant",
+      "package": "spheres-class:sentinel",
+      "name": "Iron Revenant",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/iron-revenant",
+      "replaces_features": [
+        "combat-training",
+        "guard-wall",
+        "sentinels-imposition"
+      ],
+      "removed_features": [
+        "guard-wall",
+        "sentinels-imposition"
+      ],
+      "removed_feature_clauses": [
+        "guard wall",
+        "sentinel’s imposition"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Diminished Training",
+          "description": "The iron revenant has a reduced talent progression, changing from an Expert progression to an Adept talent progression.\n\nThis alters combat training"
+        },
+        {
+          "level": 1,
+          "name": "Hunter",
+          "description": "At 1st level, the iron revenant gains the Tinker sphere as a bonus sphere, selecting the (transmission) package.\n\nAt 2nd level, the iron revenant gains the Tinker sphere Arsenal Set talent as a bonus talent. The iron revenant can attach a tracking device to a creature as part of the action to challenge them (which requires a successful touch attack as normal).\n\nThis replaces guard wall."
+        },
+        {
+          "level": 4,
+          "name": "Unrelenting Pursuer",
+          "description": "At 4th level, the iron revenant gains the benefits of the determined stalker courser class feature against creatures with an attached tracking device–if the creature is also challenged, she can attempt the attack of opportunity against the provoking creature before they move.\n\nAt 9th level, the iron revenant also gains the benefits of the distant advance courser class feature against creatures with an attached tracking device.\n\nAt 13th level, the iron revenant also gains the benefits of the opportune stalker courser class feature against creatures with an attached tracking device.\n\nThis replaces sentinel’s imposition."
+        },
+        {
+          "level": 5,
+          "name": "Ceaseless Challenge",
+          "description": "At 5th level, the iron revenant adds the bonus granted by her guardian challenge class feature to Intelligence- and Wisdom-based skill checks made against a creature she has challenged within the last 24 hours. Whenever the iron revenant would challenge a creature she has already challenged within the same day, the action required to challenge them reduces by one step (standard > move > swift > free)."
+        },
+        {
+          "level": 17,
+          "name": "Powered By Spite",
+          "description": "At 17th level, whenever the iron revenant receives damage from her delayed damage pool equal to or more than half its maximum capacity, she can spend 1 reserve point as an immediate action to recharge a depleted battery, or two depleted batteries if her delayed damage pool was at maximum capacity when it is emptied.\n\nSpheres of Guile by Drop Dead Studios\n\nUsing Spheres of Guile\n\nClasses\n\nAdvisor (DRS)\nAgent\nConduit (DRS)\nCourser\nEnvoy\n\nGenius\nMastermind\nProfessional\n\nSpheres\n\nArtifice\nBluster\nBody Control\nCommunication\nFaction\n\nHerbalism\nInfiltration\nInvestigation\nNavigation\nPerformance\n\nSpellhacking\nStudy\nSubterfuge\nSurvivalism\nVocation\n\nOther Rules\n\nOperative Feats\nOperative Gear\nSkill Rules\nTrade Traditions\nRunning Guile Games\n\nGet Spheres of Guile"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:sentinel:laughing-hyena",
+      "package": "spheres-class:sentinel",
+      "name": "Laughing Hyena",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/laughing-hyena",
+      "replaces_features": [
+        "combat-training",
+        "counter-critical",
+        "guard-wall",
+        "sentinels-imposition"
+      ],
+      "removed_features": [
+        "counter-critical",
+        "guard-wall",
+        "sentinels-imposition"
+      ],
+      "removed_feature_clauses": [
+        "guard wall",
+        "sentinel’s imposition",
+        "counter critical"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A laughing hyena may combine combat spheres and talents to create powerful martial techniques. Laughing hyenas are considered Expert practitioners and use Charisma as their practitioner modifier. Additionally, any sentinel class features that previously used the laughing hyena’s Wisdom modifier now uses their Charisma modifier.\n\nThis ability alters combat training."
+        },
+        {
+          "level": 1,
+          "name": "Laughing Warrior",
+          "description": "A laughing hyena must select the Gladiator sphere as their martial talent gained at 1st level. If they already possess the Gladiator sphere, they may select any talent as normal."
+        },
+        {
+          "level": 2,
+          "name": "Rocksteady",
+          "description": "At 2nd level, a laughing hyena gains a +2 circumstance bonus to their CMD against creatures they have demoralized. At 12th level, this bonus increases to +4.\n\nThis ability replaces guard wall."
+        },
+        {
+          "level": 4,
+          "name": "Taunt Coward",
+          "description": "At 4th level, whenever a creature that has been challenged by the laughing hyena makes an attack that does not include the laughing hyena as a target, the laughing hyena may perform a boast as an immediate action.\n\nThis ability replaces sentinel’s imposition."
+        },
+        {
+          "level": 6,
+          "name": "Braggart’s Recovery",
+          "description": "At 6th level, when a laughing hyena performs a boast, they may activate their second wind class feature as part of the same action, spending a reserve point as normal.\n\nThis ability replaces counter critical.\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:sentinel:paragon",
+      "package": "spheres-class:sentinel",
+      "name": "Paragon",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/paragon",
+      "replaces_features": [
+        "guardians-challenge",
+        "second-wind",
+        "sentinels-imposition"
+      ],
+      "removed_features": [
+        "sentinels-imposition"
+      ],
+      "removed_feature_clauses": [
+        "sentinel’s imposition"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Alignment",
+          "description": "A paragon cannot be true neutral. If a paragon becomes true neutral, she loses all supernatural class features which she possesses and cannot advance as a paragon until her alignment contains at least one component other than neutral (either chaotic, evil, good, or lawful)."
+        },
+        {
+          "level": 1,
+          "name": "Chosen Alignment",
+          "description": "A paragon must select one component of her alignment; this component affects several of her class features. The paragon cannot choose neutral. If the paragon’s alignment changes in such a way that her chosen alignment no longer matches any component of her current alignment, she loses all of her class abilities that rely on her chosen alignment until she spends 24 hours realigning her mindset, at which point she may select a new chosen alignment."
+        },
+        {
+          "level": 10,
+          "name": "Judging Challenge",
+          "description": "If a paragon challenges a creature whose alignment opposes her chosen alignment, the bonuses from her challenge increase by 1. If a paragon challenges a creature whose alignment matches her chosen alignment, her challenge does not deal any additional damage. At 10th level and every ten levels thereafter, the increase to the paragon’s challenge increases by 1 when challenging a creature with an alignment opposed to her chosen alignment. This ability modifies guardian’s challenge."
+        },
+        {
+          "level": 1,
+          "name": "Healing Wind",
+          "description": "A paragon may use their second wind class feature on an ally as a move action. This ability modifies second wind."
+        },
+        {
+          "level": 4,
+          "name": "Unerring Nemesis",
+          "description": "At 4th level, a paragon gains a +1 morale bonus to saving throws and their CMD against effects and combat maneuvers which originate from a creature whom she has challenged. At 9th level and every 5 levels afterwards, this bonus increases by +1. This ability replaces sentinel’s imposition."
+        }
+      ],
+      "detected_systems": [
+        "challenge"
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:sentinel:vanguard-sentinel",
+      "package": "spheres-class:sentinel",
+      "name": "Vanguard Sentinel",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/vanguard-sentinel",
+      "replaces_features": [
+        "combat-talents",
+        "deathless-challenge",
+        "defenders-soul",
+        "empower-challenge",
+        "eternal-challenge",
+        "final-challenge",
+        "guard-wall",
+        "instant-challenge",
+        "invincible-soul",
+        "sentinel-s-normal-class-skills",
+        "sentinel-s-reserve",
+        "sentinels-imposition",
+        "sentinels-wrath"
+      ],
+      "removed_features": [
+        "combat-talents",
+        "deathless-challenge",
+        "defenders-soul",
+        "empower-challenge",
+        "eternal-challenge",
+        "final-challenge",
+        "guard-wall",
+        "instant-challenge",
+        "invincible-soul",
+        "sentinel-s-normal-class-skills",
+        "sentinel-s-reserve",
+        "sentinels-imposition",
+        "sentinels-wrath"
+      ],
+      "removed_feature_clauses": [
+        "combat talents",
+        "sentinel's reserve",
+        "defender’s soul",
+        "sentinel's normal class skills",
+        "guard wall",
+        "sentinel’s imposition",
+        "deathless challenge",
+        "empower challenge",
+        "sentinel’s wrath",
+        "eternal challenge",
+        "instant challenge",
+        "invincible soul"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {
+        "casting": {
+          "sphere_progression": "Low"
+        }
+      },
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "A vanguard gains combat, magic, or skill talents (some of which are required to be utility talents) using the virtuoso talent progression. A vanguard’s casting ability modifier determines her operative and practitioner modifiers.\n\nThis replaces combat talents."
+        },
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "A vanguard may combine spheres and talents to create magical effects. A vanguard is considered a Low-Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.)"
+        },
+        {
+          "level": 1,
+          "name": "Entropy Pool",
+          "description": "At 1st level, the vanguard gains the supernatural ability to control matter as it changes states. This energy takes the form of a pool of entropy points (EP). A vanguard can have a maximum number of EP in her entropic pool equal to her casting ability modifier. This maximum, as well as the number of EP the vanguard starts each encounter with, increases by 1 at 5th level and every 4 levels thereafter.\n\nA vanguard can gain entropy points only when involved in a combat encounter. When combat begins, she gains 1 entropy point at the beginning of your first action; at the end of combat, she loses any entropy points she has remaining. A vanguard can gain entropy points in the following ways.\n\nWhile she has no entropy points, a vanguard can gain 1 EP by regaining martial focus.\n\nEach time the vanguard takes damage equal to or greater than twice her character level from a single attack or effect (after applying any ability to reduce that damage, such as damage reduction or energy resistance), she gains 1 EP. When a vanguard is damaged, she may choose to allow an effect to ignore any damage reduction or energy resistance she possesses. If any of this damage becomes delayed, the vanguard does not gain additional EP when her delayed damage pool empties.\n\nIf the vanguard takes damage from a critical hit, she gains 1 EP in addition to any from the attack’s normal damage.\n\nIf the vanguard scores a critical hit on an enemy, she gains 1 EP.\n\nIf the vanguard moves as part of a full-round action, she gains 1 EP.\n\nEntropy points can be expended in various ways:\n\nAs a free action, a vanguard can expend 1 EP to gain a +10-foot enhancement bonus to her movement speed. This increases by 10 feet at 5th level and every 4 levels thereafter.\n\nAs a move action, a vanguard can expend EP to boost the damage of the next attack she makes before the start of her next turn. She must decide how many EP to expend when you take this move action, and she cannot expend more EP than her vanguard level. If the boosted entropic strike hits, it deals +1d4 points of damage for every EP expended.\n\nWhenever a vanguard takes damage, she may spend 1 EP to reduce the damage by twice her vanguard level.\n\nWhenever a sentinel ability would require the expenditure of a reserve point, the vanguard may instead expend an equal amount of EP. The vanguard may not spend multiple EP on a single use of an ability.\n\nThis replaces sentinel's reserve."
+        },
+        {
+          "level": 1,
+          "name": "Frontline Guardian",
+          "description": "A vanguard gains the Guardian sphere as a bonus sphere, although she must select the Bodyguard drawback. If she already possesses the Guardian sphere she must take the Defend Other talent. If she already possesses the Guardian sphere and the Defend Other talent, she instead gains a Guardian talent for which she qualifies.\n\nA vanguard uses her casting ability modifier in place of her Wisdom modifier for sentinel class abilities.\n\nThis replaces defender’s soul."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "A vanguard gains a small reservoir of energy she can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to her class level + her practitioner modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Trade Tradition",
+          "description": "In addition, if this is the character’s first level, they choose a trade traditionSoG. Their trade rank is competent. If this is not the character’s first level, they instead choose one trade talent from the Vocation sphere as a bonus talent.\n\nThis replaces the sentinel's normal class skills."
+        },
+        {
+          "level": 2,
+          "name": "Evasion",
+          "description": "At 2nd level and higher, if the vanguard succeeds at a Reflex saving throw against an attack that normally deals half damage on a successful save, she instead takes no damage. A helpless vanguard does not gain the benefit of evasion.\n\nThis replaces guard wall."
+        },
+        {
+          "level": 4,
+          "name": "Supersymmetries",
+          "description": "As a vanguard progresses in levels, she discovers new ways to manipulate reality’s fundamental forces to fortify herself.\n\nAt 4th level, the vanguard may spend 1 EP and an attack of opportunity in place of an immediate action to use her Defend Other talent.\n\nAt 8th level, the vanguard may spend 1 EP as a free action to reduce the damage in her delayed damage pool by her vanguard level.\n\nAt 11th level, when a vanguard is in the area of a damaging effect, she can spend 1 EP to add a +1 bonus per die to the damage dealt to every other creature in the area or 2 EP to add +2 bonus per die.\n\nAt 12th level, the vanguard may spend 2 EP to make an attack of opportunity even when she has no remaining attacks of opportunity.\n\nAt 14th level, the vanguard may spend two or more EP to reroll a saving throw as an immediate action, gaining a +1 bonus on the reroll for every EP spent.\n\nAt 15th level, when the vanguard reduces damage to herself by spending EP, she may spend 2 additional EP to have that reduction apply to all damage she takes until the start of her next turn.\n\nAt 19th level, the vanguard may spend at least 3 EP as an immediate action to empty her delayed damage pool. For each EP spent beyond the 3rd, the vanguard selects one target within close range. That target takes damage equal to the damage that was in the vanguard’s delayed damage pool. If the vanguard possesses the Cold Iron Call or Durable talents, she may also inflict any effects she is postponing with those abilities. If the effect allowed a save, each target may attempt a save immediately at the original DC. A successful Fortitude save (DC 10 + 1/2 the vanguard’s level + her casting ability modifier) reduces the amount of damage dealt by this ability by half and negates the infliction of any effects.\n\nThis replaces sentinel’s imposition, deathless challenge, empower challenge, sentinel’s wrath, eternal challenge, instant challenge, and invincible soul."
+        },
+        {
+          "level": 5,
+          "name": "Expanded Energies",
+          "description": "At 5th level and every 4 levels thereafter, the vanguard develops a new method of gaining EP, selected from the following list.\n\nBoundary: The vanguard gains 1 EP the first time each round an attack misses her or she succeeds at a saving throw.\n\nCascade: The vanguard gains 1 EP the first time each round she succeeds at multiple attack rolls against different targets in the same turn.\n\nDisobedience: The vanguard gains 1 EP the first time each round she outwits a target. This cannot grant you EP outside of combat.\n\nExergy: The vanguard gains 1 EP the first time each round she succeeds at multiple attack rolls against a single target in the same turn.\n\nIndeterminacy: The vanguard gains 1 EP the first time each round she hits with an attack of opportunity.\n\nObsolescence: The vanguard gains 1 EP the first time each round she is subject to a combat maneuver.\n\nReaction: The vanguard gains 1 EP the first time each round she succeeds at a combat maneuver that is not made as a free action.\n\nResidue: The vanguard gains 1 EP the first time each round she spends one or more spell points. Once per round, she may spend a spell point to gain 2 EP.\n\nTurbulence: Whenever the vanguard recovers hit points, she can reduce the hit points restored by any amount; as long as she reduces it by an amount equal to at least 3 + her vanguard level (minimum 0), she gains 1 EP."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

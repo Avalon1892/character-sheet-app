@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "key": "armorist",
+  "class_key": "spheres-class:armorist",
+  "class_name": "Armorist",
+  "governing_ability": "wisdom",
+  "catalog_profile": {
+    "weapon_proficiencies": ["Martial weapons"],
+    "armor_proficiencies": ["Light armor", "Medium armor", "Shields (except tower shields)"],
+    "proficiencies": {"weapons": ["Martial weapons"], "armor": ["Light armor", "Medium armor", "Shields (except tower shields)"]},
+    "advancement": {"talent_progression": "Low", "talent_kinds": ["magic"]},
+    "feature_descriptions": {"bind implement": "At 5th level, a bound implement can carry an implement enhancement and its assigned sphere benefits according to the Bound Equipment rules."}
+  },
+  "optional_blocks": ["magic_spheres", "spell_points"],
+  "external_systems": ["sphere_casting", "bound_equipment", "armor_training"],
+  "resource_modules": [
+    {
+      "key": "armorist",
+      "title": "Armorist Arsenal",
+      "governing_ability": "wisdom",
+      "resources": [
+        {"key":"bound_equipment","name":"Bound Equipment","feature_tokens":["bound-equipment"],"progression":"armorist_bound_items","description":"Number of simultaneous bound items: one at 1st level, two at 5th, three at 10th, four at 15th, and five at 20th. Record each item and its assigned enhancement abilities.","custom_choice_label":"Bound items and enhancements","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false},
+        {"key":"bound_enhancement","name":"Maximum Equipment Bonus","feature_tokens":["bound-equipment"],"progression":"armorist_bound_bonus","description":"Maximum total enhancement-equivalent bonus available to bound or summoned equipment, scaling from +1 at 1st to +10 at 19th.","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false},
+        {"key":"armor_training","name":"Armor Training","feature_tokens":["armor-training"],"progression":"armorist_armor_training","description":"Reduce worn armor's check penalty and increase its maximum Dexterity bonus by this amount. Medium armor retains normal speed from 3rd level and heavy armor from 7th.","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false},
+        {"key":"boost_equipment","name":"Boost Equipment","feature_tokens":["boost-equipment"],"progression":"one","description":"At 10th level, spend one spell point to boost touched magical equipment by half the current summoned-equipment bonus (minimum +1), subject to the normal +5 enhancement limit.","can_activate":true,"external_cost_key":"spell_points","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false}
+      ]
+    }
+  ],
+  "passive_effects": [],
+  "choice_providers": [
+    {
+      "key":"armorist-arsenal-tricks","label":"Arsenal Tricks","feature_tokens":["arsenal-trick"],"minimum":0,"maximum":10,"minimum_levels":[2,4,6,8,10,12,14,16,18,20],"maximum_levels":[2,4,6,8,10,12,14,16,18,20],"description":"Choose one Arsenal Trick at every even Armorist level. Options that explicitly permit repetition may be taken again through the normal class-power workflow.",
+      "fixed_options": [
+        {"key":"additional-binding","name":"Additional Binding"},{"key":"advanced-armaments","name":"Advanced Armaments"},{"key":"agile-armor","name":"Agile Armor"},{"key":"ammunition-specialist","name":"Ammunition Specialist"},{"key":"arms-outer-planes","name":"Arms of the Outer Planes"},{"key":"battle-magician","name":"Battle Magician (Armorist 5)"},{"key":"bloody-equipment","name":"Bloody Equipment"},{"key":"bonded-boost","name":"Bonded Boost (Armorist 10)"},{"key":"bound-companion","name":"Bound Companion"},{"key":"burdensome-attacks","name":"Burdensome Attacks"},{"key":"champion","name":"Champion"},{"key":"chaotic-armament","name":"Chaotic Armament"},{"key":"combat-feat","name":"Combat Feat"},{"key":"combat-implementation","name":"Combat Implementation (Armorist 6)"},{"key":"combat-talent","name":"Combat Talent"},{"key":"consumptive-armaments","name":"Consumptive Armaments"},{"key":"crafter","name":"Crafter"},{"key":"customized-bond","name":"Customized Bond"},{"key":"cut-magic","name":"Cut Magic"},{"key":"cut-minds","name":"Cut Minds"},{"key":"dancing","name":"Dancing"},{"key":"dark-materials","name":"Dark Materials"},{"key":"disruptive-defenses","name":"Disruptive Defenses"},{"key":"easy-armor","name":"Easy Armor"},{"key":"energized-armaments","name":"Energized Armaments"},{"key":"energy-equipment","name":"Energy Equipment"},{"key":"executioner","name":"Executioner"},{"key":"extradimensional-storage","name":"Extradimensional Storage"},{"key":"fighter-armor-training","name":"Fighter Armor Training"},{"key":"fully-loaded","name":"Fully Loaded"},{"key":"greater-armor-training","name":"Greater Armor Training"},{"key":"grenadier","name":"Grenadier (Armorist 6)"},{"key":"experimental-grenadier","name":"Experimental Grenadier (Armorist 10)"},{"key":"group-summons","name":"Group Summons"},{"key":"heavy-impact","name":"Heavy Impact"},{"key":"heavy-ordnance","name":"Heavy Ordnance"},{"key":"heroic-equipment","name":"Heroic Equipment"},{"key":"hide-equipment","name":"Hide Equipment"},{"key":"horsemans-materials","name":"Horseman's Materials"},{"key":"hunter","name":"Hunter (Armorist 10)"},{"key":"imbued-arsenal","name":"Imbued Arsenal"},{"key":"improved-equipment","name":"Improved Equipment"},{"key":"improved-materials","name":"Improved Materials (Armorist 6)"},{"key":"lightning-weapon","name":"Lightning Weapon"},{"key":"modification-expert","name":"Modification Expert"},{"key":"morphic-weapon","name":"Morphic Weapon"},{"key":"movement","name":"Movement"},{"key":"natural-materials","name":"Natural Materials"},{"key":"oiled-equipment","name":"Oiled Equipment"},{"key":"overclocked-armaments","name":"Overclocked Armaments (Armorist 10)"},{"key":"overload-specialist","name":"Overload Specialist"},{"key":"piercing-specialist","name":"Piercing Specialist"},{"key":"psibreaker","name":"Psibreaker"},{"key":"ramping-assault","name":"Ramping Assault"},{"key":"ranged-summons","name":"Ranged Summons"},{"key":"rigorous-equipment","name":"Rigorous Equipment"},{"key":"shadow-armory","name":"Shadow Armory"},{"key":"share-armory","name":"Share Armory"},{"key":"share-bond","name":"Share Bond"},{"key":"shattering-armaments","name":"Shattering Armaments"},{"key":"shifting-weapon","name":"Shifting Weapon"},{"key":"skillful-implementation","name":"Skillful Implementation (Armorist 10)"},{"key":"space-bending-equipment","name":"Space-Bending Equipment"},{"key":"spelltank","name":"Spelltank"},{"key":"store-magic","name":"Store Magic"},{"key":"tools-of-trade","name":"Tools of the Trade"},{"key":"trick-shooter","name":"Trick Shooter"},{"key":"unseen-killer","name":"Unseen Killer"},{"key":"vigilant-arsenal","name":"Vigilant Arsenal"},{"key":"wand-implementation","name":"Wand Implementation (Armorist 5)"},{"key":"wearable-implements","name":"Wearable Implements (Armorist 6)"},{"key":"windborne-equipment","name":"Windborne Equipment (Armorist 6)"}
+      ]
+    }
+  ],
+  "notes":"Spell points and low-caster progression use the shared sphere engines. Bound items remain character-owned records rather than being recreated when their active configuration changes."
+}

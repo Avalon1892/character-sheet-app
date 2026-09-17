@@ -1,0 +1,1894 @@
+{
+  "version": 1,
+  "class_key": "pathfinder-class:oracle",
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:ancient-lorekeeper",
+      "package": "pathfinder-class:oracle",
+      "name": "Ancient Lorekeeper",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Oracle Ancient Lorekeeper",
+      "replaces_features": [
+        "bonus-spells",
+        "mystery-bonus-skills"
+      ],
+      "removed_features": [
+        "bonus-spells",
+        "mystery-bonus-skills"
+      ],
+      "removed_feature_clauses": [
+        "bonus skills the ancient lorekeeper gains from her mystery",
+        "bonus spells she would normally gain at these levels from her chosen mystery"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Ancient Lorekeeper",
+          "description": "Source Advanced Race Guide pg. 24"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "An ancient lorekeeper adds Knowledge (arcane) and Knowledge (local) to her list of class skills. Whenever she makes a Knowledge check of any kind about a question regarding elves (creatures of the elf subtype), the ancient lorekeeper adds half her class level on her check. This replaces the bonus skills the ancient lorekeeper gains from her mystery."
+        },
+        {
+          "level": 2,
+          "name": "Elven Arcana",
+          "description": "At 2nd level, an ancient lorekeeper’s mastery of elven legends and philosophy has allowed her to master one spell used by elven wizards. She selects one spell from the sorcerer/wizard spell list that is at least one level lower than the highest-level oracle spell she can cast. The ancient lorekeeper gains this as a bonus spell known. The spell is treated as one level higher than its true level for all purposes. The ancient lorekeeper may choose an additional spell at 4th, 6th, 8th, 10th, 12th, 14th, 16th, and 18th levels. This ability replaces the bonus spells she would normally gain at these levels from her chosen mystery."
+        },
+        {
+          "level": 1,
+          "name": "Mysteries",
+          "description": "The following oracle mysteries complement the ancient lorekeeper archetype: Lore, Nature, Waves, Wind; Ancestor, Time, Wood."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:oracle:augur",
+      "package": "pathfinder-class:oracle",
+      "name": "Augur",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/augur",
+      "replaces_features": [
+        "levels",
+        "oracles-strength",
+        "revelations-at"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "oracle’s strength",
+        "revelations gained at 3rd and 11th levels"
+      ],
+      "compatibility": {
+        "requires": [
+          "spheres-archetype:pathfinder-class:oracle:sphere-oracle"
+        ],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Seer of Fate",
+          "description": "The augur gains the Divination and Fate spheres as bonus spheres at 1st level, plus one additional talent from either sphere at 6th level and every 6 levels thereafter.\n\nThis replaces oracle’s strength."
+        },
+        {
+          "level": 1,
+          "name": "Kismet",
+          "description": "Touched by fate, an augur possesses an innate knack for sensing and manipulating fate in small ways, manifesting in a pool of kismet. At the start of each day, she gains a number of kismet points equal to her casting ability modifier (minimum 1). Her kismet goes up or down throughout the day, but usually cannot go higher than her casting ability modifier (minimum 1), though feats and magic items can affect this maximum. An augur spends kismet to accomplish deeds (see below), and regains kismet in the following ways."
+        },
+        {
+          "level": 1,
+          "name": "Gamble",
+          "description": "When the augur spends at least one spell point on a Fate or Divination sphere effect, she can choose to roll a d3. If the result is a 1, the cost of the effect is increased by 1 spell point. If the result is a 2, she spends the spell points normally. If the result is a 3, the augur still spends the spell point, but regains one kismet point. She can attempt this for as many spell points as she might spend in a round, but can only regain one kismet point per round this way. She cannot gamble a spell point if the increased spell point cost of the sphere effect reduces her to 0 spell points."
+        },
+        {
+          "level": 1,
+          "name": "Great Failure",
+          "description": "Each time the augur rolls a natural 1 on an attack roll against a creature or saving throw, she regains 1 kismet point. If an ability or effect would allow the augur to roll twice or reroll, she only regains kismet if the final result of the roll is a natural 1. Rolling a natural 1 on a saving throw or attack roll against an effect caused by a creature, trap, or effect with a CR less than 1/2 her character level or who is not genuinely hostile to her does not restore kismet. Attempting to manipulate or circumvent the definition of “genuinely hostile” attracts the ire of Lady Luck and results in the augur being unable to use her kismet or any abilities requiring it for one hour per oracle level as well as the occurrence of numerous tiny coincidences that make her life unpleasant during this time. (What these might be are entirely subject to the GM’s imagination, but should have little effect on gameplay and virtually none on combat. Examples might include tripping outside of combat and falling face-first into manure or being mistaken for someone a shopkeeper hates.)"
+        },
+        {
+          "level": 1,
+          "name": "Deeds",
+          "description": "Augurs spend kismet points to accomplish deeds. Most deeds grant the augur a momentary bonus or effect, but some provide longer-lasting effects. Some deeds remain in effect while the augur has at least 1 kismet point, but do not require expending kismet to be maintained. An augur can only perform deeds of her level or lower. Unless otherwise noted, a deed can be performed multiple successive times, as long as the augur has or spends the required number of kismet points to perform the deed."
+        },
+        {
+          "level": 1,
+          "name": "Karmic Acumen",
+          "description": "At 1st level, the augur is blessed by fortune, even in the most mundane of endeavors. While the augur has at least 1 kismet point, she gains an insight bonus equal to 1/2 her oracle level to skill checks in class skills granted by her mystery (minimum +1). The augur can spend 1 kismet point as an immediate action before she would attempt such a check, allowing her to roll the check twice, taking the highest result."
+        },
+        {
+          "level": 3,
+          "name": "Declare Omen",
+          "description": "At 3rd level, the augur can bet on the flow of the fates. Once per round as a free action that can be taken even while it is not her turn, whenever a target (not herself) within 60 feet makes an attack roll or saving throw, she may spend 1 kismet point and predict “weal” or “woe”. This ability must be used before the roll in question is made. Predicting “weal” is divining for the target’s success on the roll and predicting “woe” is divining for the target’s failure on the roll. If the augur was correct (and the target succeeded when predicted “weal” or failed when predicted “woe”), the augur regains 1 kismet point and may roll twice and take the highest result on the next attack roll or saving throw she attempts before the end of her next turn. The augur may choose to not regain this point of kismet (or the ability to roll twice on her next attack roll or saving throw) to instead grant one ally within 60 feet the ability to roll twice and take the highest result on their next attack roll or saving throw they attempt before the end of the ally’s next turn. If the augur was incorrect (and the target failed when predicted “weal” or succeeded when predicted “woe”), the augur instead rolls twice and takes the lowest result on the next attack roll or saving throw she attempts before the end of her next turn."
+        },
+        {
+          "level": 5,
+          "name": "Embrace the Veil",
+          "description": "At 5th level, the augur may spend a kismet point as a standard action to gain access to a single Divination or Fate sphere talent that she does not possess, which lasts for 10 minutes per oracle level she possesses. The augur can only benefit from a single talent gained this way at a given time; if the augur uses this ability again, any previously gained talents are lost."
+        },
+        {
+          "level": 7,
+          "name": "Nebulous Magic",
+          "description": "At 7th level, the augur may spend 1 kismet point as part of casting a Divination or Fate sphere ability to instead create a nebulous sphere effect. A nebulous sphere effect has no effect and does not function until it is activated as an immediate action; once activated, the augur then determines which talents and effects she is using with the sphere effect, paying any associated costs of the ability (including if she wants to concentrate on the effect). The chosen talents must be from the sphere used as part of the original casting. Once created, a nebulous sphere effect lasts for 1 minute per oracle level and is wasted if not activated by the augur. Once activated however, the normal duration for the chosen sphere effect begins. The caster level of a nebulous sphere effect is determined when the nebulous sphere effect is first cast, not when it is activated. The augur may only have a single nebulous sphere effect at a time; casting a second nebulous sphere effect while it is available for activation dispels the first."
+        },
+        {
+          "level": 1,
+          "name": "Example",
+          "description": "The augur creates a nebulous divine sphere effect, choosing to delay it. During an intense engagement when an opponent becomes invisible, the augur activates this nebulous sphere effect as an immediate action to divine for magic and may concentrate on this effect once activated as normal."
+        },
+        {
+          "level": 9,
+          "name": "Twist Strike",
+          "description": "At 9th level, the augur may spend 1 kismet point as a free action that can be taken outside of her turn whenever a creature within 60 feet would threaten a critical hit, making them roll the critical confirmation roll twice, taking the highest or lowest result (her choice, Will negates if unwilling). If an unwilling creature succeeds at their saving throw against this effect, they are immune to this ability for 24 hours."
+        },
+        {
+          "level": 13,
+          "name": "Fate Sight",
+          "description": "At 13th level, the augur can spend 1 kismet point as a swift action to gain the ability to sense those touched by fate for 1 minute per oracle level. She may sense and locate creatures within 30 feet (as if she had the blindsight ability), but can only detect creatures who possess (or are affected by) abilities that manipulate fate and destiny; this includes Fate sphere abilities, creatures with a kismet pool, abilities that grant luck bonuses or the ability to reroll dice, creatures benefitting from luck bonuses, or similarly luck-based abilities such as divine favor, the misfortune hex, a pugwampi’s aura, etc."
+        },
+        {
+          "level": 17,
+          "name": "Prophet of the Weave",
+          "description": "At 17th level, the augur gains a +1 insight bonus to her Divination and Fate sphere caster level for every 2 points of kismet currently in her kismet pool (maximum +5).\n\nThis replaces the revelations gained at 3rd and 11th levels."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:black-blooded-oracle",
+      "package": "pathfinder-class:oracle",
+      "name": "Black-Blooded Oracle",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Oracle Black-Blooded Oracle",
+      "replaces_features": [
+        "oracles-curse"
+      ],
+      "removed_features": [
+        "oracles-curse"
+      ],
+      "removed_feature_clauses": [
+        "oracle’s curse"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Black-Blooded Oracle",
+          "description": "Source Inner Sea Magic pg. 32"
+        },
+        {
+          "level": 5,
+          "name": "Curse of Black Blood",
+          "description": "All black-blooded oracles effectively share the same curse—the curse of black blood. The material affects these oracles physically and mentally, altering both physiology and mystic powers. The blood of a black-blooded oracle actually runs black, and wounds she suffers are infected by her own power and are difficult to heal. She is immune to the effects (both beneficial and destructive) of black blood. Positive and negative energy affect a black-blooded oracle as if she were undead— positive energy harms her, while negative energy heals her (this aspect of the curse has no effect if the oracle is undead). The curse also dulls the oracle’s coordination somewhat, imparting a –4 penalty on all Dexterity-based skill checks. At 5th level, she gains cold resistance 5. This increases to cold resistance 10 at 10th level, and immunity to cold at 15th level. This ability replaces the oracle’s curse."
+        },
+        {
+          "level": 1,
+          "name": "Black Blood Revelations",
+          "description": "All black-blooded oracles have access to the following revelations, regardless of what mystery they choose."
+        },
+        {
+          "level": 1,
+          "name": "Black Blood Spray",
+          "description": "As an immediate action whenever a black-blooded oracle takes piercing or slashing damage, she can cause some of her black blood to spray from the wound to strike any adjacent target. She must make a touch attack to hit the target (if she’s attacking the creature that caused the wound, she gains a +4 circumstance bonus on her attack roll). If she hits, she deals 1d8 points of cold damage + 1 point per 2 oracle levels she possesses. She can use this ability a number of times per day equal to 1/2 her oracle level (minimum 1/day)."
+        },
+        {
+          "level": 7,
+          "name": "Dark Resilience",
+          "description": "The black blood flowing through a black-blooded oracle’s veins gives her resistance to many effects to which undead are immune. Once per day, as an immediate action, whenever she fails a saving throw against an ability drain, a death effect, disease, energy drain, paralysis, or poison, she may attempt that saving throw again with a +4 circumstance bonus. She must take the second result, even if it is worse. At 7th level, she can use this ability twice per day. At 15th level, she can use the ability 3 times per day."
+        },
+        {
+          "level": 15,
+          "name": "Darkvision",
+          "description": "A black-blooded oracle gains darkvision with a range of 60 feet. The range increases to 90 feet at 15th level."
+        },
+        {
+          "level": 1,
+          "name": "Black Blood of Orv",
+          "description": "Black blood wells from the walls of a singular vault deep in Orv, a region known quite aptly as the Land of Black Blood. This noxious fluid repulses and freezes all natural life, although certain creatures like aberrations, undead, and black-blooded oracles possess an uncanny immunity to its effects. Any other creature that comes into contact with black blood takes 1d6 points of cold damage—10d6 points of cold damage per round if fully immersed."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:community-guardian",
+      "package": "pathfinder-class:oracle",
+      "name": "Community Guardian",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Oracle Community Guardian",
+      "replaces_features": [
+        "level-mystery-bonus-spells",
+        "mystery-class-skills",
+        "revelations"
+      ],
+      "removed_features": [
+        "level-mystery-bonus-spells",
+        "mystery-class-skills",
+        "revelations"
+      ],
+      "removed_feature_clauses": [
+        "additional class skills from her mystery"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Community Guardian",
+          "description": "Source Advanced Race Guide pg. 63"
+        },
+        {
+          "level": 1,
+          "name": "Alignment",
+          "description": "Any good."
+        },
+        {
+          "level": 1,
+          "name": "Recommended Mysteries",
+          "description": "ancestor, life, lore, nature."
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A community guardian adds Knowledge (local), Linguistics, Perception, and Survival to her list of class skills. These replace the additional class skills from her mystery."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Spells",
+          "description": "bless water (2nd), consecrate (4th), remove disease (6th), hallow (10th), heroes’ feast (12th). These bonus spells replace the oracle’s mystery bonus spells from these levels."
+        },
+        {
+          "level": 1,
+          "name": "Revelations",
+          "description": "A community guardian must take the following revelations at the listed levels."
+        },
+        {
+          "level": 1,
+          "name": "Spirit of Community",
+          "description": "As a move action, you call upon the spirits of community. For the next round, you grant every ally within 30 feet a +1 competence bonus on a single skill check (of the ally’s choice) that it makes before the end of this revelation’s duration. Furthermore, allies within 30 feet can, as a free action, choose to forgo this bonus, and instead grant a single ally a +1 increase to its competence bonus granted by this ability (maximum +5). You can use this ability a number of times per day equal to 3 + your Charisma modifier. You must take this revelation at 1st level."
+        },
+        {
+          "level": 7,
+          "name": "Renewing Radiance",
+          "description": "Once per day you can produce a burst of swirling white light that provides a measure of protection and renewal to allies within 30 feet for 1 round. On their turn, the allies can choose either to gain a +1 sacred bonus to AC for 1 round or to heal a number of hit points equal to 1d6 + your Charisma bonus (their choice). If an ally is dying, it is stabilized instead. At 7th level, the bonus to AC increases to +2, and the healing increases to 2d6 + your Charisma bonus hit points, and at 14th level the bonus to AC increases to +3, and the healing increases to 3d6 + your Charisma bonus hit points. You must take this revelation at 3rd level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:cyclopean-seer",
+      "package": "pathfinder-class:oracle",
+      "name": "Cyclopean Seer",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Oracle Cyclopean Seer",
+      "replaces_features": [
+        "bonus-spells",
+        "class-skills",
+        "curse",
+        "final-revelation",
+        "revelations"
+      ],
+      "removed_features": [
+        "bonus-spells",
+        "class-skills",
+        "curse",
+        "final-revelation",
+        "revelations"
+      ],
+      "removed_feature_clauses": [
+        "additional class skills granted by her mystery",
+        "revelation gained at 1st level",
+        "revelation gained at 7th level",
+        "final revelation of the oracle’s mystery"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Cyclopean Seer",
+          "description": "Source Inner Sea Monster Codex pg. 17"
+        },
+        {
+          "level": 1,
+          "name": "Recommended Mysteries",
+          "description": "Ancestor (Pathfinder RPG Ultimate Magic 53), lore, nature, occult (Pathfinder Campaign Setting: Occult Mysteries 53), time (Ultimate Magic 56)."
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A cyclopean seer adds Linguistics and all Knowledge skills to her list of class skills. These replace the additional class skills granted by her mystery."
+        },
+        {
+          "level": 1,
+          "name": "Oracle’s Curse",
+          "description": "A cyclopean seer must choose the haunted, hunger (see above), powerless prophecy (see above), or tongues curse at 1st level."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Spells",
+          "description": "Each time a cyclopean seer would gain a bonus spell from her mystery, she instead selects a divination spell from any class’s spell list. If the spell is not on the cleric spell list, it must be at least 1 level lower than the highest-level oracle spell the cyclopean seer can cast. This ability alters the bonus spells granted by the oracle’s mystery."
+        },
+        {
+          "level": 1,
+          "name": "Assume Fate",
+          "description": "As an immediate action when targeted by an effect that requires a saving throw, you can choose another creature within line of sight that is attempting a save against the same effect. The target takes a penalty on its saving throw equal to 1d4 + 1 for every 4 levels you possess. You gain the value of their penalty as a luck bonus on your saving throw. You can use this ability a number of times per day equal to your Charisma bonus. This replaces the revelation gained at 1st level."
+        },
+        {
+          "level": 7,
+          "name": "Brutal Trance",
+          "description": "Once per day as a standard action, you can enter a trance that lasts 1 round per oracle level you possess. While in this trance, you are confused, but each round that you can act normally, you can ask a single question as if using commune. This replaces the revelation gained at 7th level."
+        },
+        {
+          "level": 1,
+          "name": "Revelations",
+          "description": "All cyclopean seers have access to the following revelations, regardless of their chosen mysteries. Doomsaying (Su): As a standard action, you can pronounce doom on a creature within 30 feet. The target takes a penalty equal to your oracle level on either all skill checks, all savings throws, or all attack rolls (your choice) for 1 minute or until he fails one such roll. You can use this ability a number of times per day equal to your Charisma bonus. This is a curse effect (Ultimate Magic 137)."
+        },
+        {
+          "level": 1,
+          "name": "Flash of Insight",
+          "description": "You gain the cyclops racial ability of the same name (Bestiary 52). If you already possess this ability, you gain an additional daily use."
+        },
+        {
+          "level": 5,
+          "name": "Prescience",
+          "description": "You gain a +2 bonus to your Armor Class against attacks of opportunity and a +2 bonus on concentration checks. At 5th level and every 5 levels thereafter, these bonuses increase by 1."
+        },
+        {
+          "level": 20,
+          "name": "Final Revelation",
+          "description": "Upon reaching 20th level, you embody ancient cyclopes’ insight. You can use each of the following once per day as a spell-like ability: discern location, prying eyes, and stone tell. In addition, using flash of insight to select a d20 roll result equal to or lower than your Charisma modifier doesn’t expend that ability. This replaces the final revelation of the oracle’s mystery."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:divine-numerologist",
+      "package": "pathfinder-class:oracle",
+      "name": "Divine Numerologist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Oracle Divine Numerologist",
+      "replaces_features": [
+        "final-revelation",
+        "mystery-bonus-spells",
+        "revelation"
+      ],
+      "removed_features": [
+        "final-revelation",
+        "mystery-bonus-spells",
+        "revelation"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Divine Numerologist",
+          "description": "Source Disciple's Doctrine pg. 17"
+        },
+        {
+          "level": 1,
+          "name": "Recommended Mysteries",
+          "description": "Any."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Spells",
+          "description": "Prying eyes (10th), numerological evocation (12th), greater arcane sight (14th), moment of prescience (16th), foresight (18th)."
+        },
+        {
+          "level": 1,
+          "name": "Revelations",
+          "description": "A divine numerologist must take the following revelations at the listed levels."
+        },
+        {
+          "level": 1,
+          "name": "Calculate the Odds",
+          "description": "At 1st level, as a swift action that does not provoke attacks of opportunity, the divine numerologist can quickly tabulate the variables affecting the current situation. This grants the divine numerologist a circumstance bonus equal to her Charisma modifier (minimum +1) to her next d20 roll within 1 round. If the divine numerologist does not use this bonus within 1 round, the use of this ability is wasted. The divine numerologist can use this ability once per day at 1st level, plus one additional time per day at 7th and 15th levels."
+        },
+        {
+          "level": 7,
+          "name": "Program the Divine Algorithm",
+          "description": "At 7th level, the divine numerologist’s mastery of the divine mathematics allows her to set specific parameters in the divine equation to adjust the outcome of an event right as it is about to occur. As an immediate action that does not provoke attacks of opportunity, the divine numerologist can take the average of a single roll of one or more dice, averaging each die separately (for example, the average of a d20 roll is 10, the average of 3d6 is 9, and so on). When using this ability, the divine numerologist can add any modifiers to the roll as normal."
+        },
+        {
+          "level": 20,
+          "name": "Final Revelation",
+          "description": "At 20th level, a divine numerologist understands the math behind the entirety of existence well enough to significantly tweak her own personal fate. The divine numerologist ceases aging. She no longer suffers age-related penalties to ability scores and cannot be magically aged. Additionally, once per day when the divine numerologist or another allied creature within 30 feet of her threatens a critical hit, the critical hit is automatically confirmed."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:dual-cursed-oracle",
+      "package": "pathfinder-class:oracle",
+      "name": "Dual-Cursed Oracle",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Oracle Dual-Cursed Oracle",
+      "replaces_features": [
+        "mystery-bonus-spells",
+        "mystery-class-skills",
+        "oracles-curse"
+      ],
+      "removed_features": [
+        "mystery-bonus-spells",
+        "mystery-class-skills",
+        "oracles-curse"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Dual-Cursed Oracle",
+          "description": "Source Ultimate Magic pg. 58"
+        },
+        {
+          "level": 1,
+          "name": "Recommended Mysteries",
+          "description": "Any."
+        },
+        {
+          "level": 1,
+          "name": "Oracle’s Curse",
+          "description": "A dual-cursed oracle must choose two curses at 1st level. One of these curses (oracle’s choice) never changes its abilities as the oracle gains levels; for example, an oracle with clouded vision never gains darkvision 60 feet, blindsense, or blindsight. The other curse comes with its normal benefits."
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A dual-cursed oracle gains no additional class skills from her mystery."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Spells",
+          "description": "ill omen (2nd), oracle’s burden (4th), bestow curse (6th). These bonus spells replace the oracle’s mystery bonus spells at these levels."
+        },
+        {
+          "level": 5,
+          "name": "Revelations",
+          "description": "A dual-cursed oracle gains a new revelation at 5th level and 13th level. These are in addition to the normal revelations she receives at 3rd level, 7th level, and so on. In addition, the cursed oracle may select the following revelations in place of a mystery revelation."
+        },
+        {
+          "level": 1,
+          "name": "Misfortune",
+          "description": "At 1st level, as an immediate action, you can force a creature within 30 feet to reroll any one d20 roll that it has just made before the results of the roll are revealed. The creature must take the result of the reroll, even if it’s worse than the original roll. Once a creature has suffered from your misfortune, it cannot be the target of this revelation again for 1 day."
+        },
+        {
+          "level": 5,
+          "name": "Fortune",
+          "description": "At 5th level, as an immediate action, you can reroll any one d20 roll that you have just made before the results of the roll are revealed. You must take the result of the reroll, even if it’s worse than the original roll. You can use this ability once per day at 5th level, and one additional time per day for every six oracle levels beyond 5th."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:elementalist-oracle",
+      "package": "pathfinder-class:oracle",
+      "name": "Elementalist Oracle",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Oracle Elementalist Oracle",
+      "replaces_features": [
+        "final-revelation",
+        "mystery-bonus-spells",
+        "revelation"
+      ],
+      "removed_features": [
+        "final-revelation",
+        "mystery-bonus-spells",
+        "revelation"
+      ],
+      "removed_feature_clauses": [
+        "final revelation"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Elementalist Oracle",
+          "description": "Source Ultimate Wilderness pg. 68, People of the Sands pg. 15"
+        },
+        {
+          "level": 1,
+          "name": "Recommended Mysteries",
+          "description": "Flame, stone, waves, wind."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Spells",
+          "description": "Elemental touch (4th), protection from energy (6th), elemental body I (8th), summon monster V (elementals only; 10th), elemental body III (12th), elemental swarm (18th). These bonus spells replace the oracle’s mystery bonus spells at these levels."
+        },
+        {
+          "level": 1,
+          "name": "Revelations",
+          "description": "An elementalist oracle must take the following revelations at the listed levels. Elemental Linguist (Su): At 1st level, you gain a bonus language of your choice from the following list: Aquan, Auran, Ignan, or Terran. At 5th, 10th, and 15th levels, you gain another language chosen from this list."
+        },
+        {
+          "level": 11,
+          "name": "Elemental Form",
+          "description": "At 11th level, you gain the air, earth, fire, or water subtype and an associated ability:"
+        },
+        {
+          "level": 1,
+          "name": "Air",
+          "description": "Fly speed of 30 feet with perfect maneuverability."
+        },
+        {
+          "level": 1,
+          "name": "Earth",
+          "description": "Tremorsense with a range of 30 feet."
+        },
+        {
+          "level": 1,
+          "name": "Fire",
+          "description": "Immunity to fire and vulnerability to cold."
+        },
+        {
+          "level": 1,
+          "name": "Water",
+          "description": "Swim speed of 30 feet and the ability to breathe underwater."
+        },
+        {
+          "level": 20,
+          "name": "Elemental Revelation",
+          "description": "At 20th level, you fully harness the power of the elements. You can apply the Elemental Spell metamagic feat to spells you cast without increasing the level or casting time. You can choose acid, cold, electricity, or fire each time you use this ability. Whenever you score a critical hit with an attack that deals energy damage, you ignore the target’s energy resistance (if any). If you score such a critical hit against a creature that has immunity to the energy type you are attacking with, the creature takes half damage from the attack.\n\nThis replaces final revelation."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:enlightened-philosopher",
+      "package": "pathfinder-class:oracle",
+      "name": "Enlightened Philosopher",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Oracle Enlightened Philosopher",
+      "replaces_features": [
+        "final-revelation",
+        "mystery-bonus-spells",
+        "mystery-class-skills",
+        "revelation"
+      ],
+      "removed_features": [
+        "final-revelation",
+        "mystery-bonus-spells",
+        "mystery-class-skills",
+        "revelation"
+      ],
+      "removed_feature_clauses": [
+        "additional class skills from her mystery",
+        "final revelation of the oracle’s mystery"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Enlightened Philosopher",
+          "description": "Source Ultimate Magic pg. 58"
+        },
+        {
+          "level": 1,
+          "name": "Alignment",
+          "description": "Any lawful."
+        },
+        {
+          "level": 1,
+          "name": "Recommended Mysteries",
+          "description": "ancestor, fire, heavens, lore, metal, nature, stone, time, waves, wood."
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "An enlightened philosopher adds Linguistics and all Knowledge skills to her list of class skills. These replace the additional class skills from her mystery."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Spells",
+          "description": "owl’s wisdom (4th), water walk (6th), discern lies (8th), true seeing (10th), wind walk (12th), ethereal jaunt (14th), moment of prescience (16th), astral projection (18th). These bonus spells replace the oracle’s mystery bonus spells at these levels."
+        },
+        {
+          "level": 7,
+          "name": "Revelations",
+          "description": "An enlightened philosopher must take the following revelation at 7th level."
+        },
+        {
+          "level": 1,
+          "name": "Mental Acuity",
+          "description": "As the lore mystery revelation."
+        },
+        {
+          "level": 1,
+          "name": "Final Revelation",
+          "description": "Upon achieving 20th level, you achieve true enlightenment and become one with the universe. You receive a bonus on all saving throws equal to your Charisma modifier. You become immune to confusion, exhaustion, fatigue, nausea, and sickened effects. You can take 20 on all Knowledge skill checks. Should you die, you are reborn 3 days later as a living example of the summoning of your chosen philosophy (treat as the reincarnate spell). This replaces the final revelation of the oracle’s mystery."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:hermit",
+      "package": "pathfinder-class:oracle",
+      "name": "Hermit",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Oracle Hermit",
+      "replaces_features": [
+        "bonus-spells",
+        "curse",
+        "mystery",
+        "revelation"
+      ],
+      "removed_features": [
+        "bonus-spells",
+        "curse",
+        "mystery",
+        "revelation"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Hermit",
+          "description": "Source Legacy of the First World pg. 22"
+        },
+        {
+          "level": 1,
+          "name": "Mystery",
+          "description": "A hermit must choose a mystery that adds Survival to his list of class skills, such as nature or stone."
+        },
+        {
+          "level": 1,
+          "name": "Oracle’s Curse",
+          "description": "A hermit must choose the reclusive curse (below) at 1st level."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Spells",
+          "description": "Blindness/deafness (4th), crushing despair (8th), wall of force (12th), maze (16th)."
+        },
+        {
+          "level": 1,
+          "name": "Revelations",
+          "description": "A hermit must take the following revelations at the listed levels."
+        },
+        {
+          "level": 5,
+          "name": "Recluse’s Stride",
+          "description": "Your base speed increases by 10 feet. At 5th level, once per round when leaving a square, you can treat the square as though it isn’t threatened by any opponents that you can see. At 10th level, you can teleport a distance equal to your base land speed (as per dimension door) as a move action, provided that there are no other creatures within 10 feet of you when you use this ability and no other creatures within 10 feet of your destination. You can teleport a number of times per day equal to 3 + your Charisma modifier. You must take this revelation at 1st level."
+        },
+        {
+          "level": 1,
+          "name": "Recommended Mysteries",
+          "description": "Heavens, life, nature, stone."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:inerrant-voice",
+      "package": "pathfinder-class:oracle",
+      "name": "Inerrant Voice",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Oracle Inerrant Voice",
+      "replaces_features": [
+        "bonus-spells",
+        "revelation"
+      ],
+      "removed_features": [
+        "bonus-spells",
+        "revelation"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Inerrant Voice",
+          "description": "Source Heroes of the High Court pg. 17"
+        },
+        {
+          "level": 1,
+          "name": "Recommended Mysteries",
+          "description": "AncestorUM, intrigueUI, life, lore."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Spells",
+          "description": "An inerrant voice gains the following bonus spells: shield other (2nd), augury (4th), divination (8th), vision (14th)."
+        },
+        {
+          "level": 3,
+          "name": "Revelations",
+          "description": "An inerrant voice must take the following revelation at 3rd level."
+        },
+        {
+          "level": 11,
+          "name": "Vigilant Protector",
+          "description": "Each day when you recover your spells, you can select a specific person you know other than yourself as your ward. When your ward becomes the target of an attack or spell and you are aware of the attack, you can cast an abjuration spell you know on the ally as an immediate action. You must expend the appropriate spell slot and be able to target the ally as normal for the spell. At 11th level, as an immediate action when you know your ward is targeted, you can transpose yourself with your ward, teleporting into the original target’s square (and becoming the new target of the attack or spell) while your ally is teleported into yours; this is a teleportation effect that doesn’t provoke attacks of opportunity. You can use this revelation once per day, plus an additional time at 7th level and every 4 oracle levels thereafter."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:keleshite-prophet",
+      "package": "pathfinder-class:oracle",
+      "name": "Keleshite Prophet",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Oracle Keleshite Prophet",
+      "replaces_features": [
+        "bonus-spells",
+        "mystery-skills",
+        "revelation"
+      ],
+      "removed_features": [
+        "bonus-spells",
+        "mystery-skills",
+        "revelation"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Keleshite Prophet",
+          "description": "Source Inner Sea Intrigue pg. 42"
+        },
+        {
+          "level": 1,
+          "name": "Recommended Mysteries",
+          "description": "Any."
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A Keleshite prophet adds Perception, Perform (dance), and all Knowledge skills to her list of class skills."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Spells",
+          "description": "A Keleshite prophet gains the following bonus spells: clairaudience/clairvoyance (6th), prying eyes (10th), true seeing (12th), prediction of failureUM (16th), foresight (18th)."
+        },
+        {
+          "level": 1,
+          "name": "Revelations",
+          "description": "A Keleshite prophet must take the following revelation at 1st level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:ocean-s-echo",
+      "package": "pathfinder-class:oracle",
+      "name": "Ocean's Echo",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Oracle Ocean's Echo",
+      "replaces_features": [
+        "bonus-spells",
+        "mystery-bonus-skills",
+        "revelation"
+      ],
+      "removed_features": [
+        "bonus-spells",
+        "mystery-bonus-skills",
+        "revelation"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Ocean's Echo",
+          "description": "Source Blood of the Sea pg. 12"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "An ocean’s echo adds Bluff, Intimidate, Knowledge (nature), and Perform to her list of class skills."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Spells",
+          "description": "Sound burst (4th), shout (8th), song of discord (10th), greater shout (12th), and pied pipingAPG (14th). These bonus spells replace the oracle’s mystery bonus spells at these levels."
+        },
+        {
+          "level": 1,
+          "name": "Inspiring Song",
+          "description": "The voice of an ocean’s echo provides inspiration to allies. This ability is identical to bardic performance (using Perform [sing] only), allowing her to inspire courage at 1st level, inspire competence at 3rd level, and inspire heroics at 15th level, as a bard of the ocean’s echo’s level. It is usable a total number of rounds per day equal to her level + her Charisma modifier (minimum 1)."
+        },
+        {
+          "level": 1,
+          "name": "Recommended Mysteries",
+          "description": "AncestorUM, heavens, life, lore, nature, timeUM, waves, wind."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:pei-zin-practitioner",
+      "package": "pathfinder-class:oracle",
+      "name": "Pei Zin Practitioner",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Oracle Pei Zin Practitioner",
+      "replaces_features": [
+        "mystery-class-skills",
+        "revelation"
+      ],
+      "removed_features": [
+        "mystery-class-skills",
+        "revelation"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Pei Zin Practitioner",
+          "description": "Source Healer's Handbook pg. 20"
+        },
+        {
+          "level": 1,
+          "name": "Master Herbalist",
+          "description": "A Pei Zin practitioner has mastered countless alchemical techniques that supplement her divine powers and greatly aid her when she heals the sick and wounded. She gains a competence bonus on Profession (herbalist) checks equal to 1/2 her oracle level (minimum 1), and uses her Charisma modifier in place of her Wisdom modifier when attempting Profession (herbalist) checks. Additionally, a Pei Zin practitioner can identify potions as if via detect magic using Profession (herbalist) instead of Spellcraft, and she can attempt such a check after holding a potion for 1 round."
+        },
+        {
+          "level": 1,
+          "name": "Healer’s Way",
+          "description": "A Pei Zin practitioner combines alchemy, acupuncture, and divine magic to heal wounds by touch. She can use this ability a number of times per day equal to 1 + her Charisma modifier. With one use of this ability, she uses positive energy to heal the target of 1d6 hit points for every 2 oracle levels she has. Using this ability is a standard action unless the oracle targets herself, in which case it is a swift action. Using this ability requires only one free hand. This ability counts as a paladin’s lay on hands ability for the purposes of feats, spells, and effects that work with that class feature when it is used for healing purposes. Unlike lay on hands, this ability cannot be used to harm undead."
+        },
+        {
+          "level": 7,
+          "name": "Master Healing Technique",
+          "description": "At 7th level, whenever a Pei Zin practitioner heals a living creature with her healer’s way ability, as a free action she can attempt a Profession (herbalist) check to remove a condition from the target, with each condition having an accompanying Profession (herbalist) DC (see the list below). She cannot take 10 or 20 on this check, nor can she receive aid from any creature except another Pei Zin practitioner (though the practitioner need not be an oracle; see pages 24–25 of Pathfinder Player Companion: Alchemy Manual). Failure by 5 or more causes the target to become sickened for 1 round (if the Pei Zin practitioner is attempting to remove the sickened condition, this extends it by 1 round). Similarly, failure by 10 or more instead causes the target to become nauseated for 1 round or to have its existing nauseated condition extended by 1 round. A creature that cannot be sickened or nauseated cannot have conditions removed by this ability."
+        },
+        {
+          "level": 1,
+          "name": "Minor Conditions (DC 20)",
+          "description": "Fatigued, shaken, and sickened."
+        },
+        {
+          "level": 1,
+          "name": "Major Conditions (DC 25)",
+          "description": "Dazed and staggered."
+        },
+        {
+          "level": 1,
+          "name": "Severe Conditions (DC 30)",
+          "description": "Confused, exhausted, frightened, and nauseated."
+        },
+        {
+          "level": 1,
+          "name": "Dire Conditions (DC 35)",
+          "description": "Blinded, deafened, paralyzed, and stunned."
+        },
+        {
+          "level": 1,
+          "name": "Recommended Mysteries",
+          "description": "LifeAPG, natureAPG, succor."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:planar-oracle",
+      "package": "pathfinder-class:oracle",
+      "name": "Planar Oracle",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Oracle Planar Oracle",
+      "replaces_features": [
+        "final-revelation",
+        "mystery-bonus-spells",
+        "revelation"
+      ],
+      "removed_features": [
+        "final-revelation",
+        "mystery-bonus-spells",
+        "revelation"
+      ],
+      "removed_feature_clauses": [
+        "final revelation of the oracle’s mystery"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Planar Oracle",
+          "description": "Source Ultimate Magic pg. 59"
+        },
+        {
+          "level": 1,
+          "name": "Recommended Mysteries",
+          "description": "dark tapestry, flame, heavens, stone, waves, wind."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Spells",
+          "description": "endure elements (2nd), elemental speech (4th), tongues (6th), planar adaptation (8th), plane shift (10th), mass planar adaptation (12th), shadow walk (14th), etherealness (16th), gate (18th). These bonus spells replace the oracle’s mystery bonus spells at these levels."
+        },
+        {
+          "level": 1,
+          "name": "Revelations",
+          "description": "At 1st level, you must choose one Outer Plane with which you have an affinity. This choice cannot be changed. A planar oracle must take the following revelation at 3rd level."
+        },
+        {
+          "level": 3,
+          "name": "Planar Resistance",
+          "description": "At 3rd level, you gain energy resistance 10 against one energy type associated with your chosen plane. At 11th level, your energy resistance increases to 20."
+        },
+        {
+          "level": 20,
+          "name": "Final Revelation",
+          "description": "At 20th level, you become an extraplanar creature. Choose one outer plane, such as Heaven or the Abyss. You gain superficial physical characteristics as appropriate to natives of your chosen outer plane. For example, if your chosen plane is Heaven, you gain angelic features such as a halo and metallic skin. This change does not alter your Hit Dice, hit points, saving throws, skill points, class skills, or proficiencies. Your type changes to “outsider (extraplanar),” except on your associated plane, where your type is “outsider (native).” In addition, you gain immunity to your associated energy type and gain damage reduction 10/magic. Unlike other outsiders, you can still be brought back from the dead as if you were a member of your previous creature type. This replaces the final revelation of the oracle’s mystery."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:possessed-oracle",
+      "package": "pathfinder-class:oracle",
+      "name": "Possessed Oracle",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Oracle Possessed Oracle",
+      "replaces_features": [
+        "mystery-bonus-spells",
+        "oracles-curse",
+        "revelation"
+      ],
+      "removed_features": [
+        "mystery-bonus-spells",
+        "oracles-curse",
+        "revelation"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Possessed Oracle",
+          "description": "Source Ultimate Magic pg. 59"
+        },
+        {
+          "level": 1,
+          "name": "Recommended Mysteries",
+          "description": "Any."
+        },
+        {
+          "level": 1,
+          "name": "Oracle’s Curse",
+          "description": "A possessed oracle must choose the haunted or tongues curse at 1st level."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Spells",
+          "description": "ventriloquism (1st), spider climb (4th), screech (6th), sleepwalk (8th), telekinesis (10th), animate objects (12th), divine vessel (16th). These bonus spells replace the oracle’s normal mystery bonus spells at these levels."
+        },
+        {
+          "level": 1,
+          "name": "Revelations",
+          "description": "A possessed oracle must take the following revelation at 1st level."
+        },
+        {
+          "level": 7,
+          "name": "Two Minds",
+          "description": "You gain a +2 bonus on Will saves against enchantment spells or effects. At 7th level, you may reroll a failed Will save once per day as an immediate action. You must take the second result, even if it is worse."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:psychic-searcher",
+      "package": "pathfinder-class:oracle",
+      "name": "Psychic Searcher",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Oracle Psychic Searcher",
+      "replaces_features": [
+        "bonus-spells",
+        "mystery-spell",
+        "revelation"
+      ],
+      "removed_features": [
+        "bonus-spells",
+        "mystery-spell",
+        "revelation"
+      ],
+      "removed_feature_clauses": [
+        "mystery spell gained at 2nd level",
+        "revelation gained at 3rd level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Psychic Searcher",
+          "description": "Source Advanced Class Guide pg. 106"
+        },
+        {
+          "level": 1,
+          "name": "Bonus Spells",
+          "description": "Augury (4th), locate object (6th), divination (8th), find the path (12th), discern location (16th), foresight (18th). These bonus spells replace the oracle’s normal mystery bonus spells at these levels."
+        },
+        {
+          "level": 2,
+          "name": "Inspiration",
+          "description": "At 2nd level, a psychic searcher gains an inspiration pool, as the investigator class ability. A psychic searcher uses her oracle level as her investigator level to determine the effects of this ability. She gains free uses of inspiration on Diplomacy, Knowledge (arcana, history, local, nobility, planes, religion), and Sense Motive skill checks without spending a use of inspiration, provided she’s trained in that skill. A psychic searcher’s inspiration pool refreshes each day, usually when she refreshes her spells. A psychic searcher’s inspiration pool is based on her Charisma modifier, not her Intelligence modifier. This ability replaces the mystery spell gained at 2nd level."
+        },
+        {
+          "level": 3,
+          "name": "Psychic Talent",
+          "description": "At 3rd level, a psychic searcher’s mastery of her supernatural insight grows, granting her a new investigator talent from the following list: amazing inspiration, eidetic recollection, empathy, inspired alertness, item lore, perceptive tracking (except using Sense Motive instead of Perception or Survival), rogue talent (only for hard to foolAPG), and tenacious inspiration. Whenever a psychic searcher can select a new revelation, she can instead select an investigator or rogue talent from the above list. This ability replaces the revelation gained at 3rd level."
+        },
+        {
+          "level": 1,
+          "name": "Recommended Mysteries",
+          "description": "Ancestor, lore, nature."
+        }
+      ],
+      "detected_systems": [
+        "inspiration",
+        "investigator_talent"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:purifier",
+      "package": "pathfinder-class:oracle",
+      "name": "Purifier",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Oracle Purifier",
+      "replaces_features": [
+        "bonus-spells",
+        "revelation",
+        "spellcasting"
+      ],
+      "removed_features": [
+        "bonus-spells",
+        "revelation",
+        "spellcasting"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Purifier",
+          "description": "Source Advanced Race Guide pg. 86"
+        },
+        {
+          "level": 1,
+          "name": "Recommended Mysteries",
+          "description": "ancestor, battle, heavens, lore."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Spells",
+          "description": "veil of heaven (2nd), confess (4th), cast out (6th), denounce (8th), dispel evil (10th), banishment (12th), holy word (14th), mind blank (16th), freedom (18th)."
+        },
+        {
+          "level": 1,
+          "name": "Diminished Spellcasting",
+          "description": "A purifier can use one fewer spell per day of each level and does not automatically learn cure or inflict spells. Her number of oracle spells known is unchanged."
+        },
+        {
+          "level": 1,
+          "name": "Revelations",
+          "description": "A purifier must take the following revelations at the listed levels."
+        },
+        {
+          "level": 3,
+          "name": "See Sin",
+          "description": "At 3rd level, a purifier gains a bonus equal to 1/2 her oracle level on Sense Motive checks to sense enchantments, which she can make as a full-round action. She also gains a bonus equal to 1/2 her oracle level on Spellcraft checks to identify enchantment school spells and spells with the curse or emotion descriptor (see page 251 of for spells in the and that have the curse or emotion descriptor)."
+        },
+        {
+          "level": 7,
+          "name": "Celestial Armor",
+          "description": "At 7th level, a purifier’s armor takes on a golden or silvery sheen and becomes light as a feather. Her armor weighs half as much as long as she wears it, and she also gains armor training as a fighter 4 levels lower than her oracle level. At 11th level, a purifier gains heavy armor proficiency."
+        },
+        {
+          "level": 11,
+          "name": "Sin Eater",
+          "description": "At 11th level, a purifier can consume a curse, enchantment, or emotion effect by touch as a full-round action. She can do this a number of times per day equal to her Charisma modifier, and must make a Charisma check with a bonus equal to her oracle level against a DC of 11 + the caster level of the effect (or the Hit Dice of the creator for a supernatural effect). If the check succeeds, the effect is negated; however, the purifier is sickened for 1d4 rounds."
+        },
+        {
+          "level": 5,
+          "name": "Sacred Scourge",
+          "description": "At 5th level, a purifier may channel holy power to harm evil outsiders as a cleric of her level using the Alignment Channel feat. She may use this ability a number of times per day equal to 1 + her Charisma modifier."
+        },
+        {
+          "level": 9,
+          "name": "Holy Terror",
+          "description": "At 9th level, a purifier may use her sacred scourge to panic evil outsiders as if using the Turn Undead feat against undead."
+        },
+        {
+          "level": 13,
+          "name": "Celestial Master",
+          "description": "At 13th level, a purifier may use her sacred scourge to compel good outsiders to serve her, as if using the Command Undead feat against undead."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:reincarnated-oracle",
+      "package": "pathfinder-class:oracle",
+      "name": "Reincarnated Oracle",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Oracle Reincarnated Oracle",
+      "replaces_features": [
+        "bonus-spells",
+        "or-revelations",
+        "oracles-curse"
+      ],
+      "removed_features": [
+        "bonus-spells",
+        "or-revelations",
+        "oracles-curse"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Reincarnated Oracle",
+          "description": "Source Advanced Race Guide pg. 199"
+        },
+        {
+          "level": 1,
+          "name": "Recommended Mysteries",
+          "description": "ancestor, lore, time."
+        },
+        {
+          "level": 1,
+          "name": "Oracle’s Curse",
+          "description": "A reincarnated oracle must choose the haunted or tongues curse at 1st level."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Spells",
+          "description": "see alignment (2nd), detect thoughts (4th), contact other plane (10th), moment of prescience (16th), overwhelming presence (18th). These spells replace the oracle’s mystery bonus spells at these levels."
+        },
+        {
+          "level": 1,
+          "name": "Revelations",
+          "description": "A reincarnated oracle must take the following revelations at one of the listed levels."
+        },
+        {
+          "level": 1,
+          "name": "Location Memories",
+          "description": "As a swift action, you may search your past lives for memories of or insight about your current location. This grants you the scent ability, low-light vision, and a +2 insight bonus on Perception and Survival checks for 1 minute. You can use this ability a number of times per day equal to 3 + your Charisma modifier. You must take this revelation at 1st level or 3rd level."
+        },
+        {
+          "level": 1,
+          "name": "Spirit Memories",
+          "description": "Once per day, you call upon the unfulfilled desires and goals of your past lives and project their frustration and despair through your eyes at a target. This is a gaze attack affecting one creature. The target must make a Will save (DC 10 + 1/2 your oracle level + your Charisma modifier) or be sickened and staggered for 1 round. This is a mind-affecting compulsion effect. You can use this ability a number of times per day equal to 3 + your Charisma modifier. You must take this revelation at 1st, 3rd, or 7th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:river-soul",
+      "package": "pathfinder-class:oracle",
+      "name": "River Soul",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Oracle River Soul",
+      "replaces_features": [
+        "class-skills",
+        "final-revelation",
+        "mystery-bonus-spells",
+        "oracle-s-curse",
+        "revelation"
+      ],
+      "removed_features": [
+        "class-skills",
+        "final-revelation",
+        "mystery-bonus-spells",
+        "oracle-s-curse",
+        "revelation"
+      ],
+      "removed_feature_clauses": [
+        "class skills granted by the oracle’s mystery",
+        "alters the oracle’s class skills",
+        "oracle’s curse",
+        "final revelation"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "River Soul",
+          "description": "Source Ultimate Wilderness pg. 68"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A river soul oracle adds Escape Artist, Knowledge (nature), Survival, and Swim to his list of class skills.\n\nThis replaces the class skills granted by the oracle’s mystery and alters the oracle’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Recommended Mysteries",
+          "description": "Life, nature, stone, waves."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Spells",
+          "description": "Hydraulic push (2nd), hydraulic torrent (6th), control water (8th), cone of cold (10th), world wave (18th). These bonus spells replace the oracle’s mystery bonus spells at these levels."
+        },
+        {
+          "level": 1,
+          "name": "River Bound Curse",
+          "description": "You bind your power to one particular river, which is the source of your spells and class abilities. You must carry a small vessel containing water from the river you are bound to at all times. If the vessel is destroyed or travels more than 10 feet away from you, you are unable to cast oracle spells or use your supernatural or spell-like class abilities until you recover the vessel or fill a new one with water from the river to which you are bound. Once per month, you can bond with a different river in a ceremony at that river that takes 12 hours to complete. You lose your bond with the previous river in the process.\n\nThis replaces oracle’s curse."
+        },
+        {
+          "level": 1,
+          "name": "Revelations",
+          "description": "A river soul oracle must take the following revelations at the listed levels."
+        },
+        {
+          "level": 1,
+          "name": "River Flow",
+          "description": "At 1st level, as a free action while you are underwater, you can negate the penalties you take for making bludgeoning, piercing, and slashing melee attacks underwater. You can use this ability a number of rounds per day equal to 1 + your Charisma modifier (minimum 1). The rounds do not have to be used consecutively. River Form (Su): At 11th level, you can become one with a river. Once a day as a standard action, while immersed in a river, you can completely merge with it. Your body and all your gear meld into the water, as per meld into stone, except abilities that control or shape water expel you and deal you 5d6 damage rather than abilities that control or shape stone. You travel along with the river at the rate it is currently moving. You can remain in this form a number of hours equal to 3 + your Charisma modifier (minimum 1). Transforming back to your normal form is a swift action."
+        },
+        {
+          "level": 20,
+          "name": "River Soul Revelation",
+          "description": "At 20th level, you strengthen your ties to the river with which you bonded. While traveling on or immersed in the river, you gain fast healing 10 and immunity to bleed, death attacks, exhaustion, fatigue, nausea effects, negative levels, and sickened effects. Additionally, if you are slain and your body or some part of your body (including your ashes, if applicable) is floated down the river in a specially prepared vessel costing 5,000 gp, you return to life as per resurrection once you reach the mouth of the river, as long as the trip has taken 24 hours or longer.\n\nThis replaces final revelation."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:seeker",
+      "package": "pathfinder-class:oracle",
+      "name": "Seeker",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Oracle Seeker",
+      "replaces_features": [
+        "mystery-class-skills",
+        "revelation"
+      ],
+      "removed_features": [
+        "mystery-class-skills",
+        "revelation"
+      ],
+      "removed_feature_clauses": [
+        "all of the bonus class skills he would otherwise normally gain from his mystery",
+        "his bonus Eschew Materials feat",
+        "revelation gained at 3rd level",
+        "bloodline power gained at 3rd level",
+        "revelation gained at 15th level",
+        "bloodline power gained at 15th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Seeker",
+          "description": "Source Pathfinder Society Field Guide pg. 29"
+        },
+        {
+          "level": 1,
+          "name": "Tinkering",
+          "description": "Seekers often look to ancient devices, old tomes, and strange magical items in order to learn more about their oracle mysteries or sorcerous bloodlines. As a result of this curiosity and thanks to an innate knack at deciphering the strange and weird, a seeker gains Disable Device as a class skill. In addition, at 1st level, a seeker adds half his oracle or sorcerer level on Perception checks made to locate traps and on all Disable Device skill checks (minimum +1). A seeker can use Disable Device to disarm magical traps. If the seeker also possesses levels in rogue or another class that provides the trapfinding ability, those levels stack with his oracle or sorcerer levels for determining his overall bonus on these skill checks. For an oracle, this ability replaces all of the bonus class skills he would otherwise normally gain from his mystery. For a sorcerer, this ability replaces his bonus Eschew Materials feat."
+        },
+        {
+          "level": 3,
+          "name": "Seeker Lore",
+          "description": "By 3rd level, a seeker has already learned much about his mystery or bloodline, and is more comfortable using the bonus spells gained by that mystery or bloodline. He gains a +4 bonus on all concentration checks, on caster level checks made to overcome spell resistance, and on all Knowledge (arcana) and Spellcraft checks made on topics associated with his bonus spells. For an oracle, this ability replaces the revelation gained at 3rd level. For a sorcerer, this ability replaces the bloodline power gained at 3rd level."
+        },
+        {
+          "level": 15,
+          "name": "Seeker Magic",
+          "description": "At 15th level, a seeker becomes skilled at modifying his mystery or bloodline spells with metamagic. When a seeker applies a metamagic feat to any bonus spells granted by his mystery or his bloodline, he reduces the metamagic feat’s spell level adjustment by 1. Thus, applying a Metamagic feat like Still Spell to a spell does not change its effective spell level at all, while applying Quicken Spell only increases the spell’s effective spell level by 3 instead of by 4. This reduction to the spell level adjustment for Metamagic feats does not stack with similar reductions from other abilities. For an oracle, this ability replaces the revelation gained at 15th level. For a sorcerer, this ability replaces the bloodline power gained at 15th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:seer",
+      "package": "pathfinder-class:oracle",
+      "name": "Seer",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Oracle Seer",
+      "replaces_features": [
+        "mystery-bonus-spells",
+        "revelation"
+      ],
+      "removed_features": [
+        "mystery-bonus-spells",
+        "revelation"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Seer",
+          "description": "Source Ultimate Magic pg. 59"
+        },
+        {
+          "level": 1,
+          "name": "Recommended Mysteries",
+          "description": "lore, nature, time."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Spells",
+          "description": "detect thoughts (4th), clairaudience/clairvoyance (6th), scrying (8th), true seeing (10th), legend lore (12th), greater scrying (14th), vision (16th), foresight (18th). These bonus spells replace the oracle’s mystery bonus spells at these levels."
+        },
+        {
+          "level": 1,
+          "name": "Revelations",
+          "description": "A seer must take the following revelations at the listed levels."
+        },
+        {
+          "level": 1,
+          "name": "Natural Divination",
+          "description": "As the nature mystery revelation. You must take this revelation at 1st level."
+        },
+        {
+          "level": 3,
+          "name": "Gift of Prophecy",
+          "description": "Once per day, you can enter a trance to gain a glimpse of the future. This trance lasts for 1 minute, which must be uninterrupted and during which you can take no other actions. At 3rd level, you gain the benefits of an augury spell with 90% effectiveness. At 5th level, you gain the benefits of a divination spell with 90% effectiveness. At 9th level, the knowledge you gain is equivalent to a commune spell. None of these spell effects require material components. You must take this revelation at 3rd level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:shigenjo",
+      "package": "pathfinder-class:oracle",
+      "name": "Shigenjo",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Oracle Shigenjo",
+      "replaces_features": [
+        "bonus-spells",
+        "class-skills",
+        "final-revelation",
+        "revelation"
+      ],
+      "removed_features": [
+        "bonus-spells",
+        "class-skills",
+        "final-revelation",
+        "revelation"
+      ],
+      "removed_feature_clauses": [
+        "final revelation of the shigenjo’s mystery"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Shigenjo",
+          "description": "Source Advanced Race Guide pg. 164"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A shigenjo adds Survival to her list of class skills in place of Diplomacy."
+        },
+        {
+          "level": 1,
+          "name": "Alignment",
+          "description": "Any neutral."
+        },
+        {
+          "level": 1,
+          "name": "Recommended Mysteries",
+          "description": "ancestor, battle, fire, heavens, lore, metal, nature, stone, time, waves, wood."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Spells",
+          "description": "true strike (2nd), alter self (4th), divine power (8th), magic jar (12th), ki shout (14th, ), moment of prescience (16th). These bonus spells replace the shigenjo’s mystery bonus spells at these levels."
+        },
+        {
+          "level": 7,
+          "name": "Ki Pool",
+          "description": "At 7th level, a shigenjo gains a pool of ki points, supernatural energy she can use to accomplish amazing feats. The number of points in the shigenjo’s ki pool is equal to 1/3 her oracle level + her Charisma modifier. The ki pool is replenished each morning after 8 hours of rest or meditation; these hours do not need to be consecutive. If the shigenjo possesses levels in another class that grants points to a ki pool, ki points gained from the shigenjo class stack with those gained from the other class to determine the total number of ki points in the combined pool, but only one ability score modifier is added to the total. The choice of which score to use is made when the second class ability is gained, and once made, the choice is permanent. The shigenjo can use ki points from this pool to power the abilities of every class she possesses that grants a ki pool."
+        },
+        {
+          "level": 1,
+          "name": "Ki Magic",
+          "description": "Add +1 to the DC of the next spell she casts on her turn."
+        },
+        {
+          "level": 1,
+          "name": "Ki Curse",
+          "description": "Treat her oracle level as 5 higher for the purpose of determining the effects of her curse for the next round."
+        },
+        {
+          "level": 1,
+          "name": "Ki Insight",
+          "description": "Gain a +4 insight bonus on Spellcraft checks for 1 round."
+        },
+        {
+          "level": 15,
+          "name": "Quivering Palm",
+          "description": "At 15th level, a shigenjo may learn quivering palm as the monk ability of the same name in place of a revelation. She treats her oracle level as her monk level for this ability, and the DC is based on her Charisma bonus instead of her Wisdom bonus."
+        },
+        {
+          "level": 20,
+          "name": "Final Revelation",
+          "description": "Upon reaching 20th level, you achieve true enlightenment and becomes one with the celestial spirits. You gain the ability to speak with any creature that uses a language. For a number of days equal to your Wisdom score, you can ignore the negative effects of extreme weather, starvation, thirst, and exhaustion. If you die, your powerful connection to the celestial realm allows you to be reborn 3 days later (as reincarnate). This replaces the final revelation of the shigenjo’s mystery."
+        }
+      ],
+      "detected_systems": [
+        "ki_pool"
+      ]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:oracle:sphere-oracle",
+      "package": "pathfinder-class:oracle",
+      "name": "Sphere Oracle",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/sphere-oracle",
+      "replaces_features": [
+        "mystery-spells",
+        "spellcasting"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "spells class feature",
+        "mystery spells"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The sphere oracle may combine spheres and talents to create magical effects. The sphere oracle is considered a High-Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the spells class feature."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "The sphere oracle gains a small reservoir of energy she can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to her level + her casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Magic Talents",
+          "description": "A sphere oracle gains 1 magic talent every level."
+        },
+        {
+          "level": 2,
+          "name": "Oracle’s Strength",
+          "description": "A sphere oracle gains +1 spell point at 2nd level and every 2 levels thereafter.\n\nThis replaces mystery spells."
+        },
+        {
+          "level": 1,
+          "name": "Oracle’s Curse",
+          "description": "If your curse provides you with spells known (for example, Haunted), you instead gain a bonus spell point at the levels you would normally gain those spells."
+        },
+        {
+          "level": 1,
+          "name": "Oracle Revelations",
+          "description": "The following revelations may be taken by an Oracle of any mystery."
+        },
+        {
+          "level": 8,
+          "name": "Chance Feat [EO3]",
+          "description": "You gain a single chance feat that you qualify for. At 8th level, and again at 16th level, you gain an additional chance feat that you qualify for."
+        },
+        {
+          "level": 8,
+          "name": "Mystery Arcana [EO3]",
+          "description": "Choose one magic sphere. You gain one magic talent as a bonus talent from that sphere. At 8th level, and again at 16th level, you can choose to either gain an additional magic talent in the chosen sphere or a feat which has the chosen sphere as a prerequisite."
+        },
+        {
+          "level": 1,
+          "name": "Spheres of Power",
+          "description": "Expanded Options"
+        },
+        {
+          "level": 1,
+          "name": "Recommended Casting Tradition",
+          "description": "The classic feel of the oracle can be recreated through taking the Verbal Casting drawback."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:spirit-guide",
+      "package": "pathfinder-class:oracle",
+      "name": "Spirit Guide",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Oracle Spirit Guide",
+      "replaces_features": [
+        "class-skills",
+        "revelations"
+      ],
+      "removed_features": [
+        "class-skills",
+        "revelations"
+      ],
+      "removed_feature_clauses": [
+        "bonus class skills gained from the oracle’s mystery"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Spirit Guide",
+          "description": "Source Advanced Class Guide pg. 106"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A spirit guide gains all Knowledge skills as class skills. This replaces the bonus class skills gained from the oracle’s mystery."
+        },
+        {
+          "level": 3,
+          "name": "Bonded Spirit",
+          "description": "At 3rd level, a spirit guide can form a temporary bond with a spirit, as the shaman’s wandering spirit class feature (see page 37). She must make this selection each day when she refreshes her spells. A spirit guide cannot bond with a spirit that is incompatible with her alignment, ethos, or mystery (GM’s discretion)."
+        },
+        {
+          "level": 1,
+          "name": "Recommended Mysteries",
+          "description": "Ancestor, heavens, lore."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:stargazer",
+      "package": "pathfinder-class:oracle",
+      "name": "Stargazer",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Oracle Stargazer",
+      "replaces_features": [
+        "mystery-bonus-spells",
+        "revelation"
+      ],
+      "removed_features": [
+        "mystery-bonus-spells",
+        "revelation"
+      ],
+      "removed_feature_clauses": [
+        "additional class skills from her mystery"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Stargazer",
+          "description": "Source Ultimate Magic pg. 59"
+        },
+        {
+          "level": 1,
+          "name": "Recommended Mysteries",
+          "description": "dark tapestry, heavens, lore, nature, time."
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A stargazer adds Knowledge (nature), Perception, and Survival to her list of class skills. These replace the additional class skills from her mystery."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Spells",
+          "description": "faerie fire (2nd), glitterdust (4th), guiding star (6th), wandering star motes (8th), meteor swarm (18th). These bonus spells replace the oracle’s mystery bonus spells at these levels."
+        },
+        {
+          "level": 1,
+          "name": "Revelations",
+          "description": "A stargazer must take the following revelations at the listed levels."
+        },
+        {
+          "level": 1,
+          "name": "Guiding Star",
+          "description": "As the heavens mystery revelation. You must take this revelation at 1st level."
+        },
+        {
+          "level": 7,
+          "name": "Star Chart",
+          "description": "As the heavens mystery revelation. You must take this revelation at 7th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:tree-soul",
+      "package": "pathfinder-class:oracle",
+      "name": "Tree Soul",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Oracle Tree Soul",
+      "replaces_features": [
+        "armor-proficiency",
+        "class-skills",
+        "final-revelation",
+        "mystery-bonus-spells",
+        "oracle-s-curse",
+        "revelation",
+        "weapon"
+      ],
+      "removed_features": [
+        "armor-proficiency",
+        "class-skills",
+        "final-revelation",
+        "mystery-bonus-spells",
+        "oracle-s-curse",
+        "revelation",
+        "weapon"
+      ],
+      "removed_feature_clauses": [
+        "class skills granted by the oracle’s mystery",
+        "class skills",
+        "oracle’s curse",
+        "final revelation"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Tree Soul",
+          "description": "Source Ultimate Wilderness pg. 69"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A tree soul adds Acrobatics, Climb, Knowledge (nature), and Survival to her list of class skills.\n\nThis replaces the class skills granted by the oracle’s mystery and class skills."
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "Tree souls are proficient with light and medium armor but are prohibited from wearing metal armor. A tree soul can also wear wooden armor that has been altered by the ironwood spell so that it functions as though it were steel. Tree souls are proficient with shields (except tower shields) but can use only those crafted from wood."
+        },
+        {
+          "level": 1,
+          "name": "Recommended Mysteries",
+          "description": "Ancestor, lore, nature, wood."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Spells",
+          "description": "Warp wood (2nd), tree stride (10th), ironwood (12th), changestaff (14th), repel metal or stone (16th), greater siege of trees (18th). These bonus spells replace the oracle’s mystery bonus spells at these levels."
+        },
+        {
+          "level": 1,
+          "name": "Tree Bound Curse",
+          "description": "You bind your power to a specific tree. Any damage to the tree deals the same amount of damage to you, overcoming DR, energy resistance, and immunities. Damage you take in this way cannot be healed by normal or magical means until your bonded tree is healed or destroyed. The damage can reduce you to 0 hit points but not below. If the tree is destroyed, you are considered to be staggered and are unable to cast oracle spells or use supernatural or spell-like class abilities until you bond with a new tree in a ceremony that takes 12 hours to complete. Once per month, you can create a new bond with a different tree in a ceremony at that tree that takes 12 hours to complete. You lose your bond with your previous tree in the process.\n\nThis replaces oracle’s curse."
+        },
+        {
+          "level": 1,
+          "name": "Revelations",
+          "description": "A tree soul oracle must take the following revelations at the listed levels."
+        },
+        {
+          "level": 1,
+          "name": "Transform Wood",
+          "description": "At 1st level, as a standard action you can temporarily transform a number of 5-foot cubes of wood each day equal to 1 + your Charisma modifier. The wood takes on the quality of darkwood for 1 minute per oracle level. At 11th level, you can have it instead take on the quality of living steel for the same duration."
+        },
+        {
+          "level": 11,
+          "name": "Living Steel Dolls",
+          "description": "At 11th level, you add animate objects to your list of spells known. When you cast this spell on wooden objects, the objects’ wooden parts immediately transform into living steel. If the objects are destroyed or the duration ends, the wooden parts revert back to their original material."
+        },
+        {
+          "level": 20,
+          "name": "Tree Soul Revelation",
+          "description": "At 20th level, your skin takes on the appearance and properties of a tree trunk. This bark-like skin grants you a +4 natural armor bonus to your Armor Class and DR 10/slashing. You also regrow any severed limbs except your head within 24 hours as per regenerate. Finally, once a day as a standard action, you can assume the form of a treant, as per plant shape III, for a number of minutes equal to 3 + your Charisma modifier (minimum 1).\n\nThis replaces final revelation."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:oracle:warsighted",
+      "package": "pathfinder-class:oracle",
+      "name": "Warsighted",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Oracle Warsighted",
+      "replaces_features": [
+        "revelations"
+      ],
+      "removed_features": [
+        "revelations"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Warsighted",
+          "description": "Source Advanced Class Guide pg. 106"
+        },
+        {
+          "level": 1,
+          "name": "Martial Flexibility",
+          "description": "At 1st level, a warsighted can use a move action to gain the benefit of a combat feat she doesn’t possess. This effect lasts for 1 minute. The warsighted must otherwise meet all the feat’s prerequisites. She can use this ability a number of times per day equal to 3 + 1/2 her oracle level."
+        },
+        {
+          "level": 1,
+          "name": "Recommended Mysteries",
+          "description": "Battle, bones, nature, metal."
+        }
+      ],
+      "detected_systems": [
+        "martial_flexibility"
+      ]
+    }
+  ]
+}

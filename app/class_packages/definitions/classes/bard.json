@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "key": "bard",
+  "class_key": "pathfinder-class:bard",
+  "class_name": "Bard",
+  "governing_ability": "charisma",
+  "optional_blocks": ["inquisitor_features", "spells_known", "spell_level_overview"],
+  "external_systems": ["traditional_spontaneous_casting", "versatile_performance"],
+  "resource_modules": [
+    {
+      "key": "bard",
+      "title": "Bardic Performance",
+      "governing_ability": "charisma",
+      "resources": [
+        {
+          "key": "bardic_performance",
+          "name": "Bardic Performance",
+          "feature_tokens": ["bardic-performance"],
+          "progression": "bardic_performance_rounds",
+          "description": "Rounds per day equal 4 + Charisma modifier at 1st level, plus 2 per additional Bard level. Activate one retained performance at a time and spend one round for each round maintained.",
+          "can_activate": true,
+          "activate_on_spend": false,
+          "use_requires_active": true,
+          "choice_options": ["Countersong", "Distraction", "Fascinate", "Inspire Courage", "Inspire Competence", "Suggestion", "Dirge of Doom", "Inspire Greatness", "Soothing Performance", "Frightening Tune", "Inspire Heroics", "Mass Suggestion", "Deadly Performance"]
+        },
+        {
+          "key": "lore_master",
+          "name": "Lore Master",
+          "feature_tokens": ["lore-master"],
+          "progression": "bard_lore_master_uses",
+          "description": "Uses per day of Lore Master. Each use allows taking 20 on one Knowledge check; the Bard may always take 10 on Knowledge checks."
+        },
+        {
+          "key": "well_versed",
+          "name": "Well-Versed Applies",
+          "feature_tokens": ["well-versed"],
+          "progression": "one",
+          "description": "Toggle for a saving throw against bardic performance, sonic effects, or language-dependent effects. The +4 bonus is applied to all saves while enabled; turn it off after the qualifying roll.",
+          "can_activate": true,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": false
+        }
+      ]
+    }
+  ],
+  "passive_effects": [
+    {
+      "key": "bardic_knowledge",
+      "feature_tokens": ["bardic-knowledge"],
+      "target_family": "knowledge_skills",
+      "progression": "half_level_minimum_one",
+      "bonus_type": "untyped",
+      "source": "Bard: Bardic Knowledge"
+    },
+    {
+      "key": "well_versed",
+      "feature_tokens": ["well-versed"],
+      "targets": ["fortitude", "reflex", "will"],
+      "target_family": "",
+      "progression": "four",
+      "bonus_type": "untyped",
+      "source": "Bard: Well-Versed",
+      "minimum_level": 2,
+      "requires_resource_active": "well_versed"
+    }
+  ],
+  "choice_providers": [
+    {
+      "key": "bard-versatile-performance",
+      "label": "Versatile Performance",
+      "feature_tokens": ["versatile-performance"],
+      "minimum": 1,
+      "maximum": 5,
+      "maximum_levels": [2, 6, 10, 14, 18],
+      "description": "Choose one Perform category at 2nd level and every 4 Bard levels thereafter. Its total bonus can replace the listed associated skill bonuses.",
+      "fixed_options": [
+        {"key": "act", "name": "Act", "category": "Perform", "description": "Use Perform (act) in place of Bluff or Disguise."},
+        {"key": "comedy", "name": "Comedy", "category": "Perform", "description": "Use Perform (comedy) in place of Bluff or Intimidate."},
+        {"key": "dance", "name": "Dance", "category": "Perform", "description": "Use Perform (dance) in place of Acrobatics or Fly."},
+        {"key": "keyboard", "name": "Keyboard Instruments", "category": "Perform", "description": "Use Perform (keyboard instruments) in place of Diplomacy or Intimidate."},
+        {"key": "oratory", "name": "Oratory", "category": "Perform", "description": "Use Perform (oratory) in place of Diplomacy or Sense Motive."},
+        {"key": "percussion", "name": "Percussion Instruments", "category": "Perform", "description": "Use Perform (percussion instruments) in place of Handle Animal or Intimidate."},
+        {"key": "sing", "name": "Sing", "category": "Perform", "description": "Use Perform (sing) in place of Bluff or Sense Motive."},
+        {"key": "string", "name": "String Instruments", "category": "Perform", "description": "Use Perform (string instruments) in place of Bluff or Diplomacy."},
+        {"key": "wind", "name": "Wind Instruments", "category": "Perform", "description": "Use Perform (wind instruments) in place of Diplomacy or Handle Animal."}
+      ]
+    }
+  ],
+  "skill_substitutions": [
+    {"choice_provider": "bard-versatile-performance", "option_key": "act", "source_skill": "perform", "source_specialty": "Act", "targets": ["bluff", "disguise"], "source": "Bard: Versatile Performance (Act)"},
+    {"choice_provider": "bard-versatile-performance", "option_key": "comedy", "source_skill": "perform", "source_specialty": "Comedy", "targets": ["bluff", "intimidate"], "source": "Bard: Versatile Performance (Comedy)"},
+    {"choice_provider": "bard-versatile-performance", "option_key": "dance", "source_skill": "perform", "source_specialty": "Dance", "targets": ["acrobatics", "fly"], "source": "Bard: Versatile Performance (Dance)"},
+    {"choice_provider": "bard-versatile-performance", "option_key": "keyboard", "source_skill": "perform", "source_specialty": "Keyboard Instruments", "targets": ["diplomacy", "intimidate"], "source": "Bard: Versatile Performance (Keyboard Instruments)"},
+    {"choice_provider": "bard-versatile-performance", "option_key": "oratory", "source_skill": "perform", "source_specialty": "Oratory", "targets": ["diplomacy", "sense_motive"], "source": "Bard: Versatile Performance (Oratory)"},
+    {"choice_provider": "bard-versatile-performance", "option_key": "percussion", "source_skill": "perform", "source_specialty": "Percussion Instruments", "targets": ["handle_animal", "intimidate"], "source": "Bard: Versatile Performance (Percussion Instruments)"},
+    {"choice_provider": "bard-versatile-performance", "option_key": "sing", "source_skill": "perform", "source_specialty": "Sing", "targets": ["bluff", "sense_motive"], "source": "Bard: Versatile Performance (Sing)"},
+    {"choice_provider": "bard-versatile-performance", "option_key": "string", "source_skill": "perform", "source_specialty": "String Instruments", "targets": ["bluff", "diplomacy"], "source": "Bard: Versatile Performance (String Instruments)"},
+    {"choice_provider": "bard-versatile-performance", "option_key": "wind", "source_skill": "perform", "source_specialty": "Wind Instruments", "targets": ["diplomacy", "handle_animal"], "source": "Bard: Versatile Performance (Wind Instruments)"}
+  ],
+  "skill_rules": [
+    {"key": "jack-untrained", "feature_tokens": ["jack-of-all-trades"], "minimum_level": 10, "rule": "allow_all_untrained", "source": "Bard: Jack of All Trades"},
+    {"key": "jack-class-skills", "feature_tokens": ["jack-of-all-trades"], "minimum_level": 16, "rule": "all_class_skills", "source": "Bard: Jack of All Trades"},
+    {"key": "jack-take-ten", "feature_tokens": ["jack-of-all-trades"], "minimum_level": 19, "rule": "take_ten_all", "source": "Bard: Jack of All Trades"}
+  ],
+  "notes": "Situational performances remain explicit selections; deterministic self-affecting performance bonuses are resolved by the shared class-feature service."
+}

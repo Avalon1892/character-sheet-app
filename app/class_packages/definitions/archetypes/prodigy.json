@@ -1,0 +1,544 @@
+{
+  "version": 1,
+  "class_key": "prodigy",
+  "entries": [
+    {
+      "key": "spheres-archetype:prodigy:battle-born",
+      "package": "prodigy",
+      "name": "Battle-Born",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/battle-born",
+      "replaces_features": [
+        "adaptation",
+        "base-attack-bonus",
+        "blended-training",
+        "grandmaster-adaptation",
+        "greater-adaptation",
+        "hit-dice",
+        "imbue-sequence",
+        "improved-adaptation",
+        "master-adaptation",
+        "perfect-prodigy",
+        "removes-casting",
+        "share-adaptation",
+        "spell-pool",
+        "variable-skill"
+      ],
+      "removed_features": [
+        "blended-training",
+        "imbue-sequence",
+        "removes-casting",
+        "spell-pool"
+      ],
+      "removed_feature_clauses": [
+        "blended training",
+        "removes casting",
+        "spell pool",
+        "imbue sequence"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Base Attack Bonus",
+          "description": "A battle-born gains base attack bonus equal to a conscript of her class level.\n\nThis alters base attack bonus."
+        },
+        {
+          "level": 1,
+          "name": "Hit Dice",
+          "description": "A battle-born uses d10 for her Hit Die.\n\nThis alters Hit Dice."
+        },
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A battle-born may combine combat spheres and talents to create powerful martial techniques. Battle-born are considered Expert combatants. When they gain their first level in the battle-born archetype, battle-born may choose either Charisma, Intelligence or Wisdom as their practitioner modifier.\n\nThis replaces blended training and removes casting and spell pool. The battle-born does not gain the casting class feature nor a spell point pool. She may not take magic talents with the talents granted by her class levels. She still treats her class levels as casting class levels for determining magic skill bonus for use with her reflect spell ability. Any ability that requires resting to regain spell points functions off any rest that would be sufficient to regain spell points (usually 8 hours), even though none are granted by the class."
+        },
+        {
+          "level": 2,
+          "name": "Battle-leader’s Sequence",
+          "description": "At 2nd level, all allies within close range (25 feet + 5 feet per 2 class levels) gain the benefits of the battle-born’s inspired sequence ability. Allied creatures within close range (25 feet + 5 feet per 2 class levels) that can see or hear the battle-born gain the ability to initiate and add links to the battle-born’s sequence, including the use of her integrated techniques (the battle-born does not have to possess the sphere; though the allied creature does). The battle-born’s sequence may only be increased by 1 link per action type each round (counting full-round actions and standard actions as the same type for this purpose). The battle-born may initiate finishers through her allies. She may spend the requisite action cost to allow an ally currently benefiting from her inspired sequence to perform the finisher as an immediate action. Finishers that grant an ability that is triggered by a subsequent action (such as the executioner finisher applying to the next attack) apply when the target next meets the triggering condition before the end of their next turn. The battle-born can initiate a new sequence before this action has been taken. The battle-born must be capable of acting to initiate a finisher through an ally.\n\nThis replaces imbue sequence."
+        },
+        {
+          "level": 2,
+          "name": "Martial Adaptation",
+          "description": "At 2nd level, the battle born may gain combat talents from spheres she possesses and combat feats for which she qualifies with her adaptation ability. She may not gain magic talents.\n\nThis alters adaptation, improved adaptation, greater adaptation, share adaptation, master adaptation, grandmaster adaptation, and perfect prodigy."
+        },
+        {
+          "level": 11,
+          "name": "Naturally Variable Skill",
+          "description": "At 11th level, a number of times per day equal to her practitioner ability modifier, the battle-born may spend a full-round action to change the skill selected for steady skill. The prodigy does not gain additional uses of her ability to take 15 when switching skills.\n\nThis alters variable skill."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:prodigy:chromamancer",
+      "package": "prodigy",
+      "name": "Chromamancer",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/chromamancer",
+      "replaces_features": [
+        "adaptation",
+        "blended-training",
+        "grandmaster-adaptation",
+        "greater-adaptation",
+        "greater-reflect-spell",
+        "improved-adaptation",
+        "integrated-techniques",
+        "master-adaptation",
+        "perfect-prodigy",
+        "reflect-spell",
+        "share-adaptation"
+      ],
+      "removed_features": [
+        "blended-training",
+        "integrated-techniques"
+      ],
+      "removed_feature_clauses": [
+        "integrated techniques",
+        "blended training"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Chromatic Techniques",
+          "description": "The chromamancer can suffuse herself with the pure essence of color and light, known as a chromatic force. The chromamancer can bond herself to a chromatic force from the list below by using one of the chromatic force’s associated openers. Alternatively, if she uses an opener not associated with a chromatic force, she may choose which chromatic force to bond to when her sequence begins. The chromamancer can only be bonded to a single chromatic force at one time. Once the chromamancer bonds to a chromatic force, she cannot bond to another chromatic force until her current sequence ends.\n\nWhile bonded to a chromatic force, the chromamancer gains an additional number of additional link components she can use as part of her sequence, including an imbue ability which, unlike other imbue abilities, unlocks the (finish) ability of all spheres the chromamancer possesses, not just those associated with the same sphere. If any of these link components require a saving throw, the DC is equal to 10 + 1/2 the chromamancer’s prodigy level + her casting ability modifier.\n\nSome link components are listed as (restricted), a special type of (link) component that can only be activated if the chromamancer has 2 or fewer links in her current sequence. Generally, a (restricted) link applies a penalty or harmful effect to the chromamancer for the duration of her sequence (including while executing the finisher that ends her sequence). The chromamancer can only activate a specific (restricted) link once per sequence.\n\nThe chromamancer gains the following link component she can add to her sequences:\n\nFast Magics (restricted link): The chromamancer may cast a magic sphere effect as a move action. The caster level of a magic sphere effect used this way is 1 + 1/2 the chromamancer’s sequence. If the chromamancer uses this link, she cannot use the same sphere ability until the start of her next turn, and cannot use this link to cast a sphere ability they cast during her turn (such as casting a destructive blast would not allow the chromamancer to use this link to cast a destructive blast, and using this link to cast a destructive blast would prevent casting a destructive blast normally).\n\nThis replaces integrated techniques. A chromamancer can never gain the integrated techniques ability, even from another class.\n\nThe chromamancer can choose to bond to the following\n\nchromatic forces:"
+        },
+        {
+          "level": 1,
+          "name": "Magic Talents",
+          "description": "The chromamancer gains a magic talent every level.\n\nThis replaces blended training. The chromamancer does not gain a martial tradition and cannot achieve martial focus, nor can she take combat talents with talents granted by her prodigy levels.\n\nWiki Note: Any prodigy class feature that requires her to expend her martial focus instead can be used by spending 1 spell point."
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "The chromamancer is proficient with all simple weapons, light armor, and shields (except tower shields)."
+        },
+        {
+          "level": 2,
+          "name": "Mystic Adaptation",
+          "description": "At 2nd level, the chromamancer may gain magic talents from spheres she possesses and metamagic feats for which she qualifies with her adaptation ability. She may not gain combat talents.\n\nThis alters adaptation, improved adaptation, greater adaptation, share adaptation, master adaptation, grandmaster adaptation, and perfect prodigy."
+        },
+        {
+          "level": 16,
+          "name": "Mystic Reflection",
+          "description": "When using the reflect spell ability, the chromamancer spends 2 spell points instead of expending martial focus. At 16th level, if the chromamancer succeeds the MSB check associated with the reflect spell ability, she regains the spell points spent.\n\nThis alters reflect spell and greater reflect spell.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:prodigy:exploitant",
+      "package": "prodigy",
+      "name": "Exploitant",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/exploitant",
+      "replaces_features": [
+        "adaptation",
+        "blended-training",
+        "grandmaster-adaptation",
+        "greater-adaptation",
+        "improved-adaptation",
+        "master-adaptation",
+        "perfected-prodigy",
+        "prodigy-s-normal-class-skills",
+        "sequence",
+        "share-adaptation"
+      ],
+      "removed_features": [
+        "adaptation",
+        "grandmaster-adaptation",
+        "greater-adaptation",
+        "improved-adaptation",
+        "master-adaptation",
+        "perfected-prodigy",
+        "prodigy-s-normal-class-skills",
+        "share-adaptation"
+      ],
+      "removed_feature_clauses": [
+        "prodigy's normal class skills",
+        "adaptation",
+        "improved adaptation",
+        "greater adaptation",
+        "share adaptation",
+        "master adaptation",
+        "grandmaster adaptation",
+        "perfected prodigy"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [
+          "spheres-archetype:prodigy:battle-born"
+        ],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [
+        {
+          "key": "exploitants-insights",
+          "name": "Exploitant’s Insights",
+          "description": "At 2nd level, the exploitant chooses between moldable talents and spontaneous technique",
+          "level": 2,
+          "minimum": 1,
+          "maximum": 1,
+          "options": [
+            {
+              "key": "moldable-talents",
+              "name": "Moldable Talents",
+              "description": "The exploitant gains a magic, combat, or skill talent at 2nd level and every 3 levels thereafter. However, unlike most talents, an exploitant is able to change these particular talents as she desires. Whenever the exploitant rests to regain spell points, she may change any and all of the moldable talents, losing the previous ones and gaining new spheres and new talents in their place. Only moldable talents can be changed in this way; talents gained from normal progression, as part of levels taken in other classes, as part of traditions, or gained from taking the appropriate feat(s) are not eligible to be changed in this fashion.",
+              "class_modifications": {
+                "advancement": {
+                  "talent_bonus_schedule": {
+                    "first_level": 2,
+                    "every_levels": 3,
+                    "count": 1
+                  }
+                }
+              }
+            },
+            {
+              "key": "spontaneous-technique",
+              "name": "Spontaneous Technique",
+              "description": "Once per day, the exploitant can spend 1 hour and choose a number of combat, magic or skill talents she does not possess equal to her operative modifier (minimum 1), plus 1 additional talent per 3 exploitant levels after 4th, making these talents prepared. Once chosen, these talents cannot be changed until she spends another 8 hours to change them. The exploitant must possess the talent’s base sphere and must meet any prerequisites. If a talent offers a choice as part of gaining it, she makes that choice when she prepares the talent.\n\nAs a move action, the exploitant can grant herself a single talent prepared with this ability for 1 minute. The exploitant can use this ability a number of times per day equal to 3 + 1/2 her prodigy level. Whenever the exploitant uses this ability again to select a new talent, the exploitant must replace a talent granted by a previous use.\n\nAt 5th level, the exploitant can have up to two talents active at one time using her spontaneous technique ability. The exploitant can use her spontaneous technique ability as a move action to gain the benefits of two prepared talents, or she may use the ability as a swift action to gain the benefits of one prepared talent.\n\nOne of these talents can meet the prerequisites of the second talent; doing so means that she cannot replace a talent currently fulfilling another’s prerequisite without also replacing the talents that require it.\n\nAt 8th level, the exploitant can spend 1 minute and 1 use of spontaneous technique to change one of the talents she has prepared using spontaneous technique, but cannot choose a [utility] talent when she uses this option. The exploitant may spend 1 use of skill leverage to instead change one prepared talent as a standard action.\n\nAt 10th level, as a standard action the exploitant may spend two uses of her spontaneous technique ability to grant a single combat, magic, or skill talent she has prepared with spontaneous technique to an ally within close range (25 feet + 5 feet per 2 class levels) for 1 minute. The ally must meet the prerequisites for the granted talent, though the exploitant is not required to do so. Any additional uses of this ability on a single ally ends the previous use.\n\nAt 13th level, the exploitant can spend a move action to gain the benefits of three prepared talents, a swift action to gain the benefits of two prepared talents, or a free or immediate action to gain the benefits of a single prepared talent.\n\nAt 17th level, the exploitant may use her spontaneous technique to gain the benefits of three prepared talents as a swift action, or two prepared talents as a free or immediate action.\n\nAt 20th level, the exploitant may gain the benefit of any number of selected talents with her spontaneous technique ability as a swift action. Each individual talent selected counts toward the prodigy’s daily uses of spontaneous technique."
+            }
+          ]
+        }
+      ],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "An exploitant gains a combat, magic, or skill talent (some of which are required to be [utility] talents) at the listed levels using the virtuoso talent progression. Exploitants use their casting ability modifier as their practitioner modifier and operative modifier.\n\nThis alters blended training."
+        },
+        {
+          "level": 1,
+          "name": "Incremental Sequence",
+          "description": "Whenever the exploitant performs a finisher, she may subtract any number of links from her sequence rather than ending the sequence. If she does, the finisher treats the sequence’s length as being the number of subtracted links rather than the number of links in the sequence. Any other effects which would cause a sequence to end function as normal. If a finisher has a minimum number of required links, you must spend at least that many links on that finisher.\n\nThis alters sequence."
+        },
+        {
+          "level": 1,
+          "name": "Trade Tradition",
+          "description": "If this is this character’s first level in any class, the exploitant may select a trade tradition of her choice, and have an adroit trade rank.\n\nThis replaces the prodigy's normal class skills."
+        },
+        {
+          "level": 2,
+          "name": "Exploitant’s Insights",
+          "description": "At 2nd level, the exploitant chooses between moldable talents and spontaneous technique.\n\nThis replaces adaptation, improved adaptation, greater adaptation, share adaptation, master adaptation, and grandmaster adaptation."
+        },
+        {
+          "level": 20,
+          "name": "Perfected Exploitant",
+          "description": "At 20th level, when the exploitant starts a new sequence, it automatically begins with a number of links equal to half her operative ability modifier.\n\nThis replaces perfected prodigy.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nSpheres of Guile by Drop Dead Studios\n\nUsing Spheres of Guile\n\nClasses\n\nAdvisor (DRS)\nAgent\nConduit (DRS)\nCourser\nEnvoy\n\nGenius\nMastermind\nProfessional\n\nSpheres\n\nArtifice\nBluster\nBody Control\nCommunication\nFaction\n\nHerbalism\nInfiltration\nInvestigation\nNavigation\nPerformance\n\nSpellhacking\nStudy\nSubterfuge\nSurvivalism\nVocation\n\nOther Rules\n\nOperative Feats\nOperative Gear\nSkill Rules\nTrade Traditions\nRunning Guile Games\n\nGet Spheres of Guile"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:prodigy:extemporizer",
+      "package": "prodigy",
+      "name": "Extemporizer",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/extemporizer",
+      "replaces_features": [
+        "normal-finishers-prodigy-can-perform"
+      ],
+      "removed_features": [
+        "normal-finishers-a-prodigy-can-perform"
+      ],
+      "removed_feature_clauses": [
+        "normal finishers a prodigy can perform"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Improvised Technique",
+          "description": "An extemporizer knows how to synthesize complex magical and martial techniques on the fly. As a free action during a sequence, the extemporizer may create a technique using any talents and techniques that she knows or that she has gained through class features such as adaptation. The extemporizer does not need to attempt a check to create this technique, but cannot perform it normally. Rather, she may initiate this improvised technique as a finisher for the sequence. The complexity of an improvised technique cannot exceed the length of the sequence. However, for every link by which the length of the sequence exceeds the technique’s complexity, the technique’s complexity is reduced by 1 for the purpose of initiation. An improvised technique cannot be performed as a multi-character technique but does not count against the extemporizer’s maximum number of techniques known. This ability replaces the normal finishers a prodigy can perform. The extemporizer can still perform finishers gained from other class features such as imbue sequence."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:prodigy:gutter-rat",
+      "package": "prodigy",
+      "name": "Gutter Rat",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/gutter-rat",
+      "replaces_features": [
+        "adaptation",
+        "grandmaster-adaptation",
+        "greater-adaptation",
+        "greater-reflect-spell",
+        "improved-adaptation",
+        "master-adaptation",
+        "perfect-prodigy",
+        "reflect-spell",
+        "share-adaptation"
+      ],
+      "removed_features": [
+        "greater-reflect-spell",
+        "reflect-spell"
+      ],
+      "removed_feature_clauses": [
+        "reflect spell",
+        "greater reflect spell"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [
+          "spheres-archetype:prodigy:battle-born"
+        ],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 2,
+          "name": "Roguish Adaptation",
+          "description": "At 2nd level, the gutter rat may select rogue talents but not combat talents with her adaptation ability and all abilities that alter adaptation. She may not use this ability to gain combat feats or talents, even via rogue and ninja tricks. She treats her class level as her rogue level for using and qualifying for these talents, stacking with any rogue levels she possesses. She does not gain the ability to take advanced rogue talents. While possessing a rogue talent granted by this ability, the gutter rat gains 1d6 sneak attack damage, as the rogue class feature, or increases her existing sneak attack damage by 1d6. This damage increases by +1d6 at 7th and 16th levels.\n\nThis alters adaptation, improved adaptation, greater adaptation, share adaptation, master adaptation, grandmaster adaptation, and perfect prodigy."
+        },
+        {
+          "level": 7,
+          "name": "Edge",
+          "description": "At 7th level, the gutter rat gains the skill unlock for the skill currently selected for her steady skill.\n\nThis replaces reflect spell."
+        },
+        {
+          "level": 16,
+          "name": "Greater Edge",
+          "description": "At 16th level, whenever the gutter rat chooses her steady skill, she may gain the skill unlock for an additional skill of her choice.\n\nThis replaces greater reflect spell."
+        },
+        {
+          "level": 1,
+          "name": "Special",
+          "description": "This archetype may be combined with the battle-born archetype. When doing so, the adaptation ability allows the selection of combat talents and rogue talents."
+        }
+      ],
+      "detected_systems": [
+        "sneak_attack",
+        "rogue_talent"
+      ]
+    },
+    {
+      "key": "spheres-archetype:prodigy:mimic",
+      "package": "prodigy",
+      "name": "Mimic",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/mimic",
+      "replaces_features": [
+        "adaptation",
+        "grandmaster-adaptation",
+        "greater-adaptation",
+        "improved-adaptation",
+        "master-adaptation",
+        "perfected-prodigy",
+        "sequence",
+        "share-adaptation"
+      ],
+      "removed_features": [
+        "adaptation",
+        "grandmaster-adaptation",
+        "greater-adaptation",
+        "improved-adaptation",
+        "master-adaptation",
+        "share-adaptation"
+      ],
+      "removed_feature_clauses": [
+        "adaptation",
+        "improved adaptation",
+        "greater adaptation",
+        "share adaptation",
+        "master adaptation",
+        "grandmaster adaptation"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Mimic",
+          "description": "The mimic successfully copies a talent or ability with mimicry.\n\nThis alters sequence."
+        },
+        {
+          "level": 2,
+          "name": "Mimicry",
+          "description": "At 2nd level, a mimic can intuitively understand abilities that she sees in practice. When she observes a martial ability or successfully identifies a sphere effect, as an immediate action she can gain knowledge of 1 + 1 per 3 class levels talents used in that effect. This knowledge is retained for 1 minute per class level. The mimic may retain knowledge of 2 talents, +1 talent per three class levels thereafter. If this ability would grant talents in excess of this limit, she must choose which previously gained talents to lose until their total mimicked talents is within the limit. A mimic cannot choose to lose a talent that is a prerequisite for another talent gained from this ability without losing the other talent as well. The mimic may copy a cantrip or spell (or spell-like ability that mimics a spell) in place of a talent, gaining the ability to cast that spell or cantrip while it is retained. To cast such a spell, she must pay spell points based on the level of the slot to do so: level 1-2: 1 spell point, 3-5: 2 spell points, 6-8: 3 spell points, 9: 4 spell points. Cantrips and orisons may be used without spell point cost. She may not mimic a spell with a level greater than half her class level. Mimicked spells are cast according to the mimic’s casting tradition, though any material components or focuses with a cost of greater than 10 gp must still be provided.\n\nThis replaces adaptation."
+        },
+        {
+          "level": 5,
+          "name": "Steal Identity",
+          "description": "At 5th level, the mimic’s skills allow her to imitate individual creatures with which she is familiar. She may study a creature within 30 feet as a standard action; each creature so studied takes the place of one of her mimicry talents. As a swift action, she may assume the likeness of such a creature, granting a +10 circumstance bonus on Disguise checks to appear as that creature and ignoring any penalties for being the wrong age, gender, or species, though not for being the wrong size. This bonus does not stack with the bonus to Disguise checks from similar effects (the disguise self spell, the Illusionary Disguise talent of the Illusion sphere, the Realistic Likeness feat, etc.). Her control is detailed and specific enough to allow her to merge her clothing and armor with her body and replicate the appearance of other clothes, armor, and even jewelry. Such articles cannot be removed from the creature’s possession as they are formed from the target’s body. Merged armor provides no AC and any merged equipment cannot be accessed or activated. Continuous effects remain active, but if the corresponding magic item slot is reused, the merged item’s effect is suppressed.\n\nThis replaces improved adaptation."
+        },
+        {
+          "level": 8,
+          "name": "Enduring Mimicry",
+          "description": "At 8th level, the mimic retains talents, identities, and other abilities gained via mimicry for 1 hour per class level.\n\nThis replaces greater adaptation."
+        },
+        {
+          "level": 10,
+          "name": "Expanded Mimicry",
+          "description": "At 10th level, the mimic may also copy the supernatural abilities of creatures she encounters. Each ability copied takes the place of one talent and may be activated by spending spell points as if it was a spell of a level equal to the creature’s Hit Dice/3 (maximum 9th level). Abilities that mimic specific spells instead require expending spell points as per mimicking a spell. If the ability would allow a save, the formula is 10 + her mimic level/2 + her casting ability modifier. Such abilities may be used once before being expended. Abilities that are not instantaneous end after a number of rounds equal to the mimic’s casting ability modifier or their normal duration, whichever is shorter. Passive abilities may be begun as a free action and last for a number of rounds equal to the mimic’s casting ability modifier.\n\nThis replaces share adaptation."
+        },
+        {
+          "level": 13,
+          "name": "Effortless Mimicry",
+          "description": "At 13th level, the mimic may use her mimicry ability once per round as a free action, even when it is not her turn. At 17th level, this ability may be used any number of times per round.\n\nThis replaces master adaptation and grandmaster adaptation."
+        },
+        {
+          "level": 20,
+          "name": "Perfected Mimic",
+          "description": "At 20th level, the mimic retains copied talents, identities, and other abilities gained via mimicry indefinitely, though supernatural abilities are still lost when used.\n\nThis alters perfected prodigy. The mimic does not gain the ability to gain any number of talents with adaptation as a swift action."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:prodigy:sync",
+      "package": "prodigy",
+      "name": "Sync",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/sync",
+      "replaces_features": [
+        "adaptation",
+        "imbue-sequence",
+        "prodigys-normal-class-skills",
+        "skill-ranks-per-level",
+        "steady-skill",
+        "variable-skill"
+      ],
+      "removed_features": [
+        "imbue-sequence",
+        "prodigys-normal-class-skills",
+        "steady-skill",
+        "variable-skill"
+      ],
+      "removed_feature_clauses": [
+        "prodigy’s normal class skills",
+        "steady skill",
+        "variable skill"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Rhythmic Sequence",
+          "description": "At 1st level, the sync gains the Performance sphere as a bonus skill talent. At 2nd level, as part of starting a sequence, the sync can enrapture herself into the rhythm of her sequence, choosing a single Performance sphere package that she possesses. Only a single rhythm ability can be applied at a time, but she can change the chosen package as a swift action; if the sequence ends or she changes her rhythm, any benefits of the rhythm are lost immediately. Each rhythm also unlocks the (finisher) ability or abilities tied to the package. If an ability has a range or save DC, it is based on your Performance sphere DC."
+        },
+        {
+          "level": 1,
+          "name": "Skill Ranks per Level",
+          "description": "The sync gains 6 + her Intelligence modifier ranks per level.\n\nThis alters skill ranks per level."
+        },
+        {
+          "level": 1,
+          "name": "Trade Tradition",
+          "description": "If this is this character’s first level in any class, the sync may select a trade tradition of their choice, and have an adroit trade rank.\n\nThis replaces the prodigy’s normal class skills."
+        },
+        {
+          "level": 1,
+          "name": "Virtuoso’s Adaptation",
+          "description": "The sync can use her adaptation class feature to gain Performance sphere talents as well as combat and magic talents.\n\nThis alters adaptation."
+        },
+        {
+          "level": 3,
+          "name": "Versatile Performance",
+          "description": "At 3rd level, the sync gains the versatile performance class feature, choosing one type of Perform skill. The sync uses the bonus in the chosen Perform skill in place of her bonus in that skill’s related skills.\n\nThe types of Perform and their related skills are: Act (Bluff, Disguise), Comedy (Bluff, Intimidate), Dance (Acrobatics, Fly), Keyboard Instruments (Diplomacy, Intimidate), Oratory (Diplomacy, Sense Motive), Percussion (Handle Animal, Intimidate), Sing (Bluff, Sense Motive), String (Bluff, Diplomacy), and Wind (Diplomacy, Handle Animal).\n\nAdditionally, the sync unlocks skill leverage with the chosen Perform skills related skills if she did not already have them unlocked.\n\nThis replaces steady skill."
+        },
+        {
+          "level": 11,
+          "name": "Rhythm of War",
+          "description": "At 11th level, the sync can spend 10 minutes and 1 use of skill leverage to change the Perform skill chosen for her versatile performance class feature.\n\nAdditionally, the sync chooses one weapon belonging to a fighter weapon group that is associated with a Perform skill she has selected with versatile performance. She gains proficiency with this weapon (or Weapon Focus with that weapon if she is already proficient). The types of Perform skills and their associated fighter weapon groups are: Act (close, double), Comedy (flails, thrown), Dance (monk, spears), Keyboard Instruments (hammers, siege engines), Oratory (heavy blades, light blades), Percussion (close, hammers), Sing (close, natural), String (axes, bows), and Wind (monk, thrown).\n\nThis replaces variable skill."
+        },
+        {
+          "level": 19,
+          "name": "Flexible Rhythm",
+          "description": "At 19th level, the sync can spend 1 minute to change the Perform skill chosen with versatile performance without spending a use of skill leverage.\n\nAdditionally, the sync can have two (rhythm) abilities applied to her sequence at one time.\n\nSpheres of Guile by Drop Dead Studios\n\nUsing Spheres of Guile\n\nClasses\n\nAdvisor (DRS)\nAgent\nConduit (DRS)\nCourser\nEnvoy\n\nGenius\nMastermind\nProfessional\n\nSpheres\n\nArtifice\nBluster\nBody Control\nCommunication\nFaction\n\nHerbalism\nInfiltration\nInvestigation\nNavigation\nPerformance\n\nSpellhacking\nStudy\nSubterfuge\nSurvivalism\nVocation\n\nOther Rules\n\nOperative Feats\nOperative Gear\nSkill Rules\nTrade Traditions\nRunning Guile Games\n\nGet Spheres of Guile"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:prodigy:void-dancer",
+      "package": "prodigy",
+      "name": "Void Dancer",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/void-dancer",
+      "replaces_features": [
+        "greater-reflect-spell",
+        "imbue-sequence",
+        "reflect-spell"
+      ],
+      "removed_features": [
+        "greater-reflect-spell",
+        "reflect-spell"
+      ],
+      "removed_feature_clauses": [
+        "Reflect spell",
+        "Greater Reflect Spell"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Embrace of the Other Realms",
+          "description": "At 1st level, the void dancer gains the Conjuration Sphere as a bonus talent and their conjuration companion gains the Avatar archetype. If the void dancer already possesses the Conjuration sphere, they must select the Extra Companion talent (or purchase back any drawbacks which remove the ability to summon a companion). The Conjuration sphere companion granted by this talent must be given the avatar companion archetype and is referred to by this class as the void dancer’s “avatar”. The void dancer uses their void dancer level as their caster level when determining the statistics and abilities of their avatar. This stacks normally with caster levels gained from other sources."
+        },
+        {
+          "level": 2,
+          "name": "Voidborne Sequence",
+          "description": "At 2nd level, the void dancer does not gain the Imbued Sequence options with the (finish) tag. Whenever the void dancer would make an attack that qualifies as an (opener), (link), or (finish), the void dancer may have their avatar perform that attack instead.\n\nIn addition, the void dancer gains the following unique (opener)s, (link)s, and (finish)ers:\n\nMarked for Death (opener): As a move action, the void dancer makes a melee touch attack against a creature within reach. Successfully performing this touch attack completes this opener; if the void dancer or their avatar makes another successful attack against the target before the start of their next turn, that attack deals an additional +1d6 damage, +1d6 per 4 void dancer levels (this additional damage is of the same type as the original attack’s).\n\nGibbet and Gallows (link): As a swift action, the void dancer makes a single attack with a -5 penalty. If this attack is successful, it completes this link.\n\nThe End (finish): As a 3-link finisher, as full-round action, the void dancer makes a single weapon attack, creating a close-range burst centered on a primary target within their reach. Make a single attack roll and compare the results of the attack roll to the AC of each creature within the burst’s radius (the void dancer may exclude any number of creatures, at their discretion). Use the same damage roll for each target. For each link in the sequence past 3, this attack deals an additional +2d6 damage (this additional damage is of the same type as the original attack’s). If the sequence is at least 7 links, the void dancer may teleport into any square within the burst’s radius after completing the attack.\n\nThis modifies imbue sequence.\n\nNote: The voidborne sequence ability allows many of the void dancer’s attacks to be performed by their avatar, but only if those attacks would qualify as an (opener), (link), or (finish). This may lead to portions of the void dancer’s combat routine to be performed by the avatar, but any actions the void dancer takes that do not qualify to build more links in the void dancer’s sequence cannot not be performed by the avatar."
+        },
+        {
+          "level": 7,
+          "name": "Stained in Shadow",
+          "description": "At 7th level, the void dancer’s avatar’s natural attacks deal additional damage equal to half the void dancer’s level.\n\nAt 16th level, the void dancer’s avatar’s natural attacks increase their critical multiplier by 1x.\n\nThis replaces Reflect spell and Greater Reflect Spell.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps"
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

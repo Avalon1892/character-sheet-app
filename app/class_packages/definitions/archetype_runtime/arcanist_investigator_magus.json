@@ -1,0 +1,100 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:arcanist:blade-adept",
+      "resource_modules": [{
+        "key": "blade_adept_bond",
+        "title": "Blade Adept",
+        "governing_ability": "intelligence",
+        "resources": [{"key": "bonded_sword", "name": "Bonded / Black Blade", "feature_tokens": ["sword-bond", "sentient-sword"], "progression": "one", "description": "Record the bonded one-handed piercing or slashing weapon. At 3rd level it advances as a Magus black blade, using Arcanist level and the Arcane Reservoir.", "custom_choice_label": "Bonded weapon", "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": false}]
+      }],
+      "power_providers": [{"key": "blade-adept-magus-arcana", "label": "Blade Adept Magus Arcana", "family": "magus_arcana", "feature_tokens": ["magus-arcana"], "slot_levels": [1, 3, 5, 7, 9, 11, 13, 15, 17, 19], "option_names": ["Arcane Accuracy", "Close Range", "Critical Strike", "Dispelling Strike", "Hasted Assault"], "description": "A retained Arcanist exploit slot may contain one of these five Magus arcana. It uses Arcane Reservoir in place of Arcane Pool; do not fill both this and the corresponding exploit slot."}],
+      "system_features": ["bond", "magus-arcana"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:arcanist:blood-arcanist",
+      "choice_providers": [{"key": "blood-arcanist-bloodline", "label": "Bloodline", "feature_tokens": ["bloodline"], "option_families": ["bloodline"], "minimum": 1, "maximum": 1, "catalog_class_name": "Sorcerer", "description": "Choose one Sorcerer bloodline. The Blood Arcanist gains its arcana and powers, but not its class skill, bonus feats, or bonus spells."}],
+      "system_features": ["bloodline"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:arcanist:elemental-master",
+      "choice_providers": [{"key": "elemental-master-focus", "label": "Elemental Focus", "feature_tokens": ["elemental-focus"], "minimum": 1, "maximum": 1, "description": "Choose the element that controls bonus preparation, opposition, granted exploits, and Elemental Movement.", "fixed_options": [{"key": "air", "name": "Air", "description": "Opposes earth; grants Lightning Lance, Dancing Electricity, and fly 90 feet at 15th level."}, {"key": "earth", "name": "Earth", "description": "Opposes air; grants Acid Jet, Lingering Acid, and burrow 30 feet at 15th level."}, {"key": "fire", "name": "Fire", "description": "Opposes water; grants Flame Arc, Burning Flame, and +30 feet land speed at 15th level."}, {"key": "water", "name": "Water", "description": "Opposes fire; grants Ice Missile, Icy Tomb, and swim 60 feet at 15th level."}]}],
+      "system_features": ["elemental-focus"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:arcanist:school-savant",
+      "choice_providers": [{"key": "school-savant-focus", "label": "School Focus", "feature_tokens": ["school-focus"], "option_families": ["arcane_school"], "minimum": 1, "maximum": 1, "catalog_class_name": "Wizard", "description": "Choose one Wizard school or subschool. Its school powers use Arcanist level, and one additional prepared spell of each spell level must come from that school."}],
+      "system_features": ["arcane-school"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:arcanist:twilight-sage",
+      "choice_handling": "automatic",
+      "choice_handling_note": "The first exploit is fixed to Arcane Barrier; no free persistent choice remains at 1st level."
+    },
+
+    {
+      "key": "pathfinder-archetype:pathfinder-class:investigator:jinyiwei",
+      "resource_modules": [{"key": "jinyiwei_judgment", "title": "Imperial Judgment", "governing_ability": "wisdom", "resources": [{"key": "judgment", "name": "Judgment", "feature_tokens": ["imperial-judgment"], "progression": "imperial_judgment_uses", "description": "Judgment uses as an Inquisitor three levels lower. A second simultaneous judgment unlocks at Investigator 11 and a third at 19.", "can_activate": true, "activate_on_spend": true, "choice_options": ["Destruction", "Healing", "Justice", "Piercing", "Protection", "Purity", "Resiliency", "Resistance", "Smiting"]}]}],
+      "system_features": ["judgment"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:investigator:lamplighter",
+      "audit_ignore_mechanics": ["revelation"],
+      "choice_handling": "automatic",
+      "choice_handling_note": "Ready for the Revelation is an initiative progression, not an Oracle Revelation choice."
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:investigator:sleuth",
+      "resource_modules": [{"key": "sleuth_luck", "title": "Sleuth's Luck", "governing_ability": "charisma", "resources": [{"key": "luck", "name": "Luck", "feature_tokens": ["sleuth-s-luck"], "progression": "ability_modifier_minimum_one", "description": "The shared heroic pool begins each day at Charisma modifier (minimum 1), is spent on Sleuth deeds, and follows the shared grit/luck/panache recovery rules."}]}],
+      "system_features": ["grit-panache-luck"]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:investigator:acupuncturist",
+      "power_providers": [{"key": "acupuncturist-ki-powers", "label": "Ki Powers in Investigator Talent Slots", "family": "ki_power", "feature_tokens": ["ki-power"], "slot_levels": [5, 7, 9, 11, 13, 15, 17, 19], "description": "Beginning at 5th level, an Investigator Talent slot may instead contain an Unchained Monk ki power. Intelligence replaces Wisdom and Inspiration pays its ki cost; do not fill both representations of the same slot."}],
+      "system_features": ["ki-power"]
+    },
+
+    {
+      "key": "pathfinder-archetype:pathfinder-class:magus:armored-battlemage",
+      "resource_modules": [{"key": "armored_battlemage_training", "title": "Armor Training", "governing_ability": "intelligence", "resources": [{"key": "armor_training", "name": "Armor Training Rank", "feature_tokens": ["armor-training"], "progression": "myrmidarch_armor_training", "description": "Armor Training begins at 3rd level and improves at 8th, 13th, and 18th level. Its maximum-Dex and armor-check effects are shown with equipped armor.", "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": false}]}],
+      "system_features": ["armor-training"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:magus:eldritch-scion",
+      "choice_providers": [{"key": "eldritch-scion-bloodline", "label": "Bloodrager Bloodline", "feature_tokens": ["bloodline"], "option_families": ["bloodline"], "minimum": 1, "maximum": 1, "catalog_class_name": "Bloodrager", "description": "Choose the Bloodrager bloodline that grants bloodline powers and the listed bonus spells."}],
+      "system_features": ["bloodline"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:magus:hexcrafter",
+      "power_providers": [{"key": "hexcrafter-hexes", "label": "Hexcrafter Hexes", "family": "hex", "feature_tokens": ["hex-magus", "hex-arcana"], "slot_levels": [4, 6, 9, 12, 15, 18], "description": "Gain one Witch hex at 4th level; later Magus Arcana slots may instead contain a hex. Major hexes unlock at 12th level. Do not fill both a hex and Magus Arcana for the same later slot."}],
+      "system_features": ["hex"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:magus:magic-warrior",
+      "resource_modules": [{"key": "magic_warrior_aspect", "title": "Magic Warrior's Aspect", "governing_ability": "intelligence", "resources": [{"key": "magic_warrior_aspect", "name": "Animal Aspect", "feature_tokens": ["magic-warrior-s-aspect"], "progression": "one", "description": "Spend 1 Arcane Pool point to gain one Beast Shape I ability of the animal represented by the current mask for 1 minute per Magus level.", "can_activate": true, "choice_options": ["Climb", "Darkvision", "Fly", "Low-light vision", "Scent", "Swim"], "custom_choice_label": "Mask animal", "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": true, "external_cost_key": "arcane_pool"}]}]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:magus:myrmidarch",
+      "resource_modules": [{"key": "myrmidarch_training", "title": "Myrmidarch Training", "governing_ability": "intelligence", "resources": [{"key": "weapon_training_applies", "name": "Selected Weapon Group Applies", "feature_tokens": ["weapon-training"], "progression": "myrmidarch_weapon_training", "description": "Toggle when the attack belongs to a selected weapon group. The bonus is +1 at 6th level and improves at 12th and 18th.", "can_activate": true, "custom_choice_label": "Selected weapon groups", "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": false}, {"key": "armor_training", "name": "Armor Training Rank", "feature_tokens": ["armor-training"], "progression": "myrmidarch_armor_training", "description": "Armor Training 1 at 8th level and Armor Training 2 at 14th level.", "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": false}]}],
+      "passive_effects": [{"key": "myrmidarch-weapon-training-attack", "feature_tokens": ["weapon-training"], "targets": ["attack"], "progression": "myrmidarch_weapon_training", "bonus_type": "untyped", "source": "Myrmidarch: Weapon Training", "minimum_level": 6, "requires_resource_active": "weapon_training_applies"}, {"key": "myrmidarch-weapon-training-damage", "feature_tokens": ["weapon-training"], "targets": ["damage"], "progression": "myrmidarch_weapon_training", "bonus_type": "untyped", "source": "Myrmidarch: Weapon Training", "minimum_level": 6, "requires_resource_active": "weapon_training_applies"}],
+      "system_features": ["weapon-training", "armor-training"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:magus:skirnir",
+      "resource_modules": [{"key": "skirnir_bond", "title": "Skirnir Bond", "governing_ability": "intelligence", "resources": [{"key": "bonded_shield", "name": "Bonded Shield", "feature_tokens": ["arcane-bond"], "progression": "one", "description": "Record the bonded non-tower shield. Arcane Pool may enhance the weapon and shield separately.", "custom_choice_label": "Bonded shield", "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": false}]}],
+      "system_features": ["bond"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:magus:soul-forger",
+      "resource_modules": [{"key": "soul_forger_bond", "title": "Soul Forger Bond", "governing_ability": "intelligence", "resources": [{"key": "bonded_weapon", "name": "Bonded Weapon", "feature_tokens": ["arcane-bond"], "progression": "one", "description": "Record the bonded weapon used by Soul Forger Spell Combat, Spellstrike, Fortify Bond, Reforge, and later bond features.", "custom_choice_label": "Bonded weapon", "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": false}]}],
+      "system_features": ["bond"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:magus:spell-dancer",
+      "resource_modules": [{"key": "spell_dancer", "title": "Spell Dance", "governing_ability": "intelligence", "resources": [{"key": "spell_dance", "name": "Spell Dance", "feature_tokens": ["spell-dance"], "progression": "one", "description": "Spend 1 Arcane Pool point to activate Spell Dance for 1 minute. Its movement bonus and dodge bonus against movement-triggered attacks of opportunity improve every four levels.", "can_activate": true, "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": true, "external_cost_key": "arcane_pool"}]}],
+      "passive_effects": [{"key": "spell-dance-speed", "feature_tokens": ["spell-dance"], "targets": ["speed:land"], "progression": "spell_dance_speed", "bonus_type": "enhancement", "source": "Spell Dancer: active Spell Dance", "requires_resource_active": "spell_dance"}],
+      "system_features": ["spell-dance"]
+    }
+  ]
+}

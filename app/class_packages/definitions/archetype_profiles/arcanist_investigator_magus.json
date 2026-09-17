@@ -1,0 +1,226 @@
+{
+  "version": 1,
+  "description": "Hand-reviewed statistics, casting, proficiency, and Spheres progression changes for Arcanist, Investigator, Magus, and their archetypes.",
+  "entries": [
+    {
+      "key": "spheres-archetype:pathfinder-class:arcanist:sphere-arcanist",
+      "sphere_capabilities": {"grants": ["magic"], "removes": []},
+      "class_modifications": {
+        "casting": {"sphere_progression": "High", "traditional": false, "ability": "intelligence", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "High", "talent_kinds": ["magic"]},
+        "capabilities": {"grants": ["magic"], "removes": ["traditional_spells"]}
+      }
+    },
+
+    {
+      "key": "pathfinder-archetype:pathfinder-class:investigator:gravedigger",
+      "class_modifications": {"proficiencies": {"mode": "replace", "weapons": ["Simple weapons", "Scythe", "Improvised gravedigger tools"], "armor": ["Light armor"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:investigator:lamplighter",
+      "class_modifications": {"statistics": {"remove_class_skills": ["perform", "profession"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:investigator:natural-philosopher",
+      "class_modifications": {
+        "statistics": {"add_class_skills": ["survival"], "remove_class_skills": ["perform"]},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons", "Handaxe", "Kukri", "Shortbow", "Throwing axe", "Whip"], "armor": ["Light armor"]}
+      }
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:investigator:psychic-detective",
+      "class_modifications": {
+        "statistics": {"remove_class_skills": ["acrobatics", "climb", "perform"]},
+        "casting": {"traditional": true, "type": "spontaneous", "progression": "medium", "ability": "intelligence", "spells": "Psychic", "caster_level_offset": 0},
+        "capabilities": {"grants": ["traditional_spells"], "removes": []}
+      }
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:investigator:questioner",
+      "class_modifications": {
+        "casting": {"traditional": true, "type": "spontaneous", "progression": "medium", "ability": "intelligence", "spells": "Bard", "caster_level_offset": 0},
+        "capabilities": {"grants": ["traditional_spells"], "removes": []}
+      }
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:investigator:star-watcher",
+      "class_modifications": {"proficiencies": {"mode": "modify", "add_weapons": ["Starknife"], "remove_weapons": ["Rapier"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:investigator:steel-hound",
+      "class_modifications": {"proficiencies": {"mode": "replace", "weapons": ["Simple weapons", "Rapier", "Sap", "One selected firearm"], "armor": ["Light armor"]}}
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:investigator:acupuncturist",
+      "sphere_capabilities": {"grants": ["martial"], "removes": []},
+      "class_modifications": {
+        "casting": {"traditional": false, "progression": "", "spells": ""},
+        "advancement": {"talent_progression": "Expert", "talent_kinds": ["martial"]},
+        "capabilities": {"grants": ["martial"], "removes": ["traditional_spells"]},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons", "Acupuncture needles"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:investigator:battered-detective",
+      "sphere_capabilities": {"grants": ["martial"], "removes": []},
+      "class_modifications": {
+        "casting": {"traditional": false, "progression": "", "spells": ""},
+        "advancement": {"talent_progression": "Adept", "talent_kinds": ["martial"]},
+        "capabilities": {"grants": ["martial"], "removes": ["traditional_spells"]},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:investigator:champion-investigator",
+      "sphere_capabilities": {"grants": ["magic", "martial"], "removes": []},
+      "compatibility": {"requires": ["spheres-archetype:pathfinder-class:investigator:sphere-investigator"]},
+      "class_modifications": {
+        "advancement": {"talent_progression": "Mid", "talent_kinds": ["magic", "martial"]},
+        "capabilities": {"grants": ["magic", "martial"], "removes": []},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:investigator:detective",
+      "sphere_capabilities": {"grants": ["skill"], "removes": []},
+      "class_modifications": {
+        "casting": {"traditional": false, "progression": "", "spells": ""},
+        "advancement": {"talent_progression": "Journeyman", "talent_kinds": ["skill"]},
+        "capabilities": {"grants": ["skill"], "removes": ["traditional_spells"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:investigator:nightblazer",
+      "sphere_capabilities": {"grants": ["magic"], "removes": []},
+      "class_modifications": {
+        "casting": {"sphere_progression": "Mid", "traditional": false, "ability": "intelligence", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "Mid", "talent_kinds": ["magic"]},
+        "capabilities": {"grants": ["magic"], "removes": ["traditional_spells"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:investigator:psyforensic",
+      "sphere_capabilities": {"grants": ["magic"], "removes": []},
+      "class_modifications": {
+        "casting": {"sphere_progression": "Mid", "traditional": false, "ability": "intelligence", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "Mid", "talent_kinds": ["magic"]},
+        "capabilities": {"grants": ["magic"], "removes": ["traditional_spells"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:investigator:sphere-investigator",
+      "sphere_capabilities": {"grants": ["magic"], "removes": []},
+      "class_modifications": {
+        "casting": {"sphere_progression": "Mid", "traditional": false, "ability": "intelligence", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "Mid", "talent_kinds": ["magic"]},
+        "capabilities": {"grants": ["magic"], "removes": ["traditional_spells"]}
+      }
+    },
+
+    {
+      "key": "pathfinder-archetype:pathfinder-class:magus:deep-marshal",
+      "class_modifications": {"proficiencies": {"mode": "modify", "add_armor": ["Medium armor", "Shields (except tower shields)"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:magus:eldritch-archer",
+      "class_modifications": {"statistics": {"add_class_skills": ["perception"], "remove_class_skills": ["use_magic_device"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:magus:eldritch-scion",
+      "class_modifications": {
+        "casting": {"traditional": true, "type": "spontaneous", "progression": "medium", "ability": "charisma", "spells": "Magus", "caster_level_offset": 0},
+        "capabilities": {"grants": ["traditional_spells"], "removes": []}
+      }
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:magus:esoteric",
+      "class_modifications": {"casting": {"daily_slot_adjustment": -1}, "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor"]}}
+    },
+    {"key": "pathfinder-archetype:pathfinder-class:magus:iron-ring-striker", "class_modifications": {"casting": {"daily_slot_adjustment": -1}}},
+    {"key": "pathfinder-archetype:pathfinder-class:magus:jistkan-artificer", "class_modifications": {"casting": {"daily_slot_adjustment": -1}}},
+    {
+      "key": "pathfinder-archetype:pathfinder-class:magus:kapenia-dancer",
+      "class_modifications": {"casting": {"daily_slot_adjustment": -1}, "proficiencies": {"mode": "replace", "weapons": ["Simple weapons", "Bladed scarf"], "armor": []}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:magus:kensai",
+      "class_modifications": {"casting": {"daily_slot_adjustment": -1}, "proficiencies": {"mode": "replace", "weapons": ["Simple weapons", "One selected martial or exotic melee weapon"], "armor": []}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:magus:magic-warrior",
+      "class_modifications": {"statistics": {"add_class_skills": ["knowledge_history", "knowledge_nature"], "remove_class_skills": ["knowledge_dungeoneering", "knowledge_planes"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:magus:mindblade",
+      "class_modifications": {
+        "casting": {"traditional": true, "type": "spontaneous", "progression": "medium", "ability": "intelligence", "spells": "Magus", "caster_level_offset": 0},
+        "capabilities": {"grants": ["traditional_spells"], "removes": []}
+      }
+    },
+    {"key": "pathfinder-archetype:pathfinder-class:magus:myrmidarch", "class_modifications": {"casting": {"daily_slot_adjustment": -1}}},
+    {
+      "key": "pathfinder-archetype:pathfinder-class:magus:puppetmaster",
+      "class_modifications": {"statistics": {"skill_points": 4, "add_class_skills": ["knowledge_history", "knowledge_local", "knowledge_religion", "perform"], "remove_class_skills": ["climb", "ride", "swim"]}}
+    },
+    {"key": "pathfinder-archetype:pathfinder-class:magus:skirnir", "class_modifications": {"casting": {"daily_slot_adjustment": -1}}},
+    {"key": "pathfinder-archetype:pathfinder-class:magus:soul-forger", "class_modifications": {"casting": {"daily_slot_adjustment": -1}}},
+    {
+      "key": "pathfinder-archetype:pathfinder-class:magus:spell-dancer",
+      "class_modifications": {"statistics": {"add_class_skills": ["acrobatics", "perform"], "remove_class_skills": ["intimidate", "ride"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:magus:spell-trapper",
+      "class_modifications": {"statistics": {"add_class_skills": ["disable_device"], "remove_class_skills": ["knowledge_planes"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:magus:staff-magus",
+      "class_modifications": {"proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor"]}}
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:magus:arcane-weaponeer",
+      "sphere_capabilities": {"grants": ["magic"], "removes": []},
+      "class_modifications": {
+        "casting": {"sphere_progression": "High", "traditional": false, "ability": "intelligence", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "Low", "talent_kinds": ["magic"]},
+        "capabilities": {"grants": ["magic"], "removes": ["traditional_spells"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:magus:mystic",
+      "sphere_capabilities": {"grants": ["magic", "martial"], "removes": []},
+      "class_modifications": {
+        "casting": {"sphere_progression": "Mid", "traditional": false, "ability": "intelligence", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "High", "talent_kinds": ["magic", "martial"]},
+        "capabilities": {"grants": ["magic", "martial"], "removes": ["traditional_spells"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:magus:precog",
+      "sphere_capabilities": {"grants": ["magic", "martial", "skill"], "removes": []},
+      "compatibility": {"requires": ["spheres-archetype:pathfinder-class:magus:sphere-magus"]},
+      "class_modifications": {
+        "advancement": {"talent_progression": "Journeyman", "talent_kinds": ["magic", "martial", "skill"]},
+        "capabilities": {"grants": ["magic", "martial", "skill"], "removes": []},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:magus:runic-knight",
+      "sphere_capabilities": {"grants": ["martial"], "removes": []},
+      "class_modifications": {
+        "advancement": {"talent_progression": "Proficient", "talent_kinds": ["martial"]},
+        "capabilities": {"grants": ["martial"], "removes": []},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:magus:sphere-magus",
+      "sphere_capabilities": {"grants": ["magic"], "removes": []},
+      "class_modifications": {
+        "casting": {"sphere_progression": "Mid", "traditional": false, "ability": "intelligence", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "Mid", "talent_kinds": ["magic"]},
+        "capabilities": {"grants": ["magic"], "removes": ["traditional_spells"]}
+      }
+    }
+  ]
+}

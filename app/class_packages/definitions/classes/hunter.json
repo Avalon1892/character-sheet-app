@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "key": "hunter",
+  "class_key": "pathfinder-class:hunter",
+  "class_name": "Hunter",
+  "governing_ability": "wisdom",
+  "optional_blocks": ["inquisitor_features", "spells_known", "spell_level_overview"],
+  "external_systems": [
+    "traditional_spontaneous_casting",
+    "animal_companion",
+    "animal_focus",
+    "hunter_teamwork"
+  ],
+  "resource_modules": [],
+  "passive_effects": [],
+  "choice_providers": [
+    {
+      "key": "hunter-precise-companion",
+      "label": "Precise Companion",
+      "feature_tokens": ["precise-companion"],
+      "minimum": 1,
+      "maximum": 1,
+      "minimum_class_level": 2,
+      "fixed_options": [
+        {
+          "key": "precise-shot",
+          "name": "Precise Shot",
+          "description": "The Hunter gains Precise Shot as a bonus feat."
+        },
+        {
+          "key": "outflank",
+          "name": "Outflank",
+          "description": "The Hunter gains Outflank as a bonus feat."
+        }
+      ],
+      "description": "Choose Precise Shot or Outflank at 2nd level. The Hunter need not meet the feat's prerequisites."
+    }
+  ],
+  "bonus_feat_levels": [3, 6, 9, 12, 15, 18],
+  "bonus_feat_label": "Hunter Teamwork Feats",
+  "notes": "Animal companion progression, personal and companion Animal Focus, Precise Companion, and recurring teamwork feats are exposed through shared character systems."
+}

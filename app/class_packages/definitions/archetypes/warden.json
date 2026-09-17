@@ -1,0 +1,301 @@
+{
+  "version": 1,
+  "class_key": "spheres-class:warden",
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:warden:custodian",
+      "package": "spheres-class:warden",
+      "name": "Custodian",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/custodian",
+      "replaces_features": [
+        "expanded-guard",
+        "focusing-guard",
+        "guard",
+        "warden-of-many"
+      ],
+      "removed_features": [
+        "expanded-guard",
+        "focusing-guard",
+        "warden-of-many"
+      ],
+      "removed_feature_clauses": [
+        "focusing guard",
+        "expanded guard",
+        "warden of many"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Custodian Reinforcements",
+          "description": "The custodian can choose the following reinforcement unique to the custodian archetype:"
+        },
+        {
+          "level": 4,
+          "name": "Divert Focus",
+          "description": "At 4th level, the custodian can suspend the benefits of his guard ability for 1 round as a swift action to regain his martial focus. During this time, the custodian is treated as not having a guarded ally, and his charge loses all benefits associated with the custodian’s guard."
+        },
+        {
+          "level": 4,
+          "name": "Intense Connection",
+          "description": "At 4th level, the bond between the custodian and his charge becomes especially intense. The custodian is always aware of the location of his charge (as long as they are both on the same plane).\n\nThis replaces focusing guard."
+        },
+        {
+          "level": 5,
+          "name": "Pure Devotion",
+          "description": "At 5th level, the custodian becomes immune to any effect that would force him to attack his charge. If an effect would randomly decide which target the custodian attacks, if he would target his charge, the target must be randomly selected again until his charge is not targeted. Additionally, the custodian’s charge cannot be harmed by area of effect abilities used by the custodian, and vice versa."
+        },
+        {
+          "level": 5,
+          "name": "Sole Guard",
+          "description": "A custodian’s guard differs from most, commonly tempered through years of devotion with an individual. The custodian selects a single creature they are familiar with; this creature is known as the custodian’s charge, and is always under the benefits of his guard. Unlike a normal warden, this guard cannot be changed, and remains until the custodian or his charge is killed. If the custodian would be made unconscious, the benefits of his guard ability are suppressed until he is conscious again. The custodian’s guard bonus increases at a greater rate, increasing by 1 at 5th level and every three levels thereafter.\n\nIf the custodian would use an ability that requires him to use his guard ability to apply a benefit to his guarded ally, he may grant them the benefits of the ability as a standard action (or as a swift action by spending a spell point), unless otherwise noted, in addition to paying any additional costs.\n\nThe custodian can perform an 8 hour ritual to change his current charge, involving himself, and his current and intended charge. The process of changing his charge takes 48 hours to complete, after which the intended creature becomes his new charge. The intended creature must still have a deep connection with the custodian, up to player or GM discretion.\n\nIf the custodian’s charge is killed, he may select another charge after 1 week; during this period, the custodian suffers a -1 penalty on attack rolls and saving throws.\n\nThis alters guard.\n\nAuthor's Note: You can only have a single sole guard.\n\nIf you would gain the ability to establish additional guards (such as using the defended companionship vigil), those guards are not sole guards and do not benefit from custodian-specific features and instead function as the warden's guard ability. Any other means of establishing a guard function as a normal guard plus any other limitations of the granting ability (such as subordinates only, or a lesser guard granting a smaller bonus)."
+        },
+        {
+          "level": 7,
+          "name": "Forever United",
+          "description": "At 7th level, the custodian is always aware of the location of his charge, even if they are on a different plane. Additionally, the custodian can spend 1 round (or as a standard action by spending a spell point) to immediately teleport to his charge, appearing in an adjacent square to them (as long as they are both on the same plane).\n\nThis replaces expanded guard."
+        },
+        {
+          "level": 20,
+          "name": "Eternal Guardian",
+          "description": "At 20th level, the custodian becomes an immovable sentinel for his charge. The custodian may teleport to his charge’s side as a swift action (even if they are on different planes). Whenever his charge would be successfully attacked, the custodian may spend a spell point as an immediate action or by expending an attack of opportunity to briefly teleport in front of his charge, suffering the damage instead of his charge, and may either return to his original square or appear in an unoccupied square adjacent to his charge.\n\nFinally, the custodian cannot be made unconscious (unless he wishes to), and immediately becomes stable when below 0 hit points. This allows the custodian to continue fighting while below 0 hit points, albeit still being disabled.\n\nThis replaces warden of many.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:warden:empathetic-guardian",
+      "package": "spheres-class:warden",
+      "name": "Empathetic Guardian",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/empathetic-guardian",
+      "replaces_features": [
+        "focusing-guard",
+        "improved-indomitable",
+        "improved-patrol",
+        "routine-patrol",
+        "self-sufficiency",
+        "tireless-protector"
+      ],
+      "removed_features": [
+        "focusing-guard",
+        "improved-indomitable",
+        "improved-patrol",
+        "routine-patrol",
+        "self-sufficiency",
+        "tireless-protector"
+      ],
+      "removed_feature_clauses": [
+        "routine patrol",
+        "improved indomitable",
+        "focusing guard",
+        "self-sufficiency",
+        "improved patrol",
+        "tireless protector"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Empathize",
+          "description": "An empathetic guardian may form his empathetic nature into a powerful force, allowing him to aid his allies in various ways. As a standard action, the empathetic guardian targets a single creature within his guard range that can perceive him, granting them the benefits of an empathy he possesses.\n\nThis is a mind-affecting emotion effect. An empathetic guardian may target themselves with their own empathy, even if they cannot perceive themselves. The empathetic guardian may use empathize a number of times per day equal to 3 + 1/2 his empathetic guardian level."
+        },
+        {
+          "level": 3,
+          "name": "Positive Mental Attitude",
+          "description": "An empathetic guardian tries to stay positive even when things are dire. At 3rd level, the empathetic guardian chooses an emotion from the following list, as the eliciter class feature: excitement, joy, love, loyalty, resolve, or tranquility. The empathetic guardian gains the minor power associated with that emotion. At 6th level and every 4 levels thereafter, the empathetic guardian may choose to gain the minor power of a new emotion from the list, or gain access to the next level of an emotional he already possesses (lesser, greater, and master). This otherwise functions as the eliciter’s emotion class feature, treating his total warden levels as eliciter levels.\n\nThis replaces routine patrol and improved indomitable."
+        },
+        {
+          "level": 4,
+          "name": "Compassionate Guard",
+          "description": "At 4th level, whenever the empathetic guardian would use his guard ability, he may also grant the guarded ally the benefits of a minor emotion power, expending a use of the emotion power as normal.\n\nThis replaces focusing guard."
+        },
+        {
+          "level": 8,
+          "name": "Applaud",
+          "description": "At 8th level, the empathetic guardian fills the target with encouragement, ensuring that the target is aware of their positive impact. Whenever the target would succeed at an ability check, attack roll, saving throw, or skill check within the next minute, the next roll of the same type receives a morale bonus equal to the empathetic guardian’s guard bonus. This bonus can only be applied to a roll up to 1 minute after the first attempt."
+        },
+        {
+          "level": 9,
+          "name": "Support Network",
+          "description": "At 9th level, the empathetic guardian reassures the target, ensuring that the people around them are here to support them no matter what. For every ally that the target can perceive, they gain 4 temporary hit points (maximum 20) for 1 minute. If the target is the empathetic guardian’s guarded ally, they gain an additional temporary hit points for every ally they can see (maximum 5 additional temporary hit points)."
+        },
+        {
+          "level": 12,
+          "name": "Tender Loving Care",
+          "description": "At 12th level, the empathetic guardian instills the target with calming thoughts and serenity. The target heals 1d8 points of ability damage and drain to all mental ability scores."
+        },
+        {
+          "level": 17,
+          "name": "Disarming Diplomacy",
+          "description": "At 17th level, the empathetic guardian makes an honest plea to the target in an attempt to shake their morals, even if but for a moment. The target must succeed a Will saving throw (DC 10 + 1/2 his class level + the empathetic guardian’s casting ability modifier) or suddenly become indifferent to the empathetic guardian and his allies. If the target was in combat, the target will attempt to flee or surrender.\n\nIf the empathetic guardian or one of his allies would attempt a hostile action towards the target, they immediately receive another saving throw at a +4 bonus. This lasts for 1 minute per class level, after which the target returns to its original disposition."
+        },
+        {
+          "level": 19,
+          "name": "Overwhelming Compassion",
+          "description": "At 19th level, the empathetic guardian wholly empathizes with the target, completely changing their morals for a time. His disarming diplomacy empathy instead makes the target helpful towards the empathetic guardian and his allies, and will aid in combat if provoked. Additionally, the empathy lasts for 10 minutes per class level.\n\nThis replaces self-sufficiency, improved patrol, and tireless protector.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:warden:jailer",
+      "package": "spheres-class:warden",
+      "name": "Jailer",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/jailer",
+      "replaces_features": [
+        "focusing-guard",
+        "improved-patrol",
+        "lingering-guard",
+        "projected-empathy",
+        "reinforcement",
+        "reinforcement-at-level",
+        "routine-patrol",
+        "warden-of-many"
+      ],
+      "removed_features": [
+        "focusing-guard",
+        "improved-patrol",
+        "lingering-guard",
+        "projected-empathy",
+        "reinforcement-14th-level",
+        "routine-patrol",
+        "warden-of-many"
+      ],
+      "removed_feature_clauses": [
+        "routine patrol",
+        "focusing guard",
+        "projected empathy",
+        "lingering guard",
+        "improved patrol",
+        "reinforcement gained at 14th level",
+        "warden of the many"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Jailer’s Reinforcements",
+          "description": "The jailer gains a number of reinforcements that are unique to the jailer archetype."
+        },
+        {
+          "level": 2,
+          "name": "Detain",
+          "description": "At 2nd level, as a standard action, the jailer may release a burst of restrictive magic towards a single creature within his guard range. The target must succeed a Reflex save (DC 10 + 1/2 his class level + his casting ability modifier) or be entangled for a number of rounds equal to the jailer’s class level. Entangled creatures may attempt to break free as a move action by attempting a Strength check or Escape Artist check against the Reflex save DC.\n\nThe jailer may spend a spell point when using this ability to amplify it. When amplified, the target is also bound to the ground on a failed save, making them unable to move until they remove the entangled condition.\n\nThis replaces routine patrol."
+        },
+        {
+          "level": 4,
+          "name": "Focusing Bind",
+          "description": "At 4th level, whenever a creature would fail their saving throw against the jailer’s detain ability, the jailer may regain his martial focus as an immediate action.\n\nThis replaces focusing guard."
+        },
+        {
+          "level": 5,
+          "name": "Agonizing Shackles",
+          "description": "At 5th level, the jailer’s detain ability becomes more volatile and damaging. When a creature would fail their initial saving throw against his detain ability, and at the start of their turn while they are entangled, the jailer may deal an amount of bludgeoning damage equal to half his jailer level (minimum 1). If the jailer would amplify his detain ability, the damage dealt increases by an amount equal to his casting ability modifier (minimum 1), and deals force damage instead of bludgeoning.\n\nThis replaces projected empathy."
+        },
+        {
+          "level": 7,
+          "name": "Planar Anchor",
+          "description": "At 7th level, when using his detain ability, the jailer may spend a spell point to infuse his detain ability with planar anchors. A detained creature attempting to teleport or cross planes must succeed a magic skill check against the jailer’s magic skill defense. If the creature fails, the attempt fails, losing any spell points spent in the process.\n\nThis replaces lingering guard."
+        },
+        {
+          "level": 9,
+          "name": "Improved Detain",
+          "description": "At 9th level, the jailer’s ability to bind and restrict is reaching perfection. Whenever the jailer would use his detain ability, he may spend a spell point to instead make the target suffer the penalties of the grappled condition on a failed save; the creature is not actually grappled during this time, only suffering the condition's penalties (meaning that the detained creature must attempt to break free using a Strength or Escape Artist check as normal). If the jailer would amplify his detain ability, the target suffers the penalties of the pinned condition on a failed save; the creature is not actually pinned during this time, only suffering the condition's penalties.\n\nThis replaces improved patrol."
+        },
+        {
+          "level": 14,
+          "name": "Boundless Chains",
+          "description": "At 14th level, the jailer’s detain ability immediately bypasses any immunities to the entangled, grappled, or pinned conditions, such as the freedom of movement spell or similar effects, with the immunity instead being reduced to a +4 bonus to all saving throws against the jailer’s detain ability.\n\nThis replaces the reinforcement gained at 14th level."
+        },
+        {
+          "level": 20,
+          "name": "Jailer of the Many",
+          "description": "At 20th level, the jailer becomes an unstoppable binder of his enemies, ensuring they remain bound and detained. All saving throws made against the jailer’s detain ability must be rolled twice, taking the least favourable result. The jailer may also use his detain ability as a full-round action instead of spending a spell point when amplifying his detain ability. Additionally, a detained creature must break free of the detained condition twice before they remove the entangled condition and the penalties of detain.\n\nThis replaces warden of the many.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:warden:keeper",
+      "package": "spheres-class:warden",
+      "name": "Keeper",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/keeper",
+      "replaces_features": [
+        "blended-training",
+        "but-may-be-altered",
+        "but-may-be-altered-or-replaced-by-other-archetypes",
+        "improved-patrol",
+        "mystical-guardian",
+        "replaced-by-other-archetypes",
+        "routine-patrol"
+      ],
+      "removed_features": [
+        "but-may-be-altered",
+        "improved-patrol",
+        "replaced-by-other-archetypes",
+        "routine-patrol"
+      ],
+      "removed_feature_clauses": [
+        "routine patrol",
+        "but may be altered or replaced by other archetypes",
+        "improved patrol"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Arcane Protector",
+          "description": "Whenever the keeper would gain a vigil ability that uses the patrol ability, he may choose to gain a bonus reinforcement instead (replacing that vigil ability). Additionally, once per round, the keeper may spend 1 spell point instead of expending his martial focus when using one of his warden class features.\n\nThis alters blended training. The keeper does not gain a martial tradition and cannot achieve martial focus, nor can he take combat talents with the talents granted by his warden levels. The warden is treated as having martial focus for meeting the prerequisites of feats, but not to use such feats."
+        },
+        {
+          "level": 1,
+          "name": "Magical Guardian",
+          "description": "The keeper does not gain the Guardian sphere as a bonus sphere and instead gains a bonus magic talent of their choice from his vigil sphere.\n\nThis alters mystical guardian."
+        },
+        {
+          "level": 3,
+          "name": "Watchful Sentinel",
+          "description": "At 3rd level, whenever an enemy would move out of the threatened area of an ally within 15 feet, the keeper may expend an attack of opportunity to move up to half his speed (minimum 5 feet) towards the enemy. This movement happens after the enemy moves, but the keeper can expend his martial focus as part of using this ability to instead make this movement before the enemy moves. The keeper may only use this against a specific target once per round.\n\nThis replaces routine patrol, but may be altered or replaced by other archetypes."
+        },
+        {
+          "level": 9,
+          "name": "Stalwart",
+          "description": "At 9th level, the keeper can use mental and physical resilience to avoid certain attacks. If the keeper attempts a Fortitude or Will saving throw against an attack that has a reduced effect on a successful save, he instead avoids the effect entirely. A helpless keeper does not gain the benefit of the stalwart ability.\n\nThis replaces improved patrol, but may be altered or replaced by other archetypes.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper"
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

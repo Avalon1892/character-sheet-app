@@ -1,0 +1,1105 @@
+{
+  "version": 1,
+  "class_key": "spheres-class:armorist",
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:armorist:blaster",
+      "package": "spheres-class:armorist",
+      "name": "Blaster",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/blaster",
+      "replaces_features": [
+        "bound-equipment",
+        "infinite-arsenal",
+        "summon-equipment"
+      ],
+      "removed_features": [
+        "infinite-arsenal",
+        "summon-equipment"
+      ],
+      "removed_feature_clauses": [
+        "summon equipment class feature",
+        "infinite arsenal"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Arm Cannon",
+          "description": "At 1st level as her first bound weapon, the blaster binds a unique weapon known as the arm cannon, which counts in all ways as a bound weapon. This arcane construct covers most of one arm and could appear as anything from a cluster of levitating silk ribbons to a glimmering tube of metal or an oblong block of crystal (although whatever an arm cannon appears as, its appearance does not change). When summoned, the arm cannon occupies one hand and cannot be disarmed. The arm cannon is an exotic ranged weapon the blaster is proficient with that makes ranged touch attacks, and deals 1d6 bludgeoning damage +1d6 at 5th level and every four levels beyond 5th, regardless of size. The weapon has no range penalties, but has a maximum range of close. In all other ways, the arm cannon counts as a destructive blast from the Destruction sphere with a caster level equal to the blaster’s level, but also as a one-handed firearm that can be augmented by feats and abilities as usual such as Deadly Aim, Rapid Shot, etc.\n\nWhile the arm cannon is not directly tied to the blaster’s caster level, she may nonetheless augment her arm cannon with Destruction talents except for (blast shape) talents and Gather Energy. She must still spend any spell points required by the applied talents, and must spend those spell points for each attack. The Admixture talent may be applied as a full-round action or as part of a full-attack if the additional costs are paid for every attack to which it is applied. The arm cannon can gain enhancements as normal for a bound weapon. The blaster can bind additional arm cannons as additional bound equipment as normal.\n\nThis ability alters the bound equipment class feature.\n\nWiki Note: Only the base damage dice is considered a weapon for the purpose of effects like the Vital Strike feat or critical hits. All damage dice beyond the first are extra dice."
+        },
+        {
+          "level": 1,
+          "name": "Arsenal Tricks",
+          "description": "The blaster gains exclusive access to the following arsenal tricks:"
+        },
+        {
+          "level": 1,
+          "name": "Destruction",
+          "description": "The blaster gains the Destruction sphere as a bonus sphere at 1st level. At 5th level and every 5 levels thereafter, she gains a bonus talent from the Destruction sphere.\n\nThis replaces the summon equipment class feature."
+        },
+        {
+          "level": 1,
+          "name": "Efficient Assault",
+          "description": "At level 20, the blaster may reduce the spell point cost of blast types applied to her arm cannon attacks by 1 (minimum 0).\n\nThis replaces infinite arsenal."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:armorist:bloodbinder",
+      "package": "spheres-class:armorist",
+      "name": "Bloodbinder",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/bloodbinder",
+      "replaces_features": [
+        "armor-training",
+        "armorist-tricks",
+        "arsenal-tricks",
+        "blended-training-from-martial-armorist-archetype",
+        "boost-equipment",
+        "bound-equipment",
+        "infinite-arsenal",
+        "quick-summons",
+        "summon-equipment"
+      ],
+      "removed_features": [
+        "armor-training",
+        "boost-equipment",
+        "infinite-arsenal",
+        "quick-summons"
+      ],
+      "removed_feature_clauses": [
+        "armor training",
+        "quick summons",
+        "infinite arsenal"
+      ],
+      "compatibility": {
+        "requires": [
+          "spheres-archetype:spheres-class:armorist:martial-armorist"
+        ],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Arsenal Tricks",
+          "description": "The bloodbinder may not gain arsenal tricks which only grant benefits to armor or shields. She gains exclusive access to the following arsenal tricks:\n\nThis alters arsenal tricks."
+        },
+        {
+          "level": 1,
+          "name": "Bloodbound Equipment",
+          "description": "The bloodbinder does not gain the ability to summon equipment without using the Gory Armaments talent, cannot summon equipment for other creatures, and cannot use summon equipment to create armor or shields. The bloodbinder must spend a spell point when creating a weapon with Gory Armaments to treat it as summoned equipment for the purposes of armorist class features, use her summon equipment enhancement bonus instead of the enhancement bonus granted by Gory Armaments, and trade the summon equipment enhancement bonus for special abilities as normal. The bloodbinder may only treat weapons she could create with summon equipment as summoned equipment when created with Gory Armaments (e.g. natural attacks cannot be created with summon equipment, and therefore can not be created with Gory Armaments and treated as one).\n\nThe bloodbinder chooses specific weapons she can create with summon equipment to be bound equipment, and may only summon her bound equipment with Gory Armaments. Bound equipment cannot be summoned in any other way. A bound weapon created by Gory Armaments is otherwise treated as a regular piece of bound equipment for all purposes, does not cost a spell point to summon, and gains enhancement bonuses as normal for a bound weapon in place of the enhancement bonus granted by Gory Armaments.\n\nThis alters summon equipment and bound equipment and replaces boost equipment.\n\nSpecial: If the bloodbinder selects the wearable implements armorist trick, she may create and bind them normally using her Gory Armaments talent."
+        },
+        {
+          "level": 1,
+          "name": "Forged in Blood",
+          "description": "The bloodbinder gains a talent each time she gains a class level.\n\nA bloodbinder must choose the Blood sphere with the first talent she gains from this class with the Cruoromancy drawback, and must choose the Gory Armaments talent as the bonus talent granted by this drawback. If the bloodbinder already possesses the Blood sphere, then the Gory Armaments talent is gained as a bonus talent with no drawback. The bloodbinder uses her class level as her caster level when using (blood art) talents. This stacks normally with caster levels gained from other sources.\n\nThis alters blended training from the martial armorist archetype."
+        },
+        {
+          "level": 2,
+          "name": "Ensanguined Forge",
+          "description": "At 2nd level, the bloodbinder’s knowledge of form, function, and use allows her to borrow from practical smithing and forging techniques. The bloodbinder may select blacksmith insights in place of arsenal tricks, and uses her bloodbinder level as her effective blacksmith level when meeting its prerequisites or determining its effects. The bloodbinder cannot select a blacksmith insight that grants benefits to a blacksmith class feature, such as a blacksmith insight that adds effects to the maintenance ability, unless she possesses that ability.\n\nThis ability alters armorist tricks."
+        },
+        {
+          "level": 3,
+          "name": "Vim and Vigor",
+          "description": "At 3rd level, the bloodbinder gains Toughness as a bonus feat and a +1 natural armor bonus which stacks with other sources of natural armor. This natural armor bonus increases by +1 at 7th level and every 4 levels thereafter. The bloodbinder retains the effects of this ability even while under the effects of a polymorph effect (or other effects that would suppress abilities reliant on the target’s natural form).\n\nThis ability replaces armor training and quick summons."
+        },
+        {
+          "level": 20,
+          "name": "Bound by Blood",
+          "description": "At 20th level, the bloodbinder becomes virtually immortal. The bloodbinder gains a +4 bonus to her Constitution score and regeneration 5, which is suppressed whenever the bloodbinder takes piercing damage or suffers from bleed damage.\n\nIn addition, the bloodbinder becomes immune to death effects and to effects that would kill her without reducing her to 0 hit points, including decapitation. If she is decapitated, she can continue to act normally. Reattaching requires the head and body to be joined and the application of any effect that restores hit points. The bloodbinder is not staggered when below 0 hit points.\n\nThis ability replaces infinite arsenal.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:armorist:bonewright",
+      "package": "spheres-class:armorist",
+      "name": "Bonewright",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/bonewright",
+      "replaces_features": [
+        "infinite-arsenal",
+        "summon-equipment",
+        "summoned-equipment"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Arsenal Trick",
+          "description": "The bonewright gains exclusive access to the following arsenal tricks: The saving throw for any arsenal trick is equal to 10 + 1/2 her bonewright level + her casting ability modifier. All arsenal tricks presented here are supernatural abilities.\n\nSome arsenal tricks (marked with an “*”) modify the attack action, and if using Spheres of Might, are considered special attack actions. Only one such arsenal trick can be applied to any given attack action, though Vital Strike may also modify the attack as normal."
+        },
+        {
+          "level": 1,
+          "name": "Bone Equipment",
+          "description": "Instead of summoning equipment on its own, the bonewright sculpts weapons and armor from bodies - those of the dead or her own. Instead of summoning equipment (even bound equipment), a bonewright must reshape a body within reach - any corpse able to be raised as a skeleton or zombie is suitable to this purpose, or a corporeal undead the bonewright or a willing ally reanimated and controls. A reshaped undead returns to its normal shape when the equipment would otherwise disappear. When boosting equipment, the bonewright still must reshape a corpse, wrapping it around and merging it with the piece of equipment. Doing so causes the equipment to count as bone equipment for arsenal tricks.\n\nIf she reshapes an undead she spent a spell point to reanimate within the past hour, summoning or boosting equipment from that undead does not cost a spell point.\n\nIf the bonewright does not have a corpse available, she must spend 1d4 hit points plus 1d4 per point of enhancement bonus to reshape her own bones to fit their new purpose - growing her bones and breaking them off to become the required equipment. This damage cannot be reduced, healed, or redirected, but the hit points return once the piece of equipment disappears or the boost ends.\n\nBone weapons and equipment that a bonewright makes are supernaturally hard and count as being made from steel, with none of the normal disadvantages of bone. However, it cannot be augmented by arsenal tricks that would otherwise change the material the equipment is made from.\n\nThis alters summoned equipment."
+        },
+        {
+          "level": 1,
+          "name": "Corpse Mastery",
+          "description": "At 1st level, a bonewright gains Death as a bonus sphere with the Necromantic Limit (reanimate) drawback, but does not gain a bonus talent from this drawback. If the bonewright already possesses the Death sphere, neither the sphere nor the drawback is gained. The bonewright uses her class level as her caster level when using the reanimate ability. This stacks normally with caster levels gained from other sources."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:armorist:collector",
+      "package": "spheres-class:armorist",
+      "name": "Collector",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/collector",
+      "replaces_features": [
+        "boost-equipment",
+        "bound-equipment",
+        "infinite-arsenal",
+        "quick-summons",
+        "saving-throws",
+        "summoned"
+      ],
+      "removed_features": [
+        "boost-equipment",
+        "bound-equipment",
+        "infinite-arsenal",
+        "quick-summons",
+        "summoned"
+      ],
+      "removed_feature_clauses": [
+        "boost equipment",
+        "quick summons",
+        "summoned",
+        "bound equipment",
+        "infinite arsenal"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Arsenal Tricks",
+          "description": "Arsenal tricks do not work that change the material of her bound or summoned equipment. The collector gains exclusive access to the following arsenal tricks:"
+        },
+        {
+          "level": 1,
+          "name": "Dimensional Power",
+          "description": "The collector gains the Warp sphere as a bonus sphere at 1st level and uses her collector level as her caster level for all (space) talents. This stacks normally with caster levels gained from other sources. However, she also gains the Bender drawback, which can be bought off as normal, and must choose the Extradimensional Storage talent as the bonus talent granted by this drawback.\n\nIf she already possesses the Warp sphere, she gains the Extradimensional Storage talent without the Bender drawback. She may only use her class level as her caster level where this drawback would apply."
+        },
+        {
+          "level": 1,
+          "name": "Launch",
+          "description": "The collector may, as an attack action, fire her prizes from her extradimensional storage from her own space as if they were ammunition. Prizes used this way must be weapons and are treated as being thrown for the purposes of feats and abilities that modify attacks, but the collector adds her casting ability modifier to the damage roll instead of Strength. The collector takes no penalties for using melee weapons this way. If arrows or bolts are fired this way, they are treated as if they were daggers and deal 1d4 damage.\n\nWhen used this way, the extradimensional storage itself is treated as a ranged weapon with a range increment of close (25 feet + 5 feet per 2 collector levels, maximum range of 4 increments) and may be modified and affected by abilities or feats as normal.\n\nNote: Oversized weapons incur attack penalties as normal. The collector cannot fire weapons more than 1 size larger than herself.\n\nSpecial: If the collector possesses the Telekinesis sphere, she may launch prizes up to her Telekinesis size limit without penalty."
+        },
+        {
+          "level": 1,
+          "name": "Saving Throws",
+          "description": "Collectors have good Reflex and Will saves and a poor Fortitude save.\n\nThis alters saving throws."
+        },
+        {
+          "level": 10,
+          "name": "Fleeting Adoration",
+          "description": "Beginning at 10th level, the collector may touch a piece of magical equipment and spend a spell point to adore it, increasing its enhancement bonus by half the bonus she may grant to prizes (minimum +1). This has the same duration as withdrawn prizes and causes the item to count as a prize for the purpose of arsenal tricks. It requires a standard action to adore equipment being wielded by another creature, but can be done with the same action cost as withdrawing a prize if the collector is already touching or wielding the piece of equipment.\n\nJust as with prizes, adoring equipment cannot raise a piece of equipment’s enhancement bonus higher than +5, but can be traded for special abilities. Adoring an item a second time replaces the first adoration.\n\nThis replaces boost equipment."
+        },
+        {
+          "level": 15,
+          "name": "Rapid Retrieval",
+          "description": "At 15th level, the collector may withdraw, swap, or recall a prize as an immediate action or free action.\n\nThis replaces quick summons."
+        },
+        {
+          "level": 18,
+          "name": "Prize",
+          "description": "The collector may spend 8 hours bonding with a piece of equipment to claim it as her prize. A collector’s prize must be stored in her extradimensional storage. The collector may claim up to 50 pieces of ammunition as a single prize. Withdrawing or donning a prize from her extradimensional storage is always a swift action.\n\nThe collector always knows the direction and distance to each of her prizes as long as they are on the same plane. The collector may return any number of her prizes within long range to her extradimensional storage as swift action. If a prize is in the possession of a hostile creature, that creature gets a Will save (10 + 1/2 her collector level + practitioner modifier) to resist her recall. On a successful save, she fails in recalling her prize and cannot attempt to recall it this way for 1 minute.\n\nAfter 1 minute per class level, withdrawn prizes automatically return to the collector’s extradimensional storage as long as they are on the same plane. If a prize is in the possession of another creature at the end of this duration, the collector has 1 day per class level to retrieve it and return it to her extradimensional storage. If the prize is not returned in this time, the collector forfeits ownership of the item and it loses all benefits of the prize ability.\n\nPrizes gain a +1 enhancement bonus for every 3 collector levels to a maximum of +6 at 18th level. These bonuses may be traded for special abilities according to Table: Bound Equipment. Prize bonuses stack with existing bonuses or special abilities the item previously possessed up to a total maximum bonus of +1 for every 3 collector levels. Items with existing bonuses and abilities totaling greater than or equal to what the collector can currently bestow can still be claimed as prizes, and are treated as such for arsenal tricks and class abilities, but do not gain additional enhancement bonuses or special abilities per the prize ability.\n\nOnce set, a prize’s enhancement bonuses and special abilities may be changed by bonding with the item for 8 hours. Prizes are treated as summoned equipment for all other purposes and limitations, but do not cost a spell point to withdraw. Prizes wielded by anyone other than the collector lose any enhancement bonuses and special abilities granted by this ability.\n\nYou cannot select implements as prizes. An item does not need to be a masterwork item to be claimed as a prize.\n\nThis replaces summoned and bound equipment."
+        },
+        {
+          "level": 20,
+          "name": "Boundless Hoard",
+          "description": "At 20th level, the collector’s prizes do not count toward the weight limit of her extradimensional storage and the duration that her prizes can remain outside of extradimensional storage increases to 1 hour per class level. The collector may now claim a piece of equipment as a prize by spending 1 minute bonding with it.\n\nThis replaces infinite arsenal."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:armorist:darkshaper",
+      "package": "spheres-class:armorist",
+      "name": "Darkshaper",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/darkshaper",
+      "replaces_features": [
+        "armor-proficiency",
+        "armor-training",
+        "bind-implement",
+        "bind-staff",
+        "boost-equipment",
+        "bound-equipment",
+        "infinite-arsenal",
+        "normal-armorist-weapon",
+        "quick-summons",
+        "summon-armor",
+        "summon-equipment"
+      ],
+      "removed_features": [
+        "armor-proficiency",
+        "armor-training",
+        "bind-implement",
+        "bind-staff",
+        "boost-equipment",
+        "bound-equipment",
+        "infinite-arsenal",
+        "normal-armorist-weapon",
+        "quick-summons",
+        "summon-armor",
+        "summon-equipment"
+      ],
+      "removed_feature_clauses": [
+        "summon equipment",
+        "armor training",
+        "normal armorist weapon",
+        "armor proficiency",
+        "bound equipment",
+        "bind implement",
+        "boost equipment",
+        "quick summons",
+        "infinite arsenal",
+        "summon armor",
+        "bind staff"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "The darkshaper loses Knowledge (engineering) (Int) as a class skill and gains Stealth (Dex) as a class skill."
+        },
+        {
+          "level": 1,
+          "name": "Shadow Residue",
+          "description": "A darkshaper is able to leave behind some of her shadow on her target. When she lands an attack with her shadow limb, she may cast a (shadow) talent on that target as a swift action at the talent’s normal spell point cost.\n\nThis ability replaces summon equipment and armor training."
+        },
+        {
+          "level": 1,
+          "name": "Shadowed Combat",
+          "description": "A darkshaper gains the Dark sphere as a bonus sphere at 1st level, as well as the Shadow Master drawback, selecting a (shadow) talent as normal. If the darkshaper already possesses the Dark sphere, then she gains a (shadow) talent without the drawback."
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "The darkshaper is proficient in all simple weapons and light armor. This replaces the normal armorist weapon and armor proficiency."
+        },
+        {
+          "level": 5,
+          "name": "Shadow Limb",
+          "description": "As a swift action a darkshaper may animate her shadow as an extra limb. Her shadow limb possesses a primary natural attack with a reach of 5 feet that deals 1d4 slashing and piercing damage (1d3 for Small darkshapers). A darkshaper may use her casting ability modifier in place of her Strength modifier on attack and damage rolls and on combat maneuver checks using her shadow. Her shadow is dexterous enough to manipulate delicate objects and wield weapons, activate spell completion or spell trigger items. A shadow is too flimsy to function as a suit of armor or shield, though it may wield a shield.\n\nAt 5th level and every five levels thereafter, a darkshaper’s shadow adds 5 feet to her shadow limb’s reach, to a maximum of 20 feet at 20th level.\n\nA darkshaper’s shadow is not limited to moving along the ground, and cannot be sundered or attacked as a separate creature. Dismissing a shadow limb is a free action. A shadow limb’s natural attack gains a +1 enhancement bonus for every odd darkshaper level, to a maximum of +10 at 19th level. These bonuses may be traded for special abilities according to Table: Bound Equipment, except that a shadow may not be imbued with the dancing, returning, or throwing special abilities. A shadow limb cannot have higher than a +5 enhancement bonus; enhancement bonuses beyond this amount must be traded for special abilities. A shadow limb is treated as bound weapon with respect to arsenal tricks. Arsenal tricks that modify a bound weapon’s material may be applied to shadow limbs.\n\nA darkshaper may have one shadow limb manifested at a time at first level, and may manifest an additional shadow limb at 6th, 11th, and 16th levels. She may manifest up to her maximum number of shadow limbs as part of the same action, each with abilities and enhancement bonus identical to the first. The shadow limbs’ enhancement bonus and abilities may be changed any time they are manifested, though they must be the same for all of the darkshaper’s shadow limbs.\n\nThis ability counts as the Animated Shadow advanced talent for all prerequisites. A darkshaper may not use Animated Shadow and shadow limb at the same time.\n\nThis ability replaces bound equipment, bind implement, boost equipment, and quick summons."
+        },
+        {
+          "level": 20,
+          "name": "Tenebrous Touch",
+          "description": "At 20th level the darkshaper may activate shadow residue as a free action.\n\nThis replaces infinite arsenal.\n\nClass Skills: The darkshaper loses Knowledge (engineering) (Int) and Knowledge (nobility) (Int) as class skills and gains Acrobatics (Dex) and Stealth (Dex) as class skills.\n\nSkill Ranks at Each Level: 4 + Int modifier.\n\nWeapon and Armor Proficiency: The darkshaper is proficient in all simple weapons and light armor. This replaces the normal armorist weapon and armor proficiency.\n\nCasting Ability Modifier: The darkshaper uses Charisma as her casting ability modifier.\n\nShadow Limb (Su): As a move action a darkshaper may animate her shadow as an extra limb. Her shadow limb possesses a primary natural attack with with a reach of 5 ft. that deals 1d4 slashing and piercing damage (1d3 for small darkshapers). A darkshaper may use her Charisma modifier in place of her Strength modifier on attack and damage rolls and on combat maneuver checks using her shadow. Her shadow is dexterous enough to manipulate delicate objects and wield weapons, activate spell completion or spell trigger items. A shadow is too flimsy to function as a suit of armor or shield, though it may wield a shield.\n\nAt 5th level and every five levels thereafter, a darkshaper’s shadow adds 5 ft. to her shadow limb’s reach, to a maximum of 20 ft. at 20th level.\n\nA darkshaper’s shadow is not limited to moving along the ground, and cannot be sundered or attacked as a separate creature.\n\nDismissing a shadow limb is a free action. A shadow limb’s natural attack gains a +1 enhancement bonus for every odd armorist level possessed beyond first, to a maximum of +10 at 20th level. These bonuses may be traded for special qualities according to Table: Bound Equipment, except that a shadow may not be imbued with the dancing, returning, or throwing special qualities. A shadow limb cannot have higher than a +5 enhancement bonus; enhancement bonuses beyond this amount must be traded for special qualities. A shadow limb is treated as bound weapon with respect to arsenal tricks. Arsenal tricks that modify a bound weapon’s material may be applied to shadow limbs.\n\nA darkshaper may have one shadow limb manifested at a time at first level, and may manifest an additional shadow limb at 6th, 12th, and 18th levels. She may manifest up to her maximum number of shadow limbs as part of the same action, each with abilities and enhancement bonus identical to the first. The shadow limbs’ enhancement bonus and abilities may be changed any time they are manifested, though they must be the same for all of the darkshaper’s shadow limbs.\n\nThis ability counts as the Animated Shadow advanced talent for all prerequisites. A darkshaper may not use Animated Shadow and shadow limb at the same time. This ability replaces bound equipment, summon armor, and bind staff.\n\nShadow Residue (Su): A darkshaper is able to leave behind some of her shadow on her target. When she lands an attack with her shadow limb, she may cast a (shadow) talent on that target as a swift action at the talent’s normal spell point cost.\n\nThis ability replaces summon equipment and armor training.\n\nSwift Manifestation: At 15th level the darkshaper may use shadow limb as a swift action.\n\nThis ability replaces quick summons.\n\nTenebrous Touch: At 20th level the darkshaper may activate shadow residue as a free action.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:armorist:ferrous-emissary",
+      "package": "spheres-class:armorist",
+      "name": "Ferrous Emissary",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/ferrous-emissary",
+      "replaces_features": [
+        "additional-piece-of-bound-equipment",
+        "additional-piece-of-bound-equipment-at-level",
+        "bound-equipment"
+      ],
+      "removed_features": [
+        "additional-piece-of-bound-equipment-5th-level"
+      ],
+      "removed_feature_clauses": [
+        "additional piece of bound equipment gained at 5th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Sentient Weapon",
+          "description": "At 1st level, one of the ferrous emissary’s bound equipment becomes a powerful, sentient black blade. The blade advances as per a bladebound magus’ black blade class feature, using the ferrous emissary’s class level in place of the magus’ class level and spell points in place of the magus’ arcane pool (this does not reduce the ferrous emissary’s pool of spell points). The sentient weapon uses the enhancement bonus progression of bound equipment rather than the progression of a normal black blade, and gains its own arcane pool as normal. When targeting only the black blade with an effect that requires spell points, the ferrous emissary may spend the black blade’s arcane pool points in place of spell points.\n\nThe ferrous emissary may exchange her bound weapon for another piece of bound equipment, with the consciousness of the sentient weapon transferring to the new piece of bound equipment. The consciousness of the sentient weapon can even inhabit implements or armor, transferring the effects of black blade strike, energy attunement, and life drinker to a single weapon the ferrous emissary is wielding.\n\nThis ability alters bound equipment"
+        },
+        {
+          "level": 5,
+          "name": "Weapon Training",
+          "description": "At 5th level, the ferrous emissary gains a +1 bonus on weapon attack and damage rolls with all weapons from a single fighter weapon training group of his choice. This bonus increases by +1 at 9th level and every four levels thereafter. This counts as, and does not stack with, the fighter’s weapon training class feature.\n\nThe ferrous emissary can select advanced weapon training options in place of armorist tricks. They may only select such abilities once for every 4 armorist levels they possess.\n\nThis replaces the additional piece of bound equipment gained at 5th level. At 10th, 15th, and 20th levels, the armorist can choose between gaining a piece of bound equipment and gaining weapon training with another fighter weapon training group.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": [
+        "weapon_training"
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:armorist:inventioneer",
+      "package": "spheres-class:armorist",
+      "name": "Inventioneer",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/inventioneer",
+      "replaces_features": [
+        "armor-training",
+        "bound-equipment",
+        "but-otherwise-counts-as-bound-equipment",
+        "infinite-arsenal",
+        "magic-talents",
+        "proficiencies",
+        "summon-equipment"
+      ],
+      "removed_features": [
+        "armor-training",
+        "but-otherwise-counts-as-bound-equipment",
+        "infinite-arsenal",
+        "summon-equipment"
+      ],
+      "removed_feature_clauses": [
+        "but otherwise counts as bound equipment",
+        "summon equipment",
+        "armor training",
+        "infinite arsenal"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Inventioneers are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis alters proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "Whenever an inventioneer would gain a magic talent from her class levels (not the 2 bonus talents gained when first gaining the casting class feature), she may instead choose to gain a combat talent. Inventioneers use their casting ability modifier as their practitioner modifier.\n\nThis alters magic talents. This archetype may be combined with other archetypes that replace magic talents; she cannot gain a combat talent in place of a magic talent the other archetype loses."
+        },
+        {
+          "level": 5,
+          "name": "Bound Invention",
+          "description": "The inventioneer gains inventions as the technician class feature, summoning and dismissing them as bound equipment. An invention uses a bound equipment slot, gains enhancement bonuses accordingly, and may benefit from special abilities that would apply to it. A single invention only gains this bonus as if it was a piece or armor/shield or a weapon, not both (so an independent invention with a siege weapon gains the bonus to AC or to the siege weapon’s attack and damage rolls). If the inventioneer possesses multiple bound weapons, she may spend a second bound equipment slot to enchant a bound invention as both weapon and armor. If the bound invention is an independent invention, it counts as being in the inventioneer’s possession until the end of any turn she is not adjacent to it, on or in it, or spending an action to operate it. Bound inventions start with 1 improvement and gain an additional improvement at 5th level and every 4 levels thereafter (9th, 13th, 17th).\n\nThis replaces but otherwise counts as bound equipment. Abilities that alter bound equipment instead apply to bound inventions. The additional binding arsenal trick may not be used to grant or alter an additional bound invention."
+        },
+        {
+          "level": 1,
+          "name": "Summon Gadget",
+          "description": "At 1st level, the inventioneer may spend a spell point as a standard action to create and activate a gadget as per the technician’s class feature. Once the gadget’s normal duration has expired, it disappears. The inventioneer does not require any materials to create these gadgets.\n\nThis replaces summon equipment."
+        },
+        {
+          "level": 3,
+          "name": "Inventioneer Insight",
+          "description": "At 3rd level, the inventioneer may choose a technical insight from the technician class feature. The inventioneer counts as possessing this insight for the purpose of modifying her summoned gadgets and bound inventions. She may choose an additional insight every four levels thereafter (7th, 11th, 15th, and 19th).\n\nThis replaces armor training."
+        },
+        {
+          "level": 20,
+          "name": "Infinite Gadgets",
+          "description": "At 20th level, the inventioneer no longer needs to spend a spell point to summon gadgets.\n\nThis replaces infinite arsenal."
+        },
+        {
+          "level": 1,
+          "name": "Arsenal Tricks",
+          "description": "An inventioneer gains exclusive access to the following arsenal tricks."
+        },
+        {
+          "level": 1,
+          "name": "Miniaturize",
+          "description": "As a full-round action, the inventioneer may reduce the size of one independent invention that she has summoned as per the Size Change talent of the Alteration sphere, treating her class level as her caster level. This does not stack with caster levels from other sources. This alteration persists until she dismisses or re-applies it as a full-round action. She may reduce the required action to apply or dismiss this effect to a swift action by spending a spell point. If the invention becomes too small to contain creatures currently within it, they are shunted outside without taking damage. This effect does not reduce the bonus hit points the invention had from its normal size."
+        },
+        {
+          "level": 1,
+          "name": "Repair Invention",
+          "description": "As a standard action, she may spend a spell point to touch a bound invention to restore 1d8 hit points, + 1d8 at 3rd class level and every odd class level thereafter (5th, 7th, 9th, etc.)."
+        },
+        {
+          "level": 1,
+          "name": "Share Invention",
+          "description": "As part of summoning a bound invention, she may cause it to appear in the possession or adjacent to an allied creature within 30 feet. This bound invention remains for 1 minute per class level before disappearing."
+        },
+        {
+          "level": 1,
+          "name": "Share Invention, Greater (requires share invention)",
+          "description": "Shared inventions now last for 1 hour per class level before disappearing."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:armorist:lingchi-warrior",
+      "package": "spheres-class:armorist",
+      "name": "Lingchi Warrior",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/lingchi-warrior",
+      "replaces_features": [
+        "armor-training",
+        "bind-implement",
+        "boost-equipment",
+        "bound-equipment",
+        "quick-summons",
+        "summon-equipment"
+      ],
+      "removed_features": [
+        "armor-training",
+        "bind-implement",
+        "boost-equipment",
+        "bound-equipment",
+        "quick-summons",
+        "summon-equipment"
+      ],
+      "removed_feature_clauses": [
+        "summon equipment",
+        "boost equipment",
+        "quick summons",
+        "bound equipment",
+        "bind implement",
+        "armor training"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Armory Arena",
+          "description": "At 1st level a lingchi warrior can spend a spell point to call down a near infinite number of weapons around herself as a standard action. All creatures and objects within a 15 feet + 5 feet per 2 class level radius of the lingchi warrior take 1d6 + her casting ability modifier in slashing, piercing, or bludgeoning damage (her choice, Reflex negates, DC 10 + 1/2 lingchi warrior + casting ability modifier). When doing so, she may select a number of targets equal to her casting ability modifier to not take damage. The lingchi warrior who creates the armory arena never takes damage from this effect. For 1 minute per level after, the affected area is treated as difficult terrain for everyone other than the lingchi warrior.\n\nWithin this area, anyone may pick up any simple, martial, or exotic melee weapon that the lingchi warrior is proficient in or able to craft of their choice as a move action and wield it as if it were a normal masterwork quality item of its type that disappears when the armory arena expires or the weapon leaves the area of the armory arena. A lingchi warrior can only have 1 armory arena active at one time, with additional uses of this ability dismissing any currently existing arena. The lingchi warrior can dismiss the entire armory arena as a standard action but cannot dismiss specific weapons.\n\nAt 5th level, the lingchi warrior may create an armory arena as a move action and may pick up any weapon in the arena as a swift action.\n\nAt 15th level, the lingchi warrior may create an armory arena as a swift action and may pick up any weapon in the arena as a free action.\n\nAt 20th level, the lingchi warrior may create an armory arena as a free action once per round.\n\nThis ability replaces summon equipment, boost equipment, and quick summons."
+        },
+        {
+          "level": 1,
+          "name": "Arsenal Tricks",
+          "description": "A lingchi warrior gains exclusive access to the following arsenal tricks."
+        },
+        {
+          "level": 1,
+          "name": "Arsenal Tricks",
+          "description": "An lingchi warrior gains access to the following arsenal tricks. She cannot select any arsenal trick more than once."
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "A lingchi warrior is proficient with all simple and martial melee weapons, one exotic melee weapon, light armor and shields (except tower shields)."
+        },
+        {
+          "level": 3,
+          "name": "Enhanced Armory",
+          "description": "Starting at 3rd level, the lingchi warrior’s armory arena gains access to magically empowered weapons. Any weapon taken from the armory arena gains a +1 enhancement bonus. For every 3 levels the lingchi warrior possesses beyond 3rd, this bonus increases by +1 to a maximum of +6 at 18th level. These bonuses may be traded for special abilities according to the armorist’s Table: Bound Equipment, however the bonuses are determined by whoever wields the weapon at the time it is picked up.\n\nAny arsenal trick that grants additional options to an armorist’s bound or summoned equipment instead adds to the list of options available to the enhanced armory.\n\nThis ability replaces bound equipment and bind implement."
+        },
+        {
+          "level": 3,
+          "name": "Nimble",
+          "description": "At 3rd level, a lingchi warrior gains a +1 dodge bonus to AC while wearing light or no armor. Anything that causes the lingchi warrior to lose her Dexterity bonus to AC also causes her to lose this dodge bonus. This bonus increases by 1 for every 4 levels beyond 3rd (to a maximum of +5 at 19th level).\n\nThis ability replaces armor training."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:armorist:living-weapon",
+      "package": "spheres-class:armorist",
+      "name": "Living Weapon",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/living-weapon",
+      "replaces_features": [
+        "armor-training",
+        "arsenal-tricks",
+        "bound-equipment",
+        "infinite-arsenal",
+        "proficiencies",
+        "quick-summons",
+        "saving-throws",
+        "summon-equipment"
+      ],
+      "removed_features": [
+        "armor-training"
+      ],
+      "removed_feature_clauses": [
+        "armor training"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Arsenal Tricks",
+          "description": "The living weapon may not gain the heavy armor or tower shield arsenal tricks. She gains exclusive access to the following arsenal tricks:\n\nThis alters arsenal tricks."
+        },
+        {
+          "level": 1,
+          "name": "Bound Aegis",
+          "description": "At 1st level, the living weapon may choose her armored aegis as a piece of bound equipment. An armored aegis that grants an armor bonus must be bound separately from an armored aegis that grants a shield bonus, and only the living weapon may benefit from a bound aegis. A bound aegis still requires a spell point to summon, but has an unlimited duration and can be summoned again (spending another spell point to do so) if dispelled or destroyed. Summoning a bound aegis is still a form of spherecasting.\n\nThis alters bound equipment."
+        },
+        {
+          "level": 1,
+          "name": "Defensive Magic",
+          "description": "The living weapon gains Protection as a bonus sphere with the Limited Protection (aegis) drawback. She may buy off this drawback normally, and she does not gain this drawback nor a bonus talent if she has the Protection sphere from another source.\n\nShe also gains Armored Magic as a bonus talent. Whenever the living weapon uses an (aegis) talent, she uses her class level as her caster level. This stacks normally with caster levels gained from other sources."
+        },
+        {
+          "level": 1,
+          "name": "Saving Throws",
+          "description": "The living weapon has all good saving throws.\n\nThis alters saving throws."
+        },
+        {
+          "level": 1,
+          "name": "Summon Aegis",
+          "description": "The living weapon can not summon or bind either armor or shields. Instead, when she creates an Armored Magic aegis that grants an armor or shield bonus, she may treat these as summoned equipment and may give them enhancement bonuses and give them special abilities. She may only have one armor enchanted aegis and one shield enchanted aegis active on a creature at a time, but may spend a swift action to change what enchantments have been applied to either. Summoning an aegis is still a form of spherecasting, but the living weapon may use the armored magic ability as a swift action.\n\nThis alters summon equipment."
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiencies",
+          "description": "The living weapon is proficient with all simple and martial weapons, and with no armor or shields.\n\nThis alters proficiencies."
+        },
+        {
+          "level": 5,
+          "name": "Weapon Training",
+          "description": "At 5th level, the living weapon gains the weapon training class feature as a fighter of equal level. Any levels she has in the fighter class stack with her living weapon levels for the purpose of this feature.\n\nThis replaces armor training."
+        },
+        {
+          "level": 15,
+          "name": "Quick Summons",
+          "description": "At 15th level, the living weapon may use aegis abilities as a free or immediate action, just as she can summon equipment.\n\nThis alters quick summons."
+        },
+        {
+          "level": 20,
+          "name": "Infinite Arsenal",
+          "description": "At 20th level, the living weapon’s armored magic aegis AC bonus increases by +2 for both armor and shields, and applies to touch AC. The living weapon does not lose the regular benefits of infinite arsenal.\n\nThis alters infinite arsenal.\n\nThe Abjurer's Handbook\n\n$4.99\n\nWhen you take away the weapons, the armor, and the support of a legion of fellow soldiers, you are left with nothing but a single person, and more often than not, that person is nothing. But for the living weapon, his greatest assets are his strength of will, his powerful mind, and his tactical prowess; especially with magic. While other armorists can often make this claim, the living weapon doesn’t even summon armor, preferring to use magic directly to protect himself. All he needs is a weapon, everything else just gets in the way. This gives a flexibility and subtlety others lack - which adds another weapon to their arsenal.\n\nSaving Throws: The living weapon has good Fortitude and Reflex saving throws.\n\nThis modifies saving throws.\n\nWeapon and Armor Proficiencies: The living weapon is proficient with all simple and martial weapons, and with no armor or shields.\n\nThis modifies proficiencies.\n\nDefensive Magic: The living weapon gains Protection as a bonus sphere with the Limited Protection (can not use wards) drawback. He may buy off this drawback normally, and he does not gain this drawback if he has the Protection sphere from another source.\n\nHe also gains Armored Magic as a bonus talent. If he already has the Armored Magic talent, then he can gain a bonus talent from the Protection sphere of his choice instead.\n\nWhenever the living weapon uses an aegis ability, he uses his class level as his caster level. This stacks with other caster level sources normally.\n\nSummon Aegis: The living weapon can not summon or bind either armor or shields. Instead, when he creates an armored magic aegis that grants an armor or shield bonus, he may treat these as summoned equipment and may give them enhancement bonuses and give them properties. He may only have one armor enchanted aegis and one shield enchanted aegis active on a creature at a time, but may spend a move action to change what enchantments have been applied to either. Summoning an aegis is still a form of spherecasting, but the living weapon may use the armored magic ability as a move action.\n\nThis modifies summon equipment.\n\nBound Aegis: At 1st level, the living weapon may choose his armored aegis as a piece of bound equipment. An armored aegis that grants an armor bonus must be bound separately from an armored aegis that grants a shield bonus, and only the living weapon may benefit from a bound aegis. A bound aegis still requires a spell point to summon, but has an unlimited duration and can be summoned again (spending another spell point to do so) if dispelled or destroyed. Summoning a bound aegis is still a form of spherecasting.\n\nThis modifies bound equipment.\n\nWeapon Training (Ex): At 5th level, the living weapon gains the weapon training class feature as a fighter of equal level. Any levels he has in the fighter class stack with his living weapon levels for the purpose of this feature.\n\nThis replaces the armor training.\n\nArsenal Tricks: The living weapon may not gain the Heavy Armor or Tower Shield arsenal tricks. They may choose from the following arsenal tricks in addition to the normal arsenal tricks available to an armorist:\n\nActive Defense: Whenever the living weapon uses a (succor) talent that sacrifices an aegis he bears, he may instead spend a spell point in place of sacrificing the aegis.\n\nAlways Armed: The living weapon does not provoke attacks of opportunity when he attacks foes while unarmed, and may do lethal damage with his unarmed attack if he wants to. The base damage of his unarmed attack increases to d4, d6 or d8, depending on whether he is small, medium or large, respectively. He may use his summon equipment ability to enchant his own fists as a weapon. He may also bind his fists with his bound weapon ability multiple times, but only one can be in effect at a time. Both fists are considered a single weapon for the purpose of summoning and binding properties, and he may bind his fists once without using one of his bound equipment slots.\n\nEvasion: If the living weapon makes a successful Reflex saving throw against an attack that normally deals half damage on a successful save, he instead takes no damage. He does not benefit from this ability while wearing armor, carrying a shield or while he is helpless.\n\nFighter Weapon Training (Requires Living Weapon 10th Level): The living weapon gains an advanced weapon training ability as a fighter of equal level. He can use his class levels in place of fighter levels, and if he has both, they stack.\n\nInsightful Strike (Requires Living Weapon 6th level): When the living weapon hits with a weapon with which he has weapon training, he may spend a spell point as a free action to do additional damage equal to his class level + his casting ability modifier. This is precision damage, and can not be used against creatures immune to critical hits.\n\nLiving Flurry: The living weapon gains the flurry of blows class feature as an unchained monk, and gains an extra attack when he performs a full-round attack. The flurry only works with unarmed strikes and weapons that have the monk special weapon quality. This does not stack with extra attacks from the monk’s flurry of blows class feature, but does stack with the extra attack from the haste effect of the Time sphere.\n\nLiving Flurry, Improved (Requires Living Weapon 12th Level): When the living weapon uses their flurry as a full-round attack, he gains a second extra attack at his full base attack bonus.\n\nProtected Identity: The living weapon can alter an aegis he created that he bears to create minor illusions to camouflage himself. He gain a competence bonus equal to his level on Stealth checks and to his Disguise checks to conceal his identity (but not to disguise himself as someone else). The living weapon may make attempts to conceal his identity without needing to apply a disguise, and may make a disguise check when he uses this ability. This is considered a type of illusion, and does not stack with any of the bonuses to Stealth or Disguise granted by any form of illusion.\n\nSpheric Aegis: The living weapon may cause an aegis he is wearing to become spherical as a free action. This has no effect on his defenses or movement, but any other creature that would receive cover because of the living weapon’s position benefits from the aegis as they were bearing it. In addition, the living weapon provides cover as if they were a transparent structure granting a bonus to reflex saves (but not to Stealth) if they are currently bearing an armored aegis. He may end the effects as a free action.\n\nTactical Protection: Once per day, the living weapon may use a free action to spontaneously gain an (aegis) talent from the Protection sphere. He retains this talent until the next time he rests and regains spell points.\n\nWeapons of Choice: The living weapon may choose one weapon property, one armor property, and one shield property that he can create. These properties are considered one +1 modifier lower for them, to a minimum of +1.\n\nThis modifies arsenal tricks.\n\nQuick Summons: At 15th level, the living weapon may use aegis abilities as a swift action. He may also summon equipment as a swift action. This improves to a free action for both at 20th level.\n\nThis modifies quick summons.\n\nInfinite Arsenal: At 20th level, the living weapon’s armored magic aegis AC bonus increases by +2 for both armor and shields, and applies to touch AC.\n\nThis modifies infinite arsenal.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": [
+        "weapon_training"
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:armorist:martial-armorist",
+      "package": "spheres-class:armorist",
+      "name": "Martial Armorist",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/martial-armorist",
+      "replaces_features": [
+        "magic-talents",
+        "proficiencies"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Martial armorists are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a Martial Tradition of their choice.\n\nThis modifies proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "Whenever a martial armorist would gain a magic talent from her class levels (not the 2 bonus talents gained when first gaining the casting class feature), she may instead choose to gain a combat talent. A martial armorist uses her casting ability modifier as her practitioner modifier.\n\nThis modifies magic talents. This archetype may be combined with other archetypes that replace magic talents; you cannot gain a combat talent in place of a magic talent the other archetype loses."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:armorist:soaring-blade",
+      "package": "spheres-class:armorist",
+      "name": "Soaring Blade",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/soaring-blade",
+      "replaces_features": [
+        "armor-proficiency",
+        "armor-training",
+        "arsenal-tricks",
+        "bind-implement",
+        "bound-equipment",
+        "normal-armorist-weapon",
+        "summon-equipment"
+      ],
+      "removed_features": [
+        "armor-proficiency",
+        "armor-training",
+        "bind-implement",
+        "normal-armorist-weapon"
+      ],
+      "removed_feature_clauses": [
+        "normal armorist weapon",
+        "armor proficiency",
+        "armor training",
+        "bind implement"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Arsenal Tricks",
+          "description": "The soaring blade cannot select the heavy armor, movement, or tower shield arsenal tricks. She gains exclusive access to the following arsenal tricks:\n\nThis alters arsenal tricks."
+        },
+        {
+          "level": 1,
+          "name": "Bound Equipment",
+          "description": "A soaring blade may summon her bound equipment anywhere within her telekinesis range, and equipment lifted by a soaring blade’s telekinesis counts as being in her hands, and does not disappear. A soaring blade may not bind shields, armor, or implements.\n\nThis alters bound equipment."
+        },
+        {
+          "level": 1,
+          "name": "Summon Equipment",
+          "description": "When a soaring blade summons equipment, she may conjure them anywhere within her telekinesis range. A soaring blade may not summon shields or armor.\n\nThis alters summon equipment."
+        },
+        {
+          "level": 1,
+          "name": "The Soaring Blade",
+          "description": "A soaring blade gains the Telekinesis sphere as a bonus talent and uses her soaring blade level as her caster level with the Telekinesis sphere. However, she also gains the Limited Telekinesis drawback, selecting her bound equipment and summoned equipment as her ‘material’. She may buy off this drawback normally by spending a magic talent, but she may only use her class level as her caster level in situations where this drawback would apply. If she already possesses this sphere, she does not gain this drawback (instead of gaining the bonus Telekinesis magic talent a character would normally receive for having a duplicated sphere)."
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "A soaring blade is proficient with simple and martial weapons and light armor. This replaces the normal armorist weapon and armor proficiency."
+        },
+        {
+          "level": 3,
+          "name": "Steel Sentries",
+          "description": "At 3rd level the soaring blade gains the Dancing Weapon talent as a bonus talent. If she already possesses the Dancing Weapon talent or - if gained through this class feature - later spends a magic talent, she adds her casting ability modifier to the number of additional attacks of opportunity she may make, but only with a weapon she has lifted with her telekinesis.\n\nAt 7th level and every four levels thereafter the soaring blade gains the ability to make an additional attack of opportunity each round, to a maximum of + 4 at level 19.\n\nThis ability counts as the Combat Reflexes feat for the purposes of prerequisites.\n\nThis ability replaces armor training."
+        },
+        {
+          "level": 5,
+          "name": "House of Blades",
+          "description": "At 5th level, a soaring blade gains Divided Mind as a bonus Telekinesis talent and Group Summons as a bonus arsenal trick. If she already possesses either of these, she may gain a different talent or arsenal trick, respectively.\n\nThis replaces bind implement."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:armorist:spirit-blade",
+      "package": "spheres-class:armorist",
+      "name": "Spirit Blade",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/spirit-blade",
+      "replaces_features": [
+        "armor-training",
+        "boost-equipment",
+        "bound-equipment",
+        "infinite-arsenal",
+        "magic-talents",
+        "proficiencies",
+        "saving-throws",
+        "summon-equipment"
+      ],
+      "removed_features": [
+        "armor-training",
+        "boost-equipment",
+        "infinite-arsenal",
+        "summon-equipment"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blade Haunts",
+          "description": "The spirit blade gains exclusive access to the following arsenal tricks:"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:armorist:symbiotic-knight",
+      "package": "spheres-class:armorist",
+      "name": "Symbiotic Knight",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/symbiotic-knight",
+      "replaces_features": [
+        "bound-equipment",
+        "summon-equipment",
+        "summoned-equipment"
+      ],
+      "removed_features": [
+        "bound-equipment"
+      ],
+      "removed_feature_clauses": [
+        "bound equipment"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Summon Equipment",
+          "description": "A symbiotic knight summons equipment by forming it out of the substance of her symbiote. As such, only the symbiotic knight can use her summoned equipment; in the hands of any other creatures, her summoned equipment is treated as nothing but a masterwork weapon.\n\nThis alters summon equipment."
+        },
+        {
+          "level": 1,
+          "name": "Symbiotic Armor",
+          "description": "At 1st level, a symbiotic knight forms a bond with an amorphous creature or some other entity. This symbiote becomes a part of the symbiotic knight, often taking the form of a growing plant, a stone hand, or another conscious mark when not in use. When summoned, the symbiote covers the creature and becomes a suit of armor. The symbiote can take on a light, medium or heavy form as desired.\n\nForming symbiotic armor or changing the armor’s form requires the same action as summoning equipment (a move or swift action, which improves through the quick summons class feature). A suit of symbiotic armor has a hardness of 10, and 10 hit points per symbiotic knight level. If the symbiote is destroyed (such as through sunder maneuvers), it reverts to its dormant state and cannot be used unless repaired or until the symbiotic knight rests to regain spell points, at which time it regains all lost hit points.\n\nArmor Type\nAC Bonus\nMax Dex Bonus\nArmor Check Penalty\n\nLight Armor\n+2\n+6\n0\n\nMedium Armor\n+6\n+3\n-3\n\nHeavy Armor\n+9\n+0\n-6\n\nThis armor gains enhancement bonuses as if it were a piece of bound equipment. However, unlike most pieces of bound equipment, a symbiotic knight may change what special abilities her symbiote possesses each time it is summoned, whenever its form is changed, or at any time with the same required action (a swift action or move action, which improves through the quick summons class feature).\n\nA symbiote counts as a piece of bound equipment for all purposes.\n\nIf the symbiotic knight gains the greater materials or improved materials arsenal tricks, she may grant her symbiote the benefits and hardness of those materials.\n\nThis replaces bound equipment."
+        },
+        {
+          "level": 5,
+          "name": "Symbiote Traits",
+          "description": "At 5th level and every 5 levels thereafter, the symbiotic knight’s symbiote gains one trait from any Alteration sphere talent, which it may bestow to the symbiotic knight. Treat her symbiotic knight level as her caster level when meeting the prerequisites and determining the effects of a particular trait. These traits are not considered a polymorph effect. Traits that cost an additional spell point to use (such as turning incorporeal) or are only available as part of a form (such as the perfect maneuverability of an air elemental) cannot be gained in this fashion. If a trait gives an additional choice (like Elemental Resistance for the energy type) then this choice must be made once the trait is chosen. Such a trait can be selected several times, but each time a different choice has to be made.\n\nOnce a trait has been chosen, it cannot be changed. So long as the symbiotic knight is using her symbiote as armor, her symbiote may grant her any trait or traits it possesses. Activating or dismissing any of these traits may be done as part of the action needed to summon, dismiss, or alter the special abilities of symbiotic armor.\n\nSpheres of Power: Expanded Options\n\n$4.99\n\nSymbiotic Armor (Su): At 1st level, A symbiotic knight forms a bond with an amorphous creature or another entity. This symbiote becomes a part of the creature, often taking the form of a growing plant, a stone hand, or another conscious mark when not in use. When summoned, the symbiote covers the creature and becomes a suit of armor. The symbiote can take on a light, medium or heavy form as desired. Forming symbiotic armor or changing the armor’s form requires the same action as summoning equipment (a move action, which improves through the quick summons class feature). A suit of symbiotic armor has a hardness of 10, and 10 hp per armorist level. If the symbiote is destroyed (such as through sunder maneuvers), it reverts to its dormant state and cannot be used unless repaired or until the symbiotic knight rests to regain spell points, at which time it regains all lost hit points.\n\nArmor Type\nAC Bonus\nMax Dex Bonus\nArmor Check Penalty\n\nLight Armor\n+2\n+6\n0\n\nMedium Armor\n+6\n+3\n-3\n\nHeavy Armor\n+9\n+0\n-6\n\nThis armor gains enhancement bonuses as if it were a piece of bound equipment. However, unlike most pieces of bound equipment, a symbiotic knight may change what special qualities his symbiote possesses each time it is summoned, whenever it’s form is changed, or at any time with the same required action (move action, which improves through the quick summons class feature).\n\nA symbiote counts as a piece of bound equipment for all purposes.\n\nIf the symbiotic knight gains the Improved Materials or Greater Materials arsenal tricks, he may grant his symbiot the benefits and hardness of those materials.\n\nThis replaces bound equipment.\n\nSummon Equipment (Su): A symbiotic knight summons equipment by forming it out of the substance of his symbiote. As such, only the symbiotic knight can use his summoned equipment; in the hands of any other creatures, his summoned equipment is treated as nothing but a masterwork weapon.\n\nThis alters Summoned Equipment.\n\nSymbiote Traits (Su): At 5th level and every 5 levels thereafter, the symbiotic knight’s symbiote gains one trait from the Alteration sphere, which it may bestow to the symbiotic knight. Treat the symbiotic knight’s armorist level as her caster level when meeting the prerequisites and determining the effects of a particular trait. Traits that cost an additional spell point to use (such as turning incorporeal), are only available as part of a form (such as the perfect maneuverability of an air elemental) cannot be gained in this fashion. If elemental resistance is chosen, the resistance is only against a single element, which must be chosen at the time this trait is gained. Elemental resistance can be gained multiple times, each time affecting a different element.\n\nOnce a trait has been chosen, it cannot be changed. So long as the symbiotic knight is using her symbiote as armor, her symbiote may grant her any trait or traits it possesses. Activating or dismissing any of these traits may be done as part of the action needed to summon, dismiss, or alter the special qualities of symbiotic armor.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:armorist:vajrahasta",
+      "package": "spheres-class:armorist",
+      "name": "Vajrahasta",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/vajrahasta",
+      "replaces_features": [
+        "armor-training",
+        "arsenal-trick-normally",
+        "arsenal-trick-normally-at-level",
+        "bound-equipment",
+        "magic-talents",
+        "proficiencies"
+      ],
+      "removed_features": [
+        "armor-training",
+        "arsenal-trick-normally-2nd-level",
+        "arsenal-trick-normally-4th-level",
+        "bound-equipment"
+      ],
+      "removed_feature_clauses": [
+        "bound equipment",
+        "arsenal trick normally gained at 2nd level",
+        "armor training",
+        "the arsenal trick normally gained at 4th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Arsenal Tricks",
+          "description": "The vajrahasta gains exclusive access to the following arsenal trick:"
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "Whenever a vajrahasta would gain a magic talent from her class levels (not the 2 bonus talents gained when first gaining the casting class feature), she may instead choose to gain a combat talent. A vajrahasta uses her casting ability modifier as her practitioner modifier.\n\nThis alters magic talents. This archetype may be combined with other archetypes that replace magic talents; they can not gain a combat talent in place of a magic talent the other archetype loses."
+        },
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Vajrahastas are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis alters proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Vajra",
+          "description": "As a swift action a vajrahasta may call to her hands a vajra, a weapon of lightning made solid. This is a thrown weapon (and counts as a weapon in the thrown weapons group) with a 20 feet range increment that deals 1d6 piercing damage and 1d6 electricity damage. This electricity damage is considered part of the vajra’s normal weapon damage dice, and so is multiplied on a critical hit. The vajrahasta is proficient with her vajras.\n\nThe vajra gains a +1 enhancement bonus for every odd vajrahastas level possessed. These bonuses may be traded for special abilities according to Table: Bound Equipment. A vajra cannot have higher than a +5 enhancement bonus; enhancement bonuses beyond this amount must be traded for special abilities. If the vajrahasta applies a special ability that adds electricity or sonic damage to her vajra, the size of damage die is increased by one (e.g. from d6 to d8). If it deals any other elemental damage, the die size is decreased by one.\n\nA vajra is treated as bound weapon with respect to arsenal tricks. Arsenal tricks that modify a bound weapon’s material may be applied to vajras. A vajrahasta may have one vajra manifested at a time at first level, and may manifest an additional vajra at 5th, 10th, 15th, and 20th levels. She may manifest up to her maximum number of vajras as part of the same action, each with abilities and enhancement bonus identical to the first; if she does not have enough hands to hold all of them, they appear on her body ready to be drawn. The vajras’ enhancement bonus and abilities may be changed any time they are manifested, though they must be the same for all of the vajrahasta’s vajras.\n\nUnlike a bound weapon, a vajra does not automatically disappear upon leaving the vajrahasta’s hand. Instead, the vajrahasta may return any number of her vajras to her hand as a swift action. It still may not be wielded by another creature; if one attempts to do so, the vajra immediately disappears. The vajrahasta may dismiss any number of her vajras as a move action.\n\nShe may also dismiss or return any number of her vajras to her hand as an attack action. If she chooses to do so, any creatures impaled on them suffer the effects of removing an impaled weapon (such as bleed damage), and she gains any benefits (such as regaining her martial focus with the Focusing Finale Lancer talent). She may choose to apply the effects of abilities that require a combat maneuver check to remove an impaled weapon (such as the Pincushion Impalement Lancer talent) as normal. Her vajra’s enhancement bonus applies to the combat maneuver check.\n\nThis replaces bound equipment.\n\nNote: Size changes do not modify the damage of a vajra."
+        },
+        {
+          "level": 2,
+          "name": "Lightning Impaler",
+          "description": "At 2nd level, the vajrahasta gains the Lancer sphere as a bonus sphere. She may only impale using her vajra; taking Ranged Impale allows her to impale with melee or thrown weapons. If she already possesses the Lancer sphere, then she gains Ranged Impale. If she possesses Ranged Impale she may instead choose any talent from the Lancer sphere.\n\nThis replaces the arsenal trick normally gained at 2nd level."
+        },
+        {
+          "level": 3,
+          "name": "Piercing Shroud",
+          "description": "At 3rd level, the vajrahasta gains the Weather sphere and one (shroud) talent, as well as the Localized Weather drawback. This drawback does not grant an additional talent and may be bought off as normal. If she already possesses the Weather sphere, then she gains a (shroud) talent with no drawback.\n\nWhen the vajrahasta successfully impales a target using her vajra, she may spend a spell point as a free action to affect it with a (shroud) talent she knows. She need not concentrate on the effect as long as the target remains impaled (but cannot spend a spell point to extend its duration), and treats her class level as her caster level for the shroud’s effects. This stacks normally with caster levels gained from other sources.\n\nThis replaces armor training and the arsenal trick normally gained at 4th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:armorist:void-wielder",
+      "package": "spheres-class:armorist",
+      "name": "Void Wielder",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/void-wielder",
+      "replaces_features": [
+        "bound-equipment",
+        "summon-equipment"
+      ],
+      "removed_features": [
+        "summon-equipment"
+      ],
+      "removed_feature_clauses": [
+        "summon equipment",
+        "alters bound equipment"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Arsenal Tricks",
+          "description": "The void wielder gains exclusive access to the following arsenal tricks. Arsenal tricks that reference an advanced talent are only available in campaigns where the advanced talent is permitted."
+        },
+        {
+          "level": 1,
+          "name": "Void Blade",
+          "description": "At 1st level, the void wielder must bind a special weapon called a void blade, a weapon of terrible power. Any creature slain or destroyed by a void blade finds a fragment of its essence trapped inside. The void blade may retain the essence of up to two creatures at one time. If additional creatures are slain or destroyed, the void wielder may choose to dismiss a retained essence and retain the new essence. Despite the name, the void blade can be any weapon with which the void wielder is proficient. The special abilities of the void blade function only for the void wielder; to any other creature it functions as a normal masterwork weapon of its type. The void blade otherwise functions as a bound weapon and the void wielder still gains additional bound equipment options as normal from leveling, but must always keep her void blade bound.\n\nThe void wielder may spend one hour meditating to harness the essence trapped in her void blade. After doing so, she may call forth a copy of the creature as a standard action. Treat this copy as summoning a companion from the Conjuration sphere. Treat the void blade’s class level as her caster level for this ability. This stacks normally with caster levels gained from other sources. The companion remains for 1 round per Hit Die of the original creature without concentration; the void blade may spend a spell point as a free action to increase this to 1 minute per Hit Die. Companions summoned this way start with the normal 1 bonus (form) talent and gain another (form) talent for every three class levels the void wielder has.\n\nTalents granted this way must reflect abilities the original creature possessed. The GM is the final arbiter of which talents are appropriate and particularly weak creatures may not necessarily be able to be granted their full complement of talents (so a level 1 commoner would not gain any additional talents while a Small-sized snake would stop gaining bonus talents once it had a poison bite and a climb speed, but both would have the full Hit Dice appropriate to a companion of that caster level).\n\nThe summoned copy appears exactly like the original creature, granting a +10 bonus to any checks made to impersonate that creature, but the essence it is formed from is insufficient to grant any memories or special knowledge. This bonus does not stack with any other bonuses granted from mimicking the creature’s appearance, such as the disguise self spell.\n\nIf the void wielder is slain, all essences trapped in her void blade are lost. If a void wielder willingly relinquishes her bond with her void blade and passes it to another, the essences are retained. Doing so requires that the recipient is either a void blade who gives up her own weapon prior to claiming the new one or else is a warrior that has studied under the void wielder for at least one month. In this case, the recipient spends their time retraining a class level into void wielder at no cost beyond the time invested.\n\nThis replaces summon equipment and alters bound equipment."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:armorist:warden",
+      "package": "spheres-class:armorist",
+      "name": "Warden",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/warden",
+      "replaces_features": [
+        "armor-proficiency",
+        "armor-training",
+        "infinite-arsenal",
+        "quick-summons",
+        "weapon"
+      ],
+      "removed_features": [
+        "armor-training",
+        "infinite-arsenal",
+        "quick-summons"
+      ],
+      "removed_feature_clauses": [
+        "armor training",
+        "quick summons",
+        "infinite arsenal"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {
+        "statistics": {
+          "skill_points": 6
+        }
+      },
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Armor Proficiency",
+          "description": "The warden is proficient with light and medium armor but is prohibited from wearing metal armor; thus, she may wear only armor with no metal components like padded, leather, or hide armor. A warden may also wear wooden armor that has been altered by effects (such as ironwood) so that it functions as though it were steel.\n\nWardens are proficient with shields (except tower shields) but must use only non-metal ones. A warden who wears prohibited armor or uses a prohibited shield must succeed at an arcane spell failure check to use her sphere abilities (even though her sphere casting is not usually considered arcane without the proper casting traditions).\n\nThis alters weapon and armor proficiency."
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "The warden gains Knowledge (nature) (Int) and Survival (Wis) as class skills instead of Knowledge (engineering) (Int) and Knowledge (nobility) (Int)."
+        },
+        {
+          "level": 1,
+          "name": "Nature’s Blade",
+          "description": "A warden gains the Nature sphere as a bonus sphere at 1st level and treats her class level as her caster level for (spirit) talents from the Nature sphere. This stacks normally with caster levels gained from other sources.\n\nThis replaces armor training and quick summons."
+        },
+        {
+          "level": 1,
+          "name": "Skill Ranks Per Level",
+          "description": "6 + Int modifier"
+        },
+        {
+          "level": 20,
+          "name": "Deadly Guardian",
+          "description": "At 20th level, all bound and summoned weapons the warden wields automatically confirm all critical threats and have their damage multiplier increased by 1 (×2 becomes ×3, for example). In addition, she cannot be disarmed while wielding a bound or summoned weapon.\n\nThis replaces infinite arsenal.\n\nClass Skills: The warden gains Knowledge (Nature) and Survival as class skills instead of Knowledge (Engineering) and Knowledge (Nobility).\n\nSkill Ranks Per Level: 4 + Int modifier\n\nArmor Proficiency: Wardens are proficient with light and medium armor but are prohibited from wearing metal armor; thus, they may wear only padded, leather, or hide armor. A warden may also wear wooden armor that has been altered by sphere abilities (such as change materials) or rituals and spells (such as ironwood) so that it functions as though it were steel.\n\nWardens are proficient with shields (except tower shields) but must use only wooden ones. A warden who wears prohibited armor or uses a prohibited shield must make an arcane spell failure check to use their sphere abilities (although its sphere casting is not usually considered arcane without the proper casting traditions).\n\nThis alters weapon and armor proficiency.\n\nNature’s Blade: A warden gains the nature sphere as a bonus sphere at 1st level and treats his class level as his caster level for (spirit) talents from the nature sphere. This stacks normally with caster levels gained from other classes.\n\nThis replaces armor training and quick summons.\n\nDeadly Guardian (Ex): At 20th level, all bound and summoned weapons the warden wields automatically confirm all critical threats and have their damage multiplier increased by 1 (×2 becomes ×3, for example). In addition, he cannot be disarmed while wielding a bound or summoned weapon.\n\nThis replaces infinite arsenal.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:armorist:warleader",
+      "package": "spheres-class:armorist",
+      "name": "Warleader",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/warleader",
+      "replaces_features": [
+        "bound-equipment"
+      ],
+      "removed_features": [
+        "bound-equipment"
+      ],
+      "removed_feature_clauses": [
+        "bound equipment"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A warleader gains Handle Animal (Cha) as a class skill."
+        },
+        {
+          "level": 1,
+          "name": "Mount",
+          "description": "A warleader gains the service of a loyal and trusty steed to carry her into battle. This mount functions as a druid’s animal companion, using the warleader’s level as her effective druid level. The creature must be one that she is capable of riding and is suitable as a mount. The mount is always considered combat trained and begins play with Light Armor Proficiency as a bonus feat.\n\nA warleader’s bond with her mount is strong, with the pair learning to anticipate each other’s moods and moves. Should a warleader’s mount die, the warleader may find another mount to serve her after 1 week of mourning.\n\nThis replaces bound equipment."
+        },
+        {
+          "level": 5,
+          "name": "Tactician",
+          "description": "At 5th level, a warleader receives a teamwork feat as a bonus feat. She must meet the prerequisites for this feat. As a standard action, the warleader can grant this feat to all allies within 30 feet who can see and hear her. Allies retain the use of this bonus feat for 3 rounds plus 1 round for every two levels the warleader possesses. Allies do not need to meet the prerequisites of these bonus feats. The warleader can use this ability once per day at 5th level, plus one additional time per day at 10th level and for every 5 levels thereafter. If the warleader gains this ability from another class, these levels stack for determining the number of uses per day, and she can take the better progression."
+        },
+        {
+          "level": 10,
+          "name": "Greater Tactician",
+          "description": "At 10th level, the warleader receives an additional teamwork feat as a bonus feat. She must meet the prerequisites for this feat. The warleader can grant this feat to her allies using the tactician ability. Using the tactician ability is a swift action."
+        },
+        {
+          "level": 15,
+          "name": "Powerful Tactician",
+          "description": "At 15th level, the warleader receives an additional teamwork feat. The warleader can select from any of his teamwork feats when using the tactician ability, not just his bonus feats."
+        },
+        {
+          "level": 20,
+          "name": "Master Tactician",
+          "description": "At 20th level the warleader receives an additional teamwork feat as a bonus feat. She must meet the prerequisites for this feat. The warleader can grant this feat to her allies using the tactician ability. Whenever the warleader uses the tactician ability, she grants any two teamwork feats that she knows.\n\nSpheres of Power: Expanded Options\n\n$4.99\n\nMount (Ex): A warleader gains the service of a loyal and trusty steed to carry him into battle. This mount functions as a druid’s animal companion, using the warleader’s level as his effective druid level. The creature must be one that he is capable of riding and is suitable as a mount. The mount is always considered combat trained and begins play with Light Armor Proficiency as a bonus feat.\n\nA warleader’s bond with his mount is strong, with the pair learning to anticipate each other’s moods and moves. Should a warleader’s mount die, the warleader may find another mount to serve him after 1 week of mourning.\n\nThis replaces bound equipment.\n\nTactician (Ex): At 5th level, a warleader receives a teamwork feat as a bonus feat. He must meet the prerequisites for this feat. As a standard action, the warleader can grant this feat to all allies within 30 feet who can see and hear him. Allies retain the use of this bonus feat for 3 rounds plus 1 round for every two levels the warleader possesses. Allies do not need to meet the prerequisites of these bonus feats. The warleader can use this ability once per day at 1st level, plus one additional time per day at 10th level and for every 5 levels thereafter. If the war leader gains this ability from another class, these levels stack for determining the number of uses per day, and he can take the better progression.\n\nGreater Tactician (Ex): At 10th level, the warleader receives an additional teamwork feat as a bonus feat. He must meet the prerequisites for this feat. The warleader can grant this feat to his allies using the tactician ability. Using the tactician ability is a swift action.\n\nPowerful Tactician (Ex): At 15th level, the warleader receives an additional teamwork feat. The warleader can grant this feat to his allies using the tactician ability.\n\nMaster Tactician (Ex): At 20th level the warleader receives an additional teamwork feat as a bonus feat. He must meet the prerequisites for this feat. The warleader can grant this feat to his allies using the tactician ability. Whenever the warleader uses the tactician ability, he grants any two teamwork feats that he knows. He can select from any of his teamwork feats, not just his bonus feats.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:armorist:whitesmith",
+      "package": "spheres-class:armorist",
+      "name": "Whitesmith",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/whitesmith",
+      "replaces_features": [
+        "boost-equipment",
+        "bound-equipment",
+        "quick-summons",
+        "summoned-equipment"
+      ],
+      "removed_features": [
+        "boost-equipment",
+        "bound-equipment",
+        "quick-summons",
+        "summoned-equipment"
+      ],
+      "removed_feature_clauses": [
+        "quick summons",
+        "summoned equipment",
+        "boost equipment",
+        "bound equipment"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Perfect Concentration",
+          "description": "A whitesmith of at least 19th level may concentrate on an enhancement effect as a swift action.\n\nThis ability replaces quick summons."
+        },
+        {
+          "level": 1,
+          "name": "The Mystic Crucible",
+          "description": "A whitesmith gains the Enhancement sphere as a bonus magic talent. She treats her class level as her caster level for Enhancement effects that target objects. This stacks normally with caster levels gained from other sources. In addition, she may spend some of the Enhance Equipment bonus for special abilities according to the table: bound equipment, up to a maximum of +1 and an additional +1 every 5 levels.\n\nThis ability replaces summoned equipment and boost equipment."
+        },
+        {
+          "level": 3,
+          "name": "Infinite Enhancements",
+          "description": "Whenever a whitesmith of 20th level uses exceptional enhancement to enhance additional objects, she may spend 1 spell point to double the number of additional objects she may enhance at once. She may spend any number of spell points on this class feature.\n\nThe ability replaces infinite arsenal.\n\nThe Mystic Crucible (Su): A whitesmith gains the Enhancement sphere as a bonus magic talent. She treats her class level as her caster level for Enhancement effects that target objects. This stacks normally with caster levels gained from other sources. In addition, she may spend some of the enhance equipment bonus for special qualities according to the table: bound equipment, up to a maximum of +1 and an additional +1 every 5 levels.\n\nThis ability replaces summoned equipment.\n\nPersonal Refinement (Su): Whenever a whitesmith enhances a piece of equipment she is holding or wearing, she does not need to concentrate to maintain the enhancement so long as the item is on her person.\n\nAt 3rd level, a whitesmith that uses enhance equipment on a piece of equipment she is holding or wearing grants it an additional +1 enhancement bonus. At 7th level, and every 4 levels thereafter, this bonus increases by +1.\n\nThis ability replaces bound equipment.\n\nExceptional Enhancement (Su): A whitesmith must be able to keep their allies’ weapons and armor in perfect condition. At 5th level, a whitesmith may spend a spell point when enhancing an object to repair the broken condition. In addition, she may enhance an additional object whenever she uses an enhancement effect that solely enhances objects; at 10th level, and every 5 levels thereafter, she may enhance an additional object. This ability stacks with the Mass Enhancement talent.\n\nPerfect Concentration (Ex): A whitesmith of at least 19th level may concentrate on an enhancement effect as a swift action.\n\nThis ability replaces quick summons.\n\nInfinite Enhancements(Su): Whenever a whitesmith of 20th level uses exceptional enhancement to enhance additional objects, she may spend 1 spell point to double the number of additional objects she may enhance at once. She may spend any number of spell points on this class feature.\n\nThe ability replaces infinite arsenal.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        },
+        {
+          "level": 3,
+          "name": "Personal Refinement",
+          "description": "A whitesmith does not need to concentrate to maintain enhancements on equipment that only she is holding or wearing. She may maintain a number of effects in this manner equal to 1/2 her class level (minimum 1). Each piece of equipment counts as a single enhancement, even if applied with Mass Enhancement.\n\nAt 3rd level, a whitesmith that uses Enhance Equipment on a piece of equipment she is holding or wearing grants it an additional +1 enhancement bonus. At 7th level, and every 4 levels thereafter, this bonus increases by +1.\n\nThis ability replaces bound equipment."
+        },
+        {
+          "level": 5,
+          "name": "Exceptional Enhancement",
+          "description": "A whitesmith must be able to keep their allies’ weapons and armor in perfect condition. At 5th level, a whitesmith may spend a spell point when enhancing an object to repair the broken condition. In addition, she may enhance an additional object whenever she uses an enhancement effect that solely enhances objects; at 10th level, and every 5 levels thereafter, she may enhance an additional object.\n\nThis ability stacks with the Mass Enhancement talent."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

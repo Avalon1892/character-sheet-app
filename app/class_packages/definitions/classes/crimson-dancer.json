@@ -1,0 +1,456 @@
+{
+  "version": 1,
+  "key": "crimson-dancer",
+  "class_key": "spheres-class:crimson-dancer",
+  "class_name": "Crimson Dancer",
+  "governing_ability": "charisma",
+  "catalog_profile": {
+    "weapon_proficiencies": [
+      "Simple weapons"
+    ],
+    "armor_proficiencies": [
+      "Light armor",
+      "Bucklers"
+    ],
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons"
+      ],
+      "armor": [
+        "Light armor",
+        "Bucklers"
+      ]
+    },
+    "casting": {
+      "sphere_progression": "Low",
+      "ability": "charisma",
+      "traditional": false
+    },
+    "advancement": {
+      "talent_progression": "High",
+      "talent_kinds": [
+        "magic",
+        "martial"
+      ],
+      "talent_bonus_levels": [
+        1
+      ]
+    },
+    "capabilities": [
+      "magic",
+      "martial"
+    ],
+    "audit_ignore_mechanics": [
+      "revelation"
+    ],
+    "feature_descriptions": {
+      "crimson revelation": "At 10th level, the Crimson Dancer gains the revelation ability of the Crimson Path selected at 3rd level."
+    }
+  },
+  "optional_blocks": [
+    "magic_spheres",
+    "spell_points",
+    "martial_talents",
+    "martial_focus"
+  ],
+  "external_systems": [
+    "spell_points",
+    "vitae",
+    "bloodletting",
+    "crimson_path",
+    "hemolytic_arts"
+  ],
+  "resource_modules": [
+    {
+      "key": "crimson-dancer",
+      "title": "Crimson Dancer",
+      "governing_ability": "charisma",
+      "grantable": false,
+      "resources": [
+        {
+          "key": "vitae",
+          "name": "Vitae",
+          "feature_tokens": [
+            "vitae"
+          ],
+          "progression": "level_plus_ability_minimum_one",
+          "recovery_progression": "zero",
+          "description": "Maximum vitae equals Crimson Dancer level + Charisma modifier. It begins at 0, is gained during combat, and drains toward 0 after one minute without gaining any.",
+          "use_increases": true,
+          "restore_toward_zero": true
+        },
+        {
+          "key": "bloodletting",
+          "name": "Bloodletting on Current Target",
+          "feature_tokens": [
+            "bloodletting"
+          ],
+          "progression": "level",
+          "recovery_progression": "zero",
+          "description": "Current stacking bloodletting bleed on the tracked target; it cannot exceed Crimson Dancer level.",
+          "use_increases": true,
+          "restore_toward_zero": true,
+          "custom_choice_label": "Bleeding target"
+        },
+        {
+          "key": "bloodletting_increment",
+          "name": "Bloodletting per Application",
+          "feature_tokens": [
+            "bloodletting"
+          ],
+          "progression": "crimson_bloodletting_increment",
+          "description": "Bleed added by each normal application: half Charisma modifier, minimum 1.",
+          "tracks_uses": false,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": false
+        },
+        {
+          "key": "burst_dc",
+          "name": "Burst DC",
+          "feature_tokens": [
+            "burst"
+          ],
+          "progression": "ten_plus_half_level_plus_ability",
+          "description": "Fortitude save DC for Burst.",
+          "tracks_uses": false,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": false
+        },
+        {
+          "key": "autocautery",
+          "name": "Autocautery Bonus",
+          "feature_tokens": [
+            "autocautery"
+          ],
+          "progression": "crimson_autocautery",
+          "description": "Bonus against Blood and Duelist sphere effects while Autocautery applies.",
+          "tracks_uses": false,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": false
+        },
+        {
+          "key": "voracity",
+          "name": "Voracity Active",
+          "feature_tokens": [
+            "voracity"
+          ],
+          "progression": "one",
+          "description": "Enable after one minute at 0 vitae and before the next vitae gain; grants movement and first-hit damage benefits.",
+          "can_activate": true,
+          "tracks_uses": false,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": true
+        }
+      ]
+    }
+  ],
+  "passive_effects": [
+    {
+      "key": "crimson-voracity-speed",
+      "feature_tokens": [
+        "voracity"
+      ],
+      "targets": [
+        "land_speed"
+      ],
+      "progression": "crimson_voracity_speed",
+      "bonus_type": "enhancement",
+      "source": "Crimson Dancer: Voracity",
+      "minimum_level": 4,
+      "requires_resource_active": "voracity"
+    }
+  ],
+  "choice_providers": [
+    {
+      "key": "crimson-path",
+      "label": "Crimson Path",
+      "feature_tokens": [
+        "crimson-path"
+      ],
+      "minimum": 1,
+      "maximum": 1,
+      "fixed_options": [
+        {
+          "key": "crimson-reaper",
+          "name": "The Crimson Reaper",
+          "description": "Initiation: The crimson reaper increases the damage her burst ability deals by 1d8, plus an additional 1d8 at 6th level and every 3 levels thereafter.\nUnderstanding: When the crimson reaper kills a creature with her burst ability, she may immediately spend an immediate action and 2 points of vitae to cause the blood to rush towards another creature within her line of sight. That creature must succeed at a Fortitude save against her burst ability, or suffer the same amount of damage the first creature was dealt, as well as inflicting an amount of bloodletting bleed equal to the amount of bleed damage the original creature was suffering from before their death. This ability counts as if using the burst ability on a creature.\nRevelation: When the crimson reaper successfully uses the burst ability on a creature, she may also mark them for one minute as an immediate action. Marked creatures are treated as if they were suffering from the maximum amount of bloodletting bleed the crimson reaper can apply when determining the effects of any crimson dancer class feature, and are exsanguinated. This ability allows the crimson reaper to use another burst on marked creatures even if they are not actually bleeding. The crimson reaper may only have one creature marked at any given time, and may not mark another creature if they already have an active mark. Marks can only be removed by causing a marked creature to fall unconscious or by slaying them.\nSecret of Blood: Absorbed by their focus, the crimson reaper stops at nothing to kill their prey. When the crimson reaper has a creature marked, she gains DR 5/- against all attacks made by creatures that are not marked. If she takes a move action to move in a way that would place her adjacent to a marked creature, she does not need to attempt Acrobatics checks to move through the squares of other creatures, and may spend 2 points of vitae when moving through another creature’s square to perform an overrun maneuver on them as a free action.\nSecret of Heart: The crimson reaper absorbs those she marks for death. When a marked creature with Hit Dice equal to half the crimson reaper’s level or more dies to her burst or decimation features, she may steal a part of their body as a free action. For each ability score the creature had that was higher than the crimson reaper's, she gains a +2 alchemical bonus to that ability score. For each movement speed that creature possessed that was higher than the crimson reapers, she gains a +10-foot bonus to that movement speed if she also possesses it.\nThese bonuses cannot increase the crimson reaper’s speeds or ability scores higher than the base creature’s, and can stack up to 3 times. At 19th level, these bonuses can stack up to 4 times, to a maximum of +8 to each ability score, or +40 feet to each movement speed. These bonuses remain for 24 hours.\nSecret of Soul: The crimson reaper’s soul is unleashed as she pulverizes her foes. When the crimson reaper attempts a decimation attack against a marked creature, she does not need to expend her martial focus. If a marked creature survives a decimation attack, the crimson reaper can expend all of her vitae to attempt a crimson decapitation as an immediate action. The creature must succeed at a saving throw against the crimson reaper’s burst ability or otherwise suffer damage as normal. For every 6 points of vitae spent as part of the crimson decapitation, the creature suffers additional damage as if she failed a save against the burst ability. Damage dealt with a crimson decapitation is additional damage dealt by the decimation attack.\nRealization: The crimson reaper’s fury sparks aflame when she kills her quarry. Once per day, when a marked target dies due to the crimson reaper’s decimation attack, she may spend an immediate action and 4 points of vitae to immediately cause any number of creatures within line of sight to suffer from her burst, and become marked. For one minute after using this ability, she has no limit on the number of creatures she may have marked at the same time. After this time, all creatures she has currently marked lose their marks.",
+          "granted_features": [
+            {
+              "level": 3,
+              "name": "The Crimson Reaper — Initiation",
+              "description": "The crimson reaper increases the damage her burst ability deals by 1d8, plus an additional 1d8 at 6th level and every 3 levels thereafter."
+            },
+            {
+              "level": 7,
+              "name": "The Crimson Reaper — Understanding",
+              "description": "When the crimson reaper kills a creature with her burst ability, she may immediately spend an immediate action and 2 points of vitae to cause the blood to rush towards another creature within her line of sight. That creature must succeed at a Fortitude save against her burst ability, or suffer the same amount of damage the first creature was dealt, as well as inflicting an amount of bloodletting bleed equal to the amount of bleed damage the original creature was suffering from before their death. This ability counts as if using the burst ability on a creature."
+            },
+            {
+              "level": 10,
+              "name": "The Crimson Reaper — Revelation",
+              "description": "When the crimson reaper successfully uses the burst ability on a creature, she may also mark them for one minute as an immediate action. Marked creatures are treated as if they were suffering from the maximum amount of bloodletting bleed the crimson reaper can apply when determining the effects of any crimson dancer class feature, and are exsanguinated. This ability allows the crimson reaper to use another burst on marked creatures even if they are not actually bleeding. The crimson reaper may only have one creature marked at any given time, and may not mark another creature if they already have an active mark. Marks can only be removed by causing a marked creature to fall unconscious or by slaying them."
+            },
+            {
+              "level": 13,
+              "name": "The Crimson Reaper — Secret of Blood",
+              "description": "Absorbed by their focus, the crimson reaper stops at nothing to kill their prey. When the crimson reaper has a creature marked, she gains DR 5/- against all attacks made by creatures that are not marked. If she takes a move action to move in a way that would place her adjacent to a marked creature, she does not need to attempt Acrobatics checks to move through the squares of other creatures, and may spend 2 points of vitae when moving through another creature’s square to perform an overrun maneuver on them as a free action."
+            },
+            {
+              "level": 16,
+              "name": "The Crimson Reaper — Secret of Heart",
+              "description": "The crimson reaper absorbs those she marks for death. When a marked creature with Hit Dice equal to half the crimson reaper’s level or more dies to her burst or decimation features, she may steal a part of their body as a free action. For each ability score the creature had that was higher than the crimson reaper's, she gains a +2 alchemical bonus to that ability score. For each movement speed that creature possessed that was higher than the crimson reapers, she gains a +10-foot bonus to that movement speed if she also possesses it.\nThese bonuses cannot increase the crimson reaper’s speeds or ability scores higher than the base creature’s, and can stack up to 3 times. At 19th level, these bonuses can stack up to 4 times, to a maximum of +8 to each ability score, or +40 feet to each movement speed. These bonuses remain for 24 hours."
+            },
+            {
+              "level": 19,
+              "name": "The Crimson Reaper — Secret of Soul",
+              "description": "The crimson reaper’s soul is unleashed as she pulverizes her foes. When the crimson reaper attempts a decimation attack against a marked creature, she does not need to expend her martial focus. If a marked creature survives a decimation attack, the crimson reaper can expend all of her vitae to attempt a crimson decapitation as an immediate action. The creature must succeed at a saving throw against the crimson reaper’s burst ability or otherwise suffer damage as normal. For every 6 points of vitae spent as part of the crimson decapitation, the creature suffers additional damage as if she failed a save against the burst ability. Damage dealt with a crimson decapitation is additional damage dealt by the decimation attack."
+            },
+            {
+              "level": 20,
+              "name": "The Crimson Reaper — Realization",
+              "description": "The crimson reaper’s fury sparks aflame when she kills her quarry. Once per day, when a marked target dies due to the crimson reaper’s decimation attack, she may spend an immediate action and 4 points of vitae to immediately cause any number of creatures within line of sight to suffer from her burst, and become marked. For one minute after using this ability, she has no limit on the number of creatures she may have marked at the same time. After this time, all creatures she has currently marked lose their marks."
+            }
+          ]
+        },
+        {
+          "key": "scarlet-dancer",
+          "name": "The Scarlet Dancer",
+          "description": "Initiation: The scarlet dancer increases the amount of bleed damage she deals when applying bloodletting to her Charisma modifier.\nUnderstanding: When the scarlet dancer causes an enemy to become exsanguinated, she may spend 2 points of vitae as a free action to make an attack against an enemy within reach that is not exsanguinated.\nRevelation: A crimson dancer who knows their limits can maintain a calm, stable attitude even in the face of death, and instead embrace a delicate and graceful form of combat. Once per turn, when the scarlet dancer causes a nonbleeding creature to begin bleeding with a melee weapon due to her bloodletting feature, or would inflict her bloodletting on an exsanguinated creature with a melee weapon, she may move up to 10 feet as a free action. This movement does not provoke attacks of opportunity from bleeding creatures, and she may move through squares occupied by a creature bleeding from her bloodletting feature without an Acrobatics check.\nSecret of Blood: The scarlet dancer flourishes upon the velvet floor. Once per round, while adjacent to a bleeding creature, the scarlet dancer may spend 1 vitae as a swift action to move into an unoccupied square that is adjacent to a creature that is not exsanguinated within close range (25 + 5 per 2 crimson dancer levels) and within her line of sight. This movement is considered to be a supernatural teleportation effect.\nIf the scarlet dancer possesses the Blood Fountain (bleed) talent, the crimson dancer may use this ability while adjacent to, or standing on, a square filled with bloody terrain.\nSecret of Heart: The scarlet dancer always moves gracefully, and never ceases to stop her dance. The scarlet dancer’s base speeds can never be reduced by an effect (including wearing heavy armor or encumbrance). She may also spend 4 vitae points as an immediate action to ignore any effect or condition that would impede her movement for one round, as per the Freedom (word) talent of the Fate sphere. This is a supernatural effect.\nSecret of Soul: The scarlet dancer’s soul becomes truly free, and capable of performing a sacred technique known as the sanguine dance. As a full-round action, the scarlet dancer immediately drains all of her stored vitae. For each 6 points of vitae drained, she can dash forward, moving in a single direction up to 60 feet (this movement does not provoke attacks of opportunity), attacking each creature she passes through with her decimate special attack action (without needing to expend focus). Each dash must be performed sequentially, and a creature already struck by an attack cannot be attacked again.\nAfter performing the sanguine dance, the scarlet dancer cannot perform it again for 24 hours and she loses any remaining vitae she may have had. The scarlet dancer cannot use other abilities that allow her to move while performing the sanguine dance, she must finish all dashes sequentially without additional movement, and if she is subject to forced movement, she may not utilize any additional dashes she had remaining.\nRealization: The scarlet dancer becomes unbound. She can move into a space occupied by a creature suffering from her bloodletting, or any adjacent spaces, without consuming movement, requiring an Acrobatics check, or provoking attacks of opportunities as part of any action made to move.\nAdditionally, the scarlet dancer can treat any creature suffering from her bloodletting as if they were exsanguinated, if it would be beneficial to her.",
+          "granted_features": [
+            {
+              "level": 3,
+              "name": "The Scarlet Dancer — Initiation",
+              "description": "The scarlet dancer increases the amount of bleed damage she deals when applying bloodletting to her Charisma modifier."
+            },
+            {
+              "level": 7,
+              "name": "The Scarlet Dancer — Understanding",
+              "description": "When the scarlet dancer causes an enemy to become exsanguinated, she may spend 2 points of vitae as a free action to make an attack against an enemy within reach that is not exsanguinated."
+            },
+            {
+              "level": 10,
+              "name": "The Scarlet Dancer — Revelation",
+              "description": "A crimson dancer who knows their limits can maintain a calm, stable attitude even in the face of death, and instead embrace a delicate and graceful form of combat. Once per turn, when the scarlet dancer causes a nonbleeding creature to begin bleeding with a melee weapon due to her bloodletting feature, or would inflict her bloodletting on an exsanguinated creature with a melee weapon, she may move up to 10 feet as a free action. This movement does not provoke attacks of opportunity from bleeding creatures, and she may move through squares occupied by a creature bleeding from her bloodletting feature without an Acrobatics check."
+            },
+            {
+              "level": 13,
+              "name": "The Scarlet Dancer — Secret of Blood",
+              "description": "The scarlet dancer flourishes upon the velvet floor. Once per round, while adjacent to a bleeding creature, the scarlet dancer may spend 1 vitae as a swift action to move into an unoccupied square that is adjacent to a creature that is not exsanguinated within close range (25 + 5 per 2 crimson dancer levels) and within her line of sight. This movement is considered to be a supernatural teleportation effect.\nIf the scarlet dancer possesses the Blood Fountain (bleed) talent, the crimson dancer may use this ability while adjacent to, or standing on, a square filled with bloody terrain."
+            },
+            {
+              "level": 16,
+              "name": "The Scarlet Dancer — Secret of Heart",
+              "description": "The scarlet dancer always moves gracefully, and never ceases to stop her dance. The scarlet dancer’s base speeds can never be reduced by an effect (including wearing heavy armor or encumbrance). She may also spend 4 vitae points as an immediate action to ignore any effect or condition that would impede her movement for one round, as per the Freedom (word) talent of the Fate sphere. This is a supernatural effect."
+            },
+            {
+              "level": 19,
+              "name": "The Scarlet Dancer — Secret of Soul",
+              "description": "The scarlet dancer’s soul becomes truly free, and capable of performing a sacred technique known as the sanguine dance. As a full-round action, the scarlet dancer immediately drains all of her stored vitae. For each 6 points of vitae drained, she can dash forward, moving in a single direction up to 60 feet (this movement does not provoke attacks of opportunity), attacking each creature she passes through with her decimate special attack action (without needing to expend focus). Each dash must be performed sequentially, and a creature already struck by an attack cannot be attacked again.\nAfter performing the sanguine dance, the scarlet dancer cannot perform it again for 24 hours and she loses any remaining vitae she may have had. The scarlet dancer cannot use other abilities that allow her to move while performing the sanguine dance, she must finish all dashes sequentially without additional movement, and if she is subject to forced movement, she may not utilize any additional dashes she had remaining."
+            },
+            {
+              "level": 20,
+              "name": "The Scarlet Dancer — Realization",
+              "description": "The scarlet dancer becomes unbound. She can move into a space occupied by a creature suffering from her bloodletting, or any adjacent spaces, without consuming movement, requiring an Acrobatics check, or provoking attacks of opportunities as part of any action made to move.\nAdditionally, the scarlet dancer can treat any creature suffering from her bloodletting as if they were exsanguinated, if it would be beneficial to her."
+            }
+          ]
+        }
+      ],
+      "description": "Choose the path gained at level 3. Its abilities unlock at levels 3, 7, 10, 13, 16, 19, and 20."
+    },
+    {
+      "key": "hemolytic-arts",
+      "label": "Hemolytic Arts",
+      "feature_tokens": [
+        "hemolytic-art"
+      ],
+      "minimum_levels": [
+        3,
+        6,
+        9,
+        12,
+        15,
+        18
+      ],
+      "maximum_levels": [
+        3,
+        6,
+        9,
+        12,
+        15,
+        18
+      ],
+      "description": "Choose one Hemolytic Art at level 3 and every three levels thereafter.",
+      "fixed_options": [
+        {
+          "key": "artistic-hemomancy",
+          "name": "Artistic Hemomancy (requires Blood sphere)",
+          "description": "The crimson dancer gains a single (blood art) talent of her choice from the Blood sphere. Whenever she uses a (blood art) talent, she may spend 1 point of vitae to use her class level in place of her caster level, even if the target is not exsanguinated. Additionally, she gains the following vitae source:\nVitae Loss: Whenever a creature other than herself would suffer blood loss due to an effect created by her, she gains 1 point of vitae.",
+          "minimum_level": 3
+        },
+        {
+          "key": "blood-pool",
+          "name": "Blood Pool (Sp) (requires crimson dancer 6)",
+          "description": "As a move action, the crimson dancer may spend 2 points of vitae to melt into a puddle of blood, causing her body and all of her equipment to meld into a new shape. In this form, she covers a radius of up to 5 feet, +5 for every 2 class levels with blood, and may transform back to her regular form as a move action. Returning to her natural form allows her to appear in any space she was occupying while transformed. She may shrink or enlarge the radius she covers as a free action at the start of her turn, but must measure the radius in 5-foot increments. Additionally, she gains the following limitations and effects while transformed:\nShe may share spaces with other creatures with no limitations.\nShe may not make any attacks.\nShe may only utilize magic from the Blood sphere, and if she possesses the Somatic Casting drawback, she must spend 2 points of vitae to satisfy the somatic component of her magic.\nShe becomes immune to all non-magical physical damage, but becomes vulnerable to cold damage and loses any immunity or resistance to cold damage.\nShe may still move, and can move through any space or object that liquids would be able to move through, allowing her to fit through impossibly sized holes and gaps, such as a keyhole.\nShe may cause any creature that stands upon the pool of blood to suffer 1 point of her bloodletting bleed damage at the end of her turn, stacking it as normal.\nShe may utilize her burst ability, but doing so requires a full-round action. She may not modify this use of the ability with arts that require her to spend additional time using it, and she cannot shorten this time by spending vitae.\nShe cannot gain vitae while in this form.\nMaintaining this form requires her to spend 1 point of vitae at the end of each round to maintain it, and if she has no vitae remaining she is immediately reformed in the centermost square she occupies, fatigued. This is a polymorph effect.",
+          "minimum_level": 6
+        },
+        {
+          "key": "blood-rain",
+          "name": "Blood Rain (Sp) (requires crimson dancer 9)",
+          "description": "As a standard action, the crimson dancer can spend 3 vitae points to conjure a storm of piercing, bloody rain. The storm covers a medium range radius around her (100 feet, +10 feet per crimson dancer level), obscuring sight as if it were fog and granting all creatures 20% concealment. Creatures that have the Bloodrunner feat or the blood identification class feature ignore this concealment.\nAdditionally, at the start of each turn, all enemies in the storm exposed to the rain suffer 1 point of bloodletting bleed damage, stacking it as normal. The storm remains for a number of rounds equal to her crimson dancer level.",
+          "minimum_level": 9
+        },
+        {
+          "key": "bonding-bloods",
+          "name": "Bonding Bloods (Sp) (requires Blood sphere, crimson dancer 9)*",
+          "description": "When a creature fails a saving throw against her burst, the crimson dancer may spend a spell point as a swift action to attempt to establish blood control on them after her burst resolves. Alternatively, she may spend 4 points of vitae to trigger a valid (blood art) on the creature that failed a saving throw against her burst as a swift action.",
+          "minimum_level": 9
+        },
+        {
+          "key": "cerebral-severance",
+          "name": "Cerebral Severance (Ex) (requires crimson dancer 15)",
+          "description": "The crimson dancer may spend 5 vitae points as a free action after dealing bloodletting bleed damage as part of an attack action in order to sever the creature’s cerebral artery. Creatures with a severed cerebral artery suffer from 2 ability damage to all their Charisma, Intelligence and Wisdom scores each time they suffer hit point damage from her bloodletting bleed (Fortitude negates). Exsanguinated creatures double the amount of ability damage they suffer. The effects of this art end if the creature is no longer suffering from any bleed damage. Creatures that do not possess a head or brain still suffer from the effects of this art, as she instead targets other vulnerable parts of their bodies.",
+          "minimum_level": 15
+        },
+        {
+          "key": "crimson-armaments",
+          "name": "Crimson Armaments (requires Blood sphere)",
+          "description": "The crimson dancer gains the Gory Armaments talent of the Blood sphere, and always uses her class level in place of her caster level when determining its effects, which stack normally with other bonuses to her caster level.",
+          "minimum_level": 3
+        },
+        {
+          "key": "drawn-to-me",
+          "name": "Drawn To Me (Ex) (requires crimson dancer 6)*",
+          "description": "The crimson dancer's burst becomes more like a refined tugging of a bloody rope. Her burst instead requires a Reflex save, and creatures that fail their saving throw are forcefully pulled 10 feet closer to her, increasing by an additional 5 feet at 9th level and every 3 levels thereafter, though only moving until they are adjacent to her. Creatures that would be pulled into an inherently dangerous space gain a +4 bonus on their saving throw.",
+          "minimum_level": 6
+        },
+        {
+          "key": "empowerment",
+          "name": "Empowerment (Sp) (requires hemomancy)",
+          "description": "As a standard action, or as a swift action by spending 2 more points of vitae, the crimson dancer can spend vitae to empower herself temporarily. Empowerments last for a number of rounds equal to her Charisma modifier, and she may only have one in effect at a time. She can empower herself in the following ways, using her class levels in place of her caster level:\nPhysical Empowerment: By spending 2 points of vitae, she can empower herself as per the Physical Enhancement talent of the Enhancement sphere.\nBloody Weapon: By spending 1 point of vitae, she can enhance all weapons she wields as per the Enhance Equipment ability of the Enhancement sphere.\nSanguine Relief: By spending 1 point of vitae, she may ignore ability damage or drain as per the Supply Vigor talent of the Enhancement sphere.",
+          "minimum_level": 3
+        },
+        {
+          "key": "explosive-tempo",
+          "name": "Explosive Tempo (Su) (requires crimson dancer 6)",
+          "description": "As a standard action, the crimson dancer can spend 3 points of vitae to cause all non-bleeding enemies within 60 feet of her and within line of effect to have their blood pressure begin to rapidly increase for one minute (Fortitude negates). If she applies bloodletting to a creature with heightened blood pressure, they immediately suffer 1d4 bludgeoning damage per crimson dancer level. If the creature does not suffer any bleed damage and a minute of time elapses, they must succeed at an additional Fortitude save or suffer 1d6 damage for each crimson dancer level she possesses and become exhausted. A creature affected by this ability can try to normalize their blood pressure by spending a standard action taking deep breaths, granting them an additional Fortitude save to end the effect early.",
+          "minimum_level": 6
+        },
+        {
+          "key": "exsanguination",
+          "name": "Exsanguination (Su)",
+          "description": "Whenever a creature within line of sight becomes exsanguinated, the crimson dancer may spend 3 points of vitae as a free action that can be taken outside of her turn to immediately target that creature with her burst ability.",
+          "minimum_level": 3
+        },
+        {
+          "key": "femoral-severance",
+          "name": "Femoral Severance (Ex)",
+          "description": "The crimson dancer may spend 2 vitae points as a free action after applying her bloodletting bleed to a creature to sever their femoral artery. Creatures with a severed femoral artery increase their bloodletting bleed by 1 for every 5 feet they move (only movement using their base speeds and forced movement imposed on them by other creatures count for this purpose), up to the regular limit. When exsanguinated, the creature’s movement speeds are halved. The effects of this art end if the creature is no longer suffering from any bleed damage.",
+          "minimum_level": 3
+        },
+        {
+          "key": "globin",
+          "name": "Globin (Sp)",
+          "description": "As a move action, the crimson dancer can spend 3 points of vitae to conjure a small floating mote of blood within close range in an unoccupied square. The blood mote slowly gathers the blood of nearby bleeding creatures and empowers itself for a bloody explosion. For each point of damage that creatures within 30 feet of the mote suffer from as a result of a bleed effect or bleed damage, the mote drains their blood and stores it within itself as a blood point. The blood mote initially begins with 6 blood points. When the mote’s duration expires, the mote releases its blood points to deal damage equal to the amount of stored blood points (maximum of 10 per crimson dancer level) to all creatures within close range (25 feet, +5 feet for every 2 class levels). Creatures are entitled to a Reflex save for half damage (DC 10 + 1/2 the crimson dancer’s level + her Charisma modifier). The mote lasts for a number of rounds chosen at creation, with a minimum of 2 rounds and a maximum of 10. She may spend 1 point of vitae as an immediate action at any point after the 2nd round to immediately cause the mote to explode and deal damage. She may also spend a move action to move the mote up to 20 feet in any single direction.",
+          "minimum_level": 3
+        },
+        {
+          "key": "gushing-wounds",
+          "name": "Gushing Wounds (Ex)",
+          "description": "The crimson dancer gains the Duelist sphere Blood Fountain (bleed) talent as a bonus talent, even if she does not possess the base Duelist sphere. She may apply the effects of the talent any time she deals bloodletting bleed damage to a creature. If she spends 2 points of vitae when applying the Blood Fountain (bleed) talent to a creature, any bloody terrain created by that talent is also considered to be difficult terrain.",
+          "minimum_level": 3
+        },
+        {
+          "key": "hemorrhage",
+          "name": "Hemorrhage (requires crimson dancer 12)",
+          "description": "The crimson dancer's bloodletting wounds are deeper, and far more dangerous than other wounds. A creature suffering from her bloodletting takes slashing damage equal to their current bloodletting bleed damage at the end of their turn if they take a move and standard action, or take a full-round action.",
+          "minimum_level": 12
+        },
+        {
+          "key": "humeral-severance",
+          "name": "Humeral Severance (requires crimson dancer 6)",
+          "description": "The crimson dancer may spend 2 vitae points as a free action after applying her bloodletting bleed to a creature to sever their humeral artery. Creatures with a severed humeral artery increase their bloodletting bleed by 2 every time they make an attack roll.\nAdditionally, for every 4 points of bloodletting bleed that the creature is suffering from, the creature suffers a -1 penalty to all attack rolls they make (minimum 1). The effects of this art end if the creature is no longer suffering from her bloodletting bleed.",
+          "minimum_level": 6
+        },
+        {
+          "key": "hungry-blade",
+          "name": "Hungry Blade",
+          "description": "The crimson dancer can choose to convert lethality to consumption, and fuel her vitae pool instead of dealing damage. When she makes a melee attack action that deals damage, she can choose to forgo all damage dealt by the attack, as well as all secondary effects such as poisons, diseases, or other sphere effects (including bloodletting damage that would be dealt) to instead drain the creature. Draining the creature grants the crimson dancer 1 vitae plus an additional point of vitae for every 4 Hit Dice the creature possesses (though she may not gain vitae from creatures with less than half her class level in Hit Dice as normal), and deals 2 Constitution damage to that creature. A creature can only be drained from once per 24 hours. Additionally, when making a burst, she may choose to have her burst not deal any damage to creatures that would fail their saving throws. Those creatures still end any bleed damage they may have been suffering from, and she gains 1 vitae for each creature that failed their saving throw.",
+          "minimum_level": 3
+        },
+        {
+          "key": "internal-burst",
+          "name": "Internal Burst",
+          "description": "When the crimson dancer uses her burst and successfully damages a creature, she may also inflict either the fatigued or sickened condition for 1 round. The duration increases by 1 round at 7th level and every 6 levels thereafter. She may also spend a point of vitae when using her burst to cause a creature to be battered for the same duration, even if they succeed at their saving throw. At 11th level, she can spend 3 points of vitae to instead apply the exhausted or staggered conditions instead of fatigued or sickened.",
+          "minimum_level": 3
+        },
+        {
+          "key": "master-their-weakness",
+          "name": "Master Their Weakness (requires improved blood control)",
+          "description": "By taking her lessons a step further, the crimson dancer can apply her knowledge of a creature’s body to all of her magic. When using a spell effect that requires a saving throw on a creature that has half or less their hit points remaining, they suffer a -2 penalty to that saving throw. This penalty does not stack with the penalty that already exists within the Blood sphere.",
+          "minimum_level": 3
+        },
+        {
+          "key": "omnidirectional-burst",
+          "name": "Omnidirectional Burst (requires crimson dancer 6)",
+          "description": "As a standard action, or as a move action by spending 2 points of vitae, the crimson dancer may concentrate and trigger her burst on any amount of creatures within medium range, as long as she has line of sight to them. She applies any additional effects to her burst gained from her other hemolytic arts to this burst, but she can only apply the effects of arts marked by an asterisk to a single creature. At 12th level, she can spend 1 vitae point per extra creature to apply the effects of the art to any amount of additional creatures.",
+          "minimum_level": 6
+        },
+        {
+          "key": "rivers-of-blood",
+          "name": "Rivers Of Blood (requires crimson dancer 9, path of the scarlet dancer)",
+          "description": "There is never enough blood. The crimson dancer increases the maximum bloodletting bleed she can apply to a creature to be equal to twice her class level. This also increases the amount of bleed required to cause a creature to be exsanguinated.\nAny time she would apply any amount of bloodletting bleed to a creature, she may spend 2 points of vitae to double that amount.",
+          "minimum_level": 9
+        },
+        {
+          "key": "regenerative-burst",
+          "name": "Regenerative Burst (*)",
+          "description": "When the crimson dancer utilizes her burst ability, she heals for a number of hit points equal to 1/4 the amount of damage dealt. At 10th level, this increases to 1/2 of the damage dealt. Healing from this ability cannot bring her above 1/2 her maximum hit points unless she spends 4 vitae points as part of using the burst.",
+          "minimum_level": 3
+        },
+        {
+          "key": "sanguine-erudition",
+          "name": "Sanguine Erudition (Su) (requires crimson dancer 6, hemomancy)",
+          "description": "When utilizing a sphere effect, the crimson dancer can spend vitae as a swift action to temporarily heighten her mastery over magic. When creating any non-harmless magic sphere effect, she may spend 5 points of vitae to treat her caster level as if it were her class level. When her caster level is modified in this way, she may not benefit from any caster level bonuses for that sphere effect, but may still have her caster level penalized.\nAdditionally, she may spend 2 points of vitae as a move action to temporarily gain knowledge of a single magic or combat talent in any sphere she already possesses for 1 minute, or until she uses this ability again to learn a different talent.",
+          "minimum_level": 6
+        },
+        {
+          "key": "second-heart",
+          "name": "Second Heart (Ex) (requires crimson dancer 15, vitality)",
+          "description": "The crimson dancer's vitae storage grows so large and powerful that it acts as a secondary heart. Whenever she is healed by the vitality art, she does not need to wait an hour before being able to gain vitae again, and may gain vitae normally. If she would die to a death effect, or would still die to hit point damage after being healed by her vitality art, her vitae storage instead ruptures.\nFor one minute, she is unconscious and appears to be dead to any attempt made to determine her condition (including magical ones). During this time, her body slowly regenerates itself. After this time passes, she wakes up with a number of hit points equal to her maximum vitae capacity. While regenerating, if her body is destroyed or she suffers damage greater than her maximum vitae storage, this ability is halted and she is slain as normal.\nShe may also consume her vitae storage as a move action. Doing so ruptures her vitae storage, but grants her vitae equal to 1/2 her class level.\nWhile she has a ruptured vitae storage, she cannot gain vitae from any source as her vitae storage regenerates itself, although she may still spend any vitae she might have remaining.\nA ruptured vitae storage regenerates the next time she rests and regain spell points.",
+          "minimum_level": 15
+        },
+        {
+          "key": "throbbing-heart",
+          "name": "Throbbing Heart (Ex)",
+          "description": "As long as the crimson dancer has at least one point of vitae, she gains the benefits of the Diehard feat, and when she takes a standard action while the Diehard feat is active she instead loses one point of vitae rather than taking a point of damage. Each round she may spend a point of vitae to also take a move action when disabled through the Diehard feat, but cannot combine these actions to take a full-round action.\nAdditionally, she adds her Charisma score in addition to her Constitution score when calculating how many negative hit points she must accrue before she dies.",
+          "minimum_level": 3
+        },
+        {
+          "key": "torrential-bleeds",
+          "name": "Torrential Bleeds (requires gushing wounds)",
+          "description": "The crimson dancer's attacks build up internal pressure that causes her bleeding foes to pour blood out of their bodies much like a spring. When creatures create bloody terrain through the Blood Fountain (bleed) talent, they also fill all squares adjacent to the squares they occupy with blood.",
+          "minimum_level": 3
+        },
+        {
+          "key": "unstoppable-bloodletting",
+          "name": "Unstoppable Bloodletting",
+          "description": "The crimson dancer is able to deal bleed damage to any creature that is otherwise immune to bleed damage, as she instead rips into the creature’s life force. She may even make objects bleed, although such bleed damage is ended after one round, and is still reduced by hardness. This ability applies to all forms of bleed damage she applies, not just her bloodletting bleed. Additionally, at 6th level she may ignore a creature’s immunity to bleed effects when utilizing the Blood sphere or any magic sphere effect that requires a creature to bleed, although when doing so such creatures would gain a +4 bonus to their saving throw or armor class. Additionally, she may utilize her burst ability on creatures that are normally immune to it (such as by being immune to Fortitude saves), though such creatures gain a +4 bonus to their saving throw.",
+          "minimum_level": 3
+        },
+        {
+          "key": "vitality",
+          "name": "Vitality (requires crimson dancer 9)",
+          "description": "If the crimson dancer would ever be killed by hit point damage, her stored vitae attempts to save her life. Before she suffers damage, she is first healed for a number of hit points equal to 3d4, +1d4 per vitae point she has stored, which then spends all vitae she has remaining. She may not gain vitae for any reason for one hour after being healed this way. This ability can only trigger once every 24 hours.\nAdditionally, she may utilize her metabolize vitae ability as a move action, or as a free action by expending two additional points of vitae.",
+          "minimum_level": 9
+        },
+        {
+          "key": "wetted-blade",
+          "name": "Wetted Blade (requires crimson dancer 9)",
+          "description": "As a swift action, the crimson dancer may spend 3 points of vitae in order to rend her body with a single manufactured melee weapon she has in hand, coating it in vitae and dealing untyped damage to herself equal to her level. While her weapon is coated in vitae, all melee attack actions with the coated weapon affect all enemies in a 15-foot line originating from her (make a single attack roll and compare it to the armor class of all enemies in the line).\nAt 12th level, she may instead shape her attacks into a 15-foot cone, or a 30-foot line. At 16th level, her attacks may be shaped into a 30-foot cone, or a 60-foot line. Only a single creature is affected by any effects that modify the attack action, as well as any strike talents or other abilities that enhance a single attack, with all other creatures only suffering her regular weapon damage. All creatures struck by the attack are inflicted with bloodletting, even if the attack was not considered an attack action.\nAt the start of her turn each round, she must spend 1 point of vitae as a free action to maintain this ability, if she does not, her weapon loses its coating of vitae and this ability expires.",
+          "minimum_level": 9
+        }
+      ]
+    }
+  ],
+  "notes": "Vitae is an increasing counter that resets to zero rather than filling on rest. Bloodletting uses a separate target counter and Voracity uses the shared conditional-effect pipeline."
+}

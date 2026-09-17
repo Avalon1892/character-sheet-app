@@ -1,0 +1,153 @@
+{
+  "version": 1,
+  "class_key": "spheres-class:crimson-dancer",
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:crimson-dancer:crimson-tempest",
+      "package": "spheres-class:crimson-dancer",
+      "name": "Crimson Tempest",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/crimson-dancer",
+      "replaces_features": [
+        "autocautery",
+        "burst",
+        "empowered-hemomancy",
+        "hemomancy",
+        "improved-blood-control"
+      ],
+      "removed_features": [
+        "hemomancy",
+        "empowered-hemomancy",
+        "autocautery",
+        "burst",
+        "improved-blood-control"
+      ],
+      "removed_feature_clauses": [
+        "absorb burst",
+        "relish",
+        "talented vitality vitae options",
+        "hemomancy",
+        "empowered hemomancy",
+        "autocautery",
+        "burst",
+        "improved blood control"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Airy Vitae",
+          "description": "The crimson tempest gains the vitae feature as normal, with different vitae sources and abilities.\nThe crimson tempest gains the following vitae sources:\nBayed Winds: When a creature within 60 feet of the crimson tempest misses a ranged attack while suffering from an attack penalty due to the wind around them, the crimson tempest gains 2 points of vitae.\nConsume Winds: When in an area of Wind severity of 3 or greater, if the crimson tempest can see at least one creature suffering from her bloodletting bleed, she gains one point of vitae at the end of her turn.\nThe crimson tempest gains the following vitae abilities:\nHorizon Wind (3rd level): As a move action while in an area with a Wind of severity level 2 or higher, the crimson tempest can spend 3 vitae points to strike all enemies within 100 feet of themselves with a single current of wind. Make a single attack roll as if she were using a wind blade and compare it to the AC of all enemies in the area, dealing damage as normal. Her bloodletting bleed applies to creatures struck by this attack.\nCrimson Torrents (8th level): She may spend 3 points of vitae as a standard action to create a Gust Of Wind, as per the (air) package of the Nature sphere, using her class level as her caster level which stacks normally with other sources. She may choose for the area to be shaped as a cone, rather than as a line. By spending two points of vitae, she may allow this effect to continue for 1 round per class level without the need for concentration.\nThis replaces the absorb burst, relish, and talented vitality vitae options."
+        },
+        {
+          "level": 1,
+          "name": "Beating Winds",
+          "description": "The crimson tempest’s attacks cause the winds to haunt their foes. The bleed inflicted by a crimson tempest’s bloodletting is considered to be a supernatural effect and is treated as slashing damage, allowing the bleed damage to be reduced by damage reduction. Any creature suffering from bloodletting also suffers a -2 penalty on any Acrobatics, Climb, Swim and Fly checks they attempt, this penalty increases by 1 for every 4 class levels.\nAdditionally, a crimson tempest can cause a creature to suffer from her bloodletting when using an attack action or attack of opportunity with a ranged weapon.\nThis alters bloodletting."
+        },
+        {
+          "level": 1,
+          "name": "Bloodied Whirlwind",
+          "description": "At 1st level, the crimson tempest gains the Weather sphere as a bonus magic talent. Beginning at 5th level, the crimson tempest uses her class level as her caster level when determining the effects of her shrouds on exsanguinated creatures. This stacks normally with caster levels gained from other sources.\nThis replaces hemomancy and empowered hemomancy."
+        },
+        {
+          "level": 1,
+          "name": "Crackling Waves",
+          "description": "The crimson tempest weaves their every motion with the wind. At 1st level, the crimson tempest gains the Clear Skies (mantle) talent. When utilizing this talent on themselves, the crimson tempest doubles how many steps less severe they treat the weather by, but only for Wind.\nThis replaces autocautery."
+        },
+        {
+          "level": 2,
+          "name": "Blade Current",
+          "description": "Starting at 2nd level, crimson tempests can utilize currents of air as if they were real weapons. When the crimson tempest is in an area with Wind of severity level 2 or higher, she may make attacks with wind blades. Wind blades can only target creatures that are in an area with a Wind of severity level of 2 or more, and are considered to be ranged weapons with no range increment, but a maximum range of 100 feet. Wind blades deal 1d6 slashing damage and cannot critically hit.\nFor each severity level above 2, the wind blades increase their damage dice by 1 step. Wind blades always ignore penalties applied due to strong winds. When dealing damage to an exsanguinated creature, wind blades deal untyped damage.\nThis replaces burst."
+        },
+        {
+          "level": 3,
+          "name": "The Tempest’s Revelation",
+          "description": "The crimson tempest may either walk the path of the tempest's song rather than other paths. Although a crimson tempest may walk on the path of the crimson reaper, she does not possess the burst ability and may not utilize many of its features, and as such most crimson tempests do not choose that path. The abilities gained if walking the path of the tempest's song are listed below."
+        },
+        {
+          "level": 7,
+          "name": "Hurricane’s Path",
+          "description": "The crimson tempest may still attempt the decimate attack action, but they may only attempt it with wind blades. When decimating a creature, the crimson tempest only deals 1d4 bonus damage per point of bloodletting bleed. When attacking an exsanguinated creature, rather than gaining a bonus on the attack roll, that creature is blown away directly away from the crimson tempest 1d4 x 10 feet, suffering 1d4 points of slashing damage per 10 feet. A DC 15 Strength check stops the target from being blown away.\nThis modifies decimate."
+        },
+        {
+          "level": 8,
+          "name": "Tempest’s Gale",
+          "description": "Beginning at 8th level, when the crimson tempest strikes a creature using an attack action with a manufactured melee weapon, she may spend 2 points of vitae to raise the Wind severity level of a 30-foot radius around her to 2 as a free action. The direction of the Wind blows from the crimson tempest towards the creature she struck. This area does not move, and remains for a number of rounds equal to the crimson tempest’s level. If she activates this ability by striking a creature already suffering from her bloodletting that is inside an area of Wind severity of 2 or greater, she raises the severity level by 1 up to a maximum of 4 for the duration (refreshing the duration if the ability was already used beforehand).\nThis replaces improved blood control."
+        }
+      ],
+      "detected_systems": [
+        "revelation"
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:crimson-dancer:primeval",
+      "package": "spheres-class:crimson-dancer",
+      "name": "Primeval",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/crimson-dancer",
+      "replaces_features": [
+        "autocautery",
+        "decimation",
+        "voracity"
+      ],
+      "removed_features": [
+        "autocautery",
+        "voracity",
+        "decimation"
+      ],
+      "removed_feature_clauses": [
+        "autocautery",
+        "voracity",
+        "decimation"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Bared Fangs, Empty Soul",
+          "description": "The primeval learns to utilize her natural savagery in ways blades and bows could never achieve. At 1st level, the primeval gains a primary bite attack that deals 1d8 damage. If the primeval already has a bite attack, or gains one from another source, she instead increases the damage of their bite attack to 1d10 if it would otherwise be lower.\nThe life drain also gains the following vitae ability:\nBlack Maw: When making an attack with her bite attack, she may spend 1 point of vitae to convert all bludgeoning, slashing and piercing damage dealt by the attack to negative energy damage. This negative energy damage does not heal creatures normally healed by negative energy, but does not harm them either.\nAdditionally, the primeval’s soul becomes permanently aligned with negative energy. The primeval heals from negative energy, and is hurt by positive energy. No effect, magical or otherwise, can change or reverse the way the primeval is hurt or healed by negative or positive energy.\nThis replaces autocautery."
+        },
+        {
+          "level": 1,
+          "name": "Blood Drain",
+          "description": "The primeval forgoes the ability to cause horrible bleeding in creatures in favor of directly absorbing the blood she would shed. When using the bloodletting ability, rather than applying bloodletting bleed damage, she deals additional negative energy damage, and the creature gains a number of rot points equal to the bonus damage granted by this ability. While a creature has rot points, they do not regain hit points naturally from rest and cannot benefit from effects that require them to have a full night’s rest without first removing their rot points.\nRot points are removed through healing or by gaining temporary hit points, removing 1 rot point per point of healing or temporary hit point, which also reduces the amount of healing or temporary hit points granted. Rot points can also be removed with a Heal check with a DC of 20 + 1/2 the primeval’s level, which removes any rot points that creature possessed. At 10th level, two points of healing or temporary hit points are required to remove one rot point.\nAlthough rot points do not deal damage each turn, they are considered to be a bleed effect for all purposes. Additionally, any class features that rely on bloodletting bleed damage for any purpose treats rot points as if it was bloodletting bleed damage.\nThis includes abilities that alter the maximum amount of bloodletting bleed damage that can be applied, abilities that scale based on how much bloodletting bleed damage a creature has, and abilities that apply bloodletting bleeds instead apply rot points. Creatures with the maximum amount of rot points that can be inflicted are still exsanguinated.\nThe first time each round the primeval applies rot points to a creature with Hit Dice equal to half her level or more, she heals for the amount of rot points applied to that creature.\nThis alters bloodletting."
+        },
+        {
+          "level": 1,
+          "name": "Consumptive Vitae",
+          "description": "The primeval gains the vitae feature as normal, but replaces some vitae sources gained.\nConsume: When the primeval applies rot points to at least one creature, she gains 2 points of vitae.\nDevour: When the primeval successfully reduces a creature that has at least half her level in Hit Dice to 0 hit points or lower, she gains 1 point of vitae.\nDrain (requires gluttony): At the end of her turn, if the primeval was healed for at least one point of damage since the end of her last turn, she gains one point of vitae.\nThis alters vitae and replaces the bloodletting, relish and voracity vitae sources."
+        },
+        {
+          "level": 3,
+          "name": "The Forgotten Path",
+          "description": "The primeval must take the path of the lost ravager, listed at the end of this archetype. This alters crimson path."
+        },
+        {
+          "level": 4,
+          "name": "Gluttony",
+          "description": "At 4th level, when the primeval is at or below half her maximum hit points, she doubles the healing gained from inflicting rot points to a creature the first time she inflicts rot points each round.\nThis replaces voracity"
+        },
+        {
+          "level": 7,
+          "name": "Consumption",
+          "description": "Starting 7th level, the primeval can give into her hungering desires, and utterly shred a single creature in the effort to restore her body. She may expend her martial focus as a standard action in order to make a special attack action with her bite attack, referred to as a consumption attack. This special attack action resolves normally against creatures that do not have any rot points, but against creatures with rot points it causes the rot within the creature’s body to rapidly spread, draining them of their power. For every 2 points of rot points a creature had at the time of the attack, they suffer a -1 penalty to their Strength and Charisma scores for 24 hours, but may attempt a Fortitude save (DC 10 + the number of rot points they have + the primeval’s Charisma modifier) to resist the effect. If a creature is exsanguinated, they are additionally staggered for 1 round on a failed save. After a creature fails this saving throw and suffers the effects of this ability, all rot points they have are removed. If a creature dies from the attack, the primeval regains her martial focus, and gains a +2 morale bonus to her Strength and Charisma, which increases to +4 if the creature has 8 or more Hit Dice, and +6 if the creature has 16 or more Hit Dice. These benefits last for 1 hour.\nThis replaces decimation."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

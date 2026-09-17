@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "key": "conscript",
+  "class_key": "spheres-class:conscript",
+  "class_name": "Conscript",
+  "governing_ability": "wisdom",
+  "governing_ability_choice_provider": "conscript-practitioner-ability",
+  "catalog_profile": {
+    "weapon_proficiencies": ["Simple weapons"],
+    "armor_proficiencies": ["Light armor", "Bucklers"],
+    "proficiencies": {"weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]},
+    "advancement": {"talent_progression": "Expert", "talent_kinds": ["martial"]}
+  },
+  "optional_blocks": ["martial_talents", "martial_focus"],
+  "external_systems": ["martial_focus", "combat_specializations"],
+  "bonus_feat_levels": [1,2,4,6,8,10,12,14,16,18,20],
+  "bonus_feat_label": "Conscript bonus feats",
+  "bonus_feat_replacement_choice_provider": "conscript-specializations",
+  "bonus_feat_replacement_levels_by_points": {
+    "1":[1,10,20],"2":[1,6,10,14,20],"3":[1,2,6,10,14,18,20],"4":[1,2,6,8,10,14,16,18,20],"5":[1,2,4,6,8,10,12,14,16,18,20]
+  },
+  "resource_modules": [{
+    "key":"conscript","title":"Conscript Specializations","governing_ability":"wisdom","resources":[
+      {"key":"inspiration","name":"Inspiration","feature_tokens":["combat-specializations"],"progression":"half_level_minimum_one","description":"Available only with the Inspiration specialization.","requires_choice_provider":"conscript-specializations","requires_choice_option":"inspiration"},
+      {"key":"ki_pool","name":"Ki Pool","feature_tokens":["combat-specializations"],"progression":"half_level_plus_ability_minimum_one","description":"Available only with the Ki Cultivator specialization.","requires_choice_provider":"conscript-specializations","requires_choice_option":"ki-cultivator"},
+      {"key":"martial_flexibility","name":"Martial Flexibility","feature_tokens":["combat-specializations"],"progression":"three_plus_half_level","description":"Daily uses supplied by the Martial Flexibility specialization.","requires_choice_provider":"conscript-specializations","requires_choice_option":"martial-flexibility"},
+      {"key":"specialization_notes","name":"Specialization Details","feature_tokens":["combat-specializations"],"progression":"five","description":"The shared choice panel enforces the five-point specialization budget and the advancement engine removes the correct bonus-feat levels.","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false}
+    ]
+  }],
+  "passive_effects": [],
+  "choice_providers": [
+    {"key":"conscript-practitioner-ability","label":"Practitioner Ability","feature_tokens":["combat-training"],"minimum":1,"maximum":1,"description":"Choose Charisma, Intelligence, or Wisdom as the Conscript's practitioner ability modifier.","fixed_options":[{"key":"charisma","name":"Charisma"},{"key":"intelligence","name":"Intelligence"},{"key":"wisdom","name":"Wisdom"}]},
+    {"key":"conscript-extra-class-skills","label":"Additional Class Skills","feature_tokens":["combat-training"],"minimum":3,"maximum":3,"description":"Choose the three additional class skills granted at character creation.","fixed_options":[
+      {"key":"acrobatics","name":"Acrobatics","class_skills":["acrobatics"]},{"key":"appraise","name":"Appraise","class_skills":["appraise"]},{"key":"bluff","name":"Bluff","class_skills":["bluff"]},{"key":"diplomacy","name":"Diplomacy","class_skills":["diplomacy"]},{"key":"disable-device","name":"Disable Device","class_skills":["disable_device"]},{"key":"disguise","name":"Disguise","class_skills":["disguise"]},{"key":"escape-artist","name":"Escape Artist","class_skills":["escape_artist"]},{"key":"fly","name":"Fly","class_skills":["fly"]},{"key":"heal","name":"Heal","class_skills":["heal"]},{"key":"intimidate","name":"Intimidate","class_skills":["intimidate"]},{"key":"knowledge-arcana","name":"Knowledge (arcana)","class_skills":["knowledge_arcana"]},{"key":"knowledge-dungeoneering","name":"Knowledge (dungeoneering)","class_skills":["knowledge_dungeoneering"]},{"key":"knowledge-engineering","name":"Knowledge (engineering)","class_skills":["knowledge_engineering"]},{"key":"knowledge-geography","name":"Knowledge (geography)","class_skills":["knowledge_geography"]},{"key":"knowledge-history","name":"Knowledge (history)","class_skills":["knowledge_history"]},{"key":"knowledge-nature","name":"Knowledge (nature)","class_skills":["knowledge_nature"]},{"key":"knowledge-nobility","name":"Knowledge (nobility)","class_skills":["knowledge_nobility"]},{"key":"knowledge-planes","name":"Knowledge (planes)","class_skills":["knowledge_planes"]},{"key":"knowledge-religion","name":"Knowledge (religion)","class_skills":["knowledge_religion"]},{"key":"linguistics","name":"Linguistics","class_skills":["linguistics"]},{"key":"ride","name":"Ride","class_skills":["ride"]},{"key":"sense-motive","name":"Sense Motive","class_skills":["sense_motive"]},{"key":"sleight-of-hand","name":"Sleight of Hand","class_skills":["sleight_of_hand"]},{"key":"spellcraft","name":"Spellcraft","class_skills":["spellcraft"]},{"key":"stealth","name":"Stealth","class_skills":["stealth"]},{"key":"use-magic-device","name":"Use Magic Device","class_skills":["use_magic_device"]}
+    ]},
+    {"key":"conscript-specializations","label":"Combat Specializations","feature_tokens":["combat-specializations"],"minimum":0,"maximum":5,"point_budget":5,"description":"Choose specializations totaling no more than five points. Their combined point cost automatically removes the published Conscript bonus-feat levels.","fixed_options":[
+      {"key":"armor-training","name":"Armor Training","cost":1},{"key":"banner","name":"Banner","cost":1},{"key":"barbarian-training","name":"Barbarian Training","cost":2},{"key":"blackpowder-training","name":"Blackpowder Training","cost":2},{"key":"bloodhound","name":"Bloodhound","cost":2},{"key":"cavalier-training","name":"Cavalier Training","cost":2},{"key":"conscript-weapon-training","name":"Conscript Weapon Training","cost":2},{"key":"coordinated-combatant","name":"Coordinated Combatant","cost":2},{"key":"dual-identity","name":"Dual Identity","cost":2},{"key":"evasion","name":"Evasion","cost":1},{"key":"fast-movement","name":"Fast Movement","cost":2},{"key":"favored-enemy","name":"Favored Enemy","cost":2},{"key":"favored-terrain","name":"Favored Terrain","cost":1},{"key":"finesse-training","name":"Finesse Training","cost":2},{"key":"gear-training","name":"Gear Training","cost":1},{"key":"indomitable-will","name":"Indomitable Will","cost":1},{"key":"inspiration","name":"Inspiration","cost":1},{"key":"invulnerability","name":"Invulnerability","cost":2},{"key":"ki-cultivator","name":"Ki Cultivator","cost":2},{"key":"maneuver-training","name":"Maneuver Training","cost":1},{"key":"martial-flexibility","name":"Martial Flexibility","cost":2},{"key":"monstrous-form","name":"Monstrous Form","cost":1},{"key":"mount","name":"Mount","cost":1},{"key":"resolve","name":"Resolve","cost":1},{"key":"sneak-attack","name":"Sneak Attack","cost":2},{"key":"spell-drain","name":"Spell Drain","cost":2},{"key":"sphere-specializations","name":"Sphere Specialization","cost":3},{"key":"squadron-commander","name":"Squadron Commander","cost":2},{"key":"studied-target","name":"Studied Target","cost":2},{"key":"supply-line","name":"Supply Line","cost":1},{"key":"swashbuckler-training","name":"Swashbuckler Training","cost":2},{"key":"vindictive-smite","name":"Vindictive Smite","cost":3}
+    ]}
+  ],
+  "notes":"Weighted specialization costs and their bonus-feat exchanges are shared package data, not Conscript-specific UI code."
+}

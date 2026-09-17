@@ -1,0 +1,334 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:divine-hunter",
+      "choice_providers": [
+        {
+          "key": "divine-hunter-domain",
+          "label": "Divine Hunter Domain",
+          "feature_tokens": ["domain"],
+          "option_families": ["domain"],
+          "minimum": 1,
+          "maximum": 1,
+          "minimum_class_level": 3,
+          "catalog_class_name": "Cleric",
+          "description": "Choose one domain available from the Hunter's deity. Domain powers use effective Cleric level equal to Hunter level - 2, and its domain spells are added to spells known as the Hunter advances."
+        },
+        {
+          "key": "divine-hunter-companion-template",
+          "label": "Otherworldly Companion",
+          "feature_tokens": ["otherworldly-companion"],
+          "minimum": 1,
+          "maximum": 1,
+          "minimum_class_level": 3,
+          "fixed_options": [
+            {"key": "celestial", "name": "Celestial Template", "description": "Required for a good Hunter or a Hunter serving a good deity; neutral Hunters of neutral deities may choose it."},
+            {"key": "fiendish", "name": "Fiendish Template", "description": "Required for an evil Hunter or a Hunter serving an evil deity; neutral Hunters of neutral deities may choose it."}
+          ]
+        }
+      ],
+      "spell_grant_choice_providers": ["divine-hunter-domain"],
+      "system_features": ["domain"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:feral-hunter",
+      "resource_modules": [
+        {
+          "key": "feral_hunter",
+          "title": "Feral Hunter",
+          "governing_ability": "wisdom",
+          "resources": [
+            {
+              "key": "wild_shape",
+              "name": "Wild Shape",
+              "feature_tokens": ["wild-shape"],
+              "progression": "wild_shape_from_four",
+              "description": "Animal forms only. Uses per day follow Druid Wild Shape at full Hunter level; level 20 is treated as at will.",
+              "can_activate": true,
+              "activate_on_spend": true,
+              "custom_choice_label": "Current animal form"
+            }
+          ]
+        }
+      ],
+      "system_features": ["wild-shape"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:forester",
+      "resource_modules": [
+        {
+          "key": "forester",
+          "title": "Forester",
+          "governing_ability": "wisdom",
+          "resources": [
+            {
+              "key": "favored_terrain",
+              "name": "Favored Terrains",
+              "feature_tokens": ["favored-terrain"],
+              "progression": "favored_terrain_from_five",
+              "description": "Choose a favored terrain at 5th level and every 4 levels thereafter; distribute the +2 increases among owned terrains.",
+              "custom_choice_label": "Terrains and current bonuses",
+              "tracks_uses": false,
+              "recover_on_full_rest": false,
+              "end_on_full_rest": false
+            }
+          ]
+        }
+      ],
+      "system_features": ["favored-terrain"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:plant-master",
+      "choice_handling": "automatic",
+      "choice_handling_note": "The shared companion selector is restricted by the authored feature to plant companions. Plant Focus choices remain on the Hunter focus tracker and the companion sheet records its independent focus."
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:hunter:verminous-hunter",
+      "choice_handling": "automatic",
+      "choice_handling_note": "The shared companion selector records the required vermin companion; Hunter Tactics continues to share teamwork feats with the otherwise mindless companion."
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:hunter:beast-bender",
+      "choice_handling": "automatic",
+      "choice_handling_note": "Casting tradition, martial tradition, and blended magic/combat talent budget use the shared Spheres pickers."
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:hunter:beastmaster",
+      "choice_handling": "automatic",
+      "choice_handling_note": "The shared martial-tradition picker supplies the Beastmaster's Adept combat progression; the companion is marked combat trained and may wear light armor."
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:hunter:greenrunner",
+      "choice_handling": "automatic",
+      "choice_handling_note": "This archetype requires Sphere Hunter. Beastmastery (handle animal), Animal Companion, and Animal Empathy are granted through the shared talent and companion systems; its Adept martial budget remains independent from Sphere Hunter magic talents."
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:hunter:master-of-the-hunt",
+      "choice_handling": "automatic",
+      "choice_handling_note": "Casting and martial traditions plus the blended magic/combat talent budget use the shared Spheres workflow."
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:hunter:pellucid-hunter",
+      "choice_providers": [
+        {
+          "key": "pellucid-performance-package",
+          "label": "Performance Package",
+          "feature_tokens": ["performance-sphere"],
+          "minimum": 1,
+          "maximum": 1,
+          "fixed_options": [
+            {"key": "instrumental", "name": "Instrumental Package"},
+            {"key": "lyric", "name": "Lyric Package"}
+          ],
+          "description": "Choose the instrumental or lyric package granted with the Performance sphere."
+        }
+      ],
+      "system_features": ["performance-sphere"]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:hunter:sphere-hunter",
+      "choice_handling": "automatic",
+      "choice_handling_note": "Casting tradition and Mid-Caster magic-talent progression use the shared Spheres workflow."
+    },
+
+    {
+      "key": "pathfinder-archetype:pathfinder-class:medium:reanimated-medium",
+      "resource_adjustments": [
+        {
+          "resource_key": "influence",
+          "name": "Reanimated Influence",
+          "description": "Begins at 3 and can reach 6. Spirit Surge decreases influence while effects that normally reduce influence increase it; reaching 0 causes the 24-hour deathlike coma.",
+          "maximum_progression": "six",
+          "recovery_progression": "three",
+          "current_default_progression": "three",
+          "use_increases": false,
+          "restore_toward_zero": false,
+          "choice_options": ["Archmage", "Champion", "Guardian", "Hierophant", "Marshal", "Trickster"]
+        }
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:medium:rivethun-spirit-channeler",
+      "governing_ability_choice": {
+        "feature_key": "archetype-choice:pathfinder-archetype:pathfinder-class:medium:rivethun-spirit-channeler:mind-and-soul",
+        "options": {"charisma": "charisma", "wisdom": "wisdom"}
+      },
+      "system_features": ["spirit-surge"],
+      "choice_handling": "automatic",
+      "choice_handling_note": "Mind and Soul drives traditional casting and every registered Medium class-feature module through one permanent archetype choice."
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:medium:storm-dreamer",
+      "choice_providers": [
+        {
+          "key": "storm-dreamer-domain",
+          "label": "Gozreh's Domain",
+          "feature_tokens": ["gozrehs-domain"],
+          "option_families": ["domain"],
+          "minimum": 1,
+          "maximum": 1,
+          "catalog_class_name": "Cleric",
+          "description": "Choose Air, Animal, Plant, Water, or Weather. The first granted power uses Medium level and domain spells 1st–6th are added to the Medium spell list."
+        }
+      ],
+      "choice_option_filters": [
+        {"key": "storm-dreamer-domain", "include_names": ["Air Domain", "Animal Domain", "Plant Domain", "Water Domain", "Weather Domain"]}
+      ],
+      "spell_grant_choice_providers": ["storm-dreamer-domain"],
+      "system_features": ["domain"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:medium:storyteller",
+      "resource_modules": [
+        {
+          "key": "storyteller_performance",
+          "title": "Storyteller's Performance",
+          "governing_ability": "charisma",
+          "resources": [
+            {
+              "key": "bardic_performance",
+              "name": "Storyteller's Performance",
+              "feature_tokens": ["storyteller-s-performance"],
+              "progression": "bardic_performance_rounds",
+              "description": "Rounds per day equal to Bardic Performance at Medium level. Available performances are inspire courage, inspire competence, inspire greatness, and inspire heroics at their listed levels.",
+              "can_activate": true,
+              "use_requires_active": true,
+              "choice_options": ["Inspire Courage", "Inspire Competence", "Inspire Greatness", "Inspire Heroics"]
+            }
+          ]
+        }
+      ],
+      "system_features": ["storyteller-s-performance"],
+      "choice_handling": "automatic",
+      "choice_handling_note": "The Bardic Performance tracker supplies rounds per day. Only inspire courage, inspire competence, inspire greatness, and inspire heroics are granted at their Storyteller levels."
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:medium:aspect-host",
+      "choice_handling": "automatic",
+      "choice_handling_note": "Aspect Host requires Champion Medium; altered spirit aspects use the existing Medium spirit and influence controls."
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:medium:champion-medium",
+      "resource_modules": [
+        {
+          "key": "champion_medium",
+          "title": "Champion Medium",
+          "governing_ability": "charisma",
+          "resources": [
+            {
+              "key": "energy_font",
+              "name": "Energy Font",
+              "feature_tokens": ["energy-font"],
+              "progression": "one_plus_ability_minimum_one",
+              "description": "Daily channel-energy uses from the Hierophant intermediate spirit power equal 1 + casting ability modifier."
+            }
+          ]
+        }
+      ],
+      "system_features": ["mesmerist-tricks"],
+      "choice_handling": "automatic",
+      "choice_handling_note": "Casting tradition and blended magic/combat talent progression use the shared Spheres workflow; all Medium ability DCs use the chosen casting ability."
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:mesmerist:cult-master",
+      "resource_adjustments": [
+        {"resource_key": "touch_treatment", "description": "The Cult Master retains the 10th-level major Touch Treatment; the 3rd-, 6th-, and 14th-level treatments are exchanged by the archetype."}
+      ],
+      "system_features": ["touch-treatment"]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:medium:sphere-medium",
+      "choice_handling": "automatic",
+      "choice_handling_note": "Casting tradition and Low-Caster magic talent progression use the shared Spheres workflow."
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:medium:visionary",
+      "resource_modules": [
+        {
+          "key": "visionary",
+          "title": "Visionary",
+          "governing_ability": "charisma",
+          "resources": [
+            {"key": "spirit_communion", "name": "Spirit Communion", "feature_tokens": ["spirit-communion"], "progression": "three", "description": "Three daily uses; record the allies currently sharing the selected spirit ability.", "custom_choice_label": "Affected allies"}
+          ]
+        }
+      ]
+    },
+
+    {
+      "key": "pathfinder-archetype:pathfinder-class:mesmerist:chart-caster",
+      "resource_adjustments": [
+        {"resource_key": "mesmerist_tricks", "name": "Subject of the Stars", "description": "Spend 5 minutes to implant any number of available trick uses into a willing subject. Multiple copies of one trick and additional subjects unlock at the authored levels."}
+      ],
+      "choice_handling": "automatic",
+      "choice_handling_note": "Recurring trick selections use the shared Mesmerist Trick catalog; this archetype changes implantation, not the selected-trick progression."
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:mesmerist:gaslighter",
+      "resource_modules": [
+        {
+          "key": "gaslighter",
+          "title": "Gaslighter",
+          "governing_ability": "charisma",
+          "resources": [
+            {"key": "horrid_mask", "name": "Horrid Mask", "feature_tokens": ["horrid-mask"], "progression": "three_plus_ability", "description": "Daily Horrid Mask uses equal 3 + Charisma modifier.", "can_activate": true, "activate_on_spend": true, "custom_choice_label": "Hypnotic Stare target"}
+          ]
+        }
+      ],
+      "passive_effects": [
+        {"key": "consummate_cruelty", "feature_tokens": ["consummate-cruelty"], "targets": ["skill:intimidate"], "progression": "half_level_minimum_one", "bonus_type": "untyped", "source": "Gaslighter: Consummate Cruelty"}
+      ],
+      "audit_ignore_mechanics": ["cruelty"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:mesmerist:vexing-daredevil",
+      "choice_providers": [
+        {
+          "key": "vexing-daredevil-weapon",
+          "label": "Martial Weapon Proficiency",
+          "feature_tokens": ["weapon-and-armor-proficiency"],
+          "minimum": 1,
+          "maximum": 1,
+          "fixed_options": [
+            {"key": "custom-martial-weapon", "name": "Selected Martial Weapon", "description": "Record the chosen martial weapon in the class-choice notes and proficiency editor."}
+          ]
+        }
+      ]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:mesmerist:champion-mesmerist",
+      "choice_handling": "automatic",
+      "choice_handling_note": "Casting and martial traditions plus the Mid blended magic/combat talent progression use the shared Spheres workflow."
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:mesmerist:conniving-bastard",
+      "choice_handling": "automatic",
+      "choice_handling_note": "Casting tradition and Mid-Caster magic-talent progression use the shared Spheres workflow."
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:mesmerist:incendiary",
+      "choice_handling": "automatic",
+      "choice_handling_note": "Bluster is granted at 2nd level. Each later Mesmerist Trick slot may remain a trick or be exchanged for a Bluster or Communication talent; the recurring trick picker and skill-talent budget retain the authored choice rather than granting both automatically.",
+      "system_features": ["bluster-sphere"]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:mesmerist:nocturnus",
+      "resource_modules": [
+        {
+          "key": "nocturnus",
+          "title": "Nocturnus Shrouds",
+          "governing_ability": "charisma",
+          "resources": [
+            {"key": "shrouds", "name": "Active Shrouds", "feature_tokens": ["shrouds"], "progression": "one_plus_half_level", "description": "Maximum simultaneous shrouds equal 1 + half Mesmerist level. Record currently shrouded creatures; ending a shroud powers later Nocturnus abilities.", "can_activate": true, "custom_choice_label": "Shrouded creatures", "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": false}
+          ]
+        }
+      ]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:mesmerist:sphere-mesmerist",
+      "choice_handling": "automatic",
+      "choice_handling_note": "Casting tradition and Mid-Caster magic talent progression use the shared Spheres workflow."
+    }
+  ]
+}

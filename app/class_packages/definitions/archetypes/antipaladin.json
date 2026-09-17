@@ -1,0 +1,2157 @@
+{
+  "version": 1,
+  "class_key": "pathfinder-class:antipaladin",
+  "entries": [
+    {
+      "key": "spheres-archetype:pathfinder-class:antipaladin:antimage",
+      "package": "pathfinder-class:antipaladin",
+      "name": "Antimage",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/antimage",
+      "replaces_features": [
+        "aura-of-courage-or-aura-of-cowardice",
+        "aura-of-faith-or-aura-of-sin",
+        "aura-of-good-or-aura-of-evil",
+        "aura-of-justice-or-aura-of-vengeance",
+        "channel-negative-energy",
+        "channel-positive-energy-or-touch-of-corruption",
+        "class-skills",
+        "detect-evil-or-detect-good",
+        "divine-grace-or-unholy-resilience",
+        "holy-champion-or-unholy-champion",
+        "lay-on-hands",
+        "mercy-or-cruelty",
+        "optionally-smite-evil-or-smite-good",
+        "skills",
+        "smite-evil-or-smite-good",
+        "spellcasting"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "detect evil or detect good",
+        "aura of good or aura of evil",
+        "lay on hands",
+        "channel positive energy or touch of corruption",
+        "channel negative energy",
+        "mercy or cruelty",
+        "aura of courage or aura of cowardice",
+        "aura of justice or aura of vengeance",
+        "aura of faith or aura of sin",
+        "holy champion or unholy champion"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Class Skills and Skill Ranks",
+          "description": "An antimage adds Knowledge (arcana) and Perception to her list of class skills. Diplomacy and Knowledge (religion) are not class skills for an antimage. The antimage gains 4 + her Intelligence modifier skill ranks per level rather than 2 + her Intelligence modifier skill ranks per level.\n\nThis alters skills and class skills."
+        },
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "An antimage is proficient with simple weapons as well as light armor and bucklers. In addition, if this is the character’s first level in any class, she may select a martial tradition of her choice."
+        },
+        {
+          "level": 1,
+          "name": "Code of Conduct",
+          "description": "An antimage’s code of conduct is often more personal than normal paladins. They may be considered to be part of a cult in some societies, or lone wolves with personal vendettas against the use of magic. Still, they share common strings of ethics that ties them together under one title. An antimage may be of any alignment. An antimage is forbidden from learning or using spell effects from any source. They are forbidden from gaining any class levels in a class that grants the ability to create spell effects (such as the casting class feature, but not supernatural features), and from using any racial spell effects they possess. Additionally, they are forbidden from wearing or using any magic item that does not have the disrupted special ability (detailed in the nullmagic power ability), although they are permitted to use magic potions in times of urgency or importance, under their own discretion. Antimages are aware of the fact that a fight against magic without some use of magic is near impossible, and thus they are permitted to use consumable magic items or allow beneficial magic to be cast upon them during emergencies, but each such use will require the antimage to later on, within the next week, to spend an hour performing meditation and mental cleaning per magic item or magical effect to rid their body of residual magical energy. An antimage is not forbidden from associating with magic users, but they must make constant efforts to convince those they care for that they must rid themselves of their magical powers, and seek to end any business relationships with magical associates they do not consider friends or immediately useful in their cause. Ultimately, an antimage vows themselves to destroy those who abuse magic for their own personal desires first before attempting to convince relatively harmless or even helpful magic casters to rid themselves of their magic. Violating the code of conduct causes the antimage to lose access to all of her supernatural class features, and she may only redeem herself by locating another willing antimage, with who she performs a 1 hour ritual to rid herself of the magical taint she has (such as dispelling any permanent beneficial magical effects, retraining class levels in casting classes and similar), ending with the dismantling of magical items worth at least 2,500 gp. The antimage may shorten this time if she accomplishes a great deed that rids the world of a large source of magical power, such as slaying a god or burning an ancient magical library."
+        },
+        {
+          "level": 1,
+          "name": "Note",
+          "description": "For the purposes of this archetype, the term ‘spell effect’ refers to any sphere effect, sphere-like, spell or spell-like ability."
+        },
+        {
+          "level": 2,
+          "name": "Spellvision",
+          "description": "The antimage gains detect magic as a constant supernatural ability, as if always having concentrated for three rounds. This grants her an automatic Spellcraft check whenever she comes within 30 feet of a new magical source. The antimage always knows whether an aura comes from a specific item, place, or active spell effect. At 2nd level, the antimage can spend a point of nullmagic to gain a +10 insight bonus to a single Spellcraft check made to identify a magic item’s properties. Beginning at 5th level, the antimage can spend a move action to determine if a creature she can see is capable of casting or not; she can spend a point of nullmagic to identify the target’s caster level and the base spheres they possess."
+        },
+        {
+          "level": 1,
+          "name": "Special",
+          "description": "If the target casts spells rather than sphere effects, the antimage learns the highest level spell slot the target can cast, as well as what spell list they draw their spells from, or if they are innate racial spells (for example, arcanists, sorcerers and wizards draw from the wizard/sorcerer spell list; witches draw from the witch spell list, etc.). The antimage never learns the exact spells the target knows or has prepared, only the level of the highest spell they can cast.\n\nThis replaces detect evil or detect good."
+        },
+        {
+          "level": 1,
+          "name": "Manavoid Mantle",
+          "description": "The antimage herself has a repressed aura of magic. Harmless spell effects affecting her do not emit an aura. Additionally, all magic items she possesses with a caster level lower than her antimage level have their auras suppressed and cannot be detected. Any attempt to detect magical auras on the antimage reveals the presence of strong antimagic powers, as well as any nonharmless spell effects.\n\nThis replaces aura of good or aura of evil."
+        },
+        {
+          "level": 8,
+          "name": "Smite Magic",
+          "description": "Once per day, the antimage can bring swift retribution to those that would use magic. As a swift action (or as an immediate action by spending a point of nullmagic in response to a creature using a spell effect), the antimage chooses one creature she can see to smite. As long as the antimage has witnessed the target create a spell effect (not including through the use of magic items) within the last minute, the creature is successfully smote; if she has not, the smite is wasted with no effect. While smite magic is in effect, the antimage adds her practitioner modifier (minimum +1) to attack rolls made as part of an attack action against the target, in addition to as a deflection bonus to her AC against attacks created as part of a spell effect that originate from the target of her smite. This bonus to AC increases by 1 at 8th level and every 6 levels thereafter. Additionally, the antimage gains a bonus to all damage rolls made against the target equal to the target’s caster level, to a maximum bonus equal to half her antimage level (minimum 1). The smite magic effect remains until the target of the smite is dead, or the next time the antimage rests and regains uses of this ability. At 4th level and every three levels thereafter, the antimage may smite magic one additional time per day.\n\nThis alters smite evil or smite good."
+        },
+        {
+          "level": 2,
+          "name": "Protective Insight",
+          "description": "At 2nd level, the antimage adds her practitioner modifier (minimum +1) to all saving throws against spell effects. This bonus cannot exceed her antimage level. This alters divine grace or unholy resilience."
+        },
+        {
+          "level": 2,
+          "name": "Nullmagic Power",
+          "description": "At 2nd level, the antimage gains a pool of nullmagic points equal to her Intelligence modifier + 1/2 her antimage level (minimum 1) that refills once per day after 8 hours of rest. An antimage can spend points of nullmagic to fuel several of their class abilities, including the following abilities:"
+        },
+        {
+          "level": 1,
+          "name": "Disrupt",
+          "description": "The antimage can spend 1 point of nullmagic and 1 minute with an object she is touching to grant it the disrupted special ability. A disrupted object loses all magical properties while worn or held by anyone other than the antimage; such objects retain any magical properties it may possess while worn or held by the antimage. The disrupted special ability has a caster level equal to the antimage’s level. If a creature wears or holds a disrupted object and attempts to cast a spell effect, they must succeed a concentration check (DC 15 + the antimage’s level) or lose the spell. The disrupted ability can be removed from an item by spending 1 minute and a spell point (or a spell slot of 1st level or higher), and succeeding at a magic skill check (DC 11 + the antimage’s level). The disrupted special ability otherwise remains until the antimage is slain or she chooses to dismiss the effect as a free action and is within 30 feet of the disrupted object."
+        },
+        {
+          "level": 5,
+          "name": "Dispel",
+          "description": "At 5th level, the antimage gains the Counterspell feat, even if she does not meet the prerequisites, and is treated as if she had the casting class feature when meeting the prerequisites for counterspell feats. The antimage uses her class level as her magic skill bonus, and spends points of null magic in place of spell points when she uses counterspell feats.\n\nThis replaces lay on hands and channel positive energy or touch of corruption and channel negative energy."
+        },
+        {
+          "level": 3,
+          "name": "Nullshaping Techniques",
+          "description": "Beginning at 3rd level, the antimage learns new methods and techniques on how to use her nullmagic pool. She may select one nullshaping technique from below. At 6th level and every 3 levels thereafter, she gains another nullshaping technique.\n\nThis replaces mercy or cruelty."
+        },
+        {
+          "level": 1,
+          "name": "Counterspell (requires 6th level)",
+          "description": "The antimage gains a counterspell feat that she qualifies for as a bonus feat. She may select this technique multiple times. The antimage must be at least 6th level to take this technique."
+        },
+        {
+          "level": 1,
+          "name": "Cleanse (requires 9th level)",
+          "description": "The antimage can use the Counterspell feat as a free action once per turn, as long as she only targets herself when using Counterspell this way."
+        },
+        {
+          "level": 1,
+          "name": "Expanded Nullmagic",
+          "description": "The antimage gains three additional points of nullmagic within her nullmagic pool. She may select this technique multiple times, and its effects stack."
+        },
+        {
+          "level": 9,
+          "name": "Mageguard Training",
+          "description": "The antimage gains the Disruptive feat as a bonus feat. At 9th level, she also gains the Spellbreaker feat as a bonus feat. She does not need to meet the prerequisites for these feats, and she treats her antimage level as a fighter level for the purposes of qualifying for feats with either of these as a prerequisite."
+        },
+        {
+          "level": 11,
+          "name": "Nullmagic Glide (requires 6th level)",
+          "description": "The antimage forges her nullmagic aura around herself, causing her to temporarily become an exception in the presence of most spell effects. As an immediate action as part of another action she takes that allows her to move, the antimage can spend a point of nullmagic to ignore all spell effects that would restrict her movement until she ends her movement. This includes difficult terrain, a stone wall created using the Creation sphere (as long as it is not instantaneous), a bubble of distorted time from the Time sphere, areas of darkness created using the Dark sphere, etc. The antimage must end her movement in an open space, otherwise she is shunted back to where she was before the movement. If the antimage ends her movement inside of a spell effect, she immediately suffers its effects, if any. At 11th level, the antimage can spend an additional point of nullmagic when using this ability to be able to ignore effects that were created through magic even if they are instantaneous, such as the Create Materials Creation sphere advanced talent (but not materials that are otherwise non-magical and shaped with magic, such as the Forge Creation sphere talent)."
+        },
+        {
+          "level": 12,
+          "name": "Nullmagic Shell",
+          "description": "The nullmagic reservoir that the antimage holds forms a physical protective layer over her body. The antimage can spend 1 point of nullmagic as a free action to gain DR/- and energy resistance to acid, cold, electricity, and fire damage equal to 1/2 her antimage level for 1 round. The damage reduction and resistances gained from this ability only function against magical or supernatural sources (such as an enchanted weapon or a magic effect that deals damage). At 12th level, the antimage can spend an additional point of nullmagic when using this ability to increase the damage reduction and resistance to an amount equal to her antimage level, and increase the duration to 2 rounds."
+        },
+        {
+          "level": 1,
+          "name": "Nullmagic Shutdown (requires 14th level)",
+          "description": "The antimage can spend 2 points of nullmagic as a full-round action to form a protective anti-magic shell around herself for 1 round per 5 antimage levels she possesses. While benefiting from this ability, the antimage cannot be targeted by any spell effect that targets creatures, in addition to suppressing the effects of any magic items (even if they are disrupted) or harmless spell effects that she is benefiting from, with any time passing still counting against their duration."
+        },
+        {
+          "level": 1,
+          "name": "Pacified Disruption",
+          "description": "The antimage may allow a number of allies equal to her practitioner modifier to use any items she has disrupted as if the antimage was wielding or holding it. She must select these allies each day after resting by spending 10 minutes imbuing them with a small amount of her nullmagic force."
+        },
+        {
+          "level": 1,
+          "name": "Permit Assistance",
+          "description": "Harnessing a more defined control over her spell resistance, the antimage gains the ability to allow small glimpses of magic to pass through and affect her. Whenever the antimage is targeted by a spell, she can voluntarily allow the spell to succeed its check to bypass her spell resistance without having to first lower it, requiring no roll to be made. If the antimage is immune to magic, she can allow the magic to affect her normally, bypassing her own immunity."
+        },
+        {
+          "level": 12,
+          "name": "Physical Training (requires 6th level)",
+          "description": "The antimage trains her physical prowess, expanding her martial capabilities. The antimage gains two combat talents as bonus talents. The antimage can choose this nullshaping technique an additional time starting at 12th level."
+        },
+        {
+          "level": 1,
+          "name": "Rites Against Conjurations (requires 6th level)",
+          "description": "The antimage learns to defend herself against spellcasters who bind others to do their bidding. As a swift action, the antimage can spend 1 point of nullmagic to allow her manavoid mantle to ward against summoned creatures for a number of minutes equal to her level. For the duration, the manavoid mantle prevents contact by any type of summoned creature, causing any natural weapon attacks of summoned creatures to fail and the creatures to recoil if such attacks require touching the antimage. If a summoned creature that possesses spell resistance attempts to attack the antimage, the antimage must attempt a magic skill check using her antimage level in place of her magic skill bonus against the spell resistance. If the antimage fails to overcome the creature’s spell resistance, the creature can ignore the effects of this ability. If a summoned creature’s summoner is within line of sight of the antimage, they may attempt a magic skill check against the antimage’s magic skill defense, using their antimage level in place of their magic skill bonus, to ignore the effects of this ability for the purpose of any creatures they have summoned. Any individual creature is only allowed one attempt to bypass this ability; any further attempts automatically fail."
+        },
+        {
+          "level": 3,
+          "name": "Bastion against Magic",
+          "description": "At 3rd level, as long as the antimage has at least 1 point of nullmagic within her nullmagic pool, she gains spell resistance equal to 6 + her antimage level. Every time this spell resistance successfully negates a spell effect, she loses 1 point of nullmagic unless the effect originated from a creature who is affected by the antimage’s smite magic. At 9th level and 14th level, this spell resistance increases by 5, to 11 + her antimage level at 9th level and to 16 + her antimage level at 14th level. At 19th level, as long as the antimage has at least 1 point of nullmagic within her nullmagic pool, the antimage gains immunity to magic as if she possessed an infinite amount of spell resistance. Each time this immunity stops her from being affected by a spell effect, she loses 1 point of nullmagic unless the effect originated from a creature who is affected by the antimage’s smite magic. The antimage can suppress and resume this immunity as a free action.\n\nThis replaces aura of courage or aura of cowardice."
+        },
+        {
+          "level": 11,
+          "name": "Aura of Spellhunt",
+          "description": "At 11th level, an antimage can expend two uses of her smite magic ability to grant the ability to smite magic to all creatures within 10 feet, using her bonuses. Allies must use this smite magic ability by the start of the antimage’s next turn, and the bonuses only last for 1 minute. Using this ability is a free action, and creatures capable of casting spell effects gain no benefit from this ability.\n\nThis replaces aura of justice or aura of vengeance."
+        },
+        {
+          "level": 14,
+          "name": "Invulnerable Shield against Magic",
+          "description": "At 14th level, the antimage can spend 2 points of nullmagic as a standard action to relinquish her bastion against magic, losing any benefits from the class feature and allowing it to act as a globe of invulnerability with the exception that it excludes any sphere effect with a caster level equal to or lower than 10 (or all spells up to 5th level), and the globe’s area is a 10-foot radius sphere centered around the antimage (or a corner she occupies) that does not move from the area it was activated. This globe lasts for a number of rounds equal to her practitioner modifier (minimum 1), but can be dismissed as a swift action. As long as the globe remains active, the antimage loses the benefits of her bastion against magic ability. At 18th level, this effect excludes all sphere effects with a caster level equal to or lower than 12 (or all spells up to 6th level). At 20th level, no longer loses the benefits of her bastion against magic ability while benefiting from this ability. Additionally, there is no limit to the amount of globes that she can create, as long as she can pay its associated costs each time. Finally, she can center a globe anywhere within close range, rather than centered on her, although they are still affixed to the position they are created at.\n\nThis replaces aura of faith or aura of sin."
+        },
+        {
+          "level": 20,
+          "name": "Apotheosis of Antimagic",
+          "description": "At 20th level, the antimage becomes the ultimate stopping force for everything that is magical. The antimage can spend 2 points of nullmagic as a standard action to gain an antimagic aura centered on herself that moves as she does, that prevents the use of magic as per the Protection sphere Spell Ward talent and Antimagic Aura advanced talent, although it has no effect on items with the disrupted ability. If the antimage moves the field into a summoned creature, they are entitled a Reflex save (DC 20 + the antimage’s practitioner modifier) to instead be repelled to the edge of the aura at the end of the antimage’s movement. This antimagic aura can be dispelled normally, and has a magic skill defense equal to 11 + the antimage’s level. The antimage has precise control of this antimagic field, and may adjust the radius as a free action once per round, shrinking it to as small as a 5-foot radius, or as large as a 30-foot radius. The antimage must spend 1 point of nullmagic each round as a free action to maintain the antimagic aura. This antimagic field can be dispelled using the Counterspell feat against a DC equal to 11 + the antimage’s level.\n\nThis replaces holy champion or unholy champion."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:antipaladin:arbiter",
+      "package": "pathfinder-class:antipaladin",
+      "name": "Arbiter",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/arbiter",
+      "replaces_features": [
+        "antipaladins-or-paladins-normal-class-skills",
+        "but-may-be-replaced-by-other-archetypes",
+        "detect-evil-or-detect-good",
+        "divine-bond",
+        "spellcasting"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "antipaladin’s or paladin’s normal class skills",
+        "spells",
+        "but may be replaced by other archetypes: Interrogator (Ex): The arbiter gains the Investigation sphere as a bonus skill sphere at 5th level",
+        "in addition to her choice of either the Communication or Faction sphere"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Trade Tradition",
+          "description": "If this is this character’s first level in any class, the arbiter may select a trade tradition of her choice, and have a competent trade rank.\n\nThis replaces the antipaladin’s or paladin’s normal class skills."
+        },
+        {
+          "level": 1,
+          "name": "Skill Expertise",
+          "description": "The arbiter is a Trained operative, gaining skill spheres and talents as described in Using Spheres of Guile.\n\nThis replaces spells, but may be replaced by other archetypes: Interrogator (Ex): The arbiter gains the Investigation sphere as a bonus skill sphere at 5th level, in addition to her choice of either the Communication or Faction sphere."
+        },
+        {
+          "level": 5,
+          "name": "This replaces spells, but may be replaced by other archetypes",
+          "description": "Interrogator (Ex): The arbiter gains the Investigation sphere as a bonus skill sphere at 5th level, in addition to her choice of either the Communication or Faction sphere."
+        },
+        {
+          "level": 1,
+          "name": "Watchful Glare",
+          "description": "Whenever the arbiter uses her detect evil (for paladins) or detect good (for antipaladins) ability, she can outwit a creature whose aura she can detect as a cost to also learn one of the target’s minor motivations that they have acted upon in the past 24 hours.\n\nThis alters detect evil (for paladins) or detect good (for antipaladins)."
+        },
+        {
+          "level": 1,
+          "name": "Addendum [SM—]",
+          "description": "The Watchful Glare ability may be used to outwit a creature the paladin has detected using the following class features. Watchful Glare may also be replaced as if it were detect evil."
+        },
+        {
+          "level": 1,
+          "name": "Spellvision (Antimage)",
+          "description": "Detect Adversary (Avowed): Detect Chronomancy (Time Knight): Source: Baron’s Secluded Library"
+        },
+        {
+          "level": 5,
+          "name": "Divine Envoy",
+          "description": "At 5th level, instead of forming a divine bond with her weapon or a mount, an arbiter can choose to form a bond with her voice and social prowess. As a standard action, the arbiter can bind a celestial spirit to her voice for 1 minute per class level. When called, the spirit allows the arbiter’s voice to project three times as loud than normal. At 5th level, the spirit grants one benefit, plus an additional benefit for every 3 class levels thereafter. These benefits can be spent in a number of ways to grant the arbiter enhanced social abilities, listed below: Gain a +1 sacred (if a paladin) or profane (if an antipaladin) bonus to Bluff, Diplomacy, and Intimidate checks. Gain a +1 sacred (if a paladin) or profane (if an antipaladin) bonus to analyze skill checks attempted with the Investigation sphere. Gain 1 temporary use of skill leverage that is lost if not used before the spirit binding ends. Gain a single (analyze) talent of her choice from the Investigation sphere. Gain the ability to read and speak a language. These benefits stack and can be selected multiple times, and are determined when the spirit is called and cannot be changed until the spirit is called again. The arbiter can use this ability once per day at 5th level, plus an additional time per day for every four levels beyond 5th.\n\nThis alters divine bond."
+        },
+        {
+          "level": 20,
+          "name": "Speaker of Divinity",
+          "description": "At 20th level, the arbiter can choose to become the divine mouthpiece for her deity or belief. The arbiter’s damage reduction increases to 10/evil (if a paladin) or DR 10/good (if an antipaladin). Additionally, whenever the arbiter uses her smite ability on a creature, the target must succeed at a Will saving throw (DC 10 + 1/2 her class level + her Charisma modifier) or become an open book for all to see. The arbiter may roll twice and take the highest result for all attack rolls made against the creature and to saving throws against effects originating from the creature. Additionally, any creature can get a result as if they had rolled a 20 instead of rolling on Perception and Sense Motive checks attempted against the creature for 1 minute."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:antipaladin:avowed",
+      "package": "pathfinder-class:antipaladin",
+      "name": "Avowed",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/avowed",
+      "replaces_features": [
+        "all-mercies-or-cruelties",
+        "armor-proficiencies",
+        "aura-of-courage",
+        "aura-of-despair",
+        "aura-of-good-or-aura-of-evil",
+        "aura-of-resolve",
+        "channel-positive-energy-or-channel-negative-energy",
+        "detect-evil-or-detect-good",
+        "divine-bond-or-fiendish-boon",
+        "holy-champion",
+        "lay-on-hands-or-touch-of-corruption",
+        "or-aura-of-cowardice",
+        "paladins-or-antipaladins-weapon",
+        "smite-evil-or-smite-good",
+        "spellcasting",
+        "unholy-champion"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "spells class feature",
+        "all mercies or cruelties: Pledge Alignment: At 1st level",
+        "the avowed must choose an alignment that she possesses (chaos",
+        "evil",
+        "good",
+        "or lawful; but not neutral); this alignment is considered her pledge alignment",
+        "which affects her class features",
+        "abilities",
+        "aura of courage",
+        "aura of resolve",
+        "holy champion; or aura of cowardice",
+        "aura of despair",
+        "unholy champion",
+        "aura of good or aura of evil",
+        "detect evil or detect good",
+        "lay on hands or touch of corruption",
+        "channel positive energy or channel negative energy",
+        "divine bond or fiendish boon"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Alignment and Code of Conduct",
+          "description": "The avowed must be of her pledge alignment, and loses all class features except proficiencies if she ever willingly commits an act that would be adversely against her pledge alignment (an evil act if you are good, a chaotic act if you are lawful, etc.). Additionally, her code depends on her pledge alignment and the pledge she has taken. For example, a chaotically-aligned avowed may require her to always question law and those in power, or to actively combat those attempting to restrict and oppress. The exact details of an avowed’s code should be discussed and detailed with the GM, and should be of a similar look to that of a paladin or antipaladin’s code of conduct."
+        },
+        {
+          "level": 1,
+          "name": "Unusual Alignment/Pledge Combinations",
+          "description": "A lot of the pledges one can choose from are thoroughly linked to an alignment; the pledge of cruelty embodies typically evil traits, the pledge of order represents law and order, etc. As much as a lawful avowed possessing a pledge of order or even courage would make the most 'sense', there could be potential issues (or opportunities) with less straightforward combinations. A good-aligned avowed taking a pledge of cruelty, for example, may begin to stretch the confines of alignment or their chosen pledge. Ultimately, if a player wishes to play an avowed with an unusual alignment/pledge combination, the player should work with their GM to create a code of conduct that allows their character to flourish, in addition to potentially depict the intricacies of morality, empathy, and devotion to one's personal dogma."
+        },
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "An avowed is proficient with simple weapons, as well as light armor and bucklers. In addition, if this is the character’s first level in any class, she may select a martial tradition of her choice.\n\nThis alters the paladin’s or antipaladin’s weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "At 1st level, the avowed may combine spheres and talents to create magical effects. The avowed is considered a Low-Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.) This replaces the spells class feature."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "An avowed gains a small reservoir of energy she can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to her level + her casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "An avowed gains a combat or magic talent every time she gains a class level. An avowed uses her casting ability modifier as her practitioner ability modifier.\n\nThis replaces all mercies or cruelties: Pledge Alignment: At 1st level, the avowed must choose an alignment that she possesses (chaos, evil, good, or lawful; but not neutral); this alignment is considered her pledge alignment, which affects her class features and abilities. Once this choice is chosen, it cannot be changed."
+        },
+        {
+          "level": 1,
+          "name": "This replaces all mercies or cruelties",
+          "description": "Pledge Alignment: At 1st level, the avowed must choose an alignment that she possesses (chaos, evil, good, or lawful; but not neutral); this alignment is considered her pledge alignment, which affects her class features and abilities. Once this choice is chosen, it cannot be changed."
+        },
+        {
+          "level": 1,
+          "name": "Addendum [SM—]",
+          "description": "The avowed may select true neutral as her pledge alignment, in which case she treats chaotic evil, chaotic good, lawful evil, and lawful good creatures as opposite her pledge alignment."
+        },
+        {
+          "level": 1,
+          "name": "Pledge",
+          "description": "The avowed is dedicated wholly to her deity’s cause, serving them wholeheartedly. At 1st level, the avowed must select a pledge, which dictates her class features and abilities. Once this choice is chosen, it cannot be changed. At 1st level, the avowed gains a bonus to a skill, in addition to treating that skill as a class skill. At 3rd, 6th and 8th level, the avowed gains a pledge ability from her pledge.\n\nThis replaces aura of courage, aura of resolve, and holy champion; or aura of cowardice, aura of despair, and unholy champion."
+        },
+        {
+          "level": 1,
+          "name": "Divine Aura",
+          "description": "The power of an avowed’s aura is equal to her avowed level, and is determined by her pledge alignment.\n\nThis replaces aura of good or aura of evil."
+        },
+        {
+          "level": 1,
+          "name": "Detect Adversary",
+          "description": "At will as a move action, the avowed may spend a spell point and concentrate on a single item or individual within 60 feet and determine if it is of an alignment opposite of her pledge alignment.\n\nThis replaces detect evil or detect good."
+        },
+        {
+          "level": 4,
+          "name": "Smite",
+          "description": "Once per day, the avowed can call out to the powers of her deity to grant her strength. As a swift action, the avowed chooses one target within sight to smite. If the target has an alignment that is opposite to her pledge alignment, the smite is successful; otherwise, the ability is wasted with no effect. The avowed may add her casting ability modifier to attack rolls against the target of her smite, and may add her class level to all damage rolls made against the target. Additionally, her attacks against the target are treated as being her oath’s alignment for the purposes of bypassing damage reduction. If the target is an outsider or another creature with a strong inclination against her pledge alignment (up to GM discretion), the bonus to the first damage roll made each round increases to 2 points of damage per class level she possesses. This ability remains until the target of the smite is dead or the next time the avowed rests and regains uses of this ability. At 4th level and every 3 levels thereafter, the avowed may smite 1 additional time per day.\n\nThis alters smite evil or smite good."
+        },
+        {
+          "level": 2,
+          "name": "Divine Touch",
+          "description": "At 2nd level, an avowed gains the ability to use the powers of her pledge through touch. Each day she can use this ability a number of times equal to 1/2 her avowed level + her casting ability modifier. This ability counts as the lay on hands and touch of corruption class feature for the purposes of meeting the prerequisites of feats. The ability gained depends on the avowed’s pledge alignment:"
+        },
+        {
+          "level": 1,
+          "name": "Liberating Touch (Chaos)",
+          "description": "The avowed can unfetter others (or herself) with a touch. As a standard action (or as a swift action if she targets herself), she may touch a creature to grant them a 10-foot enhancement bonus to all speeds, a +2 dodge bonus to AC against attacks of opportunity, and a +2 circumstance bonus to Acrobatics and Escape Artist checks for a number of rounds equal to her casting ability modifier. The bonuses to AC and skill checks increase by 1 for every 3 class levels she possesses; in addition to increasing the bonus to all speeds by 5 feet for every 10 class levels she possesses."
+        },
+        {
+          "level": 1,
+          "name": "Lay on Hands (Good)",
+          "description": "This functions as the paladin ability of the same name."
+        },
+        {
+          "level": 1,
+          "name": "Touch of Corruption (Evil)",
+          "description": "This functions as the antipaladin ability of the same name."
+        },
+        {
+          "level": 1,
+          "name": "Vitalizing Grasp (Lawful)",
+          "description": "The avowed can invigorate others (or herself) with a touch. As a standard action (or as a swift action if she targets herself), she may touch a creature to grant them 1d6 temporary hit points, plus an additional 1d6 for every two class levels she possesses. These temporary hit points last for 1 minute."
+        },
+        {
+          "level": 6,
+          "name": "Shout of Triumph (Destruction)",
+          "description": "[SM—] when the avowed triumphs over a foe, she may raise her weapon high, inspiring nearby friends and allies; she may spend an immediate action and a use of divine touch when she defeats an opponent whose CR is at least half her character level (rounded down, minimum 1/2) to grant all allies within 10 ft. a +1 morale bonus to attack and damage rolls for 1 round. This bonus increases by +1 at 6th level and every 4 levels thereafter. For the purposes of this ability, defeating a foe includes any action that kills, renders unconscious or helpless, ties up (as the option for pinned opponents), or banishes a foe."
+        },
+        {
+          "level": 1,
+          "name": "Invoke Elements (Neutrality)",
+          "description": "[SM—] As a touch attack, the avowed can cause 1d6 points of acid, cold, electricity, or fire damage for every two antipaladin levels she possesses. Using this ability is a standard action that does not provoke attacks of opportunity."
+        },
+        {
+          "level": 1,
+          "name": "Outrageous Fortune (Tales)",
+          "description": "[SM—] The avowed gains the Fate sphere as a bonus sphere. Whenever she creates a consecration or motif, she may spend a use of divine touch to treat her class level as her caster level for the effect or ignore any one general drawback she possesses for the purpose of using the consecration. Multiple uses of divine touch may be spent on the same effect.\n\nThis replaces lay on hands or touch of corruption."
+        },
+        {
+          "level": 4,
+          "name": "Channel Divinity",
+          "description": "At 4th level, an avowed’s ability to channel the powers of her faith increases, allowing her to release it in greater bursts. This ability is a standard action that does not provoke an attack of opportunity, and requires her to present her holy symbol to use. Using this ability consumes two uses of her divine touch ability. If a channel divinity option would require a saving throw, the DC of the save is equal to 10 + 1/2 her class level + her casting ability modifier. This ability counts as the channel energy class feature for the purposes of meeting the prerequisites of feats."
+        },
+        {
+          "level": 1,
+          "name": "Channel Discordant Energy (Chaos)",
+          "description": "The avowed releases a burst of pure entropy. All enemies within a 30-foot radius centered on the avowed must succeed at a Will save or become confused and entangled for 1 round, plus 1 round for every 3 levels beyond 1st. A creature may attempt to break free as a free action at the end of their turn, allowing them a new saving throw against the effect. If a creature successfully breaks free (or loses the entangled condition in another way), the creature is also no longer confused. If an enemy possesses the casting or spells class features, they also increase their wild magic chance by 100% wild surge chance for as long as they are entangled."
+        },
+        {
+          "level": 1,
+          "name": "Channel Positive Energy (Good)",
+          "description": "This functions as the paladin ability of the same name."
+        },
+        {
+          "level": 1,
+          "name": "Channel Negative Energy (Evil)",
+          "description": "This functions as the antipaladin ability of the same name."
+        },
+        {
+          "level": 1,
+          "name": "Channel Concordant Energy (Lawful)",
+          "description": "The avowed releases a controlled burst of pure order. All allies within a 30-foot radius centered on the avowed form an empathetic unity for 1 round, plus 1 round per 3 class levels she possesses. All affected allies gain DR 5/—, plus 1 per 5 class levels she possesses. This stacks with similar forms of damage reduction. Additionally, whenever an affected ally would suffer damage, any other affected ally that is aware of the attack may choose to transfer up to half of that damage to themselves. Damage transferred this way may not be resisted or redirected further, and only one ally can transfer this damage."
+        },
+        {
+          "level": 1,
+          "name": "Wrathful Focus (Destruction)",
+          "description": "[SM—] Whenever a creature the avowed has used her smite ability on is reduced to 0 or fewer hit points, she may spend a use of divine touch to regain martial focus."
+        },
+        {
+          "level": 1,
+          "name": "Elemental Surge (Neutrality)",
+          "description": "[SM—] The avowed may deal her invoke elements damage to all creatures within 30 feet (Reflex save half). This does not require an attack roll."
+        },
+        {
+          "level": 1,
+          "name": "Boon of Purpose (Purpose)",
+          "description": "[SM—] The avowed gains the boon of purpose class feature of the champion of the cause paladin archetype. Rather than having a limited number of uses per day, the avowed instead spends two uses of divine touch to use an ability from boon of purpose."
+        },
+        {
+          "level": 8,
+          "name": "Chansons (Tales)",
+          "description": "[SM—] The avowed gains a (motif) talent as a bonus talent. Whenever she rests to regain spell points, she may change this talent to any other motif. When she uses this motif on herself, she may spend a use of divine touch to reduce the spell point cost by 1 (minimum 0). Whenever the avowed spends one or more uses of divine touch on a consecration or motif, she also gains a +1 bonus to the MSD of the effect. This increases by +1 at 8th level and every 4 levels thereafter.\n\nThis replaces channel positive energy or channel negative energy."
+        },
+        {
+          "level": 5,
+          "name": "Divine Bond",
+          "description": "Upon reaching 5th level, the avowed’s connection to her deity intensifies. This bond can take one of two forms. Once this form is chosen, it cannot be changed."
+        },
+        {
+          "level": 1,
+          "name": "Spiritual Armament",
+          "description": "When she gains this divine bond, the avowed gains her choice of a spiritual weapon, armor, or shield. Once chosen, this cannot be changed. Once per day as a standard action, she may enhance the chosen equipment by calling upon the aid of a celestial spirit for 1 minute per level. While enhanced, the object sheds light as a torch, and grants it a +1 enhancement bonus, +1 per 3 levels beyond 5th. These bonuses stack with existing bonuses to a maximum of +5, or can be used to add any of the following weapon special abilities, as long as it can be added to the type of chosen equipment: +1 bonus: bashing, blinding, champion, defending, distance, flaming, ghost touch, keen, light fortification, merciful +2 bonus: anarchic (chaotic only), arrow deflection, axiomatic (lawful only), disruption, flaming burst, holy (good only), unholy (evil only) +3 bonus: invulnerability, medium fortification, speed +4 bonus: brilliant energy +5 bonus: heavy fortification, reflecting, vorpal When adding these special abilities to a spiritual armament, the special ability consumes an amount of bonus equal to the special ability’s cost. If they are not magical, at least a +1 enhancement bonus must be added before any other special abilities can be added. The bonus and special abilities granted are determined when used and cannot be changed until called again. The spiritual equipment impart no bonuses if used by another creature. These bonuses apply to only one end of a double weapon. The avowed can use this ability an additional time per day for every 4 levels beyond 5th. If a spiritual armament is destroyed, she loses this ability for 1 week."
+        },
+        {
+          "level": 5,
+          "name": "Spiritual Ally",
+          "description": "The avowed gains the service of an unusually intelligent and loyal creature to serve her in her battles. This creature is usually a heavy horse, although more exotic mounts are also suitable. This spiritual ally functions as a druid’s animal companion, using her avowed level as her effective druid level. Spiritual allies have an Intelligence of at least 6. Once per day, as a full-round action, the avowed may magically call her mount to her side, appearing in an adjacent square to her, even if the avowed is on another plane. She can use this ability once per day at 5th level, and one additional time per day every 4 levels thereafter. At 9th level, she may use this ability as a standard action. At 11th level, the mount gains a template depending on her pledge alignment (celestial, entropic, fiendish or resolute) and becomes a magical beast for the purposes of determining which spells affect it. At 15th level, her mount gains spell resistance equal to her level + 11. If a spiritual ally dies, she may not summon another ally for 1 week.\n\nThis replaces divine bond or fiendish boon."
+        },
+        {
+          "level": 1,
+          "name": "Addendum",
+          "description": "[SM—] In place of the normal options for divine bond, the avowed may select the incarnation form or incarnation ally options from the champion of the cause paladin archetype, the divine envoy option from the arbiter archetype, or the implement divine bond archetype from the valiant champion archetype."
+        },
+        {
+          "level": 1,
+          "name": "Flexible Champion",
+          "description": "Any abilities the avowed possesses that reference alignment (such as aura of justice/vengeance, aura of faith/sin, etc.) instead use her pledge alignment for instances of ‘good’ (for paladins) or ‘evil’ (for antipaladins), and opposite her pledge alignment for instances of ‘evil’ (for paladins), or ‘good’ (for antipaladins). (For example, an avowed with a pledge alignment of lawful would treat her weapons as lawful-aligned for the purposes of overcoming damage reduction with her aura of faith/sin ability, and would gain DR 5/chaotic with the aura of righteousness/ depravity class feature)."
+        },
+        {
+          "level": 1,
+          "name": "Avowed Pledges",
+          "description": "Pledge of Agency [SM—]: Against those who cite fate or destiny as the ultimate justifier of their actions, against those who seek to twist events using knowledge of the future, and against those who deceive others by making their goals seem inevitable, those of the pledge of agency raise their arms to battle for the determination of mortals’ own destinies."
+        },
+        {
+          "level": 1,
+          "name": "Defy the Stars",
+          "description": "At 1st level, the avowed gains Knowledge (geography) as a class skill and a bonus on Knowledge (geography) checks equal to half her avowed level."
+        },
+        {
+          "level": 3,
+          "name": "Aura Against Malfeasance",
+          "description": "At 3rd level, the avowed gains immunity to curse effects and hexes. Allies within 10 feet of the avowed gain a +4 morale bonus on saving throws against such effects."
+        },
+        {
+          "level": 6,
+          "name": "Detaching Smite",
+          "description": "At 6th level, as long as a creature is smited by the avowed, it cannot benefit from insight or luck bonuses."
+        },
+        {
+          "level": 8,
+          "name": "Aura of Annulled Fate",
+          "description": "At 8th level, the avowed becomes immune to effects which force them to reroll dice or roll multiple times and take any result other than the highest. Enemies within 10 feet of the avowed cannot reroll dice, have their die results modified (such as in the case of the Tug Fate consecration), or roll multiple times and take any result other than the lowest. Enemies within 10 feet of the avowed cannot discharge (motif) effects"
+        },
+        {
+          "level": 20,
+          "name": "Prophecy’s Anathema",
+          "description": "At 20th level, any attempts to divine information about the avowed, any creature within 10 feet of them, or their location through effects such as augury have a 0% chance to yield meaningful or accurate results. In addition, as long as the avowed has a smite active, any enemies within their aura of annulled fate are affected by detaching smite."
+        },
+        {
+          "level": 1,
+          "name": "Pledge of Animism [EO3]",
+          "description": "Those that take the pledge of animism often act as dauntless protectors and warriors for nature, sometimes eschewing society and civilization completely for their cause. As their devotion to their pledge grows, these individuals are able to call upon the natural world around them as either their shield or sword."
+        },
+        {
+          "level": 1,
+          "name": "Nature’s Vigil",
+          "description": "At 1st level, the avowed gains Knowledge (nature) as a class skill and a bonus on Knowledge (nature) checks equal to half her avowed level."
+        },
+        {
+          "level": 3,
+          "name": "Aura of Ease",
+          "description": "At 3rd level, the avowed emits a calming, cooperative aura with nature around her, allowing all allies within 10 feet of her to move through any non-magical difficult terrain at their normal speed. This ability functions only while the avowed is conscious, not if she is unconscious or dead. At 8th level, this aura also allows allies to move through magical difficult terrain at their normal speed."
+        },
+        {
+          "level": 6,
+          "name": "Nature’s Smite",
+          "description": "At 6th level, whenever the avowed would smite a creature, the target must immediately succeed at a Reflex saving throw (DC 10 + 1/2 her avowed level + her casting ability modifier) or immediately become entangled from nearby sources of nature (such as stone or grass) for 1d4 rounds, or until they attempt to break free as a move action by succeeding an Escape Artist or Strength check against the DC."
+        },
+        {
+          "level": 8,
+          "name": "Aura of Blooming",
+          "description": "At 8th level, the avowed radiates a verdant aura of growth, causing squares within 10 feet of her to become difficult terrain. Additionally, the avowed can spend a swift action to have the affected area sprout a different kind of plant, choosing one of the following effects to apply to her aura of blooming:"
+        },
+        {
+          "level": 1,
+          "name": "Briars",
+          "description": "Enemies within the aura suffer 1d6 points of slashing damage for every 5 feet of movement spent entering or moving through the aura. This damage increases by 1d6 per 6 paladin levels she possesses."
+        },
+        {
+          "level": 1,
+          "name": "Plantlife",
+          "description": "The aura grows weeds, vines, underbrush, and other basic plants (except trees) suitable for the Nature sphere plant package, as if the area was affected by the Nature sphere Create Nature talent to create a field of plants. This plantlife only exists as long as the aura persists, becoming lifeless when outside the aura’s area."
+        },
+        {
+          "level": 1,
+          "name": "Pungent Flora",
+          "description": "Enemies within the aura become sickened for 1 round (Fortitude negates); a creature must attempt a saving throw against this effect at the start of their turn for as long as they remain within the aura."
+        },
+        {
+          "level": 1,
+          "name": "Roses",
+          "description": "Allies within the aura gain a +2 bonus to saving throws made against pain effects and ongoing effects (but not the initial check to avoid the effect, such as the saving throw to not catch fire when affected by such an effect). The avowed can only have one of these plants active at one time, which can be changed as a swift action. The avowed can also dismiss this aura as a free action."
+        },
+        {
+          "level": 20,
+          "name": "Green Champion",
+          "description": "At 20th level, whenever the avowed would have an active smite on a creature, she gains a +4 natural armor bonus to her AC, which stacks with other sources of natural armor, in addition to gaining a 75% chance to negate critical hits and precision damage against the target of her smite. The avowed retains the effects of this ability even while under the effects of a polymorph effect. Additionally, the avowed becomes immune to the effects of any Nature or Weather sphere effect that she is subject to and is an unwilling target of, even if the effect is not subject to spell resistance."
+        },
+        {
+          "level": 1,
+          "name": "Pledge of Antimagic [Archmagi HB]",
+          "description": "Those that take the pledge of antimagic are often those who see the exploitation or overuse of magic to be abhorrent or even inevitable to those who are brushed by its power. Regardless of its intricacies, these individuals have some form of disdain for magic and the power it brings."
+        },
+        {
+          "level": 1,
+          "name": "Well Researched",
+          "description": "At 1st level, the avowed gains Knowledge (arcana) as a class skill and a bonus on Knowledge (arcana) checks equal to half her avowed level."
+        },
+        {
+          "level": 3,
+          "name": "Aura of Suppression",
+          "description": "At 3rd level, the avowed emanates a dampening aura that causes the aura of all magic effects within 10 feet of her to become suppressed, as long as it possesses a caster level that is lower than her avowed level. This causes the effect to not emit a magical aura, and cannot be detected through magical means. Additionally, all enemies within this aura suffer from a 20% spell failure chance (which stacks with similar chances). This ability functions only while the avowed is conscious, not if she is unconscious or dead. At 8th level, the spell failure chance increases to 50%."
+        },
+        {
+          "level": 6,
+          "name": "Spellpurging Smite",
+          "description": "At 6th level, whenever the avowed would smite a creature, the avowed can attempt to dispel a magic item or existing magical effect that the target possesses or is benefiting from, functioning as the Counterspell feat. The avowed can spend a spell point to choose an additional object or effect on the target, plus an additional object or effect for every 10 avowed levels she possesses."
+        },
+        {
+          "level": 8,
+          "name": "Aura of Warding",
+          "description": "At 8th level, the avowed radiates a subtle protective aura, granting all allies within 10 feet of her a +2 morale bonus to saving throws against magical effects. This bonus is doubled against effects that originate from creatures that the avowed has an active smite on. If the avowed shares the ability to smite via aura of justice or vengeance, or a similar ability, their allies gain this same benefit against creatures they smite. This ability functions only while the avowed is conscious, not if she is unconscious or dead."
+        },
+        {
+          "level": 20,
+          "name": "Manavoid Champion",
+          "description": "At 20th level, whenever a creature casts a spell or sphere effect on an enemy the avowed can attempt to counterspell that effect as the Counterspell feat, except it does not cost a spell point and she may do this as a free action that can be taken outside of her turn."
+        },
+        {
+          "level": 1,
+          "name": "Pledge of Condemnation [SM—]",
+          "description": "Putting aside all scruples to focus exclusively on the destruction of their enemy, those under a pledge of condemnation forsake the improvement or protection of the self in favor of raw offensive prowess."
+        },
+        {
+          "level": 1,
+          "name": "Eye for Danger",
+          "description": "At 1st level, the avowed gains Appraise as a class skill and a bonus on Appraise checks equal to half her avowed level."
+        },
+        {
+          "level": 3,
+          "name": "Condemnations",
+          "description": "At 3rd level and every 3 levels thereafter, the avowed gains a single condemnation as a grand purifier of her avowed level. Rather than spending a spell point or use of martial focus, the avowed may spend a use of divine touch to use one of her condemnations."
+        },
+        {
+          "level": 20,
+          "name": "Until It Is Done",
+          "description": "At 20th level, the avowed gains DR 5/-; this stacks with any other DR of the same type she possesses. In addition, the avowed may always use her divine touch ability as a swift action, even when targeting another creature. Finally, whenever she defeats an opponent opposite her pledge alignment whose CR is equal to at least half her character level (rounded down, minimum 1/2) , she regains 1 use of her divine touch ability;"
+        },
+        {
+          "level": 1,
+          "name": "Pledge of Continuity [SM—]",
+          "description": "The pledge of continuity pursues the stability of cause and effect, fighting for the linearity of time and the maintenance of a comprehensible continuum of events."
+        },
+        {
+          "level": 1,
+          "name": "Guard of Timelines",
+          "description": "At 1st level, the avowed gains Knowledge (history) as a class skill and a bonus on Knowledge (history) checks equal to half her avowed level. In addition, her detect adversary ability can detect creatures opposite her pledge alignment with powers that affect the natural flow of time; this includes creatures who possess the Time sphere or any of its talents, evil creatures that know time magic spells such as haste, slow, or time stop, and creatures with abilities that allow them to manipulate time such as time dragons."
+        },
+        {
+          "level": 3,
+          "name": "Aura of Stable Time",
+          "description": "At 3rd level, the avowed is immune to all magical aging effects. The time knight and all allies within 10 feet of her gain a +4 morale bonus on saving throws against time effects; this includes effects created with the Time sphere or any of its talents, time magic spells such as slow, or the shifting breath of a time dragon."
+        },
+        {
+          "level": 6,
+          "name": "Slowing Smite",
+          "description": "At 6th level, whenever the avowed successfully damages a creature affected by her smite. The target becomes exhausted unless they succeed on a Fortitude save. On a successful save, they become fatigued for 1 round."
+        },
+        {
+          "level": 8,
+          "name": "Aura of Disruption",
+          "description": "At 8th level, any creature struck by the avowed who attempts to cast a spell or use a spell-like ability before the start of the avowed’s next turn must succeed at a concentration check (DC 15 + 1/2 the avowed’s class level) or have the spell fail, losing any spell points, spell slots, and the action taken to cast the spell. Any attack action made by an ally within 10 feet of the avowed also benefits from this effect."
+        },
+        {
+          "level": 20,
+          "name": "Chronal Imprisonment",
+          "description": "At 20th level, the avowed gains the ability to permanently remove temporal threats from the timeline. Whenever she uses smite and successfully strikes a creature opposite her pledge alignment who possess the Time sphere or any of its talents, that knows time magic spells such as haste, slow, or time stop, or with abilities that allow them to manipulate time, that creature must succeed at a Will saving throw or be instantly erased from the timeline. Creatures slain by this ability cannot be returned to life by raise dead, resurrection, or similar effects (such as the Resuscitate talent from the Life sphere). Once a creature has succeeded on a saving throw against this ability, they cannot be affected by it again for 24 hours. Whenever the avowed successfully erases a threat to the timeline using this ability, she regains 1 use of her smite ability."
+        },
+        {
+          "level": 1,
+          "name": "Pledge of Cruelty",
+          "description": "Typically established as being simply ‘evil’, those under a pledge of cruelty do not always fall into these simple categories. Victims of great misdoings, or simply a differing perspective on the world, those under this pledge can often be jaded or steadfast in their somewhat aggressive or downright cruel measures. At their core, these individuals cannot stand injustices against their own ethics or morals, and take matters into their own hands, even if they may be extreme."
+        },
+        {
+          "level": 1,
+          "name": "Cruel Hand",
+          "description": "At 1st level, the avowed gains Intimidate as a class skill and a bonus on Intimidate checks equal to half her avowed level."
+        },
+        {
+          "level": 3,
+          "name": "Aura of Cowardice",
+          "description": "At 3rd level, the avowed gains the aura of cowardice antipaladin class feature."
+        },
+        {
+          "level": 6,
+          "name": "Brutal Smite",
+          "description": "At 6th level, whenever the avowed would smite a creature, that creature immediately suffers an amount of damage equal to 1/2 her class level + her casting ability modifier. The avowed may expend her martial focus when she smites a creature to increase the damage dealt to an amount equal to her class level + her casting ability modifier."
+        },
+        {
+          "level": 8,
+          "name": "Aura of Despair",
+          "description": "At 8th level, the avowed gains the aura of despair antipaladin class feature."
+        },
+        {
+          "level": 20,
+          "name": "Unholy Champion",
+          "description": "At 20th level, whenever the avowed would use a spell, spell-like ability, or sphere effect that deals negative energy damage, the damage dealt is maximized."
+        },
+        {
+          "level": 1,
+          "name": "Pledge of Discretion",
+          "description": "Secretive and careful, those under a pledge of discretion tend towards a more subtle, sometimes deceptive approach. Much less conspicuous than most avowed, those under this pledge understand the importance of ambushes, infiltration, and deception to ensure that justice is carried out."
+        },
+        {
+          "level": 1,
+          "name": "Walker of Shadows",
+          "description": "At 1st level, the avowed gains Stealth as a class skill and a bonus on Stealth checks equal to half her avowed level."
+        },
+        {
+          "level": 3,
+          "name": "Aura of Shadow",
+          "description": "At 3rd level, the avowed radiates an essence of pure darkness and subtlety, granting all allies within 10 feet of her a +4 morale bonus to Bluff, Sleight of Hand, and Stealth checks. At 8th level, this aura benefits all Dexterity-based skill checks, in addition to Bluff checks."
+        },
+        {
+          "level": 6,
+          "name": "Umbral Smite",
+          "description": "At 6th level, the avowed gains concealment (20% miss chance) against the target of her smite ability."
+        },
+        {
+          "level": 8,
+          "name": "Aura of Discretion",
+          "description": "At 8th level, the avowed radiates an aura of alleviation and weightlessness, allowing all allies within 10 feet of the avowed to reduce their armor check penalties by 4 when attempting Dexterity-based skill checks."
+        },
+        {
+          "level": 20,
+          "name": "Shadowed Champion",
+          "description": "At 20th level, the avowed cannot be caught unaware by the target of her smite, making her unable to be feinted, flanked, or otherwise caught flat-footed by the target."
+        },
+        {
+          "level": 1,
+          "name": "Pledge of Freedom",
+          "description": "A fighter for liberty and freedom, those under a pledge of freedom typically shirk a strict creed of rules, or at least, do not have them at the forefront of their ethics and morals. Usually fighters for equality or freedom (sometimes to an extreme degree), these individuals’ perception of ‘justice’ can be flexible at best, or completely chaotic at the worst of times. At their core, those under this pledge fight against restriction, enslavement, and control."
+        },
+        {
+          "level": 1,
+          "name": "Freedom Ringer",
+          "description": "At 1st level, the avowed gains Acrobatics as a class skill and a bonus on Acrobatics checks equal to half her avowed level."
+        },
+        {
+          "level": 3,
+          "name": "Aura of Relief",
+          "description": "At 3rd level, the avowed radiates a constantly shifting aura that grants all allies within 10 feet a +4 morale bonus on saving throws against charm and compulsion effects. This ability functions only while she is conscious, not if she is unconscious or dead."
+        },
+        {
+          "level": 6,
+          "name": "Liberating Smite",
+          "description": "At 6th level, whenever the avowed would smite a creature, that creature immediately releases any grapple they may have on a creature. Additionally, the smote creature suffers a penalty to the save DC to any ability that would restrict movement they possess (this includes paralysis, slow effects, entanglement, etc.) equal to her casting ability modifier."
+        },
+        {
+          "level": 8,
+          "name": "Aura of Freedom",
+          "description": "At 8th level, allies within 10 feet of the avowed gain a +2 morale bonus on Reflex saving throws. As a swift action, the avowed may expend her martial focus to allow all allies within 10 feet of her to not provoke attacks of opportunity from enemies for moving through her aura until the beginning of her next turn. This ability functions only while the avowed is conscious, not if she is unconscious or dead."
+        },
+        {
+          "level": 20,
+          "name": "Chaos Champion",
+          "description": "At 20th level, whenever the avowed would have an active smite on a creature, she gains the benefits of the Freedom (word) Fate talent for as long as the creature is under the effects of her smite. Pledge of Justice “Oh thank Asarius you’re alive! One minute he was raising his hands and -” “Get off! Did you get him? Where is he?” “He.…He got away, I thought I’d check on y-” “Okay.… First tip: If you’ve got to choose between seeing if I need a little bit of healing, and catching the criminal we’ve been chasing… for almost a YEAR now, go catching the GODSBLASTED criminal!” - A Yaledian guard providing some harsh truths to a rookie. A standard for most avowed, those under a pledge of justice typically strive for good in the world; or at least, their personal idea of ‘good’. Those under this pledge are often bastions of hope and warmth, but at the same time, fierce enforcers of justice and order."
+        },
+        {
+          "level": 1,
+          "name": "Hand of Law",
+          "description": "At 1st level, the avowed gains Diplomacy as a class skill and a bonus on Diplomacy checks equal to half her avowed level."
+        },
+        {
+          "level": 3,
+          "name": "Aura of Courage",
+          "description": "At 3rd level, the avowed gains the aura of courage paladin class feature."
+        },
+        {
+          "level": 6,
+          "name": "Justiciar’s Smite",
+          "description": "At 6th level, the avowed gains a deflection bonus to AC equal to her casting ability modifier against the target of her smite."
+        },
+        {
+          "level": 8,
+          "name": "Aura of Resolve",
+          "description": "At 8th level, the avowed gains the aura of resolve paladin class feature."
+        },
+        {
+          "level": 20,
+          "name": "Holy Champion",
+          "description": "At 20th level, whenever the avowed would use a spell, spell-like ability, or sphere effect that would heal hit point or ability damage, the amount healed is maximized."
+        },
+        {
+          "level": 1,
+          "name": "Pledge of Legend [SM—]",
+          "description": "Forsaking a traditional moral stance, those who make the pledge of legends vow to live up to a heroic ideal, twisting destiny around themself to shape their experiences into an epic narrative."
+        },
+        {
+          "level": 1,
+          "name": "Sage of Stories",
+          "description": "At 1st level, the avowed gains Knowledge (local) as a class skill and a bonus on Knowledge (local) checks equal to half her avowed level."
+        },
+        {
+          "level": 3,
+          "name": "Storied Endowment",
+          "description": "At 3rd level, the avowed gains a special consecration. This has the same effect as a single aura class feature granted to an avowed paladin of another pledge at 3rd level (chosen when you gain this class feature), but as a consecration it is not always active, uses your consecration radius, etc. She must concentrate to maintain effect, but may spend a spell point to allow the consecration to continue for 10 minutes per avowed level without concentration. The avowed may use this consecration in conjunction with talents such as Bound Consecration, in which case she gains the special bonus (such as immunity to fear) only while in the area of the consecration. At 8th level, the avowed also gains the benefit of a single aura class feature granted to an avowed paladin of another pledge at 8th level, though it need not be from the same pledge as the option from 3rd level."
+        },
+        {
+          "level": 6,
+          "name": "Shared Narrative",
+          "description": "At 6th level, the avowed may discharge a motif affecting her as an immediate action and have the discharged motif affect an ally within the area of one of her consecrations as if the ally had discharged the motif themselves. For example, when an ally is struck by a manufactured weapon, the avowed may discharge The Tower to destroy the weapon."
+        },
+        {
+          "level": 8,
+          "name": "Overflow of Tales",
+          "description": "At 8th level, the avowed may spend uses of divine touch in place of spell points when casting consecrations. In addition, the avowed may reduce the casting time of a consecration by 1 step for every additional use of divine touch she spends as part of casting (to a minimum of a free action)."
+        },
+        {
+          "level": 20,
+          "name": "Idyllis",
+          "description": "At 20th level, the avowed chooses one consecration she knows. This must be a consecration with a duration and that does not cost a spell point to create. The chosen consecration is continuously active with no need to concentrate on it. Each day when she regains spell points she may choose a different consecration she knows to become continuously active, in which case the previous consecration ends."
+        },
+        {
+          "level": 1,
+          "name": "Pledge of Many [LG]",
+          "description": "Source: Arcforge Players Compendium There are some goals which require serving more than a single ideal and challenging more than a single enemy. Those under a pledge of the many learn to access insight from many different places and explore the nuances of empowerment and reduction. In time, they learn to adapt the tools of their pledge to overcome unexpected obstacles and foes."
+        },
+        {
+          "level": 1,
+          "name": "Nuances of Belief",
+          "description": "At 1st level, the avowed gains Knowledge (religion) as a class skill and a bonus on Knowledge (religion) checks equal to half her avowed level."
+        },
+        {
+          "level": 3,
+          "name": "Aura of Assertion",
+          "description": "At 3rd level, the avowed radiates an aura that bolsters allies and deters enemies. Each ally within 10 feet gains a +2 morale bonus on saving throws against fear effects. Enemies within 10 feet take a –2 penalty on saving throws against fear effects. This ability functions only while the avowed is conscious, not if she is unconscious or dead."
+        },
+        {
+          "level": 6,
+          "name": "Adaptive Smite",
+          "description": "At 6th level, the avowed may smite targets that are not opposite of her pledge alignment. When she does, the damage bonus from smite is halved against the target."
+        },
+        {
+          "level": 8,
+          "name": "Aura of Direction",
+          "description": "At 8th level, enemies within 10 feet of the avowed take a –1 penalty on all saving throws. All allies within 10 feet gain a +1 bonus on all saving throws. This ability functions only while the avowed is conscious, not if she is unconscious or dead."
+        },
+        {
+          "level": 20,
+          "name": "Manifold Champion",
+          "description": "At 20th level, the damage reduction from the avowed’s paladin or antipaladin class features is replaced with DR 10/-. In addition, the avowed’s damage bonus from smite is no longer halved against targets not opposite to her pledge alignment. Pledge of Order “You are under arrest for breaching the Yaledian code of conduct, please raise your hands in the air and refrain from any unneeded spell casting or movement.” - A typical request made by Yaledian law enforcement, usually met with hostility. Seen to be strict and steadfast, those under a pledge of order have a strict creed of law that they enforce, with either a kind word or a swift blade. Those under this pledge are often viewed to be stern and immovable in their beliefs, yet some simply find comfort in the structured nature of law and order, and sometimes let those ethics get in the way of their own morals."
+        },
+        {
+          "level": 1,
+          "name": "Dutiful Executor",
+          "description": "At 1st level, the avowed gains a bonus on Sense Motive checks equal to half her avowed level."
+        },
+        {
+          "level": 3,
+          "name": "Aura of Cooperation",
+          "description": "At 3rd level, the avowed radiates a rigid, confining aura that causes all enemies within 10 feet of her to take a -4 penalty on saving throws against charm and compulsion effects. This ability functions only while she is conscious, not if she is unconscious or dead."
+        },
+        {
+          "level": 6,
+          "name": "Interrogating Smite",
+          "description": "At 6th level, whenever the avowed would smite a creature, she gains the knowledge of two of the following statistics from the creature: a resistance, a vulnerability, an immunity, a saving throw bonus, their AC, or their touch AC. The avowed may spend a spell point when she smites a creature to learn all the above statistics."
+        },
+        {
+          "level": 8,
+          "name": "Aura of Unity",
+          "description": "At 8th level, all allies within 10 feet of the avowed are immune to the confused condition, in addition to being immune to the effects of harmful spell, spell-like, sphere, or supernatural abilities that originate from other allies (even if they are outside this aura), as long as the effect are subject to spell resistance and cover an area."
+        },
+        {
+          "level": 20,
+          "name": "Axiomatic Champion",
+          "description": "At 20th level, as a special attack action, the avowed may spend a spell point and make a single attack against a creature under the effects of her smite. If the attack hits, the creature must succeed at a Fortitude saving throw or fall unconscious for 1 minute. On a successful save, the creature is still staggered for 1d4 rounds. Regardless of the result, the creature becomes immune to this ability for 24 hours."
+        },
+        {
+          "level": 1,
+          "name": "Pledge of Purity",
+          "description": "Zealous and true, those under a pledge of purity are purely against everything undead and impure. Less broad than most other pledges, these avowed despise necromancy and the twisting of life and death."
+        },
+        {
+          "level": 1,
+          "name": "Chivalrous Knight",
+          "description": "At 1st level, the avowed gains Heal as a class skill and a bonus on Heal checks equal to half her avowed level."
+        },
+        {
+          "level": 3,
+          "name": "Aura of Purification",
+          "description": "At 3rd level, the avowed radiates a purifying aura, granting all allies within 10 feet of her a +4 morale bonus on saving throws against death and negative energy effects."
+        },
+        {
+          "level": 6,
+          "name": "Smite Undead",
+          "description": "At 6th level, the avowed may always smite undead creatures, regardless of their alignment. Additionally, her attacks bypass all damage reduction that a smote undead creature may possess."
+        },
+        {
+          "level": 8,
+          "name": "Aura of Life",
+          "description": "At 8th level, the avowed radiates an aura of pure positive energy, causing all hostile undead creatures within 10 feet of her to take a -4 penalty on Will saves made to resist positive energy, in addition to regaining half as many hit points when healed by negative energy."
+        },
+        {
+          "level": 20,
+          "name": "Pure Champion",
+          "description": "At 20th level, as a special attack action, the avowed may make a single attack against an undead creature under the effects of her smite. If the attack hits, the creature must succeed at a Will saving throw or be destroyed. On a successful save, the creature is still staggered for 1d4 rounds. Regardless of the result, the creature becomes immune to this ability for 24 hours."
+        },
+        {
+          "level": 1,
+          "name": "Avowed and Oathbound Paladin/Antipaladin [SM—]",
+          "description": "A paladin or antipaladin with the avowed archetype may replace the class features gained from this archetype with new class features gained from taking paladin or antipaladin oaths as follows."
+        },
+        {
+          "level": 1,
+          "name": "Options that replace detect evil or detect good instead replace detect adversary",
+          "description": "Options that replace smite evil or smite good instead replace smite: Options that replace lay on hands or touch of corruption instead replace divine touch. Options that replace channel positive energy or channel negative energy instead replace channel divinity Options that replace divine bond or fiendish boon replace the altered divine bond. Options that replace mercies instead replace the combat or magic talents gained at the same level as those mercies Options that replace aura of courage or aura of cowardice instead replace the 3rd-level ability granted by the avowed’s pledge. Options that replace aura of resolve or aura of despair instead replace the 8th-level ability granted by the avowed’s pledge. Options that replace holy champion or unholy champion instead replace the 20th-level ability granted by the avowed’s pledge."
+        }
+      ],
+      "detected_systems": [
+        "smite"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:antipaladin:blighted-myrmidon",
+      "package": "pathfinder-class:antipaladin",
+      "name": "Blighted Myrmidon",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Antipaladin Blighted Myrmidon",
+      "replaces_features": [
+        "aura-of-vengeance",
+        "cruelty",
+        "fiendish-boon",
+        "smite-good",
+        "unholy-champion",
+        "use-of-smite-good"
+      ],
+      "removed_features": [
+        "aura-of-vengeance",
+        "cruelty",
+        "fiendish-boon",
+        "smite-good",
+        "unholy-champion",
+        "use-of-smite-good"
+      ],
+      "removed_feature_clauses": [
+        "use of smite good gained at 10th level",
+        "aura of vengeance",
+        "cruelty gained at 15th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blighted Myrmidon",
+          "description": "Source Ultimate Wilderness pg. 91"
+        },
+        {
+          "level": 1,
+          "name": "Smite Nature",
+          "description": "A blighted myrmidon can drain the life from a creature tied to nature. As a swift action, the blighted myrmidon chooses one target within sight to smite. Regardless of its alignment, if the target is an animal, plant, or vermin, the blighted myrmidon adds her Charisma bonus (if any) on her attack rolls and adds her blighted myrmidon level on damage rolls against the target of her smite. If the target of smite nature is an elemental, a fey, or a creature with levels of druid, hunter, ranger, or shifter, the bonus on damage on the first successful attack increases to 2 points of damage per class level the blighted myrmidon has. This ability otherwise functions as smite good.\n\nThis alters smite good."
+        },
+        {
+          "level": 5,
+          "name": "Corrupted Companion",
+          "description": "At 5th level, a blighted myrmidon can call upon a corrupted servant of nature. When the blighted myrmidon chooses the second fiendish boon option, it functions as a summon nature’s ally spell of the appropriate level. This ability otherwise functions as the standard fiendish boon antipaladin class feature.\n\nThis alters fiendish boon."
+        },
+        {
+          "level": 10,
+          "name": "Feed on Decay",
+          "description": "At 10th level, a blighted myrmidon draws strength from corrupting the natural world. When the blighted myrmidon damages a creature with her smite nature ability, she gains a +1 morale bonus on attack rolls, damage rolls, and saving throws for 1 round.\n\nThis replaces the use of smite good gained at 10th level."
+        },
+        {
+          "level": 11,
+          "name": "Aura of Decay",
+          "description": "At 11th level, as a free action, a blighted myrmidon can expend two uses of her smite nature ability to generate an aura of decay with a range of 10 feet for 1 minute. Living foes of the blighted myrmidon within the aura take 3d6 points of damage unless they succeed at a Fortitude save (DC = half the blighted myrmidon’s level + her Charisma modifier) for half damage. If an elemental, a fey, or a creature with levels in druid, hunter, ranger, or shifter takes damage from aura of decay, the blighted myrmidon regains a number of hit points equal to half the amount of damage the creature takes; this doesn’t stack if multiple such creatures are in the aura.\n\nThis replaces aura of vengeance."
+        },
+        {
+          "level": 15,
+          "name": "Enervating Touch",
+          "description": "At 15th level, when she damages a creature with her touch of corruption, a blighted myrmidon can suppress the vital force of her target for 1 round per level. While affected, when the target regains hit points, it regains only half the number of hit points it would otherwise receive, and it can’t gain temporary hit points. The target can attempt a Fortitude save (DC = half the blighted myrmidon’s level + her Charisma modifier) to negate this effect.\n\nThis replaces the cruelty gained at 15th level."
+        },
+        {
+          "level": 20,
+          "name": "Unnatural Champion",
+          "description": "At 20th level, when a blighted myrmidon uses smite nature and strikes an elemental or fey creature with the extraplanar subtype, the target is also subject to the effects of a banishment spell, using her blighted myrmidon level as her caster level, and her weapon and unholy symbol automatically count as objects that the subject hates. This ability otherwise functions as unholy champion.\n\nThis alters unholy champion."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:antipaladin:blood-soaked-demon",
+      "package": "pathfinder-class:antipaladin",
+      "name": "Blood-Soaked Demon",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/blood-soaked-demon",
+      "replaces_features": [
+        "antipaladins-weapon",
+        "armor-proficiencies",
+        "aura-of-vengeance",
+        "smite-good",
+        "unholy-champion"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "aura of vengeance",
+        "unholy champion"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Alignment and Code of Conduct",
+          "description": "A blood-soaked demon may be of any evil alignment, and loses all class features except proficiencies if he ever willingly commits a selfless act; the slightest crack in the armor of sociopathic self-interest and cruelty can cause the weight of his misdeeds to shatter the very source of his power. The blood-soaked demon must always place his own interests and desires above all else, as well as impose tyranny, take advantage whenever possible, and punish the good and just, provided such actions don’t interfere with his goals."
+        },
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Blood-soaked demons are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis modifies the antipaladin’s weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A blood-soaked demon is considered a Proficient practitioner, gaining spheres and talents as appropriate. Blood-soaked demons use Charisma as their practitioner modifier."
+        },
+        {
+          "level": 1,
+          "name": "This ability replaces smite good",
+          "description": "Special: If a character possesses both the combat training class feature from the blood-soaked demon archetype and the delayed combat training class feature from warrior of blind faith, they are considered an Expert practitioner from 1st level, although they do not gain any additional talents from delayed combat training."
+        },
+        {
+          "level": 11,
+          "name": "Tyrant’s Gloat",
+          "description": "Starting at 11th level, when the blood-soaked demon lays a foe low, he may give a mighty cry of triumph, terrifying nearby enemies and sapping their will to fight; he may spend an immediate action when he defeats an opponent whose CR is at least half his character level (rounded down, minimum 1/2) to inflict a penalty to attack and damage rolls equal to his Charisma bonus on all enemies within 10 ft. for 1 round. This is a mind-affecting fear effect. For the purposes of this ability, defeating a foe includes any action that kills, renders unconscious or helpless, ties up (as the option for pinned opponents), or banishes a foe.\n\nThis replaces aura of vengeance."
+        },
+        {
+          "level": 20,
+          "name": "Tyrannical Titan",
+          "description": "At 20th level, the blood-soaked demon is cloaked in evil dark and powerful enough to give pause to any true demon or devil. The blood-soaked demon gains DR 5/-; this stacks with any other DR of the same type he possesses. In addition, the blood-soaked demon may use his touch of corruption ability as a swift action. Finally, the blood-soaked demon draws power from crushing the will to fight out of his enemies; whenever he defeats an opponent whose CR is equal to at least half his character level (rounded down, minimum 1/2), he regains 1 use of his touch of corruption ability; if the opponent also had the good subtype, his next use of touch of corruption automatically deals the maximum amount of damage, and he may apply 1 additional cruelty to its effects.\n\nThis replaces unholy champion."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:antipaladin:champion-of-the-cause",
+      "package": "pathfinder-class:antipaladin",
+      "name": "Champion Of The Cause",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/champion-of-the-cause",
+      "replaces_features": [
+        "alignment",
+        "armor-proficiencies",
+        "aura-of-faith-or-aura-of-sin",
+        "aura-of-justice-or-channel-negative-energy",
+        "aura-of-vengeance",
+        "channel-positive-energy",
+        "divine-bond-or-fiendish-boon",
+        "paladins-or-antipaladins-normal-weapon",
+        "spellcasting"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "spells class feature",
+        "aura of faith or aura of sin",
+        "channel positive energy",
+        "aura of justice or channel negative energy",
+        "aura of vengeance",
+        "divine bond or fiendish boon"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Alignment",
+          "description": "A champion of the cause can be any good or evil alignment, as a paladin or antipaladin respectively. This alters alignment."
+        },
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "A champion of the cause is proficient with simple weapons, as well as light armor and bucklers. if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis alters the paladin’s or antipaladin’s normal weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "At 1st level, the champion of the cause may combine spheres and talents to create magical effects. The champion of the cause is considered a Low-Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the spells class feature."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "A champion of the cause gains a small reservoir of energy she can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to her level + her casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "A champion of the cause gains a combat or magic talent every time she gains a class level. Champions of the cause use their casting ability modifier as their practitioner modifier.\n\nThis replaces aura of faith or aura of sin."
+        },
+        {
+          "level": 4,
+          "name": "Boon of Purpose",
+          "description": "At 4th level, once per day as a standard action, the champion of the cause can utter short prayers of conviction to her deity for a boon of purpose to overcome an obstacle. At 9th level and every 5 levels thereafter, the champion of the cause may use this ability one additional time per day. At 4th level, the champion of the cause can manifest her boon of purpose as one of the following options:"
+        },
+        {
+          "level": 1,
+          "name": "Wisdom",
+          "description": "This boon functions as the Augury (divine) Divination talent, using the champion of the cause’s class level as her caster level."
+        },
+        {
+          "level": 9,
+          "name": "Skill",
+          "description": "For the next 10 minutes, the champion of the cause gains a number of ranks in a skill equal to her class level, and treats the skill as a class skill for the duration. She cannot have more ranks in a skill than her total number of Hit Dice. At 9th level, the champion of the cause adds the following boons to the list of those she can manifest."
+        },
+        {
+          "level": 1,
+          "name": "Luck",
+          "description": "This boon functions as the Bless (word) Fate talent, but she may only target herself with it. The champion of the cause may use this boon as an immediate action."
+        },
+        {
+          "level": 14,
+          "name": "Swiftness",
+          "description": "The champion of the cause may move up to 30 feet, provoking attacks of opportunity as normal. The champion of the cause may use this boon as an immediate action. At 14th level, the champion of the cause adds the following boons to the list of those she can manifest."
+        },
+        {
+          "level": 1,
+          "name": "Divinity",
+          "description": "The next time the champion of the cause’s hit points would be reduced to 0 or fewer by an attack or effect, she is healed for 1d6 hit points per champion of the cause class level. This healing can prevent her from falling unconscious or dying. This boon lasts for 1 hour or until triggered."
+        },
+        {
+          "level": 1,
+          "name": "Zealotry",
+          "description": "For the next 1 minute, the champion of the cause’s weapons are suffused with divine power. If the champion of the cause is good, any weapons she wields gains the holy weapon special ability. If the champion of the cause is evil, any weapons she wields gains the unholy weapon special ability. While benefiting from this boon, whenever the champion of the cause confirms a critical hit, reduces an enemy to 0 or fewer hit points, or succeeds on a saving throw, they may renew this boon’s duration and share its effects with one ally she can see within 30 feet. When this boon ends, all affected creatures lose the benefits. This ability replaces channel positive energy and aura of justice or channel negative energy and aura of vengeance."
+        },
+        {
+          "level": 5,
+          "name": "Incarnation Bond",
+          "description": "At 5th level, the champion of the cause manifests a unique divine bond with her deity, taking one of two forms. Once the form is chosen, it cannot be changed."
+        },
+        {
+          "level": 1,
+          "name": "Incarnation Form",
+          "description": "The first unique bond allows the champion of the cause to manifest features that bring her close to her deity’s image. She gains the Alteration sphere as a bonus sphere and Outsider Body (body) as a bonus talent. The champion of the cause may not gain a drawback which would remove the Blank Transformation, and if she already has a drawback which would remove the Blank Transformation, she must buy off that drawback with the bonus Alteration sphere talent. The champion of the cause uses her class level as her caster level for the purposes of the Alteration sphere when targeting herself with a shapeshift. This stacks normally with caster levels gained from other sources. When the champion of the cause first gains this ability, she chooses one trait from the Outsider Body talent to use as her incarnation trait. Once chosen, this cannot be changed. The incarnation trait must be a trait that grants an alignment subtype matching the champion of the cause’s alignment (e.g. Celestial Form or Anarchic Form for a chaotic good champion of the cause) and not one that requires a subtype to apply (e.g. Angel Body or Daemon Body). As a standard action, the champion of the cause may assume her incarnation form, applying the Blank Transformation to herself, her chosen incarnation trait, and a number of additional traits as though she were casting the shapeshift sphere effect. Her incarnation trait does not count against the maximum number of traits she may normally apply with shapeshift. Unlike the normal shapeshift sphere effect, the champion of the cause’s incarnation form lasts for 10 minutes per class level, or until she chooses to dismiss it as a free action. She does not need to spend a spell point to maintain this effect without concentration, but traits that require an additional spell point must be spent when assuming your incarnation form. If the champion of the cause uses the shapeshift sphere effect on herself (and not through this ability), she may apply her incarnation trait as an additional talent that does not count against the maximum traits she may normally apply. At level 8, and every 4 levels thereafter, the champion of the cause gains a bonus Alteration sphere talent. For example, a 5th level champion of the cause that worships a deity of angels chooses the Celestial Form trait from Outsider Body (body) to use as her incarnation trait. When transforming into her incarnation form, she gains the Blank Transformation, applies the darkvision trait from the base sphere, cosmetic appearance trait from Blank Form’s options, and her incarnation trait, Celestial Form, as an additional trait not counting against her maximum."
+        },
+        {
+          "level": 1,
+          "name": "Incarnation Ally",
+          "description": "The second unique bond allows the champion of the cause to gain the assistance of a herald of her deity. She gains the Bound Creature casting boon, even if she does not have the Focus Casting drawback, and her bound creature companion does not lose the extraplanar subtype. The champion of the cause uses her class level as her caster level with the Conjuration sphere when determining the statistics and abilities of her bound companion. If the champion of the cause does not have the Focus Casting drawback, she does not suffer a chance of spell failure if her companion is not within medium range, dismissed, or dead. If the champion of the cause already possessed the Bound Creature casting boon prior to gaining this ability, she gains a bonus Conjuration (form) talent for her bound creature and her bound creature regains the extraplanar subtype. The bound creature the champion of the cause gains from this ability serves as her incarnation ally. Unlike other bound creatures, the incarnation ally may be resummoned without spending a spell point when you rest to regain spell points if they were killed, and may be resummoned by spending a spell point if they are banished. The champion of the cause gains the Planar Creature (type) talent as a bonus talent, and applies it to her incarnation ally, choosing an alignment group appropriate to her own. At level 8, and every 4 levels thereafter, the champion of the cause gains a bonus Conjuration sphere talent. If she chooses a (form) talent, it must apply to her incarnation ally. She may not select Extra Companion with the bonus talents granted from this ability."
+        },
+        {
+          "level": 1,
+          "name": "Note",
+          "description": "A champion of the cause who does not worship a traditional alignment-based deity, such as an elemental lord or a deity of nature, may choose a different Alteration talent for their incarnation form or Conjuration (form) talent for their Incarnation Ally, subject to GM discretion. For the incarnation form ability, a champion of the cause who chooses an Alteration talent which grants a (transformation) would choose one trait from that talent to use for their incarnation form. For example, a champion of the cause who worships a dragon deity could choose Dragon Transformation as their bonus Alteration talent instead of Outsider Body, and would choose one of the two traits granted by Dragon Transformation for their incarnation form base talent. For settings where a deity or outsider group does not conform to the normal alignment subtypes (such as a setting with evil angels or good demons), a GM may find it appropriate to change the subtype granted by Outsider Body to better fit their setting. This ability replaces divine bond or fiendish boon."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:antipaladin:dread-vanguard",
+      "package": "pathfinder-class:antipaladin",
+      "name": "Dread Vanguard",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Antipaladin Dread Vanguard",
+      "replaces_features": [
+        "aura-of-sin",
+        "spellcasting"
+      ],
+      "removed_features": [
+        "aura-of-sin",
+        "spellcasting"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Dread Vanguard",
+          "description": "Source Champions of Corruption pg. 22"
+        },
+        {
+          "level": 1,
+          "name": "Beacon of Evil",
+          "description": "A dread vanguard unleashes the powers of his vile masters to strengthen both himself and his allies."
+        },
+        {
+          "level": 14,
+          "name": "Dark Emissary",
+          "description": "At 14th level, a dread vanguard becomes a true messenger of the forces of darkness he serves. Once per day, the dread vanguard can expend two uses of his touch of corruption ability to mark one location within 60 feet with the stain of evil. This location can be any point in space, but the ability works best if placed on an altar, shrine, or other site important to a community. The location is affected as if by a desecrate spell. Creatures approaching within 30 feet of the site must succeed at a Will save or suffer the effects of crushing despair."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:antipaladin:fearmonger",
+      "package": "pathfinder-class:antipaladin",
+      "name": "Fearmonger",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Antipaladin Fearmonger",
+      "replaces_features": [
+        "cruelty",
+        "touch-of-corruption"
+      ],
+      "removed_features": [
+        "cruelty",
+        "touch-of-corruption"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Fearmonger",
+          "description": "Source Monster Codex pg. 20"
+        },
+        {
+          "level": 2,
+          "name": "Feed on Fear",
+          "description": "At 2nd level, the first time in a round a creature fails a saving throw against a fear effect created by a fearmonger’s spell, spell-like ability, or supernatural ability (including any ability that causes a creature to be shaken, frightened, or panicked), the fearmonger is healed of 1 point of damage per 2 antipaladin levels. If the fearmonger is at full hit points when this ability is activated, he instead gains an equal number of temporary hit points. These temporary hit points last for 1 minute. Temporary hit points gained through multiple successful uses of this ability do not stack; the duration increases instead."
+        },
+        {
+          "level": 12,
+          "name": "Frightening Cruelty",
+          "description": "The fearmonger must select shaken as his 3rd-level cruelty, dazed as his 6th-level cruelty, and frightened as his 9th-level cruelty. At 12th level, the fearmonger gains the panicked cruelty."
+        },
+        {
+          "level": 1,
+          "name": "Panicked",
+          "description": "The target is panicked for 1 round per 4 class levels the antipaladin possesses. The antipaladin must have the shaken and frightened cruelties before selecting this cruelty."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:antipaladin:grand-purifier",
+      "package": "pathfinder-class:antipaladin",
+      "name": "Grand Purifier",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/grand-purifier",
+      "replaces_features": [
+        "alignment",
+        "channel-energy",
+        "lay-on-hands-or-touch-of-corruption",
+        "mercies-or-cruelties",
+        "spellcasting"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "spells class feature",
+        "lay on hands or touch of corruption",
+        "mercies or cruelties",
+        "channel energy"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "There are many reasons to take up the sword, but the result is the same",
+          "description": "punishing the enemies of your god. Inflicting pain and suffering upon those who dare stand against you is a universal truth that transcends good and evil. The only real difference between how people murder is the amount of laughter afterwards. For the grand purifier, removing the unclean, the heretical, and the unfaithful is a good thing, no matter the means."
+        },
+        {
+          "level": 1,
+          "name": "Alignment",
+          "description": "Grand purifiers can be any good or evil alignment.\n\nThis alters alignment."
+        },
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Grand purifiers are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice."
+        },
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The grand purifier may combine spheres and talents to create magical effects. The grand purifier is considered a Low-Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the spells class feature."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "A grand purifier gains a small reservoir of energy she can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to her level + her casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Magic Talents",
+          "description": "A grand purifier gains a magic talent every 2 levels (the same progression he uses to gain caster levels)."
+        },
+        {
+          "level": 1,
+          "name": "Combat Talents",
+          "description": "A grand purifier gains a combat talent at each odd numbered level and uses her casting ability modifier as her practitioner modifier.\n\nThis replaces lay on hands or touch of corruption."
+        },
+        {
+          "level": 1,
+          "name": "Smiting Action",
+          "description": "When the grand purifier uses an attack action to attack the target of her smite evil or smite good ability, she gains an additional circumstance bonus to damage equal to her class level on her first successful hit."
+        },
+        {
+          "level": 1,
+          "name": "Purification",
+          "description": "Whenever a grand purifier reduces an intelligent enemy with Hit Dice equal to or less than her class level to less than 1 hit point or performs a successful coup de grace on it, she may attempt to purify it as part of the attack. The target must attempt a Will save vs. a DC equal to 10 + 1/2 her grand purifier level + her casting ability modifier. If the target fails, the impurities of its spirit is cleaved away, leaving behind a new believer. Its alignment changes to match the grand purifier. This does not ensure any sort of allegiance to the grand purifier, however, and does not even guarantee that it will not fight the grand purifier for ideological reasons. If the creature succeeds, it is immune to the grand purifier’s ability for 24 hours. This effect can be reversed using a ritual equivalent of the atonement spell or any sphere ability that can remove permanent negative levels. This ability does not affect creatures without souls (like most undead), non-native outsiders, creatures with alignment descriptors, or creatures that are neutral because they lack the intelligence to be otherwise. If the target fails its save, the grand purifier may choose to cancel the damage from the initiating attack."
+        },
+        {
+          "level": 3,
+          "name": "Condemnation",
+          "description": "At 3rd level, the grand purifier gains the ability to channel divine power into her attacks. As an attack action, she may spend a spell point or expend her martial focus to make an attack that has an additional affect on her target. The target may attempt a saving throw determined by the ability to negate the effect. The DC of this save is equal to 10 + 1/2 her grand purifier level + her casting ability modifier. At 3rd level and every 3 levels thereafter, the grand purifier gains a condemnation, which grants these additional effects. Only one condemnation can be added to an individual attack. At 3rd level, the grand purifier can select from the following initial condemnations."
+        },
+        {
+          "level": 1,
+          "name": "Exiled",
+          "description": "The target can not benefit from the abilities of any other creature or receive aid for 1 round per level. If another creature attempts to use an ability that would normally aid the target, the target must make a saving throw against the ability. Will save negates."
+        },
+        {
+          "level": 1,
+          "name": "Illuminated",
+          "description": "The target is surrounded by a field of light as if under the effect of the glow ability of the Light sphere for 1 minute per level. Reflex save negates."
+        },
+        {
+          "level": 6,
+          "name": "Maimed",
+          "description": "The target is unable to regain hit points or gain temporary hit points for 1 round per level. Fortitude save negates. At 6th level, a grand purifier adds the following condemnations to the list of those that can be selected."
+        },
+        {
+          "level": 1,
+          "name": "Bleeding",
+          "description": "The target takes 1 bleed damage per level. Fortitude save negates."
+        },
+        {
+          "level": 1,
+          "name": "Confused",
+          "description": "The target is confused for 1 round. Will save negates."
+        },
+        {
+          "level": 9,
+          "name": "Crippled",
+          "description": "The target takes a –2 penalty on ability checks, attack rolls, saving throws, and skill checks for 1 round per class level. This penalty does not stack with itself. Reflex save negates. At 9th level, a grand purifier adds the following condemnations to the list of those that can be selected."
+        },
+        {
+          "level": 1,
+          "name": "Fatigued",
+          "description": "The target is fatigued. If already fatigued, the target becomes exhausted. Fortitude save negates."
+        },
+        {
+          "level": 1,
+          "name": "Shaken",
+          "description": "The target is shaken for 1 round per level of the grand purifier. A shaken target becomes frightened and a frightened target becomes panicked. This effect works on those normally immune to fear. Will save negates."
+        },
+        {
+          "level": 12,
+          "name": "Teleported",
+          "description": "The target is teleported 5 feet per 2 levels. This works as the Unwilling Teleport talent from the Warp sphere. Reflex save negates. At 12th level, a grand purifier adds the following condemnations to the list of those that can be selected."
+        },
+        {
+          "level": 1,
+          "name": "Entombed",
+          "description": "The target is entombed in chains of force unless it succeeds at a Reflex save. It is entangled and anchored to the ground, unable to move from its square. Breaking free is a move action, requiring either a Strength check or an Escape Artist check against a save DC equal 10 + her grand purifier level + her casting ability modifier. A target may also destroy the chains by dealing 3 damage per class level to the grand purifier. This causes the chains to vanish and removes the entangled condition. The chains are completely effective against incorporeal targets, but not against teleportation."
+        },
+        {
+          "level": 1,
+          "name": "Lowered",
+          "description": "The target loses all spell resistance for 1 round. Will save negates."
+        },
+        {
+          "level": 15,
+          "name": "Pained",
+          "description": "Whenever the target takes damage, it takes an equal amount of nonlethal damage, up to a maximum of half the grand purifier’s class level. This lasts a number of rounds equal to the grand purifier’s class level. Fortitude save negates. At 15th level, a grand purifier adds the following condemnations to the list of those that can be selected."
+        },
+        {
+          "level": 1,
+          "name": "Aggravated",
+          "description": "The target loses all forms of damage resistance for 1 round per level of the grand purifier. Will save negates."
+        },
+        {
+          "level": 1,
+          "name": "Dazed",
+          "description": "The target is dazed for 1 round. Fortitude save negates."
+        },
+        {
+          "level": 1,
+          "name": "Slowed",
+          "description": "The target is stuck in time, and is paralyzed for 1 round. Reflex save negates. These abilities are not cumulative; a single effect is chosen for the attack. Once a condemnation is chosen, it cannot be changed.\n\nThis replaces mercies or cruelties."
+        },
+        {
+          "level": 4,
+          "name": "Wrathful Focus",
+          "description": "At 4th level, whenever a creature the grand purifier has used her smite ability on is reduced to 0 or fewer hit points, she regains martial focus.\n\nThis replaces channel energy."
+        },
+        {
+          "level": 1,
+          "name": "Archetypes of Power",
+          "description": "There are many reasons to take up the sword, but the result is the same: punishing the enemies of your god. Inflicting pain and suffering upon those who dare stand against you is a universal truth that transcends good and evil. The only real difference between how people murder is the amount of laughter afterwards. For the grand purifier, removing the unclean, the heretical, and the unfaithful is a good thing, no matter the means."
+        },
+        {
+          "level": 3,
+          "name": "Errata",
+          "description": "You may choose a Condemnation at 3rd level and every 3 levels thereafter. (Per conversation with the author) At 3rd level, the grand purifier can select from the following initial condemnations."
+        },
+        {
+          "level": 1,
+          "name": "New Feat",
+          "description": "Extra Condemnation: Prerequisite: Condemnation class ability."
+        },
+        {
+          "level": 1,
+          "name": "Benefit",
+          "description": "You may choose a condemnation for which you qualify. Whenever you gain a level, you may change your choice."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:antipaladin:insinuator",
+      "package": "pathfinder-class:antipaladin",
+      "name": "Insinuator",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Antipaladin Insinuator",
+      "replaces_features": [
+        "aura-of-cowardice",
+        "aura-of-depravity",
+        "aura-of-despair",
+        "aura-of-evil",
+        "aura-of-sin",
+        "aura-of-vengeance",
+        "channel-negative-energy",
+        "code-of-conduct",
+        "cruelty",
+        "detect-good",
+        "fiendish-boon",
+        "plague-bringer",
+        "smite-good",
+        "spellcasting",
+        "touch-of-corruption",
+        "unholy-champion"
+      ],
+      "removed_features": [
+        "aura-of-cowardice",
+        "aura-of-depravity",
+        "aura-of-despair",
+        "aura-of-evil",
+        "aura-of-sin",
+        "aura-of-vengeance",
+        "channel-negative-energy",
+        "code-of-conduct",
+        "cruelty",
+        "detect-good",
+        "fiendish-boon",
+        "plague-bringer",
+        "smite-good",
+        "spellcasting",
+        "touch-of-corruption",
+        "unholy-champion"
+      ],
+      "removed_feature_clauses": [
+        "touch of corruption",
+        "aura of cowardice",
+        "plague bringer",
+        "cruelty",
+        "antipaladin spells",
+        "aura of despair",
+        "aura of vengeance",
+        "aura of sin",
+        "aura of depravity",
+        "unholy champion"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Insinuator",
+          "description": "Source Agents of Evil pg. 20"
+        },
+        {
+          "level": 1,
+          "name": "Alignment",
+          "description": "Any evil."
+        },
+        {
+          "level": 1,
+          "name": "Code of Conduct",
+          "description": "An insinuator must always work toward his own self-interest, enrichment, or glory, and must also abide by the moral strictures of whatever outsider they have chosen to invoke that day (see invocation below). If the insinuator breaks an invoked outsider’s code, he cannot invoke outsiders of that same alignment until he seeks atonement, although outsiders of other alignments may still heed his call."
+        },
+        {
+          "level": 1,
+          "name": "Invocation",
+          "description": "At the start of each day, an insinuator can meditate for 10 minutes to contact and barter with an outsider to empower him for a day. An insinuator can freely invoke an outsider of his own alignment. He can instead invoke an outsider within one step of his own alignment by succeeding at a Diplomacy or Knowledge (religion) skill check (DC = 15 + the insinuator’s antipaladin level). While invoking the power of an outsider, the insinuator radiates an alignment aura that matches that of the outsider’s, and becomes vulnerable to alignment-based effects that target that outsider’s alignment (such as smite evil or chaos hammer). None of an insinuator’s supernatural or spell-like class abilities function unless he has invoked the power of an outsider, and the alignment of the being invoked may affect how some abilities function."
+        },
+        {
+          "level": 1,
+          "name": "Detect Balance",
+          "description": "At will, an insinuator can detect strong moral leanings. This functions as detect evil or detect good, but does not actually reveal the target’s alignment, only whether the target is neutral (rather than good or evil) and the relative strength of that aura. This ability alters detect good."
+        },
+        {
+          "level": 1,
+          "name": "Smite Impudence",
+          "description": "Once per day, an insinuator can beseech the forces empowering him to punish their shared enemies. As a swift action, the insinuator chooses one target within sight to smite. An insinuator cannot use smite against a target that shares an alignment with the outsider he has invoked for the day. The insinuator adds his Charisma bonus on his attack rolls and half his insinuator level on all damage rolls made against the target of his smite. If the target is an outsider, dragon, or divine spellcaster with an alignment opposed to that of the outsider he has invoked for the day, the bonus damage on the first successful attack increases to 1 point of damage per antipaladin level the insinuator has. Regardless of the target, the smite attack automatically bypasses any damage reduction the creature might possess. In addition, each time the insinuator declares a smite, he gains a number of temporary hit points equal to his antipaladin level."
+        },
+        {
+          "level": 2,
+          "name": "Selfish Healing",
+          "description": "Beginning at 2nd level, an insinuator can heal his wounds by touch. This is treated exactly like the paladin’s lay on hands class feature, except it can be used only to heal the insinuator and cannot be used on other creatures. This ability replaces touch of corruption."
+        },
+        {
+          "level": 3,
+          "name": "Aura of Ego",
+          "description": "At 3rd level, an insinuator radiates an aura that bolsters allies and deters enemies. Each ally within 10 feet gains a +2 morale bonus on saving throws against fear effects. Enemies within 10 feet take a –2 penalty on saving throws against fear effects. This ability functions only while the insinuator is conscious, not if he is unconscious or dead. This ability replaces aura of cowardice."
+        },
+        {
+          "level": 3,
+          "name": "Stubborn Health",
+          "description": "At 3rd level, an insinuator takes only half damage from diseases and poisons, and none of his ability scores can be reduced below 1 by these effects. This ability replaces plague bringer."
+        },
+        {
+          "level": 3,
+          "name": "Greeds",
+          "description": "Beginning at 3rd level, an insinuator can heal himself of certain conditions. This functions as the mercy paladin class ability, but these mercies can only be applied to the insinuator himself. This ability replaces cruelty."
+        },
+        {
+          "level": 4,
+          "name": "Channel Energy",
+          "description": "At 4th level, an insinuator can channel negative energy, treating his antipaladin level as his effective cleric level. If he invokes a neutral outsider for the day, he may instead chose during the invocation to channel positive energy, but treats his effective cleric level as half his antipaladin level. Using this ability consumes two uses of his selfish healing ability. This is a Charisma-based ability. This ability alters channel negative energy."
+        },
+        {
+          "level": 4,
+          "name": "Bonus Feats",
+          "description": "At 4th level, an insinuator gains one bonus feat, which must be selected from the list of combat feats or Skill Focus. At 7th level and every 3 antipaladin levels thereafter, the insinuator gains one additional combat or Skill Focus feat. This ability replaces antipaladin spells."
+        },
+        {
+          "level": 5,
+          "name": "Ambitious Bond",
+          "description": "At 5th level, an insinuator gains a divine bond with either a bonded weapon or an outsider servant. This functions as the antipaladin’s fiendish boon with the following modifications."
+        },
+        {
+          "level": 1,
+          "name": "Bonded Weapon",
+          "description": "This functions as the antipaladin ability, except the first special ability added to a weapon must correspond to the alignment of the outsider the insinuator has invoked for that day: anarchic (chaos), axiomatic (law), or unholy (evil). Additional special abilities may be applied if any equivalent bonus remains."
+        },
+        {
+          "level": 1,
+          "name": "Outsider Servant",
+          "description": "This functions as the antipaladin ability, except the insinuator gains a new outsider servant each day, whose alignment must match the alignment of the outsider invoked for the day. The outsider servant functions as much as an agent for the patron invoked by the insinuator as an ally of the insinuator himself, and may turn against him if he violates his patron’s alignment or interests."
+        },
+        {
+          "level": 8,
+          "name": "Aura of Ambition",
+          "description": "At 8th level, enemies within 10 feet of an insinuator take a –1 penalty on all saving throws. All allies within 10 feet gain a +1 bonus on all saving throws. This penalty does not stack with the penalty from aura of the crusader. This ability functions only while the insinuator is conscious, not if he is unconscious or dead. This ability replaces aura of despair."
+        },
+        {
+          "level": 11,
+          "name": "Aura of Glory",
+          "description": "At 11th level, an insinuator can expend two uses of his smite impudence ability to grant the ability to smite impudence to all allies within 10 feet, using his bonuses. Allies must use this smite impudence ability before the start of the insinuator’s next turn, and the bonuses last for 1 minute. Using this ability is a free action. This ability replaces aura of vengeance."
+        },
+        {
+          "level": 14,
+          "name": "Aura of Belief",
+          "description": "At 14th level, an insinuator’s weapons are treated as chaos-aligned while he invokes a chaotic outsider, law-aligned when he invokes a lawful outsider, or evil-aligned while he invokes an evil outsider. If he invokes an outsider with more than one alignment aura, the insinuator must choose during the initial invocation which alignment his weapon radiates. This ability replaces aura of sin."
+        },
+        {
+          "level": 17,
+          "name": "Aura of Indomitability",
+          "description": "At 17th level, an insinuator gains DR 10 that is bypassed by the alignment opposite of the outsider he has invoked for the day, or DR 5/— while invoking a neutral outsider. This ability replaces aura of depravity."
+        },
+        {
+          "level": 20,
+          "name": "Personal Champion",
+          "description": "At 20th level, an insinuator becomes a living embodiment of his selfish desires. His damage resistance from aura of indomitability increases to 15 (or 10 while invoking a neutral outsider). Whenever he uses smite impudence, he adds twice his full Charisma bonus to the attack roll and doubles his effective bonus damage gained from the smite. In addition, he can invoke a new outsider patron by meditating for 10 minutes. This ability replaces unholy champion."
+        },
+        {
+          "level": 1,
+          "name": "Ex-Insinuators",
+          "description": "An insinuator who willfully commits selfless acts or engages in violence that doesn’t further his own ends loses all class features (including his outsider servant, but not bonus feats or weapon, armor, and shield proficiencies). He can’t progress any further in levels as an insinuator. He regains his abilities and advancement potential if he atones for his faltering ambition (see the atonement spell). If he violates the code of conduct of his invoked outsider patron, he must similarly seek atonement from outsiders of that alignment again."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:antipaladin:iron-tyrant",
+      "package": "pathfinder-class:antipaladin",
+      "name": "Iron Tyrant",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Antipaladin Iron Tyrant",
+      "replaces_features": [
+        "channel-negative-energy",
+        "cruelty",
+        "fiendish-boon",
+        "touch-of-corruption"
+      ],
+      "removed_features": [
+        "channel-negative-energy",
+        "cruelty",
+        "fiendish-boon",
+        "touch-of-corruption"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Iron Tyrant",
+          "description": "Source Armor Master's Handbook pg. 4"
+        },
+        {
+          "level": 2,
+          "name": "Iron Fist",
+          "description": "At 2nd level, an iron tyrant gains Improved Unarmed Strike as a bonus feat. In addition, whenever the iron tyrant makes a successful attack with a gauntlet, spiked gauntlet, or armor spikes, the weapon damage is based on his level and not the weapon type, as per the warpriest’s sacred weapon ability."
+        },
+        {
+          "level": 3,
+          "name": "Bonus Feats",
+          "description": "At 3rd level and every 3 antipaladin levels thereafter, an iron tyrant gains a bonus feat in addition to those gained from normal advancement. This feat must be a combat feat that relates to the iron tyrant’s armor or shield, such as Shield Focus, or one of the armor mastery feats."
+        },
+        {
+          "level": 4,
+          "name": "Unstoppable",
+          "description": "At 4th level, when wearing heavy armor, an iron tyrant is not slowed by terrain that halves movement (such as dense rubble, light undergrowth, and shallow bogs). Terrain that has been magically manipulated to impede motion or terrain that reduces movement by more than half still affects him."
+        },
+        {
+          "level": 5,
+          "name": "Fiendish Bond",
+          "description": "At 5th level, instead of forming a fiendish bond with his weapon or a servant, an iron tyrant can form a bond with his armor. As a standard action, an iron tyrant can enhance his armor by calling upon a fiendish spirit’s aid. This bond lasts for 1 minute per antipaladin level. When called, the spirit causes the armor to shed unholy light like a torch. At 5th level, the spirit grants the armor a +1 enhancement bonus. For every 3 antipaladin levels beyond 5th, the armor gains another +1 enhancement bonus, to a maximum of +6 at 20th level. These bonuses stack with existing armor enhancement bonuses to a maximum of +5, or they can be used to add any of the following armor special abilities: dastard, ghost touch, fortification (heavy, light, or medium), invulnerability, spell resistance (13, 15, 17, or 19). Adding these special abilities consumes an amount of bonus equal to the special ability’s base price modifier. In addition, the iron tyrant can grant his armor the unrighteous special ability at the cost of a +4 bonus. These special abilities are added to any special abilities the armor already has, but duplicate abilities do not stack. If the armor is not magical, at least a +1 enhancement bonus must be added before any other special abilities can be added. The bonus and special abilities granted by the spirit are determined when the spirit is called and cannot be changed until the spirit is called again. The fiendish spirit imparts no bonuses if the armor is worn by anyone other than the iron tyrant, but it resumes giving bonuses if the iron tyrant dons the armor again. An iron tyrant can use this ability once per day at 5th level, and one additional time per day for every 4 levels beyond 5th, to a total of four times per day at 17th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:antipaladin:knight-of-the-sepulcher",
+      "package": "pathfinder-class:antipaladin",
+      "name": "Knight of the Sepulcher",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Antipaladin Knight of the Sepulcher",
+      "replaces_features": [
+        "aura-of-depravity",
+        "aura-of-despair",
+        "aura-of-sin",
+        "aura-of-vengeance",
+        "cruetly",
+        "fiendish-boon",
+        "smite-good-use",
+        "unholy-champion"
+      ],
+      "removed_features": [
+        "aura-of-depravity",
+        "aura-of-despair",
+        "aura-of-sin",
+        "aura-of-vengeance",
+        "cruetly",
+        "fiendish-boon",
+        "smite-good-use",
+        "unholy-champion"
+      ],
+      "removed_feature_clauses": [
+        "fiendish boon ability",
+        "aura of despair ability",
+        "smite good use gained at 10th level",
+        "aura of vengeance ability",
+        "aura of sin",
+        "cruelty",
+        "aura of depravity",
+        "unholy champion"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Knight of the Sepulcher",
+          "description": "Source Ultimate Combat pg. 64"
+        },
+        {
+          "level": 5,
+          "name": "Touch of the Crypt",
+          "description": "At 5th level, a knight of the sepulcher gains a +2 bonus on saving throws against mind-affecting effects, death effects, and poison. He is harmed by positive energy effects and healed by negative energy effects as though he were undead, although negative energy effects that don’t heal undead (such as enervation) affect him normally. The knight of the sepulcher has a 25% chance of ignoring critical hits and the bonus damage from sneak attacks as though he were wearing armor of light fortification. This ability replaces the fiendish boon ability."
+        },
+        {
+          "level": 8,
+          "name": "Fortitude of the Crypt",
+          "description": "At 8th level, a knight of the sepulcher gains immunity to poison. He also gains darkvision 60 feet if he does not already possess it. This ability replaces the aura of despair ability."
+        },
+        {
+          "level": 10,
+          "name": "Cloak of the Crypt",
+          "description": "At 10th level, the knight of the sepulcher gains immunity to energy drain and harmful negative energy effects. His chance of ignoring critical hits and sneak attacks increases to 50%, as though he were wearing armor of moderate fortification. This ability replaces the smite good use gained at 10th level."
+        },
+        {
+          "level": 11,
+          "name": "Will of the Crypt",
+          "description": "At 11th level, a knight of the sepulcher’s bonus on saving throws against mind-affecting effects and death effects increases to +4. This ability replaces the aura of vengeance ability."
+        },
+        {
+          "level": 14,
+          "name": "Weapons of Sin",
+          "description": "At 14th level, a knight of the sepulcher’s weapons are treated as evil-aligned for the purposes of overcoming damage reduction. This ability replaces aura of sin."
+        },
+        {
+          "level": 15,
+          "name": "Crypt Lord",
+          "description": "At 15th level, a knight of the sepulcher’s chance of ignoring critical hits and sneak attacks increases to 75%, as though he were wearing armor of heavy fortification. He gains immunity to death effects, paralysis, sleep effects, and stunning. He no longer sleeps. The knight of the sepulcher also gains immunity to effects that cause fatigue, and effects that would cause him to become exhausted instead cause him to become fatigued. This ability replaces cruelty."
+        },
+        {
+          "level": 17,
+          "name": "Soul of the Crypt",
+          "description": "At 17th level, a knight of the sepulcher gains DR 5/bludgeoning and good. This ability replaces aura of depravity."
+        },
+        {
+          "level": 20,
+          "name": "Undying Champion",
+          "description": "At 20th level, a knight of the sepulcher joins the ranks of the undead. His DR increases to 10/bludgeoning and good. His type changes to undead, and he acquires all undead traits. Although immune to disease, he can still carry and spread diseases with the antipaladin’s plague bringer ability. The undying champion no longer has a Constitution score. He uses his Charisma score for calculating hit points, Fortitude saves, and any special abilities that rely on Constitution. This ability replaces unholy champion."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:antipaladin:rough-rampager",
+      "package": "pathfinder-class:antipaladin",
+      "name": "Rough Rampager",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Antipaladin Rough Rampager",
+      "replaces_features": [
+        "aura-of-cowardice",
+        "aura-of-despair",
+        "aura-of-sin"
+      ],
+      "removed_features": [
+        "aura-of-cowardice",
+        "aura-of-despair",
+        "aura-of-sin"
+      ],
+      "removed_feature_clauses": [
+        "aura of cowardice",
+        "aura of despair",
+        "aura of sin"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Rough Rampager",
+          "description": "Source Inner Sea Combat pg. 43"
+        },
+        {
+          "level": 3,
+          "name": "Aura of Blood",
+          "description": "At 3rd level, a rough rampager radiates a palpably daunting aura that causes all enemies within 10 feet to take a –4 penalty on Constitution or Heal checks to stop bleed damage and checks to stabilize while dying. This ability functions only while the antipaladin is conscious. This ability replaces aura of cowardice."
+        },
+        {
+          "level": 8,
+          "name": "Aura of Putrefaction",
+          "description": "At 8th level, a rough rampager radiates an aura that causes the wounds of enemies within 10 feet to weep blood. Injured enemies in the area take 1 point of bleed damage per round. This ability functions only while the antipaladin is conscious. This ability replaces aura of despair."
+        },
+        {
+          "level": 14,
+          "name": "Aura of Quietus",
+          "description": "At 14th level, a rough rampager radiates an aura that causes the failure of healing spells, spell-like abilities, and supernatural abilities used to restore enemies within 10 feet of him. This is not an antimagic field, however, and ongoing or passive effects are not affected. Casters can overcome this ability with a successful caster level check versus the rough rampager’s class level + 11. This ability replaces aura of sin."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:antipaladin:seal-breaker",
+      "package": "pathfinder-class:antipaladin",
+      "name": "Seal-Breaker",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Antipaladin Seal-Breaker",
+      "replaces_features": [
+        "aura-of-cowardice",
+        "aura-of-despair",
+        "aura-of-vengeance",
+        "fiendish-boon"
+      ],
+      "removed_features": [
+        "aura-of-cowardice",
+        "aura-of-despair",
+        "aura-of-vengeance",
+        "fiendish-boon"
+      ],
+      "removed_feature_clauses": [
+        "aura of cowardice",
+        "aura of despair",
+        "aura of vengeance"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Seal-Breaker",
+          "description": "Source Inner Sea Combat pg. 43"
+        },
+        {
+          "level": 3,
+          "name": "Aura of the Grave",
+          "description": "At 3rd level, a seal-breaker is constantly surrounded by the chill of death. Mindless undead within 10 feet of the seal-breaker will not attack him unless directly ordered to, and even then only after succeeding at a Will save (DC = 10 + 1/2 the seal-breaker’s level + his Charisma modifier). This ability replaces aura of cowardice."
+        },
+        {
+          "level": 5,
+          "name": "Corpse Rider",
+          "description": "Upon reaching 5th level, a sealbreaker receives a boon from beyond the grave. This boon can take one of two forms: the seal-breaker can choose to form a bond with his weapon, or he can choose to animate an undead mount to ride."
+        },
+        {
+          "level": 8,
+          "name": "Aura of Death",
+          "description": "At 8th level, a seal-breaker radiates an aura that causes undead creatures within 10 feet to gain a +2 profane bonus on all saving throws. This ability replaces aura of despair."
+        },
+        {
+          "level": 11,
+          "name": "Aura of Rebirth",
+          "description": "At 11th level, if a living creature is slain within 10 feet of the seal-breaker, the seal-breaker can spend two uses of his smite good ability at the start of his next turn as a standard action to summon the spirit of a dead murderer to reanimate the corpse as a mohrg. The mohrg immediately rises and attacks the seal breaker’s foes, acting under the antipaladin’s command. After 1 minute, the murderer’s soul leaves the body, which collapses, again lifeless. At 15th level, the seal-breaker can activate this ability as a move action. At 19th level, he can activate this ability as a swift action. This ability replaces aura of vengeance."
+        },
+        {
+          "level": 1,
+          "name": "Code of Conduct",
+          "description": "The seal-breaker is dedicated to releasing the Whispering Tyrant from his prison. If a sealbreaker willingly and altruistically commits a good act, he loses all class features except proficiencies. This doesn’t mean that a seal-breaker can’t take actions someone else might qualify as good, only that such actions must always lead toward the eventual release of the Whispering Tyrant. A seal-breaker’s code requires that he place the ultimate release of Tar-Baphon above all else, as well as impose tyranny, take advantage whenever possible, and punish the good and just (provided such actions don’t interfere with his ultimate goal)."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:antipaladin:soulrender",
+      "package": "pathfinder-class:antipaladin",
+      "name": "Soulrender",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/soulrender",
+      "replaces_features": [
+        "all-cruelties",
+        "aura-of-vengeance",
+        "cruelty-at-level",
+        "detect-good",
+        "plague-bringer",
+        "spellcasting",
+        "unholy-champion"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "spells",
+        "detect good",
+        "cruelty gained at 3rd level",
+        "aura of vengeance",
+        "unholy champion"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The soulrender may combine spheres and talents to create magical effects. The soulrender is considered a Low- Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.)\n\nThis replaces spells and detect good."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "The soulrender gains a small reservoir of energy he can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to his level + his casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Magic Talents",
+          "description": "The soulrender gains one magic talent every two levels."
+        },
+        {
+          "level": 1,
+          "name": "Master of Death",
+          "description": "At 1st level, the soulrender gains Death as a bonus sphere, or a Death talent if he already possesses the Death sphere. The soulrender uses his class level as his caster level when using the reanimate ability of the Death sphere. This stacks normally with caster levels gained from other classes."
+        },
+        {
+          "level": 3,
+          "name": "Soul Reave",
+          "description": "At 3rd level, whenever a creature the soulrender has used his smite good ability on is killed, the soulrender can spend a spell point as an immediate action to reanimate the creature.\n\nThis replaces the cruelty gained at 3rd level."
+        },
+        {
+          "level": 11,
+          "name": "Aura of Desecration",
+          "description": "At 11th level, whenever the soulrender would use his channel energy ability, he may spend 1 spell point to reanimate all creatures within the affected area (these creatures still count towards his reanimate limit as normal). Additionally, all undead creatures within 10 feet of the soulrender gain positive energy resistance 10 and the soulrender’s unholy resilience bonus, allowing them to add a bonus to all saving throws equal to the soulrender’s Charisma modifier (minimum 1).\n\nThis replaces aura of vengeance."
+        },
+        {
+          "level": 20,
+          "name": "Dread Tyrant",
+          "description": "At 20th level, the soulrender begins to inch closer to the undead that he commands. The soulrender gains immunity to nonlethal damage, paralysis and sleep effects. His DR increases to 10/good. Additionally, all undead reanimated by the soulrender gains fast healing 5, and gains the ability to use his smite good ability once per day (using the soulrender’s statistics for its effects).\n\nThis replaces unholy champion."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:antipaladin:sphere-antipaladin",
+      "package": "pathfinder-class:antipaladin",
+      "name": "Sphere Antipaladin",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/sphere-antipaladin",
+      "replaces_features": [
+        "spellcasting"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "spells class feature"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 4,
+          "name": "Casting",
+          "description": "At 4th level, the sphere antipaladin may combine spheres and talents to create magical effects. The sphere antipaladin is considered a Low-Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.).\n\nThis replaces the spells class feature."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "The sphere antipaladin gains a small reservoir of energy he can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to his class level + his casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 4,
+          "name": "Magic Talents",
+          "description": "A sphere antipaladin gains one magic talent at 4th level and every 2 levels thereafter."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:antipaladin:spheres-oathbound",
+      "package": "pathfinder-class:antipaladin",
+      "name": "Spheres Oathbound",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/spheres-oathbound",
+      "replaces_features": [
+        "channel-negative-energy",
+        "cruelty",
+        "divine-health",
+        "fiendish-boon",
+        "plaguebringer",
+        "smite-good-use-at-level",
+        "touch-of-corruption"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "plaguebringer",
+        "smite good use gained at 10th level",
+        "divine health",
+        "fiendish boon",
+        "touch of corruption",
+        "channel negative energy"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Deity",
+          "description": "Some oaths are especially compatible with the faiths of certain deities. A player and their GM should work together to see if an oath is appropriate for that deity. Many deities allow oaths to be taken that might not directly align with their philosophies, and only very rarely do deities allow oaths conflicting with their teachings. One such example would be a paladin taking the Oath of ChastityUM being incompatible to a deity of lovers and reproduction."
+        },
+        {
+          "level": 1,
+          "name": "Code of Conduct",
+          "description": "The oathbound must abide by the listed tenets of her oath in addition to the specifics of her deity’s code of conduct. In some cases, a deity’s or paladin order’s code may conflict with the oath’s tenets; in most cases, these conflicts mean the oath is unsuitable for an oathbound of that deity or order and cannot be selected by the oathbound. One such example would be a paladin taking the Oath against the WyrmUM being incompatible with a good dragon deity or a dragon-riding order of paladins."
+        },
+        {
+          "level": 1,
+          "name": "Oath Spells",
+          "description": "An oathbound’s oath influences what magic she can perform. An oathbound adds one spell to their spell list at each spell level she can cast (including spell levels for which she would only gain spells per day if her Charisma were high enough to grant bonus spells of that level). Her oath determines what spell is added to the spell list. If the oathbound has multiple oaths, the spells from each oath are added to her spell list. If an oathbound paladin has more than one oath, she may prepare any one of her oath’s spells in that slot (similar to a cleric choosing one of her two domain spells to prepare in a domain spell slot)."
+        },
+        {
+          "level": 3,
+          "name": "Note",
+          "description": "For an oathbound with an archetype that grants spherecasting, instead of adding spells to their spell list, the oathbound gains one additional magic talent at 3rd level and every 8 levels thereafter. The oathbound only gains these additional magic talents once even if they possess multiple oaths. The following oaths can be chosen by paladins or antipaladins with the oathboundUM archetype."
+        },
+        {
+          "level": 1,
+          "name": "Oath of the Invader (antipaladin oath)",
+          "description": "Some antipaladins devote themselves to conquest, expansion, and glory in the name of their deity, and an antipaladin who takes this oath seeks to conquer and pillage the lands of his enemies. Some who take this oath may seek to replace the lords and owners of a city or country, ruling over its inhabitants, while others choose to raze the lands of his enemies to the ground, taking valuables and treasures with them in conquest."
+        },
+        {
+          "level": 3,
+          "name": "Fast Movement",
+          "description": "The oathbound’s rigorous training lets them move through the battle faster. At 3rd level, the oathbound gains a +10 bonus to his base land speed. This benefit applies when he is wearing any armor, including heavy armor, but not while carrying a heavy load. Apply this bonus before modifying the oathbound’s speed because of any load carried or armor worn. If the oathbound gains fast movement from another class, the bonuses to his speed do not stack. At 12th level, this bonus increases to +20. This ability replaces plaguebringer."
+        },
+        {
+          "level": 10,
+          "name": "Vanguard",
+          "description": "The oathbound is ever vigilant and anticipates danger to come from anywhere when in enemy territory. At 10th level, the oathbound is never considered an unaware combatant and is always able to act in the surprise round. The oathbound is still flat-footed in the surprise round until he acts. This ability replaces the smite good use gained at 10th level."
+        },
+        {
+          "level": 1,
+          "name": "Oath of the Last Bastion (paladin oath)",
+          "description": "Some paladins are champions of their homes and their people, pledging an oath to protect them to their last breath against invaders and enemy forces who would bring them to harm. More than any other paladin, those who take this oath expect to stand at the forefront of conflict and make sacrifices should their allies be in danger."
+        },
+        {
+          "level": 3,
+          "name": "Savior of the Weak",
+          "description": "The oathbound is a practiced, patient hand at helping her allies in harm’s way. At 3rd level, she gains BodyguardAPG as a bonus feat, even if she does not meet the prerequisite. In addition, whenever the oathbound uses the aid another action to improve an ally’s AC, the bonus she provides increases by 1. Every five levels thereafter, this bonus increases by +1, to a maximum of +4. This ability replaces divine health."
+        },
+        {
+          "level": 1,
+          "name": "Oath of the Destroyer (antipaladin oath)",
+          "description": "While the path of an antipaladin is normally paved by death, destruction and chaos, an antipaladin who takes this oath becomes the ultimate hand of unmaking. The oathbound pours his efforts towards the destruction of anything which may oppose his deity, down to the very structures and buildings her enemies may find refuge in. Antipaladins who take this oath are often seen at the frontlines of sieges and commanding the forces who would tear down an enemy city to nothingness."
+        },
+        {
+          "level": 1,
+          "name": "Brutal Combatant",
+          "description": "At 1st level, and every 4 levels thereafter, the oathbound gains a bonus combat talent. This ability replaces fiendish boon."
+        },
+        {
+          "level": 2,
+          "name": "Flame of Destruction",
+          "description": "At 2nd level, any weapon an antipaladin with this oath wields gains the flaming weapon special ability. The antipaladin may activate or suppress this ability as a free action. The damage dealt by the flaming enchantment increases by +1d6 at 6th level, and every 4 levels thereafter. This ability replaces touch of corruption."
+        },
+        {
+          "level": 3,
+          "name": "Blazing Cruelty",
+          "description": "At 3rd level, instead of channeling cruelties through a touch of corruption, when an oathbound deals damage to a creature with his flame of destruction, he may spend a swift action to add the effect of a cruelty. The target receives a Fortitude save to avoid this cruelty as normal. If the save is successful, the target does not suffer the effects of the cruelty. If using a scatter weapon, the cruelty only applies to a single target, chosen when you deal damage. The oathbound can use this ability a number of times per day equal to 1/2 his antipaladin level plus his Charisma bonus. This ability alters cruelty."
+        },
+        {
+          "level": 4,
+          "name": "Cruel Sun",
+          "description": "At 4th level, an antipaladin with this oath’s flame of destruction becomes empowered by her unending conviction to lay waste. Instead of fire damage, the oathbound may choose to have half the damage from flame of destruction be untyped unholy energy, which is not subject to being reduced by fire resistance or immunity. When determining the unholy damage dealt by flame of destruction, round down (minimum 0) and the remaining damage is dealt as fire damage. For example, a oathbound who deals 3 damage with his flame of destruction deals 2 points of fire damage and 1 point of unholy damage. At 20th level, the oathbound may choose to have all of the damage from flame of destruction be untyped unholy damage. The unholy energy damage from this ability counts as fire damage for the purposes of feats and class features that interact with dealing fire damage, such as arsonist. This ability replaces channel negative energy."
+        },
+        {
+          "level": 5,
+          "name": "Arsonist",
+          "description": "At 5th level, fire damage the oathbound deals to structures or buildings ignores an amount of hardness equal to the antipaladin’s class level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:antipaladin:tyrant",
+      "package": "pathfinder-class:antipaladin",
+      "name": "Tyrant",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Antipaladin Tyrant",
+      "replaces_features": [
+        "class-skills",
+        "code-of-conduct",
+        "fiendish-boon"
+      ],
+      "removed_features": [
+        "class-skills",
+        "code-of-conduct",
+        "fiendish-boon"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Tyrant",
+          "description": "Source Ultimate Intrigue pg. 64"
+        },
+        {
+          "level": 1,
+          "name": "Tyrant’s Code",
+          "description": "A tyrant must be of lawful evil alignment and loses all class features except proficiencies if he willingly and altruistically commits good acts. This does not mean the tyrant can’t take actions someone else might qualify as good, only that such actions must always be in service of his own dark ambitions. A tyrant’s code requires that he place his own sinister goals above all else, respect rightful authority even as he twists its loopholes to his own ends, impose tyranny, and punish all those who dare dissent. A tyrant can accept underlings of any alignment; he cares not who serves him, only that they are truly loyal to him. He can even work alongside good-aligned individuals, as long as he is secretly manipulating them.\n\nThis alters the antipaladin’s code of conduct and associated abilities, as well as the section on ex-antipaladins."
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A tyrant adds Diplomacy to his list of class skills, instead of Ride.\n\nThis alters the antipaladin’s class skills."
+        },
+        {
+          "level": 5,
+          "name": "Diabolic Boon",
+          "description": "At 5th level, if a tyrant chooses to gain the services of a fiendish servant with his fiendish boon ability, he must choose a fiendish animal or a creature with the lawful and evil subtypes."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:antipaladin:warrior-of-blind-faith",
+      "package": "pathfinder-class:antipaladin",
+      "name": "Warrior of Blind Faith",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/warrior-of-blind-faith",
+      "replaces_features": [
+        "antipaladin-paladins-spells"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "antipaladin/paladin’s spells class feature"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 4,
+          "name": "Delayed Combat Training",
+          "description": "At 4th level and every two levels afterwards, a warrior of blind faith gains a combat talent of their choice. Warriors of blind faith use Charisma as their practitioner modifier. This class feature replaces the antipaladin/paladin’s spells class feature. A warrior of blind faith does not gain any spells or spellcasting abilities, does not have a caster level, and cannot use spell trigger or spell completion magic items."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "key": "gunslinger",
+  "class_key": "pathfinder-class:gunslinger",
+  "class_name": "Gunslinger",
+  "governing_ability": "wisdom",
+  "optional_blocks": ["inquisitor_features"],
+  "external_systems": ["grit", "gunslinger_deeds", "gunslinger_bonus_feats", "firearms_and_misfire"],
+  "resource_modules": [{
+    "key": "gunslinger_training",
+    "title": "Gunslinger Training",
+    "governing_ability": "wisdom",
+    "resources": [
+      {"key": "nimble_applies", "name": "Nimble Applies", "feature_tokens": ["nimble"], "progression": "gunslinger_nimble", "description": "Enable while wearing light or no armor and retaining Dexterity to AC. The displayed rank is the dodge bonus granted by Nimble.", "can_activate": true, "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": false},
+      {"key": "gun_training_applies", "name": "Gun Training Applies", "feature_tokens": ["gun-training"], "progression": "one", "description": "Enable when the current firearm is one of the types selected through Gun Training. Dexterity modifier is then added to firearm damage; record trained firearm types here.", "can_activate": true, "custom_choice_label": "Trained firearm types", "tracks_uses": false, "recover_on_full_rest": false, "end_on_full_rest": false}
+    ]
+  }],
+  "passive_effects": [
+    {"key": "gunslinger-nimble", "feature_tokens": ["nimble"], "targets": ["armor_class", "touch_ac"], "progression": "gunslinger_nimble", "bonus_type": "dodge", "source": "Gunslinger: Nimble", "minimum_level": 2, "requires_resource_active": "nimble_applies"},
+    {"key": "gunslinger-gun-training", "feature_tokens": ["gun-training"], "targets": ["damage"], "progression": "ability_modifier", "ability": "dexterity", "bonus_type": "untyped", "source": "Gunslinger: Gun Training", "minimum_level": 5, "requires_resource_active": "gun_training_applies"}
+  ],
+  "notes": "Grit and deeds use the shared heroic-pool and power systems. Nimble and Gun Training are explicit context toggles so their bonuses never apply to the wrong armor or firearm."
+}

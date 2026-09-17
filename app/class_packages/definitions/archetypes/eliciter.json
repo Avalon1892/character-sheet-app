@@ -1,0 +1,480 @@
+{
+  "version": 1,
+  "class_key": "spheres-class:eliciter",
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:eliciter:bellwether",
+      "package": "spheres-class:eliciter",
+      "name": "Bellwether",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/bellwether",
+      "replaces_features": [
+        "eliciters-normal-class-skills",
+        "emotions",
+        "emotions-at",
+        "enchanter",
+        "link",
+        "magic-talents",
+        "persuasive"
+      ],
+      "removed_features": [
+        "eliciters-normal-class-skills",
+        "emotions-2nd",
+        "enchanter",
+        "link"
+      ],
+      "removed_feature_clauses": [
+        "eliciter’s normal class skills",
+        "enchanter",
+        "alters persuasive",
+        "link"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "Whenever a bellwether would gain a magic talent from his class levels, he may instead choose to gain a skill talent.\n\nThis alters magic talents."
+        },
+        {
+          "level": 1,
+          "name": "Trade Tradition",
+          "description": "If this is this character’s first level in any class, the bellwether may select a trade tradition of their choice, and have an adroit trade rank.\n\nThis replaces the eliciter’s normal class skills."
+        },
+        {
+          "level": 1,
+          "name": "Wordwise",
+          "description": "At 1st level, the bellwether gains the Communication sphere and Mind sphere as bonus talents. His bonus from the persuasive class feature applies to the DC of his Communication sphere effects in addition to his Mind sphere effects, Bluff checks, Diplomacy checks, and Intimidate checks.\n\nThis replaces enchanter and alters persuasive."
+        },
+        {
+          "level": 2,
+          "name": "Utility Expertise",
+          "description": "In place of the emotions gained at 2nd, 8th, 14th, and 20th level, the bellwether may choose to gain a [utility] talent at 2nd level and every even level thereafter. He may not take this option if possessing an archetype that would alter or replace these emotions."
+        },
+        {
+          "level": 15,
+          "name": "Intimate Link",
+          "description": "At 15th level, whenever the bellwether charms or dominates a target (such as through the Enthrall charm from the Mind sphere, the love emotion power, or the domination eliciter class ability), the bellwether learns one of the target’s major motivations. For the purpose of your Communication sphere abilities, the bellwether may treat any creature affected by this ability as knowing one of the bellwether’s major motivations. This replaces link.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nSpheres of Guile by Drop Dead Studios\n\nUsing Spheres of Guile\n\nClasses\n\nAdvisor (DRS)\nAgent\nConduit (DRS)\nCourser\nEnvoy\n\nGenius\nMastermind\nProfessional\n\nSpheres\n\nArtifice\nBluster\nBody Control\nCommunication\nFaction\n\nHerbalism\nInfiltration\nInvestigation\nNavigation\nPerformance\n\nSpellhacking\nStudy\nSubterfuge\nSurvivalism\nVocation\n\nOther Rules\n\nOperative Feats\nOperative Gear\nSkill Rules\nTrade Traditions\nRunning Guile Games\n\nGet Spheres of Guile"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:eliciter:dark-presence",
+      "package": "spheres-class:eliciter",
+      "name": "Dark Presence",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/dark-presence",
+      "replaces_features": [
+        "defensive-empathy",
+        "domination",
+        "enchanter",
+        "fascinate",
+        "inspire-greatness",
+        "inspire-heroics",
+        "inspire-heroism",
+        "liberate",
+        "persuasive",
+        "reverence"
+      ],
+      "removed_features": [
+        "defensive-empathy",
+        "domination",
+        "enchanter",
+        "fascinate",
+        "inspire-greatness",
+        "inspire-heroics",
+        "inspire-heroism",
+        "liberate",
+        "persuasive",
+        "reverence"
+      ],
+      "removed_feature_clauses": [
+        "enchanter",
+        "defensive empathy",
+        "persuasive",
+        "domination",
+        "fascinate",
+        "liberate",
+        "inspire greatness",
+        "inspire heroism",
+        "reverence"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Hypnotism",
+          "description": "The dark presence gains the following hypnotisms:"
+        },
+        {
+          "level": 1,
+          "name": "Inciter",
+          "description": "A dark presence gains the War sphere as a bonus sphere at 1st level and treats his class level as his caster level for this sphere. This stacks normally with caster levels gained from other sources.\n\nThis replaces enchanter."
+        },
+        {
+          "level": 3,
+          "name": "Eyes of Onyx",
+          "description": "At 3rd level, the dark presence gains Soul-Piercing Gaze as a bonus feat. If he already possesses Soul-Piercing Gaze, then he gains Extra Emotion instead. The bonus from his ominous class feature applies to his Soul-Piercing Gaze.\n\nThis replaces defensive empathy."
+        },
+        {
+          "level": 6,
+          "name": "Ominous",
+          "description": "The dark presence gains a +2 bonus to the DCs of his War sphere abilities and dark presence class features, as well as Bluff, Diplomacy and Intimidate checks. These bonuses increase to +3 at 6th level, +4 at 12th level, and +5 at 18th level.\n\nThis replaces persuasive. Class abilities and feats that refer to persuasive refer to ominous instead, and he may gain abilities that have persuasive as a requirement."
+        },
+        {
+          "level": 20,
+          "name": "Darkest Presence",
+          "description": "At 20th level, the dark presence can unleash a torrent of emotion across an area, invading the minds of all save for those the dark presence spares. Whenever the dark presence uses a hypnotism, he may spend four uses of hypnotism instead of one to affect all enemies within the area of effect of a single totem he has created. Enemies do not need to be visible to the dark presence to be affected, nor do they need to be within range of his hypnotism ability.\n\nThis replaces domination.\n\nInciter: A dark presence gains the War sphere as a bonus sphere at 1st level and treats his class level as his caster level for this sphere. This stacks normally with caster levels gained from other classes.\n\nThis replaces enchanter.\n\nOminous: The dark presence gains a +2 bonus to the DCs of his War sphere abilities and dark presence class features, as well as Bluff, Diplomacy and Intimidate checks. These bonuses increase to +3 at 6th level, +4 at 12th level, and +5 at 18th level.\n\nThis replaces persuasive. Class abilities and feats that refer to persuasive refer to ominous instead, and he may gain abilities that have persuasive as a requirement.\n\nEyes of Onyx: At 3rd level, the dark presence gains Soul-Piercing Gaze as a bonus feat. The bonus from his ominous class feature applies to his Soul-Piercing Gaze.\n\nThis replaces defensive empathy.\n\nHypnotism: The dark presence gains the following hypnotisms:\n\nRecklessness: At 1st level, the dark presence places a seed of self-destructive rage into the target’s mind, making them concentrate on their aggression to the detriment of defending their self. The target must make a Will save, or lose their Dexterity bonus to their AC for one round. This replaces fascinate.\n\nConfusion: At 4th level, the dark presence can sow confusion. The chaos of the battlefield leaves the target’s mind disoriented as they try to make sense of the madness of war. They must make a Will save, or be confused for a number of rounds equal to the dark presence’s class level. The target receives a new save at the end of each of their turns. This replaces liberate.\n\nSadism: At 10th level, the dark presence can fill the target with pain. The target takes 1d8 non-lethal damage for every class level the dark presence has. A successful Will save reduces the damage to half. This replaces inspire greatness.\n\nRevulsion: At 16th level, the dark presence exposes their enemy to the gore and blood of war. The target must make a Fortitude save or become nauseated for a number of rounds equal to 1/2 the dark presence’s class level. They receive a new save at the end of each of their turns. When a creature passes a saving throw, they are then sickened for the remainder of the duration. This replaces inspire heroism.\n\nHopelessness: At 19th level, the dark presence can cause a target to be filled with hopelessness. If they fail their Will save, they become unable to attack, assist their allies, or do anything but move and defend themselves. Any emotional effect (such as an enchantment or Mind sphere effect) allows the creature to make a new saving throw, as they are given new purpose, but they receive a -2 penalty for each previous save they failed against the effect. Otherwise, the effect lasts a number of rounds equal to the dark presence’s class level. This replaces reverence.\n\nDarkest Presence: At 20th level, the dark presence can unleash a torrent of emotion across an area, invading the minds of all save for those the dark presence spares. Whenever the dark presence uses a hypnotism, he may spend four uses of hypnotism instead of one to affect all enemies within the area of effect of a single totem he has created. Enemies do not need to be visible to the dark presence to be affected, nor do they need to be within range of their hypnotism ability.\n\nThis replaces domination.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:eliciter:empathic-duelist",
+      "package": "spheres-class:eliciter",
+      "name": "Empathic Duelist",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/empathic-duelist",
+      "replaces_features": [
+        "hypnotism",
+        "magic-talents",
+        "proficiencies"
+      ],
+      "removed_features": [
+        "hypnotism"
+      ],
+      "removed_feature_clauses": [
+        "hypnotism"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Empathic duelists are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis modifies proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "Whenever the empathic duelist would gain a magic talent from his class levels (not the 2 bonus talents gained when first gaining the casting class feature), he may instead gain a combat talent. An empathic duelist uses his casting ability modifier as his practitioner modifier.\n\nThis modifies magic talents."
+        },
+        {
+          "level": 1,
+          "name": "Empathic Link",
+          "description": "At 1st level, as a swift action, the empathic duelist may attempt to create an empathic link with a creature within his charm range for a number of rounds equal to his casting ability modifier. The target creature is allowed a Will save to negate this effect with a DC of 10 + 1/2 class level + casting ability modifier + persuasive bonus. If successful, the empathic duelist can read the passive signs from the target’s mind and gains a +1 insight bonus to attack and damage rolls against that target as well as to AC and saves against attacks and spells, spell-like abilities, sphere effects, and supernatural abilities originating from that target. This bonus increases by +1 at 5th level and every 4 levels thereafter. This link is suppressed, but not ended, if the target creature moves outside of charm range. The empathic duelist may use this ability a number of times per day equal to 3 plus 1/2 his class level. At 4th level, the empathic duelist may use an emotion ability that requires a touch attack on a creature under the effects of his empathic link that is within charm range without making an attack roll. Additionally, the empathic duelist may spend a move action to pinpoint the square of all creatures under the effects of his empathic link within his charm range. At 7th level, the empathic duelist may expend two uses of empathic link as a move action to target a number of creatures equal to 1 + half his class level with his empathic link. This does not provoke an attack of opportunity. Additionally, the empathic duellist is never considered flat-footed against attacks originating from a creature under the effects of his empathic link. At 10th level, the empathic duelist can sense all creatures under the effects of his empathic link as with the blindsight ability. At 13th level, the empathic duelist’s insights into the actions of his foes allow his to easily avoid their attacks. The empathic duelist gains a 20% miss chance against all attacks originating from a creature under the effects of his empathic link. This miss chance increases to 50% at 19th level. At 16th level, the empathic link is no longer suppressed so long as the target creature and the empathic duelist are on the same plane. The empathic duelist always knows the direction and distance to all creatures under the effects of his empathic link and may spend a full-round action to receive their sensory input for 1 round. At 19th level, the empathic link functions even across planar boundaries and knows what plane the target is currently on, though must be on the same plane to sense direction and distance.\n\nThis replaces hypnotism."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:eliciter:fright-wright",
+      "package": "spheres-class:eliciter",
+      "name": "Fright Wright",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/fright-wright",
+      "replaces_features": [
+        "convincing",
+        "defensive-empathy",
+        "fascinate-option-of-hypnotism",
+        "inspire-greatness",
+        "inspire-heroics-aspect-of-hypnotism",
+        "liberate",
+        "link"
+      ],
+      "removed_features": [
+        "convincing",
+        "inspire-greatness",
+        "liberate",
+        "link"
+      ],
+      "removed_feature_clauses": [
+        "liberate class feature",
+        "convincing class feature",
+        "inspire greatness class feature",
+        "link class feature"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Debilitating Fear",
+          "description": "The fright wright may use his hypnotism to cause a target to become nearly paralyzed to the point of inactivity, instilling the staggered condition on his target for a number of rounds equal to his fright wright level. This is treated as a fear effect.\n\nThis alters the fascinate option of the hypnotism class feature."
+        },
+        {
+          "level": 3,
+          "name": "Phobic Bulwark",
+          "description": "At 3rd level, the fright wright is immune to fear (magical or otherwise). Each ally within 10 feet of his gains a morale bonus on saving throws against fear effects equal to his persuasive bonus. This ability only functions while the fright wright is conscious, not if he is unconscious or dead.\n\nThis alters the defensive empathy class feature."
+        },
+        {
+          "level": 4,
+          "name": "Fear’s Herald",
+          "description": "At 4th level, the fright wright’s mastery of panic and terror can begin to erode away even the fiercest resolve. All enemies within 10 feet of the fright wright take a -4 penalty on saving throws against fear effects. When using a magical effect that causes fear, the fright wright can overcome a creature’s immune to fear if he succeeds on a magic skill check against a DC of 11 + the creature’s Hit Dice. A creature maintains their immunity to fear effects if they have 4 more Hit Dice than the fright wright has class levels.\n\nThis replaces the liberate class feature."
+        },
+        {
+          "level": 9,
+          "name": "Antagonizing",
+          "description": "At 9th level, the fright wright may take 10 with any Intimidate check if he has ranks in that skill, even if circumstances would normally prohibit this action. In addition to his normal bonus to the Intimidate check, he may add 1d6 to the result of the roll. He may always choose to roll normally instead of taking 10. In addition, once per day he may take 20 on an Intimidate check without taking additional time, again adding 1d6 to the roll as when taking 10. He may use this ability twice per day at 13th level and three times per day at 17th level.\n\nThis replaces the convincing class feature."
+        },
+        {
+          "level": 10,
+          "name": "Fear’s Master",
+          "description": "At 10th level, the fright wright’s ability to instill fear even in those who are fearless is improved. When using the fear’s herald class feature, he may add his persuasive bonus or casting ability modifier (whichever is higher) to the magic skill check.\n\nThis replaces the inspire greatness class feature."
+        },
+        {
+          "level": 15,
+          "name": "Ochlophobia",
+          "description": "At 15th level, whenever the fright wright makes a target frightened or panicked, he may choose to use a standard action to see and hear through the target’s eyes and ears instead of his own, even if they leave his line of sight and as long as they remain on the same plane or are not protected from mental coercion (such as through the Fate sphere’s Hallow word ability or the protection from evil spell). If the target is aware of another creature, the fright wright may cast any Mind sphere talent or eliciter emotion that causes fear effects through his initial target as long as those talents or emotions do not rely on touching a target.\n\nThe ability to be aware of a target’s surroundings lasts as long as the frightened or panicked effect lasts on the target, and the fright wright is no longer aware of his own surroundings while using this ability. He may cease using this ability as a free action.\n\nThis replaces the link class feature."
+        },
+        {
+          "level": 16,
+          "name": "Fear Incarnate",
+          "description": "At 16th level, the fright wright can cause fear in nearly anyone. Even those who have an immunity to fear from racial Hit Dice or class levels that are 4 or more less than his are susceptible to his fear’s herald class feature.\n\nThis alters the inspire heroics aspect of the hypnotism class feature.\n\nDebilitating Fear: The fright wright may use her hypnotism to cause a target to become nearly paralyzed to the point of inactivity, instilling the staggered condition on her target for a number of rounds equal to her eliciter level. This is treated as a fear effect.\n\nThis modifies the fascinate option of the hypnotism class feature.\n\nPhobic Bulwark: At 3rd level, the fright wright is immune to fear (magical or otherwise). Each ally within 10 ft. of her gains a morale bonus on saving throws against fear effects equal to her Persuasive bonus. This ability only functions while the fright wright is conscious, not if she is unconscious or dead.\n\nThis modifies the defensive empathy class feature.\n\nFear’s Herald: At 4th level, the fright wright’s mastery of panic and terror can begin to erode away even the fiercest resolve. All enemies within 10 ft. of the fright wright take a -4 penalty on saving throws against fear effects. Creatures normally immune to fear lose that immunity while within 10 ft. of the fright wright. A creature maintains their immunity to fear effects if they have 4 more Hit Dice than the fright wright has class levels.\n\nThis replaces the liberate class feature.\n\nAntagonizing: At 9th level, the fright wright may take 10 with any Intimidate check if she has ranks in that skill, even if circumstances would normally prohibit this action. In addition to her normal bonus to the Intimidate check, she may add 1d6 to the result of the roll. She may always choose to roll normally instead of taking 10. In addition, once per day she may take 20 on an Intimidate check without taking additional time, again adding 1d6 to the roll as when taking 10. She may use this ability twice per day at 13th level and three times per day at 17th level.\n\nThis replaces the convincing class feature.\n\nFear’s Master: At 10th level, the fright wright’s ability to instill fear even in those who are fearless is improved. When using the fear’s herald class feature, you may add your persuasive bonus or casting ability modifier (whichever is higher) to the magic skill check.\n\nThis replaces the inspire greatness class feature.\n\nOchlophobia: At 15th level, whenever the fright wright makes a target frightened or panicked, she may choose to use a standard action to see and hear through the target’s eyes and ears instead of her own, even if they leave her line of sight and as long as they remain on the same plane or are not protected from mental coercion (such as through the Fate sphere’s hallow word ability or the protection from evil spell). If the target is aware of another creature, the fright wright may cast any Mind sphere talent or eliciter emotion that causes fear effects through their initial target as long as those talents or emotions do not rely on touching a target.\n\nThe ability to be aware of a target’s surroundings lasts as long as the frightened or panicked effect lasts on the target, and the fright wright is no longer aware of her own surroundings while using this ability. She may cease using this ability as a free action.\n\nThis replaces the link class feature.\n\nFear Incarnate: At 16th level, the fright wright can cause fear in nearly anyone. Even those who have an immunity to fear from racial Hit Dice or class levels that are 4 or more greater than yours are susceptible to your fear’s herald class feature.\n\nThis modifies the inspire heroics aspect of the hypnotism class feature.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:eliciter:hypnotist",
+      "package": "spheres-class:eliciter",
+      "name": "Hypnotist",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/hypnotist",
+      "replaces_features": [
+        "emotion"
+      ],
+      "removed_features": [
+        "emotion"
+      ],
+      "removed_feature_clauses": [
+        "emotion class feature"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 2,
+          "name": "Inspiration",
+          "description": "At 2nd level, a hypnotist’s mental powers of deduction and observation not only allow him to manipulate others, but also to allow himself flashes of insight into his own dealings. A hypnotist gains an inspiration pool as the investigator class feature, equal to 1/2 his hypnotist level + his casting ability modifier (minimum 1). However, rather than being able to augment Knowledge, Linguistics, and Spellcraft checks without spending inspiration, the hypnotist may augment Diplomacy, Bluff, Intimidate, and Sense Motive checks without spending inspiration.\n\nThis replaces the emotion class feature."
+        },
+        {
+          "level": 1,
+          "name": "Investigator Talents",
+          "description": "At 5th, 11th, and 17th level, a hypnotist gains an investigator talent. He cannot gain a talent that only augments abilities he does not possess (for example, studied strike)."
+        },
+        {
+          "level": 1,
+          "name": "New Feat",
+          "description": "Rigorous Defense: Prerequisites: Life sphere, inspiration class feature."
+        },
+        {
+          "level": 1,
+          "name": "Benefit",
+          "description": "Whenever you use inspiration, you may invigorate yourself as part of the same action."
+        },
+        {
+          "level": 1,
+          "name": "Spheres of Power",
+          "description": "Expanded Options"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:eliciter:id",
+      "package": "spheres-class:eliciter",
+      "name": "Id",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/id",
+      "replaces_features": [
+        "all-of-hypnotism-s-options",
+        "hypnotism",
+        "insanity",
+        "inspire-greatness",
+        "inspire-heroics",
+        "liberate",
+        "reverence",
+        "terrorize"
+      ],
+      "removed_features": [
+        "all-of-hypnotism-s-options",
+        "hypnotism",
+        "insanity",
+        "inspire-greatness",
+        "inspire-heroics",
+        "liberate",
+        "reverence",
+        "terrorize"
+      ],
+      "removed_feature_clauses": [
+        "hypnotism",
+        "all of hypnotism's options",
+        "liberate",
+        "terrorize",
+        "inspire greatness",
+        "insanity",
+        "inspire heroics",
+        "reverence"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 2,
+          "name": "Frequent Emotions",
+          "description": "An id gains an emotion at 1st, 4th, 7th, 10th, 13th, 16th, and 19th levels, in addition to those gained at 2nd level and every 3 levels thereafter. This does not allow the id to gain access to a lesser power before 5th level, a greater power before 8th level, or a master power before 11th level.\n\nThis replaces hypnotism and all of hypnotism's options.\n\nSpheres of Power: Expanded Options\n\n$4.99\n\nFrequent Emotions: An Id gains an emotion at 1st, 4th, 7th, 10th, 13th, 16th, and 19th levels, in addition to those gained at 2nd level and every 3 levels thereafter. This does not allow the Id to gain access to a lesser power before 5th level, a greater power before 8th level, or a master power before 11th level.\n\nThis replaces hypnotism, liberate, terrorize, inspire greatness, insanity, inspire heroics, and reverence.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:eliciter:proclaimer-cs",
+      "package": "spheres-class:eliciter",
+      "name": "Proclaimer [CS]",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/proclaimer",
+      "replaces_features": [
+        "domination",
+        "eliciters-normal-class-skills-but-does-not-make-proclaimer-incompatible-with-other-archetypes-that-grant-trade-tradition",
+        "hypnotism",
+        "magic-talents"
+      ],
+      "removed_features": [
+        "domination",
+        "eliciters-normal-class-skills-but-does-not-make-proclaimer-incompatible-with-other-archetypes-that-grant-a-trade-tradition",
+        "hypnotism"
+      ],
+      "removed_feature_clauses": [
+        "hypnotism",
+        "eliciter’s normal class skills but does not make the proclaimer incompatible with other archetypes that grant a trade tradition",
+        "domination"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "A proclaimer gains combat, magic, or skill talents (some of which are required to be utility talents) using the journeyman talent progression (or the virtuoso talent progression, if the proclaimer replaces the persuasive class feature). A proclaimer’s casting ability modifier determines his operative and practitioner modifiers. This alters magic talents.\n\nThis archetype may be combined with other archetypes that replace magic talents; he cannot gain a combat talent in place of a magic talent the other archetype loses."
+        },
+        {
+          "level": 1,
+          "name": "Cosmic Destiny",
+          "description": "At 1st level, the proclaimer selects a cosmic destiny from which he will draw his power. Each destiny grants abilities at 1st, 4th, 7th, 10th, 13th, 16th, and 19th levels. If a cosmic destiny ability allows for a saving throw, the DC is 10 + 1/2 the proclaimer’s class level + his casting ability score modifier. The bonus to DC from the eliciter’s persuasive class feature is added to this DC.\n\nAt 1st level, the proclaimer gains a pool of resolve equal to 1/2 his proclaimer level (minimum 1) + his casting ability modifier. These resolve points are used to fuel his cosmic destiny abilities.\n\nThis replaces hypnotism."
+        },
+        {
+          "level": 1,
+          "name": "Trade Tradition",
+          "description": "If this is the character’s first level, they choose a trade tradition. Their trade rank is adroit. If this is not the character’s first level, they instead choose one trade talent from the Vocation sphere as a bonus talent.\n\nThis replaces the eliciter’s normal class skills but does not make the proclaimer incompatible with other archetypes that grant a trade tradition."
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "A proclaimer is only proficient with all simple weapons and light armor. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice."
+        },
+        {
+          "level": 20,
+          "name": "Enlightenment",
+          "description": "At 20th level, the proclaimer achieves enlightenment, becoming a living incarnation of his connection to the Logi. He no longer ages, nor does he die of old age. Once per day as a move action, he can enter a state of total communion with a higher force that lasts for 1 minute. During this time, he gains a +4 insight bonus on attack rolls, magic skill checks, saving throws, and skill checks. During this state, he gains 20 temporary resolve points that he can use only on cosmic destiny powers. Any unspent temporary resolve points disappear at the end of this minute. This replaces domination."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:eliciter:sympath",
+      "package": "spheres-class:eliciter",
+      "name": "Sympath",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/sympath",
+      "replaces_features": [
+        "convincing",
+        "hypnotism"
+      ],
+      "removed_features": [
+        "convincing",
+        "hypnotism"
+      ],
+      "removed_feature_clauses": [
+        "hypnotism",
+        "convincing"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Emotion Granted Form",
+          "description": "At 1st level, a sympath gains the spiritualist’s phantom and etheric tether class features. The sympath treats his eliciter level as his spiritualist level when determining his phantom’s statistics and abilities. If the sympath has class levels which grant a phantom, his sympath levels stack for the purpose of determining his phantom’s statistics and abilities. The sympath does not gain any other spiritualist abilities related to phantoms.\n\nUnlike a spiritualist’s normal connection with their phantom, a sympath’s phantom is a reflection of their emotions and mental state; should the sympath die, the phantom ceases existing until the sympath is brought back to life.\n\nAt 3rd level, if the sympath possesses the defensive empathy class feature, the sympath’s phantoms also gain its benefits.\n\nThis ability replaces hypnotism."
+        },
+        {
+          "level": 4,
+          "name": "Shifting Moods",
+          "description": "At 4th level, after resting and regaining spell points, the sympath may change his phantom’s emotional focus.\n\nIf the sympath possesses the emotion class feature, the sympath’s phantom may use any of his emotion abilities, using the sympath’s emotion DC and expending any uses of that emotion as though the sympath used the ability himself.\n\nAt 10th level, after resting and regaining spell points, the sympath can also choose to change any of the emotions he has chosen with the emotion class feature. The sympath must still have access to each level of emotion (minor, lesser, greater, master) when choosing emotion powers this way. Emotions gained through feats (such as the Extra Emotion feat) or from non-sympath class levels cannot be reselected with this ability."
+        },
+        {
+          "level": 7,
+          "name": "Powerful Conduit",
+          "description": "At 7th level, the sympath’s phantom gains a bonus to its phantom ability DCs equal to the sympath’s persuasive bonus.\n\nAt 13th level, the sympath’s phantom gains a bonus on attack and damage rolls equal to the sympath’s persuasive bonus against creatures under the effects of a mind-affecting effect originating from the sympath or the sympath’s phantom."
+        },
+        {
+          "level": 9,
+          "name": "Extension Of Myself",
+          "description": "The sympath’s phantom begins to truly become a mirror of the sympath, its appearance beginning to mirror the sympath’s own as the forces which animate the phantom attune to the sympath. This grants the sympath a number of abilities he may use to channel magic through his phantom.\n\nAt 9th level, when the sympath uses a spell, spell-like ability, magic sphere ability, or eliciter ability, he may use his phantom as the point of origin for that effect. If the effect requires a touch attack, the sympath’s phantom may use the sympath’s bonuses to deliver that attack.\n\nAt 16th level, when the sympath uses a magic sphere ability, he may spend a free action to allow his phantom to gain control of that sphere ability. Treat this as the Shared Magic feat, except the sympath may only grant control of a magic sphere effect to his phantom and his phantom uses the sympath’s concentration and magic skill bonus to maintain the spell rather than its own.\n\nAt 19th level, the sympath’s phantom may use the sympath’s magic talents to create magic sphere effects. The sympath’s phantom uses all of the sympath’s statistics and other abilities when creating a magic sphere effect this way, including caster level, concentration bonus, magic skill bonus, and feats. The sympath’s phantom spends the sympath’s spell points if a magic sphere effect would require spell points to be used for any purpose, including maintaining without concentration.\n\nThe sympath’s phantom cannot use any casting statistics, spell points, or other abilities it independently possesses when using the sympath’s talents.\n\nThis ability replaces convincing.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

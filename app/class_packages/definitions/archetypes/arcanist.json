@@ -1,0 +1,1033 @@
+{
+  "version": 1,
+  "class_key": "pathfinder-class:arcanist",
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:arcanist:aeromancer",
+      "package": "pathfinder-class:arcanist",
+      "name": "Aeromancer",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist Aeromancer",
+      "replaces_features": [
+        "arcane-exploit"
+      ],
+      "removed_features": [
+        "arcane-exploit"
+      ],
+      "removed_feature_clauses": [
+        "arcane exploit gained at 5th level",
+        "arcane exploit gained at 11th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Aeromancer",
+          "description": "Source Blood of the Ancients pg. 24"
+        },
+        {
+          "level": 5,
+          "name": "Air Mastery",
+          "description": "Aeromancers specialize in magic that manipulates the wind and sky. Whenever an aeromancer expends a point from her arcane reservoir to increase the caster level of a spell with the air, cold, electricity, or sonic descriptor, she increases that bonus by an additional 1. At 5th level, and every 5 levels thereafter, the amount by which she increases the caster level of such spells further increases by an additional 1 (to a maximum additional caster level increase from this ability of 5 at 20th level)."
+        },
+        {
+          "level": 5,
+          "name": "Wind’s Embrace",
+          "description": "At 5th level, an aeromancer can expend 2 points from her arcane reservoir to call upon the winds to gently carry her through the air while protecting her from harm. She is affected as though by the spell air walk and is surrounded by protective winds that function similarly to a wind wall spell, except the effect surrounds only the aeromancer and moves with her wherever she goes. Both of these effects last for 1 minute.\n\nThis replaces the arcane exploit gained at 5th level."
+        },
+        {
+          "level": 11,
+          "name": "Rebuking Gale",
+          "description": "At 11th level, by expending 3 points from her arcane reservoir, an aeromancer can release a powerful blast of wind to push back her foes. This takes the form of either a 20-foot-radius burst centered on the aeromancer or a 40-foot cone originating from the aeromancer’s space. She can choose which form the wind takes each time she uses the ability. The affected area is filled with hurricane-force winds (75 mph). This makes normal ranged attacks passing through this area impossible, imposes a –8 penalty on ranged attacks from siege weapons that pass through the area, and imposes a –12 penalty on Fly checks attempted within the area. Additionally, Large creatures in the area are in danger of being checked, and Medium or smaller creatures in the area are in danger of being blown away. The winds created by this ability last for 1 round.\n\nThis replaces the arcane exploit gained at 11th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:arcanist:arcane-tinkerer",
+      "package": "pathfinder-class:arcanist",
+      "name": "Arcane Tinkerer",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist Arcane Tinkerer",
+      "replaces_features": [
+        "arcanist-exploit"
+      ],
+      "removed_features": [
+        "arcanist-exploit"
+      ],
+      "removed_feature_clauses": [
+        "arcanist exploit gained at 1st level",
+        "arcanist exploits gained at 5th and 11th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Arcane Tinkerer",
+          "description": "Source Construct Handbook pg. 10"
+        },
+        {
+          "level": 7,
+          "name": "Manipulate Construct",
+          "description": "An arcane tinkerer can turn the animating magic of a construct against itself. As a standard action, she can expend 1 point from her arcane reservoir to impose a –1 penalty on a single construct’s attack and damage rolls for 1 round. The target can attempt a Will save to negate this effect (DC = 10 + half the arcane tinkerer’s level + the arcane tinkerer’s Charisma modifier). At 7th level, instead of gaining an arcanist exploit, an arcane tinkerer can improve her manipulate construct ability to instead affect a construct with slow for 1 round. At 13th level, if the arcane tinkerer has previously improved this ability, instead of gaining an arcanist exploit, she can improve this ability again to instead cause a construct to become helpless for 1 round.\n\nThis replaces the arcanist exploit gained at 1st level."
+        },
+        {
+          "level": 5,
+          "name": "Break Magic Immunity",
+          "description": "At 5th level, an arcane tinkerer can overcome a construct’s immunity to magic. When targeting a construct with a spell, the construct is instead treated as if it has spell resistance equal to 15 + the construct’s CR. At 11th level, a construct is instead treated as if it has spell resistance equal to 11 + the construct’s CR.\n\nThis replaces the arcanist exploits gained at 5th and 11th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:arcanist:blade-adept",
+      "package": "pathfinder-class:arcanist",
+      "name": "Blade Adept",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist Blade Adept",
+      "replaces_features": [
+        "arcanist-exploits"
+      ],
+      "removed_features": [
+        "arcanist-exploits"
+      ],
+      "removed_feature_clauses": [
+        "arcanist exploits gained at 1st and 9th levels",
+        "arcanist exploit gained at 3rd level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blade Adept",
+          "description": "Source Advanced Class Guide pg. 76"
+        },
+        {
+          "level": 1,
+          "name": "Sword Bond",
+          "description": "At 1st level, a blade adept develops a bond with a blade and infuses it with arcane power. This ability works like a wizard’s arcane bond ability save that the blade adept must bond to a one-handed piercing or slashing melee weapon. Additionally, the blade adept gains proficiency with the weapon if it is a simple or martial weapon. This ability replaces the arcanist exploits gained at 1st and 9th levels."
+        },
+        {
+          "level": 3,
+          "name": "Sentient Sword",
+          "description": "At 3rd level, the blade adept’s bonded sword becomes a powerful, sentient black blade. The blade advances as a black blade using the blade adept’s class level in place of the magus’s class level and points from her arcane reservoir in place of the magus’s arcane pool. A blade adept with this class feature cannot have a familiar of any kind, even from another class. This ability replaces the arcanist exploit gained at 3rd level."
+        },
+        {
+          "level": 1,
+          "name": "Adept Exploits",
+          "description": "A blade adept can select from the following additional exploits."
+        },
+        {
+          "level": 1,
+          "name": "Eldritch Blade",
+          "description": "A blade adept with this exploit uses her caster level instead of her class level for the purpose of advancing her bonded sword’s powers."
+        },
+        {
+          "level": 1,
+          "name": "Magus Arcana",
+          "description": "A blade adept can select any of the following magus arcana, using her arcane reservoir in place of the magus’s arcane pool: arcane accuracy, close range, critical strike, dispelling strike, and hasted assault. The blade adept treats her arcanist level as her magus level when determining the effects of magus arcana and when specific arcana are available. A blade adept can take this exploit multiple times. Each time it is taken, it applies to a different magus arcana."
+        },
+        {
+          "level": 1,
+          "name": "Spell Strike",
+          "description": "The blade adept can deliver touch spells with her bonded weapon. This works as the magus ability of the same name."
+        },
+        {
+          "level": 1,
+          "name": "Student of the Blade",
+          "description": "A blade adept can choose from any of the following bonus feats: Arcane Strike, Weapon Finesse, and Weapon Focus (in the weapon she is bonded to). This exploit can be taken multiple times. Each time it is taken, it applies to a different feat."
+        },
+        {
+          "level": 1,
+          "name": "Weapon Specialization",
+          "description": "The arcanist gains Weapon Specialization with her chosen weapon as a bonus feat. The blade adept does not need to meet the prerequisites for this feat, but must have the Weapon Focus feat with her chosen weapon to select this exploit. The arcanist must be at least 5th level to select this exploit."
+        }
+      ],
+      "detected_systems": [
+        "magus_arcana"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:arcanist:blood-arcanist",
+      "package": "pathfinder-class:arcanist",
+      "name": "Blood Arcanist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist Blood Arcanist",
+      "replaces_features": [
+        "arcanist-exploits",
+        "magical-supremacy"
+      ],
+      "removed_features": [
+        "arcanist-exploits",
+        "magical-supremacy"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blood Arcanist",
+          "description": "Source Advanced Class Guide pg. 77"
+        },
+        {
+          "level": 1,
+          "name": "Bloodline",
+          "description": "A blood arcanist selects one bloodline from those available through the sorcerer bloodline class feature. The blood arcanist gains the bloodline arcana and bloodline powers of that bloodline, treating her arcanist level as her sorcerer level. The blood arcanist does not gain the class skill, bonus feats, or bonus spells from her bloodline."
+        }
+      ],
+      "detected_systems": [
+        "bloodline"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:arcanist:brown-fur-transmuter",
+      "package": "pathfinder-class:arcanist",
+      "name": "Brown-Fur Transmuter",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist Brown-Fur Transmuter",
+      "replaces_features": [
+        "arcanist-exploits",
+        "magical-supremacy"
+      ],
+      "removed_features": [
+        "arcanist-exploits",
+        "magical-supremacy"
+      ],
+      "removed_feature_clauses": [
+        "arcanist exploit gained at 3rd level",
+        "arcanist exploit gained at 9th level",
+        "magical supremacy"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Brown-Fur Transmuter",
+          "description": "Source Advanced Class Guide pg. 77"
+        },
+        {
+          "level": 3,
+          "name": "Powerful Change",
+          "description": "At 3rd level, the brown-fur transmuter learns to harness the power of her magic to empower her transmutations. Whenever the brown-fur transmuter casts a transmutation spell using one of her arcanist spell slots, she can expend 1 point from her arcane reservoir as a free action to bolster the spell. If the spell grants a bonus to an ability score, the bonus then increases by 2. If it grants a bonus to more than one ability score, only one of the ability scores gains this bonus. The brownfur transmuter cannot expend more than 1 point from her arcane reservoir in this way. This ability replaces the arcanist exploit gained at 3rd level."
+        },
+        {
+          "level": 9,
+          "name": "Share Transmutation",
+          "description": "At 9th level, the brown-fur transmuter can target others with her transmutation spells. A brown-fur transmuter can expend 1 point from her arcane reservoir to change any transmutation spell with a range of personal to a range of touch. Such a spell automatically fails on unwilling creatures. This ability replaces the arcanist exploit gained at 9th level."
+        },
+        {
+          "level": 20,
+          "name": "Transmutation Supremacy",
+          "description": "At 20th level, the brown-fur transmuter learns to fully master the power of transmutation. Whenever she casts a transmutation spell, it is treated as it were affected by the Extend Spell feat without altering the casting time or slot used. (She cannot then alter its duration again with the Extend Spell feat). Whenever she uses her powerful change ability, the bonus increases by 4 instead of 2. Her share transmutation ability can now target a willing creature within 30 feet. This ability replaces magical supremacy."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:arcanist:eldritch-font",
+      "package": "pathfinder-class:arcanist",
+      "name": "Eldritch Font",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist Eldritch Font",
+      "replaces_features": [
+        "arcanist-exploits",
+        "magical-supremacy"
+      ],
+      "removed_features": [
+        "arcanist-exploits",
+        "magical-supremacy"
+      ],
+      "removed_feature_clauses": [
+        "arcanist exploit gained at 3rd level",
+        "arcanist exploit gained at 7th level",
+        "arcanist exploit gained at 13th level",
+        "magical supremacy"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Eldritch Font",
+          "description": "Source Advanced Class Guide pg. 77"
+        },
+        {
+          "level": 1,
+          "name": "Font of Power",
+          "description": "An eldritch font gains one additional spell slot for each level of arcanist spell she can cast. However, the number of spells of each level that she can prepare reduces by 1. If this reduces her spells prepared for a level to 0, she still gains spell slots of that level, which can be consumed using the consume spells class feature to fuel her arcane reservoir or cast spells using metamagic feats."
+        },
+        {
+          "level": 3,
+          "name": "Eldritch Surge",
+          "description": "At 3rd level, an eldritch font can, as a swift action, pour more power into her spells and abilities. She can add 2 to the caster level and DC of a spell, or increase her effective arcanist level by 2 when using an arcanist exploit. She becomes fatigued upon using this ability. If she is already fatigued, she becomes exhausted. If she’s already exhausted, or something would prevent her from becoming fatigued or exhausted, she cannot use this ability. This ability does not stack with spending points from her arcane reservoir to increase the spell’s caster level or DC (as the arcane reservoir class feature). Only rest can remove fatigue or exhaustion caused by an eldritch surge—spells and abilities have no effect. This ability replaces the arcanist exploit gained at 3rd level."
+        },
+        {
+          "level": 7,
+          "name": "Improved Surge",
+          "description": "At 7th level, an eldritch font can use her eldritch surge ability to reroll an attack roll associated with a spell or arcanist exploit, or to reroll all of the damage dice associated with a spell or arcanist exploit. In the case of attack rolls, this ability must be used after the die is rolled but before the results are revealed. The eldritch font must take the results of the reroll, even if they are lower. This ability replaces the arcanist exploit gained at 7th level."
+        },
+        {
+          "level": 13,
+          "name": "Greater Surge",
+          "description": "At 13th level, an eldritch font can use her eldritch surge ability to force a creature to reroll a saving throw against one spell or arcanist exploit and take the lower value. The eldritch font must declare the use of this ability before the result of that creature’s saving throw is revealed. If the spell or arcanist exploit affects more than one target, only one target is affected by this ability. This ability replaces the arcanist exploit gained at 13th level."
+        },
+        {
+          "level": 20,
+          "name": "Bottomless Well",
+          "description": "At 20th level, an eldritch font can spend 1 hour studying her spellbook to refuel herself. Doing so allows her to prepare new spells and regain points of arcane reservoir equal to 1/2 her level. She can use this ability multiple times per day, however she still only regains spell slots once per day. This ability replaces magical supremacy."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:arcanist:elemental-master",
+      "package": "pathfinder-class:arcanist",
+      "name": "Elemental Master",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist Elemental Master",
+      "replaces_features": [
+        "arcanist-exploits"
+      ],
+      "removed_features": [
+        "arcanist-exploits"
+      ],
+      "removed_feature_clauses": [
+        "arcanist exploit gained at 1st level",
+        "arcanist exploit gained at 3rd level",
+        "arcanist exploit gained at 9th level",
+        "arcanist exploit gained at 11th level",
+        "arcanist exploit gained at 15th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Elemental Master",
+          "description": "Source Advanced Class Guide pg. 78"
+        },
+        {
+          "level": 1,
+          "name": "Elemental Focus",
+          "description": "At 1st level, the elemental master must select one element: air, earth, fire, or water. The arcanist can prepare one additional spell per day of each level she can cast, but it must have the elemental descriptor of her chosen element. In addition, any spell she prepares from the opposite elemental school (air opposes earth, fire opposes water) takes up two of her prepared spell slots. This ability replaces the arcanist exploit gained at 1st level."
+        },
+        {
+          "level": 3,
+          "name": "Elemental Attack",
+          "description": "At 3rd level, the elemental master gains an arcanist exploit tied to her element. If she selected air, she gains the lightning lance arcanist exploit. If she selected earth, she gains the acid jet arcanist exploit. If she selected fire, she gains the flame arc arcanist exploit. If she selected water, she gains the ice missile arcanist exploit. This ability replaces the arcanist exploit gained at 3rd level."
+        },
+        {
+          "level": 9,
+          "name": "Powerful Exploit",
+          "description": "At 9th level, an elemental master increases the damage done by her elemental attack to 1d8 points of energy damage plus 1d8 points of damage per two arcanist levels she possesses. The type of damage is determined by the elemental attack. In addition, the range for the elemental attack ability increases to 60 feet (in the case of flame arc, a 60-foot line). This ability replaces the arcanist exploit gained at 9th level."
+        },
+        {
+          "level": 11,
+          "name": "Greater Elemental Attack",
+          "description": "At 11th level, the elemental master gains a greater arcanist exploit tied to her element. If she selected air, she gains the dancing electricity arcanist exploit. If she selected earth, she gains the lingering acid arcanist exploit. If she selected fire, she gains the burning flame arcanist exploit. If she selected water, she gains the icy tomb arcanist exploit. This ability replaces the arcanist exploit gained at 11th level."
+        },
+        {
+          "level": 15,
+          "name": "Elemental Movement",
+          "description": "At 15th level, an elemental master gains an elemental movement. This enhancement is based on her chosen element type. Air grants a fly speed of 90 feet (average maneuverability), earth grants a burrow speed of 30 feet, fire grants a increase of 30 feet to base land speed, and water grants a swim speed of 60 feet. This ability replaces the arcanist exploit gained at 15th level."
+        }
+      ],
+      "detected_systems": [
+        "elemental_focus"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:arcanist:harrowed-society-student",
+      "package": "pathfinder-class:arcanist",
+      "name": "Harrowed Society Student",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist Harrowed Society Student",
+      "replaces_features": [
+        "arcanist-exploits",
+        "consume-spells"
+      ],
+      "removed_features": [
+        "arcanist-exploits",
+        "consume-spells"
+      ],
+      "removed_feature_clauses": [
+        "1st-level arcanist exploit",
+        "consume spells"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Harrowed Society Student",
+          "description": "Source Occult Origins pg. 22"
+        },
+        {
+          "level": 1,
+          "name": "Psychic Reader",
+          "description": "A Harrowed Society student gains Psychic Sensitivity as a bonus feat and adds Diplomacy, Perception, and Sense Motive to her list of class skills. This ability replaces the 1st-level arcanist exploit."
+        },
+        {
+          "level": 8,
+          "name": "Harrow Reservoir",
+          "description": "Once per day, a Harrowed Society student can perform a harrow reading as a 5-minute ritual. She decides which suit most closely aligns with her task at hand and deals a nine-card spread. Each time that suit appears in her spread, she adds 1 point to her arcane reservoir, to a maximum of 1 point per 2 arcanist levels. Points gained in excess of her reservoir’s maximum are lost. The Harrowed Society student can perform this reading one additional time per day at 8th level and at 16th level. This ability replaces consume spells."
+        },
+        {
+          "level": 5,
+          "name": "Divine the Mysteries",
+          "description": "At 5th level and every 2 levels thereafter, a Harrowed Society student can select a divination spell from the spell list of any class, including classes that cast divine or psychic spells, and add it to her list of spells known. This spell must be at least 1 level lower than the highest-level spell she can cast. She casts these spells as arcane spells, using her normal spell slots, but must use a harrow deck as an additional focus component. If such a spell is normally a psychic spell with an emotion or thought component, she must also add that component."
+        },
+        {
+          "level": 9,
+          "name": "Trump Card",
+          "description": "At 9th level, a Harrowed Society student can expend 1 point from her arcane reservoir and draw a card from her harrow deck as a standard action to learn her own fate or that of an ally within 30 feet. The target’s fate depends on the suit of the card drawn from the deck."
+        },
+        {
+          "level": 1,
+          "name": "Books",
+          "description": "The target gains a +2 insight bonus on her next caster level check."
+        },
+        {
+          "level": 1,
+          "name": "Crowns",
+          "description": "The target gains a +2 insight bonus on her next saving throw."
+        },
+        {
+          "level": 1,
+          "name": "Hammers",
+          "description": "The target gains a +4 insight bonus on the damage roll of her next successful melee attack."
+        },
+        {
+          "level": 1,
+          "name": "Keys",
+          "description": "The target gains a +4 insight bonus on her next initiative check."
+        },
+        {
+          "level": 1,
+          "name": "Shields",
+          "description": "The next time the target receives magical healing, she regains an additional number of hit points equal to the Harrowed Society student’s arcanist class level."
+        },
+        {
+          "level": 1,
+          "name": "Stars",
+          "description": "The target gains a +4 insight bonus on her next skill check."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:arcanist:interminate",
+      "package": "pathfinder-class:arcanist",
+      "name": "Interminate",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/interminate",
+      "replaces_features": [
+        "arcanist-exploit-at",
+        "arcanist-exploit-at-level",
+        "levels",
+        "moldable-talents"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "arcanist exploit gained at 1st level",
+        "arcanist exploit gained at 3rd",
+        "9th",
+        "and 15th levels",
+        "arcanist exploit gained at 5th level"
+      ],
+      "compatibility": {
+        "requires": [
+          "spheres-archetype:pathfinder-class:arcanist:sphere-arcanist"
+        ],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Incomplete Knowledge",
+          "description": "An interminate does not gain a moldable talent at 1st, 5th, 9th, 13th, or 17th levels.\n\nThis alters moldable talents."
+        },
+        {
+          "level": 1,
+          "name": "Plundered Lore",
+          "description": "An interminate gains the Spellbook Mastery and Spellcrafting feats as bonus feats at 1st level. She may add spells to her repertoire even if she does not meet the prerequisites for them, casting those spells as if out of a spellbook. However, for the purpose of casting spells out of a spellbook, the interminate is not considered to possess any talents she does not possess. In a game where techniques are used, an interminate may gain Technique Crafting as a bonus feat in place of Spellcrafting and Spellbook Mastery. She may add techniques to her repertoire even if she does not meet the prerequisites for them, performing these techniques as if out of a technique script. However, for the purpose of performing techniques out of a technique script, the interminate is not considered to possess any talents she does not possess.\n\nThis replaces the arcanist exploit gained at 1st level."
+        },
+        {
+          "level": 3,
+          "name": "Eidetic Arcana",
+          "description": "At 3rd level, an interminate can quickly understand abilities that she sees in practice. When she successfully identifies a sphere effect, as an immediate action she can spend an arcane pool point to gain knowledge of 1 + 1 per 3 class levels magic talents used in that effect (2 at 3rd level, 3 at 6th level, etc.). This knowledge is retained for 1 minute per class level. The interminate may retain knowledge of 3 talents at 3rd level, +1 talent per three class levels thereafter. If this ability would grant talents in excess of this limit, she must choose which previously gained talents to lose until their total mimicked talents are within the limit. An interminate cannot choose to lose a talent that is a prerequisite for another talent gained from this ability without losing the other talent as well. The interminate may copy a cantrip or spell (or spell-like ability that mimics a spell) in place of a talent, gaining the ability to cast that spell or cantrip while it is retained. To cast such a spell, she must pay spell points based on the level of the slot to do so: level 1-2: 1 spell point, 3-5: 2 spell points, 6-8: 3 spell points, 9: 4 spell points. Cantrips and orisons may be used without spell point cost. She may not mimic a spell with a level greater than half her class level. Mimicked spells are cast according to the interminate’s casting tradition, though any material components or focuses with a cost of greater than 10 gp must still be provided. Any sphere effects that use talents gained from this ability increase their wild magic chance by 10% per mimicked talent or 5% per spell level in the case of a mimicked spell.\n\nThis replaces the arcanist exploit gained at 3rd, 9th, and 15th levels. The arcanist counts as having the exploits class feature starting at 3rd level."
+        },
+        {
+          "level": 5,
+          "name": "Bridge the Gap",
+          "description": "At 5th level, when an interminate uses her eidetic arcana ability on a spellcrafted spell or technique, she may spend an additional arcane pool point to learn the spell or technique itself in addition to any talents. This spell or technique remains in her repertoire for 24 hours and does not count towards the maximum number of spells or techniques in her repertoire. During this period, the interminate may record the spell into a spellbook or technique script as normal. Whenever she casts a spellcrafted spell or technique that she does not meet the prerequisites for, the interminate may spend any number of points from her arcane pool. For every arcane pool point spent, the chance of a mishap is reduced by 10% to a minimum of 0%. Every arcane pool point spent in this way increases the effect’s wild magic chance by 10%.\n\nThis replaces the arcanist exploit gained at 5th level."
+        },
+        {
+          "level": 1,
+          "name": "Author's Note",
+          "description": "When using bridge the gap to reduce the mishap chance of a technique, increased complexity for not meeting prerequisites is also reduced by 1 per arcane pool point spent."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:arcanist:magaambyan-initiate",
+      "package": "pathfinder-class:arcanist",
+      "name": "Magaambyan Initiate",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist Magaambyan Initiate",
+      "replaces_features": [
+        "alignment",
+        "arcanist-exploit"
+      ],
+      "removed_features": [
+        "alignment",
+        "arcanist-exploit"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Magaambyan Initiate",
+          "description": "Source Adventurer's Guide pg. 122, Arcane Anthology pg. 16"
+        },
+        {
+          "level": 1,
+          "name": "Alignment",
+          "description": "A Magaambyan initiate must be of a good alignment.\n\nThis alters the arcanist’s alignment."
+        },
+        {
+          "level": 1,
+          "name": "Aura of Good",
+          "description": "A Magaambyan arcanist radiates an aura of good as if she were a cleric of a level equal to her class level (see the detect good spell)."
+        },
+        {
+          "level": 4,
+          "name": "Halcyon Spell Lore",
+          "description": "A Magaambyan initiate’s studies of the philanthropic teachings of Old-Mage Jatembe allow her to cast a limited number of spells per day beyond those she could normally prepare ahead of time. At each class level, she chooses one spell from the druid spell list or one spell with the good descriptor from the cleric spell list. The spell must be of a spell level that she can cast, and cannot be a spell that already appears on her arcanist spell list. A Magaambyan initiate can cast a spell that she has chosen with this ability as if it were on her spell list and prepared by expending a number of points from her arcane reservoir equal to half the spell’s level (minimum 1) and expending a spell slot of the spell’s level. At 4th level and every 2 levels thereafter, a Magaambyan initiate can choose to lose a spell that she has chosen with this ability in exchange for a new spell of the same spell level that meets the same requirements."
+        },
+        {
+          "level": 5,
+          "name": "Spell Mastery",
+          "description": "At 5th level, a Magaambyan initiate gains Spell Mastery as a bonus feat. Her arcanist levels count as wizard levels for the purpose of satisfying feat prerequisites, both when selecting this bonus feat and when selecting feats gained from character advancement. If she uses her arcanist level to satisfy the prerequisites for Spell Mastery, she can prepare spells selected with this feat as arcanist spells without referring to a spellbook, but not as wizard spells. The Magaambyan initiate can also select Spell Mastery as a feat gained from character advancement, allowing her to select the feat multiple times."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:arcanist:occultist",
+      "package": "pathfinder-class:arcanist",
+      "name": "Occultist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist Occultist",
+      "replaces_features": [
+        "arcanist-exploits",
+        "magical-supremacy"
+      ],
+      "removed_features": [
+        "arcanist-exploits",
+        "magical-supremacy"
+      ],
+      "removed_feature_clauses": [
+        "arcanist exploit gained at 1st level",
+        "arcanist exploit gained at 7th level",
+        "magical supremacy"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Occultist",
+          "description": "Source Advanced Class Guide pg. 78"
+        },
+        {
+          "level": 1,
+          "name": "Planar Spells",
+          "description": "An occultist adds all planar ally spells to her spell list (using her arcanist level as the cleric level), and treats plane shift as a 5th-level arcanist spell."
+        },
+        {
+          "level": 3,
+          "name": "Conjurer’s Focus",
+          "description": "An occultist can spend 1 point from her arcane reservoir to cast summon monster I. She can cast this spell as a standard action and the summoned creatures remain for 1 minute per level (instead of 1 round per level). At 3rd level and every 2 levels thereafter, the power of this ability increases by one spell level, allowing her to summon more powerful creatures (to a maximum of summon monster IX at 17th level), at the cost of an additional point from her arcane spell reserve per spell level. An occultist cannot have more than one summon monster spell active in this way at one time. If this ability is used again, any existing summon monster immediately ends. This ability replaces the arcanist exploit gained at 1st level."
+        },
+        {
+          "level": 7,
+          "name": "Planar Contact",
+          "description": "At 7th level, an occultist can cast augury once per day and contact other plane once per week, using her arcanist level as her caster level. This ability replaces the arcanist exploit gained at 7th level."
+        },
+        {
+          "level": 20,
+          "name": "Perfect Summoner",
+          "description": "At 20th level, an occultist can use her conjurer’s focus without spending points from her arcane reservoir, and the creatures summoned last until dismissed. This ability replaces magical supremacy."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:arcanist:school-savant",
+      "package": "pathfinder-class:arcanist",
+      "name": "School Savant",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist School Savant",
+      "replaces_features": [
+        "arcanist-exploits"
+      ],
+      "removed_features": [
+        "arcanist-exploits"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "School Savant",
+          "description": "Source Advanced Class Guide pg. 78"
+        },
+        {
+          "level": 1,
+          "name": "School Focus",
+          "description": "At 1st level, a school savant chooses a school of magic. The arcanist gains the abilities granted by that school, as the arcane school class feature of the wizard, treating her arcanist level as her wizard level for these abilities. She can also further specialize by selecting a subschool. In addition, the arcanist can prepare one additional spell per day of each level she can cast, but this spell must be chosen from the selected school."
+        }
+      ],
+      "detected_systems": [
+        "school"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:arcanist:spell-specialist",
+      "package": "pathfinder-class:arcanist",
+      "name": "Spell Specialist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist Spell Specialist",
+      "replaces_features": [
+        "arcanist-exploits"
+      ],
+      "removed_features": [
+        "arcanist-exploits"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Spell Specialist",
+          "description": "Source Advanced Class Guide pg. 78"
+        },
+        {
+          "level": 1,
+          "name": "Signature Spells",
+          "description": "At 1st level and each time a spell specialist gains a new spell level, she chooses a signature spell. The spell specialist can cast this spell without preparing it, in the same way a sorcerer casts spells spontaneously. Even though the spell specialist does not need to prepare this spell, it still counts against the number of spells she can prepare, reducing the number of spells of each level she can prepare each day by 1. A spell specialist can swap out a single signature spell for another spell of the same level when gaining a class level."
+        },
+        {
+          "level": 1,
+          "name": "Dismiss",
+          "description": "A spell specialist can dismiss a signature spell as a swift action instead of a standard action. Alternatively, the spell specialist can dismiss a signature spell that has a duration but isn’t normally dismissible."
+        },
+        {
+          "level": 1,
+          "name": "Spell Bender",
+          "description": "The spell specialist can bend the line of a spell that has a line area of effect up to 90 degrees at any single point along the line’s length."
+        },
+        {
+          "level": 1,
+          "name": "Spellwarp",
+          "description": "A spell specialist can reduce the radius of a spread or burst effect or shorten the length of a cone. All changes must occur in 5-foot increments, to a minimum of 5 feet. Alternatively, the spell specialist can change the area of effect of a cone spell to a line with a length equal to the spell’s range."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:arcanist:sphere-arcanist",
+      "package": "pathfinder-class:arcanist",
+      "name": "Sphere Arcanist",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/sphere-arcanist",
+      "replaces_features": [
+        "consume-spells",
+        "spellcasting"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "spells class feature"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The sphere arcanist may combine spheres and talents to create magical effects. The sphere arcanist is considered a High-Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the spells class feature."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "The sphere arcanist gains a small reservoir of energy she can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to her class level + her casting ability modifier. This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Arcane Reservoir",
+          "description": "A sphere arcanist gains an arcane reservoir as normal, and may spend arcane points to increase the DC or caster level of sphere effects just as with spells."
+        },
+        {
+          "level": 2,
+          "name": "Magic Talents",
+          "description": "A sphere arcanist gains a magic talent at 2nd level and every 2 levels thereafter."
+        },
+        {
+          "level": 1,
+          "name": "Moldable Talents",
+          "description": "A sphere arcanist gains a magic talent at every odd level. However, unlike most talents, a sphere arcanist is able to change these particular talents as she desires. Whenever the sphere arcanist rests to regain spell points, she may change any and all of the moldable talents, losing the previous ones and gaining new spheres and new talents in their place. Only moldable talents can be changed in this way; magic talents gained at even levels, as part of levels taken in other classes, as part of the 2 bonus talents all casters gain when they first gain the casting class feature, or gained from taking the Extra Magic Talent feat are not eligible to be changed in this fashion."
+        },
+        {
+          "level": 1,
+          "name": "Consume Spells",
+          "description": "As a move action, a sphere arcanist may consume one spell point to add three arcane points to her arcane reservoir. Points gained in excess of the reservoir’s maximum are lost.\n\nThis alters the consume spells class feature."
+        },
+        {
+          "level": 1,
+          "name": "Arcanist Exploits",
+          "description": "The following arcanist exploits behave differently when taken by a sphere arcanist:"
+        },
+        {
+          "level": 1,
+          "name": "Consume Magic Items",
+          "description": "This exploit behaves the same as written, except when consuming a magic item created through the Spheres of Power system, the sphere arcanist gains a number of points for her arcane reservoir equal to 1/4th of the item’s caster level. Spell engines are consumed as if they were implements."
+        },
+        {
+          "level": 1,
+          "name": "Counterspell",
+          "description": "As an immediate action, the sphere arcanist may spend a point from her arcane reservoir to attempt a Spellcraft check to identify a spell or sphere effect as it is being cast. If the effect is successfully identified, she may spend 1 spell point to attempt to counter the spell, as the Counterspell feat. This arcanist exploit cannot benefit from feats that augment counterspelling, such as Improved Counterspell, Greater Counterspell, or Counterspell Mastery."
+        },
+        {
+          "level": 1,
+          "name": "Counter Drain",
+          "description": "This exploit behaves the same as written, except when countering a sphere effect, the sphere arcanist gains a number of arcane points equal to the number of spell points spent as part of the countered sphere effect."
+        },
+        {
+          "level": 1,
+          "name": "Greater Counterspell",
+          "description": "When using the counterspell exploit, the arcanist may spend a second spell point to gain a +5 bonus to her dispel check. She must possess the counterspell exploit to select this greater exploit."
+        },
+        {
+          "level": 1,
+          "name": "Quick Study",
+          "description": "As a full-round action that provokes an attack of opportunity, the sphere arcanist may spend 1 point from her arcane reservoir to change one of her moldable talents to a different magic talent."
+        },
+        {
+          "level": 1,
+          "name": "Resistance Drain",
+          "description": "This exploit behaves the same as written, except when used on a sphere effect, it grants the target a number of temporary arcane points equal to the number of spell points spent as part of the resisted sphere effect."
+        },
+        {
+          "level": 1,
+          "name": "Suffering Knowledge",
+          "description": "This exploit behaves the same as written, except when the sphere arcanist is targeted by an enemy sphere ability, when the sphere arcanist fails a saving throw against a sphere ability cast by an enemy, as an immediate action she can expend 1 point from her arcane reservoir to gain the ability to recreate that sphere effect for a number of rounds equal to the sphere arcanist’s casting ability modifier (minimum 1). The sphere effect costs as many spell points and possesses as many magic talents as it did when the sphere arcanist failed her saving throw, but the caster level is determined by the sphere arcanist herself."
+        },
+        {
+          "level": 20,
+          "name": "Magical Supremacy",
+          "description": "At 20th level, the sphere arcanist may spend arcane points instead of spell points when creating sphere effects. She may spend 3 points from her arcane reservoir in place of a spell point when creating a sphere effect."
+        },
+        {
+          "level": 1,
+          "name": "New Exploits",
+          "description": "Encyclopedic Preparation (Ex) [Spheres of Guile]: The arcanist gains Improved Planning as a bonus feat even if she does not meet the prerequisites."
+        },
+        {
+          "level": 9,
+          "name": "Expanded Readiness [plan] (Ex) [Spheres of Guile]",
+          "description": "When using the quick study exploit, the arcanist may spend a plan to swap out one additional spell, as if she had used quick study an additional time. This exploit counts as a [plan] talent toward the number of plans the arcanist can prepare and to meet prerequisites. The arcanist must have quick study to choose this exploit. This exploit may be taken a second time at 9th level and a third time at 17th level."
+        },
+        {
+          "level": 1,
+          "name": "Overcome Fault (Ex) [Alienist HB]",
+          "description": "Whenever the arcanist uses a magic talent, she may spend an arcane pool point to ignore any one drawback associated with her casting tradition (if a drawback counts as more than one, the arcanist must spend additional arcane pool points equal to the number of drawbacks it counts as). When she does so, she does not benefit from any drawback feats tied to that drawback. The arcanist may spend multiple points on a single effect to ignore multiple drawbacks."
+        },
+        {
+          "level": 1,
+          "name": "Well Of Shifting Radiance (requires Light sphere) (Su) [BaP]",
+          "description": "As long as the arcanist has at least 1 point in her arcane reservoir, she may cause herself to glow, or suppress or reactivate any glows she placed on herself, as a free action. The arcanist may only cause herself to glow with this exploit once per round and must use a separate standard action to cause a glow effect she places on herself with this exploit to shed bright light. As a move action, the arcanist may spend 1 point from her arcane reservoir to choose one glow effect within her Light sphere casting range that she created. The chosen glow ends on the creature or object it is attached to and its effects are transferred to another target creature or object within your Light sphere casting range, causing that target to to glow with the original glow’s remaining duration and (light) talents. An unwilling target may attempt a Will save to prevent the glow effect from being transferred to them. If an unwilling target succeeds at its saving throw, the glow stays attached to its original target. The arcanist cannot transfer glows created with Dancing Lights onto creatures or objects."
+        },
+        {
+          "level": 1,
+          "name": "Wild Secret (Ex) [Alienist HB]",
+          "description": "The arcanist can select a wild magic feat as a bonus feat. She must meet the prerequisites of this feat. Each day when she regains spell points, the arcanist can expend 1 point from her arcane reservoir to exchange this bonus feat for another wild magic feat as long as she meets the prerequisites of the new feat."
+        },
+        {
+          "level": 1,
+          "name": "New Greater Exploits",
+          "description": "The following greater exploits are available to the arcanist class: Integrate Knowledge (Ex) [Alienist HB] (requires quick study and either eidetic arcana or suffering knowledge) When the arcanist uses quick study to exchange one of her moldable talents for a talent she may currently replicate through eidetic arcana or suffering knowledge, she may do so as a move action rather than a full-round action)."
+        },
+        {
+          "level": 1,
+          "name": "Magical Contingency (Su) [Spheres of Guile]",
+          "description": "This exploit functions as the magical contingency mastermind trick, save that the arcanist may use it in conjunction with a spell effect she can create with her arcanist abilities as an alternative to using it with an item. If she takes this exploit a second time, she may instead have this exploit function as the planned magical contingency mastermind trick."
+        },
+        {
+          "level": 1,
+          "name": "Scholar Of Arcane (Ex) [BaP]",
+          "description": "The arcanist can select a feat that has a magic sphere as a prerequisite as a bonus feat. She must meet the prerequisites of this feat. Each day when she regains spell points, the arcanist can expend 1 point from her arcane reservoir to exchange this bonus feat for another feat that has a magic sphere as a prerequisite, as long as she meets the prerequisites of the new feat."
+        },
+        {
+          "level": 1,
+          "name": "Spheres of Power",
+          "description": "Expanded Options"
+        },
+        {
+          "level": 1,
+          "name": "Recommended Casting Tradition",
+          "description": "The classic feel of the arcanist can be recreated through taking the traditional magic casting tradition."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:arcanist:twilight-sage",
+      "package": "pathfinder-class:arcanist",
+      "name": "Twilight Sage",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist Twilight Sage",
+      "replaces_features": [
+        "arcanist-exploits",
+        "consume-spells",
+        "magical-supremacy",
+        "spellcasting"
+      ],
+      "removed_features": [
+        "arcanist-exploits",
+        "consume-spells",
+        "magical-supremacy",
+        "spellcasting"
+      ],
+      "removed_feature_clauses": [
+        "consume spells",
+        "arcanist exploit gained at 11th level",
+        "magical supremacy"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Twilight Sage",
+          "description": "Source Advanced Class Origins pg. 6"
+        },
+        {
+          "level": 1,
+          "name": "Consume Life",
+          "description": "By wresting a soul from life to death, a twilight sage gains a slightly deeper understanding of mortality, fueling her curiosity and eldritch power. As a full-round action, she can consume the life energy of a helpless living creature, killing it. This creature must have 2 or more Hit Dice and be below 0 hit points. The twilight sage adds 2 points to her arcane reservoir if the creature’s Hit Dice equaled or exceeded the sage’s character level, or 1 point if the creature’s Hit Dice equaled at least 1/2 her character level. This ability is a death effect. This ability replaces consume spells."
+        },
+        {
+          "level": 1,
+          "name": "Necromantic Focus",
+          "description": "Twilight sages consider their research into life and death to be paramount, beyond all other concerns. Each day, a twilight sage must prepare at least one necromancy spell of each spell level she can cast."
+        },
+        {
+          "level": 1,
+          "name": "Twilight Barrier",
+          "description": "A twilight sage’s arcane barrier differs from those of other arcanists, as it draws upon both negative and positive energy to protect the sage. At 1st level, a twilight sage must choose the arcane barrier exploit as her first arcanist exploit. Whenever an attack removes the last temporary hit point from the twilight sage’s arcane barrier, the barrier’s negative energy lashes back at the attacker, dealing an amount of negative energy damage equal to the barrier’s maximum temporary hit point capacity. This ability alters the arcanist exploit gained at 1st level."
+        },
+        {
+          "level": 11,
+          "name": "Twilight Transfer",
+          "description": "At 11th level, a twilight sage’s mastery over life and death allows her to transfer life energy into a fading vessel. Once per day, she can expend 1 point from her arcane reservoir while touching a creature that died within the past round to affect that creature as if it had received a breath of life spell, using her arcanist level as the caster level. At the same time, a willing or unconscious living creature within 300 feet that has a number of Hit Dice equal to or greater than the recipient’s instantly dies. This ability is a death effect, and if the victim doesn’t actually die (such as if it was summoned or is immune to death effects), the recipient doesn’t receive the breath of life effect. This ability replaces the arcanist exploit gained at 11th level."
+        },
+        {
+          "level": 20,
+          "name": "Death’s Release",
+          "description": "At 20th level, a twilight sage has mastered the relationship between death and arcane power, and has gained a limited ability to surpass her own mortality. Whenever she dies (but not if she becomes undead), if she still has points in her arcane reservoir she appears as an ephemeral spirit in the air above her corpse. She can still cast spells in this form, using her corpse as the origin point and determining whether she can see or target any creature or area as though she were alive in that square. To cast a spell, she must expend a number of points from her arcane reservoir equal to 1 + the spell’s level. The spirit disappears if she has no points remaining in her arcane reservoir or she spends a round without casting a spell. The spirit can’t move, deliver touch or ranged touch spells, or do anything that isn’t part of casting a spell. Her spirit completes the verbal and somatic components of her spells, any material components are consumed from the supply on the corpse, and any focus components must be on the corpse. This ability replaces magical supremacy."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:arcanist:unlettered-arcanist",
+      "package": "pathfinder-class:arcanist",
+      "name": "Unlettered Arcanist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist Unlettered Arcanist",
+      "replaces_features": [
+        "spellbooks",
+        "spellcasting"
+      ],
+      "removed_features": [
+        "spellbooks",
+        "spellcasting"
+      ],
+      "removed_feature_clauses": [
+        "spellbooks"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Unlettered Arcanist",
+          "description": "Source Advanced Class Guide pg. 79"
+        },
+        {
+          "level": 1,
+          "name": "Familiar",
+          "description": "An unlettered arcanist does not keep a spellbook. Instead, she gains a familiar in which she stores her spells as a witch does, though she does not gain a witch’s patron. Treat her arcanist level as her witch level for determining the abilities and benefits granted by the familiar. Anything that would allow an unlettered arcanist to add spells to her spellbook allows her to add spells to her familiar instead. This ability replaces spellbooks."
+        },
+        {
+          "level": 1,
+          "name": "Witch Spells",
+          "description": "An unlettered arcanist follows a different arcane tradition. She uses the witch spell list instead of the wizard/sorcerer spell list. This ability alters the spells class feature."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:arcanist:white-mage",
+      "package": "pathfinder-class:arcanist",
+      "name": "White Mage",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Arcanist White Mage",
+      "replaces_features": [
+        "arcanist-exploits"
+      ],
+      "removed_features": [
+        "arcanist-exploits"
+      ],
+      "removed_feature_clauses": [
+        "arcanist exploits gained at 1st and 9th levels"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "White Mage",
+          "description": "Source Advanced Class Guide pg. 79"
+        },
+        {
+          "level": 1,
+          "name": "Spontaneous Healing",
+          "description": "At 1st level, a white mage can expend 1 point from her arcane reservoir to use one of her spell slots to cast a cure spell (any spell with “cure” in its name) from the cleric spell list as if it were on her spell list and prepared. The spell must be of a level the arcanist can cast. At 10th level, the white mage can expend 5 points from her arcane reservoir and a spell slot of at least 5th level to cast breath of life. This ability replaces the arcanist exploits gained at 1st and 9th levels."
+        },
+        {
+          "level": 11,
+          "name": "Greater Exploit",
+          "description": "At 11th level, a white mage can select the following greater exploit."
+        },
+        {
+          "level": 1,
+          "name": "Fast Healing",
+          "description": "A white mage can spend 1 point from her arcane reservoir and expend a spell slot of at least 2nd level to grant her allies the fast healing ability. Allies within 30 feet gain fast healing (Bestiary 300) equal to 1/2 the level of the spell slot sacrificed. This effect lasts for a number of rounds equal to the arcanist’s Charisma modifier (minimum 1)."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

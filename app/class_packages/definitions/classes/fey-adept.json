@@ -1,0 +1,16 @@
+{
+  "version":1,"key":"fey_adept","class_key":"spheres-class:fey-adept","class_name":"Fey Adept","governing_ability":"charisma",
+  "catalog_profile":{"weapon_proficiencies":["Simple weapons"],"armor_proficiencies":[],"proficiencies":{"weapons":["Simple weapons"],"armor":[]},"advancement":{"talent_progression":"High","talent_kinds":["magic"],"talent_bonus_levels":[1]},"feature_descriptions":{"Fey Magic":"Gain the Illusion sphere as a bonus magic talent.","Shadowstuff":"Shadow points and shadow-powered abilities use the live Fey Adept resource module."}},
+  "optional_blocks":["magic_spheres","spell_points"],"external_systems":["spell_points","shadow_points","shadowmark","create_reality"],
+  "resource_modules":[{"key":"fey_adept","title":"Fey Adept","governing_ability":"charisma","resources":[
+    {"key":"shadow_points","name":"Shadow Points","feature_tokens":["shadowstuff"],"progression":"half_level_plus_ability_minimum_one","description":"Shadow points equal half Fey Adept level plus Charisma modifier (minimum 1) and replenish with spell points."},
+    {"key":"shadowmark_damage","name":"Shadowmark Dice","feature_tokens":["shadowmark"],"progression":"odd_level_dice","description":"Number of d6 dealt by Shadowmark.","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false},
+    {"key":"shadowmark_penalty","name":"Shadowmark Will Penalty","feature_tokens":["shadowmark"],"progression":"fey_adept_shadowmark_penalty","description":"Penalty against this Fey Adept's sphere abilities for one minute; it does not stack with itself.","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false},
+    {"key":"master_illusionist_duration","name":"Master Illusionist Duration","feature_tokens":["master-illusionist"],"progression":"half_level_minimum_one","description":"Rounds an illusion remains after concentration ends.","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false},
+    {"key":"truesight","name":"Truesight","feature_tokens":["truesight"],"progression":"quarter_level","description":"Daily uses of 120-foot truesight for one round per Fey Adept level."},
+    {"key":"create_reality","name":"Create Reality","feature_tokens":["create-reality"],"progression":"zero","description":"Select the quasi-real illusion being created. It costs one shadow point plus one per spell point the mimicked effect would require.","choice_options":["Companion","Destructive Blast","Glamer","Nature","Objects","Weather"],"can_activate":true,"tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":true},
+    {"key":"permanent_illusion","name":"Permanent Illusion","feature_tokens":["permanent-illusion"],"progression":"one","description":"At 20th level record the one illusion currently designated permanent.","can_activate":true,"custom_choice_label":"Permanent illusion","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false}
+  ]}],
+  "passive_effects":[{"key":"feytouched-saves","feature_tokens":["feytouched"],"targets":["fortitude","reflex","will"],"progression":"two","bonus_type":"luck","source":"Fey Adept: Feytouched","minimum_level":20}],
+  "notes":"The Illusion sphere grant is part of the advancement budget. Shadow points, Shadowmark scaling, Truesight, Create Reality, and the permanent illusion are live shared resources."
+}

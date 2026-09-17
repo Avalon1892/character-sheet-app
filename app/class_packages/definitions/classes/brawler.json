@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "key": "brawler",
+  "class_key": "pathfinder-class:brawler",
+  "class_name": "Brawler",
+  "governing_ability": "strength",
+  "optional_blocks": ["inquisitor_features"],
+  "external_systems": [
+    "martial_flexibility",
+    "brawlers_flurry",
+    "brawlers_cunning",
+    "unarmed_strike",
+    "close_weapon_mastery"
+  ],
+  "resource_modules": [],
+  "passive_effects": [],
+  "bonus_feat_levels": [2, 5, 8, 11, 14, 17, 20],
+  "bonus_feat_label": "Brawler bonus combat feats",
+  "notes": "Martial Flexibility is a live daily resource with retained temporary-feat notes. Bonus combat-feat budget, unarmed progression, and every archetype exchange use shared advancement and replacement systems."
+}

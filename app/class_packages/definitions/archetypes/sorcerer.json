@@ -1,0 +1,867 @@
+{
+  "version": 1,
+  "class_key": "pathfinder-class:sorcerer",
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:sorcerer:crossblooded",
+      "package": "pathfinder-class:sorcerer",
+      "name": "Crossblooded",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer Crossblooded",
+      "replaces_features": [
+        "spells-known"
+      ],
+      "removed_features": [
+        "spells-known"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Crossblooded",
+          "description": "Source Ultimate Magic pg. 69"
+        },
+        {
+          "level": 1,
+          "name": "Class Skill",
+          "description": "A crossblooded sorcerer receives the bonus class skill from both of her bloodlines. If these are the same skill, this does not grant any additional benefit."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Spells",
+          "description": "A crossblooded sorcerer may select her bonus spells from either of her bloodlines. The sorcerer also has the choice to learn a lower-level bonus spell she did not choose in place of the higher-level bonus spell she would normally gain. Lower-level bonus spells learned this way always use the spell level that they would be if the sorcerer had learned them with the appropriate bonus spell."
+        },
+        {
+          "level": 5,
+          "name": "Example",
+          "description": "A 3rd-level aberrant/abyssal crossblooded sorcerer has the choice of learning cause fear or enlarge person as her bloodline bonus spell. If she selected cause fear as her 3rd-level bonus spell, at 5th level she could use her new bonus spell to learn enlarge person instead of bull’s strength or see invisibility, and she would add it to her list of 1st-level spells known (just as if she had learned it as her 3rd-level bonus spell)."
+        },
+        {
+          "level": 1,
+          "name": "Bonus Feat",
+          "description": "A crossblooded sorcerer combines the bonus feat lists from both of her bloodlines and may select her bloodline bonus feats from this combined list."
+        },
+        {
+          "level": 1,
+          "name": "Bloodline Arcana",
+          "description": "A crossblooded sorcerer gains the bloodline arcana of both her bloodlines."
+        },
+        {
+          "level": 1,
+          "name": "Bloodline Powers",
+          "description": "At 1st, 3rd, 9th, 15th, and 20th levels, a crossblooded sorcerer gains one of the two new bloodline powers available to her at that level. She may instead select a lower-level bloodline power she did not choose in place of one of these higher-level powers."
+        },
+        {
+          "level": 1,
+          "name": "Drawbacks",
+          "description": "A crossblooded sorcerer has one fewer spell known at each level (including cantrips) than is presented on the sorcerer spells known table. Furthermore, the conflicting urges created by the divergent nature of the crossblooded sorcerer’s dual heritage forces her to constantly take some mental effort just to remain focused on her current situation and needs. This leaves her with less mental resolve to deal with external threats. A crossblooded sorcerer always takes a –2 penalty on Will saves."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:sorcerer:dragon-drinker",
+      "package": "pathfinder-class:sorcerer",
+      "name": "Dragon Drinker",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer Dragon Drinker",
+      "replaces_features": [
+        "bloodline-arcana",
+        "bloodline-feats",
+        "claws-bloodline-power"
+      ],
+      "removed_features": [
+        "bloodline-arcana",
+        "bloodline-feats",
+        "claws-bloodline-power"
+      ],
+      "removed_feature_clauses": [
+        "bloodline arcana ability",
+        "7th-level bloodline feat",
+        "13th-level bloodline feat",
+        "19th-level bloodline feat"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Dragon Drinker",
+          "description": "Source Dragonslayer's Handbook pg. 22"
+        },
+        {
+          "level": 1,
+          "name": "Bloodline",
+          "description": "A dragon drinker must belong to the draconic bloodline."
+        },
+        {
+          "level": 1,
+          "name": "Bleeding Spells",
+          "description": "Whenever a dragon drinker casts a spell that deals damage, the spell deals 1 point of bleed damage per spell level to any creatures of the dragon type damaged. This ability replaces the bloodline arcana ability."
+        },
+        {
+          "level": 5,
+          "name": "Blood Drinking",
+          "description": "Starting at first level, a dragon drinker gains the ability to drink dragon blood to alter or augment her spellcasting abilities. See page 18 for information on dragon’s blood. For the purposes of harvesting dragon’s blood, treat the dragon drinker as though she has Dragoncrafting feat. At 5th level, drinking a vial of dragon’s blood is a standard action that provides the dragon drinker with the normal benef its of the item, as well as a +1 bonus to her caster level for purposes of level-dependent spell effects on a single spell cast within 1 minute. At 7th level, a consumed vial of dragon blood also heals 1d8 points of damage instead of the standard 1d4. At 11th level, the alchemical bonus on Fortitude and Reflex saves granted by the blood increases to +2."
+        },
+        {
+          "level": 7,
+          "name": "Energy Assimilation",
+          "description": "At 7th level, when the dragon drinker drinks true dragon’s blood from a dragon with a breath weapon that deals a different type of energy damage than her chosen energy type, she may adopt the energy resistance of the blood’s source dragon as if it were her selected bloodline. This effect lasts for 1 minute per dose of dragon’s blood, after which the dragon drinker’s energy resistance reverts back to her normal energy type. This ability replaces the 7th-level bloodline feat."
+        },
+        {
+          "level": 13,
+          "name": "Breath Mimicry",
+          "description": "At 13th level, when the dragon drinker drinks true dragon’s blood from a dragon with a breath weapon of a shape or energy type different from her own, she may use the shape and energy type of the blood’s source dragon when she next uses her breath weapon. This ability replaces the 13th-level bloodline feat."
+        },
+        {
+          "level": 19,
+          "name": "Blood Siphon",
+          "description": "At 19th level, when the dragon drinker is within 60 feet of a creature of the dragon type that is suffering bleed damage, she can, as a swift action, draw a dose of its blood into herself as though she had consumed it from a vial. Additionally, when she consumes dragon’s blood, it heals 3d8 points of damage and provides a +3 resistance bonus on Fortitude and Will saves for 1 minute in place of its normal effects. This ability replaces the 19th-level bloodline feat."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:sorcerer:eldritch-scrapper",
+      "package": "pathfinder-class:sorcerer",
+      "name": "Eldritch Scrapper",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer Eldritch Scrapper",
+      "replaces_features": [
+        "bloodline-powers"
+      ],
+      "removed_features": [
+        "bloodline-powers"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Eldritch Scrapper",
+          "description": "Source Advanced Class Guide pg. 122"
+        },
+        {
+          "level": 1,
+          "name": "Martial Flexibility",
+          "description": "At 1st level, an eldritch scrapper gains the brawler’s martial flexibility class feature, using her sorcerer level as her brawler level for the purposes of uses per day. The scrapper treats Arcane Strike and Combat Casting as combat feats for the purpose of this ability."
+        },
+        {
+          "level": 3,
+          "name": "Bloodline Weapons",
+          "description": "If an eldritch scrapper’s 1st-level bloodline power would normally grant her natural attacks (such as bite or claws), at 3rd level she can select that 1st-level bloodline power in place of her 3rd-level bloodline power."
+        }
+      ],
+      "detected_systems": [
+        "martial_flexibility"
+      ]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:sorcerer:inheritor",
+      "package": "pathfinder-class:sorcerer",
+      "name": "Inheritor",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/inheritor",
+      "replaces_features": [
+        "base-attack-bonus",
+        "magic-talents",
+        "mystic-heritage-from-sphere-sorcerer-archetype",
+        "sorcerers-hit-dice",
+        "sorcerous-blood"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "magic talents",
+        "sorcerous blood"
+      ],
+      "compatibility": {
+        "requires": [
+          "spheres-archetype:pathfinder-class:sorcerer:sphere-sorcerer"
+        ],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Note",
+          "description": "The inheritor is meant to be a redesign of the eldritch scrapper sorcerer archetype (Pathfinder Roleplaying Game: Advanced Class Guide) to provide a bloodline-fueled arcane warrior. It can fill the thematic role of an “eldritch knight” and other powerful warrior-caster tropes. This archetype requires sphere sorcerer."
+        },
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Inheritors are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice."
+        },
+        {
+          "level": 1,
+          "name": "Eldritch Warrior",
+          "description": "An inheritor’s Hit Dice increases from a d6 to a d8. In addition, the inheritor’s base attack bonus is equal to three-quarters her sorcerer level (much like a rogue’s base attack bonus is calculated), rather than the usual sorcerer base attack bonus.\n\nThis alters the sorcerer’s Hit Dice and base attack bonus."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "An inheritor gains a combat or magic talent every time she gains a class level. Inheritors use their casting ability modifier as their practitioner modifier.\n\nThis replaces magic talents."
+        },
+        {
+          "level": 1,
+          "name": "Empowered Lineage",
+          "description": "At 1st level, the inheritor gains Bloodline Prowess as a bonus feat. At 3rd level, the inheritor gains the mystic heritage class feature to use normally."
+        },
+        {
+          "level": 1,
+          "name": "Empower",
+          "description": "Once per round when the inheritor makes a successful attack, she may use her 1st level bloodline power on the struck target as a free action that may be taken even when it is not the inheritor’s turn, causing the target to suffer the effects of that bloodline power (even if they would not normally be in range). This ability functions similarly to the conductive weapon special ability and cannot be used with the conductive weapon special ability as part of the same attack. Unlike the conductive weapon special ability, the inheritor may use any bloodline power that targets a single creature or is delivered with a melee or ranged touch attack, not just one that is the same type of attack as the attack action (such as using the elemental bloodline elemental ray power (PFRPG Core Rulebook) after a melee attack or the deep earth bloodline’s tremor power (Advanced Player’s Guide) after any attack)."
+        },
+        {
+          "level": 1,
+          "name": "Infuse",
+          "description": "If the inheritor’s 1st level bloodline power would grant a weapon she wields a special ability, she may grant her weapon that special ability for as long as she is wielding that weapon. Examples include the boreal bloodline cold steel power (Advanced Player’s Guide) or stormborn bloodline thunderstaff power (Advanced Player’s Guide), granting the frost or shock special abilities respectively."
+        },
+        {
+          "level": 1,
+          "name": "Hasten",
+          "description": "The inheritor may use her 1st level bloodline power as a swift action.\n\nThis alters mystic heritage from the sphere sorcerer archetype."
+        },
+        {
+          "level": 2,
+          "name": "Martial Flexibility",
+          "description": "At 2nd level, an inheritor can spend a move action to gain the benefit of a combat feat she does not possess. This effect lasts for 1 minute. The inheritor must otherwise meet all the feat’s prerequisites. She can use this ability a number of times per day equal to 3 + 1/2 her sorcerer level. This ability counts as the brawler’s martial flexibility class feature; characters who gain martial flexibility from multiple sources add their class levels from all sources that grant martial flexibility together when determining their total class level and uses per day for this ability. The inheritor can use this ability again before the duration expires to replace the previous combat feat with another choice. If a combat feat has a daily use limitation (such as Stunning Fist), any uses of that combat feat while using this ability count toward that feat’s daily limit. At later levels, when she gains multiple feats through this ability, she can use those feats to meet the prerequisites of other feats she gains with this ability. Doing so means that she cannot replace a feat currently fulfilling another’s prerequisite without also replacing those feats that require it. Each individual feat selected counts toward her daily uses of this ability. At 5th level, the inheritor can use this ability to gain the benefit of magic talent, gaining one magic talent whenever she could gain a combat feat. The inheritor must possess that talent’s base sphere and meet any prerequisites (if an advanced talent). Treat a magic talent gained this way as a temporary talent. At 7th level, the inheritor can use this ability to gain the benefit of two combat feats at the same time. She may select one feat as a swift action or two feats as a move action. At 12th level, the inheritor can use this ability to gain the benefit of three combat feats at the same time. She may select one feat as a free action, two feats as a swift action, or three feats as a move action. At 17th level, the inheritor can use this ability to gain the benefit of one combat feat as an immediate action or three combat feats as a swift action.\n\nThis replaces sorcerous blood."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:sorcerer:mongrel-mage",
+      "package": "pathfinder-class:sorcerer",
+      "name": "Mongrel Mage",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer Mongrel Mage",
+      "replaces_features": [
+        "bloodline",
+        "bloodline-feats",
+        "bloodline-powers",
+        "bloodline-spells"
+      ],
+      "removed_features": [
+        "bloodline",
+        "bloodline-feats",
+        "bloodline-powers",
+        "bloodline-spells"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Mongrel Mage",
+          "description": "Source Advanced Class Guide pg. 122"
+        },
+        {
+          "level": 1,
+          "name": "Mongrel Reservoir",
+          "description": "At 1st level, a mongrel mage has an innate pool of magical energy, known as her mongrel reservoir, that she can draw upon to activate her weakened bloodline. Her mongrel reservoir can hold an amount of magical energy equal to 3 + her sorcerer level. Each day when refreshing her spell slots, her mongrel reservoir is restored to full. The mongrel reservoir can never hold more points that the total mentioned above; points gained in excess of this maximum are lost."
+        },
+        {
+          "level": 7,
+          "name": "Bloodline Spells",
+          "description": "At 7th level, each day when she selects her bloodline, a mongrel mage adds the 1st-, 2nd-, and 3rdlevel spells from her selected bloodline to her current list of spells known."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:sorcerer:nine-tailed-heir",
+      "package": "pathfinder-class:sorcerer",
+      "name": "Nine-Tailed Heir",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer Nine-Tailed Heir",
+      "replaces_features": [
+        "bloodline-spell"
+      ],
+      "removed_features": [
+        "bloodline-spell"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Nine-Tailed Heir",
+          "description": "Source Blood of the Beast pg. 13"
+        },
+        {
+          "level": 3,
+          "name": "Magical Tail",
+          "description": "At 3rd level and every 4 levels thereafter, a ninetailed heir gains Magical TailARG as a bonus feat. If the nine-tailed heir already has nine tails, each additional time the feat is taken, the sorcerer gains one additional daily use of the lowest level Magical Tail ability not already affected by this effect."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:sorcerer:razmiran-priest",
+      "package": "pathfinder-class:sorcerer",
+      "name": "Razmiran Priest",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer Razmiran Priest",
+      "replaces_features": [
+        "bloodline-power",
+        "bloodline-spell",
+        "eschew-materials"
+      ],
+      "removed_features": [
+        "bloodline-power",
+        "bloodline-spell",
+        "eschew-materials"
+      ],
+      "removed_feature_clauses": [
+        "priest’s Eschew Materials bonus feat",
+        "bloodline spells gained at 3rd level and 5th level respectively",
+        "bloodline power gained at 9th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Razmiran Priest",
+          "description": "Source Inner Sea Magic pg. 38"
+        },
+        {
+          "level": 1,
+          "name": "False Piety",
+          "description": "At 1st level, a Razmiran priest gains Knowledge (religion) and Perform as class skills, but loses Appraise and Fly as class skills. He adds half his sorcerer level to Use Magic Device checks to activate spell trigger and spell completion items that use divine spells. He gains False Focus as a bonus feat (see page 10). In addition to replacing Appraise and Fly as class skills, this ability replaces the priest’s Eschew Materials bonus feat."
+        },
+        {
+          "level": 3,
+          "name": "Lay Healer",
+          "description": "At 3rd level, the Razmiran priest adds aid to his list of spells known as a 2nd-level spell. At 5th level, he adds remove disease to his list of spells known as a 3rd-level spell. This ability replaces the bloodline spells gained at 3rd level and 5th level respectively."
+        },
+        {
+          "level": 9,
+          "name": "Razmiran Channel",
+          "description": "At 9th level, the Razmiran priest can use his own magic to power spell completion and spell trigger items that use divine spells. He expends a sorcerer spell slot that is at least 1 level higher than the level of the spell he’s trying to activate, then makes a Use Magic Device check. If he succeeds, the item’s spell occurs and the item or charge is not expended. If he fails, nothing happens. Whether he succeeds or fail, his spell slot is expended. This ability replaces the bloodline power gained at 9th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:sorcerer:seeker",
+      "package": "pathfinder-class:sorcerer",
+      "name": "Seeker",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer Seeker",
+      "replaces_features": [
+        "bloodline-power",
+        "eschew-materials"
+      ],
+      "removed_features": [
+        "bloodline-power",
+        "eschew-materials"
+      ],
+      "removed_feature_clauses": [
+        "all of the bonus class skills he would otherwise normally gain from his mystery",
+        "his bonus Eschew Materials feat",
+        "revelation gained at 3rd level",
+        "bloodline power gained at 3rd level",
+        "revelation gained at 15th level",
+        "bloodline power gained at 15th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Seeker",
+          "description": "Source Pathfinder Society Field Guide pg. 29"
+        },
+        {
+          "level": 1,
+          "name": "Tinkering",
+          "description": "Seekers often look to ancient devices, old tomes, and strange magical items in order to learn more about their oracle mysteries or sorcerous bloodlines. As a result of this curiosity and thanks to an innate knack at deciphering the strange and weird, a seeker gains Disable Device as a class skill. In addition, at 1st level, a seeker adds half his oracle or sorcerer level on Perception checks made to locate traps and on all Disable Device skill checks (minimum +1). A seeker can use Disable Device to disarm magical traps. If the seeker also possesses levels in rogue or another class that provides the trapfinding ability, those levels stack with his oracle or sorcerer levels for determining his overall bonus on these skill checks. For an oracle, this ability replaces all of the bonus class skills he would otherwise normally gain from his mystery. For a sorcerer, this ability replaces his bonus Eschew Materials feat."
+        },
+        {
+          "level": 3,
+          "name": "Seeker Lore",
+          "description": "By 3rd level, a seeker has already learned much about his mystery or bloodline, and is more comfortable using the bonus spells gained by that mystery or bloodline. He gains a +4 bonus on all concentration checks, on caster level checks made to overcome spell resistance, and on all Knowledge (arcana) and Spellcraft checks made on topics associated with his bonus spells. For an oracle, this ability replaces the revelation gained at 3rd level. For a sorcerer, this ability replaces the bloodline power gained at 3rd level."
+        },
+        {
+          "level": 15,
+          "name": "Seeker Magic",
+          "description": "At 15th level, a seeker becomes skilled at modifying his mystery or bloodline spells with metamagic. When a seeker applies a metamagic feat to any bonus spells granted by his mystery or his bloodline, he reduces the metamagic feat’s spell level adjustment by 1. Thus, applying a Metamagic feat like Still Spell to a spell does not change its effective spell level at all, while applying Quicken Spell only increases the spell’s effective spell level by 3 instead of by 4. This reduction to the spell level adjustment for Metamagic feats does not stack with similar reductions from other abilities. For an oracle, this ability replaces the revelation gained at 15th level. For a sorcerer, this ability replaces the bloodline power gained at 15th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:sorcerer:sorcerer-of-sleep",
+      "package": "pathfinder-class:sorcerer",
+      "name": "Sorcerer of Sleep",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer Sorcerer of Sleep",
+      "replaces_features": [
+        "bloodline-arcana",
+        "bloodline-power",
+        "eschew-materials"
+      ],
+      "removed_features": [
+        "bloodline-arcana",
+        "bloodline-power",
+        "eschew-materials"
+      ],
+      "removed_feature_clauses": [
+        "bloodline arcana",
+        "eschew materials",
+        "1st-level bloodline power"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Sorcerer of Sleep",
+          "description": "Source Black Markets pg. 26"
+        },
+        {
+          "level": 1,
+          "name": "Pesh Expert",
+          "description": "A sorcerer of sleep adds 1/2 her sorcerer level (minimum 1) on Appraise, Craft (alchemy), Heal, and Knowledge (local) checks related to pesh and other drugs. This ability replaces bloodline arcana."
+        },
+        {
+          "level": 1,
+          "name": "Sahir-Afiyun",
+          "description": "A sorcerer of sleep gains Sahir-Afiyun (see page 18) as a bonus feat at 1st level, even if she does not meet the prerequisites. A sorcerer of sleep adds Pesh Euphoria, Pesh Healing, Pesh Rejuvenation, and Sahir- Afiyun (see page 18 for these feats) to her list of bloodline feats. This ability replaces eschew materials."
+        },
+        {
+          "level": 1,
+          "name": "Pesh Touch",
+          "description": "As a standard action, a sorcerer of sleep can make a melee touch attack against a living creature to cause one of the following effects (sorcerer’s choice): the target gains a +2 enhancement bonus to Strength, the target is fatigued, or the target takes a –2 penalty on saving throws against illusion and mind-affecting effects. The effects of pesh touch last a number of rounds equal to 1/2 the sorcerer of sleep’s sorcerer level. The effects of pesh touch are not cumulative, and cannot make the target exhausted. A sorcerer of sleep can use pesh touch a number of times per day equal to 3 + her Charisma modifier. This ability replaces the 1st-level bloodline power."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:sorcerer:sphere-sorcerer",
+      "package": "pathfinder-class:sorcerer",
+      "name": "Sphere Sorcerer",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/sphere-sorcerer",
+      "replaces_features": [
+        "all-bloodline-spells",
+        "eschew-materials-bonus-feat",
+        "spellcasting"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "spells class feature",
+        "Eschew Materials bonus feat",
+        "all bloodline spells",
+        "the Eschew Materials bonus feat"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The sphere sorcerer may combine spheres and talents to create magical effects. The sphere sorcerer is considered a High-Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the spells class feature."
+        },
+        {
+          "level": 1,
+          "name": "Mystic Heritage",
+          "description": "If a bloodline ability has a limited number of uses or rounds of use per day, the sphere sorcerer may spend a spell point and meditate as a full-round action to regain one use of that ability. This replaces the Eschew Materials bonus feat."
+        },
+        {
+          "level": 1,
+          "name": "Spell Points",
+          "description": "The sphere sorcerer gains a small reservoir of energy she can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to her level + her casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Sorcerous Blood",
+          "description": "The sphere sorcerer gains 1 additional spell point per sorcerer level.\n\nThis replaces all bloodline spells."
+        },
+        {
+          "level": 1,
+          "name": "Magic Talents",
+          "description": "A sphere sorcerer gains one magic talent every level."
+        },
+        {
+          "level": 1,
+          "name": "Focus Sphere",
+          "description": "Many bloodline arcanas do not function correctly when using the Spheres of Power system. As such, a sphere sorcerer may always choose to replace her bloodline arcana with a focus sphere. The sphere sorcerer gains one sphere of her choice as a bonus magic talent and treats her caster level as being one higher when using that sphere. This does not stack with an incanter’s sphere specialization."
+        },
+        {
+          "level": 1,
+          "name": "New Sorcerer Feats",
+          "description": "Bloodline Armaments [Apoc]: Source: Spheres Apocrypha: The Inheritor and Improved Atavism Heritages"
+        },
+        {
+          "level": 1,
+          "name": "Prerequisite",
+          "description": "Sorcerer bloodline class feature."
+        },
+        {
+          "level": 1,
+          "name": "Benefit",
+          "description": "If a sorcerer bloodline power would create a manufactured weapon, grant a manufactured weapon a special weapon ability (such as frost or shock), or otherwise augment a manufactured weapon, that weapon is treated as a masterwork weapon while under the effects of your bloodline power. In addition, while using any sorcerer bloodline power that would grant natural attacks, create a weapon, grant a weapon a special weapon ability, or otherwise augment such a weapon, those weapons gain a +1 enhancement bonus for every 4 effective sorcerer levels you possess (maximum +5)."
+        },
+        {
+          "level": 1,
+          "name": "Bloodline Prowess [Apoc]",
+          "description": "Source: Spheres Apocrypha: The Inheritor and Improved Atavism Heritages"
+        },
+        {
+          "level": 1,
+          "name": "Spheres of Power",
+          "description": "Casting: The sphere sorcerer may combine spheres and talents to create magical effects. The sphere sorcerer is considered a High-Caster and uses Charisma as his casting ability modifier. (Note: All casters gain 2 bonus talents and may select a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the spells class feature, and the Eschew Materials bonus feat."
+        },
+        {
+          "level": 1,
+          "name": "Note",
+          "description": "This ability does not stack with an Incanter specialization (per discussion with an author)."
+        },
+        {
+          "level": 1,
+          "name": "Recommended Casting Tradition",
+          "description": "The classic feel of the sorcerer can be recreated through selecting the verbal casing and somatic casting (2) drawbacks."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:sorcerer:stone-warder",
+      "package": "pathfinder-class:sorcerer",
+      "name": "Stone Warder",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer Stone Warder",
+      "replaces_features": [
+        "bloodline-feat",
+        "bloodline-spell",
+        "eschew-materials"
+      ],
+      "removed_features": [
+        "bloodline-feat",
+        "bloodline-spell",
+        "eschew-materials"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Stone Warder",
+          "description": "Source Arcane Anthology pg. 29"
+        },
+        {
+          "level": 1,
+          "name": "Blood of the Earth",
+          "description": "Stone warders must have a bloodline with strong ties to earth and rock. A stone warder must select the deep earthAPG, draconic (copper dragon only), elemental (earth only), orc (Pathfinder Player Companion: Orcs of Golarion 14), or shaitanUM bloodline."
+        },
+        {
+          "level": 5,
+          "name": "Power of Stone",
+          "description": "A stone warder draws power from natural rock, and gains a +1 bonus to her caster level when in hills, mountains, or underground terrain. This bonus increases to +2 at 5th level, and by an additional 1 every 5 sorcerer levels thereafter. However, this strong elemental tie prevents a stone warder from casting spells that have the air, cold, electricity, fire, or water descriptor."
+        },
+        {
+          "level": 1,
+          "name": "Rune of Warding",
+          "description": "As a standard action, a stone warder can create a warding rune in any adjacent square. The stone warder selects a sorcerer spell known that is at least 1 level lower than the highest-level spell she can cast, and casts it as part of creating the rune of warding. The spell must have a casting time of 1 standard action or less, and it must target one or more creatures. Rather than have its normal effect, the spell is stored in the rune. The first creature to enter the square triggers the rune of warding, and becomes the target of the selected spell. Regardless of the number of targets the spell can normally affect, it affects only the creature that triggers the rune."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:sorcerer:tattooed-sorcerer",
+      "package": "pathfinder-class:sorcerer",
+      "name": "Tattooed Sorcerer",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer Tattooed Sorcerer",
+      "replaces_features": [
+        "bloodline-feat",
+        "bloodline-power",
+        "eschew-materials"
+      ],
+      "removed_features": [
+        "bloodline-feat",
+        "bloodline-power",
+        "eschew-materials"
+      ],
+      "removed_feature_clauses": [
+        "her Eschew Materials bonus feat",
+        "bloodline feat gained at 7th level",
+        "9th-level bloodline power"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Tattooed Sorcerer",
+          "description": "Source Inner Sea Magic pg. 40"
+        },
+        {
+          "level": 1,
+          "name": "Familiar Tattoo",
+          "description": "A tattooed sorcerer gains a familiar as an arcane bond, as a wizard equal to her sorcerer level. Her sorcerer levels stack with any wizard or witch levels she possesses when determining the powers of her familiar—this ability does not allow her to have both a familiar and a bonded item."
+        },
+        {
+          "level": 1,
+          "name": "Varisian Tattoo",
+          "description": "At 1st level, the tattooed sorcerer gains Varisian Tattoo (see the Inner Sea World Guide) as a bonus feat. If she doesn’t have Spell Focus, she may choose which school of magic her Varisian Tattoo enhances. This ability replaces her Eschew Materials bonus feat."
+        },
+        {
+          "level": 1,
+          "name": "Bloodline Tattoos",
+          "description": "Whenever a tattooed sorcerer gains a bloodline spell, a new tattoo manifests on her body to represent this spell. Her bloodline spells are always enhanced by her Varisian Tattoo feat, even if they don’t match the school to which her Varisian Tattoo belongs."
+        },
+        {
+          "level": 7,
+          "name": "Create Spell Tattoo",
+          "description": "At 7th level, a tattooed sorcerer can create a spell tattoo (see page 16) once per day with a single touch as a standard action. The recipient of the spell tattoo must be willing to receive the spell tattoo. If she gives the spell tattoo to herself, it does not count against the regular limit of magic tattoos she can have. The spell tattoo must be of a spell that she knows that has no material or focus component. She can maintain one spell tattoo created by this ability at a time—if she uses this ability again, the previous spell tattoo she created fades away. Spell tattoos she creates with Inscribe Magic Tattoo do not count against this limit. She can use this ability twice per day at 11th level, and three times per day at 15th level. This ability replaces the bloodline feat gained at 7th level."
+        },
+        {
+          "level": 9,
+          "name": "Enhanced Varisian Tattoo",
+          "description": "At 9th level, the tattooed sorcerer can pick any one spell she knows for which she has a Varisian Tattoo feat. This spell must be one that lacks focus components and costly material components. She can now use that spell as a spell-like ability once per day. This spell-like ability is not enhanced by her Varisian Tattoo, but it functions at +2 caster levels above her sorcerer caster level. Whenever she gains a bloodline power at a later date, she may change this spell-like ability to another qualifying spell. This ability replaces the 9th-level bloodline power."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:sorcerer:umbral-scion",
+      "package": "pathfinder-class:sorcerer",
+      "name": "Umbral Scion",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer Umbral Scion",
+      "replaces_features": [
+        "bloodline",
+        "bloodline-feats",
+        "shadowstrike-bloodline-power",
+        "spellcasting"
+      ],
+      "removed_features": [
+        "bloodline",
+        "bloodline-feats",
+        "shadowstrike-bloodline-power",
+        "spellcasting"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Umbral Scion",
+          "description": "Source Blood of Shadows pg. 19"
+        },
+        {
+          "level": 1,
+          "name": "Bloodline",
+          "description": "An umbral scion must have the shadowAPG bloodline."
+        },
+        {
+          "level": 1,
+          "name": "Diminished Spellcasting",
+          "description": "An umbral scion can cast one fewer spell per day of each level than normal. If this reduces the number to 0, she can cast spells of that level only if her Charisma score grants her bonus spells of that level."
+        },
+        {
+          "level": 1,
+          "name": "Shrouded Spells",
+          "description": "An umbral scion is enveloped by wisps of shadow whenever she casts a spell. The DC to identify spells cast by an umbral scion increases by 2. If the spell is being cast within an area of dim light or darkness, the DC increases by 5 instead."
+        },
+        {
+          "level": 7,
+          "name": "Encroaching Darkness",
+          "description": "An umbral scion is capable of influencing light around her. As a standard action, she can produce a 10-foot-radius veil centered on a creature or object within 30 feet. This veil decreases the light level by one step and remains for a number of rounds equal to the sorcerer’s Charisma modifier. At 7th level, the veil increases to a 30-foot radius. At 8th level, the veil decreases the light level by two steps. If the light level is decreased past darkness, the veil is treated as deeper darkness. At 14th level, the veil increases to 60 feet and grants any creature within it cover (even against senses normally able to penetrate total darkness, such as the see in darkness ability). An umbral scion can use this ability a number of times per day equal to 3 + her Charisma modifier."
+        },
+        {
+          "level": 7,
+          "name": "Potent Shadows",
+          "description": "At 7th level, when an umbral scion casts a spell of the shadow subschool or a spell with the darkness or shadowUM descriptor within an area of dim light or darkness, she treats her caster level as 1 higher. Only the sorcerer herself needs to be in dim light or darkness. This bonus increases by 1 every 4 sorcerer levels beyond 7th she has to a maximum of +4 at 19th level."
+        },
+        {
+          "level": 13,
+          "name": "Crippling Darkness",
+          "description": "At 13th level, when an umbral scion targets a creature within an area of dim light or darkness with a spell of the shadow subschool or a spell with the darkness or shadowUM descriptor, the DC for the spell increases by 1. This bonus increases by 1 at 18th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:sorcerer:wildblooded",
+      "package": "pathfinder-class:sorcerer",
+      "name": "Wildblooded",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer Wildblooded",
+      "replaces_features": [
+        "bloodline"
+      ],
+      "removed_features": [
+        "bloodline"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Wildblooded",
+          "description": "Source Ultimate Magic pg. 70"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:sorcerer:wishcrafter",
+      "package": "pathfinder-class:sorcerer",
+      "name": "Wishcrafter",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Sorcerer Wishcrafter",
+      "replaces_features": [
+        "bloodline-arcana",
+        "bloodline-bonus-feats",
+        "bloodline-bonus-spells"
+      ],
+      "removed_features": [
+        "bloodline-arcana",
+        "bloodline-bonus-feats",
+        "bloodline-bonus-spells"
+      ],
+      "removed_feature_clauses": [
+        "bloodline arcana",
+        "bloodline bonus feat gained at 7th level",
+        "bloodline bonus feat gained at 13th level",
+        "bloodline bonus feat gained at 19th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Wishcrafter",
+          "description": "Source Advanced Race Guide pg. 128"
+        },
+        {
+          "level": 1,
+          "name": "Wishbound Arcana",
+          "description": "At 1st level, the wishcrafter can use the wishes of non-genie creatures other than herself in place of the normal verbal components of her spells. A creature can make a wish as a free action at any time, even during the wishcrafter’s turn. The wishcrafter must be able to hear and understand a wish in order to use it as a spell component. A spell that doesn’t normally have a verbal component gains one when cast using this ability. A wish doesn’t need to mention the name of a specific spell, but must describe an outcome that can be accomplished by casting a spell the wishcrafter knows (for example, wishing to be bigger could supply the verbal component for enlarge person). A wishcrafter gains a +1 bonus to her caster level when using a creature’s wish as a verbal component in this manner, but cannot include herself as a target of such spells. She can be affected by such a spell if it affects an area rather than a target or targets. A wishcrafter is under no compulsion to grant a creature’s wish. Once the wishcrafter grants a creature’s wish using this ability, she cannot use this ability to grant that creature any further wishes for 24 hours. This ability replaces bloodline arcana."
+        },
+        {
+          "level": 3,
+          "name": "Expanded Wishcraft",
+          "description": "At 3rd level and every 2 levels thereafter, the wishcrafter grows more adept at altering reality to fit the whims of others. She may add an additional spell selected from the sorcerer/wizard spell list to her list of spells known. This spell must be one level lower than the highest-level spell she can cast. A wishcrafter can only use these spells in conjunction with her wishbound arcana ability. For example, if she used this ability to learn cat’s grace, she can only cast it when another creature wishes for it, and can’t cast it on herself because it is a targeted spell. She cannot use these spells to craft or recharge magic items. These bonus spells replace the bloodline spells gained by the sorcerer’s bloodline."
+        },
+        {
+          "level": 7,
+          "name": "Heart’s Desire",
+          "description": "At 7th level, as a swift action, a wishcrafter can force a single creature within 30 feet to confess its deepest desire. The target receives a Will save to negate this effect (DC 10 + 1/2 the wishcrafter’s level + the wishcrafter’s Charisma modifier). On a failed save, the creature must immediately wish aloud in a clear voice for something it truly desires, allowing the wishcrafter to activate her wishbound arcana ability if she knows a spell that can fulfill that wish. This is a mind-affecting effect. Regardless of whether the save is successful, a creature cannot be the target of the same wishcrafter’s heart’s desire ability again for 24 hours. The wishcrafter can use this ability a number of times per day equal to her Charisma bonus. This ability replaces the bloodline bonus feat gained at 7th level."
+        },
+        {
+          "level": 13,
+          "name": "Twisted Wish",
+          "description": "At 13th level, a wishcrafter becomes adept at corrupting wishes to negatively affect the creature that wished them. When a wishcrafter affects a creature with a spell using its wish as a spell component, she may twist the wish, applying a –4 penalty to the creature’s saving throws against the spell. The effects of wishes twisted this way are difficult to remove; the DC of caster level checks to dispel them increases by 5. This ability replaces the bloodline bonus feat gained at 13th level."
+        },
+        {
+          "level": 19,
+          "name": "Perfect Wishcraft",
+          "description": "At 19th level, the wishcrafter perfects her ability to manipulate reality. Once per day, she may cast any spell on the sorcerer/wizard spell list as if it were on her list of spells known. Using this ability otherwise has all of the benefits and limitations of the wishbound arcana ability. This ability replaces the bloodline bonus feat gained at 19th level."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

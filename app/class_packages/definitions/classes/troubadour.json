@@ -1,0 +1,21 @@
+{
+  "version":1,"key":"troubadour","class_key":"spheres-class:troubadour","class_name":"Troubadour","governing_ability":"charisma",
+  "catalog_profile":{"weapon_proficiencies":["Simple weapons"],"armor_proficiencies":["Light armor","Bucklers"],"proficiencies":{"weapons":["Simple weapons"],"armor":["Light armor","Bucklers"]},"casting":{"sphere_progression":"Low","ability":"charisma","traditional":false},"advancement":{"talent_progression":"Low","talent_kinds":["magic","martial"],"talent_bonus_levels":[5,9,13,17]},"capabilities":{"grants":["magic","martial"],"removes":[]}},
+  "optional_blocks":["magic_spheres","spell_points","martial_talents","martial_focus"],"external_systems":["spell_points","personas","actor_training","persona_quirks"],
+  "resource_modules":[{"key":"troubadour","title":"Troubadour Personas","governing_ability":"charisma","grantable":false,"resources":[
+    {"key":"quick_change","name":"Quick Change","feature_tokens":["quick-change"],"progression":"troubadour_quick_change","description":"Daily move-action persona changes: one at level 2 and one more at levels 6, 10, 14, and 18."},
+    {"key":"active_persona","name":"Active Persona","feature_tokens":["personas"],"progression":"zero","description":"Record the currently assumed base or alternate persona.","custom_choice_label":"Active persona","maximum_choices_progression":"one","can_activate":true,"tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false},
+    {"key":"base_persona","name":"Base Persona Active","feature_tokens":["performers-synergy"],"progression":"one","description":"Enable while the Troubadour is in the base persona; this applies Performer’s Synergy.","can_activate":true,"tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false},
+    {"key":"flexible_truth_dc","name":"Flexible Truth DC","feature_tokens":["flexible-truth"],"progression":"troubadour_flexible_truth","description":"Caster-level/MSB check DC to see through the Troubadour’s constructed truth.","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false}
+  ]}],
+  "passive_effects":[
+    {"key":"master-of-disguise","feature_tokens":["master-of-disguise"],"targets":["skill:disguise","skill:bluff"],"progression":"troubadour_disguise","bonus_type":"circumstance","source":"Troubadour: Master of Disguise"},
+    {"key":"performers-synergy","feature_tokens":["performers-synergy"],"targets":["fortitude","reflex","will"],"progression":"troubadour_synergy","bonus_type":"morale","source":"Troubadour: Performer’s Synergy","requires_resource_active":"base_persona"}
+  ],
+  "choice_providers":[
+    {"key":"troubadour-personas","label":"Alternate Personas","feature_tokens":["personas"],"minimum":2,"maximum":2,"custom_option_label":"Persona name, identity, and trope","description":"Create two alternate personas at 1st level. Their identity and trope remain independently editable."},
+    {"key":"troubadour-actor-training","label":"Actor Training","feature_tokens":["actor-training"],"minimum_levels":[2,4,6,8,10,12,14,16,18,20],"maximum_levels":[2,4,6,8,10,12,14,16,18,20],"custom_option_label":"Actor training","description":"Choose one qualifying Actor Training at every even Troubadour level."},
+    {"key":"troubadour-persona-quirks","label":"Persona Quirks","feature_tokens":["persona-quirk"],"minimum_levels":[3,5,7,9,11,13,15,17,19],"maximum_levels":[3,5,7,9,11,13,15,17,19],"custom_option_label":"Persona, trope, and quirk","description":"Each alternate persona gains a qualifying quirk at every odd level from 3rd through 19th; record which persona receives it."}
+  ],
+  "notes":"Low casting, Proficient combat talents, four class-granted magic talents, personas, quirks, actor training, and quick changes use shared declarations."
+}

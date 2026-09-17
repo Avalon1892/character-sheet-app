@@ -1,0 +1,1200 @@
+{
+  "version": 1,
+  "class_key": "spheres-class:mageknight",
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:mageknight:broadcast-blade",
+      "package": "spheres-class:mageknight",
+      "name": "Broadcast Blade",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/broadcast-blade",
+      "replaces_features": [
+        "",
+        "bonus-combat-feats-at",
+        "but-still-counts-as-possessing-mystic-combat",
+        "levels",
+        "magic-talent",
+        "magic-talent-at-level",
+        "mystic-combat",
+        "mystic-combat-at-level",
+        "mystic-combats",
+        "mystic-combats-at",
+        "spellsword",
+        "stalwart"
+      ],
+      "removed_features": [
+        "4th",
+        "8th-levels",
+        "bonus-combat-feats-at-4th",
+        "but-still-counts-as-possessing-mystic-combat",
+        "mystic-combat",
+        "mystic-combats-2nd",
+        "spellsword",
+        "stalwart"
+      ],
+      "removed_feature_clauses": [
+        "stalwart",
+        "spellsword"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Mystic Combat",
+          "description": "The broadcast blade gains exclusive access to the following mystic combats:"
+        },
+        {
+          "level": 1,
+          "name": "Warp Warrior",
+          "description": "The broadcast blade must choose the Warp sphere with the magic talent she gains at first level, unless she already possesses the Warp sphere.\n\nAuthor's Note: This alters the magic talent gained at 1st level."
+        },
+        {
+          "level": 2,
+          "name": "Broadcast",
+          "description": "At 2nd level, a broadcast blade can twist space as a standard action to make a single melee weapon attack against an entire area. To define the area, she may choose an area from the list of shapes below. She makes a single attack and rolls only once for attack, damage, and any other variables involved in her attack and applies those results to each creature in the area.\n\nAt 11th level, a broadcast blade can use a full-round action to strike every target in the chosen area twice instead of once. She rolls twice, and applies each result to every creature in the area.\n\nThe broadcast ability can be used in conjunction with Pouncing Teleport as if it was an attack, or a full attack action if attacking twice."
+        },
+        {
+          "level": 3,
+          "name": "Tactical Teleport",
+          "description": "At 3rd level, the broadcast blade can make rapid, short range teleports. When the broadcast blade teleports herself (and only herself) to a location within 10 feet she may spend an additional spell point to teleport as a swift action instead of a standard action. The range of this teleport increases by 5 feet every 4 levels thereafter (15 feet at 7th, 20 feet at 11th, 25 feet at 15th, and 30 feet at 19th).\n\nThis replaces stalwart."
+        },
+        {
+          "level": 20,
+          "name": "Blitzing Blade",
+          "description": "At 20th level, the broadcast blade no longer spends an additional spell point to use the tactical teleport class feature, and may use broadcast to strike every target twice as a standard action instead of a full-round action.\n\nThis replaces spellsword."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mageknight:divine-lariat",
+      "package": "spheres-class:mageknight",
+      "name": "Divine Lariat",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/divine-lariat",
+      "replaces_features": [
+        "all-magic-talents-by-divine-lariat",
+        "armor-proficiency",
+        "casting",
+        "marked",
+        "spell-critical",
+        "standard-mageknights-weapon"
+      ],
+      "removed_features": [
+        "all-magic-talents-gained-by-divine-lariat",
+        "casting",
+        "marked",
+        "spell-critical"
+      ],
+      "removed_feature_clauses": [
+        "all magic talents gained by the divine lariat",
+        "marked",
+        "casting class feature",
+        "spell critical"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Lasso Tricks",
+          "description": "As a divine lariat grows in power, she gains the ability to use her lasso to accomplish greater feats. At 1st level, the divine lariat gains the Weapon Focus (lasso) feat as a bonus feat.\n\nAt 2nd level, the divine lariat may treat her lasso as a one-handed weapon, and as a melee reach weapon with a 10-foot reach for the purposes of threatening squares, not provoking attacks of opportunity (so long as the target is within the divine lariat’s melee range), etc. When making a maneuver against a target outside of this range, the lasso still counts as a ranged weapon, provoking attacks of opportunity as normal. In addition, as a move action she may disengage her lasso with a quick series of tugs, disengaging it and returning it to herself.\n\nAt 4th level, a divine lariat can use her lasso to perform a dirty trick, disarm, steal or trip maneuver against a target, even at range. If an opponent is already entangled in her lasso, the divine lariat can attempt a drag or reposition maneuver against that opponent. The divine lariat need not move with her opponent unless the maneuver’s movement would put the opponent beyond the reach of her lasso.\n\nAt 6th level, the divine lariat can attempt a grapple maneuver at range against a target she has entangled with her lasso. While grappling a target in this fashion, she may only move the target, pin them, or tie them up. She is not considered grappled while grappling a target in this fashion.\n\nAt 10th level, a divine lariat may attempt dirty trick maneuvers and steal maneuvers in place of an attack with her lasso. This replaces all magic talents gained by the divine lariat."
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "A divine lariat is proficient with all simple weapons, martial weapons and the lasso. She is proficient with light armor and medium armor but not with shields.\n\nThis alters the standard mageknight’s weapon and armor proficiency."
+        },
+        {
+          "level": 7,
+          "name": "Bound Enemy",
+          "description": "At 7th level, as a full-round action, the divine lariat’s lasso can expand to entangle entire groups of enemies. The lasso becomes an area attack weapon with a 10- foot radius. Anyone within the radius must succeed at a Reflex save against a difficulty of 10 + 1/2 her divine lariat level + her Dexterity modifier or become entangled. In addition, anyone entangled by this attack is pulled together into the nearest open space to the center of the attack.\n\nThis replaces marked."
+        },
+        {
+          "level": 8,
+          "name": "Magic Lasso",
+          "description": "Any lasso in the divine lariat’s hands becomes magically empowered, gaining a longer reach, becoming more durable, and harder to escape from when used to entangle a foe. These benefits only endure so long as the divine lariat is holding the lasso.\n\nLevel\nLasso Hit Points\nLasso AC\nEscape Artist DC\nStrength DC\nLasso Reach\n\n1st\n5\n12\n17\n25\n15-ft.\n\n5th\n10\n14\n20\n27\n20-ft.\n\n9th\n15\n16\n23\n30\n25-ft.\n\n13th\n20\n18\n25\n33\n30-ft.\n\n17th\n25\n20\n27\n36\n35-ft.\n\nAt 8th level, these benefits endure for 1 round per level, even after the divine lariat releases the lasso, but does not retain these benefits if used by another creature (i.e., a target entangled with the divine lariat’s lasso must still fight against the lasso’s empowered hit points, AC, and Escape Artist and Strength DC, but another target cannot use the lasso’s enhanced abilities if attempting to entangle another target).\n\nAt 16th level, the benefits endure for 1 hour per level after the divine lariat releases the lasso.\n\nThis replaces the casting class feature. A divine lariat still gains spell points, and counts her divine lariat levels toward her spell point total."
+        },
+        {
+          "level": 19,
+          "name": "Critical Roping",
+          "description": "At 19th level, whenever a divine lariat successfully confirms a critical hit with a lasso, she can attempt a free combat maneuver against that target.\n\nThis ability replaces spell critical.\n\nSpheres of Power: Expanded Options\n\n$4.99\n\nWeapon and Armor Proficiency: A divine lariat is proficient with all simple weapons, martial weapons and the lasso. She is proficient in light armor and medium armor but not in shields.\n\nThis modifies the standard mageknight’s weapon and armor proficiency.\n\nMagic Lasso (Su): Any lasso in the divine lariat’s hands becomes magically empowered, gaining a longer reach, becoming more durable, and harder to escape from when used to entangle a foe. These benefits only endure so long as the divine lariat is holding the lasso.\n\nLevel\nLasso Hit Points\nLasso AC\nEscape Artist DC\nStrength DC\nLasso Reach\n\n1st\n5\n12\n17\n25\n15 ft\n\n5th\n10\n14\n20\n27\n20 ft\n\n9th\n15\n16\n23\n30\n25 ft\n\n13th\n20\n18\n25\n33\n30 ft\n\n17th\n25\n20\n27\n36\n35 ft\n\nAt 8th level, these benefits endure for 1 round per level, even after the divine lariat releases the lasso, but does not retain these benefits if used by another creature (i.e., a target entangled with the divine lariat’s lasso must still fight against the lasso’s empowered hit points, AC, and Escape Artist and Strength DC, but another target cannot use the lasso’s enhanced abilities if attempting to entangle another target).\n\nAt 16th level, the benefits endure for 1 hour per level after the divine lariat releases the lasso.\n\nThis replaces the casting class feature. A divine lariat still gains spell points, and counts her mageknight levels toward her spell point total.\n\nLasso Tricks (Ex): As a divine lariat grows in power, she gains the ability to use her lasso to accomplish greater feats.\n\nAt 1st level, the divine lariat gains the Weapon Focus (lasso) feat as a bonus feat.\n\nAt 2nd level, the divine lariat may treat her lasso as a one-handed weapon, and as a melee reach weapon with a 10ft reach for the purposes of threatening squares, not provoking attacks of opportunity (so long as the target is within the divine lariat’s melee range), etc. When making a maneuver against a target outside of this range, the lasso still counts as a ranged weapon, provoking attacks of opportunity as normal. In addition, as a move action she may disengage her lasso with a quick series of tugs, disengaging it and returning it to herself.\n\nAt 4th level, a divine lariat can use her lasso to perform a dirty trick, disarm, steal or trip maneuver against a target, even at range. If an opponent is already entangled in her lasso, the divine lariat she can make a drag or reposition maneuver against that opponent. The divine lariat needn’t move with her opponent unless the maneuver’s movement would put the opponent beyond the reach of her lasso.\n\nAt 6th level, the divine lariat can attempt a grapple maneuver at range against a target she has entangled with her lasso. While grappling a target in this fashion, she may only move the target, pin them, or tie them up. She is not considered grappled while grappling a target in this fashion.\n\nAt 10th level, a divine lariat may make dirty trick maneuvers and steal maneuvers in place of an attack with her lasso.\n\nThis replaces all magic talents gained by the divine lariat.\n\nBound Enemy (Su): At 7th level, as a full- round action, the divine lariat’s lasso can expand to entangle entire groups of enemies. The lasso becomes an area attack weapon with a 10 foot radius. Anyone within the radius must make a Reflex save against a difficulty of 10 + 1⁄2 the divine lariat’s class level + the divine lariat’s Dexterity modifier or become entangled. In addition, anyone entangled by this attack is pulled together into the nearest open space to the center of the attack.\n\nThis replaces marked.\n\nCritical Roping (Ex): At 19th level, whenever a divine lariat successfully confirms a critical hit with a lasso, she can make a free combat manuever against that target.\n\nThis ability replaces spell critical.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mageknight:doomblade",
+      "package": "spheres-class:mageknight",
+      "name": "Doomblade",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/doomblade",
+      "replaces_features": [
+        "magic-talent",
+        "magic-talent-at-level",
+        "marked",
+        "resist-magic"
+      ],
+      "removed_features": [
+        "resist-magic"
+      ],
+      "removed_feature_clauses": [
+        "resist magic"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Destructive Blade",
+          "description": "As a swift action, the doomblade may create a destructive blast but, rather than expelling it as a simple attack, wrap it around her hand for a number of rounds equal to her casting ability modifier (minimum 1). This wrapping can take any visual form the doomblade desires from a blade to a hammer to a simple ball of swirling energy, but the form is merely cosmetic. The doomblade is considered armed with her destructive blast, and can make melee touch attacks in place of regular attacks. Rather than having its power determined by the doomblade’s caster level, the destructive blade always treats the doomblade’s level as its caster level. The destructive blade is a blast shape, and so cannot be combined with other blast shapes. It also cannot have its damage increased to one die per level, but can otherwise be augmented like any other destructive blast. The doomblade is always considered proficient with their destructive blade. If another destructive blade is summoned, any previously summoned destructive blades immediately disappear.\n\nThis replaces resist magic."
+        },
+        {
+          "level": 1,
+          "name": "Author's Note on Destructive Blade",
+          "description": "The destructive blade is in many ways similar to a kinetic blade (the kineticist form infusion, and staple ability of the kinetic knight archetype). While the destructive blade is in most ways a unique (blast shape), once the destructive blade is formed, it is treated as either a light or one-handed weapon (and may be finessed normally or used as a light weapon for two-weapon fighting). You may select Weapon Focus (destructive blade) and other similar feats for the destructive blade. The destructive blade does not add Strength to the damage dealt and cannot be enhanced or targeted as a normal weapon. You cannot throw the destructive blade."
+        },
+        {
+          "level": 1,
+          "name": "Destructive Focus",
+          "description": "The doomblade must choose the Destruction sphere with the magic talent she gains at first level, unless she already possesses the Destruction sphere."
+        },
+        {
+          "level": 1,
+          "name": "Author's Note",
+          "description": "This alters the magic talent gained at 1st level."
+        },
+        {
+          "level": 7,
+          "name": "Blade-Marked",
+          "description": "At 7th level, a doomblade who successfully deals damage with her destructive blade to a target may, as a swift action, leave a magical mark on that target. The target suffers a -2 penalty to saving throws against the spells, spell-like abilities, and sphere abilities of the doomblade, and the doomblade gains a +2 bonus to saving throws against the spells, spell-like abilities, and sphere abilities of the target. This mark lasts for 1 minute. The doomblade may not have more than 1 mark active at a time; giving a second mark causes the first to be dismissed.\n\nThis alters marked."
+        },
+        {
+          "level": 1,
+          "name": "New Feats",
+          "description": "Reach Blade (Combat): Prerequisites: Destruction sphere, destructive blade class feature."
+        },
+        {
+          "level": 1,
+          "name": "Benefit",
+          "description": "Your destructive blade may be shaped with the reach property. This property can be added or removed each time you shape the blade."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mageknight:dragoon",
+      "package": "spheres-class:mageknight",
+      "name": "Dragoon",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/dragoon",
+      "replaces_features": [
+        "resist-magic",
+        "stalwart"
+      ],
+      "removed_features": [
+        "resist-magic",
+        "stalwart"
+      ],
+      "removed_feature_clauses": [
+        "resist magic class feature",
+        "stalwart"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Mount",
+          "description": "Starting at 1st level, a dragoon gains the service of a loyal and trusty steed to carry her into battle. This mount functions as a druid’s animal companion, using the dragoon’s level as her effective druid level. The creature must be one that she is capable of riding and is suitable as a mount. The mount is always considered combat trained and begins play with Light Armor Proficiency as a bonus feat. A dragoon’s bond with her mount is strong, with the pair learning to anticipate each other’s moods and moves. Should a dragoon’s mount die, the dragoon may find another mount to serve her after 1 week of mourning.\n\nThis ability replaces the resist magic class feature."
+        },
+        {
+          "level": 3,
+          "name": "Mounted Mystic",
+          "description": "At 3rd level, the dragoon gains the ability to share the effects of any mystic combat ability with a duration that she is using with her animal companion, provided she is riding her companion as a mount at the time.\n\nThis replaces stalwart.\n\nSpheres of Power: Expanded Options\n\n$4.99\n\nMount (Ex): Starting at 1st level, a dragoon gains the service of a loyal and trusty steed to carry him into battle. This mount functions as a druid’s animal companion, using the dragoon’s level as his effective druid level. The creature must be one that he is capable of riding and is suitable as a mount. The mount is always considered combat trained and begins play with Light Armor Proficiency as a bonus feat. A dragoon’s bond with his mount is strong, with the pair learning to anticipate each other’s moods and moves. Should a dragoon’s mount die, the dragoon may find another mount to serve him after 1 week of mourning.\n\nThis ability replaces the resist magic class feature.\n\nMounted Mystic (Ex): At 3rd level, the dragoon gains the ability to share the effects of any mystic combat ability he is using with his animal companion, provided he is riding his companion as a mount at the time.\n\nThis replaces stalwart.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mageknight:dread-crusader",
+      "package": "spheres-class:mageknight",
+      "name": "Dread Crusader",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/dread-crusader",
+      "replaces_features": [
+        "as-well-as-resist-magic",
+        "magic-talent",
+        "magic-talent-at-level"
+      ],
+      "removed_features": [
+        "as-well-as-resist-magic",
+        "magic-talent-1st-level"
+      ],
+      "removed_feature_clauses": [
+        "magic talent gained at 1st level",
+        "as well as resist magic"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Ghastly Powers",
+          "description": "At 1st level, the dread crusader gains the Death sphere with the Necromantic Limit drawback (ghost strike), and gains Cryptic Strike as the bonus talent for that drawback. If she already possesses the Death sphere, she gains the Cryptic Strike talent and does not gain the Necromantic Limit drawback.\n\nThe dread crusader uses her class level as her caster level when using the Cryptic Strike talent. This stacks normally with caster levels gained from other sources.\n\nThis replaces the magic talent gained at 1st level, as well as resist magic."
+        },
+        {
+          "level": 1,
+          "name": "Mystic Combat",
+          "description": "The dread crusader gains exclusive access to the following mystic combats:"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mageknight:dustbringer",
+      "package": "spheres-class:mageknight",
+      "name": "Dustbringer",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/dustbringer",
+      "replaces_features": [
+        "bonus-talent",
+        "bonus-talent-at-level",
+        "marked",
+        "stalwart",
+        "weapon-proficiencies"
+      ],
+      "removed_features": [
+        "bonus-talent-1st-level",
+        "marked",
+        "stalwart"
+      ],
+      "removed_feature_clauses": [
+        "bonus talent gained at 1st level",
+        "stalwart",
+        "marked"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Accursed Destruction",
+          "description": "The dustbringer’s talent at causing damage is more than just trained, it is supernatural. At 1st level the dustbringer gains the Wrecker oracle curse, treating her dustbringer level as her oracle level.\n\nAdditionally, the dustbringer gains the Creation sphere with Limited Creation (alter) drawback as a bonus talent at 1st level, but does not gain a bonus talent from this drawback. If the dustbringer already possesses the Creation sphere, neither the sphere nor the drawback is gained.\n\nThe dustbringer uses her class level as her caster level when using the Destroy alter ability of the Creation sphere. This stacks normally with caster levels gained from other sources.\n\nThis replaces the bonus talent gained at 1st level."
+        },
+        {
+          "level": 1,
+          "name": "Mystic Combat",
+          "description": "The dustbringer gains exclusive access to the following mystic combats. She may not select any mystic combat more than once unless stated otherwise."
+        },
+        {
+          "level": 1,
+          "name": "Mystic Combat",
+          "description": "A dustbringer gains access to the following mystic combats in addition to the ones normally available to a mageknight. She may not select any mystic combat more than once unless stated otherwise."
+        },
+        {
+          "level": 1,
+          "name": "Unarmed Strikes",
+          "description": "At 1st level, a dustbringer gains Improved Unarmed Strike as a bonus feat. A dustbringer may attack with fists, elbows, knees, and feet. This means that a dustbringer may make unarmed strikes with her hands full. A dustbringer applies her full Strength modifier (not half) on damage rolls for all her unarmed strikes.\n\nUsually, a dustbringer’s unarmed strikes deal lethal damage, but she can choose to deal nonlethal damage instead with no penalty on her attack roll. She has the same choice to deal lethal or nonlethal damage while grappling.\n\nA dustbringer’s unarmed strike is treated as both a manufactured weapon and a natural weapon for the purpose of spells and effects that modify either manufactured weapons or natural weapons.\n\nA dustbringer also deals more damage with her unarmed strikes than others, as shown on the following table.\n\nTable: Dustbringer.\n\nLevel\nDamage (Medium)\nDamage (Small)\nDamage (Large)\n\n1st–3rd\n1d6\n1d4\n1d8\n\n4th-7th\n1d8\n1d6\n2d6\n\n8th-11th\n1d10\n1d8\n2d8\n\n12th-15th\n2d6\n1d10\n3d6\n\n16-19th\n2d8\n2d6\n3d8\n\n20th\n2d10\n2d8\n4d8"
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "A dustbringer is proficient with all simple weapons, monk weapons, and light armor.\n\nThis alters weapon proficiencies."
+        },
+        {
+          "level": 3,
+          "name": "Destructive Blows",
+          "description": "At 3rd level, the dustbringer gains Improved Sunder as a bonus feat even if she does not meet the prerequisites. Additionally, whenever she attempts an unarmed strike to sunder an object, she adds her Destroy alter damage to the attack.\n\nAt 7th level, she gains Greater Sunder as a bonus feat even if she does not meet the prerequisites and she gains Potent Alteration as a bonus talent.\n\nThis ability replaces stalwart and marked."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mageknight:grim-disciple",
+      "package": "spheres-class:mageknight",
+      "name": "Grim Disciple",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/grim-disciple",
+      "replaces_features": [
+        "but-still-counts-as-possessing-mystic-combat",
+        "but-still-counts-as-possessing-mystic-combat-at-level",
+        "marked",
+        "mystic-combat",
+        "mystic-combat-at-level",
+        "mystic-defense",
+        "stalwart",
+        "talent-at-first-level",
+        "talent-first-level"
+      ],
+      "removed_features": [
+        "but-still-counts-as-possessing-mystic-combat",
+        "marked",
+        "mystic-combat-2nd-level",
+        "mystic-defense",
+        "stalwart",
+        "talent-first-level"
+      ],
+      "removed_feature_clauses": [
+        "talent gained at first level",
+        "the mystic combat gained at 2nd level",
+        "but still counts as possessing the mystic combat class feature at 2nd level",
+        "stalwart",
+        "mystic defense",
+        "marked"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Black Dog’s Maw",
+          "description": "At 1st level, the grim disciple gains the Fate sphere and a bonus curse talent from the Fate sphere, as well as the Neutrality drawback. This drawback does not grant an additional talent and may be bought off as normal. In addition, the grim disciple uses her class level as her caster level for (curse) talents from the Fate sphere. This stacks normally with caster levels gained from other sources.\n\nThis replaces the talent gained at first level and the mystic combat gained at 2nd level, but still counts as possessing the mystic combat class feature at 2nd level."
+        },
+        {
+          "level": 3,
+          "name": "Malocchio",
+          "description": "At 3rd level, the grim disciple may spend a spell point to reduce the casting time of a (curse) talent by one step. (Swift actions cannot be further reduced.) At 11th level she may spend a spell point to reduce it by two steps.\n\nThis ability replaces stalwart and mystic defense."
+        },
+        {
+          "level": 7,
+          "name": "Brand of Ill Fate",
+          "description": "Starting at 7th level, the grim disciple gains a bonus equal to her casting ability modifier (minimum 1) to attack and damage rolls against any creature affected by a curse effect.\n\nThis ability replaces marked.\n\nWyrd. Nemesis. Doom. Fate has a darker side to her, and the grim disciple taps into its power to curse her enemies to oblivion. Drawing inspiration from the great black dogs known as coin-sìth, she blends a facility with curses with the ability to take advantage of an opponent’s marked fate in battle.\n\nBlack Dog’s Maw: At 1st level, the grim disciple gains the Fate sphere and a bonus curse talent from the Fate sphere, as well as the Neutrality drawback. This drawback does not grant an additional talent and may be bought off as normal. If she already possesses the Fate sphere, then she gains a talent with the curse descriptor from the Fate sphere with no drawback. If she possesses both, any talent with the curse descriptor from the Fate sphere may be chosen. In addition, the grim disciple uses her class level as her caster level for curse talents from the Fate sphere. This stacks normally with caster levels gained from other sources.\n\nThis replaces the talent gained at first level and the mystic combat gained at 2nd level.\n\nMalocchio (Ex): At 3rd level, the grim disciple may spend a spell point to reduce the casting time of a curse talent by one step. (Swift actions cannot be further reduced.) At 11th level she may spend a spell point to reduce it by two steps.\n\nThis ability replaces stalwart and mystic defense.\n\nBrand of Ill Fate (Su): Starting at 7th level, the grim disciple gains a bonus equal to her casting ability modifier (minimum 1) to attack and damage rolls against any creature affected by a curse effect.\n\nThis ability replaces marked.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mageknight:herculean-scion",
+      "package": "spheres-class:mageknight",
+      "name": "Herculean Scion",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/herculean-scion",
+      "replaces_features": [
+        "magic-talent",
+        "magic-talent-at-level",
+        "marked",
+        "mystic-defense",
+        "resist-magic",
+        "spellsword"
+      ],
+      "removed_features": [
+        "magic-talent-1st-level",
+        "marked",
+        "mystic-defense",
+        "resist-magic",
+        "spellsword"
+      ],
+      "removed_feature_clauses": [
+        "resist magic",
+        "magic talent gained at 1st level",
+        "marked",
+        "mystic defense",
+        "spellsword"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Divine Heritage",
+          "description": "A demigod’s body receives magic more readily; a herculean scion uses her class level as her caster level for enhancements that solely target herself or her wielded equipment. This stacks normally with caster levels gained from other sources.\n\nThis ability replaces resist magic."
+        },
+        {
+          "level": 1,
+          "name": "Domain Power",
+          "description": "The divine ichor coursing through the herculean scion’s veins grants them power normally reserved for the servants of her godly ancestor. The herculean scion gains the powers of a domain of her choice, using her herculean scion level in place of her cleric level and her casting ability modifier as her Wisdom modifier.\n\nThis replaces the magic talent gained at 1st level."
+        },
+        {
+          "level": 7,
+          "name": "Flesh of the Gods",
+          "description": "As godly flesh replaces mortal meat, a herculean scion leaves behind the weaknesses of mortal existence. At 7th level, she becomes immune to all poisons and diseases, and ages at half the normal rate.\n\nThis ability replaces marked."
+        },
+        {
+          "level": 11,
+          "name": "Unbreakable Skin",
+          "description": "A herculean scion can take a blade to the back without taking a scratch. At 11th level, she gains DR 3/-; this improves to DR 4/- at 15th level, and DR 5/- at 19th level. As a side effect, her skin glows with excessive health, shedding light as a candle; she may dismiss this light or cause it to resume as a free action.\n\nThis ability replaces mystic defense."
+        },
+        {
+          "level": 20,
+          "name": "Divine Transubstantiation",
+          "description": "At this point, the base substance of the herculean scion has been stripped away, letting the divine spark shine through unhindered.\n\nAt 20th level, her type changes to outsider, though she may still be returned to life as if she were her original type, and may choose to be affected by effects that are restricted to her original type. Finally, when she spends a spell point to allow an enhancement that solely targets her to continue without concentration, it continues for 24 hours instead of 1 minute per caster level.\n\nThis ability replaces spellsword.\n\nDomain Power (Su): The divine ichor coursing through the herculean scion’s veins grants them power normally reserved for the servants of their godly ancestor. The herculean scion gains the powers of a domain of her choice, using her mageknight level in place of her cleric level.\n\nThis replaces the magic talent gained at 1st level.\n\nDivine Heritage (Ex): A demigod’s body receives magic more readily; a herculean scion uses her class level as her caster level for enhancements that solely target herself. This stacks normally with caster levels gained from other sources.\n\nThis ability replaces resist magic.\n\nFlesh of the Gods (Ex): As godly flesh replaces mortal meat, a herculean scion leaves behind the weaknesses of mortal existence. At 7th level, she becomes immune to all poisons and diseases, and ages at half the normal rate.\n\nThis ability replaces marked.\n\nUnbreakable Skin (Su): A herculean scion can take a blade to the back without taking a scratch. At 11th level, she gains DR 3/-; this improves to DR 4/- at 15th level, and DR 5/- at 19th level. As a side effect, her skin glows with excessive health, shedding light as a candle; she may dismiss this light or cause it to resume as a free action.\n\nThis ability replaces mystic defense.\n\nDivine Transubstantiation (Ex): At this point, the base substance of the herculean scion has been stripped away, letting the divine spark shine through unhindered.\n\nAt 20th level, her type changes to outsider, though she may still be returned to life as if she were her original type, and may choose to be affected by effects that are restricted to her original type. Finally, when she spends a spell point to allow an enhancement that solely targets her to continue without concentration, it continues for 24 hours instead of 1 minute per caster level.\n\nThis ability replaces spellsword.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": [
+        "domain"
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mageknight:kinetic-scourge",
+      "package": "spheres-class:mageknight",
+      "name": "Kinetic Scourge",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/kinetic-scourge",
+      "replaces_features": [
+        "armor-proficiencies",
+        "but-counts-as-having-mystic-combat",
+        "mageknights-weapon",
+        "mystic-combat",
+        "mystic-combat-at-level",
+        "talent-at-first-level",
+        "talent-first-level"
+      ],
+      "removed_features": [
+        "but-counts-as-having-mystic-combat",
+        "mystic-combat-2nd-level",
+        "talent-first-level"
+      ],
+      "removed_feature_clauses": [
+        "talent gained at first level",
+        "mystic combat gained at 2nd level",
+        "but counts as having the mystic combat class feature"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Mobile Combatant",
+          "description": "At first level, the kinetic scourge gains Tether Adept as a bonus feat."
+        },
+        {
+          "level": 1,
+          "name": "Mystic Combats",
+          "description": "The kinetic scourge gains exclusive access to the following mystic combats:"
+        },
+        {
+          "level": 1,
+          "name": "Tethered",
+          "description": "At 1st level, the kinetic scourge gains the Destruction sphere and the Shape Focus drawback, selecting and gaining Energy Tether. If she already possesses the Destruction sphere, then Energy Tether is gained with no drawback.\n\nThe kinetic scourge may concentrate on destructive blasts with the Energy Tether blast shape as a move action. The kinetic scourge may also use her energy tether to retrieve small unattended items within range as a swift action without dealing damage to it or incurring additional spell point costs called for by a blast type.\n\nThis replaces the talent gained at first level."
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiency",
+          "description": "A kinetic scourge is proficient with simple and martial weapons and light armor, but not shields.\n\nThis alters the mageknight’s weapon and armor proficiencies."
+        },
+        {
+          "level": 2,
+          "name": "Tethered Maneuvers",
+          "description": "At 2nd level, the kinetic scourge may perform the dirty trick, disarm, steal, and trip combat maneuvers against a target affected by her energy tether, and may perform a drag or reposition on the target without having to move herself.\n\nThis replaces the mystic combat gained at 2nd level, but counts as having the mystic combat class feature."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mageknight:knight-summoner",
+      "package": "spheres-class:mageknight",
+      "name": "Knight-Summoner",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/knight-summoner",
+      "replaces_features": [
+        "magic-talent",
+        "magic-talent-at-level",
+        "marked",
+        "mystic-combat-at-level-but-counts-as-possessing-mystic-combat",
+        "mystic-combat-but-counts-as-possessing-mystic-combat",
+        "mystic-defense",
+        "resist-magic"
+      ],
+      "removed_features": [
+        "magic-talent-1st-level",
+        "marked",
+        "mystic-combat-2nd-level-but-counts-as-possessing-mystic-combat",
+        "mystic-defense",
+        "resist-magic"
+      ],
+      "removed_feature_clauses": [
+        "magic talent gained at 1st level",
+        "resist magic",
+        "mystic combat gained at 2nd level but counts as possessing the mystic combat class feature",
+        "marked",
+        "mystic defense"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Mystic Combat",
+          "description": "The following mystic combats are available exclusively to the knight-summoner:"
+        },
+        {
+          "level": 1,
+          "name": "Summon Mount",
+          "description": "At 1st level, a knight-summoner gains a Conjuration companion as a bonded mount. If she possesses no Conjuration companion, she gains the Conjuration sphere as a bonus talent, with Mount as the free (form) talent. If she possesses at least one Conjuration companion, but none possess the Mount (form) talent, she gains Extra Companion as bonus talent, with Mount as the free (form) talent. If she possesses at least one Conjuration companion with the Mount (form) talent, she gains a Conjuration bonus talent and chooses one of these companions as her bonded mount. The knight-summoner treats her class level as her caster level for her bonded mount. This stacks normally with caster levels gained from other sources.\n\nThis ability replaces the magic talent gained at 1st level and resist magic."
+        },
+        {
+          "level": 2,
+          "name": "Adaptation",
+          "description": "At 2nd level, a knight-summoner gains a bonus (form) talent from the Conjuration sphere to be applied to her bonded mount. As a standard action, the knight-summoner may spend a spell point to exchange this talent for another (form) talent, which immediately applies to her bonded mount. This change is instantaneous.\n\nThis replaces the mystic combat gained at 2nd level but counts as possessing the mystic combat class feature."
+        },
+        {
+          "level": 7,
+          "name": "Mystic Bond",
+          "description": "At 7th level, the knight-summoner gains the ability to share the effects of any mystic combat ability she is using with her bonded mount, provided she is mounted upon it at the time.\n\nThis replaces marked."
+        },
+        {
+          "level": 11,
+          "name": "Rapid Adaptation",
+          "description": "At 11th level, a knight-summoner may use her adaptation ability as a move action. If she spends an additional spell point, she may instead use it as a free action.\n\nThis replaces mystic defense."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mageknight:knightknight",
+      "package": "spheres-class:mageknight",
+      "name": "Knightknight",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/knightknight",
+      "replaces_features": [
+        "casting",
+        "class-skills",
+        "draw-power",
+        "magic-talents",
+        "marked",
+        "mystic-combats",
+        "proficiencies",
+        "saving-throws",
+        "spell-critical",
+        "spell-pool"
+      ],
+      "removed_features": [
+        "casting",
+        "draw-power",
+        "magic-talents",
+        "marked",
+        "spell-critical",
+        "spell-pool"
+      ],
+      "removed_feature_clauses": [
+        "casting",
+        "spell pool",
+        "magic talents",
+        "draw power",
+        "spell critical",
+        "marked"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A knightknight adds Intimidate (Cha) and Knowledge (local) (Int) to her list of class skills instead of Knowledge (arcana) (Int) and Spellcraft (Int).\n\nThis alters class skills."
+        },
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A knightknight may combine combat spheres and talents to create powerful martial techniques. Knightknights are considered Adept combatants and use their choice of Intelligence, Wisdom, or Charisma as their practitioner modifier.\n\nThis replaces casting, spell pool, and magic talents.\n\nSpecial: This archetype cannot be combined with archetypes which gain or alter magic talents or otherwise retain spherecasting. If the knightknight would gain a magic talent from a mageknight class feature or ability (such as the Human favored class bonus), the knightknight instead gains a combat talent."
+        },
+        {
+          "level": 1,
+          "name": "Gallantry",
+          "description": "At 1st level, the knightknight gains a gallantry pool, containing a number of gallantry points equal to her practitioner modifier + 1/4 her knightknight level. This pool replenishes after 30 minutes of rest, or 15 minutes if you have access to reasonably comfortable accommodations (such as a bed, cushions, or other fineries of comfort).\n\nWhenever the knightknight would spend a spell point to use or activate a knightknight class feature, such as a mystic combat, the knightknight may instead expend a number of gallantry points equal to the number of spell points required by that ability."
+        },
+        {
+          "level": 1,
+          "name": "Knight’s Order",
+          "description": "At 1st level, the knightknight chooses an order, as the cavalier class feature, treating her knightknight level as her cavalier level when determining its effects. If the knightknight already has a cavalier order (or gains one later), the knightknight must choose one order to belong to (losing any benefits from a second order she may have belonged to) and her knightknight levels stack with levels of the class that granted the cavalier order when determining the effects and abilities of her order.\n\nThe knightknight must follow the edicts of her order, gains the skill benefits of her order, as well as her order’s abilities. The knightknight uses her practitioner modifier in place of her Charisma modifier when determining the effects of abilities gained from her order.\n\nThis ability replaces draw power and spell critical."
+        },
+        {
+          "level": 1,
+          "name": "Man-At-Arms",
+          "description": "At 1st level, the knightknight gains Knightly Training as a bonus Equipment sphere talent. In addition, the knightknight uses her practitioner modifier in place of her casting modifier for all mageknight class features. The knightknight may not select mystic combats that grant magic talents or feats that require casting.\n\nThis ability alters mystic combats."
+        },
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Knightknights are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis alters proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Saving Throws",
+          "description": "The knightknight has good Fortitude and Reflex saves, and poor Will saves.\n\nThis alters saving throws."
+        },
+        {
+          "level": 3,
+          "name": "Marked for Justice",
+          "description": "At 3rd level, the knightknight may choose one target within sight to mark as a swift action. The knightknight treats the marked target as though she issued a challenge against the target for the purposes of her order’s challenge benefits. This mark lasts for 1 minute. The knightknight may not have more than one creature marked by this ability at a time; applying a second mark causes the first to end.\n\nThis ability counts as the cavalier’s challenge ability and the mageknight’s marked ability for the purposes of other feats, items, and class features.\n\nSpecial: If the knightknight gains the challenge package from the Guardian sphere, she may treat targets of the challenge ability provided by Guardian sphere as being marked by this ability. If she would gain the ability to challenge multiple targets, such as using the Guardian sphere Mass Challenge talent, the knightknight may only mark one target.\n\nThis ability replaces marked.\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mageknight:marshal-controller",
+      "package": "spheres-class:mageknight",
+      "name": "Marshal Controller",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/marshal-controller",
+      "replaces_features": [
+        "magic-talent",
+        "magic-talent-at-level",
+        "magic-talents",
+        "proficiencies",
+        "resist-magic"
+      ],
+      "removed_features": [
+        "magic-talent-1st-level",
+        "resist-magic"
+      ],
+      "removed_feature_clauses": [
+        "resist magic",
+        "magic talent gained at 1st level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "Whenever a marshal controller would gain a magic talent from her class levels (not including the 2 bonus talents gained when first gaining the casting class feature), she may instead choose to gain a combat talent. A marshal controller uses her casting ability modifier as her practitioner modifier.\n\nThis alters magic talents. This archetype may be combined with other archetypes that replace magic talents; you cannot gain a combat talent in place of a magic talent the other archetype loses."
+        },
+        {
+          "level": 1,
+          "name": "Martial Law",
+          "description": "For the marshal controller, the wards she creates are more than magical effects; they are also rules to be obeyed. A ward can be violated in a number of ways, depending on what it wards against. When an enemy violates the ward, they draw an attack of opportunity from the marshal controller. If her patrol ability is active, she may respond to this attack of opportunity as she would if it occurred in her threatened area.\n\nIf a ward prevents entry, then a creature that should be prevented entry violates it when they successfully enter it under their own power. This includes the barrier, Exclusion, Logic, and Repel (ward) talents.\n\nIf a ward requires a creature to succeed at a Will save or magic skill check in order to perform an action, and they attempt that action, then it is violated. This includes the Clarity, Impedance, Peacebound, Quantum Lock, and Spell Ward (ward) talents.\n\nIf a ward makes a certain type of attack less effective by either giving it a penalty, giving creatures damage resistance against it, or making creatures immune to it, then the ward is violated whenever a successful attack of that type is made, or when a creature is forced to attempt a saving throw against it (or would be forced if they were not immune). This includes the Energy Resistance, Impartiality, Magnetic Shield, and Missile Shield Ward (ward) talents.\n\nAny attempt to destroy or dispel a ward also violates the ward. A creature that is immune to a ward can not violate it."
+        },
+        {
+          "level": 1,
+          "name": "Mighty Controller",
+          "description": "The marshal controller gains the Guardian sphere. She must choose the patrol ability as her Guardian package. If she already possesses the Guardian sphere with a different package, she gains the Expanded Package talent. If she already possesses the Guardian sphere with the patrol package, she may choose another talent from the Guardian sphere.\n\nShe gains an additional talent from the Guardian sphere at 5th, 9th, 13th, and 17th levels.\n\nThis replaces resist magic."
+        },
+        {
+          "level": 1,
+          "name": "Mystic Combats",
+          "description": "The marshal controller gains exclusive access to the following mystic combats:"
+        },
+        {
+          "level": 1,
+          "name": "Ward Caster",
+          "description": "The marshal controller gains Protection as a bonus sphere with the Limited Protection (ward) drawback. She does not gain an extra talent for having this drawback, and she does not gain this drawback if she possesses the Protection sphere from a different source.\n\nThe marshal controller uses her class level as her caster level when creating a ward. This stacks normally with caster levels gained from other sources.\n\nThis replaces the magic talent gained at 1st level."
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiencies",
+          "description": "Marshal controllers are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is her character’s first level in any class, she may select a martial tradition of her choice.\n\nThis alters proficiencies."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mageknight:martial-mageknight",
+      "package": "spheres-class:mageknight",
+      "name": "Martial Mageknight",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/martial-mageknight",
+      "replaces_features": [
+        "magic-talents",
+        "proficiencies"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Martial mageknights are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis modifies proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "Whenever a martial mageknight would gain a magic talent from her class levels (not the 2 bonus talents gained when first gaining the casting class feature), she may instead choose to gain a combat talent. A martial mageknight uses her casting ability modifier as her practitioner modifier.\n\nThis modifies magic talents. This archetype may be combined with other archetypes that replace magic talents; you cannot gain a combat talent in place of a magic talent the other archetype loses."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mageknight:plaguebringer",
+      "package": "spheres-class:mageknight",
+      "name": "Plaguebringer",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/plaguebringer",
+      "replaces_features": [
+        "",
+        "bonus-talent",
+        "bonus-talent-at-level",
+        "level",
+        "marked",
+        "mystic-combats",
+        "mystic-combats-at-level",
+        "resist-magic",
+        "which-is-normally",
+        "which-is-normally-at-level"
+      ],
+      "removed_features": [
+        "8th-level",
+        "marked",
+        "mystic-combats-4th-level",
+        "resist-magic",
+        "which-is-normally-7th-level"
+      ],
+      "removed_feature_clauses": [
+        "resist magic",
+        "the mystic combats gained at 4th level and 8th level",
+        "marked ability",
+        "which is normally gained at 7th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Decay Manifest",
+          "description": "The plaguebringer must select either the Blood sphere or the Death sphere as her bonus talent gained at 1st level.\n\nThis alters the bonus talent gained at 1st level."
+        },
+        {
+          "level": 1,
+          "name": "Lord of Pestilence",
+          "description": "A plaguebringer is a master of disease and filth. At 1st level, the plaguebringer gains the Virulent Ailment feat, even if she does not meet the prerequisites.\n\nAt 3rd level, the plaguebringer becomes immune to any effects from diseases. She may still contract diseases and spread them to others, and is instantly aware of diseases she is afflicted with, as well as any non-magical disease a creature within 10 feet of her is afflicted with.\n\nAt 7th level, the plaguebringer becomes the host of deadly diseases. She gains the Pathological Host feat, and while using it may become the host of a number of diseases equal to their casting ability modifier, although when infecting a creature with a disease she is the host of, she must choose a single disease.\n\nThis replaces resist magic and the mystic combats gained at 4th level and 8th level."
+        },
+        {
+          "level": 5,
+          "name": "Rotting Smite",
+          "description": "Starting at 5th level, the plaguebringer can rapidly accelerate diseases within others. She may use the Virulent Ailment feat with any disease she is currently suffering from or is the host of, not just diseases she can create. When using the Virulent Ailment feat to inflict a disease a creature already suffers from, that creature must instead attempt a new saving throw against the disease. If they succeed at this saving throw, it does not count toward curing the disease, but failure does count towards progressing the disease. If the disease is currently undergoing its onset period, the onset period is skipped and the creature immediately begins suffering from the disease.\n\nAny creatures suffering from a disease due to her Virulent Ailment feat suffer a -2 penalty on saving throws against the plaguebringer’s sphere effects, sphere-like abilities and disease effects.\n\nThis replaces the marked ability, which is normally gained at 7th level.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps"
+        }
+      ],
+      "detected_systems": [
+        "smite"
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mageknight:resizer",
+      "package": "spheres-class:mageknight",
+      "name": "Resizer",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/resizer",
+      "replaces_features": [
+        "draw-power",
+        "magic-talent",
+        "magic-talent-at-level",
+        "marked",
+        "mystic-combat-at-level-but-counts-as-possessing-mystic-combat",
+        "mystic-combat-but-counts-as-possessing-mystic-combat",
+        "mystic-defense",
+        "stalwart"
+      ],
+      "removed_features": [
+        "draw-power",
+        "magic-talent-1st-level",
+        "marked",
+        "mystic-combat-2nd-level-but-counts-as-possessing-mystic-combat",
+        "mystic-defense",
+        "stalwart"
+      ],
+      "removed_feature_clauses": [
+        "magic talent gained at 1st level",
+        "mystic combat gained at 2nd level but counts as possessing the mystic combat class feature",
+        "stalwart",
+        "marked",
+        "mystic defense",
+        "draw power"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Mystic Combats",
+          "description": "The resizer gains exclusive access to the following mystic combats:"
+        },
+        {
+          "level": 1,
+          "name": "Size Focus",
+          "description": "At 1st level, a resizer may change her size as per the Size Change talent of the Alteration sphere as a move action, treating her class level as her caster level for the magnitude of the effect. This change lasts for 2 rounds plus 1 round per class level or until dismissed as a free action. This is a polymorph effect, but a resizer may choose to reduce the number of traits she gains from shapeshift by one to retain use of this ability without interfering with the shapeshift.\n\nThis ability replaces the magic talent gained at 1st level."
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiencies",
+          "description": "The resizer does not gain proficiency in medium armor."
+        },
+        {
+          "level": 2,
+          "name": "Agile Strength",
+          "description": "At 2nd level, a resizer ignores penalties to ability scores when changing size.\n\nThis replaces the mystic combat gained at 2nd level but counts as possessing the mystic combat class feature."
+        },
+        {
+          "level": 3,
+          "name": "Quick Change",
+          "description": "At 3rd level, a resizer may spend a spell point to use her size focus ability as a swift action.\n\nThis replaces stalwart."
+        },
+        {
+          "level": 7,
+          "name": "Enduring Change",
+          "description": "At 7th level, the duration of size focus becomes permanent until the resizer changes size with size focus again.\n\nThis replaces marked."
+        },
+        {
+          "level": 11,
+          "name": "Rapid Shifting",
+          "description": "At 11th level, the resizer may use size focus as a swift action without paying a spell point. Additionally, she may spend a spell point to use size focus as an immediate action.\n\nThis replaces mystic defense."
+        },
+        {
+          "level": 15,
+          "name": "Tiny and Titanic",
+          "description": "At 15th level, when using her size focus ability, a resizer may spend a spell point to increase or decrease her size by one additional step. This size additional step may allow a resizer to reach Gargantuan or Fine size with ability scores as the Size Mastery advanced talent. If the Size Mastery advanced talent is permitted, she may spend two spell points to increase the maximum size she may obtain to Colossal.\n\nThis replaces draw power."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mageknight:sun-warrior",
+      "package": "spheres-class:mageknight",
+      "name": "Sun Warrior",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/sun-warrior",
+      "replaces_features": [
+        "magic-talent",
+        "magic-talent-at-level",
+        "resist-magic"
+      ],
+      "removed_features": [
+        "resist-magic"
+      ],
+      "removed_feature_clauses": [
+        "resist magic"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A sun warrior adds Intimidate (Cha) to her list of class skills and removes Handle Animal (Cha) from her list of class skills."
+        },
+        {
+          "level": 1,
+          "name": "Magic Talents",
+          "description": "A sun warrior must choose the Light sphere with the magic talent she gains at first level, unless she already possesses the Light sphere.\n\nAuthor's Note: This alters the magic talent gained at 1st level."
+        },
+        {
+          "level": 1,
+          "name": "Mystic Combat",
+          "description": "The sun warrior gains exclusive access to the following mystic combats."
+        },
+        {
+          "level": 1,
+          "name": "Solar Brilliance",
+          "description": "A sun warrior gains the Glory talent as a bonus talent, and uses her class level as her caster level on glows benefiting from Glory. This stacks normally with caster levels gained from other sources. In addition, she may choose whether or not any (light) talents she applies to a glow placed on herself affect her.\n\nThis replaces resist magic."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mageknight:utterdark-champion",
+      "package": "spheres-class:mageknight",
+      "name": "Utterdark Champion",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/utterdark-champion",
+      "replaces_features": [
+        "but-still-counts-as-possessing-mystic-combat",
+        "combat-feat",
+        "combat-feat-at-level",
+        "magic-talent-normally",
+        "magic-talent-normally-at-level",
+        "mystic-combat",
+        "mystic-combat-at-level",
+        "resist-magic",
+        "spellsword"
+      ],
+      "removed_features": [
+        "but-still-counts-as-possessing-mystic-combat",
+        "combat-feat-4th-level",
+        "magic-talent-normally-1st-level",
+        "mystic-combat-2nd-level",
+        "mystic-combat-4th-level",
+        "resist-magic",
+        "spellsword"
+      ],
+      "removed_feature_clauses": [
+        "magic talent normally gained at 1st level",
+        "resist magic",
+        "mystic combat ability gained at 2nd level",
+        "but still counts as possessing the mystic combat class feature",
+        "mystic combat gained at 4th level",
+        "spellsword ability",
+        "combat feat gained at 4th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Alignment",
+          "description": "The utterdark champion must be of evil alignment. If she ever ceases to be evil, she loses the benefits of her tenebrous smite, touch of corruption, and channel energy abilities until her alignment returns to evil."
+        },
+        {
+          "level": 1,
+          "name": "Swallow the Light",
+          "description": "At 1st level the utterdark champion gains the Dark sphere as a bonus magic talent. An utterdark champion may always gain a magic talent from the Dark sphere in place of a mystic combat.\n\nThis replaces the magic talent normally gained at 1st level."
+        },
+        {
+          "level": 1,
+          "name": "Tenebrous Smite",
+          "description": "At 1st level, whenever the utterdark champion places a darkness effect on an area, she may spend an additional spell point as a free action to empower herself against any good creatures caught within that darkness. The utterdark champion gains a bonus equal to her casting ability modifier on all attack rolls made against good-aligned creatures caught within the area of darkness. In addition, the utterdark champion’s weapons deal an amount of additional damage equal to 1/2 her utterdark champion level (minimum 1) to all good creatures.\n\nAt 7th level, the utterdark champion may spend 2 spell points instead of 1 to empower her allies against her foes, granting them half of her tenebrous smite bonus; all weapon attacks made by the utterdark champion’s allies against good targets caught within the area of darkness gain a bonus to her attacks equal to 1/2 her casting ability modifier (minimum 1) and a bonus to damage equal to 1/4th her utterdark champion level.\n\nAt 13th level, when the utterdark champion empowers her allies against her foes, they gain her complete tenebrous smite bonuses, rather than 1/2 her bonuses.\n\nThis replaces resist magic"
+        },
+        {
+          "level": 2,
+          "name": "Touch of Corruption",
+          "description": "Beginning at 2nd level, an utterdark champion may surround her hand with a fiendish flame, causing terrible wounds to open on those she touches. Each day she can use this ability a number of times equal to 1/2 her utterdark champion level + her casting ability modifier. As a touch attack, an utterdark champion can cause 1d6 points of damage for every two utterdark champion levels she possesses. Using this ability is a standard action that does not provoke attacks of opportunity. Alternatively, an utterdark champion can use this power to heal undead creatures, restoring 1d6 hit points for every two levels the utterdark champion possesses. This ability is modified by any feat, spell, or effect that specifically works with the lay on hands paladin class feature. For example, the Extra Lay On Hands feat grants an utterdark champion 2 additional uses of the touch of corruption class feature.\n\nAt any time, the utterdark champion may spend a bonus combat feat or mystic combat to gain an antipaladin cruelty, using her utterdark champion level as her antipaladin level for this purpose.\n\nThis replaces the mystic combat ability gained at 2nd level, but still counts as possessing the mystic combat class feature."
+        },
+        {
+          "level": 4,
+          "name": "Channel Energy",
+          "description": "When an utterdark champion reaches 4th level, she gains the supernatural ability to channel negative energy like a cleric. Using this ability consumes two uses of her touch of corruption ability. An utterdark champion uses her level as her effective cleric level when channeling negative energy. This ability is based on the casting ability.\n\nThis replaces the mystic combat gained at 4th level."
+        },
+        {
+          "level": 20,
+          "name": "Unholy Champion",
+          "description": "At 20th level, an utterdark champion becomes a conduit for the might of the evil and dark. She gains DR 10/good, and increases the bonus damage gained through her tenebrous smite ability from 1/2 her utterdark champion level to her utterdark champion level. In addition, whenever she channels negative energy or uses touch of corruption to damage a creature, she deals the maximum possible amount.\n\nThis replaces the spellsword ability.\n\nSpheres of Power: Expanded Options\n\n$4.99\n\nCasting Ability Modifier: The utterdark champion uses Charisma as his casting ability modifier.\n\nAlignment: The utterdark champion must be of evil alignment. If he ever ceases to be evil, he loses the benefits of his tenebrous smite, touch of corruption, and channel energy abilities until his alignment returns to evil.\n\nSwallow the Light: At 1st level the utterdark champion gains the Dark sphere as a bonus magic talent. If the utterdark champion already possesses the Dark sphere, he instead gains 1 magic talent from that sphere. An utterdark champion may always gain a magic talent from the Dark sphere in place of a bonus combat feat or mystic combat.\n\nThis replaces the magic talent normally gained at 1st level.\n\nTenebrous Smite (Su): At 1st level, whenever the utterdark champion places a darkness effect on an area, he may spend an additional spell point as a free action to empower themselves against any good creatures caught within that darkness. The utterdark champion gains a bonus equal to his Charisma modifier on all attack rolls made against good-aligned creatures caught within the area of darkness. In addition, the utterdark champion’s weapons deal an amount of additional damage equal to 1/2 the utterdark champion’s class level (minimum: 1) to all good creatures.\n\nAt 7th level, the utterdark champion may spend 2 spell points instead of 1 to empower his allies against his foes, granting them half of his tenebrous smite bonus; all weapon attacks made by the utterdark champion’s allies against good targets caught within the area of darkness gain a bonus to their attacks equal to 1/2 the utterdark champion’s Charisma modifier (minimum: 1) and a bonus to damage equal to 1/4th the utterdark champion’s class level.\n\nAt 13th level, when the utterdark champion empowers his allies against his foes, they gain his complete tenebrous smite bonuses, rather than 1/2 his bonuses.\n\nThis replaces resist magic\n\nTouch of Corruption (Su): Beginning at 2nd level, an utterdark champion may surround his hand with a fiendish flame, causing terrible wounds to open on those he touches. Each day he can use this ability a number of times equal to 1/2 his mageknight level + his Charisma modifier. As a touch attack, an utterdark champion can cause 1d6 points of damage for every two mageknight levels he possesses. Using this ability is a standard action that does not provoke attacks of opportunity. Alternatively, an utterdark champion can use this power to heal undead creatures, restoring 1d6 hit points for every two levels the mageknight possesses. This ability is modified by any feat, spell, or effect that specifically works with the lay on hands paladin class feature. For example, the Extra Lay On Hands feat grants an utterdark champion 2 additional uses of the touch of corruption class feature.\n\nAt any time, the utterdark champion may spend a bonus combat feat or mystic combat to gain an antipaladin cruelty, using his mageknight level as his antipaladin level for this purpose.\n\nThis replaces the mystic combat ability gained at 2nd level.\n\nChannel Energy (Su): When an utterdark champion reaches 4th level, he gains the supernatural ability to channel negative energy like a cleric. Using this ability consumes two uses of his touch of corruption ability. An utterdark champion uses his level as his effective cleric level when channeling negative energy. This is a Charisma-based ability.\n\nThis replaces the combat feat gained at 4th level.\n\nUnholy Champion (Su): At 20th level, an utterdark champion becomes a conduit for the might of the evil and dark. He gains DR 10/good, and increases the bonus damage gained through his Tenebrous Smite ability from 1/2 his mageknight level to his mageknight level. In addition, whenever he channels negative energy or uses touch of corruption to damage a creature, he deals the maximum possible amount.\n\nThis replaces the spellsword ability.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": [
+        "channel_energy",
+        "smite"
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mageknight:wardmage",
+      "package": "spheres-class:mageknight",
+      "name": "Wardmage",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/wardmage",
+      "replaces_features": [
+        "magic-talent",
+        "magic-talent-at-level",
+        "marked",
+        "mystic-defense",
+        "resist-magic"
+      ],
+      "removed_features": [
+        "magic-talent-1st-level",
+        "marked",
+        "mystic-defense",
+        "resist-magic"
+      ],
+      "removed_feature_clauses": [
+        "magic talent gained at 1st level",
+        "marked",
+        "mystic defense",
+        "resist magic"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Mystic Warding",
+          "description": "The wardmage may create a mystical connection between herself and up to two allies called a mystic ward. It takes one minute to create or change this connection, during which the wardmage must touch the target. A mystic ward lasts 24 hours.\n\nWhen an enemy she can see attacks a mystically warded ally with an attack that requires an attack roll, the wardmage may intercept that enemy as an immediate action. When the wardmage intercepts an enemy, she makes an attack with a weapon or natural weapon, if able. This can be a ranged attack, but it will draw attacks of opportunity if it is. If the wardmage hits, the enemy receives a penalty to their attacks equal to her casting ability modifier until the end of the current turn. This is in addition to the normal damage and effects of the attack. The choice to intercept must be made before the attack is rolled. Spells and supernatural abilities can trigger an interception, but only if they require an attack roll. Intercepting a sphere ability does not disrupt the ability, it just causes it to miss.\n\nThis replaces the magic talent gained at 1st level."
+        },
+        {
+          "level": 1,
+          "name": "Virtues",
+          "description": "The strength of the mystic ward is modified by the wardmage’s virtues. The wardmage receives one virtue at 1st level and an additional virtue every 4 wardmage levels beyond that. She may choose from the following virtues:"
+        },
+        {
+          "level": 7,
+          "name": "Mark of Warding",
+          "description": "At 7th level, a wardmage who successfully deals damage with a weapon or natural attack to a target may, as a swift action, leave a magical mark on that target. When a marked enemy attacks an ally other than the wardmage, she may intercept them as if the target were mystically warded, even if they are not. This mark lasts for 1 round per wardmage level, or until the wardmage marks someone else.\n\nThis replaces marked."
+        },
+        {
+          "level": 11,
+          "name": "Self Defense",
+          "description": "At 11th level, a wardmage is prepared for the attacks of enemies she has intercepted. Whenever the wardmage successfully intercepts an enemy, she receives damage reduction equal to half her wardmage level until the beginning of her next turn against attacks made by that target.\n\nThis replaces mystic defense.\n\nMystic Warding (Su): The wardmage may create a mystical connection between herself and up two allies called a mystic ward. It takes one minute to create or change this connection, during which the wardmage must touch the target. A mystic ward lasts 24 hours.\n\nWhen an enemy she can see attacks a mystically warded ally with an attack that requires an attack roll, the wardmage may intercept that enemy as an immediate action. When the wardmage intercepts an enemy, they make an attack with a weapon or natural weapon, if able. This can be a ranged attack, but it will draw attacks of opportunity if it is. If the wardmage hits, the enemy receives a penalty to their attacks equal to her casting ability modifier until the end of the current turn. This is in addition to the normal damage and effects of the attack. The choice to intercept must be made before the attack is rolled. Spells and supernatural abilities can trigger an interception, but only if they require an attack roll. Intercepting a sphere ability does not disrupt the ability, it just causes it to miss.\n\nThis replaces the magic talent gained at 1st level.\n\nVirtues: The strength of the mystic ward is modified by the wardmage’s virtues. The wardmage receives one virtue at 1st level and an additional virtue every 4 wardmage levels beyond that. She may choose from the following virtues:\n\nCharity: All allies are considered warded while they remain adjacent to the wardmage.\n\nCourage: Whenever she uses an immediate action to make an intercepting attack, the wardmage may move up to 20 ft. closer to the enemy before the attack as part of the same action. This movement does not draw attacks of opportunity.\n\nDecisiveness (requires Destruction sphere): Whenever she uses an immediate action to make an intercepting attack, the wardmage may spend a spell point to use a destructive blast as her intercepting attack. She may use any blast that she can normally use as a standard action, except that she may not apply a blast shape to the blast. Using this ability does not provoke attacks of opportunity, but it will still draw attacks of opportunity if used as a ranged attack.\n\nDedication: As a standard action, the wardmage can prepare to perform her duty multiple times. Until the beginning of her next turn, she may make an unlimited number of intercepting attacks as free actions outside of her turn. Each enemy may only be attacked once this way.\n\nDevotion: When the wardmage makes an intercepting attack, she may automatically confirm any critical hit, and on a critical hit the enemy must make a Fortitude save with a DC equal to 10 + 1/2 the wardmage’s class level + her casting ability modifier or be dazed until the end of it’s next turn.\n\nDiscipline: Once per round, when an enemy attacks a mystically warded ally, the wardmage may make an intercepting attack as a free action, even if it is not her turn.\n\nMajesty (requires Warp sphere): When using an immediate action to make an intercepting attack, the wardmage may spend a spell point to use her teleport ability of the Warp sphere to teleport adjacent to the enemy. The maximum range of this teleport is 5 ft per caster level.\n\nReliability: When the wardmage makes an intercepting attack with a ranged attack, she can make ranged attacks at the enemy without taking the standard –4 penalty on her attack roll if they are engaged in melee, and she ignores the AC bonus granted to targets by cover. In addition, she may draw a small or medium weapon as part of the action, or reload a weapon that can normally be reloaded as a free action.\n\nRighteousness: When the wardmage makes an intercepting attack against an enemy, she deals bonus damage equal to her class level.\n\nSacrifice: When the wardmage intercepts an attack against an adjacent ally, she may move into that ally’s square while moving them into a square now adjacent to them as part of the interception. This causes the intercepted attack to be redirected to the wardmage.\n\nSelflessness: The wardmage may have up to 3 of her allies warded at the same time.\n\nVigilance (requires War sphere): The wardmage may rally mystically warded allies. When she uses an immediate action to intercept an enemy attacking a warded ally, she may rally that ally as part of the same action. The rally occurs after the intercepting attack resolves, and occurs whether or not the attack hits.\n\nThis replaces resist magic.\n\nMark of Warding (Su): At 7th level, a wardmage who successfully deals damage with a weapon or natural attack to a target may, as a swift action, leave a magical mark on that target. When a marked enemy attacks an ally other than the wardmage, she may intercept them as if the target were mystically warded, even if they are not. This mark lasts for 1 round per class level, or until the wardmage marks someone else.\n\nThis replaces marked.\n\nSelf Defense (Su): At 11th level, a wardmage is prepared for the attacks of enemies she has intercepted. Whenever the wardmage successfully intercepts an enemy, she receives damage reduction equal to half her class level until the beginning of her next turn against attacks made by that target.\n\nThis replaces mystic defense.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mageknight:warrior-of-holy-light",
+      "package": "spheres-class:mageknight",
+      "name": "Warrior of Holy Light",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/warrior-of-holy-light",
+      "replaces_features": [
+        "bonus-combat-feat",
+        "bonus-combat-feat-at-level",
+        "but-still-counts-as-possessing-mystic-combat",
+        "magic-talent-normally",
+        "magic-talent-normally-at-level",
+        "mystic-combat",
+        "mystic-combat-at-level",
+        "resist-magic",
+        "spellsword"
+      ],
+      "removed_features": [
+        "bonus-combat-feat-4th-level",
+        "but-still-counts-as-possessing-mystic-combat",
+        "magic-talent-normally-1st-level",
+        "mystic-combat-2nd-level",
+        "mystic-combat-4th-level",
+        "resist-magic",
+        "spellsword"
+      ],
+      "removed_feature_clauses": [
+        "magic talent normally gained at 1st level",
+        "resist magic",
+        "mystic combat ability gained at 2nd level",
+        "but still counts as possessing the mystic combat class feature",
+        "mystic combat gained at 4th level",
+        "spellsword ability",
+        "bonus combat feat gained at 4th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Alignment",
+          "description": "The warrior of holy light must be of good alignment. If she ever ceases to be good, she loses the benefits of her luminous smite, lay on hands, and channel energy abilities until her alignment returns to good."
+        },
+        {
+          "level": 1,
+          "name": "Light in the Darkness",
+          "description": "A warrior of holy light gains the Light sphere as a bonus sphere at 1st level. If the warrior of holy light already possesses the Light sphere, she instead gains 1 magic talent from the Light sphere. A warrior of holy light may always gain a magic talent from the Light sphere in place of a bonus combat feat or mystic combat.\n\nThis replaces the magic talent normally gained at 1st level."
+        },
+        {
+          "level": 1,
+          "name": "Luminous Smite",
+          "description": "At 1st level, whenever the warrior of holy light uses the Light sphere to cause a weapon she is wielding to emit bright light, she may spend an additional spell point to empower that weapon against evil. A warrior of holy light may place a glow effect on an unarmed strike or natural attack in this manner. For as long as the bright light effect remains and the warrior of holy light wields the weapon, the warrior of holy light gains a bonus on all attack rolls made with that weapon against evil creatures. This bonus is equal to her casting ability modifier. In addition, the weapon deals an amount of additional damage equal to 1/2 the warrior of holy light’s class level (minimum 1) to all evil creatures.\n\nAt 7th level, the warrior of holy light may grant the benefits of Luminous Smite to a weapon, even when that weapon is being wielded by other creatures.\n\nAt 13th level, the warrior of holy light may spend 2 additional spell points instead of 1 when creating bright light to not only grant the benefit of luminous strike to the wielder of the glowing weapon, but also to all creatures within the area of bright light created by the glow effect. These benefits apply to all attacks made by the affected creatures. When using luminous smite in this manner, the warrior of holy light may place the effect not only on a weapon, but also on any object, or even a creature.\n\nThis replaces resist magic."
+        },
+        {
+          "level": 2,
+          "name": "Lay on Hands",
+          "description": "Beginning at 2nd level, a warrior of holy light can heal wounds (her own or those of others) by touch. Each day she can use this ability a number of times equal to 1/2 her warrior of holy light level plus her casting ability modifier. With one use of this ability, a warrior of holy light can heal 1d6 hit points of damage for every two warrior of holy light levels she possesses. Using this ability is a standard action, unless the warrior of holy light targets herself, in which case it is a swift action. Despite the name of this ability, a warrior of holy light only needs one free hand to use this ability.\n\nAlternatively, a warrior of holy light can use this healing power to deal damage to undead creatures, dealing 1d6 points of damage for every two levels the warrior of holy light possesses. Using lay on hands in this way requires a successful melee touch attack and does not provoke an attack of opportunity.\n\nUndead do not receive a saving throw against this damage. Whenever the warrior of holy light gains a bonus combat feat or a mystic combat, she may choose instead to gain a paladin mercy, treating her warrior of holy light level as her paladin level when meeting its prerequisites and determining its effects. This qualifies the warrior of holy light to gain the Extra Mercy feat.\n\nThis replaces the mystic combat ability gained at 2nd level, but still counts as possessing the mystic combat class feature."
+        },
+        {
+          "level": 4,
+          "name": "Channel Energy",
+          "description": "When a warrior of holy light reaches 4th level, she gains the supernatural ability to channel positive energy like a cleric. Using this ability consumes two uses of her lay on hands ability. A warrior of holy light uses her class level as her effective cleric level when channeling positive energy. This ability is based on the casting ability.\n\nThis replaces the mystic combat gained at 4th level."
+        },
+        {
+          "level": 20,
+          "name": "Holy Champion",
+          "description": "At 20th level, a warrior of holy light becomes a conduit for pure light, spirit, and righteousness. She gains DR 10/evil, and increases the bonus damage gained through her luminous smite ability from 1/2 her warrior of holy light level to her warrior of holy light level. In addition, whenever she channels positive energy or uses lay on hands to heal a creature, she heals the maximum possible amount.\n\nThis replaces the spellsword ability.\n\nSpheres of Power: Expanded Options\n\n$4.99\n\nCasting Ability Modifier: A warrior of holy light uses Charisma as his casting ability modifier.\n\nAlignment: The warrior of holy light must be of good alignment. If he ever ceases to be good, he loses the benefits of his luminous smite, lay on hands, and channel energy abilities until his alignment returns to good.\n\nLight in the Darkness: A warrior of holy light gains the Light sphere as a bonus sphere at 1st level. If the warrior of holy light already possesses the Light sphere, he instead gains 1 magic talent from the Light sphere. A warrior of holy light may always gain a magic talent from the light sphere in place of a bonus combat feat or mystic combat.\n\nThis replaces the magic talent normally gained at 1st level.\n\nLuminous Smite (Su): At 1st level, whenever the warrior of holy light uses the Light sphere to cause a weapon he is wielding to emit bright light, they may spend an additional spell point to empower that weapon against evil. A warrior of holy light may place a glow effect on an unarmed strike or natural attack in this manner. For as long as the bright light effect remains and the warrior of holy light wields the weapon, the warrior of holy light gains a bonus on all attack rolls made with that weapon against evil creatures. This bonus is equal to his Charisma modifier. In addition, the weapon deals an amount of additional damage equal to 1/2 the warrior of holy light’s class level (minimum: 1) to all evil creatures.\n\nAt 7th level, the warrior of holy light may grant the benefits of Luminous Smite to a weapon, even when that weapon is being wielded by other creatures.\n\nAt 13th level, the warrior of holy light may spend 2 additional spell points instead of 1 when creating bright light to not only grant the benefit of luminous strike to the wielder of the glowing weapon, but also to all creatures within the area of bright light created by the glow effect. These benefits apply to all attacks made by the affected creatures. When using luminous smite in this manner, the warrior of holy light may place the effect not only on a weapon, but also on any object, or even a creature.\n\nThis replaces resist magic.\n\nLay on Hands (Su): Beginning at 2nd level, a warrior of holy light can heal wounds (his own or those of others) by touch. Each day she can use this ability a number of times equal to 1/2 her mageknight level plus her Charisma modifier. With one use of this ability, a warrior of holy light can heal 1d6 hit points of damage for every two warrior of holy light levels he possesses. Using this ability is a standard action, unless the warrior of holy light targets himself, in which case it is a swift action. Despite the name of this ability, a warrior of holy light only needs one free hand to use this ability.\n\nAlternatively, a warrior of holy light can use this healing power to deal damage to undead creatures, dealing 1d6 points of damage for every two levels the warrior of holy light possesses. Using lay on hands in this way requires a successful melee touch attack and doesn’t provoke an attack of opportunity. Undead do not receive a saving throw against this damage.\n\nWhenever the warrior of holy light gains a bonus combat feat or a mystic combat, they may choose instead to gain a paladin mercy, treating their mageknight level as their paladin level when meeting its prerequisites and determining its effects. This qualifies the warrior of holy light to gain the Extra Mercy feat.\n\nThis replaces the mystic combat ability gained at 2nd level.\n\nChannel Energy: When a warrior of holy light reaches 4th level, he gains the supernatural ability to channel positive energy like a cleric. Using this ability consumes two uses of his lay on hands ability. A warrior of holy light uses her level as his effective cleric level when channeling positive energy. This is a Charisma-based ability.\n\nThis replaces the bonus combat feat gained at 4th level.\n\nHoly Champion (Su): At 20th level, a warrior of holy light becomes a conduit for pure light, spirit, and righteousness. He gains DR 10/evil, and increases the bonus damage gained through his luminous smite ability from 1/2 his mageknight level to his mageknight level. In addition, whenever he channels positive energy or uses lay on hands to heal a creature, he heals the maximum possible amount.\n\nThis replaces the spellsword ability.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": [
+        "channel_energy",
+        "lay_on_hands",
+        "smite"
+      ]
+    }
+  ]
+}

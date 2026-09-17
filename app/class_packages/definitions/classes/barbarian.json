@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "key": "barbarian",
+  "class_key": "pathfinder-class:barbarian",
+  "class_name": "Barbarian",
+  "governing_ability": "constitution",
+  "optional_blocks": ["inquisitor_features"],
+  "external_systems": [
+    "barbarian_rage",
+    "barbarian_rage_powers",
+    "barbarian_fast_movement",
+    "barbarian_damage_reduction"
+  ],
+  "resource_modules": [],
+  "passive_effects": [],
+  "notes": "Rage rounds, active rage modifiers, rage-power choices, fast movement and retained defensive features are resolved through shared class systems and disappear when exchanged by an archetype."
+}

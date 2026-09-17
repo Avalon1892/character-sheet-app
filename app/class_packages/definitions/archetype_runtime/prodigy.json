@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "class_key": "prodigy",
+  "entries": [
+    {
+      "key": "spheres-archetype:prodigy:battle-born",
+      "system_features": ["adaptation"],
+      "notes": "Martial Adaptation retains the shared daily-use tracker while restricting its selectable talent family."
+    },
+    {
+      "key": "spheres-archetype:prodigy:chromamancer",
+      "system_features": ["adaptation"],
+      "notes": "Mystic Adaptation retains the shared daily-use tracker while restricting its selectable talent family."
+    },
+    {
+      "key": "spheres-archetype:prodigy:gutter-rat",
+      "resource_modules": [
+        {
+          "key": "gutter_rat",
+          "title": "Gutter Rat",
+          "governing_ability": "charisma",
+          "resources": [
+            {
+              "key": "sneak_attack",
+              "name": "Roguish Adaptation — Sneak Attack Applies",
+              "feature_tokens": ["roguish-adaptation"],
+              "progression": "one",
+              "description": "While at least one Roguish Adaptation talent is active, toggle this when the target is flanked or denied Dexterity to AC. Damage is 1d6, +1d6 at Prodigy 7 and 16.",
+              "can_activate": true,
+              "tracks_uses": false,
+              "recover_on_full_rest": false,
+              "end_on_full_rest": false
+            }
+          ]
+        }
+      ],
+      "power_providers": [
+        {
+          "key": "gutter-rat-roguish-adaptation",
+          "label": "Roguish Adaptation",
+          "family": "rogue_talent",
+          "feature_tokens": ["roguish-adaptation"],
+          "slot_levels": [2, 5, 13],
+          "excluded_categories": ["Advanced"],
+          "excluded_option_names": ["Combat Trick", "Feat", "Forgotten Trick", "Master Tricks (Talent)", "Ninja Trick"],
+          "change_resource_key": "adaptation",
+          "clear_on_full_rest": true,
+          "description": "Temporarily choose non-advanced rogue talents. Each newly gained or replaced slot spends one Adaptation use; combat-feat and ninja-trick gateway talents are unavailable. Prodigy level counts as Rogue level. A full rest ends the current selection."
+        }
+      ],
+      "system_features": ["adaptation", "roguish-adaptation"],
+      "notes": "Roguish Adaptation uses the shared class-power catalog, spends the shared Adaptation pool, excludes advanced/combat gateway options, grants its correct sneak-attack progression, and ends on a full rest."
+    }
+  ]
+}

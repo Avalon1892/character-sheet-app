@@ -1,0 +1,2982 @@
+{
+  "version": 1,
+  "class_key": "pathfinder-class:inquisitor",
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:abolisher",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Abolisher",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Abolisher",
+      "replaces_features": [
+        "detect-alignment",
+        "discern-lies",
+        "domains",
+        "stern-gaze"
+      ],
+      "removed_features": [
+        "detect-alignment",
+        "discern-lies",
+        "domains",
+        "stern-gaze"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Abolisher",
+          "description": "Source Monster Hunter's Handbook pg. 7"
+        },
+        {
+          "level": 1,
+          "name": "Sworn to Purity",
+          "description": "An abolisher must select one of the following domains: Air, Animal, Earth, Fire, Plant, Water, or Weather. If she ever changes her deity to one that has none of the listed domains, she loses this archetype and becomes a normal inquisitor or ex-inquisitor."
+        },
+        {
+          "level": 1,
+          "name": "Revealing Gaze",
+          "description": "An abolisher receives a morale bonus on opposed Perception checks against other creatures’ Disguise and Stealth checks equal to half her inquisitor level (minimum +1). She grants this bonus to all adjacent allies."
+        },
+        {
+          "level": 2,
+          "name": "Expose Aberration",
+          "description": "At 2nd level, an abolisher can use detect aberrationAPG at will. When she hits a creature with a weapon attack, she automatically knows if the creature is an aberration or not. At 5th level, she can activate her bane ability as an immediate action after she hits an aberration but before damage is rolled."
+        },
+        {
+          "level": 5,
+          "name": "Escape Corruption’s Grasp",
+          "description": "At 5th level, an abolisher is divinely protected against the grasping tentacles and paralyzing secretions of aberrations. For a number of rounds per day equal to her inquisitor level, she can ignore impediments to movement, as per freedom of movement. These rounds don’t need to be consecutive. Activating this ability is an immediate action."
+        }
+      ],
+      "detected_systems": [
+        "domain"
+      ]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:inquisitor:champion-inquisitor",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Champion Inquisitor",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/champion-inquisitor",
+      "replaces_features": [
+        "proficiencies",
+        "spellcasting"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "spells class feature"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Champion inquisitors are proficient with simple weapons, as well as the favored weapon of her deity, light armor, and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis alters proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The champion inquisitor may combine spheres and talents to create magical effects. The champion inquisitor is considered a Mid-Caster and uses Wisdom as her casting ability modifier. (Note: All casters gain 2 bonus talents and may select a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the spells class feature."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "The champion inquisitor gains a small reservoir of energy she can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to her level + her casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "A champion inquisitor gains 3 talents every 4 levels; the same as she gains caster levels. Whenever she gains a talent she may choose to gain either a magic talent or a combat talent. Champion inquisitors use their casting ability modifier as their practitioner modifier."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:cloaked-wolf",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Cloaked Wolf",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Cloaked Wolf",
+      "replaces_features": [
+        "class-skills",
+        "cunning-initiative",
+        "monster-lore",
+        "solo-tactics",
+        "stern-gaze",
+        "teamwork-feats"
+      ],
+      "removed_features": [
+        "class-skills",
+        "cunning-initiative",
+        "monster-lore",
+        "solo-tactics",
+        "stern-gaze",
+        "teamwork-feats"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Cloaked Wolf",
+          "description": "Source Ultimate Intrigue pg. 28"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A cloaked wolf adds Sleight of Hand to her list of class skills, instead of Intimidate.\n\nThis alters the inquisitor’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Lure Prey",
+          "description": "Cloaked wolves are skilled at maintaining a harmless guise even while they silently prepare to strike against their enemies. Starting at 1st level, a cloaked wolf receives a morale bonus on all Disguise and Sleight of Hand checks equal to half her inquisitor level (minimum +1). When a cloaked wolf uses Sleight of Hand to draw a hidden weapon, this bonus doubles."
+        },
+        {
+          "level": 2,
+          "name": "Always Wary",
+          "description": "A cloaked wolf is always ready for betrayal and subterfuge. Whenever she attempts a Sense Motive check to avoid being surprised by a foe using Bluff to conceal the attack, the cloaked wolf can always act during the surprise round, regardless of the result of the check. At 2nd level, she adds her Wisdom modifier (in addition to her Dexterity modifier) to her initiative checks during any such encounter."
+        },
+        {
+          "level": 3,
+          "name": "Unleashed Fury",
+          "description": "At 3rd level, a cloaked wolf can transition between parley and combat in the blink of an eye. She gains Quick Draw as a bonus feat."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:cold-iron-warden",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Cold Iron Warden",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Cold Iron Warden",
+      "replaces_features": [
+        "bane",
+        "discern-lies",
+        "teamwork-feats"
+      ],
+      "removed_features": [
+        "bane",
+        "discern-lies",
+        "teamwork-feats"
+      ],
+      "removed_feature_clauses": [
+        "teamwork feats gained at 3rd and 9th level",
+        "discern lies"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Cold Iron Warden",
+          "description": "Source Demon Hunter's Handbook pg. 15"
+        },
+        {
+          "level": 2,
+          "name": "Track Teleportation",
+          "description": "At 2nd level, a cold iron warden may acquire clues about a teleporting creature’s destination by closely examining the place it once stood. As a full-round action while standing in a square that a creature occupied when it cast a conjuration (teleportation) spell or spell-like ability, the cold iron warden may attempt a Survival check (DC 10 + the teleportation spell’s caster level) to sense the direction of the creature’s destination as well as whether the destination lies within 25 feet, 100 feet, 1,000 feet, or more than 1,000 feet of her. She must use this ability within a number of rounds after the creature’s teleportation equal to 1/2 her inquisitor level, after which the trail goes cold. A cold iron warden may use this ability once per day plus one additional time per day for every 4 levels she has beyond 2nd."
+        },
+        {
+          "level": 3,
+          "name": "Abyssal Scourge",
+          "description": "At 3rd level, a cold iron warden gains Alignment Channel as a bonus feat and must choose either chaotic or evil outsiders. She can channel energy as a cleric of her inquisitor level – 2 a number of times per day equal to 3 + her Charisma modifier, but only to use Alignment Channel to damage outsiders. The DC of the Will save to halve the damage is equal to 10 + 1/2 the inquisitor’s level + the inquisitor’s Charisma modifier. At 6th level, the energy lingers in the affected area for 1 round as a shimmering, barely perceptible, mist that disrupts Abyssal magic. A creature in the mist that casts a conjuration (summoning) spell or spell-like ability with the selected alignment subtype must succeed at a concentration check or lose the spell. At 15th level, any chaotic or evil creature that casts a conjuration (teleportation) spell or spell-like ability while in the mist must succeed at a concentration check or lose the spell. The concentration check DC for both abilities is equal to 15 + double the level of the conjuration spell."
+        },
+        {
+          "level": 3,
+          "name": "Favored Judgment",
+          "description": "At 3rd level, the inquisitor gains Favored Judgment (Pathfinder RPG Ultimate Magic 150) as a bonus feat but must choose either outsider (chaotic) or outsider (evil). At 9th level, she gains Favored Judgment as a bonus feat a second time and must choose either outsider (chaotic) or outsider (evil). This ability replaces the teamwork feats gained at 3rd and 9th level."
+        },
+        {
+          "level": 1,
+          "name": "Bane",
+          "description": "A cold iron warden reduces the amount of bonus damage dealt when using her bane ability against creatures that are not outsiders with the chaotic or evil subtype by 1d6. She increases the amount of bonus damage by 1d6 when she selects outsiders with the chaotic or evil subtype. This ability modifies the bane ability."
+        },
+        {
+          "level": 5,
+          "name": "Translate Telepathy",
+          "description": "At 5th level, an inquisitor can sense when a creature within 5 feet of her receives or sends a telepathic message. The distance at which she can detect telepathic messages increases by 5 feet for every 5 additional inquisitor levels she has beyond 5th level, to a maximum of 20 feet at 20th level. By making a Perception check (DC 15 + the highest CR of the creatures using telepathy) as an immediate action, she may listen to all telepathic messages sent to and by creatures in this area for a number of rounds per day equal to her inquisitor level. These rounds do not need to be consecutive. This ability replaces discern lies."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:exarch",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Exarch",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Exarch",
+      "replaces_features": [
+        "bane",
+        "detect-alignment",
+        "greater-bane",
+        "monster-lore",
+        "second-judgment",
+        "third-judgment"
+      ],
+      "removed_features": [
+        "bane",
+        "detect-alignment",
+        "greater-bane",
+        "monster-lore",
+        "second-judgment",
+        "third-judgment"
+      ],
+      "removed_feature_clauses": [
+        "monster lore",
+        "detect alignment",
+        "her second judgment",
+        "greater bane",
+        "her third judgment"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Exarch",
+          "description": "Source Advanced Race Guide pg. 13"
+        },
+        {
+          "level": 1,
+          "name": "Spells",
+          "description": "Exarchs cannot cast spells with the chaotic descriptor."
+        },
+        {
+          "level": 1,
+          "name": "Inflexible Will",
+          "description": "At 1st level, an exarch gains a +2 bonus on saving throws against confusion and insanity effects and effects with the chaotic descriptor. This ability replaces monster lore."
+        },
+        {
+          "level": 1,
+          "name": "Detect Chaos",
+          "description": "At will, an exarch can use detect chaos. This ability replaces detect alignment."
+        },
+        {
+          "level": 5,
+          "name": "Fearsome Jurist",
+          "description": "At 5th level, an exarch can imbue one of her weapons with the jurist or menacing weapon special ability as a swift action, and may switch between these properties as a swift action. When using either special ability, her weapon’s critical threat range doubles against chaotic creatures. This does not stack with keen edge, Improved Critical, or similar effects. This ability otherwise functions as and replaces bane."
+        },
+        {
+          "level": 8,
+          "name": "Aura of Repetition",
+          "description": "At 8th level, once per day while using her judgment, an exarch can project an aura of repetition, as the Toil subdomain power. If the exarch takes Artifice (Toil) as her domain, the save DC of her aura increases by 2 but its duration does not increase. This ability replaces her second judgment."
+        },
+        {
+          "level": 12,
+          "name": "Double Jeopardy",
+          "description": "At 12th level, whenever an exarch uses her fearsome jurist ability, she may choose to affect two weapons, with one gaining the jurist weapon special ability and the other the menacing special ability as above. Both special abilities may be combined in a single weapon, whose critical threat range doubles. This does not stack with keen edge, Improved Critical, or similar effects. This ability replaces greater bane."
+        },
+        {
+          "level": 16,
+          "name": "Aura of Reversion",
+          "description": "At 16th level, while using her judgment, an exarch can project a 30-foot-radius emanation for a number of rounds per day equal to her inquisitor level. Any creature other than the exarch that is using a transmutation effect within this aura at the beginning of its turn becomes sickened, or sickened and nauseated if using a polymorph effect, including the change shape ability (Fortitude negates; DC 10 + 1/2 the exarch’s level + her Wisdom modifier). Continuous effects from permanent magical items do not cause this effect. Within the aura, dispel checks against transmutation effects gain a +4 bonus. This ability cannot be used simultaneously with aura of repetition. This ability replaces her third judgment."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:exorcist",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Exorcist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Exorcist",
+      "replaces_features": [
+        "second-judgment",
+        "slayer",
+        "third-judgment",
+        "true-judgment"
+      ],
+      "removed_features": [
+        "second-judgment",
+        "slayer",
+        "third-judgment",
+        "true-judgment"
+      ],
+      "removed_feature_clauses": [
+        "second judgment",
+        "third judgment",
+        "slayer",
+        "true judgement"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Exorcist",
+          "description": "Source Ultimate Magic pg. 44"
+        },
+        {
+          "level": 8,
+          "name": "Verdict of Exorcism",
+          "description": "At 8th level, an inquisitor using judgment can unleash the verdict of exorcism on a creature. When she does, her judgment ends, but the creature is dazed for 1 round (Will negates); if the creature is possessed, the possessing entity must succeed at a Will saving throw (DC 10 + 1/2 inquisitor level + inquisitor’s Wisdom bonus), or be exorcised and never again allowed in that same body. This ability replaces second judgment."
+        },
+        {
+          "level": 16,
+          "name": "Verdict of Exile",
+          "description": "At 16th level, an inquisitor using judgment can unleash the verdict of exile on a creature. When she does, her judgment ends, but the creature subject to that judgment is dazed for 1 round (Will negates, DC of 10 + 1/2 inquisitor level + Wisdom bonus). If the creature is possessed or an outsider, the possessing entity or the outsider is affected by dismissal (Will negates). This ability replaces third judgment."
+        },
+        {
+          "level": 17,
+          "name": "Closed Mind",
+          "description": "An exorcist inquisitor must close off her mind to deny her enemies even a foothold. At 17th level, the inquisitor becomes immune to compulsion effects and possession attempts (including magic jar). This ability replaces slayer."
+        },
+        {
+          "level": 20,
+          "name": "Verdict of Anathema",
+          "description": "At 20th level, an inquisitor using judgment can unleash the verdict of anathema on her enemies. When she does, her judgment ends, and all enemy creatures within 10 feet are affected by her verdict of exorcism. This ability replaces true judgement."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:expulsionist",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Expulsionist",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Expulsionist",
+      "replaces_features": [
+        "discern-lies",
+        "domain",
+        "monster-lore"
+      ],
+      "removed_features": [
+        "discern-lies",
+        "domain",
+        "monster-lore"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Expulsionist",
+          "description": "Source Haunted Heroes Handbook pg. 14"
+        },
+        {
+          "level": 1,
+          "name": "Expulsionist Lore",
+          "description": "At 1st level, an expulsionist gains a bonus equal to 1/2 her inquisitor level (minimum +1) on skill checks to notice haunts and incorporeal creatures; on Knowledge (religion) checks to identify the abilities and weaknesses of haunts and incorporeal creatures; and on Sense Motive checks to determine whether a creature is possessed, under the effects of an enchantment or curse, or otherwise magically controlled."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:faith-hunter",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Faith Hunter",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Faith Hunter",
+      "replaces_features": [
+        "destruction-judgement",
+        "detect-alignment",
+        "domain",
+        "justice"
+      ],
+      "removed_features": [
+        "destruction-judgement",
+        "detect-alignment",
+        "domain",
+        "justice"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Faith Hunter",
+          "description": "Source Ultimate Intrigue pg. 28"
+        },
+        {
+          "level": 1,
+          "name": "Sworn Enemy (Sp, Su)",
+          "description": "A faith hunter chooses a single alignment (such as chaotic evil, rather than simply chaotic or evil) that directly opposes her own along either the law/ chaos axis or the good/evil axis (so a lawful good faith hunter can choose chaotic good, chaotic neutral, chaotic evil, neutral evil, or lawful evil, whereas a neutral good faith hunter can only choose chaotic evil, neutral evil, or lawful evil). Creatures of this alignment are her sworn enemies. She can detect creatures of that specific alignment at will, functioning as detect evil, except this ability works only on creatures and detects the specific alignment."
+        },
+        {
+          "level": 2,
+          "name": "Enemy Revealed",
+          "description": "At 2nd level, when a faith hunter uses her sworn enemy ability to identify a creature’s alignment (typically on the third round of concentrating on an area including the creature), she can reveal that creature’s alignment aura, causing it to glow for 1 round per inquisitor level so that even creatures with regular vision can see the aura. This not only allows others to recognize the creature’s alignment, potentially exposing its true nature, it also allows them to track its location easily by the glow. Even if such a creature is invisible, the telltale glow pinpoints the creature’s square or squares. The faith hunter can use this ability a number of times per day equal to her Wisdom modifier (minimum 1), and it doesn’t take any extra action on her part to do so; it is part of the same action as concentrating on her sworn enemy detect ability."
+        },
+        {
+          "level": 5,
+          "name": "Hateful Bane",
+          "description": "At 5th level, a faith hunter’s bane ability functions only against creatures that are both the selected creature type and her sworn enemy alignment."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:green-faith-marshal",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Green Faith Marshal",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Green Faith Marshal",
+      "replaces_features": [
+        "discern-lies",
+        "domain",
+        "monster-lore",
+        "stalwart",
+        "stern-gaze"
+      ],
+      "removed_features": [
+        "discern-lies",
+        "domain",
+        "monster-lore",
+        "stalwart",
+        "stern-gaze"
+      ],
+      "removed_feature_clauses": [
+        "monster lore",
+        "discern lies",
+        "stalwart"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Green Faith Marshal",
+          "description": "Source Ultimate Wilderness pg. 141, Heroes of the Wild pg. 24"
+        },
+        {
+          "level": 1,
+          "name": "Power of Nature",
+          "description": "A Green Faith marshal gains one domain selected from the animal and terrain domains (Pathfinder RPG Ultimate Magic 33). The 1st- though 6th-level bonus spells from this domain are added to the Green Faith marshal’s spell list.\n\nThis alters the inquisitor’s domain ability and replaces stern gaze."
+        },
+        {
+          "level": 1,
+          "name": "Wild Lore",
+          "description": "A Green Faith marshal adds her Wisdom modifier to her Knowledge (nature) skill checks, in addition to her Intelligence modifier.\n\nThis replaces monster lore."
+        },
+        {
+          "level": 5,
+          "name": "Nature’s Ally",
+          "description": "At 5th level, a Green Faith marshal gains the ability to cast commune with nature once per week.\n\nThis replaces discern lies."
+        },
+        {
+          "level": 11,
+          "name": "Wild Step",
+          "description": "At 11th level, a Green Faith marshal can move through any sort of naturally occurring difficult terrain (such as natural thorns, briars, overgrown areas, and similar terrain) at her normal speed without taking damage or suffering any other impairment. Terrain that is enchanted or magically manipulated to impede motion still affects her.\n\nThis replaces stalwart."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:heretic",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Heretic",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Heretic",
+      "replaces_features": [
+        "monster-lore"
+      ],
+      "removed_features": [
+        "monster-lore"
+      ],
+      "removed_feature_clauses": [
+        "monster lore"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Heretic",
+          "description": "Source Ultimate Magic pg. 45"
+        },
+        {
+          "level": 1,
+          "name": "Judgment",
+          "description": "A heretic gains the following judgment in addition to the normal list of inquisitor judgments."
+        },
+        {
+          "level": 1,
+          "name": "Escape",
+          "description": "Each time the inquisitor using this judgment hits an opponent with a melee or ranged attack, she can use a move action attempt to create a diversion to hide (see the Stealth skill)."
+        },
+        {
+          "level": 1,
+          "name": "Lore of Escape",
+          "description": "At 1st level, the heretic uses every trick she knows to escape those now pursuing her. She adds her Wisdom modifier on Bluff and Stealth skill checks in addition to the normal ability score modifiers. This ability replaces monster lore."
+        },
+        {
+          "level": 1,
+          "name": "Hide Tracks",
+          "description": "At 1st level, a heretical inquisitor is adept at hiding her tracks. Creatures attempting to track her take a –5 penalty on rolls to find or follow her tracks."
+        },
+        {
+          "level": 1,
+          "name": "Ex-Inquisitors",
+          "description": "An inquisitor who becomes an ex-inquisitor can, with the GM’s permission, take the heretic archetype, replacing her class abilities with the appropriate archetype abilities. If the character atones or joins a different faith, she loses her heretic abilities and regains her previous inquisitor class abilities."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:hexenhammer",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Hexenhammer",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Hexenhammer",
+      "replaces_features": [
+        "cunning-initiative",
+        "domain",
+        "monster-lore",
+        "solo-tactics",
+        "spellcasting",
+        "stern-gaze",
+        "teamwork-feats"
+      ],
+      "removed_features": [
+        "cunning-initiative",
+        "domain",
+        "monster-lore",
+        "solo-tactics",
+        "spellcasting",
+        "stern-gaze",
+        "teamwork-feats"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Hexenhammer",
+          "description": "Source Horror Adventures pg. 52"
+        },
+        {
+          "level": 1,
+          "name": "Withering Gaze",
+          "description": "Hexenhammers study the effects of a witch’s evil eye, and can use this dark magic to steel their gaze in a similar manner. Beginning at 1st level, whenever a hexenhammer successfully demoralizes a creature as a standard action, instead of applying the shaken condition, she can apply the effects of the witch evil eyeAPG hex as if she were a 1stlevel witch (save DC = 10 + 1/2 the hexenhammer’s inquisitor level + her Wisdom modifier)."
+        },
+        {
+          "level": 1,
+          "name": "Pride and Penance",
+          "description": "Hexenhammers are deeply conflicted about their dealings with dark powers. If a hexenhammer uses a hex or casts a spell gained from the witch class spell list, she temporarily loses access to her domain abilities and her cunning mind bonus until she undergoes a brief period of penance and atonement that takes 1 minute of quiet prayer and contemplation; this atonement doesn’t require any additional cost, and it automatically restores the lost abilities, regardless of how many times the hexenhammer uses her dark powers. If the hexenhammer uses her dark trade ability (see below) to trade uses of judgment for hexes, she loses access to her domain abilities and cunning mind bonus until the next time she regains her spell slots for the day."
+        },
+        {
+          "level": 2,
+          "name": "Cunning Mind",
+          "description": "At 2nd level, a hexenhammer gains a +2 bonus on saving throws against hexes, curses, spells of the necromancy school, and spells with the evil descriptor."
+        },
+        {
+          "level": 3,
+          "name": "Hexcrafter",
+          "description": "Beginning at 3rd level, a hexenhammer learns to turn some powers of witches to her own advantage. She learns either the blightAPG, the misfortuneAPG, or the slumberAPG hex from the witch’s hex list, and can use that hex once per day as a standard action, using her inquisitor level in place of a witch level. If the hex allows a saving throw, the save DC to resist the hex is equal to 10 + 1/2 the inquisitor’s level + the inquisitor’s Wisdom modifier."
+        },
+        {
+          "level": 3,
+          "name": "Dark Trade",
+          "description": "At 3rd level, a hexenhammer can forgo the power of her judgments and succumb to the temptation of darker powers. She can trade a daily use of judgment to instead gain an additional use of one of her hexes."
+        },
+        {
+          "level": 5,
+          "name": "Witchcraft",
+          "description": "At 5th level and at every 3 inquisitor levels thereafter, a hexenhammer can learn a witch spell in place of a spell she already knows. In effect, she loses an old spell in exchange for a new one selected from the witch class spell list. The new spell’s level must be the same as that of the spell being exchanged, and it must be at least 1 level lower than the highest-level inquisitor spell she can cast. The hexenhammer can swap out only a single spell at any given level and must choose whether or not to swap the spell at the same time she gains new spells known for the level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:iconoclast",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Iconoclast",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Iconoclast",
+      "replaces_features": [
+        "detect-alignment",
+        "discern-lies",
+        "exploit-weakness",
+        "monster-lore",
+        "true-judgment"
+      ],
+      "removed_features": [
+        "detect-alignment",
+        "discern-lies",
+        "exploit-weakness",
+        "monster-lore",
+        "true-judgment"
+      ],
+      "removed_feature_clauses": [
+        "monster lore",
+        "detect alignment",
+        "discern lies",
+        "exploit weakness",
+        "true judgment"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Iconoclast",
+          "description": "Source Ultimate Combat pg. 52"
+        },
+        {
+          "level": 1,
+          "name": "Shake Effects",
+          "description": "At 1st level, an iconoclast gains a +2 bonus on all saving throws against effects that come from a magic item. This ability replaces monster lore."
+        },
+        {
+          "level": 2,
+          "name": "Detect Magic",
+          "description": "At 2nd level, an iconoclast gains the ability to detect magic at will. This ability replaces detect alignment."
+        },
+        {
+          "level": 5,
+          "name": "Dispelling Attack",
+          "description": "At 5th level, once per day as a standard action, an iconoclast can make a melee or ranged attack against an opponent, and if she hits, she can affect that opponent as if she had cast dispel magic, using the targeted dispel option. If she misses, this ability is wasted. Use her inquisitor level as the caster level of the dispel magic effect. This ability replaces discern lies."
+        },
+        {
+          "level": 14,
+          "name": "Negating Critical",
+          "description": "At 14th level, when an iconoclast confirms a critical hit, the creature she hit must succeed at a Fortitude save at DC 10 + 1/2 the iconoclast’s caster level + the iconoclast’s Wisdom modifier for each non-artifact magic item the target is wearing or carrying. On a failed saving throw, the target of the critical hit can neither use nor gain benefit from any minor magic item for 1d4 rounds. This ability can be used in conjunction with critical feats. This ability replaces exploit weakness."
+        },
+        {
+          "level": 20,
+          "name": "Destroy Artifact",
+          "description": "At 20th level, an iconoclast has the ability to destroy minor artifacts. The iconoclast must have possession of the minor artifact for at least a week, which she must spend in uninterrupted contemplation of the nature of the artifact. At the end of that week, she makes a DC 30 Spellcraft check to unweave the fabric of the item, and if she is successful, the artifact is destroyed. If the iconoclast fails, she cannot try to destroy the artifact again with this ability, but another iconoclast can. This ability replaces true judgment."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:immolator",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Immolator",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Immolator",
+      "replaces_features": [
+        "bane",
+        "greater-bane",
+        "smiting-judgment",
+        "true-judgment"
+      ],
+      "removed_features": [
+        "bane",
+        "greater-bane",
+        "smiting-judgment",
+        "true-judgment"
+      ],
+      "removed_feature_clauses": [
+        "bane",
+        "greater bane"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Immolator",
+          "description": "Source Advanced Race Guide pg. 128"
+        },
+        {
+          "level": 1,
+          "name": "Servant of the Flame",
+          "description": "An immolator must worship a deity whose portfolio includes the Fire domain. An immolator who selects the Fire domain (or one of its associated subdomains, if available) uses her domain powers at +1 caster level (this stacks with the ifrit’s fire affinity racial trait)."
+        },
+        {
+          "level": 1,
+          "name": "Judgment",
+          "description": "An immolator gains the following judgment instead of the smiting judgment."
+        },
+        {
+          "level": 6,
+          "name": "Immolation",
+          "description": "The immolator channels purifying flame to consume her enemies. When dealing fire damage to an opponent, she treats the target’s fire resistance as 5 lower than normal (minimum 0). At 6th level, she treats the target’s resistance as 10 lower than normal, 15 lower than normal at 11th level, and 20 lower than normal at 16th level."
+        },
+        {
+          "level": 5,
+          "name": "Burnt Offering",
+          "description": "At 5th level, as a swift action, an immolator can imbue one of her weapons with the flaming weapon special ability. Any creature slain by this weapon burns with magical flame; its body turns to ash, though its equipment is not harmed. This special ability only functions while the immolator wields the weapon. This ability lasts for a number of rounds per day equal to the immolator’s level. These rounds do not need to be consecutive. At 12th level, this ability gives the immolator’s weapon the flaming burst weapon special ability. This ability replaces bane and greater bane."
+        },
+        {
+          "level": 20,
+          "name": "Judgment by Fire",
+          "description": "At 20th level, an immolator can call fiery judgment down upon a foe during combat. Whenever an immolator uses her judgment ability, she can invoke a judgment by fire on a foe as a swift action. Once declared, the immolator can make a single melee (or ranged attack, if the foe is within 30 feet) against the target. If the attack hits, the attack deals fire damage instead of weapon damage, and the target must make a successful Fortitude save or die (creatures immune to fire do not have to save). The DC of this save is equal to 10 + 1/2 the immolator’s level + the immolator’s Wisdom modifier. Regardless of whether the save is successful, the target creature is immune to the immolator’s judgment by fire ability for 24 hours. Creatures killed in this manner explode in a burst of fire, dealing 10d6 points of fire damage to every creature within 5 feet (Reflex save for half damage, DC 10 + 1/2 the immolator’s level + the immolator’s Wisdom modifier). Once this ability has been used, it cannot be used again for 1d4 rounds. This ability modifies and functions as true judgment."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:infiltrator",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Infiltrator",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Infiltrator",
+      "replaces_features": [
+        "discern-lies",
+        "monster-lore",
+        "stern-gaze",
+        "track"
+      ],
+      "removed_features": [
+        "discern-lies",
+        "monster-lore",
+        "stern-gaze",
+        "track"
+      ],
+      "removed_feature_clauses": [
+        "monster lore",
+        "track"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Infiltrator",
+          "description": "Source Ultimate Magic pg. 45"
+        },
+        {
+          "level": 1,
+          "name": "Misdirection",
+          "description": "At 1st level, each day when the infiltrator prepares spells, she may choose an alignment. She detects as that alignment as if she had used misdirection on a creature with that alignment (this does not change any divination results about her other than her alignment). This power replaces stern gaze."
+        },
+        {
+          "level": 1,
+          "name": "Guileful Lore",
+          "description": "At 1st level, the infiltrator’s will is bent toward subterfuge and deception. She adds her Wisdom modifier on Bluff and Diplomacy skill checks in addition to the normal ability score modifiers. This ability replaces monster lore."
+        },
+        {
+          "level": 1,
+          "name": "Forbidden Lore",
+          "description": "While other inquisitors learned to track unbelievers, an infiltrator learns how to cast their spells. An infiltrator can cast spells of an alignment opposed to her or her deity (ignoring the restriction in the Chaotic, Evil, Good, and Lawful Spells class ability). This ability replaces track."
+        },
+        {
+          "level": 1,
+          "name": "Necessary Lies",
+          "description": "An infiltrator adds her class level on saving throws against abilities that detect lies or reveal or force the truth, such as detect lies and zone of truth. This power replaces discern lies."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:keeper-of-construct",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Keeper of Construct",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Keeper of Construct",
+      "replaces_features": [
+        "domain",
+        "exploid-weakness",
+        "monster-lore",
+        "stern-gaze"
+      ],
+      "removed_features": [
+        "domain",
+        "exploid-weakness",
+        "monster-lore",
+        "stern-gaze"
+      ],
+      "removed_feature_clauses": [
+        "inquisitor’s domain",
+        "stern gaze",
+        "monster lore"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Keeper of Construct",
+          "description": "Source People of the Wastes pg. 27"
+        },
+        {
+          "level": 8,
+          "name": "Penetrating Blows",
+          "description": "A keeper of constructs’ attacks are divinely guided to pierce the defenses of constructs. The keeper of constructs treats her weapons as adamantine for the purpose of overcoming damage reduction when attacking constructs. At 8th level, she ignores the first 5 points of DR or hardness when attacking constructs. At 16th level, she ignores the first 10 points of DR or hardness when attacking constructs.\n\nThis replaces the inquisitor’s domain."
+        },
+        {
+          "level": 1,
+          "name": "Construct Influence",
+          "description": "A keeper of constructs’ knowledge of constructs’ inner workings allows her to gain an upper hand over constructs. She can use the Intimidate skill to demoralize constructs, and when she attempts to do so, she gains a bonus on the check equal to half her inquisitor level (minimum 1).\n\nThis replaces stern gaze."
+        },
+        {
+          "level": 1,
+          "name": "Construct Lore",
+          "description": "A keeper of constructs adds twice her Wisdom modifier plus her Intelligence modifier as a bonus when attempting Knowledge checks to identify the abilities and weaknesses of constructs.\n\nThis replaces monster lore."
+        },
+        {
+          "level": 14,
+          "name": "Wrest Control",
+          "description": "At 14th level, three times per day, the keeper of constructs can issue a command to a construct as a standard action. This functions as a suggestion spell that is dismissible, affects the construct despite its normal immunity to mind-affecting effects, and has a caster level equal to the keeper of constructs’ inquisitor level. The construct can resist the command with a successful Will saving throw (DC = 10 + half the keeper of constructs’ inquisitor level + her Wisdom modifier). A construct that successfully saves is immune to this ability for the following 24 hours. This effect immediately ends if the construct is attacked while under its influence."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:keeper-of-the-current",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Keeper of the Current",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Keeper of the Current",
+      "replaces_features": [
+        "discern-lies",
+        "spellcasting",
+        "track"
+      ],
+      "removed_features": [
+        "discern-lies",
+        "spellcasting",
+        "track"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Keeper of the Current",
+          "description": "Source Blood of the Sea pg. 24"
+        },
+        {
+          "level": 1,
+          "name": "Underwater Hunter",
+          "description": "Tracking creatures underwater is particularly challenging, but a keeper of the current can read traces of eddies in the water to follow her prey. A keeper of the current adds her level as a bonus on Survival checks to follow creatures underwater. She gains no bonus when finding or following tracks out of the water. Rules for using the Survival skill underwater are on page 47 of Pathfinder Campaign Setting: Aquatic Adventures."
+        },
+        {
+          "level": 5,
+          "name": "Marine Magic",
+          "description": "At 5th level and at every 3 levels thereafter, a keeper of the current can learn a spell with the water descriptor from the cleric, druid, inquisitor, or wizard spell list in place of a spell she already knows. In effect, she loses an old spell in exchange for a new one. The new spell’s level must be the same as that of the spell being exchanged, and it must be at least 1 level lower than the highest-level inquisitor spell she can cast. The keeper of the current can swap out only a single spell at any given level and must choose whether to swap the spell at the same time she gains new spells known for the level."
+        },
+        {
+          "level": 5,
+          "name": "Rudderless Attack",
+          "description": "At 5th level, an opponent that takes extra damage from the keeper of the current’s bane or greater bane ability has its swim speed halved for 1d4 rounds. A successful Fortitude saving throw (DC = 10 + half the inquisitor’s level + her Wisdom modifier) negates this effect. If the keeper of the current targets a creature already affected by this ability, its swim speed is not further reduced but the duration of the effect is extended by 1d4 rounds."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:kinslayer",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Kinslayer",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Kinslayer",
+      "replaces_features": [
+        "destruction-judgment",
+        "detect-alignment",
+        "teamwork-feats"
+      ],
+      "removed_features": [
+        "destruction-judgment",
+        "detect-alignment",
+        "teamwork-feats"
+      ],
+      "removed_feature_clauses": [
+        "destruction judgment"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Kinslayer",
+          "description": "Source Advanced Race Guide pg. 98"
+        },
+        {
+          "level": 1,
+          "name": "Judgment",
+          "description": "At 1st level, a kinslayer gains the following judgment."
+        },
+        {
+          "level": 1,
+          "name": "Slayer’s Brand",
+          "description": "When using this judgment, the kinslayer gains the ability to brand undead creatures with positive energy. To do so, she must make a successful melee touch attack against the undead creature. This attack deals an amount of positive energy damage equal to 1d6 + the kinslayer’s Charisma modifier, and burns her personal symbol into the undead creature’s flesh, bone, or even its incorporeal form. From that point onward, the kinslayer can sense the existence of the branded creature as if it were the target of a locate creature spell (caster level equal to 1/2 the kinslayer’s inquisitor level). A slayer’s brand lasts until the undead creature is destroyed or until the kinslayer uses this ability on another creature. This ability replaces the destruction judgment."
+        },
+        {
+          "level": 1,
+          "name": "Greater Brand",
+          "description": "A 1st level, a kinslayer learns to modify her slayer’s brand judgment as she gains levels. Whenever she gains the ability to learn a teamwork feat, she can instead opt to learn one of the following modifications to her slayer’s brand judgment."
+        },
+        {
+          "level": 1,
+          "name": "Branding Ray",
+          "description": "The slayer’s brand judgment can be used as a ranged touch attack with a range of 20 feet. A kinslayer can take this modification more than once. Whenever she does, she increases the range of her brand by 20 feet."
+        },
+        {
+          "level": 1,
+          "name": "Debilitating Brand",
+          "description": "A creature currently affected by the slayer’s brand judgment takes a –2 penalty on attack rolls against the kinslayer who placed the brand."
+        },
+        {
+          "level": 1,
+          "name": "Devastating Brand",
+          "description": "When the kinslayer attacks a creature that she has branded with her slayer’s brand, she threatens a critical hit on a roll of 19–20. If the kinslayer is good, she also gains a +2 sacred bonus on all rolls to confirm critical hits on a branded creature."
+        },
+        {
+          "level": 1,
+          "name": "Dual Brand",
+          "description": "The kinslayer can have up to two creatures branded at a time."
+        },
+        {
+          "level": 1,
+          "name": "Holy Brand",
+          "description": "The kinslayer can use her brand on creatures with the evil subtype as well as undead."
+        },
+        {
+          "level": 1,
+          "name": "Searing Brand",
+          "description": "The kinslayer’s slayer’s brand deals an additional 1d6 points of damage for every five inquisitor levels she has. If the creature hit with the slayer’s brand is particularly vulnerable to bright light, the damage dice of her slayer’s brand increases to d8s. A kinslayer must be at least 6th level to take this modification."
+        },
+        {
+          "level": 1,
+          "name": "Silver Brand",
+          "description": "The kinslayer can use her brand on lycanthropes and creatures with vulnerability to silver as well as undead."
+        },
+        {
+          "level": 2,
+          "name": "Undead Sense",
+          "description": "At 2nd level, a kinslayer gains the ability to use detect undead as a spell-like ability (caster level equal to the kinslayer’s inquisitor level) at will. If she detects the presence of undead, she can use her monster lore ability to attempt to determine the type of undead detected as well as to reveal any strengths or weaknesses the undead might have. If any of the detected undead are vampires, she gains a bonus on the check equal to her inquisitor level to immediately identify them as such."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:living-grimoire",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Living Grimoire",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Living Grimoire",
+      "replaces_features": [
+        "bane",
+        "cunning-initiative",
+        "greater-bane",
+        "judgement",
+        "monster-lore",
+        "orisons",
+        "second-judgement",
+        "spellcasting",
+        "third-judgement",
+        "true-judgement"
+      ],
+      "removed_features": [
+        "bane",
+        "cunning-initiative",
+        "greater-bane",
+        "judgement",
+        "monster-lore",
+        "orisons",
+        "second-judgement",
+        "spellcasting",
+        "third-judgement",
+        "true-judgement"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Living Grimoire",
+          "description": "Source Horror Adventures pg. 53"
+        },
+        {
+          "level": 1,
+          "name": "Holy Book",
+          "description": "At 1st level, a living grimoire forms a supernatural bond with a large ironbound tome containing the holy text of his deity and learns to use it as a weapon. When wielding the holy book as a weapon, he deals base damage as if it were a cold iron light mace (but see Sacred Word below), is considered proficient with the book, takes no improvised weapon penalty, and gains a +1 bonus on attack rolls with the book. The tome serves as his holy symbol and divine focus, and can be enchanted as a magic weapon. He can replace his bonded tome with another book at any time, though he must perform a 24-hour binding ritual to attune himself to the new book."
+        },
+        {
+          "level": 1,
+          "name": "Spells",
+          "description": "A living grimoire must prepare his spells ahead of time, and can know any number of inquisitor spells. He uses Intelligence instead of Wisdom as his key spellcasting ability score (to determine his spell DCs, bonus spells per day, modifier on concentration checks, and so on), and to determine the effects and number of uses of his domain powers."
+        },
+        {
+          "level": 1,
+          "name": "Sacred Word",
+          "description": "At 1st level, a living grimoire learns to charge his holy book with the power of his faith. The inquisitor gains the benefits of the warpriest’s sacred weaponACG class ability, but the benefits apply only to his bonded holy book. Like a warpriest’s sacred weapon, the living grimoire’s book deals damage based on the inquisitor’s level, not the book’s base damage (unless the inquisitor chooses to use the book’s base damage)."
+        },
+        {
+          "level": 5,
+          "name": "Blessed Script",
+          "description": "At 5th level, a living grimoire can permanently tattoo one spell of 2nd level or lower from his holy book onto his body. The tattooed spell cannot have an expensive material component or focus. The living grimoire can prepare any tattooed spell without needing his holy book, and can cast his tattooed spells as a spell-like ability once per day."
+        },
+        {
+          "level": 20,
+          "name": "Word of God",
+          "description": "At 20th level, a living grimoire can smite his foes with the holy word of his deity. Up to seven times per day, the inquisitor can make a single melee attack with his holy book against a target. If the attack hits, it deals damage normally and the target must succeed at a Fortitude save or die (DC = 10 + 1/2 the living grimoire’s inquisitor level + his Intelligence modifier). Regardless of whether the save is successful, the target creature is immune to the living grimoire’s word of god ability for 24 hours. Once the living grimoire uses this ability, he can’t use it again for 1d4 rounds."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:monster-tactician",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Monster Tactician",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Monster Tactician",
+      "replaces_features": [
+        "discern-lies",
+        "judgment",
+        "second-judgment",
+        "slayer",
+        "third-judgment",
+        "true-judgment"
+      ],
+      "removed_features": [
+        "discern-lies",
+        "judgment",
+        "second-judgment",
+        "slayer",
+        "third-judgment",
+        "true-judgment"
+      ],
+      "removed_feature_clauses": [
+        "discern lies",
+        "second judgment",
+        "third judgment",
+        "slayer",
+        "true judgment"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Monster Tactician",
+          "description": "Source Monster Summoner's Handbook pg. 7"
+        },
+        {
+          "level": 1,
+          "name": "Summon Monster",
+          "description": "Starting at 1st level, a monster tactician can cast summon monster I as a spell-like ability a number of times per day equal to 3 + her Wisdom modifier. She can cast this spell as a standard action, and the creatures remain for 1 minute per level (instead of 1 round per level). At 3rd level and every 2 inquisitor levels thereafter, the power of this ability increases by 1 spell level, allowing her to summon more powerful creatures (to a maximum of summon monster IX at 17th level). A monster tactician cannot have more than one summon monster spell active in this way at a time; if she uses another, any existing summon monster immediately ends. These summon monster spells are considered to be part of the monster tactician’s spell list for the purposes of spell trigger and spell completion items. In addition, she can expend uses of this ability to fulfill the construction requirements of any magic items she creates, so long as she can use this ability to cast the required spells."
+        },
+        {
+          "level": 5,
+          "name": "Summon Tactics",
+          "description": "At 5th level, every time a monster tactician casts a summoning spell, she can choose any one teamwork feat she knows. All creatures summoned by the spell are treated as if they had the chosen feat for all purposes, without needing to meet any prerequisites. At 8th level and again at 16th level, the number of teamwork feats that she can choose when casting a summoning spell increases by 1. She cannot choose the same feat twice. At 20th level, all creatures summoned by the spell are treated as if they knew all of the monster tactician’s teamwork feats. This ability replaces discern lies, second judgment, third judgment, slayer, and true judgment."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:oathkeeper",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Oathkeeper",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Oathkeeper",
+      "replaces_features": [
+        "alignment",
+        "class-skills",
+        "monster-lore",
+        "track"
+      ],
+      "removed_features": [
+        "alignment",
+        "class-skills",
+        "monster-lore",
+        "track"
+      ],
+      "removed_feature_clauses": [
+        "track"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Oathkeeper",
+          "description": "Source Merchant's Manifest pg. 30"
+        },
+        {
+          "level": 1,
+          "name": "Alignment",
+          "description": "An oathkeeper must be of a lawful alignment, and her alignment must be within one step of her deity’s.\n\nThis alters the inquisitor’s alignment requirements."
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "An oathkeeper removes Knowledge (nature) from her list of class skills and adds Appraise.\n\nThis alters the inquisitor’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Divine Witness",
+          "description": "Every oathkeeper inquisitor develops a unique personal symbol, which she can use to seal an agreement between two or more willing parties. The agreement, whether it’s a trade contract, a truce, or a political marriage, must be as detailed as possible and then signed in the oathkeeper’s presence by every creature involved. Creatures must sign of their own free will—any magical or physical coercion will cause the contract to crumble into ash when the oathkeeper attempts to place her seal upon it. So long as no mystic or physical force is influencing any participating creature, the oathkeeper can mystically seal the arrangement with her personal symbol, binding all signing parties into upholding their ends of the bargain for the length of time spelled out in the agreement."
+        },
+        {
+          "level": 2,
+          "name": "Oathbreaker’s Scourge",
+          "description": "At 2nd level, if an oathkeeper is given physical evidence of a broken agreement and asked to hunt down the contract’s breaker by the offended party, the oathkeeper gains a +4 sacred or profane bonus on Diplomacy and Survival skill checks to gather information about and track the target. The inquisitor is also treated as being 3 levels higher for the purpose of one judgment she uses against the deal breaker, so long as she keeps possession of the evidence. If the oathkeeper uses oathbreaker’s scourge when attacking someone who is actually innocent of fraud—due to forgery, hasty judgments, or other deceptions—she loses access to all of her oathkeeper archetype abilities for 1 month or until she is the target of an atonement spell. This replaces track."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:inquisitor:ordained-hunter",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Ordained Hunter",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/ordained-hunter",
+      "replaces_features": [
+        "detect-alignment",
+        "discern-lies",
+        "judgment",
+        "monster-lore",
+        "second-judgment",
+        "slayer",
+        "spellcasting",
+        "third-judgment",
+        "track",
+        "true-judgment"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "detect alignment",
+        "discern lies",
+        "monster lore",
+        "judgment",
+        "second judgment",
+        "third judgment",
+        "slayer",
+        "true judgment",
+        "spells"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [
+          [
+            "spheres-archetype:pathfinder-class:inquisitor:champion-inquisitor",
+            "spheres-archetype:pathfinder-class:inquisitor:sphere-inquisitor"
+          ]
+        ],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Alignment",
+          "description": "Any except true neutral."
+        },
+        {
+          "level": 1,
+          "name": "Blessed",
+          "description": "At 1st level, the ordained hunter gains Fate as a bonus sphere, or a Fate talent if she already has the Fate sphere, and treats her class level as her caster level for this sphere. This stacks normally with caster levels gained from other sources.\n\nThis replaces detect alignment and discern lies."
+        },
+        {
+          "level": 1,
+          "name": "Track",
+          "description": "The ordained hunter gains track at level 1, and it gives an additional +2 bonus to checks made to follow tracks.\n\nThis alters track."
+        },
+        {
+          "level": 1,
+          "name": "Kismet",
+          "description": "An ordained hunter’s unflinching devotion to her god’s vision of destiny manifests as a pool of kismet: a fluctuating measure of her ability to perform amazing actions in combat. At the start of each day, she gains a number of kismet points equal to her casting ability modifier (minimum 1). Her kismet goes up or down throughout the day, but usually cannot go higher than her casting ability modifier (minimum 1), though feats and magic items can affect this maximum. An ordained hunter spends kismet to accomplish deeds (see below), and regains kismet in the following ways. Natural 1 on a saving throw. Each time the ordained hunter rolls a natural 1 on a saving throw, she regains 1 kismet point. If an ability or effect would allow the ordained hunter to roll twice or reroll, she regains kismet only if the roll she takes is a natural 1. Rolling a natural 1 on a saving throw against an effect caused by a creature, trap, or effect with a CR less than half her character level or who is not genuinely hostile to her does not restore kismet. Natural 1 on an attack roll. Each time the ordained hunter rolls a natural 1 on an attack roll against a creature she regains one kismet point. If an ability or effect would allow the ordained hunter to roll twice or reroll, she regains kismet only if the roll she takes is a natural 1. Rolling a natural 1 on an attack against a creature with a CR less than half her character level or who is not genuinely hostile to her does not restore kismet. Gamble. When the ordained hunter spends at least one spell point on a Fate sphere effect, she can choose to roll a d3. If the d3 is a 1 she loses an additional spell point. If the d3 is a 2, she spends the spell points normally. If the d3 is a 3, the ordained hunter still spends the spell points, but regains one kismet point. She can attempt this for as many spell points as she might spend in a round, but can only regain one kismet point per round in this way. She cannot gamble a spell point if the increased spell point cost of the sphere effect would reduce her to 0 spell points. Attempting to manipulate or circumvent the definition of “genuinely hostile” attracts the ire of Lady Luck and results in the ordained hunter being unable to use her kismet or any abilities requiring it for one hour per level as well as the occurrence of numerous tiny coincidences that make her life unpleasant during this time. (What these might be are entirely subject to the GM’s imagination, but should have little effect on gameplay. Examples might include tripping outside of combat and falling face-first into manure or being mistaken for someone a shopkeeper hates.) This ability replaces monster lore."
+        },
+        {
+          "level": 1,
+          "name": "Deeds",
+          "description": "Ordained hunters spend kismet points to accomplish deeds. Most deeds grant the ordained hunter a momentary bonus or effect, but some provide longer- lasting effects. Some deeds remain in effect while the ordained hunter has at least 1 kismet point, but do not require expending kismet to be maintained. An ordained hunter can only perform deeds of her level or lower. Unless otherwise noted, a deed can be performed multiple successive times, as long as the ordained hunter has or spends the required number of kismet points to perform the deed."
+        },
+        {
+          "level": 1,
+          "name": "Fated Encounter",
+          "description": "At 1st level, as long as the ordained hunter has at least one kismet point remaining, she gains a bonus to attack and damage rolls during surprise rounds equal to the current size of her kismet pool, up to a maximum bonus of 2 + 1/2 her level."
+        },
+        {
+          "level": 1,
+          "name": "Implacable",
+          "description": "At 1st level the ordained hunter may spend a kismet point as a free action to allow herself and a number of other creatures within 30 feet equal to her casting ability modifier to hustle or forced march an additional hour without taking nonlethal damage. When she does, she also reduces the number of hours affected casters (including the ordained hunter herself) must rest to regain spells or spell points by one (minimum 4 hours)."
+        },
+        {
+          "level": 1,
+          "name": "Unyielding",
+          "description": "At 1st level when the ordained hunter makes an initiative check she may spend a kismet point and roll her check twice. She may use either roll, but if she chooses the lower one she is not flat-footed before her first turn, though she might be caught flat-footed by an enemy for other reasons, such as the Catch Off-Guard feat."
+        },
+        {
+          "level": 4,
+          "name": "Boldness",
+          "description": "At 4th level, the ordained hunter can spend 1 kismet point as a free action to increase all of her movement speeds by 20 feet until the start of her next turn. If she moves more than her normal speed during this time she gains a +4 bonus to AC until the start of her next turn."
+        },
+        {
+          "level": 4,
+          "name": "Empyreal Tongue",
+          "description": "At 4th level, when an ally (not including herself) within range of her (word) talents confirms a critical hit on an enemy with at least one alignment component opposite the ordained hunter’s (good for evil, chaos for law, etc.) or reduces such an enemy to 0 or fewer hit points, she may spend a kismet point to use a (word) talent on that ally as a free action, even if it is not her turn."
+        },
+        {
+          "level": 4,
+          "name": "Trapbreaking Aura",
+          "description": "At 4th level, as long as the ordained hunter has at least 1 kismet point, whenever she sets off a trap (magical or otherwise) she gains a luck bonus to AC and saves against the trap’s effect equal to the current size of her kismet pool. In addition, the ordained hunter gains the benefit of evasion (as the rogue class feature) and stalwart (as the inquisitor class feature) against the trap’s effects, if applicable. If the ordained hunter already possesses evasion or stalwart, she instead gains the benefit of the improved version, only suffering the reduced effects even if she fails the saving throw. A trap that is triggered in this fashion makes its presence obvious. It cannot be manually reset and does not automatically reset for a number of rounds equal to the current size of her kismet pool."
+        },
+        {
+          "level": 7,
+          "name": "Blackened Tongue",
+          "description": "At 7th level, as long as the ordained hunter has at least 1 kismet point, she gains spell resistance equal to 5 + her class level + the current size of her kismet pool, and if a hostile creature within range of her words fails to overcome it she may spend a kismet point to use a word on that enemy as an immediate action. If she is aware of an effect, the ordained hunter can choose to have it not be hindered by this spell resistance, and harmless effects are never hindered by it. Allowing an effect to bypass this spell resistance does not require an action."
+        },
+        {
+          "level": 7,
+          "name": "Great Ally",
+          "description": "At 7th level the ordained hunter may spend a kismet point as a free action to grant a single ally within 30 feet the benefit of a teamwork feat she has for 1 minute. The ally must meet all prerequisites for this feat."
+        },
+        {
+          "level": 7,
+          "name": "Twinned Myth",
+          "description": "At 7th level, the ordained hunter may spend a kismet point as a swift action to grant the effect of one motif currently affecting her to an ally within 30 feet for as long as the motif's effect lasts. Both she and her ally gain the benefit and either can discharge it to grant the discharge effect to both of them, after which the effect ends for both of them. She can only share a given motif with a single ally."
+        },
+        {
+          "level": 10,
+          "name": "Impossible Tracker",
+          "description": "At 10th level, as long as the ordained hunter has at least one kismet point remaining she can track creatures that leave no tracks, including flying, swimming, and incorporeal creatures, using Survival as though they were traveling on hard ground. She may also track creatures using magic to conceal their spoor as long as her Survival check exceeds the caster’s MSD."
+        },
+        {
+          "level": 10,
+          "name": "No Escape",
+          "description": "At 10th level, the ordained hunter may spend a kismet point as a swift action to gain the pounce special ability until the end of her turn."
+        },
+        {
+          "level": 10,
+          "name": "No Mercy",
+          "description": "At 10th level, the ordained hunter may spend a kismet point as a free action to make her next natural or manufactured weapon attack deal an extra 2d6 damage and bypass the target’s damage reduction."
+        },
+        {
+          "level": 13,
+          "name": "Improvisation",
+          "description": "At 13th level, the ordained hunter may spend a kismet point as an immediate action to gain the discharge benefit of any motif, even if it is not active on her or she does not possess it."
+        },
+        {
+          "level": 13,
+          "name": "Meditation",
+          "description": "At 13th level, the ordained hunter may spend a kismet point as a swift action to gain the use of any Fate talent she qualifies for. This effect lasts for 1 minute."
+        },
+        {
+          "level": 13,
+          "name": "Serendipitous Aim",
+          "description": "At 13th level, as long as the ordained hunter has at least 1 kismet point, whenever she fails to hit a target because she rolled a natural 1 she may redirect the attack or ability to a different target in range, rolling her attack roll again for the new target. She does not regain kismet for the attack she redirects."
+        },
+        {
+          "level": 16,
+          "name": "Astral Tracker",
+          "description": "At 16th level, the ordained hunter can spend a kismet point to determine where a creature has teleported to. She must study the position from which her quarry teleported for at least ten minutes and then attempt a Survival check against a DC equal to the MSD of whatever creature produced the teleport effect. The normal bonuses and penalties for tracking do not apply, nor does the ordained hunter’s bonus from track. She must attempt this check within 3 days of the teleport effect being used, plus 1 day per ordained hunter level above 16th. Otherwise, it becomes impossible. If successful, the ordained hunter can discern the teleport effect’s destination. She learns the name of the creature or object’s location (place name, business name, building name, or the like), community, county (or similar political division), country, continent, and the plane of existence where the target lies. If it was on the same plane, she knows the direction and distance to the destination."
+        },
+        {
+          "level": 16,
+          "name": "Blade of Fate",
+          "description": "At 16th level, the ordained hunter can spend a kismet point as an immediate action to treat an attack roll as if she had rolled 11. She can use this ability after rolling the attack, but before the results are revealed."
+        },
+        {
+          "level": 16,
+          "name": "Undeniable Blow",
+          "description": "At 16th level, while the ordained hunter has at least 1 kismet point, she can, as a full-round action, make a single attack that ignores the vagaries of chance. When she does, she makes the attack against the target’s touch AC and ignores all damage reduction."
+        },
+        {
+          "level": 19,
+          "name": "Auto da Fe",
+          "description": "At 19th level, when the ordained hunter confirms a critical hit, in addition to the normal damage, she can spend 1 kismet point as an immediate action to debilitate her foe so she can bring her to justice. The target must succeed at a Fortitude saving throw (DC = 10 + 1/2 her ordained hunter level + her casting ability modifier) or take an amount of nonlethal damage equal to its current hit points + 1, as well as become paralyzed for 1 hour."
+        },
+        {
+          "level": 19,
+          "name": "Cheat Death",
+          "description": "At 19th level, whenever the ordained hunter is reduced to 0 hit points or fewer, she can spend all of her remaining kismet to instead be reduced to 1 hit point. She must have at least 1 kismet point to spend. Effects that kill the ordained hunter outright without dealing hit point damage are not affected by this ability."
+        },
+        {
+          "level": 19,
+          "name": "Inevitable",
+          "description": "At 19th level, the ordained hunter may spend 2 kismet points as a free action to bypass nearly all forms of obstacle which could keep her from her enemy for 1 round. She gains a +40 feet bonus to her speed, her attacks ignore all damage reduction, and, as long as she moves toward an enemy she is aware of, she can pass through any barrier no more than 5 feet thick and does not provoke attacks of opportunity for movement. This ability replaces judgment, second judgment, and third judgment."
+        },
+        {
+          "level": 17,
+          "name": "Inescapable",
+          "description": "At 17th level, the ordained hunter gains the ability to find her enemies even when she has no trail to follow. Once per day she may spend an hour meditating on her quarry. She must know the creature’s name or some other way to unambiguously identify it. At the end of the hour, she attempts a Survival check against a DC of 30 + the creature’s CR. Her bonus from track applies to this check. If she succeeds, she receives information in 2d12 hours that identifies the creature’s location. Some gods prefer to deliver this information through dreams or omens, others by whispers heard only by the ordained hunter, and yet others through serendipity, such as an overheard conversation. Regardless of the means, the information provides the ordained hunter with an unerring sense of where the creature is for 24 hours. If the quarry would otherwise be protected or immune to identifying their location (such as with the Unplottable advanced talent, mind blank spell, or other similar effects), the ordained hunter may attempt a magical skill check with a bonus equal to half her ordained hunter level to overcome any such protections the quarry may have. This ability replaces slayer."
+        },
+        {
+          "level": 20,
+          "name": "Amor Fati",
+          "description": "At 20th level, an ordained hunter picks two deeds that she has access to and that she must spend kismet to perform. She can perform these deeds for 1 kismet point fewer (minimum 0) than usual. If the number of kismet points to perform a deed is reduced to 0, the ordained hunter can perform this deed as long as she has at least 1 kismet point. If a deed could already be performed as long as she had at least 1 kismet point, she can now perform that deed even when she has no kismet points. This ability replaces true judgment."
+        },
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The ordained hunter may combine spheres and talents to create magical effects. The ordained hunter is considered a Mid-Caster and uses Wisdom as her casting ability modifier. (Note: All casters gain 2 bonus talents and may select a casting tradition the first time they gain the casting class feature.)\n\nThis replaces spells."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "The ordained hunter gains a small reservoir of energy she can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to her level + her Wisdom modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Magic Talents",
+          "description": "An ordained hunter gains 1 magic talent every time she gains a caster level."
+        },
+        {
+          "level": 2,
+          "name": "Evasion",
+          "description": "At 2nd level and higher, a rogue can avoid even magical and unusual attacks with great agility. If she makes a successful Reflex saving throw against an attack that normally deals half damage on a successful save, she instead takes no damage. Evasion can be used only if the rogue is wearing light armor or no armor. A helpless rogue does not gain the benefit of evasion."
+        },
+        {
+          "level": 11,
+          "name": "Stalwart",
+          "description": "At 11th level, an inquisitor can use mental and physical resiliency to avoid certain attacks. If she makes a Fortitude or Will saving throw against an attack that has a reduced effect on a successful save, she instead avoids the effect entirely. This ability can only be used if the inquisitor is wearing light armor, medium armor, or no armor. A helpless inquisitor does not gain the benefit of the stalwart ability."
+        },
+        {
+          "level": 1,
+          "name": "Improved Evasion",
+          "description": "This works like evasion, except that while the rogue still takes no damage on a successful Reflex saving throw against attacks, she henceforth takes only half damage on a failed save. A helpless rogue does not gain the benefit of improved evasion."
+        },
+        {
+          "level": 1,
+          "name": "Improved Stalwart",
+          "description": "This works like stalwart, except that while the character still takes no partial effect on a successful Fortitude or Will save against attacks, they henceforth only suffer the reduced effect if the saving throw fails."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:preacher",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Preacher",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Preacher",
+      "replaces_features": [
+        "solo-tactics"
+      ],
+      "removed_features": [
+        "solo-tactics"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Preacher",
+          "description": "Source Ultimate Magic pg. 46"
+        },
+        {
+          "level": 3,
+          "name": "Determination",
+          "description": "At 3rd level, the preacher is a person of few words on the battlefield, but those words hold great power and authority. Once per day, the inquisitor can use this ability to create one of the following effects. Each is a free action to use."
+        },
+        {
+          "level": 1,
+          "name": "Aggression",
+          "description": "The preacher may reroll an attack roll that she just made before the results of the roll are revealed. She must take the result of the reroll, even if it’s worse than the original roll."
+        },
+        {
+          "level": 1,
+          "name": "Defense",
+          "description": "When the inquisitor would be hit by a melee or ranged attack, as an immediate action she may add a +4 insight bonus to her Armor Class against that attack, and if this makes the inquisitor’s AC higher than the opponent’s attack roll, the attack misses."
+        },
+        {
+          "level": 1,
+          "name": "Warning",
+          "description": "When a preacher’s ally within line of sight would be hit by a melee or ranged attack, she may call out a warning to that ally, and the attacker must reroll the attack and use the results of the second roll. The ally must be able to hear the preacher and must not be helpless for this ability to have any effect."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:ravener-hunter",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Ravener Hunter",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Ravener Hunter",
+      "replaces_features": [
+        "alignment",
+        "domain",
+        "spellcasting",
+        "teamwork-feat"
+      ],
+      "removed_features": [
+        "alignment",
+        "domain",
+        "spellcasting",
+        "teamwork-feat"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Ravener Hunter",
+          "description": "Source Blood of the Beast pg. 4"
+        },
+        {
+          "level": 1,
+          "name": "Alignment",
+          "description": "Any nonevil."
+        },
+        {
+          "level": 1,
+          "name": "Charged by Nature",
+          "description": "Rather than having a deity patron, a ravener hunter is charged by the spirits of the Mwangi to eradicate evil wherever it appears. At 1st level, a ravener hunter chooses an oracle mystery from the following list: ancestorUM, battleAPG, flameAPG, heavensAPG, lifeAPG, lunar (Pathfinder Player Companion: Blood of the Moon 28), natureAPG, solar (Pathfinder Player Companion: Harrow Handbook 26), stoneAPG, timeUM, volcano (Pathfinder Adventure Path #95: Anvil of Fire 72), wavesAPG, windAPG, or woodUM. She gains one revelation from her chosen mystery. She must meet the revelation’s prerequisites, using her inquisitor level as her effective oracle level to determine the revelation’s effects, and she never qualifies for the Extra RevelationAPG feat. The ravener hunter gains a second revelation from her chosen mystery at 8th level."
+        },
+        {
+          "level": 1,
+          "name": "Holy Magic",
+          "description": "A ravener hunter adds all spells of 6th-level and lower on the cleric spell list with the good descriptor to her inquisitor spell list as inquisitor spells of the same level. If a spell appears on both the cleric and inquisitor spell lists, the ravener hunter uses the lower of the two spell levels listed for the spell. She cannot cast 2 with the chaotic, evil, or lawful descriptors, even from spell trigger or spell completion items."
+        },
+        {
+          "level": 3,
+          "name": "Demon Hunter",
+          "description": "At 3rd level, a ravener hunter gains Demon Hunter (Pathfinder Campaign Setting: The Inner Sea World Guide 286) as a bonus feat, ignoring its prerequisites. She also gains a +2 bonus on Knowledge (religion) checks to recognize the worshipers of any deity with the DemonAPG subdomain, as well as a +2 morale bonus on attack rolls and caster level checks to overcome spell resistance of creatures that she recognizes as followers of such a deity."
+        },
+        {
+          "level": 6,
+          "name": "Solo Tactics",
+          "description": "A ravener hunter gains this ability at 6th level instead of 3rd level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:reaper-of-secrets",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Reaper of Secrets",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Reaper of Secrets",
+      "replaces_features": [
+        "monster-lore",
+        "solo-tactics",
+        "stern-gaze"
+      ],
+      "removed_features": [
+        "monster-lore",
+        "solo-tactics",
+        "stern-gaze"
+      ],
+      "removed_feature_clauses": [
+        "monster lore",
+        "stern gaze"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Reaper of Secrets",
+          "description": "Source Dirty Tactics Toolbox pg. 17"
+        },
+        {
+          "level": 1,
+          "name": "Bound by Secrecy",
+          "description": "A reaper of secrets must choose Norgorber as her deity. If she ever changes her deity, she loses this archetype and becomes a normal inquisitor."
+        },
+        {
+          "level": 1,
+          "name": "Deceitful Lore",
+          "description": "At 1st level, a reaper of secrets adds her Wisdom modifier on Bluff and Disguise skill checks in addition to her Charisma modifier. This ability replaces monster lore."
+        },
+        {
+          "level": 1,
+          "name": "Soul-Piercing Gaze",
+          "description": "At 1st level, as a swift action, a reaper of secrets can focus on a single creature she can see. She then gains an insight bonus on Perception and Sense Motive checks against that creature equal to 1/2 her level (minimum +1). The effect ends if she focuses on a new target. This ability replaces stern gaze."
+        },
+        {
+          "level": 3,
+          "name": "Mind-Game Tactics",
+          "description": "At 3rd level, a reaper of secrets can read other creatures so well she can use their reactions to gain a tactical advantage. She treats any creature targeted by her soul-piercing gaze as if it were her ally and possessed the same teamwork feats as she does for the purposes of positioning and threatening when she determines whether she receives a benefit from her teamwork feats. She cannot use this ability to benefit from any teamwork feats that require particular actions from allies, such as Swap PlacesAPG."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:relic-hunter",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Relic Hunter",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Relic Hunter",
+      "replaces_features": [
+        "bane",
+        "domain",
+        "greater-bane",
+        "judgment",
+        "second-judgment",
+        "spellcasting",
+        "third-judgment"
+      ],
+      "removed_features": [
+        "bane",
+        "domain",
+        "greater-bane",
+        "judgment",
+        "second-judgment",
+        "spellcasting",
+        "third-judgment"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Relic Hunter",
+          "description": "Source Occult Adventures pg. 119"
+        },
+        {
+          "level": 1,
+          "name": "Spells",
+          "description": "A relic hunter casts divine spells drawn from the inquisitor spell list, but her chosen relic schools (see Relics below) limit her to schools she knows, similar in function to an occultist’s implements. Any spell or orison gained by the relic hunter has a relic component (see Relics below), and is not considered to be on the relic hunter’s spell list until she selects its school though the relics alternate class feature. Once she chooses a school, all spells and orisons of that school are considered to be on the relic hunter’s class spell list, allowing her to use spell trigger and spell completion magic items of those spells. A relic hunter’s spells per day, daily spell allotment, Difficulty Class, and minimum Wisdom score requirements remain unchanged from the inquisitor’s normal spellcasting class feature. This ability alters the inquisitor’s spellcasting."
+        },
+        {
+          "level": 1,
+          "name": "Relics",
+          "description": "At 1st level, a relic hunter gains the occultist’s implements class feature (see page 47) and learns to use two occultist implement schools as relic schools. At 4th level and every 3 levels thereafter, the relic hunter learns to use one additional relic school drawn from the same source, gaining access to that school’s resonant power and base focus power and opening up that school’s focus powers for her to select. Like an occultist, a relic hunter can select the same school twice, but it is far less useful for her to do so."
+        },
+        {
+          "level": 1,
+          "name": "Deific Focus",
+          "description": "At 1st level, a relic hunter learns to invest divine power into her chosen relics. This acts like the occultist’s focus powers and mental focus class features (see pages 47 and 48, respectively), with the following adjustments."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:royal-accuser",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Royal Accuser",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Royal Accuser",
+      "replaces_features": [
+        "class-skills",
+        "detect-alignment",
+        "solo-tactics",
+        "stern-gaze",
+        "teamwork-bonus-feats"
+      ],
+      "removed_features": [
+        "class-skills",
+        "detect-alignment",
+        "solo-tactics",
+        "stern-gaze",
+        "teamwork-bonus-feats"
+      ],
+      "removed_feature_clauses": [
+        "solo tactics",
+        "the teamwork feats gained at 3rd",
+        "9th",
+        "and 15th levels",
+        "teamwork feat granted at 18th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Royal Accuser",
+          "description": "Source Inner Sea Intrigue pg. 45"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "A royal accuser adds Knowledge (local) to his list of class skills, instead of Knowledge (nature).\n\nThis alters the inquisitor’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Meticulous Inspection",
+          "description": "A royal accuser gains a morale bonus equal to 1/2 his inquisitor level on all Perception checks (minimum +1)."
+        },
+        {
+          "level": 2,
+          "name": "Detect Monsters and Secrets",
+          "description": "At 2nd level, a royal accuser can use detect aberrationAPG, detect secret doors, and detect undead at will. He can only use one of these at any given time."
+        },
+        {
+          "level": 3,
+          "name": "Favored Enemy",
+          "description": "At 3rd level, a royal accuser gains favored enemy, as the ranger class feature. He must choose his favored enemy from the following list: aberration, dragon, humanoid (orc), humanoid (shapechanger), and undead. He gains another favored enemy at 9th and 15th levels.\n\nThis replaces solo tactics and the teamwork feats gained at 3rd, 9th, and 15th levels."
+        },
+        {
+          "level": 6,
+          "name": "Informed Hunch",
+          "description": "At 6th level, once per day, a royal accuser can contemplate an ongoing investigation he is involved in and potentially know whether his hunches are on the right track. This functions as augury, except if it succeeds, the royal accuser gets one of the following results in place of weal, woe, or weal and woe. The royal accuser treats his inquisitor level as his caster level. Correct (if the hunch is the exact truth, such as if a particular individual is responsible for a crime, or if a particular organization is behind a series of events)."
+        },
+        {
+          "level": 12,
+          "name": "Greater Detect Magic",
+          "description": "At 12th level, a royal accuser can use greater detect magic (Ultimate Intrigue 212) at will."
+        },
+        {
+          "level": 18,
+          "name": "Final Sway",
+          "description": "At 18th level, a royal accuser’s word and intuition are greatly trusted and valued. Once per day, when using the influence system (Ultimate Intrigue 102) and interacting with an individual or organization with whom he has at least minor sway or is respected (rank 2), the royal accuser can treat his influence as two steps higher for the purposes of making a single request of that individual or organization. Alternatively, he can treat an individual’s attitude toward him as up to two steps higher for the purpose of such a request.\n\nThis replaces the teamwork feat granted at 18th level."
+        }
+      ],
+      "detected_systems": [
+        "favored_enemy"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:sacred-huntsmaster",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Sacred Huntsmaster",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Sacred Huntsmaster",
+      "replaces_features": [
+        "judgment",
+        "second-judgment",
+        "slayer",
+        "solo-tactics",
+        "third-judgment",
+        "true-judgment"
+      ],
+      "removed_features": [
+        "judgment",
+        "second-judgment",
+        "slayer",
+        "solo-tactics",
+        "third-judgment",
+        "true-judgment"
+      ],
+      "removed_feature_clauses": [
+        "judgment 1/day",
+        "solo tactics",
+        "later iterations of the judgment ability",
+        "second judgment",
+        "third judgment",
+        "slayer",
+        "true judgment"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Sacred Huntsmaster",
+          "description": "Source Advanced Class Guide pg. 99"
+        },
+        {
+          "level": 1,
+          "name": "Animal Companion",
+          "description": "At 1st level, a sacred huntsmaster forms a bond with an animal companion. This ability works as the hunter class feature of the same name, using her inquisitor level as her hunter level. This ability replaces judgment 1/day."
+        },
+        {
+          "level": 3,
+          "name": "Hunter Tactics",
+          "description": "At 3rd level, a sacred huntsmaster automatically grants her teamwork feats to her animal companion. The companion doesn’t need to meet the prerequisites of these teamwork feats. This ability replaces solo tactics."
+        },
+        {
+          "level": 4,
+          "name": "Animal Focus",
+          "description": "At 4th level, a sacred huntsmaster can take on the aspects of an animal as a swift action. This ability works as the hunter’s animal focus class feature, with her inquisitor level serving as her hunter level. This ability replaces later iterations of the judgment ability."
+        },
+        {
+          "level": 8,
+          "name": "Improved Empathic Link",
+          "description": "At 8th level, the sacred huntsmaster gains an empathic link with her animal companion. This functions like an empathic link with a familiar, except the sacred huntsmaster can also see through a companion’s eyes as a swift action, maintaining this connection as long as she likes (as long as the companion is within 1 mile) and ending it as a free action. The sacred huntsmaster is blinded while maintaining this connection. This ability replaces second judgment."
+        },
+        {
+          "level": 16,
+          "name": "Raise Animal Companion",
+          "description": "At 16th level, a sacred huntsmaster gains raise animal companionUM as a spell-like ability (not restricted to her own animal companion). Using this ability gives the sacred huntsmaster a negative level that cannot be overcome in any way (including by restoration), but automatically ends after 24 hours. At 16th level, this functions as resurrection instead of raise dead, but otherwise operates as normal. This ability replaces third judgment."
+        },
+        {
+          "level": 17,
+          "name": "Second Animal Focus",
+          "description": "At 17th level, whenever a sacred huntsmaster uses her animal focus ability, she selects two different animal aspects for herself instead of one, and can assign two aspects to her companion instead of one. As with the companion’s previous aspect, the second one does not count against the minutes per day a sacred huntsmaster can take on an aspect. If her animal companion is dead and the sacred huntsmaster has applied that aspect to herself, that aspect counts toward her maximum of two aspects at once. The sacred huntsmaster can still only apply one of her dead companion’s to herself, not both. This ability replaces slayer."
+        },
+        {
+          "level": 20,
+          "name": "Greater Empathic Link",
+          "description": "At 20th level, the range of a sacred huntsmaster’s empathic link with her animal companion increases to 10 miles. If the animal companion is within 1 mile, it and the sacred huntsmaster can communicate telepathically. This ability replaces true judgment."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:sanctified-slayer",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Sanctified Slayer",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Sanctified Slayer",
+      "replaces_features": [
+        "judgment",
+        "second-judgment",
+        "slayer",
+        "third-judgment",
+        "true-judgment"
+      ],
+      "removed_features": [
+        "judgment",
+        "second-judgment",
+        "slayer",
+        "third-judgment",
+        "true-judgment"
+      ],
+      "removed_feature_clauses": [
+        "judgment 1/day",
+        "second judgment",
+        "third judgment",
+        "slayer",
+        "true judgment"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Sanctified Slayer",
+          "description": "Source Advanced Class Guide pg. 99"
+        },
+        {
+          "level": 1,
+          "name": "Studied Target",
+          "description": "At 1st level, a sanctified slayer gains the slayer’s studied target class feature. She uses her inquisitor level as her effective slayer level to determine the effects of studied target. This ability replaces judgment 1/day."
+        },
+        {
+          "level": 4,
+          "name": "Sneak Attack",
+          "description": "At 4th level, if a sanctified slayer catches an opponent unable to defend itself effectively from her attack, she can strike a vital spot to deal extra damage. The sanctified slayer’s attack deals additional damage anytime her target would be denied a Dexterity bonus to AC (whether or not the target actually has a Dexterity bonus), or when the sanctified slayer flanks her target. This additional damage is 1d6 at 4th level, and increases by 1d6 every 3 levels thereafter. Should a sanctified slayer score a critical hit with the sneak attack, this extra damage is not multiplied. Ranged attacks can count as sneak attacks only if the target is within 30 feet."
+        },
+        {
+          "level": 1,
+          "name": "Talented Slayer",
+          "description": "At 8th, 16th, 17th, and 20th levels, a sanctified slayer can gain a single slayer talent, including those from the list of rogue talents that a slayer can take, but not an advanced slayer talent. This ability replaces second judgment, third judgment, slayer, and true judgment."
+        }
+      ],
+      "detected_systems": [
+        "sneak_attack",
+        "studied_target",
+        "slayer_talent"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:secret-seeker",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Secret Seeker",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Secret Seeker",
+      "replaces_features": [
+        "bane",
+        "exploit-weakness",
+        "greater-bane",
+        "monster-lore"
+      ],
+      "removed_features": [
+        "bane",
+        "exploit-weakness",
+        "greater-bane",
+        "monster-lore"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Secret Seeker",
+          "description": "Source Ultimate Intrigue pg. 29"
+        },
+        {
+          "level": 1,
+          "name": "Occult Lore",
+          "description": "A secret seeker gains access to the prognostication and read aura occult skill unlocks (Pathfinder RPG Occult Adventures 196–197), but not the other occult skill unlocks. If she ever chooses to gain the Psychic SensitivityOA feat or otherwise gains access to all occult skill unlocks, she receives Psychic MaestroOA as a bonus feat, with prognostication and read aura as the two occult skill unlocks selected."
+        },
+        {
+          "level": 5,
+          "name": "Detect Mind",
+          "description": "At 5th level, a secret seeker can detect anxieties, detect desires, or detect thoughts, as per the spells, for a number of rounds per day equal to twice her inquisitor level. These rounds need not be consecutive. A creature that succeeds at a saving throw against this ability is immune to that secret seeker’s detect mind ability for 24 hours. If the secret seeker has the secrets inquisition, she doubles the number of rounds per day that she can use this ability."
+        },
+        {
+          "level": 14,
+          "name": "Seek Mind",
+          "description": "At 14th level, a secret seeker can use her detect mind ability to seek out people with particular anxieties, desires, or thoughts. This functions as per seek thoughtsAPG except that it works with any of the three types of mental output the secret seeker can detect with detect mind."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:inquisitor:shield-of-the-gods",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Shield of the Gods",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/shield-of-the-gods",
+      "replaces_features": [
+        "judgement",
+        "second-judgment",
+        "slayer",
+        "spellcasting",
+        "third-judgment",
+        "track"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "track",
+        "judgement",
+        "second judgment",
+        "third judgment",
+        "slayer",
+        "spells class feature"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [
+          [
+            "spheres-archetype:pathfinder-class:inquisitor:champion-inquisitor",
+            "spheres-archetype:pathfinder-class:inquisitor:sphere-inquisitor"
+          ]
+        ],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Divine Magics",
+          "description": "At 1st level, the shield of the gods receives a bonus magic talent of her choice from either the Enhancement, Fate, or Protection spheres.\n\nThis replaces track."
+        },
+        {
+          "level": 19,
+          "name": "Covenant with the Gods",
+          "description": "The shield of the gods can use sphere abilities to protect and enhance herself. As a swift action, she may use any aegis of the Protection sphere, any consecration of the Fate sphere, or any creature-targeting enhancement from the Enhancement sphere that has a duration greater than instantaneous. She can not include other creatures in this casting. She may use a talent she does not possess in this casting, provided she has all the prerequisites and she possesses the base sphere. The sphere ability lasts for 1 minute without concentration and can not be extended beyond this, nor can it be sacrificed to activate other abilities (such as sacrificing an aegis to activate a succor ability). If an aegis is used, the shield of the gods spends 1 spell point less to create it (minimum 0). Any other spell point costs must be paid normally. When cast this way, the shield of the gods may use her class level as her caster level. This stacks normally with caster levels gained from other sources. The shield of the gods may use this ability once per day, plus an additional time every 3 levels after the 1st, up to a total of 7 times per day at 19th level.\n\nThis replaces judgement. Other class features that interact with judgment (such as true judgment) interact the same way with this ability."
+        },
+        {
+          "level": 8,
+          "name": "Second Shield",
+          "description": "At 8th level, whenever a shield of the gods uses her covenant with the gods, she may gain two sphere abilities and use both of them on herself. This only consumes one use of her covenant with the gods ability.\n\nThis replaces second judgment."
+        },
+        {
+          "level": 16,
+          "name": "Third Shield",
+          "description": "At 16th level, whenever a shield of the gods uses her covenant with the gods ability, she may use three sphere abilities, instead of just two. This only consumes one use of her covenant with the gods ability.\n\nThis replaces third judgment."
+        },
+        {
+          "level": 17,
+          "name": "True Covenant",
+          "description": "At 17th level, the shield of the gods may choose another sphere (other than Enhancement, Fate, or Protection) and use abilities from this sphere with her covenant with the gods ability. The covenant with the gods ability is still limited to those abilities that can target a creature and can only be used to target the shield of the gods.\n\nThis replaces slayer."
+        },
+        {
+          "level": 1,
+          "name": "The Abjurer's Handbook",
+          "description": "Casting: The shield of the gods may combine spheres and talents to create magical effects. The shield of the gods is considered a Mid-Caster and uses Wisdom as her casting ability modifier. (Note: All casters gain 2 bonus talents and may select a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the spells class feature."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "The shield of the gods gains a small reservoir of energy she can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to his level + his Wisdom modifier (minimum: 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Magic Talents",
+          "description": "A shield of the gods gains 1 magic talent every time she gains a caster level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:sin-eater",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Sin Eater",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Sin Eater",
+      "replaces_features": [
+        "domain",
+        "exploit-weakness",
+        "teamwork-feat"
+      ],
+      "removed_features": [
+        "domain",
+        "exploit-weakness",
+        "teamwork-feat"
+      ],
+      "removed_feature_clauses": [
+        "bonus teamwork feat gained at 6th level",
+        "exploit weakness"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Sin Eater",
+          "description": "Source Ultimate Magic pg. 46"
+        },
+        {
+          "level": 1,
+          "name": "Eat Sin",
+          "description": "At 1st level, as a free action, when the sin eater inquisitor kills an enemy, she may eat the sins of that enemy by spending 1 minute adjacent to its corpse. This provokes attacks of opportunity. The inquisitor can rush this ritual, performing it as a full-round action that provokes attacks of opportunity, but she only gains half the normal benefit (see below)."
+        },
+        {
+          "level": 6,
+          "name": "Speak with Dead",
+          "description": "At 6th level, when the inquisitor eats an enemy’s sins, within 10 minutes of doing so, she can ask the remnants of the enemy’s soul questions as if using speak with dead, with a caster level equal to her inquisitor level. She does not need the enemy’s corpse to use this ability (she can eat sin, move away from the corpse, then use speak with dead), though the soul gets a saving throw just as a corpse would. This ability replaces the bonus teamwork feat gained at 6th level."
+        },
+        {
+          "level": 14,
+          "name": "Burden of Sin",
+          "description": "At 14th level, a sin eater may spend a full-round action to transfer one harmful affliction, condition, or spell effect from another creature to herself (this includes curses, possessions, and permanent effects such as petrification, or any condition that break enchantment can end or reverse). The effect to be transferred is chosen by the sin eater and affects her as if she were the original target, continuing its duration (if any) and preventing any further effect on the original bearer. For example, the inquisitor could transfer a lethal disease to herself, or petrify herself to restore a petrified comrade. The sin eater can use this ability as often as desired, even using it multiple times on the same creature. This ability replaces exploit weakness."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:inquisitor:sincrafter",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Sincrafter",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/sincrafter",
+      "replaces_features": [
+        "bane",
+        "blended-training",
+        "detect-alignment",
+        "discern-lies",
+        "greater-bane",
+        "sincrafters-normal-class-skills-but-does-not-make-sincrafter-incompatible-with-other-archetypes-that-grant-trade-tradition"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "sincrafter’s normal class skills but does not make the sincrafter incompatible with other archetypes that grant a trade tradition",
+        "detect alignment: Wages of Sin (Su): At 5th level",
+        "the sincrafter learns to weaponize any brands they have placed on a creature",
+        "discern lies",
+        "bane",
+        "greater bane"
+      ],
+      "compatibility": {
+        "requires": [
+          "spheres-archetype:pathfinder-class:inquisitor:champion-inquisitor"
+        ],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Trade Tradition",
+          "description": "If this is the character’s first level, she chooses a trade tradition. Her trade rank is adroit. If this is not the character’s first level, she instead chooses one trade talent from the Vocation sphere as a bonus talent. This replaces the sincrafter’s normal class skills but does not make the sincrafter incompatible with other archetypes that grant a trade tradition."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "A sincrafter gains combat, magic, or skill talents (some of which are required to be utility talents) using the journeyman talent progression (or the virtuoso talent progression, if the sincrafter replaces the monster lore and stern gaze class features). A sincrafter’s casting ability modifier determines her operative and practitioner modifiers. This alters blended training."
+        },
+        {
+          "level": 1,
+          "name": "Brand of Sin",
+          "description": "At 1st level, a sincrafter selects any number of motivations which she deems sinful. She may change these selected motivations whenever she regains spell points The sincrafter is under a constant Divine Loyalties effect from the Divination sphere with a caster level equal to her sincrafter level, save that she can only detect motivations that she has registered as sinful. As a touch attack or as part of a successful attack action or attack of opportunity, a sincrafter may place a brand on the creature’s skin. This brand takes any visual form that the sincrafter wishes (covering up to three square inches of skin) and lasts for a number of days equal to the sincrafter’s level. A brand can be hidden by clothing, but the sincrafter’s Divine Loyalties ability can detect whether a creature is branded. A successful Fortitude save (DC 10 + ½ the sincrafter’s level + the sincrafter’s casting ability modifier) reduces the brand’s duration to 1 round per sincrafter level. This is a curse effect with an effective caster level equal to the sincrafter’s level and can be permanently removed by any means that removes a mark of justice. A sincrafter may end any brand they have created as a standard action. At 12th level, the duration of a sincrafter’s brand increases to permanent if the target fails their saving throw.\n\nThis replaces detect alignment: Wages of Sin (Su): At 5th level, the sincrafter learns to weaponize any brands they have placed on a creature. While any of the effects of wages of sin are active on a creature, the sincrafter’s brand blazes as bright as a torch and becomes visible through clothing for as long as the triggering effect is active. Effects that end the brand on a creature end all effects of wages of sin."
+        },
+        {
+          "level": 5,
+          "name": "This replaces detect alignment",
+          "description": "Wages of Sin (Su): At 5th level, the sincrafter learns to weaponize any brands they have placed on a creature. While any of the effects of wages of sin are active on a creature, the sincrafter’s brand blazes as bright as a torch and becomes visible through clothing for as long as the triggering effect is active. Effects that end the brand on a creature end all effects of wages of sin."
+        },
+        {
+          "level": 12,
+          "name": "Castigation",
+          "description": "Whenever the sincrafter forces a branded creature to make a Will saving throw against one of her sphere abilities, the sincrafter may force the creature to take a -2 penalty to their saving throw. This penalty increases to -3 at 12th level."
+        },
+        {
+          "level": 1,
+          "name": "Reprobation",
+          "description": "By spending a spell point as a swift action, the sincrafter may excise a branded creature they can see or otherwise perceive from the boons of their allies. For a number of rounds equal to the sincrafter’s level, the targeted creature is considered to have spell resistance equal to 11 + the sincrafter’s level against all beneficial or harmless spells and magic sphere effects which would affect them. This spell resistance cannot be lowered."
+        },
+        {
+          "level": 12,
+          "name": "Ruination",
+          "description": "When an attack that deals damage hits the branded creature, the sincrafter can cause the target to take an amount of additional damage equal to 1/2 the sincrafter’s class level. The sincrafter can use this ability as a free action, and can use it even if it isn’t her turn. If the sincrafter uses this ability to increase his own damage, the additional damage increases to 1d6 points for every 3 class levels the sincrafter possesses (minimum 2d6). This damage is precision damage and is not multiplied on a critical hit. A sincrafter can trigger this ability only once per round, but a single creature can take damage from multiple sincrafter’s ruinations in a round. At 12th level, the sincrafter gains the following additional uses for wages of sin."
+        },
+        {
+          "level": 1,
+          "name": "Deem Unworthy",
+          "description": "By spending a spell point as a standard action, the sincrafter may attempt to strip a branded creature they can see or otherwise perceive of all special privileges they have earned through their actions. The target must attempt a Will saving throw against the sincrafter’s brand of sin DC. On a failure, the target cannot cast spells and is treated as having broken any codes of conduct, oaths, or other similar restrictions they possess for a number of hours equal to the sincrafter’s level. The target creature regains all of their abilities at the end of this duration so long as they take no further actions which would break their codes of conduct or oaths. An atonement spell or similar effect ends this effect immediately."
+        },
+        {
+          "level": 20,
+          "name": "Proclaimed Ruination",
+          "description": "The sincrafter may spend a spell point to use ruination without it counting towards her limit of one ruination per round. If she does, the branded creature instead suffers additional damage equal to the sincrafter’s level or 1d6 per 2 sincrafter levels if this ability is used on the sincrafter’s own attack. At 20th level, if the sincrafter possesses the true judgment class feature, she may inflict a permanent brand of sin on a creature who fails their saving throw rather than killing them. If she does, the saving throw DC of true judgment becomes equal to the saving throw DC of brand of sin and the creature is affected by the Reprobation and Deem Unworthy effects of Wages of Sin (with no saving throw) for as long as the brand remains.\n\nThis replaces discern lies, bane, and greater bane"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:inquisitor:soldier-of-the-gods",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Soldier of the Gods",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/soldier-of-the-gods",
+      "replaces_features": [
+        "armor-proficiencies",
+        "level",
+        "solo-tactics",
+        "teamwork-feats-at",
+        "weapon"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "solo tactics",
+        "the teamwork feats gained at 3rd",
+        "6th",
+        "9th",
+        "12th",
+        "15th",
+        "and 18th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Weapon and Armor Proficiencies",
+          "description": "The soldier of the gods is proficient with simple weapons and the favored weapon of her deity, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis alters weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A soldier of the gods is considered an Adept practitioner, gaining spheres and talents as appropriate. A soldier of the gods uses her casting ability modifier as his practitioner modifier.\n\nThis replaces solo tactics, and the teamwork feats gained at 3rd, 6th, 9th, 12th, 15th, and 18th level."
+        },
+        {
+          "level": 1,
+          "name": "Archetypes of Power",
+          "description": "Weapon and Armor Proficiencies: The soldier of the gods is proficient with simple weapons and the favored weapon of his deity, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis modifies weapon and armor proficiencies."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:spellbreaker",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Spellbreaker",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Spellbreaker",
+      "replaces_features": [
+        "bonus-teamwork-feats",
+        "final-judgment",
+        "monster-lore",
+        "solo-tactics"
+      ],
+      "removed_features": [
+        "bonus-teamwork-feats",
+        "final-judgment",
+        "monster-lore",
+        "solo-tactics"
+      ],
+      "removed_feature_clauses": [
+        "monster lore",
+        "all bonus teamwork feats",
+        "solo tactics",
+        "final judgment"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Spellbreaker",
+          "description": "Source Ultimate Combat pg. 52"
+        },
+        {
+          "level": 1,
+          "name": "Strong-Willed",
+          "description": "At 1st level, a spellbreaker is able to stand strong against magical effects that seek to control, compel, or persuade her. The spellbreaker rolls twice and takes the best result when making a Will saving throw against a mind-affecting effect. This ability replaces monster lore."
+        },
+        {
+          "level": 3,
+          "name": "Defense against Magic",
+          "description": "At 3rd level, a spellbreaker picks a single wizard school. She gains a +1 bonus on saving throws against arcane spells of that school. Every four levels beyond 3rd, the spellbreaker picks a new school and gains this bonus against arcane spells of that school (to a maximum of five schools of magic at 19th level). Furthermore, each time the spellbreaker picks a new school, the bonuses for the schools she has already chosen increase by 1. This ability replaces all bonus teamwork feats."
+        },
+        {
+          "level": 3,
+          "name": "Foil Casting",
+          "description": "At 3rd level, when an opponent tries to cast an arcane spell within a spellbreaker’s threatened area, the DC for that caster to cast defensively increases by 2. This increase stacks with the effects of the Disruptive feat. Furthermore, the spellbreaker knows where to hit foes to foil casting from a distance. Each time she hits an arcane spellcaster or a creature that uses spell-like abilities with a ranged weapon attack, the DC of any Concentration checks the caster makes increases by 2 for 1 round. This ability replaces solo tactics."
+        },
+        {
+          "level": 20,
+          "name": "Impervious",
+          "description": "At 20th level, a spellbreaker becomes immune to the effects of a single school of arcane magic. That school of magic must be the first one she picked for defense against magic (see above). Neither harmful nor helpful arcane spells of that school have an effect on the spellbreaker. If a spell of that school is an area of effect spell, the spell goes off as normal, but the spellbreaker is untouched by its effects. Once per day, as a swift action, the spellbreaker can grant this imperviousness to all allies in a 60-foot burst for 1 minute. This ability replaces final judgment."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:inquisitor:spellwarper",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Spellwarper",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/spellwarper",
+      "replaces_features": [
+        "all-teamwork-feats",
+        "detect-alignment",
+        "judgment",
+        "second-judgment",
+        "slayer",
+        "solo-tactics",
+        "third-judgment",
+        "track",
+        "true-judgment"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "judgment",
+        "second judgment",
+        "third judgment",
+        "detect alignment",
+        "track",
+        "solo tactics",
+        "all teamwork feats",
+        "slayer",
+        "true judgment"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Breaker of Magic",
+          "description": "At 1st level, the spellwarper gains the Spellhacking sphere as bonus sphere. For every 4 levels the spellwarper possesses, he gains a bonus skill talent from the Spellhacking sphere. At 4th level, the spellwarper gains the unravel arcana ability (as the conduit class feature) and its associated abilities at their appropriate levels, using their inquisitor level as their conduit level when determining its effects. At 7th level, the spellwarper can unravel arcana on any active spell or magical spell effect on a creature as if it were a (hack) talent, although doing so does not dismiss the effect, but instead reduces its caster level by half its current value each time–if its caster level reaches 0, it is dispelled. At 16th level, whenever the spellwarper successfully uses hack magic, he can spend an immediate action to attempt to hack two other targets within 30 feet of the initial target. At 19th level, whenever the spellwarper successfully confirms a critical hit, he can attempt to hack magic as a free action usable outside of his turn, as long as it targets a spell or piece of equipment that is on the attacked creature.\n\nThis replaces judgment, second judgment, and third judgment."
+        },
+        {
+          "level": 2,
+          "name": "Spellvision",
+          "description": "At 2nd level, the spellwarper can spend a move action and concentrate on a single item or creature within 60 feet to determine if it is magical (as the base Divination sphere divine ability). Additionally, whenever the spellwarper observes the magical aura of a teleportation effect, the spellwarper can attempt a Spellcraft check as a full-round action against a DC equal to 10 + the caster level of the teleportation effect. On a success, the spellwarper learns the direction of the destination of the effect, and whether or not it is within 25 feet, 100 feet, 1,000 feet, or further than 1,000 feet from him. At 10th level, the spellwarper’s spellvision becomes constant, allowing an automatic Spellcraft check whenever he comes within 60 feet of a new magical source. Additionally, if the spellwarper succeeds a Spellcraft check to ascertain the direction of a teleportation effect, he instead learns the exact destination as long as it is within long range (400 feet + 40 feet per inquisitor level).\n\nThis replaces detect alignment and track."
+        },
+        {
+          "level": 3,
+          "name": "Resist Magic",
+          "description": "At 3rd level, the spellwarper gains a +1 bonus to dispel checks made to hack magic, as well as to all saving throws against spells, spell-like abilities, and magic sphere effects. This bonus increases by +1 at 6th level and every 4 levels thereafter, and doesn’t stack with other bonuses to dispel checks.\n\nThis replaces solo tactics and all teamwork feats."
+        },
+        {
+          "level": 17,
+          "name": "Discordant Hack",
+          "description": "At 17th level, the spellwarper gains spell resistance equal to 15 + his inquisitor level against magical effects that originate from creature’s that currently have a spell effect or object that is hacked by him.\n\nThis replaces slayer."
+        },
+        {
+          "level": 20,
+          "name": "Cataclysmic Shatter",
+          "description": "At 20th level, whenever the spellwarper uses his arcane shatter ability, he can instead dismiss three non-utility (hack) talents affecting the creature’s equipment or spell effects placed on them. If he does, the creature must succeed at a Fortitude save or instantly die (with a saving throw equal to his Spellhacking sphere DC as normal). On a successful save, the creature still suffers 10 points of force damage per inquisitor level he possesses. Regardless of the result of the saving throw, the creature becomes immune to this ability (but not the arcane shatter ability itself) for 24 hours.\n\nThis replaces true judgment."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:inquisitor:sphere-inquisitor",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Sphere Inquisitor",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/sphere-inquisitor",
+      "replaces_features": [
+        "spellcasting"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [
+        "spells class feature"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "The sphere inquisitor may combine spheres and talents to create magical effects. The sphere inquisitor is considered a Mid-Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.)\n\nThis replaces the spells class feature."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "The sphere inquisitor gains a small reservoir of energy she can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to her sphere inquisitor level + her casting ability modifier (minimum 1). This pool replenishes once per day after roughly 8 hours of rest."
+        },
+        {
+          "level": 1,
+          "name": "Magic Talents",
+          "description": "A sphere inquisitor gains 3/4ths of a magic talent every level (the same progression as she gains caster levels)."
+        },
+        {
+          "level": 1,
+          "name": "Spheres of Power",
+          "description": "Expanded Options"
+        },
+        {
+          "level": 1,
+          "name": "Recommended Casting Tradition",
+          "description": "The classic feel of the inquisitor can be recreated through taking the Verbal Casting, Focus Casting, Aligned Combatant (Destruction), and Aligned Protection (Protection) drawbacks."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:suit-seeker",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Suit Seeker",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Suit Seeker",
+      "replaces_features": [
+        "class-skills",
+        "detect-alignment",
+        "domain",
+        "judgment",
+        "second-judgment",
+        "third-judgment",
+        "true-judgment"
+      ],
+      "removed_features": [
+        "class-skills",
+        "detect-alignment",
+        "domain",
+        "judgment",
+        "second-judgment",
+        "third-judgment",
+        "true-judgment"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Suit Seeker",
+          "description": "Source The Harrow Handbook pg. 22"
+        },
+        {
+          "level": 1,
+          "name": "Alignment",
+          "description": "A suit seeker’s alignment must be neutral on the good-evil axis, the lawful-chaotic axis, or both."
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "The suit seeker removes Knowledge (dungeoneering), Ride, and Survival from the inquisitor’s list of class skills, and adds Knowledge (history) and Use Magic Device to the list."
+        },
+        {
+          "level": 1,
+          "name": "Domain",
+          "description": "A suit seeker must select the Knowledge or Luck domain; the Memory or Fate subdomain; or the Fate, Fervor, or Illumination inquisition (Pathfinder RPG Ultimate Magic 41–42)."
+        },
+        {
+          "level": 1,
+          "name": "Improvised Array",
+          "description": "The suit seeker can call upon the harrow to help her choose an appropriate judgment and bolster her effectiveness with that judgment. As part of activating her judgment ability, the suit seeker can draw an impromptu array of two cards from a complete harrow deck she owns. Once drawn, the array remains the same until the judgment effect ends, though the inquisitor can change her judgment at any time as a swift action, as normal. The act of drawing an improvised array requires a free hand, though the suit seeker can keep a drawn array in her belt or otherwise on her person to perform actions with both hands while still maintaining the cards’ benefits."
+        },
+        {
+          "level": 1,
+          "name": "SuitJudgmentAbility",
+          "description": "BooksPiercingIntelligence: CrownsSmitingCharisma: HammersDestructionStrength: KeysProtectionDexterity: ShieldsResiliencyConstitution: StarsHealingWisdom: A suit seeker does not gain access to and cannot use the justice, resistance, or purity judgments. A suit seeker makes the following adjustments to her judgments."
+        },
+        {
+          "level": 6,
+          "name": "Smiting",
+          "description": "At 6th level, while the suit seeker has her smiting judgment active, her weapons can only count as an alignment type (chaotic, evil, good, or lawful) for the purpose of bypassing damage reduction if the selected alignment is represented on one of the suit seeker’s cards in her current improvised array. If multiple alignments are represented in the improvised array, the suit seeker must select one. If the array contains only neutral cards, the suit seeker cannot benefit from this judgment. She can change the alignment of her judgment to another alignment represented in the array as a swift action."
+        },
+        {
+          "level": 10,
+          "name": "Resiliency",
+          "description": "At 10th level, the DR provided by this judgment can change from magic to an alignment type (chaotic, evil, good, or lawful) only if the selected alignment is represented on one of the suit seeker’s cards in her current improvised array. If multiple alignments are represented in the improvised array, the suit seeker must select one. If the array contains only neutral cards, the suit seeker cannot benefit from this judgment. She can change the alignment of this judgment to another alignment represented in the array as a swift action."
+        },
+        {
+          "level": 2,
+          "name": "Eye of the Harrow",
+          "description": "At 2nd level, a suit seeker can use the magic of her improvised array to hone her attacks against targets that match the cards’ alignment. If any of the cards in her improvised array matches the alignment of an enemy creature within 60 feet on either the good-evil axis or the lawful-chaotic axis, the card glows faintly and the inquisitor gains a +1 sacred bonus on attack rolls against enemies of the matching alignment as long as the card is in her array. If a card matches the alignment of an enemy within 60 feet on both alignment axes, the card glows brightly and the inquisitor gains a +1 sacred bonus on attack rolls and damage rolls against enemies of the matching alignment."
+        },
+        {
+          "level": 20,
+          "name": "Unravel Array",
+          "description": "At 20th level, a suit seeker can tear apart a target’s place in destiny, rendering the creature immobile or possibly dead. As long as she has an improvised array drawn, the suit seeker can destroy one of the cards in her array and designate a single creature within 30 feet as the target of the harrow’s magic. The designated creature must succeed at a Will save (DC 10 + 1/2 the inquisitor’s level + the inquisitor’s Wisdom modifier) or one of its ability scores is immediately reduced to 0, which can immobilize, render unconscious, or kill the creature. The ability score reduced corresponds to the ability score of the card destroyed."
+        }
+      ],
+      "detected_systems": [
+        "domain"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:sworn-of-the-eldest",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Sworn of the Eldest",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Sworn of the Eldest",
+      "replaces_features": [
+        "deity",
+        "domain",
+        "monster-lore",
+        "solo-tactics",
+        "stern-gaze",
+        "teamwork-feats"
+      ],
+      "removed_features": [
+        "deity",
+        "domain",
+        "monster-lore",
+        "solo-tactics",
+        "stern-gaze",
+        "teamwork-feats"
+      ],
+      "removed_feature_clauses": [
+        "monster lore",
+        "stern gaze",
+        "solo tactics",
+        "all teamwork feats"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Sworn of the Eldest",
+          "description": "Source Wilderness Origins pg. 11"
+        },
+        {
+          "level": 1,
+          "name": "Whimsical Worship",
+          "description": "A sworn of the Eldest uses her Charisma modifier, rather than her Wisdom modifier, to determine all class features and effects relating to her inquisitor class, including her spells, cunning initiative, and true judgment abilities."
+        },
+        {
+          "level": 1,
+          "name": "Deity",
+          "description": "A sworn of the Eldest must select one of the Eldest as a deity and must select a domain or subdomain of that Eldest for her domain ability; she cannot be devoted to an ideal or philosophy.\n\nThis alters domain."
+        },
+        {
+          "level": 1,
+          "name": "Disarming Discernment",
+          "description": "A sworn of the Eldest adds her Charisma modifier on Sense Motive skill checks, in addition to her Wisdom modifier.\n\nThis replaces monster lore."
+        },
+        {
+          "level": 1,
+          "name": "Feytongue",
+          "description": "A sworn of the Eldest receives a morale bonus equal to half her inquisitor level (minimum +1) on Bluff and Diplomacy checks.\n\nThis replaces stern gaze."
+        },
+        {
+          "level": 1,
+          "name": "Feywatcher",
+          "description": "Resistant to the tricky ways of other fey, a sworn of the Eldest gains the resist nature’s lure druid class feature.\n\nThis replaces solo tactics."
+        },
+        {
+          "level": 3,
+          "name": "Magic of the Eldest",
+          "description": "At 3rd level and every 3 levels thereafter, a sworn of the Eldest gains a bonus spell slot of the highest spell level she can cast, and she learns the corresponding spell listed for her domain as a bonus spell known. She can use this bonus spell slot only to cast the domain spell of that level.\n\nThis replaces all teamwork feats."
+        }
+      ],
+      "detected_systems": [
+        "domain"
+      ]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:tactical-leader",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Tactical Leader",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Tactical Leader",
+      "replaces_features": [
+        "exploit-weakness",
+        "solo-tactics",
+        "stern-gaze",
+        "teamwork-feats"
+      ],
+      "removed_features": [
+        "exploit-weakness",
+        "solo-tactics",
+        "stern-gaze",
+        "teamwork-feats"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Tactical Leader",
+          "description": "Source Ultimate Intrigue pg. 29"
+        },
+        {
+          "level": 1,
+          "name": "Leader’s Words",
+          "description": "Tactical leaders are skilled at speaking soothing words that keep the peace and bolster allies’ resolve. A tactical leader receives a morale bonus on all Diplomacy checks equal to half his inquisitor level (minimum +1)."
+        },
+        {
+          "level": 3,
+          "name": "Tactician",
+          "description": "At 3rd level, 9th level, and 18th level, a tactical leader gains a teamwork feat as a bonus feat. He must meet the prerequisites for this feat. As a standard action, the tactical leader can grant one of these feats to all allies within 30 feet who can see and hear him. Allies retain the use of this bonus feat for 3 rounds plus 1 round for every 2 inquisitor levels the tactical leader has. Allies do not need to meet the prerequisites of these bonus feats. The tactical leader can use this ability once per day at 3rd level, plus one additional time per day at 6th, 9th, 15th, and 18th level."
+        },
+        {
+          "level": 14,
+          "name": "Battle Acumen",
+          "description": "At 14th level, a tactical leader can grant his judgment benefits to a single other ally within 30 feet who can see and hear the tactical leader as an immediate action. These benefits last until the beginning of the tactical leader’s next turn. A tactical leader must have a judgment active to use this ability and the benefits granted are the same as those selected by his judgment. A tactical leader can use this ability a number of times per day equal to his Wisdom modifier (minimum 1)."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:traceless-operative",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Traceless Operative",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Traceless Operative",
+      "replaces_features": [
+        "bane",
+        "greater-bane",
+        "monster-lore",
+        "stern-gaze",
+        "track"
+      ],
+      "removed_features": [
+        "bane",
+        "greater-bane",
+        "monster-lore",
+        "stern-gaze",
+        "track"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Traceless Operative",
+          "description": "Source Ultimate Intrigue pg. 30"
+        },
+        {
+          "level": 1,
+          "name": "Conceal Evidence",
+          "description": "A traceless operative knows how to clean up and obscure the evidence of foul play. It takes her 1d3 × 10 minutes to conceal or alter evidence in a 10-foot-by-10-foot area. She uses Disguise to alter evidence or Stealth to conceal it, though bonuses and penalties based on her abilities or effects that disguise or hide her own body (such as from disguise self, a cloak of elvenkind, or the size modifier on Stealth checks) do not apply. A creature attempting to investigate the scene using Perception must succeed at the original Perception DC or a DC equal to the traceless operative’s check, whichever is higher, in order to discover the true evidence. A creature who fails against a traceless operative’s Disguise check potentially also derives the false evidence planted by the traceless operative."
+        },
+        {
+          "level": 2,
+          "name": "Trackless",
+          "description": "At 2nd level, a traceless operative’s deity helps obscure her path from others. The DC to track the traceless operative (or a group including her) increases by half her inquisitor level. This does not stack with similar abilities, such as a transporter’s trailbreaker ability."
+        },
+        {
+          "level": 5,
+          "name": "Uncanny Dodge",
+          "description": "At 5th level, a traceless operative can react to danger before her senses would normally allow her to do so. She cannot be caught flat-footed, nor does she lose her Dexterity bonus to AC if the attacker is invisible. She still loses her Dexterity bonus to AC if immobilized. A traceless operative with this ability can still lose her Dexterity bonus to AC if an opponent successfully uses the feint action against her. If the traceless operative already possesses uncanny dodge from a different class, she automatically gains improved uncanny dodge instead."
+        },
+        {
+          "level": 12,
+          "name": "Improved Uncanny Dodge",
+          "description": "At 12th level, a traceless operative can no longer be flanked. This defense denies rogues (or other classes with the sneak attack ability) the ability to sneak attack the traceless operative by flanking her, unless the attacker has at least 4 more rogue levels (or levels in a class that grants the sneak attack class ability) than the traceless operative has inquisitor levels. If the traceless operative already has improved uncanny dodge from another class, the levels from the classes that grant improved uncanny dodge stack when determining the minimum rogue level (or level in another class with the sneak attack ability) required to flank the character."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:umbral-stalker",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Umbral Stalker",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Umbral Stalker",
+      "replaces_features": [
+        "class-skills",
+        "domain",
+        "justice-judgement"
+      ],
+      "removed_features": [
+        "class-skills",
+        "domain",
+        "justice-judgement"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Umbral Stalker",
+          "description": "Source Ultimate Intrigue pg. 31"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "An umbral stalker adds Acrobatics to her list of class skills, instead of Diplomacy.\n\nThis alters the inquisitor’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Dark Descent",
+          "description": "An umbral stalker gains the Darkness domain with the Night subdomainAPG, even if her deity normally doesn’t offer it."
+        },
+        {
+          "level": 1,
+          "name": "Judgment",
+          "description": "Umbral stalkers are most effective when they get the drop on an opponent. An umbral stalker gains access to the following judgment."
+        },
+        {
+          "level": 1,
+          "name": "Stalking",
+          "description": "The umbral stalker gains a +2 sacred bonus on attack rolls against creatures that are unaware of her presence (typically because she is invisible or using Stealth). This bonus increases by 2 for every 5 inquisitor levels she has."
+        },
+        {
+          "level": 1,
+          "name": "Swift and Silent",
+          "description": "Umbral stalkers often descend upon their prey with deadly grace and efficiency. An umbral stalker gains a morale bonus on all Acrobatics and Stealth checks equal to half her inquisitor level (minimum +1)."
+        },
+        {
+          "level": 14,
+          "name": "Deadly Efficiency",
+          "description": "At 14th level, an umbral stalker becomes even deadlier against enemies who haven’t yet noticed her in the shadows. Whenever she confirms a critical hit against a foe that is unaware of her presence, she ignores any damage reduction the target might have and adds her Wisdom bonus to her damage roll (this multiplies on the critical hit as normal); in addition, if the target has regeneration, the creature loses regeneration on the round following the critical hit and can die normally during that round. Creatures whose regeneration always functions are immune to this ability."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:urban-infiltrator",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Urban Infiltrator",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Urban Infiltrator",
+      "replaces_features": [
+        "class-skills",
+        "monster-lore",
+        "stalwart"
+      ],
+      "removed_features": [
+        "class-skills",
+        "monster-lore",
+        "stalwart"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Urban Infiltrator",
+          "description": "Source Magic Tactics Toolbox pg. 18"
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "An urban infiltrator adds Disable Device, Knowledge (history), Knowledge (local), and Knowledge (nobility) to her list of class skills in place of Knowledge (dungeoneering) and Knowledge (nature).\n\nThis alters the inquisitor’s class skills."
+        },
+        {
+          "level": 1,
+          "name": "Gifted Detective",
+          "description": "An urban infiltrator adds her Wisdom modifier as well as her Charisma modifier on Bluff and Disguise skill checks and on Diplomacy checks to gather information. Attempting a Diplomacy check to gather information never takes an urban infiltrator more than 1 hour."
+        },
+        {
+          "level": 11,
+          "name": "A Thousand Faces",
+          "description": "At 11th level, an urban inquisitor gains the ability to change her appearance at will, as if using the alter self spell."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:vampire-hunter",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Vampire Hunter",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Vampire Hunter",
+      "replaces_features": [
+        "altered-bane",
+        "altered-judgments",
+        "detect-alignment"
+      ],
+      "removed_features": [
+        "altered-bane",
+        "altered-judgments",
+        "detect-alignment"
+      ],
+      "removed_feature_clauses": [
+        "detect alignment"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Vampire Hunter",
+          "description": "Source Inner Sea Magic pg. 41"
+        },
+        {
+          "level": 1,
+          "name": "Judgment",
+          "description": "The following vampire hunter judgments work differently than those of a standard inquisitor."
+        },
+        {
+          "level": 10,
+          "name": "Purity",
+          "description": "At 10th level, the judgment bonus is doubled against diseases and energy drain saving throws, but not curses or poisons."
+        },
+        {
+          "level": 6,
+          "name": "Smiting",
+          "description": "At 6th level, the vampire hunter’s weapons count as silver instead of an alignment type."
+        },
+        {
+          "level": 2,
+          "name": "Silversmith",
+          "description": "At 2nd level, a vampire hunter learns the secrets of crafting silver into dangerous weapons. She adds a bonus equal to her class level on any Craft or Spellcraft check made to create a silver item that bypasses DR/silver, such as alchemical silver, silversheen, or silver weapon blanch (see the Advanced Player’s Guide). This ability replaces detect alignment."
+        },
+        {
+          "level": 1,
+          "name": "Bane",
+          "description": "A vampire hunter can only imbue her weapons with the undead-bane ability, but it persists even when she isn’t holding the weapon."
+        },
+        {
+          "level": 5,
+          "name": "Sun Strike",
+          "description": "At 5th level, a vampire hunter can infuse a single weapon she wields with the purifying light of the sun as a swift action for a number of rounds per day equal to her inquisitor level. These rounds do not need to be consecutive. While a weapon is infused with the sun, it deals +1d6 points of damage to any creature that is susceptible or vulnerable to sunlight, including many types of undead (particularly spectres, vampires, and wraiths). This additional damage also applies to oozes and fungus-based monsters. A weapon infused with sun strike sheds illumination as if it were a sunrod."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:vigilant-defender",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Vigilant Defender",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Vigilant Defender",
+      "replaces_features": [
+        "exploit-weakness",
+        "judgement",
+        "stern-gaze",
+        "true-judgement"
+      ],
+      "removed_features": [
+        "exploit-weakness",
+        "judgement",
+        "stern-gaze",
+        "true-judgement"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Vigilant Defender",
+          "description": "Source Ultimate Intrigue pg. 31"
+        },
+        {
+          "level": 1,
+          "name": "Shared Judgments",
+          "description": "As a swift action whenever a vigilant defender has pronounced judgment on her foes, she can grant all of her allies within 60 feet the bonus or special ability that the judgment bestows. If she has multiple active judgments, they all affect her allies. When she does this, the judgments no longer affect her, and their effects only last for 1 round, after which that daily use of judgment ends immediately, even if the combat is not over. The vigilant defender cannot change any of these judgments to another type during this round."
+        },
+        {
+          "level": 1,
+          "name": "Protect the Faithful",
+          "description": "A vigilant defender can spend 1 minute coaching and teaching a group of allies how best to avoid scrutiny from those who wish them harm. The vigilant defender and her allies cannot be in combat or threatened during this coaching, and allies must be able to see and hear the vigilant defender to benefit from this ability. This ability provides no benefits against enemies that have heard or seen the coaching."
+        },
+        {
+          "level": 14,
+          "name": "Bolster the Wounded",
+          "description": "At 14th level, a vigilant defender can preternaturally sense when her allies are in grave peril and can form a mystical conduit to protect them from the full effects of grievous wounds. As an immediate action whenever an enemy conf irms a critical hit against an ally within 30 feet, the vigilant defender can choose to accept half the damage. If she does so, similar to the shield other spell, any of her damage reduction, resistances, or immunities do not apply to the damage she takes."
+        },
+        {
+          "level": 20,
+          "name": "True Vengeance",
+          "description": "At 20th level, when a vigilant defender calls true judgment down upon a foe, if the foe has killed one of the vigilant defender’s allies (permanent sentient allies, such as fellow party members or cohorts, not summoned monsters, animal companions, pets, or the like), the DC of the target’s Fortitude save to avoid death is 2 higher. If the foe has not damaged any of the vigilant defender’s allies, the DC to avoid death is instead 2 lower."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:witch-hunter",
+      "package": "pathfinder-class:inquisitor",
+      "name": "Witch Hunter",
+      "source_group": "Pathfinder",
+      "source_url": "https://www.aonprd.com/ArchetypeDisplay.aspx?FixedName=Inquisitor Witch Hunter",
+      "replaces_features": [
+        "detect-alignment",
+        "discern-lies",
+        "exploit-weakness",
+        "monster-lore",
+        "track",
+        "true-judgment"
+      ],
+      "removed_features": [
+        "detect-alignment",
+        "discern-lies",
+        "exploit-weakness",
+        "monster-lore",
+        "track",
+        "true-judgment"
+      ],
+      "removed_feature_clauses": [
+        "monster lore",
+        "detect alignment",
+        "discern lies",
+        "true judgment",
+        "track",
+        "exploit weakness"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Witch Hunter",
+          "description": "Source Ultimate Combat pg. 53"
+        },
+        {
+          "level": 1,
+          "name": "Spell Sage",
+          "description": "At 1st level, a witch hunter adds her Wisdom modifier on Spellcraft checks in addition to her Intelligence modifier when attempting to identify a spell as it is being cast, to identify the properties of a magic item using detect magic, or to decipher a scroll. This ability replaces monster lore."
+        },
+        {
+          "level": 2,
+          "name": "Knowledgeable Defense",
+          "description": "At 2nd level, a witch hunter who identifies a spell with Spellcraft gains a bonus against its effects, either a +1 bonus on saving throws or a +1 dodge bonus to AC against this spell. This bonus increases every four levels (to a maximum of +5 at 18th level). At 20th level, once per day as a swift action, she can grant this bonus to all her allies within 60 feet, for 1 minute. The allies gain the bonus when the witch hunter identifies the spell, and those among the allies who have at least 1 rank in Spellcraft can aid the witch hunter’s next Spellcraft check as a swift action while under the effect of this ability. This ability replaces detect alignment, discern lies, and true judgment."
+        },
+        {
+          "level": 6,
+          "name": "Spell Scent",
+          "description": "At 6th level, the witch hunter learns how to sense unique spell signatures, and can follow the trail of a cast spell or spell effect cast back to its source. Once per day, when the witch hunter comes into contact with or is exposed to a spell effect or a magic item, she can spend a full-round action to examine the spell effect or magic item, and then gains the effect of a locate creature spell. She can do this even if the spell effect was instantaneous, but must start her examination within 1 round after she experienced the spell’s effect. Instead of locating a known creature, the witch hunter locates the caster of the spell effect or magic item she examined. Doing so does not allow the witch hunter to gain any intelligence about the spellcaster other than its location. This ability replaces track."
+        },
+        {
+          "level": 14,
+          "name": "Witch’s Bane Judgment",
+          "description": "At 14th level, a witch hunter gains the following judgment."
+        },
+        {
+          "level": 1,
+          "name": "Witch’s Bane",
+          "description": "Any creature that casts an arcane spell within 30 feet of the witch hunter takes a –2 penalty to AC against her attacks and a –2 penalty on saving throws against her spells while this judgment remains in effect. This ability replaces exploit weakness."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

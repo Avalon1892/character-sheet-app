@@ -1,0 +1,11 @@
+{
+  "version":1,
+  "entries":[
+    {"key":"spheres-archetype:spheres-class:eliciter:empathic-duelist","sphere_capabilities":{"grants":["magic","martial"],"removes":[]},"class_modifications":{"advancement":{"talent_progression":"Mid","talent_kinds":["magic","martial"],"talent_bonus_levels":[1]},"capabilities":{"grants":["martial"],"removes":[]},"proficiencies":{"mode":"replace","weapons":["Simple weapons"],"armor":["Light armor","Bucklers"]}}},
+    {"key":"spheres-archetype:spheres-class:wraith:baobhan-sith","class_modifications":{"statistics":{"add_class_skills":["knowledge_nature"],"remove_class_skills":["knowledge_religion"]},"advancement":{"talent_bonus_levels":[1,2]}}},
+    {"key":"spheres-archetype:spheres-class:wraith:collective","sphere_capabilities":{"grants":["magic","martial"],"removes":[]},"class_modifications":{"advancement":{"talent_progression":"Mid","talent_kinds":["magic","martial"],"talent_bonus_levels":[1]},"capabilities":{"grants":["martial"],"removes":[]},"proficiencies":{"mode":"replace","weapons":["Simple weapons"],"armor":["Light armor","Bucklers"]}}},
+    {"key":"spheres-archetype:spheres-class:wraith:draugr","sphere_capabilities":{"grants":["magic","martial"],"removes":[]},"class_modifications":{"advancement":{"talent_progression":"Mid","talent_kinds":["magic","martial"],"talent_bonus_levels":[1]},"capabilities":{"grants":["martial"],"removes":[]},"proficiencies":{"mode":"replace","weapons":["Simple weapons"],"armor":["Light armor","Bucklers"]}}},
+    {"key":"spheres-archetype:spheres-class:wraith:matagot","sphere_capabilities":{"grants":["magic","martial"],"removes":[]},"class_modifications":{"advancement":{"talent_progression":"High","talent_kinds":["magic","martial"],"talent_replaces_base":true},"capabilities":{"grants":["martial"],"removes":[]},"proficiencies":{"mode":"replace","weapons":["Simple weapons"],"armor":["Light armor","Bucklers"]}}},
+    {"key":"spheres-archetype:spheres-class:sage:wand-master","class_modifications":{"statistics":{"add_class_skills":["spellcraft","use_magic_device"],"remove_class_skills":["diplomacy","intimidate"]}}}
+  ]
+}

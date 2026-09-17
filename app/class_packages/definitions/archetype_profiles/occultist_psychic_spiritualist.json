@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "description": "Hand-reviewed statistical, casting, proficiency, and Spheres advancement changes for Occultist, Psychic, Spiritualist, and their archetypes.",
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:ancestral-aspirant",
+      "class_modifications": {"statistics": {"add_class_skills": ["bluff", "knowledge_nobility"], "remove_class_skills": ["knowledge_planes", "profession"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:geomancer",
+      "class_modifications": {"statistics": {"add_class_skills": ["knowledge_geography", "knowledge_nature", "survival"], "remove_class_skills": ["disable_device", "knowledge_engineering", "knowledge_religion"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:naturalist",
+      "class_modifications": {"statistics": {"add_class_skills": ["knowledge_nature"], "remove_class_skills": ["knowledge_planes"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:psychodermist",
+      "class_modifications": {"statistics": {"add_class_skills": ["heal", "knowledge_nature", "knowledge_local", "survival"], "remove_class_skills": ["disable_device", "knowledge_engineering", "knowledge_history", "sleight_of_hand"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:secret-broker",
+      "class_modifications": {"statistics": {"add_class_skills": ["bluff", "knowledge_all"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:battle-host",
+      "class_modifications": {
+        "statistics": {"add_class_skills": ["knowledge_local", "knowledge_nobility"]},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons", "Martial weapons"], "armor": ["Light armor", "Medium armor", "Heavy armor", "Shields", "Tower shields"]}
+      }
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:silksworn",
+      "class_modifications": {
+        "statistics": {"add_class_skills": ["bluff", "knowledge_nobility"], "remove_class_skills": ["knowledge_engineering", "knowledge_planes"]},
+        "casting": {"traditional": true, "ability": "intelligence", "progression": "med", "type": "spontaneous", "spells": "arcane"}
+      }
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:occultist:reliquarian",
+      "class_modifications": {"casting": {"traditional": true, "ability": "wisdom", "progression": "med", "type": "spontaneous", "spells": "divine"}}
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:occultist:glory-seeker",
+      "sphere_capabilities": {"grants": ["martial"], "removes": []},
+      "class_modifications": {
+        "statistics": {"add_class_skills": ["knowledge_local", "knowledge_geography", "intimidate"], "remove_class_skills": ["fly", "knowledge_planes", "use_magic_device"]},
+        "advancement": {"talent_progression": "Proficient", "talent_kinds": ["martial"]},
+        "capabilities": {"grants": ["martial"], "removes": []},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:occultist:lauriger",
+      "sphere_capabilities": {"grants": ["magic", "martial", "skill"], "removes": []},
+      "class_modifications": {
+        "statistics": {"class_skills": []},
+        "advancement": {"talent_progression": "Trained", "talent_kinds": ["magic", "martial", "skill"]},
+        "capabilities": {"grants": ["magic", "martial", "skill"], "removes": []},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:occultist:reliquary-keeper",
+      "sphere_capabilities": {"grants": ["magic"], "removes": []},
+      "class_modifications": {
+        "casting": {"sphere_progression": "Mid", "traditional": false, "ability": "intelligence", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "Low", "talent_kinds": ["magic"]},
+        "capabilities": {"grants": ["magic"], "removes": ["traditional_spells"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:psychic:ascendant-mind",
+      "class_modifications": {
+        "casting": {"traditional": false, "progression": "", "spells": ""},
+        "capabilities": {"grants": [], "removes": ["traditional_spells"]}
+      }
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:drowned-channeler",
+      "class_modifications": {"statistics": {"add_class_skills": ["swim"], "remove_class_skills": ["fly"]}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:fractured-mind",
+      "class_modifications": {"casting": {"traditional": true, "ability": "charisma", "progression": "med", "type": "spontaneous", "spells": "psychic"}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:onmyoji",
+      "class_modifications": {"casting": {"traditional": true, "ability": "wisdom", "progression": "med", "type": "spontaneous", "spells": "divine"}}
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:spiritualist:phantom-blade",
+      "class_modifications": {"proficiencies": {"mode": "replace", "weapons": ["Simple weapons", "Martial weapons"], "armor": ["Light armor", "Medium armor"]}}
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:spiritualist:martial-spiritualist",
+      "sphere_capabilities": {"grants": ["martial"], "removes": []},
+      "class_modifications": {
+        "advancement": {"talent_progression": "Proficient", "talent_kinds": ["martial"]},
+        "capabilities": {"grants": ["martial"], "removes": []},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:spiritualist:psychomancer",
+      "sphere_capabilities": {"grants": ["magic"], "removes": []},
+      "class_modifications": {
+        "casting": {"sphere_progression": "Mid", "traditional": false, "ability": "wisdom", "type": "sphere", "spells": ""},
+        "advancement": {"talent_progression": "Mid", "talent_kinds": ["magic"]},
+        "capabilities": {"grants": ["magic"], "removes": ["traditional_spells"]},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor"]}
+      }
+    }
+  ]
+}

@@ -1,0 +1,1080 @@
+{
+  "version": 1,
+  "key": "reaper",
+  "class_key": "spheres-class:reaper",
+  "class_name": "Reaper",
+  "governing_ability": "charisma",
+  "governing_ability_choice_provider": "reaper-casting-ability",
+  "catalog_profile": {
+    "weapon_proficiencies": [
+      "Simple weapons"
+    ],
+    "armor_proficiencies": [
+      "Light armor",
+      "Bucklers"
+    ],
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons"
+      ],
+      "armor": [
+        "Light armor",
+        "Bucklers"
+      ]
+    },
+    "casting": {
+      "sphere_progression": "Low",
+      "ability": "charisma",
+      "traditional": false
+    },
+    "advancement": {
+      "talent_progression": "High",
+      "talent_kinds": [
+        "magic",
+        "martial"
+      ],
+      "talent_bonus_levels": [
+        1
+      ]
+    },
+    "capabilities": [
+      "magic",
+      "martial"
+    ],
+    "audit_ignore_mechanics": [
+      "blessing"
+    ]
+  },
+  "optional_blocks": [
+    "magic_spheres",
+    "spell_points",
+    "martial_talents",
+    "martial_focus"
+  ],
+  "external_systems": [
+    "spell_points",
+    "favored_prey",
+    "reaper_cult",
+    "reaper_techniques"
+  ],
+  "resource_modules": [
+    {
+      "key": "reaper",
+      "title": "Reaper",
+      "governing_ability": "charisma",
+      "grantable": false,
+      "resources": [
+        {
+          "key": "favored_prey",
+          "name": "Favored Prey Applies",
+          "feature_tokens": [
+            "favored-prey"
+          ],
+          "progression": "one",
+          "description": "Enable when checks or attacks concern the current favored prey and record its creature type.",
+          "can_activate": true,
+          "custom_choice_label": "Current favored prey",
+          "tracks_uses": false,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": true
+        },
+        {
+          "key": "favored_prey_bonus",
+          "name": "Favored Prey Bonus",
+          "feature_tokens": [
+            "favored-prey"
+          ],
+          "progression": "reaper_favored_prey",
+          "description": "Bonus against favored prey: +2 at level 1 and +2 every five levels.",
+          "tracks_uses": false,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": false
+        },
+        {
+          "key": "reaper_trophy",
+          "name": "Current Reaper Trophy",
+          "feature_tokens": [
+            "reaper-trophy"
+          ],
+          "progression": "zero",
+          "description": "Record the carried trophy currently setting the Reaper's favored prey.",
+          "custom_choice_label": "Trophy and creature type",
+          "tracks_uses": false,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": false
+        },
+        {
+          "key": "prey_casting_bonus",
+          "name": "Prey Casting Bonus",
+          "feature_tokens": [
+            "prey-casting-bonus"
+          ],
+          "progression": "reaper_prey_casting",
+          "description": "Caster-level bonus when using a magic sphere effect against favored prey.",
+          "can_activate": true,
+          "tracks_uses": false,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": true
+        }
+      ]
+    }
+  ],
+  "passive_effects": [
+    {
+      "key": "reaper-prey-attack",
+      "feature_tokens": [
+        "favored-prey"
+      ],
+      "targets": [
+        "attack"
+      ],
+      "progression": "reaper_favored_prey",
+      "bonus_type": "untyped",
+      "source": "Reaper: Favored Prey",
+      "requires_resource_active": "favored_prey"
+    },
+    {
+      "key": "reaper-prey-damage",
+      "feature_tokens": [
+        "favored-prey"
+      ],
+      "targets": [
+        "damage"
+      ],
+      "progression": "reaper_favored_prey",
+      "bonus_type": "untyped",
+      "source": "Reaper: Favored Prey",
+      "requires_resource_active": "favored_prey"
+    },
+    {
+      "key": "reaper-prey-skills",
+      "feature_tokens": [
+        "favored-prey"
+      ],
+      "targets": [
+        "skill:bluff",
+        "skill:perception",
+        "skill:sense_motive",
+        "skill:survival"
+      ],
+      "target_family": "creature_knowledge_skills",
+      "progression": "reaper_favored_prey",
+      "bonus_type": "untyped",
+      "source": "Reaper: Favored Prey",
+      "requires_resource_active": "favored_prey"
+    },
+    {
+      "key": "reaper-track",
+      "feature_tokens": [
+        "track"
+      ],
+      "targets": [
+        "skill:survival"
+      ],
+      "progression": "half_level",
+      "bonus_type": "untyped",
+      "source": "Reaper: Track",
+      "minimum_level": 2,
+      "requires_resource_active": "track"
+    },
+    {
+      "key": "reaper-prey-casting",
+      "feature_tokens": [
+        "prey-casting-bonus"
+      ],
+      "targets": [
+        "caster_level"
+      ],
+      "progression": "reaper_prey_casting",
+      "bonus_type": "untyped",
+      "source": "Reaper: Prey Casting Bonus",
+      "minimum_level": 3,
+      "requires_resource_active": "prey_casting_bonus"
+    }
+  ],
+  "choice_providers": [
+    {
+      "key": "reaper-casting-ability",
+      "label": "Casting and Practitioner Ability",
+      "feature_tokens": [
+        "casting"
+      ],
+      "minimum": 1,
+      "maximum": 1,
+      "fixed_options": [
+        {
+          "key": "intelligence",
+          "name": "Intelligence"
+        },
+        {
+          "key": "wisdom",
+          "name": "Wisdom"
+        },
+        {
+          "key": "charisma",
+          "name": "Charisma"
+        }
+      ]
+    },
+    {
+      "key": "reaper-favored-prey",
+      "label": "Initial Favored Prey",
+      "feature_tokens": [
+        "favored-prey"
+      ],
+      "minimum": 1,
+      "maximum": 1,
+      "description": "Choose the initial favored prey. Reaper trophies can change the current type later.",
+      "fixed_options": [
+        {
+          "key": "aberration",
+          "name": "Aberration"
+        },
+        {
+          "key": "animal",
+          "name": "Animal"
+        },
+        {
+          "key": "construct",
+          "name": "Construct"
+        },
+        {
+          "key": "dragon",
+          "name": "Dragon"
+        },
+        {
+          "key": "fey",
+          "name": "Fey"
+        },
+        {
+          "key": "humanoid-aquatic",
+          "name": "Humanoid (aquatic)"
+        },
+        {
+          "key": "humanoid-dwarf",
+          "name": "Humanoid (dwarf)"
+        },
+        {
+          "key": "humanoid-elf",
+          "name": "Humanoid (elf)"
+        },
+        {
+          "key": "humanoid-giant",
+          "name": "Humanoid (giant)"
+        },
+        {
+          "key": "humanoid-goblinoid",
+          "name": "Humanoid (goblinoid)"
+        },
+        {
+          "key": "humanoid-gnoll",
+          "name": "Humanoid (gnoll)"
+        },
+        {
+          "key": "humanoid-gnome",
+          "name": "Humanoid (gnome)"
+        },
+        {
+          "key": "humanoid-halfling",
+          "name": "Humanoid (halfling)"
+        },
+        {
+          "key": "humanoid-human",
+          "name": "Humanoid (human)"
+        },
+        {
+          "key": "humanoid-orc",
+          "name": "Humanoid (orc)"
+        },
+        {
+          "key": "humanoid-reptilian",
+          "name": "Humanoid (reptilian)"
+        },
+        {
+          "key": "magical-beast",
+          "name": "Magical Beast"
+        },
+        {
+          "key": "monstrous-humanoid",
+          "name": "Monstrous Humanoid"
+        },
+        {
+          "key": "ooze",
+          "name": "Ooze"
+        },
+        {
+          "key": "outsider-air",
+          "name": "Outsider (air)"
+        },
+        {
+          "key": "outsider-chaotic",
+          "name": "Outsider (chaotic)"
+        },
+        {
+          "key": "outsider-earth",
+          "name": "Outsider (earth)"
+        },
+        {
+          "key": "outsider-evil",
+          "name": "Outsider (evil)"
+        },
+        {
+          "key": "outsider-fire",
+          "name": "Outsider (fire)"
+        },
+        {
+          "key": "outsider-good",
+          "name": "Outsider (good)"
+        },
+        {
+          "key": "outsider-lawful",
+          "name": "Outsider (lawful)"
+        },
+        {
+          "key": "outsider-native",
+          "name": "Outsider (native)"
+        },
+        {
+          "key": "outsider-water",
+          "name": "Outsider (water)"
+        },
+        {
+          "key": "plant",
+          "name": "Plant"
+        },
+        {
+          "key": "undead",
+          "name": "Undead"
+        },
+        {
+          "key": "vermin",
+          "name": "Vermin"
+        }
+      ]
+    },
+    {
+      "key": "reaper-cult",
+      "label": "Reaper Cult",
+      "feature_tokens": [
+        "cult"
+      ],
+      "minimum": 1,
+      "maximum": 1,
+      "fixed_options": [
+        {
+          "key": "blight",
+          "name": "Cult of the Blight",
+          "description": "In your battle against contaminating forces which seem to subsume the world in their mindless hunger, you straddle the line between a reasoning being and an unthinking plague. In forsaking the constituency that oozes and plants feed upon, you hope to starve our or even consume such threats yourself.\nBlight Hunter (Ex)\nAt 1st level, you are always treated as if you've selected plants and oozes with your favored prey class feature, in addition to the currently selected creature type.\nSymbiotic Servitor (Ex)\nAt 5th level, you can extract a servitor from your body to carry out your will. As a standard action, you can have your servitor detach itself from your body as a separate creature with the statistics of a plant companion with an effective druid level of your reaper level (the type of plant companion is chosen when you gain this ability). The servitor can reattach itself to you as a standard action. When attached to you, the servitor has fast healing equal to your reaper level. If a servitor dies, it can be replaced in the same manner as a normal plant companion.\nIf you die, your servitor gradually becomes you, replacing its own statistics with yours after 1d6 days. When this process is complete, you take full control of the servitor as if it was your original character.\nWhile your servitor is separated from your body, it carries a fragment of its consciousness with it, imposing a -2 penalty on Will saves as well as Intelligence, Wisdom, and Charisma-based skill checks on you.\nUncanny Physiology (Ex)\nAt 9th level, your body takes on an amorphous form as ooze overtakes it. You gain the compression universal monster ability and no longer need to breathe. You and your servitor do not take any damage or take any penalty from diseases. You can still contract diseases and spread them to others, but you are otherwise immune to their effects.\nYour mutable physiology is also unwieldy and difficult to control. You take a -2 penalty on initiative checks\nBlighted Sovereign (Su)\nAt 13th level, your essence contaminates your environment and bends it to your will. You may ignore the immunity of plants and oozes to mind-affecting effects (even if they are normally mindless). Whenever you affect a mindless ooze or plant in this way, you gain enough influence over the creature for it to carry out simple commands (such as “guard this room,” “flank this foe,” or “bring me that dead body”). Any hostile creature which detects you with blindsense or blindsight becomes sickened for as long as it does so.\nAs your contagion spreads, you become a living biohazard to your allies. Any of your allies within 30 feet of you (excluding yourself and and your servitor) suffer a -2 penalty to all saving throws. You may spend a spell point as a free action to suppress this penalty for 1 minute.\nLiving Plague (Su)\nAt 17th level, your identity becomes entwined with a potent disease known as living plague. Your touch and natural attacks as well as the touch and natural attacks of your servitor carry the living plague disease. You automatically know how many creatures are infected with living plague and can detect them as per lifesense out to a range of 1 mile. Additionally, you can perceive using any infected individual’s senses as per the Shared Perception talent from the Divination Sphere and communicate with them telepathically. You may take these actions even if you are dead.\nIn addition, if both you and your servitor are dead, any instance of the living plague gradually reforms into you. If a creature dies while carrying your living plague while you are dead, you reclaim the creature's body and return in its location as per the Greater Resurrection talent from the Life Sphere.\nAs you are a manifest disease, healing you proves immensely difficult. The number of hit points you recover from any source are reduced by half (minimum 0). You may spend a spell point as an immediate action to ignore this healing reduction for 1 round.\nLiving Plague\nType disease, contact or injury; Save Fortitude DC 10 + ½ your reaper level + your casting ability modifier\nOnset 1 day; Frequency 1/day\nEffect 2d4 damage to an ability score of your choice, chosen each time the creature fails its saving throw; Cure 2 consecutive saves\nApotheosis\nAt 20th level, if you surrender your soul, you gain the ooze creature template, save that your alignment is not affected and your ability scores are not reduced. You do not gain or lose any sense from gaining the ooze creature type.",
+          "granted_features": [
+            {
+              "level": 1,
+              "name": "Blight Hunter (Ex)",
+              "description": "At 1st level, you are always treated as if you've selected plants and oozes with your favored prey class feature, in addition to the currently selected creature type."
+            },
+            {
+              "level": 5,
+              "name": "Symbiotic Servitor (Ex)",
+              "description": "At 5th level, you can extract a servitor from your body to carry out your will. As a standard action, you can have your servitor detach itself from your body as a separate creature with the statistics of a plant companion with an effective druid level of your reaper level (the type of plant companion is chosen when you gain this ability). The servitor can reattach itself to you as a standard action. When attached to you, the servitor has fast healing equal to your reaper level. If a servitor dies, it can be replaced in the same manner as a normal plant companion.\nIf you die, your servitor gradually becomes you, replacing its own statistics with yours after 1d6 days. When this process is complete, you take full control of the servitor as if it was your original character.\nWhile your servitor is separated from your body, it carries a fragment of its consciousness with it, imposing a -2 penalty on Will saves as well as Intelligence, Wisdom, and Charisma-based skill checks on you."
+            },
+            {
+              "level": 9,
+              "name": "Uncanny Physiology (Ex)",
+              "description": "At 9th level, your body takes on an amorphous form as ooze overtakes it. You gain the compression universal monster ability and no longer need to breathe. You and your servitor do not take any damage or take any penalty from diseases. You can still contract diseases and spread them to others, but you are otherwise immune to their effects.\nYour mutable physiology is also unwieldy and difficult to control. You take a -2 penalty on initiative checks"
+            },
+            {
+              "level": 13,
+              "name": "Blighted Sovereign (Su)",
+              "description": "At 13th level, your essence contaminates your environment and bends it to your will. You may ignore the immunity of plants and oozes to mind-affecting effects (even if they are normally mindless). Whenever you affect a mindless ooze or plant in this way, you gain enough influence over the creature for it to carry out simple commands (such as “guard this room,” “flank this foe,” or “bring me that dead body”). Any hostile creature which detects you with blindsense or blindsight becomes sickened for as long as it does so.\nAs your contagion spreads, you become a living biohazard to your allies. Any of your allies within 30 feet of you (excluding yourself and and your servitor) suffer a -2 penalty to all saving throws. You may spend a spell point as a free action to suppress this penalty for 1 minute."
+            },
+            {
+              "level": 17,
+              "name": "Living Plague (Su)",
+              "description": "At 17th level, your identity becomes entwined with a potent disease known as living plague. Your touch and natural attacks as well as the touch and natural attacks of your servitor carry the living plague disease. You automatically know how many creatures are infected with living plague and can detect them as per lifesense out to a range of 1 mile. Additionally, you can perceive using any infected individual’s senses as per the Shared Perception talent from the Divination Sphere and communicate with them telepathically. You may take these actions even if you are dead.\nIn addition, if both you and your servitor are dead, any instance of the living plague gradually reforms into you. If a creature dies while carrying your living plague while you are dead, you reclaim the creature's body and return in its location as per the Greater Resurrection talent from the Life Sphere.\nAs you are a manifest disease, healing you proves immensely difficult. The number of hit points you recover from any source are reduced by half (minimum 0). You may spend a spell point as an immediate action to ignore this healing reduction for 1 round.\nLiving Plague\nType disease, contact or injury; Save Fortitude DC 10 + ½ your reaper level + your casting ability modifier\nOnset 1 day; Frequency 1/day\nEffect 2d4 damage to an ability score of your choice, chosen each time the creature fails its saving throw; Cure 2 consecutive saves"
+            }
+          ]
+        },
+        {
+          "key": "chimera",
+          "name": "Cult of the Chimera",
+          "description": "The beasts of this world rampage and crush the powerless. The reaper has chosen to stand against beasts of magic, abominations of nature.\nBeast Hunter (Ex)\nAt 1st level, the reaper is always treated as if they have selected magical beast with their favored prey class feature, in addition to the currently selected creature type.\nChimeric Adaptations (Ex)\nAt 5th level, the reaper’s body begins to subtly become more monstrous, growing scales, chitinous plates, or dense matted fur. The reaper’s base natural armor increases by +2 and stacks with any other natural armor they possess. Whenever they are struck by a cold iron weapon, or they touch an object made of cold iron, their body quivers uncontrollably, taking a -2 penalty on attack rolls for 1 round. The reaper retains the effects of this ability even while under the effects of a polymorph effect (or other effect that would suppress abilities reliant on the target’s natural form).\nClaws that Bite, Jaws that Catch (Su)\nAt 9th level, the reaper’s body manifests hideous and monstrous appendages.\nThe reaper chooses of two of the following:\n1 arm, as the extra arm trait from the Alteration sphere Additional Limbs talent.\n1 bite (primary, 1d6 Medium, 1d4 Small) plus grab.\n2 claws (primary, 1d6 Medium, 1d4 Small) plus 1d6 bleed.\n1 gore (primary, 1d6 Medium, 1d4 Small) plus push.\n1 prehensile tail with a stinger (primary, 1d4 Medium, 1d3 Small) plus poison (stinger – injury; save Fort DC 10 + 1/2 their reaper level + their casting ability modifier; frequency 1/round for 4 rounds; effect 1d2 Con damage; cure 2 saves).\n2 tentacles (secondary, 1d4 Medium, 1d3 Small). These tentacles cannot be used to wield weapons or shields. However, the tentacles are agile and dexterous, and may be used as normal limbs and hands for any other purpose.\nThe reaper must have appropriate limbs or appendages when choosing these natural attacks (see the Alteration sphere for similar natural attack requirements, such as gaining claws requiring arms or front legs) and cannot select a choice more than once. The additional appendages and natural attacks from this ability have an ethereal, sickly glow to them, and are noticeably unnatural. The reaper may spend 1 spell point as a standard action to reselect their choices from this ability, or to suppress or enable the natural attacks from this ability. If the reaper suppresses this ability, their animalistic nature takes a toll on their mental capacity, causing them to act more feral and suffer a -4 penalty on all Intelligence-based skill checks and ability checks as long as this ability is suppressed.\nIn addition, whenever the reaper performs an attack action, they may make an additional attack with a natural attack granted by this ability at a -5 penalty as a free action.\nOverwhelming Might (Su)\nAt 13th level, the reaper may spend a spell point as a swift action to temporarily tap into a primal rage. For the next minute, the reaper’s size increases to the next category larger, they gain a +4 size bonus to Strength and Constitution and the natural armor bonus from the chimeric adaptations ability increases by 2. The reaper’s size modifier for AC and attacks changes as appropriate to their new size category. This ability does not change the reaper’s speed. Determine the reaper’s space and reach as appropriate to their new size. Overwhelming might is a not a polymorph effect, but it does not stack with other size changes, such as the Alteration sphere Size Change talent.\nWhen the reaper uses overwhelming might, they become ravenous and irrational. If they did not damage a creature during their previous turn, the reaper takes 1d6 points of nonlethal damage and is sickened for 1 round. If the reaper is immune to nonlethal damage, the damage dealt is lethal instead. This sickened condition bypasses any immunity to the sickened condition the reaper may possess.\nUnstoppable Legend (Su)\nAt 17th level, the reaper takes on the mantle of the king of monsters. The reaper gains DR 5/–, which stacks with all other sources of DR /–, and immunity to bleed, death effects, disease, fire and poison.\nIn addition, once per round during their turn, the reaper may spend a spell point as a free action to attempt a new saving throw against one adverse condition they are suffering from that normally grants a saving throw, using the effect’s original DC. If the reaper is affected by multiple adverse conditions, they choose one adverse condition to attempt a new saving throw versus. The reaper may use this ability even if they are normally unable to take actions due to an adverse condition.\nThis beastly boon comes with a price, an innate demand for perfection. Whenever the reaper first fails a saving throw against a non-harmless effect that causes an adverse condition, they take 3d6 points of nonlethal damage which bypasses any damage reduction they possess and cannot be prevented. If the reaper is immune to nonlethal damage, the damage dealt is lethal instead.\nNote: For the purposes of this ability, an “adverse condition” is a condition, such as entangled, shaken, or paralyzed, caused by an effect with a saving throw. This ability does not work on conditions caused by effects without a saving throw, such as becoming shaken by the Intimidate skill.\nApotheosis\nAt 20th level, if the reaper surrenders their soul, they gain the animal lord template (Pathfinder Roleplaying Game Bestiary 3 pg. 14), and choose a species affinity of their choice, unless they would be unable to gain it due to their creature type. In addition, the reaper is treated as a magical beast for the purposes of effects targeting creatures by type (such as a ranger’s favored enemy and bane weapons, but not for prerequisites).",
+          "granted_features": [
+            {
+              "level": 1,
+              "name": "Beast Hunter (Ex)",
+              "description": "At 1st level, the reaper is always treated as if they have selected magical beast with their favored prey class feature, in addition to the currently selected creature type."
+            },
+            {
+              "level": 5,
+              "name": "Chimeric Adaptations (Ex)",
+              "description": "At 5th level, the reaper’s body begins to subtly become more monstrous, growing scales, chitinous plates, or dense matted fur. The reaper’s base natural armor increases by +2 and stacks with any other natural armor they possess. Whenever they are struck by a cold iron weapon, or they touch an object made of cold iron, their body quivers uncontrollably, taking a -2 penalty on attack rolls for 1 round. The reaper retains the effects of this ability even while under the effects of a polymorph effect (or other effect that would suppress abilities reliant on the target’s natural form)."
+            },
+            {
+              "level": 9,
+              "name": "Claws that Bite, Jaws that Catch (Su)",
+              "description": "At 9th level, the reaper’s body manifests hideous and monstrous appendages.\nThe reaper chooses of two of the following:\n1 arm, as the extra arm trait from the Alteration sphere Additional Limbs talent.\n1 bite (primary, 1d6 Medium, 1d4 Small) plus grab.\n2 claws (primary, 1d6 Medium, 1d4 Small) plus 1d6 bleed.\n1 gore (primary, 1d6 Medium, 1d4 Small) plus push.\n1 prehensile tail with a stinger (primary, 1d4 Medium, 1d3 Small) plus poison (stinger – injury; save Fort DC 10 + 1/2 their reaper level + their casting ability modifier; frequency 1/round for 4 rounds; effect 1d2 Con damage; cure 2 saves).\n2 tentacles (secondary, 1d4 Medium, 1d3 Small). These tentacles cannot be used to wield weapons or shields. However, the tentacles are agile and dexterous, and may be used as normal limbs and hands for any other purpose.\nThe reaper must have appropriate limbs or appendages when choosing these natural attacks (see the Alteration sphere for similar natural attack requirements, such as gaining claws requiring arms or front legs) and cannot select a choice more than once. The additional appendages and natural attacks from this ability have an ethereal, sickly glow to them, and are noticeably unnatural. The reaper may spend 1 spell point as a standard action to reselect their choices from this ability, or to suppress or enable the natural attacks from this ability. If the reaper suppresses this ability, their animalistic nature takes a toll on their mental capacity, causing them to act more feral and suffer a -4 penalty on all Intelligence-based skill checks and ability checks as long as this ability is suppressed.\nIn addition, whenever the reaper performs an attack action, they may make an additional attack with a natural attack granted by this ability at a -5 penalty as a free action."
+            },
+            {
+              "level": 13,
+              "name": "Overwhelming Might (Su)",
+              "description": "At 13th level, the reaper may spend a spell point as a swift action to temporarily tap into a primal rage. For the next minute, the reaper’s size increases to the next category larger, they gain a +4 size bonus to Strength and Constitution and the natural armor bonus from the chimeric adaptations ability increases by 2. The reaper’s size modifier for AC and attacks changes as appropriate to their new size category. This ability does not change the reaper’s speed. Determine the reaper’s space and reach as appropriate to their new size. Overwhelming might is a not a polymorph effect, but it does not stack with other size changes, such as the Alteration sphere Size Change talent.\nWhen the reaper uses overwhelming might, they become ravenous and irrational. If they did not damage a creature during their previous turn, the reaper takes 1d6 points of nonlethal damage and is sickened for 1 round. If the reaper is immune to nonlethal damage, the damage dealt is lethal instead. This sickened condition bypasses any immunity to the sickened condition the reaper may possess."
+            },
+            {
+              "level": 17,
+              "name": "Unstoppable Legend (Su)",
+              "description": "At 17th level, the reaper takes on the mantle of the king of monsters. The reaper gains DR 5/–, which stacks with all other sources of DR /–, and immunity to bleed, death effects, disease, fire and poison.\nIn addition, once per round during their turn, the reaper may spend a spell point as a free action to attempt a new saving throw against one adverse condition they are suffering from that normally grants a saving throw, using the effect’s original DC. If the reaper is affected by multiple adverse conditions, they choose one adverse condition to attempt a new saving throw versus. The reaper may use this ability even if they are normally unable to take actions due to an adverse condition.\nThis beastly boon comes with a price, an innate demand for perfection. Whenever the reaper first fails a saving throw against a non-harmless effect that causes an adverse condition, they take 3d6 points of nonlethal damage which bypasses any damage reduction they possess and cannot be prevented. If the reaper is immune to nonlethal damage, the damage dealt is lethal instead.\nNote: For the purposes of this ability, an “adverse condition” is a condition, such as entangled, shaken, or paralyzed, caused by an effect with a saving throw. This ability does not work on conditions caused by effects without a saving throw, such as becoming shaken by the Intimidate skill."
+            }
+          ]
+        },
+        {
+          "key": "fang",
+          "name": "Cult of the Fang",
+          "description": "Vampirism is a disease of the body and soul, deadening flesh and twisting hearts to evil. Ancient undead look beyond their thirst to higher meaning in the essential properties of blood. The promise of a purer existence can tempt anyone to embrace this horrible curse.\nUndead Hunter (Ex)\nAt 1st level, you are always treated as if you've selected undead with your favored prey class feature, in addition to the currently selected creature type.\nBlood Thirst (Ex)\nAt 5th level, you learn to temporarily sustain your energy with the blood you spill on the battlefield. Whenever you inflict bleed onto a creature, you gain an amount of temporary hit points equal to your practitioner modifier. These temporary hit points stack with each other, but you cannot gain temporary hit points from inflicting bleed damage on a creature who is already bleeding, even if this bleed damage would be greater than what they are currently suffering. Temporary hit points from this ability expire after 1 minute.\nWhenever you lose all the temporary hit points gained from blood thirst within 1 round, your lust for blood weakens your resolve and you take a -2 penalty to AC for 1 minute or until you gain temporary hit points with blood thirst, whichever comes first.\nCrimson Cloud (Su)\nAt 9th level, you can shed your corporeal form by channeling your essence into pure blood. You can spend 1 spell point as a standard action to gain the effects of a gaseous form spell, treating your class level as your caster level for the effects of this ability. In addition, whenever a creature attempts to attack you with a melee attack while in this form, they must succeed on a Fortitude save (DC = 10 + 1/2 your HD + your practitioner modifier) or suffer bleed damage equal to your practitioner modifier. This bleed damage is affected by abilities such as bloodletter and blood thirst as normal.\nWhile using crimson cloud, your thoughts succumb to an obsession over blood and your mind becomes susceptible to mental attacks as you take a -2 penalty to Perception checks and Will saves until you return to your normal form.\nVampiric Charm (Su)\nAt 13th level, you can spend 1 spell point as a standard action to gain a gaze attack as per the universal monster rules for 1 minute with the following effect: All creatures who meet your gaze must succeed on a Will save (DC = 10 + 1/2 your HD + your practitioner modifier) or are charmed as per charm monster, using your class level as your caster level for the purpose of this effect and its duration.\nChanneling your soul in order to charm others causes violent disdain for others in your mind, and you must feed in order to make others a part of you. When you use vampiric charm, you become sickened until you inflict bleed damage onto another creature.\nUndead Flesh (Ex)\nAt 17th level, you gain damage reduction 10/magic and silver as your flesh becomes tough and numb with necrotic energy. Additionally, whenever another creature attempts to attack you with a melee weapon, they must succeed on a Fortitude save (DC = 10 + 1/2 your HD + your practitioner modifier) or take 2d6 points of negative energy damage. Creatures that would be healed by negative energy succeed on this save automatically.\nThis deadening of your flesh comes at a price, and you become sensitive to sunlight. Whenever you are in direct sunlight, you are fatigued and take 1 point of damage per round. The fatigue ends as soon as you find cover from the sun. You may spend 1 spell point to suppress this weakness to sunlight for 1 minute per reaper level.\nApotheosis\nAt 20th level, if you surrender your soul, you gain the vampire template unless you would be unable to gain it due to your creature type. Your type changes to undead (augmented), gaining all benefits of the template. Due to your type of transformation, you do not gain the template's weakness to sunlight, although you do gain all its other weaknesses.",
+          "granted_features": [
+            {
+              "level": 1,
+              "name": "Undead Hunter (Ex)",
+              "description": "At 1st level, you are always treated as if you've selected undead with your favored prey class feature, in addition to the currently selected creature type."
+            },
+            {
+              "level": 5,
+              "name": "Blood Thirst (Ex)",
+              "description": "At 5th level, you learn to temporarily sustain your energy with the blood you spill on the battlefield. Whenever you inflict bleed onto a creature, you gain an amount of temporary hit points equal to your practitioner modifier. These temporary hit points stack with each other, but you cannot gain temporary hit points from inflicting bleed damage on a creature who is already bleeding, even if this bleed damage would be greater than what they are currently suffering. Temporary hit points from this ability expire after 1 minute.\nWhenever you lose all the temporary hit points gained from blood thirst within 1 round, your lust for blood weakens your resolve and you take a -2 penalty to AC for 1 minute or until you gain temporary hit points with blood thirst, whichever comes first."
+            },
+            {
+              "level": 9,
+              "name": "Crimson Cloud (Su)",
+              "description": "At 9th level, you can shed your corporeal form by channeling your essence into pure blood. You can spend 1 spell point as a standard action to gain the effects of a gaseous form spell, treating your class level as your caster level for the effects of this ability. In addition, whenever a creature attempts to attack you with a melee attack while in this form, they must succeed on a Fortitude save (DC = 10 + 1/2 your HD + your practitioner modifier) or suffer bleed damage equal to your practitioner modifier. This bleed damage is affected by abilities such as bloodletter and blood thirst as normal.\nWhile using crimson cloud, your thoughts succumb to an obsession over blood and your mind becomes susceptible to mental attacks as you take a -2 penalty to Perception checks and Will saves until you return to your normal form."
+            },
+            {
+              "level": 13,
+              "name": "Vampiric Charm (Su)",
+              "description": "At 13th level, you can spend 1 spell point as a standard action to gain a gaze attack as per the universal monster rules for 1 minute with the following effect: All creatures who meet your gaze must succeed on a Will save (DC = 10 + 1/2 your HD + your practitioner modifier) or are charmed as per charm monster, using your class level as your caster level for the purpose of this effect and its duration.\nChanneling your soul in order to charm others causes violent disdain for others in your mind, and you must feed in order to make others a part of you. When you use vampiric charm, you become sickened until you inflict bleed damage onto another creature."
+            },
+            {
+              "level": 17,
+              "name": "Undead Flesh (Ex)",
+              "description": "At 17th level, you gain damage reduction 10/magic and silver as your flesh becomes tough and numb with necrotic energy. Additionally, whenever another creature attempts to attack you with a melee weapon, they must succeed on a Fortitude save (DC = 10 + 1/2 your HD + your practitioner modifier) or take 2d6 points of negative energy damage. Creatures that would be healed by negative energy succeed on this save automatically.\nThis deadening of your flesh comes at a price, and you become sensitive to sunlight. Whenever you are in direct sunlight, you are fatigued and take 1 point of damage per round. The fatigue ends as soon as you find cover from the sun. You may spend 1 spell point to suppress this weakness to sunlight for 1 minute per reaper level."
+            }
+          ]
+        },
+        {
+          "key": "great-old-ones",
+          "name": "Cult of the Great Old Ones",
+          "description": "In a world of magic and monsters, the most terrible of foes are those which mortal minds cannot comprehend. You have chosen the most perilous of paths, for interfering with the affairs of aberrations and their progenitors can lead to unfathomable consequences.\nAberration Hunter (Ex)\nAt 1st level, you are always treated as if you've selected aberrations with your favored prey class feature, in addition to the currently selected creature type.\nPsychic Tendril (Su)\nAt 5th level, you may temporarily project your mind beyond the normal limits of geometry, effectively summoning a tendril of psychic energy as a swift action by spending 1 spell point. Once summoned, the tendril attacks a random enemy within 10 feet of you once each turn on your initiative, using your base attack bonus + your practitioner modifier to perform a melee touch attack and dealing 1d6 + your reaper level in nonlethal damage on a successful hit.\nAfter 1 minute, the tendril dissipates and you suffer 1d6 points of nonlethal damage as your conscious mind recoils from its abuse. If you are immune to nonlethal damage, the damage dealt is lethal instead.\nMutable Form (Su)\nAt 9th level, whenever you suffer a critical hit, you may spend 1 spell point as an immediate action to contort spacial reality around the attack and turn it into a normal hit. Whenever you use mutable form, you are sickened until the end of your next turn as conflicting messages from your nerves overwhelm you. If you are already sickened, the durations overlap (they do not stack).\nWarped Terrain (Su)\nAt 13th level, you may spend 1 spell point as a move action to distort space within 30 feet radius around you as greater realities begin to merge with your own. Every creature except yourself treats this area around you as difficult terrain, even if using nonstandard movement forms such as flight. Additionally, all enemies must succeed on a Will save (DC = 10 + 1/2 your HD + your practitioner modifier) or suffer 1d4 points of nonlethal damage per two reaper levels you possess the first time they enter the area.\nAfter 1 minute, the area around you returns to normal and you suffer 3d6 points of nonlethal damage as your mental faculties fail to resist the spatial contortions. If you are immune to nonlethal damage, the damage dealt is lethal instead.\nForbidden Utterance (Su)\nAt 17th level, you may spend 2 spell points as a standard action and utter a single word of horrific, eldritch truth. This word can be repeated by none but understood by all. Every other creature within a 100 foot radius of your location who hears the word suffers 10d6 points of nonlethal damage and must succeed on a Will save (DC = 10 + 1/2 your HD + your practitioner modifier) or become dazed for 1 round and confused and deafened for 1 minute per reaper level you possess. Any creatures unable of hearing you speak (including those using earplugs or the like) are immune to forbidden utterance.\nWhenever you use forbidden utterance, you become deafened for 1 minute and dazed for 1 round. Even the speaker of such a horrible revelation cannot resist its dreadful clarity.\nApotheosis\nAt 20th level, if you surrender your soul, you gain the half-aberration template (below). Your type changes to aberration, gaining all abilities of the template.",
+          "granted_features": [
+            {
+              "level": 1,
+              "name": "Aberration Hunter (Ex)",
+              "description": "At 1st level, you are always treated as if you've selected aberrations with your favored prey class feature, in addition to the currently selected creature type."
+            },
+            {
+              "level": 5,
+              "name": "Psychic Tendril (Su)",
+              "description": "At 5th level, you may temporarily project your mind beyond the normal limits of geometry, effectively summoning a tendril of psychic energy as a swift action by spending 1 spell point. Once summoned, the tendril attacks a random enemy within 10 feet of you once each turn on your initiative, using your base attack bonus + your practitioner modifier to perform a melee touch attack and dealing 1d6 + your reaper level in nonlethal damage on a successful hit.\nAfter 1 minute, the tendril dissipates and you suffer 1d6 points of nonlethal damage as your conscious mind recoils from its abuse. If you are immune to nonlethal damage, the damage dealt is lethal instead."
+            },
+            {
+              "level": 9,
+              "name": "Mutable Form (Su)",
+              "description": "At 9th level, whenever you suffer a critical hit, you may spend 1 spell point as an immediate action to contort spacial reality around the attack and turn it into a normal hit. Whenever you use mutable form, you are sickened until the end of your next turn as conflicting messages from your nerves overwhelm you. If you are already sickened, the durations overlap (they do not stack)."
+            },
+            {
+              "level": 13,
+              "name": "Warped Terrain (Su)",
+              "description": "At 13th level, you may spend 1 spell point as a move action to distort space within 30 feet radius around you as greater realities begin to merge with your own. Every creature except yourself treats this area around you as difficult terrain, even if using nonstandard movement forms such as flight. Additionally, all enemies must succeed on a Will save (DC = 10 + 1/2 your HD + your practitioner modifier) or suffer 1d4 points of nonlethal damage per two reaper levels you possess the first time they enter the area.\nAfter 1 minute, the area around you returns to normal and you suffer 3d6 points of nonlethal damage as your mental faculties fail to resist the spatial contortions. If you are immune to nonlethal damage, the damage dealt is lethal instead."
+            },
+            {
+              "level": 17,
+              "name": "Forbidden Utterance (Su)",
+              "description": "At 17th level, you may spend 2 spell points as a standard action and utter a single word of horrific, eldritch truth. This word can be repeated by none but understood by all. Every other creature within a 100 foot radius of your location who hears the word suffers 10d6 points of nonlethal damage and must succeed on a Will save (DC = 10 + 1/2 your HD + your practitioner modifier) or become dazed for 1 round and confused and deafened for 1 minute per reaper level you possess. Any creatures unable of hearing you speak (including those using earplugs or the like) are immune to forbidden utterance.\nWhenever you use forbidden utterance, you become deafened for 1 minute and dazed for 1 round. Even the speaker of such a horrible revelation cannot resist its dreadful clarity."
+            }
+          ]
+        },
+        {
+          "key": "haunt",
+          "name": "Cult of the Haunt",
+          "description": "Incorporeal undead, malevolent haunts, possessing outsiders, and other forces from beyond the tangible pale strike at mortalkind from vectors that cannot be easily defended. Crossing into this ephemeral reality allows a reaper to confront such threats in their own domain, but returning to the physical world and its limitations can prove challenging.\nHaunt Hunter (Ex)\nAt 1st level, you are always treated as if you've selected creatures with the incorporeal subtype with your favored prey class feature, in addition to the currently selected creature type. In addition, you may apply your favored prey bonus to any skill checks made against haunts.\nTouch of the Shroud (Su)\nAt 5th level, you gain the haunt channeler class feature of a medium, using your reaper level as your effective medium level. Whenever you attempt a saving throw against the effects of a channeled haunt, you may spend a spell point to add your favored enemy bonus to the saving throw.\nIn addition, you may spend a spell point to see any objects or beings that are invisible within your range of vision, as well as any that are ethereal, as if they were normally visible for a number of minutes equal to your reaper level. Such creatures are visible to you as translucent shapes, allowing you easily to discern the difference between visible, invisible, and ethereal creatures. While this effect is active, your maximum vision range is reduced to 60 feet.\nSpirit Predator (Su)\nAt 9th level, any weapons you are wielding or armor you are wearing gains the ghost touch special ability. In addition, if you reduce an incorporeal creature to 0 hit points or fewer, you can instead leave the creature at 1 hit point and consume the creature as an immediate action. A consumed creature is contained in your body and grants you a +1 bonus on either attack rolls, saving throws, or skill checks, chosen by the spirit eater, and a number of temporary hit points equal to the consumed creature’s Hit Dice. These bonuses stack with themselves and last for 24 hours after you consume a spirit or until the spirit is released (whichever comes first). You cannot gain these benefits from consuming a spirit you have consumed before.\nYour body can hold a number of creatures equal to half your favored prey bonus. If you attempt to consume another creature after this point, you must release another consumed creature of your choice. You can release a consumed creature as a free action. A consumed creature attempts to escape after 24 hours. You can attempt to keep a consumed creature in your body by attempting a Will save (DC = 10 + half your level + twice the number of the creatures you have contained in your body). If you succeed, the consumed creatures remain, but they impose a -4 penalty to saving throws against possession and mind-affecting effects. A released creature is destroyed as if it were reduced to 0 hit points and can reconstitute again later, if able. You may spend two spell points for each creature you have contained in your body to automatically succeed at this saving throw.\nSpectral Transgression (Su)\nAt 13th level, you gain the wraith form ability of a wraith of your reaper level. In addition, you may select wraith haunts in place of reaper talents, using your reaper level as your effective wraith level.\nStepping directly into the incorporeal realm is taxing. Whenever you return from your wraith form to your corporeal form, you become fatigued for a number of rounds equal to 2 times the number of rounds spent in wraith form. You cannot enter a wraith form while fatigued or exhausted but may spend a spell point to negate this fatigue.\nClaim the Corporeal (Su)\nAt 17th level, you gain the possession and greater possession abilities of a wraith of your reaper level. However, your own sense of self becomes foreign to you as you explore these other forms. Whenever you stop possessing a creature and return to your original body, you suffer 4 points of ability burn to a random ability score unless you spend a spell point.\nApotheosis\nAt 20th level, if you surrender your soul, you gain either the ghost or prana ghost template unless you would be unable to gain it due to your creature type. For the purpose of ghost abilities, treat your character level as your CR. Due to your type of transformation, you do not gain the rejuvenation ability. Any instances of the extra wraith form and lingering incorporeality wraith haunts may immediately be retrained for other wraith haunts for which you qualify.\nYou make take on a corporeal form or return to your incorporeal state as a move action. While corporeal, you lose the incorporeal ability and gain a Strength score equal to your Strength score from before you gained this ability.",
+          "granted_features": [
+            {
+              "level": 1,
+              "name": "Haunt Hunter (Ex)",
+              "description": "At 1st level, you are always treated as if you've selected creatures with the incorporeal subtype with your favored prey class feature, in addition to the currently selected creature type. In addition, you may apply your favored prey bonus to any skill checks made against haunts."
+            },
+            {
+              "level": 5,
+              "name": "Touch of the Shroud (Su)",
+              "description": "At 5th level, you gain the haunt channeler class feature of a medium, using your reaper level as your effective medium level. Whenever you attempt a saving throw against the effects of a channeled haunt, you may spend a spell point to add your favored enemy bonus to the saving throw.\nIn addition, you may spend a spell point to see any objects or beings that are invisible within your range of vision, as well as any that are ethereal, as if they were normally visible for a number of minutes equal to your reaper level. Such creatures are visible to you as translucent shapes, allowing you easily to discern the difference between visible, invisible, and ethereal creatures. While this effect is active, your maximum vision range is reduced to 60 feet."
+            },
+            {
+              "level": 9,
+              "name": "Spirit Predator (Su)",
+              "description": "At 9th level, any weapons you are wielding or armor you are wearing gains the ghost touch special ability. In addition, if you reduce an incorporeal creature to 0 hit points or fewer, you can instead leave the creature at 1 hit point and consume the creature as an immediate action. A consumed creature is contained in your body and grants you a +1 bonus on either attack rolls, saving throws, or skill checks, chosen by the spirit eater, and a number of temporary hit points equal to the consumed creature’s Hit Dice. These bonuses stack with themselves and last for 24 hours after you consume a spirit or until the spirit is released (whichever comes first). You cannot gain these benefits from consuming a spirit you have consumed before.\nYour body can hold a number of creatures equal to half your favored prey bonus. If you attempt to consume another creature after this point, you must release another consumed creature of your choice. You can release a consumed creature as a free action. A consumed creature attempts to escape after 24 hours. You can attempt to keep a consumed creature in your body by attempting a Will save (DC = 10 + half your level + twice the number of the creatures you have contained in your body). If you succeed, the consumed creatures remain, but they impose a -4 penalty to saving throws against possession and mind-affecting effects. A released creature is destroyed as if it were reduced to 0 hit points and can reconstitute again later, if able. You may spend two spell points for each creature you have contained in your body to automatically succeed at this saving throw."
+            },
+            {
+              "level": 13,
+              "name": "Spectral Transgression (Su)",
+              "description": "At 13th level, you gain the wraith form ability of a wraith of your reaper level. In addition, you may select wraith haunts in place of reaper talents, using your reaper level as your effective wraith level.\nStepping directly into the incorporeal realm is taxing. Whenever you return from your wraith form to your corporeal form, you become fatigued for a number of rounds equal to 2 times the number of rounds spent in wraith form. You cannot enter a wraith form while fatigued or exhausted but may spend a spell point to negate this fatigue."
+            },
+            {
+              "level": 17,
+              "name": "Claim the Corporeal (Su)",
+              "description": "At 17th level, you gain the possession and greater possession abilities of a wraith of your reaper level. However, your own sense of self becomes foreign to you as you explore these other forms. Whenever you stop possessing a creature and return to your original body, you suffer 4 points of ability burn to a random ability score unless you spend a spell point."
+            }
+          ]
+        },
+        {
+          "key": "primordial",
+          "name": "Cult of the Primordial",
+          "description": "The powers of the elemental planes are privy to many secrets, some of which are said to have created reality and others which may be capable of rewriting it. While others may traffic among these beings for power, you strive to protect the world from their ancient and inscrutable whims.\nElemental Hunter (Ex)\nAt 1st level, choose either air, earth, fire, or water. you are always treated as if you've selected outsiders with the chosen subtype with your favored prey class feature, in addition to the currently selected creature type. You can spend 8 hours of meditation to change the selected subtype to another one of the four options. At GM discretion, you may also select other subtypes of outsider not listed as ranger favored enemies such as aether, wood, metal, or elemental.\nElemental Imbuement (Su)\nAt 5th level, you may spend a spell point as a swift action to grant any weapon you are holding a +1 enhancement bonus for 1 minute. For every four levels beyond 1st, the weapon gains another +1 enhancement bonus, to a maximum of +5 at 17th level. These bonuses can be added to the weapon, stacking with existing weapon enhancement to a maximum of +5. Multiple uses of this ability do not stack with themselves. These bonuses can be used to add any of the following weapon properties: corrosive, corrosive burst, flaming, flaming burst, frost, icy burst, shock, shocking burst, or thundering.\nYour essence becomes volatile as you channel this power, rendering you vulnerable. While this ability is active, you take a -2 penalty to AC. You may spend a spell point as a free action to suppress this penalty for 1 minute.\nPlanar Voyager (Su)\nAt 9th level, you are able to insulate yourself against the dangers of the elemental planes. You are considered to be constantly under the effects of the Breathless and Planar Refuge aegis talents from the Protection Sphere and gain resistance to one of acid, cold, electricity, or fire equal to 1/2 your class level + your practitioner modifier (you can spend 8 hours of meditation to change this energy type).\nAs you connect yourself further to the Inner Planes, you take on the more extreme weaknesses of elemental beings. While you have energy resistance selected, you also gain vulnerability to another type (fire if you have cold and vice versa, acid if you have electricity and vice versa). You may spend a spell point as a free action to suppress this vulnerability for 1 minute.\nTitan Form (Su)\nAt 13th, you can transform yourself into a hulking mass of primal elements by spending a spell point as a standard action. For a number of rounds equal to your casting ability modifier, your size increases to either Large or Huge, you take a -2 penalty to Dexterity, and in place of any normal size modifiers to ability scores you gain a +12 size bonus to your Strength, Dexterity, and Constitution scores which can be divided between them in any way you wish (to a maximum of +8 in any one score). While in this form, your natural armor bonus increases by +4. You are also immune to bleed damage, critical hits, and sneak attacks while in titan form and gain DR/— equal to half your reaper level.\nAs you return to your original form, the stability of all four elements in your mortal form becomes limiting. You become staggered for 1 minute.\nAbsolute Elements (Su)\nAt 17th level, you delve into the elemental planes’ deepest secrets, emerging with the power to rearrange the building blocks of the multiverse. Your abilities ignore any energy resistance or hardness that targets may possess and all of your attacks count as silver, cold iron, and adamantine for the purpose of bypassing damage reduction. Your energy resistance from Planar Voyager changes to immunity to the chosen damage type.\nThis connection to the elemental planes leaves your consciousness vulnerable to control or assault. You take a -3 penalty to Will saves. You may spend a spell point as a free action to suppress this penalty for 1 minute.\nApotheosis\nAt 20th level, if you surrender your soul, you gain the elemental-infused template unless you would be unable to gain it due to your creature type. You do not take a penalty to an ability score from gaining this template. You can spend 8 hours in meditation to change the options selected with the elemental-infused template.",
+          "granted_features": [
+            {
+              "level": 1,
+              "name": "Elemental Hunter (Ex)",
+              "description": "At 1st level, choose either air, earth, fire, or water. you are always treated as if you've selected outsiders with the chosen subtype with your favored prey class feature, in addition to the currently selected creature type. You can spend 8 hours of meditation to change the selected subtype to another one of the four options. At GM discretion, you may also select other subtypes of outsider not listed as ranger favored enemies such as aether, wood, metal, or elemental."
+            },
+            {
+              "level": 5,
+              "name": "Elemental Imbuement (Su)",
+              "description": "At 5th level, you may spend a spell point as a swift action to grant any weapon you are holding a +1 enhancement bonus for 1 minute. For every four levels beyond 1st, the weapon gains another +1 enhancement bonus, to a maximum of +5 at 17th level. These bonuses can be added to the weapon, stacking with existing weapon enhancement to a maximum of +5. Multiple uses of this ability do not stack with themselves. These bonuses can be used to add any of the following weapon properties: corrosive, corrosive burst, flaming, flaming burst, frost, icy burst, shock, shocking burst, or thundering.\nYour essence becomes volatile as you channel this power, rendering you vulnerable. While this ability is active, you take a -2 penalty to AC. You may spend a spell point as a free action to suppress this penalty for 1 minute."
+            },
+            {
+              "level": 9,
+              "name": "Planar Voyager (Su)",
+              "description": "At 9th level, you are able to insulate yourself against the dangers of the elemental planes. You are considered to be constantly under the effects of the Breathless and Planar Refuge aegis talents from the Protection Sphere and gain resistance to one of acid, cold, electricity, or fire equal to 1/2 your class level + your practitioner modifier (you can spend 8 hours of meditation to change this energy type).\nAs you connect yourself further to the Inner Planes, you take on the more extreme weaknesses of elemental beings. While you have energy resistance selected, you also gain vulnerability to another type (fire if you have cold and vice versa, acid if you have electricity and vice versa). You may spend a spell point as a free action to suppress this vulnerability for 1 minute."
+            },
+            {
+              "level": 13,
+              "name": "Titan Form (Su)",
+              "description": "At 13th, you can transform yourself into a hulking mass of primal elements by spending a spell point as a standard action. For a number of rounds equal to your casting ability modifier, your size increases to either Large or Huge, you take a -2 penalty to Dexterity, and in place of any normal size modifiers to ability scores you gain a +12 size bonus to your Strength, Dexterity, and Constitution scores which can be divided between them in any way you wish (to a maximum of +8 in any one score). While in this form, your natural armor bonus increases by +4. You are also immune to bleed damage, critical hits, and sneak attacks while in titan form and gain DR/— equal to half your reaper level.\nAs you return to your original form, the stability of all four elements in your mortal form becomes limiting. You become staggered for 1 minute."
+            },
+            {
+              "level": 17,
+              "name": "Absolute Elements (Su)",
+              "description": "At 17th level, you delve into the elemental planes’ deepest secrets, emerging with the power to rearrange the building blocks of the multiverse. Your abilities ignore any energy resistance or hardness that targets may possess and all of your attacks count as silver, cold iron, and adamantine for the purpose of bypassing damage reduction. Your energy resistance from Planar Voyager changes to immunity to the chosen damage type.\nThis connection to the elemental planes leaves your consciousness vulnerable to control or assault. You take a -3 penalty to Will saves. You may spend a spell point as a free action to suppress this penalty for 1 minute."
+            }
+          ]
+        },
+        {
+          "key": "raven",
+          "name": "Cult of the Raven",
+          "description": "Vilderavn are fey creatures of immense power and malice. Their attempts to sow chaos in the lives of mortals must be resisted. However, their terrible nature is anathema to mortal meddlers, and hunting them and their minions comes at a price.\nFey Hunter (Ex)\nAt 1st level, you are always treated as if you've selected fey with your favored prey class feature, in addition to the currently selected creature type.\nBlood Beak (Su)\nAt 5th level, you may grow or retract an elongated black beak as a swift action, giving you a bite attack as a primary natural weapon which deals 1d8 damage (1d6 for a small reaper) plus your Strength modifier on a successful hit. Additionally, whenever you successfully hit a creature with your bite attack, the creature suffers bleed damage equal to half your reaper level.\nThe influence of vilderavn magic within you causes you to feel a sharp aversion to cold iron. You suffer a -2 penalty to attack rolls against creatures holding objects made of cold iron, and weapons made of cold iron deal additional damage to you on successful hits equal to half your Hit Dice.\nShatter Loyalties (Su)\nAt 9th level, you may project or retract a fey aura which sows disloyalty, doubt, and dissension in your victims. While the aura is active, hostile creatures within 30 feet of you that fail a Will saving throw (DC = 10 + 1/2 your HD + your practitioner modifier) are shaken and no longer treated as allies to other creatures, becoming unable to provide flanking, use or benefit from teamwork feats or aid another actions, or allow other creatures to move through their space as long as they remain within your aura and for 1d4 rounds afterwards.\nAny spell or effect that requires a willing target fails if used on an affected creature, and even harmless effects require an attack roll (if applicable) and require affected creatures to attempt a saving throw to resist their effects (if a save is allowed). This is a mind-affecting fear effect.\nThe paranoia and suspicion you are able to sow gradually seeps into your soul, dampening your emotions. You must always attempt to make saving throws against effects with morale bonuses, and you suffer a -2 penalty to attack rolls, skill checks, and saving throws while affected by any morale bonus.\nCorvid Curse (Su)\nAt 13th level, you may spend 1 spell point as an immediate action to target an enemy within 30 feet, bringing misfortune and doom upon them. The target must succeed on a Will saving throw (DC = 10 + 1/2 your HD + your practitioner modifier) or suffer a penalty to attack rolls made against you equal to your practitioner modifier for 1 minute. If the target is slain while under this effect, you gain access to that creature’s memories from the last week.\nYou can spend 1 spell point as a standard action to assume or dismiss a perfect likeness of a creature slain by this ability at any time as if using the Alteration sphere Perfect Disguise talent, gaining a +10 bonus on Bluff and Disguise checks made to impersonate it.\nStealing the memories and faces of others causes you to struggle with bouts of depersonalization, making it more difficult to coordinate with allies. The first time in a given round when you would be considered an ally to another creature (such as for a spell effect, teamwork feat, or providing flanking bonuses), you must succeed at a Will saving throw (DC = 10 + 1/2 your HD + your practitioner modifier) or suffer the effects of your Shatter Loyalties aura until the beginning of your next turn.\nHeart Eater (Su)\nAt 17th level, your bite attack granted by Blood Beak threatens a critical hit on an 18–20 and gains the deadly special weapon feature. If a vilderavn kills a humanoid or fey foe with a hit from its bite attack (including a coup de grace), it can tear out the victim’s heart and consume its soul. Creatures that witness this brutality are frightened for 1d4 rounds, or shaken for 1 round if they succeed at a Will save (DC = 10 + 1/2 your HD + your practitioner modifier). Also, you gain the benefits of the Death sphere Necrotic Feeding talent, using your reaper level as your base caster level, and anyone attempting to revive the creature must succeed at an MSB roll or fail.\nThe vitality you gain from eating the hearts of your prey satisfies you so intensely that it becomes difficult to live without. If you go at least 24 hours without using your Heart Eater ability, you suffer a -2 penalty to Charisma-based skill checks, and a -2 penalty to attack rolls made against creatures that aren't bleeding while you perceive a bleeding creature. Killing a creature with Heart Eater removes this penalty. This penalty is an (emotion) effect.\nApotheosis\nAt 20th level, if you surrender your soul, you gain the fey creature template unless you would be unable to gain it due to your creature type. Your type changes to fey (augmented), gaining all benefits of the template. All changes and abilities from this template are corvid-themed as you are corrupted into a twisted form of vilderavn.",
+          "granted_features": [
+            {
+              "level": 1,
+              "name": "Fey Hunter (Ex)",
+              "description": "At 1st level, you are always treated as if you've selected fey with your favored prey class feature, in addition to the currently selected creature type."
+            },
+            {
+              "level": 5,
+              "name": "Blood Beak (Su)",
+              "description": "At 5th level, you may grow or retract an elongated black beak as a swift action, giving you a bite attack as a primary natural weapon which deals 1d8 damage (1d6 for a small reaper) plus your Strength modifier on a successful hit. Additionally, whenever you successfully hit a creature with your bite attack, the creature suffers bleed damage equal to half your reaper level.\nThe influence of vilderavn magic within you causes you to feel a sharp aversion to cold iron. You suffer a -2 penalty to attack rolls against creatures holding objects made of cold iron, and weapons made of cold iron deal additional damage to you on successful hits equal to half your Hit Dice."
+            },
+            {
+              "level": 9,
+              "name": "Shatter Loyalties (Su)",
+              "description": "At 9th level, you may project or retract a fey aura which sows disloyalty, doubt, and dissension in your victims. While the aura is active, hostile creatures within 30 feet of you that fail a Will saving throw (DC = 10 + 1/2 your HD + your practitioner modifier) are shaken and no longer treated as allies to other creatures, becoming unable to provide flanking, use or benefit from teamwork feats or aid another actions, or allow other creatures to move through their space as long as they remain within your aura and for 1d4 rounds afterwards.\nAny spell or effect that requires a willing target fails if used on an affected creature, and even harmless effects require an attack roll (if applicable) and require affected creatures to attempt a saving throw to resist their effects (if a save is allowed). This is a mind-affecting fear effect.\nThe paranoia and suspicion you are able to sow gradually seeps into your soul, dampening your emotions. You must always attempt to make saving throws against effects with morale bonuses, and you suffer a -2 penalty to attack rolls, skill checks, and saving throws while affected by any morale bonus."
+            },
+            {
+              "level": 13,
+              "name": "Corvid Curse (Su)",
+              "description": "At 13th level, you may spend 1 spell point as an immediate action to target an enemy within 30 feet, bringing misfortune and doom upon them. The target must succeed on a Will saving throw (DC = 10 + 1/2 your HD + your practitioner modifier) or suffer a penalty to attack rolls made against you equal to your practitioner modifier for 1 minute. If the target is slain while under this effect, you gain access to that creature’s memories from the last week.\nYou can spend 1 spell point as a standard action to assume or dismiss a perfect likeness of a creature slain by this ability at any time as if using the Alteration sphere Perfect Disguise talent, gaining a +10 bonus on Bluff and Disguise checks made to impersonate it.\nStealing the memories and faces of others causes you to struggle with bouts of depersonalization, making it more difficult to coordinate with allies. The first time in a given round when you would be considered an ally to another creature (such as for a spell effect, teamwork feat, or providing flanking bonuses), you must succeed at a Will saving throw (DC = 10 + 1/2 your HD + your practitioner modifier) or suffer the effects of your Shatter Loyalties aura until the beginning of your next turn."
+            },
+            {
+              "level": 17,
+              "name": "Heart Eater (Su)",
+              "description": "At 17th level, your bite attack granted by Blood Beak threatens a critical hit on an 18–20 and gains the deadly special weapon feature. If a vilderavn kills a humanoid or fey foe with a hit from its bite attack (including a coup de grace), it can tear out the victim’s heart and consume its soul. Creatures that witness this brutality are frightened for 1d4 rounds, or shaken for 1 round if they succeed at a Will save (DC = 10 + 1/2 your HD + your practitioner modifier). Also, you gain the benefits of the Death sphere Necrotic Feeding talent, using your reaper level as your base caster level, and anyone attempting to revive the creature must succeed at an MSB roll or fail.\nThe vitality you gain from eating the hearts of your prey satisfies you so intensely that it becomes difficult to live without. If you go at least 24 hours without using your Heart Eater ability, you suffer a -2 penalty to Charisma-based skill checks, and a -2 penalty to attack rolls made against creatures that aren't bleeding while you perceive a bleeding creature. Killing a creature with Heart Eater removes this penalty. This penalty is an (emotion) effect."
+            }
+          ]
+        },
+        {
+          "key": "soulhoarder",
+          "name": "Cult of the Soulhoarder",
+          "description": "Fiends prey on the souls of mortals for their own ends, scheming and deceiving to spread evil across the planes. The temptation to use their own tactics against them is alluring, and the corruption you receive is surely a fair price for the ability to eliminate them.\nFiend Hunter (Ex)\nAt 1st level, you are always treated as if you've selected outsiders with the evil subtype with your favored prey class feature, in addition to the currently selected creature type.\nBlackened Tongue (Su)\nAt 5th level, your tongue darkens as you gain the ability to speak directly to the souls of others. As a standard action, you may spend 1 spell point to establish a telepathic link with a creature up to 100 feet away from you within line of sight and effect. An unwilling creature can resist the telepathic link by succeeding on a Will saving throw (DC = 10 + 1/2 your HD + your practitioner modifier). For 1 minute per reaper level, you are able to communicate with that creature as the telepathy universal monster ability and perceive the creature as if you had blindsense while within 100 feet of the target. A creature may attempt a Will save against this link once every minute it is active, breaking the link on a successful save. At 11th level, you may use this ability as a swift action.\nLearning to communicate via thoughts leaves you less finesse when communicating normally, imposing a -4 penalty on Bluff, Diplomacy, and Intimidate checks when not communicating through telepathy.\nNether Brand (Su)\nAt 9th level, your ability to link with the souls of others deepens. You may spend 1 spell point as part of an attack action to mark your target with a symbol-shaped scar of your power. If the attack hits, in addition to the normal effects, the creature must succeed on a Fortitude save (DC = 10 + 1/2 your HD + your practitioner modifier). On a failed save, the wound or area of contact scars over, imposing a -2 penalty to AC against your attacks and a -2 penalty to Will saves against your abilities. While the creature retains this mark, you can use your Blackened Tongue ability on the creature and communicate with it as long as you are within 1 mile of the creature, ignoring line of sight or effect. This mark is a (curse) effect and can only be removed by use of the Life sphere Break Enchantment talent or a similar effect.\nAbusing fiendish techniques to erode the souls of others causes disturbances in your body, forcing you to succeed on a Fortitude saving throw or become sickened for 1 minute whenever you touch or are damaged by a good-aligned object or weapon.\nHellraiser (Su)\nAt 13th level, you learn how to use the fiendish corruption growing inside you to act as a breach for the underworld. You may spend 1 spell point as a move action to spew forth fire and ash in a 30-foot radius emanation around you which lasts a number of rounds equal to your practitioner modifier before dispersing naturally. This smoke affects creatures as if using the Nature sphere Fog Mastery talent to produce a smokescreen, with a save DC of 10 + 1/2 your HD + your practitioner modifier. Creatures who fail their Fortitude saves also take 1d6 points of fire damage per 2 levels of reaper you possess, changing to profane damage if they are affected by Nether Brand. You are immune to the effects of this burning smoke, though it still obscures your vision as normal.\nUsing your soul as a bridge between yourself and the lower planes leaves you more susceptible to the tactics of otherworldly fiends. You suffer a -2 penalty to saves against all mind-affecting effects, which increases to -4 when the user is an outsider with the evil subtype.\nSoul Rending (Su)\nAt 17th level, you gain the ability to eviscerate the souls of your enemies, tapping into your heart's hunger for the souls of the living. You may spend 1 spell point as part of an attack action against a living creature. If the attack hits, the creature must succeed on a Fortitude save (DC = 10 + 1/2 your HD + your practitioner modifier). On a failed save, they take profane damage equal to one-quarter of their current hit points and you gain temporary hit points equal to your reaper level that last for 1 minute. If the creature was affected by Nether Brand, the damage does not naturally heal and can only be magically healed by succeeding on an MSB check while the Nether Brand remains.\nRelying on siphoning the souls of others to sustain your own corrupted soul weakens your body's ability to heal damage. You only heal half the damage you normally would from effects that would increase your hit points.\nApotheosis\nAt 20th level, if you surrender your soul, you gain the half fiend template unless you would be unable to gain it due to your creature type. Your type changes to outsider (evil, native), gaining all benefits of the template. You may choose to gain an alternate half-fiend template as long as it does not increase the CR of the template.",
+          "granted_features": [
+            {
+              "level": 1,
+              "name": "Fiend Hunter (Ex)",
+              "description": "At 1st level, you are always treated as if you've selected outsiders with the evil subtype with your favored prey class feature, in addition to the currently selected creature type."
+            },
+            {
+              "level": 5,
+              "name": "Blackened Tongue (Su)",
+              "description": "At 5th level, your tongue darkens as you gain the ability to speak directly to the souls of others. As a standard action, you may spend 1 spell point to establish a telepathic link with a creature up to 100 feet away from you within line of sight and effect. An unwilling creature can resist the telepathic link by succeeding on a Will saving throw (DC = 10 + 1/2 your HD + your practitioner modifier). For 1 minute per reaper level, you are able to communicate with that creature as the telepathy universal monster ability and perceive the creature as if you had blindsense while within 100 feet of the target. A creature may attempt a Will save against this link once every minute it is active, breaking the link on a successful save. At 11th level, you may use this ability as a swift action.\nLearning to communicate via thoughts leaves you less finesse when communicating normally, imposing a -4 penalty on Bluff, Diplomacy, and Intimidate checks when not communicating through telepathy."
+            },
+            {
+              "level": 9,
+              "name": "Nether Brand (Su)",
+              "description": "At 9th level, your ability to link with the souls of others deepens. You may spend 1 spell point as part of an attack action to mark your target with a symbol-shaped scar of your power. If the attack hits, in addition to the normal effects, the creature must succeed on a Fortitude save (DC = 10 + 1/2 your HD + your practitioner modifier). On a failed save, the wound or area of contact scars over, imposing a -2 penalty to AC against your attacks and a -2 penalty to Will saves against your abilities. While the creature retains this mark, you can use your Blackened Tongue ability on the creature and communicate with it as long as you are within 1 mile of the creature, ignoring line of sight or effect. This mark is a (curse) effect and can only be removed by use of the Life sphere Break Enchantment talent or a similar effect.\nAbusing fiendish techniques to erode the souls of others causes disturbances in your body, forcing you to succeed on a Fortitude saving throw or become sickened for 1 minute whenever you touch or are damaged by a good-aligned object or weapon."
+            },
+            {
+              "level": 13,
+              "name": "Hellraiser (Su)",
+              "description": "At 13th level, you learn how to use the fiendish corruption growing inside you to act as a breach for the underworld. You may spend 1 spell point as a move action to spew forth fire and ash in a 30-foot radius emanation around you which lasts a number of rounds equal to your practitioner modifier before dispersing naturally. This smoke affects creatures as if using the Nature sphere Fog Mastery talent to produce a smokescreen, with a save DC of 10 + 1/2 your HD + your practitioner modifier. Creatures who fail their Fortitude saves also take 1d6 points of fire damage per 2 levels of reaper you possess, changing to profane damage if they are affected by Nether Brand. You are immune to the effects of this burning smoke, though it still obscures your vision as normal.\nUsing your soul as a bridge between yourself and the lower planes leaves you more susceptible to the tactics of otherworldly fiends. You suffer a -2 penalty to saves against all mind-affecting effects, which increases to -4 when the user is an outsider with the evil subtype."
+            },
+            {
+              "level": 17,
+              "name": "Soul Rending (Su)",
+              "description": "At 17th level, you gain the ability to eviscerate the souls of your enemies, tapping into your heart's hunger for the souls of the living. You may spend 1 spell point as part of an attack action against a living creature. If the attack hits, the creature must succeed on a Fortitude save (DC = 10 + 1/2 your HD + your practitioner modifier). On a failed save, they take profane damage equal to one-quarter of their current hit points and you gain temporary hit points equal to your reaper level that last for 1 minute. If the creature was affected by Nether Brand, the damage does not naturally heal and can only be magically healed by succeeding on an MSB check while the Nether Brand remains.\nRelying on siphoning the souls of others to sustain your own corrupted soul weakens your body's ability to heal damage. You only heal half the damage you normally would from effects that would increase your hit points."
+            }
+          ]
+        },
+        {
+          "key": "wolf",
+          "name": "Cult of the Wolf",
+          "description": "The great wolf spirit is the embodiment of hunger, and its influence corrupts humanoids into terrible beasts. You have chosen to stand against lycanthropes, who prey on civilized folk like wolves stalking sheep. Remain vigilant, shepherd, lest the moon-lit hunger sets in.\nShapechanger Hunter (Ex)\nAt 1st level, you are always treated as if you've selected humanoids with the shapechanger subtype with your favored prey class feature, in addition to the currently selected creature type.\nMoon-Touched Skin (Ex)\nAt 5th level, your flesh grows tough yet mutable, and you gain damage reduction 5/magic and silver. Whenever you are stuck by a magic silver weapon or you touch magical silver, your skin burns as you take a -2 penalty to AC and lose the benefit of your damage reduction for 1 minute.\nPrimal Hunger (Ex)\nAt 9th level, your jaw elongates and your teeth grow long and sharp, giving you a bite primary natural weapon which deals 1d8 damage (1d6 for a small reaper) plus your Strength modifier on a successful hit. Additionally, whenever you successfully hit a creature with your bite attack, you may attempt a trip against the target as a free action.\nWhenever you successfully deal damage with a bite attack, lycanthropic hunger surges through your body and you gain a -2 penalty to attack anybody you haven't already bitten for 1 minute. Successfully dealing damage with a bite attack to a creature while suffering from this penalty switches the target of the hunger to that new creature.\nIf you already had a bite attack, it is replaced with this one as the wolf asserts its influence over your body.\nRending Howl (Su)\nAt 13th level, you can spend 1 spell point as a move action to let out a terrifying, unnatural howl. All enemies within 30 feet of you must succeed on a Will save (DC = 10 + 1/2 your HD + your practitioner modifier) or become panicked for a number of rounds equal to your practitioner modifier on a failed save. On a successful save, they are instead shaken for 1 round.\nWhenever you use rending howl, you must feed on the resultant fear you've instilled in your enemies. For 1 minute, if you attack a target who isn't suffering from a fear effect, you become fatigued.\nWolf Heart Surge (Su)\nAt 17th level, you can spend 2 spell points as an immediate action to break loose of any bonds with the power of the wolf. Until the end of your turn, you gain the benefit of a freedom of movement spell treating your class level as your caster level for the effects of this ability and become immune to the following status conditions: blinded, confused, cowering, dazed, deafened, entangled, exhausted, fascinated, fatigued, frightened, nauseated, panicked, paralyzed, petrified, shaken, sickened, staggered, and stunned. At the end of your turn, if you are still the subject of an ongoing effect that would cause any of these status conditions, you suffer the conditions as normal.\nWhen you use wolf heart surge, your soul is overwhelmed by the urge to hunt. For the next minute, if you spend a turn without attempting to harm another creature, you become exhausted for 1 minute.\nApotheosis\nAt 20th level, if you surrender your soul, you gain the lycanthrope template unless you would be unable to gain it due to your creature type, treating yourself as a natural lycanthrope mixed with a dire wolf. You gain the shapechanger subtype, gaining all the benefits of the template except that the damage reduction you gain is damage reduction 10/magic and silver and your bite attack in all forms is the bite attack granted by your primal hunger ability.",
+          "granted_features": [
+            {
+              "level": 1,
+              "name": "Shapechanger Hunter (Ex)",
+              "description": "At 1st level, you are always treated as if you've selected humanoids with the shapechanger subtype with your favored prey class feature, in addition to the currently selected creature type."
+            },
+            {
+              "level": 5,
+              "name": "Moon-Touched Skin (Ex)",
+              "description": "At 5th level, your flesh grows tough yet mutable, and you gain damage reduction 5/magic and silver. Whenever you are stuck by a magic silver weapon or you touch magical silver, your skin burns as you take a -2 penalty to AC and lose the benefit of your damage reduction for 1 minute."
+            },
+            {
+              "level": 9,
+              "name": "Primal Hunger (Ex)",
+              "description": "At 9th level, your jaw elongates and your teeth grow long and sharp, giving you a bite primary natural weapon which deals 1d8 damage (1d6 for a small reaper) plus your Strength modifier on a successful hit. Additionally, whenever you successfully hit a creature with your bite attack, you may attempt a trip against the target as a free action.\nWhenever you successfully deal damage with a bite attack, lycanthropic hunger surges through your body and you gain a -2 penalty to attack anybody you haven't already bitten for 1 minute. Successfully dealing damage with a bite attack to a creature while suffering from this penalty switches the target of the hunger to that new creature.\nIf you already had a bite attack, it is replaced with this one as the wolf asserts its influence over your body."
+            },
+            {
+              "level": 13,
+              "name": "Rending Howl (Su)",
+              "description": "At 13th level, you can spend 1 spell point as a move action to let out a terrifying, unnatural howl. All enemies within 30 feet of you must succeed on a Will save (DC = 10 + 1/2 your HD + your practitioner modifier) or become panicked for a number of rounds equal to your practitioner modifier on a failed save. On a successful save, they are instead shaken for 1 round.\nWhenever you use rending howl, you must feed on the resultant fear you've instilled in your enemies. For 1 minute, if you attack a target who isn't suffering from a fear effect, you become fatigued."
+            },
+            {
+              "level": 17,
+              "name": "Wolf Heart Surge (Su)",
+              "description": "At 17th level, you can spend 2 spell points as an immediate action to break loose of any bonds with the power of the wolf. Until the end of your turn, you gain the benefit of a freedom of movement spell treating your class level as your caster level for the effects of this ability and become immune to the following status conditions: blinded, confused, cowering, dazed, deafened, entangled, exhausted, fascinated, fatigued, frightened, nauseated, panicked, paralyzed, petrified, shaken, sickened, staggered, and stunned. At the end of your turn, if you are still the subject of an ongoing effect that would cause any of these status conditions, you suffer the conditions as normal.\nWhen you use wolf heart surge, your soul is overwhelmed by the urge to hunt. For the next minute, if you spend a turn without attempting to harm another creature, you become exhausted for 1 minute."
+            }
+          ]
+        },
+        {
+          "key": "wyrm",
+          "name": "Cult of the Wyrm",
+          "description": "None embody regal power like dragons, natural tyrants who rule through raw potency. Such strength is intoxicating, and the promise of such terrible prowess calls for subservience and assimilation. The wyrm's heart is strong, and you must resist its seductive might.\nDragon Hunter (Ex)\nAt 1st level, you are always treated as if you've selected dragons with your favored prey class feature, in addition to the currently selected creature type.\nResistant Scales (Ex)\nAt 5th level, you begin to grow a set of scales as hard as steel. Select 1 energy type (acid, cold, electricity, or fire); you gain resistance to that element equal to 1/2 your class level + your practitioner modifier (you can spend 8 hours of meditation to change this energy type). In addition, you gain a +2 natural armor bonus; this natural armor bonus increases by +1 at 10th, 15th, and 20th level.\nAs the scales slowly coalesce on your skin, your mind grows to despise vulnerability. Whenever you are not wearing armor or wielding a shield, you become shaken.\nYou may spend 1 spell point as a standard action to suppress this fear for 1 hour per reaper level.\nDraconic Insufflation (Su)\nAt 9th level, you learn to channel your soul's majesty into a breath weapon which deals either acid, cold, electricity, or fire damage; you can spend 8 hours of meditation to change this energy type. Your breath weapon can be used as a 30 foot cone or 90 foot line, chosen each time you use it. Using this breath weapon is a standard action which costs 2 spell points, and it deals damage equal to 9d10 + your practitioner modifier, with a Reflex save for half damage (DC 10 + 1/2 class level + Practitioner modifier).\nFor each class level you possess past 9th, it deals an additional +1d10 damage. You can choose to reduce the damage die of this breath weapon to d6s instead of d10s; if you do, you can choose an additional damage type for it to deal; a creature must resist or be immune to both damage types or take full damage.\nThe act of diverting part of your soul into a breath weapon—the temporary weakening of your soul breeds contempt for your current body. Whenever you use draconic insufflation, you become fatigued for 1 round and suffer a -2 morale penalty to AC for 1 minute.\nAspect of Terror (Ex)\nAt 13th level, others begin to recognize your inner draconic majesty as you gain a fear aura as per the universal monster rules out to 30 feet, except that you calculate the save DC with your practitioner modifier.\nAnyone who fails the save of this aura is frightened for a number of rounds equal to your practitioner modifier, while those who pass are instead shaken for the same duration. You may spend 1 spell point as a swift action to suppress or reactivate your fear aura.\nSuppressing the might of your presence feels insulting and undignified, causing you to grow bitter and suffer a -5 penalty on all Charisma-based skill checks and ability checks as long as your fear aura is suppressed.\nWyrm Spirit Mantle (Su)\nAt 17th level, the terrible strength of your scaly soul is almost too much for your body to contain, and you may spend two spell points as a standard action to manifest this power as a translucent dragon's head, arms, and wings superimposed on your body for 1 minute. While projecting the wyrm spirit mantle, you gain the advanced template. You gain a +2 bonus on all rolls, including damage rolls and special ability DCs, a +4 bonus to AC and CMD, and +2 hit points per HD. Additionally, you gain a 60ft fly speed (good maneuverability) or a +60ft enhancement bonus to an exist fly speed if you already possess one.\nChanneling the wyrm spirit mantle is dangerous for your body, as the excess power strains your normal bodily functions past their limits. At the end of the mantle's duration, you may spend 1 additional spell point as a free action to maintain the mantle for another minute. If you allow the mantle to end and fade away, you become exhausted and take 1 point of damage per reaper level per minute of maintaining the mantle.\nApotheosis\nAt 20th level, if you surrender your soul, you gain the half dragon template. Your current natural armor stacks with the natural armor provided by this template, and rather than gaining a breath weapon, the damage of your draconic insufflation increases to 20d12 + two times your practitioner modifier (in the case of games that go past 20th level, for each additional class level you possess, your breath weapon deals an additional +1d12 damage).",
+          "granted_features": [
+            {
+              "level": 1,
+              "name": "Dragon Hunter (Ex)",
+              "description": "At 1st level, you are always treated as if you've selected dragons with your favored prey class feature, in addition to the currently selected creature type."
+            },
+            {
+              "level": 5,
+              "name": "Resistant Scales (Ex)",
+              "description": "At 5th level, you begin to grow a set of scales as hard as steel. Select 1 energy type (acid, cold, electricity, or fire); you gain resistance to that element equal to 1/2 your class level + your practitioner modifier (you can spend 8 hours of meditation to change this energy type). In addition, you gain a +2 natural armor bonus; this natural armor bonus increases by +1 at 10th, 15th, and 20th level.\nAs the scales slowly coalesce on your skin, your mind grows to despise vulnerability. Whenever you are not wearing armor or wielding a shield, you become shaken.\nYou may spend 1 spell point as a standard action to suppress this fear for 1 hour per reaper level."
+            },
+            {
+              "level": 9,
+              "name": "Draconic Insufflation (Su)",
+              "description": "At 9th level, you learn to channel your soul's majesty into a breath weapon which deals either acid, cold, electricity, or fire damage; you can spend 8 hours of meditation to change this energy type. Your breath weapon can be used as a 30 foot cone or 90 foot line, chosen each time you use it. Using this breath weapon is a standard action which costs 2 spell points, and it deals damage equal to 9d10 + your practitioner modifier, with a Reflex save for half damage (DC 10 + 1/2 class level + Practitioner modifier).\nFor each class level you possess past 9th, it deals an additional +1d10 damage. You can choose to reduce the damage die of this breath weapon to d6s instead of d10s; if you do, you can choose an additional damage type for it to deal; a creature must resist or be immune to both damage types or take full damage.\nThe act of diverting part of your soul into a breath weapon—the temporary weakening of your soul breeds contempt for your current body. Whenever you use draconic insufflation, you become fatigued for 1 round and suffer a -2 morale penalty to AC for 1 minute."
+            },
+            {
+              "level": 13,
+              "name": "Aspect of Terror (Ex)",
+              "description": "At 13th level, others begin to recognize your inner draconic majesty as you gain a fear aura as per the universal monster rules out to 30 feet, except that you calculate the save DC with your practitioner modifier.\nAnyone who fails the save of this aura is frightened for a number of rounds equal to your practitioner modifier, while those who pass are instead shaken for the same duration. You may spend 1 spell point as a swift action to suppress or reactivate your fear aura.\nSuppressing the might of your presence feels insulting and undignified, causing you to grow bitter and suffer a -5 penalty on all Charisma-based skill checks and ability checks as long as your fear aura is suppressed."
+            },
+            {
+              "level": 17,
+              "name": "Wyrm Spirit Mantle (Su)",
+              "description": "At 17th level, the terrible strength of your scaly soul is almost too much for your body to contain, and you may spend two spell points as a standard action to manifest this power as a translucent dragon's head, arms, and wings superimposed on your body for 1 minute. While projecting the wyrm spirit mantle, you gain the advanced template. You gain a +2 bonus on all rolls, including damage rolls and special ability DCs, a +4 bonus to AC and CMD, and +2 hit points per HD. Additionally, you gain a 60ft fly speed (good maneuverability) or a +60ft enhancement bonus to an exist fly speed if you already possess one.\nChanneling the wyrm spirit mantle is dangerous for your body, as the excess power strains your normal bodily functions past their limits. At the end of the mantle's duration, you may spend 1 additional spell point as a free action to maintain the mantle for another minute. If you allow the mantle to end and fade away, you become exhausted and take 1 point of damage per reaper level per minute of maintaining the mantle."
+            }
+          ]
+        }
+      ],
+      "description": "The chosen cult grants abilities at levels 1, 5, 9, 13, and 17."
+    },
+    {
+      "key": "reaper-techniques",
+      "label": "Reaper Techniques",
+      "feature_tokens": [
+        "reaper-technique"
+      ],
+      "minimum_levels": [
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        18,
+        20
+      ],
+      "maximum_levels": [
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        18,
+        20
+      ],
+      "description": "Choose one Reaper Technique at level 2 and every two levels thereafter.",
+      "fixed_options": [
+        {
+          "key": "accelerated-corruption",
+          "name": "Accelerated Corruption",
+          "description": "[Lost Champions Reaper: Apocrypha] You gain your choice of either Transformation, Transformation, Hybrid, or Transformation, Improved as a bonus feat. You must meet the prerequisites of the chosen feat. You may select this reaper technique more than once, each time gaining an additional feat of your choice.",
+          "granted_features": [
+            {
+              "level": 2,
+              "name": "Accelerated Corruption",
+              "description": "[Lost Champions Reaper: Apocrypha] You gain your choice of either Transformation, Transformation, Hybrid, or Transformation, Improved as a bonus feat. You must meet the prerequisites of the chosen feat. You may select this reaper technique more than once, each time gaining an additional feat of your choice."
+            }
+          ]
+        },
+        {
+          "key": "armored-stride",
+          "name": "Armored Stride",
+          "description": "You may move in medium armor without a penalty to your movement speed. At 8th level, you may move in heavy armor without a penalty to your movement speed.",
+          "granted_features": [
+            {
+              "level": 2,
+              "name": "Armored Stride",
+              "description": "You may move in medium armor without a penalty to your movement speed. At 8th level, you may move in heavy armor without a penalty to your movement speed."
+            }
+          ]
+        },
+        {
+          "key": "bane-of-the-transformed",
+          "name": "Bane of the Transformed",
+          "description": "[Baron’s Otherworldly Citadel] Choose up to three acquired templates. You always treat creatures with these templates as your favored prey. You may select this technique multiple times, each time selecting a different set of templates.",
+          "granted_features": [
+            {
+              "level": 2,
+              "name": "Bane of the Transformed",
+              "description": "[Baron’s Otherworldly Citadel] Choose up to three acquired templates. You always treat creatures with these templates as your favored prey. You may select this technique multiple times, each time selecting a different set of templates."
+            }
+          ]
+        },
+        {
+          "key": "champion",
+          "name": "Champion",
+          "description": "Gain a Champion feat of your choice as a bonus feat. You must meet the prerequisites of the feat. You may select this reaper technique more than once. Each time it is selected, gain an additional feat.",
+          "granted_features": [
+            {
+              "level": 2,
+              "name": "Champion",
+              "description": "Gain a Champion feat of your choice as a bonus feat. You must meet the prerequisites of the feat. You may select this reaper technique more than once. Each time it is selected, gain an additional feat."
+            }
+          ]
+        },
+        {
+          "key": "court-hunter",
+          "name": "Court Hunter (requires Partisan)",
+          "description": "[Baron’s Otherworldly Citadel] Whenever you would select a favored prey with your reaper trophy, you may instead select a country with whose courtly graces you are wholly versed and studied. You apply your favored prey bonus against courtiers, officials, nobles, and gentry from that nation.",
+          "granted_features": [
+            {
+              "level": 2,
+              "name": "Court Hunter",
+              "description": "[Baron’s Otherworldly Citadel] Whenever you would select a favored prey with your reaper trophy, you may instead select a country with whose courtly graces you are wholly versed and studied. You apply your favored prey bonus against courtiers, officials, nobles, and gentry from that nation."
+            }
+          ]
+        },
+        {
+          "key": "deceptive-weapon",
+          "name": "Deceptive Weapon",
+          "description": "Choose one weapon or shield with which you are proficient. You may add one other weapon to the chosen item. Each weapon acts as a mode for the deceptive weapon, being wielded and dealing damage as that weapon. Modes may be switched between as a free action. The deceptive weapon requires as many hands to wield as the current configuration. A deceptive weapon uses the same rules as a technician's invention for the purpose of rebuilding it, but does not count against the total number of inventions you can possess if you possess the invention class feature.",
+          "granted_features": [
+            {
+              "level": 2,
+              "name": "Deceptive Weapon",
+              "description": "Choose one weapon or shield with which you are proficient. You may add one other weapon to the chosen item. Each weapon acts as a mode for the deceptive weapon, being wielded and dealing damage as that weapon. Modes may be switched between as a free action. The deceptive weapon requires as many hands to wield as the current configuration. A deceptive weapon uses the same rules as a technician's invention for the purpose of rebuilding it, but does not count against the total number of inventions you can possess if you possess the invention class feature."
+            }
+          ]
+        },
+        {
+          "key": "deceptive-weapon-improved",
+          "name": "Deceptive Weapon, Improved (requires deceptive weapon)",
+          "description": "[Lost Champions Reaper: Apocrypha] You may add 1 improvement from the technician's improved crossbow, improved gun, or improved melee weapon lists to 1 mode of a deceptive weapon you own that does not already have a technician improvement. You may select this reaper technique a second time, if you do, you instead add 1 improvement to both modes of your deceptive weapon.",
+          "granted_features": [
+            {
+              "level": 2,
+              "name": "Deceptive Weapon, Improved",
+              "description": "[Lost Champions Reaper: Apocrypha] You may add 1 improvement from the technician's improved crossbow, improved gun, or improved melee weapon lists to 1 mode of a deceptive weapon you own that does not already have a technician improvement. You may select this reaper technique a second time, if you do, you instead add 1 improvement to both modes of your deceptive weapon."
+            }
+          ]
+        },
+        {
+          "key": "effigy-of-hate",
+          "name": "Effigy of Hate",
+          "description": "You may craft a reaper trophy specific to an individual creature you have encountered, fueling its magic with your enmity towards it. As long as you hold this trophy, the individual your trophy represents is treated as your favoured prey. You may only own a number of trophies this way at once equal to your practitioner modifier.",
+          "granted_features": [
+            {
+              "level": 2,
+              "name": "Effigy of Hate",
+              "description": "You may craft a reaper trophy specific to an individual creature you have encountered, fueling its magic with your enmity towards it. As long as you hold this trophy, the individual your trophy represents is treated as your favoured prey. You may only own a number of trophies this way at once equal to your practitioner modifier."
+            }
+          ]
+        },
+        {
+          "key": "expanded-arsenal",
+          "name": "Expanded Arsenal",
+          "description": "Gain a single talent of your choice from the Equipment sphere. You may select this reaper technique more than once. Each time it is selected, gain another equipment talent.",
+          "granted_features": [
+            {
+              "level": 2,
+              "name": "Expanded Arsenal",
+              "description": "Gain a single talent of your choice from the Equipment sphere. You may select this reaper technique more than once. Each time it is selected, gain another equipment talent."
+            }
+          ]
+        },
+        {
+          "key": "expert-breaker",
+          "name": "Expert Breaker",
+          "description": "[Baron’s Otherworldly Citadel] You may apply your favored prey bonus to any damage rolls you make against objects.",
+          "granted_features": [
+            {
+              "level": 2,
+              "name": "Expert Breaker",
+              "description": "[Baron’s Otherworldly Citadel] You may apply your favored prey bonus to any damage rolls you make against objects."
+            }
+          ]
+        },
+        {
+          "key": "familiar",
+          "name": "Familiar",
+          "description": "You gain a familiar as the wizard class feature, using your reaper level as your wizard level for this purpose.",
+          "granted_features": [
+            {
+              "level": 2,
+              "name": "Familiar",
+              "description": "You gain a familiar as the wizard class feature, using your reaper level as your wizard level for this purpose."
+            }
+          ]
+        },
+        {
+          "key": "grim-harvester",
+          "name": "Grim Harvester",
+          "description": "You gain Harvest Parts as a bonus feat. You may select technique this a second time to gain Grisly Ornament as a bonus feat.",
+          "granted_features": [
+            {
+              "level": 2,
+              "name": "Grim Harvester",
+              "description": "You gain Harvest Parts as a bonus feat. You may select technique this a second time to gain Grisly Ornament as a bonus feat."
+            }
+          ]
+        },
+        {
+          "key": "lord-of-beasts",
+          "name": "Lord of Beasts (requires Cult of the Chimera or Cult of the Wolf)",
+          "description": "[Baron’s Otherworldly Citadel] You always treat animals and vermin as your favored prey.",
+          "granted_features": [
+            {
+              "level": 2,
+              "name": "Lord of Beasts",
+              "description": "[Baron’s Otherworldly Citadel] You always treat animals and vermin as your favored prey."
+            }
+          ]
+        },
+        {
+          "key": "manipulative-foe",
+          "name": "Manipulative Foe",
+          "description": "[Lost Champions Reaper: Apocrypha] You may add your favored prey bonus to Diplomacy and Intimidate checks against your favored prey.",
+          "granted_features": [
+            {
+              "level": 2,
+              "name": "Manipulative Foe",
+              "description": "[Lost Champions Reaper: Apocrypha] You may add your favored prey bonus to Diplomacy and Intimidate checks against your favored prey."
+            }
+          ]
+        },
+        {
+          "key": "masked-stalker",
+          "name": "Masked Stalker",
+          "description": "[Lost Champions Reaper: Apocrypha] You gain the dual identity class feature, treating your reaper level as your vigilante level. These levels stack with vigilante levels to determine your effective vigilante level.",
+          "granted_features": [
+            {
+              "level": 2,
+              "name": "Masked Stalker",
+              "description": "[Lost Champions Reaper: Apocrypha] You gain the dual identity class feature, treating your reaper level as your vigilante level. These levels stack with vigilante levels to determine your effective vigilante level."
+            }
+          ]
+        },
+        {
+          "key": "mutable-reality",
+          "name": "Mutable Reality (requires fey hunter)",
+          "description": "[Lost Champions Reaper: Apocrypha] Gain a surreal feat. You must meet the prerequisites of the feat. You may select this reaper technique more than once, each time gaining an additional surreal feat.",
+          "granted_features": [
+            {
+              "level": 2,
+              "name": "Mutable Reality",
+              "description": "[Lost Champions Reaper: Apocrypha] Gain a surreal feat. You must meet the prerequisites of the feat. You may select this reaper technique more than once, each time gaining an additional surreal feat."
+            }
+          ]
+        },
+        {
+          "key": "necrotic-decay",
+          "name": "Necrotic Decay (requires undead hunter)",
+          "description": "[Lost Champions Reaper: Apocrypha] Gain a necrosis feat. You must meet the prerequisites of the feat. You may select this reaper technique more than once, each time gaining an additional necrosis feat.",
+          "granted_features": [
+            {
+              "level": 2,
+              "name": "Necrotic Decay",
+              "description": "[Lost Champions Reaper: Apocrypha] Gain a necrosis feat. You must meet the prerequisites of the feat. You may select this reaper technique more than once, each time gaining an additional necrosis feat."
+            }
+          ]
+        },
+        {
+          "key": "nemesis-of-the-infinite",
+          "name": "Nemesis of the Infinite (requires a cult which grants favored prey (outsider))",
+          "description": "[Baron’s Otherworldly Citadel] Choose a subtype. You always treat outsiders with that specific subtype as your favored prey, but treat any specific weaknesses from your cult as also applying to creatures and effects of that subtype (for example, if you have the Nether Brand class feature and choose chaotic, you become sickened for 1 minute whenever you touch or are damaged by a good- or lawful-aligned object or weapon. If you have the Hellraiser class feature, the saving throw penalty increases to -4 when the user is an outsider with the evil or chaotic subtype). You may select this technique multiple times, each time selecting a different subtype.",
+          "granted_features": [
+            {
+              "level": 2,
+              "name": "Nemesis of the Infinite",
+              "description": "[Baron’s Otherworldly Citadel] Choose a subtype. You always treat outsiders with that specific subtype as your favored prey, but treat any specific weaknesses from your cult as also applying to creatures and effects of that subtype (for example, if you have the Nether Brand class feature and choose chaotic, you become sickened for 1 minute whenever you touch or are damaged by a good- or lawful-aligned object or weapon. If you have the Hellraiser class feature, the saving throw penalty increases to -4 when the user is an outsider with the evil or chaotic subtype). You may select this technique multiple times, each time selecting a different subtype."
+            }
+          ]
+        },
+        {
+          "key": "obsessive-researcher",
+          "name": "Obsessive Researcher",
+          "description": "You gain ranks in the Linguistics skill equal to your total Hit Dice; whenever you gain a Hit Die (such as when you gain a level) you gain an additional rank. If you already have ranks in the Linguistics skill you may immediately retrain them.",
+          "granted_features": [
+            {
+              "level": 2,
+              "name": "Obsessive Researcher",
+              "description": "You gain ranks in the Linguistics skill equal to your total Hit Dice; whenever you gain a Hit Die (such as when you gain a level) you gain an additional rank. If you already have ranks in the Linguistics skill you may immediately retrain them."
+            }
+          ]
+        },
+        {
+          "key": "occult-techniques",
+          "name": "Occult Techniques",
+          "description": "You gain Psychic Sensitivity (Occult Adventures) as a bonus feat.",
+          "granted_features": [
+            {
+              "level": 2,
+              "name": "Occult Techniques",
+              "description": "You gain Psychic Sensitivity (Occult Adventures) as a bonus feat."
+            }
+          ]
+        },
+        {
+          "key": "purge-misconstruction",
+          "name": "Purge Misconstruction (requires Mythos Hunter)",
+          "description": "[Baron’s Otherworldly Citadel] By spending a spell point as a swift action, the mythos hunter may call out a creature from their literary tradition as being a misconstruction of the tradition’s original version. If the GM agrees that the creature is a misconstruction, the mythos hunter rolls doubles the damage bonus from favored prey against that target for a number of rounds equal to their reaper level. Examples of misconstruction include misapplication of traditional names (flesh golems), a profound misunderstanding of how the original entity functioned (druids with restrictions on using metal), or the use of a literary term or title for a completely unrelated creature (anything involving rakshasas).",
+          "granted_features": [
+            {
+              "level": 2,
+              "name": "Purge Misconstruction",
+              "description": "[Baron’s Otherworldly Citadel] By spending a spell point as a swift action, the mythos hunter may call out a creature from their literary tradition as being a misconstruction of the tradition’s original version. If the GM agrees that the creature is a misconstruction, the mythos hunter rolls doubles the damage bonus from favored prey against that target for a number of rounds equal to their reaper level. Examples of misconstruction include misapplication of traditional names (flesh golems), a profound misunderstanding of how the original entity functioned (druids with restrictions on using metal), or the use of a literary term or title for a completely unrelated creature (anything involving rakshasas)."
+            }
+          ]
+        },
+        {
+          "key": "reaper-s-intuition",
+          "name": "Reaper’s Intuition",
+          "description": "[Baron’s Otherworldly Citadel] Whenever you perceive a favored prey that is disguised or has not made its otherworldly essence known, you gain an automatic check to identify the creature as your favored prey. To make this check, roll a 1d20 and add your reaper level and casting ability modifier (DC 10 + 1/2 the target’s Hit Dice + the target’s Cha modifier). A successful check means that you recognize the creature as one of your favored prey (though you do not necessarily know which type). You do not gain the bonus on weapon attacks and damage rolls against the creature if you do not recognize it as your favored prey.",
+          "granted_features": [
+            {
+              "level": 2,
+              "name": "Reaper’s Intuition",
+              "description": "[Baron’s Otherworldly Citadel] Whenever you perceive a favored prey that is disguised or has not made its otherworldly essence known, you gain an automatic check to identify the creature as your favored prey. To make this check, roll a 1d20 and add your reaper level and casting ability modifier (DC 10 + 1/2 the target’s Hit Dice + the target’s Cha modifier). A successful check means that you recognize the creature as one of your favored prey (though you do not necessarily know which type). You do not gain the bonus on weapon attacks and damage rolls against the creature if you do not recognize it as your favored prey."
+            }
+          ]
+        },
+        {
+          "key": "reprogram-foe",
+          "name": "Reprogram Foe",
+          "description": "[Baron’s Otherworldly Citadel] You can improve the initial attitude of a mindless creature that is your favored prey. This ability functions as wild empathy, except only against mindless creatures. You can use this ability on creatures with an Intelligence score of 1 or 2, but you take a –4 penalty on the check.",
+          "granted_features": [
+            {
+              "level": 2,
+              "name": "Reprogram Foe",
+              "description": "[Baron’s Otherworldly Citadel] You can improve the initial attitude of a mindless creature that is your favored prey. This ability functions as wild empathy, except only against mindless creatures. You can use this ability on creatures with an Intelligence score of 1 or 2, but you take a –4 penalty on the check."
+            }
+          ]
+        },
+        {
+          "key": "seamless-guise",
+          "name": "Seamless Guise (requires masked stalker)",
+          "description": "[Lost Champions Reaper: Apocrypha] You gain a +20 circumstancebonus to Disguise checks to appear as your current identity, and not as your other identity.",
+          "granted_features": [
+            {
+              "level": 2,
+              "name": "Seamless Guise",
+              "description": "[Lost Champions Reaper: Apocrypha] You gain a +20 circumstancebonus to Disguise checks to appear as your current identity, and not as your other identity."
+            }
+          ]
+        },
+        {
+          "key": "skilled-magic",
+          "name": "Skilled Magic",
+          "description": "You gain one of the following feats: Cantrips, Circle Casting, Contingency, Counterspell, Improved Counterspell, Greater Counterspell, Ritual Caster. You must meet the prerequisites of the feat. You may select this reaper technique more than once. Each time it is selected, gain an additional feat.",
+          "granted_features": [
+            {
+              "level": 2,
+              "name": "Skilled Magic",
+              "description": "You gain one of the following feats: Cantrips, Circle Casting, Contingency, Counterspell, Improved Counterspell, Greater Counterspell, Ritual Caster. You must meet the prerequisites of the feat. You may select this reaper technique more than once. Each time it is selected, gain an additional feat."
+            }
+          ]
+        },
+        {
+          "key": "stance-dancer",
+          "name": "Stance Dancer",
+          "description": "Gain a single talent of your choice with the [stance] tag that you qualify for. You cannot select this reaper technique if you do not qualify for any [stance] talents. You may select this reaper technique more than once. Each time it is selected, gain another [stance] talent.",
+          "granted_features": [
+            {
+              "level": 2,
+              "name": "Stance Dancer",
+              "description": "Gain a single talent of your choice with the [stance] tag that you qualify for. You cannot select this reaper technique if you do not qualify for any [stance] talents. You may select this reaper technique more than once. Each time it is selected, gain another [stance] talent."
+            }
+          ]
+        },
+        {
+          "key": "technological-paranoia",
+          "name": "Technological Paranoia (Requires Machine Cultist)",
+          "description": "[Baron’s Otherworldly Citadel] You treat any creature wielding technological equipment or gizmos as constructs for the purpose of your favored prey.",
+          "granted_features": [
+            {
+              "level": 2,
+              "name": "Technological Paranoia",
+              "description": "[Baron’s Otherworldly Citadel] You treat any creature wielding technological equipment or gizmos as constructs for the purpose of your favored prey."
+            }
+          ]
+        },
+        {
+          "key": "tricky",
+          "name": "Tricky",
+          "description": "Gain a rogue talent of your choice, treating your reaper level as your rogue level when determining the effects. This stacks with any rogue levels you possess. You may select this reaper technique more than once. Each time it is selected, gain another rogue talent.",
+          "granted_features": [
+            {
+              "level": 2,
+              "name": "Tricky",
+              "description": "Gain a rogue talent of your choice, treating your reaper level as your rogue level when determining the effects. This stacks with any rogue levels you possess. You may select this reaper technique more than once. Each time it is selected, gain another rogue talent."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "reaper-soul-crisis",
+      "label": "Soul Crisis",
+      "feature_tokens": [
+        "soul-crisis"
+      ],
+      "minimum_class_level": 20,
+      "minimum": 1,
+      "maximum": 1,
+      "fixed_options": [
+        {
+          "key": "reclaim",
+          "name": "Reclaim the Soul"
+        },
+        {
+          "key": "surrender",
+          "name": "Surrender to the Cult's Apotheosis"
+        }
+      ],
+      "description": "At level 20, reclaim the soul for the listed mortal benefits or surrender it to gain the cult's apotheosis."
+    }
+  ],
+  "notes": "Duelist is the Bloodletter bonus sphere. Favored Prey bonuses remain conditional and are only applied while the current prey toggle is active."
+}

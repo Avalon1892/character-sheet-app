@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "key": "armiger",
+  "class_key": "spheres-class:armiger",
+  "class_name": "Armiger",
+  "governing_ability": "wisdom",
+  "governing_ability_choice_provider": "armiger-practitioner-ability",
+  "catalog_profile": {
+    "weapon_proficiencies": ["Simple weapons"],
+    "armor_proficiencies": ["Light armor", "Bucklers"],
+    "proficiencies": {"weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]},
+    "advancement": {"talent_progression": "Proficient", "talent_kinds": ["martial"]}
+  },
+  "optional_blocks": ["martial_talents", "martial_focus"],
+  "external_systems": ["martial_focus", "customized_weapon_talents"],
+  "resource_modules": [
+    {
+      "key": "armiger",
+      "title": "Armiger Customizations",
+      "governing_ability": "wisdom",
+      "resources": [
+        {
+          "key": "customized_weapons",
+          "name": "Customized Weapon Sets",
+          "feature_tokens": ["customized-weapons"],
+          "progression": "armiger_customized_weapons",
+          "description": "Track each customized weapon set and the talents assigned to it. Each set grants one talent at 1st level and another at 3rd level and every 4 levels thereafter; the Armiger has three sets, four at 11th, and five at 19th.",
+          "custom_choice_label": "Weapon sets and assigned talents",
+          "tracks_uses": false,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": false
+        },
+        {
+          "key": "enhanced_customization",
+          "name": "Enhanced Customization",
+          "feature_tokens": ["enhanced-customization"],
+          "progression": "armiger_enhancement",
+          "description": "Automatic enhancement bonus applied to the active customized weapon: +1 at 5th level and +1 every 4 levels thereafter.",
+          "tracks_uses": false,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": false
+        },
+        {
+          "key": "rapid_assault",
+          "name": "Rapid Assault Active",
+          "feature_tokens": ["rapid-assault"],
+          "progression": "one",
+          "description": "Enable while resolving the attack action made after switching to a different customized weapon. Focusing Switch and Lightning Assault improve this shared action at their listed levels.",
+          "can_activate": true,
+          "tracks_uses": false,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": false
+        }
+      ]
+    }
+  ],
+  "passive_effects": [],
+  "choice_providers": [
+    {
+      "key": "armiger-practitioner-ability",
+      "label": "Practitioner Ability",
+      "feature_tokens": ["combat-training"],
+      "minimum": 1,
+      "maximum": 1,
+      "description": "Choose Charisma, Intelligence, or Wisdom as the Armiger's practitioner ability modifier.",
+      "fixed_options": [
+        {"key": "charisma", "name": "Charisma"},
+        {"key": "intelligence", "name": "Intelligence"},
+        {"key": "wisdom", "name": "Wisdom"}
+      ]
+    },
+    {
+      "key": "armiger-prowesses",
+      "label": "Prowesses",
+      "feature_tokens": ["prowess"],
+      "minimum": 0,
+      "maximum": 10,
+      "minimum_levels": [2,4,6,8,10,12,14,16,18,20],
+      "maximum_levels": [2,4,6,8,10,12,14,16,18,20],
+      "description": "Choose one Prowess at 2nd level and every even Armiger level thereafter. Prerequisites and repeatability remain visible in the option names.",
+      "fixed_options": [
+        {"key":"armored-armiger","name":"Armored Armiger"},{"key":"bare-fisted-training","name":"Bare-Fisted Training"},{"key":"champion","name":"Champion [CS]"},{"key":"clockwork-custom-weapons","name":"Clockwork Custom Weapons [CS]"},{"key":"costumed-combatant","name":"Costumed Combatant"},{"key":"customized-bond","name":"Customized Bond"},{"key":"deadly-prowess","name":"Deadly Prowess"},{"key":"dynamic-engagement","name":"Dynamic Engagement"},{"key":"extra-focus","name":"Extra Focus (Armiger 6)"},{"key":"exotic-weaponry","name":"Exotic Weaponry"},{"key":"faith-in-steel","name":"Faith in Steel (Enhanced Customization)"},{"key":"fluid-conversion","name":"Fluid Conversion"},{"key":"guarded-weapon","name":"Guarded Weapon"},{"key":"improvisationalist","name":"Improvisationalist"},{"key":"linebreaker","name":"Linebreaker (Rapid Assault)"},{"key":"menagerie-trainer","name":"Menagerie Trainer"},{"key":"mobile-assault","name":"Mobile Assault (Rapid Assault)"},{"key":"open-wound","name":"Open Wound"},{"key":"penetrating-assault","name":"Penetrating Assault (Rapid Assault)"},{"key":"practiced-initiative","name":"Practiced Initiative"},{"key":"ranged-prowess","name":"Ranged Prowess"},{"key":"sacrifice-weapon","name":"Sacrifice Weapon"},{"key":"share-customized-weapon","name":"Share Customized Weapon"},{"key":"shielded-armiger","name":"Shielded Armiger"},{"key":"shift-training","name":"Shift Training (Armiger 4)"},{"key":"skilled-weapon","name":"Skilled Weapon"},{"key":"skillful-armaments","name":"Skillful Armaments"},{"key":"spell-dabbler","name":"Spell Dabbler [CS]"},{"key":"technical-fluidity","name":"Technical Fluidity (Armiger 6)"},{"key":"technical-variety","name":"Technical Variety"},{"key":"transfigurative-construction","name":"Transfigurative Construction"}
+      ]
+    }
+  ],
+  "notes": "Permanent martial talents use the shared advancement budget. Weapon-bound talents are recorded per customized set so switching weapons never deletes their persistent effects."
+}

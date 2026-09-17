@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "key": "cleric",
+  "class_key": "pathfinder-class:cleric",
+  "class_name": "Cleric",
+  "governing_ability": "wisdom",
+  "optional_blocks": ["inquisitor_features", "spells_known", "spell_level_overview"],
+  "external_systems": [
+    "traditional_prepared_casting",
+    "cleric_domains",
+    "channel_energy",
+    "spontaneous_cure_or_inflict"
+  ],
+  "resource_modules": [],
+  "passive_effects": [],
+  "spell_grant_choice_providers": ["cleric-domains"],
+  "prepared_bonus_slot_choice_provider": "cleric-domains",
+  "notes": "The shared domain selector projects both domains' powers and domain spells. Channel Energy owns its live daily pool and positive/negative choice; prepared spell records remain available for spontaneous cure or inflict conversion."
+}

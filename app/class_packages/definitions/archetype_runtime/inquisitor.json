@@ -1,0 +1,236 @@
+{
+  "version": 1,
+  "class_key": "pathfinder-class:inquisitor",
+  "entries": [
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:abolisher",
+      "choice_option_filters": [
+        {
+          "key": "inquisitor-domain",
+          "include_families": ["domain"],
+          "include_names": ["Air Domain", "Animal Domain", "Earth Domain", "Fire Domain", "Plant Domain", "Water Domain", "Weather Domain"]
+        }
+      ],
+      "resource_modules": [
+        {
+          "key": "abolisher",
+          "title": "Abolisher",
+          "governing_ability": "wisdom",
+          "resources": [
+            {
+              "key": "revealing_gaze",
+              "name": "Revealing Gaze Applies",
+              "feature_tokens": ["revealing-gaze"],
+              "progression": "one",
+              "description": "Toggle for opposed Perception checks against a creature's Disguise or Stealth. Half Inquisitor level is added as a morale bonus.",
+              "can_activate": true,
+              "tracks_uses": false,
+              "recover_on_full_rest": false,
+              "end_on_full_rest": false
+            },
+            {
+              "key": "escape_corruptions_grasp",
+              "name": "Escape Corruption's Grasp",
+              "feature_tokens": ["escape-corruption-s-grasp"],
+              "progression": "level",
+              "description": "Rounds per day equal Inquisitor level. Activate as an immediate action to ignore movement impediments as freedom of movement.",
+              "can_activate": true,
+              "use_requires_active": true
+            }
+          ]
+        }
+      ],
+      "passive_effects": [
+        {"key": "revealing-gaze", "feature_tokens": ["revealing-gaze"], "targets": ["skill:perception"], "progression": "half_level_minimum_one", "bonus_type": "morale", "source": "Inquisitor (Abolisher): Revealing Gaze", "requires_resource_active": "revealing_gaze"}
+      ],
+      "system_features": ["domain", "revealing-gaze", "escape-corruption-s-grasp"]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:inquisitor:ordained-hunter",
+      "resource_modules": [
+        {
+          "key": "ordained_hunter",
+          "title": "Ordained Hunter Kismet",
+          "governing_ability": "wisdom",
+          "resources": [
+            {
+              "key": "kismet",
+              "name": "Kismet",
+              "feature_tokens": ["kismet"],
+              "progression": "ability_modifier_minimum_one",
+              "description": "A fluctuating pool equal to casting ability modifier (minimum 1). Spend it on retained deeds; qualifying natural 1s and Gamble can restore it."
+            }
+          ]
+        }
+      ],
+      "passive_effects": [
+        {"key": "ordained-track", "feature_tokens": ["track"], "targets": ["skill:survival"], "progression": "two", "bonus_type": "untyped", "source": "Inquisitor (Ordained Hunter): Track", "requires_resource_active": "track"}
+      ],
+      "system_features": ["kismet"]
+    },
+    {
+      "key": "spheres-archetype:pathfinder-class:inquisitor:shield-of-the-gods",
+      "resource_modules": [
+        {
+          "key": "shield_of_the_gods",
+          "title": "Shield of the Gods",
+          "governing_ability": "wisdom",
+          "resources": [
+            {
+              "key": "covenant_with_the_gods",
+              "name": "Covenant with the Gods",
+              "feature_tokens": ["covenant-with-the-gods"],
+              "progression": "one_plus_every_three_after_one",
+              "description": "Uses per day equal 1 + one per 3 levels after 1st (maximum 7 at 19th). Configure the self-only qualifying sphere effect; later features allow two or three effects per use."
+            }
+          ]
+        }
+      ],
+      "system_features": ["covenant-with-the-gods"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:royal-accuser",
+      "resource_adjustments": [
+        {
+          "resource_key": "favored_enemy",
+          "name": "Royal Accuser Favored Enemy",
+          "description": "Choose only aberration, dragon, humanoid (orc), humanoid (shapechanger), or undead at levels 3, 9, and 15. Activate when the current target qualifies; the maximum override records the effective distributed bonus.",
+          "choice_options": ["Aberration", "Dragon", "Humanoid (orc)", "Humanoid (shapechanger)", "Undead"],
+          "maximum_choices_levels": [3, 9, 15]
+        }
+      ],
+      "system_features": ["favored-enemy"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:sanctified-slayer",
+      "resource_modules": [],
+      "power_providers": [
+        {
+          "key": "sanctified-slayer-talents",
+          "label": "Talented Slayer",
+          "family": "slayer_talent",
+          "feature_tokens": ["talented-slayer"],
+          "slot_levels": [8, 16, 17, 20],
+          "excluded_categories": ["Advanced"],
+          "description": "Choose one non-advanced Slayer talent at 8th, 16th, 17th, and 20th levels."
+        }
+      ],
+      "system_features": ["studied-target", "sneak-attack", "talented-slayer"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:infiltrator",
+      "resource_modules": [
+        {
+          "key": "infiltrator_misdirection",
+          "title": "Infiltrator Misdirection",
+          "governing_ability": "wisdom",
+          "resources": [
+            {
+              "key": "misdirection_alignment",
+              "name": "Detected Alignment",
+              "feature_tokens": ["misdirection"],
+              "progression": "zero",
+              "description": "Choose the alignment detected by divinations until the next time daily spells are prepared.",
+              "choice_options": ["Lawful Good", "Neutral Good", "Chaotic Good", "Lawful Neutral", "Neutral", "Chaotic Neutral", "Lawful Evil", "Neutral Evil", "Chaotic Evil"],
+              "tracks_uses": false,
+              "recover_on_full_rest": false,
+              "end_on_full_rest": false
+            }
+          ]
+        }
+      ],
+      "system_features": ["misdirection"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:relic-hunter",
+      "resource_modules": [
+        {
+          "key": "relic_hunter_focus",
+          "title": "Relic Hunter Deific Focus",
+          "governing_ability": "wisdom",
+          "resources": [
+            {
+              "key": "deific_focus",
+              "name": "Deific Focus",
+              "feature_tokens": ["deific-focus"],
+              "progression": "level_plus_ability_minimum_one",
+              "description": "Daily focus points equal Inquisitor level + Wisdom modifier. Allocate them among the chosen relic implements after one hour of prayer."
+            }
+          ]
+        }
+      ],
+      "choice_providers": [
+        {
+          "key": "relic-hunter-school-1",
+          "label": "Relic School 1",
+          "feature_tokens": ["relics"],
+          "minimum": 1,
+          "maximum": 1,
+          "description": "Choose the first Occultist implement school learned at 1st level.",
+          "fixed_options": [
+            {"key": "abjuration", "name": "Abjuration", "description": "Relic school and its resonant/base focus powers."},
+            {"key": "conjuration", "name": "Conjuration", "description": "Relic school and its resonant/base focus powers."},
+            {"key": "divination", "name": "Divination", "description": "Relic school and its resonant/base focus powers."},
+            {"key": "enchantment", "name": "Enchantment", "description": "Relic school and its resonant/base focus powers."},
+            {"key": "evocation", "name": "Evocation", "description": "Relic school and its resonant/base focus powers."},
+            {"key": "illusion", "name": "Illusion", "description": "Relic school and its resonant/base focus powers."},
+            {"key": "necromancy", "name": "Necromancy", "description": "Relic school and its resonant/base focus powers."},
+            {"key": "transmutation", "name": "Transmutation", "description": "Relic school and its resonant/base focus powers."}
+          ]
+        },
+        {"key": "relic-hunter-school-2", "label": "Relic School 2", "feature_tokens": ["relics"], "minimum": 1, "maximum": 1, "description": "Choose the second Occultist implement school learned at 1st level; it may repeat the first school.", "fixed_options": [{"key": "abjuration", "name": "Abjuration"}, {"key": "conjuration", "name": "Conjuration"}, {"key": "divination", "name": "Divination"}, {"key": "enchantment", "name": "Enchantment"}, {"key": "evocation", "name": "Evocation"}, {"key": "illusion", "name": "Illusion"}, {"key": "necromancy", "name": "Necromancy"}, {"key": "transmutation", "name": "Transmutation"}]},
+        {"key": "relic-hunter-school-4", "label": "Relic School (4th)", "feature_tokens": ["relics"], "minimum": 1, "maximum": 1, "minimum_class_level": 4, "description": "Choose the additional relic school gained at level 4.", "fixed_options": [{"key": "abjuration", "name": "Abjuration"}, {"key": "conjuration", "name": "Conjuration"}, {"key": "divination", "name": "Divination"}, {"key": "enchantment", "name": "Enchantment"}, {"key": "evocation", "name": "Evocation"}, {"key": "illusion", "name": "Illusion"}, {"key": "necromancy", "name": "Necromancy"}, {"key": "transmutation", "name": "Transmutation"}]},
+        {"key": "relic-hunter-school-7", "label": "Relic School (7th)", "feature_tokens": ["relics"], "minimum": 1, "maximum": 1, "minimum_class_level": 7, "description": "Choose the additional relic school gained at level 7.", "fixed_options": [{"key": "abjuration", "name": "Abjuration"}, {"key": "conjuration", "name": "Conjuration"}, {"key": "divination", "name": "Divination"}, {"key": "enchantment", "name": "Enchantment"}, {"key": "evocation", "name": "Evocation"}, {"key": "illusion", "name": "Illusion"}, {"key": "necromancy", "name": "Necromancy"}, {"key": "transmutation", "name": "Transmutation"}]},
+        {"key": "relic-hunter-school-10", "label": "Relic School (10th)", "feature_tokens": ["relics"], "minimum": 1, "maximum": 1, "minimum_class_level": 10, "description": "Choose the additional relic school gained at level 10.", "fixed_options": [{"key": "abjuration", "name": "Abjuration"}, {"key": "conjuration", "name": "Conjuration"}, {"key": "divination", "name": "Divination"}, {"key": "enchantment", "name": "Enchantment"}, {"key": "evocation", "name": "Evocation"}, {"key": "illusion", "name": "Illusion"}, {"key": "necromancy", "name": "Necromancy"}, {"key": "transmutation", "name": "Transmutation"}]},
+        {"key": "relic-hunter-school-13", "label": "Relic School (13th)", "feature_tokens": ["relics"], "minimum": 1, "maximum": 1, "minimum_class_level": 13, "description": "Choose the additional relic school gained at level 13.", "fixed_options": [{"key": "abjuration", "name": "Abjuration"}, {"key": "conjuration", "name": "Conjuration"}, {"key": "divination", "name": "Divination"}, {"key": "enchantment", "name": "Enchantment"}, {"key": "evocation", "name": "Evocation"}, {"key": "illusion", "name": "Illusion"}, {"key": "necromancy", "name": "Necromancy"}, {"key": "transmutation", "name": "Transmutation"}]},
+        {"key": "relic-hunter-school-16", "label": "Relic School (16th)", "feature_tokens": ["relics"], "minimum": 1, "maximum": 1, "minimum_class_level": 16, "description": "Choose the additional relic school gained at level 16.", "fixed_options": [{"key": "abjuration", "name": "Abjuration"}, {"key": "conjuration", "name": "Conjuration"}, {"key": "divination", "name": "Divination"}, {"key": "enchantment", "name": "Enchantment"}, {"key": "evocation", "name": "Evocation"}, {"key": "illusion", "name": "Illusion"}, {"key": "necromancy", "name": "Necromancy"}, {"key": "transmutation", "name": "Transmutation"}]},
+        {"key": "relic-hunter-school-19", "label": "Relic School (19th)", "feature_tokens": ["relics"], "minimum": 1, "maximum": 1, "minimum_class_level": 19, "description": "Choose the additional relic school gained at level 19.", "fixed_options": [{"key": "abjuration", "name": "Abjuration"}, {"key": "conjuration", "name": "Conjuration"}, {"key": "divination", "name": "Divination"}, {"key": "enchantment", "name": "Enchantment"}, {"key": "evocation", "name": "Evocation"}, {"key": "illusion", "name": "Illusion"}, {"key": "necromancy", "name": "Necromancy"}, {"key": "transmutation", "name": "Transmutation"}]}
+      ],
+      "power_providers": [
+        {
+          "key": "relic-hunter-focus-powers",
+          "label": "Relic Focus Powers",
+          "family": "occultist_focus_power",
+          "feature_tokens": ["deific-focus"],
+          "slot_levels": [1, 4, 8, 12, 16, 20],
+          "description": "Choose one focus power at 1st level and another at 4th level and every 4 levels thereafter. The power must belong to a selected relic school and uses Inquisitor level as Occultist level."
+        }
+      ],
+      "system_features": ["relics", "deific-focus"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:suit-seeker",
+      "choice_option_filters": [
+        {
+          "key": "inquisitor-domain",
+          "include_names": ["Knowledge Domain", "Luck Domain", "Memory Subdomain", "Fate Subdomain", "Fate", "Fervor", "Illumination"]
+        }
+      ],
+      "system_features": ["domain"]
+    },
+    {
+      "key": "pathfinder-archetype:pathfinder-class:inquisitor:sworn-of-the-eldest",
+      "resource_modules": [
+        {
+          "key": "sworn_eldest_patron",
+          "title": "Sworn of the Eldest",
+          "governing_ability": "charisma",
+          "resources": [
+            {
+              "key": "eldest_patron",
+              "name": "Chosen Eldest",
+              "feature_tokens": ["deity"],
+              "progression": "zero",
+              "description": "Record the chosen Eldest patron. The Inquisitor's domain or subdomain must be one granted by that Eldest.",
+              "custom_choice_label": "Eldest patron",
+              "tracks_uses": false,
+              "recover_on_full_rest": false,
+              "end_on_full_rest": false
+            }
+          ]
+        }
+      ],
+      "system_features": ["domain", "deity", "magic-of-the-eldest"]
+    }
+  ]
+}

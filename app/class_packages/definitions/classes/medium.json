@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "key": "medium",
+  "class_key": "pathfinder-class:medium",
+  "class_name": "Medium",
+  "governing_ability": "charisma",
+  "optional_blocks": ["inquisitor_features", "spells_known", "spell_level_overview"],
+  "external_systems": [
+    "traditional_spontaneous_casting",
+    "medium_spirits",
+    "spirit_influence"
+  ],
+  "resource_modules": [],
+  "passive_effects": [],
+  "notes": "The selected spirit and live influence tracker are retained independently from spellcasting so archetypes can replace either system safely."
+}

@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:striker:black-powder-brawler",
+      "class_modifications": {
+        "advancement": {"practitioner_ability": "wisdom", "required_first_sphere": "Equipment"}
+      }
+    },
+    {
+      "key": "spheres-archetype:spheres-class:striker:elemental-fist",
+      "sphere_capabilities": {"grants": ["magic", "martial"], "removes": []},
+      "class_modifications": {
+        "casting": {"sphere_progression": "Low"},
+        "advancement": {"talent_progression": "Expert", "talent_kinds": ["magic", "martial"], "talent_bonus_levels": [1], "required_first_sphere": "Nature"},
+        "capabilities": {"grants": ["magic"], "removes": []}
+      }
+    },
+    {
+      "key": "spheres-archetype:spheres-class:striker:shadowed-fist",
+      "class_modifications": {
+        "advancement": {"practitioner_ability": "charisma"}
+      }
+    },
+    {
+      "key": "spheres-archetype:spheres-class:technician:mad-scientist",
+      "class_modifications": {
+        "statistics": {
+          "skill_points": 4,
+          "add_class_skills": ["knowledge_arcana", "knowledge_nature", "knowledge_planes", "knowledge_religion", "spellcraft"],
+          "remove_class_skills": ["disable_device", "knowledge_dungeoneering", "knowledge_geography", "knowledge_local", "sleight_of_hand"]
+        }
+      }
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mageknight:knightknight",
+      "sphere_capabilities": {"grants": ["martial"], "removes": ["magic"]},
+      "class_modifications": {
+        "statistics": {"fort_progression": "Good", "reflex_progression": "Good", "will_progression": "Poor", "add_class_skills": ["intimidate", "knowledge_local"], "remove_class_skills": ["knowledge_arcana", "spellcraft"]},
+        "casting": {"sphere_progression": "", "traditional": false},
+        "advancement": {"talent_progression": "Adept", "talent_kinds": ["martial"], "talent_bonus_levels": [1]},
+        "capabilities": {"grants": ["martial"], "removes": ["magic"]},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mageknight:martial-mageknight",
+      "sphere_capabilities": {"grants": ["magic", "martial"], "removes": []},
+      "class_modifications": {
+        "advancement": {"talent_progression": "Low", "talent_kinds": ["magic", "martial"], "talent_bonus_levels": [1]},
+        "capabilities": {"grants": ["martial"], "removes": []},
+        "proficiencies": {"mode": "replace", "weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]}
+      }
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mageknight:sun-warrior",
+      "class_modifications": {
+        "statistics": {"add_class_skills": ["intimidate"], "remove_class_skills": ["handle_animal"]},
+        "advancement": {"talent_bonus_levels": [1, 1], "required_first_sphere": "Light"}
+      }
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mageknight:herculean-scion",
+      "class_modifications": {
+        "advancement": {"talent_bonus_levels": []}
+      }
+    },
+    {
+      "key": "spheres-archetype:spheres-class:mageknight:doomblade",
+      "class_modifications": {
+        "advancement": {"required_first_sphere": "Destruction"}
+      }
+    }
+  ]
+}

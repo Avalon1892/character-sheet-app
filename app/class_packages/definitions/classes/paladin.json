@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "key": "paladin",
+  "class_key": "pathfinder-class:paladin",
+  "class_name": "Paladin",
+  "governing_ability": "charisma",
+  "optional_blocks": ["inquisitor_features", "spells_known", "spell_level_overview", "animal_companion"],
+  "external_systems": [
+    "traditional_prepared_casting",
+    "paladin_smite",
+    "paladin_lay_on_hands",
+    "paladin_channel_energy",
+    "paladin_mercies",
+    "paladin_divine_bond"
+  ],
+  "resource_modules": [],
+  "passive_effects": [],
+  "notes": "Smite Evil, Lay on Hands, Channel Positive Energy, Mercies, and Divine Bond use shared retained-feature-aware trackers. Choosing Divine Mount automatically exposes the companion page at effective Paladin level - 3."
+}

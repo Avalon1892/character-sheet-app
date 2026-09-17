@@ -1,0 +1,829 @@
+{
+  "version": 1,
+  "class_key": "spheres-class:thaumaturge",
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:thaumaturge:devourer",
+      "package": "spheres-class:thaumaturge",
+      "name": "Devourer",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/devourer",
+      "replaces_features": [],
+      "removed_features": [],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 10,
+          "name": "Devour Foe",
+          "description": "Whenever the devourer scores a confirmed critical hit against a living enemy or reduces a living enemy to 0 or fewer hit points, he can steal some of that creature’s energy. The devourer may use his forbidden lore the next round without any fear of backlash. However, when not using this ability, a devourer increases his chance of backlash from forbidden lore from 15% to 20%.\n\nAt 10th level, the devourer may use this ability on any foe, not just living foes.\n\nSpheres of Power: Expanded Options\n\n$4.99\n\nDevour Foe: Whenever the devourer scores a confirmed critical hit against a living enemy or reduces a living enemy to 0 or fewer hit points, he can steal some of that creature’s energy. The devourer may use his forbidden lore the next round without any fear of backlash. However, when not using this ability, a devourer increases their chance of backlash from forbidden lore from 15% to 20%.\n\nAt 10th level, the devourer may use this ability on any foe, not just living foes.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": [
+        "armor_training"
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:thaumaturge:ebonmage",
+      "package": "spheres-class:thaumaturge",
+      "name": "Ebonmage",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/ebonmage",
+      "replaces_features": [
+        "invocations"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Author’s Note",
+          "description": "This archetype thematically pairs well with the occulted visions alternate class feature for forbidden lore."
+        },
+        {
+          "level": 1,
+          "name": "Pull From Darkness",
+          "description": "The ebonmage’s magics reach into and beyond the void, channeling its power into absolute darkness. At 1st level, as a free action, the ebonmage may choose to purposely suffer backlash to regain 1 use of invocation."
+        },
+        {
+          "level": 1,
+          "name": "The ebonmage does not gain the following invocations",
+          "description": "1st level – lingering pain; 3rd level – empowered attack. The ebonmage instead gains the sightless invocation and ebon invocation (see below). This ability alters invocations."
+        },
+        {
+          "level": 1,
+          "name": "Sightless Invocation",
+          "description": "At 1st level, when using forbidden lore, affected targets are confused for 1 round (Will negates). At 11th level, when using forbidden lore to augment the gloom sphere ability, all targets within the affected area are confused for a number of rounds equal to the ebonmage’s Dark sphere caster level (Will negates). This confusion effect immediately ends if an affected creature leaves the gloom’s area."
+        },
+        {
+          "level": 3,
+          "name": "Ebon Invocation",
+          "description": "At 3rd level, when using forbidden lore to augment the gloom sphere ability, the ebonmage may add 1 additional (darkness) or (blot) to the gloom. The ebonmage must pay for any additional spell point costs for the chosen option as appropriate. At 15th level, the ebonmage may use this invocation to add 1 (darkness) or (blot) to any sphere effect that creates a non-instantaneous area. Treat this as a separate gloom effect that occupies the augmented sphere effect’s area, which lasts for a number of rounds equal to 1/2 the ebonmage’s Dark sphere caster level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:thaumaturge:eldritch-cultist",
+      "package": "spheres-class:thaumaturge",
+      "name": "Eldritch Cultist",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/eldritch-cultist",
+      "replaces_features": [
+        "but-counts-his-eldritch-cultist-level-as-two-lower-for-purposes-of-determining-which-invocations-are-available-to-him",
+        "but-counts-his-thaumaturge-level-as-two-lower-for-purposes-of-determining-which-invocations-are-available-to-him",
+        "forbidden-lore",
+        "invocations-at-level-eldritch-cultist-gains-access-to-invocations-at-level",
+        "invocations-eldritch-cultist-gains-access-to-invocations"
+      ],
+      "removed_features": [
+        "but-counts-his-eldritch-cultist-level-as-two-lower-for-purposes-of-determining-which-invocations-are-available-to-him",
+        "but-counts-his-thaumaturge-level-as-two-lower-for-purposes-of-determining-which-invocations-are-available-to-him",
+        "invocations-1st-level-eldritch-cultist-gains-access-to-invocations"
+      ],
+      "removed_feature_clauses": [
+        "invocations class feature gained at 1st level - the eldritch cultist gains access to invocations at 3rd level",
+        "but counts his eldritch cultist level as two lower for the purposes of determining which invocations are available to him",
+        "but counts his Thaumaturge level as two lower for the purposes of determining which invocations are available to him"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Eldritch Knowledge",
+          "description": "At first level, the eldritch cultist gains Divination as a bonus sphere. This replaces the invocations class feature gained at 1st level - the eldritch cultist gains access to invocations at 3rd level, but counts his eldritch cultist level as two lower for the purposes of determining which invocations are available to him. This archetype remains compatible with archetypes modifying or replacing invocations, but gains those invocations or their replacements two levels later.\n\nForbidden Lore: Rather than risk losing their magic, an eldritch cultist using forbidden lore instead has a 15% chance of becoming confused for 1d6 rounds. Every time the eldritch cultist uses forbidden lore, the chance of becoming confused increases by a cumulative 5%, but resets to 15% after the eldritch cultist fails this check. Confusion can be given to another creature via channel punishment as normal, and creatures normally immune to confusion are not immune to this backlash effect.\n\nThis modifies forbidden lore.\n\nEldritch Knowledge: At first level, the eldritch cultist gains Divination as a bonus sphere (or an additional talent from that sphere if they already have that talent). This replaces the invocations class feature gained at 1st level - the eldritch cultist gains access to invocations at 3rd level, but counts his Thaumaturge level as two lower for the purposes of determining which invocations are available to him.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        },
+        {
+          "level": 1,
+          "name": "Forbidden Lore",
+          "description": "Rather than risk losing his magic, an eldritch cultist using forbidden lore instead has a 15% chance of becoming confused for 1d6 rounds. Every time the eldritch cultist uses forbidden lore, the chance of becoming confused increases by a cumulative 5%, but resets to 15% after the eldritch cultist fails this check. Confusion can be given to another creature via channel punishment as normal, and creatures normally immune to confusion are not immune to this backlash effect.\n\nThis alters forbidden lore."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:thaumaturge:experimentalist",
+      "package": "spheres-class:thaumaturge",
+      "name": "Experimentalist",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/experimentalist",
+      "replaces_features": [
+        "bonus-feats",
+        "forbidden-lore",
+        "invocations",
+        "master-invoker",
+        "occult-knowledge"
+      ],
+      "removed_features": [
+        "forbidden-lore",
+        "invocations",
+        "master-invoker",
+        "occult-knowledge"
+      ],
+      "removed_feature_clauses": [
+        "forbidden lore",
+        "occult knowledge",
+        "invocations",
+        "master invoker"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Flexible Research",
+          "description": "An experimentalist may choose to further his alchemical studies or apply his knowledge of physiology to deadly effect in place of increasing his arcane knowledge. An experimentalist may choose to gain an additional alchemist discovery or to gain 1d6 sneak attack as the rogue class feature (or unchained rogue, as appropriate to the campaign) in place of his normal bonus feats. Each time a bonus feat is gained an additional discovery may be chosen or his sneak attack can be increased by 1d6.\n\nIf using the Spheres of Might system, he may also gain Alchemy sphere talents in place of bonus feats.\n\nThis alters bonus feats.\n\nThe Shapeshifter's Handbook\n\n$4.99\n\nForbidden Alchemy: At 1st level, an experimentalist may prepare vials of an alchemical brew that temporarily enhances his mystic and physical potency. An experimentalist may spend an hour to prepare a number of alchemical boosts equal to his casting ability modifier. If additional alchemical boosts are brewed the previous ones become inert. A vial of alchemical boost may be drawn and consumed as a standard action. Once consumed, for the next minute, she increases her caster level by 2 for any sphere effect cast. This applies to variables dependent on a particular casting of an effect (damage, duration, number of targets, etc.), but it does not apply to the caster’s total caster level with that sphere (i.e., it does not determine the strength of a companion from the Conjuration sphere, nor to the total number of HD of reanimated creatures that may be controlled through the Death sphere). This bonus increases by +1 at 5th level, and by an additional +1 for every 4 levels thereafter to a maximum of +6 at 17th level. Archetypes, favored class bonuses, and other abilities that alter the backlash risk and bonus from forbidden lore may be applied to forbidden alchemy instead.\n\nEach time a sphere effect is used while under the effects of an alchemical boost, the experimentalist has a 10% chance of being nauseated for 1 round and sickened for 1d6 rounds. Once the duration of the alchemical boost expires, the experimentalist is sickened for 1 minute. An experimentalist that is immune to these conditions cannot benefit from alchemical boost.\n\nAdditionally, while under the effects of the alchemical boost, as experimentalist gains the benefit of one Alteration sphere trait that he has knowledge of for the duration of the alchemical boost. Additional traits are granted a level 5 and every 5 levels thereafter. This is a polymorph effect, but may be retained when under the effects of shapeshift, reducing the number of granted traits by one for each retained trait.\n\nThe experimentalist may only benefit from one alchemical boost at a time. Additional uses replace the granted alteration sphere trait. Previous alchemical boosts retain their normal duration and the experimentalist is still sickened as normal when it expires.\n\nThis replaces forbidden lore.\n\nConsumption: At 2nd level, an experimentalist may preserve portions of dead creatures for later consumption, gaining the ability to take the creature’s shape.\n\nHarvesting a sample, usually a portion of the heart or of some notable feature of the creature (chimera’s tail, hydra’s head, etc.), requires 1 minute of work and the remains of a creature that has been dead or destroyed for less than 1 hour. Upon completion, she chooses one Alteration sphere talent appropriate to either taking the creature’s shape or mimicking its abilities. These samples can be preserved indefinitely, but an experimentalist may only maintain three samples at one time; if additional samples are taken, she chooses which samples expire. More than one sample may be taken from a creature, but each one taken from the same creature must be associated with a different talent.\n\nWhen preparing his alchemical boosts, an experimentalist may expend a preserved sample to add its effects to the alchemical boosts. Each sample can enhance each alchemical boost prepared and more than one sample may be added to each alchemical boost. While under the effects of the boost, she gains knowledge of chosen Alteration sphere talent and may disguise herself as the specific creature the sample was taken from as if using the Perfect Imitation talent provided she is capable of taking a suitable form.\n\nAn experimentalist may benefit from samples taken by other experimentalists after identifying them with a Knowledge check of the kind appropriate to the base creature with a difficulty equal to that required to identify the original creature +5, though doing so counts against her total number of samples maintained. A slain experimentalist’s sample’s expire 1d4 days after her death.\n\nAt 6th, 10th, 14th, and 18th level, the number of samples that an experimentalist may maintain at one time increases by one.\n\nThis replaces occult knowledge.\n\nMorphic Adept: At 1st level, an experimentalist gains the Alteration sphere as a bonus magic talent with either the Lycanthropic or Fleshwarper drawback, which can be bought off as normal, but does not gain an additional talent from the drawback. If she already possesses the Alteration sphere, then neither talent nor drawback is gained.\n\nDiscoveries: At 3rd, 7th, 11th, 15th, and 19th level, an experimentalist gains an alchemist discovery, using her thaumaturge level in place of alchemist level for meeting prerequisites and casting ability modifier in place of Intelligence for determining their effects. Her thaumaturge level stacks with her alchemist level for the purpose of determining effective alchemist level for qualifying for discoveries.\n\nThis replaces invocations.\n\nFlexible Research: An experimentalist may choose to further her alchemical studies or apply her knowledge of physiology to deadly effect in place of increasing her arcane knowledge. An experimentalist may choose to gain an additional alchemist discoveries or to gain 1d6 sneak attack as the rogue class feature (or unchained rogue, as appropriate to the campaign) in place of her normal bonus feats. Each time a bonus feat is gained an additional discovery may be chosen or her sneak attack can be increased by 1d6.\n\nThis modifies bonus feats.\n\nIsn't this evil?\n\nHarvesting pieces of intelligent creatures and consuming them to gain their power may mesh poorly with some alignments and character concepts. Experimentalists that object to eating other creatures can instead collect an ethereal essence, morphic energy, or some other less bloody form of sample with no mechanical impact on their class features.\n\nPurchasing Samples\n\nWhile most experimentalists prefer to collect samples on their own, suitably preserved portions of creatures may be available in large settlements. Portions of common creatures (wolves in a temperate forest, scorpions in a desert, etc.) preserved by unguent of timelessness, the gentle repose spell, or similar methods from which a sample can be prepared can be obtained for as little as 1 GP per HD of the creature, though more exotic creatures (hippogrpyhs, aboleths) can cost up to 10 GP per HD. It is up to the GM to decide if a given settlement is large enough to support an alchemical trade sufficient to supply these portions, but generally settlements smaller than a large town or small city will be insufficient unless a notable alchemist is in residence. Even then, outside a large city or metropolis, many exotic samples may simply be unavailable. Obviously, samples from creatures that don't exist in your game world will be unobtainable at any price or location.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        },
+        {
+          "level": 1,
+          "name": "Forbidden Alchemy",
+          "description": "At 1st level, an experimentalist may prepare vials of an alchemical brew that temporarily enhances his mystic and physical potency. An experimentalist may spend an hour to prepare a number of alchemical boosts equal to his casting ability modifier. If additional alchemical boosts are brewed the previous ones become inert. A vial of alchemical boost may be drawn and consumed as a standard action. Once consumed, for the next minute, he increases his caster level by 2 for any sphere effect cast. This applies to variables dependent on a particular casting of an effect (damage, duration, number of targets, etc.), but it does not apply to the caster’s total caster level with that sphere (i.e., it does not determine the strength of a companion from the Conjuration sphere, nor to the total number of Hit Dice of reanimated creatures that may be controlled through the Death sphere). This bonus increases by +1 at 5th level, and by an additional +1 for every 4 levels thereafter to a maximum of +6 at 17th level. Archetypes, favored class bonuses, and other abilities that alter the backlash risk and bonus from forbidden lore may be applied to forbidden alchemy instead.\n\nEach time a sphere effect is used while under the effects of an alchemical boost, the experimentalist has a 10% chance of being nauseated for 1 round and sickened for 1d6 rounds. Once the duration of the alchemical boost expires, the experimentalist is sickened for 1 minute. You incur these penalties even if you are immune to the nauseated and sickened conditions.\n\nAdditionally, while under the effects of the alchemical boost, as experimentalist gains the benefit of one Alteration sphere trait that he has knowledge of for the duration of the alchemical boost, using his class level as his caster level. Additional traits are granted at level 5 and every 5 levels thereafter. This is a polymorph effect, but may be retained when under the effects of shapeshift, reducing the number of granted traits by one for each retained trait.\n\nThe experimentalist may only benefit from one alchemical boost at a time. Additional uses replace the granted Alteration sphere trait. Previous alchemical boosts retain their normal duration and the experimentalist is still sickened as normal when it expires.\n\nThis replaces forbidden lore."
+        },
+        {
+          "level": 1,
+          "name": "Morphic Adept",
+          "description": "At 1st level, an experimentalist gains the Alteration sphere as a bonus magic talent with either the Lycanthropic or Fleshwarper drawback, which can be bought off as normal, but does not gain an additional talent from the drawback. If he already possesses the Alteration sphere, then neither talent nor drawback is gained."
+        },
+        {
+          "level": 2,
+          "name": "Consumption",
+          "description": "At 2nd level, an experimentalist may preserve portions of dead creatures for later consumption, gaining the ability to take the creature’s shape.\n\nHarvesting a sample, usually a portion of the heart or of some notable feature of the creature (chimera’s tail, hydra’s head, etc.), requires 1 minute of work and the remains of a creature that has been dead or destroyed for less than 1 hour.\n\nUpon completion, he chooses one Alteration sphere talent appropriate to either taking the creature’s shape or mimicking its abilities. These samples can be preserved indefinitely, but an experimentalist may only maintain three samples at one time; if additional samples are taken, he chooses which samples expire. More than one sample may be taken from a creature, but each one taken from the same creature must be associated with a different talent.\n\nWhen preparing his alchemical boosts, an experimentalist may expend a preserved sample to add its effects to the alchemical boosts. Each sample can enhance each alchemical boost prepared and more than one sample may be added to each alchemical boost. While under the effects of the boost, he gains knowledge of chosen Alteration sphere talent and may disguise himself as the specific creature the sample was taken from as if using the Perfect Imitation talent provided he is capable of taking a suitable form.\n\nAn experimentalist may benefit from samples taken by other experimentalists after identifying them with a Knowledge check of the kind appropriate to the base creature with a difficulty equal to that required to identify the original creature +5, though doing so counts against his total number of samples maintained. A slain experimentalist’s samples expire 1d4 days after his death.\n\nAt 6th, 10th, 14th, and 18th level, the number of samples that an experimentalist may maintain at one time increases by one.\n\nThis replaces occult knowledge."
+        },
+        {
+          "level": 20,
+          "name": "Discoveries",
+          "description": "At 3rd, 7th, 11th, 15th, and 19th level, an experimentalist gains an alchemist discovery, using his experimentalist level in place of alchemist level for meeting prerequisites and casting ability modifier in place of Intelligence for determining their effects. His experimentalist level stacks with his alchemist level for the purpose of determining effective alchemist level for qualifying for discoveries. At 20th level, he gains a grand discovery.\n\nIf using the Spheres of Might system, he may instead gain Alchemy sphere talents.\n\nThis replaces invocations and master invoker."
+        }
+      ],
+      "detected_systems": [
+        "alchemist_discovery"
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:thaumaturge:gambler",
+      "package": "spheres-class:thaumaturge",
+      "name": "Gambler",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/gambler",
+      "replaces_features": [
+        "armor-proficiencies",
+        "channel-punishment",
+        "soulfire",
+        "thaumaturges-forbidden-lore",
+        "thaumaturges-magic-talents",
+        "thaumaturges-normal-class-skills",
+        "thaumaturges-occult-knowledge",
+        "thaumaturges-weapon"
+      ],
+      "removed_features": [
+        "armor-proficiencies",
+        "channel-punishment",
+        "soulfire",
+        "thaumaturges-forbidden-lore",
+        "thaumaturges-normal-class-skills",
+        "thaumaturges-occult-knowledge",
+        "thaumaturges-weapon"
+      ],
+      "removed_feature_clauses": [
+        "thaumaturge’s forbidden lore class feature",
+        "thaumaturge’s weapon",
+        "armor proficiencies",
+        "thaumaturge’s normal class skills",
+        "thaumaturge’s occult knowledge class feature"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "Whenever a gambler would gain a magic talent from his class levels (not the 2 bonus talents gained when first gaining the casting class feature), he may instead choose to gain a combat talent. A gambler uses their casting ability modifier as their practitioner modifier.\n\nAlternatively, a gambler may gain a combat, magic, or skill talent (some of which are required to be utility talents) at the listed levels using the journeyman talent progression. A gambler uses his casting ability modifier as his practitioner modifier.\n\nThis modifies the thaumaturge’s magic talents class feature."
+        },
+        {
+          "level": 1,
+          "name": "Hot Hand",
+          "description": "At 1st level, the gambler gains Ante Up as a bonus feat. He gains a bonus to his caster level and base attack bonus equal to his current ante (to a maximum of 2 + 1 for every four gambler levels they possess beyond 1st) and may use Ante Up to increase his ante as a free action once per round rather than a swift action. This does not allow the gambler to use Ante Up multiple times per round.\n\nAddendum: In addition to the other effects of hot hand, the gambler increases his effective skill ranks in all skills by his current ante for the purpose of attempting a skill check, crafting an item (such as an Herbalism sphere concoction or Alchemy sphere formulae), or using an ability whose effects could be altered based on the number of skill ranks the user possesses (such as a Bluster sphere quip or a Warleader Sphere shout). The boost from this ability does not apply on effects which do not require an attack roll or in which the target does not attempt a saving throw against.\n\nIf the gambler possesses the Catastrophic Failure drawback, any magic effect which requires the gambler to attempt a skill check or concentration check as part of using it counts as requiring an attack roll for the purpose of the hot hand class feature.\n\nThe caster level boost from this ability does not apply on effects which do not require an attack roll or in which the target does not attempt a saving throw against.\n\nThis replaces the thaumaturge’s forbidden lore class feature.\n\nErrata: Any invocation which adds to the Forbidden Lore bonus instead adds to the Gambler's current Hot Hand bonus. Any invocations that normally require you to use forbidden lore to augment a spell or sphere effect can instead be used while you have at least 1 ante."
+        },
+        {
+          "level": 1,
+          "name": "Invocations",
+          "description": "A gambler gains the following invocations at the listed levels in place of his normal invocations:"
+        },
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Gamblers are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice.\n\nThis replaces the thaumaturge’s weapon and armor proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Trade Tradition",
+          "description": "If this is this character’s first level in any class, the gambler may select a trade tradition of their choice, and have an adroit trade rank. The gambler gains a number of skill ranks at each level equal to 6 + their Intelligence modifier.\n\nThis replaces the thaumaturge’s normal class skills."
+        },
+        {
+          "level": 2,
+          "name": "Gambler’s Intuition",
+          "description": "At 2nd level, a gambler gains a +1 bonus to Bluff, Disguise, Perception, and Sense Motive checks. This bonus increases by 1 for every 4 additional gambler levels possessed, to a maximum of +5 at 18th level.\n\nThis replaces the thaumaturge’s occult knowledge class feature."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:thaumaturge:genius",
+      "package": "spheres-class:thaumaturge",
+      "name": "Genius",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/genius",
+      "replaces_features": [],
+      "removed_features": [],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {
+        "statistics": {
+          "skill_points": 8
+        }
+      },
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Eureka",
+          "description": "At 1st level, as part of attempting a skill check, crafting an item (such as an Herbalism sphere concoction or Alchemy sphere formulae), or using an ability whose effects could be altered based on the number of skill ranks the user possesses (such as a Bluster sphere quip or a Warleader Sphere shout), the genius may increase his effective skill ranks in a single skill by 2 for the purpose of the skill check or item.\n\nThis bonus increases by +1 at 5th level, and by an additional +1 for every 4 levels thereafter to a maximum of +6 at 17th level.\n\nEvery time the genius uses eureka, there is a 15% chance the genius will suffer backlash; for the purpose of the skill check, item, or other ability, the genius is considered to have 0 ranks in the chosen skill. In addition, the genius suffers a -1 penalty to attack rolls, saving throws, skill checks, and to their effective ranks in all skills (minimum 0), which lasts until he rests for 8 hours. This penalty is cumulative; every time the genius suffers backlash in a day, these penalties increase by 1."
+        },
+        {
+          "level": 1,
+          "name": "Flexible Training",
+          "description": "A genius gains combat or skill talents (some of which are required to be [utility] talents) using the trained talent progression. When he gains his first level in the genius archetype, a genius chooses either Charisma, Intelligence or Wisdom as his practitioner modifier and operative modifier. Whenever the genius rests for 8 hours (or the equivalent), he may change any and all non-utility combat and skill talents gained from genius levels, choosing new spheres and new talents.\n\nCombat and skill talents gained as part of levels taken in other classes, as part of a martial or trade tradition, or talents gained from taking the Extra Combat Talent or Extra Skill Talent feat are not eligible to be changed in this fashion."
+        },
+        {
+          "level": 1,
+          "name": "Invocations",
+          "description": "A genius may use invocations a number of times per day equal to his practitioner ability modifier + 1/2 his class level, which refreshes when he rests for eight hours. Whenever an invocation calls for a saving throw, the DC is equal to 10 + 1/2 his thaumaturge level + his thaumaturge’s practitioner ability modifier. A thaumaturge may only use invocations of his level or lower. Using an invocation is a free action that may be taken even when it is not the thaumaturge’s turn, but the thaumaturge cannot use multiple invocations as part of the same saving throw, check, or use of eureka.\n\nA genius’ invocations are extraordinary rather than supernatural abilities. Rather than their casting ability modifier, the genius instead uses their practitioner modifier for all effects related to invocations. In addition, several of the genius’ invocations are altered or replaced from the normal thaumaturge invocations."
+        },
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "The genius is proficient with simple weapons, as well as light armor and bucklers. In addition, if this is the character's first level in any class, the genius may select a martial tradition of their choice."
+        },
+        {
+          "level": 1,
+          "name": "Trade Tradition",
+          "description": "If this is this character’s first level in any class, the genius may select a trade tradition of their choice, and have an adroit trade rank. The genius gains a number of skill ranks at each level equal to 8 + their Intelligence modifier."
+        },
+        {
+          "level": 2,
+          "name": "Skill Comfort",
+          "description": "At 2nd level, a genius gains a +1 bonus to all skill checks with which they have unlocked skill leverage. This bonus increases by 1 for every 4 additional genius levels possessed, to a maximum of +5 at 18th level."
+        },
+        {
+          "level": 4,
+          "name": "Bonus Feats",
+          "description": "At 4th level and every 4 levels thereafter, the genius gains a bonus feat. These bonus feats must be combat feats, the Extra Skill Talent feat, or any feat which requires skill talents or specific skill ranks as prerequisites."
+        },
+        {
+          "level": 20,
+          "name": "Master Invoker",
+          "description": "At 20th level, the genius selects two invocations other than rebuke death; he may use these invocations at will without using one of his invocations per day.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps\n\nSpheres of Guile by Drop Dead Studios\n\nUsing Spheres of Guile\n\nClasses\n\nAdvisor (DRS)\nAgent\nConduit (DRS)\nCourser\nEnvoy\n\nGenius\nMastermind\nProfessional\n\nSpheres\n\nArtifice\nBluster\nBody Control\nCommunication\nFaction\n\nHerbalism\nInfiltration\nInvestigation\nNavigation\nPerformance\n\nSpellhacking\nStudy\nSubterfuge\nSurvivalism\nVocation\n\nOther Rules\n\nOperative Feats\nOperative Gear\nSkill Rules\nTrade Traditions\nRunning Guile Games\n\nGet Spheres of Guile"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:thaumaturge:knight-of-willpower",
+      "package": "spheres-class:thaumaturge",
+      "name": "Knight of Willpower",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/knight-of-willpower",
+      "replaces_features": [
+        "",
+        "bonus-feats-thaumaturge-normally-gains-at",
+        "forbidden-lore",
+        "levels",
+        "lingering-pain",
+        "occult-knowledge"
+      ],
+      "removed_features": [
+        "lingering-pain",
+        "occult-knowledge"
+      ],
+      "removed_feature_clauses": [
+        "lingering pain",
+        "occult knowledge"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Bonus Feats",
+          "description": "The knight of willpower’s bonus feats must be Enhanced Creation, Extra Magic Talent (which must be a Creation, Light, or Telekinesis sphere talent), Forceful Creation, Iron Will, Kinetic Creation, a teamwork feat, or any feat which has Iron Will as a prerequisite.\n\nThis alters the bonus feats a thaumaturge normally gains at 4th, 8th, 12th, 16th, and 20th levels.\n\nKnights of willpower are warrior-mages who have specialized in a very narrow field of magic. Able to create objects made from nothing but pure will, they wield their force of personality as both blade and armor. Focusing their power inward, they can make themselves unmovable in their cause. Focused outward, they can achieve feats of magic far beyond that of mere dabblers in the arts of Creation, Light and Telekinesis.\n\nMind Over Matter: When using the forbidden lore class feature, the knight of willpower is particularly powerful with certain spheres at the cost of others. When using forbidden lore to strengthen an effect from the Creation, Light, or Telekinesis sphere, the increase to his caster level is 50% higher than normal. This increase does not affect the bonus granted by invocations. When using forbidden lore to strengthen the effect of any of the other spheres, the increase to his caster level is only 50% of the normal value.\n\nA knight of willpower may push themselves beyond their normal limits and apply this bonus to any sphere, eliminating the usual penalty to those spheres (or apply it a second time to the Creation, Light, or Telekinesis spheres for a total of a 100% increase to those spheres), by increasing the chance of backlash to 30% and increasing the penalty to attack rolls, saving throws, skill checks, and their effective caster level to -2. When used in this way, his forbidden lore bonus for the purposes of invocations is treated as if it were 50% higher. When using forbidden lore in this way the chance of backlash occurring cannot be reduced by any means.\n\nThis modifies forbidden lore.\n\nInvocations: The knight of willpower gains the following invocations, each of which replaces an existing invocation.\n\nStrength of Will: At 1st level, a knight of willpower may reroll a failed Will save as an immediate action. This invocation replaces meditation.\n\nPower of Fear: At 1st level, when using forbidden lore to augment a Light sphere glow effect, the knight of willpower may use an invocation to cause all enemies in the area of the light to become shaken as long as they remain within the area (Will negates). He may also use this invocation when using the Creation sphere to create an object which causes any creature touching the object to become shaken as long as they remain in contact with the object (no save). This replaces lingering pain.\n\nUnbreakable Will: At 2nd level a knight of willpower gains immunity to fear and any other non-allied creature normally immune to fear loses that immunity while within 10 ft. of the knight of willpower, replacing their usual immunity with a +4 bonus to saves against fear effects.\n\nThe knight of willpower must consciously determine who is an ally and may do so as a free action. At 6th level, allies within 10 ft. of the knight of willpower gain a +1 morale bonus on saving throws against fear effects and enemies take a -1 penalty on saving throws against fear effects. This bonus and penalty increases by 1 for every additional 4 levels the knight of willpower has to a maximum of +/- 4 at 18th level. This ability only functions while the knight of willpower remains conscious, not if he is unconscious or dead.\n\nThis ability replaces occult knowledge.\n\nBonus Feats: The knight of willpower’s bonus feats must be Enhanced Creation, Extra Magic Talent (which must be a Creation, Light, or Telekinesis sphere talent), Forceful Creation, Iron Will, Kinetic Creation, a teamwork feat, or any feat which has Iron Will as a prerequisite.\n\nThis alters the bonus feats a thaumaturge normally gains at 4th, 8th, 12th, 16th, and 20th levels.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        },
+        {
+          "level": 1,
+          "name": "Invocations",
+          "description": "The knight of willpower gains the following invocations, each of which replaces an existing invocation."
+        },
+        {
+          "level": 1,
+          "name": "Mind Over Matter",
+          "description": "When using the forbidden lore class feature, the knight of willpower can spend their willpower to push themselves to extremely powerful heights.\n\nWhen using forbidden lore, the knight of willpower can increase the bonus to their caster level by 50% by increasing the chance of backlash to 30% and increasing the penalty to attack rolls, saving throws, skill checks, and his effective caster level to -2. When using forbidden lore in this way the chance of backlash occurring cannot be reduced by any means.\n\nThis alters forbidden lore."
+        },
+        {
+          "level": 2,
+          "name": "Unbreakable Will",
+          "description": "At 2nd level a knight of willpower gains immunity to fear and any other non-allied creature normally immune to fear loses that immunity while within 10 feet of the knight of willpower, replacing their usual immunity with a +4 bonus to saves against fear effects.\n\nThe knight of willpower must consciously determine who is an ally and may do so as a free action. At 6th level, allies within 10 feet of the knight of willpower gain a +1 morale bonus on saving throws against fear effects and enemies take a -1 penalty on saving throws against fear effects. This bonus and penalty increases by 1 for every additional 4 levels the knight of willpower has to a maximum of +/- 4 at 18th level. This ability only functions while the knight of willpower remains conscious, not if he is unconscious or dead.\n\nThis ability replaces occult knowledge."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:thaumaturge:martial-thaumaturge",
+      "package": "spheres-class:thaumaturge",
+      "name": "Martial Thaumaturge",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/martial-thaumaturge",
+      "replaces_features": [
+        "proficiencies",
+        "thaumaturges-bonus-feats"
+      ],
+      "removed_features": [
+        "thaumaturges-bonus-feats"
+      ],
+      "removed_feature_clauses": [
+        "thaumaturge’s bonus feats"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A martial thaumaturge may combine combat spheres and talents to create powerful martial techniques. Martial thaumaturges gain a combat talent at 1st level and every 2 levels thereafter and use their casting ability modifier as their practitioner modifier.\n\nThis ability replaces the thaumaturge’s bonus feats.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps"
+        },
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Martial thaumaturges are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is the character’s first level in any class, they may select a martial tradition of their choice.\n\nThis alters proficiencies."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:thaumaturge:pact-master",
+      "package": "spheres-class:thaumaturge",
+      "name": "Pact Master",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/pact-master",
+      "replaces_features": [
+        "casting",
+        "empowered-defense-invocation",
+        "forbidden-lore-but-counts-as-forbidden-lore-for-requirements",
+        "lingering-blessing",
+        "lingering-pain",
+        "magic-talents",
+        "meditation-invocations",
+        "occult-knowledge",
+        "prerequisites",
+        "soulfire-invocation"
+      ],
+      "removed_features": [
+        "empowered-defense-invocation",
+        "forbidden-lore-but-counts-as-forbidden-lore-for-requirements",
+        "lingering-blessing",
+        "lingering-pain",
+        "meditation-invocations",
+        "occult-knowledge",
+        "prerequisites",
+        "soulfire-invocation"
+      ],
+      "removed_feature_clauses": [
+        "occult knowledge",
+        "forbidden lore but counts as forbidden lore for requirements",
+        "prerequisites"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Contingent Caster",
+          "description": "A pact master does not gain the casting class feature (and thus does not gain 2 free magic talents) nor does he gain magic talents from his class levels, though he may count his class levels as casting class levels for the purposes of meeting the prerequisites for feats and using the Counterspell feat and other feats with it as a prerequisite. The pact master selects a casting tradition normally.\n\nThis alters casting and magic talents."
+        },
+        {
+          "level": 1,
+          "name": "Invocations",
+          "description": "The pact master gains the following new invocations:"
+        },
+        {
+          "level": 1,
+          "name": "Pact Caster",
+          "description": "At 1st level, the pact master may form a pact with a powerful being with an 8 hour ritual. Once the pact is made, the pact master may summon a pact companion granted by his patron with a 1 hour ritual. This companion functions as a Conjuration sphere companion with a caster level equal to the pact master’s class level. This caster level does not stack with those gained from other sources. The pact companion remains for 24 hours or until dismissed as a standard action and gains a bonus (form) or (type) talent at 2nd level and every 4 levels thereafter (6th, 10th, 14th, 18th). This does not remove the usual limit on a companion on (type) talents. The pact master must still pay any additional spell point costs to summon the pact companion.\n\nWhile the pact companion is within 100 feet + 10 feet per level of the pact master, the pact master gains a general caster level equal to his pact master level. This stacks normally with caster levels gained from other sources. Additionally, while gaining this caster level, the pact master gains an additional magic talent known, plus one talent at 2nd level and every two levels thereafter. These talents must reflect the nature of the patron and companion chosen. Each pact companion may grant different talents, but grants the same talents each time it is summoned. Should the pact master gain the same talents granted by a companion as talents known from other sources, such as feats, other classes, or favored class bonuses, the redundant talent granted by the companion is changed to another appropriate talent. When the companion is banished, dismissed, or slain, any non-instantaneous effects cast with talents granted by the companion immediately end. Talents granted by a pact companion may be used to meet feat and other prerequisites, but any ability or benefit gained by doing so only functions while the talent is possessed.\n\nThe pact master may maintain up to three pacts at one time. Each pact has a different companion reflecting the nature of the patron. A pact master may only have one pact companion summoned at a time. Breaking an existing pact requires a one hour ritual and may incur retribution from the slighted patron. The pact master may not apply (form) talents to pact companions unless the talent is granted by the companion.\n\nThis replaces occult knowledge."
+        },
+        {
+          "level": 1,
+          "name": "Pact Lore",
+          "description": "At 1st level, the pact master may call upon his patron to receive greater power. The pact master’s active pact companion must spend a move action to channel this boon prior to the pact master casting a sphere effect. The pact master gains a +2 bonus on caster level for the effect, increasing by +1 at 5th level and every 4 levels thereafter (9th, 13th, and 17th). Channeling the extra power weakens the pact companion, inflicting 1d4 points of Constitution burn on the companion.\n\nThis burn acts as Constitution damage that cannot be healed except by the pact master dismissing the companion and resting to regain spell points. This damage is inflicted regardless of any immunity the companion may have. A pact companion whose Constitution is reduced to 0 by this ability cannot be summoned again for 1 week.\n\nThis replaces forbidden lore but counts as forbidden lore for requirements and prerequisites. Using pact lore counts as using forbidden lore for the purpose of triggering invocations. Effects that would use or modify the bonus from forbidden lore instead use or modify pact lore. Effects that would increase the backlash chance of forbidden lore instead increase the Constitution burn by +1 per 5% forbidden lore chance (round up). Effects that would decrease the backlash chance of forbidden lore instead decrease the Constitution burn by -1 per 5% forbidden lore chance (round down, minimum of 1 point of Constitution burn)."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:thaumaturge:pactmage",
+      "package": "spheres-class:thaumaturge",
+      "name": "Pactmage",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/pactmage",
+      "replaces_features": [
+        "occult-knowledge"
+      ],
+      "removed_features": [
+        "occult-knowledge"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 2,
+          "name": "Pactmage Patrons",
+          "description": "Celestial Pact: Your pact is with a good-aligned outsider, such as an angel or azata.\n\nLingering Guidance: At 2nd level, when using forbidden lore to augment a spell or sphere effect, you may use an invocation to grant the affected targets a +1 sacred bonus to attack rolls, skill checks, ability checks, and saving throws for 1 round.\n\nCelestial Blessing: At 6th level, when using lingering blessing, the temporary hit points last for 1d4+1 rounds.\n\nEmpowered Recovery: At 14th level, when you are the target of a healing spell or ability, you may use an invocation to increase the number of hit points you recover by 50%.\n\nInfernal Pact: Your pact is with an evil-aligned outsider, such as a demon or devil.\n\nLingering Wrath: At 2nd level, when using forbidden lore to augment a spell or sphere effect, you may use an invocation to grant the affected targets a profane bonus to melee damage rolls equal to your forbidden lore bonus for 1 round.\n\nInfernal Pain: At 6th level, when using lingering pain, the affected targets are sickened for 1d4+1 rounds if they fail their saving throw.\n\nDark Lore: At 14th level, when using forbidden lore, you may use an invocation to increase your forbidden lore bonus by +4 and negate the need to roll for failure. However, after completing your action, you automatically suffer backlash penalty.\n\nUnspeakable Pact: Your pact is with an alien or aberrant creature, such as an aboleth or qlippoth.\n\nCurse of Entropy: At 2nd level, before an opponent makes a saving throw against one of your spells or abilities, you may use an invocation to apply your forbidden lore bonus as a penalty to their roll.\n\nGift of Knowledge: At 6th level, when using meditation, you may roll three times and take the highest result.\n\nLingering Madness: At 14th level, when using forbidden lore to augment a spell or sphere effect, you may use an invocation to cause the affected targets to suffer 1d4 Wisdom damage (Will negates).\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:thaumaturge:savant",
+      "package": "spheres-class:thaumaturge",
+      "name": "Savant",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/savant-class",
+      "replaces_features": [],
+      "removed_features": [],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {
+        "statistics": {
+          "skill_points": 4
+        }
+      },
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Flexible Combat Training",
+          "description": "A savant may combine combat spheres and talents to create powerful martial techniques.\n\nSavants are considered Proficient combatants. When they gain their first level in the savant archetype, savants may choose either Charisma, Intelligence or Wisdom as their practitioner modifier. Whenever a savant rests for 8 hours (or the equivalent), he may change any and all combat talents gained from savant levels, choosing new spheres and new talents.\n\nCombat talents gained as part of levels taken in other classes, as part of his martial tradition, or combat talents gained from taking the Extra Combat Talent feat are not eligible to be changed in this fashion."
+        },
+        {
+          "level": 1,
+          "name": "Insights",
+          "description": "Savants have learned to master their own bodies, pushing themselves in truly remarkable ways and using this knowledge, they may help or harm others as well. A savant may use insights a number of times per day equal to his practitioner modifier, which refreshes when he rests for 8 hours (or the equivalent). Whenever an insight calls for a saving throw, the DC is equal to 10 + 1/2 the savant’s level + the savant’s practitioner modifier. A savant may only use insights of his level or lower. Unless noted, using an insight is a free action that may be taken even when it isn’t the savant’s turn.\n\nConditioning: At 1st level, the savant may spend a use of insight when making a Strength, Dexterity, or Constitution-based ability check or skill check (but not an attack roll, combat maneuver roll, or save) to roll twice and take the best result.\n\nSkill Mimicry: At 1st level, when the savant sees a creature make a Strength or Dexterity-based skill check, he may spend a use of insight to use that creature’s modifier on checks made for that skill for a number of minutes equal to his practitioner modifier. This bonus includes attribute, class, feat, trait, and class skill bonuses but not other bonuses, such as circumstance, competence, insight, sacred, nor any bonus granted by a spell or magic item.\n\nTalent Shift: At 1st level, the savant may spend a use of insight to swap one talent gained from flexible combat training for another talent. Any prerequisites of the talent must still be met. He keeps this talent for a number of rounds equal to his practitioner modifier; afterwards the talent is lost. The original talent is regained after a 10 minute rest.\n\nTalent Mimicry: At 3rd level, when the savant sees a creature perform an attack, combat maneuver, or movement using or benefiting from a combat sphere or talent, he may spend a use of insight to temporarily gain one talent used for a number of rounds equal to his practitioner modifier. Any prerequisites of the talent must still be met. He may gain two talents in this way at 9th level and three at 15th level.\n\nReaver: At 3rd level, when a savant confirms a critical hit or reduces an opponent with a CR of at least half his character level to 0 or fewer hit points, he may spend a use of insight to activate his strain ability on his next turn without suffering the normal penalty.\n\nChannel Strain: At 7th level, when using his strain ability, after successfully dealing damage with an attack action or succeeding on a combat maneuver, the savant may force the target creature to make a Fortitude save or suffer the penalty of the strain in place of the savant.\n\nBattle Tempered: At 11th level, when the savant suffers the daze penalty from his strain ability, he may spend a use of insight to grant himself a bonus equal to his strain bonus on AC and saves for a number of rounds equal to his practitioner modifier.\n\nRebuke Death: At 15th level, when the savant is reduced to 0 hit points or fewer, he may use all his remaining insights to instead be reduced to 1 hit point. Effects that kill the savant outright without dealing hit point damage are not affected by this ability.\n\nBattlemaster: At 19th level, the savant may spend a use of insight to make an attack action as a move action. This insight may only be used while benefiting from his strain ability."
+        },
+        {
+          "level": 1,
+          "name": "Strain",
+          "description": "At 1st level, as a free action a savant may increase his base attack bonus by 2 until the end of his turn. Doing so is extremely taxing, leaving him fatigued for 1 round. This bonus increases by +1 at 5th level, and by an additional +1 for every 4 levels thereafter to a maximum of +6 at 17th level.\n\nWhen activating this ability, if he fails to deal damage or succeed on a combat maneuver before the beginning of his next turn, he must make a Fortitude save equal to 10 + class level or be dazed instead of fatigued. These conditions bypass immunity. If the savant is already fatigued, he is instead exhausted and if exhausted, he instead falls unconscious for the same duration."
+        },
+        {
+          "level": 1,
+          "name": "Weapon and Armor Training",
+          "description": "Savants are proficient with simple weapons, as well as light armor. In addition, if this is this character’s first level in any class, they may select a martial tradition of their choice."
+        },
+        {
+          "level": 2,
+          "name": "Kinesthetic Intuition",
+          "description": "At 2nd level, a savant gains a +1 bonus to all Acrobatics, Climb, Fly, and Swim checks. This bonus increases by 1 for every 4 additional savant levels possessed, to a maximum of +5 at 18th level."
+        },
+        {
+          "level": 4,
+          "name": "Combat Trained",
+          "description": "At 4th level and every 4 levels thereafter, a savant gains a bonus combat feat."
+        },
+        {
+          "level": 20,
+          "name": "Masterful Insights",
+          "description": "At 20th level, the savant selects two insights other than rebuke death; he may use these insights at will without using one of his insights per day."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:thaumaturge:soulfire-master",
+      "package": "spheres-class:thaumaturge",
+      "name": "Soulfire Master",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/soulfire-master",
+      "replaces_features": [
+        "bonus-feat",
+        "bonus-feat-at-level",
+        "forbidden-lore"
+      ],
+      "removed_features": [
+        "bonus-feat-4th-level"
+      ],
+      "removed_feature_clauses": [
+        "bonus feat gained at 4th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Burning Lore",
+          "description": "At first level, the soulfire master does not risk the usual penalties of backlash when using forbidden lore. Instead, when backlash occurs, the spell is completed normally and the soulfire master suffers a point of Constitution burn. A soulfire master cannot use this ability if doing so would reduce his Constitution to 0. This ability otherwise acts as forbidden lore, including the caster level bonus increasing with class level and for effects that modify the chance of backlash. The risk of backlash increases from 15% to 50%. Archetypes that change the backlash risk, such as the devourer, may be combined with this archetype, stacking the backlash changes.\n\nThis alters forbidden lore."
+        },
+        {
+          "level": 4,
+          "name": "Soulfire Talent",
+          "description": "At 4th level, the soulfire master gains the Soulfire feat even if he does not meet the prerequisites. Additionally, he may use burning lore when using the Soulfire feat with no risk of backlash.\n\nAt 7th level, the soulfire master may pass off up to 2 points of Constitution burn when using the soulfire feat with the channel punishment invocation.\n\nThis replaces the bonus feat gained at 4th level."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:thaumaturge:unseen-horror",
+      "package": "spheres-class:thaumaturge",
+      "name": "Unseen Horror",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/unseen-horror",
+      "replaces_features": [
+        "thaumaturge-bonus-feat-4",
+        "thaumaturge-bonus-feat-at-level-4"
+      ],
+      "removed_features": [
+        "thaumaturge-bonus-feat-at-level-4"
+      ],
+      "removed_feature_clauses": [
+        "thaumaturge bonus feat at level 4"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 4,
+          "name": "Lurking Forces",
+          "description": "At 4th level, an unseen horror summons an unseen force that lurks around him, and is capable of giving it mental commands as a free action. This force is an invisible, mindless entity that can perform simple tasks anywhere within 20 feet + 5 feet per 5 class levels of the unseen horror, such as lifting or moving items, opening doors, or lightly tapping someone on the shoulder. It can perform only one activity at a time, but may repeat an activity if desired. It has an effective Strength score of 2, allowing it to lift 20 pounds and drag 100 pounds, moving any object it carries up to 30 feet per round. It can trigger traps and similar devices, if its strength is adequate to do so. It cannot perform any task that requires a skill check with a DC higher than 10 and is considered untrained in all skills. It cannot attack in any way, but also cannot be killed or destroyed, though it ceases to exist if he dies, only reappearing if he is resurrected in some manner. In addition, he gains one unseen augmentation listed below. This ability replaces the thaumaturge bonus feat at level 4."
+        },
+        {
+          "level": 1,
+          "name": "Unseen Augmentations",
+          "description": "When the unseen horror would gain a thaumaturge bonus feat at levels 8, 12, 16, and 20, he may choose to gain one of the following unseen augmentations instead. He can only select any given unseen augmentation once."
+        },
+        {
+          "level": 1,
+          "name": "Flicker of Intelligence",
+          "description": "The unseen horror’s unseen force gains a skill point for each level of unseen horror he possesses, which may be invested into Craft (Int), Disable Device (Dex), Perform (Cha), or Sleight of Hand (Dex), allowing it to perform relevant tasks with a bonus equal to its rank in that skill. Its ability modifiers are 0 for the purposes of these skills, and it has no class skills. However, it can perform skill checks with DCs higher than 10 if it has at least one skill point invested in that skill, and is considered trained in those skills."
+        },
+        {
+          "level": 1,
+          "name": "Forceful Presence",
+          "description": "The unseen horror’s unseen force now has an effective Strength score of 10. It can use the aid another action to assist him or an adjacent creature with attempting any Strength check or Strength-based skill check, and always succeeds on its aid another roll for such purposes."
+        },
+        {
+          "level": 1,
+          "name": "Hungering Maw",
+          "description": "The unseen horror’s unseen force can wrap itself around objects and swallow them, making them inaccessible until he commands it to produce them. Items swallowed this way count against its carrying capacity normally, and it cannot store more than its heavy load this way. His unseen force must pick up an unattended item before it can swallow it. Picking up an unattended item and swallowing it, or producing a swallowed item again is a full-round action. If he perishes, all items swallowed this way appear in his square."
+        },
+        {
+          "level": 1,
+          "name": "Reaching Fingers",
+          "description": "Add 10 feet to the unseen horror’s unseen force’s reach. In addition, it can slip through thin cracks, reaching under doors and through keyholes without hampering its ability to perform tasks, though he still needs to direct its actions appropriately."
+        },
+        {
+          "level": 1,
+          "name": "Serpentine Coils",
+          "description": "The unseen horror can use his unseen force as a rope with a length equal to its reach. While in this form, his unseen force has hit points equal to his level, and hardness equal to his casting ability modifier. It can be broken with a Strength check (DC 20 + his casting ability modifier) or if used to tie up a creature, escaped with an Escape Artist check (DC 20 + 1/2 his unseen horror level + his casting ability modifier). It may automatically attach or release itself from any location within its reach suitable for a grappling hook. If broken or cut, his unseen force instantly reforms in his square, but cannot assume rope form until his next turn."
+        },
+        {
+          "level": 1,
+          "name": "Twin Forces",
+          "description": "The unseen horror gains a second unseen force that is identical to the first, gaining any benefits from other unseen augmentations."
+        },
+        {
+          "level": 1,
+          "name": "Umbral Ink",
+          "description": "The unseen horror’s unseen force can silently etch smoking black lettering onto a surface as if it had a quill and an infinite supply of ink. It can create a transcript of any conversation he understands, or accurately copy images, patterns, or writing that he can see or that is adequately described to him. In addition, it can write on abnormal surfaces such as liquid or even in midair, though such writing only lasts a single round or until disturbed by motion before evaporating. In addition, it can use the Linguistics skill to create forgeries (but not any other purpose) untrained with a bonus equal to his unseen horror level, and can reach a DC higher than 10 with such a check."
+        },
+        {
+          "level": 1,
+          "name": "Whispering Wraith",
+          "description": "The unseen horror’s unseen force can make sounds issue anywhere within its reach, and can mimic sounds he has heard. A listener may attempt a Sense Motive check (DC 10 + his unseen horror level) to recognize the mimicry, though they suffer a -4 penalty if they are not familiar with the person or type of sounds mimicked. His unseen force has a maximum volume equal to one normal human per unseen horror level he possesses."
+        },
+        {
+          "level": 1,
+          "name": "New Feat",
+          "description": "Extra Unseen Augmentation: Prerequisite: Unseen forces class feature."
+        },
+        {
+          "level": 1,
+          "name": "Benefit",
+          "description": "You gain an additional unseen augmentation for which you qualify. You may take this feat multiple times. The effects stack."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:thaumaturge:void-gazer",
+      "package": "spheres-class:thaumaturge",
+      "name": "Void Gazer",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/void-gazer",
+      "replaces_features": [
+        "counts-as-forbidden-lore",
+        "counts-as-invocations"
+      ],
+      "removed_features": [],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Occulted Visions",
+          "description": "Coaxing out the secrets of the dark tapestry comes with a price. His eyes are stained black by what he has seen, a physical manifestation of the unfathomable source of his knowledge. At 1st level the void gazer gains the Dark sphere as a bonus magic talent and the Clouded Vision oracle curse. If the void gazer has the Dark sphere already, he gains a bonus talent for this sphere instead. For determining the effects of the curse his oracle level is equal to his void gazer levels plus one for every two Hit Dice or levels in classes other than void gazer. The void gazer may not increase the maximum range of his vision by any means save progressing the curse.\n\nThe void gazer may, as part of the action required to use a spell or sphere effect, increase his caster level by 2 for that effect. This bonus increases by +1 at 5th level, and by an additional +1 for every 4 levels thereafter to a maximum of +6 at 17th level.\n\nWhenever a void gazer uses occulted visions, there is a 15% chance he will suffer occulted backlash. When this occurs, the range of his vision, including blindsense and blindsight, is reduced by 5 feet until he rests to regain spell points. This reduction is cumulative and can not be removed in any other way. Magic that grants additional senses or extends the limits of existing senses cannot extend beyond this limit. If his vision is reduced to 0 feet, he is blinded and unable to use occulted visions until the penalty is removed. A void gazer using occulted visions with a Dark sphere talent or effect only has a 5% chance of suffering a backlash.\n\nThis alters and counts as forbidden lore."
+        },
+        {
+          "level": 3,
+          "name": "Eldritch Invocations",
+          "description": "In an act of madness or desperation, the void gazer may attempt to channel the eldritch powers of the void directly through his psyche to power his magic. The void gazer only gains a number of uses of invocations per day equal to half his casting ability modifier. He may, as a free action, purposely suffer occulted backlash in order to gain an additional use of invocations. At 3rd level, the void gazer gains Stygian Immersion as a bonus talent.\n\nThe void gazer loses access to the channel punishment, empowered defense, empowered resistance, lingering blessing and soulfire invocations.\n\nThis ability alters and counts as invocations.\n\nThe void gazer gains the following invocations in addition to the normal list of invocations:"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:thaumaturge:wild-mage",
+      "package": "spheres-class:thaumaturge",
+      "name": "Wild Mage",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/wild-mage",
+      "replaces_features": [
+        "forbidden-lore",
+        "master-invoker",
+        "thaumaturges-normal-invocation-options"
+      ],
+      "removed_features": [
+        "forbidden-lore",
+        "thaumaturges-normal-invocation-options"
+      ],
+      "removed_feature_clauses": [
+        "forbidden lore",
+        "thaumaturge’s normal invocation options"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 5,
+          "name": "Tap Chaos",
+          "description": "Wild mages amplify their power by pushing beyond the structures and forms of normal magic, with predictably unpredictable results. A wild mage may, as part of the action required to use a spell or sphere ability, increase his caster level by 2 for that effect. This applies to variables dependent on a particular casting of an effect (damage, duration, number of targets etc.), but it does not apply to the caster’s total caster level with that sphere (i.e., it does not determine the strength of a companion from the Conjuration sphere, nor to the total number of Hit Dice of reanimated creatures that may be controlled through the Death sphere). This bonus increases by +1 at 5th level, and by an additional +1 for every 4 levels thereafter to a maximum of +6 at 17th level. Whenever a wild mage uses tap chaos to enhance his magic, his wild magic chance increases by 100%. Archetypes, favored class bonuses, and other effects that modify the bonus from and backlash risk of forbidden lore may instead modify tap chaos. Tap chaos counts as forbidden lore for the purposes of meeting prerequisites.\n\nThis replaces forbidden lore."
+        },
+        {
+          "level": 1,
+          "name": "Chaos Shield",
+          "description": "At 1st level, the wild mage may spend an invocation to reduce his wild magic chance by 50% for one round."
+        },
+        {
+          "level": 1,
+          "name": "Inflict Chaos",
+          "description": "At 1st level, whenever the wild mage affects a creature with a sphere ability modified by tap chaos, he may spend an invocation to increase that creature’s wild magic chance by 50% for one round. Affected creatures are unaware of this penalty."
+        },
+        {
+          "level": 1,
+          "name": "Wild Empowerment",
+          "description": "At 1st level, whenever the wild mage enhances a sphere effect with tap chaos, he may spend an invocation to add his tap chaos bonus to his spell penetration rolls for that effect."
+        },
+        {
+          "level": 3,
+          "name": "Direct Chaos",
+          "description": "At 3rd level, whenever the wild mage makes a roll on a wild magic table, he may spend an invocation to roll twice and choose which result to take."
+        },
+        {
+          "level": 3,
+          "name": "Defensive Maelstrom",
+          "description": "At 3rd level, whenever the wild mage enhances a sphere effect with tap chaos he may spend an invocation to wrap himself in chaos for 1 round, imposing a percentage miss chance on all attack rolls targeting him equal to his class level x 5."
+        },
+        {
+          "level": 7,
+          "name": "Postpone Consequences",
+          "description": "At 7th level, before the result of a wild magic roll is known, the wild mage may spend an invocation to delay the onset of the wild magic effect for 1d12 rounds. Modifications to instantaneous effects or effects that have already expired are instead incurred the next time a valid effect is cast."
+        },
+        {
+          "level": 11,
+          "name": "Wild Fire",
+          "description": "At 11th level, when the wild mage enhances a sphere effect with tap chaos, he may use an invocation to empower himself. He gains a bonus to attack rolls, saving throws, and a dodge bonus to AC equal to his tap chaos bonus for a number of rounds equal to his casting ability modifier."
+        },
+        {
+          "level": 11,
+          "name": "Wild Charge",
+          "description": "At 11th level, the wild mage may use an invocation to add his tap chaos bonus to the caster level of a spell-completion or spell-trigger magic item he is wielding for 1d4 rounds. Any effect benefiting from this bonus has its wild magic chance increased by 50%. This bonus only functions while the item is being wielded by the wild mage."
+        },
+        {
+          "level": 15,
+          "name": "Chaotic Flexibility",
+          "description": "At 15th level, the wild mage may use an invocation to gain the use of 1d3 magic talents of his choice for 1 minute. A wild mage may only have one use of chaotic flexibility active at any one time; using this invocation again replaces the previous use. The wild mage must use tap chaos on any sphere effect using a talent gained from chaotic flexibility."
+        },
+        {
+          "level": 19,
+          "name": "Arcane Rift",
+          "description": "At 19th level, when the wild mage is slain, the wild mage may use all his remaining invocations to cause an area out to long range to act as a wild magic zone, increasing all wild magic chances in that area by 100% for 1 day per class level. The wild mage may choose a number of creatures inside that area equal to the invocations spent to be able to ignore this increase.\n\nThis replaces the thaumaturge’s normal invocation options."
+        },
+        {
+          "level": 20,
+          "name": "Chaotic Invoker",
+          "description": "At 20th level, the wild mage selects two invocations other than arcane rift; he may use these invocations at will without using one of his invocations per day.\n\nThis modifies master invoker."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

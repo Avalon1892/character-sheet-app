@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "key": "ninja",
+  "class_key": "pathfinder-class:ninja",
+  "class_name": "Ninja",
+  "governing_ability": "charisma",
+  "optional_blocks": ["inquisitor_features"],
+  "external_systems": ["ki_pool", "sneak_attack", "ninja_tricks"],
+  "resource_modules": [
+    {
+      "key": "ninja_context",
+      "title": "Ninja Techniques",
+      "governing_ability": "charisma",
+      "resources": [
+        {
+          "key": "no_trace_stationary",
+          "name": "No Trace (Stationary)",
+          "feature_tokens": ["no-trace"],
+          "progression": "one",
+          "description": "Enable after remaining stationary without acting for at least 1 round. The insight bonus applies to Disguise and opposed Stealth checks; the same scaling increase to tracking DC remains documented in Special Abilities.",
+          "can_activate": true,
+          "tracks_uses": false,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": false
+        }
+      ]
+    }
+  ],
+  "passive_effects": [
+    {
+      "key": "ninja-no-trace",
+      "feature_tokens": ["no-trace"],
+      "targets": ["skill:disguise", "skill:stealth"],
+      "progression": "third_level",
+      "bonus_type": "insight",
+      "source": "Ninja: No Trace",
+      "minimum_level": 3,
+      "requires_resource_active": "no_trace_stationary"
+    }
+  ],
+  "notes": "Ki, Sneak Attack, Ninja Tricks and Master Tricks use shared trackers and power catalogs. No Trace has an explicit situational toggle; Light Steps and Hidden Master remain rules-visible actions powered by the same character state."
+}

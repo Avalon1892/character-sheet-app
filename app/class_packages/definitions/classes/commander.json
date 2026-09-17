@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "key": "commander",
+  "class_key": "spheres-class:commander",
+  "class_name": "Commander",
+  "governing_ability": "higher:charisma,intelligence",
+  "catalog_profile": {
+    "weapon_proficiencies": ["Simple weapons"],
+    "armor_proficiencies": ["Light armor", "Bucklers"],
+    "proficiencies": {"weapons": ["Simple weapons"], "armor": ["Light armor", "Bucklers"]},
+    "advancement": {"talent_progression": "Adept", "talent_kinds": ["martial"], "talent_bonus_levels": [1]}
+  },
+  "optional_blocks": ["martial_talents", "martial_focus"],
+  "external_systems": ["martial_focus", "warleader", "enhanced_tactics"],
+  "resource_modules": [{
+    "key": "commander",
+    "title": "Commander Tactics",
+    "governing_ability": "higher:charisma,intelligence",
+    "resources": [
+      {"key":"lingering_commands","name":"Lingering Commands","feature_tokens":["lingering-commands"],"progression":"ability_modifier_nonnegative","description":"Rounds that eligible shouts and tactics persist after they would normally end, using the higher of Charisma or Intelligence.","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":false},
+      {"key":"active_enhanced_tactics","name":"Active Enhanced Tactics","feature_tokens":["enhanced-tactics"],"progression":"commander_active_tactics","description":"Choose the enhanced tactics currently active. Advanced Tactician permits two at level 10 and Expert Tactician permits three at level 20.","can_activate":true,"custom_choice_label":"Active enhanced tactics","maximum_choices_progression":"commander_active_tactics","tracks_uses":false,"recover_on_full_rest":false,"end_on_full_rest":true},
+      {"key":"group_focus","name":"Group Focus","feature_tokens":["group-focus"],"progression":"commander_group_focus","description":"Daily uses restore martial focus to all allies who can see and hear the Commander; allies unable to benefit receive the published one-round morale bonus."}
+    ]
+  }],
+  "passive_effects": [],
+  "choice_providers": [
+    {"key":"commander-enhanced-tactics","label":"Enhanced Tactics","feature_tokens":["enhanced-tactics"],"minimum":0,"maximum_levels":[2,4,6,8,10,12,14,16,18,20],"description":"Choose one enhanced tactic at every even Commander level.","fixed_options":[
+      {"key":"command-attack","name":"Command Attack"},{"key":"command-movement","name":"Command Movement"},{"key":"coordinated-assault","name":"Coordinated Assault"},{"key":"defensive-rally","name":"Defensive Rally"},{"key":"direct-charge","name":"Direct Charge"},{"key":"direct-magical-assault","name":"Direct Magical Assault"},{"key":"directed-tackle","name":"Directed Tackle"},{"key":"expert-coordinator","name":"Expert Coordinator"},{"key":"facilitate-combo","name":"Facilitate Combo"},{"key":"mountaineering","name":"Mountaineering"},{"key":"nows-your-time","name":"Now's Your Time"},{"key":"rapid-repositioning","name":"Rapid Repositioning"},{"key":"troop-upkeep","name":"Troop Upkeep"},{"key":"troop-volley","name":"Troop Volley"}
+    ]},
+    {"key":"commander-battlefield-specialists","label":"Battlefield Specialties","feature_tokens":["battlefield-specialist"],"minimum":0,"maximum_levels":[3,9,15],"description":"Choose a terrain and gain its published coordination and travel benefits.","fixed_options":[
+      {"key":"cold","name":"Cold"},{"key":"desert","name":"Desert"},{"key":"forest","name":"Forest"},{"key":"jungle","name":"Jungle"},{"key":"mountain","name":"Mountain"},{"key":"plains","name":"Plains"},{"key":"space","name":"Space"},{"key":"swamp","name":"Swamp"},{"key":"urban","name":"Urban"},{"key":"underground","name":"Underground"},{"key":"water","name":"Water"}
+    ]},
+    {"key":"commander-logistic-specialties","label":"Logistic Specialties","feature_tokens":["logistic-specialty"],"minimum":0,"maximum_levels":[7,13,19],"description":"Choose one logistic specialty at levels 7, 13, and 19.","fixed_options":[
+      {"key":"call-in-a-specialist","name":"Call In A Specialist"},{"key":"equipment-specialist","name":"Equipment Specialist"},{"key":"information-specialist","name":"Information Specialist"},{"key":"medical-specialist","name":"Medical Specialist"},{"key":"scouting-specialist","name":"Scouting Specialist"},{"key":"call-in-the-cavalry","name":"Call In the Cavalry"},{"key":"field-feeding","name":"Field Feeding"},{"key":"mercantile-connections","name":"Mercantile Connections"},{"key":"overland-march","name":"Overland March"},{"key":"secret-ways","name":"Secret Ways"}
+    ]}
+  ],
+  "notes": "Warleader from Commander is represented by the class-granted martial talent allowance. Higher-of ability scaling is resolved by the shared package engine."
+}

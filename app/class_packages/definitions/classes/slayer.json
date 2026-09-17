@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "key": "slayer",
+  "class_key": "pathfinder-class:slayer",
+  "class_name": "Slayer",
+  "governing_ability": "intelligence",
+  "optional_blocks": ["inquisitor_features"],
+  "external_systems": ["studied_target", "sneak_attack", "slayer_talents", "advanced_slayer_talents"],
+  "resource_modules": [
+    {
+      "key": "slayer_hunt",
+      "title": "Slayer Hunt",
+      "governing_ability": "intelligence",
+      "resources": [
+        {
+          "key": "quarry",
+          "name": "Quarry",
+          "feature_tokens": ["quarry", "improved-quarry"],
+          "progression": "one",
+          "description": "Enable for the selected quarry. The insight attack bonus is applied; automatic critical confirmation, tracking benefits and replacement timing remain in Special Abilities.",
+          "can_activate": true,
+          "tracks_uses": false,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": false,
+          "custom_choice_label": "Current quarry"
+        },
+        {
+          "key": "slayers_advance",
+          "name": "Slayer's Advance",
+          "feature_tokens": ["slayer-s-advance"],
+          "progression": "one_at_thirteen_two_at_seventeen",
+          "description": "Daily uses of the move-action advance, including its option to use Stealth during the movement."
+        }
+      ]
+    }
+  ],
+  "passive_effects": [
+    {
+      "key": "slayer-track",
+      "feature_tokens": ["track"],
+      "targets": ["skill:survival"],
+      "progression": "half_level_minimum_one",
+      "bonus_type": "untyped",
+      "source": "Slayer: Track",
+      "minimum_level": 1
+    },
+    {
+      "key": "slayer-quarry",
+      "feature_tokens": ["quarry", "improved-quarry"],
+      "targets": ["attack"],
+      "progression": "slayer_quarry_bonus",
+      "bonus_type": "insight",
+      "source": "Slayer: Quarry",
+      "minimum_level": 14,
+      "requires_resource_active": "quarry"
+    }
+  ],
+  "notes": "Studied Target applies its live attack, damage, skill and class-DC bonuses; Sneak Attack and Slayer Talents use shared combat and recurring-power systems. Quarry and Slayer's Advance have explicit play trackers."
+}

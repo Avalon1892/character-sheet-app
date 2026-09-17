@@ -1,0 +1,162 @@
+{
+  "version": 1,
+  "key": "monk",
+  "class_key": "pathfinder-class:monk",
+  "class_name": "Monk",
+  "governing_ability": "wisdom",
+  "optional_blocks": ["inquisitor_features"],
+  "external_systems": [
+    "monk_unarmed_damage",
+    "monk_flurry",
+    "monk_ki_pool"
+  ],
+  "resource_modules": [
+    {
+      "key": "monk_actions",
+      "title": "Monk Techniques",
+      "governing_ability": "wisdom",
+      "resources": [
+        {
+          "key": "stunning_fist",
+          "name": "Stunning Fist",
+          "feature_tokens": ["stunning-fist"],
+          "progression": "level",
+          "description": "Daily Stunning Fist attempts equal the retained Monk level. Declare the attempt before the attack roll; a miss still spends the attempt. The save DC is 10 + half character level + Wisdom modifier."
+        },
+        {
+          "key": "still_mind_applies",
+          "name": "Still Mind Applies",
+          "feature_tokens": ["still-mind"],
+          "progression": "one",
+          "description": "Enable only for a saving throw against an enchantment spell or effect; the +2 bonus is then applied to that saving throw.",
+          "can_activate": true,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": false,
+          "tracks_uses": false
+        },
+        {
+          "key": "high_jump",
+          "name": "High Jump",
+          "feature_tokens": ["high-jump"],
+          "progression": "zero",
+          "description": "Spend 1 ki point as a swift action. Until the end of the turn, add the Monk level to Acrobatics checks made to jump and count as having a running start.",
+          "can_activate": true,
+          "activate_on_spend": true,
+          "tracks_uses": false,
+          "external_cost_key": "ki_pool",
+          "use_cost": 1
+        },
+        {
+          "key": "wholeness_of_body",
+          "name": "Wholeness of Body",
+          "feature_tokens": ["wholeness-of-body"],
+          "progression": "zero",
+          "description": "Spend 2 ki points as a standard action to heal hit points equal to the retained Monk level.",
+          "tracks_uses": false,
+          "external_cost_key": "ki_pool",
+          "use_cost": 2
+        },
+        {
+          "key": "abundant_step",
+          "name": "Abundant Step",
+          "feature_tokens": ["abundant-step"],
+          "progression": "zero",
+          "description": "Spend 2 ki points as a move action to use dimension door with caster level equal to the retained Monk level; the Monk cannot take other creatures.",
+          "tracks_uses": false,
+          "external_cost_key": "ki_pool",
+          "use_cost": 2
+        },
+        {
+          "key": "quivering_palm",
+          "name": "Quivering Palm",
+          "feature_tokens": ["quivering-palm"],
+          "progression": "one",
+          "description": "Once per day, declare a quivering-palm unarmed strike. A successful hit can later be triggered within a number of days equal to the Monk level; Fortitude negates. Only one target can carry the vibrations at a time."
+        },
+        {
+          "key": "empty_body",
+          "name": "Empty Body",
+          "feature_tokens": ["empty-body"],
+          "progression": "zero",
+          "description": "Spend 3 ki points as a move action to become ethereal for 1 minute, as etherealness.",
+          "tracks_uses": false,
+          "external_cost_key": "ki_pool",
+          "use_cost": 3
+        }
+      ]
+    }
+  ],
+  "passive_effects": [
+    {
+      "key": "monk-ac-wisdom",
+      "feature_tokens": ["ac-bonus"],
+      "targets": ["armor_class", "touch_ac", "flat_footed_ac", "cmd"],
+      "progression": "ability_modifier_nonnegative",
+      "ability": "wisdom",
+      "bonus_type": "untyped",
+      "source": "Monk: AC Bonus (Wisdom)",
+      "requires_unarmored": true,
+      "requires_unencumbered": true
+    },
+    {
+      "key": "monk-ac-level",
+      "feature_tokens": ["ac-bonus"],
+      "targets": ["armor_class", "touch_ac", "flat_footed_ac", "cmd"],
+      "progression": "monk_ac_level_bonus",
+      "bonus_type": "untyped",
+      "source": "Monk: AC Bonus (class level)",
+      "requires_unarmored": true,
+      "requires_unencumbered": true
+    },
+    {
+      "key": "monk-fast-movement",
+      "feature_tokens": ["fast-movement"],
+      "targets": ["land_speed"],
+      "progression": "monk_fast_movement",
+      "bonus_type": "enhancement",
+      "source": "Monk: Fast Movement",
+      "minimum_level": 3,
+      "requires_unarmored": true,
+      "requires_unencumbered": true
+    },
+    {
+      "key": "monk-maneuver-training",
+      "feature_tokens": ["maneuver-training"],
+      "targets": ["cmb"],
+      "progression": "monk_maneuver_training_bonus",
+      "bonus_type": "untyped",
+      "source": "Monk: Maneuver Training",
+      "minimum_level": 3
+    },
+    {
+      "key": "monk-still-mind",
+      "feature_tokens": ["still-mind"],
+      "targets": ["fortitude", "reflex", "will"],
+      "progression": "two",
+      "bonus_type": "untyped",
+      "source": "Monk: Still Mind (enchantment only)",
+      "minimum_level": 3,
+      "requires_resource_active": "still_mind_applies"
+    },
+    {
+      "key": "monk-high-jump",
+      "feature_tokens": ["high-jump"],
+      "targets": ["skill:acrobatics"],
+      "progression": "level",
+      "bonus_type": "untyped",
+      "source": "Monk: High Jump (jump checks only)",
+      "minimum_level": 5,
+      "requires_resource_active": "high_jump"
+    },
+    {
+      "key": "monk-diamond-soul",
+      "feature_tokens": ["diamond-soul"],
+      "targets": ["spell_resistance"],
+      "progression": "level_plus_ten",
+      "bonus_type": "untyped",
+      "source": "Monk: Diamond Soul",
+      "minimum_level": 13
+    }
+  ],
+  "notes": "Armor/load-gated bonuses are checked against live worn equipment and encumbrance. Situational bonuses use explicit context toggles; Ki-consuming techniques spend the shared Ki pool rather than maintaining duplicate counters."
+}

@@ -1,0 +1,6 @@
+{
+  "version":1,
+  "entries":[
+    {"key":"spheres-archetype:spheres-class:eliciter:hypnotist","power_providers":[{"key":"hypnotist-investigator-talents","label":"Hypnotist Investigator Talents","family":"investigator_talent","feature_tokens":["investigator-talents"],"slot_levels":[5,11,17],"description":"Choose an investigator talent at levels 5, 11, and 17; talents that only augment class abilities the Hypnotist lacks are not legal."}],"resource_modules":[{"key":"hypnotist","title":"Hypnotist","governing_ability":"casting","resources":[{"key":"inspiration","name":"Inspiration","feature_tokens":["inspiration"],"progression":"half_level_plus_ability_minimum_one","description":"Pool equals half Hypnotist level + casting ability modifier. Bluff, Diplomacy, Intimidate, and Sense Motive can be augmented without spending a point."}]}],"system_features":["inspiration","investigator-talent"]}
+  ]
+}

@@ -1,0 +1,521 @@
+{
+  "version": 1,
+  "class_key": "spheres-class:wraith",
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:wraith:baobhan-sith",
+      "package": "spheres-class:wraith",
+      "name": "Baobhan Sith",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/baobhan-sith",
+      "replaces_features": [
+        "class-skills",
+        "haunt-path",
+        "talent-normally",
+        "talent-normally-at-level",
+        "wraith-haunt",
+        "wraith-haunt-at-level"
+      ],
+      "removed_features": [
+        "haunt-path",
+        "talent-normally-2nd-level",
+        "talent-normally-6th-level",
+        "wraith-haunt-9th-level"
+      ],
+      "removed_feature_clauses": [
+        "haunt path",
+        "the talent normally gained at 2nd level",
+        "wraith haunt gained at 9th level",
+        "talent normally gained at 6th level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blood Lover",
+          "description": "At 1st level, the baobhan sith gains either the Blood sphere or the Mind sphere as a bonus talent and uses his class level as his caster level with these spheres. This stacks normally with caster levels gained from other sources. At 2nd level he gains the sphere he did not select at 1st level.\n\nAt 2nd level the baobhan sith gains Vampire’s Guile as a bonus feat (see Blood or Mind feats). If the baobhan sith already possesses Vampire’s Guile, he may instead choose any feat he qualifies for. Creatures under the effect of the baobhan sith’s non-harmless Mind sphere effects also take a -2 penalty to saving throws against his possession.\n\nAt 8th level, the baobhan sith gains two primary claw attacks dealing 1d4 damage each (Medium, 1d3 if Small). She may use these claw attacks while actively possessing a creature, in which case they deal damage appropriate to the possessed creature’s size. When the baobhan sith successfully establishes blood control after making an Exsanguinating Strike with one of these claws, he may spend a swift action to attack with the other claw. This second attack deals additional bleed damage equal to twice its damage die. This stacks with other bleed damage.\n\nThe baobhan sith’s claws are difficult to discern, requiring a Perception check with a DC of 15 + the baobhan sith’s level + his casting ability modifier to notice.\n\nAt 14th level, whenever the baobhan sith successfully establishes blood control after making an Exsanguinating Strike, he may spend a spell point to use a charm from the Mind sphere as a free action, affecting the target of their Exsanguinating Strike.\n\nThis replaces haunt path and the talent normally gained at 2nd level."
+        },
+        {
+          "level": 1,
+          "name": "Class Skills",
+          "description": "The baobhan sith gains Knowledge (nature) (Int) as a class skill, but loses Knowledge (religion) (Int) as a class skill.\n\nThis alters class skills."
+        },
+        {
+          "level": 4,
+          "name": "False Seducer",
+          "description": "At 4th level, when the baobhan sith attempts a Bluff check to lie he may spend a spell point as part of making the check. If he does, he gains a bonus to the check equal to half his level. If a creature believes the lie and it would tend to make them perceive the baobhan sith more favorably, their attitude toward him improved by one step, as though by the Enthrall charm. This is a mind-affecting, language-dependant effect and lasts for 1 minute per class level. Once a creature has been affected by this ability they are immune to further uses by the same baobhan sith for 24 hours.\n\nThe baobhan sith automatically knows when a creature has believed a lie made with this ability.\n\nAt 9th level the baobhan sith may dismiss the effect on any one creature as an immediate action to make a request of them as the Suggestion greater charm with a saving throw equal to 10 + 1/2 the baobhan sith’s level + his Charisma modifier.\n\nThis replaces the wraith haunt gained at 9th level."
+        },
+        {
+          "level": 6,
+          "name": "Throat-Ripper",
+          "description": "At 6th level the baobhan sith gains Exsanguinating Strike as a bonus talent and gains a +1 insight bonus to attack rolls when using this talent to attack a creature affected by one of his charms. At 10th level and every 4 levels thereafter, this bonus increases by +1.\n\nThis replaces the talent normally gained at 6th level.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:wraith:collective",
+      "package": "spheres-class:wraith",
+      "name": "Collective",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/collective",
+      "replaces_features": [
+        "haunt-path",
+        "magic-talents",
+        "possession",
+        "proficiencies",
+        "wraith-form",
+        "wraith-form-mastery"
+      ],
+      "removed_features": [
+        "haunt-path",
+        "wraith-form",
+        "wraith-form-mastery"
+      ],
+      "removed_feature_clauses": [
+        "wraith form",
+        "haunt path",
+        "wraith form mastery"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Collectives are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is the character’s first level in any class, they may select a martial tradition of their choice.\n\nThis modifies proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "Whenever a collective would gain a magic talent from his class levels (not the 2 bonus talents gained when first gaining the casting class feature), he may instead choose to gain a combat talent. A collective uses his casting ability modifier as his practitioner modifier.\n\nThis modifies magic talents. This archetype may be combined with other archetypes that replace magic talents; the collective cannot gain a combat talent in place of a magic talent the other archetype loses."
+        },
+        {
+          "level": 1,
+          "name": "Hive Mind",
+          "description": "The collective does not exist as a single creature, but rather is a consciousness shared by, but not completely subsuming, all its members. At 1st level, the collective gains the Leadership sphere and the Extra Leadership Package talent as bonus talents, gaining both the (cohort) and (follower) packages. If either package is already possessed, he instead gains a bonus talent from that package. If he is incapable of selecting them due to a drawback, he uses the bonus talent to buy off the drawback. The collective no longer has a body. He is considered to have his base movement speeds for use when taking actions through cohorts (though this does not grant movement modes the cohort does not possess). If a cohort within the telepathic link knows additional languages, that cohort can translate to and from the collective, effectively treating them as known languages for interactions made through that cohort, but other cohorts do not gain the ability to speak or understand the additional languages. Abilities gained from hive mind do not affect temporary cohorts, such as those gained from the battlemind symbiat’s commanding mind link or the Draft legendary talent, nor hired via the Contractors legendary talent."
+        },
+        {
+          "level": 1,
+          "name": "Range",
+          "description": "The collective and his followers and cohorts have a continuous telepathic link. This link functions for 1 mile per class level from the main body of his followers. Cohorts within this range are referred to as controlled cohorts. If a cohort travels outside this area, the collective loses the benefits of his hive mind abilities regarding that cohort. If the followers are dispersed in a settlement or portion of a settlement, then this area is calculated from the settlement or portion’s center. If the followers have formed a caravan, then it is calculated from the caravan. If the collective’s followers are divided into smaller groups, the collective must divide this range between the groups, assigning 1 mile per class level to each group. A group cannot have less than a 1 mile range. If the collective possesses the Base of Operations talent, each settlement with a group of followers from that talent gains the full benefit of the collective’s range, not counting toward the number of groups for reducing the range of multiple groups."
+        },
+        {
+          "level": 1,
+          "name": "Actions",
+          "description": "Each round, the collective may choose to distribute his actions between all his controlled cohorts, acting through them in addition to their normal actions. Such actions use the collective’s abilities as if actively possessing the cohort. Such actions are resolved using the cohort’s statistics. If a controlled cohort is taking an action that requires more than a full-round action to complete, the collective may not grant it additional actions. Likewise, if the collective is acting through a controlled cohort to take an action that requires more than a full-round action, the cohort cannot take any actions. If an ability the collective uses through a controlled cohort grants movement as part of using that ability, such as the shove ability of the Brute sphere or the patrol ability of the Guardian sphere, the cohort may take that movement as part of using that ability, expending the collective’s movement speed."
+        },
+        {
+          "level": 1,
+          "name": "Casting and Concentration",
+          "description": "The collective may cast sphere effects through his controlled cohorts. Each time an effect is cast, a controlled cohort must be chosen as the caster, supplying any verbal, somatic, material, or other components that cannot be supplied as mental-only actions. The casting is subject to any effects that are ongoing on that cohort. The collective may target a controlled cohort that he is casting through with an effect that only targets self. Effects on both the collective and his cohorts do not stack. The collective is immune to polymorph effects. General casting drawbacks inflict their penalties on the cohort that is being used to cast the effect. Drawbacks that have a permanent physical manifestation manifest themselves on all controlled cohorts. When casting a sphere effect through a controlled cohort, the collective may assign concentration to that cohort. That cohort supplies the action required to concentrate on the effect, using the collective’s concentration modifier. If an effect on any other cohort or the collective would require a concentration check, this cohort does not need to make it unless also subject to the effect. The collective may not sustain more effects via concentration than he normally would be able to with his own actions. If the collective does not assign concentration to a cohort, then any effect on a cohort or follower that would cause a concentration check forces the collective to make a concentration check."
+        },
+        {
+          "level": 1,
+          "name": "Damage and Death",
+          "description": "The collective cannot be targeted or damaged directly. If the collective’s followers are dispersed and cohorts slain, the collective is considered to be dead, though may be restored by bringing a cohort back to life. If the cohorts are slain but the followers intact, the collective continues to exist, though is unable to act outside of the actions the followers may take until new cohorts are recruited. Any time a cohort in slain, all cohorts are dazed for 1 round, even if they would normally be immune to the dazed condition, and the collective gains 1 temporary negative level. If a negative level would reduce the collective to 0 Hit Dice, he instead takes 4 points of Constitution drain for the duration of the effect (if the collective lacks a Constitution score (Con (-)), substitute Charisma drain instead). If this drain would reduce the collective to 0 Constitution (or Charisma, if substituting), he dies. No saving throw is made to remove these negative levels, but they are automatically removed at a rate of 1 per 8 hours rest, though may be removed by other means as normal."
+        },
+        {
+          "level": 1,
+          "name": "Effects Targeting the Collective",
+          "description": "Mind-affecting abilities targeting a controlled cohort or follower have a 50% chance to target the collective instead. Mind-affecting abilities that target multiple cohorts or followers or an area also have a 50% chance of affecting the collective, but this chance is only rolled once for all cohorts and followers; if the collective is affected he is only affected once regardless of the number of cohorts and followers within the area of effect. Divinations and other effects that would discern the collective’s location point to the nearest controlled cohort or center of a follower group. Individual cohorts or followers may be targeted, in which case they are affected independently."
+        },
+        {
+          "level": 1,
+          "name": "Provoking",
+          "description": "If the collective takes any action that provokes an attack of opportunity, that attack is resolved against the cohort being acted through."
+        },
+        {
+          "level": 1,
+          "name": "Saving Throws",
+          "description": "A controlled cohort may use the collective’s base saving throws if beneficial."
+        },
+        {
+          "level": 1,
+          "name": "Senses",
+          "description": "The collective receives all sensory data from all of his controlled cohorts. Additionally, he may receive sensory information from a number of followers not exceeding his casting ability modifier. The chosen followers may be changed as a free action at the start of the collective’s turn. These senses are based on the special senses of the cohorts and followers and gain no benefit from any special sense the collective possesses."
+        },
+        {
+          "level": 1,
+          "name": "Skills",
+          "description": "The collective may make active skill checks through its cohorts and followers using his own actions. Such skill checks use the physical ability scores of the cohort or follower (treat followers as having a 10 in all physical attributes for this purpose), but otherwise using his own modifiers. When making a reactive skill check, the collective makes his check via the affected cohort or follower that is most beneficial."
+        },
+        {
+          "level": 1,
+          "name": "Volunteers",
+          "description": "After resting to regain spell points, the collective may recruit a cohort from his followers with Hit Dice up to the maximum for his ranks in Diplomacy. No Diplomacy check is required. This ability stacks with the ability to recruit followers granted by the Drill Sergeant talent."
+        },
+        {
+          "level": 2,
+          "name": "Strength of One",
+          "description": "At 2nd level, once at the start of each turn as a free action, the collective may grant one controlled cohort any of his physical ability scores and his base attack bonus. These scores are modified by any bonuses, penalties, damage, and drain the cohort is subject to. This lasts until a different cohort is chosen. This ability can prevent a cohort from being slain by being reduced to 0 Constitution. This ability does not increase current hit points, though does increase maximum hit points; when lost this bonus is removed, maximum hit points are reduced, with current hit points in excess of the maximum being lost but otherwise not reducing maximum hit points. This ability does not transfer an ability score to a cohort that lacks a score in that attribute, though undead cohorts may treat the granted Constitution score as their Charisma score for the purpose of determining maximum hit points."
+        },
+        {
+          "level": 4,
+          "name": "Many Eyes",
+          "description": "At 4th level, the collective gains a circumstance bonus to Perception equal to half his class level for checks made within Perception range of his followers or when at least 2 controlled cohorts are able to make the check. This bonus applies to the collective’s check, not the cohort’s or follower’s own checks."
+        },
+        {
+          "level": 8,
+          "name": "Inhabit Vessel",
+          "description": "At 8th level, once at the start of each turn as a free action, the collective may grant knowledge of all his known combat and magic talents to one controlled cohort. This lasts until a different cohort is chosen. Magic talents do not grant casting ability to cohorts that lack it."
+        },
+        {
+          "level": 14,
+          "name": "Share Pain",
+          "description": "At 14th level, whenever a controlled cohort takes damage or drain, the collective may redirect half of the damage or drain to another controlled cohort. This is calculated after the effects of any immunity, resistance, or vulnerability the first cohort possesses and may not be further reduced by resistance or immunity or increased by vulnerability. The damage or drain may not be further redirected by any means. Ability damage or drain may not be transferred to a creature that lacks the relevant ability score. These abilities replace wraith form and haunt path. The collective counts as possessing the haunt path class feature for the purpose of qualifying for the Expanded Path Possession and Improved Expanded Path Possession wraith haunts."
+        },
+        {
+          "level": 1,
+          "name": "Collective Impressment",
+          "description": "The collective can only actively possess targets; he cannot passively possess them. He may make possession attempts via any cohort within collective range subject to his hive mind abilities. The wraith counts as passively possessing his controlled cohorts for the purpose of path abilities.\n\nThis modifies possession."
+        },
+        {
+          "level": 20,
+          "name": "All as One",
+          "description": "At 20th level, the benefit from strength as one and inhabit vessel may be granting to any number of cohorts within collective range subject to his hive mind abilities. The collective may produce a new cohort from his followers in 1 hour. Slain cohorts no longer impose negative levels on other cohorts or penalties on followers.\n\nThis replaces wraith form mastery."
+        },
+        {
+          "level": 1,
+          "name": "Collective and Mind Bender",
+          "description": "Should the collective possess the Mind Bender drawback, any effect that disrupts the collective's control over a cohort that makes that cohort no longer count as being in collective range for the duration. If the cohort leaves this range before the collective regains control, that cohort is no longer recruited and becomes a free creature."
+        },
+        {
+          "level": 1,
+          "name": "Wraith Haunts",
+          "description": "The collective may select Leadership sphere talents and Champion feats in place of wraith haunts."
+        },
+        {
+          "level": 1,
+          "name": "I Watch My Back",
+          "description": "Any two controlled cohorts within close range (25 feet + 5 feet per 2 ranks in Diplomacy) of each other are immune to flanking unless both of them are flanked."
+        },
+        {
+          "level": 1,
+          "name": "Mental Projection (requires collective 9)",
+          "description": "The collective gains telepathy in a 30-foot radius around his cohorts, enabling him to communicate with any creature that shares a language with the collective or any of his cohorts. It is possible to address multiple creatures at once telepathically, although maintaining a telepathic conversation with more than one creature at a time is just as difficult as speaking and listening to multiple people simultaneously."
+        },
+        {
+          "level": 1,
+          "name": "Psychic Static",
+          "description": "When a creature is flanked by at least two of the collective’s controlled cohorts, it takes a -2 penalty on saving throws against mind-affecting effects."
+        },
+        {
+          "level": 1,
+          "name": "Self-help",
+          "description": "The collective’s controlled cohorts may use aid another for attack rolls and skill checks on other controlled cohorts as a swift action. Multiple instances of aiding another with this ability do not stack."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:wraith:draugr",
+      "package": "spheres-class:wraith",
+      "name": "Draugr",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/draugr",
+      "replaces_features": [
+        "draugrs-haunt-path",
+        "magic-talents",
+        "proficiencies",
+        "wraith-form",
+        "wraith-form-mastery"
+      ],
+      "removed_features": [
+        "draugrs-haunt-path",
+        "wraith-form",
+        "wraith-form-mastery"
+      ],
+      "removed_feature_clauses": [
+        "wraith form",
+        "draugr’s haunt path",
+        "wraith form mastery"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "Whenever a draugr would gain a magic talent from his class levels (not the 2 bonus talents gained when first gaining the casting class feature), he may instead choose to gain a combat talent. A draugr uses his casting ability modifier as his practitioner modifier.\n\nThis alters magic talents. This archetype may be combined with other archetypes that replace magic talents; he cannot gain a combat talent in place of a magic talent the other archetype loses."
+        },
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Draugr are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is the character’s first level in any class, they may select a martial tradition of their choice.\n\nThis alters proficiencies."
+        },
+        {
+          "level": 1,
+          "name": "Rage",
+          "description": "The draugr gains rage as the barbarian (or unchained barbarian, if used) class feature, treating his draugr levels as barbarian levels for determining its effects.\n\nThis replaces wraith form."
+        },
+        {
+          "level": 1,
+          "name": "Raging Spirit",
+          "description": "The draugr may select rage powers and (champion) feats in place of wraith haunts, treating his class level as his barbarian level for the purpose of meeting prerequisites."
+        },
+        {
+          "level": 1,
+          "name": "Spirit of Wrath",
+          "description": "At 1st level, the draugr gains the Berserker sphere as a bonus sphere.\n\nAt 2nd level, while possessing a creature, the draugr may grant that creature the benefits and penalties of his rage ability, spending round from his pool. The host is fatigued at the end of this rage as usual. If the draugr possesses any rage talents, the host shares these talents. While raging, the draugr’s host is never considered to be acting against its nature when attacking its allies.\n\nAt 4th level, the draugr gains an insight bonus to Intimidate equal to half his class level.\n\nAt 8th level, when the draugr deals damage with an attack action or succeeds on a combat maneuver made as at least a standard action, he may attempt to possess the target of the attack or maneuver as a swift action.\n\nAt 14th level, the draugr’s rage improves, gaining the barbarian’s greater rage ability.\n\nThis replaces the draugr’s haunt path."
+        },
+        {
+          "level": 20,
+          "name": "Mighty Rage",
+          "description": "At 20th level, the draugr gains the mighty rage ability of the barbarian.\n\nThis replaces wraith form mastery.\n\n(This archetype uses material from Spheres of Might)\n\nProficiencies: Draugr are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is the character’s first level in any class, they may select a martial tradition of their choice.\n\nThis modifies proficiencies.\n\nBlended Training (Ex): Whenever a draugr would gain a magic talent from his class levels (not the 2 bonus talents gained when first gaining the casting class feature), he may instead choose to gain a combat talent. A draugr uses his casting ability modifier as his practitioner modifier.\n\nThis modifies magic talents. This archetype may be combined with other archetypes that replace magic talents; you cannot gain a combat talent in place of a magic talent the other archetype loses.\n\nRage (Ex): The draugr gains rage as the barbarian (or unchained barbarian, if used) class feature, treating his draugr levels as barbarian levels for determining its effects.\n\nThis replaces wraith form.\n\nSpirit of Wrath: At 1st level, the draugr gains the Berserker sphere as a bonus sphere.\n\nAt 2nd level, while possessing a creature, the draugr may grant that creature the benefits and penalties of his rage ability, spending round from his pool. The host is fatigued at the end of this rage as usual. If the draugr possesses any rage talents, the host shares these talents. While raging, the draugr’s host is never considered to be acting against its nature when attacking its allies.\n\nAt 4th level, the draugr gains an insight bonus to Intimidate equal to half his class level.\n\nAt 8th level, when the draugr deals damage with an attack action or succeeds on a combat maneuver made as at least a standard action, he may attempt to possess the target of the attack or maneuver as a swift action.\n\nAt 14th level, the draugr’s rage improves, gaining the barbarian’s greater rage ability.\n\nThis replaces the draugr’s haunt path.\n\nRaging Spirit: The draugr may select rage powers and (champion) feats1 in place of wraith haunts, treating his class level as his barbarian level for the purpose of meeting prerequisites.\n\n1: See Champions of the Spheres\n\nMighty Rage: At 20th level, the draugr gains the mighty rage ability of the barbarian.\n\nThis replaces wraith form mastery.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps"
+        }
+      ],
+      "detected_systems": [
+        "rage"
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:wraith:matagot",
+      "package": "spheres-class:wraith",
+      "name": "Matagot",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/matagot",
+      "replaces_features": [
+        "greater-possession",
+        "magic-talents",
+        "possession",
+        "proficiencies",
+        "wraith-form",
+        "wraith-form-mastery",
+        "wraith-haunts"
+      ],
+      "removed_features": [
+        "greater-possession",
+        "magic-talents",
+        "wraith-form",
+        "wraith-form-mastery"
+      ],
+      "removed_feature_clauses": [
+        "magic talents",
+        "wraith form",
+        "greater possession",
+        "wraith form mastery"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "The matagot gains a combat or magic talent every time they gain a class level. Matagot use their casting ability modifier as their practitioner modifier.\n\nThis replaces magic talents."
+        },
+        {
+          "level": 1,
+          "name": "Felid Form",
+          "description": "At 1st level, the matagot permanently assumes the form of a Tiny-sized feline, as though under a permanent shapeshift sphere effect with the Animalistic Transformation form. This felid form replaces the matagot’s permanent, natural form for all purposes. If the matagot would be subject to any effect which would grant a humanoid form, the effect fails. This ability otherwise functions as the Transformation feat and allows the matagot to qualify for other feats with Transformation as a prerequisite. Despite lacking a humanoid form, the matagot may still speak and wear magic items as though they possessed the normal magic item slots of a humanoid.\n\nAs the matagot is permanently in this form, the matagot treats their mouth as their singular opposable limb, and may use it as though it were a functioning hand. This means that the matagot does not have a “second hand” and cannot benefit from effects which require them to have an empty or free offhand.\n\nIf the matagot gains additional arms or limbs, they may use those arms and limbs normally and may qualify for effects requiring them.\n\nThis ability replaces wraith form."
+        },
+        {
+          "level": 1,
+          "name": "Feline Haunts",
+          "description": "The matagot may not select a wraith haunt which requires the wraith form ability and may not select the object ride or ranged possession haunts.\n\nThis alters wraith haunts."
+        },
+        {
+          "level": 1,
+          "name": "Matagot Feline Haunts",
+          "description": "The matagot has exclusive access to the following wraith haunts:"
+        },
+        {
+          "level": 1,
+          "name": "Proficiencies",
+          "description": "Matagot are proficient with simple weapons, as well as light armor and bucklers. In addition, if this is the character’s first level in any class, they may select a martial tradition of their choice.\n\nThis alters proficiencies."
+        },
+        {
+          "level": 2,
+          "name": "Familiar Possession",
+          "description": "At 2nd level, as a standard action, the matagot may attempt to establish a familiar’s bond with an adjacent creature as a standard action, possessing that creature and designating them as their “master”. This is a mind-affecting compulsion effect and functions as the wraith’s possession class feature, except as otherwise noted.\n\nUnlike normal possession, this ability does not cause the matagot’s body to merge with their master’s. The matagot must remain adjacent to or inside their master’s space, and may freely share their master’s space without penalty to either the matagot or their master. A matagot often maintains this ability by establishing contact with their new master, such as climbing atop their master's head or shoulder or standing adjacent to their legs. Whenever the master would move, the matagot may freely move with them, including following a teleportation effect or as part of forced movement, and does not provoke attacks of opportunity for movement when moving this way. The matagot may choose to not follow their master’s movement, but doing so may break their possession because their master would no longer be adjacent. The matagot may still move normally, such as to move into a different square adjacent to their master, and may move through their master’s space without provoking attacks of opportunity.\n\nThe matagot and their master are treated as two separate creatures and may be targeted separately. Whenever the matagot would be attacked or be required to attempt a Reflex saving throw, the matagot may spend an immediate action or expend an attack of opportunity to use their master’s AC or Reflex saving throw bonus as their own.\n\nWhile passively possessing their master, the matagot may take any normal actions, including physical actions. The matagot otherwise maintains this possession by remaining adjacent to or inside their master’s square, and may passively follow their movements or cling to or ride them.\n\nWhile actively possessing their master, the matagot may use their actions to control their master, such as to make attacks, move, and perform other actions. An action performed this way uses the matagot’s statistics if higher than their master’s (such as using the fighter’s attack bonus rather than their own). The matagot does not gain their master’s physical statistics and does not benefit from their worn equipment, automatic abilities, or other effects dependent on the creature’s physical form.\n\nThe matagot may also use their master’s abilities and special attacks which require active use, including combat and magic spheres, feats, abilities from class levels, etc., and use their master’s statistics when calculating their effects. The matagot must supply their own spell points when using their master’s magic spheres and spells. If their master’s ability has a level, class level, Hit Dice, base attack bonus, caster level, or other similar prerequisite, the matagot must meet that prerequisite and may use their class level in place of that statistic to qualify for it.\n\nThe matagot’s possession is more similar to a complex compulsion effect than a true possession effect. The matagot manipulates their master by compelling their body to take action so long as the matagot is powerful enough to compel that action.\n\nFor example, a level 10 matagot could use their master’s legendary combat talent with a base attack bonus +10 and would not need to meet the talent’s other prerequisites, but could not use a level 16 symbiat’s telekinetic colossus psionics ability as the matagot’s level is not sufficient to qualify for that ability.\n\nHowever, if that same level 10 matagot used the level 16 symbiat’s telekinetic relay ability, that ability’s effects would resolve using the symbiat’s normal statistics.\n\nThis ability alters possession."
+        },
+        {
+          "level": 2,
+          "name": "Ride Along",
+          "description": "At 2nd level, the matagot may use their familiar possession ability to passively possess a willing target without spending a spell point."
+        },
+        {
+          "level": 6,
+          "name": "Deceiver",
+          "description": "The matagot is a skilled deceiver and is able to coax would-be “masters” to their aid, gaining new abilities which allow the matagot to better leverage their position. At 6th level, the matagot gains a bonus on Bluff and Disguise checks equal to 1/2 their wraith level."
+        },
+        {
+          "level": 10,
+          "name": "Wicked Familiar",
+          "description": "The matagot is able to more seamlessly assume its role as its possessed master’s familiar and is able to manipulate this connection more easily. At 10th level, while the matagot is possessing another creature with its familiar possession ability, the matagot gains the ability to speak any language their master knows and improved evasion, as the ranger class feature.\n\nAt 12th level, whenever the matagot willingly ends their possession, the matagot may spend 1 spell point as an immediate action to target their former master with a Mind sphere Suggestion greater charm, using their wraith class level as their caster level for this effect. The matagot may use this ability even if they do not possess the Mind sphere and may target their master regardless of their creature type (as though the matagot possessed the Expanded Charm talent).\n\nAt 16th level, whenever the matagot is the target of a harmful effect and succeeds on their saving throw, as an immediate action the matagot may force their master to make a saving throw against that same effect. The matagot may not use this ability if their master was also a target of the harmful effect; this ability does not function against effects which do not target (such as not functioning against area of effects like fireball).\n\nAt 18th level, whenever the matagot uses their familiar possession ability on an unwilling target, the matagot may spend 1 spell point as a swift action to force the target to roll twice on their Will save to resist, taking the worse result.\n\nThis replaces greater possession."
+        },
+        {
+          "level": 20,
+          "name": "The Matagot",
+          "description": "The matagot becomes a supreme being, ascending beyond their mortal limitations. At 20th level, the matagot’s creature type permanently changes to outsider (native) and the matagot gains spell resistance equal to 11 + their wraith level. Whenever the matagot would be affected by a spell, the matagot can allow it to bypass their spell resistance, even when it is not their turn.\n\nIn addition, the matagot’s life leaves the cycle of souls. The matagot becomes effectively immortal; while the matagot still ages and can die, whenever the matagot dies, they reincarnate and resurrect 7 days later in a random location on the planet or plane where they died. If the matagot’s soul is trapped or an effect would prevent the matagot from resurrecting, the matagot may attempt a magic skill check against that effect’s magic skill defense every 7 days until they succeed and resurrects normally (treat the MSD of an effect without a caster level as being 11 + the CR of that effect).\n\nThis replaces wraith form mastery."
+        }
+      ],
+      "detected_systems": [
+        "familiar"
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:wraith:mistshade",
+      "package": "spheres-class:wraith",
+      "name": "Mistshade",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/mistshade",
+      "replaces_features": [
+        "activation-of-wraith-form-may-instead-be-applied-to-mist-form",
+        "but-any-feat",
+        "haunt",
+        "or-other-that-would-affect-duration-or-activation-of-wraith-form-may-instead-be-applied-to-mist-form",
+        "other-that-would-affect-duration",
+        "wraith-form"
+      ],
+      "removed_features": [
+        "activation-of-wraith-form-may-instead-be-applied-to-mist-form",
+        "but-any-feat",
+        "haunt",
+        "other-that-would-affect-duration",
+        "wraith-form"
+      ],
+      "removed_feature_clauses": [
+        "wraith form",
+        "but any feat",
+        "haunt",
+        "or other ability that would affect the duration or activation of wraith form may instead be applied to mist form"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Mist Form",
+          "description": "At 1st level, for a number of rounds per day equal to his class level plus his casting ability modifier, the mistshade may dissolve into a mist. The mistshade and all his gear become insubstantial. His armor (including natural armor) becomes worthless, though his size, Dexterity, deflection bonuses, and armor bonuses from force effects still apply. The mistshade takes half damage from weapon attacks and gains a 25% ability to ignore critical hits and precision damage, which increases by 25% per 5 class levels to a maximum of 100%. He cannot attack or cast spells or sphere abilities with verbal, somatic, material, or focus components while in mist form. If he has a touch spell or sphere ability ready to use, that spell or ability is discharged harmlessly when the mist form is in effect. Entering mist form is a move action and ending it is a free action.\n\nWhile in mist form, the mistshade can shroud himself in a cloud of mist as a swift action. The cloud has a 5-foot radius, which may be increased by 5 feet at 5th level, and again every 5 levels thereafter, to a maximum of 25 feet at 20th level. The mist obscures all sight, including darkvision, beyond 5 feet. A creature within 5 feet has concealment (attacks have a 20% miss chance). Creatures farther away have total concealment (50% miss chance and the attacker cannot use sight to locate the target). The ability may be dismissed as a free or immediate action and does not function underwater.\n\nWhile in mist form the mistshade cannot run, but it can fly at a speed of 20 feet (perfect) + 5 feet per 5 class levels and automatically succeeds on all Fly checks. He can pass through small holes or narrow openings, even mere cracks, with all he was wearing or holding in his hands, as long as the effect persists. The mistshade is subject to the effects of wind, and he cannot enter water or other liquid. He also cannot manipulate objects or activate items, even those carried along with his mist form. Continuously active items remain active, though in some cases their effects may be moot. This is a polymorph effect.\n\nThis replaces wraith form, but any feat, haunt, or other ability that would affect the duration or activation of wraith form may instead be applied to mist form.\n\nMist Form (Su): At 1st level, for a number of rounds per day equal to his class level plus his casting ability modifier, the mistshade may dissolve into a a mist. The mistshade and all his gear become insubstantial. His armor (including natural armor) becomes worthless, though his size, Dexterity, deflection bonuses, and armor bonuses from force effects still apply. The mistshade takes half damage from weapon attacks and gains a 25% ability to ignore critical hits and precision damage, which increases by 25% per 5 class levels to a maximum of 100%. He can’t attack or cast spells or sphere abilities with verbal, somatic, material, or focus components while in mist form. If he has a touch spell or sphere ability ready to use, that spell or ability is discharged harmlessly when the mist form is in effect. Entering mist form is a move action and ending it is a free action.\n\nWhile in mist form, the mistshade can shroud himself in a cloud of mist as a swift action. The cloud has a 5-ft. radius, which may be increased by 5 ft. at 5th level, and again every 5 levels thereafter, to a maximum of 25 ft. at 20th level. The mist obscures all sight, including darkvision, beyond 5 feet. A creature within 5 ft. has concealment (attacks have a 20% miss chance). Creatures farther away have total concealment (50% miss chance and the attacker can’t use sight to locate the target). The ability may be dismissed as a free or immediate action and does not function underwater.\n\nWhile in mist form the mistshade can’t run, but it can fly at a speed of 20 ft. (perfect) + 5 ft. per 5 class levels and automatically succeeds on all Fly skill checks. He can pass through small holes or narrow openings, even mere cracks, with all he was wearing or holding in his hands, as long as the effect persists. The mistshade is subject to the effects of wind, and he can’t enter water or other liquid. He also can’t manipulate objects or activate items, even those carried along with his mist form. Continuously active items remain active, though in some cases their effects may be moot.\n\nThis is a polymorph effect.\n\nThis replaces wraith form, but any feat, haunt, or other ability that would affect the duration or activation of wraith form may instead be applied to mist form.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:wraith:swarmheart",
+      "package": "spheres-class:wraith",
+      "name": "Swarmheart",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/swarmheart",
+      "replaces_features": [
+        "activation-of-wraith-form-may-instead-be-applied-to-swarm-form",
+        "but-any-feat",
+        "haunt",
+        "or-other-that-would-affect-duration-or-activation-of-wraith-form-may-instead-be-applied-to-swarm-form",
+        "other-that-would-affect-duration",
+        "wraith-form"
+      ],
+      "removed_features": [
+        "activation-of-wraith-form-may-instead-be-applied-to-swarm-form",
+        "but-any-feat",
+        "haunt",
+        "other-that-would-affect-duration",
+        "wraith-form"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Swarmheart Haunts",
+          "description": "The swarmheart has exclusive access to the following haunts:"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:wraith:unbodied",
+      "package": "spheres-class:wraith",
+      "name": "Unbodied",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/unbodied",
+      "replaces_features": [
+        "magic-talent",
+        "magic-talent-at-level",
+        "wraith-form",
+        "wraith-haunt",
+        "wraith-haunt-at-level"
+      ],
+      "removed_features": [
+        "magic-talent-2nd-level",
+        "wraith-form",
+        "wraith-haunt-3rd-level"
+      ],
+      "removed_feature_clauses": [
+        "wraith form",
+        "magic talent gained at 2nd level",
+        "wraith haunt gained at 3rd level"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Permanent Wraith",
+          "description": "At 1st level, the unbodied is permanently locked in wraith form. If the unbodied ends his turn neither possessing a creature or object, nor manifested in his physical body, he takes 1 point of nonlethal damage. This increases to 2 points at 5th character level, 3 points at 10th character level, 4 points at 15th character level. This damage cannot be healed by any means other than by time spent possessing a creature or object and bypasses immunity and resistance to nonlethal damage. Nonlethal damage from this ability cannot be reduced or redirected. While possessing a creature or his refuge object (see the object ride wraith haunt), this damage heals at the rate of 1 point per minute. While possessing any other object, they heal at a rate of 1 point per hour. The unbodied does not need to eat, drink, or sleep, and gains no further bonuses or penalties from aging, though still dies permanently when his maximum age is reached. The unbodied can speak in his normal voice while in his refuge object.\n\nAn unbodied whose damage taken from this ability exceeds his maximum hit points automatically returns to his refuge object (if within 100 feet + 10 feet per class level) or else discorporates, becoming a mindless haunt occupying his space. This haunt attempts to possess any creature (or his refuge object) that enters his space. If successful, the unbodied is restored to his normal function. While in haunt form, the unbodied recovers all spell points after 8 hours of not attempting to possess an unwilling creature (they cannot make such an attempt if out of spell points).\n\nThis replaces wraith form."
+        },
+        {
+          "level": 1,
+          "name": "Spirit Rider",
+          "description": "At 1st level, the unbodied gains the ability to passively possess willing targets. This functions as the possession ability. Additionally, the unbodied gains the object ride wraith haunt. The unbodied gains the full possession ability normally at 2nd level.\n\nThe unbodied does not gain the bonus talent from his path sphere until 2nd level.\n\nThis replaces the magic talent gained at 2nd level."
+        },
+        {
+          "level": 3,
+          "name": "Manifest",
+          "description": "At 3rd level, for a number of minutes per day equal to his class level plus his casting ability modifier, the unbodied may manifest his physical body. Activating this ability is a move action and ending it is a free action. If carrying a load greater than his maximum load, the unbodied must drop items until below his maximum load (if possible) as part of ending this ability.\n\nThis replaces the wraith haunt gained at 3rd level."
+        },
+        {
+          "level": 20,
+          "name": "Restored",
+          "description": "At 20th level, the unbodied may remain in physical form for any number of minutes in a day and no longer takes damage for remaining outside a host while in wraith form.\n\nWhile most wraiths can step out of phase with the material world, others are so estranged from it by death, trauma, or powerful magic that they require great effort to return to it.\n\nSpecial: At the GM’s discretion, in special circumstances slain PCs may be allowed to retrain their most recent level into a level in this archetype for the wraith class. Characters with wraith class levels could be allowed to retrain into this archetype.\n\nCharacters with this archetype may still benefit from effects that restore creatures to life. If using the special circumstances suggestion above, whether the character returns to life as it was prior to taking this archetype or if it returns as having this archetype will depend on the GM and the desires of the player, which should be worked out before hand.\n\nPermanent Wraith (Su): At 1st level, the unbodied is permanently locked in wraith form. If the unbodied ends his turn neither possessing a creature or object, nor manifested in his physical body, he takes 1 point of nonlethal damage. This increases to 2 points at 5th character level, 3 points at 10th character level, 4 points at 15th character level. This damage can’t be healed by any means other than by time spent possessing a creature or object and bypasses immunity and resistance to nonlethal damage. Nonlethal damage from this ability can’t be reduced or redirected. While possessing a creature or his refuge object (see the object ride wraith haunt), this damage heals at the rate of 1 point per minute. While possessing any other object, it heals at a rate of 1 point per hour. The unbodied does not need to eat and gains no further bonuses or penalties from aging, though still dies permanently when his maximum age is reached.\n\nAn unbodied whose damage taken from this ability exceeds his maximum hit points automatically returns to his refuge object (if within 100 ft. + 10 ft. per class level) or else discorporates, becoming a mindless haunt occupying his space. This haunt attempts to possess any creature (or his refuge object) that enters his space. If successful, the unbodied is restored to his normal function. While in haunt form, the unbodied recovers all spell points after 8 hours of not attempting to possess an unwilling creature (it cannot make such an attempt if out of spell points).\n\nErrata: You can speak in your normal voice while in your refuge object. Source\n\nThis replaces wraith form.\n\nSpirit Rider (Su): At 1st level, the unbodied gains the ability to passively possess willing targets. This functions as the possession ability. Additionally, the unbodied gains the object ride wraith haunt. The unbodied gains the full possession ability normally at 2nd level.\n\nThe unbodied does not gain the bonus talent from his path sphere until 2nd level.\n\nThis replaces the magic talent gained at 2nd level.\n\nManifest (Su): At 3rd level, for a number of minutes per day equal to his class level plus his casting ability modifier, the unbodied may manifest his physical body. Activating this ability is a move action and ending it is a free action. If carrying a load greater than his maximum load, the unbodied must drop items until below his maximum load (if possible) as part of ending this ability.\n\nThis replaces the wraith haunt gained at 3rd level.\n\nRestored (Ex): At 20th level, the unbodied may remain in physical form for any number of minutes in a day and no longer takes damage for remaining outside a host while in wraith form.\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book"
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

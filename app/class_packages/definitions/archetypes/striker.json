@@ -1,0 +1,714 @@
+{
+  "version": 1,
+  "class_key": "spheres-class:striker",
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:striker:barfighter",
+      "package": "spheres-class:striker",
+      "name": "Barfighter",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/barfighter",
+      "replaces_features": [
+        "drill-knuckle",
+        "favored-weapon-striker-art",
+        "light-step",
+        "maneuvering-momentum-tension",
+        "pummeling-punisher",
+        "rapid-pummel-tension-techniques-but-otherwise-counts-as-light-step",
+        "rapid-pummel-tension-techniques-for-purposes-of-prerequisites",
+        "striker-arts"
+      ],
+      "removed_features": [
+        "drill-knuckle",
+        "light-step",
+        "maneuvering-momentum-tension",
+        "pummeling-punisher",
+        "rapid-pummel-tension-techniques-but-otherwise-counts-as-light-step",
+        "rapid-pummel-tension-techniques-for-purposes-of-prerequisites",
+        "striker-arts"
+      ],
+      "removed_feature_clauses": [],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Striker Arts",
+          "description": "The barfighter gains exclusive access to the following striker arts:"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:striker:black-powder-brawler",
+      "package": "spheres-class:striker",
+      "name": "Black Powder Brawler",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/black-powder-brawler",
+      "replaces_features": [
+        "bare-knuckles",
+        "combat-training",
+        "drill-knuckle",
+        "improved-uncanny-dodge",
+        "level-tension-boost",
+        "pummeling-punisher",
+        "rapid-pummel-tension-technique",
+        "striker-art",
+        "striker-art-at-level",
+        "tension",
+        "tension-boost",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "2nd-level-tension-boost",
+        "bare-knuckles",
+        "drill-knuckle",
+        "improved-uncanny-dodge",
+        "rapid-pummel-tension-technique",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "bare knuckles",
+        "rapid pummel tension technique",
+        "2nd level tension boost",
+        "uncanny dodge",
+        "improved uncanny dodge",
+        "drill knuckle"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A black powder brawler may combine combat spheres and talents to create powerful martial techniques. Black powder brawlers are considered Expert practitioners and use Wisdom as their practitioner modifier. This ability modifies combat training."
+        },
+        {
+          "level": 1,
+          "name": "Firearm Proficiency",
+          "description": "The black powder brawler gains Firearm Proficiency from the Equipment sphere as a bonus talent, even if she would not otherwise qualify for it. If she already possesses this talent, she may gain any other Equipment talent for which she qualifies. Also at 1st level, a black powder brawler gains a pistol. Her pistol is battered, and only she knows how to use it properly. All other creatures treat her pistol as if it had the broken condition. If her pistol already has the broken condition, it does not work at all for anyone else trying to use it. This starting weapon can only be sold for scrap (it’s worth 4d10 gp when sold). This ability replaces bare knuckles."
+        },
+        {
+          "level": 1,
+          "name": "Determined Warrior",
+          "description": "A black powder brawler uses her Wisdom to determine her maximum tension. This ability alters tension."
+        },
+        {
+          "level": 1,
+          "name": "AC Bonus",
+          "description": "A black powder brawler uses their Wisdom modifier in place of their Constitution modifier when determining her bonus to armor class with this class feature."
+        },
+        {
+          "level": 1,
+          "name": "Leading Blow",
+          "description": "At 1st level, a black powder brawler gains the following tension technique: 3 Tension"
+        },
+        {
+          "level": 1,
+          "name": "Rapid Fire",
+          "description": "Whenever a black powder brawler makes an attack action with an unarmed strike or attempts a combat maneuver check as a standard action, she can spend a swift action to make an additional attack with a one-handed firearm with a -2 penalty (she can wait until the results of the attack roll before deciding to use this tension technique) once per turn (attacks granted by this talent do not provoke attacks of opportunity). If she possesses the speed pummeling striker art, she may apply it to this ability. This ability replaces the rapid pummel tension technique."
+        },
+        {
+          "level": 2,
+          "name": "Firearm Fighter",
+          "description": "At 2nd level, a black powder brawler gains the favored weapon striker art, being treated as though she had selected all one-handed firearms with this striker art and reducing the action needed to reload all one-handed firearms by 1 step. In addition, all striker arts which would use her Constitution to determine their effects instead use her Wisdom. This ability modifies the striker art gained at 2nd level."
+        },
+        {
+          "level": 2,
+          "name": "Gun Genius",
+          "description": "At 2nd level, a black powder brawler gains either the improved firearm invention from the technician class and an improvement of her choice (this may only be applied to a one-handed firearm) or the integrated gun improvement from the improved melee weapon invention (which may only be applied to a light or one-handed melee weapon), although she may integrate any one-handed firearm into a light weapon instead of just a coat pistol. In addition, she may select an improvement from the improved firearm invention’s list to her improved firearm or to her integrated gun in place of a striker art. This ability replaces the 2nd level tension boost, uncanny dodge, and improved uncanny dodge. A black powder brawler gains tension boost at 7th level."
+        },
+        {
+          "level": 3,
+          "name": "Accurate Shooter",
+          "description": "At 3rd level and every 3 levels afterwards, a black powder brawler may select one of the following benefits (these benefits stack with each other, and only apply to the weapon selected with the black powder brawler’s favorite weapon striker art): Increase the range increment of one-handed firearms she wields by 5 ft. Reduce the misfire rate of one-handed firearms she wields by 1 (to a minimum of 0). This ability replaces drill knuckle."
+        },
+        {
+          "level": 7,
+          "name": "Mixed Assault",
+          "description": "At 7th level, a black powder brawler may spend an additional 2 tension when using her rapid fire tension technique to instead make two additional attacks, each with a -4 penalty. In addition, whenever a black powder brawler would be able to make an additional attack with her mixed assault class feature, she may make the attack with either an unarmed strike or a firearm. This ability modifies pummeling punisher."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:striker:chaos-shifter",
+      "package": "spheres-class:striker",
+      "name": "Chaos Shifter",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/chaos-shifter",
+      "replaces_features": [
+        "ac-bonus",
+        "critical-knuckle",
+        "fiery-offense",
+        "perfect-offensive-tension-techniques",
+        "pummeling-punisher",
+        "rapid-pummeling",
+        "swift-focus-tension-techniques"
+      ],
+      "removed_features": [
+        "ac-bonus",
+        "critical-knuckle",
+        "fiery-offense",
+        "perfect-offensive-tension-techniques",
+        "rapid-pummeling",
+        "swift-focus-tension-techniques"
+      ],
+      "removed_feature_clauses": [
+        "AC bonus",
+        "the fiery offense",
+        "critical knuckle",
+        "perfect offensive tension techniques",
+        "rapid pummeling",
+        "swift focus tension techniques"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Mutagen Monster",
+          "description": "At 1st level, a chaos shifter gains the ability to brew a mutagen, treating her chaos shifter level as her alchemist level for its duration. In addition, she gains a bite attack which is treated as a primary natural weapon and deals 1d4 damage (1d3 for Small-sized characters); chaos shifters treat any natural weapon they possess as though it was an unarmed attack for the purpose of her class features. This ability replaces AC bonus and the fiery offense, critical knuckle, and perfect offensive tension techniques."
+        },
+        {
+          "level": 1,
+          "name": "Drill Claw",
+          "description": "At 1st level, a chaos shifter gains the following tension techniques: 2 Tension"
+        },
+        {
+          "level": 1,
+          "name": "Swift Mutation",
+          "description": "Whenever a chaos shifter imbibes her mutagen, she may do so as a move action. 3 Tension"
+        },
+        {
+          "level": 1,
+          "name": "Mauling Fang",
+          "description": "Whenever a chaos shifter makes an attack action with an unarmed strike or attempts a combat maneuver check as a standard action, she can spend a swift action to make an additional attack with a natural weapon with a -2 penalty (she can wait until the results of the attack roll before deciding to use this tension technique) once per turn. If she possesses the speed pummeling striker art, she may apply it to this ability. This ability replaces the rapid pummeling and swift focus tension techniques."
+        },
+        {
+          "level": 2,
+          "name": "Mutagenic Arts",
+          "description": "At 2nd level, a chaos shifter may select the feral mutagen, grand mutagen, and greater mutagen discoveries as striker arts, treating her striker level as her alchemist level for the purpose of qualifying for them."
+        },
+        {
+          "level": 7,
+          "name": "Fury Swipes",
+          "description": "At 7th level, whenever a chaos shifter would be able to make an additional attack with her pummeling punisher class feature, she may make the attack with either an unarmed strike or a natural weapon. This ability alters pummeling punisher."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:striker:elemental-fist",
+      "package": "spheres-class:striker",
+      "name": "Elemental Fist",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/elemental-fist",
+      "replaces_features": [
+        "combat-talents",
+        "drill-knuckle",
+        "perfect-offensive-tension-technique",
+        "striker-arts"
+      ],
+      "removed_features": [
+        "drill-knuckle",
+        "perfect-offensive-tension-technique"
+      ],
+      "removed_feature_clauses": [
+        "perfect offensive tension technique",
+        "drill knuckle"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {
+        "casting": {
+          "sphere_progression": "Low"
+        }
+      },
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "Whenever an elemental fist would gain a combat talent from their class levels, they may instead choose to gain a magic talent.\n\nThis alters combat talents."
+        },
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "An elemental fist may combine spheres and talents to create magical effects. An elemental fist is considered a Low-Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.)"
+        },
+        {
+          "level": 1,
+          "name": "Elemental Arts",
+          "description": "The elemental fist can select the following striker arts:\n\nEmpower Nature [Tension]: For each tension an elemental fist spends on this tension technique, they gain a +1 bonus to their caster level with the Nature sphere until the beginning of her next turn, to a maximum of half their elemental fist level (minimum 1).\n\nNatural Combo: Whenever an elemental fist uses their natural fist tension technique, all other attacks with unarmed strikes they use that turn can benefit from it.\n\nSpeed Natural: The elemental fist can use their natural fist tension technique as a free action.\n\nThis ability alters striker arts.\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps"
+        },
+        {
+          "level": 1,
+          "name": "Elemental Focus",
+          "description": "An elemental fist must choose the Nature sphere with the talent they gain at first level, unless they already possess the Nature sphere."
+        },
+        {
+          "level": 1,
+          "name": "Elemental Tension",
+          "description": "An elemental fist gains the following tension technique:\n\n1 Tension\n\nNatural Fist: The elemental fist can spend a swift action as a part of an attack action to make an unarmed strike against a creature within a distance equal to their geomancing range as long as they have line of sight and line of effect to that creature.\n\nThis is a melee attack using their melee attack bonus, including Strength bonus, feats, and other modifiers to determine their attack bonus as normal. Attacking into melee, through cover, and other situations that penalize ranged attacks incurs the standard penalties. The type of damage dealt by this attack is determined by what Nature packages the elemental fist has, chosen each time they use natural fist:\n\nAir: Electricity\n\nEarth: Bludgeoning\n\nFire: Fire\n\nMetal: Slashing\n\nPlant: Piercing\n\nWater: Cold\n\nThis ability replaces the perfect offensive tension technique.\n\nNote: A character's geomancing range is defined by the Nature sphere and any other relevant modifiers even if a character is unable to use geomancing due to drawbacks or other limitations."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "The elemental fist gains a small reservoir of energy they can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to their class level + their casting ability modifier. This pool replenishes once per day after roughly 8 hours of rest.\n\nThis replaces drill knuckle."
+        }
+      ],
+      "detected_systems": [
+        "elemental_focus"
+      ]
+    },
+    {
+      "key": "spheres-archetype:spheres-class:striker:evolutionist",
+      "package": "spheres-class:striker",
+      "name": "Evolutionist",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/evolutionist",
+      "replaces_features": [
+        "bare-knuckles",
+        "expert-guard",
+        "timely-dodge",
+        "ultimate-tension"
+      ],
+      "removed_features": [
+        "bare-knuckles",
+        "expert-guard",
+        "timely-dodge",
+        "ultimate-tension"
+      ],
+      "removed_feature_clauses": [
+        "bare knuckles",
+        "expert guard",
+        "timely dodge",
+        "ultimate tension"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Augmented Form",
+          "description": "At 1st level, the evolutionist gains either Transformation or Eternal Transformation as a bonus feat. Any striker ability which applies to the evolutionist’s unarmed strikes also applies to one of the evolutionist’s natural attacks per evolutionist level.\n\nThis replaces bare knuckles."
+        },
+        {
+          "level": 1,
+          "name": "Shifting Techniques",
+          "description": "At 1st level, an evolutionist gains the following tension techniques:\n\n1 Tension\n\nInstant alteration: The evolutionist may transform using her Transformation feat as a free action. This cannot be used in conjunction with Eternal Transformation.\n\nMobile adaptation: As a free action, the evolutionist gains a climb or swim speed equal to her base land speed for 1 round.\n\nThis replaces expert guard and timely dodge."
+        },
+        {
+          "level": 1,
+          "name": "Striker Arts",
+          "description": "The evolutionist gains exclusive access to the following striker arts:"
+        },
+        {
+          "level": 20,
+          "name": "Regenerative Form",
+          "description": "At 20th level, the evolutionist may spend 2 tension as a free action to gain regeneration 10 for 1 round and immediately regain 10 hit points. At the start of each turn, the evolutionist can sustain her regeneration for an additional round by spending a number of tension equal to 2 + 1/2 the number of rounds her regeneration has been active since the start of combat. The evolutionist can activate this adaptation even if she is dying and otherwise unable to take actions.\n\nThis replaces ultimate tension.\n\n—"
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:striker:shadowed-fist",
+      "package": "spheres-class:striker",
+      "name": "Shadowed Fist",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/shadowed-fist",
+      "replaces_features": [
+        "combat-training",
+        "drill-knuckle",
+        "tension"
+      ],
+      "removed_features": [
+        "drill-knuckle"
+      ],
+      "removed_feature_clauses": [
+        "drill knuckle"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Combat Training",
+          "description": "A shadowed fist may combine combat spheres and talents to create powerful martial techniques. Shadowed fists are considered Expert practitioners and use Charisma as their practitioner modifier. This ability modifies combat training."
+        },
+        {
+          "level": 1,
+          "name": "AC Bonus",
+          "description": "A shadowed fist uses their Charisma modifier in place of their Constitution modifier when determining her bonus to armor class with this class feature."
+        },
+        {
+          "level": 1,
+          "name": "Ki Tension",
+          "description": "A shadowed fist may use two points of tension in place of one point of ki whenever they would be required to spend ki on a ninja trick. In addition, a shadowed fist uses her Charisma in place of her Constitution when determining her maximum tension. This ability modifies tension."
+        },
+        {
+          "level": 2,
+          "name": "Expanded Talent",
+          "description": "At 2nd level, a shadowed fist can select a ninja trick in place of a striker art (she cannot select a ninja trick which would modify her sneak attack unless she possesses sneak attack from another class); in addition, she is treated as though she possessed the ninja trick class feature for the purposes of selecting the Extra Ninja Trick feat. All striker arts which would use her Constitution to determine their effects instead use her Charisma. At 11th level and above, she can also select master tricks."
+        },
+        {
+          "level": 3,
+          "name": "Nimble Shadow",
+          "description": "At 3rd level, a shadowed fist gains a +1 circumstance bonus on Acrobatics and Stealth checks and she treats any Acrobatics skill check made to jump as if she had a running start. At 10th level, she also reduces the DC of Acrobatics skill checks made to jump by 1/2 (although she still cannot move farther than her speed allows). This ability replaces drill knuckle."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:striker:skirmishing-scout",
+      "package": "spheres-class:striker",
+      "name": "Skirmishing Scout",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/skirmishing-scout",
+      "replaces_features": [
+        "bare-knuckles",
+        "fiery-offense-tension-technique",
+        "pummeling-punisher",
+        "rapid-pummel"
+      ],
+      "removed_features": [
+        "bare-knuckles",
+        "fiery-offense-tension-technique",
+        "pummeling-punisher",
+        "rapid-pummel"
+      ],
+      "removed_feature_clauses": [
+        "bare knuckles",
+        "fiery offense tension technique",
+        "rapid pummel",
+        "pummeling punisher"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Tactical Eyes",
+          "description": "The skirmishing scout gains the Scout sphere as a bonus sphere and she does not take a -5 penalty while using a Perception check with its ability. If she already possesses the Scout sphere, she instead gains a Scout talent of her choice. She also gains Improved Unarmed Strike as a bonus feat. This ability replaces bare knuckles."
+        },
+        {
+          "level": 1,
+          "name": "Agile AC Bonus",
+          "description": "A skirmishing scout only benefits from her AC bonus class feature whenever she moves 10 or more ft. during her round, gaining this bonus until the beginning of her next turn."
+        },
+        {
+          "level": 1,
+          "name": "Vital Insight",
+          "description": "At 1st level, whenever a skirmishing scout successfully identifies a creature with the scout ability from the Scout sphere, she gains a +1 circumstance bonus to attack rolls against the analyzed creature. At 5th level and every four levels afterwards, this bonus increases by +1 (to a maximum of +5 at 17th level). This ability replaces the fiery offense tension technique."
+        },
+        {
+          "level": 1,
+          "name": "Educated Strike",
+          "description": "At 1st level, a skirmishing scout gains the following tension technique: 2 Tension"
+        },
+        {
+          "level": 1,
+          "name": "Targeted Punishment",
+          "description": "Whenever the skirmishing scout deals damage to a creature whom they have analyzed, she may spend a swift action to deal additional damage equal to 1/2 her striker level + her practitioner modifier This ability replaces rapid pummel."
+        },
+        {
+          "level": 2,
+          "name": "Skirmishing Striker Art",
+          "description": "Beginning at 2nd level, a skirmishing scout may select any of the following striker arts:"
+        },
+        {
+          "level": 1,
+          "name": "Instant Punishment",
+          "description": "The skirmishing scout may use her targeted punishment tension technique as a free action, even if it is not her turn."
+        },
+        {
+          "level": 1,
+          "name": "Instant Scout",
+          "description": "The skirmishing scout may spend 1 tension as a free action to use her Scout sphere ability as a free action."
+        },
+        {
+          "level": 7,
+          "name": "Genius Strike",
+          "description": "At 7th level, whenever a skirmishing scout uses her targeted punishment technique, she may spend 1 additional tension to instead deal damage equal to her striker level + her practitioner modifier. This ability replaces pummeling punisher."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:striker:strong-style-grappler",
+      "package": "spheres-class:striker",
+      "name": "Strong Style Grappler",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/strong-style-grappler",
+      "replaces_features": [
+        "bare-knuckles",
+        "critical-knuckle",
+        "drill-knuckle",
+        "perfect-offensive",
+        "pummeling-punisher",
+        "rapid-pummel-tension-techniques"
+      ],
+      "removed_features": [
+        "critical-knuckle",
+        "drill-knuckle",
+        "perfect-offensive",
+        "pummeling-punisher",
+        "rapid-pummel-tension-techniques"
+      ],
+      "removed_feature_clauses": [
+        "critical knuckle",
+        "perfect offensive",
+        "rapid pummel tension techniques",
+        "drill knuckle",
+        "pummeling punisher"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {},
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Wrestling",
+          "description": "The Strong Style Grappler may take the Wrestling sphere.\n\nThis modifies Bare Knuckles."
+        },
+        {
+          "level": 1,
+          "name": "Strong Style Technique",
+          "description": "At 1st level, a strong style grappler gains the following tension techniques: 1 Tension"
+        },
+        {
+          "level": 1,
+          "name": "Violent Miss",
+          "description": "Whenever a strong style grappler attempts a grapple check and fails, she deals bludgeoning damage equal to her practitioner modifier as a free action. Any creature dealt damage by this tension technique takes a -2 penalty to their CMD against the next grapple check made by the strong style grappler as long as it is made before the end of her next turn. 2 Tension"
+        },
+        {
+          "level": 1,
+          "name": "Opportune Grapple",
+          "description": "Whenever a strong style grappler makes an attack of opportunity, they may attempt a grapple check in place of an attack roll. 3 Tension"
+        },
+        {
+          "level": 1,
+          "name": "Body Blows",
+          "description": "Whenever a strong style grappler uses a standard action to initiate or maintain a grapple, she may spend a swift action to make an additional attack with her unarmed strike with a -2 penalty (she can wait until the results of the attack roll before deciding to use this tension technique) once per turn. If she possesses the speed pummeling striker art, she may apply it to this ability. This ability replaces the critical knuckle, perfect offensive, and rapid pummel tension techniques."
+        },
+        {
+          "level": 3,
+          "name": "Painful Grapple",
+          "description": "At 3rd level, whenever a strong style grappler successfully initiates or maintains a grapple, she deals 2 bludgeoning damage to the creature whom they grappled. At 6th level and every three levels afterwards, this damage increases by 1. This ability replaces drill knuckle."
+        },
+        {
+          "level": 7,
+          "name": "Complex Technique",
+          "description": "At 7th level, a strong style grappler gains the following tension technique: 4 Tension"
+        },
+        {
+          "level": 1,
+          "name": "Strong Grapple",
+          "description": "Whenever a strong style grappler uses a (slam) talent, she may apply an additional (slam) talent to the same successful grapple check as a free action. This ability replaces pummeling punisher."
+        }
+      ],
+      "detected_systems": []
+    },
+    {
+      "key": "spheres-archetype:spheres-class:striker:voidrusher-cs",
+      "package": "spheres-class:striker",
+      "name": "Voidrusher [CS]",
+      "source_group": "Spheres",
+      "source_url": "https://spheresofpower.wikidot.com/voidrusher",
+      "replaces_features": [
+        "ac-bonus",
+        "bare-knuckles",
+        "combat-talents",
+        "drill-knuckle",
+        "drill-knuckle-uncanny-dodge",
+        "fiery-offense",
+        "improved-uncanny-dodge",
+        "offensive-pressure-tension",
+        "perfect-offensive-tension-techniques",
+        "pummeling-punisher",
+        "rapid-pummel-tension-technique",
+        "scores-of-avatars-base-form",
+        "ultimate-tension",
+        "uncanny-dodge"
+      ],
+      "removed_features": [
+        "ac-bonus",
+        "bare-knuckles",
+        "drill-knuckle",
+        "fiery-offense",
+        "improved-uncanny-dodge",
+        "offensive-pressure-tension",
+        "perfect-offensive-tension-techniques",
+        "pummeling-punisher",
+        "rapid-pummel-tension-technique",
+        "scores-of-avatars-base-form",
+        "ultimate-tension",
+        "uncanny-dodge"
+      ],
+      "removed_feature_clauses": [
+        "ability scores of the avatar’s base form):",
+        "AC bonus",
+        "bare knuckles",
+        "offensive pressure tension",
+        "drill knuckle",
+        "uncanny dodge",
+        "improved uncanny dodge",
+        "fiery offense",
+        "perfect offensive tension techniques",
+        "pummeling punisher",
+        "Ultimate Tension"
+      ],
+      "compatibility": {
+        "requires": [],
+        "requires_any": [],
+        "explicitly_compatible": [],
+        "explicitly_incompatible": []
+      },
+      "class_modifications": {
+        "casting": {
+          "sphere_progression": "Low"
+        }
+      },
+      "choices": [],
+      "features": [
+        {
+          "level": 1,
+          "name": "Avatar (Conjuration Companion)",
+          "description": "The avatar is a unique Conjuration companion granted by specific archetypes or classes. An avatar always gains the avatar companion archetype (and can never select other companion archetypes except the aquatic companion archetype). The avatar companion archetype is otherwise not generally available due to it being a far stronger companion that is limited (and subsequently enabled) by its summoner’s class features.\n\nThe statistics of a Conjuration companion with the avatar archetype are as follows (including unique abilities granted by this archetype):\n\nAvatar\n\nThe avatar’s ability scores are as listed (this replaces the ability scores of the avatar’s base form):\n\nStr 18, Dex 18, Con 16, Int 8, Wis 12, Cha 12\n\nThe avatar gains the following special abilities:\n\nMirror of the Master (Ex): The avatar is a mirror of their caster, sharing in their strengths and weaknesses. While possessing the caster, the avatar gains the following benefits:\n\nThe avatar is affected by any non-instantaneous effects which affect its caster, both beneficial and detrimental. An effect applied to the avatar this way ignores all immunities the avatar possesses, and if the effect ends for the caster, it ends for the avatar.\n\nWhenever the avatar’s caster would benefit from an effect that restores hit points or removes a condition or effect (such as ability damage, negative levels, etc.), the avatar also benefits from that effect.\n\nThe avatar shares the effects of any magic items the caster benefits from (with the exception of magic weapons, armor, shields, or which otherwise need to be wielded to function). The avatar does not need to possess the appropriate appendages to benefit from a magic item this way.\n\nExample: The avatar’s caster is benefitting from a bard’s inspire courage and has the sickened condition. The avatar would also benefit from the bard’s inspire courage and be penalized by the sickened condition for as long as the master is affected by those effects. If the caster was wearing a belt of giant’s strength +4, the avatar would also benefit from that belt’s effects.\n\nOtherworldly Paragon (Ex): The avatar’s Strength, Dexterity, and Constitution increase by +2 + 1 per 2 Hit Dice the avatar possesses; treat this ability as a (form) talent. The avatar cannot benefit from other (form) talents which grant an untyped bonus to their Strength, Dexterity, or Constitution (such as the Powerful Form (form) talent).\n\nShredding Attacks (Ex): An avatar’s primary natural attacks deal their indicated damage plus 1-1/2 times the avatar’s Strength bonus (even if it would have more than one natural attack).\n\nSole Entity (Ex): An avatar is a singular possessive force. A caster can never gain more than one Conjuration companion with the avatar companion archetype. If the caster would gain an additional Conjuration companion with the avatar companion archetype, they instead gain a bonus (form) talent for their avatar Conjuration companion. Class features, abilities, and effects which would interact with the caster’s avatar always refer to this singular Conjuration companion, even if they would be abilities from different sources (such as a multiclassed character with an avatar from two sources would have a single avatar companion and use that companion for any of their abilities).\n\nUnbodied (Ex): An avatar is incapable of being summoned normally and instead constantly possesses the caster (as though passively possessing the caster using the wraith’s possession class feature). However, unlike a wraith’s possession, the avatar can never independently take actions (including mental actions) unless granted actions through the caster’s other abilities (most often from a class which grants an avatar companion); if a form talent would grant the avatar abilities that require spending an action or the ability to take an action, the caster must spend the equivalent action to activate that ability (such as the Conjuration sphere Aligned Creature (form) talent’s smite ability could be used if the caster expended the swift action for their avatar). Abilities or actions granted by feats, combat talents, and magic talents cannot be used this way. This possession ignores any immunity to possession effects (such as that granted by the (protection from evil spell).\n\nIf the avatar would have its possession effect interrupted (such as being exorcized, banished, etc.), the avatar is instead banished for 1d4 rounds. When this banish duration ends, the avatar is automatically resummoned and repossesses the summoner, bypassing any effect that would prevent a summoning or possession effect.\n\nIf the avatar would die (or be unsummoned due to reaching 0 hit points), it cannot be resummoned until their summoner rests and regains spell points. The summoner may use the Conjuration sphere Call the Departed talent to resummon their avatar, but only to “revive” it and allow it to repossess the summoner per this ability.\n\nWhenever the avatar would be granted an action through its summoner’s class features, the avatar uses their summoner's occupied square(s) to determine the avatar’s reach, line of sight, etc. as though the avatar occupied the summoner’s space. The avatar determines their attack bonus for any attack made this way using their summoner’s base attack bonus and the avatar’s ability scores, feats, and other modifiers. Penalties to attack rolls are still incurred (such as attacking through cover or against concealment). If the avatar would be granted movement (such as being granted a move action or performing a bull rush combat maneuver), the avatar may have their summoner perform that movement, limited by the summoner’s total movement and movement modes. If the avatar makes an attack or uses an ability that could be maintained (such as a grapple, or grapple maintained by the grab universal monster ability), the summoner must spend any required actions to maintain that ability or action, and suffers any penalties associated with maintaining that action.\n\nUnsummonable (Ex): The avatar cannot be summoned as a normal Conjuration companion (instead always passively possessing the summoner as detailed in unbodied) unless otherwise specified, such as by the unbodied avatar archetype ability. When the avatar’s summoner would bypass the avatar’s unsummonable ability (normally by summoning the avatar, or using an ability such as the void conduit’s merge with the void ability), the avatar is not banished for having its possession interrupted (and ceases possessing the summoner until the summon effect’s duration ends).\n\nChampions of the Spheres by Drop Dead Studios\n\nClasses\n\nBravo\nCrimson Dancer\nDissident\nDragoon\n\nMountebank\nNecros\nProdigy\nReaper\n\nSage\nTheorist\nTroubadour\nWarden\n\nRules\n\nChampion Feats\nUnified Traditions\nChampion FCBs\n\nGet Champions Of The Spheres\n\nGet Mythic Champions of the Spheres\n\nGet Legends of the Spheres\n\nGet Study and Practice\n\nThe Crimson Dancer\nThe Realmwalker's Handbook\n\nThe Warden\nSpheres Apocrypha: Sidhe Outcasts\n\nThe Cataclysm Handbook\nThe Gravecaller's Handbook\n\nGet the Lost Champions Bundle\n\nLC: Dragoon\nLC: Mountebank\nLC: Necros\nLC: Reaper\n\nSpheres of Power by Drop Dead Studios\n\nUsing Spheres of Power\n\nClasses\n\nArmorist\nElementalist\nEliciter\nFey Adept\n\nHedgewitch\nIncanter\nMageknight\nShifter\n\nSoul Weaver\nSymbiat\nThaumaturge\nWraith\n\nPrestige Classes\n\nBokor\nForest Lord\nMagemage\nRealmwalker\n\nTempestarii\nWaking Sleeper\n\nSpheres\n\nAlteration\nBlood\nConjuration\nCreation\n\nDark | Polished Dark [DRS]\nDeath\nDestruction\nDivination\n\nEnhancement\nFallen Fey\nFate\nIllusion\n\nLife\nLight\nMana\nMind\n\nNature\nProtection\nTelekinesis\nTime\n\nWar\nWarp\nWeather\n\nOther Spheres\n\nBear\nTechnomancy\n\nRules\n\nAbout Advanced Magic\nAdvanced Talents\nAlternate Racial Traits\nCasting Traditions\n\nIncantations\nMagical Items\nMythic Spheres\nRituals\n\nSpellcrafting\nTraits\nWild Magic\nSphere Bestiary\n\nEquipment\n\nWeapons\nArmor\nEquipment\nSpecial Materials\n\nAlchemical Items\nApparatuses (Metamagic)\nCharms\nCompounds\n\nFabled Items\nImplements\nMarvelous Items\nSchematics\n\nScrolls\nSpell Engines\nSpellzones\nTalent Crystals\n\nFeats\n\nAdmixture\nAnathema\nAristeia\nChampion\n\nChance\nChanneling\nCombat\nCompanion\n\nCounterspell\nDamnation\nDrawback\nExtra\n\nGeneral\nItem Creation\nMetamagic\nNecrosis\n\nPlague\nProtokinesis\nProxy\nPurring\n\nRacial\nRitual\nSquadron\nSurreal\n\nTeamwork\nTheurge\nWild Magic\n\nGet Ultimate Spheres of Power\nGet the Original RulebookU\n\nGet Expanded OptionsU\nGet Expanded Options 2\n\nAlteration HandbookU\nConjuration HandbookU\nCreation HandbookU\nDark HandbookU\n\nDeath HandbookU\nDestruction HandbookU\nDivination HandbookU\nEnhancement HandbookU\n\nFate HandbookU\nIllusion HandbookU\nLife HandbookU\nLight HandbookU\n\nMind HandbookU\nNature HandbookU\nProtection HandbookU\nTelekinesis HandbookU\n\nTime HandbookU\nWar HandbookU\nWarp HandbookU\nWeather HandbookU\n\nSpheres Apocrypha\n\nApex Shifter\nCasting Traditions\nCasting Traditions 2\nCognition Talents\n\nCohorts and Companions\nDark ApocryphaU\nDebilitating Talents 2\nDestruction ApocryphaU\n\nLight ApocryphaU\nNature (Air) PackageU\nNature (Earth) ApocryphaU\nNature (Fire) ApocryphaU\n\nNature (M/P/W) ApocryphaU\nNature (Spirit) ApocryphaU\nProtokinesis ApocryphaU\nSidhe Court\n\nOther Spheres Products\n\nArchetypes of PowerU\nArchetypes of Power 2\nThe Bear Sphere\nThe Blood SphereU\n\nBlood and Portents\nCompounds of Power\nThe Conqueror's Handbook\nThe Fallen Fey SphereU\n\nInitiate's Handbook\nItems of PowerU\nThe Jester's Handbook\nMythic Spheres of Power\n\nThe Technomancy Sphere\nTreasures of the Spheres\nTreasures: Weapons and Tools\nThe Wraith ClassU\n\nWild Magic\nWoodfaring Adventures\nWorlds of Power\nThe Youxia's Handbook\n\nBestiary: Fey and Feyfolk\nThe High Magic Handbook\nRealmwalker's Handbook\nBestiary: Fiends of the Cosmos\n\nAdventures\n\nWreckage to Deliverance\nWreckage to Deliverance Player's Guide\n\nU: Part of Ultimate Spheres of Power and does not need to be bought separately from that book\n\nSpheres of Might by Drop Dead Studios\n\nUsing Spheres of Might\n\nClasses\n\nArmiger\nBlacksmith\nCommander\nConscript\nScholar\nSentinel\nStriker\nTechnician\n\nPrestige Classes\n\nAeronaut Captain\n\nSpheres\n\nAlchemy\nAthletics\nBarrage\nBarroom\nBeastmastery\nBerserker\nBoxing\nBrute\n\nDual Wielding\nDuelist\nEquipment\nFencing\nGladiator\nGuardian\nLancer\nLeadership\n\nOpen Hand\nScoundrel\nScout\nShield\nSniper\nTech\nTrap\nWarleader\n\nWrestling\n\nPilot (3PP)\n\nRules\n\nAbout Legendary Talents\nMartial Traditions\nMartial Packages\nPractitioner Feats\n\nPractitioner Traits\nPractitioner FCB's\nPractitioner Bestiary\nAssociated Feats & Skills\n\nUltimate Engineering (Tinker)\nStarfinder Conversion [3pp]\n\nGet Spheres of Might on DriveThruRPG\n\nMythic Spheres of Might\n\nUltimate Engineering\n\nThe Conqueror's Handbook\nThe General's Handbook\n\nThe Highlander's Handbook\nThe Inventor's Handbook\n\nThe Inventor's Handbook 2\nThe Jester's Handbook\n\nWoodfaring Adventures\nThe Youxia's Handbook\n\nSpheres Apocrypha\n\nAlch. Formulae\nAlch. Poisons\nAlch. Poisons 2\nArmor Talents\n\nAstrologian Archetype\nDebilitating Talents\nPugilists\nRacial\n\nRanged\nSwashbucklers\nTandem\nTricks & Traps"
+        },
+        {
+          "level": 1,
+          "name": "Avatar Tension Techniques",
+          "description": "The voidrusher gains the following tension techniques:"
+        },
+        {
+          "level": 1,
+          "name": "Avatar’s Presence",
+          "description": "The avatar’s presence within the voidrusher envelops them, warping and bending immediately nearby space. At 1st level, when wearing light armor or no armor, not carrying a shield, and unencumbered, the voidrusher adds their casting ability modifier (if positive) to their AC as a deflection bonus; this bonus cannot exceed the voidrusher’s class level.\n\nThe voidrusher loses this bonus when they wear medium or heavy armor, use a shield, or when they carry a medium or heavier load. The voidrusher also loses this bonus if the avatar is not possessing them.\n\nThis replaces AC bonus.\n\nNote: This ability is treated as the striker’s AC Bonus class feature. The voidrusher may take the armored striker striker art to wear medium or heavy armor and benefit from this class feature."
+        },
+        {
+          "level": 1,
+          "name": "Blended Training",
+          "description": "The voidrusher gains a combat or magic talent every time they gain a class level. A voidrusher uses their casting ability modifier as their practitioner modifier and for any striker class features that make calculations based on the voidrusher’s Constitution.\n\nThis alters combat talents."
+        },
+        {
+          "level": 1,
+          "name": "Bonded Avatar",
+          "description": "At 1st level, the voidrusher gains the Conjuration sphere as a bonus talent. If the voidrusher already possesses the Conjuration sphere, they must select the Extra Companion talent (or purchase back any drawbacks which remove the ability to summon a companion). The Conjuration sphere companion granted by this talent must be given the avatar companion archetype and is referred to by this class as the voidrusher’s “avatar”. The voidrusher uses their voidrusher level as their caster level when determining the statistics and abilities of their avatar. This stacks normally with caster levels gained from other sources."
+        },
+        {
+          "level": 1,
+          "name": "Casting",
+          "description": "A voidrusher can combine spheres and talents to create magical effects. A voidrusher is considered a Low-Caster. (Note: All casters gain 2 bonus talents and a casting tradition the first time they gain the casting class feature.)"
+        },
+        {
+          "level": 1,
+          "name": "Enshroud",
+          "description": "At 1st level, while the voidrusher possesses at least 1/2 their maximum umbral tension (rounded up), they can enter an empowered state as a full-round action, tapping into the deep reservoirs of power possessed by their bonded avatar. This ability refers to this empowered state as “enshroud” (or “enshrouded”). Enshroud’s duration is 1 round (or until the start of the voidrusher’s next turn) and when enshroud’s duration ends, any umbral tension the voidrusher possesses is lost (umbral tension is lost before the voidrusher would gain umbral tension from the tempered soul ability or the benefits from the void gauge class feature).\n\nWhile enshrouded, the voidrusher may perform a number of umbral tension techniques equal to the number of attacks they could make as part of a full-attack action based off their base attack bonus + 1 additional umbral tension technique at 1st level and every 8 thereafter (9, 17, etc.). Additional attacks granted by two-weapon fighting, natural attacks, or other sources of additional attacks (including the (haste spell) as part of a full-attack action are not counted towards the number of umbral tension techniques the voidrusher may perform while enshrouded. Attacks made during enshroud incur the normal iterative penalties for a full-attack action when appropriate; additional umbral tension technique attacks made during enshroud are made at the voidrusher’s highest base attack bonus."
+        },
+        {
+          "level": 1,
+          "name": "Psychopomp’s Arts",
+          "description": "The voidrusher gains access to the following unique striker arts:"
+        },
+        {
+          "level": 1,
+          "name": "Reaper’s Tools",
+          "description": "At 1st level, the voidrusher gains a bonus talent from the Equipment sphere. In addition, the voidrusher may treat any melee weapon they are proficient with as an unarmed strike for the purposes of striker class features.\n\nThis replaces bare knuckles."
+        },
+        {
+          "level": 1,
+          "name": "Shadow of the Void",
+          "description": "At 1st level, as a free action at the start of the voidrusher’s turn, the voidrusher may designate one target creature they can see to “mark” the target with shadow of the void until the start of their next turn. The first time each round the voidrusher or their avatar deals damage to a creature marked with shadow of the void, that creature takes an additional +1d6 damage and the voidrusher gains 1 tension.\n\nThis replaces the offensive pressure tension."
+        },
+        {
+          "level": 1,
+          "name": "Spell Pool",
+          "description": "The voidrusher gains a small reservoir of energy they can call on to create truly wondrous effects, called a spell pool. This pool contains a number of spell points equal to their class level + their casting ability modifier. This pool replenishes once per day after roughly 8 hours of rest.\n\nThis replaces drill knuckle, uncanny dodge, and improved uncanny dodge."
+        },
+        {
+          "level": 1,
+          "name": "Umbral Tension",
+          "description": "Through the connection to their bonded avatar, a voidrusher becomes able to coalesce the power they harvest through strife. At 1st level, the voidrusher, in addition to being able to gain tension, can gain a unique form of tension called umbral tension. Much like a striker’s normal tension, the voidrusher begins the day with no umbral tension, but can gain umbral tension the following way:\n\nTempered Soul: At the start of the voidrusher’s turn, the voidrusher gains an amount of umbral tension equal to 1/2 the tension they spent since the start of their previous turn (rounded down).\n\nThe voidrusher’s umbral tension goes up and down throughout the day, but usually cannot go higher than 1/2 their maximum tension (rounded up). When the voidrusher would lose their tension for being out of combat, the voidrusher also loses any umbral tension they possess."
+        },
+        {
+          "level": 1,
+          "name": "Umbral Tension Techniques",
+          "description": "Umbral tension techniques are special abilities which are only available to the voidrusher while enshrouded. Unless otherwise stated, an umbral tension technique is a free action. Some umbral tension techniques require umbral tension, which the voidrusher must be able to pay before using that umbral tension technique. The DC to save against an umbral tension technique is equal to 10 + 1/2 the voidrusher’s level + the voidrusher’s casting ability modifier.\n\nUmbral tension techniques are performed with any melee weapon the voidrusher is wielding. If an umbral tension technique would roll an attack roll against multiple creatures, compare the results of the attack roll to the AC of each creature within the area of effect; the voidrusher may choose to exclude targets when making an attack this way. Use the same damage roll for each target. If an umbral tension technique deals additional damage, that damage is of the same type as the original attack’s unless otherwise specified."
+        },
+        {
+          "level": 1,
+          "name": "Void Gauge",
+          "description": "At 1st level, at the start of the voidrusher’s turn (after the voidrusher gains umbral tension from tempered soul or other sources if any), the voidrusher gains a circumstance bonus on all attack and damage rolls equal to the amount of umbral tension they possess. This bonus lasts until the start of the voidrusher’s next turn.\n\nThis replaces the fiery offense and perfect offensive tension techniques."
+        },
+        {
+          "level": 5,
+          "name": "Void Stalk",
+          "description": "At 5th level, whenever the voidrusher would perform an umbral tension technique that makes an attack roll while enshrouded, the voidrusher may choose to instead have their avatar make that attack instead.\n\nIn addition, whenever the voidrusher’s avatar would make an attack, it may benefit from and use any combat sphere talents the voidrusher possesses. This is in addition to any combat sphere talents it would already possess (such as through Conjuration sphere form talents, feats, etc.)."
+        },
+        {
+          "level": 7,
+          "name": "Gluttony",
+          "description": "At 7th level, whenever the voidrusher uses the umbral stalk tension technique, the voidrusher can spend an additional 2 tension to make two attacks instead of one; both of these attacks are made with a -4 penalty.\n\nThis ability replaces pummeling punisher."
+        },
+        {
+          "level": 10,
+          "name": "Manifest Shroud",
+          "description": "The voidrusher learns how to manifest a greater portion of their avatar to directly bolster their own strength, rather than call upon it to serve.\n\nAt 10th level, the voidrusher gains the following tension technique:\n\nManifest Shroud (2 tension): As a free action during the voidrusher’s turn, the voidrusher gains an insight bonus to their Strength, Dexterity, and Constitution equal to their avatar’s bonus to Strength, Dexterity, and Constitution from the otherworldly paragon avatar archetype ability (this bonus is not shared with the avatar through mirror of the master). This tension technique lasts for 1 round + 1 round per additional tension spent past 2; this ability’s duration immediately ends if the voidrusher uses enshroud.\n\nFor the duration of this tension technique, the avatar cannot take actions, make attacks, or be otherwise used by the voidrusher or the voidrusher’s class features. If the avatar was summoned by the voidrusher’s unbound capstone ability, the avatar is banished for the duration of this tension technique, and is resummoned adjacent to the voidrusher when the tension technique’s duration ends."
+        },
+        {
+          "level": 20,
+          "name": "Unbound",
+          "description": "The voidrusher’s avatar walks. The avatar’s connection becomes its strongest, allowing the voidrusher to directly call upon them rather than rely on their presence.\n\nAt 20th level, the voidrusher gains the Conjuration sphere Lingering Companion (form) talent as a bonus talent, granting this (form) talent to their avatar, and the voidrusher may now summon their avatar as though it were a normal Conjuration companion (bypassing the avatar’s unsummonable ability).\n\nWhile the voidrusher’s avatar is summoned, both the voidrusher’s avatar may generate tension (as though they had the voidrusher’s tension class feature), spend the voidrusher’s tension to use any tension techniques the voidrusher possesses, or use umbral tension techniques while the voidrusher is enshrouded. The voidrusher treats any tension, umbral tension, or umbral tension techniques the avatar uses as though the voidrusher used it themselves (such as any tension the avatar spends reducing the voidrusher’s tension accordingly and counting towards tempered soul or any umbral tension techniques the avatar uses counting against the total number of umbral tension techniques the voidrusher may use when enshrouded).\n\nIn addition, the voidrusher gains the following tension technique:\n\nDesperate Grasp (4 tension): Whenever the voidrusher or their avatar would be reduced to 0 hit points (or be banished), the other creature not being reduced to 0 hit points (or banished) may spend 4 tension as a free action that can be taken even if its not their turn. If they do, their hit points are not reduced below 0 (instead remaining at 1 hit point) and the creature is not banished.\n\nThis replaces Ultimate Tension."
+        }
+      ],
+      "detected_systems": []
+    }
+  ]
+}

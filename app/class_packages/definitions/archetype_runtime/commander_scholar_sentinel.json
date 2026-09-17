@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "key": "spheres-archetype:spheres-class:sentinel:darkness-defender",
+      "system_features": ["challenge", "berserking"],
+      "choice_handling": "automatic",
+      "choice_handling_note": "The Berserker sphere grant uses the shared martial-talent picker; Violent Challenge remains tied to the live Guardian Challenge and berserking states."
+    },
+    {
+      "key": "spheres-archetype:spheres-class:sentinel:iron-revenant",
+      "system_features": ["challenge", "tracking-device"],
+      "choice_handling": "automatic",
+      "choice_handling_note": "The Tinker transmission package and Arsenal Set grants use the shared martial-talent records; Guardian Challenge remains the live challenged-target state."
+    },
+    {
+      "key": "spheres-archetype:spheres-class:sentinel:laughing-hyena",
+      "governing_ability": "charisma",
+      "system_features": ["challenge", "second-wind"],
+      "choice_handling": "automatic",
+      "choice_handling_note": "The required Gladiator sphere is represented by the first-level martial talent allocation."
+    },
+    {
+      "key": "spheres-archetype:spheres-class:sentinel:paragon",
+      "choice_providers": [
+        {
+          "key": "chosen-alignment",
+          "label": "Chosen Alignment",
+          "feature_tokens": ["chosen-alignment"],
+          "minimum": 1,
+          "maximum": 1,
+          "fixed_options": [
+            {"key": "chaotic", "name": "Chaotic"},
+            {"key": "evil", "name": "Evil"},
+            {"key": "good", "name": "Good"},
+            {"key": "lawful", "name": "Lawful"}
+          ],
+          "description": "Choose one non-neutral component of the Paragon's alignment. Judging Challenge and later Paragon features use this component."
+        }
+      ],
+      "system_features": ["challenge", "chosen-alignment"]
+    }
+  ]
+}
