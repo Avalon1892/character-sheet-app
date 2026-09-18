@@ -76,6 +76,7 @@ class ThemeUiTests(unittest.TestCase):
         first = self.repository.create_character("First", "Spheres")
         second = self.repository.create_character("Second", "Pathfinder 1e")
         self.window.refresh_characters(first)
+        self.window._set_sheet_type("customizable")
         self.assertTrue(self.window.character_list.isHidden())
         self.assertEqual(
             ["First", "Second"],
@@ -217,6 +218,7 @@ class ThemeUiTests(unittest.TestCase):
         )
         self.window.refresh_characters()
         self.window.character_list.setCurrentRow(0)
+        self.window._set_sheet_type("customizable")
         self.window.show()
         controller = self.window.customization
         controller.set_build_mode(True)
@@ -339,14 +341,30 @@ class ThemeUiTests(unittest.TestCase):
 
     def test_codex_contains_talents_feats_and_traits_from_shared_catalogs(self) -> None:
         dialog = CodexDialog("prodigy", self.window)
-        self.assertEqual(
-            ["Codex Home", "Classes", "Races", "Spells", "Equipment & Items", "Enchantments", "Talents", "Feats", "Traits", "Traditions", "Sheet Tools"],
-            [dialog.tree.topLevelItem(index).text(0) for index in range(dialog.tree.topLevelItemCount())],
+        sections = {
+            dialog.tree.topLevelItem(index).text(0): dialog.tree.topLevelItem(index)
+            for index in range(dialog.tree.topLevelItemCount())
+        }
+        self.assertEqual(dialog.tree.topLevelItemCount(), len(sections))
+        self.assertTrue(
+            {"Codex Home", "Classes", "Races", "Spells", "Equipment & Items",
+             "Enchantments", "Talents", "Feats", "Traits", "Traditions", "Sheet Tools",
+             "Skills", "Gizmos & Tinker Rules", "Item Creation Rules"} <= sections.keys()
         )
-        talents = dialog.tree.topLevelItem(6)
+        for title, family in (
+            ("Skills", "skills"),
+            ("Gizmos & Tinker Rules", "gizmos"),
+            ("Item Creation Rules", "crafting"),
+        ):
+            self.assertGreater(sections[title].childCount(), 0)
+            self.assertEqual(
+                "reference-index:" + family,
+                sections[title].data(0, Qt.ItemDataRole.UserRole),
+            )
+        talents = sections["Talents"]
         self.assertEqual("Martial Talents", talents.child(0).text(0))
         self.assertEqual("Magical Talents", talents.child(1).text(0))
-        traditions = dialog.tree.topLevelItem(9)
+        traditions = sections["Traditions"]
         self.assertEqual("Casting Traditions", traditions.child(0).text(0))
         self.assertEqual("Martial Traditions", traditions.child(1).text(0))
         dialog.codex_search_mode.setCurrentIndex(dialog.codex_search_mode.findData("name"))

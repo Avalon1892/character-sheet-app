@@ -58,6 +58,8 @@ class DefaultSpheresLayoutTests(unittest.TestCase):
         window = MainWindow(self.repository)
         try:
             window.refresh_characters(character_id)
+            self.assertEqual("refined", window.sheet_type)
+            window._set_sheet_type("customizable")
             window.show()
             self.application.processEvents()
             state = self.repository.get_character_sheet_layout(character_id)

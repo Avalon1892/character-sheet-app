@@ -72,9 +72,17 @@ class ContentCatalogTests(unittest.TestCase):
         )
 
     def test_feat_catalog_contains_pathfinder_spheres_and_automation(self) -> None:
-        self.assertEqual(4669, len(feat_entries()))
+        self.assertEqual(4670, len(feat_entries()))
         self.assertEqual(3442, len(feat_entries("Pathfinder")))
-        self.assertEqual(1227, len(feat_entries("Spheres")))
+        self.assertEqual(1228, len(feat_entries("Spheres")))
+        self.assertEqual(
+            {"Pathfinder", "Spheres"},
+            {entry["source_group"] for entry in feat_entries()},
+        )
+        forge_construct = feat_entry("spheres:forge-construct")
+        self.assertIsNotNone(forge_construct)
+        self.assertEqual("Spheres", forge_construct["source_group"])
+        self.assertTrue(forge_construct["full_rules"])
         self.assertGreaterEqual(len(feat_categories()), 60)
         self.assertEqual(len(feat_entries()), len({entry["key"] for entry in feat_entries()}))
         initiative = feat_entry("aon:improved-initiative")

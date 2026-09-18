@@ -42,13 +42,15 @@ class SheetPagesUiTests(unittest.TestCase):
         self.temporary_directory.cleanup()
 
     def test_sheet_is_split_into_named_pages(self) -> None:
-        self.assertEqual(5, self.sheet.page_tabs.count())
+        self.assertEqual(6, self.sheet.page_tabs.count())
         self.assertEqual("0   CHARACTER BUILD", self.sheet.page_tabs.tabText(0))
         self.assertEqual("1   CORE", self.sheet.page_tabs.tabText(1))
         self.assertEqual("2   INVENTORY & FEATURES", self.sheet.page_tabs.tabText(2))
         self.assertEqual("3   MAGIC & SPHERES", self.sheet.page_tabs.tabText(3))
         self.assertEqual("4   ANIMAL COMPANION", self.sheet.page_tabs.tabText(4))
         self.assertFalse(self.sheet.page_tabs.isTabVisible(4))
+        self.assertEqual("Crafting", self.sheet.page_tabs.tabText(5))
+        self.assertTrue(self.sheet.page_tabs.isTabVisible(5))
         self.assertEqual("Three Page Hero", self.sheet.record_character_name.text())
         self.assertEqual("abilityRow", self.sheet._ability_controls["strength"][0].parent().objectName())
         self.assertFalse(self.sheet.skill_table.showGrid())

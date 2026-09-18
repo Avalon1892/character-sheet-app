@@ -8,6 +8,7 @@ from unittest.mock import patch
 os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 
 from PySide6.QtCore import Qt
+from PySide6.QtTest import QTest
 from PySide6.QtWidgets import QApplication, QAbstractItemView, QDialog
 
 from app.content import magic_entries
@@ -43,9 +44,15 @@ class MagicCatalogUiTests(unittest.TestCase):
 
     def test_magic_browser_groups_and_filters_the_full_catalog(self) -> None:
         dialog = MagicTalentCatalogDialog([], self.sheet)
+        self.addCleanup(dialog.close)
+        dialog.show()
+        dialog.resize(1400, 900)
+        QTest.qWait(150)
         self.assertEqual(25, dialog.sphere_list.count())
         self.assertEqual(1696, dialog.results.rowCount())
         self.assertGreaterEqual(dialog.results.columnWidth(1), 360)
+        self.assertTrue(dialog.results.wordWrap())
+        self.assertEqual(Qt.TextElideMode.ElideNone, dialog.results.textElideMode())
 
         destruction_row = next(
             row
