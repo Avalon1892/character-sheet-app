@@ -431,7 +431,7 @@ class CharacterCalculationService:
         modifiers += self.automatic_modifier_map().get("hp", [])
         if hit_points.auto_calculate:
             return automatic_hit_points(
-                self.repository.list_class_levels(self.character_id),
+                self.resolved_classes(),
                 self.ability_results()["constitution"].ability_modifier,
                 modifiers,
             ).total

@@ -178,7 +178,6 @@ from app.rules import (
     automatic_class_casting,
     automatic_sphere_casting,
     automatic_traditional_casting,
-    automatic_hit_points,
     calculate_ability,
     calculate_casting_statistics,
     calculate_combat_statistics,
@@ -5927,30 +5926,18 @@ class CharacterSheetWidget(SheetSectionsMixin, QWidget):
         formula = self.repository.numeric_formulas(
             self.character_id, "hit_points", 0
         ).get(("hit_points", 0, "maximum"), "")
-        manual_maximum = int(calculator.numeric_formula_value(
-            "hit_points", 0, "maximum", hp.maximum,
-            minimum=0, maximum=99999,
-        ))
-        displayed_maximum = manual_maximum
+        displayed_maximum = calculator.hit_point_maximum()
         if hp.auto_calculate:
-            result = automatic_hit_points(
-                self.repository.list_class_levels(self.character_id),
-                self._ability_result("constitution").ability_modifier,
-                modifiers,
-            )
-            if hp.maximum != result.total:
+            if hp.maximum != displayed_maximum:
                 hp = HitPoints(
                     hp.character_id,
-                    result.total,
+                    displayed_maximum,
                     hp.current,
                     hp.temporary,
                     hp.nonlethal,
                     True,
                 )
                 self.repository.update_hit_points(hp)
-            displayed_maximum = result.total
-        else:
-            displayed_maximum = max(0, manual_maximum + self._displayed_hp_bonus)
         self._loading = True
         try:
             self.hp_maximum.set_expression(formula, displayed_maximum)

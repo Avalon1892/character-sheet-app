@@ -20,6 +20,8 @@ from app.models import (
 )
 from app.ui.character_sheet import CharacterSheetWidget
 from app.services.character_calculations import CharacterCalculationService
+from app.services.sheet_presentation import build_character_sheet_snapshot
+from app.building_blocks.bindings import BINDINGS
 
 
 class SheetPagesUiTests(unittest.TestCase):
@@ -40,6 +42,58 @@ class SheetPagesUiTests(unittest.TestCase):
         self.sheet.close()
         self.repository.close()
         self.temporary_directory.cleanup()
+
+    def test_hp_consumers_share_effective_classes_and_preserve_manual_values(self) -> None:
+        archetype = "spheres-archetype:spheres-class:necros:brutal-necromancer"
+        cases = (
+            # Archetype, stored class HP, automatic maximum, formula, expected base.
+            (True, 28, True, "", 34),
+            (False, 28, True, "", 28),
+            (True, 31, True, "", 31),  # Custom class HP must survive resolution.
+            (True, 28, False, "", 70),
+            (True, 28, False, "=10 * 6", 60),
+        )
+        for selected, class_hp, automatic, formula, base in cases:
+            with self.subTest(archetype=selected, class_hp=class_hp,
+                              automatic=automatic, formula=formula):
+                cid = self.repository.create_character("HP regression", "Spheres")
+                row_id = self.repository.add_class_level(
+                    cid, "Necros", 5, "3/4", "Good", "Poor", "Good",
+                    "spheres-class:necros", 8, class_hp,
+                )
+                if selected:
+                    self.repository.set_class_archetype_keys(cid, row_id, (archetype,))
+                self.repository.update_ability_score(cid, "constitution", 14)
+                self.repository.add_modifier(cid, "hp", "HP regression bonus", "untyped", 3)
+                self.repository.update_hit_points(HitPoints(cid, 70, 12, 4, 2, automatic))
+                self.repository.set_numeric_formula(cid, "hit_points", 0, "maximum", formula)
+                expected = base + (10 if automatic else 0) + 3
+
+                calculator = CharacterCalculationService(self.repository, cid)
+                self.assertEqual(34 if selected and class_hp == 28 else class_hp,
+                                 calculator.resolved_classes()[0].hp_gained)
+                self.assertEqual(10 if selected else 8, calculator.resolved_classes()[0].hit_die)
+                snapshot = build_character_sheet_snapshot(self.repository, cid)
+                self.assertEqual(expected, snapshot.displayed_hit_point_maximum)
+                self.assertEqual(expected, calculator.hit_point_maximum())
+                self.assertEqual(70, self.repository.get_hit_points(cid).maximum)
+
+                self.sheet.character_id = cid
+                self.sheet._refresh_hit_points()
+                with self.sheet._calculation_batch():
+                    self.sheet._refresh_hit_points()
+                self.assertEqual(expected, self.sheet.hp_maximum.value())
+                self.assertEqual(expected, self.sheet.classic_hp_maximum.value())
+                stored = self.repository.get_hit_points(cid)
+                self.assertEqual(HitPoints(cid, expected if automatic else 70,
+                                          12, 4, 2, automatic), stored)
+                self.assertEqual(class_hp, self.repository.list_class_levels(cid)[0].hp_gained)
+                self.assertEqual(stored.maximum, BINDINGS.get("hit_points.maximum").getter(
+                    self.repository, cid))
+                self.assertEqual(stored.maximum, CharacterCalculationService(
+                    self.repository, cid).formula_context().evaluate("hit_points.maximum"))
+                self.assertEqual(expected, build_character_sheet_snapshot(
+                    self.repository, cid).displayed_hit_point_maximum)
 
     def test_sheet_is_split_into_named_pages(self) -> None:
         self.assertEqual(6, self.sheet.page_tabs.count())

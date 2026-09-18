@@ -45,10 +45,8 @@ from app.rules import (
     CarryingCapacity,
     CastingStatistics,
     SkillResult,
-    automatic_hit_points,
     calculate_attack,
     calculate_casting_statistics,
-    calculate_stat,
     carrying_capacity,
     class_bab,
     prodigy_inspired_sequence_bonus,
@@ -138,18 +136,7 @@ def build_character_sheet_snapshot(
     )
 
     hp = calculator.resolved_hit_points()
-    hp_modifiers = calculator.resolved_modifiers(
-        repository.list_modifiers(character_id, "hp")
-    )
-    hp_modifiers += calculator.automatic_modifier_map().get("hp", [])
-    if hp.auto_calculate:
-        displayed_hp = automatic_hit_points(
-            calculator.resolved_classes(),
-            abilities["constitution"].ability_modifier,
-            hp_modifiers,
-        ).total
-    else:
-        displayed_hp = max(0, hp.maximum + calculate_stat([], hp_modifiers).total)
+    displayed_hp = calculator.hit_point_maximum()
 
     profile = calculator.resolved_casting_profile()
     casting_ability = abilities[profile.casting_ability].ability_modifier
