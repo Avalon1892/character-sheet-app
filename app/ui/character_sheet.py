@@ -772,16 +772,17 @@ class CharacterSheetWidget(SheetSectionsMixin, QWidget):
 
         if self.character_id is None or self._loading:
             return
-        calculator = self._calculator()
-        if movement:
-            self._refresh_movement(calculator)
-            self._refresh_load()
-        # Conditional attacks use the same named-formula namespace as the
-        # other reactive sheet fields.  Rebuild only this small presentation
-        # table when a dependency changes; the saved attack records remain
-        # untouched.
-        self._refresh_attacks(calculator)
-        self._refresh_custom_trackers(calculator)
+        with self._calculation_batch():
+            calculator = self._calculator()
+            if movement:
+                self._refresh_movement(calculator)
+                self._refresh_load()
+            # Conditional attacks use the same named-formula namespace as the
+            # other reactive sheet fields.  Rebuild only this small presentation
+            # table when a dependency changes; the saved attack records remain
+            # untouched.
+            self._refresh_attacks(calculator)
+            self._refresh_custom_trackers(calculator)
         self.formula_values_changed.emit()
 
 

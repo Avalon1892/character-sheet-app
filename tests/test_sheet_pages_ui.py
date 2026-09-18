@@ -1,6 +1,7 @@
 import os
 import tempfile
 import unittest
+from contextlib import nullcontext
 from pathlib import Path
 from unittest.mock import patch
 
@@ -18,6 +19,7 @@ from app.models import (
     HitPoints, ProficiencyAdjustment, SkillState, SphereStatistic,
 )
 from app.ui.character_sheet import CharacterSheetWidget
+from app.services.character_calculations import CharacterCalculationService
 
 
 class SheetPagesUiTests(unittest.TestCase):
@@ -113,17 +115,27 @@ class SheetPagesUiTests(unittest.TestCase):
         self.assertLessEqual(self.sheet.condition_table.maximumHeight(), 170)
 
     def test_formula_dependent_refresh_reuses_one_rules_snapshot(self) -> None:
-        with (
-            patch.object(
-                self.sheet, "_calculator", wraps=self.sheet._calculator
-            ) as calculator,
-            patch.object(
-                self.sheet, "_refresh_attacks", wraps=self.sheet._refresh_attacks
-            ) as attacks,
-        ):
-            self.sheet._refresh_formula_dependents()
-        self.assertEqual(1, calculator.call_count)
-        self.assertEqual(1, attacks.call_count)
+        for batched in (False, True):
+            with (
+                self.subTest(batched=batched),
+                patch(
+                    "app.ui.character_sheet.CharacterCalculationService",
+                    wraps=CharacterCalculationService,
+                ) as service,
+                patch.object(
+                    self.sheet, "_refresh_attacks", wraps=self.sheet._refresh_attacks
+                ) as attacks,
+            ):
+                batch = self.sheet._calculation_batch() if batched else nullcontext()
+                with batch:
+                    existing = self.sheet._batched_calculator
+                    self.sheet._refresh_formula_dependents()
+                    self.assertEqual(1, service.call_count)
+                    self.assertEqual(1, attacks.call_count)
+                    if batched:
+                        self.assertIs(existing, self.sheet._calculator())
+                        self.assertIs(existing, attacks.call_args.args[0])
+                self.assertIsNone(self.sheet._batched_calculator)
 
     def test_core_health_bar_and_compact_skill_rank_column_follow_live_hp(self) -> None:
         self.assertEqual("Rk.", self.sheet.skill_table.horizontalHeaderItem(4).text())
