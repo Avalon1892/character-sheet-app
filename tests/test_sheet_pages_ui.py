@@ -2,6 +2,7 @@ import os
 import tempfile
 import unittest
 from contextlib import nullcontext
+from dataclasses import replace
 from pathlib import Path
 from unittest.mock import patch
 
@@ -13,15 +14,16 @@ from PySide6.QtTest import QTest
 from PySide6.QtWidgets import QApplication
 
 from app.database import CharacterRepository
-from app.content import archetype_entries, spell_entries
+from app.content import archetype_entries, spell_entries, DEFAULT_CATALOG
 from app.models import (
     CastingProfile, CurrencyPurse, FavoredClassBonus, MovementProfile,
-    HitPoints, ProficiencyAdjustment, SkillState, SphereStatistic,
+    HitPoints, ProficiencyAdjustment, SkillState, SphereStatistic, ProdigySequence,
 )
 from app.ui.character_sheet import CharacterSheetWidget
 from app.services.character_calculations import CharacterCalculationService
 from app.services.sheet_presentation import build_character_sheet_snapshot
 from app.building_blocks.bindings import BINDINGS
+from app.recovery import FullRestEngine
 
 
 class SheetPagesUiTests(unittest.TestCase):
@@ -94,6 +96,89 @@ class SheetPagesUiTests(unittest.TestCase):
                     self.repository, cid).formula_context().evaluate("hit_points.maximum"))
                 self.assertEqual(expected, build_character_sheet_snapshot(
                     self.repository, cid).displayed_hit_point_maximum)
+
+    def test_effective_casting_bindings_include_formulas_traditions_and_sequence(self) -> None:
+        cid = self.character_id
+        self.repository.add_class_level(
+            cid, "Prodigy", 6, "3/4", "Poor", "Good", "Good",
+            preset_key="prodigy", hit_die=8, hp_gained=33,
+        )
+        self.repository.update_ability_score(cid, "intelligence", 18)
+        profile = CastingProfile(cid, casting_ability="intelligence",
+                                 casting_class_levels=6, caster_level=2, auto_spell_points=True)
+        self.repository.update_casting_profile(profile)
+        self.repository.update_prodigy_sequence(ProdigySequence(cid, True, 4, 6, ""))
+        self.sheet._sequence_active, self.sheet._sequence_links = True, 4
+        self.repository.set_numeric_formula(cid, "casting", 0, "caster_level",
+                                            "=casting.caster_level + 2")
+        entry = next(item for item in DEFAULT_CATALOG.tradition_entries("Casting")
+                     if item["name"] == "Traditional Magic")
+        self.repository.add_character_tradition(cid, entry["key"], entry["name"],
+                                                "Casting", "{}", "[]")
+        self.repository.add_feat(cid, "Casting regression", effects=(
+            {"target": "caster_level", "value": 1},
+            {"target": "spell_points", "value": 2},
+        ))
+        self.sheet._refresh_casting_profile()
+        snapshot = build_character_sheet_snapshot(self.repository, cid)
+        self.assertEqual(7, snapshot.casting.caster_level)
+        self.assertEqual(18, snapshot.casting.spell_points_maximum)
+        self.assertEqual((6, 17, 17), (snapshot.casting.magic_skill_bonus,
+                                     snapshot.casting.magic_skill_defense,
+                                     snapshot.casting.save_dc))
+        self.assertEqual("+6", self.sheet.casting_msb.text())
+        self.assertEqual("17", self.sheet.casting_msd.text())
+        self.assertEqual("17", self.sheet.casting_save_dc.text())
+        self.assertEqual("7", self.sheet._play_casting_labels["caster_level"].text())
+        self.assertEqual(18, self.sheet.spell_points_maximum.value())
+        self.assertEqual((7, 18), (
+            BINDINGS.get("casting.caster_level").getter(self.repository, cid),
+            BINDINGS.get("spell_points.maximum").getter(self.repository, cid),
+        ))
+        baseline = CharacterCalculationService(self.repository, cid).formula_context()
+        self.assertEqual(2, baseline.evaluate("casting.caster_level"))
+        self.assertEqual(10, baseline.evaluate("spell_points.maximum"))
+        FullRestEngine(self.repository, cid).perform({"spell_points": True})
+        self.assertEqual(18, self.repository.get_casting_profile(cid).spell_points_current)
+        self.assertEqual(2, self.repository.get_casting_profile(cid).caster_level)
+        self.repository.set_numeric_formula(cid, "casting", 0, "casting_class_levels",
+                                            "=casting.class_levels + 2")
+        self.sheet._refresh_casting_profile()
+        self.assertEqual(22, self.sheet.spell_points_maximum.value())
+        self.assertEqual(22, BINDINGS.get("spell_points.maximum").getter(self.repository, cid))
+        FullRestEngine(self.repository, cid).perform({"spell_points": True})
+        self.assertEqual(22, self.repository.get_casting_profile(cid).spell_points_current)
+        self.assertEqual(6, self.repository.get_casting_profile(cid).casting_class_levels)
+        self.repository.update_prodigy_sequence(ProdigySequence(cid, False, 0, 6, ""))
+        self.sheet._sequence_active, self.sheet._sequence_links = False, 0
+        self.sheet._refresh_casting_profile()
+        self.assertEqual("5", self.sheet._play_casting_labels["caster_level"].text())
+        self.assertEqual(5, BINDINGS.get("casting.caster_level").getter(self.repository, cid))
+
+    def test_spell_point_recovery_uses_formula_maximum_without_replacing_literal(self) -> None:
+        cid = self.character_id
+        for formula, maximum in (("", 7), ("=spell_points.maximum + 5", 12)):
+            with self.subTest(formula=formula):
+                profile = CastingProfile(cid, caster_level=3, spell_points_maximum=7,
+                                         spell_points_current=1, spell_points_temporary=2,
+                                         auto_spell_points=False)
+                self.repository.update_casting_profile(profile)
+                self.repository.set_numeric_formula(cid, "casting", 0,
+                                                    "spell_points_maximum", formula)
+                self.sheet._refresh_casting_profile()
+                self.assertEqual(maximum, self.sheet.spell_points_maximum.value())
+                self.assertEqual(maximum, build_character_sheet_snapshot(
+                    self.repository, cid).casting.spell_points_maximum)
+                FullRestEngine(self.repository, cid).perform({"spell_points": True})
+                self.assertEqual(replace(profile, spell_points_current=maximum,
+                                         spell_points_temporary=0),
+                                 self.repository.get_casting_profile(cid))
+                self.assertEqual(maximum, BINDINGS.get("spell_points.maximum").getter(
+                    self.repository, cid))
+                self.assertEqual(3, BINDINGS.get("casting.caster_level").getter(
+                    self.repository, cid))
+                self.assertEqual(7, CharacterCalculationService(self.repository, cid)
+                                 .formula_context().evaluate("spell_points.maximum"))
 
     def test_sheet_is_split_into_named_pages(self) -> None:
         self.assertEqual(6, self.sheet.page_tabs.count())

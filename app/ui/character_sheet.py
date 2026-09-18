@@ -2641,7 +2641,6 @@ class CharacterSheetWidget(SheetSectionsMixin, QWidget):
             return
         profile = self.repository.get_casting_profile(self.character_id)
         calculator = self._calculator()
-        effective_profile = calculator.resolved_casting_profile()
         saved_formulas = {
             field_key: expression
             for (_entity_type, _entity_id, field_key), expression
@@ -2651,23 +2650,7 @@ class CharacterSheetWidget(SheetSectionsMixin, QWidget):
         }
         prodigy_levels = self._current_prodigy_level()
         automatic_casting = self._automatic_class_casting()
-        ability_modifier = self._ability_result(effective_profile.casting_ability).ability_modifier
-        automatic_modifiers = calculator.automatic_modifier_map()
-        automatic_total = lambda target: calculate_stat(
-            [], automatic_modifiers.get(target, [])
-        ).total
-        statistics = calculate_casting_statistics(
-            effective_profile,
-            ability_modifier,
-            caster_level_bonus=(
-                self._prodigy_sequence_bonus() + automatic_total("caster_level")
-            ),
-            dc_bonus=automatic_total("save_dc"),
-            msb_bonus=automatic_total("magic_skill_bonus"),
-            msd_bonus=automatic_total("magic_skill_defense"),
-            concentration_bonus=automatic_total("concentration"),
-            spell_point_sources=calculator.spell_point_contributions(),
-        )
+        statistics = calculator.casting_statistics()
         self._loading = True
         try:
             self.casting_ability.setCurrentIndex(
@@ -2884,13 +2867,7 @@ class CharacterSheetWidget(SheetSectionsMixin, QWidget):
             return
         profile = self.repository.get_casting_profile(self.character_id)
         calculator = self._calculator()
-        effective_profile = calculator.resolved_casting_profile()
-        ability_modifier = self._ability_result(effective_profile.casting_ability).ability_modifier
-        maximum = calculate_casting_statistics(
-            effective_profile,
-            ability_modifier,
-            spell_point_sources=calculator.spell_point_contributions(),
-        ).spell_points_maximum
+        maximum = calculator.casting_statistics().spell_points_maximum
         if profile.spell_points_current >= maximum:
             return
         self.repository.update_casting_profile(
@@ -2904,13 +2881,7 @@ class CharacterSheetWidget(SheetSectionsMixin, QWidget):
             return
         profile = self.repository.get_casting_profile(self.character_id)
         calculator = self._calculator()
-        effective_profile = calculator.resolved_casting_profile()
-        ability_modifier = self._ability_result(effective_profile.casting_ability).ability_modifier
-        maximum = calculate_casting_statistics(
-            effective_profile,
-            ability_modifier,
-            spell_point_sources=calculator.spell_point_contributions(),
-        ).spell_points_maximum
+        maximum = calculator.casting_statistics().spell_points_maximum
         self.repository.update_casting_profile(
             replace(
                 profile,

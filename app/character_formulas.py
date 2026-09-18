@@ -337,6 +337,8 @@ class CharacterFormulaContext:
                 values.setdefault(metric_path, 0.0)
                 if active:
                     values[metric_path] = float(numeric)
+        # Baseline inputs intentionally exclude saved casting formulas and effective
+        # casting/pool contributions, allowing formulas to refer to their own base.
         profile = self.repository.get_casting_profile(self.character_id)
         casting_ability = self.calculations.ability_result(
             profile.casting_ability
@@ -607,7 +609,9 @@ class CharacterFormulaContext:
         if reference.startswith("martial_focus."):
             return "Current martial-focus resource value."
         if reference.startswith("casting."):
-            return "Current shared casting statistic."
+            return "Baseline casting value before saved casting formulas and effective bonuses."
+        if reference == "spell_points.maximum":
+            return "Baseline pool before saved casting formulas and feature/tradition contributions."
         if reference.startswith("spell_points."):
             return "Current spell-point resource value."
         if reference.startswith("hit_points."):

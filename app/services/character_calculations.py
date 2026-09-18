@@ -37,12 +37,14 @@ from app.models import (
 )
 from app.rules import (
     CalculationResult,
+    CastingStatistics,
     Contribution,
     Encumbrance,
     SkillResult,
     SpellPointContribution,
     automatic_hit_points,
     calculate_ability,
+    calculate_casting_statistics,
     calculate_combat_statistics,
     calculate_encumbrance,
     calculate_skill,
@@ -885,6 +887,23 @@ class CharacterCalculationService:
             self.encumbrance().check_penalty,
         )
         return self._armor_check_penalty
+
+    def casting_statistics(self) -> CastingStatistics:
+        """Global effective spherecasting values; sphere-specific bonuses stay scoped."""
+        profile = self.resolved_casting_profile()
+        sequence_bonus = prodigy_inspired_sequence_bonus(
+            prodigy_level(self.state.classes), self.sequence_links, self.sequence_active
+        )
+        return calculate_casting_statistics(
+            profile,
+            self.ability_result(profile.casting_ability).ability_modifier,
+            caster_level_bonus=sequence_bonus + self.automatic_total("caster_level"),
+            dc_bonus=self.automatic_total("save_dc"),
+            msb_bonus=self.automatic_total("magic_skill_bonus"),
+            msd_bonus=self.automatic_total("magic_skill_defense"),
+            concentration_bonus=self.automatic_total("concentration"),
+            spell_point_sources=self.spell_point_contributions(),
+        )
 
     def spell_point_contributions(self) -> tuple[SpellPointContribution, ...]:
         """Expose enabled feature bonuses as modular spell-pool sources.

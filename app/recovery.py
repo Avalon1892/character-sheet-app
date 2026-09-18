@@ -5,7 +5,6 @@ from dataclasses import dataclass, replace
 from app.custom_trackers import CustomTrackerResolver, display_number
 from app.database import CharacterRepository
 from app.models import HitPoints, MartialFocus, ProdigySequence
-from app.rules import calculate_casting_statistics
 from app.services.character_calculations import CharacterCalculationService
 from app.class_feature_systems import resolve_class_feature_modules
 from app.class_power_rules import full_rest_class_power_selections
@@ -159,13 +158,12 @@ class FullRestEngine:
             results.append(RecoveryResult("hit_points.temporary", "Temporary hit points", f"Cleared {cleared} temporary HP."))
         if choices.get("spell_points", False):
             profile = self.repository.get_casting_profile(self.character_id)
-            calculations = CharacterCalculationService(self.repository, self.character_id)
-            ability_modifier = calculations.ability_result(profile.casting_ability).ability_modifier
-            maximum = calculate_casting_statistics(
-                profile,
-                ability_modifier,
-                spell_point_sources=calculations.spell_point_contributions(),
-            ).spell_points_maximum
+            sequence = self.repository.get_prodigy_sequence(self.character_id)
+            calculations = CharacterCalculationService(
+                self.repository, self.character_id,
+                sequence_active=sequence.active, sequence_links=sequence.current,
+            )
+            maximum = calculations.casting_statistics().spell_points_maximum
             self.repository.update_casting_profile(
                 replace(profile, spell_points_current=maximum, spell_points_temporary=0)
             )

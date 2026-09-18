@@ -6,7 +6,7 @@ from typing import Any, Callable
 from app.custom_trackers import CustomTrackerResolver
 from app.database import CharacterRepository
 from app.models import ABILITIES, SKILLS
-from app.rules import calculate_casting_statistics, total_bab
+from app.rules import total_bab
 from app.services.character_calculations import CharacterCalculationService
 
 
@@ -126,13 +126,18 @@ for field, label in (
     BINDINGS.register(BindingDescriptor(f"hit_points.{field}", label, "number", _hp(field), _set_hp(field), "Health"))
 
 
+def _casting_statistics(repo: CharacterRepository, cid: int):
+    sequence = repo.get_prodigy_sequence(cid)
+    return CharacterCalculationService(
+        repo, cid, sequence_active=sequence.active, sequence_links=sequence.current,
+    ).casting_statistics()
+
+
 def _spell_points(field: str) -> Getter:
     def getter(repo: CharacterRepository, cid: int):
         profile = repo.get_casting_profile(cid)
         if field == "maximum":
-            calc = CharacterCalculationService(repo, cid)
-            modifier = calc.ability_result(profile.casting_ability).ability_modifier
-            return calculate_casting_statistics(profile, modifier).spell_points_maximum
+            return _casting_statistics(repo, cid).spell_points_maximum
         return getattr(profile, f"spell_points_{field}")
     return getter
 
@@ -236,10 +241,7 @@ for mode, label in (
     ))
 BINDINGS.register(BindingDescriptor(
     "casting.caster_level", "Effective caster level", "number",
-    lambda repo, cid: calculate_casting_statistics(
-        repo.get_casting_profile(cid),
-        CharacterCalculationService(repo, cid).ability_result(repo.get_casting_profile(cid).casting_ability).ability_modifier,
-    ).caster_level,
+    lambda repo, cid: _casting_statistics(repo, cid).caster_level,
     category="Magic",
 ))
 

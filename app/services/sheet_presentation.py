@@ -143,16 +143,7 @@ def build_character_sheet_snapshot(
     sequence_bonus = prodigy_inspired_sequence_bonus(
         prodigy_level(state.classes), sequence.current, sequence.active
     )
-    casting = calculate_casting_statistics(
-        profile,
-        casting_ability,
-        caster_level_bonus=sequence_bonus + calculator.automatic_total("caster_level"),
-        dc_bonus=calculator.automatic_total("save_dc"),
-        msb_bonus=calculator.automatic_total("magic_skill_bonus"),
-        msd_bonus=calculator.automatic_total("magic_skill_defense"),
-        concentration_bonus=calculator.automatic_total("concentration"),
-        spell_point_sources=calculator.spell_point_contributions(),
-    )
+    casting = calculator.casting_statistics()
     saved_spheres = {
         item.sphere: item for item in repository.list_sphere_statistics(character_id)
     }
