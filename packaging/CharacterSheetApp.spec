@@ -14,6 +14,7 @@ analysis = Analysis(
     datas=[
         (str(project_root / "data" / "pf1e"), "data/pf1e"),
         (str(project_root / "app" / "assets"), "app/assets"),
+        (str(project_root / "app" / "class_packages" / "definitions"), "app/class_packages/definitions"),
     ],
     hiddenimports=[
         # Sheet presentations are intentionally discovered through the modular

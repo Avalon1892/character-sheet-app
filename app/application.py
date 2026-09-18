@@ -29,6 +29,22 @@ def run() -> int:
         application.processEvents()
         window.close()
         repository.close()
-        return 0
+        from app.class_packages.loader import (
+            archetype_package, archetype_runtime_package, class_package,
+            reviewed_archetype_profile, supplemental_archetype_entries,
+        )
+
+        # Exercise every definition directory through the packaged runtime loader;
+        # an empty window can otherwise start successfully with missing automation.
+        sapper = "pathfinder-archetype:pathfinder-class:alchemist:alchemical-sapper"
+        definitions = (
+            class_package("pathfinder-class:wizard"),
+            class_package("prodigy"),
+            archetype_package("pathfinder-archetype:pathfinder-class:alchemist:aerochemist"),
+            archetype_runtime_package(sapper),
+            reviewed_archetype_profile(sapper),
+            supplemental_archetype_entries(),
+        )
+        return 0 if all(definitions) else 1
     window.show()
     return application.exec()
