@@ -34,6 +34,20 @@ if ($LASTEXITCODE -ne 0) {
     throw "Build dependencies are missing. Run this script with -Bootstrap."
 }
 
+# PyInstaller searches PATH for dependent DLLs. Do not bundle unrelated toolchains.
+$basePython = & $python -I -c "import sys; print(sys.base_prefix)"
+if ($LASTEXITCODE -ne 0) {
+    throw "Could not resolve the build environment's base Python."
+}
+$buildPath = (@(
+    (Join-Path $buildVenv "Scripts"),
+    (Join-Path $buildVenv "Lib\site-packages\PySide6"),
+    $basePython,
+    (Join-Path $basePython "DLLs"),
+    (Join-Path $env:SystemRoot "System32"),
+    $env:SystemRoot
+) | Where-Object { Test-Path -LiteralPath $_ -PathType Container }) -join [IO.Path]::PathSeparator
+
 $dist = Join-Path $OutputRoot "dist"
 $work = Join-Path $OutputRoot "work"
 $appFolder = Join-Path $dist "Character Sheet App"
@@ -46,8 +60,10 @@ Remove-Item -LiteralPath $work -Recurse -Force -ErrorAction SilentlyContinue
 Remove-Item -LiteralPath $zipPath -Force -ErrorAction SilentlyContinue
 
 Push-Location $projectRoot
+$oldPath = $env:PATH
 try {
-    & $python -m PyInstaller `
+    $env:PATH = $buildPath
+    & $python -I -m PyInstaller `
         --noconfirm `
         --clean `
         --distpath $dist `
@@ -58,6 +74,7 @@ try {
     }
 }
 finally {
+    $env:PATH = $oldPath
     Pop-Location
 }
 
@@ -68,7 +85,9 @@ if (-not $SkipSmokeTest) {
     Remove-Item -LiteralPath $smokeData -Recurse -Force -ErrorAction SilentlyContinue
     New-Item -ItemType Directory -Path $smokeData -Force | Out-Null
     $oldDataOverride = $env:CHARACTER_SHEET_DATA_DIR
+    $oldPath = $env:PATH
     try {
+        $env:PATH = $buildPath
         $env:CHARACTER_SHEET_DATA_DIR = $smokeData
         & (Join-Path $appFolder "Character Sheet App.exe") --smoke-test
         if ($LASTEXITCODE -ne 0) {
@@ -76,6 +95,7 @@ if (-not $SkipSmokeTest) {
         }
     }
     finally {
+        $env:PATH = $oldPath
         $env:CHARACTER_SHEET_DATA_DIR = $oldDataOverride
         Remove-Item -LiteralPath $smokeData -Recurse -Force -ErrorAction SilentlyContinue
     }

@@ -194,6 +194,23 @@ Step 1 provides:
 4. Run `.\setup.ps1` once.
 5. Run `.\run.ps1` whenever you want to open the app.
 
+## Portable Windows build
+
+Run `.\packaging\Build-Transportable.ps1 -Bootstrap -SkipInstaller` once to prepare
+the dedicated `.build-venv` and build the portable ZIP. For subsequent builds, use
+`.\packaging\Build-Transportable.ps1 -SkipInstaller`. Output is written to
+`.artifacts\transportable` by default; `-OutputRoot` selects another build directory.
+
+The script gives PyInstaller and the packaged smoke check a process-local PATH
+containing only the build environment, its PySide6 directory, its base Python
+installation (including DLLs), and Windows/system directories. This prevents
+unrelated tools on the caller's PATH from supplying bundled DLLs. PyInstaller also
+runs in Python isolated mode. The caller's PATH is restored even on failure; no
+user or machine environment variables are changed. Manual PATH cleanup is unnecessary.
+
+The default smoke check verifies startup and loads class/archetype definitions
+through the packaged runtime loader. Do not skip it for release validation.
+
 ## Tests
 
 Run:
