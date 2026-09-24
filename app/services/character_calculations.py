@@ -1023,7 +1023,11 @@ class CharacterCalculationService:
         """Whether a retained package feature permits taking 10 under pressure."""
 
         rules = self._class_package_skill_rules()
-        return bool(rules.take_ten_all)
+        return bool(rules.take_ten_all or (
+            rules.take_ten_trained_knowledge
+            and skill_key.startswith("knowledge_")
+            and self.effective_skill_ranks().get(skill_key, 0) > 0
+        ))
 
     def skill_result(self, skill_key: str):
         """Return the same fully automated total used by the Core skill table."""
@@ -1113,6 +1117,8 @@ class CharacterCalculationService:
             armor_penalty,
             skill_modifiers,
             package_skill_rules.allow_all_untrained
+            or (package_skill_rules.allow_knowledge_untrained
+                and root_skill_key.startswith("knowledge_"))
             or skill_key in untrained_skills
             or root_skill_key in untrained_skills,
         )

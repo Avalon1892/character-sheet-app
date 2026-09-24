@@ -20,7 +20,7 @@ from app.archetype_rules import (
     archetype_choice_selections_from_records, archetype_choices,
     selected_archetype_choice_options,
 )
-from app.class_modifications import resolve_class_profile
+from app.class_modifications import resolve_class_profile, sphere_bonus_spell_conversions
 from app.class_packages import class_package
 from app.drawback_rules import drawback_bonus_feat_names, sphere_drawback_talent_value
 from app.models import AdvancementAdjustment, ClassLevel
@@ -626,6 +626,13 @@ def calculate_advancement_budgets(
             if bonus:
                 gained += bonus
                 source = f"{source}; class-granted talents +{bonus}" if source else f"Class-granted talents +{bonus}"
+        for group in sphere_bonus_spell_conversions(
+            entry, archetypes_by_class.get(item.id, ()), item.level,
+            choice_selections_by_class.get(item.id, {}),
+        ):
+            if group.get("adds_known", True):
+                gained += 1
+                talent_sources.append(f"{group['source']}: spells-known group → 1 magic talent")
         talent_total += gained
         if source:
             talent_sources.append(source)

@@ -11,10 +11,11 @@ from functools import lru_cache
 import re
 from typing import Iterable, Mapping
 
-from app.archetype_rules import replaced_features
+from app.archetype_rules import replaced_features, archetype_choice_selections_from_records
 from app.class_choice_rules import ResolvedClassChoice, resolve_class_choice_slots
 from app.class_packages import archetype_runtime_package, class_package
-from app.content import archetype_entry, spell_entries
+from app.content import archetype_entry, class_entry, spell_entries
+from app.class_modifications import sphere_bonus_spell_conversions
 
 
 GRANTED_CATEGORY = "Class Granted"
@@ -96,6 +97,16 @@ def _choice_grants_blocked(
         if entry is not None:
             selected_archetypes.append(entry)
             replaced.update(replaced_features(entry))
+    class_level = next((item for item in repository.list_class_levels(character_id)
+                        if item.id == class_level_id), None)
+    if class_level is not None:
+        conversions = sphere_bonus_spell_conversions(
+            class_entry(class_level.preset_key) or {}, selected_archetypes, class_level.level,
+            archetype_choice_selections_from_records(
+                repository.list_class_feature_selections(character_id), class_level_id),
+        )
+        if any(provider_key in group.get("choice_providers", ()) for group in conversions):
+            return True
     if provider_key == "cleric-domains" and any(
         isinstance(entry.get("class_modifications"), Mapping)
         and isinstance(entry.get("class_modifications", {}).get("casting"), Mapping)

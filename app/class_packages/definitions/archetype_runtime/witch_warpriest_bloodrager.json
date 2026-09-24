@@ -1,6 +1,9 @@
 {
   "version": 1,
   "entries": [
+    {"key": "pathfinder-archetype:pathfinder-class:bloodrager:ancestral-harbinger", "sphere_spell_known_groups": [{"key": "spirit-servants", "name": "Spirit Servants", "feature_token": "spirit-servants", "level": 5}]},
+    {"key": "pathfinder-archetype:pathfinder-class:bloodrager:greenrager", "sphere_spell_known_groups": [{"key": "summoning-rager", "name": "Summoning Rager", "feature_token": "summoning-rager", "level": 6}]},
+    {"key": "pathfinder-archetype:pathfinder-class:bloodrager:urban-bloodrager", "sphere_spell_known_groups": [{"key": "adopted-magic", "name": "Adopted Magic", "feature_token": "adopted-magic", "level": 7}]},
     {
       "key": "pathfinder-archetype:pathfinder-class:bloodrager:rageshaper",
       "choice_handling": "transient",

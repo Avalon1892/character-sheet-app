@@ -228,6 +228,49 @@ def resolve_class_profile(
     return profile
 
 
+def sphere_bonus_spell_conversions(
+    class_definition: Mapping[str, object],
+    archetypes: Iterable[Mapping[str, object]],
+    level: int,
+    choice_selections: Mapping[str, Iterable[str]] | None = None,
+) -> tuple[Mapping[str, object], ...]:
+    """Reviewed spells-known groups, not individual spells or spell-list additions.
+
+    Source: https://spheresofpower.wikidot.com/archetype-rules
+    Explicit Sphere Oracle/Sorcerer replacements are not declared here and
+    therefore retain their specific rules. No description parsing is involved.
+    """
+    from app.class_packages import archetype_runtime_package
+    from app.class_feature_rules import feature_token, resolve_class_features
+
+    selected = tuple(archetypes)
+    declarations = tuple(
+        (archetype, group)
+        for archetype in selected
+        for group in (archetype_runtime_package(str(archetype.get("key", ""))) or {}).get(
+            "sphere_spell_known_groups", ())
+    )
+    if not declarations:
+        return ()
+    profile = resolve_class_profile(class_definition, selected, choice_selections)
+    if (
+        str(_document(class_definition.get("casting")).get("type", "")).casefold() != "spontaneous"
+    ) or not profile.casting.get("sphere_progression") or profile.casting.get("traditional") is not False:
+        return ()
+    tokens = {feature_token(feature.name) for feature in resolve_class_features(
+        class_definition.get("features", ()), selected, level,
+        str(class_definition.get("name", "")),
+        selected_archetype_choices=choice_selections,
+    )}
+    groups = {}
+    for archetype, group in declarations:
+        if level < int(group.get("level", 1)) or group.get("feature_token") not in tokens:
+            continue
+        identity = (str(archetype.get("key", "")), str(group["key"]))
+        groups[identity] = {**group, "source": f"{archetype.get('name', 'Archetype')}: {group['name']}"}
+    return tuple(groups.values())
+
+
 def resolve_class_level(
     class_level: ClassLevel,
     class_definition: Mapping[str, object],

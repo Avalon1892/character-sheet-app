@@ -28,7 +28,7 @@
           "name": "Lore Master",
           "feature_tokens": ["lore-master"],
           "progression": "bard_lore_master_uses",
-          "description": "Uses per day of Lore Master. Each use allows taking 20 on one Knowledge check; the Bard may always take 10 on Knowledge checks."
+          "description": "Uses per day of Lore Master. Each use allows taking 20 on one Knowledge check as a standard action; the Bard may take 10 on Knowledge checks with ranks even when threatened or distracted."
         },
         {
           "key": "well_versed",
@@ -37,6 +37,7 @@
           "progression": "one",
           "description": "Toggle for a saving throw against bardic performance, sonic effects, or language-dependent effects. The +4 bonus is applied to all saves while enabled; turn it off after the qualifying roll.",
           "can_activate": true,
+          "tracks_uses": false,
           "recover_on_full_rest": false,
           "end_on_full_rest": false
         }
@@ -71,6 +72,7 @@
       "feature_tokens": ["versatile-performance"],
       "minimum": 1,
       "maximum": 5,
+      "minimum_levels": [2, 6, 10, 14, 18],
       "maximum_levels": [2, 6, 10, 14, 18],
       "description": "Choose one Perform category at 2nd level and every 4 Bard levels thereafter. Its total bonus can replace the listed associated skill bonuses.",
       "fixed_options": [
@@ -98,6 +100,8 @@
     {"choice_provider": "bard-versatile-performance", "option_key": "wind", "source_skill": "perform", "source_specialty": "Wind Instruments", "targets": ["diplomacy", "handle_animal"], "source": "Bard: Versatile Performance (Wind Instruments)"}
   ],
   "skill_rules": [
+    {"key": "bardic-knowledge-untrained", "feature_tokens": ["bardic-knowledge"], "minimum_level": 1, "rule": "allow_knowledge_untrained", "source": "Bard: Bardic Knowledge"},
+    {"key": "lore-master-take-ten", "feature_tokens": ["lore-master"], "minimum_level": 5, "rule": "take_ten_trained_knowledge", "source": "Bard: Lore Master"},
     {"key": "jack-untrained", "feature_tokens": ["jack-of-all-trades"], "minimum_level": 10, "rule": "allow_all_untrained", "source": "Bard: Jack of All Trades"},
     {"key": "jack-class-skills", "feature_tokens": ["jack-of-all-trades"], "minimum_level": 16, "rule": "all_class_skills", "source": "Bard: Jack of All Trades"},
     {"key": "jack-take-ten", "feature_tokens": ["jack-of-all-trades"], "minimum_level": 19, "rule": "take_ten_all", "source": "Bard: Jack of All Trades"}

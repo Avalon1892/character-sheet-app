@@ -118,6 +118,8 @@ class ResolvedPackageSkillRules:
     take_ten_all: bool = False
     class_skills: tuple[str, ...] = ()
     sources: tuple[str, ...] = ()
+    take_ten_trained_knowledge: bool = False
+    allow_knowledge_untrained: bool = False
 
 
 def _fixed(
@@ -849,6 +851,17 @@ def resolve_class_choice_slots(
     result = []
     for class_level in repository.list_class_levels(character_id):
         archetype_keys = archetypes.get(class_level.id, ())
+        from app.content import class_entry, archetype_entry
+        from app.class_modifications import sphere_bonus_spell_conversions
+        from app.archetype_rules import archetype_choice_selections_from_records
+
+        conversions = sphere_bonus_spell_conversions(
+            class_entry(class_level.preset_key) or {},
+            tuple(entry for key in archetype_keys if (entry := archetype_entry(key))),
+            class_level.level,
+            archetype_choice_selections_from_records(selections, class_level.id),
+        )
+        converted_providers = {key for group in conversions for key in group.get("choice_providers", ())}
         overrides, filters = _runtime_choice_configuration(archetype_keys)
         runtime_overlays = tuple(
             archetype_runtime_package(key) or {} for key in archetype_keys
@@ -860,6 +873,7 @@ def resolve_class_choice_slots(
             ),
             overrides,
         )
+        providers = tuple(provider for provider in providers if provider.key not in converted_providers)
         additional_tokens = {
             str(value)
             for overlay in runtime_overlays
@@ -942,6 +956,8 @@ def resolved_package_skill_rules(
     allow_all_untrained = False
     all_class_skills = False
     take_ten_all = False
+    take_ten_trained_knowledge = False
+    allow_knowledge_untrained = False
     class_skills: set[str] = set()
     sources: list[str] = []
     for class_level in repository.list_class_levels(character_id):
@@ -993,6 +1009,10 @@ def resolved_package_skill_rules(
                 all_class_skills = True
             elif rule_name == "take_ten_all":
                 take_ten_all = True
+            elif rule_name == "take_ten_trained_knowledge":
+                take_ten_trained_knowledge = True
+            elif rule_name == "allow_knowledge_untrained":
+                allow_knowledge_untrained = True
             elif rule_name == "grant_class_skills":
                 class_skills.update(granted_skills)
             else:
@@ -1004,6 +1024,8 @@ def resolved_package_skill_rules(
         take_ten_all,
         tuple(sorted(class_skills)),
         tuple(dict.fromkeys(sources)),
+        take_ten_trained_knowledge,
+        allow_knowledge_untrained,
     )
 
 

@@ -2,6 +2,15 @@
   "version": 1,
   "class_key": "pathfinder-class:bard",
   "entries": [
+    {"key": "pathfinder-archetype:pathfinder-class:bard:animal-speaker", "sphere_spell_known_groups": [{"key": "summoning", "name": "Summon Nature's Ally", "feature_token": "summon-natures-ally", "level": 1}]},
+    {"key": "pathfinder-archetype:pathfinder-class:bard:brazen-deceiver", "sphere_spell_known_groups": [{"key": "invoke", "name": "Invoke Vyriavaxus", "feature_token": "invoke-vyriavaxus", "level": 2}]},
+    {"key": "pathfinder-archetype:pathfinder-class:bard:detective", "sphere_spell_known_groups": [{"key": "investigation", "name": "Arcane Investigation", "feature_token": "arcane-investigation", "level": 2}]},
+    {"key": "pathfinder-archetype:pathfinder-class:bard:dirge-bard", "sphere_spell_known_groups": [{"key": "secrets", "name": "Secrets of the Grave", "feature_token": "secrets-of-the-grave", "level": 2}]},
+    {"key": "pathfinder-archetype:pathfinder-class:bard:disciple-of-the-forked-tongue", "sphere_spell_known_groups": [{"key": "serpent", "name": "Serpent of the Mind", "feature_token": "serpent-of-the-mind", "level": 2}]},
+    {"key": "pathfinder-archetype:pathfinder-class:bard:fey-courtier", "sphere_spell_known_groups": [{"key": "allies", "name": "Summon Fey Allies", "feature_token": "summon-fey-allies", "level": 3}]},
+    {"key": "pathfinder-archetype:pathfinder-class:bard:flame-dancer", "sphere_spell_known_groups": [{"key": "flames", "name": "Fan the Flames", "feature_token": "fan-the-flames", "level": 8}]},
+    {"key": "pathfinder-archetype:pathfinder-class:bard:flamesinger", "sphere_spell_known_groups": [{"key": "fire-music", "name": "Fire Music", "feature_token": "fire-music", "level": 4}]},
+    {"key": "pathfinder-archetype:pathfinder-class:bard:mute-musician", "sphere_spell_known_groups": [{"key": "insights", "name": "Insights from Beyond", "feature_token": "insights-from-beyond", "level": 2}]},
     {
       "key": "pathfinder-archetype:pathfinder-class:bard:pitax-academy-of-grand-arts",
       "choice_providers": [
@@ -125,6 +134,7 @@
     },
     {
       "key": "pathfinder-archetype:pathfinder-class:bard:magician",
+      "sphere_spell_known_groups": [{"key": "repertoire", "name": "Expanded Repertoire", "feature_token": "expanded-repertoire", "level": 2}],
       "resource_modules": [
         {
           "key": "magician",
@@ -294,6 +304,7 @@
     },
     {
       "key": "pathfinder-archetype:pathfinder-class:bard:voice-of-the-wild",
+      "sphere_spell_known_groups": [{"key": "nature", "name": "Nature Magic", "feature_token": "nature-magic", "level": 1, "adds_known": false, "choice_providers": ["voice-wild-nature-magic-1", "voice-wild-nature-magic-4", "voice-wild-nature-magic-7", "voice-wild-nature-magic-10", "voice-wild-nature-magic-13", "voice-wild-nature-magic-16"]}],
       "choice_providers": [
         {"key": "voice-wild-nature-magic-1", "label": "Nature Magic (1st)", "feature_tokens": ["nature-magic"], "minimum": 1, "maximum": 1, "minimum_class_level": 1, "spell_lists": ["Druid", "Ranger"], "minimum_spell_level": 1, "maximum_spell_level": 1, "description": "Choose the 1st-level Druid or Ranger spell learned as a Bard spell known at level 1."},
         {"key": "voice-wild-nature-magic-4", "label": "Nature Magic (4th)", "feature_tokens": ["nature-magic"], "minimum": 1, "maximum": 1, "minimum_class_level": 4, "spell_lists": ["Druid", "Ranger"], "maximum_spell_level": 2, "description": "Choose a Druid or Ranger spell of a level the Bard can cast at level 4."},

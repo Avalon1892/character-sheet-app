@@ -1725,6 +1725,12 @@ def _resource_view(
         )
         maximum_choices = 1
     choices = _choices(state)
+    if definition.key == "bardic_performance":
+        standard_performances = {name.casefold() for _token, name in BARD_PERFORMANCES}
+        available_performances = {name.casefold() for name in choice_options}
+        choices = tuple(choice for choice in choices
+                        if choice.casefold() not in standard_performances
+                        or choice.casefold() in available_performances)
     if maximum_choices:
         choices = choices[:maximum_choices]
     return ResolvedClassFeatureResource(
@@ -2635,12 +2641,13 @@ def class_feature_modifier_map(repository, character_id: int) -> dict[str, list[
                     )
                 )
             elif selected_performance == "inspire heroics":
-                result.setdefault("armor_class", []).append(
-                    StatModifier(
-                        None, "armor_class", f"{module.class_name}: active Inspire Heroics",
-                        "dodge", 4, True,
+                for target in ("armor_class", "touch_ac"):
+                    result.setdefault(target, []).append(
+                        StatModifier(
+                            None, target, f"{module.class_name}: active Inspire Heroics",
+                            "dodge", 4, True,
+                        )
                     )
-                )
                 for target in ("fortitude", "reflex", "will"):
                     result.setdefault(target, []).append(
                         StatModifier(
