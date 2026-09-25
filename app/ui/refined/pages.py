@@ -11,8 +11,8 @@ DEFAULT_TABS = (("core","Overview"),("skills","Skills"),("abilities","Abilities"
 PLACEMENTS = {
     "crafting": ("crafting",),
     "core": ("classic_statistics","attacks","conditions","martial_focus","spell_points","movement","inquisitor_features","imbue","prodigy_sequence"),
-    "skills": ("skills","special_abilities"),
-    "abilities": ("martial_talents","moldable_talents","feats","traits"),
+    "skills": ("skills","special_abilities","feats","traits"),
+    "abilities": ("martial_talents","moldable_talents"),
     "magic": ("casting_play","spell_level_overview","spells_known","spells_prepared","magic_talents","magic_ranges","sphere_statistics"),
     "inventory": ("equipment","worn_items","equipment_figure","load","currency"),
     "build": ("overview","advancement_budgets","base_abilities","favored_class_bonuses","proficiencies","custom_trackers","traditional_casting","casting_profile","traditions","optional_traditions","sphere_drawbacks"),
@@ -70,11 +70,11 @@ def compose(sheet):
     abilities=sheet.custom_sections["special_abilities"]
     layout.removeWidget(skills);layout.removeWidget(abilities)
     row=ResponsiveRow(skills,abilities,breakpoint=1200,stretches=(2,1))
-    layout.addWidget(row)
+    layout.insertWidget(0,row)
     sheet.refined_skills_row=row
     sheet.custom_layouts["skills_reference_row"]=row.row
     # Useful play-facing pairs stack automatically on narrower windows.
-    for page, left_key, right_key in (("core","attacks","conditions"),("abilities","feats","traits"),("inventory","worn_items","equipment_figure"),("inventory","load","currency")):
+    for page, left_key, right_key in (("core","attacks","conditions"),("skills","feats","traits"),("inventory","worn_items","equipment_figure"),("inventory","load","currency")):
         layout=sheet.refined_pages[page][2]
         left=sheet.custom_sections[left_key]; right=sheet.custom_sections[right_key]
         index=layout.indexOf(left)

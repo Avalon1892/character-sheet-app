@@ -17,7 +17,7 @@ from app.ui.components import sheet_page
 from .pages import DEFAULT_TABS,PLACEMENTS
 from .guides import AlignmentGuides
 from .components import ResponsiveRow
-from .layout_migrations import migrate_skills_reference_layout, migrate_traditions_character_page
+from .layout_migrations import migrate_skills_reference_layout, migrate_traditions_character_page, migrate_feats_traits_skills_page
 
 
 class RefinedTabManager(SheetTabManager):
@@ -242,6 +242,7 @@ class RefinedSession:
             self.presentation.ensure_character(character_id,self.registry)
             state=self.store.get(character_id,"refined")
             migrate_skills_reference_layout(self.presentation,character_id,state)
+            migrate_feats_traits_skills_page(self.presentation,character_id,state)
             migrate_traditions_character_page(self.presentation,character_id)
             self._configure_default_composition()
             self.tabs.load_character(character_id)

@@ -335,7 +335,11 @@ class RefinedUiTests(unittest.TestCase):
 
     def test_category_columns_are_readable_but_user_widths_still_win(self):
         sheet=self.sheet
-        sheet.session.select_tab("abilities");QTest.qWait(200)
+        sheet.session.select_tab("skills");QTest.qWait(200)
+        canvas=sheet.refined_pages["skills"][1]
+        for key in ("skills", "special_abilities", "feats", "traits"):
+            self.assertTrue(canvas.isAncestorOf(sheet.custom_sections[key]))
+        self.assertLess(sheet.refined_skills_row.y(),sheet.feats_section.parentWidget().y())
         self.assertEqual(180,sheet.feat_table.columnWidth(1))
         self.assertEqual(180,sheet.trait_table.columnWidth(1))
         row=sheet.feats_section.parentWidget()
@@ -346,6 +350,30 @@ class RefinedUiTests(unittest.TestCase):
         controller._restore_table(key)
         sheet._refresh_feats();QTest.qWait(200)
         self.assertEqual(77,sheet.feat_table.columnWidth(1))
+
+    def test_feats_traits_old_defaults_migrate_but_custom_destination_stays(self):
+        from app.ui.refined.layout_migrations import migrate_feats_traits_skills_page
+        session=self.sheet.session
+        presentation=session.presentation
+        instances={i.template_snapshot.get("section_key"):i
+                   for i in presentation.list_instances(self.cid)}
+        for key, destination in (("feats", "abilities"), ("traits", "inventory")):
+            instance=instances[key]
+            snapshot={**instance.template_snapshot,"default_tab":"abilities"}
+            presentation.connection.execute(
+                "UPDATE sheet_block_instances SET tab_key=?,template_snapshot_json=? WHERE id=?",
+                (destination,json.dumps(snapshot),instance.id))
+        presentation.connection.execute(
+            "DELETE FROM sheet_presentation_migrations WHERE character_id=? AND migration_key=?",
+            (self.cid,"feats-traits-skills-page-v1"))
+        presentation.connection.commit()
+        migrate_feats_traits_skills_page(presentation,self.cid,{})
+        updated={i.template_snapshot.get("section_key"):i for i in presentation.list_instances(self.cid)}
+        self.assertEqual("skills",updated["feats"].tab_key)
+        self.assertEqual("inventory",updated["traits"].tab_key)
+        migrate_feats_traits_skills_page(presentation,self.cid,{})
+        self.assertEqual("skills",next(i for i in presentation.list_instances(self.cid)
+                                     if i.id==instances["feats"].id).tab_key)
 
     def test_legacy_customized_skills_keep_the_old_ability_page_until_reset(self):
         session=self.sheet.session

@@ -7,6 +7,42 @@ import json
 SKILLS_REFERENCE_LAYOUT = "skills-reference-columns-v1"
 
 
+def migrate_feats_traits_skills_page(presentation, character_id, state):
+    """Move old default blocks, preserving explicitly customized placements."""
+    connection = presentation.connection
+    key = "feats-traits-skills-page-v1"
+    if connection.execute(
+        "SELECT 1 FROM sheet_presentation_migrations WHERE character_id=? AND migration_key=?",
+        (character_id, key),
+    ).fetchone():
+        return
+    layout = state.get("layout", {})
+    try:
+        freeform = json.loads(layout.get("freeform", "{}") or "{}")
+        order = json.loads(layout.get("layout", "{}") or "{}")
+    except (TypeError, ValueError):
+        return
+    with connection.batch():
+        for instance in presentation.list_instances(character_id):
+            snapshot = instance.template_snapshot
+            section = snapshot.get("section_key")
+            if (section in ("feats", "traits") and not order
+                    and isinstance(freeform, dict) and section not in freeform
+                    and not layout.get("sizes/" + section)
+                    and instance.tab_key == snapshot.get("default_tab") == "abilities"
+                    and (instance.x, instance.y) == (24, 24)
+                    and (instance.width, instance.height) == (snapshot.get("width"), snapshot.get("height"))
+                    and not presentation.list_cell_overrides(instance.id)):
+                connection.execute(
+                    "UPDATE sheet_block_instances SET tab_key=?,template_snapshot_json=? WHERE id=?",
+                    ("skills", json.dumps({**snapshot, "default_tab": "skills"}), instance.id),
+                )
+        connection.execute(
+            "INSERT INTO sheet_presentation_migrations (character_id,migration_key) VALUES (?,?)",
+            (character_id, key),
+        )
+
+
 def migrate_traditions_character_page(presentation, character_id):
     """Correct the old Equipment default without moving user-placed blocks."""
     connection = presentation.connection
