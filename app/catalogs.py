@@ -69,6 +69,24 @@ class RulesCatalog:
         return _load_json(str((self.data_root / name).resolve()))
 
     @cached_property
+    def bestiary(self) -> dict:
+        from app.catalog_versions import BUNDLED_CATALOG_ROOT
+        path = self.data_root / "bestiary.json"
+        if not path.exists():
+            path = BUNDLED_CATALOG_ROOT / "bestiary.json"
+        return _load_json(str(path.resolve())) if path.exists() else {"entries": []}
+
+    def bestiary_entries(self) -> tuple[dict, ...]:
+        return tuple(self.bestiary.get("entries", ()))
+
+    @cached_property
+    def _bestiary_by_key(self) -> dict[str, dict]:
+        return {entry["key"]: entry for entry in self.bestiary_entries()}
+
+    def bestiary_entry(self, key: str) -> dict | None:
+        return self._bestiary_by_key.get(key)
+
+    @cached_property
     def core(self) -> dict[str, tuple[dict, ...]]:
         result = {
             category: tuple(self._json(f"{category}.json")["entries"])

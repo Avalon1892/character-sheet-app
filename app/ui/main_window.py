@@ -117,6 +117,12 @@ class CodexDialog(QDialog):
         home = QTreeWidgetItem(("Codex Home",))
         home.setData(0, Qt.ItemDataRole.UserRole, "home")
         self.tree.addTopLevelItem(home)
+        bestiary = QTreeWidgetItem(("Bestiary",))
+        bestiary.setData(0, Qt.ItemDataRole.UserRole, {"kind": "bestiary"})
+        for kind, label in (("Monster", "Monsters"), ("NPC", "NPCs"), ("Unique", "Unique creatures"), ("Mythic", "Mythic creatures")):
+            node = QTreeWidgetItem((label,))
+            node.setData(0, Qt.ItemDataRole.UserRole, {"kind": "bestiary", "entry_kind": kind})
+            bestiary.addChild(node)
         classes = QTreeWidgetItem(("Classes",))
         pathfinder = QTreeWidgetItem(("Pathfinder",))
         spheres = QTreeWidgetItem(("Spheres",))
@@ -217,6 +223,7 @@ class CodexDialog(QDialog):
             class_powers.addChild(family_node)
         classes.addChild(class_powers)
         self.tree.addTopLevelItem(classes)
+        self.tree.addTopLevelItem(bestiary)
         races_root = QTreeWidgetItem(("Races",))
         races_root.setData(0, Qt.ItemDataRole.UserRole, {"kind": "races"})
         for category_name in DEFAULT_CATALOG.race_categories():
@@ -430,6 +437,7 @@ class CodexDialog(QDialog):
         self.codex_search.returnPressed.connect(self._search_codex)
         target = {
             "home": home,
+            "bestiary": bestiary,
             "prodigy": prodigy or spheres,
             "pathfinder": pathfinder,
             "spheres": spheres,
@@ -437,9 +445,16 @@ class CodexDialog(QDialog):
             "formulas": formulas,
         }.get(initial_page, classes)
         self.tree.setCurrentItem(target)
+        if initial_page.startswith("bestiary:"):
+            self._open_codex_link(QUrl("codex:" + initial_page))
 
     def _show_page(self, item: QTreeWidgetItem | None, _previous=None) -> None:
         page = item.data(0, Qt.ItemDataRole.UserRole) if item else ""
+        if isinstance(page, dict) and page.get("kind") == "bestiary":
+            from app.bestiary import bestiary_index_html
+            from app.ui.reference_details import reference_document_html
+            self.browser.setHtml(reference_document_html(self, bestiary_index_html(DEFAULT_CATALOG, page.get("entry_kind", ""))))
+            return
         from app.reference_rules import REFERENCE_FAMILIES
         if isinstance(page, str) and page.startswith(tuple(row[2] + ':' for row in REFERENCE_FAMILIES) + ('reference-index:',)):
             self._open_codex_link(QUrl("codex:" + page))
@@ -633,7 +648,8 @@ class CodexDialog(QDialog):
                 f"<p><b>Classes:</b> {len(DEFAULT_CATALOG.class_entries())} &nbsp; "
                 f"<b>Races:</b> {len(DEFAULT_CATALOG.race_entries())} &nbsp; "
                 f"<b>Spells:</b> {len(DEFAULT_CATALOG.spell_entries())} &nbsp; "
-                f"<b>Items:</b> {len(DEFAULT_CATALOG.item_entries())}</p>"
+                f"<b>Items:</b> {len(DEFAULT_CATALOG.item_entries())} &nbsp; "
+                f"<b>Bestiary:</b> {len(DEFAULT_CATALOG.bestiary_entries()):,}</p>"
                 "<p>Pathfinder and Spheres classes are equal branches under Classes. "
                 "Select a class there for its progression, features, archetypes, and complete imported rules.</p>"
                 "<h2>Sheet tools</h2>"
@@ -666,6 +682,12 @@ class CodexDialog(QDialog):
 
     def _open_codex_link(self, url: QUrl) -> None:
         target = url.toString()
+        if target.startswith("codex:bestiary:"):
+            from app.bestiary import creature_html
+            from app.ui.reference_details import reference_document_html
+            key = urllib.parse.unquote(target[len("codex:bestiary:"):])
+            self.browser.setHtml(reference_document_html(self, creature_html(DEFAULT_CATALOG.bestiary_entry(key))))
+            return
         from app.reference_rules import reference_catalog, reference_index_html, REFERENCE_FAMILIES
         from app.ui.reference_details import reference_details_html, reference_document_html
         if target.startswith("codex:reference-index:"):
@@ -1509,6 +1531,14 @@ class MainWindow(QMainWindow):
         catalog_updates.triggered.connect(self._open_catalog_manager)
         codex_menu.addAction(catalog_updates)
 
+        bestiary_reference = QAction("Bestiary reference", self)
+        bestiary_reference.triggered.connect(lambda: self._open_codex("bestiary"))
+        codex_menu.addAction(bestiary_reference)
+        bestiary_menu = QMenu("&Bestiary", self)
+        bestiary_action = QAction("Bestiary & Encounters…", self)
+        bestiary_action.triggered.connect(self._open_bestiary)
+        bestiary_menu.addAction(bestiary_action)
+
         blocks_menu = self.menuBar().addMenu("Building &Blocks")
         self.blocks_menu = blocks_menu
         open_blocks = QAction("Open Building Blocks…", self)
@@ -1528,12 +1558,21 @@ class MainWindow(QMainWindow):
             blocks_menu.addAction(action)
         self._update_sheet_type_controls()
 
+        self.menuBar().addMenu(bestiary_menu)
+
     def _open_codex(self, page: str = "home") -> None:
         dialog = CodexDialog(page, self)
         dialog.exec()
 
     def _open_catalog_manager(self) -> None:
         CatalogManagerDialog(parent=self).exec()
+
+    def _open_bestiary(self) -> None:
+        from app.encounters import EncounterRepository
+        from app.ui.bestiary_dialog import BestiaryDialog
+        dialog = BestiaryDialog(EncounterRepository(self.repository.sqlite_connection), self)
+        dialog.open_codex.connect(lambda key: self._open_codex("bestiary:" + key))
+        dialog.exec()
 
     def open_building_blocks(self) -> None:
         if self.sheet_type == "refined":

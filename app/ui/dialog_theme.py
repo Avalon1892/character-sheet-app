@@ -24,6 +24,11 @@ def dialog_stylesheet(theme):
         QDialog QTableView, QDialog QListView {{ background: {p.surface}; color: {p.text};
             alternate-background-color: {p.page}; border: 1px solid {p.line};
             selection-background-color: {p.selection}; selection-color: {p.text}; font: 10pt 'Segoe UI'; }}
+        QDialog QTreeWidget#bestiaryTable {{ background: {p.surface}; color: {p.text};
+            alternate-background-color: {p.page}; border: 1px solid {p.line};
+            selection-background-color: {p.selection}; selection-color: {p.text}; font: 10pt 'Segoe UI'; }}
+        QDialog QTreeWidget#bestiaryTable::item {{ padding: 5px 6px; color: {p.text}; }}
+        QDialog QTreeWidget#bestiaryTable::item:selected {{ background: {p.selection}; color: {p.text}; }}
         QDialog QListView::item {{ padding: 6px 8px; color: {p.text}; }}
         QDialog QListView::item:selected {{ background: {p.selection}; color: {p.text}; }}
         QDialog QListWidget#catalogSphereList {{ background: {p.surface}; color: {p.text};

@@ -78,6 +78,12 @@ def build_codex_search_records(
     """Project every rules family into one reusable search document shape."""
 
     records: list[dict] = []
+    for entry in catalog.bestiary_entries():
+        records.append(_record(
+            entry["name"], f"Bestiary · {entry['type']} · CR {entry['cr']}",
+            entry.get("description", ""), entry.get("source_url", ""),
+            f"bestiary:{entry['key']}", 2,
+        ))
     for entry in catalog.race_entries():
         traits = " ".join(
             f"{trait.get('name', '')} {trait.get('description', '')}"
