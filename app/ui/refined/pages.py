@@ -4,11 +4,12 @@ from PySide6.QtWidgets import QVBoxLayout, QWidget, QLayout
 from app.ui.components import sheet_page
 from .components import ResponsiveRow
 
-DEFAULT_TABS = (("core","Overview"),("skills","Skills"),("abilities","Abilities"),
+DEFAULT_TABS = (("core","Overview"),("skills","Skills and Abilities"),("abilities","Abilities"),
                 ("magic","Magic"),("inventory","Equipment"),("build","Character"),
-                ("companion","Animal Companion"),("crafting","Crafting"))
+                ("progression","Class Progression"),("companion","Animal Companion"),("crafting","Crafting"))
 
 PLACEMENTS = {
+    "progression": (),
     "crafting": ("crafting",),
     "core": ("classic_statistics","attacks","conditions","martial_focus","spell_points","movement","inquisitor_features","imbue","prodigy_sequence"),
     "skills": ("skills","special_abilities","feats","traits"),
@@ -34,7 +35,7 @@ def compose(sheet):
         canvas=getattr(sheet,attr+"_canvas")
         clear_layout(canvas.layout())
         sheet.refined_pages[key]=(scroll,canvas,canvas.layout())
-    for key in ("skills","abilities"):
+    for key in ("skills","abilities","progression"):
         sheet.refined_pages[key]=sheet_page("refined"+key.title())
     # Keep unmapped alternatives available in Building Blocks, not top-level windows.
     sheet.refined_hidden = QWidget(sheet)
@@ -98,7 +99,8 @@ def compose(sheet):
     while sheet.page_tabs.count():
         sheet.page_tabs.removeTab(0)
     for key,title in DEFAULT_TABS:
-        sheet.page_tabs.addTab(sheet.refined_pages[key][0],title)
+        index=sheet.page_tabs.addTab(sheet.refined_pages[key][0],title)
+        sheet.page_tabs.tabBar().setTabData(index,key)
     # Preserve additional companion panels created by the shared sheet.
     for attr,title in (("familiar","Familiar"),("corpse_puppet","Corpse Puppet"),("phantom","Phantom")):
         scroll=getattr(sheet,attr+"_scroll")

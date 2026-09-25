@@ -34,7 +34,11 @@ class RefinedSheetWidget(CharacterSheetWidget):
         from .character_panels import combine_ability_advancement, create_equipment_figure_section
         combine_ability_advancement(self)
         create_equipment_figure_section(self)
+        from .class_progression import GroupedTabBar, ClassProgressionPage
+        self.page_tabs.setTabBar(GroupedTabBar())
         compose(self)
+        self.class_progression_page=ClassProgressionPage(self)
+        self.refined_pages["progression"][2].addWidget(self.class_progression_page)
         self._make_header_and_details()
         # Details are a single optional side panel, never a second empty block.
         self.custom_sections.pop("feature_details",None)
@@ -135,6 +139,8 @@ class RefinedSheetWidget(CharacterSheetWidget):
             self.details_panel.show()
 
     def _page_changed(self,*_):
+        if self.refined_ready and self.page_tabs.currentWidget() is self.refined_pages["progression"][0]:
+            self.class_progression_page.refresh()
         if (self.refined_ready and self.session
                 and self.page_tabs.currentWidget() is self.refined_pages['skills'][0]):
             # Finish the Skills geometry before its first paint, rather than
@@ -225,8 +231,8 @@ class RefinedSheetWidget(CharacterSheetWidget):
             # older arrangements use the search field on their actual page.
             controllers=lambda page=key:[c for c in self.table_presentations
                 if self.refined_pages[page][1].isAncestorOf(c.table)]
-            placeholder={"skills":"Search skills and special abilities…",
-                         "abilities":"Search talents, feats and traits…",
+            placeholder={"skills":"Search skills, abilities, feats and traits…",
+                         "abilities":"Search talents…",
                          "magic":"Search spells and sphere effects…",
                          "inventory":"Search equipment and worn items…"}[key]
             tools=PageSearchBar(controllers,placeholder=placeholder)
@@ -407,6 +413,8 @@ class RefinedSheetWidget(CharacterSheetWidget):
         self._decorate_formula_fields()
         for adapter in self.table_presentations: adapter.schedule()
         self._refresh_refined_visibility()
+        if self.page_tabs.currentWidget() is self.refined_pages["progression"][0]:
+            self.class_progression_page.refresh()
 
     def _refresh_worn_items(self, *args, **kwargs):
         super()._refresh_worn_items(*args, **kwargs)

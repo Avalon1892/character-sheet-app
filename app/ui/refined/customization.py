@@ -49,6 +49,7 @@ class RefinedTabManager(SheetTabManager):
                         self.custom_pages[tab.key]=(scroll,canvas,layout);self.canvases[tab.key]=canvas
                     page=self.custom_pages[tab.key][0]
                 index=self.sheet.page_tabs.addTab(page,tab.name)
+                self.sheet.page_tabs.tabBar().setTabData(index,tab.key)
                 self.sheet.page_tabs.setTabVisible(index,tab.visible and self.sheet.is_sheet_tab_available(tab.key))
                 if tab.key==previous:self.sheet.page_tabs.setCurrentIndex(index)
         finally:self.sheet.page_tabs.blockSignals(False)
@@ -240,6 +241,14 @@ class RefinedSession:
             self.character_id=character_id
             self.history.cancel()
             self.presentation.ensure_character(character_id,self.registry)
+            tabs=self.presentation.list_tabs(character_id)
+            if any(t.key=="skills" and t.name=="Skills" for t in tabs):
+                self.presentation.rename_tab(character_id,"skills","Skills and Abilities")
+            keys=[t.key for t in tabs]
+            if "progression" in keys and "build" in keys and keys.index("progression")!=keys.index("build")+1:
+                keys.remove("progression")
+                keys.insert(keys.index("build")+1,"progression")
+                self.presentation.reorder_tabs(character_id,keys)
             state=self.store.get(character_id,"refined")
             migrate_skills_reference_layout(self.presentation,character_id,state)
             migrate_feats_traits_skills_page(self.presentation,character_id,state)

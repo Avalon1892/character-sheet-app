@@ -351,6 +351,25 @@ class RefinedUiTests(unittest.TestCase):
         sheet._refresh_feats();QTest.qWait(200)
         self.assertEqual(77,sheet.feat_table.columnWidth(1))
 
+    def test_progression_page_and_navigation_groups(self):
+        sheet=self.sheet
+        session=sheet.session
+        keys=[session.tabs._key_at(i) for i in range(sheet.page_tabs.count())]
+        self.assertEqual(keys.index("build")+1,keys.index("progression"))
+        self.assertEqual("Skills and Abilities",sheet.page_tabs.tabText(keys.index("skills")))
+        self.assertEqual("build",sheet.page_tabs.tabBar().tabData(keys.index("build")))
+        self.assertEqual("crafting",sheet.page_tabs.tabBar().tabData(keys.index("crafting")))
+        session.select_tab("progression");QTest.qWait(200)
+        page=sheet.class_progression_page
+        self.assertGreater(page.tabs.count(),0)
+        table=page.tabs.widget(0).findChild(QTableWidget,"classProgressionTable")
+        self.assertEqual(20,table.rowCount())
+        self.assertEqual(QTableWidget.EditTrigger.NoEditTriggers,table.editTriggers())
+        self.assertEqual("Special",table.horizontalHeaderItem(5).text())
+        first=page.tabs.widget(0)
+        page.refresh()
+        self.assertIs(first,page.tabs.widget(0))
+
     def test_feats_traits_old_defaults_migrate_but_custom_destination_stays(self):
         from app.ui.refined.layout_migrations import migrate_feats_traits_skills_page
         session=self.sheet.session
