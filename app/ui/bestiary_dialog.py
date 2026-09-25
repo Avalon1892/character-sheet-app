@@ -17,6 +17,7 @@ from app.catalogs import DEFAULT_CATALOG
 from app.encounters import DIFFICULTIES, ENCOUNTER_RULES_URL, EncounterRepository, encounter_budget, parse_party_levels
 from app.ui.components import DebouncedCallback
 from app.ui.reference_details import reference_document_html
+from app.ui.filter_controls import CapabilityFilter, MultiChoiceFilter
 
 
 class BestiaryDialog(QDialog):
@@ -40,7 +41,7 @@ class BestiaryDialog(QDialog):
         layout.addWidget(heading)
         search_row = QHBoxLayout()
         self.search = QLineEdit()
-        self.search.setPlaceholderText("Search creatures…")
+        self.search.setPlaceholderText("Search creatures… (use ; for alternatives)")
         self.search_mode = QComboBox()
         for title, key in (("Name", "name"), ("Rules text", "description"), ("Name & rules", "both")):
             self.search_mode.addItem(title, key)
@@ -49,24 +50,23 @@ class BestiaryDialog(QDialog):
             self.sort.addItem(title, key)
         self.minimum_cr = self._cr_combo("Min CR")
         self.maximum_cr = self._cr_combo("Max CR")
+        cr_values = {entry["cr"]: entry.get("cr_value") for entry in self.index.entries}
+        self.cr_choices = MultiChoiceFilter(sorted(cr_values, key=lambda value: (cr_values[value] is None, cr_values[value] or 0)), empty_text="Any CR")
         self.more_filters = QPushButton("More filters")
         self.more_filters.setCheckable(True)
         reset = QPushButton("Reset filters")
         search_row.addWidget(self.search, 1)
-        for widget in (self.search_mode, self.minimum_cr, self.maximum_cr, self.sort, self.more_filters, reset):
+        for widget in (self.search_mode, self.minimum_cr, self.maximum_cr, self.cr_choices, self.sort, self.more_filters, reset):
             search_row.addWidget(widget)
         layout.addLayout(search_row)
-        self.filter_box = QGroupBox("Match all selected filters")
+        self.filter_box = QGroupBox("Any selected option within each filter · all filters must match · separate text alternatives with ;")
         grid = QGridLayout(self.filter_box)
         self.combos = {}
         for index, (field, label) in enumerate((
             ("kinds", "Entry kind"), ("type", "Creature type"), ("subtypes", "Subtype"),
             ("size", "Size"), ("alignment", "Alignment"), ("movement", "Movement"),
         )):
-            combo = QComboBox()
-            combo.addItem("Any", "")
-            for value in self.index.values(field):
-                combo.addItem(value, value)
+            combo = MultiChoiceFilter(self.index.values(field))
             combo.setMinimumWidth(130)
             self.combos[field] = combo
             row, column = divmod(index, 3)
@@ -74,13 +74,14 @@ class BestiaryDialog(QDialog):
             grid.addWidget(combo, row, column * 2 + 1)
         self.text_filters = {}
         for index, (field, label, example) in enumerate((
-            ("environment", "Location / environment", "Forest, desert, underground…"),
-            ("abilities", "Special abilities", "Poison, pounce, regeneration…"),
-            ("defenses", "Defenses", "Fire, DR, spell resistance…"),
-            ("source", "Publication", "Bestiary 2, NPC Codex…"),
+            ("environment", "Location / environment", "forest; desert; underground"),
+            ("abilities", "Special abilities", "poison; pounce; regeneration"),
+            ("defenses", "Defenses", "fire; DR; spell resistance"),
+            ("source", "Publication", "Bestiary 2; NPC Codex"),
         )):
             edit = QLineEdit()
             edit.setPlaceholderText(example)
+            edit.setToolTip("Separate alternatives with ;. Matching any one is enough. Leave empty for no restriction.")
             self.text_filters[field] = edit
             row, column = divmod(index, 2)
             grid.addWidget(QLabel(label), row + 2, column * 3)
@@ -89,10 +90,11 @@ class BestiaryDialog(QDialog):
         role_row.addWidget(QLabel("Capabilities:"))
         self.roles = {}
         for role in ("Melee", "Ranged", "Caster"):
-            check = QCheckBox(role)
+            check = CapabilityFilter(role)
             self.roles[role] = check
             role_row.addWidget(check)
-        self.roles["Caster"].setToolTip("Published spells, extracts, psychic magic, or spell-like abilities.")
+        self.roles["Caster"].setStatusTip("Published spells, extracts, psychic magic, or spell-like abilities.")
+        role_row.addWidget(QLabel("— any   ✓ must have   ✕ must not have"))
         self.legacy = QCheckBox("Include legacy 3.5 entries")
         self.legacy.setChecked(True)
         role_row.addStretch()
@@ -197,10 +199,13 @@ class BestiaryDialog(QDialog):
         self.debounce = DebouncedCallback(self.refresh_results, 400, self)
         for edit in (self.search, *self.text_filters.values()):
             edit.textChanged.connect(self.debounce.schedule)
-        for combo in (self.search_mode, self.sort, self.minimum_cr, self.maximum_cr, *self.combos.values()):
+        for combo in (self.search_mode, self.sort, self.minimum_cr, self.maximum_cr):
             combo.currentIndexChanged.connect(self.debounce.schedule)
-        for check in (*self.roles.values(), self.legacy):
-            check.toggled.connect(self.debounce.schedule)
+        for combo in (*self.combos.values(), self.cr_choices):
+            combo.selectionChanged.connect(self.debounce.schedule)
+        for check in self.roles.values():
+            check.stateChanged.connect(self.debounce.schedule)
+        self.legacy.toggled.connect(self.debounce.schedule)
         reset.clicked.connect(self._reset_filters)
         self.results.currentItemChanged.connect(self._preview_result)
         self.results.itemActivated.connect(lambda *_: self._add())
@@ -242,10 +247,12 @@ class BestiaryDialog(QDialog):
     def refresh_results(self):
         filters = BestiaryFilters(
             minimum_cr=self.minimum_cr.currentData(), maximum_cr=self.maximum_cr.currentData(),
-            kind=self.combos["kinds"].currentData(), creature_type=self.combos["type"].currentData(),
-            subtype=self.combos["subtypes"].currentData(), size=self.combos["size"].currentData(),
-            alignment=self.combos["alignment"].currentData(), movement=self.combos["movement"].currentData(),
-            roles=tuple(role for role, check in self.roles.items() if check.isChecked()),
+            kind=self.combos["kinds"].selected_values(), creature_type=self.combos["type"].selected_values(),
+            subtype=self.combos["subtypes"].selected_values(), size=self.combos["size"].selected_values(),
+            alignment=self.combos["alignment"].selected_values(), movement=self.combos["movement"].selected_values(),
+            challenge_ratings=self.cr_choices.selected_values(),
+            roles=tuple(role for role, check in self.roles.items() if check.state == 1),
+            excluded_roles=tuple(role for role, check in self.roles.items() if check.state == -1),
             include_legacy=self.legacy.isChecked(), **{field: edit.text() for field, edit in self.text_filters.items()},
         )
         result = self.index.search(self.search.text(), self.search_mode.currentData(), filters, self.sort.currentData())
@@ -262,10 +269,12 @@ class BestiaryDialog(QDialog):
     def _reset_filters(self):
         for edit in (self.search, *self.text_filters.values()):
             edit.clear()
-        for combo in (self.search_mode, self.sort, self.minimum_cr, self.maximum_cr, *self.combos.values()):
+        for combo in (self.search_mode, self.sort, self.minimum_cr, self.maximum_cr):
             combo.setCurrentIndex(0)
+        for combo in (*self.combos.values(), self.cr_choices):
+            combo.clear()
         for check in self.roles.values():
-            check.setChecked(False)
+            check.set_state(0)
         self.legacy.setChecked(True)
         self.debounce.flush()
 

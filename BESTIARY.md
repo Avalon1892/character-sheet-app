@@ -5,6 +5,13 @@ or Enter adds the selected quantity. Filters combine, and encounter selections
 survive searches. Save/Save copy persist a draft in the application's database;
 closing an unsaved draft offers Save, Discard, or Cancel. No character is needed.
 
+Dropdown filters support multiple checked options. Options within a filter use
+OR; different filters combine with AND. In search and text filters, separate
+alternatives with `;` (for example `forest; desert`); commas remain part of names.
+Explicit CR selections also respect the minimum/maximum range. Capability buttons
+cycle **— unrestricted → ✓ required → ✕ excluded**; all required capabilities
+must be present, and none of the excluded capabilities may be present.
+
 ## Coverage and sources
 
 `data/pf1e/bestiary.json` imports the Archives of Nethys PF1 **Monster (All),

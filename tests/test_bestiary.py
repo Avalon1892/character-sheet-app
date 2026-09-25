@@ -8,7 +8,7 @@ from unittest.mock import patch
 
 os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, QTimer
 from PySide6.QtTest import QTest
 from PySide6.QtWidgets import QApplication, QMessageBox
 
@@ -99,6 +99,30 @@ class BestiaryTests(unittest.TestCase):
         self.assertEqual(index.search(filters=BestiaryFilters(minimum_cr=3, maximum_cr=1)).total, 0)
         self.assertTrue(index.search(limit=1).limited)
 
+    def test_multiple_options_are_or_within_filters_and_and_between_filters(self):
+        first, second = sample()
+        second.update(size='Large', environment='warm desert', alignment='CE', subtypes=['giant'], movement=['Swim'])
+        index = BestiaryIndex([first, second])
+        filters = BestiaryFilters(size=('Small', 'Large'), environment='forest; desert',
+                                 creature_type=('animal', 'humanoid'), alignment=('N', 'CE'),
+                                 subtype=('goblinoid', 'giant'), movement=('Land', 'Swim'),
+                                 challenge_ratings=('1/3', '2'), kind=('NPC', 'Monster'),
+                                 abilities='poison; nonexistent', defenses='fire; cold', source='missing; Bestiary')
+        self.assertEqual(index.search(filters=filters).total, 2)
+        self.assertEqual(index.search('Example; Wolf', filters=filters).total, 2)
+        self.assertEqual(index.search('Example; Example').total, 1)
+        self.assertEqual(index.search(' ; ; ').total, 2)
+        self.assertEqual(index.search('Example; Wolf', filters=BestiaryFilters(size=('Small',))).total, 1)
+        self.assertEqual(index.search('missing; DC 12', mode='description').total, 2)
+        self.assertEqual(index.search(filters=BestiaryFilters(challenge_ratings=('1/3', '2'), minimum_cr=1)).total, 1)
+
+    def test_capability_requirements_and_exclusions_are_independent(self):
+        index = BestiaryIndex(sample())
+        self.assertEqual(index.search(filters=BestiaryFilters(roles=('Melee',), excluded_roles=('Caster',))).total, 1)
+        self.assertEqual(index.search(filters=BestiaryFilters(roles=('Melee', 'Ranged'))).total, 1)
+        self.assertEqual(index.search(filters=BestiaryFilters(excluded_roles=('Caster', 'Ranged'))).total, 1)
+        self.assertEqual(index.search(filters=BestiaryFilters(roles=('Caster',), excluded_roles=('Caster',))).total, 0)
+
     def test_encounter_budget_uses_published_xp_and_party_adjustments(self):
         entries = {e["key"]: e for e in sample()}
         budget = encounter_budget(entries, {"creature:second": 2}, (4, 4, 5, 5), "Average")
@@ -174,6 +198,56 @@ class BestiaryUiTests(unittest.TestCase):
         dialog._remove()
         self.assertFalse(dialog.remove_button.isEnabled())
         self.assertEqual(dialog.members, {})
+
+    def test_multi_filter_controls_exclusions_reset_and_selection_persistence(self):
+        dialog = self.dialog
+        choice = dialog.combos['type']
+        choice.set_selected_values(('animal', 'humanoid'))
+        choice.search.setText('animal')
+        self.assertEqual(set(choice.selected_values()), {'animal', 'humanoid'})
+        self.assertEqual(choice.text(), '2 selected')
+        role = dialog.roles['Caster']
+        role.click()
+        self.assertEqual(role.state, 1)
+        self.assertIn('✓', role.text())
+        role.click()
+        self.assertEqual(role.state, -1)
+        self.assertIn('✕', role.text())
+        dialog.debounce.flush()
+        self.assertEqual(dialog.results.topLevelItemCount(), 1)
+        self.assertEqual(dialog.results.topLevelItem(0).text(0), 'Wolf')
+        dialog.results.setCurrentItem(dialog.results.topLevelItem(0))
+        dialog._add()
+        dialog.text_filters['environment'].setText('forest; desert')
+        dialog.cr_choices.set_selected_values(('1/3', '2'))
+        dialog._reset_filters()
+        self.assertEqual(choice.selected_values(), ())
+        self.assertEqual(dialog.cr_choices.selected_values(), ())
+        self.assertEqual(role.state, 0)
+        self.assertEqual(dialog.members, {'creature:second': 1})
+        self.assertEqual(dialog.results.topLevelItemCount(), 2)
+        dialog.show()
+        self.application.processEvents()
+        QTest.keyClick(role, Qt.Key.Key_Space)
+        self.assertEqual(role.state, 1)
+
+    def test_multi_choice_popup_stays_open_and_supports_keyboard(self):
+        dialog = self.dialog
+        dialog.show()
+        dialog.more_filters.setChecked(True)
+        self.application.processEvents()
+        choice = dialog.combos['type']
+        visible = []
+        def select_options():
+            for index in range(choice.options.count()):
+                choice.options.setCurrentRow(index)
+                QTest.keyClick(choice.options, Qt.Key.Key_Space)
+            visible.append(choice.menu().isVisible())
+            choice.menu().close()
+        QTimer.singleShot(0, select_options)
+        choice.showMenu()
+        self.assertEqual(len(choice.selected_values()), 2)
+        self.assertEqual(visible, [True])
 
     def test_layout_and_keyboard_activation_in_all_themes(self):
         from app.ui.dialog_theme import dialog_stylesheet
