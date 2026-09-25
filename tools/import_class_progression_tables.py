@@ -82,5 +82,5 @@ if __name__ == "__main__":
         results = dict(pool.map(load, class_entries()))
     document = {key: value for key, value in results.items() if value}
     (ROOT / "data/pf1e/class_progression_tables.json").write_text(
-        json.dumps(document, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        json.dumps(document, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(f"Imported {len(document)}/{len(results)} class tables.")
