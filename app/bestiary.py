@@ -74,7 +74,11 @@ def creature_html(entry: dict | None) -> str:
         return "<p>Select a creature to read its statistics and abilities.</p>"
     tags = " · ".join((*entry.get("kinds", ()), *entry.get("roles", ())))
     warning = "<p><b>Legacy 3.5 entry:</b> check conversion before play.</p>" if entry.get("legacy_35") else ""
+    ability_groups = "".join(f"<p><b>{escape(group)}:</b> {escape('; '.join(values))}</p>"
+                             for group, values in entry.get("ability_tags", {}).items())
+    ability_groups = "<h3>Ability tags</h3>" + ability_groups if ability_groups else ""
     return (f"<p>{escape(tags)}</p>{warning}" + entry.get("statblock_html", "") +
+            ability_groups +
             f'<hr><p><a href="{escape(entry["source_url"], quote=True)}">Original source and publication credits</a></p>')
 
 

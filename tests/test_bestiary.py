@@ -43,6 +43,28 @@ def sample():
 
 
 class BestiaryTests(unittest.TestCase):
+    def test_ability_tags_include_hp_senses_auras_and_defenses_without_prose_matches(self):
+        document = STATBLOCK.replace('<b>hp</b>6', '<b>hp</b>1,234 (16 HD; 6d8+10d6+138); regeneration 5 (acid or fire); fast healing 2')
+        document = document.replace('<b>Init</b>+2', '<b>Init</b>+2<br><b>Senses</b>darkvision 60 ft., scent; Perception +8<br><b>Aura</b>fear (30 ft.)')
+        document = document.replace('<b>Resist</b>fire 5', '<b>Resist</b>fire 5<br><b>DR</b>5/cold iron<br><b>SR</b>20<br><b>Immune</b>poison<br><b>Defensive Abilities</b>evasion')
+        entry = parse_creature(document, SEED)
+        for query in ('regen', 'fast healing', 'darkvision', 'scent', 'fear', 'evasion', 'damage reduction', 'spell resistance', 'poison'):
+            self.assertTrue(BestiaryFilters(abilities=query).matches(entry), query)
+        self.assertTrue(BestiaryFilters(defenses='regen').matches(entry))
+        self.assertIn('regeneration 5 (acid or fire)', entry['ability_tags']['Recovery'])
+        self.assertEqual(entry['ability_tags']['Recovery'], ['regeneration 5 (acid or fire)', 'fast healing 2'])
+        self.assertNotIn('regeneration', sample()[0]['special_abilities'])
+        self.assertFalse(BestiaryFilters(abilities='Perception +8').matches(entry))
+
+    def test_spell_tags_keep_casting_names_and_exclude_prose_and_equipment(self):
+        document = STATBLOCK.replace('at will—light', 'at will—<i>light</i>, <i>detect magic</i>')
+        document = document.replace('DC 12<br>', 'DC 12; ineffective against regeneration.<br><b>Gear</b><i>cloak of resistance</i><br>')
+        entry = parse_creature(document, SEED)
+        self.assertIn('detect magic', entry['ability_tags']['Spellcasting'])
+        self.assertFalse(BestiaryFilters(abilities='regeneration').matches(entry))
+        self.assertFalse(BestiaryFilters(abilities='cloak of resistance').matches(entry))
+        self.assertIn('Ability tags', creature_html(entry))
+
     def test_importer_preserves_mechanics_and_parses_npc_and_monster_indexes(self):
         entry = sample()[0]
         self.assertEqual(entry["roles"], ["Melee", "Ranged", "Caster"])
@@ -169,6 +191,20 @@ class BestiaryUiTests(unittest.TestCase):
 
 
 class BundledBestiaryTests(unittest.TestCase):
+    def test_regular_troll_regeneration_and_other_statline_abilities_are_searchable(self):
+        from app.catalogs import DEFAULT_CATALOG
+        index = BestiaryIndex(DEFAULT_CATALOG.bestiary_entries())
+        trolls = index.search('Troll', filters=BestiaryFilters(abilities='regen')).records
+        self.assertTrue(any(e['name'] == 'Troll' and 'Monster' in e['kinds'] for e in trolls))
+        regular = next(e for e in trolls if e['name'] == 'Troll' and 'Monster' in e['kinds'])
+        self.assertEqual(regular['ability_tags']['Recovery'], ['regeneration 5 (acid or fire)'])
+        self.assertTrue(BestiaryFilters(abilities='scent').matches(regular))
+        for entry in DEFAULT_CATALOG.bestiary_entries():
+            self.assertIn('ability_tags', entry)
+            for values in entry['ability_tags'].values():
+                for value in values:
+                    self.assertIn(value.casefold(), entry['special_abilities'].casefold())
+
     def test_import_coverage_and_representative_statblocks(self):
         from app.catalogs import DEFAULT_CATALOG
         data = DEFAULT_CATALOG.bestiary

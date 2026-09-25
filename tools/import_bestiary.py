@@ -70,6 +70,66 @@ def _field(label: Tag) -> str:
     return " ".join(" ".join(parts).split()).strip(" ;,")
 
 
+def _tag_parts(value: str) -> list[str]:
+    """Split stat-line lists without separating parameters inside parentheses."""
+    parts, start, depth = [], 0, 0
+    for index, character in enumerate(value):
+        if character == "(":
+            depth += 1
+        elif character == ")":
+            depth = max(0, depth - 1)
+        elif character in ",;" and not depth:
+            parts.append(value[start:index].strip())
+            start = index + 1
+    parts.append(value[start:].strip())
+    return [part for part in parts if part and part.casefold() not in {"none", "—", "-"}]
+
+
+def ability_tags(block: Tag, labels: dict[str, str]) -> dict[str, list[str]]:
+    """Index explicit mechanical fields, not incidental mentions in rules prose."""
+    groups: dict[str, list[str]] = {}
+
+    def add(group, text, prefix=""):
+        values = groups.setdefault(group, [])
+        for value in _tag_parts(text):
+            tag = prefix + value
+            if tag.casefold() not in {existing.casefold() for existing in values}:
+                values.append(tag)
+
+    # Regeneration/fast healing normally live after the hit-point total.
+    for value in _tag_parts(labels.get("hp", ""))[1:]:
+        if not re.match(r"^[\d(]", value):
+            add("Recovery", value)
+    for field in ("regeneration", "fast healing"):
+        if labels.get(field):
+            add("Recovery", labels[field], field + " ")
+    for field, prefix in (("defensive abilities", ""), ("dr", "Damage reduction (DR): "),
+                          ("sr", "Spell resistance (SR): "), ("immune", "Immune / immunities: "),
+                          ("resist", "Resistance: ")):
+        add("Defenses", labels.get(field, ""), prefix)
+    add("Weaknesses", labels.get("weaknesses", ""))
+    senses = re.split(r"\b(?:Perception|Listen|Spot)\s+[+−–-]?\d", labels.get("senses", ""), maxsplit=1, flags=re.I)[0]
+    add("Senses", senses)
+    for group, field in (("Auras", "aura"), ("Offensive abilities", "special attacks"),
+                         ("Special qualities", "sq"), ("Movement", "speed")):
+        add(group, labels.get(field, ""))
+    for label in block.find_all(["b", "strong"]):
+        name = compact(label)
+        if re.search(r"\((?:Ex|Su|Sp)\)", name):
+            add("Named abilities", name)
+        if re.search(r"spells (?:known|prepared)|spell-like abilities|psychic magic|extracts prepared", name, re.I):
+            add("Spellcasting", name)
+            # Spell names are italicized in the casting section. Stop at the
+            # next stat label/section, so gear and descriptive prose are excluded.
+            for sibling in label.next_siblings:
+                if isinstance(sibling, Tag):
+                    if sibling.name in {"b", "strong", "h1", "h2", "h3", "h4"}:
+                        break
+                    for spell in ([sibling] if sibling.name == "i" else sibling.find_all("i")):
+                        add("Spellcasting", compact(spell))
+    return {group: values for group, values in groups.items() if values}
+
+
 def parse_creature(document: str, seed: dict) -> dict:
     soup = BeautifulSoup(document, "html.parser")
     block = soup.find(id=re.compile(r"MainContent_DataList(?:Feats|NPCs)_Label1_0$"))
@@ -128,14 +188,10 @@ def parse_creature(document: str, seed: dict) -> dict:
     if re.match(r"\d", speed):
         entry["movement"].insert(0, "Land")
     entry["speed"] = speed
-    entry["defenses"] = "; ".join(f"{key.title()}: {labels[key]}" for key in
-                                    ("dr", "sr", "immune", "resist", "weaknesses", "defensive abilities") if labels.get(key))
-    special = []
-    for label in block.find_all(["b", "strong"]):
-        if re.search(r"\((?:Ex|Su|Sp)\)", compact(label)):
-            special.append(compact(label))
-    entry["special_abilities"] = "; ".join(filter(None, (
-        labels.get("special attacks"), labels.get("sq"), *special)))
+    entry["ability_tags"] = ability_tags(block, labels)
+    entry["defenses"] = "; ".join(tag for group in ("Recovery", "Defenses", "Weaknesses")
+                                    for tag in entry["ability_tags"].get(group, ()))
+    entry["special_abilities"] = "; ".join(tag for tags in entry["ability_tags"].values() for tag in tags)
     # AoN also indexes unconverted 3.5 blocks: their Grapple statistic replaces
     # PF1's CMB/CMD. Keep them identifiable rather than silently converting XP.
     entry["legacy_35"] = ("grapple" in labels and "cmb" not in labels) or (
