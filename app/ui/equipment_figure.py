@@ -35,6 +35,16 @@ _slot_icons = {}
 
 def slot_icon(slot, color):
     key = "Ring" if slot.startswith("Ring") else slot
+    if slot == WIELDED_SLOT or slot.casefold() == "slotless":
+        if key not in _slot_icons:
+            filename, rect = (("weapon.png", (143, 135, 968, 869)) if slot == WIELDED_SLOT
+                              else ("slotless.png", (166, 129, 923, 862)))
+            source = QPixmap(str(ASSET_DIRECTORY / filename))
+            scale_x, scale_y = source.width() / 1254, source.height() / 1254
+            x, y, width, height = rect
+            _slot_icons[key] = QIcon(source.copy(round(x*scale_x), round(y*scale_y),
+                                               round(width*scale_x), round(height*scale_y)))
+        return _slot_icons[key]
     if key in SLOT_ICON_RECTS:
         if key not in _slot_icons:
             atlas = QPixmap(str(ASSET_DIRECTORY / "slots.png"))

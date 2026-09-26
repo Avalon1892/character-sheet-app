@@ -107,6 +107,11 @@ class EquipmentFigureTests(unittest.TestCase):
         try:
             figure = dialog.figure
             self.assertFalse(figure.silhouette.isNull())
+            image = figure.silhouette.toImage()
+            self.assertTrue(image.hasAlphaChannel())
+            self.assertEqual(image.pixelColor(0, 0).alpha(), 0)
+            for slot in ('Wielded weapons', 'Slotless'):
+                self.assertFalse(slot_icon(slot, '#ffffff').isNull())
             for slot in SLOT_ICON_RECTS:
                 self.assertFalse(slot_icon(slot, '#ffffff').isNull(), slot)
             for width, height in ((400, 580), (800, 580), (400, 900)):
