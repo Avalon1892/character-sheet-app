@@ -101,6 +101,25 @@ class EquipmentFigureTests(unittest.TestCase):
         finally:
             dialog.close()
 
+    def test_supplied_artwork_and_icons_scale_with_slot_targets(self):
+        from app.ui.equipment_figure import SLOT_ICON_RECTS, SLOT_POSITIONS, slot_icon
+        dialog = EquipmentFigureDialog(self.service)
+        try:
+            figure = dialog.figure
+            self.assertFalse(figure.silhouette.isNull())
+            for slot in SLOT_ICON_RECTS:
+                self.assertFalse(slot_icon(slot, '#ffffff').isNull(), slot)
+            for width, height in ((400, 580), (800, 580), (400, 900)):
+                figure.resize(width, height)
+                figure.position_targets()
+                frame = figure.artwork_rect()
+                for slot, target in figure.targets.items():
+                    x, y = SLOT_POSITIONS[slot]
+                    self.assertAlmostEqual(target.geometry().center().x(), frame.x()+x*frame.width()/400, delta=2)
+                    self.assertAlmostEqual(target.geometry().center().y(), frame.y()+y*frame.height()/580, delta=2)
+        finally:
+            dialog.close()
+
     def test_inventory_unequip_drop_can_be_undone(self):
         item = self.add()
         self.service.equip(item, "Feet")

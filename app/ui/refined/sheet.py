@@ -35,6 +35,10 @@ class RefinedSheetWidget(CharacterSheetWidget):
         combine_ability_advancement(self)
         create_equipment_figure_section(self)
         from .class_progression import GroupedTabBar, ClassProgressionPage
+        # Qt requires an empty tab widget when replacing its tab bar; otherwise
+        # the old stacked pages survive with indices unrelated to the new tabs.
+        while self.page_tabs.count():
+            self.page_tabs.removeTab(0)
         self.page_tabs.setTabBar(GroupedTabBar())
         compose(self)
         self.class_progression_page=ClassProgressionPage(self)

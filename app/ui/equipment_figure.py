@@ -1,4 +1,5 @@
 """Modeless equipment figure; all persistence stays in EquipmentWearService."""
+from pathlib import Path
 from PySide6.QtCore import Qt, QPointF, QRectF, Signal, QSize
 from PySide6.QtGui import QColor, QPainter, QPainterPath, QPen, QPixmap, QIcon, QDrag, QPolygonF
 from PySide6.QtWidgets import (QApplication, QDialog, QWidget, QVBoxLayout, QHBoxLayout,
@@ -11,15 +12,37 @@ from app.ui.refined.theme import PALETTES
 # Normalized locations are deliberately separate from equipment rules. Extra
 # user-created slots remain available in the tray rather than being discarded.
 SLOT_POSITIONS = {
-    "Head": (200, 25), "Headband": (200, 65), "Eyes": (200, 105),
-    "Neck": (200, 149), "Shoulders": (263, 171), "Chest": (200, 194),
-    "Armor": (177, 240), "Body": (223, 240), "Belt": (200, 287),
-    "Wrists": (99, 303), "Hands": (88, 348),
-    "Ring (Left)": (111, 390), "Ring (Right)": (289, 390),
-    "Shield": (308, 257), WIELDED_SLOT: (310, 344), "Feet": (200, 534),
+    "Head": (200, 38), "Headband": (150, 60), "Eyes": (200, 82),
+    "Neck": (200, 125), "Shoulders": (258, 146), "Chest": (200, 171),
+    "Armor": (176, 216), "Body": (224, 216), "Belt": (200, 261),
+    "Wrists": (105, 273), "Hands": (100, 318),
+    "Ring (Left)": (126, 362), "Ring (Right)": (274, 362),
+    "Shield": (310, 247), WIELDED_SLOT: (302, 318), "Feet": (151, 525),
 }
 
+ASSET_DIRECTORY = Path(__file__).resolve().parents[1] / "assets" / "equipment"
+# Source artwork is kept intact. These rectangles exclude its printed labels.
+SLOT_ICON_RECTS = {
+    "Armor": (39, 47, 260, 248), "Shield": (321, 47, 254, 248),
+    "Belt": (597, 47, 252, 248), "Body": (874, 47, 252, 248),
+    "Chest": (1151, 47, 258, 248), "Eyes": (39, 377, 260, 251),
+    "Feet": (321, 377, 254, 251), "Hands": (597, 377, 252, 251),
+    "Head": (874, 377, 252, 251), "Headband": (1151, 377, 258, 251),
+    "Neck": (133, 707, 274, 253), "Ring": (433, 707, 275, 253),
+    "Shoulders": (734, 707, 275, 253), "Wrists": (1034, 707, 278, 253),
+}
+_slot_icons = {}
+
 def slot_icon(slot, color):
+    key = "Ring" if slot.startswith("Ring") else slot
+    if key in SLOT_ICON_RECTS:
+        if key not in _slot_icons:
+            atlas = QPixmap(str(ASSET_DIRECTORY / "slots.png"))
+            # Coordinates refer to the 1448 × 1086 supplied atlas.
+            x, y, width, height = SLOT_ICON_RECTS[key]
+            sx, sy = atlas.width() / 1448, atlas.height() / 1086
+            _slot_icons[key] = QIcon(atlas.copy(round(x*sx), round(y*sy), round(width*sx), round(height*sy)))
+        return _slot_icons[key]
     pix = QPixmap(32, 32); pix.fill(Qt.GlobalColor.transparent)
     p = QPainter(pix); p.setRenderHint(QPainter.RenderHint.Antialiasing)
     p.setPen(QPen(QColor(color), 2)); p.setBrush(Qt.BrushStyle.NoBrush)
@@ -133,11 +156,26 @@ class EquipmentFigure(QWidget):
         self.service = service
         self.palette_tokens = PALETTES["classic"]
         self.targets = {}
+        self.silhouette = QPixmap(str(ASSET_DIRECTORY / "silhouette.png"))
         self.setMinimumSize(360, 560)
+
+    def artwork_rect(self):
+        scale = min(self.width() / 400, self.height() / 580)
+        return QRectF((self.width()-400*scale)/2, (self.height()-580*scale)/2, 400*scale, 580*scale)
 
     def paintEvent(self, event):
         p = QPainter(self); p.setRenderHint(QPainter.RenderHint.Antialiasing)
-        p.scale(self.width() / 400, self.height() / 580)
+        frame = self.artwork_rect()
+        if not self.silhouette.isNull():
+            p.setRenderHint(QPainter.RenderHint.SmoothPixmapTransform)
+            size = self.silhouette.size().scaled(frame.size().toSize(), Qt.AspectRatioMode.KeepAspectRatio)
+            image_rect = QRectF(0, 0, size.width(), size.height())
+            image_rect.moveCenter(frame.center())
+            p.drawPixmap(image_rect, self.silhouette, QRectF(self.silhouette.rect()))
+            p.end()
+            return
+        p.translate(frame.topLeft())
+        p.scale(frame.width() / 400, frame.height() / 580)
         p.setPen(Qt.PenStyle.NoPen)
         color = QColor(self.palette_tokens.muted); color.setAlpha(65); p.setBrush(color)
         p.drawEllipse(QRectF(165, 40, 70, 90))
@@ -159,12 +197,14 @@ class EquipmentFigure(QWidget):
         super().resizeEvent(event)
 
     def position_targets(self):
-        size = min(40, max(30, round(self.height() / 580 * 38)))
+        frame = self.artwork_rect()
+        size = min(44, max(26, round(frame.height() / 580 * 40)))
         for slot, target in self.targets.items():
             x, y = SLOT_POSITIONS[slot]
             target.setFixedSize(size, size)
             target.setIconSize(QSize(size - 8, size - 8))
-            target.move(round(x * self.width() / 400 - size / 2), round(y * self.height() / 580 - size / 2))
+            target.move(round(frame.x() + x * frame.width() / 400 - size / 2),
+                        round(frame.y() + y * frame.height() / 580 - size / 2))
 
 class EquipmentFigureContent:
     """Shared live figure body for an embedded panel or a separate dialog."""

@@ -230,7 +230,6 @@ class RefinedUiTests(unittest.TestCase):
         self.assertIsNotNone(self.window.refined_sheet)  # the requested default
         self.assertIsNone(self.window.original_spheres_sheet)
         self.assertIsNone(self.window.ultra_sheet)
-        self.window._set_sheet_type("refined")
         self.sheet=self.window.refined_sheet
         self.window.show()
         QTest.qWait(150)
@@ -243,6 +242,19 @@ class RefinedUiTests(unittest.TestCase):
         cid=self.repo.create_character(name,kind)
         self.repo.add_class_level(cid,name,6,"3/4","Good","Poor","Good",key,8,36)
         return cid
+
+    def test_first_open_and_reset_keep_tab_labels_bound_to_correct_pages(self):
+        session = self.sheet.session
+        for reset in (False, True, True):
+            if reset:
+                session.reset(confirm=False)
+            tabs = session.presentation.list_tabs(self.cid)
+            self.assertEqual(self.sheet.page_tabs.count(), len(tabs))
+            for index, tab in enumerate(tabs):
+                self.assertIs(self.sheet.page_tabs.widget(index), session.tabs.builtin_pages[tab.key])
+                self.assertEqual(self.sheet.page_tabs.tabText(index), tab.name)
+                self.assertEqual(self.sheet.page_tabs.isTabVisible(index),
+                                 tab.visible and self.sheet.is_sheet_tab_available(tab.key))
 
     def test_skills_first_open_refresh_search_and_resize_fit_the_page(self):
         self.sheet.session.select_tab('skills')
