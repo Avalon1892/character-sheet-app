@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import sqlite3
+from html import escape
 
 from PySide6.QtCore import Qt, QUrl, Signal
 from PySide6.QtGui import QDesktopServices
@@ -12,7 +13,7 @@ from PySide6.QtWidgets import (
     QTreeWidget, QTreeWidgetItem, QVBoxLayout, QWidget,
 )
 
-from app.bestiary import BestiaryFilters, BestiaryIndex, creature_html
+from app.bestiary import BestiaryFilters, BestiaryIndex, creature_html, filter_options
 from app.catalogs import DEFAULT_CATALOG
 from app.encounters import DIFFICULTIES, ENCOUNTER_RULES_URL, EncounterRepository, encounter_budget, parse_party_levels
 from app.ui.components import DebouncedCallback
@@ -67,6 +68,7 @@ class BestiaryDialog(QDialog):
             ("size", "Size"), ("alignment", "Alignment"), ("movement", "Movement"),
         )):
             combo = MultiChoiceFilter(self.index.values(field))
+            combo.setProperty("filterLabel", label)
             combo.setMinimumWidth(130)
             self.combos[field] = combo
             row, column = divmod(index, 3)
@@ -80,6 +82,7 @@ class BestiaryDialog(QDialog):
             ("source", "Publication", "Bestiary 2; NPC Codex"),
         )):
             edit = QLineEdit()
+            edit.setProperty("filterLabel", label)
             edit.setPlaceholderText(example)
             edit.setToolTip("Separate alternatives with ;. Matching any one is enough. Leave empty for no restriction.")
             self.text_filters[field] = edit
@@ -103,7 +106,16 @@ class BestiaryDialog(QDialog):
         layout.addWidget(self.filter_box)
         self.filter_box.hide()
         self.more_filters.toggled.connect(self.filter_box.setVisible)
+        self.active_filters = QLabel()
+        self.active_filters.setWordWrap(True)
+        self.active_filters.setTextFormat(Qt.TextFormat.RichText)
+        self.active_filters.setTextInteractionFlags(Qt.TextInteractionFlag.TextBrowserInteraction)
+        self.active_filters.setToolTip("Activate a filter link to remove only that value.")
+        self.active_filters.linkActivated.connect(self._remove_active_filter)
+        self._filter_removals = {}
+        layout.addWidget(self.active_filters)
         self.result_count = QLabel()
+        self.result_count.setWordWrap(True)
         layout.addWidget(self.result_count)
         splitter = QSplitter(Qt.Orientation.Horizontal)
         self.splitter = splitter
@@ -263,8 +275,51 @@ class BestiaryDialog(QDialog):
             row.setToolTip(0, f'{entry["name"]}\n{entry["environment"]}\n{entry["source"]}')
             self.results.addTopLevelItem(row)
         suffix = " · showing first 300; narrow your search" if result.limited else ""
+        if filters.minimum_cr is not None and filters.maximum_cr is not None and filters.minimum_cr > filters.maximum_cr:
+            suffix = " · Minimum CR exceeds maximum CR. Remove or adjust either limit."
+        elif not result.total:
+            suffix = " · Remove an active filter below the search bar, or reset filters to broaden your search."
         self.result_count.setText(f"{result.total:,} matching creatures{suffix}")
+        self._refresh_active_filters()
         self._preview_result(None)
+
+    def _refresh_active_filters(self):
+        self._filter_removals = {}
+        links = []
+        color = self.active_filters.palette().color(self.active_filters.foregroundRole()).name()
+
+        def add(label, callback):
+            key = str(len(links))
+            self._filter_removals[key] = callback
+            links.append(f'<a href="{key}" style="color:{color}">{escape(label)} ×</a>')
+
+        for control in (*self.combos.values(), self.cr_choices):
+            for value in control.selected_values():
+                add(f'{control.property("filterLabel") or "CR"}: {value}',
+                    lambda control=control, value=value: control.set_selected_values(
+                        tuple(item for item in control.selected_values() if item != value)))
+        for edit in (self.search, *self.text_filters.values()):
+            for value in dict.fromkeys(filter_options(edit.text())):
+                label = edit.property("filterLabel") or f"Search ({self.search_mode.currentText()})"
+                add(f"{label}: {value}", lambda edit=edit, value=value: edit.setText(
+                    "; ".join(item for item in filter_options(edit.text()) if item != value)))
+        for title, combo in (("Min CR", self.minimum_cr), ("Max CR", self.maximum_cr)):
+            if combo.currentData() is not None:
+                add(f"{title}: {combo.currentText()}", lambda combo=combo: combo.setCurrentIndex(0))
+        for role, control in self.roles.items():
+            if control.state:
+                add(f'{"Required" if control.state == 1 else "Excluded"}: {role}',
+                    lambda control=control: control.set_state(0))
+        if not self.legacy.isChecked():
+            add("Exclude legacy 3.5", lambda: self.legacy.setChecked(True))
+        self.active_filters.setText("<b>Active filters — click to remove:</b> " + " &nbsp; · &nbsp; ".join(links))
+        self.active_filters.setVisible(bool(links))
+
+    def _remove_active_filter(self, key):
+        callback = self._filter_removals.get(key)
+        if callback is not None:
+            callback()
+            self.debounce.flush()
 
     def _reset_filters(self):
         for edit in (self.search, *self.text_filters.values()):

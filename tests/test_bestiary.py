@@ -249,6 +249,44 @@ class BestiaryUiTests(unittest.TestCase):
         self.assertEqual(len(choice.selected_values()), 2)
         self.assertEqual(visible, [True])
 
+    def test_active_filters_remove_only_clicked_value_without_changing_encounter(self):
+        dialog = self.dialog
+        dialog.results.setCurrentItem(dialog.results.topLevelItem(0))
+        dialog._add()
+        dialog.combos['type'].set_selected_values(('animal', 'humanoid'))
+        dialog.text_filters['environment'].setText('forest; desert')
+        dialog.roles['Caster'].set_state(-1)
+        dialog.debounce.flush()
+        self.assertIn('Excluded: Caster', dialog.active_filters.text())
+        self.assertFalse(dialog.active_filters.isHidden())
+        import re
+        def remove(label):
+            key = next(key for key, text in re.findall(r'<a href="(\d+)"[^>]*>(.*?)</a>', dialog.active_filters.text()) if label in text)
+            dialog.active_filters.linkActivated.emit(key)
+        remove('Creature type: animal')
+        self.assertEqual(dialog.combos['type'].selected_values(), ('humanoid',))
+        remove('Location / environment: desert')
+        self.assertEqual(dialog.text_filters['environment'].text(), 'forest')
+        remove('Excluded: Caster')
+        self.assertEqual(dialog.roles['Caster'].state, 0)
+        self.assertEqual(dialog.results.topLevelItemCount(), 1)
+        self.assertEqual(dialog.members, {'creature:test': 1})
+        self.assertEqual(self.repo.list(), [])
+        dialog._reset_filters()
+        self.assertTrue(dialog.active_filters.isHidden())
+
+    def test_empty_results_explain_invalid_cr_and_filter_labels_escape_html(self):
+        dialog = self.dialog
+        dialog.minimum_cr.setCurrentText('5')
+        dialog.maximum_cr.setCurrentText('2')
+        dialog.search.setText('<test>')
+        dialog.debounce.flush()
+        self.assertIn('Minimum CR exceeds maximum CR', dialog.result_count.text())
+        self.assertIn('&lt;test&gt;', dialog.active_filters.text())
+        dialog.minimum_cr.setCurrentIndex(0)
+        dialog.debounce.flush()
+        self.assertIn('broaden your search', dialog.result_count.text())
+
     def test_layout_and_keyboard_activation_in_all_themes(self):
         from app.ui.dialog_theme import dialog_stylesheet
         dialog = self.dialog
