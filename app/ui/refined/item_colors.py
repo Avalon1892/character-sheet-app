@@ -37,6 +37,10 @@ class RefinedItemDelegate(QStyledItemDelegate):
         }.get(text)
         if mapped:
             option.palette.setColor(QPalette.ColorRole.Text, QColor(mapped))
+        if index.data(Qt.ItemDataRole.AccessibleDescriptionRole) == "Contained inventory item":
+            option.backgroundBrush = QBrush(QColor(palette.page))
+            option.palette.setColor(QPalette.ColorRole.Text, QColor(palette.text))
+            option.features &= ~QStyleOptionViewItem.ViewItemFeature.Alternate
         option.palette.setColor(QPalette.ColorRole.Highlight, QColor(palette.selection))
         option.palette.setColor(QPalette.ColorRole.HighlightedText, QColor(palette.text))
 

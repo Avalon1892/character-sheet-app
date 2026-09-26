@@ -9732,6 +9732,7 @@ class CharacterSheetWidget(SheetSectionsMixin, QWidget):
                 cell.setData(Qt.ItemDataRole.UserRole, item.id)
                 cell.setToolTip(tooltip)
                 if parent_id is not None:
+                    cell.setData(Qt.ItemDataRole.AccessibleDescriptionRole, "Contained inventory item")
                     cell.setBackground(self.equipment_table.palette().alternateBase())
                     font = cell.font()
                     font.setItalic(True)

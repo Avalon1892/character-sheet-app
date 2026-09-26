@@ -53,6 +53,34 @@ class RefinedColorTests(unittest.TestCase):
             self.assertNotIn('QTableWidget[refinedCategory="martial"] { background:', css)
             self.assertIn("QComboBox QAbstractItemView", css)
 
+    def test_contained_items_follow_theme_instead_of_stale_dark_palette(self):
+        table = QTableWidget(1, 1)
+        item = QTableWidgetItem("")
+        item.setBackground(QColor('#171b22'))
+        item.setData(Qt.ItemDataRole.AccessibleDescriptionRole, 'Contained inventory item')
+        table.setItem(0, 0, item)
+        theme = ['classic']
+        delegate = RefinedItemDelegate(table, lambda: theme[0])
+        table.setItemDelegate(delegate)
+        try:
+            for name in ('classic', 'dark', 'light', 'classic'):
+                theme[0] = name
+                palette = PALETTES[name]
+                table.setStyleSheet(stylesheet(name))
+                table.show()
+                table.clearSelection()
+                table.setCurrentItem(None)
+                self.app.processEvents()
+                option = QStyleOptionViewItem()
+                delegate.initStyleOption(option, table.model().index(0, 0))
+                self.assertEqual(option.backgroundBrush.color(), QColor(palette.page))
+                self.assertEqual(option.palette.color(QPalette.ColorRole.Text), QColor(palette.text))
+                point = table.visualItemRect(item).center()
+                self.assertEqual(table.viewport().grab().toImage().pixelColor(point), QColor(palette.page))
+        finally:
+            table.close()
+            table.deleteLater()
+
     def test_painted_semantic_and_custom_colors_survive_stylesheets(self):
         for theme, p in PALETTES.items():
             table = QTableWidget(3, 1)
