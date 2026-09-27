@@ -967,13 +967,22 @@ class CharacterCalculationService:
         automatic = self.automatic_modifier_map()
         for target in COMBAT_TARGETS:
             modifier_map[target] += automatic.get(target, [])
+        modifier_map["shield_bonus_increase"] = automatic.get("shield_bonus_increase", [])
         ability_results = self.ability_results()
         ability_modifiers = {
             key: value.ability_modifier for key, value in ability_results.items()
         }
-        for module in resolve_class_feature_modules(
+        modules = resolve_class_feature_modules(
             self.repository, self.character_id, ability_modifiers
-        ):
+        )
+        if any("divine-grace" in module.feature_tokens for module in modules):
+            grace = max(0, ability_modifiers.get("charisma", 0))
+            for target in ("fortitude", "reflex", "will"):
+                if grace:
+                    modifier_map[target].append(StatModifier(
+                        None, target, "Paladin: Divine Grace", "untyped", grace, True,
+                    ))
+        for module in modules:
             if "cunning-initiative" not in module.feature_tokens:
                 continue
             value = ability_modifiers.get(module.governing_ability, 0)

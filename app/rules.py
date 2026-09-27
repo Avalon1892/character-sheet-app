@@ -3,7 +3,7 @@ from __future__ import annotations
 import math
 import random
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from collections.abc import Mapping
 
 from app.models import (
@@ -664,11 +664,20 @@ def calculate_combat_statistics(
     maneuver_size = -ac_size
 
     equipped = _active_armor_components(equipment or [])
+    shield_increase = calculate_stat([], modifiers.get("shield_bonus_increase", []))
+    shield_sources = "; ".join(
+        f"{entry.source} ({entry.value:+d})"
+        for entry in shield_increase.contributions if entry.applied and entry.value
+    )
     equipment_ac = [
         StatModifier(
-            None, "ac", f"Equipped: {item.name}",
+            None, "ac", f"Equipped: {item.name}" + (
+                f"; {shield_sources}" if effective_item_state(item) == "shield" and shield_sources else ""
+            ),
             "shield" if effective_item_state(item) == "shield" else "armor",
-            item.ac_bonus + item.enhancement_bonus,
+            item.ac_bonus + item.enhancement_bonus + (
+                shield_increase.total if effective_item_state(item) == "shield" else 0
+            ),
         )
         for item in equipped
         if item.ac_bonus or item.enhancement_bonus
@@ -1004,8 +1013,20 @@ def feat_modifiers(
     bab: int = 0,
     equipment: list[EquipmentItem] | None = None,
 ) -> dict[str, list[StatModifier]]:
+    # Older saves store these as separate AC/flat-footed effects. Project the
+    # stock effects as an increase to the equipped shield instead; do not rewrite
+    # saved selections or replace manually customized effects.
+    from app.feat_automation import feat_automation
+
+    projected = []
+    for feat in feats:
+        if feat.name.casefold() in {"shield focus", "greater shield focus"}:
+            stock = tuple(FeatEffect(**effect) for effect in feat_automation(feat.name)["effects"])
+            if feat.effects == stock:
+                feat = replace(feat, effects=(replace(stock[0], target="shield_bonus_increase"),))
+        projected.append(feat)
     return _rule_modifiers(
-        feats, "Feat", True, skill_states, character_level, bab, equipment
+        projected, "Feat", True, skill_states, character_level, bab, equipment
     )
 
 
