@@ -89,9 +89,10 @@ if (-not $SkipSmokeTest) {
     try {
         $env:PATH = $buildPath
         $env:CHARACTER_SHEET_DATA_DIR = $smokeData
-        & (Join-Path $appFolder "Character Sheet App.exe") --smoke-test
-        if ($LASTEXITCODE -ne 0) {
-            throw "The packaged application smoke test failed with exit code $LASTEXITCODE."
+        $smokeProcess = Start-Process -FilePath (Join-Path $appFolder "Character Sheet App.exe") `
+            -ArgumentList "--smoke-test" -WindowStyle Hidden -PassThru -Wait
+        if ($smokeProcess.ExitCode -ne 0) {
+            throw "The packaged application smoke test failed with exit code $($smokeProcess.ExitCode)."
         }
     }
     finally {
@@ -126,4 +127,3 @@ if (-not $SkipInstaller) {
 
 Write-Host "Transportable build ready in: $OutputRoot"
 Write-Host "Portable ZIP: $zipPath"
-

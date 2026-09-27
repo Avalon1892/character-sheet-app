@@ -24,6 +24,25 @@ def run() -> int:
 
     window = MainWindow(repository)
     if "--smoke-test" in sys.argv:
+        from pathlib import Path
+        from tempfile import TemporaryDirectory
+        from app.ui.sheet_types import SHEET_TYPE_REGISTRY
+
+        # Lazy sheet factories are not exercised by an empty character library.
+        # Use disposable saves so this check never changes a user's characters.
+        with TemporaryDirectory() as directory:
+            smoke_repository = CharacterRepository(Path(directory) / "characters.db")
+            try:
+                character_id = smoke_repository.create_character("Packaging check", "Pathfinder 1e")
+                for descriptor in SHEET_TYPE_REGISTRY.values():
+                    sheet = descriptor.create(smoke_repository)
+                    sheet.load_character(character_id)
+                    application.processEvents()
+                    sheet.close()
+                    sheet.deleteLater()
+                    application.sendPostedEvents()
+            finally:
+                smoke_repository.close()
         # A packaged-build check must exercise migrations and construct every
         # top-level service without opening an unattended GUI forever.
         application.processEvents()

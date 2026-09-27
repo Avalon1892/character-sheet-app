@@ -22,6 +22,7 @@ analysis = Analysis(
         "app.ui.character_sheet",
         "app.ui.original_spheres_sheet",
         "app.ui.ultra_sheet",
+        "app.ui.refined.sheet",
     ],
     hookspath=[],
     hooksconfig={},

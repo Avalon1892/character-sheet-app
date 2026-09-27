@@ -8,6 +8,27 @@ from unittest.mock import Mock
 
 
 class PackagingTests(unittest.TestCase):
+    def test_build_waits_for_windowed_smoke_process(self) -> None:
+        script = (Path(__file__).resolve().parents[1] / "packaging" / "Build-Transportable.ps1").read_text()
+        self.assertIn('-ArgumentList "--smoke-test" -WindowStyle Hidden -PassThru -Wait', script)
+        self.assertIn('if ($smokeProcess.ExitCode -ne 0)', script)
+
+    def test_spec_includes_every_registered_sheet(self) -> None:
+        from app.ui.sheet_types import SHEET_TYPE_REGISTRY
+
+        root = Path(__file__).resolve().parents[1]
+        analysis = Mock()
+        runpy.run_path(
+            str(root / "packaging" / "CharacterSheetApp.spec"),
+            init_globals={
+                "SPECPATH": str(root / "packaging"),
+                "Analysis": analysis, "PYZ": Mock(), "EXE": Mock(), "COLLECT": Mock(),
+            },
+        )
+        bundled = set(analysis.call_args.kwargs["hiddenimports"])
+        for descriptor in SHEET_TYPE_REGISTRY.values():
+            self.assertIn(descriptor.factory_path.split(":", 1)[0], bundled)
+
     def test_spec_data_supports_relocated_class_package_loader(self) -> None:
         root = Path(__file__).resolve().parents[1]
         analysis = Mock()
