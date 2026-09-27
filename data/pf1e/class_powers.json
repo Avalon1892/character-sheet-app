@@ -37533,6 +37533,509 @@
       "automatic_modifiers": [],
       "source": "Pathfinder RPG",
       "source_url": "https://www.aonprd.com/WitchHexes.aspx"
+    },
+    {
+      "key": "class-power:paladin_mercy:deceived",
+      "family": "paladin_mercy",
+      "category": "Level 3",
+      "name": "Deceived",
+      "description": "The target can immediately attempt a new saving throw to disbelieve any ongoing illusions that it failed to disbelieve within the last minute.",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 3,
+      "prerequisite_names": [],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "Healer's Handbook pg. 25",
+      "source_url": "https://www.aonprd.com/PaladinMercies.aspx"
+    },
+    {
+      "key": "class-power:paladin_mercy:fatigued",
+      "family": "paladin_mercy",
+      "category": "Level 3",
+      "name": "Fatigued",
+      "description": "The target is no longer fatigued.",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 3,
+      "prerequisite_names": [],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "PRPG Core Rulebook pg. 61",
+      "source_url": "https://www.aonprd.com/PaladinMercies.aspx"
+    },
+    {
+      "key": "class-power:paladin_mercy:riled",
+      "family": "paladin_mercy",
+      "category": "Level 3",
+      "name": "Riled",
+      "description": "The paladin’s lay on hands also acts as calm emotions , but only for the purpose of suppressing morale bonuses (such as from the rage spell) and emotion effects that aren’t fear effects. Use the paladin’s level as the caster level.",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 3,
+      "prerequisite_names": [],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "Healer's Handbook pg. 25",
+      "source_url": "https://www.aonprd.com/PaladinMercies.aspx"
+    },
+    {
+      "key": "class-power:paladin_mercy:shaken",
+      "family": "paladin_mercy",
+      "category": "Level 3",
+      "name": "Shaken",
+      "description": "The target is no longer shaken.",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 3,
+      "prerequisite_names": [],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "PRPG Core Rulebook pg. 61",
+      "source_url": "https://www.aonprd.com/PaladinMercies.aspx"
+    },
+    {
+      "key": "class-power:paladin_mercy:sickened",
+      "family": "paladin_mercy",
+      "category": "Level 3",
+      "name": "Sickened",
+      "description": "The target is no longer sickened.",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 3,
+      "prerequisite_names": [],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "PRPG Core Rulebook pg. 61",
+      "source_url": "https://www.aonprd.com/PaladinMercies.aspx"
+    },
+    {
+      "key": "class-power:paladin_mercy:dazed",
+      "family": "paladin_mercy",
+      "category": "Level 6",
+      "name": "Dazed",
+      "description": "The target is no longer dazed.",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 6,
+      "prerequisite_names": [],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "PRPG Core Rulebook pg. 61",
+      "source_url": "https://www.aonprd.com/PaladinMercies.aspx"
+    },
+    {
+      "key": "class-power:paladin_mercy:diseased",
+      "family": "paladin_mercy",
+      "category": "Level 6",
+      "name": "Diseased",
+      "description": "The paladin's lay on hands ability also acts as remove disease , using the paladin's level as the caster level.",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 6,
+      "prerequisite_names": [],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "PRPG Core Rulebook pg. 61",
+      "source_url": "https://www.aonprd.com/PaladinMercies.aspx"
+    },
+    {
+      "key": "class-power:paladin_mercy:enfeebled",
+      "family": "paladin_mercy",
+      "category": "Level 6",
+      "name": "Enfeebled",
+      "description": "The paladin dispels any magical effects that are reducing one of the target’s ability scores (paladin’s choice).",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 6,
+      "prerequisite_names": [],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "Healer's Handbook pg. 25",
+      "source_url": "https://www.aonprd.com/PaladinMercies.aspx"
+    },
+    {
+      "key": "class-power:paladin_mercy:haunted",
+      "family": "paladin_mercy",
+      "category": "Level 6",
+      "name": "Haunted",
+      "description": "The paladin’s lay on hands also acts as protection from evil , but only for the purpose of allowing a new saving throw against enchantment (charm) and enchantment (compulsion) effects, making the target immune to any attempts to possess or exercise mental control over the target, or preventing a life force from controlling the target (all as described in the second effect of protection from evil ). Use the paladin’s level as the caster level.",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 6,
+      "prerequisite_names": [],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "Healer's Handbook pg. 25",
+      "source_url": "https://www.aonprd.com/PaladinMercies.aspx"
+    },
+    {
+      "key": "class-power:paladin_mercy:staggered",
+      "family": "paladin_mercy",
+      "category": "Level 6",
+      "name": "Staggered",
+      "description": "The target is no longer staggered, unless the target is at exactly 0 hit points.",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 6,
+      "prerequisite_names": [],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "PRPG Core Rulebook pg. 61",
+      "source_url": "https://www.aonprd.com/PaladinMercies.aspx"
+    },
+    {
+      "key": "class-power:paladin_mercy:targeted",
+      "family": "paladin_mercy",
+      "category": "Level 6",
+      "name": "Targeted",
+      "description": "The paladin’s lay on hands also acts as sanctuary , using the paladin’s level as the caster level. The saving throw DC to negate this effect is equal to 10 + 1/2 the paladin’s level + the paladin’s Charisma modifier.",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 6,
+      "prerequisite_names": [],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "Healer's Handbook pg. 25",
+      "source_url": "https://www.aonprd.com/PaladinMercies.aspx"
+    },
+    {
+      "key": "class-power:paladin_mercy:confused",
+      "family": "paladin_mercy",
+      "category": "Level 9",
+      "name": "Confused",
+      "description": "The target is no longer confused.",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 9,
+      "prerequisite_names": [],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "Healer's Handbook pg. 25",
+      "source_url": "https://www.aonprd.com/PaladinMercies.aspx"
+    },
+    {
+      "key": "class-power:paladin_mercy:cursed",
+      "family": "paladin_mercy",
+      "category": "Level 9",
+      "name": "Cursed",
+      "description": "The paladin's lay on hands ability also acts as remove curse , using the paladin's level as the caster level.",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 9,
+      "prerequisite_names": [],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "PRPG Core Rulebook pg. 62",
+      "source_url": "https://www.aonprd.com/PaladinMercies.aspx"
+    },
+    {
+      "key": "class-power:paladin_mercy:exhausted",
+      "family": "paladin_mercy",
+      "category": "Level 9",
+      "name": "Exhausted",
+      "description": "The target is no longer exhausted. The paladin must have the fatigue mercy before selecting this mercy.",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 9,
+      "prerequisite_names": [
+        "Fatigued"
+      ],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "PRPG Core Rulebook pg. 62",
+      "source_url": "https://www.aonprd.com/PaladinMercies.aspx"
+    },
+    {
+      "key": "class-power:paladin_mercy:frightened",
+      "family": "paladin_mercy",
+      "category": "Level 9",
+      "name": "Frightened",
+      "description": "The target is no longer frightened. The paladin must have the shaken mercy before selecting this mercy.",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 9,
+      "prerequisite_names": [
+        "Shaken"
+      ],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "PRPG Core Rulebook pg. 62",
+      "source_url": "https://www.aonprd.com/PaladinMercies.aspx"
+    },
+    {
+      "key": "class-power:paladin_mercy:injured",
+      "family": "paladin_mercy",
+      "category": "Level 9",
+      "name": "Injured",
+      "description": "The target gains fast healing 3 for a number of rounds equal to 1/2 the paladin’s level.",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 9,
+      "prerequisite_names": [],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "Healer's Handbook pg. 25",
+      "source_url": "https://www.aonprd.com/PaladinMercies.aspx"
+    },
+    {
+      "key": "class-power:paladin_mercy:nauseated",
+      "family": "paladin_mercy",
+      "category": "Level 9",
+      "name": "Nauseated",
+      "description": "The target is no longer nauseated. The paladin must have the sickened mercy before selecting this mercy.",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 9,
+      "prerequisite_names": [
+        "Sickened"
+      ],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "PRPG Core Rulebook pg. 62",
+      "source_url": "https://www.aonprd.com/PaladinMercies.aspx"
+    },
+    {
+      "key": "class-power:paladin_mercy:poisoned",
+      "family": "paladin_mercy",
+      "category": "Level 9",
+      "name": "Poisoned",
+      "description": "The paladin's lay on hands ability also acts as neutralize poison , using the paladin's level as the caster level.",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 9,
+      "prerequisite_names": [],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "PRPG Core Rulebook pg. 62",
+      "source_url": "https://www.aonprd.com/PaladinMercies.aspx"
+    },
+    {
+      "key": "class-power:paladin_mercy:restorative",
+      "family": "paladin_mercy",
+      "category": "Level 9",
+      "name": "Restorative",
+      "description": "The target heals 1d4 points of ability damage from a single ability score of the paladin’s choosing. The paladin must have the enfeebled mercy before selecting this mercy.",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 9,
+      "prerequisite_names": [
+        "Enfeebled"
+      ],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "Healer's Handbook pg. 25",
+      "source_url": "https://www.aonprd.com/PaladinMercies.aspx"
+    },
+    {
+      "key": "class-power:paladin_mercy:amputated",
+      "family": "paladin_mercy",
+      "category": "Level 12",
+      "name": "Amputated",
+      "description": "The paladin’s lay on hands also acts as regenerate , but only for the purposes of regrowing severed body members, broken bones, and ruined organs. The paladin must have the injured mercy before she can select this mercy.",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 12,
+      "prerequisite_names": [
+        "Injured"
+      ],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "Healer's Handbook pg. 25",
+      "source_url": "https://www.aonprd.com/PaladinMercies.aspx"
+    },
+    {
+      "key": "class-power:paladin_mercy:blinded",
+      "family": "paladin_mercy",
+      "category": "Level 12",
+      "name": "Blinded",
+      "description": "The target is no longer blinded.",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 12,
+      "prerequisite_names": [],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "PRPG Core Rulebook pg. 62",
+      "source_url": "https://www.aonprd.com/PaladinMercies.aspx"
+    },
+    {
+      "key": "class-power:paladin_mercy:deafened",
+      "family": "paladin_mercy",
+      "category": "Level 12",
+      "name": "Deafened",
+      "description": "The target is no longer deafened.",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 12,
+      "prerequisite_names": [],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "PRPG Core Rulebook pg. 62",
+      "source_url": "https://www.aonprd.com/PaladinMercies.aspx"
+    },
+    {
+      "key": "class-power:paladin_mercy:ensorcelled",
+      "family": "paladin_mercy",
+      "category": "Level 12",
+      "name": "Ensorcelled",
+      "description": "The paladin’s lay on hands also acts as dispel magic , using the paladin’s level as her caster level (maximum 20).",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 12,
+      "prerequisite_names": [],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "Healer's Handbook pg. 25",
+      "source_url": "https://www.aonprd.com/PaladinMercies.aspx"
+    },
+    {
+      "key": "class-power:paladin_mercy:paralyzed",
+      "family": "paladin_mercy",
+      "category": "Level 12",
+      "name": "Paralyzed",
+      "description": "The target is no longer paralyzed.",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 12,
+      "prerequisite_names": [],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "PRPG Core Rulebook pg. 62",
+      "source_url": "https://www.aonprd.com/PaladinMercies.aspx"
+    },
+    {
+      "key": "class-power:paladin_mercy:petrified",
+      "family": "paladin_mercy",
+      "category": "Level 12",
+      "name": "Petrified",
+      "description": "The paladin’s lay on hands ability also acts as stone to flesh , but only for the purpose of removing the petrified condition from a creature.",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 12,
+      "prerequisite_names": [],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "Healer's Handbook pg. 25",
+      "source_url": "https://www.aonprd.com/PaladinMercies.aspx"
+    },
+    {
+      "key": "class-power:paladin_mercy:stunned",
+      "family": "paladin_mercy",
+      "category": "Level 12",
+      "name": "Stunned",
+      "description": "The target is no longer stunned.",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 12,
+      "prerequisite_names": [],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "PRPG Core Rulebook pg. 62",
+      "source_url": "https://www.aonprd.com/PaladinMercies.aspx"
+    },
+    {
+      "key": "class-power:paladin_divine_bond:agathion-bond",
+      "family": "paladin_divine_bond",
+      "category": "Level 5",
+      "name": "Agathion Bond",
+      "description": "As a standard action, the paladin can call forth an agathion spirit that bonds to her healing hands for 1 minute per paladin level, causing her to manifest physical traits evocative of one kind of agathion. This bond allows the paladin to add her Charisma bonus to the amount of hit points that she restores with her spells, her lay on hands ability, and her channel energy ability. For every 3 levels beyond 5th, she restores 1 additional hit point with those abilities, up to a maximum of 5 + her Charisma modifier at 20th level. The paladin can use this ability once per day at 5th level, and one additional time per day for every 4 levels beyond 5th, up to a total of four times per day at 17th level.",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 5,
+      "prerequisite_names": [],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "Healer's Handbook pg. 25",
+      "source_url": "https://www.aonprd.com/PaladinDivineBonds.aspx"
+    },
+    {
+      "key": "class-power:paladin_divine_bond:angelic-bond",
+      "family": "paladin_divine_bond",
+      "category": "Level 5",
+      "name": "Angelic Bond",
+      "description": "As a standard action, the paladin can call forth an angel spirit that bonds to her, causing her to manifest a resplendent halo. This bond allows the paladin to shine light as per continual flame for 1 minute per paladin level. Additionally, while the halo shines, all allies within 20 feet gain the benefits of protection from evil , except the deflection and resistance bonuses are +3. For every 3 levels she has beyond 5th, the deflection bonus and resistance bonus provided by this effect increases by 1, up to a maximum of +8 at 20th level. The paladin can use this ability once per day at 5th level, and one additional time per day for every 4 levels beyond 5th, up to a total of four times per day at 17th level.",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 5,
+      "prerequisite_names": [],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "Healer's Handbook pg. 25",
+      "source_url": "https://www.aonprd.com/PaladinDivineBonds.aspx"
+    },
+    {
+      "key": "class-power:paladin_divine_bond:archon-bond",
+      "family": "paladin_divine_bond",
+      "category": "Level 5",
+      "name": "Archon Bond",
+      "description": "As a standard action, the paladin can call forth an archon spirit that bonds to her brow, causing her eyes to glow with righteous fury for 1 minute per paladin level. While this bond is active, any hostile creature within a 10-foot radius of the paladin that looks at her must succeed at a Will saving throw (DC = 10 + 1/2 her paladin level + her Charisma modifier) or take a –2 penalty on attack rolls and saving throws and to AC for 24 hours. Whether or not the saving throw is successful, a creature cannot be affected by the same paladin’s archon bond again for 24 hours, and the penalties from multiple archon bonds don’t stack. Creatures that don’t have eyesight are not affected by this ability. For every 3 levels beyond 5th, the radius of the paladin’s archon bond increases by 5 feet, up to a 35-foot radius at 20th level. The paladin can use this ability once per day at 5th level, and one additional time per day for every 4 levels beyond 5th, up to a total of four times per day at 17th level.",
+      "classes": [
+        "Paladin"
+      ],
+      "minimum_level": 5,
+      "prerequisite_names": [],
+      "repeatable": false,
+      "activatable": false,
+      "automatic_modifiers": [],
+      "source": "Healer's Handbook pg. 25",
+      "source_url": "https://www.aonprd.com/PaladinDivineBonds.aspx"
     }
   ]
 }

@@ -275,6 +275,7 @@ def _runtime_power_providers(
 
 
 FAMILY_REPLACEMENT_PATTERNS: Mapping[str, str] = {
+    "paladin_mercy": r"merc(?:y|ies)",
     "ki_power": r"ki powers?",
     "rage_power": r"rage powers?",
     "revelation": r"revelations?",

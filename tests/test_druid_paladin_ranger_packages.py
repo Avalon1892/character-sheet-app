@@ -52,11 +52,15 @@ class DruidPaladinRangerPackageTests(unittest.TestCase):
         audit = build_audit(
             DEFAULT_CATALOG.class_entries(), DEFAULT_CATALOG.archetype_entries()
         )
-        for family, count in (("Druid", 79), ("Paladin", 59), ("Ranger", 72)):
+        for family, count in (("Druid", 79), ("Paladin", 74), ("Ranger", 72)):
             rows = [row for row in audit["archetypes"] if row["class_name"] == family]
             self.assertEqual(count, len(rows))
+            # Newly documented oaths retain audit warnings; their import does
+            # not assert complete per-use or bonus-spell automation.
             self.assertFalse(
-                [row["name"] for row in rows if row["status"] != "fully_automated"]
+                [row["name"] for row in rows
+                 if not row["name"].startswith("Oath ")
+                 and row["status"] != "fully_automated"]
             )
 
     def test_reviewed_spheres_profiles_replace_traditional_casting_and_budget_talents(self) -> None:

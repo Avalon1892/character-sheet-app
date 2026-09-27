@@ -15,5 +15,15 @@
   ],
   "resource_modules": [],
   "passive_effects": [],
+  "power_providers": [
+    {
+      "key": "paladin-mercies",
+      "label": "Mercies",
+      "family": "paladin_mercy",
+      "feature_tokens": ["mercy"],
+      "slot_levels": [3, 6, 9, 12, 15, 18],
+      "description": "Select a mercy at 3rd level and every three levels thereafter. Level requirements, prerequisite mercies, and archetype exchanges apply."
+    }
+  ],
   "notes": "Smite Evil, Lay on Hands, Channel Positive Energy, Mercies, and Divine Bond use shared retained-feature-aware trackers. Choosing Divine Mount automatically exposes the companion page at effective Paladin level - 3."
 }
