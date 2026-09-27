@@ -755,6 +755,21 @@ class RulesCatalog:
             key: enrich_archetype_from_package(entry)
             for key, entry in unique.items()
         }
+        # Pathfinder Unchained permits the original Barbarian archetypes.
+        # https://legacy.aonprd.com/unchained/classes/index.html
+        # Reuse their reviewed prose/mechanics rather than maintaining copies.
+        # Explicit Unchained/Spheres entries remain authoritative.
+        for entry in tuple(unique.values()):
+            if entry.get("class_key") != "pathfinder-class:barbarian" or entry.get("source_group") != "Pathfinder":
+                continue
+            key = entry["key"].replace("pathfinder-class:barbarian:", "pathfinder-class:barbarian-unchained:")
+            inherited = dict(entry, key=key, class_key="pathfinder-class:barbarian-unchained",
+                             class_name="Barbarian (Unchained)", inherited_from=entry["key"])
+            # Danger Sense counts as Trap Sense for archetype exchanges.
+            for field in ("replaces_features", "removed_features", "removed_feature_clauses"):
+                inherited[field] = [re.sub(r"trap[- ]?sense", "danger-sense" if "-" in str(value) else "danger sense", str(value), flags=re.I)
+                                    for value in entry.get(field, ())]
+            unique.setdefault(key, inherited)
         return tuple(unique.values())
 
     def archetype_entries(

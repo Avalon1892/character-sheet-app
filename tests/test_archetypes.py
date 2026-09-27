@@ -12,8 +12,8 @@ from app.database import CharacterRepository
 class ArchetypeCatalogTests(unittest.TestCase):
     def test_complete_catalog_is_grouped_by_parent_class_and_rules_family(self) -> None:
         entries = DEFAULT_CATALOG.archetype_entries()
-        self.assertEqual(1830, len(entries))
-        self.assertEqual(1275, len(DEFAULT_CATALOG.archetype_entries(source_group="Pathfinder")))
+        self.assertEqual(1872, len(entries))
+        self.assertEqual(1317, len(DEFAULT_CATALOG.archetype_entries(source_group="Pathfinder")))
         self.assertEqual(555, len(DEFAULT_CATALOG.archetype_entries(source_group="Spheres")))
         self.assertEqual(8, len(DEFAULT_CATALOG.archetype_entries("prodigy")))
         self.assertEqual(len(entries), len({entry["key"] for entry in entries}))

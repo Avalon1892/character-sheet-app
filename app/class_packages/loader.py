@@ -126,6 +126,8 @@ def _archetype_runtime_packages() -> dict[str, dict]:
 
 def archetype_runtime_package(key: str) -> dict | None:
     entry = _archetype_runtime_packages().get(str(key))
+    if entry is None and str(key).startswith("pathfinder-archetype:pathfinder-class:barbarian-unchained:"):
+        entry = _archetype_runtime_packages().get(str(key).replace("pathfinder-class:barbarian-unchained:", "pathfinder-class:barbarian:"))
     return dict(entry) if entry is not None else None
 
 
