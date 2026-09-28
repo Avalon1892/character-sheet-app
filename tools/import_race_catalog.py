@@ -179,6 +179,7 @@ def ability_adjustments(value: str) -> tuple[dict[str, int], int]:
 
 
 def trait_automation(name: str, description: str) -> dict:
+    ability_increases: dict[str, int] = {}
     modifiers: list[dict] = []
     conditional_modifiers: list[dict] = []
     class_skills: list[str] = []
@@ -218,16 +219,13 @@ def trait_automation(name: str, description: str) -> dict:
     # stored as conditional reminders and never inflated into the baseline.
     for match in re.finditer(
         r"(?:gain|gains|receive|receives|have|has) (?:an? )?additional\s+\+(\d+)\s+"
-        r"(?:racial bonus )?to (?:their |his |her |its )?"
+        r"(?:racial bonus )?to (?:your |their |his |her |its )?"
         r"(Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma)(?: score)?",
         description, re.I,
     ):
-        modifiers.append({
-            "target": ABILITIES[match.group(2).casefold()],
-            "bonus_type": "racial", "value": int(match.group(1)),
-        })
+        ability_increases[ABILITIES[match.group(2).casefold()]] = int(match.group(1))
     for amount, save_name in re.findall(
-        r"\+(\d+)\s+(?:racial )?bonus on (Fortitude|Reflex|Will) saving throws(?!\s+against)",
+        r"\+(\d+)\s+(?:racial )?bonus on (?:all )?(Fortitude|Reflex|Will) (?:saving throws|saves)(?=[.\s]*$)",
         description, re.I,
     ):
         modifiers.append({
@@ -392,6 +390,8 @@ def trait_automation(name: str, description: str) -> dict:
         })
 
     result: dict = {}
+    if ability_increases:
+        result["ability_increases"] = ability_increases
     if modifiers:
         result["modifiers"] = modifiers
     if conditional_modifiers:

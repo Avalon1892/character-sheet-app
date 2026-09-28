@@ -6580,7 +6580,7 @@ class CharacterSheetWidget(SheetSectionsMixin, QWidget):
             return False
         automation = dict(entry.get("automation", {}))
         choice = ""
-        choice_key = ""
+        choice_keys: tuple[str, ...] = ()
         choice_type = str(automation.get("choice_type", ""))
         if choice_type:
             choice_dialog = FeatChoiceDialog(
@@ -6593,17 +6593,9 @@ class CharacterSheetWidget(SheetSectionsMixin, QWidget):
             if choice_dialog.exec() != QDialog.DialogCode.Accepted:
                 return False
             choice = choice_dialog.choice
-            choice_key = choice_dialog.choice_key
-        effects: list[dict] = []
-        for source_effect in automation.get("effects", []):
-            effect = dict(source_effect)
-            effect["target"] = str(effect.get("target", "")).replace(
-                "{choice_key}", choice_key
-            )
-            effect["scope"] = str(effect.get("scope", "")).replace(
-                "{choice_key}", choice_key
-            )
-            effects.append(effect)
+            choice_keys = choice_dialog.choice_keys
+        from app.trait_automation import selected_trait_effects
+        effects = selected_trait_effects(automation, choice_keys)
         categories = tuple(str(value) for value in entry.get("categories", ()))
         category = ", ".join(categories) or "General"
         trait_id = self.repository.add_trait(

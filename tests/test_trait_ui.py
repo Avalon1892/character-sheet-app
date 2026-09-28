@@ -2,17 +2,69 @@ import os
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 
-from PySide6.QtWidgets import QApplication, QAbstractItemView
+from PySide6.QtWidgets import QApplication, QAbstractItemView, QDialog, QMessageBox
 
 from app.content import trait_entry
 from app.database import CharacterRepository
 from app.ui.character_sheet import CharacterSheetWidget, TraitCatalogDialog
+from app.ui.dialogs import FeatChoiceDialog, TraitDialog
 
 
 class TraitCatalogUiTests(unittest.TestCase):
+    def test_save_choice_traits_persist_and_edit_the_selected_saves(self) -> None:
+        def choose_two(dialog):
+            dialog.selection.setCurrentIndex(dialog.selection.findData("fortitude"))
+            dialog.second_selection.setCurrentIndex(dialog.second_selection.findData("will"))
+            return QDialog.DialogCode.Accepted
+
+        with patch.object(FeatChoiceDialog, "exec", new=choose_two):
+            self.assertTrue(self.sheet._add_catalog_trait(trait_entry("spheres-power:honor-the-fallen")))
+        self.sheet._traits_changed()
+        self.assertEqual((1, 0, 1), tuple(self.sheet._combat_results()[key].total for key in ("fortitude", "reflex", "will")))
+        trait = self.repository.list_traits(self.character_id)[0]
+        self.assertEqual("Fortitude / Will", trait.choice)
+        editor = TraitDialog(self.sheet, trait)
+
+        def change_two(dialog):
+            dialog.selection.setCurrentIndex(dialog.selection.findData("reflex"))
+            dialog.second_selection.setCurrentIndex(dialog.second_selection.findData("will"))
+            return QDialog.DialogCode.Accepted
+
+        with patch.object(FeatChoiceDialog, "exec", new=change_two):
+            editor._choose_saves()
+        self.repository.update_trait(self.character_id, trait.id, **editor.values)
+        self.sheet._traits_changed()
+        self.assertEqual((0, 1, 1), tuple(self.sheet._combat_results()[key].total for key in ("fortitude", "reflex", "will")))
+        editor.close()
+
+    def test_single_save_choice_and_cancel(self) -> None:
+        entry = trait_entry("aon:soul-searcher-s-strength")
+        with patch.object(FeatChoiceDialog, "exec", return_value=QDialog.DialogCode.Rejected):
+            self.assertFalse(self.sheet._add_catalog_trait(entry))
+        self.assertEqual([], self.repository.list_traits(self.character_id))
+        def choose(dialog):
+            dialog.selection.setCurrentIndex(dialog.selection.findData("reflex"))
+            return QDialog.DialogCode.Accepted
+        with patch.object(FeatChoiceDialog, "exec", new=choose):
+            self.assertTrue(self.sheet._add_catalog_trait(entry))
+        self.sheet._traits_changed()
+        self.assertEqual((0, 1, 0), tuple(self.sheet._combat_results()[key].total for key in ("fortitude", "reflex", "will")))
+
+    def test_save_picker_requires_distinct_explicit_choices(self) -> None:
+        dialog = FeatChoiceDialog("saving_throws_two", "Saving throws", [], [], self.sheet)
+        with patch.object(QMessageBox, "warning") as warning:
+            dialog._accept_if_valid()
+            self.assertTrue(warning.called)
+            for combo in (dialog.selection, dialog.second_selection):
+                combo.setCurrentIndex(combo.findData("will"))
+            dialog._accept_if_valid()
+            self.assertEqual(2, warning.call_count)
+        dialog.close()
+
     @classmethod
     def setUpClass(cls) -> None:
         cls.application = QApplication.instance() or QApplication([])
@@ -42,7 +94,7 @@ class TraitCatalogUiTests(unittest.TestCase):
         dialog.automation_filter.setCurrentIndex(
             dialog.automation_filter.findData("automatic")
         )
-        self.assertEqual(433, dialog.results.rowCount())
+        self.assertEqual(436, dialog.results.rowCount())  # Three reviewed save-choice traits.
         dialog.automation_filter.setCurrentIndex(
             dialog.automation_filter.findData("toggle")
         )

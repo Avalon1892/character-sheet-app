@@ -1369,6 +1369,14 @@ class FeatChoiceDialog(QDialog):
         if choice_type == "skill":
             for definition in SKILLS:
                 self.selection.addItem(definition.name, definition.key)
+        elif choice_type in {"saving_throw", "saving_throws_two"}:
+            self.selection.addItem("Choose…", "")
+            for key in ("fortitude", "reflex", "will"):
+                self.selection.addItem(key.title(), key)
+            if choice_type == "saving_throws_two":
+                self.second_selection = QComboBox()
+                for index in range(self.selection.count()):
+                    self.second_selection.addItem(self.selection.itemText(index), self.selection.itemData(index))
         elif choice_type == "magic_sphere":
             for sphere in sorted(magic_spheres(), key=lambda item: str(item["name"]).casefold()):
                 self.selection.addItem(str(sphere["name"]), str(sphere["slug"]))
@@ -1402,7 +1410,7 @@ class FeatChoiceDialog(QDialog):
                 self.second_selection.setCurrentIndex(1)
         form.addRow(label, self.selection)
         if self.second_selection is not None:
-            form.addRow("Second package", self.second_selection)
+            form.addRow("Second saving throw" if choice_type == "saving_throws_two" else "Second package", self.second_selection)
         layout.addLayout(form)
         buttons = QDialogButtonBox(
             QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel
@@ -1422,7 +1430,20 @@ class FeatChoiceDialog(QDialog):
         data = self.selection.currentData()
         return str(data if data else self.choice).strip().casefold()
 
+    @property
+    def choice_keys(self) -> tuple[str, ...]:
+        if self.choice_type == "saving_throws_two":
+            return (str(self.selection.currentData() or ""), str(self.second_selection.currentData() or ""))
+        return (self.choice_key,)
+
     def _accept_if_valid(self) -> None:
+        if self.choice_type in {"saving_throw", "saving_throws_two"}:
+            keys = self.choice_keys
+            if any(key not in {"fortitude", "reflex", "will"} for key in keys) or len(set(keys)) != len(keys):
+                QMessageBox.warning(self, "Choice required", "Choose the required number of different saving throws.")
+                return
+            self.accept()
+            return
         if not self.choice:
             QMessageBox.warning(self, "Choice required", "Choose or enter a value.")
             return
@@ -1578,6 +1599,37 @@ class TraitDialog(FeatDialog):
             formula_evaluator=formula_evaluator,
             formula_suggestions=formula_suggestions,
         )
+        from app.trait_automation import trait_automation
+        self._choice_automation = trait_automation(self.name.text(), self.notes.text())
+        if self._choice_automation.get("choice_type") in {"saving_throw", "saving_throws_two"}:
+            self.save_choice_button = QPushButton(self.choice or "Choose saving throws…")
+            self.save_choice_button.clicked.connect(self._choose_saves)
+            self.layout().insertWidget(1, self.save_choice_button)
+
+    def _choose_saves(self) -> None:
+        from app.trait_automation import selected_trait_effects
+        dialog = FeatChoiceDialog(
+            self._choice_automation["choice_type"], self._choice_automation["choice_label"], [], [], self,
+        )
+        for widget, value in zip(
+            (dialog.selection, dialog.second_selection), self.choice.casefold().split(" / ")
+        ):
+            if widget is not None:
+                widget.setCurrentIndex(max(0, widget.findData(value)))
+        if dialog.exec() == QDialog.DialogCode.Accepted:
+            self.choice = dialog.choice
+            self.effects = tuple(selected_trait_effects(self._choice_automation, dialog.choice_keys))
+            self.save_choice_button.setText(self.choice)
+
+    def _accept_if_valid(self) -> None:
+        from app.trait_automation import selected_trait_effects
+        if getattr(self, "_choice_automation", {}).get("choice_type") in {"saving_throw", "saving_throws_two"}:
+            try:
+                selected_trait_effects(self._choice_automation, tuple(self.choice.casefold().split(" / ")))
+            except ValueError as error:
+                QMessageBox.warning(self, "Choice required", str(error))
+                return
+        super()._accept_if_valid()
 
 class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
     def __init__(

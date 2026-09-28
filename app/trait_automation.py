@@ -61,6 +61,16 @@ def _toggle(*effects: dict, note: str) -> dict:
 
 
 _CURATED: dict[str, dict] = {
+    "honor the fallen": _choice(
+        "saving_throws_two", "Two different saving throws",
+        _effect("{choice_key}", 1, "trait"),
+    ),
+    "soul-searcher's strength": _choice(
+        "saving_throw", "Saving throw", _effect("{choice_key}", 1, "trait"),
+    ),
+    "earning your freedom": _choice(
+        "saving_throw", "Saving throw", _effect("{choice_key}", 1, "trait"),
+    ),
     "focused mind": _static(
         _effect("concentration", 2, "trait"),
         note="The +2 trait bonus on concentration checks is applied automatically.",
@@ -274,7 +284,7 @@ def _deduplicate(effects: list[dict]) -> list[dict]:
 
 def trait_automation(name: str, description: str) -> dict:
     """Return reviewed or conservatively inferred sheet behavior for a trait."""
-    curated = _CURATED.get(name.casefold().strip())
+    curated = _CURATED.get(name.casefold().strip().replace("’", "'"))
     if curated is not None:
         return deepcopy(curated)
     clean_description = _normalize_rules_text(description)
@@ -293,3 +303,25 @@ def trait_automation(name: str, description: str) -> dict:
 
 def curated_trait_names() -> tuple[str, ...]:
     return tuple(sorted(_CURATED))
+
+
+def selected_trait_effects(automation: dict, choice_keys: tuple[str, ...]) -> list[dict]:
+    """Bind reviewed choice templates before persistence, including multi-save choices."""
+    choice_type = automation.get("choice_type", "")
+    if choice_type in {"saving_throw", "saving_throws_two"}:
+        count = 2 if choice_type == "saving_throws_two" else 1
+        if len(choice_keys) != count or len(set(choice_keys)) != count or any(
+            key not in {"fortitude", "reflex", "will"} for key in choice_keys
+        ):
+            raise ValueError(f"Choose {count} different saving throw(s).")
+    effects = []
+    for template in automation.get("effects", ()):
+        keys = choice_keys or ("",)
+        if "{choice_key}" not in str(template):
+            keys = ("",)
+        for key in keys:
+            effect = dict(template)
+            for field in ("target", "scope"):
+                effect[field] = str(effect.get(field, "")).replace("{choice_key}", key)
+            effects.append(effect)
+    return effects

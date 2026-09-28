@@ -7292,7 +7292,12 @@
                 {
                   "key": "9",
                   "label": "9. You gain an additional +2 racial bonus to your Strength score",
-                  "description": "You gain an additional +2 racial bonus to your Strength score"
+                  "description": "You gain an additional +2 racial bonus to your Strength score",
+                  "automation": {
+                    "ability_increases": {
+                      "strength": 2
+                    }
+                  }
                 },
                 {
                   "key": "10",
@@ -7356,7 +7361,12 @@
                 {
                   "key": "20",
                   "label": "20. You gain an additional +2 racial bonus to your Dexterity score",
-                  "description": "You gain an additional +2 racial bonus to your Dexterity score"
+                  "description": "You gain an additional +2 racial bonus to your Dexterity score",
+                  "automation": {
+                    "ability_increases": {
+                      "dexterity": 2
+                    }
+                  }
                 },
                 {
                   "key": "21",
@@ -7366,7 +7376,16 @@
                 {
                   "key": "22",
                   "label": "22. You gain a +1 racial bonus on Will saves",
-                  "description": "You gain a +1 racial bonus on Will saves"
+                  "description": "You gain a +1 racial bonus on Will saves",
+                  "automation": {
+                    "modifiers": [
+                      {
+                        "target": "will",
+                        "bonus_type": "racial",
+                        "value": 1
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "23",
@@ -7464,7 +7483,12 @@
                 {
                   "key": "40",
                   "label": "40. You gain an additional +2 racial bonus to your Intelligence score",
-                  "description": "You gain an additional +2 racial bonus to your Intelligence score"
+                  "description": "You gain an additional +2 racial bonus to your Intelligence score",
+                  "automation": {
+                    "ability_increases": {
+                      "intelligence": 2
+                    }
+                  }
                 },
                 {
                   "key": "41",
@@ -7509,12 +7533,26 @@
                 {
                   "key": "49",
                   "label": "49. You gain a +1 racial bonus on Reflex saves",
-                  "description": "You gain a +1 racial bonus on Reflex saves"
+                  "description": "You gain a +1 racial bonus on Reflex saves",
+                  "automation": {
+                    "modifiers": [
+                      {
+                        "target": "reflex",
+                        "bonus_type": "racial",
+                        "value": 1
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "50",
                   "label": "50. You gain an additional +2 racial bonus to your Wisdom score",
-                  "description": "You gain an additional +2 racial bonus to your Wisdom score"
+                  "description": "You gain an additional +2 racial bonus to your Wisdom score",
+                  "automation": {
+                    "ability_increases": {
+                      "wisdom": 2
+                    }
+                  }
                 },
                 {
                   "key": "51",
@@ -7651,7 +7689,12 @@
                 {
                   "key": "70",
                   "label": "70. You gain an additional +2 racial bonus to your Constitution score",
-                  "description": "You gain an additional +2 racial bonus to your Constitution score"
+                  "description": "You gain an additional +2 racial bonus to your Constitution score",
+                  "automation": {
+                    "ability_increases": {
+                      "constitution": 2
+                    }
+                  }
                 },
                 {
                   "key": "71",
@@ -7769,7 +7812,12 @@
                 {
                   "key": "90",
                   "label": "90. You gain an additional +2 racial bonus to your Charisma score",
-                  "description": "You gain an additional +2 racial bonus to your Charisma score"
+                  "description": "You gain an additional +2 racial bonus to your Charisma score",
+                  "automation": {
+                    "ability_increases": {
+                      "charisma": 2
+                    }
+                  }
                 },
                 {
                   "key": "91",
@@ -7779,7 +7827,16 @@
                 {
                   "key": "92",
                   "label": "92. You gain a +1 racial bonus on Fortitude saves",
-                  "description": "You gain a +1 racial bonus on Fortitude saves"
+                  "description": "You gain a +1 racial bonus on Fortitude saves",
+                  "automation": {
+                    "modifiers": [
+                      {
+                        "target": "fortitude",
+                        "bonus_type": "racial",
+                        "value": 1
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "93",
@@ -17673,7 +17730,12 @@
                 {
                   "key": "9",
                   "label": "9. You gain an additional +2 racial bonus to your Charisma score",
-                  "description": "You gain an additional +2 racial bonus to your Charisma score"
+                  "description": "You gain an additional +2 racial bonus to your Charisma score",
+                  "automation": {
+                    "ability_increases": {
+                      "charisma": 2
+                    }
+                  }
                 },
                 {
                   "key": "10",
@@ -17816,7 +17878,16 @@
                 {
                   "key": "29",
                   "label": "29. You gain a +1 bonus on all Reflex saving throws",
-                  "description": "You gain a +1 bonus on all Reflex saving throws"
+                  "description": "You gain a +1 bonus on all Reflex saving throws",
+                  "automation": {
+                    "modifiers": [
+                      {
+                        "target": "reflex",
+                        "bonus_type": "racial",
+                        "value": 1
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "30",
@@ -17901,7 +17972,12 @@
                 {
                   "key": "46",
                   "label": "46. You gain an additional +2 racial bonus to your Intelligence score",
-                  "description": "You gain an additional +2 racial bonus to your Intelligence score"
+                  "description": "You gain an additional +2 racial bonus to your Intelligence score",
+                  "automation": {
+                    "ability_increases": {
+                      "intelligence": 2
+                    }
+                  }
                 },
                 {
                   "key": "47",
@@ -17975,7 +18051,16 @@
                 {
                   "key": "59",
                   "label": "59. You gain a +1 bonus on all Will saving throws",
-                  "description": "You gain a +1 bonus on all Will saving throws"
+                  "description": "You gain a +1 bonus on all Will saving throws",
+                  "automation": {
+                    "modifiers": [
+                      {
+                        "target": "will",
+                        "bonus_type": "racial",
+                        "value": 1
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "60",
@@ -18092,7 +18177,16 @@
                 {
                   "key": "79",
                   "label": "79. You receive a +1 bonus on all Fortitude saving throws",
-                  "description": "You receive a +1 bonus on all Fortitude saving throws"
+                  "description": "You receive a +1 bonus on all Fortitude saving throws",
+                  "automation": {
+                    "modifiers": [
+                      {
+                        "target": "fortitude",
+                        "bonus_type": "racial",
+                        "value": 1
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "80",
@@ -18147,7 +18241,12 @@
                 {
                   "key": "90",
                   "label": "90. You gain an additional +2 racial bonus to your Wisdom score",
-                  "description": "You gain an additional +2 racial bonus to your Wisdom score"
+                  "description": "You gain an additional +2 racial bonus to your Wisdom score",
+                  "automation": {
+                    "ability_increases": {
+                      "wisdom": 2
+                    }
+                  }
                 },
                 {
                   "key": "91",

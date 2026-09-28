@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import unittest
+import tempfile
+from pathlib import Path
 
 from app.catalogs import RulesCatalog
 from app.models import CharacterDetails, RaceTraitChoice
@@ -19,6 +21,51 @@ from app.race_rules import (
 
 
 class RaceCatalogTests(unittest.TestCase):
+    def test_variant_choice_survives_database_reopen(self) -> None:
+        from app.database import CharacterRepository
+        from app.services.character_calculations import CharacterCalculationService
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "race.db"
+            repository = CharacterRepository(path)
+            character = repository.create_character("Variant", "Spheres")
+            trait = "race-alt-trait:aasimar:variant-aasimar-abilities"
+            repository.update_character_details(CharacterDetails(character, race="Aasimar", race_key="aasimar",
+                race_alternate_trait_keys=(trait,), race_trait_choices=(RaceTraitChoice(trait, "variant_abilities", ("90",)),)))
+            repository.close()
+            repository = CharacterRepository(path)
+            try:
+                self.assertEqual(14, CharacterCalculationService(repository, character).ability_result("charisma").total)
+            finally:
+                repository.close()
+
+    def test_variant_ability_increases_add_to_heritage_adjustments(self) -> None:
+        from app.rules import calculate_ability
+        cases = (
+            ("aasimar", "90", "charisma", 14),
+            ("aasimar", "50", "wisdom", 14),
+            ("aasimar", "9", "strength", 12),
+            ("tiefling", "46", "intelligence", 14),
+            ("tiefling", "9", "charisma", 10),
+            ("tiefling", "90", "wisdom", 12),
+        )
+        for race, option, ability, expected in cases:
+            with self.subTest(race=race, option=option):
+                trait = f"race-alt-trait:{race}:variant-{race}-abilities"
+                details = CharacterDetails(1, race_key=race, race_alternate_trait_keys=(trait,),
+                    race_trait_choices=(RaceTraitChoice(trait, "variant_abilities", (option,)),))
+                self.assertEqual(expected, calculate_ability(10, race_modifier_map(details).get(ability, [])).total)
+
+    def test_variant_save_bonuses_and_invalid_choices(self) -> None:
+        for race, option, target in (("aasimar", "22", "will"), ("tiefling", "29", "reflex"), ("tiefling", "79", "fortitude")):
+            trait = f"race-alt-trait:{race}:variant-{race}-abilities"
+            details = CharacterDetails(1, race_key=race, race_alternate_trait_keys=(trait,),
+                race_trait_choices=(RaceTraitChoice(trait, "variant_abilities", (option,)),))
+            self.assertEqual(1, sum(value.value for value in race_modifier_map(details)[target]))
+        trait = "race-alt-trait:aasimar:variant-aasimar-abilities"
+        details = CharacterDetails(1, race_key="aasimar", race_alternate_trait_keys=(trait,),
+            race_trait_choices=(RaceTraitChoice(trait, "variant_abilities", ("90", "invalid")),))
+        self.assertEqual(2, sum(value.value for value in race_modifier_map(details)["charisma"]))
+
     def test_complete_first_party_race_index_is_bundled(self) -> None:
         catalog = RulesCatalog()
         self.assertEqual(77, len(catalog.race_entries()))

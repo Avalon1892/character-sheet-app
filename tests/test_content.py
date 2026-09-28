@@ -107,7 +107,7 @@ class ContentCatalogTests(unittest.TestCase):
         self.assertGreaterEqual(len(trait_categories()), 15)
         self.assertEqual(len(trait_entries()), len({entry["key"] for entry in trait_entries()}))
         self.assertEqual(
-            433,
+            436,
             sum(bool(entry["automation"].get("effects")) for entry in trait_entries()),
         )
         reactionary = trait_entry("aon:reactionary")

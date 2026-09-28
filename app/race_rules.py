@@ -235,6 +235,13 @@ def race_modifier_map(details: CharacterDetails) -> dict[str, list[StatModifier]
         return {}
     result: dict[str, list[StatModifier]] = {}
     adjustments = dict(profile.adjustments)
+    automation_sources = tuple(_resolved_automation_sources(details))
+    increase_sources: dict[str, list[str]] = {}
+    for source, automation in automation_sources:
+        for ability, value in automation.get("ability_increases", {}).items():
+            if ability in ABILITY_KEYS:
+                adjustments[ability] = adjustments.get(ability, 0) + int(value)
+                increase_sources.setdefault(ability, []).append(source)
     if profile.flexible_bonus and details.race_ability_choice in ABILITY_KEYS:
         adjustments[details.race_ability_choice] = (
             adjustments.get(details.race_ability_choice, 0) + profile.flexible_bonus
@@ -243,7 +250,9 @@ def race_modifier_map(details: CharacterDetails) -> dict[str, list[StatModifier]
     variant_suffix = f" — {profile.variant['name']}" if profile.variant else ""
     for target, value in adjustments.items():
         result.setdefault(target, []).append(StatModifier(
-            None, target, f"Race: {race_name}{variant_suffix}", "racial", int(value), True
+            None, target, f"Race: {race_name}{variant_suffix}" + (
+                " + " + "; ".join(increase_sources[target]) if target in increase_sources else ""
+            ), "racial", int(value), True
         ))
     movement_speeds = dict(profile.entry.get("movement_speeds") or {})
     movement_speeds.update((profile.variant or {}).get("movement_speeds") or {})
@@ -258,7 +267,7 @@ def race_modifier_map(details: CharacterDetails) -> dict[str, list[StatModifier]
         # Never apply a partially configured choice-driven trait. The chooser
         # keeps new saves valid; this protects imported or manually edited data.
         choice_map = {}
-    for source, automation in _resolved_automation_sources(details):
+    for source, automation in automation_sources:
         for modifier in automation.get("modifiers", ()):
             target = str(modifier.get("target") or "")
             if not target:
