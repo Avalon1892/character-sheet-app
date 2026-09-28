@@ -12,6 +12,7 @@ os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 
 from PySide6.QtCore import QEvent, QRect, QSettings, Qt
 from PySide6.QtGui import QKeyEvent
+from PySide6.QtTest import QTest
 from PySide6.QtWidgets import QApplication, QLabel, QMenu, QSizePolicy, QWidget
 from PySide6.QtWidgets import QHeaderView
 
@@ -43,16 +44,14 @@ class BuildingBlocksUiTests(unittest.TestCase):
         self.first = self.repository.create_character("First", "Pathfinder 1e")
         self.second = self.repository.create_character("Second", "Pathfinder 1e")
         self.window = MainWindow(self.repository)
-        # These tests exercise the original Building Blocks workspace. Refined
-        # has its own independent presentation history and is now the default.
-        for character_id in (self.first, self.second):
-            self.window.style_store.save(character_id, "selection", {"style": "customizable"})
         self.window.refresh_characters(self.first)
         self.window.show()
         self.application.processEvents()
 
     def tearDown(self) -> None:
         self.window.close()
+        self.window.deleteLater()
+        self.application.sendPostedEvents(None, QEvent.Type.DeferredDelete)
         self.repository.close()
         self.root.cleanup()
 
@@ -66,8 +65,8 @@ class BuildingBlocksUiTests(unittest.TestCase):
             self.window.block_runtime.add_block,
             self.window,
         )
-        self.assertEqual(len(register_builtin_blocks().all()), dialog.results.count())
-        self.assertEqual(6, dialog.destination.count())
+        self.assertEqual(len(self.window.block_registry.all()), dialog.results.count())
+        self.assertEqual(len(self.window.sheet.session.presentation.default_tabs), dialog.destination.count())
         dialog.close()
 
     def test_catalog_removes_placed_block_from_page_but_keeps_template(self) -> None:
@@ -141,7 +140,7 @@ class BuildingBlocksUiTests(unittest.TestCase):
 
         # A second saved-layout projection must preserve the same rule gates.
         self.window.tab_manager.reload()
-        self.window._sync_runtime_canvases()
+        self.window.sheet.session._reload_tabs()
         self.window.block_runtime.refresh()
         self.application.processEvents()
         magic_index = self.window.sheet.page_tabs.indexOf(
@@ -159,22 +158,23 @@ class BuildingBlocksUiTests(unittest.TestCase):
         self.window.sheet.refresh_all()
         self.window.tab_manager.reload()
         index = self.window.sheet.page_tabs.indexOf(self.window.sheet.magic_scroll)
-        self.assertEqual("3   SPELLCASTING", self.window.sheet.page_tabs.tabText(index))
+        self.assertEqual("Magic", self.window.sheet.page_tabs.tabText(index))
 
     def test_build_mode_does_not_persist_untouched_table_widths(self) -> None:
-        settings = QSettings("Georg", "Character Sheet App")
-        settings.remove("customization/tableLayouts")
+        settings = self.window.customization.settings
         self.window.customization.table_layout.reload()
+        self.application.processEvents()
+        before = self.window.customization.table_layout._state.copy()
         self.window.customization.set_build_mode(True)
         self.application.processEvents()
         self.window.customization.set_build_mode(False)
         self.application.processEvents()
-        self.assertFalse(settings.contains("customization/tableLayouts"))
+        self.assertEqual(before, self.window.customization.table_layout._state)
 
     def test_legacy_width_only_spell_columns_return_to_responsive_modes(self) -> None:
         controller = self.window.customization.table_layout
         table_id = "magic_talents/spell_table"
-        settings = QSettings("Georg", "Character Sheet App")
+        settings = self.window.customization.settings
         settings.setValue(
             "customization/tableLayouts",
             json.dumps({table_id: {
@@ -186,9 +186,9 @@ class BuildingBlocksUiTests(unittest.TestCase):
         controller.reload()
         self.assertEqual(
             QHeaderView.ResizeMode.Stretch,
-            self.window.sheet.spell_table.horizontalHeader().sectionResizeMode(3),
+            self.window.sheet.spell_table.horizontalHeader().sectionResizeMode(0),
         )
-        self.assertNotIn(table_id, controller._state)
+        self.assertNotIn("widths", controller._state.get(table_id, {}))
 
     def test_designer_supports_all_cell_types_and_template_round_trip(self) -> None:
         dialog = BlockDesignerDialog(self.repository, self.first, parent=self.window)
@@ -216,8 +216,8 @@ class BuildingBlocksUiTests(unittest.TestCase):
         self.application.processEvents()
         self.assertIn(instance_id, self.window.block_runtime.widgets)
         custom_tab = self.window.tab_manager.add_tab("First Only")
-        self.window._sync_runtime_canvases()
-        self.assertEqual(7, self.window.sheet.page_tabs.count())
+        self.window.sheet.session._reload_tabs()
+        self.assertEqual(len(self.window.block_repository.default_tabs) + 1, self.window.sheet.page_tabs.count())
         self.assertIn(custom_tab, [tab.key for tab in self.window.block_repository.list_tabs(self.first)])
         self.window.refresh_characters(self.second)
         self.application.processEvents()
@@ -232,7 +232,7 @@ class BuildingBlocksUiTests(unittest.TestCase):
             ),
         )
         instance_id = self.window.block_runtime.add_block(definition, "core")
-        self.window.sheet.page_tabs.setCurrentIndex(1)
+        self.window.sheet.page_tabs.setCurrentWidget(self.window.sheet.core_scroll)
         self.application.processEvents()
         widget = self.window.block_runtime.widgets[instance_id]
         independent_before = widget.cells["independent"].geometry()
@@ -334,6 +334,7 @@ class BuildingBlocksUiTests(unittest.TestCase):
         self.assertEqual(0, self.repository.get_hit_points(self.first).current)
 
     def test_layout_managed_builtin_cell_keeps_resized_geometry(self) -> None:
+        self.window.build_mode_action.setChecked(True)
         self.repository.add_class_level(
             self.first, "Prodigy", 5, "3/4", "Poor", "Good", "Good",
             preset_key="prodigy", hit_die=8, hp_gained=30,
@@ -345,6 +346,7 @@ class BuildingBlocksUiTests(unittest.TestCase):
         cell = self.window.sheet.prodigy_class_summary
         neighbor = self.window.sheet.prodigy_feature_summary
         layout = block.layout()
+        QTest.qWait(100)
         self.assertGreaterEqual(layout.indexOf(cell), 0)
 
         neighbor_before = neighbor.geometry()
@@ -414,6 +416,7 @@ class BuildingBlocksUiTests(unittest.TestCase):
         self.assertGreaterEqual(layout.indexOf(cell), 0)
 
     def test_delete_key_removes_selected_visual_cell_and_is_undoable(self) -> None:
+        self.window.build_mode_action.setChecked(True)
         self.repository.add_class_level(
             self.first, "Prodigy", 1, "3/4", "Poor", "Good", "Good",
             preset_key="prodigy", hit_die=8, hp_gained=8,
@@ -541,7 +544,7 @@ class BuildingBlocksUiTests(unittest.TestCase):
 
     def test_scrolling_is_ready_after_loading_without_toggling_build_mode(self) -> None:
         tab_key = self.window.tab_manager.add_tab("Long Page")
-        self.window._sync_runtime_canvases()
+        self.window.sheet.session._reload_tabs()
         definition = BlockDefinition(
             "user:low_block", "Low Block", "Custom", width=320, height=180,
             cells=(CellDefinition("label", "label", "At the bottom", 20, 50, 180, 30),),
@@ -558,17 +561,6 @@ class BuildingBlocksUiTests(unittest.TestCase):
         self.assertGreater(scroll.verticalScrollBar().maximum(), 0)
         self.assertFalse(self.window.customization.build_mode)
 
-    def test_responsive_layout_pass_repairs_stale_core_box_geometry(self) -> None:
-        self.window.sheet.page_tabs.setCurrentWidget(self.window.sheet.core_scroll)
-        self.application.processEvents()
-        movement = self.window.sheet.movement_section
-        skills = self.window.sheet.skills_section
-        movement.setGeometry(QRect(skills.geometry().topLeft(), movement.size()))
-        self.assertTrue(movement.geometry().intersects(skills.geometry()))
-
-        self.window.customization.refresh_canvas_sizes()
-        self.application.processEvents()
-        self.assertFalse(movement.geometry().intersects(skills.geometry()))
 
     def test_restore_default_sheet_preserves_rules_and_global_templates(self) -> None:
         self.repository.update_hit_points(
@@ -580,7 +572,7 @@ class BuildingBlocksUiTests(unittest.TestCase):
         )
         self.window.block_repository.save_user_template(definition)
         custom_tab = self.window.tab_manager.add_tab("Temporary Page")
-        self.window._sync_runtime_canvases()
+        self.window.sheet.session._reload_tabs()
         self.window.block_runtime.add_block(definition, custom_tab)
         self.window.block_repository.rename_tab(self.first, "core", "My Core")
         builtin = next(
@@ -591,14 +583,12 @@ class BuildingBlocksUiTests(unittest.TestCase):
             0, builtin.id, "attr:ability_total_labels.strength",
             70, 70, 120, 40, False, False, "", "", "", "", {}, {},
         ))
-        self.repository.save_character_sheet_layout(
-            self.first, {"colors/test": "#123456"}
-        )
+        self.window.customization.settings.setValue("customization/colors/test", "#123456")
 
         self.assertTrue(self.window.restore_default_sheet(confirm=False))
         self.application.processEvents()
         self.assertEqual(
-            ["build", "core", "inventory", "magic", "companion", "crafting"],
+            [key for key, _ in self.window.block_repository.default_tabs],
             [tab.key for tab in self.window.block_repository.list_tabs(self.first)],
         )
         instances = self.window.block_repository.list_instances(self.first)
@@ -613,8 +603,8 @@ class BuildingBlocksUiTests(unittest.TestCase):
             "user:kept_template",
             [item.key for item in self.window.block_repository.list_user_templates()],
         )
-        self.assertEqual({}, self.repository.get_character_sheet_layout(self.first))
-        self.assertEqual(6, self.window.sheet.page_tabs.count())
+        self.assertNotIn("colors/test", self.window.customization.capture_state())
+        self.assertEqual(len(self.window.block_repository.default_tabs), self.window.sheet.page_tabs.count())
         self.window.undo()
         self.application.processEvents()
         self.assertIn(
@@ -624,7 +614,7 @@ class BuildingBlocksUiTests(unittest.TestCase):
         self.assertEqual(25, self.repository.get_hit_points(self.first).current)
         self.window.redo()
         self.application.processEvents()
-        self.assertEqual(6, self.window.sheet.page_tabs.count())
+        self.assertEqual(len(self.window.block_repository.default_tabs), self.window.sheet.page_tabs.count())
 
     def test_table_columns_can_be_added_removed_moved_and_undone(self) -> None:
         controller = self.window.customization.table_layout

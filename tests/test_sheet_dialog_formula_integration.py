@@ -14,13 +14,13 @@ from PySide6.QtWidgets import QApplication, QDialog
 from app.database import CharacterRepository
 from app.models import SKILLS, SkillState
 from app.ui.character_sheet import (
-    CharacterSheetWidget,
     _FormulaStatBreakdownDialog,
     _sphere_stat_formula_keys,
 )
 
 
 ACCEPTED = QDialog.DialogCode.Accepted
+from app.ui.refined.sheet import RefinedSheetWidget as CharacterSheetWidget
 
 
 class SheetDialogFormulaIntegrationTests(unittest.TestCase):

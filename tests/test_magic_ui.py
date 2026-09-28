@@ -16,12 +16,12 @@ from app.database import CharacterRepository
 from app.drawback_rules import drawback_talent_grant, magic_talent_restriction_reason
 from app.sphere_rules import granted_sphere_abilities
 from app.ui.character_sheet import (
-    CharacterSheetWidget,
     MagicTalentCatalogDialog,
     SphereAcquisitionDialog,
     sphere_spell_point_costs,
 )
 from app.ui.dialogs import DrawbackTalentChoiceDialog
+from app.ui.refined.sheet import RefinedSheetWidget as CharacterSheetWidget
 
 
 class MagicCatalogUiTests(unittest.TestCase):

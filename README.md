@@ -11,18 +11,16 @@ Step 1 provides:
 - regular PF1e and Spheres character types;
 - create, rename, open, and delete actions;
 - automatic SQLite persistence in `%LOCALAPPDATA%\CharacterSheetApp`;
-- a reference-sheet-inspired four-page interface with dedicated **Character Build**,
-  **Core**, **Inventory & Features**, and **Magic & Spheres** pages;
+- a Refined interface with **Overview**, **Skills and Abilities**, **Abilities**,
+  **Magic**, **Equipment**, **Character**, **Class Progression**, and **Crafting** pages;
 - a separate level-up workspace for character management, identity, classes, editable
   base ability scores, casting setup, base spheres, and initial sphere drawbacks;
-- a print-sheet-style Core composition with compact read-only Abilities and the complete
-  Skills list down the left, plus Special Abilities, Defense, Conditions, Attacks, and
-  resources in the main play area;
-- live-switchable **Classic Parchment**, **Light Sheet**, and **Dark Mode** themes;
-- live-switchable **Sheet Types**, including the **Default Spheres** customizable Building Blocks sheet and
-  a faithful four-page reproduction of the original Spheres character sheet;
-- an original-sheet-inspired Default Spheres arrangement for every new Spheres character,
-  with Core, Inventory, and Magic columns that remain fully movable and a safe one-click
+- an Overview with Abilities, Defense, Conditions, Attacks, and live resources,
+  plus a dedicated skills and abilities reference page;
+- **Classic Parchment** and **Dark Mode** themes;
+- the **Refined Sheet**, with customizable Building Blocks and character-specific layouts;
+- a responsive Refined arrangement for every character,
+  with movable sections and a safe one-click
   reset that preserves all character rules data;
 - reference-style ability rows, formula-based combat strips, and clean record lists
   in place of spreadsheet grids;

@@ -40,7 +40,7 @@ def main() -> None:
     )
     for label, preview_details in previews:
         dialog = RaceCatalogDialog(preview_details)
-        for theme in ("classic", "light", "dark"):
+        for theme in ("classic", "dark"):
             dialog.setStyleSheet(style_sheet(theme))
             dialog.show()
             application.processEvents()

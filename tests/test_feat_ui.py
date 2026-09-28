@@ -10,7 +10,8 @@ from PySide6.QtWidgets import QApplication, QAbstractItemView
 from app.content import feat_entry
 from app.database import CharacterRepository
 from app.models import HitPoints
-from app.ui.character_sheet import CharacterSheetWidget, FeatCatalogDialog
+from app.ui.character_sheet import FeatCatalogDialog
+from app.ui.refined.sheet import RefinedSheetWidget as CharacterSheetWidget
 
 
 class FeatCatalogUiTests(unittest.TestCase):

@@ -435,7 +435,6 @@ class RefinedSheetWidget(CharacterSheetWidget):
 
     def _refresh_refined_visibility(self):
         self.audit_status_bar.hide()
-        self.sheet_masthead.hide()
         self.refined_magic_maneuvers.setVisible(self._class_capabilities.magic)
         self._set_section_rule_available("sphere_statistics",self._class_capabilities.magic)
         for title in self.findChildren(QLabel,"refinedSectionTitle"):

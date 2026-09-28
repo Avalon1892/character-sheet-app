@@ -3,7 +3,6 @@ from __future__ import annotations
 
 THEME_LABELS = {
     "classic": "Classic Parchment",
-    "light": "Light Sheet",
     "dark": "Dark Mode",
 }
 DEFAULT_THEME = "classic"
@@ -13,7 +12,8 @@ def normalize_theme(theme: str) -> str:
     return theme if theme in THEME_LABELS else DEFAULT_THEME
 
 
-def style_sheet(theme: str = "light") -> str:
+def style_sheet(theme: str = DEFAULT_THEME) -> str:
+    theme = normalize_theme(theme)
     style = """
         QMainWindow, QWidget {
             background: #e2e4e5;

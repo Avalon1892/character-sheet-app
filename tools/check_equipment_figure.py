@@ -25,7 +25,7 @@ with tempfile.TemporaryDirectory() as folder:
             service.equip(item, slot)
         owner = QWidget()
         dialog = EquipmentFigureDialog(service, owner)
-        for theme in ("classic", "light", "dark"):
+        for theme in ("classic", "dark"):
             owner.theme = theme
             dialog.setStyleSheet(dialog_stylesheet(theme))
             dialog.refresh(); dialog.show(); app.processEvents()

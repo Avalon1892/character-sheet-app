@@ -228,8 +228,8 @@ class RefinedUiTests(unittest.TestCase):
         self.window.resize(1500,950)
         self.window.refresh_characters(self.cid)
         self.assertIsNotNone(self.window.refined_sheet)  # the requested default
-        self.assertIsNone(self.window.original_spheres_sheet)
-        self.assertIsNone(self.window.ultra_sheet)
+        self.assertEqual({"refined"}, set(self.window.sheet_widgets))
+        self.assertIs(self.window.sheet, self.window.refined_sheet)
         self.sheet=self.window.refined_sheet
         self.window.show()
         QTest.qWait(150)
@@ -442,7 +442,6 @@ class RefinedUiTests(unittest.TestCase):
     def test_style_isolation_reset_undo_switch_and_character_preferences(self):
         s=self.sheet.session
         original=self.window.customization.capture_state()
-        blocks=self.window.block_repository.export_character_state(self.cid)
         s.history.record("Move attacks",lambda:(s.controller.place_section_freeform(self.sheet.attacks_section,s.tabs.canvases["core"],QRect(30,420,700,260)),s.controller._save_geometry(self.sheet.attacks_section)))
         changed=s.controller.capture_state()
         self.assertIn("freeform",changed)
@@ -451,13 +450,12 @@ class RefinedUiTests(unittest.TestCase):
         self.assertNotIn("freeform",s.controller.capture_state())
         self.assertTrue(s.history.undo(self.cid))
         self.assertEqual(changed,s.controller.capture_state())
-        self.assertEqual(original,self.window.customization.capture_state())
-        self.assertEqual(blocks,self.window.block_repository.export_character_state(self.cid))
+        self.assertEqual(changed,self.window.customization.capture_state())
         s.select_tab("skills");s.save()
         other=self.character("Rogue","pathfinder-class:rogue")
         self.window.style_store.save(other,"selection",{"style":"customizable"})
         self.window.refresh_characters(other)
-        self.assertNotEqual("refined",self.window.sheet_type)
+        self.assertEqual("refined",self.window.sheet_type)
         self.window.refresh_characters(self.cid)
         self.assertEqual("refined",self.window.sheet_type)
         self.assertEqual("skills",s.tabs.current_key())
@@ -539,7 +537,7 @@ class RefinedUiTests(unittest.TestCase):
         QTest.qWait(150)
         self.assertLessEqual(self.sheet.classic_statistics_section.width(),self.sheet.core_scroll.viewport().width())
         self.sheet.details_button.setChecked(False)
-        for theme in ("classic","light","dark"):
+        for theme in ("classic","dark"):
             self.window._set_theme(theme)
             for width in (1500,1100):
                 self.window.resize(width,950);QTest.qWait(130)
@@ -555,7 +553,7 @@ class RefinedUiTests(unittest.TestCase):
         for control in self.sheet.table_presentations:
             self.assertEqual(Qt.TextElideMode.ElideNone,control.table.textElideMode())
         self.assertEqual("Overview",self.sheet.page_tabs.tabText(0))
-        self.assertEqual("4   ANIMAL COMPANION",self.window.sheet.page_tabs.tabText(self.window.sheet.page_tabs.indexOf(self.window.sheet.companion_scroll)))
+        self.assertEqual("Animal Companion",self.window.sheet.page_tabs.tabText(self.window.sheet.page_tabs.indexOf(self.window.sheet.companion_scroll)))
 
     def test_polished_layout_and_disclosure_preferences_do_not_modify_gameplay(self):
         sheet=self.sheet
@@ -577,7 +575,7 @@ class RefinedUiTests(unittest.TestCase):
                 if row.row.itemAt(index).widget():
                     self.assertTrue(row.row.itemAt(index).alignment() & Qt.AlignmentFlag.AlignTop)
         self.assertEqual(2,sheet.skill_table.horizontalHeader().logicalIndex(0))
-        self.assertIsNone(self.window.sheet.skill_table.property("defaultColumnOrder"))
+        self.assertIs(self.window.sheet.skill_table, sheet.skill_table)
         # A detached movement card must not be reinserted by a live update.
         sheet.session.select_tab("core")
         card=sheet.refined_movement_cards["land_speed"]

@@ -56,7 +56,7 @@ def main():
             if name=="Witch":repo.update_bonded_companion(BondedCompanion(cid,"familiar","Ink","Raven",10,0,json.dumps({"familiar_key":"raven"})))
             window.refresh_characters(cid);window._set_sheet_type("refined")
             sheet=window.refined_sheet
-            for theme in ("classic","light","dark"):
+            for theme in ("classic","dark"):
                 window._set_theme(theme)
                 for page in pages:
                     sheet.session.select_tab(page);settle(app)

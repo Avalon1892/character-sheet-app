@@ -69,7 +69,7 @@ class DialogLayoutTests(unittest.TestCase):
         self.assertFalse(dialog.catalog_presentation.timer.isActive())
 
     def test_all_themes_override_the_legacy_dark_catalog_sidebar(self):
-        for theme in ('classic', 'light', 'dark'):
+        for theme in ('classic', 'dark'):
             dialog = self.polish(FeatCatalogDialog([]), theme)
             self.assertEqual(QColor(PALETTES[theme].surface), dialog.category_list.palette().color(QPalette.ColorRole.Base))
 
@@ -105,7 +105,7 @@ class DialogLayoutTests(unittest.TestCase):
         QVBoxLayout(dialog).addWidget(browser)
         self.addCleanup(self.dispose, dialog)
         browser.setHtml('<a href="https://example.com">Rules</a>')
-        for theme in ('classic', 'light', 'dark'):
+        for theme in ('classic', 'dark'):
             color = PALETTES[theme].accent
             style_dialog_links(dialog, color)
             fragment = browser.document().begin().begin().fragment()

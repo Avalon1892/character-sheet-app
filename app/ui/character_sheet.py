@@ -527,6 +527,7 @@ class _FormulaStatBreakdownDialog(StatBreakdownDialog):
 
 
 class CharacterSheetWidget(SheetSectionsMixin, QWidget):
+    """Shared Refined editing workflows and live controls, not a selectable style."""
     custom_sections_changed = Signal()
     formula_values_changed = Signal()
 

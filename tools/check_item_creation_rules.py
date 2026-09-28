@@ -18,7 +18,7 @@ out = Path('artifacts/item-creation-rules')
 out.mkdir(parents=True, exist_ok=True)
 dialog = CodexDialog()
 dialog.resize(1450, 900)
-for theme in ('classic', 'light', 'dark'):
+for theme in ('classic', 'dark'):
     dialog.theme = theme
     dialog.setStyleSheet(dialog_stylesheet(theme))
     dialog.show()

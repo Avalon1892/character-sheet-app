@@ -9,7 +9,8 @@ from PySide6.QtWidgets import QApplication, QAbstractItemView
 
 from app.content import martial_entries
 from app.database import CharacterRepository
-from app.ui.character_sheet import CharacterSheetWidget, MartialTalentCatalogDialog
+from app.ui.character_sheet import MartialTalentCatalogDialog
+from app.ui.refined.sheet import RefinedSheetWidget as CharacterSheetWidget
 
 
 class MartialAutomationUiTests(unittest.TestCase):

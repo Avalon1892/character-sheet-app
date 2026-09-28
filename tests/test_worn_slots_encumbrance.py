@@ -11,7 +11,7 @@ from app.database import CharacterRepository
 from app.models import WORN_SLOTS
 from app.services.character_calculations import CharacterCalculationService
 from app.transfer import export_character, import_character
-from app.ui.character_sheet import CharacterSheetWidget
+from app.ui.refined.sheet import RefinedSheetWidget as CharacterSheetWidget
 
 
 class WornSlotPersistenceTests(unittest.TestCase):

@@ -24,7 +24,7 @@ with tempfile.TemporaryDirectory() as folder:
     repo.add_equipment(cid, 'Traveler’s Boots', 'Gear', 1, 1, False, 0, 'untyped', None, '', slot='Feet')
     window = MainWindow(repo); window.refresh_characters(cid); window.show()
     sheet = window.refined_sheet
-    for theme in ('classic', 'light', 'dark'):
+    for theme in ('classic', 'dark'):
         window._set_theme(theme)
         window.resize(1500, 1000)
         for page, keys in (('build', ('base_abilities',)), ('core', ('martial_focus',)), ('inventory', ('worn_items', 'equipment_figure'))):

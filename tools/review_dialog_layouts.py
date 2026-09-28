@@ -65,7 +65,7 @@ with tempfile.TemporaryDirectory() as folder:
         except TypeError as error:
             print(name, 'FACTORY ERROR', error, flush=True)
             continue
-        for theme in ('classic', 'light', 'dark'):
+        for theme in ('classic', 'dark'):
             dialog.theme = theme
             dialog.setStyleSheet(dialog_stylesheet(theme))
             dialog.setProperty('contentLayoutApplied', False)

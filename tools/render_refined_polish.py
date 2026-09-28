@@ -32,7 +32,7 @@ def main():
         for index,field in enumerate(sheet.movement_controls.values()):
             field.set_expression(str(20+index*5))
         sheet._save_movement()
-        for theme in ("classic","light","dark"):
+        for theme in ("classic","dark"):
             window._set_theme(theme)
             for width in (1600,1100):
                 window.resize(width,1000);sheet.session.select_tab("core")

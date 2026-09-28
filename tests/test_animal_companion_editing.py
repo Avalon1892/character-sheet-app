@@ -17,7 +17,7 @@ from app.animal_companion_rules import (
 )
 from app.database import CharacterRepository
 from app.models import AnimalCompanion
-from app.ui.character_sheet import CharacterSheetWidget
+from app.ui.refined.sheet import RefinedSheetWidget as CharacterSheetWidget
 from app.ui.dialogs import AnimalCompanionFeatCatalogDialog
 
 

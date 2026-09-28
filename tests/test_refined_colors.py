@@ -63,7 +63,7 @@ class RefinedColorTests(unittest.TestCase):
         delegate = RefinedItemDelegate(table, lambda: theme[0])
         table.setItemDelegate(delegate)
         try:
-            for name in ('classic', 'dark', 'light', 'classic'):
+            for name in ('classic', 'dark', 'classic'):
                 theme[0] = name
                 palette = PALETTES[name]
                 table.setStyleSheet(stylesheet(name))

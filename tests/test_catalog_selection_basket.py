@@ -13,7 +13,7 @@ from PySide6.QtTest import QTest
 from PySide6.QtWidgets import QApplication, QDialog
 
 from app.database import CharacterRepository
-from app.ui.character_sheet import CharacterSheetWidget
+from app.ui.refined.sheet import RefinedSheetWidget as CharacterSheetWidget
 from app.ui.dialogs import (
     FeatCatalogDialog,
     ItemCatalogDialog,

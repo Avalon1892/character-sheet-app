@@ -29,7 +29,7 @@ def main():
         window=MainWindow(repo);window.resize(1500,950);window.refresh_characters(cid);window.show()
         sheet=window.refined_sheet
         try:
-            for theme in ("classic","light","dark"):
+            for theme in ("classic","dark"):
                 window._set_theme(theme)
                 for width in (1500,1100):
                     window.resize(width,950)

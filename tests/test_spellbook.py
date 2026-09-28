@@ -13,7 +13,7 @@ from PySide6.QtWidgets import QApplication, QLabel
 from app.database import CharacterRepository
 from app.recovery import FullRestEngine
 from app.spellbook import SpellBookService
-from app.ui.character_sheet import CharacterSheetWidget
+from app.ui.refined.sheet import RefinedSheetWidget as CharacterSheetWidget
 from app.ui.spellbook_dialog import SpellBookDialog
 
 

@@ -19,7 +19,7 @@ from app.content import archetype_entry
 from app.database import CharacterRepository
 from app.models import ClassFeatureSelection
 from app.spellbook import SpellBookService
-from app.ui.character_sheet import CharacterSheetWidget
+from app.ui.refined.sheet import RefinedSheetWidget as CharacterSheetWidget
 from app.ui.dialogs import ClassLevelDialog
 
 

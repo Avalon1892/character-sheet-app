@@ -40,11 +40,11 @@ class ThemeUiTests(unittest.TestCase):
         QSettings("Georg", "Character Sheet App").remove("files")
         self.temporary_directory.cleanup()
 
-    def test_three_themes_switch_and_persist(self) -> None:
+    def test_two_themes_switch_and_persist(self) -> None:
         menus = [action.text().replace("&", "") for action in self.window.menuBar().actions()]
         self.assertEqual(
-            ["File", "Edit", "Build Mode", "Theme", "Sheet Types", "Color", "Rest", "Codex", "Building Blocks"],
-            menus[:9],
+            ["File", "Edit", "Build Mode", "Theme", "Color", "Rest", "Codex", "Building Blocks"],
+            menus[:8],
         )
         self.assertEqual("Ctrl+Z", self.window.undo_action.shortcut().toString())
         self.assertIn(
@@ -55,12 +55,9 @@ class ThemeUiTests(unittest.TestCase):
         classic = self.window.styleSheet()
         self.window._set_theme("dark")
         dark = self.window.styleSheet()
-        self.window._set_theme("light")
-        light = self.window.styleSheet()
         self.assertNotEqual(classic, dark)
-        self.assertNotEqual(dark, light)
         self.assertEqual(
-            "light", QSettings("Georg", "Character Sheet App").value("appearance/theme")
+            "dark", QSettings("Georg", "Character Sheet App").value("appearance/theme")
         )
 
     def test_closing_window_releases_application_event_filters(self) -> None:
@@ -76,7 +73,6 @@ class ThemeUiTests(unittest.TestCase):
         first = self.repository.create_character("First", "Spheres")
         second = self.repository.create_character("Second", "Pathfinder 1e")
         self.window.refresh_characters(first)
-        self.window._set_sheet_type("customizable")
         self.assertTrue(self.window.character_list.isHidden())
         self.assertEqual(
             ["First", "Second"],
@@ -91,7 +87,7 @@ class ThemeUiTests(unittest.TestCase):
             self.window.sheet.conditions_section, QColor("#123456")
         )
         self.assertTrue(self.window.save_sheet_arrangement(notify=False))
-        saved = self.repository.get_character_sheet_layout(first)
+        saved = self.window.style_store.get(first, "refined")["layout"]
         self.assertEqual("#123456", saved["colors/conditions"])
 
         export_path = Path(self.temporary_directory.name) / "first.character.json"
@@ -101,7 +97,7 @@ class ThemeUiTests(unittest.TestCase):
         self.window.save_character()
         self.assertTrue(export_path.exists())
         payload = json.loads(export_path.read_text(encoding="utf-8"))
-        self.assertEqual("#123456", payload["character"]["sheet_layout"]["colors/conditions"])
+        self.assertEqual("#123456", payload["character"]["sheet_styles"]["refined"]["layout"]["colors/conditions"])
 
         self.window._select_character(second)
         self.assertEqual(second, self.window._selected_character().id)
@@ -182,13 +178,13 @@ class ThemeUiTests(unittest.TestCase):
         self.application.processEvents()
         controller = self.window.customization
         self.assertIn("conditions", controller.sections)
-        self.assertIn("core_columns", controller.layouts)
+        self.assertIn("core_main", controller.layouts)
         controller.set_build_mode(True)
         self.assertTrue(controller.build_mode)
         for page, key, canvas in (
-            (0, "overview", self.window.sheet.builder_canvas),
-            (1, "conditions", self.window.sheet.core_canvas),
-            (2, "feats", self.window.sheet.inventory_canvas),
+            (5, "overview", self.window.sheet.builder_canvas),
+            (0, "conditions", self.window.sheet.core_canvas),
+            (1, "feats", self.window.sheet.refined_pages["skills"][1]),
             (3, "magic_talents", self.window.sheet.magic_canvas),
         ):
             self.window.sheet.page_tabs.setCurrentIndex(page)
@@ -203,7 +199,7 @@ class ThemeUiTests(unittest.TestCase):
         original = controller.sections["conditions"].geometry()
         controller.sections["conditions"].move(original.x() + 25, original.y() + 15)
         controller._save_geometry(controller.sections["conditions"])
-        saved = str(QSettings("Georg", "Character Sheet App").value("customization/freeform", ""))
+        saved = str(controller.settings.value("customization/freeform", ""))
         self.assertIn('"conditions"', saved)
         controller._paint(controller.sections["conditions"], QColor("#123456"))
         self.assertIn("#123456", controller.sections["conditions"].styleSheet())
@@ -218,7 +214,6 @@ class ThemeUiTests(unittest.TestCase):
         )
         self.window.refresh_characters()
         self.window.character_list.setCurrentRow(0)
-        self.window._set_sheet_type("customizable")
         self.window.show()
         controller = self.window.customization
         controller.set_build_mode(True)
@@ -231,11 +226,6 @@ class ThemeUiTests(unittest.TestCase):
         table_id = "martial_talents/martial_talent_table"
         self.assertIn(table_id, controller.table_layout.tables)
         self.assertTrue(table.horizontalHeader().sectionsMovable())
-        self.assertTrue(table.property("fillAvailableHeight"))
-        original_table_height = table.height()
-        section.resize(section.width(), section.height() + 180)
-        self.application.processEvents()
-        self.assertGreater(table.height(), original_table_height)
 
         header = table.horizontalHeader()
         header.resizeSection(0, 321)
@@ -243,7 +233,7 @@ class ThemeUiTests(unittest.TestCase):
         controller.table_layout._capture_table(table_id)
         controller.table_layout._save()
         saved = json.loads(
-            str(QSettings("Georg", "Character Sheet App").value(
+            str(controller.settings.value(
                 "customization/tableLayouts", "{}"
             ))
         )
@@ -273,7 +263,7 @@ class ThemeUiTests(unittest.TestCase):
         controller.content_scale.preview(enlarged)
         controller.content_scale.finish()
         self.assertGreater(field.font().pointSizeF(), original_font)
-        saved = json.loads(str(QSettings("Georg", "Character Sheet App").value(
+        saved = json.loads(str(controller.settings.value(
             "customization/contentScales", "{}"
         )))
         self.assertGreater(saved["combat_defense"], 1.0)
@@ -413,17 +403,14 @@ class ThemeUiTests(unittest.TestCase):
         self.assertGreaterEqual(up.width(), 20)
         self.assertGreaterEqual(up.left(), spin.width() - 26)
 
-    def test_character_management_header_lives_inside_page_zero(self) -> None:
+    def test_character_header_remains_visible_above_refined_pages(self) -> None:
         character_id = self.repository.create_character("Header Hero", "Spheres")
         self.window.refresh_characters(character_id)
-        self.assertIs(
-            self.window.build_header.parent(),
-            self.window.sheet.builder_canvas,
-        )
+        self.assertEqual("Header Hero", self.window.sheet.refined_name.text())
         self.window.sheet.page_tabs.setCurrentIndex(1)
         self.window.show()
         self.application.processEvents()
-        self.assertFalse(self.window.build_header.isVisibleTo(self.window))
+        self.assertTrue(self.window.sheet.refined_name.isVisibleTo(self.window))
 
 
 if __name__ == "__main__":

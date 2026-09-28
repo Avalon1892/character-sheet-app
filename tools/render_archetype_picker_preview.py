@@ -18,7 +18,7 @@ def main() -> int:
     application = QApplication.instance() or QApplication([])
     output = Path(__file__).resolve().parents[1] / "artifacts" / "archetype_picker_preview"
     output.mkdir(parents=True, exist_ok=True)
-    for theme in ("classic", "light", "dark"):
+    for theme in ("classic", "dark"):
         application.setStyleSheet(style_sheet(theme))
         for label, class_key in (
             ("pathfinder", "pathfinder-class:inquisitor"),

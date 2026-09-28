@@ -37,10 +37,10 @@ def main():
         timings["first_character_load_seconds"] = time.perf_counter() - started
         print(timings, flush=True)
         assert window.sheet_type == "refined"
-        assert window.original_spheres_sheet is None and window.ultra_sheet is None
+        assert window.sheet is window.refined_sheet and window.sheet_stack.count() == 1
         sheet = window.refined_sheet
         control = sheet.refined_disclosures["special_abilities"]
-        for theme in ("classic", "light", "dark"):
+        for theme in ("classic", "dark"):
             window._set_theme(theme)
             sheet.session.select_tab("skills")
             control.set_expanded(False)

@@ -75,7 +75,7 @@ def main() -> None:
             window.sheet.inventory_scroll,
             window.sheet.magic_scroll,
         )
-        for theme in ("classic", "light", "dark"):
+        for theme in ("classic", "dark"):
             window._set_theme(theme)
             for slug in characters:
                 window._select_character(characters[slug])

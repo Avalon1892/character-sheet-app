@@ -12,7 +12,7 @@ from PySide6.QtWidgets import QApplication
 from app.catalogs import DEFAULT_CATALOG
 from app.codex_index import build_codex_search_records
 from app.database import CharacterRepository
-from app.ui.character_sheet import CharacterSheetWidget
+from app.ui.refined.sheet import RefinedSheetWidget as CharacterSheetWidget
 from app.ui.class_power_dialog import ClassPowerDialog
 from app.ui.main_window import CodexDialog
 

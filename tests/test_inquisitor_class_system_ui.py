@@ -13,7 +13,7 @@ from PySide6.QtWidgets import QApplication
 from app.content import archetype_entry
 from app.database import CharacterRepository
 from app.models import ClassFeatureState
-from app.ui.character_sheet import CharacterSheetWidget
+from app.ui.refined.sheet import RefinedSheetWidget as CharacterSheetWidget
 
 
 class InquisitorClassSystemUiTests(unittest.TestCase):

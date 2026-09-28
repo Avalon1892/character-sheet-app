@@ -42,16 +42,13 @@ from PySide6.QtWidgets import (
 
 from app.database import CharacterRepository
 from app.models import CHARACTER_TYPES, CharacterSummary
-from app.ui.customization import SheetCustomizationController
 from app.ui.dialogs import RestConfigurationDialog
 from app.ui.sheet_types import (
     DEFAULT_SHEET_TYPE,
     SHEET_TYPE_REGISTRY,
     normalize_sheet_type,
-    sheet_type_descriptors,
 )
 from app.presentation_storage import SheetStyleStore
-from app.ui.sheet_layout_presets import layout_preset_for_character_type
 from app.ui.theme import THEME_LABELS, normalize_theme, style_sheet
 from app.ui.character_library import CharacterLibraryEntry, CharacterLibraryPage
 from app.transfer import export_character, import_character
@@ -65,13 +62,6 @@ from app.character_advancement_codex import (
     CHARACTER_ADVANCEMENT_SEARCH_TEXT,
     character_advancement_codex_html,
 )
-from app.building_blocks.persistence import BuildingBlockRepository
-from app.building_blocks.registry import register_builtin_blocks
-from app.building_blocks.runtime import BlockRuntimeController
-from app.building_blocks.tabs import SheetTabManager
-from app.building_blocks.catalog import BuildingBlocksDialog
-from app.building_blocks.nested_editor import NestedCellEditor
-from app.presentation_history import PresentationHistory, PresentationSnapshot
 from app.runtime_paths import application_folder
 from app.character_creation import apply_character_creation_draft
 from app.archetype_presentation import archetype_collection_row_html, archetype_rules_html
@@ -1258,11 +1248,6 @@ class MainWindow(QMainWindow):
     def __init__(self, repository: CharacterRepository) -> None:
         super().__init__()
         self.repository = repository
-        self.block_repository = BuildingBlockRepository(
-            repository.database_path,
-            connection=repository.sqlite_connection,
-        )
-        self.block_registry = register_builtin_blocks()
         self.settings = QSettings("Georg", "Character Sheet App")
         self.theme = normalize_theme(
             str(self.settings.value("appearance/theme", "classic"))
@@ -1351,7 +1336,7 @@ class MainWindow(QMainWindow):
         self.setStyleSheet(self._style_sheet(self.theme))
 
     @staticmethod
-    def _style_sheet(theme: str = "light") -> str:
+    def _style_sheet(theme: str = "classic") -> str:
         return style_sheet(theme)
 
 
@@ -1415,7 +1400,6 @@ class MainWindow(QMainWindow):
         ))
         self.redo_action.triggered.connect(self.redo)
         edit_menu.addAction(self.redo_action)
-        self.presentation_history.on_changed = self._update_history_actions
         self._update_history_actions()
 
         build_menu = self.menuBar().addMenu("&Build Mode")
@@ -1472,20 +1456,6 @@ class MainWindow(QMainWindow):
             theme_menu.addAction(action)
         self.theme_actions = theme_group
 
-        sheet_type_menu = self.menuBar().addMenu("Sheet &Types")
-        sheet_type_group = QActionGroup(self)
-        sheet_type_group.setExclusive(True)
-        for descriptor in sheet_type_descriptors():
-            action = QAction(descriptor.label, self, checkable=True)
-            action.setStatusTip(descriptor.description)
-            action.setChecked(self.sheet_type == descriptor.key)
-            action.triggered.connect(
-                lambda _checked=False, key=descriptor.key: self._set_sheet_type(key)
-            )
-            sheet_type_group.addAction(action)
-            sheet_type_menu.addAction(action)
-        self.sheet_type_menu = sheet_type_menu
-        self.sheet_type_actions = sheet_type_group
 
         color_menu = self.menuBar().addMenu("&Color")
         self.color_menu = color_menu
@@ -1575,290 +1545,46 @@ class MainWindow(QMainWindow):
         dialog.exec()
 
     def open_building_blocks(self) -> None:
-        if self.sheet_type == "refined":
-            self.refined_sheet.session.open_blocks()
-            return
-        character = self._selected_character()
-        if character is None:
-            QMessageBox.information(self, "No character", "Open a character first.")
-            return
-        dialog = BuildingBlocksDialog(
-            self.repository,
-            self.block_repository,
-            self.block_registry,
-            character.id,
-            self.block_repository.list_tabs(character.id),
-            self.block_runtime.add_block,
-            self,
-            remove_block=self.block_runtime.remove_block,
-            current_tab_key=self.tab_manager.current_key(),
-        )
-        dialog.exec()
-        self.block_runtime.refresh()
+        self.refined_sheet.session.open_blocks()
+        return
+
 
     def add_sheet_tab(self) -> None:
-        if self.sheet_type == "refined":
-            self.refined_sheet.session.add_tab()
-            return
-        if self._selected_character() is None:
-            return
-        name, accepted = QInputDialog.getText(
-            self, "Add sheet tab", "Tab name", text="New Page"
-        )
-        if accepted and name.strip():
-            self.presentation_history.record(
-                "Add sheet tab",
-                lambda: (
-                    self.tab_manager.add_tab(name.strip()),
-                    self._sync_runtime_canvases(),
-                ),
-            )
+        self.refined_sheet.session.add_tab()
+        return
+
 
     def rename_current_tab(self) -> None:
-        if self.sheet_type == "refined":
-            self.refined_sheet.session.rename_tab()
-            return
-        if self._selected_character() is None:
-            return
-        key = self.tab_manager.current_key()
-        current = self.sheet.page_tabs.tabText(self.sheet.page_tabs.currentIndex())
-        name, accepted = QInputDialog.getText(
-            self, "Rename sheet tab", "Tab name", text=current
-        )
-        if accepted and name.strip():
-            self.presentation_history.record(
-                "Rename sheet tab",
-                lambda: self.tab_manager.rename(key, name.strip()),
-            )
+        self.refined_sheet.session.rename_tab()
+        return
+
 
     def duplicate_current_tab(self) -> None:
-        if self.sheet_type == "refined":
-            session = self.refined_sheet.session
-            name, ok = QInputDialog.getText(self, "Duplicate page", "New page name")
-            if ok and name.strip():
-                session.history.record("Duplicate page", lambda: (session.tabs.add_tab(name.strip(), source_key=session.tabs.current_key()), session._reload_tabs()))
-            return
-        if self._selected_character() is None:
-            return
-        source = self.tab_manager.current_key()
-        current = self.sheet.page_tabs.tabText(self.sheet.page_tabs.currentIndex())
-        name, accepted = QInputDialog.getText(
-            self, "Duplicate sheet tab", "New tab name", text=f"{current} Copy"
-        )
-        if accepted and name.strip():
-            self.presentation_history.record(
-                "Duplicate sheet tab",
-                lambda: (
-                    self.tab_manager.add_tab(name.strip(), source_key=source),
-                    self._sync_runtime_canvases(),
-                    self.block_runtime.refresh(),
-                ),
-            )
+        session = self.refined_sheet.session
+        name, ok = QInputDialog.getText(self, "Duplicate page", "New page name")
+        if ok and name.strip():
+            session.history.record("Duplicate page", lambda: (session.tabs.add_tab(name.strip(), source_key=session.tabs.current_key()), session._reload_tabs()))
+        return
+
 
     def remove_current_tab(self) -> None:
-        if self.sheet_type == "refined":
-            self.refined_sheet.session.hide_tab()
-            return
-        character = self._selected_character()
-        if character is None:
-            return
-        key = self.tab_manager.current_key()
-        tabs = self.block_repository.list_tabs(character.id)
-        visible = [tab for tab in tabs if tab.visible and tab.key != key]
-        if not visible:
-            QMessageBox.information(
-                self, "Keep one tab", "At least one visible sheet tab must remain."
-            )
-            return
-        message = QMessageBox(self)
-        message.setWindowTitle("Remove or hide tab")
-        message.setText("What should happen to this tab and its visual blocks?")
-        move_button = message.addButton(
-            "Move blocks and remove tab", QMessageBox.ButtonRole.AcceptRole
-        )
-        hide_button = message.addButton(
-            "Hide tab and retain contents", QMessageBox.ButtonRole.ActionRole
-        )
-        message.addButton(QMessageBox.StandardButton.Cancel)
-        message.exec()
-        hide = message.clickedButton() is hide_button
-        move_to = ""
-        if message.clickedButton() is move_button:
-            labels = [tab.name for tab in visible]
-            destination, accepted = QInputDialog.getItem(
-                self, "Move tab contents", "Destination tab", labels, 0, False
-            )
-            if not accepted:
-                return
-            move_to = visible[labels.index(destination)].key
-        elif not hide:
-            return
-        self.presentation_history.record(
-            "Hide sheet tab" if hide else "Remove sheet tab",
-            lambda: (
-                self.block_repository.remove_tab(
-                    character.id, key, move_to=move_to, hide=hide
-                ),
-                self.tab_manager.reload(),
-                self._sync_runtime_canvases(),
-                self.block_runtime.refresh(),
-            ),
-        )
+        self.refined_sheet.session.hide_tab()
+        return
+
 
     def restore_hidden_tab(self) -> None:
-        if self.sheet_type == "refined":
-            self.refined_sheet.session.restore_tab()
-            return
-        character = self._selected_character()
-        if character is None:
-            return
-        hidden = [
-            tab
-            for tab in self.block_repository.list_tabs(character.id)
-            if not tab.visible
-        ]
-        if not hidden:
-            QMessageBox.information(
-                self, "No hidden tabs", "This character has no hidden sheet tabs."
-            )
-            return
-        labels = [tab.name for tab in hidden]
-        selected, accepted = QInputDialog.getItem(
-            self, "Restore sheet tab", "Hidden tab", labels, 0, False
-        )
-        if not accepted:
-            return
-        tab_key = hidden[labels.index(selected)].key
-        self.presentation_history.record(
-            "Restore hidden sheet tab",
-            lambda: (
-                self.block_repository.set_tab_visible(character.id, tab_key, True),
-                self.tab_manager.reload(),
-                self._sync_runtime_canvases(),
-            ),
-        )
+        self.refined_sheet.session.restore_tab()
+        return
+
 
     def restore_default_sheet(
         self, _checked: bool = False, *, confirm: bool = True
     ) -> bool:
         """Restore presentation defaults while retaining all character rules data."""
-        if self.sheet_type == "refined":
-            self.refined_sheet.session.reset(confirm=confirm)
-            return self.active_character_id is not None
-        character = self._selected_character()
-        if character is None:
-            return False
-        preset = layout_preset_for_character_type(character.character_type)
-        if confirm:
-            answer = QMessageBox.question(
-                self,
-                f"Restore {preset.label} Sheet?",
-                f"Restore the {preset.label} pages, built-in boxes, positions, sizes, "
-                "columns, colors, and cell layouts for this character?\n\n"
-                "Custom tabs and placed custom blocks will be removed from this "
-                "character's sheet. Reusable Building Blocks templates and all "
-                "Pathfinder character data will be preserved.",
-            )
-            if answer != QMessageBox.StandardButton.Yes:
-                return False
-        history_started = self.presentation_history.begin("Restore Default Sheet")
-        self.build_mode_action.setChecked(False)
-        self.cell_edit_action.setChecked(False)
-        self.content_scale_action.setChecked(False)
-        self.repository.clear_character_sheet_layout(character.id)
-        self.block_repository.reset_character_presentation(
-            character.id, self.block_registry
-        )
-        default_state = preset.presentation_state()
-        self.repository.save_character_sheet_layout(character.id, default_state)
-        self.customization.apply_state(default_state)
-        self.tab_manager.load_character(character.id)
-        self._sync_runtime_canvases()
-        self.block_runtime.load_character(character.id)
-        self.nested_cell_editor.load_character(character.id)
-        self.sheet.page_tabs.setCurrentIndex(0)
-        self.pages.setCurrentIndex(1)
-        QTimer.singleShot(0, self.customization.refresh_canvas_sizes)
-        self.statusBar().showMessage(
-            f"{preset.label} sheet restored. Character rules data was preserved.",
-            7000,
-        )
-        if history_started:
-            self.presentation_history.commit()
-        return True
+        self.refined_sheet.session.reset(confirm=confirm)
+        return self.active_character_id is not None
 
-    def _sync_runtime_canvases(self) -> None:
-        self.customization.set_canvases(self.tab_manager.canvases)
-        self.block_runtime.set_canvases(self.tab_manager.canvases)
 
-    def _capture_presentation_snapshot(self) -> PresentationSnapshot | None:
-        character = self._selected_character()
-        if character is None:
-            return None
-        return PresentationSnapshot(
-            character.id,
-            dict(self.customization.capture_state()),
-            self.block_repository.export_character_state(character.id),
-            self.tab_manager.current_key(),
-        )
-
-    def _apply_presentation_snapshot(self, snapshot: PresentationSnapshot) -> None:
-        character = self._selected_character()
-        if character is None or character.id != snapshot.character_id:
-            return
-        current_layout = dict(self.customization.capture_state())
-        current_blocks = self.block_repository.export_character_state(character.id)
-        layout_changed = current_layout != snapshot.layout
-        blocks_changed = current_blocks != snapshot.building_blocks
-
-        if snapshot.layout:
-            self.repository.save_character_sheet_layout(
-                character.id, snapshot.layout
-            )
-        else:
-            self.repository.clear_character_sheet_layout(character.id)
-
-        # A cell drag/resize changes only cell_overrides. Rebuilding every tab,
-        # deleting/recreating all block instances, and reconstructing every
-        # custom widget made Ctrl+Z unnecessarily expensive. Keep stable block
-        # IDs and update those rows in one transaction instead.
-        if blocks_changed and self._same_sheet_structure(
-            current_blocks, snapshot.building_blocks
-        ):
-            self.block_repository.replace_character_cell_overrides(
-                character.id, snapshot.building_blocks
-            )
-            self.nested_cell_editor.clear_selection()
-            if layout_changed:
-                self.customization.apply_state(snapshot.layout)
-                self.block_runtime.refresh()
-            self.nested_cell_editor.apply_overrides()
-            self._select_presentation_tab(snapshot.current_tab)
-            QTimer.singleShot(0, self.customization.refresh_canvas_sizes)
-            return
-
-        if not blocks_changed:
-            if layout_changed:
-                self.customization.apply_state(snapshot.layout)
-                self.block_runtime.refresh()
-                self.nested_cell_editor.apply_overrides()
-            self._select_presentation_tab(snapshot.current_tab)
-            QTimer.singleShot(0, self.customization.refresh_canvas_sizes)
-            return
-
-        self.block_repository.import_character_state(
-            character.id, snapshot.building_blocks
-        )
-        self.tab_manager.load_character(character.id)
-        self._sync_runtime_canvases()
-        self.block_runtime.load_character(character.id)
-        self.nested_cell_editor.load_character(character.id)
-        self.customization.sync_sections()
-        self.customization.apply_state(snapshot.layout)
-        self.block_runtime.refresh()
-        self.nested_cell_editor.apply_overrides()
-        self._select_presentation_tab(snapshot.current_tab)
-        QTimer.singleShot(0, self.customization.refresh_canvas_sizes)
 
     @staticmethod
     def _same_sheet_structure(left: dict, right: dict) -> bool:
@@ -1873,14 +1599,6 @@ class MainWindow(QMainWindow):
             for block in right.get("blocks", ())
         ]
         return left_blocks == right_blocks
-
-    def _select_presentation_tab(self, tab_key: str) -> None:
-        if not tab_key or self.tab_manager.current_key() == tab_key:
-            return
-        for index in range(self.sheet.page_tabs.count()):
-            self.sheet.page_tabs.setCurrentIndex(index)
-            if self.tab_manager.current_key() == tab_key:
-                return
 
     def _native_text_history(self, *, redo: bool) -> bool:
         focus = QApplication.focusWidget()
@@ -1905,45 +1623,21 @@ class MainWindow(QMainWindow):
     def undo(self) -> None:
         if self._native_text_history(redo=False):
             return
-        if self.sheet_type == "refined":
-            self.refined_sheet.session.history.undo(self.active_character_id)
-            return
-        character = self._selected_character()
-        self.presentation_history.undo(None if character is None else character.id)
+        self.presentation_history.undo(self.active_character_id)
 
     def redo(self) -> None:
         if self._native_text_history(redo=True):
             return
-        if self.sheet_type == "refined":
-            self.refined_sheet.session.history.redo(self.active_character_id)
-            return
-        character = self._selected_character()
-        self.presentation_history.redo(None if character is None else character.id)
+        self.presentation_history.redo(self.active_character_id)
 
     def _update_history_actions(self) -> None:
         if not hasattr(self, "undo_action"):
             return
-        if self.sheet_type == "refined" and getattr(self, "refined_sheet", None) is not None:
-            history = self.refined_sheet.session.history
-            self.undo_action.setEnabled(history.can_undo(self.active_character_id))
-            self.redo_action.setEnabled(history.can_redo(self.active_character_id))
-            self.undo_action.setText("Undo " + history.undo_description(self.active_character_id))
-            self.redo_action.setText("Redo " + history.redo_description(self.active_character_id))
-            return
-        if self.sheet_type != "customizable":
-            self.undo_action.setText("Undo")
-            self.redo_action.setText("Redo")
-            self.undo_action.setEnabled(False)
-            self.redo_action.setEnabled(False)
-            return
-        character = self._selected_character()
-        character_id = None if character is None else character.id
-        undo_label = self.presentation_history.undo_description(character_id)
-        redo_label = self.presentation_history.redo_description(character_id)
-        self.undo_action.setText(f"Undo {undo_label}" if undo_label else "Undo")
-        self.redo_action.setText(f"Redo {redo_label}" if redo_label else "Redo")
-        self.undo_action.setEnabled(self.presentation_history.can_undo(character_id))
-        self.redo_action.setEnabled(self.presentation_history.can_redo(character_id))
+        history = self.presentation_history
+        self.undo_action.setEnabled(history.can_undo(self.active_character_id))
+        self.redo_action.setEnabled(history.can_redo(self.active_character_id))
+        self.undo_action.setText("Undo " + history.undo_description(self.active_character_id))
+        self.redo_action.setText("Redo " + history.redo_description(self.active_character_id))
 
     def configure_full_rest(self) -> None:
         character = self._selected_character()
@@ -2006,33 +1700,13 @@ class MainWindow(QMainWindow):
             self.customization.content_scale.restore()
 
     def _set_sheet_type(self, sheet_type: str, *, remember: bool = True, reload_character: bool = True) -> None:
-        if sheet_type not in SHEET_TYPE_REGISTRY:
-            return
-        if getattr(self, "refined_sheet", None) is not None and self.sheet_type == "refined":
-            self.refined_sheet.session.save()
-            self.refined_sheet.customize_button.setChecked(False)
-        self.sheet_type = sheet_type
-        if sheet_type == "refined":
-            self._ensure_refined_sheet()
-        elif sheet_type not in self.sheet_widgets:
-            self._ensure_optional_sheet(sheet_type)
-        if remember:
-            if sheet_type != "refined":
-                self.settings.setValue("appearance/sheetType", sheet_type)
-            if self.active_character_id is not None:
-                self.style_store.save(self.active_character_id, "selection", {"style": sheet_type})
-        if hasattr(self, "sheet_type_actions"):
-            for action, descriptor in zip(
-                self.sheet_type_actions.actions(), sheet_type_descriptors()
-            ):
-                action.setChecked(descriptor.key == sheet_type)
-        if hasattr(self, "sheet_stack"):
-            widget = self.sheet_widgets[sheet_type]
-            self.sheet_stack.setCurrentWidget(widget)
-            if self.active_character_id is not None and reload_character:
-                widget.load_character(self.active_character_id)
+        """Compatibility entry point: historical saved styles now use Refined."""
+        self.sheet_type = "refined"
+        if self.active_character_id is not None and reload_character:
+            self.sheet.load_character(self.active_character_id)
         self._update_sheet_type_controls()
         self._update_history_actions()
+
 
     def _update_sheet_type_controls(self) -> None:
         if not hasattr(self, "build_menu"):
@@ -2051,27 +1725,16 @@ class MainWindow(QMainWindow):
     def _set_cell_edit_mode(self, enabled: bool) -> None:
         if enabled and not self.build_mode_action.isChecked():
             self.build_mode_action.setChecked(True)
-        if self.sheet_type == "refined":
-            self.refined_sheet.session.mode.setCurrentIndex(3 if enabled else 0)
-        else:
-            self._active_customization().set_cell_edit_mode(enabled)
+        self.refined_sheet.session.mode.setCurrentIndex(3 if enabled else 0)
 
     def _set_content_scale_mode(self, enabled: bool) -> None:
-        if self.sheet_type == "refined":
-            self.refined_sheet.session.mode.setCurrentIndex(2 if enabled else 0)
-        else:
-            self._active_customization().set_content_scale_mode(enabled)
+        self.refined_sheet.session.mode.setCurrentIndex(2 if enabled else 0)
 
     def _active_customization(self):
-        if self.sheet_type == "refined":
-            return self.refined_sheet.session.controller
         return self.customization
 
     def _set_build_mode(self, enabled):
-        if self.sheet_type == "refined":
-            self.refined_sheet.customize_button.setChecked(enabled)
-        else:
-            self.customization.set_build_mode(enabled)
+        self.refined_sheet.customize_button.setChecked(enabled)
 
     def _library_page(self) -> QWidget:
         self.character_library = CharacterLibraryPage()
@@ -2084,159 +1747,49 @@ class MainWindow(QMainWindow):
         self.character_page_widget = page
         layout = QVBoxLayout(page)
         layout.setContentsMargins(0, 0, 0, 0)
-        self.sheet_widgets = {
-            descriptor.key: descriptor.create(self.repository)
-            for descriptor in sheet_type_descriptors()
-            if descriptor.key == "customizable"
-        }
-        self.sheet = self.sheet_widgets["customizable"]
-        self.original_spheres_sheet = None
-        self.ultra_sheet = None
-        self.refined_sheet = None
         self.style_store = SheetStyleStore(self.repository)
-        for widget in self.sheet_widgets.values():
-            renamed = getattr(widget, "character_renamed", None)
-            if renamed is not None:
-                renamed.connect(lambda character_id: self.refresh_characters(character_id))
-            rest_requested = getattr(widget, "full_rest_requested", None)
-            if rest_requested is not None:
-                rest_requested.connect(self.perform_full_rest)
+        self.sheet = self.refined_sheet = SHEET_TYPE_REGISTRY["refined"].create(self.repository)
+        self.sheet_widgets = {"refined": self.sheet}
         self.sheet_stack = QStackedWidget()
-        for descriptor in sheet_type_descriptors():
-            if descriptor.key in self.sheet_widgets:
-                self.sheet_stack.addWidget(self.sheet_widgets[descriptor.key])
-        self.sheet_stack.setCurrentWidget(self.sheet_widgets.get(self.sheet_type, self.sheet))
-        self.customization = SheetCustomizationController(
-            self, self.sheet, self.sheet.custom_sections, self.sheet.custom_layouts
-        )
-        self.sheet.custom_sections_changed.connect(self.customization.sync_sections)
-        self.tab_manager = SheetTabManager(self.sheet, self.block_repository)
-        self.block_runtime = BlockRuntimeController(
-            self.sheet,
-            self.customization,
-            self.repository,
-            self.block_repository,
-            self.block_registry,
-            {
-                "full_rest": self.perform_full_rest,
-                "refresh": self._refresh_character_and_runtime,
-            },
-        )
-        self.sheet.formula_values_changed.connect(self.block_runtime.refresh)
-        self.nested_cell_editor = NestedCellEditor(
-            self.sheet, self.block_repository, self.block_runtime, self.tab_manager
-        )
-        self.customization.set_nested_editor(self.nested_cell_editor)
-        self.customization.set_geometry_saved_callback(
-            self.block_runtime.save_widget_geometry
-        )
-        self.block_runtime.set_nested_editor(self.nested_cell_editor)
-        self.presentation_history = PresentationHistory(
-            self._capture_presentation_snapshot,
-            self._apply_presentation_snapshot,
-        )
-        self.customization.set_history(self.presentation_history)
-        self.nested_cell_editor.set_history(self.presentation_history)
-        self.block_runtime.set_history(self.presentation_history)
-        self.tab_manager.set_history(self.presentation_history)
-
-        build_header = QWidget()
-        build_header.setObjectName("buildCharacterHeader")
-        self.build_header = build_header
-        header_wrapper = QVBoxLayout(build_header)
-        header_wrapper.setContentsMargins(10, 4, 10, 4)
-        header = QHBoxLayout()
-        titles = QVBoxLayout()
-        self.character_name = QLabel()
-        self.character_name.setObjectName("heroTitle")
-        self.character_type = QLabel()
-        self.character_type.setObjectName("pageSubtitle")
-        titles.addWidget(self.character_name)
-        titles.addWidget(self.character_type)
-        header.addLayout(titles)
-        header.addStretch()
-        rename_button = QPushButton("Rename")
-        rename_button.clicked.connect(self.rename_selected)
-        delete_button = QPushButton("Delete")
-        delete_button.setObjectName("dangerButton")
-        delete_button.clicked.connect(self.delete_selected)
-        header.addWidget(rename_button)
-        header.addWidget(delete_button)
-        header_wrapper.addLayout(header)
-        self.sheet.builder_layout.insertWidget(0, build_header)
-        layout.addWidget(self.sheet_stack, 1)
+        self.sheet_stack.addWidget(self.sheet)
+        layout.addWidget(self.sheet_stack)
+        self.sheet.attach_host(self)
+        session = self.sheet.session
+        self.block_repository = session.presentation
+        self.block_registry = session.registry
+        self.customization = session.controller
+        self.tab_manager = session.tabs
+        self.block_runtime = session.runtime
+        self.nested_cell_editor = session.cells
+        self.presentation_history = session.history
+        self.character_name = self.sheet.refined_name
+        self.character_type = self.sheet.refined_classes
+        self.sheet.set_theme(self.theme)
+        self.sheet.full_rest_requested.connect(self.perform_full_rest)
         self.floating_notes = FloatingNoteManager(
-            self.repository,
-            page,
-            self._current_note_page_key,
-            lambda expression: self.sheet_widgets[self.sheet_type]._evaluate_character_formula(expression)
-                if self.sheet_type == "refined" else self.sheet._evaluate_character_formula(expression),
-            lambda: self.sheet_widgets[self.sheet_type]._character_formula_suggestions()
-                if self.sheet_type == "refined" else self.sheet._character_formula_suggestions(),
+            self.repository, page, self._current_note_page_key,
+            self.sheet._evaluate_character_formula,
+            self.sheet._character_formula_suggestions,
         )
-        self.sheet.formula_values_changed.connect(
-            self.floating_notes.refresh_formulas
-        )
-        self.sheet.page_tabs.currentChanged.connect(
-            lambda _index: self.floating_notes.page_changed()
-        )
-        self.sheet_stack.currentChanged.connect(
-            lambda _index: self.floating_notes.page_changed()
-        )
+        self.sheet.notes_requested.connect(lambda: self.floating_notes.create_or_show(self.sheet.mapToGlobal(self.sheet.rect().center())))
+        self.sheet.formula_values_changed.connect(self.floating_notes.refresh_formulas)
+        self.sheet.page_tabs.currentChanged.connect(lambda _index: self.floating_notes.page_changed())
         return page
 
-    def _ensure_refined_sheet(self):
-        """Do not impose a fourth widget tree on users of the original styles."""
-        if self.refined_sheet is not None:
-            return self.refined_sheet
-        widget = SHEET_TYPE_REGISTRY["refined"].create(self.repository)
-        self.refined_sheet = widget
-        self.sheet_widgets["refined"] = widget
-        widget.attach_host(self)
-        widget.set_theme(self.theme)
-        renamed=getattr(widget,"character_renamed",None)
-        if renamed is not None:
-            renamed.connect(lambda character_id:self.refresh_characters(character_id))
-        widget.full_rest_requested.connect(self.perform_full_rest)
-        widget.notes_requested.connect(lambda: self.floating_notes.create_or_show(widget.mapToGlobal(widget.rect().center())))
-        widget.formula_values_changed.connect(self.floating_notes.refresh_formulas)
-        widget.page_tabs.currentChanged.connect(lambda _index: self.floating_notes.page_changed())
-        self.sheet_stack.addWidget(widget)
-        return widget
 
-    def _ensure_optional_sheet(self, key):
-        """Keep unused fixed sheet styles out of startup and refresh work."""
-        if key in self.sheet_widgets:
-            return self.sheet_widgets[key]
-        widget = SHEET_TYPE_REGISTRY[key].create(self.repository)
-        self.sheet_widgets[key] = widget
-        setattr(self, "original_spheres_sheet" if key == "original_spheres" else "ultra_sheet", widget)
-        renamed = getattr(widget, "character_renamed", None)
-        if renamed is not None:
-            renamed.connect(lambda character_id: self.refresh_characters(character_id))
-        rest_requested = getattr(widget, "full_rest_requested", None)
-        if rest_requested is not None:
-            rest_requested.connect(self.perform_full_rest)
-        self.sheet_stack.addWidget(widget)
-        return widget
+    def _ensure_refined_sheet(self):
+        return self.refined_sheet
+
+
 
     def _current_note_page_key(self) -> str:
-        if self.sheet_type == "refined":
-            return "refined:" + (self.refined_sheet.session.tabs.current_key()
-                                 if self.refined_sheet is not None else "core")
-        if self.sheet_stack.currentWidget() is self.sheet:
-            return self.tab_manager.current_key()
-        return f"sheet-type:{self.sheet_type}"
+        return "refined:" + self.sheet.session.tabs.current_key()
+
 
     def _refresh_character_and_runtime(self) -> None:
-        """Refresh sheet calculations and every formula-bearing runtime block."""
+        self.sheet.refresh_all()
+        self.block_runtime.refresh()
 
-        # The legacy sheet supplies shared command adapters; other hidden
-        # presentations reload from the repository when explicitly selected.
-        for key in {"customizable", self.sheet_type}:
-            self.sheet_widgets[key].refresh_all()
-        if hasattr(self, "block_runtime"):
-            self.block_runtime.refresh()
 
     def refresh_characters(
         self,
@@ -2299,17 +1852,12 @@ class MainWindow(QMainWindow):
         self._update_history_actions()
 
     def _save_active_arrangement(self) -> bool:
-        """Persist the active layout only while its owning character still exists."""
-
         character_id = self.active_character_id
         if character_id is None or not self.repository.character_exists(character_id):
             return False
-        if self.refined_sheet is not None:
-            self.refined_sheet.session.save()
-        self.repository.save_character_sheet_layout(
-            character_id, self.customization.capture_state()
-        )
+        self.sheet.session.save()
         return True
+
 
     def _refresh_switch_character_menu(self) -> None:
         if not hasattr(self, "switch_character_menu"):
@@ -2364,10 +1912,6 @@ class MainWindow(QMainWindow):
                 self.repository.delete_character(character_id)
             QMessageBox.warning(self, "Cannot create character", str(error))
             return
-        preset = layout_preset_for_character_type(character_type)
-        default_state = preset.presentation_state()
-        if default_state:
-            self.repository.save_character_sheet_layout(character_id, default_state)
         self.refresh_characters(character_id)
 
     def rename_selected(self) -> None:
@@ -2405,24 +1949,11 @@ class MainWindow(QMainWindow):
         QMessageBox.information(self, "Character exported", "The character file was saved.")
 
     def save_sheet_arrangement(self, _checked: bool = False, *, notify: bool = True) -> bool:
-        if self.sheet_type == "refined":
-            self.refined_sheet.session.save()
-            if notify:
-                self.statusBar().showMessage("Refined Sheet arrangement saved.", 4000)
-            return self.active_character_id is not None
-        character = self._selected_character()
-        if character is None:
-            if notify:
-                QMessageBox.information(self, "No character", "Open a character first.")
-            return False
-        self.repository.save_character_sheet_layout(
-            character.id, self.customization.capture_state()
-        )
+        self.refined_sheet.session.save()
         if notify:
-            self.statusBar().showMessage(
-                f'Sheet arrangement saved to "{character.name}".', 5000
-            )
-        return True
+            self.statusBar().showMessage("Refined Sheet arrangement saved.", 4000)
+        return self.active_character_id is not None
+
 
     def save_character(self) -> None:
         character = self._selected_character()
@@ -2552,43 +2083,14 @@ class MainWindow(QMainWindow):
         if self.active_character_id is not None and self.active_character_id != character.id:
             self._save_active_arrangement()
         self.active_character_id = character.id
-        self.character_name.setText(character.name)
-        self.character_type.setText(character.character_type)
-        if hasattr(self, "reset_layout_action"):
-            preset = layout_preset_for_character_type(character.character_type)
-            self.reset_layout_action.setText(
-                f"Restore {preset.label} Sheet for this character…"
-            )
         self.sheet.load_character(character.id)
-        self.block_repository.ensure_character(character.id, self.block_registry)
-        self.tab_manager.load_character(character.id)
-        self.customization.set_canvases(self.tab_manager.canvases)
-        self.block_runtime.set_canvases(self.tab_manager.canvases)
-        self.block_runtime.load_character(character.id)
-        self.nested_cell_editor.load_character(character.id)
-        self.customization.sync_sections()
-        arrangement = self.repository.get_character_sheet_layout(character.id)
-        if not arrangement:
-            arrangement = layout_preset_for_character_type(
-                character.character_type
-            ).presentation_state()
-            if arrangement:
-                self.repository.save_character_sheet_layout(
-                    character.id, arrangement
-                )
-        self.customization.apply_state(arrangement)
-        self.block_runtime.refresh()
-        self.nested_cell_editor.apply_overrides()
-        preference = self.style_store.get(character.id, "selection")
-        fallback = DEFAULT_SHEET_TYPE
-        selected_style=normalize_sheet_type(preference.get("style", fallback))
-        self._set_sheet_type(selected_style, remember=False, reload_character=selected_style!="customizable")
         self.floating_notes.load_character(character.id)
         self.pages.setCurrentIndex(1)
         self.floating_notes.set_host_visible(True)
-        QTimer.singleShot(0, self.customization.refresh_canvas_sizes)
+        self._update_sheet_type_controls()
         self._refresh_switch_character_menu()
         self._update_history_actions()
+
 
     def closeEvent(self, event) -> None:
         self._save_active_arrangement()
@@ -2598,12 +2100,10 @@ class MainWindow(QMainWindow):
         if application is not None:
             application.removeEventFilter(self)
             self._context_menu_application = None
-        self.customization.dispose()
         for widget in self.sheet_widgets.values():
             dispose = getattr(widget, "dispose", None)
             if callable(dispose):
                 dispose()
-        self.block_repository.close()
         super().closeEvent(event)
 
     def _selected_character(self) -> CharacterSummary | None:

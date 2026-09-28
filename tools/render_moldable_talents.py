@@ -29,7 +29,7 @@ def main():
         selections = [fixture._record(martial_entry("boxing:base"), "martial"),
                       fixture._record(magic_entry("warp:base"), "magic")]
         save_moldable_entries(fixture.repository, fixture.character, selections)
-        for theme in ("classic", "light", "dark"):
+        for theme in ("classic", "dark"):
             app.setStyleSheet(style_sheet(theme))
             dialog = MoldableTalentsDialog(fixture.repository, fixture.character, 3, locked_count=2)
             dialog.sphere.setCurrentText("Equipment")

@@ -32,7 +32,7 @@ with tempfile.TemporaryDirectory() as folder:
         window.show()
         sheet = window.refined_sheet
         codex = CodexDialog(parent=window)
-        for theme in ("classic", "light", "dark"):
+        for theme in ("classic", "dark"):
             window._set_theme(theme)
             sheet.session.select_tab("skills")
             sheet.details_button.setChecked(True)

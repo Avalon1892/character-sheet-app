@@ -45,7 +45,7 @@ def main() -> None:
         window.refresh_characters(character_id)
         window.show()
         application.processEvents()
-        for theme in ("classic", "light", "dark"):
+        for theme in ("classic", "dark"):
             window._set_theme(theme)
             application.processEvents()
             window.grab().save(str(output / f"{theme}-audit-status.png"))

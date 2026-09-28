@@ -20,7 +20,7 @@ from app.item_containers import (
 )
 from app.services.character_calculations import CharacterCalculationService
 from app.transfer import export_character, import_character
-from app.ui.character_sheet import CharacterSheetWidget
+from app.ui.refined.sheet import RefinedSheetWidget as CharacterSheetWidget
 from app.ui.dialogs import EquipmentDialog
 from app.ui.inventory_dialog import InventoryOrganizerDialog
 

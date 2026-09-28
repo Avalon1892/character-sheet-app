@@ -10,7 +10,8 @@ from PySide6.QtWidgets import QApplication, QAbstractItemView, QDialog, QMessage
 
 from app.content import trait_entry
 from app.database import CharacterRepository
-from app.ui.character_sheet import CharacterSheetWidget, TraitCatalogDialog
+from app.ui.character_sheet import TraitCatalogDialog
+from app.ui.refined.sheet import RefinedSheetWidget as CharacterSheetWidget
 from app.ui.dialogs import FeatChoiceDialog, TraitDialog
 
 

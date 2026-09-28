@@ -16,7 +16,7 @@ from app.item_enchantments import AGILE
 from app.rules import calculate_attack
 from app.services.character_calculations import CharacterCalculationService
 from app.ui.dialogs import AttackDialog
-from app.ui.character_sheet import CharacterSheetWidget
+from app.ui.refined.sheet import RefinedSheetWidget as CharacterSheetWidget
 
 
 class UnarmedAndEnchantmentRulesTests(unittest.TestCase):

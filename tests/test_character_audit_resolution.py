@@ -36,7 +36,7 @@ from app.models import (
 )
 from app.traditional_spellcasting import spontaneous_caster_capacities
 from app.ui.character_audit_dialog import AuditAction, CharacterAuditDialog
-from app.ui.character_sheet import CharacterSheetWidget
+from app.ui.refined.sheet import RefinedSheetWidget as CharacterSheetWidget
 from app.ui.theme import THEME_LABELS, style_sheet
 
 

@@ -32,7 +32,7 @@ def main():
         quick="--quick" in sys.argv
         requested=next((arg.split("=",1)[1] for arg in sys.argv if arg.startswith("--pages=")),"")
         only_pages=set(requested.split(",")) if requested else None
-        for theme in (("classic",) if quick else ("classic","light","dark")):
+        for theme in (("classic",) if quick else ("classic","dark")):
             window._set_theme(theme)
             for width,height in ((1600,1000),(1100,800)):
                 window.resize(width,height)

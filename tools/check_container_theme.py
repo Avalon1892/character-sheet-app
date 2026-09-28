@@ -24,7 +24,7 @@ with tempfile.TemporaryDirectory() as folder:
     repo.add_equipment(cid, "Bag of Holding, Type I", "Gear", 1, 15,
                        False, 0, "untyped", None, "")
     dialog = InventoryOrganizerDialog(InventoryOrganizationService(repo, cid))
-    for theme in ("classic", "light", "dark"):
+    for theme in ("classic", "dark"):
         dialog.setStyleSheet(dialog_stylesheet(theme))
         dialog.show()
         app.processEvents()

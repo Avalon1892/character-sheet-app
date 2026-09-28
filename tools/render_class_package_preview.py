@@ -39,7 +39,7 @@ def main():
                 entry["hit_die"], 120)
             slots = resolve_class_choice_slots(repository, character)
             slot = max(slots, key=lambda value: sum(len(o.description) for o in value.options))
-            for theme in ("classic", "light", "dark"):
+            for theme in ("classic", "dark"):
                 window._set_theme(theme)
                 dialog = ClassChoiceDialog(slot, window)
                 dialog.show()

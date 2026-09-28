@@ -24,7 +24,7 @@ with tempfile.TemporaryDirectory() as folder:
     repo.add_class_level(cid, 'Wizard', 5, '1/2', 'Poor', 'Poor', 'Good', 'wizard', 6, 20)
     window = MainWindow(repo); window.refresh_characters(cid); window.resize(1500,1000); window.show()
     sheet = window.refined_sheet
-    for theme in ('classic', 'light', 'dark'):
+    for theme in ('classic', 'dark'):
         window._set_theme(theme); sheet.session.select_tab('crafting'); settle(app)
         sheet.crafting_section.grab().save(str(out/f'{theme}-page.png'))
         for feat, search in ((None,'Longsword'), ('Craft Wondrous Item','Bag of Holding'), ('Craft Magic Arms and Armor','Keen')):

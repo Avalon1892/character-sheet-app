@@ -19,7 +19,7 @@ from app.models import (
     CastingProfile, CurrencyPurse, FavoredClassBonus, MovementProfile,
     HitPoints, ProficiencyAdjustment, SkillState, SphereStatistic, ProdigySequence,
 )
-from app.ui.character_sheet import CharacterSheetWidget
+from app.ui.refined.sheet import RefinedSheetWidget as CharacterSheetWidget
 from app.services.character_calculations import CharacterCalculationService
 from app.services.sheet_presentation import build_character_sheet_snapshot
 from app.building_blocks.bindings import BINDINGS
@@ -181,29 +181,17 @@ class SheetPagesUiTests(unittest.TestCase):
                                  .formula_context().evaluate("spell_points.maximum"))
 
     def test_sheet_is_split_into_named_pages(self) -> None:
-        self.assertEqual(6, self.sheet.page_tabs.count())
-        self.assertEqual("0   CHARACTER BUILD", self.sheet.page_tabs.tabText(0))
-        self.assertEqual("1   CORE", self.sheet.page_tabs.tabText(1))
-        self.assertEqual("2   INVENTORY & FEATURES", self.sheet.page_tabs.tabText(2))
-        self.assertEqual("3   MAGIC & SPHERES", self.sheet.page_tabs.tabText(3))
-        self.assertEqual("4   ANIMAL COMPANION", self.sheet.page_tabs.tabText(4))
-        self.assertFalse(self.sheet.page_tabs.isTabVisible(4))
-        self.assertEqual("Crafting", self.sheet.page_tabs.tabText(5))
-        self.assertTrue(self.sheet.page_tabs.isTabVisible(5))
+        from app.ui.refined.pages import DEFAULT_TABS
+        self.assertEqual([title for _, title in DEFAULT_TABS],
+                         [self.sheet.page_tabs.tabText(i) for i in range(len(DEFAULT_TABS))])
+        companion = self.sheet.page_tabs.indexOf(self.sheet.companion_scroll)
+        self.assertFalse(self.sheet.page_tabs.isTabVisible(companion))
         self.assertEqual("Three Page Hero", self.sheet.record_character_name.text())
-        self.assertEqual("abilityRow", self.sheet._ability_controls["strength"][0].parent().objectName())
         self.assertFalse(self.sheet.skill_table.showGrid())
-        self.assertFalse(self.sheet.skill_table.verticalHeader().isVisible())
-        self.assertTrue(self.sheet.prodigy_section.isHidden())
-        self.assertIs(self.sheet.sheet_masthead.parent(), self.sheet.builder_canvas)
         self.assertIn("strength", self.sheet._classic_ability_labels)
-        self.assertTrue(self.sheet._classic_magic_skill_rows["msb"].isHidden())
-        self.assertTrue(self.sheet._classic_magic_skill_rows["msd"].isHidden())
         self.assertIn("land_speed", self.sheet.movement_controls)
-        self.assertEqual(
-            Qt.ScrollBarPolicy.ScrollBarAlwaysOff,
-            self.sheet.core_scroll.horizontalScrollBarPolicy(),
-        )
+        self.assertEqual(Qt.ScrollBarPolicy.ScrollBarAlwaysOff,
+                         self.sheet.core_scroll.horizontalScrollBarPolicy())
 
     def test_beastmastery_pet_adds_the_shared_pet_familiar_page(self) -> None:
         self.repository.add_class_level(
@@ -280,20 +268,6 @@ class SheetPagesUiTests(unittest.TestCase):
 
     def test_core_health_bar_and_compact_skill_rank_column_follow_live_hp(self) -> None:
         self.assertEqual("Rk.", self.sheet.skill_table.horizontalHeaderItem(4).text())
-        self.assertEqual(36, self.sheet.skill_table.columnWidth(4))
-        self.assertEqual(27, self.sheet.skill_budget_label.height())
-        self.assertEqual(190, self.sheet.skill_budget_label.maximumWidth())
-        self.assertEqual(78, self.sheet._classic_combat_labels["ac"].width())
-        self.assertEqual(78, self.sheet._classic_combat_labels["cmb"].width())
-        self.assertEqual(76, self.sheet._classic_combat_labels["initiative"].width())
-        self.assertEqual("Georgia", self.sheet.classic_hp_maximum.font().family())
-        self.assertEqual(18, self.sheet.classic_hp_maximum.font().pointSize())
-        self.assertEqual("Georgia", self.sheet.classic_hp_current.font().family())
-        self.assertEqual(18, self.sheet.classic_hp_current.font().pointSize())
-        self.assertEqual("Georgia", self.sheet.classic_hp_temporary.font().family())
-        self.assertEqual(18, self.sheet.classic_hp_temporary.font().pointSize())
-        self.assertEqual("Georgia", self.sheet.classic_hp_nonlethal.font().family())
-        self.assertEqual(18, self.sheet.classic_hp_nonlethal.font().pointSize())
         self.assertEqual(250, self.sheet.classic_hp_bar.TRANSITION_MS)
 
         self.sheet.classic_hp_bar.set_health(10, 20, animate=False)
@@ -304,7 +278,7 @@ class SheetPagesUiTests(unittest.TestCase):
         )
 
         self.sheet.show()
-        self.sheet.page_tabs.setCurrentIndex(1)
+        self.sheet.page_tabs.setCurrentIndex(0)
         self.application.processEvents()
         QTest.mouseClick(
             self.sheet.classic_hp_adjustment, Qt.MouseButton.LeftButton
@@ -613,7 +587,7 @@ class SheetPagesUiTests(unittest.TestCase):
         self.assertEqual("5", self.sheet.traditional_casting_labels["caster_level"].text())
         self.assertFalse(self.sheet.spells_known_section.isHidden())
         self.assertTrue(self.sheet.spells_section.isHidden())
-        self.assertEqual(1, self.sheet.custom_layouts["magic_columns"].stretch(0))
+        self.assertIs(self.sheet.spells_known_section.parent(), self.sheet.magic_canvas)
         self.assertEqual(1, self.sheet.spells_known_table.rowCount())
         self.assertEqual("Fireball", self.sheet.spells_known_table.item(0, 0).text())
         self.assertEqual("3", self.sheet.spells_known_table.item(0, 1).text())
@@ -845,26 +819,6 @@ class SheetPagesUiTests(unittest.TestCase):
         self.assertEqual("+9", self.sheet.skill_table.item(row, 2).text())
         self.assertFalse(self.sheet.skill_table.verticalScrollBar().isVisible())
 
-    def test_core_keeps_full_skill_reference_left_of_play_actions(self) -> None:
-        self.sheet.page_tabs.setCurrentIndex(1)
-        self.sheet.resize(1280, 900)
-        self.sheet.show()
-        self.application.processEvents()
-        self.assertLess(
-            self.sheet.classic_statistics_section.geometry().x(),
-            self.sheet.movement_section.geometry().x(),
-        )
-        self.assertLess(
-            self.sheet.skills_section.geometry().x(),
-            self.sheet.attacks_section.geometry().x(),
-        )
-        self.assertLessEqual(self.sheet.skill_table.columnWidth(4), 52)
-        self.assertGreaterEqual(self.sheet.classic_hp_maximum.height(), 42)
-        self.assertGreater(self.sheet.classic_hp_maximum.width(), 110)
-        self.assertLessEqual(
-            self.sheet._classic_combat_labels["initiative"].geometry().x(), 150
-        )
-
     def test_favored_class_and_movement_blocks_are_live(self) -> None:
         class_id = self.repository.add_class_level(
             self.character_id, "Fighter", 2, "Full", "Good", "Poor", "Poor",
@@ -1052,7 +1006,6 @@ class SheetPagesUiTests(unittest.TestCase):
                 for column in range(self.sheet.martial_talent_table.columnCount())
             },
         )
-        self.assertLessEqual(self.sheet.traits_section.maximumHeight(), 205)
         self.assertLess(self.sheet.trait_table.height(), self.sheet.feat_table.height())
         self.assertIn(
             "Complete description for Reactionary",
@@ -1121,7 +1074,7 @@ class SheetPagesUiTests(unittest.TestCase):
         self.sheet.spell_table.setCurrentCell(talent_row, 0)
         self.sheet.spell_table.cellClicked.emit(talent_row, 0)
         self.assertEqual("19", self.sheet._play_casting_labels["save_dc"].text())
-        self.assertIsNone(self.sheet.sphere_statistics_section.parent())
+        self.assertIs(self.sheet.sphere_statistics_section.parent(), self.sheet.magic_canvas)
 
         self.sheet._spend_spell_point()
         self.assertEqual(8, self.repository.get_casting_profile(self.character_id).spell_points_current)

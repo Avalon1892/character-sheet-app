@@ -30,7 +30,7 @@ with tempfile.TemporaryDirectory() as folder:
     window.refresh_characters(cid)
     window.show()
     sheet = window.refined_sheet
-    for theme in ('classic', 'light', 'dark'):
+    for theme in ('classic', 'dark'):
         window._set_theme(theme)
         sheet.session.select_tab('build')
         for width in (1100, 1500):

@@ -41,9 +41,9 @@ class ArchitectureTests(unittest.TestCase):
         )
 
     def test_theme_selection_and_styles_are_centralized(self) -> None:
-        self.assertEqual(("classic", "light", "dark"), tuple(THEME_LABELS))
+        self.assertEqual(("classic", "dark"), tuple(THEME_LABELS))
         self.assertEqual("classic", normalize_theme("unknown"))
-        self.assertEqual(3, len({style_sheet(theme) for theme in THEME_LABELS}))
+        self.assertEqual(2, len({style_sheet(theme) for theme in THEME_LABELS}))
 
     def test_shared_presentation_formats_hover_and_details(self) -> None:
         feat = Feat(

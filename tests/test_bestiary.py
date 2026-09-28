@@ -290,7 +290,7 @@ class BestiaryUiTests(unittest.TestCase):
     def test_layout_and_keyboard_activation_in_all_themes(self):
         from app.ui.dialog_theme import dialog_stylesheet
         dialog = self.dialog
-        for theme in ("classic", "light", "dark"):
+        for theme in ("classic", "dark"):
             dialog.setStyleSheet(dialog_stylesheet(theme))
             dialog.show()
             self.application.processEvents()

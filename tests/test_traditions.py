@@ -16,7 +16,7 @@ from app.database import CharacterRepository
 from app.models import CastingProfile
 from app.services.character_calculations import CharacterCalculationService
 from app.services.sheet_presentation import build_character_sheet_snapshot
-from app.ui.character_sheet import CharacterSheetWidget
+from app.ui.refined.sheet import RefinedSheetWidget as CharacterSheetWidget
 from app.ui.dialogs import TraditionChoiceDialog
 from app.tradition_rules import resolved_tradition_definition, spell_point_rule_for_unused_drawbacks
 

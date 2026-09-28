@@ -28,25 +28,6 @@ SHEET_TYPE_REGISTRY = {
     descriptor.key: descriptor
     for descriptor in (
         SheetTypeDescriptor(
-            "customizable",
-            "Default Spheres (Customizable)",
-            "The rearrangeable Default Spheres sheet powered by Building Blocks.",
-            "app.ui.character_sheet:CharacterSheetWidget",
-            supports_customization=True,
-        ),
-        SheetTypeDescriptor(
-            "original_spheres",
-            "Original Spheres Sheet",
-            "A faithful interactive presentation of the original four-page Spheres sheet.",
-            "app.ui.original_spheres_sheet:OriginalSpheresSheetWidget",
-        ),
-        SheetTypeDescriptor(
-            "ultra",
-            "Ultra Sheet",
-            "A fixed, responsive play sheet that reveals class and Spheres modules only when relevant.",
-            "app.ui.ultra_sheet:UltraSheetWidget",
-        ),
-        SheetTypeDescriptor(
             "refined", "Refined Sheet",
             "A play-focused, independently customizable presentation.",
             "app.ui.refined.sheet:RefinedSheetWidget",

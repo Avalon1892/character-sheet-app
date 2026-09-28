@@ -108,6 +108,5 @@ def compose(sheet):
         canvas.setObjectName("refinedCanvas");canvas.setMinimumWidth(0)
         canvas.layout().setSizeConstraint(QLayout.SizeConstraint.SetNoConstraint)
         sheet.page_tabs.addTab(scroll,title)
-    sheet.sheet_masthead.setParent(sheet.refined_hidden)
     sheet.audit_status_bar.hide()
     sheet.page_tabs.setCurrentIndex(0)

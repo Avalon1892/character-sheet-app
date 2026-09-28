@@ -18,7 +18,7 @@ def main() -> int:
     application = QApplication.instance() or QApplication([])
     output = Path(__file__).resolve().parents[1] / "artifacts" / "character_creator_preview"
     output.mkdir(parents=True, exist_ok=True)
-    for theme in ("classic", "light", "dark"):
+    for theme in ("classic", "dark"):
         application.setStyleSheet(style_sheet(theme))
         dialog = GuidedCharacterCreationDialog()
         dialog.name.setText("Mira Dawnstep")

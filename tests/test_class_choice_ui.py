@@ -11,7 +11,7 @@ from PySide6.QtWidgets import QApplication
 
 from app.class_choice_rules import class_choice_selection_record, resolve_class_choice_slots
 from app.database import CharacterRepository
-from app.ui.character_sheet import CharacterSheetWidget
+from app.ui.refined.sheet import RefinedSheetWidget as CharacterSheetWidget
 from app.ui.class_choice_dialog import ClassChoiceDialog
 
 

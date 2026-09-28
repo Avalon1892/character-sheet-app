@@ -35,7 +35,7 @@ def main():
                 catalog_key=sphere.casefold()+':base',catalog_category='Base Sphere')
         window=MainWindow(repo);window.resize(1400,1000);window.show();window.refresh_characters(cid)
         window._set_sheet_type('refined');sheet=window.refined_sheet
-        for theme in ('classic','light','dark'):
+        for theme in ('classic','dark'):
             window._set_theme(theme);sheet.session.select_tab('skills');settle(app)
             window.grab().save(str(out/f'{theme}-skills.png'))
             assert sheet.skills_section.height() >= sheet.skills_section.layout().minimumSize().height()

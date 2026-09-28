@@ -218,7 +218,7 @@ def main() -> None:
             window.sheet.inventory_scroll,
             window.sheet.magic_scroll,
         )
-        for theme in ("classic", "light", "dark"):
+        for theme in ("classic", "dark"):
             window._set_theme(theme)
             for page in range(4):
                 window.sheet.page_tabs.setCurrentIndex(page)
@@ -345,7 +345,7 @@ def main() -> None:
             designer.canvas.add_cell(cell_type)
         designer.canvas.selected = [designer.canvas.cells[next(iter(designer.canvas.cells))]]
         designer._selection_changed()
-        for theme in ("classic", "light", "dark"):
+        for theme in ("classic", "dark"):
             designer.theme.setCurrentIndex(designer.theme.findData(theme))
             designer.show(); application.processEvents()
             designer.grab().save(str(output / f"block-designer-{theme}.png"))

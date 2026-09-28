@@ -15,7 +15,6 @@ class Palette:
 
 PALETTES = {
     "classic": Palette("#EEE7D8", "#FAF7EF", "#302B27", "#5E574D", "#CEC3AF", "#7E493A", "#E4D5BF", "#DAE9F8", "#FBE2D5"),
-    "light": Palette("#F1F4F8", "#FFFFFF", "#1F2937", "#536274", "#D8E0EA", "#355C7D", "#DCE8F3", "#DAE9F8", "#FBE2D5"),
     "dark": Palette("#171B22", "#242B35", "#F0F1F3", "#B5C0CF", "#3B4757", "#A8C3E0", "#344B63", "#23394B", "#40342F"),
 }
 

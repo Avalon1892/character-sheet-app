@@ -14,7 +14,7 @@ from PySide6.QtWidgets import QApplication
 
 from app.database import CharacterRepository
 from app.models import AnimalCompanion
-from app.ui.character_sheet import CharacterSheetWidget
+from app.ui.refined.sheet import RefinedSheetWidget as CharacterSheetWidget
 from app.ui.dialogs import MagicTalentCatalogDialog, SphereAcquisitionDialog
 from app.ui.theme import style_sheet
 
@@ -47,7 +47,7 @@ def main() -> None:
         application.processEvents()
         companion_index = sheet.page_tabs.indexOf(sheet.companion_scroll)
         sheet.page_tabs.setCurrentIndex(companion_index)
-        for theme in ("classic", "light", "dark"):
+        for theme in ("classic", "dark"):
             sheet.setStyleSheet(style_sheet(theme))
             application.processEvents()
             sheet.grab().save(str(output / f"animal-companion-training-{theme}.png"))

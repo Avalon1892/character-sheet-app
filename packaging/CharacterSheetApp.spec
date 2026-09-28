@@ -20,8 +20,6 @@ analysis = Analysis(
         # Sheet presentations are intentionally discovered through the modular
         # registry at runtime, so the freezer cannot infer these imports.
         "app.ui.character_sheet",
-        "app.ui.original_spheres_sheet",
-        "app.ui.ultra_sheet",
         "app.ui.refined.sheet",
     ],
     hookspath=[],

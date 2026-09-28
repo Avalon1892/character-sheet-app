@@ -33,7 +33,7 @@ def main():
         scroll=sheet.refined_pages["skills"][0]
         control=sheet.refined_disclosures["special_abilities"]
         try:
-            for theme in ("classic","light","dark"):
+            for theme in ("classic","dark"):
                 window._set_theme(theme)
                 for width in (1600,1100,1400):
                     window.resize(width,1000);sheet._refresh_skills();settle(app)

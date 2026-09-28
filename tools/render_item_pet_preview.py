@@ -12,7 +12,7 @@ from PySide6.QtWidgets import QApplication
 
 from app.database import CharacterRepository
 from app.models import BondedCompanion
-from app.ui.character_sheet import CharacterSheetWidget
+from app.ui.refined.sheet import RefinedSheetWidget as CharacterSheetWidget
 from app.ui.dialogs import EquipmentDialog
 from app.ui.theme import style_sheet
 
@@ -89,7 +89,7 @@ def main() -> None:
             value for value in repository.list_equipment(character)
             if value.id == item_id
         )
-        for theme in ("classic", "light", "dark"):
+        for theme in ("classic", "dark"):
             sheet.setStyleSheet(style_sheet(theme))
             application.processEvents()
             sheet.grab().save(str(root / f"pet-familiar-{theme}.png"))
@@ -106,7 +106,7 @@ def main() -> None:
         skills.resize(820, 760)
         sheet._refresh_skills()
         skills.show()
-        for theme in ("classic", "light", "dark"):
+        for theme in ("classic", "dark"):
             skills.setStyleSheet(style_sheet(theme))
             application.processEvents()
             skills.grab().save(str(root / f"skills-resized-{theme}.png"))

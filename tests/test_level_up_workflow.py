@@ -16,7 +16,7 @@ from app.level_up import (
     build_level_up_report,
 )
 from app.services.advancement import character_advancement_budgets
-from app.ui.character_sheet import CharacterSheetWidget
+from app.ui.refined.sheet import RefinedSheetWidget as CharacterSheetWidget
 
 
 class LevelUpWorkflowTests(unittest.TestCase):

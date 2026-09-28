@@ -21,7 +21,7 @@ from app.martial_book import (
     martial_focus_usage,
 )
 from app.transfer import export_character, import_character
-from app.ui.character_sheet import CharacterSheetWidget
+from app.ui.refined.sheet import RefinedSheetWidget as CharacterSheetWidget
 from app.ui.inventory_dialog import InventoryOrganizerDialog
 from app.ui.martial_book_dialog import MartialBookDialog
 

@@ -12,7 +12,7 @@ from tools.render_refined_sheet import settle
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--output',default='artifacts/catalog-ui-polish')
-    parser.add_argument('--themes',nargs='+',default=['classic','light','dark'])
+    parser.add_argument('--themes',nargs='+',default=['classic','dark'])
     parser.add_argument('--catalogs',nargs='+',default=[])
     args=parser.parse_args();out=Path(args.output);out.mkdir(parents=True,exist_ok=True)
     app=QApplication.instance() or QApplication([])

@@ -19,7 +19,7 @@ from app.bonded_companion_rules import (
 )
 from app.models import BondedCompanion, HitPoints
 from app.database import CharacterRepository
-from app.ui.character_sheet import CharacterSheetWidget
+from app.ui.refined.sheet import RefinedSheetWidget as CharacterSheetWidget
 from app.ui.familiar_dialog import FamiliarCatalogDialog
 
 

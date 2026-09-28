@@ -10,7 +10,7 @@ from PySide6.QtWidgets import QApplication
 from app.content import martial_entries
 from app.database import CharacterRepository
 from app.models import AdvancementAdjustment, CharacterDetails, RaceTraitChoice
-from app.ui.character_sheet import CharacterSheetWidget
+from app.ui.refined.sheet import RefinedSheetWidget as CharacterSheetWidget
 from app.ui.dialogs import MartialTalentCatalogDialog, SphereAcquisitionDialog
 from app.sphere_rules import base_sphere_choice_options
 from app.services.advancement import character_advancement_budgets

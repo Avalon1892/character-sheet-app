@@ -12,7 +12,7 @@ from PySide6.QtWidgets import QApplication
 from app.database import CharacterRepository
 from app.models import MartialFocus
 from app.services.character_calculations import CharacterCalculationService
-from app.ui.character_sheet import CharacterSheetWidget
+from app.ui.refined.sheet import RefinedSheetWidget as CharacterSheetWidget
 
 
 class ConditionalAttackAndEffectTests(unittest.TestCase):
