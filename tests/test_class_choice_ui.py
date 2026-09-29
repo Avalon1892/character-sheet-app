@@ -3,13 +3,15 @@ from __future__ import annotations
 import os
 import tempfile
 import unittest
+from dataclasses import replace
 from pathlib import Path
 
 os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 
-from PySide6.QtWidgets import QApplication
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QApplication, QDialogButtonBox
 
-from app.class_choice_rules import class_choice_selection_record, resolve_class_choice_slots
+from app.class_choice_rules import ClassChoiceOption, class_choice_selection_record, resolve_class_choice_slots
 from app.database import CharacterRepository
 from app.ui.refined.sheet import RefinedSheetWidget as CharacterSheetWidget
 from app.ui.class_choice_dialog import ClassChoiceDialog
@@ -58,6 +60,24 @@ class ClassChoiceUiTests(unittest.TestCase):
             self.assertIn("Arcane Bond", labels)
         finally:
             sheet.close()
+
+    def test_choice_dependencies_disable_confirmation_until_satisfied(self) -> None:
+        base = resolve_class_choice_slots(self.repository, self.character)[0]
+        slot = replace(base, minimum=1, maximum=2, selected_keys=(), selected_options=(), options=(
+            ClassChoiceOption("intuition", "Intuition"),
+            ClassChoiceOption("combat", "Combat Intuition", required_options=("intuition",)),
+        ))
+        dialog = ClassChoiceDialog(slot)
+        try:
+            items = {dialog.results.item(i).data(Qt.ItemDataRole.UserRole): dialog.results.item(i)
+                     for i in range(dialog.results.count())}
+            items["combat"].setCheckState(Qt.CheckState.Checked)
+            self.assertFalse(dialog.buttons.button(QDialogButtonBox.StandardButton.Ok).isEnabled())
+            self.assertIn("requires Intuition", dialog.selection_status.text())
+            items["intuition"].setCheckState(Qt.CheckState.Checked)
+            self.assertTrue(dialog.buttons.button(QDialogButtonBox.StandardButton.Ok).isEnabled())
+        finally:
+            dialog.close()
 
 
 if __name__ == "__main__":

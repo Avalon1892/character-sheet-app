@@ -37,6 +37,7 @@ class ClassChoiceOption:
     class_skills: tuple[str, ...] = ()
     cost: int = 1
     minimum_level: int = 1
+    required_options: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True, slots=True)
@@ -204,6 +205,10 @@ def _package_choice_providers() -> tuple[ClassChoiceProvider, ...]:
                     minimum_level=next(
                         (item.minimum_level for item in declared.fixed_options
                          if item.key == option.key.rsplit(":", 1)[-1]), 1
+                    ),
+                    required_options=next(
+                        (item.required_options for item in declared.fixed_options
+                         if item.key == option.key.rsplit(":", 1)[-1]), ()
                     ),
                 )
                 for option in fixed_options
@@ -379,7 +384,7 @@ def _configured_providers(
                     level >= value for value in thresholds
                 )
             )
-        for field in ("label", "description", "catalog_class_name"):
+        for field in ("label", "description", "catalog_class_name", "options_from_provider"):
             if field in declaration:
                 updates[field] = str(declaration[field])
         if "option_families" in declaration:
@@ -1029,12 +1034,31 @@ def resolved_package_skill_rules(
     )
 
 
+def class_choice_requirement_errors(
+    slot: ResolvedClassChoice, selected_keys: Iterable[str],
+) -> tuple[str, ...]:
+    """Validate declared dependencies against the complete proposed selection."""
+    keys = set(selected_keys)
+    options = {option.key: option for option in slot.options}
+    return tuple(
+        f"{option.name} requires " + ", ".join(
+            options[key].name if key in options else key.rsplit(":", 1)[-1]
+            for key in option.required_options if key not in keys
+        )
+        for option in slot.options
+        if option.key in keys and any(key not in keys for key in option.required_options)
+    )
+
+
 def class_choice_selection_record(
     character_id: int,
     slot: ResolvedClassChoice,
     selected_keys: Iterable[str],
 ) -> ClassFeatureSelection:
     keys = tuple(dict.fromkeys(str(value) for value in selected_keys if str(value)))[: slot.maximum]
+    errors = class_choice_requirement_errors(slot, keys)
+    if errors:
+        raise ValueError("; ".join(errors))
     options = {option.key: option for option in slot.options}
     selected_list: list[ClassChoiceOption] = []
     spent_points = 0

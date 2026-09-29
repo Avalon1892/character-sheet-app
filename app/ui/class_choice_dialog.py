@@ -22,7 +22,9 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
 )
 
-from app.class_choice_rules import ClassChoiceOption, ResolvedClassChoice
+from app.class_choice_rules import (
+    ClassChoiceOption, ResolvedClassChoice, class_choice_requirement_errors,
+)
 
 
 class ClassChoiceDialog(QDialog):
@@ -204,6 +206,7 @@ class ClassChoiceDialog(QDialog):
 
     def _update_status(self) -> None:
         count = len(self._selected)
+        errors = class_choice_requirement_errors(self.slot, self._selected)
         if self.slot.minimum == self.slot.maximum:
             requirement = f"choose {self.slot.maximum}"
         else:
@@ -214,10 +217,12 @@ class ClassChoiceDialog(QDialog):
                 f" · {self._selected_cost()} of {self.slot.point_budget} points"
                 if self.slot.point_budget else ""
             )
+            + ("\n" + "; ".join(errors) if errors else "")
         )
         ok = self.buttons.button(QDialogButtonBox.StandardButton.Ok)
         ok.setEnabled(
             self.slot.minimum <= count <= self.slot.maximum
+            and not errors
             and (
                 not self.slot.point_budget
                 or self._selected_cost() <= self.slot.point_budget

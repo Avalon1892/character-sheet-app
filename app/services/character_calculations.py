@@ -939,8 +939,10 @@ class CharacterCalculationService:
         return tuple(contributions)
 
     def sphere_dc_bonus(self, sphere: str) -> int:
-        """Return bonuses scoped to a single magic sphere."""
-        return self.automatic_total(f"sphere_save_dc:{sphere.strip().casefold()}")
+        """Return sphere-only bonuses without changing traditional spell DCs."""
+        return self.automatic_total("sphere_save_dc") + self.automatic_total(
+            f"sphere_save_dc:{sphere.strip().casefold()}"
+        )
 
     def ability_result(self, ability: str) -> CalculationResult:
         modifiers = self.resolved_modifiers(

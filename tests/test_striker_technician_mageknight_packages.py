@@ -84,7 +84,8 @@ class StrikerTechnicianMageknightPackageTests(unittest.TestCase):
         slots = {slot.key: slot for slot in resolve_class_choice_slots(self.repository, character)}
         self.assertEqual(10, slots["technician-technical-insights"].maximum)
         calculator = CharacterCalculationService(self.repository, character)
-        self.assertEqual(10, calculator.automatic_total("skill:perception"))
+        # Trapfinding's Perception bonus only applies when searching for traps.
+        self.assertEqual(0, calculator.automatic_total("skill:perception"))
         self.assertEqual(10, calculator.automatic_total("skill:disable_device"))
         talents = next(item for item in character_advancement_budgets(self.repository, character) if item.key == "talents")
         self.assertEqual(16, talents.automatic)

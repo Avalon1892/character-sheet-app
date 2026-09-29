@@ -73,6 +73,7 @@ class PackageChoiceOption:
     class_skills: tuple[str, ...] = ()
     granted_features: tuple[Mapping[str, object], ...] = ()
     minimum_level: int = 1
+    required_options: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True, slots=True)
@@ -240,6 +241,7 @@ def package_choice_option(source: Mapping[str, object]) -> PackageChoiceOption:
         description=str(source.get("description") or ""),
         category=str(source.get("category") or ""),
         minimum_level=max(1, int(source.get("minimum_level") or 1)),
+        required_options=tuple(str(value) for value in source.get("required_options", ())),
         cost=max(1, int(source.get("cost", 1) or 1)),
         class_skills=tuple(
             str(value) for value in source.get("class_skills", ()) if str(value)

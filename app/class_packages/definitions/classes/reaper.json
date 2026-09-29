@@ -65,6 +65,17 @@
       "grantable": false,
       "resources": [
         {
+          "key": "track",
+          "name": "Following Tracks",
+          "feature_tokens": ["track"],
+          "progression": "one",
+          "description": "Enable only while using Survival to follow tracks; adds half the Reaper level to that check.",
+          "can_activate": true,
+          "tracks_uses": false,
+          "recover_on_full_rest": false,
+          "end_on_full_rest": true
+        },
+        {
           "key": "favored_prey",
           "name": "Favored Prey Applies",
           "feature_tokens": [
@@ -110,7 +121,7 @@
             "prey-casting-bonus"
           ],
           "progression": "reaper_prey_casting",
-          "description": "Caster-level bonus when using a magic sphere effect against favored prey.",
+          "description": "Enable only for a magic sphere effect that targets or includes only favored prey. Adds the displayed bonus to its save DC and spell-penetration check, not caster level or other magic-skill checks.",
           "can_activate": true,
           "tracks_uses": false,
           "recover_on_full_rest": false,
@@ -171,7 +182,7 @@
       "targets": [
         "skill:survival"
       ],
-      "progression": "half_level",
+      "progression": "half_level_minimum_one",
       "bonus_type": "untyped",
       "source": "Reaper: Track",
       "minimum_level": 2,
@@ -183,7 +194,8 @@
         "prey-casting-bonus"
       ],
       "targets": [
-        "caster_level"
+        "sphere_save_dc",
+        "sphere_spell_penetration"
       ],
       "progression": "reaper_prey_casting",
       "bonus_type": "untyped",
