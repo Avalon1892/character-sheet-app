@@ -209,6 +209,9 @@ class ChampionInquisitorEndToEndTests(unittest.TestCase):
             def exec(dialog_self):
                 return QDialog.DialogCode.Accepted
 
+            def deleteLater(dialog_self):
+                pass
+
         with patch("app.ui.character_sheet.ClassLevelDialog", AcceptedEditDialog):
             self.sheet._edit_class_with_dialog(class_level, False)
 

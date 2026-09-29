@@ -4221,7 +4221,9 @@ class CharacterSheetWidget(SheetSectionsMixin, QWidget):
         if self.character_id is None:
             return
         dialog = ClassLevelDialog(self)
-        if dialog.exec() != QDialog.DialogCode.Accepted:
+        result = dialog.exec()
+        dialog.deleteLater()
+        if result != QDialog.DialogCode.Accepted:
             return
         try:
             class_level_id = self.repository.add_class_level(self.character_id, **dialog.values)
@@ -5562,7 +5564,11 @@ class CharacterSheetWidget(SheetSectionsMixin, QWidget):
             selected_optional,
             selected_choices,
         )
-        if dialog.exec() != QDialog.DialogCode.Accepted:
+        result = dialog.exec()
+        # Keep results readable until this callback returns, then let Qt clean up
+        # the closed modal before subsequent sheet events use stale widgets.
+        dialog.deleteLater()
+        if result != QDialog.DialogCode.Accepted:
             return False
         self.repository.update_class_level(
             self.character_id, class_level.id, **dialog.values
