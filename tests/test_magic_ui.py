@@ -9,7 +9,7 @@ os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 
 from PySide6.QtCore import Qt
 from PySide6.QtTest import QTest
-from PySide6.QtWidgets import QApplication, QAbstractItemView, QDialog
+from PySide6.QtWidgets import QApplication, QAbstractItemView, QDialog, QPushButton
 
 from app.content import magic_entries
 from app.database import CharacterRepository
@@ -137,7 +137,21 @@ class MagicCatalogUiTests(unittest.TestCase):
             spell for spell in self.repository.list_spells(self.character_id)
             if spell.school_or_sphere == "Weather"
         ]))
-        self.sheet._delete_magic_sphere_cascade("Weather")
+        self.sheet._refresh_sphere_build()
+        table = self.sheet.sphere_build_table
+        table.selectRow(next(row for row in range(table.rowCount()) if table.item(row, 0).text() == "Weather"))
+        button = next(button for button in self.sheet.magic_sphere_build_panel.findChildren(QPushButton)
+                      if button.text() == "Remove selected sphere")
+        self.assertTrue(button.isEnabled())
+        button.click()
+        self.assertFalse(any(
+            spell.school_or_sphere == "Weather"
+            for spell in self.repository.list_spells(self.character_id)
+        ))
+        self.sheet._acquire_magic_sphere("Weather")
+        self.sheet._refresh_sphere_build()
+        table.selectRow(next(row for row in range(table.rowCount()) if table.item(row, 0).text() == "Weather"))
+        button.click()
         self.assertFalse(any(
             spell.school_or_sphere == "Weather"
             for spell in self.repository.list_spells(self.character_id)

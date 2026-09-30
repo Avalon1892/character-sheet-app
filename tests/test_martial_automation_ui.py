@@ -5,7 +5,7 @@ from pathlib import Path
 
 os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 
-from PySide6.QtWidgets import QApplication, QAbstractItemView
+from PySide6.QtWidgets import QApplication, QAbstractItemView, QPushButton
 
 from app.content import martial_entries
 from app.database import CharacterRepository
@@ -43,6 +43,48 @@ class MartialAutomationUiTests(unittest.TestCase):
         )
         self.assertEqual(4, dialog.results.rowCount())
         dialog.close()
+
+    def test_play_picker_requires_an_owned_base_sphere(self) -> None:
+        dialog = MartialTalentCatalogDialog([], self.sheet, play_mode=True)
+        self.assertEqual(0, dialog.results.rowCount())
+        dialog.close()
+        entry = next(item for item in martial_entries("Barrage") if item["category"] == "Talent")
+        with self.assertRaisesRegex(ValueError, "base sphere on the Character page"):
+            self.sheet._add_catalog_martial_entry(entry)
+        self.assertEqual([], self.repository.list_martial_talents(self.character_id))
+        self.sheet._acquire_martial_sphere("Barrage")
+        dialog = MartialTalentCatalogDialog(
+            self.repository.list_martial_talents(self.character_id), self.sheet, play_mode=True,
+        )
+        self.assertGreater(dialog.results.rowCount(), 0)
+        self.assertTrue(all(
+            item["sphere"] == "Barrage" and item["category"] not in {"Base Sphere", "Drawback"}
+            for item in dialog._entries
+        ))
+        dialog.close()
+        self.assertTrue(self.sheet._add_catalog_martial_entry(entry))
+
+    def test_character_page_removes_empty_and_populated_martial_spheres(self) -> None:
+        self.sheet._acquire_martial_sphere("Gladiator")
+        for with_talent in (False, True):
+            self.sheet._acquire_martial_sphere("Barrage")
+            if with_talent:
+                self.sheet._add_catalog_martial_entry(next(
+                    item for item in martial_entries("Barrage") if item["name"] == "Wild Shooter"
+                ))
+                self.sheet._add_catalog_martial_entry(next(
+                    item for item in martial_entries("Barrage") if item["category"] == "Talent"
+                ))
+            self.sheet._refresh_sphere_build()
+            table = self.sheet.martial_sphere_build_table
+            table.selectRow(next(row for row in range(table.rowCount()) if table.item(row, 0).text() == "Barrage"))
+            button = next(button for button in self.sheet.martial_sphere_build_panel.findChildren(QPushButton)
+                          if button.text() == "Remove selected sphere")
+            self.assertTrue(button.isEnabled())
+            button.click()
+            remaining = self.repository.list_martial_talents(self.character_id)
+            self.assertFalse(any(item.sphere == "Barrage" for item in remaining))
+            self.assertTrue(any(item.sphere == "Gladiator" for item in remaining))
 
     def test_martial_browser_and_sheet_add_multiple_talents_in_one_batch(self) -> None:
         dialog = MartialTalentCatalogDialog([], self.sheet)
@@ -94,6 +136,7 @@ class MartialAutomationUiTests(unittest.TestCase):
             for entry in martial_entries("Barrage")
             if entry["name"] == "Wild Shooter"
         )
+        self.sheet._acquire_martial_sphere("Barrage")
         self.assertTrue(self.sheet._add_catalog_martial_entry(wild_shooter))
         self.sheet._martial_talents_changed()
         self.assertEqual("-1", self.sheet.attack_table.item(0, 2).text())

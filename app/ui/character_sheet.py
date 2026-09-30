@@ -6991,6 +6991,7 @@ class CharacterSheetWidget(SheetSectionsMixin, QWidget):
             self.repository.list_martial_talents(self.character_id),
             self,
             selection_limit=selection_limit,
+            play_mode=True,
         )
         if dialog.exec() != QDialog.DialogCode.Accepted:
             return
@@ -7029,9 +7030,20 @@ class CharacterSheetWidget(SheetSectionsMixin, QWidget):
         entry: dict,
         preset_choice: str = "",
         skip_base_choice_prompt: bool = False,
+        allow_base_acquisition: bool = False,
     ) -> bool:
         if self.character_id is None:
             return False
+        if entry["category"] != "Base Sphere" and not allow_base_acquisition:
+            sphere_name = str(entry["sphere"])
+            if martial_sphere(sphere_name) is not None and not any(
+                item.sphere.casefold() == sphere_name.casefold()
+                and (item.catalog_category == "Base Sphere" or item.talent_type == "Base Sphere")
+                for item in self.repository.list_martial_talents(self.character_id)
+            ):
+                raise ValueError(
+                    f"Gain the {sphere_name} base sphere on the Character page before adding talents."
+                )
         automation = dict(entry.get("automation", {}))
         choice = preset_choice.strip()
         choice_key = ""
@@ -7598,7 +7610,7 @@ class CharacterSheetWidget(SheetSectionsMixin, QWidget):
                     if catalog_item["key"] in before:
                         created_keys.append({"kind": "martial", "catalog_key": catalog_item["key"], "created": False})
                         continue
-                    self._add_catalog_martial_entry(catalog_item)
+                    self._add_catalog_martial_entry(catalog_item, allow_base_acquisition=True)
                     after = {
                         item.catalog_key for item in self.repository.list_martial_talents(self.character_id)
                         if item.catalog_key

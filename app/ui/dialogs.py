@@ -1638,6 +1638,7 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
         parent: QWidget | None = None,
         *,
         selection_limit: int = 0,
+        play_mode: bool = False,
     ) -> None:
         super().__init__(parent)
         self.selection_limit = max(0, int(selection_limit))
@@ -1646,7 +1647,18 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
         self.custom_requested = False
         self.selected_entry: dict | None = None
         self.selected_entries: tuple[dict, ...] = ()
-        self._entries = martial_entries()
+        owned_spheres = {
+            str(getattr(talent, "sphere", "")).casefold() for talent in owned_talents
+            if getattr(talent, "talent_type", "") == "Base Sphere"
+            or talent.catalog_category == "Base Sphere"
+        }
+        self._entries = tuple(
+            entry for entry in martial_entries()
+            if not play_mode or (
+                entry["category"] not in {"Base Sphere", "Drawback"}
+                and str(entry["sphere"]).casefold() in owned_spheres
+            )
+        )
         self._sorted_entries = tuple(sorted(self._entries, key=talent_entry_sort_key))
         self._owned_talents = tuple(owned_talents)
         self._entries_by_key = {entry["key"]: entry for entry in self._entries}
@@ -1664,7 +1676,7 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
         layout.addWidget(self.catalog_heading)
         self.catalog_subtitle = QLabel(
             "Choose a sphere on the left, then filter or search its talents. "
-            "Selecting a talent or drawback automatically adds its base sphere. "
+            "Gain base spheres and manage their drawbacks on the Character page. "
             "Single-click to read; double-click or press Enter to queue an entry."
         )
         self.catalog_subtitle.setObjectName("mutedText")
@@ -1704,7 +1716,9 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
         all_item.setData(Qt.ItemDataRole.UserRole, "")
         self.sphere_list.addItem(all_item)
         for sphere in martial_spheres():
-            count = len(martial_entries(sphere["name"]))
+            count = sum(entry["sphere"] == sphere["name"] for entry in self._entries)
+            if play_mode and not count:
+                continue
             item = QListWidgetItem(f"{sphere['name']}  ({count})")
             item.setData(Qt.ItemDataRole.UserRole, sphere["name"])
             self.sphere_list.addItem(item)
