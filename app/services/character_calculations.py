@@ -94,7 +94,7 @@ from app.class_feature_systems import (
     resolve_class_feature_modules,
 )
 from app.class_power_rules import class_power_modifier_map
-from app.engineering_rules import physical_augmentor_bonus
+from app.engineering_rules import physical_augmentor_bonus,jet_movement
 from app.class_combat_rules import generated_class_attacks, class_attack_context_notes
 from app.race_rules import generated_racial_attacks, racial_class_skills, racial_automatic_values, racial_per_level_hit_points
 from app.class_choice_rules import (
@@ -795,6 +795,16 @@ class CharacterCalculationService:
         racial = racial_land_speed(self.state.details)
         land_base = bases["land_speed"] or racial
         unrestricted_land = max(0, land_base + self.automatic_total("land_speed"))
+        jet_sources={}
+        maneuverability=profile.fly_maneuverability
+        for device in self.repository.list_engineering_devices(self.character_id):
+            grant=jet_movement(device,light_load=self.encumbrance(unrestricted_land).load=="Light")
+            if grant:
+                target,speed,jet_maneuverability=grant
+                if speed>bases[target]:
+                    bases[target]=speed
+                    jet_sources[target]=device
+                    if target=="fly_speed":maneuverability=jet_maneuverability
         athletics = project_athletics_movement(
             self.state.martial_talents,
             self.state.skills,
@@ -808,7 +818,7 @@ class CharacterCalculationService:
                 "burrow_speed": bases["burrow_speed"] + self.automatic_total("burrow_speed"),
                 "teleport_speed": bases["teleport_speed"] + self.automatic_total("teleport_speed"),
             },
-            profile.fly_maneuverability,
+            maneuverability,
         )
         unrestricted_land = athletics.speeds["land_speed"]
         armor_weight, _armor_name = worn_armor_movement_category(
@@ -842,6 +852,8 @@ class CharacterCalculationService:
             "teleport_speed": athletics.speeds["teleport_speed"],
             "fly_maneuverability": athletics.fly_maneuverability,
         }
+        for target,device in jet_sources.items():
+            result[target+"_source"]=f"{device['name']} · {device['function_mode'].replace('_',' ')}"
         from app.athletics_rules import running_multiplier
         from app.prodigy_content import SPHERE_IMBUES, imbue_numeric_value
         result["run_multiplier"] = running_multiplier(

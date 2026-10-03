@@ -22,13 +22,14 @@ Updated: 2026-10-03. This is an implementation ledger, not a claim of complete a
 - Persistent device damage, current/max HP, optional hardness subtraction, and automatic deactivation at zero HP. Destroyed devices and batteries cannot activate or supply charges.
 - Tinker broken-condition threshold and effective-level penalty, one-minute tool-assisted repairs, and maintenance-based full repair of non-abandoned gizmos. Rest does not perform repairs.
 - Augmentation-package Physical Augmentor crafting with a selected Strength/Dexterity/Constitution configuration and explicit wearer state. Active, worn augmentors contribute typed competence bonuses to matching skill checks through shared calculations, including skill ability overrides and broken effective levels. Ability scores are not increased.
+- Jet-boosters: creation-time flight/aquatic choice, normal/slow-burn/overdrive modes, atomic battery-first payment, paid durations, live movement/maneuverability, light-load restrictions and equipment-slot conflicts. Explicit game-round advancement expires timed functions; eight-hour rest advances those timers without recharge or maintenance.
 - First Tech gadget choices exclude routine talents.
 
 ## Partial support / manual inputs
 
 - Associated skill defaults to the existing shared Craft rank provider. Alternative associated skills can be selected in the workbench, but tradition-specific skill-rank grants and skill specialties are not completely automated.
 - Practitioner modifier is explicitly entered at creation, not automatically resolved from every class/archetype/tradition.
-- Crafting/maintenance duration and batch allowance are calculated and displayed. No campaign clock or crafting session ledger advances automatically.
+- Crafting/maintenance duration and batch allowance are calculated and displayed. Timed device functions use explicit game-round advancement; a general campaign clock and crafting session ledger remain pending. Ordinary Tinker gizmos last indefinitely under the current rules; optional GM neglect is not imposed automatically.
 - Base package grants can include multiple gizmo types within one talent. Physical Augmentor is now a separate craftable function; other package functions still need function-level recipes.
 - Current talent validation still relies on the existing character selection system.
 - Workbench maxima are live calculated. The reusable Tech tracker maximum is refreshed when changing pool charges, not on every character edit.
@@ -45,7 +46,7 @@ Updated: 2026-10-03. This is an implementation ledger, not a claim of complete a
 6. AI stat blocks, commands, routines, hosts and installation.
 7. Accessories, combined devices, accommodation/secondary-function composition.
 8. Tech-specific repair methods, sundering attack resolution, damage-type adjustments, scavenging and detailed upkeep. Current HP and basic Tinker repair/maintenance are implemented; AI/mechanoid exceptions, Redundant Systems and It Just Works remain pending.
-9. Timed activation, duration, expiration and temporary charges.
+9. Timed activation/duration profiles for remaining functions and temporary charges. Jet-boosters' paid periods and expiration are implemented.
 10. Project construction costs/times and technical-item creation feat integration.
 11. Tinker tradition restrictions/boons, optional variants and skill substitutions.
 12. Class/archetype-specific personal gizmos and personal battery-use requirements.
@@ -65,6 +66,8 @@ Tech battery follow-up: full isolated run completed with 1,991 cases, 1,988 pass
 Damage/repair follow-up: 51 focused engineering, database, transfer and recovery tests plus 2 theme subtests passed. The parchment workbench render was inspected with a broken gizmo showing current/max HP and effective level. The full isolated suite has not been repeated after this follow-up. Damage-type adjustments are manual before applying hardness; device-specific defensive exceptions and attack/sunder resolution remain pending.
 
 Physical Augmentor follow-up: 58 focused engineering, shared rules, skill-rank, transfer and recovery tests plus 2 theme subtests passed. Configuration and wearer state are additive/defaulted database fields. Device slot validation, duration/expiry, external wearers and alternate construction grants remain pending.
+
+Jet-boosters follow-up: 76 broad focused tests plus 2 theme subtests passed; after additional slot/load/transfer and Athletics Fly-package coverage, all 22 engineering tests and 2 theme subtests passed. A further 19 performance/layout/movement tests and 2 theme subtests passed. The parchment timed-jet dialog was rendered and inspected. The full suite has not yet been repeated. Long Distance Fuel Pack, external/unwilling users, exhaust/hover geometry and equipment-figure display remain pending.
 
 ## Verified rule sources
 
@@ -147,7 +150,7 @@ Every entry remains available through existing catalogs/Codex. “Roster” mean
 | Tech | Hookshot (accessory, gadget) | Gadget Talent | Roster; device-specific effects not automated |
 | Tech | Integrated Armory (accessory, gadget) | Gadget Talent | Roster; device-specific effects not automated |
 | Tech | Internal Tool (accessory, augment, drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
-| Tech | Jet-boosters (drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Jet-boosters (drone, gadget) | Gadget Talent | Flight/aquatic configuration, paid operating modes, movement, slot checks and timers; fuel pack/external users/hover geometry pending |
 | Tech | Laser Pack (accessory, gadget) | Gadget Talent | Roster; device-specific effects not automated |
 | Tech | Load Bearer (augment, drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
 | Tech | Mechanical Ranged Weaponry (gadget, moddable) | Gadget Talent | Roster; device-specific effects not automated |

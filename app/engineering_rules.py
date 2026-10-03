@@ -5,6 +5,24 @@ from math import ceil
 TECH_BATTERY_KEY = "tech:gadget-talent:battery-gadget"
 TINKER_BATTERY_KEY = "tinker:battery"
 PHYSICAL_AUGMENTOR_KEY = "tinker:device:physical-augmentor"
+JET_BOOSTERS_KEY = "tech:gadget-talent:jet-boosters-drone-gadget"
+# cost, paid duration in rounds, speed, flight maneuverability
+JET_MODES = {"normal":(1,1,60,"Poor"),"slow_burn":(1,2400,30,"Perfect"),
+             "overdrive":(2,1,90,"Clumsy")}
+
+
+def jet_movement(device, *, light_load=True):
+    if (device["catalog_key"]!=JET_BOOSTERS_KEY or device["state"]!="active"
+            or not device.get("applied_to_character") or device.get("effect_rounds",0)<=0
+            or device_condition(device)["destroyed"]):
+        return None
+    mode=device.get("function_mode","")
+    if mode not in JET_MODES or device["configuration"] not in {"flight","aquatic"}:
+        return None
+    if mode=="slow_burn" and not light_load:
+        return None
+    _,_,speed,maneuverability=JET_MODES[mode]
+    return ("swim_speed" if device["configuration"]=="aquatic" else "fly_speed",speed,maneuverability)
 
 
 def is_battery(device):

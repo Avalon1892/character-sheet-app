@@ -5,7 +5,7 @@ from PySide6.QtWidgets import (QDialog,QVBoxLayout,QHBoxLayout,QComboBox,QLabel,
     QPushButton,QTableWidget,QTableWidgetItem,QHeaderView,QAbstractItemView,
     QSpinBox,QCheckBox,QTextBrowser,QSplitter,QWidget,QMessageBox,QInputDialog)
 from app.services.engineering import EngineeringService
-from app.engineering_rules import occupied_limit,is_battery,TECH_BATTERY_KEY,tech_battery_capacity,device_condition,PHYSICAL_AUGMENTOR_KEY
+from app.engineering_rules import occupied_limit,is_battery,TECH_BATTERY_KEY,tech_battery_capacity,device_condition,PHYSICAL_AUGMENTOR_KEY,JET_BOOSTERS_KEY,JET_MODES
 from app.content import martial_entry
 from app.ui.dialog_theme import dialog_stylesheet
 
@@ -48,13 +48,13 @@ class EngineeringDialog(QDialog):
         self.create=QPushButton("Craft device");controls.addWidget(self.create)
         split=QSplitter();root.addWidget(split,1)
         left=QWidget();layout=QVBoxLayout(left);split.addWidget(left)
-        self.table=QTableWidget(0,8)
-        self.table.setHorizontalHeaderLabels(("Device","Level","State","HP","Hardness (base)","Save (base)","DC (base)","Energy"))
+        self.table=QTableWidget(0,9)
+        self.table.setHorizontalHeaderLabels(("Device","Level","State","HP","Hardness (base)","Save (base)","DC (base)","Energy","Paid time"))
         self.table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
         self.table.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
         self.table.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
         self.table.horizontalHeader().setSectionResizeMode(0,QHeaderView.ResizeMode.Stretch)
-        for column in range(1,8):
+        for column in range(1,9):
             self.table.horizontalHeader().setSectionResizeMode(column,QHeaderView.ResizeMode.ResizeToContents)
         self.table.setWordWrap(True)
         self.table.verticalHeader().hide();layout.addWidget(self.table)
@@ -72,6 +72,25 @@ class EngineeringDialog(QDialog):
         self.use=QPushButton("Spend charges");resources.addWidget(self.use)
         self.recharge=QPushButton("Recharge");resources.addWidget(self.recharge)
         resources.addStretch()
+        timed=QHBoxLayout();root.addLayout(timed)
+        self.jet_slot=QComboBox()
+        for slot in sheet.repository.list_worn_slots(sheet.character_id):
+            if slot and slot!="Slotless":self.jet_slot.addItem(slot)
+        timed.addWidget(self.jet_slot)
+        self.jet_buttons=[]
+        for mode,label in (("normal","Boost (1 charge / round)"),("slow_burn","Slow burn (1 charge / 4h)"),("overdrive","Overdrive (2 charges / round)")):
+            button=QPushButton(label);button.clicked.connect(lambda checked=False,m=mode:self.perform(lambda:self.service().start_jet_boosters(self.selected(),m,self.jet_slot.currentText())))
+            timed.addWidget(button);self.jet_buttons.append(button)
+        self.stop=QPushButton("Stop function");timed.addWidget(self.stop)
+        self.stop.clicked.connect(lambda:self.perform(lambda:self.service().stop_function(self.selected())))
+        self.unequip_jet=QPushButton("Unequip boosters");timed.addWidget(self.unequip_jet)
+        self.unequip_jet.clicked.connect(lambda:self.perform(lambda:self.service().stop_function(self.selected(),unequip=True)))
+        timed.addStretch()
+        clock=QHBoxLayout();root.addLayout(clock)
+        self.elapsed=QSpinBox();self.elapsed.setRange(1,999999);clock.addWidget(self.elapsed)
+        self.advance=QPushButton("Advance game time (rounds)");clock.addWidget(self.advance)
+        self.advance.clicked.connect(lambda:self.perform(lambda:self.service().advance_time(self.elapsed.value())))
+        clock.addStretch()
         health=QHBoxLayout();root.addLayout(health)
         self.damage_amount=QSpinBox();self.damage_amount.setRange(1,99999)
         health.addWidget(QLabel("Incoming device damage"));health.addWidget(self.damage_amount)
@@ -142,8 +161,8 @@ class EngineeringDialog(QDialog):
                     f"{sum(d['state']=='active' for d in attached)}/{len(attached)} batteries" if attached else "—")
             status="abandoned" if device["state"]=="abandoned" else "Destroyed" if condition["destroyed"] else f"Broken · {device['state']}" if condition["broken"] else device["state"]
             level=f"{device['level']} → {condition['effective_level']}" if condition["effective_level"]!=device["level"] else device["level"]
-            name=device["name"]+(f" · {device['configuration'].title()}" if device["configuration"] else "")+(" · Worn" if device["applied_to_character"] else "")
-            values=(name,level,status,f"{condition['current_hp']}/{condition['maximum_hp']}",stats["hardness"],stats["save"],stats["dc"],energy)
+            name=device["name"]+(f" · {device['configuration'].title()}" if device["configuration"] else "")+(f" · {device['worn_slot']}" if device["worn_slot"] else " · Worn" if device["applied_to_character"] else "")
+            values=(name,level,status,f"{condition['current_hp']}/{condition['maximum_hp']}",stats["hardness"],stats["save"],stats["dc"],energy,f"{device['effect_rounds']} rounds" if device["effect_rounds"] else "—")
             for column,value in enumerate(values):
                 item=QTableWidgetItem(str(value));item.setData(Qt.ItemDataRole.UserRole,device["id"])
                 self.table.setItem(row,column,item)
@@ -159,6 +178,11 @@ class EngineeringDialog(QDialog):
         self.detach.setEnabled(False);self.battery_recharge.setEnabled(False)
         self.damage_button.setEnabled(False);self.repair_button.setEnabled(False)
         self.applied.setEnabled(False);self.applied.setChecked(False)
+        for button in (*self.jet_buttons,self.stop,self.unequip_jet):button.setEnabled(False)
+        has_jets=any(e["key"]==JET_BOOSTERS_KEY for e in service.known_devices(sphere))
+        for control in (*self.jet_buttons,self.stop,self.unequip_jet,self.jet_slot):control.setVisible(has_jets)
+        timed=any(d["effect_rounds"]>0 for d in self.sheet.repository.list_engineering_devices(self.sheet.character_id))
+        self.advance.setEnabled(timed);self.elapsed.setEnabled(timed)
         self.repair_button.setVisible(sphere=="Tinker")
         self.attach.setEnabled(False);self.battery_use.setEnabled(False)
         for button in self.device_charge_controls:button.setEnabled(False)
@@ -170,7 +194,13 @@ class EngineeringDialog(QDialog):
         return self.table.item(row,0).data(Qt.ItemDataRole.UserRole) if row>=0 and self.table.item(row,0) else None
 
     def preview_known(self,*_):
-        self.configuration.setVisible(self.known.currentData()==PHYSICAL_AUGMENTOR_KEY)
+        key=self.known.currentData()
+        previous=self.configuration.currentData()
+        self.configuration.clear()
+        for option in (("flight","aquatic") if key==JET_BOOSTERS_KEY else ("strength","dexterity","constitution")):
+            self.configuration.addItem(option.title(),option)
+        if self.configuration.findData(previous)>=0:self.configuration.setCurrentIndex(self.configuration.findData(previous))
+        self.configuration.setVisible(key in {PHYSICAL_AUGMENTOR_KEY,JET_BOOSTERS_KEY})
         entry=next((e for e in self.service().known_devices(self.system.currentText()) if e["key"]==self.known.currentData()),None)
         self.show_details(entry)
 
@@ -178,7 +208,9 @@ class EngineeringDialog(QDialog):
         self.details.setHtml("" if entry is None else "<h2>"+escape(entry["name"])+"</h2><p>"+
                              escape(entry.get("description","")).replace("\n","<br>")+"</p><p><b>"+
                              ("Selected-ability skill bonuses are automatic when active and worn. Ability checks and battery-use rerolls are currently resolved manually."
-                              if entry.get("key")==PHYSICAL_AUGMENTOR_KEY else "Device-specific effects are reference-only in this batch.")+"</b></p>")
+                              if entry.get("key")==PHYSICAL_AUGMENTOR_KEY else
+                              "Flight/swim speed, maneuverability, charge costs and paid durations are automatic. Flight slow burn is limited to 3 feet above the surface; height and hover/exhaust effects require manual resolution."
+                              if entry.get("key")==JET_BOOSTERS_KEY else "Device-specific effects are reference-only in this batch.")+"</b></p>")
 
     def preview_device(self):
         device=next((d for d in self.service().devices(self.system.currentText()) if d["id"]==self.selected()),None)
@@ -186,6 +218,11 @@ class EngineeringDialog(QDialog):
         self.repair_button.setEnabled(bool(device and device["state"]!="abandoned" and device["damage"] and self.kit.isChecked()))
         self.applied.setEnabled(bool(device and device["catalog_key"]==PHYSICAL_AUGMENTOR_KEY and device["state"]!="abandoned"))
         self.applied.setChecked(bool(device and device["applied_to_character"]))
+        jet=bool(device and device["catalog_key"]==JET_BOOSTERS_KEY and device["state"]!="abandoned" and not device_condition(device)["destroyed"])
+        for button in self.jet_buttons:button.setEnabled(jet and device["effect_rounds"]==0)
+        self.stop.setEnabled(jet and device["effect_rounds"]>0)
+        self.unequip_jet.setEnabled(jet and bool(device["worn_slot"]))
+        if jet and device["worn_slot"]:self.jet_slot.setCurrentText(device["worn_slot"])
         for button in self.actions:button.setEnabled(device is not None and device["state"]!="abandoned")
         if device and device_condition(device)["destroyed"]:
             self.actions[0].setEnabled(False)
@@ -213,7 +250,7 @@ class EngineeringDialog(QDialog):
         self.perform(lambda:self.service().create(sphere,self.known.currentData(),self.modifier.value(),
                      minor=self.minor.isChecked() if sphere=="Tinker" else False,
                      advanced=self.advanced.value() if sphere=="Tinker" else 0,
-                     configuration=self.configuration.currentData() if self.known.currentData()==PHYSICAL_AUGMENTOR_KEY else ""))
+                     configuration=self.configuration.currentData() if self.known.currentData() in {PHYSICAL_AUGMENTOR_KEY,JET_BOOSTERS_KEY} else ""))
 
     def load_charges(self):
         device=next((d for d in self.service().devices("Tech") if d["id"]==self.selected()),None)

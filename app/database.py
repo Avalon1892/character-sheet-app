@@ -4,7 +4,7 @@ import json
 import math
 import re
 import sqlite3
-from app.engineering_rules import is_battery, TECH_BATTERY_KEY, tech_battery_capacity,device_condition
+from app.engineering_rules import is_battery, TECH_BATTERY_KEY, tech_battery_capacity,device_condition,JET_BOOSTERS_KEY,JET_MODES
 from datetime import datetime
 from pathlib import Path
 
@@ -980,6 +980,9 @@ class CharacterRepository:
         self._ensure_column("engineering_devices", "damage", "INTEGER NOT NULL DEFAULT 0")
         self._ensure_column("engineering_devices", "configuration", "TEXT NOT NULL DEFAULT ''")
         self._ensure_column("engineering_devices", "applied_to_character", "INTEGER NOT NULL DEFAULT 0")
+        self._ensure_column("engineering_devices", "function_mode", "TEXT NOT NULL DEFAULT ''")
+        self._ensure_column("engineering_devices", "effect_rounds", "INTEGER NOT NULL DEFAULT 0")
+        self._ensure_column("engineering_devices", "worn_slot", "TEXT NOT NULL DEFAULT ''")
         self._connection.execute(f"""
             CREATE UNIQUE INDEX IF NOT EXISTS engineering_tech_battery_host
             ON engineering_devices(host_id)
@@ -1689,6 +1692,8 @@ class CharacterRepository:
 
         if not slot:
             return
+        self._connection.execute("UPDATE engineering_devices SET worn_slot='',applied_to_character=0,effect_rounds=0,state=CASE WHEN state='active' THEN 'inactive' ELSE state END WHERE character_id=? AND worn_slot=?",
+            (character_id,slot))
         parameters: list[object] = [character_id, slot]
         exclusion = ""
         if except_item_id is not None:
@@ -3080,18 +3085,21 @@ class CharacterRepository:
                 "SELECT 1 FROM engineering_devices WHERE sphere='Tech' AND catalog_key=? AND host_id=? AND (? IS NULL OR id!=?)",
                 (TECH_BATTERY_KEY,host_id,device_id,device_id)).fetchone():
                 raise ValueError("A Tech device can have only one attached battery. Detach its existing battery first.")
-        fields = ("sphere", "catalog_key", "name", "level", "modifier", "state", "charges", "minor", "advanced", "host_id", "damage", "configuration", "applied_to_character")
+        fields = ("sphere", "catalog_key", "name", "level", "modifier", "state", "charges", "minor", "advanced", "host_id", "damage", "configuration", "applied_to_character", "function_mode", "effect_rounds", "worn_slot")
         values = (sphere, str(record.get("catalog_key", "")), name,
                   int(record.get("level", 0)), int(record.get("modifier", 0)), state,
                   int(record.get("charges", 0)), int(bool(record.get("minor", False))),
                   int(record.get("advanced", 0)), host_id, int(record.get("damage",0)),
-                  str(record.get("configuration", "")),int(bool(record.get("applied_to_character",False))))
+                  str(record.get("configuration", "")),int(bool(record.get("applied_to_character",False))),
+                  str(record.get("function_mode","")),int(record.get("effect_rounds",0)),str(record.get("worn_slot","")))
         if not 0 <= values[3] <= 999 or not -100 <= values[4] <= 100 or not 0 <= values[6] <= 99999 or not 0 <= values[8] <= 99:
             raise ValueError("Device statistics are outside supported bounds.")
         if not 0<=values[10]<=99999:
             raise ValueError("Device damage is outside supported bounds.")
         if len(values[11])>200:
             raise ValueError("Device configuration is too long.")
+        if len(values[13])>100 or not 0<=values[14]<=999999 or len(values[15])>100:
+            raise ValueError("Device function or duration is outside supported bounds.")
         if (sphere=="Tinker" and values[6]) or (sphere=="Tech" and (values[7] or values[8])):
             raise ValueError("Tech charges and Tinker minor/advanced rules cannot be mixed.")
         if device_id is None:
@@ -3135,7 +3143,7 @@ class CharacterRepository:
             self._connection.execute("UPDATE custom_trackers SET current_value=? WHERE id=?",(current,tracker_id))
             self._touch_character(character_id)
 
-    def spend_tech_device_charges(self, character_id, device_id, amount):
+    def spend_tech_device_charges(self, character_id, device_id, amount, *, function_mode=None,worn_slot=""):
         """Atomic battery-first spending, preserving charges on failed uses."""
         amount=int(amount)
         if amount<=0:
@@ -3146,6 +3154,15 @@ class CharacterRepository:
                 (device_id,character_id)).fetchone()
             if host is None or device_condition(dict(host))["destroyed"]:
                 raise ValueError("Select a functioning Tech device.")
+            if function_mode is not None and (host["catalog_key"]!=JET_BOOSTERS_KEY
+                    or function_mode not in JET_MODES or host["configuration"] not in {"flight","aquatic"}
+                    or amount!=JET_MODES[function_mode][0] or host["effect_rounds"]>0):
+                raise ValueError("Invalid device function activation.")
+            if function_mode is not None:
+                if not worn_slot or worn_slot=="Slotless" or worn_slot not in self.list_worn_slots(character_id):
+                    raise ValueError("Choose an equipment slot for the boosters.")
+                if self._connection.execute("SELECT 1 FROM equipment WHERE character_id=? AND slot=? AND equipped=1 AND state IN ('','stored','worn','armor','shield')",(character_id,worn_slot)).fetchone() or self._connection.execute("SELECT 1 FROM engineering_devices WHERE character_id=? AND worn_slot=? AND id!=? AND state!='abandoned'",(character_id,worn_slot,device_id)).fetchone():
+                    raise ValueError("That equipment slot is occupied.")
             battery=None if host["catalog_key"]==TECH_BATTERY_KEY else self._connection.execute(
                 "SELECT * FROM engineering_devices WHERE host_id=? AND character_id=? AND catalog_key=? AND state NOT IN ('abandoned','depleted')",
                 (device_id,character_id,TECH_BATTERY_KEY)).fetchone()
@@ -3158,6 +3175,18 @@ class CharacterRepository:
             if battery:
                 self._connection.execute("UPDATE engineering_devices SET charges=charges-? WHERE id=?",(battery_spent,battery["id"]))
             self._connection.execute("UPDATE engineering_devices SET charges=charges-? WHERE id=?",(amount-battery_spent,device_id))
+            if function_mode is not None:
+                self._connection.execute("UPDATE engineering_devices SET state='active',applied_to_character=1,function_mode=?,effect_rounds=?,worn_slot=? WHERE id=?",
+                    (function_mode,JET_MODES[function_mode][1],worn_slot,device_id))
+            self._touch_character(character_id)
+
+    def advance_engineering_time(self,character_id,rounds):
+        rounds=int(rounds)
+        if not 1<=rounds<=999999:
+            raise ValueError("Elapsed rounds must be between 1 and 999,999.")
+        with self._connection:
+            self._connection.execute("UPDATE engineering_devices SET effect_rounds=MAX(0,effect_rounds-?),state=CASE WHEN effect_rounds<=? AND state='active' THEN 'inactive' ELSE state END WHERE character_id=? AND state!='abandoned' AND effect_rounds>0",
+                (rounds,rounds,character_id))
             self._touch_character(character_id)
 
     def deplete_engineering_batteries(self,character_id,host_id,battery_ids):

@@ -2,7 +2,7 @@
 from app.content import martial_entry
 from app.engineering_rules import (engineering_limits, occupied_limit, device_statistics,
                                    is_battery, TECH_BATTERY_KEY, tech_battery_capacity,device_condition,
-                                   PHYSICAL_AUGMENTOR_KEY)
+                                   PHYSICAL_AUGMENTOR_KEY,JET_BOOSTERS_KEY,JET_MODES)
 from app.services.character_calculations import CharacterCalculationService
 from app.exploitant_rules import effective_martial_talents
 
@@ -62,6 +62,8 @@ class EngineeringService:
             raise ValueError("Minor and advanced gizmo rules belong to Tinker, not Tech.")
         if key==PHYSICAL_AUGMENTOR_KEY and configuration not in {"strength","dexterity","constitution"}:
             raise ValueError("Choose a physical ability for the augmentor.")
+        if key==JET_BOOSTERS_KEY and configuration not in {"flight","aquatic"}:
+            raise ValueError("Choose flight or aquatic boosters at creation.")
         ranks = CharacterCalculationService(self.repository,self.character_id).effective_skill_ranks().get(self.skill_key,0)
         if sphere=="Tinker" and ranks<1:
             raise ValueError("A gizmo requires at least one rank in its associated skill.")
@@ -81,6 +83,26 @@ class EngineeringService:
             raise ValueError("Activate a functioning device before applying it to this character.")
         self.repository.save_engineering_device(self.character_id,{**device,"applied_to_character":bool(enabled)},device_id)
 
+    def start_jet_boosters(self,device_id,mode,slot):
+        device=next((d for d in self.devices("Tech") if d["id"]==device_id),None)
+        if not self.available("Tech") or not device or device["catalog_key"]!=JET_BOOSTERS_KEY or mode not in JET_MODES:
+            raise ValueError("Select your Jet-boosters and an operating mode.")
+        if device["effect_rounds"]>0:
+            raise ValueError("Stop the current function before changing modes.")
+        if mode=="slow_burn" and CharacterCalculationService(self.repository,self.character_id).encumbrance().load!="Light":
+            raise ValueError("Slow burn requires a light load.")
+        self.repository.spend_tech_device_charges(self.character_id,device_id,JET_MODES[mode][0],function_mode=mode,worn_slot=slot)
+
+    def stop_function(self,device_id,*,unequip=False):
+        device=next((d for d in self.repository.list_engineering_devices(self.character_id) if d["id"]==device_id),None)
+        if not device or device["catalog_key"]!=JET_BOOSTERS_KEY or device["state"]=="abandoned":
+            raise ValueError("Select a supported timed device function.")
+        self.repository.save_engineering_device(self.character_id,{**device,"state":"inactive","effect_rounds":0,
+            "worn_slot":"" if unequip else device["worn_slot"],"applied_to_character":False if unequip else device["applied_to_character"]},device_id)
+
+    def advance_time(self,rounds):
+        self.repository.advance_engineering_time(self.character_id,rounds)
+
     def change_state(self, device_id, state):
         record = next((d for d in self.repository.list_engineering_devices(self.character_id) if d["id"]==device_id),None)
         if record is None:
@@ -97,6 +119,9 @@ class EngineeringService:
             raise ValueError("Tinker batteries cannot be deactivated.")
         if record["catalog_key"]==TECH_BATTERY_KEY and state=="abandoned":
             record={**record,"charges":0,"host_id":None}
+        if record["catalog_key"]==JET_BOOSTERS_KEY and state!="active":
+            record={**record,"effect_rounds":0}
+            if state=="abandoned":record={**record,"worn_slot":"","applied_to_character":False}
         if state in {"abandoned","depleted"} and record["charges"]:
             raise ValueError("Return or spend stored charges before abandoning or depleting this device.")
         self.repository.save_engineering_device(self.character_id,{**record,"state":state},device_id)

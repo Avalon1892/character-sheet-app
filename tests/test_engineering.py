@@ -241,6 +241,75 @@ class EngineeringTests(unittest.TestCase):
         self.assertEqual(("strength",1),(record["configuration"],record["applied_to_character"]))
         with self.assertRaises(ValueError):other.apply_to_character(device,False)
 
+    def test_jet_boosters_paid_movement_and_expiration(self):
+        from app.engineering_rules import JET_BOOSTERS_KEY,TECH_BATTERY_KEY
+        from app.services.character_calculations import CharacterCalculationService
+        for key in (JET_BOOSTERS_KEY,TECH_BATTERY_KEY):
+            entry=next(e for e in martial_entries("Tech") if e["key"]==key)
+            self.add("Tech",entry["name"],entry["key"],entry["category"])
+        jet=self.service.create("Tech",JET_BOOSTERS_KEY,3,configuration="flight")
+        battery=self.service.create("Tech",TECH_BATTERY_KEY,3)
+        self.service.attach_battery(battery,jet)
+        self.service.start_jet_boosters(jet,"overdrive","Feet")
+        movement=CharacterCalculationService(self.repo,self.cid).movement_results()
+        self.assertEqual((90,"Clumsy"),(movement["fly_speed"],movement["fly_maneuverability"]))
+        self.assertEqual(1,next(d for d in self.service.devices("Tech") if d["id"]==battery)["charges"])
+        self.service.advance_time(1)
+        self.assertEqual(0,CharacterCalculationService(self.repo,self.cid).movement_results()["fly_speed"])
+        before=self.service.devices("Tech")
+        with self.assertRaises(ValueError):self.service.start_jet_boosters(jet,"overdrive","Feet")
+        self.assertEqual(before,self.service.devices("Tech"))
+        self.service.start_jet_boosters(jet,"slow_burn","Feet")
+        self.service.advance_time(2399)
+        self.assertEqual(30,CharacterCalculationService(self.repo,self.cid).movement_results()["fly_speed"])
+        self.repo.add_martial_talent(self.cid,"Athletics Sphere","Athletics","Base Sphere",catalog_key="athletics:base",catalog_category="Base Sphere",choice="Fly")
+        self.add("Athletics","Swift Movement","athletics:talent:swift-movement")
+        self.assertEqual(45,CharacterCalculationService(self.repo,self.cid).movement_results()["fly_speed"])
+        FullRestEngine(self.repo,self.cid).perform()
+        self.assertEqual(0,CharacterCalculationService(self.repo,self.cid).movement_results()["fly_speed"])
+
+    def test_jet_slot_ownership_and_aquatic_configuration(self):
+        from app.engineering_rules import JET_BOOSTERS_KEY
+        from app.services.character_calculations import CharacterCalculationService
+        entry=next(e for e in martial_entries("Tech") if e["key"]==JET_BOOSTERS_KEY)
+        self.add("Tech",entry["name"],entry["key"],entry["category"])
+        jet=self.service.create("Tech",JET_BOOSTERS_KEY,3,configuration="aquatic")
+        second=self.service.create("Tech",JET_BOOSTERS_KEY,3,configuration="flight")
+        self.service.recharge();self.service.transfer_charges(jet,1);self.service.transfer_charges(second,1)
+        with self.assertRaises(ValueError):self.service.start_jet_boosters(jet,"normal","Slotless")
+        self.service.start_jet_boosters(jet,"normal","Shoulders")
+        self.assertEqual(60,CharacterCalculationService(self.repo,self.cid).movement_results()["swim_speed"])
+        before=self.service.devices("Tech")
+        with self.assertRaises(ValueError):self.service.start_jet_boosters(second,"normal","Shoulders")
+        self.assertEqual(before,self.service.devices("Tech"))
+        self.service.stop_function(jet,unequip=True)
+        self.service.start_jet_boosters(second,"normal","Shoulders")
+        self.repo.add_equipment(self.cid,"Cloak","Gear",1,1,True,0,"untyped",None,"",slot="Shoulders",state="worn")
+        record=next(d for d in self.service.devices("Tech") if d["id"]==second)
+        self.assertEqual(("",0),(record["worn_slot"],record["effect_rounds"]))
+        self.assertEqual(0,CharacterCalculationService(self.repo,self.cid).movement_results()["fly_speed"])
+
+    def test_jet_slow_burn_load_and_saved_timer(self):
+        from app.engineering_rules import JET_BOOSTERS_KEY
+        from app.services.character_calculations import CharacterCalculationService
+        entry=next(e for e in martial_entries("Tech") if e["key"]==JET_BOOSTERS_KEY)
+        self.add("Tech",entry["name"],entry["key"],entry["category"])
+        jet=self.service.create("Tech",JET_BOOSTERS_KEY,3,configuration="flight")
+        self.service.recharge();self.service.transfer_charges(jet,2)
+        self.service.start_jet_boosters(jet,"slow_burn","Feet")
+        self.service.advance_time(10)
+        path=Path(self.temp.name)/"timed-jet.json"
+        export_character(self.repo,self.cid,path)
+        other=EngineeringService(self.repo,import_character(self.repo,path))
+        imported=next(d for d in other.devices("Tech") if d["catalog_key"]==JET_BOOSTERS_KEY)
+        self.assertEqual((2390,"Feet"),(imported["effect_rounds"],imported["worn_slot"]))
+        self.repo.add_equipment(self.cid,"Heavy cargo","Gear",1,200,True,0,"untyped",None,"",state="carried")
+        self.assertEqual(0,CharacterCalculationService(self.repo,self.cid).movement_results()["fly_speed"])
+        self.service.stop_function(jet)
+        before=self.service.devices("Tech")
+        with self.assertRaises(ValueError):self.service.start_jet_boosters(jet,"slow_burn","Feet")
+        self.assertEqual(before,self.service.devices("Tech"))
+
     def test_damage_survives_rest_transfer_and_does_not_repair_abandoned(self):
         device=self.gadget()
         self.service.damage_device(device,3,apply_hardness=False)

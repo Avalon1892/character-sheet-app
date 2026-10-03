@@ -125,7 +125,11 @@ class FullRestEngine:
             for tracker in self.repository.list_custom_trackers(self.character_id)
             if tracker.tracker_type != "calculated"
         )
-        return (*self.BUILT_IN_TARGETS, *custom)
+        engineering=()
+        if any(d["effect_rounds"]>0 for d in self.repository.list_engineering_devices(self.character_id)):
+            engineering=(RecoveryTarget("engineering.elapsed_time","Advance timed device effects",
+                "Advance paid device durations by eight hours without recharging or maintaining devices.","Resources"),)
+        return (*self.BUILT_IN_TARGETS, *engineering, *custom)
 
     def effective_preferences(self) -> dict[str, bool]:
         saved = self.repository.get_rest_preferences(self.character_id)
@@ -139,6 +143,9 @@ class FullRestEngine:
         synchronize_racial_trackers(self.repository, self.character_id)
         choices = enabled or self.effective_preferences()
         results: list[RecoveryResult] = []
+        if choices.get("engineering.elapsed_time",False):
+            self.repository.advance_engineering_time(self.character_id,4800)
+            results.append(RecoveryResult("engineering.elapsed_time","Timed device effects","Advanced device durations by eight hours."))
         total_level = sum(
             item.level for item in self.repository.list_class_levels(self.character_id)
         )
