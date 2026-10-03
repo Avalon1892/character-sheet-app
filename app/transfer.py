@@ -194,6 +194,7 @@ def export_character(repository: CharacterRepository, character_id: int, path: P
 def _import_engineering_devices(repository,character_id,character):
     device_ids={}
     device_hosts=[]
+    device_effects=[]
     for device in character.get("engineering_devices", []):
         device=dict(device)
         old_id=device.pop("id",None)
@@ -201,13 +202,20 @@ def _import_engineering_devices(repository,character_id,character):
             raise ValueError("Duplicate engineering device identity in character file.")
         device.pop("character_id",None)
         old_host=device.pop("host_id",None)
+        old_effect_battery=device.pop("effect_battery_id",None)
         new_id=repository.save_engineering_device(character_id,device)
         device_ids[old_id]=new_id
         if old_host is not None:device_hosts.append((new_id,old_host,device))
+        if old_effect_battery is not None:device_effects.append((new_id,old_effect_battery))
     for device_id,host_id,device in device_hosts:
         if host_id not in device_ids:
             raise ValueError("Engineering device has a missing battery host.")
         repository.save_engineering_device(character_id,{**device,"host_id":device_ids[host_id]},device_id)
+    for device_id,battery_id in device_effects:
+        if battery_id not in device_ids:
+            raise ValueError("Engineering effect has a missing supporting battery.")
+        device=next(d for d in repository.list_engineering_devices(character_id) if d["id"]==device_id)
+        repository.save_engineering_device(character_id,{**device,"effect_battery_id":device_ids[battery_id]},device_id)
     return device_ids
 
 

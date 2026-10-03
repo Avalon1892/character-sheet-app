@@ -97,6 +97,29 @@ class EngineeringTests(unittest.TestCase):
         self.assertEqual(("active",0),(record["state"],record["effect_rounds"]))
         self.assertTrue(record["applied_to_character"])
 
+    def test_supporting_battery_identity_transfer_and_detach_end_effect(self):
+        from app.engineering_rules import TACTILE_FIELD_KEY
+        host=self.repo.save_engineering_device(self.cid,dict(sphere="Tinker",catalog_key=TACTILE_FIELD_KEY,name="Field",level=4,modifier=3,state="active"))
+        battery=self.service.create("Tinker","tinker:battery",3)
+        self.service.attach_battery(battery,host)
+        record=next(d for d in self.service.devices("Tinker") if d["id"]==host)
+        self.repo.save_engineering_device(self.cid,{**record,"effect_rounds":40,"effect_battery_id":battery},host)
+        path=Path(self.temp.name)/"supporting-battery.json";export_character(self.repo,self.cid,path)
+        imported=import_character(self.repo,path)
+        devices=self.repo.list_engineering_devices(imported)
+        field=next(d for d in devices if d["catalog_key"]==TACTILE_FIELD_KEY)
+        imported_battery=next(d for d in devices if d["catalog_key"]=="tinker:battery")
+        self.assertEqual(imported_battery["id"],field["effect_battery_id"])
+        self.service.attach_battery(battery,None)
+        record=next(d for d in self.service.devices("Tinker") if d["id"]==host)
+        self.assertEqual((0,None,"active"),(record["effect_rounds"],record["effect_battery_id"],record["state"]))
+        with self.assertRaises(ValueError):self.repo.save_engineering_device(self.cid,{**record,"effect_battery_id":imported_battery["id"]},host)
+        self.service.attach_battery(battery,host)
+        self.repo.save_engineering_device(self.cid,{**record,"effect_rounds":40,"effect_battery_id":battery},host)
+        self.service.change_state(battery,"abandoned")
+        record=next(d for d in self.service.devices("Tinker") if d["id"]==host)
+        self.assertEqual((0,None),(record["effect_rounds"],record["effect_battery_id"]))
+
     def test_distinct_rules_and_repeatable_limits(self):
         self.assertEqual((9,4,6),(engineering_limits("Tinker",6,1,extra=1).device_limit,
                                   engineering_limits("Tinker",8,1,extra=1).batch_size,

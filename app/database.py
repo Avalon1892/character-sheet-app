@@ -982,6 +982,7 @@ class CharacterRepository:
         self._ensure_column("engineering_devices", "applied_to_character", "INTEGER NOT NULL DEFAULT 0")
         self._ensure_column("engineering_devices", "function_mode", "TEXT NOT NULL DEFAULT ''")
         self._ensure_column("engineering_devices", "effect_rounds", "INTEGER NOT NULL DEFAULT 0")
+        self._ensure_column("engineering_devices", "effect_battery_id", "INTEGER")
         self._ensure_column("engineering_devices", "worn_slot", "TEXT NOT NULL DEFAULT ''")
         self._connection.execute(f"""
             CREATE UNIQUE INDEX IF NOT EXISTS engineering_tech_battery_host
@@ -3085,13 +3086,18 @@ class CharacterRepository:
                 "SELECT 1 FROM engineering_devices WHERE sphere='Tech' AND catalog_key=? AND host_id=? AND (? IS NULL OR id!=?)",
                 (TECH_BATTERY_KEY,host_id,device_id,device_id)).fetchone():
                 raise ValueError("A Tech device can have only one attached battery. Detach its existing battery first.")
-        fields = ("sphere", "catalog_key", "name", "level", "modifier", "state", "charges", "minor", "advanced", "host_id", "damage", "configuration", "applied_to_character", "function_mode", "effect_rounds", "worn_slot")
+        effect_battery_id=record.get("effect_battery_id")
+        if effect_battery_id is not None:
+            battery=self._connection.execute("SELECT * FROM engineering_devices WHERE id=? AND character_id=?",(effect_battery_id,character_id)).fetchone()
+            if battery is None or not is_battery(dict(battery)) or battery["sphere"]!=sphere or battery["host_id"]!=device_id:
+                raise ValueError("Supporting battery must belong to this character and be attached to this device.")
+        fields = ("sphere", "catalog_key", "name", "level", "modifier", "state", "charges", "minor", "advanced", "host_id", "damage", "configuration", "applied_to_character", "function_mode", "effect_rounds", "worn_slot", "effect_battery_id")
         values = (sphere, str(record.get("catalog_key", "")), name,
                   int(record.get("level", 0)), int(record.get("modifier", 0)), state,
                   int(record.get("charges", 0)), int(bool(record.get("minor", False))),
                   int(record.get("advanced", 0)), host_id, int(record.get("damage",0)),
                   str(record.get("configuration", "")),int(bool(record.get("applied_to_character",False))),
-                  str(record.get("function_mode","")),int(record.get("effect_rounds",0)),str(record.get("worn_slot","")))
+                  str(record.get("function_mode","")),int(record.get("effect_rounds",0)),str(record.get("worn_slot","")),effect_battery_id)
         if not 0 <= values[3] <= 999 or not -100 <= values[4] <= 100 or not 0 <= values[6] <= 99999 or not 0 <= values[8] <= 99:
             raise ValueError("Device statistics are outside supported bounds.")
         if not 0<=values[10]<=99999:
@@ -3113,6 +3119,9 @@ class CharacterRepository:
                 (*values, device_id, character_id))
             if not cursor.rowcount:
                 raise KeyError("Device does not belong to this character.")
+        if is_battery(record):
+            self._connection.execute("UPDATE engineering_devices SET effect_rounds=0,effect_battery_id=NULL WHERE character_id=? AND effect_battery_id=? AND (? IS NULL OR id!=? OR ?='abandoned' OR ?=0)",
+                (character_id,device_id,host_id,host_id,state,device_condition(dict(zip(fields,values)))["current_hp"]))
         self._touch_character(character_id)
         self._connection.commit()
         return device_id
