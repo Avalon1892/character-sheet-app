@@ -11,7 +11,7 @@ import re
 from typing import Iterator
 
 from app.content import entry_by_key
-from app.models import ABILITY_KEYS, Attack, CharacterDetails, RaceTraitChoice, StatModifier
+from app.models import ABILITY_KEYS, SKILLS, Attack, CharacterDetails, RaceTraitChoice, StatModifier
 
 
 def _key(value: object) -> str:
@@ -109,6 +109,8 @@ def _resolved_automation_sources(details: CharacterDetails) -> Iterator[tuple[st
     for trait in (*profile.active_traits, *profile.alternate_traits):
         source = str(trait.get("name") or "Racial trait")
         automation = dict(trait.get("automation") or {})
+        if trait.get("name") == "Spell-Like Ability" and profile.variant:
+            automation["resources"] = list(profile.variant.get("resources", automation.get("resources", ())))
         if automation:
             yield source, automation
         if not valid_choices:
@@ -305,13 +307,13 @@ def race_modifier_map(details: CharacterDetails) -> dict[str, list[StatModifier]
             "acrobatics": "acrobatics", "bluff": "bluff", "climb": "climb",
             "diplomacy": "diplomacy", "disguise": "disguise", "fly": "fly",
             "handle animal": "handle_animal", "heal": "heal", "intimidate": "intimidate",
-            "perception": "perception", "ride": "ride", "sense motive": "sense_motive",
+            "perception": "perception", "perform": "perform", "ride": "ride", "sense motive": "sense_motive",
             "spellcraft": "spellcraft", "stealth": "stealth", "survival": "survival",
             "swim": "swim", "use magic device": "use_magic_device",
             "knowledge (planes)": "knowledge_planes",
         }
         for name in skill_names:
-            skill = known.get(name.strip().casefold())
+            skill = {item.name.casefold(): item.key for item in SKILLS}.get(name.strip().casefold()) or known.get(name.strip().casefold())
             if skill:
                 result.setdefault(f"skill:{skill}", []).append(StatModifier(
                     None, f"skill:{skill}", f"Race: {race_name} — {profile.variant['name']}",
@@ -502,3 +504,44 @@ def racial_advancement_effects(details: CharacterDetails) -> dict[str, int]:
             if target:
                 result[target] = result.get(target, 0) + int(effect.get("value") or 0)
     return result
+
+
+def racial_automatic_values(details: CharacterDetails, key: str) -> dict[str, int]:
+    result: dict[str, int] = {}
+    for _source, automation in _resolved_automation_sources(details):
+        for target, value in automation.get(key, {}).items():
+            result[target] = max(result.get(target, 0), int(value))
+    return result
+
+
+def racial_per_level_hit_points(details: CharacterDetails) -> int:
+    return sum(int(automation.get("hit_points_per_level", 0))
+               for _source, automation in _resolved_automation_sources(details))
+
+
+def synchronize_racial_trackers(repository, character_id: int) -> None:
+    """Reuse editable pools for racial uses; never refill them during refresh."""
+    import hashlib
+
+    details = repository.get_character_details(character_id)
+    existing = {tracker.key: tracker for tracker in repository.list_custom_trackers(character_id)}
+    retained = set()
+    for source, automation in _resolved_automation_sources(details):
+        for resource in automation.get("resources", ()):
+            name = str(resource.get("name") or source)
+            identity = f"{details.race_key}:{source}:{name}"
+            key = "race_auto_" + hashlib.sha256(identity.encode()).hexdigest()[:24]
+            retained.add(key)
+            if key in existing:
+                continue
+            maximum = int(resource.get("maximum", 1))
+            repository.add_custom_tracker(
+                character_id, key, f"Racial: {name}", "pool",
+                manual_maximum=maximum, current_value=maximum,
+                description=str(resource.get("description") or source),
+                recovery_event="full_rest" if resource.get("daily") else "none",
+                recovery_operation="set_to_max" if resource.get("daily") else "none",
+            )
+    for key, tracker in existing.items():
+        if key.startswith("race_auto_") and key not in retained:
+            repository.delete_custom_tracker(character_id, tracker.id)

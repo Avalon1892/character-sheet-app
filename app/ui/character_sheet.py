@@ -282,7 +282,7 @@ from app.ui.components import (
     sheet_page,
 )
 from app.ui.race_dialog import RaceCatalogDialog
-from app.race_rules import resolved_race, resolved_racial_traits
+from app.race_rules import resolved_race, resolved_racial_traits, synchronize_racial_trackers
 from app.ui.tracker_blocks import CustomTrackerBlock
 from app.ui.spellbook_dialog import SpellBookDialog
 from app.ui.martial_book_dialog import MartialBookDialog
@@ -685,6 +685,7 @@ class CharacterSheetWidget(SheetSectionsMixin, QWidget):
         synchronize_class_granted_spells(
             self.repository, self.character_id
         )
+        synchronize_racial_trackers(self.repository, self.character_id)
         updates_were_enabled = self.updatesEnabled()
         if updates_were_enabled:
             self.setUpdatesEnabled(False)

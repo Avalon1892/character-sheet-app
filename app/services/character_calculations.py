@@ -95,7 +95,7 @@ from app.class_feature_systems import (
 )
 from app.class_power_rules import class_power_modifier_map
 from app.class_combat_rules import generated_class_attacks, class_attack_context_notes
-from app.race_rules import generated_racial_attacks, racial_class_skills
+from app.race_rules import generated_racial_attacks, racial_class_skills, racial_automatic_values, racial_per_level_hit_points
 from app.class_choice_rules import (
     resolve_class_choice_slots,
     resolved_package_skill_rules,
@@ -431,6 +431,9 @@ class CharacterCalculationService:
             self.repository.list_modifiers(self.character_id, "hp")
         )
         modifiers += self.automatic_modifier_map().get("hp", [])
+        racial_hp = racial_per_level_hit_points(self.state.details) * self.state.character_level
+        if racial_hp:
+            modifiers.append(StatModifier(None, "hp", "Racial hit points per level", "untyped", racial_hp, True))
         if hit_points.auto_calculate:
             return automatic_hit_points(
                 self.resolved_classes(),
@@ -775,6 +778,8 @@ class CharacterCalculationService:
         self, bases: dict[str, int]
     ) -> dict[str, int | str]:
         profile = self.state.movement
+        for target, value in racial_automatic_values(self.state.details, "movement_grants").items():
+            bases[target] = max(bases.get(target, 0), value)
         racial = racial_land_speed(self.state.details)
         land_base = bases["land_speed"] or racial
         unrestricted_land = max(0, land_base + self.automatic_total("land_speed"))

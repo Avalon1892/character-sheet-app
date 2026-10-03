@@ -216,7 +216,16 @@
             "Darkvision"
           ],
           "choice_specs": [],
-          "automation": {}
+          "automation": {
+            "resources": [
+              {
+                "name": "Immortal Spark",
+                "maximum": 1,
+                "daily": true,
+                "description": "Advanced Race Guide pg. 85 Aasimars with this racial trait defy the powers of death. They gain a +2 bonus on Knowledge (history) checks and saving throws against death effects and can use lesser age resistance once per day as a spell-like ability. This racial trait replaces the skilled and spell-like ability racial traits."
+              }
+            ]
+          }
         },
         {
           "key": "race-alt-trait:dwarf:surface-survivalist",
@@ -256,7 +265,16 @@
             "Hatred"
           ],
           "choice_specs": [],
-          "automation": {}
+          "automation": {
+            "resources": [
+              {
+                "name": "Incorruptible",
+                "maximum": 1,
+                "daily": true,
+                "description": "Advanced Race Guide pg. 85 Occasionally, aasimars arise with the ability to further ward away evil. Aasimars with this racial trait can cast corruption resistance against evil once per day as a spell-like ability. If an aasimar uses this ability on herself, the duration increases to 1 hour per level. This racial trait replaces the spell-like ability racial trait."
+              }
+            ]
+          }
         },
         {
           "key": "race-alt-trait:dwarf:deep-warrior",
@@ -302,7 +320,16 @@
             "Hardy"
           ],
           "choice_specs": [],
-          "automation": {}
+          "automation": {
+            "resources": [
+              {
+                "name": "Immortal Spark",
+                "maximum": 1,
+                "daily": true,
+                "description": "Advanced Race Guide pg. 85 Aasimars with this racial trait defy the powers of death. They gain a +2 bonus on Knowledge (history) checks and saving throws against death effects and can use lesser age resistance once per day as a spell-like ability. This racial trait replaces the skilled and spell-like ability racial traits."
+              }
+            ]
+          }
         },
         {
           "key": "race-alt-trait:dwarf:barrow-warden",
@@ -313,7 +340,16 @@
             "Hatred"
           ],
           "choice_specs": [],
-          "automation": {}
+          "automation": {
+            "resources": [
+              {
+                "name": "Incorruptible",
+                "maximum": 1,
+                "daily": true,
+                "description": "Advanced Race Guide pg. 85 Occasionally, aasimars arise with the ability to further ward away evil. Aasimars with this racial trait can cast corruption resistance against evil once per day as a spell-like ability. If an aasimar uses this ability on herself, the duration increases to 1 hour per level. This racial trait replaces the spell-like ability racial trait."
+              }
+            ]
+          }
         },
         {
           "key": "race-alt-trait:dwarf:death-s-end",
@@ -324,7 +360,16 @@
             "Hatred"
           ],
           "choice_specs": [],
-          "automation": {}
+          "automation": {
+            "resources": [
+              {
+                "name": "Immortal Spark",
+                "maximum": 1,
+                "daily": true,
+                "description": "Advanced Race Guide pg. 85 Aasimars with this racial trait defy the powers of death. They gain a +2 bonus on Knowledge (history) checks and saving throws against death effects and can use lesser age resistance once per day as a spell-like ability. This racial trait replaces the skilled and spell-like ability racial traits."
+              }
+            ]
+          }
         },
         {
           "key": "race-alt-trait:dwarf:deep-tradition",
@@ -335,7 +380,16 @@
             "Hatred"
           ],
           "choice_specs": [],
-          "automation": {}
+          "automation": {
+            "resources": [
+              {
+                "name": "Incorruptible",
+                "maximum": 1,
+                "daily": true,
+                "description": "Advanced Race Guide pg. 85 Occasionally, aasimars arise with the ability to further ward away evil. Aasimars with this racial trait can cast corruption resistance against evil once per day as a spell-like ability. If an aasimar uses this ability on herself, the duration increases to 1 hour per level. This racial trait replaces the spell-like ability racial trait."
+              }
+            ]
+          }
         },
         {
           "key": "race-alt-trait:dwarf:iron-within",
@@ -6988,7 +7042,16 @@
           "key": "race-trait:aasimar:spell-like-ability",
           "name": "Spell-Like Ability",
           "description": "Aasimars can use daylight once per day as a spell-like ability (with a caster level equal to the aasimar’s character level). Aasimars of specific bloodlines (see below) gain other spell-like abilities in place of daylight .",
-          "automation": {}
+          "automation": {
+            "resources": [
+              {
+                "name": "Daylight",
+                "maximum": 1,
+                "daily": true,
+                "description": "Aasimars can use daylight once per day as a spell-like ability (with a caster level equal to the aasimar’s character level). Aasimars of specific bloodlines (see below) gain other spell-like abilities in place of daylight ."
+              }
+            ]
+          }
         },
         {
           "key": "race-trait:aasimar:celestial-resistance",
@@ -7028,7 +7091,15 @@
             "charisma": 2
           },
           "flexible_bonus": 0,
-          "alternate_skill_modifiers": "Handle Animal, Survival"
+          "alternate_skill_modifiers": "Handle Animal, Survival",
+          "resources": [
+            {
+              "name": "Summon Nature's Ally II",
+              "maximum": 1,
+              "daily": true,
+              "description": "Source Blood of Angels pg. 21 Idyllkin possess bestial aspects and calm dispositions, and often act as peaceful intermediaries between lawful and chaotic agents of good. Ancestry Agathion Typical Alignment NG Ability Modifiers +2 Con, +2 Cha Alternate Skill Modifiers Handle Animal, Survival Alternate Spell-Like Ability Idyllkin gain summon nature’s ally II as a spell-like ability."
+            }
+          ]
         },
         {
           "key": "race-variant:aasimar:angel-blooded-angelkin",
@@ -7039,7 +7110,15 @@
             "charisma": 2
           },
           "flexible_bonus": 0,
-          "alternate_skill_modifiers": "Heal, Knowledge (planes)"
+          "alternate_skill_modifiers": "Heal, Knowledge (planes)",
+          "resources": [
+            {
+              "name": "Alter Self",
+              "maximum": 1,
+              "daily": true,
+              "description": "Source Blood of Angels pg. 21 Angelkin are mortal paragons of exceptional beauty, and they serve as exemplars of good and light regardless of the myriad forms they may take. Ancestry Angel Typical Alignment Any good Ability Modifiers +2 Str, +2 Cha Alternate Skill Modifiers Heal, Knowledge (planes) Alternate Spell-Like Ability Angelkin gain alter self as a spell-like ability."
+            }
+          ]
         },
         {
           "key": "race-variant:aasimar:archon-blooded-lawbringers",
@@ -7050,7 +7129,15 @@
             "wisdom": 2
           },
           "flexible_bonus": 0,
-          "alternate_skill_modifiers": "Intimidate, Sense Motive"
+          "alternate_skill_modifiers": "Intimidate, Sense Motive",
+          "resources": [
+            {
+              "name": "Continual Flame",
+              "maximum": 1,
+              "daily": true,
+              "description": "Source Blood of Angels pg. 22 Lawbringers are champions of justice and of doling out punishment to the wicked, and often believe chaos is the cause of all mortal suffering. Ancestry Archon Typical Alignment LG Ability Modifiers +2 Con, +2 Wis Alternate Skill Modifiers Intimidate, Sense Motive Alternate Spell-Like Ability Lawbringers gain continual flame as a spell-like ability."
+            }
+          ]
         },
         {
           "key": "race-variant:aasimar:azata-blooded-musetouched",
@@ -7061,7 +7148,15 @@
             "charisma": 2
           },
           "flexible_bonus": 0,
-          "alternate_skill_modifiers": "Diplomacy, Perform"
+          "alternate_skill_modifiers": "Diplomacy, Perform",
+          "resources": [
+            {
+              "name": "Glitterdust",
+              "maximum": 1,
+              "daily": true,
+              "description": "Source Blood of Angels pg. 22 The musetouched epitomize freedom and joy, and travel the world to liberate less fortunate individuals. Ancestry Azata Typical Alignment CG Ability Modifiers +2 Dex, +2 Cha Alternate Skill Modifiers Diplomacy, Perform Alternate Spell-Like Ability Musetouched gain glitterdust as a spell-like ability."
+            }
+          ]
         },
         {
           "key": "race-variant:aasimar:garuda-blooded-plumekith",
@@ -7072,7 +7167,15 @@
             "wisdom": 2
           },
           "flexible_bonus": 0,
-          "alternate_skill_modifiers": "Acrobatics, Fly"
+          "alternate_skill_modifiers": "Acrobatics, Fly",
+          "resources": [
+            {
+              "name": "See Invisibility",
+              "maximum": 1,
+              "daily": true,
+              "description": "Source Blood of Angels pg. 23 Their shimmering avian features make plumekith instantly recognizable. Though they can act rashly, plumekith never shirk their duty after making a commitment. Ancestry Garuda Typical Alignment CG Ability Modifiers +2 Dex, +2 Wis Alternate Skill Modifiers Acrobatics, Fly Alternate Spell-Like Ability Plumekith gain see invisibility as a spell-like ability."
+            }
+          ]
         },
         {
           "key": "race-variant:aasimar:peri-blooded-emberkin",
@@ -7083,7 +7186,15 @@
             "charisma": 2
           },
           "flexible_bonus": 0,
-          "alternate_skill_modifiers": "Knowledge (planes), Spellcraft"
+          "alternate_skill_modifiers": "Knowledge (planes), Spellcraft",
+          "resources": [
+            {
+              "name": "Pyrotechnics",
+              "maximum": 1,
+              "daily": true,
+              "description": "Source Blood of Angels pg. 23 Masters of fire magic, emberkin feel the dual pull of their peri forebear as well as that of a fallen angel further down their ancestry, and wrestle with their urges to do both good and evil. Ancestry Peri Typical Alignment NG Ability Modifiers +2 Int, +2 Cha Alternate Skill Modifiers Knowledge (planes), Spellcraft Alternate Spell-Like Ability Emberkin gain pyrotechnics as a spell-like ability."
+            }
+          ]
         }
       ],
       "alternate_racial_traits": [
@@ -7095,7 +7206,14 @@
             "Celestial Resistance"
           ],
           "choice_specs": [],
-          "automation": {}
+          "automation": {
+            "resistances": [
+              {
+                "type": "negative energy",
+                "value": 5
+              }
+            ]
+          }
         },
         {
           "key": "race-alt-trait:aasimar:exalted-resistance",
@@ -7105,7 +7223,16 @@
             "Celestial Resistance"
           ],
           "choice_specs": [],
-          "automation": {}
+          "automation": {
+            "resources": [
+              {
+                "name": "Immortal Spark",
+                "maximum": 1,
+                "daily": true,
+                "description": "Advanced Race Guide pg. 85 Aasimars with this racial trait defy the powers of death. They gain a +2 bonus on Knowledge (history) checks and saving throws against death effects and can use lesser age resistance once per day as a spell-like ability. This racial trait replaces the skilled and spell-like ability racial traits."
+              }
+            ]
+          }
         },
         {
           "key": "race-alt-trait:aasimar:celestial-crusader",
@@ -7135,7 +7262,16 @@
             "Darkvision"
           ],
           "choice_specs": [],
-          "automation": {}
+          "automation": {
+            "resources": [
+              {
+                "name": "Incorruptible",
+                "maximum": 1,
+                "daily": true,
+                "description": "Advanced Race Guide pg. 85 Occasionally, aasimars arise with the ability to further ward away evil. Aasimars with this racial trait can cast corruption resistance against evil once per day as a spell-like ability. If an aasimar uses this ability on herself, the duration increases to 1 hour per level. This racial trait replaces the spell-like ability racial trait."
+              }
+            ]
+          }
         },
         {
           "key": "race-alt-trait:aasimar:scion-of-humanity",
@@ -7239,12 +7375,32 @@
                 {
                   "key": "1",
                   "label": "1. You can channel 1d6 points of positive energy once per day as a supernatural ability",
-                  "description": "You can channel 1d6 points of positive energy once per day as a supernatural ability"
+                  "description": "You can channel 1d6 points of positive energy once per day as a supernatural ability",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 1",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "You can channel 1d6 points of positive energy once per day as a supernatural ability"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "2",
                   "label": "2. You can use cure minor wounds 3/day as a spell-like ability",
-                  "description": "You can use cure minor wounds 3/day as a spell-like ability"
+                  "description": "You can use cure minor wounds 3/day as a spell-like ability",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Cure Minor Wounds",
+                        "maximum": 3,
+                        "daily": true,
+                        "description": "You can use cure minor wounds 3/day as a spell-like ability"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "3",
@@ -7254,7 +7410,17 @@
                 {
                   "key": "4",
                   "label": "4. Once per day, you can drink a flask of holy water to heal 1d6 hit points",
-                  "description": "Once per day, you can drink a flask of holy water to heal 1d6 hit points"
+                  "description": "Once per day, you can drink a flask of holy water to heal 1d6 hit points",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 4",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "Once per day, you can drink a flask of holy water to heal 1d6 hit points"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "5",
@@ -7312,7 +7478,12 @@
                 {
                   "key": "12",
                   "label": "12. You have a natural swim speed of 20 feet",
-                  "description": "You have a natural swim speed of 20 feet"
+                  "description": "You have a natural swim speed of 20 feet",
+                  "automation": {
+                    "movement_grants": {
+                      "swim_speed": 20
+                    }
+                  }
                 },
                 {
                   "key": "13",
@@ -7327,7 +7498,17 @@
                 {
                   "key": "15",
                   "label": "15. Once per day, when you are at 0 hit points, you can take a full round of actions without losing a hit point and falling unconscious",
-                  "description": "Once per day, when you are at 0 hit points, you can take a full round of actions without losing a hit point and falling unconscious"
+                  "description": "Once per day, when you are at 0 hit points, you can take a full round of actions without losing a hit point and falling unconscious",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 15",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "Once per day, when you are at 0 hit points, you can take a full round of actions without losing a hit point and falling unconscious"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "16",
@@ -7346,7 +7527,17 @@
                 {
                   "key": "17",
                   "label": "17. You can cast spear of purity once per day as a spell-like ability",
-                  "description": "You can cast spear of purity once per day as a spell-like ability"
+                  "description": "You can cast spear of purity once per day as a spell-like ability",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Spear Of Purity",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "You can cast spear of purity once per day as a spell-like ability"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "18",
@@ -7390,7 +7581,17 @@
                 {
                   "key": "23",
                   "label": "23. You can cast create water three times per day as a spell-like ability",
-                  "description": "You can cast create water three times per day as a spell-like ability"
+                  "description": "You can cast create water three times per day as a spell-like ability",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Create Water",
+                        "maximum": 3,
+                        "daily": true,
+                        "description": "You can cast create water three times per day as a spell-like ability"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "24",
@@ -7408,7 +7609,17 @@
                 {
                   "key": "25",
                   "label": "25. Once per day, you can exhibit a burst of speed, moving as if your base land speed were 50 feet for 1 round",
-                  "description": "Once per day, you can exhibit a burst of speed, moving as if your base land speed were 50 feet for 1 round"
+                  "description": "Once per day, you can exhibit a burst of speed, moving as if your base land speed were 50 feet for 1 round",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 25",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "Once per day, you can exhibit a burst of speed, moving as if your base land speed were 50 feet for 1 round"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "26",
@@ -7423,7 +7634,17 @@
                 {
                   "key": "28",
                   "label": "28. Once per day, for 1 minute, you can understand and be understood by any creature as though using tongues",
-                  "description": "Once per day, for 1 minute, you can understand and be understood by any creature as though using tongues"
+                  "description": "Once per day, for 1 minute, you can understand and be understood by any creature as though using tongues",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 28",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "Once per day, for 1 minute, you can understand and be understood by any creature as though using tongues"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "29",
@@ -7443,7 +7664,17 @@
                 {
                   "key": "32",
                   "label": "32. You can cast shield other once per day as a spell-like ability",
-                  "description": "You can cast shield other once per day as a spell-like ability"
+                  "description": "You can cast shield other once per day as a spell-like ability",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Shield Other",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "You can cast shield other once per day as a spell-like ability"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "33",
@@ -7458,7 +7689,17 @@
                 {
                   "key": "35",
                   "label": "35. You can cast aid once per day as a spell-like ability",
-                  "description": "You can cast aid once per day as a spell-like ability"
+                  "description": "You can cast aid once per day as a spell-like ability",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Aid",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "You can cast aid once per day as a spell-like ability"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "36",
@@ -7473,7 +7714,17 @@
                 {
                   "key": "38",
                   "label": "38. Once per day, you can generate a glowing aura that emanates in a 20-foot radius centered on you. Any creature within the aura that is at negative hit points stabilizes immediately. The aura lasts for 1 round",
-                  "description": "Once per day, you can generate a glowing aura that emanates in a 20-foot radius centered on you. Any creature within the aura that is at negative hit points stabilizes immediately. The aura lasts for 1 round"
+                  "description": "Once per day, you can generate a glowing aura that emanates in a 20-foot radius centered on you. Any creature within the aura that is at negative hit points stabilizes immediately. The aura lasts for 1 round",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 38",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "Once per day, you can generate a glowing aura that emanates in a 20-foot radius centered on you. Any creature within the aura that is at negative hit points stabilizes immediately. The aura lasts for 1 round"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "39",
@@ -7493,7 +7744,17 @@
                 {
                   "key": "41",
                   "label": "41. Three times per day, you can sing for 10 minutes to put one willing creature to sleep. Any creature that falls asleep to the sound of your song is protected from nightmare and similar spells for the duration of its rest",
-                  "description": "Three times per day, you can sing for 10 minutes to put one willing creature to sleep. Any creature that falls asleep to the sound of your song is protected from nightmare and similar spells for the duration of its rest"
+                  "description": "Three times per day, you can sing for 10 minutes to put one willing creature to sleep. Any creature that falls asleep to the sound of your song is protected from nightmare and similar spells for the duration of its rest",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 41",
+                        "maximum": 3,
+                        "daily": true,
+                        "description": "Three times per day, you can sing for 10 minutes to put one willing creature to sleep. Any creature that falls asleep to the sound of your song is protected from nightmare and similar spells for the duration of its rest"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "42",
@@ -7518,7 +7779,17 @@
                 {
                   "key": "46",
                   "label": "46. Once per day, you can breathe frosty air in a 10-foot cone. This acts as a breath weapon that deals a number of points of cold damage equal to 1d4 + 1/2 your level, to a maximum of 1d4+5",
-                  "description": "Once per day, you can breathe frosty air in a 10-foot cone. This acts as a breath weapon that deals a number of points of cold damage equal to 1d4 + 1/2 your level, to a maximum of 1d4+5"
+                  "description": "Once per day, you can breathe frosty air in a 10-foot cone. This acts as a breath weapon that deals a number of points of cold damage equal to 1d4 + 1/2 your level, to a maximum of 1d4+5",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 46",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "Once per day, you can breathe frosty air in a 10-foot cone. This acts as a breath weapon that deals a number of points of cold damage equal to 1d4 + 1/2 your level, to a maximum of 1d4+5"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "47",
@@ -7528,7 +7799,17 @@
                 {
                   "key": "48",
                   "label": "48. You can cast weapon of awe once per day as a spell-like ability",
-                  "description": "You can cast weapon of awe once per day as a spell-like ability"
+                  "description": "You can cast weapon of awe once per day as a spell-like ability",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Weapon Of Awe",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "You can cast weapon of awe once per day as a spell-like ability"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "49",
@@ -7567,7 +7848,16 @@
                 {
                   "key": "53",
                   "label": "53. You gain a +2 racial bonus to your CMD",
-                  "description": "You gain a +2 racial bonus to your CMD"
+                  "description": "You gain a +2 racial bonus to your CMD",
+                  "automation": {
+                    "modifiers": [
+                      {
+                        "target": "cmd",
+                        "bonus_type": "racial",
+                        "value": 2
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "54",
@@ -7577,12 +7867,32 @@
                 {
                   "key": "55",
                   "label": "55. You can cast augury once per day as a spell-like ability",
-                  "description": "You can cast augury once per day as a spell-like ability"
+                  "description": "You can cast augury once per day as a spell-like ability",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Augury",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "You can cast augury once per day as a spell-like ability"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "56",
                   "label": "56. You can cast zone of truth once per day as a spell-like ability",
-                  "description": "You can cast zone of truth once per day as a spell-like ability"
+                  "description": "You can cast zone of truth once per day as a spell-like ability",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Zone Of Truth",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "You can cast zone of truth once per day as a spell-like ability"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "57",
@@ -7664,7 +7974,17 @@
                 {
                   "key": "65",
                   "label": "65. Once per day as a full-round action, you can summon a silver holy symbol out of thin air. The holy symbol remains in existence for 1 hour or until you drop it",
-                  "description": "Once per day as a full-round action, you can summon a silver holy symbol out of thin air. The holy symbol remains in existence for 1 hour or until you drop it"
+                  "description": "Once per day as a full-round action, you can summon a silver holy symbol out of thin air. The holy symbol remains in existence for 1 hour or until you drop it",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 65",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "Once per day as a full-round action, you can summon a silver holy symbol out of thin air. The holy symbol remains in existence for 1 hour or until you drop it"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "66",
@@ -7679,12 +7999,32 @@
                 {
                   "key": "68",
                   "label": "68. You can cast whispering wind once per day as a spell-like ability",
-                  "description": "You can cast whispering wind once per day as a spell-like ability"
+                  "description": "You can cast whispering wind once per day as a spell-like ability",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Whispering Wind",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "You can cast whispering wind once per day as a spell-like ability"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "69",
                   "label": "69. Your tears cure disease. You can cast remove disease once per day as a spell-like ability",
-                  "description": "Your tears cure disease. You can cast remove disease once per day as a spell-like ability"
+                  "description": "Your tears cure disease. You can cast remove disease once per day as a spell-like ability",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Remove Disease",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "Your tears cure disease. You can cast remove disease once per day as a spell-like ability"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "70",
@@ -7714,7 +8054,17 @@
                 {
                   "key": "74",
                   "label": "74. Your kiss invigorates others. Once per day, you can kiss a creature to change its condition from exhausted to fatigued, or from fatigued to normal",
-                  "description": "Your kiss invigorates others. Once per day, you can kiss a creature to change its condition from exhausted to fatigued, or from fatigued to normal"
+                  "description": "Your kiss invigorates others. Once per day, you can kiss a creature to change its condition from exhausted to fatigued, or from fatigued to normal",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 74",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "Your kiss invigorates others. Once per day, you can kiss a creature to change its condition from exhausted to fatigued, or from fatigued to normal"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "75",
@@ -7762,7 +8112,17 @@
                 {
                   "key": "82",
                   "label": "82. You can cast mending three times per day as a spell-like ability",
-                  "description": "You can cast mending three times per day as a spell-like ability"
+                  "description": "You can cast mending three times per day as a spell-like ability",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Mending",
+                        "maximum": 3,
+                        "daily": true,
+                        "description": "You can cast mending three times per day as a spell-like ability"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "83",
@@ -7792,7 +8152,17 @@
                 {
                   "key": "86",
                   "label": "86. You can cast blessing of courage and life once per day as a spell-like ability",
-                  "description": "You can cast blessing of courage and life once per day as a spell-like ability"
+                  "description": "You can cast blessing of courage and life once per day as a spell-like ability",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Blessing Of Courage And Life",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "You can cast blessing of courage and life once per day as a spell-like ability"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "87",
@@ -7802,7 +8172,17 @@
                 {
                   "key": "88",
                   "label": "88. Once per day as a move action, you can make a melee weapon you are wielding holy . The enchantment lasts for 3 rounds or until you drop or give away your weapon",
-                  "description": "Once per day as a move action, you can make a melee weapon you are wielding holy . The enchantment lasts for 3 rounds or until you drop or give away your weapon"
+                  "description": "Once per day as a move action, you can make a melee weapon you are wielding holy . The enchantment lasts for 3 rounds or until you drop or give away your weapon",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 88",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "Once per day as a move action, you can make a melee weapon you are wielding holy . The enchantment lasts for 3 rounds or until you drop or give away your weapon"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "89",
@@ -7841,7 +8221,17 @@
                 {
                   "key": "93",
                   "label": "93. You can summon a lantern archon once per day as though by summon monster III",
-                  "description": "You can summon a lantern archon once per day as though by summon monster III"
+                  "description": "You can summon a lantern archon once per day as though by summon monster III",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 93",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "You can summon a lantern archon once per day as though by summon monster III"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "94",
@@ -7875,26 +8265,31 @@
                 {
                   "key": "98",
                   "label": "98. You can cast compassionate ally once per day as a spell-like ability",
-                  "description": "You can cast compassionate ally once per day as a spell-like ability"
+                  "description": "You can cast compassionate ally once per day as a spell-like ability",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Compassionate Ally",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "You can cast compassionate ally once per day as a spell-like ability"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "99",
                   "label": "99. You have a natural fly speed of 20 feet (poor)",
-                  "description": "You have a natural fly speed of 20 feet (poor)"
+                  "description": "You have a natural fly speed of 20 feet (poor)",
+                  "automation": {
+                    "movement_grants": {
+                      "fly_speed": 20
+                    }
+                  }
                 }
               ]
             }
           ],
-          "automation": {}
-        },
-        {
-          "key": "race-alt-trait:aasimar:summoner",
-          "name": "Summoner",
-          "description": "Blood of Angels pg. 31 Presented below are dozens of features aasimars might possess. None of the following features grant characters any special powers in excess of their usual abilities. d% Feature 1 Arms: appear sculpted from marble 2 Arms: extra long 3 Arms: feathered forearms 4 Arms: scaled forearms 5 Arms: seemingly boneless 6 Build: always slender 7 Build: beautifully proportioned 8 Build: graceful 9 Build: unusually light 10 Build: well-muscled 11 Digits: extra long 12 Digits: metallic nails 13 Digits: odd number 14 Digits: shining talons 15 Digits: unusually colored nails 16 Ears: catlike 17 Ears: feathered 18 Ears: long-lobed 19 Ears: pivoting 20 Ears: pointed 21 Eyes: catlike 22 Eyes: glowing 23 Eyes: iridescent 24 Eyes: jewel-like 25 Eyes: multicolored 26 Face: baby-faced 27 Face: metallic lips 28 Face: perfectly symmetrical 29 Face: unearthly beauty 30 Face: white scar 31 Hair: animated 32 Hair: feathers 33 Hair: heatless flames 34 Hair: metallic 35 Hair: turns silver in moonlight 36 Hands: always cool and dry 37 Hands: blackened knuckles 38 Hands: glowing palms 39 Hands: leave contrails 40 Hands: fingerprints look like holy symbols 41 Head: animal features 42 Head: bald 43 Head: draconic features 44 Head: halo 45 Head: unusually shaped 46 Legs: clawed feet 47 Legs: extra long 48 Legs: feathered shins 49 Legs: metallic scaled shins 50 Legs: unnaturally small feet 51 Shadow: animated 52 Shadow: bright 53 Shadow: metallic 54 Shadow: prismatic 55 Shadow: winged 56 Skin: ashen 57 Skin: feathered 58 Skin: furred 59 Skin: glittering 60 Skin: glowing 61 Skin: iridescent 62 Skin: metallic scales 63 Skin: metallic sheen 64 Skin: prismatic scales 65 Skin: unusual hue 66 Voice: echoes dramatically 67 Voice: musical 68 Voice: unusually high 69 Voice: unusually low 70 Voice: words you speak aloud seem to be heard mentally 71 Wings: butterfly 72 Wings: feathered 73 Wings: light 74 Wings: metallic dragon 75 Wings: prismatic 76 Other: always look clean 77 Other: always well lit 78 Other: androgynous 79 Other: breathing sounds like ocean waves 80 Other: clothing billows even without wind 81 Other: covered in freckles 82 Other: don't sweat 83 Other: floral breath 84 Other: fox tail 85 Other: melodic laugh 86 Other: multicolored tears 87 Other: nearby bells ring when you pass by 88 Other: no body hair 89 Other: pearlescent teeth 90 Other: random choral sounds surround you 91 Other: sacred birthmark 92 Other: stigmata 93 Other: sweet scent 94 Other: sweet taste 95 Other: trancelike sleep 96 Other: unicorn horn 97 Other: unusual footprints 98 Other: unusual temperature 99 Roll twice, ignore any result of 99 or higher. 100 Roll three times, ignore any result of 99 or higher.",
-          "replaces": [
-            "Spell-Like Ability"
-          ],
-          "choice_specs": [],
           "automation": {}
         }
       ],
@@ -17250,7 +17645,16 @@
           "key": "race-trait:tiefling:spell-like-ability",
           "name": "Spell-Like Ability",
           "description": "Tieflings can use darkness once per day as a spell-like ability (with a caster level equal to the tiefling’s character level). Tieflings of specific bloodlines (see below) gain different spell-like abilities.",
-          "automation": {}
+          "automation": {
+            "resources": [
+              {
+                "name": "Darkness",
+                "maximum": 1,
+                "daily": true,
+                "description": "Tieflings can use darkness once per day as a spell-like ability (with a caster level equal to the tiefling’s character level). Tieflings of specific bloodlines (see below) gain different spell-like abilities."
+              }
+            ]
+          }
         },
         {
           "key": "race-trait:tiefling:fiendish-resistance",
@@ -17297,7 +17701,15 @@
             "intelligence": -2
           },
           "flexible_bonus": 0,
-          "alternate_skill_modifiers": "Appraise, Knowledge (local)"
+          "alternate_skill_modifiers": "Appraise, Knowledge (local)",
+          "resources": [
+            {
+              "name": "Hideous Laughter",
+              "maximum": 1,
+              "daily": true,
+              "description": "Source Blood of Fiends pg. 19 Lacking any sense of empathy or pity, faultspawn often abhor all ways of life but their own. They inflict severe emotional and physical pain on others, and never stop picking at the resulting psychological scars. Ancestry Asura Typical Alignment LE Ability Modifiers +2 Dex, +2 Wis, –2 Int Alternate Skill Modifiers Appraise, Knowledge (local) Alternate Spell-Like Ability Faultspawn gain hideous laughter as a spell-like ability."
+            }
+          ]
         },
         {
           "key": "race-variant:tiefling:daemon-spawn-grimspawn",
@@ -17309,7 +17721,15 @@
             "wisdom": -2
           },
           "flexible_bonus": 0,
-          "alternate_skill_modifiers": "Disable Device, Sleight of Hand"
+          "alternate_skill_modifiers": "Disable Device, Sleight of Hand",
+          "resources": [
+            {
+              "name": "Death Knell",
+              "maximum": 1,
+              "daily": true,
+              "description": "Source Blood of Fiends pg. 19 Dreary and pessimistic, grimspawn are so enthralled by death, disease, and dilapidation that they often dedicate themselves to ending lives from behind the scenes as macabre saboteurs. Ancestry Daemon Typical Alignment NE Ability Modifiers +2 Dex, +2 Int, –2 Wis Alternate Skill Modifiers Disable Device, Sleight of Hand Alternate Spell-Like Ability Grimspawn gain death knell as a spell-like ability."
+            }
+          ]
         },
         {
           "key": "race-variant:tiefling:demodand-spawn-foulspawn",
@@ -17321,7 +17741,15 @@
             "intelligence": -2
           },
           "flexible_bonus": 0,
-          "alternate_skill_modifiers": "Intimidate, Knowledge (religion)"
+          "alternate_skill_modifiers": "Intimidate, Knowledge (religion)",
+          "resources": [
+            {
+              "name": "Bear's Endurance",
+              "maximum": 1,
+              "daily": true,
+              "description": "Source Blood of Fiends pg. 20 Crude and boorish, foulspawn take a particular delight in giving offense and scandalizing polite society. They enjoy violating taboos even more than breaking laws, especially if it means degrading or repulsing an innocent. Ancestry Demodand Typical Alignment CE Ability Modifiers +2 Con, +2 Wis, –2 Int Alternate Skill Modifiers Intimidate, Knowledge (religion) Alternate Spell-Like Ability Foulspawn gain bear’s endurance as a spell-like ability."
+            }
+          ]
         },
         {
           "key": "race-variant:tiefling:demon-spawn-pitborn",
@@ -17333,7 +17761,15 @@
             "intelligence": -2
           },
           "flexible_bonus": 0,
-          "alternate_skill_modifiers": "Disable Device, Perception"
+          "alternate_skill_modifiers": "Disable Device, Perception",
+          "resources": [
+            {
+              "name": "Shatter",
+              "maximum": 1,
+              "daily": true,
+              "description": "Source Blood of Fiends pg. 20 Pitborn delight in destruction, especially while unleashing their havoc on what others consider valuable or precious. Perhaps because of this volatility, others tend to simply defer to pitborn, an act that often grants them the dominance they crave. Ancestry Demon Typical Alignment CE Ability Modifiers +2 Str, +2 Cha, –2 Int Alternate Skill Modifiers Disable Device, Perception Alternate Spell-Like Ability Pitborn gain shatter as a spell-like ability."
+            }
+          ]
         },
         {
           "key": "race-variant:tiefling:devil-spawn-hellspawn",
@@ -17345,7 +17781,15 @@
             "charisma": -2
           },
           "flexible_bonus": 0,
-          "alternate_skill_modifiers": "Diplomacy, Sense Motive"
+          "alternate_skill_modifiers": "Diplomacy, Sense Motive",
+          "resources": [
+            {
+              "name": "Pyrotechnics",
+              "maximum": 1,
+              "daily": true,
+              "description": "Source Blood of Fiends pg. 21 While often rigid, stubborn, and highly focused on sticking to plans and schedules, hellspawn also have a rare talent for penetrating others’ facades. They know a lie when they hear one, and can often determine what hidden vice or secret shame motivates another. Ancestry Devil Typical Alignment LE Ability Modifiers +2 Con, +2 Wis, –2 Cha Alternate Skill Modifiers Diplomacy, Sense Motive Alternate Spell-Like Ability Hellspawn gain pyrotechnics as a spell-like ability."
+            }
+          ]
         },
         {
           "key": "race-variant:tiefling:div-spawn-spitespawn",
@@ -17357,7 +17801,15 @@
             "intelligence": -2
           },
           "flexible_bonus": 0,
-          "alternate_skill_modifiers": "Diplomacy, Linguistics"
+          "alternate_skill_modifiers": "Diplomacy, Linguistics",
+          "resources": [
+            {
+              "name": "Misdirection",
+              "maximum": 1,
+              "daily": true,
+              "description": "Source Blood of Fiends pg. 21 An innate sense of jealousy and pure malice drives spitespawn to spread misery and despair. Unable to experience joy themselves, they devote their lives to promoting gloom, all the while hiding the hatefulness that lurks at their core. Ancestry Div Typical Alignment NE Ability Modifiers +2 Dex, +2 Cha, –2 Int Alternate Skill Modifiers Diplomacy, Linguistics Alternate Spell-Like Ability Spitespawn gain misdirection as a spell-like ability."
+            }
+          ]
         },
         {
           "key": "race-variant:tiefling:kyton-spawn-shackleborn",
@@ -17369,7 +17821,15 @@
             "wisdom": -2
           },
           "flexible_bonus": 0,
-          "alternate_skill_modifiers": "Escape Artist, Intimidate"
+          "alternate_skill_modifiers": "Escape Artist, Intimidate",
+          "resources": [
+            {
+              "name": "Web",
+              "maximum": 1,
+              "daily": true,
+              "description": "Source Blood of Fiends pg. 22 Shackleborn are fascinated by mutilation and torture. Though they prefer to practice their cruel art on others, they accept that sometimes the wheel must turn and greet their own moments of anguish and confinement with an odd serenity. Ancestry Kyton Typical Alignment LE Ability Modifiers +2 Con, +2 Cha, –2 Wis Alternate Skill Modifiers Escape Artist, Intimidate Alternate Spell-Like Ability Shackleborn gain web as a spell-like ability."
+            }
+          ]
         },
         {
           "key": "race-variant:tiefling:oni-spawn-hungerseed",
@@ -17381,7 +17841,15 @@
             "charisma": -2
           },
           "flexible_bonus": 0,
-          "alternate_skill_modifiers": "Disguise, Intimidate"
+          "alternate_skill_modifiers": "Disguise, Intimidate",
+          "resources": [
+            {
+              "name": "Alter Self",
+              "maximum": 1,
+              "daily": true,
+              "description": "Source Blood of Fiends pg. 22 Endowed with brawny muscles and thick bones, hungerseed always seem poised to explode into some larger, more powerful form, and have a voracious appetite for sensory pleasures and carnal delights. Ancestry Oni Typical Alignment LE Ability Modifiers +2 Str, +2 Wis, –2 Cha Alternate Skill Modifiers Disguise, Intimidate Alternate Spell-Like Ability Hungerseed gain alter self as a spell-like ability."
+            }
+          ]
         },
         {
           "key": "race-variant:tiefling:qlippoth-spawn-the-motherless",
@@ -17393,7 +17861,15 @@
             "intelligence": -2
           },
           "flexible_bonus": 0,
-          "alternate_skill_modifiers": "Escape Artist, Survival"
+          "alternate_skill_modifiers": "Escape Artist, Survival",
+          "resources": [
+            {
+              "name": "Blur",
+              "maximum": 1,
+              "daily": true,
+              "description": "Source Blood of Fiends pg. 23 No woman survives the birth of a babe whose qlippoth ancestry has emerged. At best, qlippoth-spawn rip their mothers apart during labor. At worst, they tear themselves out even earlier. Ancestry Qlippoth Typical Alignment CE Ability Modifiers +2 Str, +2 Wis, –2 Int Alternate Skill Modifiers Escape Artist, Survival Alternate Spell-Like Ability The motherless gain blur as a spell-like ability."
+            }
+          ]
         },
         {
           "key": "race-variant:tiefling:rakshasa-spawn-beastbrood",
@@ -17405,7 +17881,15 @@
             "wisdom": -2
           },
           "flexible_bonus": 0,
-          "alternate_skill_modifiers": "Disguise, Sense Motive"
+          "alternate_skill_modifiers": "Disguise, Sense Motive",
+          "resources": [
+            {
+              "name": "Detect Thoughts",
+              "maximum": 1,
+              "daily": true,
+              "description": "Source Blood of Fiends pg. 23 Beastbrood regard themselves as deserving of appreciation and opulence. Through deceit and sheer willpower, they often achieve privileged stations in society. Ancestry Rakshasa Typical Alignment LE Ability Modifiers +2 Dex, +2 Cha, –2 Wis Alternate Skill Modifiers Disguise, Sense Motive Alternate Spell-Like Ability Beastbrood gain detect thoughts as a spell-like ability."
+            }
+          ]
         }
       ],
       "alternate_racial_traits": [
@@ -17482,7 +17966,16 @@
             "Fiendish Sorcery"
           ],
           "choice_specs": [],
-          "automation": {}
+          "automation": {
+            "resources": [
+              {
+                "name": "Smite Good",
+                "maximum": 1,
+                "daily": true,
+                "description": "Agents of Evil pg. 25 Once per day, a tiefling with this racial trait can smite a good-aligned creature. As a swift action, the tiefling chooses one target within sight to smite. If this target is good, the tiefling adds her Charisma bonus (if any) to attack rolls against the target and gains a bonus on damage rolls against the target equal to her number of Hit Dice. This effect lasts until the first time the tiefling successfully hits her designated target. This racial trait replaces fiendish sorcery and the tiefling’s spell-like ability."
+              }
+            ]
+          }
         },
         {
           "key": "race-alt-trait:tiefling:smite-good",
@@ -17493,7 +17986,16 @@
             "Spell-Like Ability"
           ],
           "choice_specs": [],
-          "automation": {}
+          "automation": {
+            "resources": [
+              {
+                "name": "Smite Good",
+                "maximum": 1,
+                "daily": true,
+                "description": "Agents of Evil pg. 25 Once per day, a tiefling with this racial trait can smite a good-aligned creature. As a swift action, the tiefling chooses one target within sight to smite. If this target is good, the tiefling adds her Charisma bonus (if any) to attack rolls against the target and gains a bonus on damage rolls against the target equal to her number of Hit Dice. This effect lasts until the first time the tiefling successfully hits her designated target. This racial trait replaces fiendish sorcery and the tiefling’s spell-like ability."
+              }
+            ]
+          }
         },
         {
           "key": "race-alt-trait:tiefling:soul-seer",
@@ -17690,7 +18192,17 @@
                 {
                   "key": "1",
                   "label": "1. You can animate a 1 HD skeleton, as per animate dead , once per day as a spell-like ability",
-                  "description": "You can animate a 1 HD skeleton, as per animate dead , once per day as a spell-like ability"
+                  "description": "You can animate a 1 HD skeleton, as per animate dead , once per day as a spell-like ability",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 1",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "You can animate a 1 HD skeleton, as per animate dead , once per day as a spell-like ability"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "2",
@@ -17705,7 +18217,17 @@
                 {
                   "key": "4",
                   "label": "4. You can use mage hand three times per day as a spell-like ability",
-                  "description": "You can use mage hand three times per day as a spell-like ability"
+                  "description": "You can use mage hand three times per day as a spell-like ability",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Mage Hand",
+                        "maximum": 3,
+                        "daily": true,
+                        "description": "You can use mage hand three times per day as a spell-like ability"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "5",
@@ -17758,7 +18280,17 @@
                 {
                   "key": "11",
                   "label": "11. Once per day, you can exhibit a burst of speed, moving as if your base land speed were 50 feet for one move action",
-                  "description": "Once per day, you can exhibit a burst of speed, moving as if your base land speed were 50 feet for one move action"
+                  "description": "Once per day, you can exhibit a burst of speed, moving as if your base land speed were 50 feet for one move action",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 11",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "Once per day, you can exhibit a burst of speed, moving as if your base land speed were 50 feet for one move action"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "12",
@@ -17773,12 +18305,30 @@
                 {
                   "key": "14",
                   "label": "14. Your base land speed increases by +5 feet",
-                  "description": "Your base land speed increases by +5 feet"
+                  "description": "Your base land speed increases by +5 feet",
+                  "automation": {
+                    "modifiers": [
+                      {
+                        "target": "land_speed",
+                        "bonus_type": "racial",
+                        "value": 5
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "15",
                   "label": "15. You possess a fiendishly cunning tongue, granting you a +2 racial bonus on all Diplomacy checks",
-                  "description": "You possess a fiendishly cunning tongue, granting you a +2 racial bonus on all Diplomacy checks"
+                  "description": "You possess a fiendishly cunning tongue, granting you a +2 racial bonus on all Diplomacy checks",
+                  "automation": {
+                    "modifiers": [
+                      {
+                        "target": "skill:diplomacy",
+                        "bonus_type": "racial",
+                        "value": 2
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "16",
@@ -17811,7 +18361,12 @@
                 {
                   "key": "19",
                   "label": "19. You gain a Swim speed of 30 feet",
-                  "description": "You gain a Swim speed of 30 feet"
+                  "description": "You gain a Swim speed of 30 feet",
+                  "automation": {
+                    "movement_grants": {
+                      "swim_speed": 30
+                    }
+                  }
                 },
                 {
                   "key": "20",
@@ -17830,12 +18385,32 @@
                 {
                   "key": "21",
                   "label": "21. You possess fiendish luck. Once per day, you can reroll one die roll. You must take the result of this second roll",
-                  "description": "You possess fiendish luck. Once per day, you can reroll one die roll. You must take the result of this second roll"
+                  "description": "You possess fiendish luck. Once per day, you can reroll one die roll. You must take the result of this second roll",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 21",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "You possess fiendish luck. Once per day, you can reroll one die roll. You must take the result of this second roll"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "22",
                   "label": "22. You can use detect evil , as per the spell, three times per day",
-                  "description": "You can use detect evil , as per the spell, three times per day"
+                  "description": "You can use detect evil , as per the spell, three times per day",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Detect Evil , As Per The Spell,",
+                        "maximum": 3,
+                        "daily": true,
+                        "description": "You can use detect evil , as per the spell, three times per day"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "23",
@@ -17845,7 +18420,17 @@
                 {
                   "key": "24",
                   "label": "24. Once per day, you can produce a sharp barb from your body. This barb is removable and is treated as a dagger",
-                  "description": "Once per day, you can produce a sharp barb from your body. This barb is removable and is treated as a dagger"
+                  "description": "Once per day, you can produce a sharp barb from your body. This barb is removable and is treated as a dagger",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 24",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "Once per day, you can produce a sharp barb from your body. This barb is removable and is treated as a dagger"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "25",
@@ -17897,7 +18482,12 @@
                 {
                   "key": "31",
                   "label": "31. You can burrow through dirt, sand, and loose gravel at a rate of 5 feet per round",
-                  "description": "You can burrow through dirt, sand, and loose gravel at a rate of 5 feet per round"
+                  "description": "You can burrow through dirt, sand, and loose gravel at a rate of 5 feet per round",
+                  "automation": {
+                    "movement_grants": {
+                      "burrow_speed": 5
+                    }
+                  }
                 },
                 {
                   "key": "32",
@@ -17917,7 +18507,16 @@
                 {
                   "key": "35",
                   "label": "35. You possess long limbs and a powerful grip, features that grant you a +2 racial bonus on all Climb checks",
-                  "description": "You possess long limbs and a powerful grip, features that grant you a +2 racial bonus on all Climb checks"
+                  "description": "You possess long limbs and a powerful grip, features that grant you a +2 racial bonus on all Climb checks",
+                  "automation": {
+                    "modifiers": [
+                      {
+                        "target": "skill:climb",
+                        "bonus_type": "racial",
+                        "value": 2
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "36",
@@ -17927,7 +18526,17 @@
                 {
                   "key": "37",
                   "label": "37. Once per day, you can use death knell as a spell-like ability",
-                  "description": "Once per day, you can use death knell as a spell-like ability"
+                  "description": "Once per day, you can use death knell as a spell-like ability",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 37",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "Once per day, you can use death knell as a spell-like ability"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "38",
@@ -17937,7 +18546,17 @@
                 {
                   "key": "39",
                   "label": "39. Once per day, you can move at double your normal speed for 1 round",
-                  "description": "Once per day, you can move at double your normal speed for 1 round"
+                  "description": "Once per day, you can move at double your normal speed for 1 round",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 39",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "Once per day, you can move at double your normal speed for 1 round"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "40",
@@ -17967,7 +18586,16 @@
                 {
                   "key": "45",
                   "label": "45. Your features are subtly malleable, granting you a +2 racial bonus on all Disguise checks",
-                  "description": "Your features are subtly malleable, granting you a +2 racial bonus on all Disguise checks"
+                  "description": "Your features are subtly malleable, granting you a +2 racial bonus on all Disguise checks",
+                  "automation": {
+                    "modifiers": [
+                      {
+                        "target": "skill:disguise",
+                        "bonus_type": "racial",
+                        "value": 2
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "46",
@@ -17982,7 +18610,17 @@
                 {
                   "key": "47",
                   "label": "47. You can use curse water three times per day as a spell-like ability",
-                  "description": "You can use curse water three times per day as a spell-like ability"
+                  "description": "You can use curse water three times per day as a spell-like ability",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Curse Water",
+                        "maximum": 3,
+                        "daily": true,
+                        "description": "You can use curse water three times per day as a spell-like ability"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "48",
@@ -17997,7 +18635,16 @@
                 {
                   "key": "50",
                   "label": "50. Your skin is unnaturally tough, granting you a +1 natural bonus to your AC",
-                  "description": "Your skin is unnaturally tough, granting you a +1 natural bonus to your AC"
+                  "description": "Your skin is unnaturally tough, granting you a +1 natural bonus to your AC",
+                  "automation": {
+                    "modifiers": [
+                      {
+                        "target": "ac",
+                        "bonus_type": "natural armor",
+                        "value": 1
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "51",
@@ -18036,7 +18683,17 @@
                 {
                   "key": "56",
                   "label": "56. Once per day, you can spit acid. This glob deals 1d4 points of acid damage and has a range increment of 5 feet",
-                  "description": "Once per day, you can spit acid. This glob deals 1d4 points of acid damage and has a range increment of 5 feet"
+                  "description": "Once per day, you can spit acid. This glob deals 1d4 points of acid damage and has a range increment of 5 feet",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 56",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "Once per day, you can spit acid. This glob deals 1d4 points of acid damage and has a range increment of 5 feet"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "57",
@@ -18075,7 +18732,17 @@
                 {
                   "key": "62",
                   "label": "62. You can use deathwatch three times per day as a spell-like ability",
-                  "description": "You can use deathwatch three times per day as a spell-like ability"
+                  "description": "You can use deathwatch three times per day as a spell-like ability",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Deathwatch",
+                        "maximum": 3,
+                        "daily": true,
+                        "description": "You can use deathwatch three times per day as a spell-like ability"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "63",
@@ -18085,12 +18752,31 @@
                 {
                   "key": "64",
                   "label": "64. Once per day, for 1 round, you may see through any substance less than 5 feet thick—except for lead—as if it were glass. This is a supernatural ability",
-                  "description": "Once per day, for 1 round, you may see through any substance less than 5 feet thick—except for lead—as if it were glass. This is a supernatural ability"
+                  "description": "Once per day, for 1 round, you may see through any substance less than 5 feet thick—except for lead—as if it were glass. This is a supernatural ability",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 64",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "Once per day, for 1 round, you may see through any substance less than 5 feet thick—except for lead—as if it were glass. This is a supernatural ability"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "65",
                   "label": "65. Your strange physiology grants you a +2 racial bonus on all Acrobatics checks",
-                  "description": "Your strange physiology grants you a +2 racial bonus on all Acrobatics checks"
+                  "description": "Your strange physiology grants you a +2 racial bonus on all Acrobatics checks",
+                  "automation": {
+                    "modifiers": [
+                      {
+                        "target": "skill:acrobatics",
+                        "bonus_type": "racial",
+                        "value": 2
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "66",
@@ -18119,7 +18805,17 @@
                 {
                   "key": "69",
                   "label": "69. Once per day, you can use fog cloud as a spell-like ability",
-                  "description": "Once per day, you can use fog cloud as a spell-like ability"
+                  "description": "Once per day, you can use fog cloud as a spell-like ability",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 69",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "Once per day, you can use fog cloud as a spell-like ability"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "70",
@@ -18129,7 +18825,17 @@
                 {
                   "key": "71",
                   "label": "71. Once per day, you can spend a full-round action eating from a corpse to regain 1d6+1 hit points",
-                  "description": "Once per day, you can spend a full-round action eating from a corpse to regain 1d6+1 hit points"
+                  "description": "Once per day, you can spend a full-round action eating from a corpse to regain 1d6+1 hit points",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 71",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "Once per day, you can spend a full-round action eating from a corpse to regain 1d6+1 hit points"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "72",
@@ -18139,12 +18845,32 @@
                 {
                   "key": "73",
                   "label": "73. You can use minor image three times per day as a spell-like ability",
-                  "description": "You can use minor image three times per day as a spell-like ability"
+                  "description": "You can use minor image three times per day as a spell-like ability",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Minor Image",
+                        "maximum": 3,
+                        "daily": true,
+                        "description": "You can use minor image three times per day as a spell-like ability"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "74",
                   "label": "74. Once per day, as a spell-like ability, you can animate a Small or smaller object for a number of rounds equal to your level. Treat this object as an animated object",
-                  "description": "Once per day, as a spell-like ability, you can animate a Small or smaller object for a number of rounds equal to your level. Treat this object as an animated object"
+                  "description": "Once per day, as a spell-like ability, you can animate a Small or smaller object for a number of rounds equal to your level. Treat this object as an animated object",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 74",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "Once per day, as a spell-like ability, you can animate a Small or smaller object for a number of rounds equal to your level. Treat this object as an animated object"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "75",
@@ -18191,12 +18917,31 @@
                 {
                   "key": "80",
                   "label": "80. You gain a +2 bonus to your CMD",
-                  "description": "You gain a +2 bonus to your CMD"
+                  "description": "You gain a +2 bonus to your CMD",
+                  "automation": {
+                    "modifiers": [
+                      {
+                        "target": "cmd",
+                        "bonus_type": "racial",
+                        "value": 2
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "81",
                   "label": "81. Once per day, you can use rage on yourself as a spell-like ability",
-                  "description": "Once per day, you can use rage on yourself as a spell-like ability"
+                  "description": "Once per day, you can use rage on yourself as a spell-like ability",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 81",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "Once per day, you can use rage on yourself as a spell-like ability"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "82",
@@ -18206,7 +18951,17 @@
                 {
                   "key": "83",
                   "label": "83. Once per day, exposure to fire heals you of 1d6 points of damage. This ability does not negate fire damage",
-                  "description": "Once per day, exposure to fire heals you of 1d6 points of damage. This ability does not negate fire damage"
+                  "description": "Once per day, exposure to fire heals you of 1d6 points of damage. This ability does not negate fire damage",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 83",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "Once per day, exposure to fire heals you of 1d6 points of damage. This ability does not negate fire damage"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "84",
@@ -18216,7 +18971,16 @@
                 {
                   "key": "85",
                   "label": "85. Supernatural awareness grants you a +2 racial bonus on all Perception checks",
-                  "description": "Supernatural awareness grants you a +2 racial bonus on all Perception checks"
+                  "description": "Supernatural awareness grants you a +2 racial bonus on all Perception checks",
+                  "automation": {
+                    "modifiers": [
+                      {
+                        "target": "skill:perception",
+                        "bonus_type": "racial",
+                        "value": 2
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "86",
@@ -18236,7 +19000,17 @@
                 {
                   "key": "89",
                   "label": "89. Once per day, you can use inflict light wounds as a spell-like ability",
-                  "description": "Once per day, you can use inflict light wounds as a spell-like ability"
+                  "description": "Once per day, you can use inflict light wounds as a spell-like ability",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 89",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "Once per day, you can use inflict light wounds as a spell-like ability"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "90",
@@ -18261,7 +19035,17 @@
                 {
                   "key": "93",
                   "label": "93. Once per day, you may ask a corpse one yes-or-no question, as per the spell speak with dead . This is a spell-like ability",
-                  "description": "Once per day, you may ask a corpse one yes-or-no question, as per the spell speak with dead . This is a spell-like ability"
+                  "description": "Once per day, you may ask a corpse one yes-or-no question, as per the spell speak with dead . This is a spell-like ability",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 93",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "Once per day, you may ask a corpse one yes-or-no question, as per the spell speak with dead . This is a spell-like ability"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "94",
@@ -18281,31 +19065,44 @@
                 {
                   "key": "97",
                   "label": "97. Once per day as a standard action, you may suppress your unusual tiefling physical features for a number of minutes equal to your Con modifier, thus appearing human",
-                  "description": "Once per day as a standard action, you may suppress your unusual tiefling physical features for a number of minutes equal to your Con modifier, thus appearing human"
+                  "description": "Once per day as a standard action, you may suppress your unusual tiefling physical features for a number of minutes equal to your Con modifier, thus appearing human",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 97",
+                        "maximum": 1,
+                        "daily": true,
+                        "description": "Once per day as a standard action, you may suppress your unusual tiefling physical features for a number of minutes equal to your Con modifier, thus appearing human"
+                      }
+                    ]
+                  }
                 },
                 {
                   "key": "98",
                   "label": "98. You receive +1 bonus hit point per level",
-                  "description": "You receive +1 bonus hit point per level"
+                  "description": "You receive +1 bonus hit point per level",
+                  "automation": {
+                    "hit_points_per_level": 1
+                  }
                 },
                 {
                   "key": "99",
                   "label": "99. Once per week, you may mentally contact a fiendish ancestor to gain information, as per the spell commune . This is a spell-like ability",
-                  "description": "Once per week, you may mentally contact a fiendish ancestor to gain information, as per the spell commune . This is a spell-like ability"
+                  "description": "Once per week, you may mentally contact a fiendish ancestor to gain information, as per the spell commune . This is a spell-like ability",
+                  "automation": {
+                    "resources": [
+                      {
+                        "name": "Variant ability 99",
+                        "maximum": 1,
+                        "daily": false,
+                        "description": "Once per week, you may mentally contact a fiendish ancestor to gain information, as per the spell commune . This is a spell-like ability"
+                      }
+                    ]
+                  }
                 }
               ]
             }
           ],
-          "automation": {}
-        },
-        {
-          "key": "race-alt-trait:tiefling:wizard",
-          "name": "Wizard",
-          "description": "Blood of Fiends pg. 31 Presented below are dozens of features tieflings might possess. None of the following features grant characters any special powers in excess of their usual abilities. d% Feature 1 Arms: elbow spurs 2 Arms: oversized limb 3 Arms: stony forearms 4 Arms: tentacle-like 5 Arms: undersized limb 6 Build: emaciated 7 Build: hunchback 8 Build: obese 9 Build: unnaturally heavy 10 Build: unnaturally light 11 Digits: abnormally long 12 Digits: extra digits 13 Digits: extra joints 14 Digits: no nails 15 Digits: odd number 16 Ears: batlike 17 Ears: missing 18 Ears: piglike 19 Ears: pointed 20 Ears: other 21 Eyes: cyclopic 22 Eyes: goatlike 23 Eyes: glowing 24 Eyes: smoking 25 Eyes: other 26 Face: canine muzzle 27 Face: insectile mandibles 28 Face: missing nose 29 Face: underdeveloped features 30 Face: other 31 Hands: backward-bending fingers 32 Hands: extra thumbs 33 Hands: pincers 34 Hands: suckered 35 Hands: other 36 Head: animalistic 37 Head: animate hair 38 Head: bald 39 Head: malformed 40 Head: other 41 Horns: draconic 42 Horns: metallic 43 Horns: ramlike 44 Horns: vestigial 45 Horns: other 46 Legs: backward-bending 47 Legs: birdlike 48 Legs: cloven feet 49 Legs: froglike 50 Legs: other 51 Skin: feathered 52 Skin: loose 53 Skin: patterned 54 Skin: rotting 55 Skin: scaled 56 Skin: slimy 57 Skin: strangely colored 58 Skin: translucent 59 Skin: variable color 60 Skin: other 61 Tail: aquatic 62 Tail: fiendish 63 Tail: mammalian 64 Tail: reptilian 65 Tail: other 66 Teeth: blunt 67 Teeth: fanged 68 Teeth: metallic d% Feature 69 Teeth: needle-like 70 Teeth: other 71 Other: androgynous 72 Other: antennae 73 Other: avian snood 74 Other: bleeding pores 75 Other: bony ridges 76 Other: emits strange noises 77 Other: exoskeleton 78 Other: external organ 79 Other: extraneous nipple 80 Other: eyestalks 81 Other: forked tongue 82 Other: fungal/leafy growths 83 Other: hermaphroditic 84 Other: incongruous footprints 85 Other: infernal glow 86 Other: infested 87 Other: inhuman voice 88 Other: missing joint 89 Other: no reflection 90 Other: no shadow 91 Other: profane birthmark 92 Other: smoking breath 93 Other: spinneret 94 Other: strange smell 95 Other: uncontrollable twitch 96 Other: unnatural temperature 97 Other: vestigial limb 98 Other: whistling umbilicus 99 Roll twice, ignore any result of 99 or higher. 100 Roll three times, ignore any result of 99 or higher.",
-          "replaces": [
-            "Spell-Like Ability"
-          ],
-          "choice_specs": [],
           "automation": {}
         }
       ],

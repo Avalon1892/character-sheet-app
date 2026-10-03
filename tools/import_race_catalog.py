@@ -190,12 +190,15 @@ def trait_automation(name: str, description: str) -> dict:
     # Only unconditional skill sentences are automated. Situational bonuses
     # remain readable rules text so the sheet never applies them globally.
     for match in re.finditer(
-        r"\+(\d+)\s+racial bonus on ([^. ;]+?) (?:skill )?checks?",
+        r"\+(\d+)\s+(?:racial )?bonus on (?:all )?([^. ;]+?) (?:skill )?checks?",
         description,
         re.I,
     ):
         phrase = match.group(2).strip()
         if any(word in phrase.casefold() for word in ("against ", "made ", "to ", "while ", "when ")):
+            continue
+        remainder = description[match.end():].split(".", 1)[0].strip().casefold()
+        if remainder.startswith(("to ", "against ", "when ", "while ", "pertaining ")):
             continue
         amount = int(match.group(1))
         candidates = re.split(r"\s*,\s*|\s+and\s+", phrase)
@@ -233,7 +236,7 @@ def trait_automation(name: str, description: str) -> dict:
         })
     for target, pattern in (
         ("cmb", r"\+(\d+)\s+(?:racial )?bonus on (?:all )?combat maneuver checks"),
-        ("cmd", r"\+(\d+)\s+(?:racial )?bonus to (?:their |his |her |its )?CMD\b"),
+        ("cmd", r"\+(\d+)\s+(?:racial )?bonus to (?:your |their |his |her |its )?CMD\b"),
     ):
         match = re.search(pattern, description, re.I)
         if match:
@@ -407,6 +410,22 @@ def trait_automation(name: str, description: str) -> dict:
         result["natural_attacks"] = list(unique_attacks.values())
     if resistances:
         result["resistances"] = resistances
+    for mode, speed in re.findall(r"(?:natural )?(swim|climb|fly|burrow) speed of (\d+) feet", description, re.I):
+        result.setdefault("movement_grants", {})[mode.casefold() + "_speed"] = int(speed)
+    match = re.search(r"base land speed increases by \+(\d+) feet", description, re.I)
+    if match:
+        result.setdefault("modifiers", []).append({"target": "land_speed", "bonus_type": "racial", "value": int(match.group(1))})
+    match = re.search(r"receive \+(\d+) bonus hit point per level", description, re.I)
+    if match:
+        result["hit_points_per_level"] = int(match.group(1))
+    # Limited abilities share the existing editable pools and rest behavior.
+    # Weekly and lifetime uses deliberately do not recover after an eight-hour rest.
+    frequency = re.search(r"(?:\b(once|twice|three times) per (day|week)\b|\b(\d+)/day\b)", description, re.I)
+    if frequency:
+        amount = int(frequency.group(3)) if frequency.group(3) else {"once": 1, "twice": 2, "three times": 3}[frequency.group(1).casefold()]
+        spell = re.search(r"can (?:use|cast) ([^.]+?) (?:once|twice|three times|\d+/day)", description, re.I)
+        resource_name = spell.group(1).strip().title() if spell else name
+        result["resources"] = [{"name": resource_name, "maximum": amount, "daily": (frequency.group(2) or "day").casefold() != "week", "description": description}]
     return result
 
 
@@ -655,6 +674,7 @@ def subraces(container: Tag, race_name: str) -> list[dict]:
         match = re.search(r"Alternate Skill Modifiers\s+(.+?)(?:Alternate Spell-Like Ability|$)", description, re.I)
         if match:
             skill_names = clean_text(match.group(1))
+        spell = re.search(r"Alternate Spell-Like Ability .+?gain (.+?) as a spell-like ability", description, re.I)
         result.append({
             "key": f"race-variant:{slug(race_name)}:{slug(name)}",
             "name": name,
@@ -662,6 +682,7 @@ def subraces(container: Tag, race_name: str) -> list[dict]:
             "adjustments": adjustments,
             "flexible_bonus": flexible,
             "alternate_skill_modifiers": skill_names,
+            **({"resources": [{"name": clean_text(spell.group(1)).title(), "maximum": 1, "daily": True, "description": description}]} if spell else {}),
         })
     return result
 
@@ -700,6 +721,8 @@ def alternate_traits(container: Tag, race_name: str) -> list[dict]:
         description = sibling_text(source_tag, {"b", "h1", "h2", "h3"})
         description = re.sub(r"^Source\s+[^:]+?(?=(?:Some|Many|An?\s|The\s|This\s|Members|Those|While|When|A\s))", "", description, flags=re.I)
         description = clean_text(description)
+        if "None of the following features grant characters any special powers" in description:
+            continue
         if not description or len(description) < 12:
             continue
         choice_specs, choice_automation = alternate_trait_choices(race_name, name, description)

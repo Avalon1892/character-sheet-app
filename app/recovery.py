@@ -135,6 +135,8 @@ class FullRestEngine:
         }
 
     def perform(self, enabled: dict[str, bool] | None = None) -> tuple[RecoveryResult, ...]:
+        from app.race_rules import synchronize_racial_trackers
+        synchronize_racial_trackers(self.repository, self.character_id)
         choices = enabled or self.effective_preferences()
         results: list[RecoveryResult] = []
         total_level = sum(

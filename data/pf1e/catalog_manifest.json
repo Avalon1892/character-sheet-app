@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "catalog_version": "2026.09.28.1",
-  "created_utc": "2026-09-28T00:00:00Z",
+  "catalog_version": "2026.10.03.1",
+  "created_utc": "2026-10-03T00:00:00Z",
   "application_schema_min": 1,
   "files": [
     {"path": "animal_companions.json", "sha256": "1b1fcacd25155803e1e677f21db5c97cf8730f96697d14ef7d7b1208cd01a3e7", "size": 201610},
@@ -20,7 +20,7 @@
     {"path": "magic_spheres.json", "sha256": "74ab61cbe9425781ecfda3de3f20304df15eb8a0e7d9cabd8fd8b650412b1f9f", "size": 2195841},
     {"path": "martial_spheres.json", "sha256": "b45ac3f9dcb9f3ec1add64efba0349112f40f46ea918f46ea260d638026c2e54", "size": 1920490},
     {"path": "pathfinder_classes.json", "sha256": "c8ffde7d823ea001ba44014f774fb294b7fb10f969d8bc25e57c6886a74d47b3", "size": 652756},
-    {"path": "races.json", "sha256": "c9a5121864c25c12ce43d7a38faa0b29bfcd9b35e7153b45203d76d1a60fd265", "size": 2165690},
+    {"path": "races.json", "sha256": "bebbe243665b4641f4118015ed64bff50fce04850dab0579458a5fa5988716e2", "size": 2200336},
     {"path": "spells.json", "sha256": "52f7cb7d9913ab174adcec76ef5e1f8c34ab897deeeaf2b3d9cc0d983d6d7665", "size": 13529720},
     {"path": "spheres_class_archetypes.json", "sha256": "513110b4402b66ba3d2abaa10669245ff45d84fe7e8d01fdd6125d7918ea8dc8", "size": 3358319},
     {"path": "spheres_classes.json", "sha256": "cb4445945b6b67e287fa8d66bb7ea68273d2c69162559b0d4e04b17936b8cf1b", "size": 8073766},
