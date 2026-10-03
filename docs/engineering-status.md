@@ -30,7 +30,7 @@ Updated: 2026-10-03. This is an implementation ledger, not a claim of complete a
 ## Partial support / manual inputs
 
 - Associated skill defaults to the existing shared Craft rank provider. Alternative associated skills can be selected in the workbench, but tradition-specific skill-rank grants and skill specialties are not completely automated.
-- Practitioner modifier is explicitly entered at creation, not automatically resolved from every class/archetype/tradition.
+- Practitioner modifier may be manually entered or linked to a chosen ability's live calculated modifier. The workbench recalculates linked values on refresh; creation still stores the required snapshot. Automatic selection of the governing ability from every class/archetype/tradition remains pending; no unrelated class resource ability is assumed to be a practitioner ability.
 - Crafting/maintenance duration and batch allowance are calculated and displayed. Timed device functions use explicit game-round advancement; a general campaign clock and crafting session ledger remain pending. Ordinary Tinker gizmos last indefinitely under the current rules; optional GM neglect is not imposed automatically.
 - Base package grants can include multiple gizmo types within one talent. Physical Augmentor is now a separate craftable function; other package functions still need function-level recipes.
 - Current talent validation still relies on the existing character selection system.

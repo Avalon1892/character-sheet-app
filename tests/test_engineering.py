@@ -31,6 +31,12 @@ class EngineeringTests(unittest.TestCase):
         self.add("Tech",entry["name"],entry["key"],entry["category"])
         return self.service.create("Tech",entry["key"],3)
 
+    def test_practitioner_ability_uses_live_calculated_modifier(self):
+        from app.services.character_calculations import CharacterCalculationService
+        for ability in ("strength","dexterity","constitution","intelligence","wisdom","charisma"):
+            self.assertEqual(CharacterCalculationService(self.repo,self.cid).ability_result(ability).ability_modifier,self.service.practitioner_modifier(ability))
+        with self.assertRaises(ValueError):self.service.practitioner_modifier("invalid")
+
     def test_distinct_rules_and_repeatable_limits(self):
         self.assertEqual((9,4,6),(engineering_limits("Tinker",6,1,extra=1).device_limit,
                                   engineering_limits("Tinker",8,1,extra=1).batch_size,
@@ -447,6 +453,12 @@ class EngineeringTests(unittest.TestCase):
                 sheet.theme=theme;sheet.refresh_all=lambda:None
                 before=self.repo.sqlite_connection.total_changes
                 dialog=EngineeringDialog(sheet)
+                self.assertEqual(before,self.repo.sqlite_connection.total_changes)
+                dialog.practitioner_ability.setCurrentIndex(dialog.practitioner_ability.findData("wisdom"))
+                self.assertFalse(dialog.modifier.isEnabled())
+                self.assertEqual(self.service.practitioner_modifier("wisdom"),dialog.modifier.value())
+                dialog.practitioner_ability.setCurrentIndex(0)
+                self.assertTrue(dialog.modifier.isEnabled())
                 self.assertEqual(before,self.repo.sqlite_connection.total_changes)
                 dialog.system.setCurrentText("Tinker")
                 self.assertEqual("tinker:battery",dialog.known.currentData())

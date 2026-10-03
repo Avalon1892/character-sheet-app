@@ -20,6 +20,11 @@ class EngineeringService:
         return tuple(t for t in effective_martial_talents(self.repository,self.character_id)
                      if t.enabled and t.sphere == sphere)
 
+    def practitioner_modifier(self,ability):
+        if ability not in {"strength","dexterity","constitution","intelligence","wisdom","charisma"}:
+            raise ValueError("Choose a valid practitioner ability.")
+        return CharacterCalculationService(self.repository,self.character_id).ability_result(ability).ability_modifier
+
     def known_devices(self, sphere):
         entries = {}
         for talent in self.records(sphere):

@@ -32,8 +32,16 @@ class EngineeringDialog(QDialog):
         for key in ("knowledge_engineering","profession","perform"):
             self.skill.addItem(key.replace("_"," ").title()+" (manual alternative)",key)
         bar.addWidget(self.skill)
-        bar.addWidget(QLabel("Practitioner modifier (creation / repair)"))
-        self.modifier=QSpinBox();self.modifier.setRange(-100,100);bar.addWidget(self.modifier)
+        practitioner=QHBoxLayout();root.addLayout(practitioner)
+        practitioner.addWidget(QLabel("Practitioner modifier (creation / repair)"))
+        self.practitioner_ability=QComboBox()
+        self.practitioner_ability.addItem("Manual override","")
+        for ability in ("intelligence","wisdom","charisma","strength","dexterity","constitution"):
+            self.practitioner_ability.addItem(ability.title(),ability)
+        self.practitioner_ability.setToolTip("Select the ability granted by your class or archetype. Without a practitioner class, the default is Wisdom. Class choice resolution is not yet automatic.")
+        practitioner.addWidget(self.practitioner_ability)
+        self.modifier=QSpinBox();self.modifier.setRange(-100,100);practitioner.addWidget(self.modifier)
+        practitioner.addStretch()
         self.summary=QLabel();root.addWidget(self.summary)
         notice=QLabel("Baseline lifecycle and resource tracking. Device-specific effects and construction exceptions still require manual rules review.")
         notice.setWordWrap(True);root.addWidget(notice)
@@ -117,6 +125,7 @@ class EngineeringDialog(QDialog):
         resources.addStretch()
         self.status=QLabel();self.status.setWordWrap(True);root.addWidget(self.status)
         self.system.currentIndexChanged.connect(self.refresh)
+        self.practitioner_ability.currentIndexChanged.connect(self.update_practitioner_modifier)
         self.skill.currentIndexChanged.connect(self.refresh)
         self.kit.toggled.connect(self.refresh)
         self.known.currentIndexChanged.connect(self.preview_known)
@@ -134,7 +143,13 @@ class EngineeringDialog(QDialog):
     def service(self):
         return EngineeringService(self.sheet.repository,self.sheet.character_id,self.skill.currentData())
 
+    def update_practitioner_modifier(self,*_):
+        ability=self.practitioner_ability.currentData()
+        self.modifier.setEnabled(not bool(ability))
+        if ability:self.modifier.setValue(self.service().practitioner_modifier(ability))
+
     def refresh(self,*_):
+        self.update_practitioner_modifier()
         service=self.service();sphere=self.system.currentText()
         if not sphere:return
         limits=service.limits(sphere)
