@@ -19,6 +19,8 @@ Updated: 2026-10-03. This is an implementation ledger, not a claim of complete a
 - Tech batteries are created charged, remain outside the pool maximum, attach one per same-system device, and are drained first through atomic device spending. Explicit recharge and detach controls are available; excess pool charging requires confirmation. Abandonment discards battery charges.
 - Rest preserves Tech charges and does not silently maintain Tinker batteries.
 - Device and resource import/export with ownership checks.
+- Persistent device damage, current/max HP, optional hardness subtraction, and automatic deactivation at zero HP. Destroyed devices and batteries cannot activate or supply charges.
+- Tinker broken-condition threshold and effective-level penalty, one-minute tool-assisted repairs, and maintenance-based full repair of non-abandoned gizmos. Rest does not perform repairs.
 - First Tech gadget choices exclude routine talents.
 
 ## Partial support / manual inputs
@@ -41,7 +43,7 @@ Updated: 2026-10-03. This is an implementation ledger, not a claim of complete a
 5. Drone and mechanoid stat blocks, upgrades, piloting, innate devices and rote functions.
 6. AI stat blocks, commands, routines, hosts and installation.
 7. Accessories, combined devices, accommodation/secondary-function composition.
-8. Device damage/sundering, current HP, repair, scavenging and detailed upkeep.
+8. Tech-specific repair methods, sundering attack resolution, damage-type adjustments, scavenging and detailed upkeep. Current HP and basic Tinker repair/maintenance are implemented; AI/mechanoid exceptions, Redundant Systems and It Just Works remain pending.
 9. Timed activation, duration, expiration and temporary charges.
 10. Project construction costs/times and technical-item creation feat integration.
 11. Tinker tradition restrictions/boons, optional variants and skill substitutions.
@@ -58,6 +60,8 @@ Updated: 2026-10-03. This is an implementation ledger, not a claim of complete a
 74 focused tests and two theme subtests passed across engineering, database, sphere choices, crafting, skill ranks, recovery, Codex and import/export. The full isolated suite was not run; no assertion is made about its current baseline. Actual workbench renders were inspected in parchment and dark themes.
 
 Tech battery follow-up: full isolated run completed with 1,991 cases, 1,988 passing and 3 failing. All three failures reproduce against the untouched `87b4e8e` baseline: stale archetype count, custom-tracker parent placement, and tradition placement. Latest focused engineering run: 14 tests and 2 theme subtests passed, including the subsequent Tinker battery host-level guard and cancelled-overfill checks. Normal/portable deployment and packaged verification are not yet performed for this follow-up.
+
+Damage/repair follow-up: 51 focused engineering, database, transfer and recovery tests plus 2 theme subtests passed. The parchment workbench render was inspected with a broken gizmo showing current/max HP and effective level. The full isolated suite has not been repeated after this follow-up. Damage-type adjustments are manual before applying hardness; device-specific defensive exceptions and attack/sunder resolution remain pending.
 
 ## Verified rule sources
 

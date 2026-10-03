@@ -4,7 +4,7 @@ import json
 import math
 import re
 import sqlite3
-from app.engineering_rules import is_battery, TECH_BATTERY_KEY, tech_battery_capacity
+from app.engineering_rules import is_battery, TECH_BATTERY_KEY, tech_battery_capacity,device_condition
 from datetime import datetime
 from pathlib import Path
 
@@ -977,6 +977,7 @@ class CharacterRepository:
             )
         """)
         self._ensure_column("engineering_devices", "host_id", "INTEGER REFERENCES engineering_devices(id) ON DELETE SET NULL")
+        self._ensure_column("engineering_devices", "damage", "INTEGER NOT NULL DEFAULT 0")
         self._connection.execute(f"""
             CREATE UNIQUE INDEX IF NOT EXISTS engineering_tech_battery_host
             ON engineering_devices(host_id)
@@ -3077,18 +3078,20 @@ class CharacterRepository:
                 "SELECT 1 FROM engineering_devices WHERE sphere='Tech' AND catalog_key=? AND host_id=? AND (? IS NULL OR id!=?)",
                 (TECH_BATTERY_KEY,host_id,device_id,device_id)).fetchone():
                 raise ValueError("A Tech device can have only one attached battery. Detach its existing battery first.")
-        fields = ("sphere", "catalog_key", "name", "level", "modifier", "state", "charges", "minor", "advanced", "host_id")
+        fields = ("sphere", "catalog_key", "name", "level", "modifier", "state", "charges", "minor", "advanced", "host_id", "damage")
         values = (sphere, str(record.get("catalog_key", "")), name,
                   int(record.get("level", 0)), int(record.get("modifier", 0)), state,
                   int(record.get("charges", 0)), int(bool(record.get("minor", False))),
-                  int(record.get("advanced", 0)), host_id)
+                  int(record.get("advanced", 0)), host_id, int(record.get("damage",0)))
         if not 0 <= values[3] <= 999 or not -100 <= values[4] <= 100 or not 0 <= values[6] <= 99999 or not 0 <= values[8] <= 99:
             raise ValueError("Device statistics are outside supported bounds.")
+        if not 0<=values[10]<=99999:
+            raise ValueError("Device damage is outside supported bounds.")
         if (sphere=="Tinker" and values[6]) or (sphere=="Tech" and (values[7] or values[8])):
             raise ValueError("Tech charges and Tinker minor/advanced rules cannot be mixed.")
         if device_id is None:
             cursor = self._connection.execute(
-                "INSERT INTO engineering_devices (character_id," + ",".join(fields) + ") VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+                "INSERT INTO engineering_devices (character_id," + ",".join(fields) + ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
                 (character_id, *values))
             device_id = cursor.lastrowid
         else:
@@ -3106,12 +3109,12 @@ class CharacterRepository:
         amount=int(amount)
         with self._connection:
             device=self._connection.execute(
-                "SELECT charges,modifier,catalog_key FROM engineering_devices WHERE id=? AND character_id=? AND sphere='Tech' AND state NOT IN ('abandoned','depleted')",
+                "SELECT * FROM engineering_devices WHERE id=? AND character_id=? AND sphere='Tech' AND state NOT IN ('abandoned','depleted')",
                 (device_id,character_id)).fetchone()
             pool=self._connection.execute(
                 "SELECT current_value FROM custom_trackers WHERE id=? AND character_id=?",
                 (tracker_id,character_id)).fetchone()
-            if device is None or pool is None:
+            if device is None or pool is None or device_condition(dict(device))["destroyed"]:
                 raise ValueError("Charge transfer records do not belong to this character or are unavailable.")
             received=amount if received_amount is None else int(received_amount)
             if received_amount is not None and not 0<=received<=amount:
@@ -3136,11 +3139,13 @@ class CharacterRepository:
             host=self._connection.execute(
                 "SELECT * FROM engineering_devices WHERE id=? AND character_id=? AND sphere='Tech' AND state NOT IN ('abandoned','depleted')",
                 (device_id,character_id)).fetchone()
-            if host is None:
+            if host is None or device_condition(dict(host))["destroyed"]:
                 raise ValueError("Select a functioning Tech device.")
             battery=None if host["catalog_key"]==TECH_BATTERY_KEY else self._connection.execute(
                 "SELECT * FROM engineering_devices WHERE host_id=? AND character_id=? AND catalog_key=? AND state NOT IN ('abandoned','depleted')",
                 (device_id,character_id,TECH_BATTERY_KEY)).fetchone()
+            if battery and device_condition(dict(battery))["destroyed"]:
+                battery=None
             available=host["charges"]+(battery["charges"] if battery else 0)
             if amount>available:
                 raise ValueError("Not enough charges in this device and its attached battery.")
@@ -3157,7 +3162,7 @@ class CharacterRepository:
         placeholders=",".join("?" for _ in ids)
         with self._connection:
             rows=self._connection.execute(
-                "SELECT b.id FROM engineering_devices b JOIN engineering_devices h ON h.id=b.host_id WHERE b.character_id=? AND b.host_id=? AND b.catalog_key='tinker:battery' AND b.state='active' AND b.level>=h.level AND b.id IN ("+placeholders+")",
+                "SELECT b.id FROM engineering_devices b JOIN engineering_devices h ON h.id=b.host_id WHERE b.character_id=? AND b.host_id=? AND b.catalog_key='tinker:battery' AND b.state='active' AND h.state='active' AND b.damage<3*b.level AND h.damage<3*h.level AND b.level>=h.level AND b.id IN ("+placeholders+")",
                 (character_id,host_id,*ids)).fetchall()
             if len(rows)!=len(ids):
                 raise ValueError("Attached battery is no longer available.")

@@ -5,7 +5,7 @@ from PySide6.QtWidgets import (QDialog,QVBoxLayout,QHBoxLayout,QComboBox,QLabel,
     QPushButton,QTableWidget,QTableWidgetItem,QHeaderView,QAbstractItemView,
     QSpinBox,QCheckBox,QTextBrowser,QSplitter,QWidget,QMessageBox,QInputDialog)
 from app.services.engineering import EngineeringService
-from app.engineering_rules import occupied_limit,is_battery,TECH_BATTERY_KEY,tech_battery_capacity
+from app.engineering_rules import occupied_limit,is_battery,TECH_BATTERY_KEY,tech_battery_capacity,device_condition
 from app.content import martial_entry
 from app.ui.dialog_theme import dialog_stylesheet
 
@@ -32,7 +32,7 @@ class EngineeringDialog(QDialog):
         for key in ("knowledge_engineering","profession","perform"):
             self.skill.addItem(key.replace("_"," ").title()+" (manual alternative)",key)
         bar.addWidget(self.skill)
-        bar.addWidget(QLabel("Practitioner modifier (at creation)"))
+        bar.addWidget(QLabel("Practitioner modifier (creation / repair)"))
         self.modifier=QSpinBox();self.modifier.setRange(-100,100);bar.addWidget(self.modifier)
         self.summary=QLabel();root.addWidget(self.summary)
         notice=QLabel("Baseline lifecycle and resource tracking. Device-specific effects and construction exceptions still require manual rules review.")
@@ -46,7 +46,7 @@ class EngineeringDialog(QDialog):
         split=QSplitter();root.addWidget(split,1)
         left=QWidget();layout=QVBoxLayout(left);split.addWidget(left)
         self.table=QTableWidget(0,8)
-        self.table.setHorizontalHeaderLabels(("Device","Level","State","HP (base)","Hardness (base)","Save (base)","DC (base)","Energy"))
+        self.table.setHorizontalHeaderLabels(("Device","Level","State","HP","Hardness (base)","Save (base)","DC (base)","Energy"))
         self.table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
         self.table.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
         self.table.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
@@ -60,7 +60,7 @@ class EngineeringDialog(QDialog):
         for label,state in (("Activate","active"),("Deactivate","inactive"),("Deplete","depleted"),("Abandon","abandoned")):
             button=QPushButton(label);button.clicked.connect(lambda checked=False,s=state:self.change_state(s))
             actions.addWidget(button);self.actions.append(button)
-        self.maintenance=QPushButton("Maintain depleted devices");actions.addWidget(self.maintenance)
+        self.maintenance=QPushButton("Maintain / fully repair gizmos");actions.addWidget(self.maintenance)
         self.details=QTextBrowser();self.details.setOpenExternalLinks(True);split.addWidget(self.details)
         split.setSizes([850,500])
         resources=QHBoxLayout();root.addLayout(resources)
@@ -69,6 +69,15 @@ class EngineeringDialog(QDialog):
         self.use=QPushButton("Spend charges");resources.addWidget(self.use)
         self.recharge=QPushButton("Recharge");resources.addWidget(self.recharge)
         resources.addStretch()
+        health=QHBoxLayout();root.addLayout(health)
+        self.damage_amount=QSpinBox();self.damage_amount.setRange(1,99999)
+        health.addWidget(QLabel("Incoming device damage"));health.addWidget(self.damage_amount)
+        self.hardness=QCheckBox("Apply hardness");self.hardness.setChecked(True);health.addWidget(self.hardness)
+        self.damage_button=QPushButton("Damage selected");health.addWidget(self.damage_button)
+        self.repair_button=QPushButton("Repair selected (1 minute)");health.addWidget(self.repair_button)
+        health.addStretch()
+        self.damage_button.clicked.connect(lambda:self.perform(lambda:self.service().damage_device(self.selected(),self.damage_amount.value(),apply_hardness=self.hardness.isChecked())))
+        self.repair_button.clicked.connect(lambda:self.perform(lambda:self.service().repair_tinker_device(self.selected(),self.modifier.value(),has_tools=self.kit.isChecked())))
         resources=QHBoxLayout();root.addLayout(resources)
         self.attach=QPushButton("Attach battery");resources.addWidget(self.attach)
         self.detach=QPushButton("Detach selected battery");resources.addWidget(self.detach)
@@ -119,13 +128,16 @@ class EngineeringDialog(QDialog):
         self.table.setRowCount(len(devices))
         for row,device in enumerate(devices):
             stats=service.statistics(device)
+            condition=device_condition(device)
             attached=[d for d in devices if d["host_id"]==device["id"] and d["state"]!="abandoned"]
-            energy=(f"{device['charges']} + {sum(d['charges'] for d in attached if d['state'] not in {'depleted','abandoned'})} battery" if sphere=="Tech" and attached else
+            energy=(f"{device['charges']} + {sum(d['charges'] for d in attached if d['state'] not in {'depleted','abandoned'} and not device_condition(d)['destroyed'])} battery" if sphere=="Tech" and attached else
                     f"{device['charges']}/{tech_battery_capacity(device['modifier'])}" if sphere=="Tech" and is_battery(device) else
                     device["charges"] if sphere=="Tech" else
                     f"#{device['host_id']}" if device["host_id"] else
                     f"{sum(d['state']=='active' for d in attached)}/{len(attached)} batteries" if attached else "—")
-            values=(device["name"],device["level"],device["state"],stats["hp"],stats["hardness"],stats["save"],stats["dc"],energy)
+            status="abandoned" if device["state"]=="abandoned" else "Destroyed" if condition["destroyed"] else f"Broken · {device['state']}" if condition["broken"] else device["state"]
+            level=f"{device['level']} → {condition['effective_level']}" if condition["effective_level"]!=device["level"] else device["level"]
+            values=(device["name"],level,status,f"{condition['current_hp']}/{condition['maximum_hp']}",stats["hardness"],stats["save"],stats["dc"],energy)
             for column,value in enumerate(values):
                 item=QTableWidgetItem(str(value));item.setData(Qt.ItemDataRole.UserRole,device["id"])
                 self.table.setItem(row,column,item)
@@ -139,6 +151,8 @@ class EngineeringDialog(QDialog):
         for control in (self.battery_use,self.personal):control.setVisible(sphere=="Tinker")
         self.battery_recharge.setVisible(sphere=="Tech")
         self.detach.setEnabled(False);self.battery_recharge.setEnabled(False)
+        self.damage_button.setEnabled(False);self.repair_button.setEnabled(False)
+        self.repair_button.setVisible(sphere=="Tinker")
         self.attach.setEnabled(False);self.battery_use.setEnabled(False)
         for button in self.device_charge_controls:button.setEnabled(False)
         self.recharge.setText(f"Recharge (+{limits.recharge_amount}, {minutes} min)")
@@ -158,7 +172,11 @@ class EngineeringDialog(QDialog):
 
     def preview_device(self):
         device=next((d for d in self.service().devices(self.system.currentText()) if d["id"]==self.selected()),None)
+        self.damage_button.setEnabled(bool(device and device["state"]!="abandoned"))
+        self.repair_button.setEnabled(bool(device and device["state"]!="abandoned" and device["damage"] and self.kit.isChecked()))
         for button in self.actions:button.setEnabled(device is not None and device["state"]!="abandoned")
+        if device and device_condition(device)["destroyed"]:
+            self.actions[0].setEnabled(False)
         for button in self.device_charge_controls:button.setEnabled(device is not None and device["state"] not in {"abandoned","depleted"})
         self.device_charge_controls[1].setEnabled(bool(device and not is_battery(device) and device["state"] not in {"abandoned","depleted"}))
         self.device_charge_controls[2].setToolTip("Spend attached Tech battery charges first, then charges stored in the device.")

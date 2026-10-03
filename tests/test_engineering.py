@@ -3,7 +3,7 @@ import unittest
 from pathlib import Path
 from app.database import CharacterRepository
 from app.content import martial_entries
-from app.engineering_rules import engineering_limits,device_statistics,occupied_limit
+from app.engineering_rules import engineering_limits,device_statistics,occupied_limit,device_condition
 from app.services.engineering import EngineeringService
 from app.transfer import export_character,import_character
 from app.recovery import FullRestEngine
@@ -188,6 +188,54 @@ class EngineeringTests(unittest.TestCase):
         before=self.repo.sqlite_connection.total_changes
         self.service.limits("Tech");self.service.devices("Tinker");self.service.known_devices("Tech")
         self.assertEqual(before,self.repo.sqlite_connection.total_changes)
+
+    def test_damage_hardness_broken_and_destroyed_gizmos(self):
+        battery=self.service.create("Tinker","tinker:battery",3)
+        record=self.service.devices("Tinker")[0]
+        maximum=self.service.statistics(record)["hp"]
+        self.service.damage_device(battery,2)
+        self.assertEqual(0,self.service.devices("Tinker")[0]["damage"])
+        self.service.damage_device(battery,maximum//2,apply_hardness=False)
+        self.assertFalse(device_condition(self.service.devices("Tinker")[0])["broken"])
+        self.service.damage_device(battery,1,apply_hardness=False)
+        condition=device_condition(self.service.devices("Tinker")[0])
+        self.assertTrue(condition["broken"])
+        self.assertEqual(record["level"]-2,condition["effective_level"])
+        self.service.damage_device(battery,99999,apply_hardness=False)
+        self.assertEqual(0,device_condition(self.service.devices("Tinker")[0])["current_hp"])
+        with self.assertRaises(ValueError):self.service.change_state(battery,"active")
+        with self.assertRaises(ValueError):self.service.repair_tinker_device(battery,3)
+        self.service.repair_tinker_device(battery,0,has_tools=True)
+        self.assertEqual(maximum-record["level"],self.service.devices("Tinker")[0]["damage"])
+        self.service.maintain("Tinker")
+        self.assertEqual((0,"active"),(self.service.devices("Tinker")[0]["damage"],self.service.devices("Tinker")[0]["state"]))
+
+    def test_damage_survives_rest_transfer_and_does_not_repair_abandoned(self):
+        device=self.gadget()
+        self.service.damage_device(device,3,apply_hardness=False)
+        FullRestEngine(self.repo,self.cid).perform()
+        self.assertEqual(3,self.service.devices("Tech")[0]["damage"])
+        path=Path(self.temp.name)/"damaged.json"
+        export_character(self.repo,self.cid,path)
+        other=EngineeringService(self.repo,import_character(self.repo,path))
+        self.assertEqual(3,other.devices("Tech")[0]["damage"])
+        battery=self.service.create("Tinker","tinker:battery",3)
+        self.service.damage_device(battery,2,apply_hardness=False)
+        self.service.change_state(battery,"abandoned")
+        self.service.maintain("Tinker")
+        self.assertEqual(2,self.service.devices("Tinker")[0]["damage"])
+        with self.assertRaises(ValueError):self.service.repair_tinker_device(battery,3,has_tools=True)
+
+    def test_destroyed_tech_battery_cannot_supply_charges(self):
+        from app.engineering_rules import TECH_BATTERY_KEY
+        entry=next(e for e in martial_entries("Tech") if e["key"]==TECH_BATTERY_KEY)
+        self.add("Tech",entry["name"],entry["key"],entry["category"])
+        host=self.gadget();battery=self.service.create("Tech",TECH_BATTERY_KEY,3)
+        self.service.attach_battery(battery,host)
+        self.service.damage_device(battery,99999,apply_hardness=False)
+        with self.assertRaises(ValueError):self.service.transfer_charges(host,1,spend=True)
+        with self.assertRaises(ValueError):self.service.recharge_tech_battery(battery)
+        self.assertEqual(3,next(d for d in self.service.devices("Tech") if d["id"]==battery)["charges"])
 
     def test_tinker_battery_must_reach_host_level(self):
         entry=next(e for e in martial_entries("Tinker") if e["name"].startswith("Grappling Hook ("))

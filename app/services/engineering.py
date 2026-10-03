@@ -1,7 +1,7 @@
 """Character-owned device lifecycle, separate from sheet presentation."""
 from app.content import martial_entry
 from app.engineering_rules import (engineering_limits, occupied_limit, device_statistics,
-                                   is_battery, TECH_BATTERY_KEY, tech_battery_capacity)
+                                   is_battery, TECH_BATTERY_KEY, tech_battery_capacity,device_condition)
 from app.services.character_calculations import CharacterCalculationService
 from app.exploitant_rules import effective_martial_talents
 
@@ -56,6 +56,8 @@ class EngineeringService:
         if sphere == "Tech" and (minor or advanced):
             raise ValueError("Minor and advanced gizmo rules belong to Tinker, not Tech.")
         ranks = CharacterCalculationService(self.repository,self.character_id).effective_skill_ranks().get(self.skill_key,0)
+        if sphere=="Tinker" and ranks<1:
+            raise ValueError("A gizmo requires at least one rank in its associated skill.")
         record = dict(sphere=sphere,catalog_key=key,name=entry["name"],level=ranks,modifier=modifier,
                       state="active" if key in {"tinker:battery",TECH_BATTERY_KEY} else "inactive",
                       charges=tech_battery_capacity(modifier) if key==TECH_BATTERY_KEY else 0,
@@ -70,6 +72,8 @@ class EngineeringService:
             raise ValueError("Unknown device for this character.")
         if state not in {"active","inactive","depleted","abandoned"}:
             raise ValueError("Unknown device state.")
+        if state=="active" and device_condition(record)["destroyed"]:
+            raise ValueError("Repair this destroyed device before activating it.")
         if not self.available(record["sphere"]) and state != "abandoned":
             raise ValueError("The base sphere is no longer available.")
         if record["state"] in {"depleted","abandoned"} and state in {"active","inactive"}:
@@ -88,9 +92,30 @@ class EngineeringService:
         if sphere!="Tinker":
             raise ValueError("Tech batteries must be recharged, not maintained as Tinker gizmos.")
         for device in self.devices(sphere):
-            if device["state"]=="depleted":
-                state = "active" if device["catalog_key"]=="tinker:battery" else "inactive"
-                self.repository.save_engineering_device(self.character_id,{**device,"state":state},device["id"])
+            if device["state"]!="abandoned" and (device["state"]=="depleted" or device["damage"]):
+                state = "active" if is_battery(device) else "inactive" if device["state"]=="depleted" else device["state"]
+                self.repository.save_engineering_device(self.character_id,{**device,"state":state,"damage":0},device["id"])
+
+    def damage_device(self,device_id,amount,*,apply_hardness=True):
+        device=next((d for d in self.repository.list_engineering_devices(self.character_id) if d["id"]==device_id),None)
+        if not device or device["state"]=="abandoned" or int(amount)<=0:
+            raise ValueError("Select a maintained device and a positive damage amount.")
+        stats=self.statistics(device)
+        amount=max(0,int(amount)-(stats["hardness"] if apply_hardness else 0))
+        damage=min(stats["hp"],device["damage"]+amount)
+        state="inactive" if damage>=stats["hp"] and device["state"]=="active" else device["state"]
+        self.repository.save_engineering_device(self.character_id,{**device,"damage":damage,"state":state},device_id)
+
+    def repair_tinker_device(self,device_id,modifier,*,has_tools=False):
+        device=next((d for d in self.devices("Tinker") if d["id"]==device_id),None)
+        if not self.available("Tinker") or not has_tools or not device or device["state"]=="abandoned":
+            raise ValueError("Repair requires your Tinker gizmo and sufficient tools.")
+        if not -100<=int(modifier)<=100:
+            raise ValueError("Practitioner modifier is outside supported bounds.")
+        ranks=CharacterCalculationService(self.repository,self.character_id).effective_skill_ranks().get(self.skill_key,0)
+        damage=max(0,device["damage"]-max(0,ranks+int(modifier)))
+        state="active" if is_battery(device) and device["state"]=="inactive" and damage<self.statistics(device)["hp"] else device["state"]
+        self.repository.save_engineering_device(self.character_id,{**device,"damage":damage,"state":state},device_id)
 
     def attach_battery(self,battery_id,host_id):
         devices={d["id"]:d for d in self.repository.list_engineering_devices(self.character_id)}
@@ -98,7 +123,7 @@ class EngineeringService:
         if not battery or not is_battery(battery) or not self.available(battery["sphere"]) or battery["state"]=="abandoned":
             raise ValueError("Select an available battery.")
         host=devices.get(host_id)
-        if host_id is not None and (not host or host["state"] in {"depleted","abandoned"}):
+        if host_id is not None and (not host or host["state"] in {"depleted","abandoned"} or device_condition(host)["destroyed"]):
             raise ValueError("Select a functioning gizmo as the battery host.")
         self.repository.save_engineering_device(self.character_id,{**battery,"host_id":host_id},battery_id)
 
@@ -106,11 +131,12 @@ class EngineeringService:
         if not self.available("Tinker"):
             raise ValueError("The Tinker sphere is required.")
         host=next((d for d in self.devices("Tinker") if d["id"]==host_id),None)
-        if not host or host["state"]!="active":
+        if not host or host["state"]!="active" or device_condition(host)["destroyed"]:
             raise ValueError("Activate the host gizmo first.")
         level=CharacterCalculationService(self.repository,self.character_id).state.character_level
         batteries=[d for d in self.devices("Tinker") if d["host_id"]==host_id
                    and d["state"]=="active" and d["level"]>=host["level"]
+                   and not device_condition(d)["destroyed"]
                    and (not personal or d["level"]>=level)]
         if amount<=0 or len(batteries)<amount:
             raise ValueError("Not enough usable attached batteries: battery level must reach the host level, and personal uses also require character level.")
@@ -141,7 +167,7 @@ class EngineeringService:
 
     def transfer_charges(self, device_id, amount, *, spend=False):
         device=next((d for d in self.devices("Tech") if d["id"]==device_id),None)
-        if not device or device["state"] in {"abandoned","depleted"}:
+        if not device or device["state"] in {"abandoned","depleted"} or device_condition(device)["destroyed"]:
             raise ValueError("Select a functioning Tech device.")
         pool=self.pool()
         current=int(pool.current_value) if pool else 0
@@ -164,7 +190,7 @@ class EngineeringService:
 
     def recharge_tech_battery(self,device_id):
         device=next((d for d in self.devices("Tech") if d["id"]==device_id),None)
-        if not self.available("Tech") or not device or device["catalog_key"]!=TECH_BATTERY_KEY or device["state"]=="abandoned":
+        if not self.available("Tech") or not device or device["catalog_key"]!=TECH_BATTERY_KEY or device["state"]=="abandoned" or device_condition(device)["destroyed"]:
             raise ValueError("Select a non-abandoned Tech battery.")
         self.repository.save_engineering_device(self.character_id,
             {**device,"charges":tech_battery_capacity(device["modifier"]),"state":"active"},device_id)

@@ -49,6 +49,16 @@ def device_statistics(sphere, level, modifier):
     raise ValueError("Unknown engineering sphere.")
 
 
+def device_condition(device):
+    stats=device_statistics(device["sphere"],device["level"],device["modifier"])
+    damage=max(0,int(device.get("damage",0)))
+    current=max(0,stats["hp"]-damage)
+    broken=current>0 and damage*2>stats["hp"]
+    effective=max(1,device["level"]-2) if broken and device["sphere"]=="Tinker" else device["level"]
+    return {"current_hp":current,"maximum_hp":stats["hp"],"broken":broken,
+            "destroyed":current==0,"effective_level":effective}
+
+
 def occupied_limit(devices, limits):
     normal, minor = 0, 0
     for device in devices:
