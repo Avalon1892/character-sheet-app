@@ -61,6 +61,10 @@ Updated: 2026-10-03. This is an implementation ledger, not a claim of complete a
 
 ## Validation
 
+Current accumulated engineering validation at `1ae99de`: complete isolated suite finished across all 142 modules, 2,003 cases, 2,000 passing, 3 failing, 0 errors and 0 skipped. Failures match the previously reproduced baseline issues: archetype count (1,830 expected versus 1,887 bundled), custom-tracker parent placement, and tradition placement (with secondary database cleanup lock). No new failures were introduced by damage/repair, Physical/Mental Augmentor, Jet-boosters or Load Bearer. Reports: `artifacts/engineering-validation-current/summary.json` and `complete.xml`. This does not prove missing device mechanics or packaged-runtime behavior.
+
+Rules review identified a pending validation gap: individual Tinker functions require their named package, even if the containing talent is known. Mental Augmentor and Load Bearer recipes must enforce Augmentation ownership; Expanded Tinkering package choices also need an explicit saved-choice path.
+
 74 focused tests and two theme subtests passed across engineering, database, sphere choices, crafting, skill ranks, recovery, Codex and import/export. The full isolated suite was not run; no assertion is made about its current baseline. Actual workbench renders were inspected in parchment and dark themes.
 
 Tech battery follow-up: full isolated run completed with 1,991 cases, 1,988 passing and 3 failing. All three failures reproduce against the untouched `87b4e8e` baseline: stale archetype count, custom-tracker parent placement, and tradition placement. Latest focused engineering run: 14 tests and 2 theme subtests passed, including the subsequent Tinker battery host-level guard and cancelled-overfill checks. Normal/portable deployment and packaged verification are not yet performed for this follow-up.
