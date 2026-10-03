@@ -19,6 +19,7 @@ from app.class_choice_rules import (
 )
 from app.class_power_rules import class_power_reference_values, resolve_class_power_sets
 from app.models import ABILITIES
+from app.engineering_rules import device_condition
 from app.prodigy_content import SPHERE_IMBUES, imbue_numeric_value
 from app.race_rules import (
     racial_identity_tags,
@@ -89,6 +90,7 @@ class CharacterFormulaContext:
         self.repository = calculations.repository
         self.character_id = calculations.character_id
         self.state = calculations.state
+        self.devices={f"device_{device['id']}":device for device in self.repository.list_engineering_devices(self.character_id)}
         self.values = self._base_values()
         self.trackers = {tracker.key: tracker for tracker in self.state.custom_trackers}
         self._tracker_cache: dict[tuple[str, str], float] = {}
@@ -267,6 +269,24 @@ class CharacterFormulaContext:
             values[f"item.{key}"] = bool(aggregate["active"])
             for field, value in aggregate.items():
                 values[f"item.{key}.{field}"] = value
+
+        for device in self.devices.values():
+            condition=device_condition(device)
+            prefix=f"devices.device_{device['id']}"
+            values.update({
+                f"{prefix}.level":float(device["level"]),
+                f"{prefix}.effective_level":float(condition["effective_level"]),
+                f"{prefix}.hp.current":float(condition["current_hp"]),
+                f"{prefix}.hp.maximum":float(condition["maximum_hp"]),
+                f"{prefix}.charges":float(device["charges"]),
+                f"{prefix}.rounds_remaining":float(device["effect_rounds"]),
+                f"{prefix}.active":device["state"]=="active" and not condition["destroyed"],
+                f"{prefix}.worn":bool(device["applied_to_character"]),
+                f"{prefix}.broken":condition["broken"],
+                f"{prefix}.destroyed":condition["destroyed"],
+                f"{prefix}.depleted":device["state"]=="depleted",
+                f"{prefix}.abandoned":device["state"]=="abandoned",
+            })
 
         focus = self.repository.get_martial_focus(self.character_id)
         focused = focus.current > 0
@@ -486,7 +506,7 @@ class CharacterFormulaContext:
                 FormulaSuggestion(
                     reference,
                     display,
-                    self._reference_description(reference),
+                    ((self.devices[reference.split(".")[1]]["name"]+": ") if reference.startswith("devices.") else "") + self._reference_description(reference),
                 )
             )
         self._suggestions_cache = tuple(entries)
@@ -536,6 +556,7 @@ class CharacterFormulaContext:
                 or path.startswith(("prodigy.", "sequence."))
                 or path.startswith("class_feature.")
                 or path.startswith("class_choice.")
+                or path.startswith("devices.")
             )
         )
         for key in self.trackers:
@@ -618,4 +639,6 @@ class CharacterFormulaContext:
             return "Current hit-point resource value."
         if reference.startswith("trackers."):
             return "Value from a custom calculated value, counter, or pool."
+        if reference.startswith("devices."):
+            return "Saved engineering device state. Device IDs distinguish copies; charges are this device's own storage, excluding attached batteries."
         return "Character formula value."

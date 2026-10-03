@@ -37,6 +37,34 @@ class EngineeringTests(unittest.TestCase):
             self.assertEqual(CharacterCalculationService(self.repo,self.cid).ability_result(ability).ability_modifier,self.service.practitioner_modifier(ability))
         with self.assertRaises(ValueError):self.service.practitioner_modifier("invalid")
 
+    def test_device_formula_references_track_state_without_name_collisions(self):
+        from app.services.character_calculations import CharacterCalculationService
+        first=self.gadget()
+        device=next(d for d in self.service.devices("Tech") if d["id"]==first)
+        second=self.service.create("Tech",device["catalog_key"],3)
+        def context():return CharacterCalculationService(self.repo,self.cid).formula_context()
+        prefix=f"devices.device_{first}"
+        self.assertEqual(0,context().evaluate(prefix+".charges"))
+        self.service.recharge();self.service.transfer_charges(first,2)
+        self.assertEqual(2,context().evaluate(prefix+".charges"))
+        self.assertEqual(0,context().evaluate(f"devices.device_{second}.charges"))
+        self.service.change_state(first,"active")
+        self.assertTrue(context().evaluate(prefix+".active"))
+        self.service.damage_device(first,999,apply_hardness=False)
+        self.assertEqual(0,context().evaluate(prefix+".hp.current"))
+        self.assertTrue(context().evaluate(prefix+".destroyed"))
+        self.assertFalse(context().evaluate(prefix+".active"))
+        self.assertIn(prefix+".hp.maximum",context()._canonical_references())
+        self.repo.add_custom_tracker(self.cid,"device_health","Device Health","calculated",formula=prefix+".hp.maximum")
+        path=Path(self.temp.name)/"device-formulas.json"
+        export_character(self.repo,self.cid,path)
+        imported=import_character(self.repo,path)
+        imported_device=next(d for d in self.repo.list_engineering_devices(imported) if d["damage"]>0)
+        tracker=next(t for t in self.repo.list_custom_trackers(imported) if t.key=="device_health")
+        self.assertNotEqual(first,imported_device["id"])
+        self.assertEqual(f"devices.device_{imported_device['id']}.hp.maximum",tracker.formula)
+        self.assertEqual(context().evaluate(prefix+".hp.maximum"),CharacterCalculationService(self.repo,imported).formula_context().evaluate(tracker.formula))
+
     def test_distinct_rules_and_repeatable_limits(self):
         self.assertEqual((9,4,6),(engineering_limits("Tinker",6,1,extra=1).device_limit,
                                   engineering_limits("Tinker",8,1,extra=1).batch_size,

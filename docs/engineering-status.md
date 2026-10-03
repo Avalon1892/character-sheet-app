@@ -53,7 +53,7 @@ Updated: 2026-10-03. This is an implementation ledger, not a claim of complete a
 11. Tinker tradition restrictions/boons, optional variants and skill substitutions.
 12. Class/archetype-specific personal gizmos and personal battery-use requirements.
 13. Prodigy engineering interactions: effective-level boosts, temporary batteries and their expiry.
-14. Formula references and direct Martial Book actions for individual saved devices.
+14. Direct Martial Book actions for individual saved devices. Shared formula references now expose per-device level/effective level, current/max HP, own charges, remaining paid rounds and state flags; autocomplete includes them and character import remaps device identities in references.
 15. Complete rules-safe validation of minor/advanced/exempt devices and alternate construction sources.
 16. Automatic handling of all sphere drawbacks and interactions with other spheres.
 17. Current website completeness verification. The table below describes bundled entries only.

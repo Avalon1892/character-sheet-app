@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 from dataclasses import asdict
 from pathlib import Path
 
@@ -190,6 +191,41 @@ def export_character(repository: CharacterRepository, character_id: int, path: P
     path.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
+def _import_engineering_devices(repository,character_id,character):
+    device_ids={}
+    device_hosts=[]
+    for device in character.get("engineering_devices", []):
+        device=dict(device)
+        old_id=device.pop("id",None)
+        if old_id is not None and old_id in device_ids:
+            raise ValueError("Duplicate engineering device identity in character file.")
+        device.pop("character_id",None)
+        old_host=device.pop("host_id",None)
+        new_id=repository.save_engineering_device(character_id,device)
+        device_ids[old_id]=new_id
+        if old_host is not None:device_hosts.append((new_id,old_host,device))
+    for device_id,host_id,device in device_hosts:
+        if host_id not in device_ids:
+            raise ValueError("Engineering device has a missing battery host.")
+        repository.save_engineering_device(character_id,{**device,"host_id":device_ids[host_id]},device_id)
+    return device_ids
+
+
+def _remap_device_references(value,device_ids):
+    if isinstance(value,dict):
+        return {key:_remap_device_references(item,device_ids) for key,item in value.items()}
+    if isinstance(value,list):
+        return [_remap_device_references(item,device_ids) for item in value]
+    if isinstance(value,str):
+        def replace(match):
+            old_id=int(match.group(1))
+            if old_id not in device_ids:
+                raise ValueError("Formula references a device missing from the character export.")
+            return f"devices.device_{device_ids[old_id]}"
+        return re.sub(r"\bdevices\.device_(\d+)(?=\.)",replace,value,flags=re.IGNORECASE)
+    return value
+
+
 def import_character(repository: CharacterRepository, path: Path) -> int:
     payload = json.loads(path.read_text(encoding="utf-8"))
     if payload.get("format") != FORMAT_NAME or payload.get("version") != FORMAT_VERSION:
@@ -199,6 +235,8 @@ def import_character(repository: CharacterRepository, path: Path) -> int:
         str(character["name"]), str(character["character_type"])
     )
     try:
+        device_ids=_import_engineering_devices(repository,character_id,character)
+        character=_remap_device_references(character,device_ids)
         _populate_character(repository, character_id, character)
         styles = character.get("sheet_styles", {})
         if isinstance(styles, dict):
@@ -579,22 +617,6 @@ def _populate_character(
         tracker = dict(tracker)
         tracker.pop("id", None)
         repository.add_custom_tracker(character_id, **tracker)
-    device_ids={}
-    device_hosts=[]
-    for device in character.get("engineering_devices", []):
-        device = dict(device)
-        old_id=device.pop("id", None)
-        if old_id is not None and old_id in device_ids:
-            raise ValueError("Duplicate engineering device identity in character file.")
-        device.pop("character_id", None)
-        old_host=device.pop("host_id", None)
-        new_id=repository.save_engineering_device(character_id, device)
-        device_ids[old_id]=new_id
-        if old_host is not None:device_hosts.append((new_id,old_host,device))
-    for device_id,host_id,device in device_hosts:
-        if host_id not in device_ids:
-            raise ValueError("Engineering device has a missing battery host.")
-        repository.save_engineering_device(character_id,{**device,"host_id":device_ids[host_id]},device_id)
     formula_id_maps = {
         "attack": attack_id_map,
         "equipment": equipment_id_map,
