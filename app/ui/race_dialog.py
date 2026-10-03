@@ -6,7 +6,7 @@ import html
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
     QAbstractItemView, QComboBox, QDialog, QDialogButtonBox, QFormLayout, QGroupBox,
-    QHBoxLayout, QLabel, QLineEdit,
+    QHBoxLayout, QHeaderView, QLabel, QLineEdit,
     QListWidget, QListWidgetItem, QSplitter, QTableWidget, QTableWidgetItem,
     QPlainTextEdit, QSizePolicy, QTextBrowser, QVBoxLayout, QWidget,
 )
@@ -19,6 +19,51 @@ from app.race_rules import (
     resolved_race,
     validate_race_trait_choices,
 )
+
+
+class VariantAbilityPicker(QComboBox):
+    """Keep the existing choice API, but browse long racial results in a table."""
+
+    def showPopup(self) -> None:
+        dialog = QDialog(self)
+        dialog.setWindowTitle("Choose variant racial ability")
+        dialog.resize(1050, 720)
+        layout = QVBoxLayout(dialog)
+        table = QTableWidget(self.count() - 1, 2)
+        table.setHorizontalHeaderLabels(("Roll", "Ability"))
+        table.verticalHeader().hide()
+        table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        table.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
+        table.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
+        table.setWordWrap(True)
+        table.setAlternatingRowColors(True)
+        table.setColumnWidth(0, 70)
+        table.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeMode.Stretch)
+        table.horizontalHeader().sectionResized.connect(lambda *_: table.resizeRowsToContents())
+        for row in range(table.rowCount()):
+            index = row + 1
+            table.setItem(row, 0, QTableWidgetItem(str(self.itemData(index))))
+            description = self.itemData(index, Qt.ItemDataRole.ToolTipRole) or self.itemText(index)
+            table.setItem(row, 1, QTableWidgetItem(str(description)))
+        layout.addWidget(table, 1)
+        buttons = QDialogButtonBox(
+            QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
+        choose = buttons.button(QDialogButtonBox.StandardButton.Ok)
+        choose.setText("Choose ability")
+        choose.setEnabled(False)
+        table.itemSelectionChanged.connect(lambda: choose.setEnabled(table.currentRow() >= 0))
+        table.cellDoubleClicked.connect(lambda *_: dialog.accept())
+        buttons.accepted.connect(dialog.accept)
+        buttons.rejected.connect(dialog.reject)
+        layout.addWidget(buttons)
+        if self.currentIndex() > 0:
+            table.selectRow(self.currentIndex() - 1)
+            table.scrollToItem(table.item(self.currentIndex() - 1, 0))
+        dialog.show()
+        table.resizeRowsToContents()
+        if dialog.exec() == QDialog.DialogCode.Accepted and table.currentRow() >= 0:
+            self.setCurrentIndex(table.currentRow() + 1)
+        dialog.deleteLater()
 
 
 class RaceCatalogDialog(QDialog):
@@ -285,7 +330,7 @@ class RaceCatalogDialog(QDialog):
                 row_layout.addWidget(editor, 1)
             else:
                 for index in range(maximum):
-                    combo = QComboBox()
+                    combo = VariantAbilityPicker() if spec.get("key") == "variant_abilities" else QComboBox()
                     combo.setSizeAdjustPolicy(
                         QComboBox.SizeAdjustPolicy.AdjustToMinimumContentsLengthWithIcon
                     )
