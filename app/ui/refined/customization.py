@@ -244,6 +244,8 @@ class RefinedSession:
             tabs=self.presentation.list_tabs(character_id)
             if any(t.key=="skills" and t.name=="Skills" for t in tabs):
                 self.presentation.rename_tab(character_id,"skills","Skills and Abilities")
+            if any(t.key=="abilities" and t.name in ("Ability", "Abilities") for t in tabs):
+                self.presentation.rename_tab(character_id,"abilities","Martial")
             keys=[t.key for t in tabs]
             if "progression" in keys and "build" in keys and keys.index("progression")!=keys.index("build")+1:
                 keys.remove("progression")

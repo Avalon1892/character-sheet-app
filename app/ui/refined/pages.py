@@ -4,7 +4,7 @@ from PySide6.QtWidgets import QVBoxLayout, QWidget, QLayout
 from app.ui.components import sheet_page
 from .components import ResponsiveRow
 
-DEFAULT_TABS = (("core","Overview"),("skills","Skills and Abilities"),("abilities","Abilities"),
+DEFAULT_TABS = (("core","Overview"),("skills","Skills and Abilities"),("abilities","Martial"),
                 ("magic","Magic"),("inventory","Equipment"),("build","Character"),
                 ("progression","Class Progression"),("companion","Animal Companion"),("crafting","Crafting"))
 

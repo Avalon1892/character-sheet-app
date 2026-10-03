@@ -369,6 +369,7 @@ class RefinedUiTests(unittest.TestCase):
         keys=[session.tabs._key_at(i) for i in range(sheet.page_tabs.count())]
         self.assertEqual(keys.index("build")+1,keys.index("progression"))
         self.assertEqual("Skills and Abilities",sheet.page_tabs.tabText(keys.index("skills")))
+        self.assertEqual("Martial",sheet.page_tabs.tabText(keys.index("abilities")))
         self.assertEqual("build",sheet.page_tabs.tabBar().tabData(keys.index("build")))
         self.assertEqual("crafting",sheet.page_tabs.tabBar().tabData(keys.index("crafting")))
         session.select_tab("progression");QTest.qWait(200)
