@@ -5,6 +5,7 @@ from PySide6.QtWidgets import (QDialog,QVBoxLayout,QHBoxLayout,QComboBox,QLabel,
     QPushButton,QTableWidget,QTableWidgetItem,QHeaderView,QAbstractItemView,
     QSpinBox,QCheckBox,QTextBrowser,QSplitter,QWidget,QMessageBox,QInputDialog)
 from app.services.engineering import EngineeringService
+from app.engineering_rules import TACTILE_FIELD_KEY
 from app.engineering_rules import occupied_limit,is_battery,TECH_BATTERY_KEY,tech_battery_capacity,device_condition,PHYSICAL_AUGMENTOR_KEY,AUGMENTOR_ABILITIES,JET_BOOSTERS_KEY,JET_MODES
 from app.content import martial_entry
 from app.ui.dialog_theme import dialog_stylesheet
@@ -224,6 +225,8 @@ class EngineeringDialog(QDialog):
                              escape(entry.get("description","")).replace("\n","<br>")+"</p><p><b>"+
                              ("Selected-ability skill bonuses are automatic when active and worn. Ability checks and battery-use rerolls are currently resolved manually."
                               if entry.get("key") in AUGMENTOR_ABILITIES else
+                              "CMD, Acrobatics and Escape Artist bonuses are automatic when active and attached. Battery enhancement and reroll are not yet automated."
+                              if entry.get("key")==TACTILE_FIELD_KEY else
                               "Flight/swim speed, maneuverability, charge costs and paid durations are automatic. Flight slow burn is limited to 3 feet above the surface; height and hover/exhaust effects require manual resolution."
                               if entry.get("key")==JET_BOOSTERS_KEY else "Device-specific effects are reference-only in this batch.")+"</b></p>")
 
@@ -231,7 +234,7 @@ class EngineeringDialog(QDialog):
         device=next((d for d in self.service().devices(self.system.currentText()) if d["id"]==self.selected()),None)
         self.damage_button.setEnabled(bool(device and device["state"]!="abandoned"))
         self.repair_button.setEnabled(bool(device and device["state"]!="abandoned" and device["damage"] and self.kit.isChecked()))
-        self.applied.setEnabled(bool(device and device["catalog_key"] in AUGMENTOR_ABILITIES and device["state"]!="abandoned"))
+        self.applied.setEnabled(bool(device and device["catalog_key"] in {*AUGMENTOR_ABILITIES,TACTILE_FIELD_KEY} and device["state"]!="abandoned"))
         self.applied.setChecked(bool(device and device["applied_to_character"]))
         jet=bool(device and device["catalog_key"]==JET_BOOSTERS_KEY and device["state"]!="abandoned" and not device_condition(device)["destroyed"])
         for button in self.jet_buttons:button.setEnabled(jet and device["effect_rounds"]==0)

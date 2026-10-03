@@ -65,6 +65,27 @@ class EngineeringTests(unittest.TestCase):
         self.assertEqual(f"devices.device_{imported_device['id']}.hp.maximum",tracker.formula)
         self.assertEqual(context().evaluate(prefix+".hp.maximum"),CharacterCalculationService(self.repo,imported).formula_context().evaluate(tracker.formula))
 
+    def test_tactile_field_requires_modification_and_does_not_stack_copies(self):
+        from app.engineering_rules import TACTILE_FIELD_KEY
+        from app.services.character_calculations import CharacterCalculationService
+        entry=next(e for e in martial_entries("Tinker") if e["key"]=="tinker:gizmo-talent:personal-field-projector-gizmo-modification")
+        self.add("Tinker",entry["name"],entry["key"],entry["category"])
+        with self.assertRaises(ValueError):self.service.create("Tinker",TACTILE_FIELD_KEY,3)
+        base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")
+        self.repo.update_martial_talent(self.cid,base.id,base.name,"Tinker","Base Sphere",catalog_key=base.catalog_key,catalog_category="Base Sphere",choice="Modification")
+        before=CharacterCalculationService(self.repo,self.cid)
+        cmd=before.combat_results()["cmd"].total
+        acrobatics=before.skill_result("acrobatics").total
+        for _ in range(2):
+            device=self.service.create("Tinker",TACTILE_FIELD_KEY,3)
+            self.service.change_state(device,"active");self.service.apply_to_character(device,True)
+        after=CharacterCalculationService(self.repo,self.cid)
+        self.assertEqual(cmd+2,after.combat_results()["cmd"].total)
+        self.assertEqual(acrobatics+2,after.skill_result("acrobatics").total)
+        for device in self.service.devices("Tinker"):
+            self.service.damage_device(device["id"],999,apply_hardness=False)
+        self.assertEqual(cmd,CharacterCalculationService(self.repo,self.cid).combat_results()["cmd"].total)
+
     def test_distinct_rules_and_repeatable_limits(self):
         self.assertEqual((9,4,6),(engineering_limits("Tinker",6,1,extra=1).device_limit,
                                   engineering_limits("Tinker",8,1,extra=1).batch_size,

@@ -27,6 +27,7 @@ TINKER_BATTERY_KEY = "tinker:battery"
 PHYSICAL_AUGMENTOR_KEY = "tinker:device:physical-augmentor"
 MENTAL_AUGMENTOR_KEY = "tinker:device:mental-augmentor"
 LOAD_BEARER_KEY = "tinker:device:load-bearer"
+TACTILE_FIELD_KEY = "tinker:device:tactile-field"
 AUGMENTOR_ABILITIES = {
     PHYSICAL_AUGMENTOR_KEY: ("strength","dexterity","constitution"),
     MENTAL_AUGMENTOR_KEY: ("intelligence","wisdom","charisma"),
@@ -112,6 +113,14 @@ def physical_augmentor_bonus(device):
             or device_condition(device)["destroyed"]):
         return 0
     return 2+device_condition(device)["effective_level"]//4
+
+
+def tactile_field_bonus(device):
+    if (device["catalog_key"]!=TACTILE_FIELD_KEY or device["sphere"]!="Tinker"
+            or device["state"]!="active" or not device.get("applied_to_character")
+            or device_condition(device)["destroyed"]):
+        return 0
+    return 2+device_condition(device)["effective_level"]//10
 
 
 def occupied_limit(devices, limits):

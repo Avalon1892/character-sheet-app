@@ -24,6 +24,7 @@ Updated: 2026-10-03. This is an implementation ledger, not a claim of complete a
 - Augmentation-package Physical Augmentor crafting with a selected Strength/Dexterity/Constitution configuration and explicit wearer state. Active, worn augmentors contribute typed competence bonuses to matching skill checks through shared calculations, including skill ability overrides and broken effective levels. Ability scores are not increased.
 - Jet-boosters: creation-time flight/aquatic choice, normal/slow-burn/overdrive modes, atomic battery-first payment, paid durations, live movement/maneuverability, light-load restrictions and equipment-slot conflicts. Explicit game-round advancement expires timed functions; eight-hour rest advances those timers without recharge or maintenance.
 - First Tech gadget choices exclude routine talents.
+- Personal Field Projector with the Modification package unlocks a separate Tactile Field recipe. Active/attached CMD, Acrobatics and Escape Artist circumstance bonuses are automatic, use effective gizmo level and do not stack multiple copies. Battery enhancement, duration and reroll remain pending.
 - Pressure Jack unlocks a Strength Load Bearer recipe. Active/worn skill bonuses and carrying-capacity Strength are automatic, including doubled capacity bonus for advanced devices and reduced bonuses when broken. Actual Strength is unchanged; object-breaking size benefits and roll actions remain manual.
 - Cognitive Set unlocks a separate Mental Augmentor recipe with Intelligence/Wisdom/Charisma configuration and active/worn competence skill bonuses. Brain Jack/storage, ability-check rolls and battery rerolls remain pending.
 
@@ -245,7 +246,7 @@ Every entry remains available through existing catalogs/Codex. “Roster” mean
 | Tinker | Infiltration Set (gizmo) [utility] | Gizmo Talent | Roster; device-specific effects not automated |
 | Tinker | Medical Set (gizmo) | Gizmo Talent | Roster; device-specific effects not automated |
 | Tinker | Movement Set (gizmo) | Gizmo Talent | Roster; device-specific effects not automated |
-| Tinker | Personal Field Projector (gizmo, modification) | Gizmo Talent | Roster; device-specific effects not automated |
+| Tinker | Personal Field Projector (gizmo, modification) | Gizmo Talent | Tactile Field recipe and passive CMD/skill bonuses automated; battery use and other fields pending |
 | Tinker | Pressure Jack (gizmo) | Gizmo Talent | Load Bearer recipe, skill bonuses and carrying capacity automated; other functions pending |
 | Tinker | Primal Augmentations (augmentation, gizmo) | Gizmo Talent | Roster; device-specific effects not automated |
 | Tinker | Prosthetics Mastery (augmentation, gizmo) | Gizmo Talent | Roster; device-specific effects not automated |

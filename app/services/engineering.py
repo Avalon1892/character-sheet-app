@@ -5,6 +5,7 @@ from app.engineering_rules import (engineering_limits, occupied_limit, device_st
                                    PHYSICAL_AUGMENTOR_KEY,MENTAL_AUGMENTOR_KEY,LOAD_BEARER_KEY,AUGMENTOR_ABILITIES,JET_BOOSTERS_KEY,JET_MODES,tinker_packages)
 from app.services.character_calculations import CharacterCalculationService
 from app.exploitant_rules import effective_martial_talents
+from app.engineering_rules import TACTILE_FIELD_KEY
 
 
 def device_talent(entry):
@@ -46,6 +47,10 @@ class EngineeringService:
             if augmentation and any(t.catalog_key=="tinker:gizmo-talent:pressure-jack-gizmo" for t in self.records(sphere)):
                 entries[LOAD_BEARER_KEY]={"key":LOAD_BEARER_KEY,"name":"Load Bearer (gizmo)",
                     "description":"A Strength physical augmentor which also adds its bonus to Strength for carrying capacity. An advanced Load Bearer doubles that carrying-capacity bonus and treats the user as one size larger for Strength checks to break objects. Ability-check rolls and battery rerolls are resolved manually.",
+                    "source_url":"https://spheresofpower.wikidot.com/tinker"}
+            if "Modification" in tinker_packages(self.records(sphere)) and any(t.catalog_key=="tinker:gizmo-talent:personal-field-projector-gizmo-modification" for t in self.records(sphere)):
+                entries[TACTILE_FIELD_KEY]={"key":TACTILE_FIELD_KEY,"name":"Tactile Field (gizmo)",
+                    "description":"While active and attached, grants a circumstance bonus to CMD, Acrobatics and Escape Artist: 2 + 1 per 10 effective gizmo levels. Multiple Tactile Fields do not stack. Battery enhancement, its timed duration and immediate-action reroll are not yet automated.",
                     "source_url":"https://spheresofpower.wikidot.com/tinker"}
         return tuple(sorted(entries.values(), key=lambda e:e["name"].casefold()))
 
@@ -91,7 +96,7 @@ class EngineeringService:
 
     def apply_to_character(self,device_id,enabled):
         device=next((d for d in self.repository.list_engineering_devices(self.character_id) if d["id"]==device_id),None)
-        if not device or device["catalog_key"] not in AUGMENTOR_ABILITIES:
+        if not device or device["catalog_key"] not in {*AUGMENTOR_ABILITIES,TACTILE_FIELD_KEY}:
             raise ValueError("This device does not yet support automatic wearer effects.")
         if enabled and (device["state"]!="active" or device_condition(device)["destroyed"] or not self.available(device["sphere"])):
             raise ValueError("Activate a functioning device before applying it to this character.")

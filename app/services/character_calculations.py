@@ -95,6 +95,7 @@ from app.class_feature_systems import (
 )
 from app.class_power_rules import class_power_modifier_map
 from app.engineering_rules import physical_augmentor_bonus,jet_movement,LOAD_BEARER_KEY
+from app.engineering_rules import tactile_field_bonus
 from app.class_combat_rules import generated_class_attacks, class_attack_context_notes
 from app.race_rules import generated_racial_attacks, racial_class_skills, racial_automatic_values, racial_per_level_hit_points
 from app.class_choice_rules import (
@@ -666,6 +667,11 @@ class CharacterCalculationService:
                     target=f"skill:{definition.key}"
                     result.setdefault(target,[]).append(StatModifier(None,target,
                         f"{device['name']} #{device['id']}","competence",bonus,True))
+        tactile=max(self.repository.list_engineering_devices(self.character_id),key=tactile_field_bonus,default=None)
+        if tactile and tactile_field_bonus(tactile):
+            for target in ("cmd","skill:acrobatics","skill:escape_artist"):
+                result.setdefault(target,[]).append(StatModifier(None,target,
+                    f"{tactile['name']} #{tactile['id']}","circumstance",tactile_field_bonus(tactile),True))
         profile = self.resolved_casting_profile()
         tradition_automation = casting_tradition_automation(
             self.repository.list_character_traditions(self.character_id, "Casting"),
