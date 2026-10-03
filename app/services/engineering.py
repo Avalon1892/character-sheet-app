@@ -2,7 +2,7 @@
 from app.content import martial_entry
 from app.engineering_rules import (engineering_limits, occupied_limit, device_statistics,
                                    is_battery, TECH_BATTERY_KEY, tech_battery_capacity,device_condition,
-                                   PHYSICAL_AUGMENTOR_KEY,MENTAL_AUGMENTOR_KEY,AUGMENTOR_ABILITIES,JET_BOOSTERS_KEY,JET_MODES)
+                                   PHYSICAL_AUGMENTOR_KEY,MENTAL_AUGMENTOR_KEY,LOAD_BEARER_KEY,AUGMENTOR_ABILITIES,JET_BOOSTERS_KEY,JET_MODES)
 from app.services.character_calculations import CharacterCalculationService
 from app.exploitant_rules import effective_martial_talents
 
@@ -36,6 +36,10 @@ class EngineeringService:
             if any(t.catalog_key=="tinker:gizmo-talent:cognitive-set-gizmo-utility" for t in self.records(sphere)):
                 entries[MENTAL_AUGMENTOR_KEY]={"key":MENTAL_AUGMENTOR_KEY,"name":"Mental Augmentor (gizmo)",
                     "description":"Choose Intelligence, Wisdom or Charisma. Functions as a physical augmentor: competence bonus to matching ability and skill checks, 2 + 1 per 4 effective gizmo levels. Its battery use rolls a benefiting check twice and takes the higher result.",
+                    "source_url":"https://spheresofpower.wikidot.com/tinker"}
+            if any(t.catalog_key=="tinker:gizmo-talent:pressure-jack-gizmo" for t in self.records(sphere)):
+                entries[LOAD_BEARER_KEY]={"key":LOAD_BEARER_KEY,"name":"Load Bearer (gizmo)",
+                    "description":"A Strength physical augmentor which also adds its bonus to Strength for carrying capacity. An advanced Load Bearer doubles that carrying-capacity bonus and treats the user as one size larger for Strength checks to break objects. Ability-check rolls and battery rerolls are resolved manually.",
                     "source_url":"https://spheresofpower.wikidot.com/tinker"}
         return tuple(sorted(entries.values(), key=lambda e:e["name"].casefold()))
 

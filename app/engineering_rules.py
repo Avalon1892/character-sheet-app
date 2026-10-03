@@ -6,9 +6,11 @@ TECH_BATTERY_KEY = "tech:gadget-talent:battery-gadget"
 TINKER_BATTERY_KEY = "tinker:battery"
 PHYSICAL_AUGMENTOR_KEY = "tinker:device:physical-augmentor"
 MENTAL_AUGMENTOR_KEY = "tinker:device:mental-augmentor"
+LOAD_BEARER_KEY = "tinker:device:load-bearer"
 AUGMENTOR_ABILITIES = {
     PHYSICAL_AUGMENTOR_KEY: ("strength","dexterity","constitution"),
     MENTAL_AUGMENTOR_KEY: ("intelligence","wisdom","charisma"),
+    LOAD_BEARER_KEY: ("strength",),
 }
 JET_BOOSTERS_KEY = "tech:gadget-talent:jet-boosters-drone-gadget"
 # cost, paid duration in rounds, speed, flight maneuverability

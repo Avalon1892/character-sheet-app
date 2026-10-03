@@ -47,7 +47,6 @@ from app.rules import (
     SkillResult,
     calculate_attack,
     calculate_casting_statistics,
-    carrying_capacity,
     class_bab,
     prodigy_inspired_sequence_bonus,
     prodigy_level,
@@ -363,7 +362,7 @@ def build_character_sheet_snapshot(
         resolved_equipment,
         repository.list_inventory_placements(character_id),
     )
-    capacity = carrying_capacity(abilities["strength"].total, state.details.size)
+    capacity = calculator.encumbrance().capacity
     speed = int(calculator.movement_results()["land_speed"])
     return CharacterSheetSnapshot(
         summary=summary,

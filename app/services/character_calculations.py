@@ -94,7 +94,7 @@ from app.class_feature_systems import (
     resolve_class_feature_modules,
 )
 from app.class_power_rules import class_power_modifier_map
-from app.engineering_rules import physical_augmentor_bonus,jet_movement
+from app.engineering_rules import physical_augmentor_bonus,jet_movement,LOAD_BEARER_KEY
 from app.class_combat_rules import generated_class_attacks, class_attack_context_notes
 from app.race_rules import generated_racial_attacks, racial_class_skills, racial_automatic_values, racial_per_level_hit_points
 from app.class_choice_rules import (
@@ -898,7 +898,10 @@ class CharacterCalculationService:
             self.repository.list_inventory_placements(self.character_id),
         )
         result = calculate_encumbrance(
-            self.ability_result("strength").total,
+            self.ability_result("strength").total + max((
+                physical_augmentor_bonus(device) * (2 if device["advanced"] else 1)
+                for device in self.repository.list_engineering_devices(self.character_id)
+                if device["catalog_key"]==LOAD_BEARER_KEY), default=0),
             self.state.details.size,
             weight,
             base_speed,

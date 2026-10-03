@@ -244,6 +244,34 @@ class EngineeringTests(unittest.TestCase):
         self.service.change_state(device,"inactive")
         self.assertEqual(before,CharacterCalculationService(self.repo,self.cid).skill_result("perception").total)
 
+    def test_load_bearer_changes_capacity_not_strength_and_handles_damage(self):
+        from app.engineering_rules import LOAD_BEARER_KEY
+        from app.services.character_calculations import CharacterCalculationService
+        from app.rules import calculate_encumbrance
+        entry=next(e for e in martial_entries("Tinker") if e["key"]=="tinker:gizmo-talent:pressure-jack-gizmo")
+        self.add("Tinker",entry["name"],entry["key"],entry["category"])
+        with self.assertRaises(ValueError):self.service.create("Tinker",LOAD_BEARER_KEY,3,configuration="dexterity")
+        normal=self.service.create("Tinker",LOAD_BEARER_KEY,3,configuration="strength")
+        advanced=self.service.create("Tinker",LOAD_BEARER_KEY,3,configuration="strength",advanced=1)
+        record=next(d for d in self.service.devices("Tinker") if d["id"]==advanced)
+        self.repo.save_engineering_device(self.cid,{**record,"level":4},advanced)
+        calculation=CharacterCalculationService(self.repo,self.cid)
+        strength=calculation.ability_result("strength").total
+        size=calculation.state.details.size
+        baseline=calculation.encumbrance()
+        for device in (normal,advanced):
+            self.service.change_state(device,"active");self.service.apply_to_character(device,True)
+        result=CharacterCalculationService(self.repo,self.cid)
+        self.assertEqual(strength,result.ability_result("strength").total)
+        self.assertEqual(calculate_encumbrance(strength+6,size,0,0),result.encumbrance())
+        from app.services.sheet_presentation import build_character_sheet_snapshot
+        self.assertEqual(result.encumbrance().capacity,build_character_sheet_snapshot(self.repo,self.cid).carrying_capacity)
+        record=next(d for d in self.service.devices("Tinker") if d["id"]==advanced)
+        self.service.damage_device(advanced,device_condition(record)["maximum_hp"]//2+1,apply_hardness=False)
+        self.assertEqual(calculate_encumbrance(strength+4,size,0,0),CharacterCalculationService(self.repo,self.cid).encumbrance())
+        self.service.change_state(normal,"inactive");self.service.change_state(advanced,"inactive")
+        self.assertEqual(baseline,CharacterCalculationService(self.repo,self.cid).encumbrance())
+
     def test_augmentor_choices_and_wearer_state_survive_transfer(self):
         from app.engineering_rules import PHYSICAL_AUGMENTOR_KEY
         base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")
