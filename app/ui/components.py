@@ -4,7 +4,7 @@ from collections.abc import Callable, Iterable, Sequence
 from dataclasses import dataclass
 
 from PySide6.QtCore import (
-    QEasingCurve, QEvent, QPoint, QRectF, QObject, QTimer, Qt, QVariantAnimation,
+    QEasingCurve, QEvent, QPoint, QRectF, QObject, QSize, QTimer, Qt, QVariantAnimation,
     Signal,
 )
 from PySide6.QtGui import QColor, QDrag, QPainter, QPainterPath, QPalette, QPixmap
@@ -134,6 +134,7 @@ class CatalogSelectionBasket(QFrame):
         self._meta_provider = meta_provider or (lambda _entry: "")
         self._quantity_mode = quantity_mode
         self._maximum_entries = max(0, int(maximum_entries))
+        self._compact = False
         self._entries: dict[str, dict] = {}
         self._quantities: dict[str, int] = {}
         self.setObjectName("catalogSelectionBasket")
@@ -160,6 +161,7 @@ class CatalogSelectionBasket(QFrame):
         self.list_widget.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
         self.list_widget.installEventFilter(self)
         layout.addWidget(self.list_widget, 1)
+        self.empty_label = None
 
         actions = QHBoxLayout()
         self.remove_button = QPushButton("Remove")
@@ -173,6 +175,21 @@ class CatalogSelectionBasket(QFrame):
         self.list_widget.itemDoubleClicked.connect(self._double_click_remove)
         self.remove_button.clicked.connect(lambda: self.remove_current(1))
         self.clear_button.clicked.connect(self.clear_entries)
+        self._update_controls()
+
+    def set_compact(self, compact: bool) -> None:
+        """Opt-in presentation; other catalog baskets retain their layout."""
+        self._compact = compact
+        if compact and self.empty_label is None:
+            self.empty_label = QLabel("Double-click a talent or press Enter to add it here.")
+            self.empty_label.setObjectName("mutedText")
+            self.empty_label.setWordWrap(True)
+            self.layout().insertWidget(3, self.empty_label)
+            self.list_widget.viewport().installEventFilter(self)
+        self.setProperty("compactBasket", compact)
+        self.title_label.setObjectName("catalogBasketTitle" if compact else "sectionTitle")
+        self.count_label.setVisible(not compact)
+        self.setMaximumWidth(16777215 if compact else 430)
         self._update_controls()
 
     def set_entity_labels(self, singular: str, plural: str) -> None:
@@ -267,6 +284,9 @@ class CatalogSelectionBasket(QFrame):
         count = self.count
         label = self._singular if count == 1 else self._plural
         self.count_label.setText(f"{count} {label} selected")
+        if self._compact:
+            self.title_label.setText(f"Selected · {count}")
+            self.empty_label.setVisible(count == 0)
         self.remove_button.setEnabled(self.list_widget.currentRow() >= 0)
         self.clear_button.setEnabled(count > 0)
 
@@ -280,8 +300,47 @@ class CatalogSelectionBasket(QFrame):
         for row in range(self.list_widget.count()):
             item = self.list_widget.item(row)
             if str(item.data(Qt.ItemDataRole.UserRole) or "") == key:
-                item.setText(text)
+                if not self._compact:
+                    item.setText(text)
+                    return
+                item.setText("")
+                item.setData(Qt.ItemDataRole.AccessibleTextRole, text)
+                widget = QWidget()
+                layout = QHBoxLayout(widget)
+                layout.setContentsMargins(4, 4, 4, 4)
+                label = QLabel(text)
+                label.setWordWrap(True)
+                label.setTextFormat(Qt.TextFormat.PlainText)
+                label.setAttribute(Qt.WidgetAttribute.WA_TransparentForMouseEvents)
+                remove = QPushButton("×")
+                remove.setObjectName("catalogQueueRemove")
+                remove.setFixedWidth(28)
+                remove.setToolTip(f"Remove {name}")
+                remove.clicked.connect(lambda _checked=False, selected=key: self._remove_key(selected))
+                layout.addWidget(label, 1)
+                layout.addWidget(remove)
+                self.list_widget.setItemWidget(item, widget)
+                self._fit_compact_items()
                 return
+
+    def _remove_key(self, key: str) -> None:
+        for row in range(self.list_widget.count()):
+            item = self.list_widget.item(row)
+            if item.data(Qt.ItemDataRole.UserRole) == key:
+                self.list_widget.setCurrentItem(item)
+                self.remove_current()
+                return
+
+    def _fit_compact_items(self) -> None:
+        for row in range(self.list_widget.count()):
+            item = self.list_widget.item(row)
+            widget = self.list_widget.itemWidget(item)
+            if widget:
+                label = widget.findChild(QLabel)
+                width = max(90, self.list_widget.viewport().width() - 54)
+                label.setMaximumWidth(width)
+                height = max(widget.minimumSizeHint().height(), label.heightForWidth(width)) + 20
+                item.setSizeHint(QSize(self.list_widget.viewport().width(), height))
 
     @staticmethod
     def prompt_quantity(parent: QWidget, action: str) -> int | None:
@@ -320,6 +379,8 @@ class CatalogSelectionBasket(QFrame):
                 self.remove_current(quantity)
 
     def eventFilter(self, watched: QObject, event: QEvent) -> bool:
+        if self._compact and watched is self.list_widget.viewport() and event.type() == QEvent.Type.Resize:
+            self._fit_compact_items()
         if watched is self.list_widget and event.type() == QEvent.Type.KeyPress:
             if event.key() in (Qt.Key.Key_Delete, Qt.Key.Key_Backspace):
                 modifiers = event.modifiers()

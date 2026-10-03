@@ -2,7 +2,7 @@
 from functools import lru_cache
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QBrush, QColor, QPalette, QTextCursor, QTextCharFormat
-from PySide6.QtWidgets import QDialog, QAbstractItemView, QStyledItemDelegate, QTextBrowser
+from PySide6.QtWidgets import QDialog, QAbstractItemView, QStyledItemDelegate, QTextBrowser, QStyle
 from app.ui.theme import style_sheet
 
 
@@ -64,6 +64,27 @@ def dialog_stylesheet(theme):
         QListWidget#inventoryOrganizerList::item:selected {{ background: {p.selection}; color: {p.text}; }}
         QLabel#catalogBehaviorNote {{ background: {p.surface}; color: {p.muted};
             border: 1px solid {p.line}; padding: 4px 7px; font: 9pt 'Segoe UI'; }}
+        QDialog[talentCatalog="true"] QHeaderView::section {{ background: {p.page};
+            color: {p.muted}; padding: 6px; }}
+        QDialog[talentCatalog="true"] QTableView::item:focus {{ border: none; }}
+        QDialog[talentCatalog="true"] QScrollArea#talentDetailsScroll {{
+            border: 1px solid {p.line}; background: {p.surface}; }}
+        QDialog[talentCatalog="true"] QWidget#catalogDetails {{
+            border: none; background: {p.surface}; }}
+        QDialog[talentCatalog="true"] QLabel#catalogRulesText {{
+            color: {p.text}; font: 11pt 'Segoe UI'; padding: 6px 0; }}
+        QDialog[talentCatalog="true"] QLabel#catalogAutomationBadge {{
+            color: {p.muted}; font: 9pt 'Segoe UI'; border: none; padding: 0; }}
+        QDialog[talentCatalog="true"] QLabel#catalogBasketTitle {{
+            color: {p.text}; font: 600 13pt 'Segoe UI'; }}
+        QDialog[talentCatalog="true"] QListWidget#catalogSphereList::item {{ padding: 5px 8px; }}
+        QDialog[talentCatalog="true"] QFrame#catalogSelectionBasket {{
+            background: {p.surface}; border: 1px solid {p.line}; border-radius: 5px; }}
+        QDialog[talentCatalog="true"] QListWidget#catalogSelectionQueue {{
+            background: {p.surface}; color: {p.text}; border: none; }}
+        QDialog[talentCatalog="true"] QListWidget#catalogSelectionQueue::item:selected {{
+            background: {p.selection}; color: {p.text}; }}
+        QDialog[talentCatalog="true"] QPushButton#catalogQueueRemove {{ padding: 0; min-width: 0; }}
     '''
 
 
@@ -75,6 +96,8 @@ class DialogItemDelegate(QStyledItemDelegate):
 
     def initStyleOption(self, option, index):
         super().initStyleOption(option, index)
+        if self.parent().window().property('talentCatalog'):
+            option.state &= ~QStyle.StateFlag.State_HasFocus
         brush = index.data(Qt.ItemDataRole.ForegroundRole)
         if not isinstance(brush, QBrush):
             return

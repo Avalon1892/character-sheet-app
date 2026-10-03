@@ -62,7 +62,8 @@ class CatalogPresentation(QObject):
         self.table.model().rowsInserted.connect(self.schedule)
         self.table.model().modelReset.connect(self.schedule)
         behavior=getattr(dialog,'detail_automation',None)
-        if behavior is not None:behavior.setObjectName('catalogBehaviorNote')
+        if behavior is not None and not dialog.property('talentCatalog'):
+            behavior.setObjectName('catalogBehaviorNote')
         dialog.search.setClearButtonEnabled(True)
         self.search_shortcut=install_search_shortcut(dialog,dialog.search)
         self.schedule()
@@ -125,6 +126,11 @@ class CatalogPresentation(QObject):
     def _balance_columns(self):
         """Keep names readable; secondary metadata remains in the preview."""
         table = self.table
+        if self.dialog.property('talentCatalog'):
+            # Talent catalogs own their conditional sphere column; don't restore it.
+            for column in (2, 5):
+                table.setColumnHidden(column, table.viewport().width() < 650)
+            return
         width = table.viewport().width()
         candidates = []
         fixed = 0

@@ -8,7 +8,7 @@ from unittest.mock import Mock, patch
 
 os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 
-from PySide6.QtCore import Qt
+from PySide6.QtCore import QEvent, Qt
 from PySide6.QtTest import QTest
 from PySide6.QtWidgets import QApplication, QDialog
 
@@ -28,6 +28,15 @@ class CatalogSelectionBasketUiTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls.application = QApplication.instance() or QApplication([])
+
+    def tearDown(self) -> None:
+        # Closing does not destroy parentless Qt dialogs. Dispose of them before
+        # Python GC can collect wrapper cycles during the next widget constructor.
+        for widget in self.application.topLevelWidgets():
+            if isinstance(widget, QDialog):
+                widget.close()
+                widget.deleteLater()
+        self.application.sendPostedEvents(None, QEvent.Type.DeferredDelete)
 
     def _dialogs(self):
         return (
@@ -84,6 +93,7 @@ class CatalogSelectionBasketUiTests(unittest.TestCase):
             self.assertEqual(3, dialog.selection_basket.count)
 
             dialog.search.setText("no catalog entry can possibly match this phrase")
+            dialog.search_debounce.flush()
             self.assertEqual(0, dialog.results.rowCount())
             self.assertEqual(3, dialog.selection_basket.count)
 

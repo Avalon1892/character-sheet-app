@@ -8,7 +8,7 @@ from types import SimpleNamespace
 from typing import Callable, Iterable, Mapping
 
 from PySide6.QtCore import QEvent, Qt
-from PySide6.QtGui import QPalette
+from PySide6.QtGui import QColor, QIcon, QPalette, QPixmap
 from PySide6.QtWidgets import (
     QAbstractItemView, QApplication, QCheckBox, QComboBox, QDialog, QDialogButtonBox,
     QDoubleSpinBox, QFormLayout, QFrame, QGridLayout, QHeaderView,
@@ -1643,20 +1643,23 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
         super().__init__(parent)
         self.selection_limit = max(0, int(selection_limit))
         self.setWindowTitle("Martial Sphere & Talent Catalog")
-        self.resize(1800, 900)
+        screen = self.screen().availableGeometry()
+        self.resize(min(1480, screen.width() - 40), min(900, screen.height() - 60))
+        self.setProperty("talentCatalog", True)
+        self._magic_catalog = hasattr(self, "_magic_owned_spells")
         self.custom_requested = False
         self.selected_entry: dict | None = None
         self.selected_entries: tuple[dict, ...] = ()
-        owned_spheres = {
-            str(getattr(talent, "sphere", "")).casefold() for talent in owned_talents
+        self._owned_spheres = {
+            str(getattr(talent, "school_or_sphere" if self._magic_catalog else "sphere", "")).casefold() for talent in owned_talents
             if getattr(talent, "talent_type", "") == "Base Sphere"
             or talent.catalog_category == "Base Sphere"
         }
         self._entries = tuple(
-            entry for entry in martial_entries()
+            entry for entry in (magic_entries() if self._magic_catalog else martial_entries())
             if not play_mode or (
                 entry["category"] not in {"Base Sphere", "Drawback"}
-                and str(entry["sphere"]).casefold() in owned_spheres
+                and str(entry["sphere"]).casefold() in self._owned_spheres
             )
         )
         self._sorted_entries = tuple(sorted(self._entries, key=talent_entry_sort_key))
@@ -1674,17 +1677,13 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
         self.catalog_heading = QLabel("MARTIAL SPHERE & TALENT CATALOG")
         self.catalog_heading.setObjectName("sectionTitle")
         layout.addWidget(self.catalog_heading)
-        self.catalog_subtitle = QLabel(
-            "Choose a sphere on the left, then filter or search its talents. "
-            "Gain base spheres and manage their drawbacks on the Character page. "
-            "Single-click to read; double-click or press Enter to queue an entry."
-        )
-        self.catalog_subtitle.setObjectName("mutedText")
-        layout.addWidget(self.catalog_subtitle)
+        self.catalog_heading.setToolTip(
+            "Single-click to read; double-click or Enter to queue. "
+            "Gain base spheres and manage drawbacks on the Character page.")
 
         filters = QHBoxLayout()
         self.search = QLineEdit()
-        self.search.setPlaceholderText("Search names, descriptions, prerequisites, spheres…")
+        self.search.setPlaceholderText("Search talent names…")
         self.category = QComboBox()
         self.category.addItem("All categories", "")
         categories = sorted(
@@ -1694,40 +1693,67 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
         for category in categories:
             self.category.addItem(category, category)
         self.automation_filter = QComboBox()
-        self.automation_filter.addItem("All sheet behavior", "")
+        self.automation_filter.addItem("All automation", "")
         self.automation_filter.addItem("Automatic effects", "automatic")
         self.automation_filter.addItem("Activation toggles", "toggle")
         self.automation_filter.addItem("Rules only", "rules")
         filters.addWidget(QLabel("Find"))
         filters.addWidget(self.search, 1)
-        filters.addWidget(QLabel("Type"))
+        filters.addWidget(QLabel("Talent type"))
         filters.addWidget(self.category)
-        filters.addWidget(QLabel("Sheet behavior"))
+        filters.addWidget(QLabel("Automation"))
         filters.addWidget(self.automation_filter)
         layout.addLayout(filters)
+
+        secondary_filters = QHBoxLayout()
+        self.include_rules = QCheckBox("Include rules text")
+        self.available_only = QCheckBox("Available to learn")
+        self.available_only.setToolTip("Show entries with no known restriction. Unverified prerequisites remain marked as unknown.")
+        self.not_owned = QCheckBox("Not owned")
+        self.source_filter = QComboBox()
+        self.source_filter.addItem("All sources", "")
+        for source in sorted({tag for entry in self._entries for tag in entry.get("source_tags", ())}):
+            self.source_filter.addItem(source, source)
+        for combo, width in ((self.category, 180), (self.automation_filter, 160), (self.source_filter, 140)):
+            combo.setFixedWidth(width)
+        self.result_count = QLabel()
+        self.result_count.setObjectName("mutedText")
+        clear_filters = QPushButton("Clear Filters")
+        clear_filters.clicked.connect(self._clear_filters)
+        for control in (self.include_rules, self.available_only, self.not_owned):
+            secondary_filters.addWidget(control)
+        secondary_filters.addWidget(QLabel("Source"))
+        secondary_filters.addWidget(self.source_filter)
+        secondary_filters.addStretch()
+        secondary_filters.addWidget(self.result_count)
+        secondary_filters.addWidget(clear_filters)
+        layout.addLayout(secondary_filters)
 
         browser = QSplitter(Qt.Orientation.Horizontal)
         browser.setChildrenCollapsible(False)
         self.sphere_list = QListWidget()
         self.sphere_list.setObjectName("catalogSphereList")
-        self.sphere_list.setMinimumWidth(190)
-        self.sphere_list.setMaximumWidth(280)
+        self.sphere_list.setMinimumWidth(140)
         all_item = QListWidgetItem(f"All spheres  ({len(self._entries)})")
         all_item.setData(Qt.ItemDataRole.UserRole, "")
         self.sphere_list.addItem(all_item)
-        for sphere in martial_spheres():
+        for sphere in (magic_spheres() if self._magic_catalog else martial_spheres()):
             count = sum(entry["sphere"] == sphere["name"] for entry in self._entries)
             if play_mode and not count:
                 continue
             item = QListWidgetItem(f"{sphere['name']}  ({count})")
             item.setData(Qt.ItemDataRole.UserRole, sphere["name"])
             self.sphere_list.addItem(item)
+        if self._magic_catalog and any(entry["sphere"] == "Universal" for entry in self._entries):
+            item = QListWidgetItem("Universal Drawbacks")
+            item.setData(Qt.ItemDataRole.UserRole, "Universal")
+            self.sphere_list.addItem(item)
         self.sphere_list.setCurrentRow(0)
         browser.addWidget(self.sphere_list)
 
         self.results = QTableWidget(0, 6)
         self.results.setHorizontalHeaderLabels(
-            ("Owned", "Name", "Category", "Sphere", "Sheet behavior", "Prerequisites")
+            ("Owned", "Name", "Talent type", "Sphere", "Auto", "Source")
         )
         self._configure_catalog_table()
 
@@ -1735,7 +1761,7 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
         details.setObjectName("catalogDetails")
         details_layout = QVBoxLayout(details)
         details_layout.setContentsMargins(10, 10, 10, 10)
-        self.detail_name = QLabel("Select a sphere or talent")
+        self.detail_name = QLabel()
         self.detail_name.setObjectName("catalogTalentTitle")
         self.detail_name.setWordWrap(True)
         self.detail_meta = QLabel()
@@ -1745,27 +1771,36 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
         self.detail_prerequisites.setWordWrap(True)
         self.detail_prerequisites.setObjectName("mutedText")
         self.detail_automation = QLabel()
-        self.detail_automation.setWordWrap(True)
-        self.detail_automation.setObjectName("focusReady")
-        self.detail_description = QPlainTextEdit()
-        self.detail_description.setReadOnly(True)
-        self.detail_description.setPlaceholderText("Rules text appears here.")
+        self.detail_automation.setObjectName("catalogAutomationBadge")
+        self.detail_description = QLabel()
+        self.detail_description.setObjectName("catalogRulesText")
+        self.detail_description.setTextFormat(Qt.TextFormat.PlainText)
+        self.detail_description.setWordWrap(True)
+        self.detail_description.setTextInteractionFlags(Qt.TextInteractionFlag.TextSelectableByMouse)
         self.detail_source = QLabel()
         self.detail_source.setOpenExternalLinks(True)
-        details_layout.addWidget(self.detail_name)
+        detail_heading = QHBoxLayout()
+        detail_heading.addWidget(self.detail_name, 1)
+        detail_heading.addWidget(self.detail_source)
+        details_layout.addLayout(detail_heading)
         details_layout.addWidget(self.detail_meta)
         details_layout.addWidget(self.detail_prerequisites)
         details_layout.addWidget(self.detail_automation)
-        details_layout.addWidget(self.detail_description, 1)
-        details_layout.addWidget(self.detail_source)
-        details.setMinimumHeight(210)
+        details_layout.addWidget(self.detail_description)
+        details_layout.addStretch()
+        self.details_scroll = QScrollArea()
+        self.details_scroll.setObjectName("talentDetailsScroll")
+        self.details_scroll.setWidgetResizable(True)
+        self.details_scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.details_scroll.setWidget(details)
+        self.details_scroll.setMinimumHeight(190)
         center = QSplitter(Qt.Orientation.Vertical)
         center.setChildrenCollapsible(False)
         center.addWidget(self.results)
-        center.addWidget(details)
-        center.setStretchFactor(0, 4)
-        center.setStretchFactor(1, 2)
-        center.setSizes([570, 260])
+        center.addWidget(self.details_scroll)
+        center.setStretchFactor(0, 55)
+        center.setStretchFactor(1, 45)
+        center.setSizes([440, 360])
         browser.addWidget(center)
         self._install_catalog_basket(
             browser,
@@ -1778,10 +1813,13 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
                 ) if value
             ),
         )
-        browser.setStretchFactor(0, 0)
-        browser.setStretchFactor(1, 1)
-        browser.setStretchFactor(2, 0)
-        browser.setSizes([220, 1190, 330])
+        self.selection_basket.set_compact(True)
+        self.selection_basket.changed.connect(self._update_queue_markers)
+        self._configure_catalog_table()
+        browser.setStretchFactor(0, 16)
+        browser.setStretchFactor(1, 62)
+        browser.setStretchFactor(2, 22)
+        browser.setSizes([230, 890, 315])
         layout.addWidget(browser, 1)
 
         actions = QHBoxLayout()
@@ -1795,13 +1833,19 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
         self.add_button.setObjectName("primaryButton")
         self.add_button.clicked.connect(self._accept_selected)
         self.add_button.setEnabled(False)
-        actions.addWidget(cancel_button)
-        actions.addWidget(self.add_button)
+        basket_actions = QHBoxLayout()
+        basket_actions.addWidget(cancel_button)
+        basket_actions.addWidget(self.add_button, 1)
+        self.selection_basket.layout().addLayout(basket_actions)
         layout.addLayout(actions)
 
-        self.search.textChanged.connect(self._refresh_results)
+        self.search_debounce = DebouncedCallback(self._refresh_results, 300, self)
+        self.search.textChanged.connect(self.search_debounce.schedule)
         self.category.currentIndexChanged.connect(self._refresh_results)
         self.automation_filter.currentIndexChanged.connect(self._refresh_results)
+        self.source_filter.currentIndexChanged.connect(self._refresh_results)
+        for control in (self.include_rules, self.available_only, self.not_owned):
+            control.toggled.connect(self._refresh_results)
         self.sphere_list.currentItemChanged.connect(self._refresh_results)
         self.results.itemSelectionChanged.connect(self._show_selected_details)
         self.results.itemDoubleClicked.connect(self._queue_current_entry)
@@ -1813,14 +1857,62 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
         self.results.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
         self.results.setAlternatingRowColors(True)
         header = self.results.horizontalHeader()
-        header.setSectionResizeMode(0, QHeaderView.ResizeMode.ResizeToContents)
-        header.setSectionResizeMode(1, QHeaderView.ResizeMode.Interactive)
-        header.setSectionResizeMode(2, QHeaderView.ResizeMode.ResizeToContents)
-        header.setSectionResizeMode(3, QHeaderView.ResizeMode.ResizeToContents)
-        header.setSectionResizeMode(4, QHeaderView.ResizeMode.ResizeToContents)
-        header.setSectionResizeMode(5, QHeaderView.ResizeMode.Stretch)
-        header.resizeSection(1, 380)
-        self.results.setMinimumWidth(760)
+        self.results.setColumnHidden(0, True)
+        header.setSectionResizeMode(1, QHeaderView.ResizeMode.Stretch)
+        for column, width in ((2, 130), (3, 115), (4, 55), (5, 90)):
+            header.setSectionResizeMode(column, QHeaderView.ResizeMode.Interactive)
+            header.resizeSection(column, width)
+        self.results.setMinimumWidth(420)
+
+    def _clear_filters(self) -> None:
+        controls = (self.search, self.category, self.automation_filter, self.source_filter,
+                    self.include_rules, self.available_only, self.not_owned, self.sphere_list)
+        for control in controls:
+            control.blockSignals(True)
+        self.search.clear()
+        for combo in (self.category, self.automation_filter, self.source_filter):
+            combo.setCurrentIndex(0)
+        for check in (self.include_rules, self.available_only, self.not_owned):
+            check.setChecked(False)
+        self.sphere_list.setCurrentRow(0)
+        for control in controls:
+            control.blockSignals(False)
+        self.search_debounce.timer.stop()
+        self._refresh_results()
+
+    def _restriction_reason(self, entry: dict) -> str:
+        if self._magic_catalog:
+            return magic_talent_restriction_reason(entry, self._magic_owned_spells)
+        return martial_talent_restriction_reason(entry, self._owned_talents)
+
+    def _availability(self, entry: dict) -> str:
+        if not self._entry_selectable(entry):
+            return self._restriction_reason(entry) or "Already owned or at its selection limit."
+        if entry["category"] not in {"Base Sphere", "Drawback"} and entry["sphere"] != "Universal":
+            if str(entry["sphere"]).casefold() not in self._owned_spheres:
+                return f"Gain the {entry['sphere']} base sphere on the Character page first."
+        if entry.get("prerequisites"):
+            return "Unknown: review the listed prerequisites before learning."
+        return "No known restriction."
+
+    def _display_name(self, entry: dict) -> str:
+        name = str(entry["name"])
+        for tag in entry.get("source_tags", ()):
+            name = name.replace(f" [{tag}]", "")
+        markers = []
+        if entry["key"] in self._owned_keys:
+            markers.append("Owned")
+        if any(queued["key"] == entry["key"] for queued in self.selection_basket.entries):
+            markers.append("Queued")
+        return name + ("  · " + " · ".join(markers) if markers else "")
+
+    def _update_queue_markers(self) -> None:
+        for row in range(self.results.rowCount()):
+            item = self.results.item(row, 1)
+            entry = self._entries_by_key.get(str(item.data(Qt.ItemDataRole.UserRole)))
+            if entry:
+                item.setText(self._display_name(entry))
+        self.catalog_presentation.schedule()
 
     @staticmethod
     def _behavior(entry: dict) -> str:
@@ -1839,10 +1931,10 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
         category = str(self.category.currentData() or "")
         behavior = str(self.automation_filter.currentData() or "")
         query = self.search.text().strip().casefold()
-        self.results.setRowCount(0)
+        source = str(self.source_filter.currentData() or "")
+        counts: dict[str, int] = {}
+        matches = []
         for entry in self._sorted_entries:
-            if sphere_name and entry["sphere"] != sphere_name:
-                continue
             if category and entry["category"] != category:
                 continue
             entry_behavior = self._behavior(entry)
@@ -1852,18 +1944,45 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
                 continue
             if behavior == "rules" and entry_behavior != "Rules only":
                 continue
-            haystack = " ".join(
-                str(entry.get(field, ""))
-                for field in (
-                    "name",
-                    "sphere",
-                    "category",
-                    "description",
-                    "prerequisites",
-                )
-            ).casefold()
+            if source and source not in entry.get("source_tags", ()):
+                continue
+            if self.not_owned.isChecked() and entry["key"] in self._owned_keys:
+                continue
+            if self.available_only.isChecked() and self._availability(entry) not in (
+                "No known restriction.", "Unknown: review the listed prerequisites before learning."):
+                continue
+            fields = ("name", "description", "prerequisites") if self.include_rules.isChecked() else ("name",)
+            haystack = " ".join(str(entry.get(field, "")) for field in fields).casefold()
             if query and query not in haystack:
                 continue
+            counts[entry["sphere"]] = counts.get(entry["sphere"], 0) + 1
+            if not sphere_name or entry["sphere"] == sphere_name:
+                matches.append(entry)
+        self.results.setColumnHidden(3, bool(sphere_name))
+        self.sphere_list.blockSignals(True)
+        from app.ui.refined.theme import PALETTES
+        from app.ui.sphere_colors import sphere_surface
+        context = self
+        while context is not None and not hasattr(context, "theme"):
+            context = context.parentWidget()
+        theme = getattr(context, "theme", "classic")
+        palette = PALETTES.get(theme, PALETTES["classic"])
+        for row in range(self.sphere_list.count()):
+            item = self.sphere_list.item(row)
+            sphere = str(item.data(Qt.ItemDataRole.UserRole) or "")
+            owned_marker = " · Owned" if sphere.casefold() in self._owned_spheres else ""
+            item.setText(f"{sphere or 'All spheres'}{owned_marker}\n{counts.get(sphere, 0) if sphere else sum(counts.values())} matching")
+            if sphere:
+                kind = "magic" if self._magic_catalog else "martial"
+                accent = QPixmap(4, 24)
+                accent.fill(QColor(sphere_surface(kind, sphere, theme, getattr(palette, kind))))
+                item.setIcon(QIcon(accent))
+        self.sphere_list.blockSignals(False)
+        self.result_count.setText(f"{len(matches)} matching talents")
+        self.results.setUpdatesEnabled(False)
+        self.results.setRowCount(0)
+        for entry in matches:
+            entry_behavior = self._behavior(entry)
             row = self.results.rowCount()
             self.results.insertRow(row)
             automation = entry.get("automation", {})
@@ -1875,41 +1994,27 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
                 if repeatable and repeat_limit
                 else entry["key"] in self._owned_keys and not repeatable
             )
-            restriction = martial_talent_restriction_reason(entry, self._owned_talents)
+            restriction = self._availability(entry)
             values = (
                 (
                     f"{owned_count} / {repeat_limit}"
                     if repeatable and repeat_limit and owned_count
                     else "Owned" if owned else ""
                 ),
-                str(entry["name"]),
+                self._display_name(entry),
                 str(entry["category"]),
                 str(entry["sphere"]),
-                entry_behavior,
-                str(entry.get("prerequisites", "")) or "—",
+                {"Automatic": "Auto", "Toggle": "On/off", "Rules only": "Rules"}[entry_behavior],
+                ", ".join(entry.get("source_tags", ())) or "—",
             )
             for column, value in enumerate(values):
                 cell = QTableWidgetItem(value)
                 cell.setData(Qt.ItemDataRole.UserRole, entry["key"])
-                if owned or restriction:
-                    cell.setForeground(Qt.GlobalColor.gray)
-                    if restriction:
-                        cell.setToolTip(restriction)
-                elif entry_behavior == "Toggle":
-                    cell.setForeground(Qt.GlobalColor.darkYellow)
-                elif entry_behavior == "Automatic":
-                    cell.setForeground(Qt.GlobalColor.darkGreen)
-                elif entry["category"] == "Drawback":
-                    cell.setForeground(Qt.GlobalColor.darkRed)
-                elif entry["category"] == "Legendary Talent":
-                    cell.setForeground(Qt.GlobalColor.darkYellow)
+                cell.setToolTip(entry_behavior if column == 4 else restriction)
                 self.results.setItem(row, column, cell)
+        self.results.setUpdatesEnabled(True)
         self._clear_result_selection()
-        self._clear_details(
-            "Select a sphere or talent"
-            if self.results.rowCount()
-            else "No matching talents"
-        )
+        self._clear_details("")
 
     def _current_entry(self) -> dict | None:
         row = self.results.currentRow()
@@ -1923,7 +2028,7 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
     def _show_selected_details(self) -> None:
         entry = self._current_entry()
         if entry is None:
-            self._clear_details("Select a sphere or talent")
+            self._clear_details("")
             return
         self.detail_name.setText(str(entry["name"]))
         tags = ", ".join(entry.get("source_tags", []))
@@ -1933,24 +2038,25 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
         self.detail_meta.setText(meta)
         prerequisites = str(entry.get("prerequisites", ""))
         self.detail_prerequisites.setText(
-            f"Prerequisites: {prerequisites}" if prerequisites else "No listed prerequisites"
+            (f"Prerequisites: {prerequisites}\n" if prerequisites else "") + self._availability(entry)
         )
         automation = entry.get("automation", {})
         if automation.get("effects") or automation.get("provider"):
             effects = "; ".join(
-                _feat_effect_display(effect) for effect in automation["effects"]
-            ) or "Resolved by the shared Athletics rules provider"
+                _feat_effect_display(effect) for effect in automation.get("effects", ())
+            ) or "Resolved by the shared rules provider"
             note = str(automation.get("activation_note", ""))
-            self.detail_automation.setText(
-                f"{self._behavior(entry)}: {effects}" + (f"\n{note}" if note else "")
-            )
+            self.detail_automation.setText(self._behavior(entry))
+            self.detail_automation.setToolTip(effects + (f"\n{note}" if note else ""))
         else:
-            self.detail_automation.setText(
+            self.detail_automation.setText("Rules only")
+            self.detail_automation.setToolTip(
                 "Rules only: this entry has no safe automatic effect on a statistic currently represented by the sheet."
             )
-        self.detail_description.setPlainText(str(entry["description"]))
+        self.detail_description.setText(str(entry["description"]))
+        self.details_scroll.verticalScrollBar().setValue(0)
         url = str(entry.get("source_url", ""))
-        self.detail_source.setText(f'<a href="{url}">Open source page</a>' if url else "")
+        self.detail_source.setText(f'<a href="{html.escape(url, quote=True)}">Source ↗</a>' if url else "")
         self._update_add_button()
 
     def _clear_details(self, title: str) -> None:
@@ -2519,81 +2625,10 @@ class MagicTalentCatalogDialog(MartialTalentCatalogDialog):
         selection_limit: int = 0,
     ) -> None:
         self._magic_owned_spells = owned_spells
-        super().__init__(owned_spells, parent, selection_limit=selection_limit)
+        super().__init__(owned_spells, parent, selection_limit=selection_limit, play_mode=play_mode)
         self.setWindowTitle("Magic Sphere & Talent Catalog")
         self.catalog_heading.setText("MAGIC SPHERE & TALENT CATALOG")
-        self.catalog_subtitle.setText(
-            "Choose a possessed magic sphere, then select a usable talent or effect. "
-            "Base spheres and sphere-specific drawbacks are managed on Page 0."
-            if play_mode
-            else
-            "Choose a magic sphere on the left, then filter or search its talents and drawbacks."
-        )
         self.custom_button.setText("+ Custom spell or ability")
-        self.search.setPlaceholderText(
-            "Search magic talents, advanced talents, drawbacks, prerequisites, spheres…"
-        )
-        owned_sphere_names = {
-            spell.school_or_sphere
-            for spell in owned_spells
-            if spell.catalog_category == "Base Sphere"
-        }
-        self._entries = tuple(
-            entry
-            for entry in magic_entries()
-            if not play_mode
-            or (
-                entry["category"] not in {"Base Sphere", "Drawback"}
-                and entry["sphere"] in owned_sphere_names
-            )
-        )
-        self._sorted_entries = tuple(sorted(self._entries, key=talent_entry_sort_key))
-        self._entries_by_key = {entry["key"]: entry for entry in self._entries}
-        self._owned_keys = {spell.catalog_key for spell in owned_spells if spell.catalog_key}
-
-        self.sphere_list.blockSignals(True)
-        self.sphere_list.clear()
-        all_item = QListWidgetItem(f"All spheres  ({len(self._entries)})")
-        all_item.setData(Qt.ItemDataRole.UserRole, "")
-        self.sphere_list.addItem(all_item)
-        for sphere in magic_spheres():
-            count = sum(
-                entry["sphere"] == sphere["name"] for entry in self._entries
-            )
-            if play_mode and not count:
-                continue
-            item = QListWidgetItem(f"{sphere['name']}  ({count})")
-            item.setData(Qt.ItemDataRole.UserRole, sphere["name"])
-            self.sphere_list.addItem(item)
-        universal_count = sum(entry["sphere"] == "Universal" for entry in self._entries)
-        if universal_count:
-            item = QListWidgetItem(f"Universal Drawbacks  ({universal_count})")
-            item.setData(Qt.ItemDataRole.UserRole, "Universal")
-            self.sphere_list.addItem(item)
-        self.sphere_list.setCurrentRow(0)
-        self.sphere_list.blockSignals(False)
-
-        self.category.blockSignals(True)
-        self.category.clear()
-        self.category.addItem("All categories", "")
-        categories = sorted(
-            {str(entry["category"]) for entry in self._entries},
-            key=talent_category_sort_key,
-        )
-        for category in categories:
-            self.category.addItem(category, category)
-        self.category.blockSignals(False)
-        self._refresh_results()
-
-    def _show_selected_details(self) -> None:
-        super()._show_selected_details()
-        entry = self._current_entry()
-        if entry is None or entry.get("category") in {"Base Sphere", "Drawback"}:
-            return
-        reason = magic_talent_restriction_reason(entry, self._magic_owned_spells)
-        if reason:
-            self.detail_automation.setText(f"Unavailable because of a sphere drawback:\n{reason}")
-            self._update_add_button()
 
     def _entry_selectable(self, entry: dict) -> bool:
         return (
