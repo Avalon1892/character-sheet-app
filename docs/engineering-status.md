@@ -21,6 +21,7 @@ Updated: 2026-10-03. This is an implementation ledger, not a claim of complete a
 - Device and resource import/export with ownership checks.
 - Persistent device damage, current/max HP, optional hardness subtraction, and automatic deactivation at zero HP. Destroyed devices and batteries cannot activate or supply charges.
 - Tinker broken-condition threshold and effective-level penalty, one-minute tool-assisted repairs, and maintenance-based full repair of non-abandoned gizmos. Rest does not perform repairs.
+- Augmentation-package Physical Augmentor crafting with a selected Strength/Dexterity/Constitution configuration and explicit wearer state. Active, worn augmentors contribute typed competence bonuses to matching skill checks through shared calculations, including skill ability overrides and broken effective levels. Ability scores are not increased.
 - First Tech gadget choices exclude routine talents.
 
 ## Partial support / manual inputs
@@ -28,7 +29,7 @@ Updated: 2026-10-03. This is an implementation ledger, not a claim of complete a
 - Associated skill defaults to the existing shared Craft rank provider. Alternative associated skills can be selected in the workbench, but tradition-specific skill-rank grants and skill specialties are not completely automated.
 - Practitioner modifier is explicitly entered at creation, not automatically resolved from every class/archetype/tradition.
 - Crafting/maintenance duration and batch allowance are calculated and displayed. No campaign clock or crafting session ledger advances automatically.
-- Base package grants can include multiple gizmo types within one talent. The current roster picks the talent entry, not each of its individual functions.
+- Base package grants can include multiple gizmo types within one talent. Physical Augmentor is now a separate craftable function; other package functions still need function-level recipes.
 - Current talent validation still relies on the existing character selection system.
 - Workbench maxima are live calculated. The reusable Tech tracker maximum is refreshed when changing pool charges, not on every character edit.
 - Losing a base sphere prevents new crafting/resource use, but the saved roster is retained for review rather than deleted.
@@ -36,7 +37,7 @@ Updated: 2026-10-03. This is an implementation ledger, not a claim of complete a
 
 ## Still missing
 
-1. Function-level recipes and configurations for every gadget/gizmo talent and base package.
+1. Function-level recipes and configurations for remaining gadget/gizmo talents and base packages. Physical Augmentor skill effects are implemented; its ability-check roll integration and battery reroll are still manual.
 2. Automatic equipment/attack/AC/save/movement/skill modifiers from installed and activated devices.
 3. Tech batteries attached to external technological inventory items. Current hosts are character-owned workbench devices. Nonpositive-modifier pool charging follows the separate printed creator-modifier cap; interpretation needs rules verification because creation explicitly has a minimum of one.
 4. Augment/graft slots, installation checks, incompatibilities and polymorph suppression.
@@ -62,6 +63,8 @@ Updated: 2026-10-03. This is an implementation ledger, not a claim of complete a
 Tech battery follow-up: full isolated run completed with 1,991 cases, 1,988 passing and 3 failing. All three failures reproduce against the untouched `87b4e8e` baseline: stale archetype count, custom-tracker parent placement, and tradition placement. Latest focused engineering run: 14 tests and 2 theme subtests passed, including the subsequent Tinker battery host-level guard and cancelled-overfill checks. Normal/portable deployment and packaged verification are not yet performed for this follow-up.
 
 Damage/repair follow-up: 51 focused engineering, database, transfer and recovery tests plus 2 theme subtests passed. The parchment workbench render was inspected with a broken gizmo showing current/max HP and effective level. The full isolated suite has not been repeated after this follow-up. Damage-type adjustments are manual before applying hardness; device-specific defensive exceptions and attack/sunder resolution remain pending.
+
+Physical Augmentor follow-up: 58 focused engineering, shared rules, skill-rank, transfer and recovery tests plus 2 theme subtests passed. Configuration and wearer state are additive/defaulted database fields. Device slot validation, duration/expiry, external wearers and alternate construction grants remain pending.
 
 ## Verified rule sources
 

@@ -94,6 +94,7 @@ from app.class_feature_systems import (
     resolve_class_feature_modules,
 )
 from app.class_power_rules import class_power_modifier_map
+from app.engineering_rules import physical_augmentor_bonus
 from app.class_combat_rules import generated_class_attacks, class_attack_context_notes
 from app.race_rules import generated_racial_attacks, racial_class_skills, racial_automatic_values, racial_per_level_hit_points
 from app.class_choice_rules import (
@@ -654,6 +655,17 @@ class CharacterCalculationService:
         for modifier_map in modifier_maps:
             for target, modifiers in modifier_map.items():
                 result.setdefault(target, []).extend(modifiers)
+        for device in self.repository.list_engineering_devices(self.character_id):
+            bonus=physical_augmentor_bonus(device)
+            if not bonus or device["configuration"] not in {"strength","dexterity","constitution"}:
+                continue
+            for definition in character_skill_definitions(self.repository,self.character_id):
+                skill_state=state.skills.get(definition.key)
+                ability=(skill_state.ability_override if skill_state else "") or definition.ability
+                if ability==device["configuration"]:
+                    target=f"skill:{definition.key}"
+                    result.setdefault(target,[]).append(StatModifier(None,target,
+                        f"{device['name']} #{device['id']}","competence",bonus,True))
         profile = self.resolved_casting_profile()
         tradition_automation = casting_tradition_automation(
             self.repository.list_character_traditions(self.character_id, "Casting"),

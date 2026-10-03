@@ -978,6 +978,8 @@ class CharacterRepository:
         """)
         self._ensure_column("engineering_devices", "host_id", "INTEGER REFERENCES engineering_devices(id) ON DELETE SET NULL")
         self._ensure_column("engineering_devices", "damage", "INTEGER NOT NULL DEFAULT 0")
+        self._ensure_column("engineering_devices", "configuration", "TEXT NOT NULL DEFAULT ''")
+        self._ensure_column("engineering_devices", "applied_to_character", "INTEGER NOT NULL DEFAULT 0")
         self._connection.execute(f"""
             CREATE UNIQUE INDEX IF NOT EXISTS engineering_tech_battery_host
             ON engineering_devices(host_id)
@@ -3078,20 +3080,23 @@ class CharacterRepository:
                 "SELECT 1 FROM engineering_devices WHERE sphere='Tech' AND catalog_key=? AND host_id=? AND (? IS NULL OR id!=?)",
                 (TECH_BATTERY_KEY,host_id,device_id,device_id)).fetchone():
                 raise ValueError("A Tech device can have only one attached battery. Detach its existing battery first.")
-        fields = ("sphere", "catalog_key", "name", "level", "modifier", "state", "charges", "minor", "advanced", "host_id", "damage")
+        fields = ("sphere", "catalog_key", "name", "level", "modifier", "state", "charges", "minor", "advanced", "host_id", "damage", "configuration", "applied_to_character")
         values = (sphere, str(record.get("catalog_key", "")), name,
                   int(record.get("level", 0)), int(record.get("modifier", 0)), state,
                   int(record.get("charges", 0)), int(bool(record.get("minor", False))),
-                  int(record.get("advanced", 0)), host_id, int(record.get("damage",0)))
+                  int(record.get("advanced", 0)), host_id, int(record.get("damage",0)),
+                  str(record.get("configuration", "")),int(bool(record.get("applied_to_character",False))))
         if not 0 <= values[3] <= 999 or not -100 <= values[4] <= 100 or not 0 <= values[6] <= 99999 or not 0 <= values[8] <= 99:
             raise ValueError("Device statistics are outside supported bounds.")
         if not 0<=values[10]<=99999:
             raise ValueError("Device damage is outside supported bounds.")
+        if len(values[11])>200:
+            raise ValueError("Device configuration is too long.")
         if (sphere=="Tinker" and values[6]) or (sphere=="Tech" and (values[7] or values[8])):
             raise ValueError("Tech charges and Tinker minor/advanced rules cannot be mixed.")
         if device_id is None:
             cursor = self._connection.execute(
-                "INSERT INTO engineering_devices (character_id," + ",".join(fields) + ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+                "INSERT INTO engineering_devices (character_id," + ",".join(fields) + ") VALUES ("+",".join("?" for _ in range(len(fields)+1))+")",
                 (character_id, *values))
             device_id = cursor.lastrowid
         else:

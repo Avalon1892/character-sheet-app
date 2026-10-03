@@ -210,6 +210,37 @@ class EngineeringTests(unittest.TestCase):
         self.service.maintain("Tinker")
         self.assertEqual((0,"active"),(self.service.devices("Tinker")[0]["damage"],self.service.devices("Tinker")[0]["state"]))
 
+    def test_physical_augmentor_configuration_and_live_skill_effects(self):
+        from app.engineering_rules import PHYSICAL_AUGMENTOR_KEY
+        from app.services.character_calculations import CharacterCalculationService
+        base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")
+        self.repo.update_martial_talent(self.cid,base.id,base.name,"Tinker","Base Sphere",catalog_key=base.catalog_key,catalog_category="Base Sphere",choice="Augmentation")
+        with self.assertRaises(ValueError):self.service.create("Tinker",PHYSICAL_AUGMENTOR_KEY,3)
+        device=self.service.create("Tinker",PHYSICAL_AUGMENTOR_KEY,3,configuration="dexterity")
+        baseline=CharacterCalculationService(self.repo,self.cid).skill_result("acrobatics").total
+        ability_score=CharacterCalculationService(self.repo,self.cid).ability_result("dexterity").total
+        with self.assertRaises(ValueError):self.service.apply_to_character(device,True)
+        self.service.change_state(device,"active");self.service.apply_to_character(device,True)
+        self.assertEqual(baseline+3,CharacterCalculationService(self.repo,self.cid).skill_result("acrobatics").total)
+        self.assertEqual(ability_score,CharacterCalculationService(self.repo,self.cid).ability_result("dexterity").total)
+        self.service.damage_device(device,10,apply_hardness=False)
+        self.assertEqual(baseline+2,CharacterCalculationService(self.repo,self.cid).skill_result("acrobatics").total)
+        self.service.apply_to_character(device,False)
+        self.assertEqual(baseline,CharacterCalculationService(self.repo,self.cid).skill_result("acrobatics").total)
+
+    def test_augmentor_choices_and_wearer_state_survive_transfer(self):
+        from app.engineering_rules import PHYSICAL_AUGMENTOR_KEY
+        base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")
+        self.repo.update_martial_talent(self.cid,base.id,base.name,"Tinker","Base Sphere",catalog_key=base.catalog_key,catalog_category="Base Sphere",choice="Augmentation")
+        device=self.service.create("Tinker",PHYSICAL_AUGMENTOR_KEY,3,configuration="strength")
+        self.service.change_state(device,"active");self.service.apply_to_character(device,True)
+        path=Path(self.temp.name)/"augmentor.json"
+        export_character(self.repo,self.cid,path)
+        other=EngineeringService(self.repo,import_character(self.repo,path))
+        record=next(d for d in other.devices("Tinker") if d["catalog_key"]==PHYSICAL_AUGMENTOR_KEY)
+        self.assertEqual(("strength",1),(record["configuration"],record["applied_to_character"]))
+        with self.assertRaises(ValueError):other.apply_to_character(device,False)
+
     def test_damage_survives_rest_transfer_and_does_not_repair_abandoned(self):
         device=self.gadget()
         self.service.damage_device(device,3,apply_hardness=False)

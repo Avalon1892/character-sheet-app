@@ -4,6 +4,7 @@ from math import ceil
 
 TECH_BATTERY_KEY = "tech:gadget-talent:battery-gadget"
 TINKER_BATTERY_KEY = "tinker:battery"
+PHYSICAL_AUGMENTOR_KEY = "tinker:device:physical-augmentor"
 
 
 def is_battery(device):
@@ -57,6 +58,14 @@ def device_condition(device):
     effective=max(1,device["level"]-2) if broken and device["sphere"]=="Tinker" else device["level"]
     return {"current_hp":current,"maximum_hp":stats["hp"],"broken":broken,
             "destroyed":current==0,"effective_level":effective}
+
+
+def physical_augmentor_bonus(device):
+    if (device["catalog_key"]!=PHYSICAL_AUGMENTOR_KEY or device["sphere"]!="Tinker"
+            or device["state"]!="active" or not device.get("applied_to_character")
+            or device_condition(device)["destroyed"]):
+        return 0
+    return 2+device_condition(device)["effective_level"]//4
 
 
 def occupied_limit(devices, limits):

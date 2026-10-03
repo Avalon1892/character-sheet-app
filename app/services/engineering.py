@@ -1,7 +1,8 @@
 """Character-owned device lifecycle, separate from sheet presentation."""
 from app.content import martial_entry
 from app.engineering_rules import (engineering_limits, occupied_limit, device_statistics,
-                                   is_battery, TECH_BATTERY_KEY, tech_battery_capacity,device_condition)
+                                   is_battery, TECH_BATTERY_KEY, tech_battery_capacity,device_condition,
+                                   PHYSICAL_AUGMENTOR_KEY)
 from app.services.character_calculations import CharacterCalculationService
 from app.exploitant_rules import effective_martial_talents
 
@@ -28,6 +29,10 @@ class EngineeringService:
         if sphere == "Tinker" and self.available(sphere):
             entries["tinker:battery"] = {"key":"tinker:battery", "name":"Battery (gizmo)",
                                         "description":"Depleting this battery powers a battery-use ability. A depleted battery still counts against your gizmo limit."}
+            if any(t.choice=="Augmentation" for t in self.records(sphere)):
+                entries[PHYSICAL_AUGMENTOR_KEY]={"key":PHYSICAL_AUGMENTOR_KEY,"name":"Physical Augmentor (gizmo)",
+                    "description":"Choose Strength, Dexterity or Constitution. Grants a competence bonus to checks based on that ability: 2 + 1 per 4 effective gizmo levels. Deplete an attached battery before a benefiting check to roll twice and take the higher result.",
+                    "source_url":"https://spheresofpower.wikidot.com/tinker"}
         return tuple(sorted(entries.values(), key=lambda e:e["name"].casefold()))
 
     def available(self, sphere):
@@ -47,7 +52,7 @@ class EngineeringService:
     def devices(self, sphere):
         return tuple(d for d in self.repository.list_engineering_devices(self.character_id) if d["sphere"]==sphere)
 
-    def create(self, sphere, key, modifier, *, minor=False, advanced=0):
+    def create(self, sphere, key, modifier, *, minor=False, advanced=0,configuration=""):
         if not self.available(sphere):
             raise ValueError("This character does not currently have that base sphere.")
         entry = next((e for e in self.known_devices(sphere) if e["key"]==key),None)
@@ -55,16 +60,26 @@ class EngineeringService:
             raise ValueError("Learn the device's talent first.")
         if sphere == "Tech" and (minor or advanced):
             raise ValueError("Minor and advanced gizmo rules belong to Tinker, not Tech.")
+        if key==PHYSICAL_AUGMENTOR_KEY and configuration not in {"strength","dexterity","constitution"}:
+            raise ValueError("Choose a physical ability for the augmentor.")
         ranks = CharacterCalculationService(self.repository,self.character_id).effective_skill_ranks().get(self.skill_key,0)
         if sphere=="Tinker" and ranks<1:
             raise ValueError("A gizmo requires at least one rank in its associated skill.")
         record = dict(sphere=sphere,catalog_key=key,name=entry["name"],level=ranks,modifier=modifier,
                       state="active" if key in {"tinker:battery",TECH_BATTERY_KEY} else "inactive",
                       charges=tech_battery_capacity(modifier) if key==TECH_BATTERY_KEY else 0,
-                      minor=minor,advanced=advanced)
+                      minor=minor,advanced=advanced,configuration=configuration)
         if occupied_limit((*self.devices(sphere),record),self.limits(sphere)) > self.limits(sphere).device_limit:
             raise ValueError("Device limit exceeded. Abandon an existing device first.")
         return self.repository.save_engineering_device(self.character_id,record)
+
+    def apply_to_character(self,device_id,enabled):
+        device=next((d for d in self.repository.list_engineering_devices(self.character_id) if d["id"]==device_id),None)
+        if not device or device["catalog_key"]!=PHYSICAL_AUGMENTOR_KEY:
+            raise ValueError("This device does not yet support automatic wearer effects.")
+        if enabled and (device["state"]!="active" or device_condition(device)["destroyed"] or not self.available(device["sphere"])):
+            raise ValueError("Activate a functioning device before applying it to this character.")
+        self.repository.save_engineering_device(self.character_id,{**device,"applied_to_character":bool(enabled)},device_id)
 
     def change_state(self, device_id, state):
         record = next((d for d in self.repository.list_engineering_devices(self.character_id) if d["id"]==device_id),None)

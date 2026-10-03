@@ -5,7 +5,7 @@ from PySide6.QtWidgets import (QDialog,QVBoxLayout,QHBoxLayout,QComboBox,QLabel,
     QPushButton,QTableWidget,QTableWidgetItem,QHeaderView,QAbstractItemView,
     QSpinBox,QCheckBox,QTextBrowser,QSplitter,QWidget,QMessageBox,QInputDialog)
 from app.services.engineering import EngineeringService
-from app.engineering_rules import occupied_limit,is_battery,TECH_BATTERY_KEY,tech_battery_capacity,device_condition
+from app.engineering_rules import occupied_limit,is_battery,TECH_BATTERY_KEY,tech_battery_capacity,device_condition,PHYSICAL_AUGMENTOR_KEY
 from app.content import martial_entry
 from app.ui.dialog_theme import dialog_stylesheet
 
@@ -39,6 +39,9 @@ class EngineeringDialog(QDialog):
         notice.setWordWrap(True);root.addWidget(notice)
         controls=QHBoxLayout();root.addLayout(controls)
         self.known=QComboBox();self.known.setMinimumContentsLength(25);controls.addWidget(self.known,1)
+        self.configuration=QComboBox()
+        for key in ("strength","dexterity","constitution"):self.configuration.addItem(key.title(),key)
+        controls.addWidget(self.configuration)
         self.minor=QCheckBox("Minor (confirm device rule)");controls.addWidget(self.minor)
         controls.addWidget(QLabel("Advanced increases"))
         self.advanced=QSpinBox();self.advanced.setRange(0,99);controls.addWidget(self.advanced)
@@ -75,6 +78,8 @@ class EngineeringDialog(QDialog):
         self.hardness=QCheckBox("Apply hardness");self.hardness.setChecked(True);health.addWidget(self.hardness)
         self.damage_button=QPushButton("Damage selected");health.addWidget(self.damage_button)
         self.repair_button=QPushButton("Repair selected (1 minute)");health.addWidget(self.repair_button)
+        self.applied=QCheckBox("Worn / used by this character");health.addWidget(self.applied)
+        self.applied.clicked.connect(lambda checked:self.perform(lambda:self.service().apply_to_character(self.selected(),checked)))
         health.addStretch()
         self.damage_button.clicked.connect(lambda:self.perform(lambda:self.service().damage_device(self.selected(),self.damage_amount.value(),apply_hardness=self.hardness.isChecked())))
         self.repair_button.clicked.connect(lambda:self.perform(lambda:self.service().repair_tinker_device(self.selected(),self.modifier.value(),has_tools=self.kit.isChecked())))
@@ -137,7 +142,8 @@ class EngineeringDialog(QDialog):
                     f"{sum(d['state']=='active' for d in attached)}/{len(attached)} batteries" if attached else "—")
             status="abandoned" if device["state"]=="abandoned" else "Destroyed" if condition["destroyed"] else f"Broken · {device['state']}" if condition["broken"] else device["state"]
             level=f"{device['level']} → {condition['effective_level']}" if condition["effective_level"]!=device["level"] else device["level"]
-            values=(device["name"],level,status,f"{condition['current_hp']}/{condition['maximum_hp']}",stats["hardness"],stats["save"],stats["dc"],energy)
+            name=device["name"]+(f" · {device['configuration'].title()}" if device["configuration"] else "")+(" · Worn" if device["applied_to_character"] else "")
+            values=(name,level,status,f"{condition['current_hp']}/{condition['maximum_hp']}",stats["hardness"],stats["save"],stats["dc"],energy)
             for column,value in enumerate(values):
                 item=QTableWidgetItem(str(value));item.setData(Qt.ItemDataRole.UserRole,device["id"])
                 self.table.setItem(row,column,item)
@@ -152,6 +158,7 @@ class EngineeringDialog(QDialog):
         self.battery_recharge.setVisible(sphere=="Tech")
         self.detach.setEnabled(False);self.battery_recharge.setEnabled(False)
         self.damage_button.setEnabled(False);self.repair_button.setEnabled(False)
+        self.applied.setEnabled(False);self.applied.setChecked(False)
         self.repair_button.setVisible(sphere=="Tinker")
         self.attach.setEnabled(False);self.battery_use.setEnabled(False)
         for button in self.device_charge_controls:button.setEnabled(False)
@@ -163,17 +170,22 @@ class EngineeringDialog(QDialog):
         return self.table.item(row,0).data(Qt.ItemDataRole.UserRole) if row>=0 and self.table.item(row,0) else None
 
     def preview_known(self,*_):
+        self.configuration.setVisible(self.known.currentData()==PHYSICAL_AUGMENTOR_KEY)
         entry=next((e for e in self.service().known_devices(self.system.currentText()) if e["key"]==self.known.currentData()),None)
         self.show_details(entry)
 
     def show_details(self,entry):
         self.details.setHtml("" if entry is None else "<h2>"+escape(entry["name"])+"</h2><p>"+
-                             escape(entry.get("description","")).replace("\n","<br>")+"</p><p><b>Device-specific effects are reference-only in this batch.</b></p>")
+                             escape(entry.get("description","")).replace("\n","<br>")+"</p><p><b>"+
+                             ("Selected-ability skill bonuses are automatic when active and worn. Ability checks and battery-use rerolls are currently resolved manually."
+                              if entry.get("key")==PHYSICAL_AUGMENTOR_KEY else "Device-specific effects are reference-only in this batch.")+"</b></p>")
 
     def preview_device(self):
         device=next((d for d in self.service().devices(self.system.currentText()) if d["id"]==self.selected()),None)
         self.damage_button.setEnabled(bool(device and device["state"]!="abandoned"))
         self.repair_button.setEnabled(bool(device and device["state"]!="abandoned" and device["damage"] and self.kit.isChecked()))
+        self.applied.setEnabled(bool(device and device["catalog_key"]==PHYSICAL_AUGMENTOR_KEY and device["state"]!="abandoned"))
+        self.applied.setChecked(bool(device and device["applied_to_character"]))
         for button in self.actions:button.setEnabled(device is not None and device["state"]!="abandoned")
         if device and device_condition(device)["destroyed"]:
             self.actions[0].setEnabled(False)
@@ -184,7 +196,7 @@ class EngineeringDialog(QDialog):
         self.attach.setEnabled(host);self.battery_use.setEnabled(host)
         self.detach.setEnabled(bool(device and is_battery(device) and device["host_id"] and device["state"]!="abandoned"))
         self.battery_recharge.setEnabled(bool(device and device["catalog_key"]==TECH_BATTERY_KEY and device["state"]!="abandoned"))
-        if device:self.show_details(martial_entry(device["catalog_key"]) or {"name":device["name"],"description":"Tinker battery. Deplete to spend; maintain to restore."})
+        if device:self.show_details(martial_entry(device["catalog_key"]) or next((e for e in self.service().known_devices(device["sphere"]) if e["key"]==device["catalog_key"]),None) or {"name":device["name"],"description":"Saved engineering device."})
 
     def perform(self,operation):
         try:
@@ -200,7 +212,8 @@ class EngineeringDialog(QDialog):
         sphere=self.system.currentText()
         self.perform(lambda:self.service().create(sphere,self.known.currentData(),self.modifier.value(),
                      minor=self.minor.isChecked() if sphere=="Tinker" else False,
-                     advanced=self.advanced.value() if sphere=="Tinker" else 0))
+                     advanced=self.advanced.value() if sphere=="Tinker" else 0,
+                     configuration=self.configuration.currentData() if self.known.currentData()==PHYSICAL_AUGMENTOR_KEY else ""))
 
     def load_charges(self):
         device=next((d for d in self.service().devices("Tech") if d["id"]==self.selected()),None)
