@@ -37,7 +37,8 @@ class MartialAutomationUiTests(unittest.TestCase):
         dialog.automation_filter.setCurrentIndex(
             dialog.automation_filter.findData("automatic")
         )
-        self.assertEqual(19, dialog.results.rowCount())
+        self.assertEqual(20, dialog.results.rowCount())
+        self.assertTrue(any(dialog.results.item(row,1).text()=="Expanded Tinkering" for row in range(dialog.results.rowCount())))
         dialog.automation_filter.setCurrentIndex(
             dialog.automation_filter.findData("toggle")
         )

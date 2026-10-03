@@ -84,6 +84,11 @@ def _provider(
 
 
 _MARTIAL_AUTOMATION: dict[str, dict] = {
+    "expanded tinkering": _provider(
+        "engineering", choice_type="tinker_packages_two",
+        choice_label="Two additional Tinker packages", repeatable=True,
+        note="Choose two different Tinker packages not already possessed.",
+    ),
     "animal companion": _provider(
         "beastmastery_companion",
         repeatable=True,

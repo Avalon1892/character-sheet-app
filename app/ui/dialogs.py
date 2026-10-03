@@ -74,6 +74,7 @@ from app.ui.components import (
 )
 from app.tradition_rules import boon_cost, drawback_value, spell_point_rule_for_unused_drawbacks
 from app.athletics_rules import athletics_packages
+from app.engineering_rules import TINKER_PACKAGES,tinker_packages
 from app.text_cleanup import repair_mojibake
 
 
@@ -1393,10 +1394,10 @@ class FeatChoiceDialog(QDialog):
                     self.selection.addItem(item.name, item.name.casefold())
             if self.selection.lineEdit() is not None:
                 self.selection.lineEdit().setPlaceholderText("Armor item name")
-        elif choice_type == "athletics_packages_two":
+        elif choice_type in {"athletics_packages_two","tinker_packages_two"}:
             excluded = {value.casefold().strip() for value in excluded_choices}
             options = (
-                package for package in ("Climb", "Fly", "Leap", "Run", "Swim")
+                package for package in (TINKER_PACKAGES if choice_type=="tinker_packages_two" else ("Climb", "Fly", "Leap", "Run", "Swim"))
                 if package.casefold() not in excluded
             )
             for package in options:
@@ -1450,12 +1451,12 @@ class FeatChoiceDialog(QDialog):
         if self.second_selection is not None:
             if self.selection.count() < 2:
                 QMessageBox.warning(
-                    self, "No packages remain", "Expanded Training requires two unowned packages."
+                    self, "No packages remain", "This talent requires two unowned packages."
                 )
                 return
             if self.selection.currentText() == self.second_selection.currentText():
                 QMessageBox.warning(
-                    self, "Choose two packages", "The two Athletics packages must be different."
+                    self, "Choose two packages", "The two packages must be different."
                 )
                 return
         self.accept()
@@ -2094,6 +2095,8 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
             automation.get("choice_type") == "athletics_packages_two"
             and len(athletics_packages(self._owned_talents)) > 3
         ):
+            return False
+        if automation.get("choice_type")=="tinker_packages_two" and len(tinker_packages(self._owned_talents))>3:
             return False
         return (
             (

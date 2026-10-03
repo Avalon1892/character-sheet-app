@@ -93,6 +93,7 @@ from app.custom_trackers import CustomTrackerResolver, display_number
 from app.character_formulas import reference_key
 from app.formulas import FormulaError, formula_references
 from app.athletics_rules import athletics_packages
+from app.engineering_rules import tinker_packages,validate_tinker_package_choice
 from app.drawback_rules import (
     drawback_bonus_feat_names,
     drawback_choice_options,
@@ -7061,6 +7062,8 @@ class CharacterSheetWidget(SheetSectionsMixin, QWidget):
                         self.repository.list_martial_talents(self.character_id)
                     )
                     if choice_type == "athletics_packages_two"
+                    else tinker_packages(self.repository.list_martial_talents(self.character_id))
+                    if choice_type == "tinker_packages_two"
                     else ()
                 ),
             )
@@ -7079,6 +7082,8 @@ class CharacterSheetWidget(SheetSectionsMixin, QWidget):
             )
             effects.append(effect)
         owned = self.repository.list_martial_talents(self.character_id)
+        if choice_type=="tinker_packages_two":
+            validate_tinker_package_choice(choice,owned)
         owned_keys = {talent.catalog_key for talent in owned if talent.catalog_key}
         repeatable = bool(automation.get("repeatable"))
         repeat_limit = int(automation.get("repeat_limit") or 0)
@@ -7192,6 +7197,9 @@ class CharacterSheetWidget(SheetSectionsMixin, QWidget):
         if dialog.exec() != QDialog.DialogCode.Accepted:
             return
         try:
+            if talent.catalog_key=="tinker:talent:expanded-tinkering":
+                validate_tinker_package_choice(dialog.values.get("choice",""),
+                    tuple(item for item in self.repository.list_martial_talents(self.character_id) if item.id!=talent.id))
             self.repository.update_martial_talent(
                 self.character_id, talent.id, **dialog.values
             )

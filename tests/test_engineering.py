@@ -234,6 +234,9 @@ class EngineeringTests(unittest.TestCase):
         with self.assertRaises(ValueError):self.service.create("Tinker",MENTAL_AUGMENTOR_KEY,3,configuration="wisdom")
         entry=next(e for e in martial_entries("Tinker") if e["key"]=="tinker:gizmo-talent:cognitive-set-gizmo-utility")
         self.add("Tinker",entry["name"],entry["key"],entry["category"])
+        with self.assertRaises(ValueError):self.service.create("Tinker",MENTAL_AUGMENTOR_KEY,3,configuration="wisdom")
+        base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")
+        self.repo.update_martial_talent(self.cid,base.id,base.name,"Tinker","Base Sphere",catalog_key=base.catalog_key,catalog_category="Base Sphere",choice="Augmentation")
         with self.assertRaises(ValueError):self.service.create("Tinker",MENTAL_AUGMENTOR_KEY,3,configuration="dexterity")
         device=self.service.create("Tinker",MENTAL_AUGMENTOR_KEY,3,configuration="wisdom")
         before=CharacterCalculationService(self.repo,self.cid).skill_result("perception").total
@@ -250,6 +253,8 @@ class EngineeringTests(unittest.TestCase):
         from app.rules import calculate_encumbrance
         entry=next(e for e in martial_entries("Tinker") if e["key"]=="tinker:gizmo-talent:pressure-jack-gizmo")
         self.add("Tinker",entry["name"],entry["key"],entry["category"])
+        base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")
+        self.repo.update_martial_talent(self.cid,base.id,base.name,"Tinker","Base Sphere",catalog_key=base.catalog_key,catalog_category="Base Sphere",choice="Augmentation")
         with self.assertRaises(ValueError):self.service.create("Tinker",LOAD_BEARER_KEY,3,configuration="dexterity")
         normal=self.service.create("Tinker",LOAD_BEARER_KEY,3,configuration="strength")
         advanced=self.service.create("Tinker",LOAD_BEARER_KEY,3,configuration="strength",advanced=1)
@@ -271,6 +276,30 @@ class EngineeringTests(unittest.TestCase):
         self.assertEqual(calculate_encumbrance(strength+4,size,0,0),CharacterCalculationService(self.repo,self.cid).encumbrance())
         self.service.change_state(normal,"inactive");self.service.change_state(advanced,"inactive")
         self.assertEqual(baseline,CharacterCalculationService(self.repo,self.cid).encumbrance())
+
+    def test_expanded_tinkering_packages_unlock_functions_and_validate_choices(self):
+        from app.engineering_rules import tinker_packages,validate_tinker_package_choice,PHYSICAL_AUGMENTOR_KEY
+        from app.talent_automation import martial_automation
+        from app.ui.dialogs import FeatChoiceDialog
+        from PySide6.QtWidgets import QApplication
+        app=QApplication.instance() or QApplication([])
+        automation=martial_automation("Expanded Tinkering")
+        self.assertEqual("tinker_packages_two",automation["choice_type"])
+        dialog=FeatChoiceDialog("tinker_packages_two","Packages",[],[],excluded_choices=("Computation",))
+        self.assertEqual(4,dialog.selection.count())
+        self.assertEqual(-1,dialog.selection.findText("Computation"))
+        dialog.close();dialog.deleteLater()
+        records=self.repo.list_martial_talents(self.cid)
+        for choice in ("Augmentation / Augmentation","Augmentation","Unknown / Modification"):
+            with self.assertRaises(ValueError):validate_tinker_package_choice(choice,records)
+        validate_tinker_package_choice("Augmentation / Modification",records)
+        self.add("Tinker","Expanded Tinkering","tinker:talent:expanded-tinkering")
+        expanded=next(t for t in self.repo.list_martial_talents(self.cid) if t.name=="Expanded Tinkering")
+        self.repo.update_martial_talent(self.cid,expanded.id,expanded.name,"Tinker","Talent",catalog_key=expanded.catalog_key,catalog_category="Talent",choice="Augmentation / Modification")
+        records=self.repo.list_martial_talents(self.cid)
+        self.assertEqual(frozenset({"Augmentation","Modification"}),tinker_packages(records))
+        with self.assertRaises(ValueError):validate_tinker_package_choice("Augmentation / Computation",records)
+        self.assertIn(PHYSICAL_AUGMENTOR_KEY,{e["key"] for e in self.service.known_devices("Tinker")})
 
     def test_augmentor_choices_and_wearer_state_survive_transfer(self):
         from app.engineering_rules import PHYSICAL_AUGMENTOR_KEY

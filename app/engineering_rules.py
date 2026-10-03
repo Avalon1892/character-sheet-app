@@ -2,6 +2,26 @@
 from dataclasses import dataclass
 from math import ceil
 
+TINKER_PACKAGES = ("Augmentation","Computation","Modification","Transmission","Transportation")
+
+
+def tinker_packages(talents):
+    result=set()
+    for talent in talents:
+        if not talent.enabled or talent.sphere!="Tinker":
+            continue
+        if talent.catalog_category.casefold()=="base sphere" or talent.catalog_key=="tinker:base" or talent.catalog_key=="tinker:talent:expanded-tinkering":
+            result.update(value.strip() for value in talent.choice.split("/") if value.strip() in TINKER_PACKAGES)
+    return frozenset(result)
+
+
+def validate_tinker_package_choice(choice,talents):
+    choices=tuple(value.strip() for value in choice.split("/"))
+    if len(choices)!=2 or len(set(choices))!=2 or any(value not in TINKER_PACKAGES for value in choices):
+        raise ValueError("Choose two different Tinker packages.")
+    if set(choices)&tinker_packages(talents):
+        raise ValueError("Choose Tinker packages not already possessed.")
+
 TECH_BATTERY_KEY = "tech:gadget-talent:battery-gadget"
 TINKER_BATTERY_KEY = "tinker:battery"
 PHYSICAL_AUGMENTOR_KEY = "tinker:device:physical-augmentor"
