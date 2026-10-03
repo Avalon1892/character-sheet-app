@@ -1,8 +1,51 @@
 """Shared catalog layout and viewport-only sizing, independent of selection/rules."""
 from PySide6.QtCore import QObject, QEvent, QTimer, Qt, Slot
-from PySide6.QtWidgets import QSplitter, QHeaderView, QLabel
+from PySide6.QtWidgets import QSplitter, QHeaderView, QLabel, QStyleOptionViewItem
+from PySide6.QtGui import QColor
 from shiboken6 import isValid
 from app.ui.search_navigation import install_search_shortcut
+from app.ui.dialog_theme import DialogItemDelegate
+
+
+class TalentGroupDelegate(DialogItemDelegate):
+    """Type headings inside real rows, so keyboard navigation and counts stay intact."""
+
+    def __init__(self, table):
+        super().__init__(table, lambda: self._theme())
+
+    def _theme(self):
+        context = self.parent()
+        while context is not None and not hasattr(context, 'theme'):
+            context = context.parentWidget()
+        return getattr(context, 'theme', 'classic')
+
+    def sizeHint(self, option, index):
+        size = super().sizeHint(option, index)
+        if index.data(Qt.ItemDataRole.UserRole + 1):
+            size.setHeight(size.height() + 26)
+        return size
+
+    def paint(self, painter, option, index):
+        section = index.data(Qt.ItemDataRole.UserRole + 1)
+        if not section:
+            return super().paint(painter, option, index)
+        from app.ui.refined.theme import PALETTES
+        palette = PALETTES.get(self._theme(), PALETTES['classic'])
+        heading = option.rect.adjusted(0, 0, 0, 26 - option.rect.height())
+        painter.save()
+        painter.fillRect(heading, QColor(palette.page))
+        painter.setPen(QColor(palette.line))
+        painter.drawLine(heading.topLeft(), heading.topRight())
+        if index.column() == 1:
+            painter.setPen(QColor(palette.muted))
+            font = painter.font()
+            font.setBold(True)
+            painter.setFont(font)
+            painter.drawText(heading.adjusted(7, 0, -4, 0), Qt.AlignmentFlag.AlignVCenter, str(section))
+        painter.restore()
+        content = QStyleOptionViewItem(option)
+        content.rect.setTop(content.rect.top() + 26)
+        super().paint(painter, content, index)
 
 
 class CatalogPresentation(QObject):

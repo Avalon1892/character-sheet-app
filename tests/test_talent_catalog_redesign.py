@@ -81,3 +81,34 @@ class TalentCatalogRedesignTests(unittest.TestCase):
                 dialog.close()
                 dialog.deleteLater()
                 self.app.sendPostedEvents(None, QEvent.Type.DeferredDelete)
+
+    def test_legendary_filter_and_type_groups_preserve_real_rows(self):
+        for factory in (MartialTalentCatalogDialog, MagicTalentCatalogDialog):
+            dialog = factory([])
+            try:
+                dialog.resize(1480, 860)
+                dialog.show()
+                QTest.qWait(100)
+                left, center, right = dialog.catalog_presentation.splitter.sizes()
+                self.assertLess(left, 190)
+                self.assertLess(right, 240)
+                self.assertGreater(center, 1000)
+                total = dialog.results.rowCount()
+                dialog.include_legendary.setChecked(False)
+                self.assertLess(dialog.results.rowCount(), total)
+                previous = None
+                for row in range(dialog.results.rowCount()):
+                    item = dialog.results.item(row, 1)
+                    entry = dialog._entries_by_key[item.data(Qt.ItemDataRole.UserRole)]
+                    category = entry['category']
+                    self.assertNotIn('legendary', category.casefold())
+                    self.assertNotIn('advanced', category.casefold())
+                    self.assertEqual(category if category != previous else '', item.data(Qt.ItemDataRole.UserRole + 1))
+                    previous = category
+                dialog._clear_filters()
+                self.assertEqual(total, dialog.results.rowCount())
+                self.assertTrue(dialog.include_legendary.isChecked())
+            finally:
+                dialog.close()
+                dialog.deleteLater()
+                self.app.sendPostedEvents(None, QEvent.Type.DeferredDelete)

@@ -85,6 +85,8 @@ def dialog_stylesheet(theme):
         QDialog[talentCatalog="true"] QListWidget#catalogSelectionQueue::item:selected {{
             background: {p.selection}; color: {p.text}; }}
         QDialog[talentCatalog="true"] QPushButton#catalogQueueRemove {{ padding: 0; min-width: 0; }}
+        QDialog[talentCatalog="true"] QFrame#catalogSelectionBasket QPushButton {{
+            padding: 4px 6px; font-size: 9pt; }}
     '''
 
 

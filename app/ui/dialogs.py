@@ -1662,7 +1662,8 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
                 and str(entry["sphere"]).casefold() in self._owned_spheres
             )
         )
-        self._sorted_entries = tuple(sorted(self._entries, key=talent_entry_sort_key))
+        self._sorted_entries = tuple(sorted(self._entries, key=lambda entry: (
+            talent_category_sort_key(entry["category"]), entry["sphere"].casefold(), entry["name"].casefold())))
         self._owned_talents = tuple(owned_talents)
         self._entries_by_key = {entry["key"]: entry for entry in self._entries}
         self._owned_keys = {
@@ -1710,6 +1711,9 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
         self.available_only = QCheckBox("Available to learn")
         self.available_only.setToolTip("Show entries with no known restriction. Unverified prerequisites remain marked as unknown.")
         self.not_owned = QCheckBox("Not owned")
+        self.include_legendary = QCheckBox("Include Legendary Talents")
+        self.include_legendary.setChecked(True)
+        self.include_legendary.setToolTip("Include legendary martial talents and advanced magic talents.")
         self.source_filter = QComboBox()
         self.source_filter.addItem("All sources", "")
         for source in sorted({tag for entry in self._entries for tag in entry.get("source_tags", ())}):
@@ -1720,7 +1724,7 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
         self.result_count.setObjectName("mutedText")
         clear_filters = QPushButton("Clear Filters")
         clear_filters.clicked.connect(self._clear_filters)
-        for control in (self.include_rules, self.available_only, self.not_owned):
+        for control in (self.include_rules, self.available_only, self.not_owned, self.include_legendary):
             secondary_filters.addWidget(control)
         secondary_filters.addWidget(QLabel("Source"))
         secondary_filters.addWidget(self.source_filter)
@@ -1814,12 +1818,16 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
             ),
         )
         self.selection_basket.set_compact(True)
+        self.sphere_list.setMinimumWidth(120)
+        self.selection_basket.setMinimumWidth(180)
+        from app.ui.catalog_presentation import TalentGroupDelegate
+        self.results.setItemDelegate(TalentGroupDelegate(self.results))
         self.selection_basket.changed.connect(self._update_queue_markers)
         self._configure_catalog_table()
-        browser.setStretchFactor(0, 16)
-        browser.setStretchFactor(1, 62)
-        browser.setStretchFactor(2, 22)
-        browser.setSizes([230, 890, 315])
+        browser.setStretchFactor(0, 0)
+        browser.setStretchFactor(1, 1)
+        browser.setStretchFactor(2, 0)
+        browser.setSizes([150, 1080, 210])
         layout.addWidget(browser, 1)
 
         actions = QHBoxLayout()
@@ -1833,7 +1841,7 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
         self.add_button.setObjectName("primaryButton")
         self.add_button.clicked.connect(self._accept_selected)
         self.add_button.setEnabled(False)
-        basket_actions = QHBoxLayout()
+        basket_actions = QVBoxLayout()
         basket_actions.addWidget(cancel_button)
         basket_actions.addWidget(self.add_button, 1)
         self.selection_basket.layout().addLayout(basket_actions)
@@ -1844,7 +1852,7 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
         self.category.currentIndexChanged.connect(self._refresh_results)
         self.automation_filter.currentIndexChanged.connect(self._refresh_results)
         self.source_filter.currentIndexChanged.connect(self._refresh_results)
-        for control in (self.include_rules, self.available_only, self.not_owned):
+        for control in (self.include_rules, self.available_only, self.not_owned, self.include_legendary):
             control.toggled.connect(self._refresh_results)
         self.sphere_list.currentItemChanged.connect(self._refresh_results)
         self.results.itemSelectionChanged.connect(self._show_selected_details)
@@ -1866,7 +1874,7 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
 
     def _clear_filters(self) -> None:
         controls = (self.search, self.category, self.automation_filter, self.source_filter,
-                    self.include_rules, self.available_only, self.not_owned, self.sphere_list)
+                    self.include_rules, self.available_only, self.not_owned, self.include_legendary, self.sphere_list)
         for control in controls:
             control.blockSignals(True)
         self.search.clear()
@@ -1874,6 +1882,7 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
             combo.setCurrentIndex(0)
         for check in (self.include_rules, self.available_only, self.not_owned):
             check.setChecked(False)
+        self.include_legendary.setChecked(True)
         self.sphere_list.setCurrentRow(0)
         for control in controls:
             control.blockSignals(False)
@@ -1935,6 +1944,9 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
         counts: dict[str, int] = {}
         matches = []
         for entry in self._sorted_entries:
+            if not self.include_legendary.isChecked() and any(
+                word in entry["category"].casefold() for word in ("legendary", "advanced")):
+                continue
             if category and entry["category"] != category:
                 continue
             entry_behavior = self._behavior(entry)
@@ -1981,7 +1993,10 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
         self.result_count.setText(f"{len(matches)} matching talents")
         self.results.setUpdatesEnabled(False)
         self.results.setRowCount(0)
+        previous_category = None
         for entry in matches:
+            section = entry["category"] if entry["category"] != previous_category else ""
+            previous_category = entry["category"]
             entry_behavior = self._behavior(entry)
             row = self.results.rowCount()
             self.results.insertRow(row)
@@ -2010,6 +2025,7 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
             for column, value in enumerate(values):
                 cell = QTableWidgetItem(value)
                 cell.setData(Qt.ItemDataRole.UserRole, entry["key"])
+                cell.setData(Qt.ItemDataRole.UserRole + 1, section)
                 cell.setToolTip(entry_behavior if column == 4 else restriction)
                 self.results.setItem(row, column, cell)
         self.results.setUpdatesEnabled(True)
