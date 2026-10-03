@@ -31,8 +31,9 @@ class RefinedSheetWidget(CharacterSheetWidget):
         self.setObjectName("refinedSheet")
         self.setAttribute(Qt.WidgetAttribute.WA_StyledBackground, True)
         self.custom_sections["sphere_statistics"]=self.sphere_statistics_section
-        from .character_panels import combine_ability_advancement, create_equipment_figure_section
+        from .character_panels import combine_ability_advancement, create_equipment_figure_section, separate_class_levels
         combine_ability_advancement(self)
+        separate_class_levels(self)
         create_equipment_figure_section(self)
         from .class_progression import GroupedTabBar, ClassProgressionPage
         # Qt requires an empty tab widget when replacing its tab bar; otherwise
@@ -64,6 +65,13 @@ class RefinedSheetWidget(CharacterSheetWidget):
 
     def _classic_statistics_section(self):
         return build_statistics(self)
+
+    def _focus_advancement_section(self, page, section):
+        # Blocks may live on a different page after splitting or customization.
+        for scroll, canvas, _ in self.refined_pages.values():
+            if canvas.isAncestorOf(section):
+                return super()._focus_advancement_section(scroll, section)
+        return super()._focus_advancement_section(page, section)
 
     @staticmethod
     def _section_title(text):

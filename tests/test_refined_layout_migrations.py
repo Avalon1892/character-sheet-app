@@ -8,7 +8,7 @@ from pathlib import Path
 from app.database import CharacterRepository
 from app.presentation_storage import StyleBlockRepository
 from app.building_blocks.registry import BlockRegistry, register_builtin_blocks
-from app.ui.refined.layout_migrations import migrate_skills_reference_layout
+from app.ui.refined.layout_migrations import migrate_skills_reference_layout, migrate_character_page_split
 
 
 class RefinedLayoutMigrationTests(unittest.TestCase):
@@ -47,6 +47,49 @@ class RefinedLayoutMigrationTests(unittest.TestCase):
         before=self.repo.sqlite_connection.total_changes
         self.migrate()
         self.assertEqual(before,self.repo.sqlite_connection.total_changes)
+
+    def test_character_split_moves_defaults_but_preserves_custom_blocks(self):
+        self.blocks.default_tabs += (("build","Character"),("advancement","Advancement"),
+                                    ("traditions_casting","Traditions & Casting"))
+        registry=BlockRegistry()
+        for definition in register_builtin_blocks().all():
+            if definition.section_key in ("base_abilities","traditions","custom_trackers","proficiencies"):
+                registry.register(replace(definition,default_tab="build",default_visible=True))
+        self.blocks.ensure_character(self.cid,registry)
+        original={i.template_snapshot["section_key"]:i for i in self.blocks.list_instances(self.cid)}
+        self.blocks.move_instance(original["proficiencies"].id,"core")
+        migrate_character_page_split(self.blocks,self.cid,{})
+        result={i.template_snapshot["section_key"]:i for i in self.blocks.list_instances(self.cid)}
+        self.assertEqual("advancement",result["base_abilities"].tab_key)
+        self.assertEqual("traditions_casting",result["traditions"].tab_key)
+        self.assertEqual("core",result["proficiencies"].tab_key)
+        self.assertFalse(result["custom_trackers"].visible)
+        self.assertEqual(original["custom_trackers"].id,result["custom_trackers"].id)
+        before=self.repo.sqlite_connection.total_changes
+        migrate_character_page_split(self.blocks,self.cid,{})
+        self.assertEqual(before,self.repo.sqlite_connection.total_changes)
+
+    def test_character_split_keeps_saved_geometry_and_hidden_state(self):
+        self.blocks.default_tabs += (("build","Character"),)
+        registry=BlockRegistry()
+        definition=next(d for d in register_builtin_blocks().all()
+                        if d.section_key=="base_abilities")
+        registry.register(replace(definition,default_tab="build",default_visible=True))
+        self.blocks.ensure_character(self.cid,registry)
+        instance=next(i for i in self.blocks.list_instances(self.cid)
+                      if i.template_snapshot["section_key"]=="base_abilities")
+        for state in ({"layout":{"freeform":json.dumps({"base_abilities":{"x":90}})}},
+                      {"layout":{"sizes/base_abilities":"700,400"}}):
+            with self.subTest(state=state):
+                self.blocks.connection.execute("DELETE FROM sheet_presentation_migrations")
+                migrate_character_page_split(self.blocks,self.cid,state)
+                self.assertEqual(instance,next(i for i in self.blocks.list_instances(self.cid) if i.id==instance.id))
+        self.blocks.connection.execute("DELETE FROM sheet_presentation_migrations")
+        self.blocks.set_instance_visible(instance.id,False)
+        migrate_character_page_split(self.blocks,self.cid,{})
+        hidden=next(i for i in self.blocks.list_instances(self.cid) if i.id==instance.id)
+        self.assertFalse(hidden.visible)
+        self.assertEqual("build",hidden.tab_key)
 
     def test_manual_geometry_on_either_panel_retains_previous_default(self):
         for key in ("skills","special_abilities"):

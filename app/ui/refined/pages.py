@@ -6,7 +6,9 @@ from .components import ResponsiveRow
 
 DEFAULT_TABS = (("core","Overview"),("skills","Skills and Abilities"),("abilities","Martial"),
                 ("magic","Magic"),("inventory","Equipment"),("build","Character"),
-                ("progression","Class Progression"),("companion","Animal Companion"),("crafting","Crafting"))
+                ("progression","Class Progression"),("advancement","Advancement"),
+                ("traditions_casting","Traditions & Casting"),
+                ("companion","Animal Companion"),("crafting","Crafting"))
 
 PLACEMENTS = {
     "progression": (),
@@ -16,7 +18,9 @@ PLACEMENTS = {
     "abilities": ("martial_talents","moldable_talents"),
     "magic": ("casting_play","spell_level_overview","spells_known","spells_prepared","magic_talents","magic_ranges","sphere_statistics"),
     "inventory": ("equipment","worn_items","equipment_figure","load","currency"),
-    "build": ("overview","advancement_budgets","base_abilities","favored_class_bonuses","proficiencies","custom_trackers","traditional_casting","casting_profile","traditions","optional_traditions","sphere_drawbacks"),
+    "build": ("overview",),
+    "advancement": ("class_levels","base_abilities","advancement_budgets","favored_class_bonuses","proficiencies"),
+    "traditions_casting": ("traditions","optional_traditions","traditional_casting","casting_profile","sphere_drawbacks"),
     "companion": ("animal_identity","animal_statistics","animal_training"),
 }
 
@@ -35,7 +39,7 @@ def compose(sheet):
         canvas=getattr(sheet,attr+"_canvas")
         clear_layout(canvas.layout())
         sheet.refined_pages[key]=(scroll,canvas,canvas.layout())
-    for key in ("skills","abilities","progression"):
+    for key in ("skills","abilities","progression","advancement","traditions_casting"):
         sheet.refined_pages[key]=sheet_page("refined"+key.title())
     # Keep unmapped alternatives available in Building Blocks, not top-level windows.
     sheet.refined_hidden = QWidget(sheet)

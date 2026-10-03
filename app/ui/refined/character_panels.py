@@ -120,3 +120,24 @@ def refresh_equipment_figure(sheet):
         sheet.refined_equipment_figure = panel
     else:
         panel.refresh()
+
+
+def separate_class_levels(sheet):
+    """Reuse the existing class controls and signals in an independent block."""
+    identity = sheet.overview_section.layout()
+    section = QWidget()
+    section.setObjectName("sheetSection")
+    layout = QVBoxLayout(section)
+    layout.setContentsMargins(9, 9, 9, 9)
+    start = next(i for i in range(identity.count())
+                 if identity.itemAt(i).layout() is not None
+                 and identity.itemAt(i).layout().indexOf(sheet.level_summary) >= 0)
+    while identity.count() > start:
+        item = identity.takeAt(start)
+        if item.widget() is not None:
+            layout.addWidget(item.widget())
+        elif item.layout() is not None:
+            layout.addLayout(item.layout())
+        else:
+            layout.addItem(item)
+    sheet.custom_sections["class_levels"] = section

@@ -4,6 +4,58 @@ from __future__ import annotations
 import json
 
 
+def migrate_character_page_split(presentation, character_id, state):
+    """Move factory blocks only; keep edited layouts and tracker data intact."""
+    from .pages import PLACEMENTS
+    connection = presentation.connection
+    key = "character-page-split-v1"
+    if connection.execute(
+        "SELECT 1 FROM sheet_presentation_migrations WHERE character_id=? AND migration_key=?",
+        (character_id, key),
+    ).fetchone():
+        return
+    layout = state.get("layout", {})
+    try:
+        freeform = json.loads(layout.get("freeform", "{}") or "{}")
+        order = json.loads(layout.get("layout", "{}") or "{}")
+    except (TypeError, ValueError):
+        return
+    destinations = {section: page for page in ("advancement", "traditions_casting")
+                    for section in PLACEMENTS[page]}
+    with connection.batch():
+        tabs = [tab.key for tab in presentation.list_tabs(character_id)]
+        if "progression" in tabs:
+            added = [page for page in ("advancement", "traditions_casting") if page in tabs]
+            tabs = [page for page in tabs if page not in added]
+            index = tabs.index("progression") + 1
+            tabs[index:index] = added
+            presentation.reorder_tabs(character_id, tabs)
+        for instance in presentation.list_instances(character_id):
+            snapshot = instance.template_snapshot
+            section = snapshot.get("section_key")
+            if (section not in destinations and section != "custom_trackers"):
+                continue
+            if (order or not isinstance(freeform, dict) or section in freeform
+                    or layout.get("sizes/" + section)
+                    or instance.tab_key != "build" or snapshot.get("default_tab") != "build"
+                    or not instance.visible or (instance.x, instance.y) != (24, 24)
+                    or (instance.width, instance.height) != (snapshot.get("width"), snapshot.get("height"))
+                    or presentation.list_cell_overrides(instance.id)):
+                continue
+            if section == "custom_trackers":
+                presentation.set_instance_visible(instance.id, False)
+            else:
+                destination = destinations[section]
+                connection.execute(
+                    "UPDATE sheet_block_instances SET tab_key=?,template_snapshot_json=? WHERE id=?",
+                    (destination, json.dumps({**snapshot, "default_tab": destination}), instance.id),
+                )
+        connection.execute(
+            "INSERT INTO sheet_presentation_migrations (character_id,migration_key) VALUES (?,?)",
+            (character_id, key),
+        )
+
+
 SKILLS_REFERENCE_LAYOUT = "skills-reference-columns-v1"
 
 

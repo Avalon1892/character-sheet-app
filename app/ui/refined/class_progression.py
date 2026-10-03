@@ -50,6 +50,7 @@ class GroupedTabBar(QTabBar):
                 continue
             option = QStyleOptionTab()
             self.initStyleOption(option, index)
+            option.text = option.text.replace("&", "&&")
             if self.tabData(index) in ("build", "crafting"):
                 option.rect.adjust(self.gap, 0, 0, 0)
             painter.drawControl(QStyle.ControlElement.CE_TabBarTab, option)
