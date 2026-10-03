@@ -657,7 +657,7 @@ class CharacterCalculationService:
                 result.setdefault(target, []).extend(modifiers)
         for device in self.repository.list_engineering_devices(self.character_id):
             bonus=physical_augmentor_bonus(device)
-            if not bonus or device["configuration"] not in {"strength","dexterity","constitution"}:
+            if not bonus:
                 continue
             for definition in character_skill_definitions(self.repository,self.character_id):
                 skill_state=state.skills.get(definition.key)

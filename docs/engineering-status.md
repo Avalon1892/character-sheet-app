@@ -24,6 +24,7 @@ Updated: 2026-10-03. This is an implementation ledger, not a claim of complete a
 - Augmentation-package Physical Augmentor crafting with a selected Strength/Dexterity/Constitution configuration and explicit wearer state. Active, worn augmentors contribute typed competence bonuses to matching skill checks through shared calculations, including skill ability overrides and broken effective levels. Ability scores are not increased.
 - Jet-boosters: creation-time flight/aquatic choice, normal/slow-burn/overdrive modes, atomic battery-first payment, paid durations, live movement/maneuverability, light-load restrictions and equipment-slot conflicts. Explicit game-round advancement expires timed functions; eight-hour rest advances those timers without recharge or maintenance.
 - First Tech gadget choices exclude routine talents.
+- Cognitive Set unlocks a separate Mental Augmentor recipe with Intelligence/Wisdom/Charisma configuration and active/worn competence skill bonuses. Brain Jack/storage, ability-check rolls and battery rerolls remain pending.
 
 ## Partial support / manual inputs
 
@@ -228,7 +229,7 @@ Every entry remains available through existing catalogs/Codex. “Roster” mean
 | Tinker | Armor Modifications (gizmo, modification) | Gizmo Talent | Roster; device-specific effects not automated |
 | Tinker | Arsenal Set (gizmo) | Gizmo Talent | Roster; device-specific effects not automated |
 | Tinker | Aviation Set (gizmo) | Gizmo Talent | Roster; device-specific effects not automated |
-| Tinker | Cognitive Set (gizmo) [utility] | Gizmo Talent | Roster; device-specific effects not automated |
+| Tinker | Cognitive Set (gizmo) [utility] | Gizmo Talent | Mental Augmentor configuration and mental skill bonuses automated; remaining functions pending |
 | Tinker | Defensive Set (gizmo) | Gizmo Talent | Roster; device-specific effects not automated |
 | Tinker | Disruption Set (gizmo) | Gizmo Talent | Roster; device-specific effects not automated |
 | Tinker | Emergency Gear (gizmo) [utility] | Gizmo Talent | Roster; device-specific effects not automated |

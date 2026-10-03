@@ -228,6 +228,22 @@ class EngineeringTests(unittest.TestCase):
         self.service.apply_to_character(device,False)
         self.assertEqual(baseline,CharacterCalculationService(self.repo,self.cid).skill_result("acrobatics").total)
 
+    def test_mental_augmentor_requires_cognitive_set_and_applies_mental_skills(self):
+        from app.engineering_rules import MENTAL_AUGMENTOR_KEY
+        from app.services.character_calculations import CharacterCalculationService
+        with self.assertRaises(ValueError):self.service.create("Tinker",MENTAL_AUGMENTOR_KEY,3,configuration="wisdom")
+        entry=next(e for e in martial_entries("Tinker") if e["key"]=="tinker:gizmo-talent:cognitive-set-gizmo-utility")
+        self.add("Tinker",entry["name"],entry["key"],entry["category"])
+        with self.assertRaises(ValueError):self.service.create("Tinker",MENTAL_AUGMENTOR_KEY,3,configuration="dexterity")
+        device=self.service.create("Tinker",MENTAL_AUGMENTOR_KEY,3,configuration="wisdom")
+        before=CharacterCalculationService(self.repo,self.cid).skill_result("perception").total
+        score=CharacterCalculationService(self.repo,self.cid).ability_result("wisdom").total
+        self.service.change_state(device,"active");self.service.apply_to_character(device,True)
+        self.assertEqual(before+3,CharacterCalculationService(self.repo,self.cid).skill_result("perception").total)
+        self.assertEqual(score,CharacterCalculationService(self.repo,self.cid).ability_result("wisdom").total)
+        self.service.change_state(device,"inactive")
+        self.assertEqual(before,CharacterCalculationService(self.repo,self.cid).skill_result("perception").total)
+
     def test_augmentor_choices_and_wearer_state_survive_transfer(self):
         from app.engineering_rules import PHYSICAL_AUGMENTOR_KEY
         base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")

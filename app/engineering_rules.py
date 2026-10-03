@@ -5,6 +5,11 @@ from math import ceil
 TECH_BATTERY_KEY = "tech:gadget-talent:battery-gadget"
 TINKER_BATTERY_KEY = "tinker:battery"
 PHYSICAL_AUGMENTOR_KEY = "tinker:device:physical-augmentor"
+MENTAL_AUGMENTOR_KEY = "tinker:device:mental-augmentor"
+AUGMENTOR_ABILITIES = {
+    PHYSICAL_AUGMENTOR_KEY: ("strength","dexterity","constitution"),
+    MENTAL_AUGMENTOR_KEY: ("intelligence","wisdom","charisma"),
+}
 JET_BOOSTERS_KEY = "tech:gadget-talent:jet-boosters-drone-gadget"
 # cost, paid duration in rounds, speed, flight maneuverability
 JET_MODES = {"normal":(1,1,60,"Poor"),"slow_burn":(1,2400,30,"Perfect"),
@@ -79,7 +84,8 @@ def device_condition(device):
 
 
 def physical_augmentor_bonus(device):
-    if (device["catalog_key"]!=PHYSICAL_AUGMENTOR_KEY or device["sphere"]!="Tinker"
+    if (device["catalog_key"] not in AUGMENTOR_ABILITIES or device["sphere"]!="Tinker"
+            or device.get("configuration") not in AUGMENTOR_ABILITIES[device["catalog_key"]]
             or device["state"]!="active" or not device.get("applied_to_character")
             or device_condition(device)["destroyed"]):
         return 0

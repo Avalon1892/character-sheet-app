@@ -5,7 +5,7 @@ from PySide6.QtWidgets import (QDialog,QVBoxLayout,QHBoxLayout,QComboBox,QLabel,
     QPushButton,QTableWidget,QTableWidgetItem,QHeaderView,QAbstractItemView,
     QSpinBox,QCheckBox,QTextBrowser,QSplitter,QWidget,QMessageBox,QInputDialog)
 from app.services.engineering import EngineeringService
-from app.engineering_rules import occupied_limit,is_battery,TECH_BATTERY_KEY,tech_battery_capacity,device_condition,PHYSICAL_AUGMENTOR_KEY,JET_BOOSTERS_KEY,JET_MODES
+from app.engineering_rules import occupied_limit,is_battery,TECH_BATTERY_KEY,tech_battery_capacity,device_condition,PHYSICAL_AUGMENTOR_KEY,AUGMENTOR_ABILITIES,JET_BOOSTERS_KEY,JET_MODES
 from app.content import martial_entry
 from app.ui.dialog_theme import dialog_stylesheet
 
@@ -197,10 +197,10 @@ class EngineeringDialog(QDialog):
         key=self.known.currentData()
         previous=self.configuration.currentData()
         self.configuration.clear()
-        for option in (("flight","aquatic") if key==JET_BOOSTERS_KEY else ("strength","dexterity","constitution")):
+        for option in (("flight","aquatic") if key==JET_BOOSTERS_KEY else AUGMENTOR_ABILITIES.get(key,())):
             self.configuration.addItem(option.title(),option)
         if self.configuration.findData(previous)>=0:self.configuration.setCurrentIndex(self.configuration.findData(previous))
-        self.configuration.setVisible(key in {PHYSICAL_AUGMENTOR_KEY,JET_BOOSTERS_KEY})
+        self.configuration.setVisible(key in AUGMENTOR_ABILITIES or key==JET_BOOSTERS_KEY)
         entry=next((e for e in self.service().known_devices(self.system.currentText()) if e["key"]==self.known.currentData()),None)
         self.show_details(entry)
 
@@ -208,7 +208,7 @@ class EngineeringDialog(QDialog):
         self.details.setHtml("" if entry is None else "<h2>"+escape(entry["name"])+"</h2><p>"+
                              escape(entry.get("description","")).replace("\n","<br>")+"</p><p><b>"+
                              ("Selected-ability skill bonuses are automatic when active and worn. Ability checks and battery-use rerolls are currently resolved manually."
-                              if entry.get("key")==PHYSICAL_AUGMENTOR_KEY else
+                              if entry.get("key") in AUGMENTOR_ABILITIES else
                               "Flight/swim speed, maneuverability, charge costs and paid durations are automatic. Flight slow burn is limited to 3 feet above the surface; height and hover/exhaust effects require manual resolution."
                               if entry.get("key")==JET_BOOSTERS_KEY else "Device-specific effects are reference-only in this batch.")+"</b></p>")
 
@@ -216,7 +216,7 @@ class EngineeringDialog(QDialog):
         device=next((d for d in self.service().devices(self.system.currentText()) if d["id"]==self.selected()),None)
         self.damage_button.setEnabled(bool(device and device["state"]!="abandoned"))
         self.repair_button.setEnabled(bool(device and device["state"]!="abandoned" and device["damage"] and self.kit.isChecked()))
-        self.applied.setEnabled(bool(device and device["catalog_key"]==PHYSICAL_AUGMENTOR_KEY and device["state"]!="abandoned"))
+        self.applied.setEnabled(bool(device and device["catalog_key"] in AUGMENTOR_ABILITIES and device["state"]!="abandoned"))
         self.applied.setChecked(bool(device and device["applied_to_character"]))
         jet=bool(device and device["catalog_key"]==JET_BOOSTERS_KEY and device["state"]!="abandoned" and not device_condition(device)["destroyed"])
         for button in self.jet_buttons:button.setEnabled(jet and device["effect_rounds"]==0)
@@ -250,7 +250,7 @@ class EngineeringDialog(QDialog):
         self.perform(lambda:self.service().create(sphere,self.known.currentData(),self.modifier.value(),
                      minor=self.minor.isChecked() if sphere=="Tinker" else False,
                      advanced=self.advanced.value() if sphere=="Tinker" else 0,
-                     configuration=self.configuration.currentData() if self.known.currentData() in {PHYSICAL_AUGMENTOR_KEY,JET_BOOSTERS_KEY} else ""))
+                     configuration=self.configuration.currentData() if self.known.currentData() in AUGMENTOR_ABILITIES or self.known.currentData()==JET_BOOSTERS_KEY else ""))
 
     def load_charges(self):
         device=next((d for d in self.service().devices("Tech") if d["id"]==self.selected()),None)

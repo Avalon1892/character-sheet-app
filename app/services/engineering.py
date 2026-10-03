@@ -2,7 +2,7 @@
 from app.content import martial_entry
 from app.engineering_rules import (engineering_limits, occupied_limit, device_statistics,
                                    is_battery, TECH_BATTERY_KEY, tech_battery_capacity,device_condition,
-                                   PHYSICAL_AUGMENTOR_KEY,JET_BOOSTERS_KEY,JET_MODES)
+                                   PHYSICAL_AUGMENTOR_KEY,MENTAL_AUGMENTOR_KEY,AUGMENTOR_ABILITIES,JET_BOOSTERS_KEY,JET_MODES)
 from app.services.character_calculations import CharacterCalculationService
 from app.exploitant_rules import effective_martial_talents
 
@@ -33,6 +33,10 @@ class EngineeringService:
                 entries[PHYSICAL_AUGMENTOR_KEY]={"key":PHYSICAL_AUGMENTOR_KEY,"name":"Physical Augmentor (gizmo)",
                     "description":"Choose Strength, Dexterity or Constitution. Grants a competence bonus to checks based on that ability: 2 + 1 per 4 effective gizmo levels. Deplete an attached battery before a benefiting check to roll twice and take the higher result.",
                     "source_url":"https://spheresofpower.wikidot.com/tinker"}
+            if any(t.catalog_key=="tinker:gizmo-talent:cognitive-set-gizmo-utility" for t in self.records(sphere)):
+                entries[MENTAL_AUGMENTOR_KEY]={"key":MENTAL_AUGMENTOR_KEY,"name":"Mental Augmentor (gizmo)",
+                    "description":"Choose Intelligence, Wisdom or Charisma. Functions as a physical augmentor: competence bonus to matching ability and skill checks, 2 + 1 per 4 effective gizmo levels. Its battery use rolls a benefiting check twice and takes the higher result.",
+                    "source_url":"https://spheresofpower.wikidot.com/tinker"}
         return tuple(sorted(entries.values(), key=lambda e:e["name"].casefold()))
 
     def available(self, sphere):
@@ -60,8 +64,8 @@ class EngineeringService:
             raise ValueError("Learn the device's talent first.")
         if sphere == "Tech" and (minor or advanced):
             raise ValueError("Minor and advanced gizmo rules belong to Tinker, not Tech.")
-        if key==PHYSICAL_AUGMENTOR_KEY and configuration not in {"strength","dexterity","constitution"}:
-            raise ValueError("Choose a physical ability for the augmentor.")
+        if key in AUGMENTOR_ABILITIES and configuration not in AUGMENTOR_ABILITIES[key]:
+            raise ValueError("Choose an appropriate ability for the augmentor.")
         if key==JET_BOOSTERS_KEY and configuration not in {"flight","aquatic"}:
             raise ValueError("Choose flight or aquatic boosters at creation.")
         ranks = CharacterCalculationService(self.repository,self.character_id).effective_skill_ranks().get(self.skill_key,0)
@@ -77,7 +81,7 @@ class EngineeringService:
 
     def apply_to_character(self,device_id,enabled):
         device=next((d for d in self.repository.list_engineering_devices(self.character_id) if d["id"]==device_id),None)
-        if not device or device["catalog_key"]!=PHYSICAL_AUGMENTOR_KEY:
+        if not device or device["catalog_key"] not in AUGMENTOR_ABILITIES:
             raise ValueError("This device does not yet support automatic wearer effects.")
         if enabled and (device["state"]!="active" or device_condition(device)["destroyed"] or not self.available(device["sphere"])):
             raise ValueError("Activate a functioning device before applying it to this character.")
