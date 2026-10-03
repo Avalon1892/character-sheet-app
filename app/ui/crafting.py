@@ -242,10 +242,16 @@ class CraftingPanel(QWidget):
         self.layout_.addWidget(sheet._section_title('CRAFTING'))
         self.mundane = QPushButton('Plan mundane crafting'); self.mundane.clicked.connect(lambda:self.open_catalog())
         self.layout_.addWidget(self.mundane)
+        self.engineering = QPushButton('Open Engineering Workbench — Tech & Tinker')
+        self.engineering.clicked.connect(self.open_engineering)
+        self.layout_.addWidget(self.engineering)
         self.magic = QWidget(); self.magic_layout = QVBoxLayout(self.magic); self.layout_.addWidget(self.magic)
 
     def refresh(self):
         if self.sheet.character_id is None: return
+        from app.services.engineering import EngineeringService
+        service=EngineeringService(self.sheet.repository,self.sheet.character_id)
+        self.engineering.setVisible(any(service.available(s) for s in ('Tech','Tinker')))
         feats = CraftingService(self.sheet.repository, self.sheet.character_id).available_feats()
         if feats == self.signature: return
         self.signature = feats
@@ -263,3 +269,8 @@ class CraftingPanel(QWidget):
     def open_catalog(self, feat=None):
         if self.sheet.character_id is not None:
             CraftingCatalogDialog(self.sheet.repository, self.sheet.character_id, feat, self).exec()
+
+    def open_engineering(self):
+        from app.ui.engineering import EngineeringDialog
+        if self.sheet.character_id is not None:
+            EngineeringDialog(self.sheet).exec()

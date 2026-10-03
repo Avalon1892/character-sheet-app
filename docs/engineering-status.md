@@ -1,0 +1,281 @@
+# Tech & Tinker implementation status
+
+Updated: 2026-10-03. This is an implementation ledger, not a claim of complete automation.
+
+## Implemented in this batch
+
+- Conditional Engineering Workbench on the Crafting page for characters with an active Tech or Tinker base sphere.
+- Character-owned, persistent device roster with stable catalog provenance.
+- Additive SQLite storage; existing saved characters remain compatible.
+- Device creation from currently learned gadget/gizmo talents; Tinker base sphere also unlocks batteries.
+- Basic device limits, repeatable Extra Gadgets and Efficient Maintenance bonuses.
+- Minor gizmo grouping and additive advanced increases. Selecting those flags is manual: the workbench does not yet validate whether an individual device qualifies.
+- Creation-time level and practitioner-modifier snapshots; baseline HP, hardness, saves and DC displayed. Specific device exceptions are not applied.
+- Activate, deactivate, deplete and confirmed irreversible abandonment.
+- Tinker batteries cannot be deactivated, depletion still uses a limit slot, maintenance restores depleted devices, abandoned devices cannot be restored.
+- Tinker batteries can attach to owned non-battery gizmos, multiple batteries can be depleted atomically, and personal battery uses enforce minimum battery level. Battery costs are selected manually; individual talent costs and reload-time reductions are not automated. Import/export remaps battery host identities.
+- Tech pool begins empty, recharges by the associated-rank rule, spends without going negative, transfers charges atomically between pool and devices.
+- Charges allocated to regular gadgets remain counted against the total pool maximum.
+- Rest preserves Tech charges and does not silently maintain Tinker batteries.
+- Device and resource import/export with ownership checks.
+- First Tech gadget choices exclude routine talents.
+
+## Partial support / manual inputs
+
+- Associated skill defaults to the existing shared Craft rank provider. Alternative associated skills can be selected in the workbench, but tradition-specific skill-rank grants and skill specialties are not completely automated.
+- Practitioner modifier is explicitly entered at creation, not automatically resolved from every class/archetype/tradition.
+- Crafting/maintenance duration and batch allowance are calculated and displayed. No campaign clock or crafting session ledger advances automatically.
+- Base package grants can include multiple gizmo types within one talent. The current roster picks the talent entry, not each of its individual functions.
+- Current talent validation still relies on the existing character selection system.
+- Workbench maxima are live calculated. The reusable Tech tracker maximum is refreshed when changing pool charges, not on every character edit.
+- Losing a base sphere prevents new crafting/resource use, but the saved roster is retained for review rather than deleted.
+- Device baseline statistics are frozen at creation. This is intentional for Tinker; Tech device-specific scaling and later upgrades need further verification.
+
+## Still missing
+
+1. Function-level recipes and configurations for every gadget/gizmo talent and base package.
+2. Automatic equipment/attack/AC/save/movement/skill modifiers from installed and activated devices.
+3. Tech batteries and their separate charge-storage exemption. Their construction is deliberately blocked instead of using incorrect ordinary-device behavior.
+4. Augment/graft slots, installation checks, incompatibilities and polymorph suppression.
+5. Drone and mechanoid stat blocks, upgrades, piloting, innate devices and rote functions.
+6. AI stat blocks, commands, routines, hosts and installation.
+7. Accessories, combined devices, accommodation/secondary-function composition.
+8. Device damage/sundering, current HP, repair, scavenging and detailed upkeep.
+9. Timed activation, duration, expiration and temporary charges.
+10. Project construction costs/times and technical-item creation feat integration.
+11. Tinker tradition restrictions/boons, optional variants and skill substitutions.
+12. Class/archetype-specific personal gizmos and personal battery-use requirements.
+13. Prodigy engineering interactions: effective-level boosts, temporary batteries and their expiry.
+14. Formula references and direct Martial Book actions for individual saved devices.
+15. Complete rules-safe validation of minor/advanced/exempt devices and alternate construction sources.
+16. Automatic handling of all sphere drawbacks and interactions with other spheres.
+17. Current website completeness verification. The table below describes bundled entries only.
+18. Complete isolated regression suite and packaged-runtime verification for this batch.
+
+## Validation
+
+74 focused tests and two theme subtests passed across engineering, database, sphere choices, crafting, skill ranks, recovery, Codex and import/export. The full isolated suite was not run; no assertion is made about its current baseline. Actual workbench renders were inspected in parchment and dark themes.
+
+## Verified rule sources
+
+- [Tech](https://spheresofpower.wikidot.com/tech)
+- [Tinker](https://spheresofpower.wikidot.com/tinker)
+- [Using Tinker Sphere](https://spheresofpower.wikidot.com/using-tinker-sphere)
+- [Mastering Gizmos](https://spheresofpower.wikidot.com/mastering-gizmos)
+
+## Bundled entry ledger
+
+Every entry remains available through existing catalogs/Codex. “Roster” means lifecycle tracking only, not automatic effects.
+
+| Sphere | Entry | Category | Functional status |
+| --- | --- | --- | --- |
+| Tech | Tech Sphere | Base Sphere | Basic workbench access and calculations |
+| Tech | Alternate Element Pack (accessory, gadget) | Accessory Talent | Roster; device-specific effects not automated |
+| Tech | Chameleon Suit (gadget, accessory) | Accessory Talent | Roster; device-specific effects not automated |
+| Tech | Control Harness (accessory, drone, gadget, signal) | Accessory Talent | Roster; device-specific effects not automated |
+| Tech | Dash Engine (accessory, augment, drone, gadget) | Accessory Talent | Roster; device-specific effects not automated |
+| Tech | Disarmer (accessory, gadget) | Accessory Talent | Roster; device-specific effects not automated |
+| Tech | Homing Pack (accessory, gadget) | Accessory Talent | Roster; device-specific effects not automated |
+| Tech | Hookshot (accessory, gadget) | Accessory Talent | Roster; device-specific effects not automated |
+| Tech | Integrated Armory (accessory, gadget) | Accessory Talent | Roster; device-specific effects not automated |
+| Tech | Internal Tool (accessory, augment, drone, gadget) | Accessory Talent | Roster; device-specific effects not automated |
+| Tech | Laser Pack (accessory, gadget) | Accessory Talent | Roster; device-specific effects not automated |
+| Tech | Misfire Manager (accessory, gadget) | Accessory Talent | Roster; device-specific effects not automated |
+| Tech | Mobile Armor (accessory, gadget) | Accessory Talent | Roster; device-specific effects not automated |
+| Tech | Pressure Mechanism (accessory, augment, gadget) | Accessory Talent | Roster; device-specific effects not automated |
+| Tech | Range Amplifier (accessory, gadget) | Accessory Talent | Roster; device-specific effects not automated |
+| Tech | Sniper Scope (accessory, augment, gadget) | Accessory Talent | Roster; device-specific effects not automated |
+| Tech | Speed Lever (accessory, gadget) | Accessory Talent | Roster; device-specific effects not automated |
+| Tech | Superior Joints (gadget, accessory) | Accessory Talent | Roster; device-specific effects not automated |
+| Tech | Weapon Upgrade (accessory, gadget) | Accessory Talent | Roster; device-specific effects not automated |
+| Tech | Alternative-Craft | Drawback | Reference / existing selection only |
+| Tech | Environmental Fuel Source | Drawback | Reference / existing selection only |
+| Tech | Expensive Fuel Source | Drawback | Reference / existing selection only |
+| Tech | Expensive Gadgets | Drawback | Reference / existing selection only |
+| Tech | Explosive Gadgets | Drawback | Reference / existing selection only |
+| Tech | Extended Charge | Drawback | Reference / existing selection only |
+| Tech | Generated Power | Drawback | Reference / existing selection only |
+| Tech | Imbued Gadgets | Drawback | Reference / existing selection only |
+| Tech | Incomplete Knowledge | Drawback | Reference / existing selection only |
+| Tech | Mana Engineering | Drawback | Reference / existing selection only |
+| Tech | Obvious Activation | Drawback | Reference / existing selection only |
+| Tech | Specific Drone | Drawback | Reference / existing selection only |
+| Tech | Uninsulated | Drawback | Reference / existing selection only |
+| Tech | Unsecured | Drawback | Reference / existing selection only |
+| Tech | Wired Gadgets | Drawback | Reference / existing selection only |
+| Tech | Accessory Suit (gadget, moddable) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Alt Weapon Mode (gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Alternate Element Pack (accessory, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Ammo Spitter (gadget, moddable) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Anatomical Structure (augment, drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Antivirus Application (gadget, routine) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Artificial Intelligence (drone, gadget, routine) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Auto Injector (augment, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Automator (gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Battery (gadget) | Gadget Talent | Reference only; construction blocked pending special battery rules |
+| Tech | Camera (drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Chameleon Suit (gadget, accessory) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Chemalyzer (gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Clamp Boots (augment, drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Collapsible Vehicle (drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Commset (gadget, signal) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Compact Shield (gadget, moddable) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Control Harness (accessory, drone, gadget, signal) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Dash Engine (accessory, augment, drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Dermal Plating (augment, drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Diga Drill (drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Disarmer (accessory, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Drone (gadget, signal) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Emergency Gear (drone, gadget, signal) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Evac Pack (augment, drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Exo-Skeletal Muscles (augment, drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Extendo Appendage (augment, drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | External Health Modulator (augment, drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Firefighter Equipment (drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Gravity Clip (drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Homing Pack (accessory, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Hookshot (accessory, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Integrated Armory (accessory, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Internal Tool (accessory, augment, drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Jet-boosters (drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Laser Pack (accessory, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Load Bearer (augment, drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Mechanical Ranged Weaponry (gadget, moddable) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Mechanical Tool (drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Misfire Manager (accessory, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Mobile Armor (accessory, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Modular Slot (augment, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Overdrive (gadget, routine) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Particle Weapon (gadget, moddable) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Pneumatic Box (gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Pressure Mechanism (accessory, augment, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Range Amplifier (accessory, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Remote Control (gadget, signal) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Seeker Missile Cannon (gadget, moddable) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Self Destructive Device (moddable) | Gadget Talent | Reference / existing selection only |
+| Tech | Sensory Set (augment, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Signal Attenuator (drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Signal Cable (gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Sniper Scope (accessory, augment, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Speed Lever (accessory, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Superior Joints (gadget, accessory) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Synaptic Reaction Maximizer (augment, drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Targeting Application (gadget, routine) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Taser (gadget, moddable) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Tracker Chip (gadget, signal) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Turret (drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Tutor (drone, gadget, routine) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Virus (gadget, routine) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Weapon Upgrade (accessory, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Alchemical Drone | Legendary Talent | Reference / existing selection only |
+| Tech | Arcanoscientific Tool (drone, gadget) | Legendary Talent | Roster; device-specific effects not automated |
+| Tech | Artificial Intelligence, Greater (drone, gadget, routine) | Legendary Talent | Roster; device-specific effects not automated |
+| Tech | Artificial Intelligence, Improved (drone, gadget, routine) | Legendary Talent | Roster; device-specific effects not automated |
+| Tech | Automatic, Semi-Automatic, and Slow Firing | Legendary Talent | Reference / existing selection only |
+| Tech | Bio Augment | Legendary Talent | Reference / existing selection only |
+| Tech | Clockwork Drone | Legendary Talent | Reference / existing selection only |
+| Tech | Combat Limbs (augment, gadget) | Legendary Talent | Roster; device-specific effects not automated |
+| Tech | Compactor (accessory, gadget) | Legendary Talent | Roster; device-specific effects not automated |
+| Tech | Computer (gadget) | Legendary Talent | Roster; device-specific effects not automated |
+| Tech | Drawback Alleviator (gadget) | Legendary Talent | Roster; device-specific effects not automated |
+| Tech | Energy Efficient Augments | Legendary Talent | Reference / existing selection only |
+| Tech | Extreme Distance Communication (gadget) | Legendary Talent | Roster; device-specific effects not automated |
+| Tech | Generator (drone, gadget) | Legendary Talent | Roster; device-specific effects not automated |
+| Tech | Hammerspace Augment | Legendary Talent | Reference / existing selection only |
+| Tech | Hidden Gadget | Legendary Talent | Reference / existing selection only |
+| Tech | It Just Works [Jester's HB] | Legendary Talent | Reference / existing selection only |
+| Tech | Long Distance Fuel Pack (drone, gadget) | Legendary Talent | Roster; device-specific effects not automated |
+| Tech | Protonic Energypack (accessory, gadget) | Legendary Talent | Roster; device-specific effects not automated |
+| Tech | Return to Sender | Legendary Talent | Reference / existing selection only |
+| Tech | Robot Drone | Legendary Talent | Reference / existing selection only |
+| Tech | Signal Penetration | Legendary Talent | Reference / existing selection only |
+| Tech | Steampowered Drone | Legendary Talent | Reference / existing selection only |
+| Tech | Strength Of A Million And Seventy | Legendary Talent | Reference / existing selection only |
+| Tech | Superior Mechanical Melee Weaponry (gadget, moddable) | Legendary Talent | Roster; device-specific effects not automated |
+| Tech | Superior Mechanical Ranged Weaponry | Legendary Talent | Reference / existing selection only |
+| Tech | Transporter (gadget) | Legendary Talent | Roster; device-specific effects not automated |
+| Tech | Untraceable Gadget | Legendary Talent | Reference / existing selection only |
+| Tech | Vigorous Gadgets | Legendary Talent | Reference / existing selection only |
+| Tech | Wireless Charge | Legendary Talent | Reference / existing selection only |
+| Tech | Collapsible Drone | Talent | Reference / existing selection only |
+| Tech | Combined Augment | Talent | Reference / existing selection only |
+| Tech | Efficient Drones | Talent | Reference / existing selection only |
+| Tech | Extra Gadgets | Talent | Basic limit bonus automated |
+| Tech | Improved User Interface | Talent | Reference / existing selection only |
+| Tech | Mass Drone Deployment | Talent | Reference / existing selection only |
+| Tech | Momentum Transfer (stance) [Youxia HB] | Talent | Reference / existing selection only |
+| Tech | Repairable Drone | Talent | Reference / existing selection only |
+| Tech | Standardized Drones | Talent | Reference / existing selection only |
+| Tech | Tech Savvy | Talent | Reference / existing selection only |
+| Tinker | Tinker Sphere | Base Sphere | Basic workbench access and calculations |
+| Tinker | Powerless [SUE] | Drawback | Reference / existing selection only |
+| Tinker | Specialized Inventorship [SUE] | Drawback | Reference / existing selection only |
+| Tinker | Specific Mechanoids [SUE] | Drawback | Reference / existing selection only |
+| Tinker | Tinker Tradition [SUE] | Drawback | Reference / existing selection only |
+| Tinker | Armor Modifications (gizmo, modification) | Gizmo Talent | Roster; device-specific effects not automated |
+| Tinker | Arsenal Set (gizmo) | Gizmo Talent | Roster; device-specific effects not automated |
+| Tinker | Aviation Set (gizmo) | Gizmo Talent | Roster; device-specific effects not automated |
+| Tinker | Cognitive Set (gizmo) [utility] | Gizmo Talent | Roster; device-specific effects not automated |
+| Tinker | Defensive Set (gizmo) | Gizmo Talent | Roster; device-specific effects not automated |
+| Tinker | Disruption Set (gizmo) | Gizmo Talent | Roster; device-specific effects not automated |
+| Tinker | Emergency Gear (gizmo) [utility] | Gizmo Talent | Roster; device-specific effects not automated |
+| Tinker | Energy Set (gizmo) [utility] | Gizmo Talent | Roster; device-specific effects not automated |
+| Tinker | Excavation Set (gizmo) | Gizmo Talent | Roster; device-specific effects not automated |
+| Tinker | Exploration Set (gizmo) [utility] | Gizmo Talent | Roster; device-specific effects not automated |
+| Tinker | Grappling Hook (gizmo) | Gizmo Talent | Roster; device-specific effects not automated |
+| Tinker | Infiltration Set (gizmo) [utility] | Gizmo Talent | Roster; device-specific effects not automated |
+| Tinker | Medical Set (gizmo) | Gizmo Talent | Roster; device-specific effects not automated |
+| Tinker | Movement Set (gizmo) | Gizmo Talent | Roster; device-specific effects not automated |
+| Tinker | Personal Field Projector (gizmo, modification) | Gizmo Talent | Roster; device-specific effects not automated |
+| Tinker | Pressure Jack (gizmo) | Gizmo Talent | Roster; device-specific effects not automated |
+| Tinker | Primal Augmentations (augmentation, gizmo) | Gizmo Talent | Roster; device-specific effects not automated |
+| Tinker | Prosthetics Mastery (augmentation, gizmo) | Gizmo Talent | Roster; device-specific effects not automated |
+| Tinker | Ranged Set (gizmo, modification) | Gizmo Talent | Roster; device-specific effects not automated |
+| Tinker | Repair Kits (gizmo) | Gizmo Talent | Roster; device-specific effects not automated |
+| Tinker | Sensory Set (gizmo) [utility] | Gizmo Talent | Roster; device-specific effects not automated |
+| Tinker | Table: Elemental Infuser | Gizmo Talent | Reference / existing selection only |
+| Tinker | Table: Lifter Type | Gizmo Talent | Reference / existing selection only |
+| Tinker | Table: Portable Wall | Gizmo Talent | Reference / existing selection only |
+| Tinker | Table: Power Plants | Gizmo Talent | Reference / existing selection only |
+| Tinker | Table: Translator Fluency | Gizmo Talent | Reference / existing selection only |
+| Tinker | Technological Weapons (gizmo) | Gizmo Talent | Roster; device-specific effects not automated |
+| Tinker | Transmission Mastery (gizmo, transmission) [utility] | Gizmo Talent | Roster; device-specific effects not automated |
+| Tinker | Transportation Mastery (gizmo, transportation) | Gizmo Talent | Roster; device-specific effects not automated |
+| Tinker | Weapon Modifications (gizmo, modification) | Gizmo Talent | Roster; device-specific effects not automated |
+| Tinker | Advanced Arsenal (gizmo) | Legendary Talent | Roster; device-specific effects not automated |
+| Tinker | Advanced Augmentation (gizmo, augmentation) | Legendary Talent | Roster; device-specific effects not automated |
+| Tinker | Advanced Computation (gizmo, computation) | Legendary Talent | Roster; device-specific effects not automated |
+| Tinker | Advanced Energy Set (gizmo) | Legendary Talent | Roster; device-specific effects not automated |
+| Tinker | Advanced Excavation (gizmo) | Legendary Talent | Roster; device-specific effects not automated |
+| Tinker | Advanced Field Projectors (gizmo, modification) | Legendary Talent | Roster; device-specific effects not automated |
+| Tinker | Advanced Movement (gizmo) | Legendary Talent | Roster; device-specific effects not automated |
+| Tinker | Advanced Prosthetics (gizmo, augmentation) | Legendary Talent | Roster; device-specific effects not automated |
+| Tinker | Advanced Ranged Set (gizmo, modification) | Legendary Talent | Roster; device-specific effects not automated |
+| Tinker | Advanced Transmission (gizmo, transmission) | Legendary Talent | Roster; device-specific effects not automated |
+| Tinker | Advanced Transportation (gizmo, transportation) | Legendary Talent | Roster; device-specific effects not automated |
+| Tinker | Automation Set (gizmo) | Legendary Talent | Roster; device-specific effects not automated |
+| Tinker | Dynamic Repurposing [LG] | Legendary Talent | Reference / existing selection only |
+| Tinker | Energy-Attuned Gizmos | Legendary Talent | Reference / existing selection only |
+| Tinker | Extra Automatons (computation, transportation) | Legendary Talent | Reference / existing selection only |
+| Tinker | Full Integration (gizmo, transportation) | Legendary Talent | Roster; device-specific effects not automated |
+| Tinker | Hammerspace (gizmo) | Legendary Talent | Roster; device-specific effects not automated |
+| Tinker | Magic Set (gizmo) | Legendary Talent | Roster; device-specific effects not automated |
+| Tinker | Master Of Technology | Legendary Talent | Reference / existing selection only |
+| Tinker | Multimedia Mastery (gizmo) | Legendary Talent | Roster; device-specific effects not automated |
+| Tinker | Radiation Set (gizmo) | Legendary Talent | Roster; device-specific effects not automated |
+| Tinker | Restoration Mastery (gizmo) | Legendary Talent | Roster; device-specific effects not automated |
+| Tinker | Security Set (gizmo) | Legendary Talent | Roster; device-specific effects not automated |
+| Tinker | Spooky Set (gizmo) | Legendary Talent | Roster; device-specific effects not automated |
+| Tinker | Table: Advanced Lifter Type | Legendary Talent | Reference / existing selection only |
+| Tinker | Table: Distant Teleport | Legendary Talent | Reference / existing selection only |
+| Tinker | Table: Turrets | Legendary Talent | Reference / existing selection only |
+| Tinker | Teleportation Set (gizmo, transmission) | Legendary Talent | Roster; device-specific effects not automated |
+| Tinker | Disguised Gizmo [utility] | Talent | Reference / existing selection only |
+| Tinker | Efficient Maintenance | Talent | Basic limit bonus automated |
+| Tinker | Expanded Tinkering | Talent | Reference / existing selection only |
+| Tinker | Machine Horde (transportation) | Talent | Reference / existing selection only |
+| Tinker | Mass Interface | Talent | Reference / existing selection only |
+| Tinker | Multifunctional Gizmos | Talent | Reference / existing selection only |
+| Tinker | Redundant Systems | Talent | Reference / existing selection only |
+| Tinker | Security Measures [utility] | Talent | Reference / existing selection only |
+| Tinker | Tinker Savvy [utility] | Talent | Reference / existing selection only |

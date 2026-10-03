@@ -178,6 +178,7 @@ def export_character(repository: CharacterRepository, character_id: int, path: P
             "custom_trackers": [
                 asdict(item) for item in repository.list_custom_trackers(character_id)
             ],
+            "engineering_devices": repository.list_engineering_devices(character_id),
             "rest_preferences": repository.get_rest_preferences(character_id),
             "audit_ignores": repository.list_audit_ignores(character_id),
             "sheet_layout": repository.get_character_sheet_layout(character_id),
@@ -578,6 +579,22 @@ def _populate_character(
         tracker = dict(tracker)
         tracker.pop("id", None)
         repository.add_custom_tracker(character_id, **tracker)
+    device_ids={}
+    device_hosts=[]
+    for device in character.get("engineering_devices", []):
+        device = dict(device)
+        old_id=device.pop("id", None)
+        if old_id is not None and old_id in device_ids:
+            raise ValueError("Duplicate engineering device identity in character file.")
+        device.pop("character_id", None)
+        old_host=device.pop("host_id", None)
+        new_id=repository.save_engineering_device(character_id, device)
+        device_ids[old_id]=new_id
+        if old_host is not None:device_hosts.append((new_id,old_host,device))
+    for device_id,host_id,device in device_hosts:
+        if host_id not in device_ids:
+            raise ValueError("Engineering device has a missing battery host.")
+        repository.save_engineering_device(character_id,{**device,"host_id":device_ids[host_id]},device_id)
     formula_id_maps = {
         "attack": attack_id_map,
         "equipment": equipment_id_map,

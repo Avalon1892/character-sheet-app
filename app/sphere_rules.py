@@ -190,6 +190,8 @@ def base_sphere_choice_options(
                     f"{entry.get('name', '')} {entry.get('description', '')[:180]}".casefold()
                 ):
                     continue
+                if sphere == "Tech" and "routine" in str(entry.get("name", "")).casefold():
+                    continue
                 candidates.append(str(entry.get("name", "")))
             return tuple(sorted(set(filter(None, candidates)), key=str.casefold))
         except (ImportError, OSError, ValueError):

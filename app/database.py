@@ -959,6 +959,23 @@ class CharacterRepository:
             )
             """
         )
+        self._connection.execute("""
+            CREATE TABLE IF NOT EXISTS engineering_devices (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                character_id INTEGER NOT NULL REFERENCES characters(id) ON DELETE CASCADE,
+                sphere TEXT NOT NULL CHECK (sphere IN ('Tech','Tinker')),
+                catalog_key TEXT NOT NULL DEFAULT '',
+                name TEXT NOT NULL,
+                level INTEGER NOT NULL DEFAULT 0,
+                modifier INTEGER NOT NULL DEFAULT 0,
+                state TEXT NOT NULL DEFAULT 'inactive',
+                charges INTEGER NOT NULL DEFAULT 0,
+                minor INTEGER NOT NULL DEFAULT 0,
+                advanced INTEGER NOT NULL DEFAULT 0,
+                host_id INTEGER REFERENCES engineering_devices(id) ON DELETE SET NULL
+            )
+        """)
+        self._ensure_column("engineering_devices", "host_id", "INTEGER REFERENCES engineering_devices(id) ON DELETE SET NULL")
         self._connection.execute(
             """
             CREATE TABLE IF NOT EXISTS custom_trackers (
@@ -3031,6 +3048,82 @@ class CharacterRepository:
             )
             for row in rows
         ]
+
+    def list_engineering_devices(self, character_id):
+        return [dict(row) for row in self._connection.execute(
+            "SELECT * FROM engineering_devices WHERE character_id=? ORDER BY id", (character_id,))]
+
+    def save_engineering_device(self, character_id, record, device_id=None):
+        sphere = record.get("sphere")
+        state = record.get("state", "inactive")
+        if sphere not in {"Tech", "Tinker"} or state not in {"inactive", "active", "depleted", "abandoned"}:
+            raise ValueError("Invalid device system or state.")
+        name = str(record.get("name", "")).strip()
+        if not name:
+            raise ValueError("Device name is required.")
+        host_id=record.get("host_id")
+        if host_id is not None:
+            host=self._connection.execute("SELECT sphere,catalog_key FROM engineering_devices WHERE id=? AND character_id=?",(host_id,character_id)).fetchone()
+            if (host is None or host["sphere"]!=sphere or host_id==device_id
+                    or record.get("catalog_key")!="tinker:battery" or host["catalog_key"]=="tinker:battery"):
+                raise ValueError("A Tinker battery must attach to a non-battery gizmo owned by this character.")
+        fields = ("sphere", "catalog_key", "name", "level", "modifier", "state", "charges", "minor", "advanced", "host_id")
+        values = (sphere, str(record.get("catalog_key", "")), name,
+                  int(record.get("level", 0)), int(record.get("modifier", 0)), state,
+                  int(record.get("charges", 0)), int(bool(record.get("minor", False))),
+                  int(record.get("advanced", 0)), host_id)
+        if not 0 <= values[3] <= 999 or not -100 <= values[4] <= 100 or not 0 <= values[6] <= 99999 or not 0 <= values[8] <= 99:
+            raise ValueError("Device statistics are outside supported bounds.")
+        if (sphere=="Tinker" and values[6]) or (sphere=="Tech" and (values[7] or values[8])):
+            raise ValueError("Tech charges and Tinker minor/advanced rules cannot be mixed.")
+        if device_id is None:
+            cursor = self._connection.execute(
+                "INSERT INTO engineering_devices (character_id," + ",".join(fields) + ") VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+                (character_id, *values))
+            device_id = cursor.lastrowid
+        else:
+            cursor = self._connection.execute(
+                "UPDATE engineering_devices SET " + ",".join(f + "=?" for f in fields) + " WHERE id=? AND character_id=?",
+                (*values, device_id, character_id))
+            if not cursor.rowcount:
+                raise KeyError("Device does not belong to this character.")
+        self._touch_character(character_id)
+        self._connection.commit()
+        return device_id
+
+    def transfer_engineering_charges(self, character_id, device_id, tracker_id, amount):
+        """Move existing charges atomically; both records must have one owner."""
+        amount=int(amount)
+        with self._connection:
+            device=self._connection.execute(
+                "SELECT charges FROM engineering_devices WHERE id=? AND character_id=? AND sphere='Tech' AND state NOT IN ('abandoned','depleted')",
+                (device_id,character_id)).fetchone()
+            pool=self._connection.execute(
+                "SELECT current_value FROM custom_trackers WHERE id=? AND character_id=?",
+                (tracker_id,character_id)).fetchone()
+            if device is None or pool is None:
+                raise ValueError("Charge transfer records do not belong to this character or are unavailable.")
+            charges=device["charges"]+amount
+            current=pool["current_value"]-amount
+            if not 0<=charges<=99999 or current<0:
+                raise ValueError("Not enough charges for this transfer.")
+            self._connection.execute("UPDATE engineering_devices SET charges=? WHERE id=?",(charges,device_id))
+            self._connection.execute("UPDATE custom_trackers SET current_value=? WHERE id=?",(current,tracker_id))
+            self._touch_character(character_id)
+
+    def deplete_engineering_batteries(self,character_id,host_id,battery_ids):
+        ids=tuple(dict.fromkeys(int(i) for i in battery_ids))
+        if not ids:
+            raise ValueError("Select at least one battery.")
+        placeholders=",".join("?" for _ in ids)
+        with self._connection:
+            rows=self._connection.execute(
+                "SELECT id FROM engineering_devices WHERE character_id=? AND host_id=? AND catalog_key='tinker:battery' AND state='active' AND id IN ("+placeholders+")",
+                (character_id,host_id,*ids)).fetchall()
+            if len(rows)!=len(ids):
+                raise ValueError("Attached battery is no longer available.")
+            self._connection.execute("UPDATE engineering_devices SET state='depleted' WHERE id IN ("+placeholders+")",ids)
+            self._touch_character(character_id)
 
     def add_custom_tracker(
         self,
