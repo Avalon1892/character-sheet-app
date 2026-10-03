@@ -3,6 +3,7 @@ from app.content import martial_entry
 from app.engineering_rules import (engineering_limits, occupied_limit, device_statistics,
                                    is_battery, TECH_BATTERY_KEY, tech_battery_capacity,device_condition,
                                    PHYSICAL_AUGMENTOR_KEY,MENTAL_AUGMENTOR_KEY,LOAD_BEARER_KEY,AUGMENTOR_ABILITIES,JET_BOOSTERS_KEY,JET_MODES,tinker_packages)
+from app.engineering_rules import physical_augmentor_bonus
 from app.services.character_calculations import CharacterCalculationService
 from app.exploitant_rules import effective_martial_talents
 from app.engineering_rules import TACTILE_FIELD_KEY
@@ -200,6 +201,12 @@ class EngineeringService:
         if amount<=0 or len(batteries)<amount:
             raise ValueError("Not enough usable attached batteries: battery level must reach the host level, and personal uses also require character level.")
         self.repository.deplete_engineering_batteries(self.character_id,host_id,[b["id"] for b in batteries[:amount]],tactile_boost=tactile_boost)
+
+    def use_augmentor_reroll(self,device_id):
+        device=next((d for d in self.devices("Tinker") if d["id"]==device_id),None)
+        if not device or not physical_augmentor_bonus(device):
+            raise ValueError("Wear an active augmentor before using its benefiting-check reroll.")
+        self.use_batteries(device_id,1)
 
     def end_tactile_enhancement(self,device_id):
         device=next((d for d in self.devices("Tinker") if d["id"]==device_id),None)

@@ -31,6 +31,22 @@ class EngineeringTests(unittest.TestCase):
         self.add("Tech",entry["name"],entry["key"],entry["category"])
         return self.service.create("Tech",entry["key"],3)
 
+    def test_augmentor_reroll_requires_wearer_and_spends_one_battery(self):
+        from app.engineering_rules import PHYSICAL_AUGMENTOR_KEY
+        base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")
+        self.repo.update_martial_talent(self.cid,base.id,base.name,"Tinker","Base Sphere",catalog_key=base.catalog_key,catalog_category="Base Sphere",choice="Augmentation")
+        host=self.service.create("Tinker",PHYSICAL_AUGMENTOR_KEY,3,configuration="strength")
+        battery=self.service.create("Tinker","tinker:battery",3)
+        self.service.attach_battery(battery,host)
+        self.service.change_state(host,"active")
+        with self.assertRaises(ValueError):self.service.use_augmentor_reroll(host)
+        self.assertEqual("active",next(d for d in self.service.devices("Tinker") if d["id"]==battery)["state"])
+        self.service.apply_to_character(host,True)
+        self.service.use_augmentor_reroll(host)
+        self.assertEqual("depleted",next(d for d in self.service.devices("Tinker") if d["id"]==battery)["state"])
+        with self.assertRaises(ValueError):self.service.use_augmentor_reroll(host)
+        self.assertEqual("active",next(d for d in self.service.devices("Tinker") if d["id"]==host)["state"])
+
     def test_practitioner_ability_uses_live_calculated_modifier(self):
         from app.services.character_calculations import CharacterCalculationService
         for ability in ("strength","dexterity","constitution","intelligence","wisdom","charisma"):

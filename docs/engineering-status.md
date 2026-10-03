@@ -31,6 +31,8 @@ Updated: 2026-10-03. This is an implementation ledger, not a claim of complete a
 
 ## Partial support / manual inputs
 
+- Physical/Mental Augmentor and Load Bearer now have a dedicated one-battery benefiting-check action. It validates active, worn, functioning, correctly configured devices and uses the existing atomic battery depletion path. Actual dice are resolved manually (roll twice and take the higher result); no persistent reroll buff is created. Focused validation: 33 engineering tests and 2 theme subtests passed.
+
 - Associated skill defaults to the existing shared Craft rank provider. Alternative associated skills can be selected in the workbench, but tradition-specific skill-rank grants and skill specialties are not completely automated.
 - Practitioner modifier may be manually entered or linked to a chosen ability's live calculated modifier. The workbench recalculates linked values on refresh; creation still stores the required snapshot. Automatic selection of the governing ability from every class/archetype/tradition remains pending; no unrelated class resource ability is assumed to be a practitioner ability.
 - Crafting/maintenance duration and batch allowance are calculated and displayed. Timed device functions use explicit game-round advancement; a general campaign clock and crafting session ledger remain pending. Ordinary Tinker gizmos last indefinitely under the current rules; optional GM neglect is not imposed automatically.
@@ -78,6 +80,14 @@ Physical Augmentor follow-up: 58 focused engineering, shared rules, skill-rank, 
 Jet-boosters follow-up: 76 broad focused tests plus 2 theme subtests passed; after additional slot/load/transfer and Athletics Fly-package coverage, all 22 engineering tests and 2 theme subtests passed. A further 19 performance/layout/movement tests and 2 theme subtests passed. The parchment timed-jet dialog was rendered and inspected. The full suite has not yet been repeated. Long Distance Fuel Pack, external/unwilling users, exhaust/hover geometry and equipment-figure display remain pending.
 
 ## Verified rule sources
+
+### Installation rules verified for the next implementation
+
+- Tech augments use dedicated slots separate from magic-item and cybertech slots. A slot normally holds one augment; nonstandard anatomy can add limb/sensory slots, but never additional body or brain slots.
+- Tech augment donning/removal follows leather armor. Hasty donning adds 2 armor check penalty. Visible augments impose a Disguise penalty of 10 + 2 per donned augment.
+- Ordinary Tech augments do not function during polymorph, including augments donned after transformation. Grafts instead follow innate-trait retention. Bio Augment and Untraceable Gadget contain explicit exceptions which must be modeled rather than applying blanket suppression.
+- Tinker augmentation installation must use its own rules: worn augmentation donning/removal takes one minute; same-function benefits do not stack, but differently configured augmentations can coexist. Prosthetics have separate fitting/implantation rules. Do not reuse Tech's dedicated-slot or polymorph rules without a Tinker rule supporting that behavior.
+- These are verified requirements, not implemented installation behavior. Next work must connect installation state to shared calculations and existing condition/equipment state, with regression coverage for both systems and exceptions.
 
 - [Tech](https://spheresofpower.wikidot.com/tech)
 - [Tinker](https://spheresofpower.wikidot.com/tinker)
