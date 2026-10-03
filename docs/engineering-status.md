@@ -32,6 +32,7 @@ Updated: 2026-10-03. This is an implementation ledger, not a claim of complete a
 ## Partial support / manual inputs
 
 - Defensive Set plus Computation unlocks a separate Resistance Routine recipe, automatically classified as minor. Installation/removal uses owned Tinker host identities and existing transfer remapping. Active functioning routines add the highest applicable insight save bonus to their host's displayed saves (including broken-level changes), never to character saves. AI sharing and nested routine composition remain pending.
+- Routine lifecycle follows the host: activation requires an installed, active, functioning host; deactivation/destruction/depletion of that host deactivates its routine. Depleting a battery host performs this in the same transaction. Removal or transfer to an inactive host deactivates the routine, while later repair/maintenance retains stored routine data without silently reactivating it. Import stages routines inactive until host identities are restored. Focused lifecycle/database/transfer validation: 64 tests and 2 theme subtests passed.
 
 - Physical/Mental Augmentor and Load Bearer now have a dedicated one-battery benefiting-check action. It validates active, worn, functioning, correctly configured devices and uses the existing atomic battery depletion path. Actual dice are resolved manually (roll twice and take the higher result); no persistent reroll buff is created. Focused validation: 33 engineering tests and 2 theme subtests passed.
 

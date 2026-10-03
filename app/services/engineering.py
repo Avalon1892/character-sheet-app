@@ -287,10 +287,11 @@ class EngineeringService:
             raise ValueError("Select an available Resistance Routine.")
         if host_id is not None and (not host or host["catalog_key"]==RESISTANCE_ROUTINE_KEY or host["state"] in {"abandoned","depleted"} or device_condition(host)["destroyed"]):
             raise ValueError("Select a functioning host gizmo; nested routines are not yet supported.")
-        self.repository.save_engineering_device(self.character_id,{**routine,"host_id":host_id},device_id)
+        state=routine["state"] if host and host["state"]=="active" else "inactive" if routine["state"]=="active" else routine["state"]
+        self.repository.save_engineering_device(self.character_id,{**routine,"host_id":host_id,"state":state},device_id)
 
     def statistics(self,device):
         stats=device_statistics(device["sphere"],device["level"],device["modifier"])
         if device["state"]!="abandoned" and not device_condition(device)["destroyed"]:
-            stats["save"]+=max((resistance_routine_bonus(d) for d in self.devices(device["sphere"]) if d["host_id"]==device["id"]),default=0)
+            stats["save"]+=max((resistance_routine_bonus(d,device) for d in self.devices(device["sphere"]) if d["host_id"]==device["id"]),default=0)
         return stats

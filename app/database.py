@@ -3093,6 +3093,10 @@ class CharacterRepository:
             battery=self._connection.execute("SELECT * FROM engineering_devices WHERE id=? AND character_id=?",(effect_battery_id,character_id)).fetchone()
             if battery is None or not is_battery(dict(battery)) or battery["sphere"]!=sphere or battery["host_id"]!=device_id:
                 raise ValueError("Supporting battery must belong to this character and be attached to this device.")
+        if sphere=="Tinker" and record.get("catalog_key")==RESISTANCE_ROUTINE_KEY and state=="active":
+            routine_host=self._connection.execute("SELECT * FROM engineering_devices WHERE id=? AND character_id=?",(host_id,character_id)).fetchone()
+            if routine_host is None or routine_host["state"]!="active" or device_condition(dict(routine_host))["destroyed"]:
+                raise ValueError("A routine can activate only inside an active, functioning host gizmo.")
         fields = ("sphere", "catalog_key", "name", "level", "modifier", "state", "charges", "minor", "advanced", "host_id", "damage", "configuration", "applied_to_character", "function_mode", "effect_rounds", "worn_slot", "effect_battery_id")
         values = (sphere, str(record.get("catalog_key", "")), name,
                   int(record.get("level", 0)), int(record.get("modifier", 0)), state,
@@ -3124,6 +3128,9 @@ class CharacterRepository:
         if is_battery(record):
             self._connection.execute("UPDATE engineering_devices SET effect_rounds=0,effect_battery_id=NULL WHERE character_id=? AND effect_battery_id=? AND (? IS NULL OR id!=? OR ?='abandoned' OR ?=0)",
                 (character_id,device_id,host_id,host_id,state,device_condition(dict(zip(fields,values)))["current_hp"]))
+        if state!="active" or device_condition(dict(zip(fields,values)))["destroyed"]:
+            self._connection.execute("UPDATE engineering_devices SET state='inactive',effect_rounds=0,effect_battery_id=NULL WHERE character_id=? AND host_id=? AND catalog_key=? AND state='active'",
+                (character_id,device_id,RESISTANCE_ROUTINE_KEY))
         self._touch_character(character_id)
         self._connection.commit()
         return device_id
@@ -3216,6 +3223,8 @@ class CharacterRepository:
             if len(rows)!=len(ids):
                 raise ValueError("Attached battery is no longer available.")
             self._connection.execute("UPDATE engineering_devices SET state='depleted' WHERE id IN ("+placeholders+")",ids)
+            self._connection.execute("UPDATE engineering_devices SET state='inactive',effect_rounds=0,effect_battery_id=NULL WHERE character_id=? AND catalog_key=? AND state='active' AND host_id IN ("+placeholders+")",
+                (character_id,RESISTANCE_ROUTINE_KEY,*ids))
             if tactile_boost:
                 self._connection.execute("UPDATE engineering_devices SET function_mode='tactile_boost',effect_rounds=?,effect_battery_id=? WHERE id=? AND character_id=?",
                     (10*device_condition(dict(host))["effective_level"],ids[0],host_id,character_id))

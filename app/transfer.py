@@ -6,6 +6,7 @@ from dataclasses import asdict
 from pathlib import Path
 
 from app.database import CharacterRepository
+from app.engineering_rules import RESISTANCE_ROUTINE_KEY
 from app.models import (
     AbilityScoreIncreaseAllocation,
     AdvancementAdjustment,
@@ -203,7 +204,10 @@ def _import_engineering_devices(repository,character_id,character):
         device.pop("character_id",None)
         old_host=device.pop("host_id",None)
         old_effect_battery=device.pop("effect_battery_id",None)
-        new_id=repository.save_engineering_device(character_id,device)
+        if device.get("catalog_key")==RESISTANCE_ROUTINE_KEY and device.get("state")=="active" and old_host is None:
+            raise ValueError("An active routine requires an attachment host.")
+        staged={**device,"state":"inactive"} if device.get("catalog_key")==RESISTANCE_ROUTINE_KEY and device.get("state")=="active" else device
+        new_id=repository.save_engineering_device(character_id,staged)
         device_ids[old_id]=new_id
         if old_host is not None:device_hosts.append((new_id,old_host,device))
         if old_effect_battery is not None:device_effects.append((new_id,old_effect_battery))

@@ -31,9 +31,11 @@ TACTILE_FIELD_KEY = "tinker:device:tactile-field"
 RESISTANCE_ROUTINE_KEY = "tinker:device:resistance-routine"
 
 
-def resistance_routine_bonus(device):
+def resistance_routine_bonus(device,host):
     if (device["sphere"]!="Tinker" or device["catalog_key"]!=RESISTANCE_ROUTINE_KEY
             or device["state"]!="active" or device.get("host_id") is None
+            or host["id"]!=device["host_id"] or host["state"]!="active"
+            or device_condition(host)["destroyed"]
             or device_condition(device)["destroyed"]):
         return 0
     return 1+device_condition(device)["effective_level"]//4

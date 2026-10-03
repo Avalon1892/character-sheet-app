@@ -81,6 +81,36 @@ class EngineeringTests(unittest.TestCase):
         foreign=self.repo.create_character("Other","Spheres")
         with self.assertRaises(ValueError):self.repo.save_engineering_device(foreign,{**record(routines[0]),"host_id":host})
 
+    def test_routine_activation_follows_host_lifecycle(self):
+        from app.engineering_rules import RESISTANCE_ROUTINE_KEY
+        entry=next(e for e in martial_entries("Tinker") if e["key"]=="tinker:gizmo-talent:defensive-set-gizmo")
+        self.add("Tinker",entry["name"],entry["key"],entry["category"])
+        base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")
+        self.repo.update_martial_talent(self.cid,base.id,base.name,"Tinker","Base Sphere",catalog_key=base.catalog_key,catalog_category="Base Sphere",choice="Computation")
+        host=self.service.create("Tinker",entry["key"],3)
+        battery=self.service.create("Tinker","tinker:battery",3)
+        routine=self.service.create("Tinker",RESISTANCE_ROUTINE_KEY,3)
+        record=lambda key:next(d for d in self.service.devices("Tinker") if d["id"]==key)
+        with self.assertRaises(ValueError):self.service.change_state(routine,"active")
+        self.service.install_resistance_routine(routine,host)
+        before=self.repo.sqlite_connection.total_changes
+        with self.assertRaises(ValueError):self.service.change_state(routine,"active")
+        self.assertEqual(before,self.repo.sqlite_connection.total_changes)
+        self.service.change_state(host,"active");self.service.change_state(routine,"active")
+        self.service.change_state(host,"inactive")
+        self.assertEqual("inactive",record(routine)["state"])
+        self.service.change_state(host,"active")
+        self.assertEqual("inactive",record(routine)["state"])
+        self.service.install_resistance_routine(routine,battery);self.service.change_state(routine,"active")
+        self.service.attach_battery(battery,host);self.service.use_batteries(host,1)
+        self.assertEqual("inactive",record(routine)["state"])
+        self.service.maintain("Tinker");self.service.change_state(routine,"active")
+        self.service.damage_device(battery,999,apply_hardness=False)
+        self.assertEqual("inactive",record(routine)["state"])
+        self.service.maintain("Tinker");self.service.change_state(routine,"active")
+        self.service.install_resistance_routine(routine,None)
+        self.assertEqual("inactive",record(routine)["state"])
+
     def test_practitioner_ability_uses_live_calculated_modifier(self):
         from app.services.character_calculations import CharacterCalculationService
         for ability in ("strength","dexterity","constitution","intelligence","wisdom","charisma"):
