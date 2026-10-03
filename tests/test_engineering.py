@@ -120,6 +120,23 @@ class EngineeringTests(unittest.TestCase):
         record=next(d for d in self.service.devices("Tinker") if d["id"]==host)
         self.assertEqual((0,None),(record["effect_rounds"],record["effect_battery_id"]))
 
+    def test_tactile_battery_enhancement_payment_expiry_and_reroll(self):
+        from app.engineering_rules import TACTILE_FIELD_KEY,tactile_field_bonus
+        host=self.repo.save_engineering_device(self.cid,dict(sphere="Tinker",catalog_key=TACTILE_FIELD_KEY,name="Field",level=4,modifier=3,state="active",applied_to_character=True))
+        battery=self.service.create("Tinker","tinker:battery",3);self.service.attach_battery(battery,host)
+        self.service.use_batteries(host,1,tactile_boost=True)
+        records={d["id"]:d for d in self.service.devices("Tinker")}
+        self.assertEqual("depleted",records[battery]["state"])
+        self.assertEqual((40,3),(records[host]["effect_rounds"],tactile_field_bonus(records[host])))
+        with self.assertRaises(ValueError):self.service.use_batteries(host,1,tactile_boost=True)
+        self.service.end_tactile_enhancement(host)
+        record=next(d for d in self.service.devices("Tinker") if d["id"]==host)
+        self.assertEqual((0,2,"active"),(record["effect_rounds"],tactile_field_bonus(record),record["state"]))
+        self.service.maintain("Tinker");self.service.use_batteries(host,1,tactile_boost=True)
+        self.service.advance_time(40)
+        record=next(d for d in self.service.devices("Tinker") if d["id"]==host)
+        self.assertEqual((0,2,"active"),(record["effect_rounds"],tactile_field_bonus(record),record["state"]))
+
     def test_distinct_rules_and_repeatable_limits(self):
         self.assertEqual((9,4,6),(engineering_limits("Tinker",6,1,extra=1).device_limit,
                                   engineering_limits("Tinker",8,1,extra=1).batch_size,

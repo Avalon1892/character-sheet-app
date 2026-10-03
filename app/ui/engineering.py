@@ -100,6 +100,13 @@ class EngineeringDialog(QDialog):
         self.advance=QPushButton("Advance game time (rounds)");clock.addWidget(self.advance)
         self.advance.clicked.connect(lambda:self.perform(lambda:self.service().advance_time(self.elapsed.value())))
         clock.addStretch()
+        field_controls=QHBoxLayout();root.addLayout(field_controls)
+        self.tactile_boost=QPushButton("Enhance Tactile Field — 1 battery")
+        self.tactile_reroll=QPushButton("Use reroll / end enhancement")
+        self.tactile_reroll.setToolTip("Resolve the immediate-action reroll manually; clicking ends the enhanced bonus and remaining duration.")
+        field_controls.addWidget(self.tactile_boost);field_controls.addWidget(self.tactile_reroll);field_controls.addStretch()
+        self.tactile_boost.clicked.connect(lambda:self.perform(lambda:self.service().use_batteries(self.selected(),1,tactile_boost=True)))
+        self.tactile_reroll.clicked.connect(lambda:self.perform(lambda:self.service().end_tactile_enhancement(self.selected())))
         health=QHBoxLayout();root.addLayout(health)
         self.damage_amount=QSpinBox();self.damage_amount.setRange(1,99999)
         health.addWidget(QLabel("Incoming device damage"));health.addWidget(self.damage_amount)
@@ -225,13 +232,17 @@ class EngineeringDialog(QDialog):
                              escape(entry.get("description","")).replace("\n","<br>")+"</p><p><b>"+
                              ("Selected-ability skill bonuses are automatic when active and worn. Ability checks and battery-use rerolls are currently resolved manually."
                               if entry.get("key") in AUGMENTOR_ABILITIES else
-                              "CMD, Acrobatics and Escape Artist bonuses are automatic when active and attached. Battery enhancement and reroll are not yet automated."
+                              "CMD, Acrobatics and Escape Artist bonuses, one-battery enhancement and duration are automatic. Resolve the immediate-action reroll manually, then use the reroll/end button to end the enhancement."
                               if entry.get("key")==TACTILE_FIELD_KEY else
                               "Flight/swim speed, maneuverability, charge costs and paid durations are automatic. Flight slow burn is limited to 3 feet above the surface; height and hover/exhaust effects require manual resolution."
                               if entry.get("key")==JET_BOOSTERS_KEY else "Device-specific effects are reference-only in this batch.")+"</b></p>")
 
     def preview_device(self):
         device=next((d for d in self.service().devices(self.system.currentText()) if d["id"]==self.selected()),None)
+        tactile=bool(device and device["catalog_key"]==TACTILE_FIELD_KEY)
+        self.tactile_boost.setVisible(tactile);self.tactile_reroll.setVisible(tactile)
+        self.tactile_boost.setEnabled(bool(tactile and device["state"]=="active" and device["applied_to_character"] and device["effect_rounds"]==0))
+        self.tactile_reroll.setEnabled(bool(tactile and device["effect_rounds"]>0))
         self.damage_button.setEnabled(bool(device and device["state"]!="abandoned"))
         self.repair_button.setEnabled(bool(device and device["state"]!="abandoned" and device["damage"] and self.kit.isChecked()))
         self.applied.setEnabled(bool(device and device["catalog_key"] in {*AUGMENTOR_ABILITIES,TACTILE_FIELD_KEY} and device["state"]!="abandoned"))

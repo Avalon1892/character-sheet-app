@@ -5,6 +5,7 @@ import math
 import re
 import sqlite3
 from app.engineering_rules import is_battery, TECH_BATTERY_KEY, tech_battery_capacity,device_condition,JET_BOOSTERS_KEY,JET_MODES
+from app.engineering_rules import TACTILE_FIELD_KEY
 from datetime import datetime
 from pathlib import Path
 
@@ -3198,18 +3199,25 @@ class CharacterRepository:
                 (rounds,rounds,JET_BOOSTERS_KEY,character_id))
             self._touch_character(character_id)
 
-    def deplete_engineering_batteries(self,character_id,host_id,battery_ids):
+    def deplete_engineering_batteries(self,character_id,host_id,battery_ids,*,tactile_boost=False):
         ids=tuple(dict.fromkeys(int(i) for i in battery_ids))
         if not ids:
             raise ValueError("Select at least one battery.")
         placeholders=",".join("?" for _ in ids)
         with self._connection:
+            if tactile_boost:
+                host=self._connection.execute("SELECT * FROM engineering_devices WHERE id=? AND character_id=?",(host_id,character_id)).fetchone()
+                if host is None or host["catalog_key"]!=TACTILE_FIELD_KEY or not host["applied_to_character"] or host["effect_rounds"]>0 or len(ids)!=1:
+                    raise ValueError("Select an attached Tactile Field without an active enhancement.")
             rows=self._connection.execute(
                 "SELECT b.id FROM engineering_devices b JOIN engineering_devices h ON h.id=b.host_id WHERE b.character_id=? AND b.host_id=? AND b.catalog_key='tinker:battery' AND b.state='active' AND h.state='active' AND b.damage<3*b.level AND h.damage<3*h.level AND b.level>=h.level AND b.id IN ("+placeholders+")",
                 (character_id,host_id,*ids)).fetchall()
             if len(rows)!=len(ids):
                 raise ValueError("Attached battery is no longer available.")
             self._connection.execute("UPDATE engineering_devices SET state='depleted' WHERE id IN ("+placeholders+")",ids)
+            if tactile_boost:
+                self._connection.execute("UPDATE engineering_devices SET function_mode='tactile_boost',effect_rounds=?,effect_battery_id=? WHERE id=? AND character_id=?",
+                    (10*device_condition(dict(host))["effective_level"],ids[0],host_id,character_id))
             self._touch_character(character_id)
 
     def add_custom_tracker(

@@ -50,7 +50,7 @@ class EngineeringService:
                     "source_url":"https://spheresofpower.wikidot.com/tinker"}
             if "Modification" in tinker_packages(self.records(sphere)) and any(t.catalog_key=="tinker:gizmo-talent:personal-field-projector-gizmo-modification" for t in self.records(sphere)):
                 entries[TACTILE_FIELD_KEY]={"key":TACTILE_FIELD_KEY,"name":"Tactile Field (gizmo)",
-                    "description":"While active and attached, grants a circumstance bonus to CMD, Acrobatics and Escape Artist: 2 + 1 per 10 effective gizmo levels. Multiple Tactile Fields do not stack. Battery enhancement, its timed duration and immediate-action reroll are not yet automated.",
+                    "description":"While active and attached, grants a circumstance bonus to CMD, Acrobatics and Escape Artist: 2 + 1 per 10 effective gizmo levels. Multiple Tactile Fields do not stack. Deplete one attached battery to add 1 per 4 effective gizmo levels for one minute per effective gizmo level. Once during that period, use an immediate action to reroll a failed Acrobatics/Escape Artist check or force a successful opposing combat maneuver to be rerolled with the same modifier; then end the enhancement. Resolve the roll manually and click the reroll/end control.",
                     "source_url":"https://spheresofpower.wikidot.com/tinker"}
         return tuple(sorted(entries.values(), key=lambda e:e["name"].casefold()))
 
@@ -138,8 +138,8 @@ class EngineeringService:
             raise ValueError("Tinker batteries cannot be deactivated.")
         if record["catalog_key"]==TECH_BATTERY_KEY and state=="abandoned":
             record={**record,"charges":0,"host_id":None}
-        if record["catalog_key"]==JET_BOOSTERS_KEY and state!="active":
-            record={**record,"effect_rounds":0}
+        if record["catalog_key"] in {JET_BOOSTERS_KEY,TACTILE_FIELD_KEY} and state!="active":
+            record={**record,"effect_rounds":0,"effect_battery_id":None}
             if state=="abandoned":record={**record,"worn_slot":"","applied_to_character":False}
         if state in {"abandoned","depleted"} and record["charges"]:
             raise ValueError("Return or spend stored charges before abandoning or depleting this device.")
@@ -186,7 +186,7 @@ class EngineeringService:
             raise ValueError("Select a functioning gizmo as the battery host.")
         self.repository.save_engineering_device(self.character_id,{**battery,"host_id":host_id},battery_id)
 
-    def use_batteries(self,host_id,amount,*,personal=False):
+    def use_batteries(self,host_id,amount,*,personal=False,tactile_boost=False):
         if not self.available("Tinker"):
             raise ValueError("The Tinker sphere is required.")
         host=next((d for d in self.devices("Tinker") if d["id"]==host_id),None)
@@ -199,7 +199,13 @@ class EngineeringService:
                    and (not personal or d["level"]>=level)]
         if amount<=0 or len(batteries)<amount:
             raise ValueError("Not enough usable attached batteries: battery level must reach the host level, and personal uses also require character level.")
-        self.repository.deplete_engineering_batteries(self.character_id,host_id,[b["id"] for b in batteries[:amount]])
+        self.repository.deplete_engineering_batteries(self.character_id,host_id,[b["id"] for b in batteries[:amount]],tactile_boost=tactile_boost)
+
+    def end_tactile_enhancement(self,device_id):
+        device=next((d for d in self.devices("Tinker") if d["id"]==device_id),None)
+        if not device or device["catalog_key"]!=TACTILE_FIELD_KEY or device["function_mode"]!="tactile_boost" or device["effect_rounds"]<=0:
+            raise ValueError("Select a Tactile Field with an active enhancement.")
+        self.repository.save_engineering_device(self.character_id,{**device,"effect_rounds":0,"effect_battery_id":None},device_id)
 
     def pool(self):
         return next((t for t in self.repository.list_custom_trackers(self.character_id) if t.key=="engineering_tech_charges"),None)

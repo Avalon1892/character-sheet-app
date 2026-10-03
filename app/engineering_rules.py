@@ -120,7 +120,8 @@ def tactile_field_bonus(device):
             or device["state"]!="active" or not device.get("applied_to_character")
             or device_condition(device)["destroyed"]):
         return 0
-    return 2+device_condition(device)["effective_level"]//10
+    level=device_condition(device)["effective_level"]
+    return 2+level//10+(level//4 if device.get("function_mode")=="tactile_boost" and device.get("effect_rounds",0)>0 and device.get("effect_battery_id") is not None else 0)
 
 
 def occupied_limit(devices, limits):
