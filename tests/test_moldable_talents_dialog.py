@@ -78,6 +78,19 @@ class MoldableDialogTests(unittest.TestCase):
         self.assertEqual("boxing:base",d.selections[0]["catalog_key"])
         self.assertLessEqual(d.results.rowCount(),350)
 
+    def test_tinker_package_picker_excludes_earlier_staged_packages(self):
+        d=self.dialog
+        base=self.record("tinker:base");base["choice"]="Augmentation"
+        expanded=self.record("tinker:talent:expanded-tinkering");expanded["choice"]="Computation / Modification"
+        d.selections=[base,expanded];d._refresh_slots();d.slots.setCurrentCell(2,1)
+        before=self.repo.sqlite_connection.total_changes
+        entry={**martial_entry("tinker:talent:expanded-tinkering"),"talent_kind":"martial"}
+        with patch("app.ui.dialogs.FeatChoiceDialog") as picker:
+            picker.return_value.exec.return_value=QDialog.DialogCode.Rejected
+            self.assertIsNone(d._selection_record(entry))
+            self.assertEqual(frozenset({"Augmentation","Computation","Modification"}),picker.call_args.kwargs["excluded_choices"])
+        self.assertEqual(before,self.repo.sqlite_connection.total_changes)
+
     def test_locked_slots_disable_removal(self):
         d=self.dialog;d.selections=[self.record("boxing:base")];d.locked_count=1
         d._refresh_slots();d.slots.setCurrentCell(0,1)

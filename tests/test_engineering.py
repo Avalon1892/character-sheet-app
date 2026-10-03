@@ -301,6 +301,20 @@ class EngineeringTests(unittest.TestCase):
         with self.assertRaises(ValueError):validate_tinker_package_choice("Augmentation / Computation",records)
         self.assertIn(PHYSICAL_AUGMENTOR_KEY,{e["key"] for e in self.service.known_devices("Tinker")})
 
+    def test_flexible_tinker_choices_validate_order_and_owned_packages(self):
+        from app.flexible_talent_rules import validate_flexible_talent_entries
+        base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")
+        self.repo.update_martial_talent(self.cid,base.id,base.name,"Tinker","Base Sphere",catalog_key=base.catalog_key,catalog_category="Base Sphere",choice="Augmentation")
+        def record(choice):
+            return dict(talent_kind="martial",catalog_key="tinker:talent:expanded-tinkering",choice=choice,choice_key=choice.casefold())
+        def validate(records):
+            return validate_flexible_talent_entries(self.repo,self.cid,records,source_key="test",capacity=3,feature_name="Test",allow_base_spheres=True)
+        for choice in ("Augmentation / Computation","Computation / Computation","Invalid / Modification"):
+            with self.assertRaises(ValueError):validate([record(choice)])
+        self.assertEqual(2,len(validate([record("Computation / Modification"),record("Transmission / Transportation")])))
+        with self.assertRaises(ValueError):validate([record("Computation / Modification"),record("Computation / Transmission")])
+        self.assertEqual([],self.repo.list_flexible_talent_selections(self.cid,"test"))
+
     def test_augmentor_choices_and_wearer_state_survive_transfer(self):
         from app.engineering_rules import PHYSICAL_AUGMENTOR_KEY
         base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable
+from types import SimpleNamespace
 
 from PySide6.QtCore import Qt, QTimer, QEvent
 from PySide6.QtGui import QColor
@@ -31,6 +32,7 @@ from app.content import magic_entries, martial_entries
 from app.exploitant_rules import validate_moldable_entries
 from app.sphere_rules import base_sphere_choice_label, base_sphere_choice_options
 from app.talent_sorting import talent_entry_sort_key
+from app.engineering_rules import tinker_packages
 
 
 class MoldableTalentsDialog(QDialog):
@@ -387,6 +389,12 @@ class MoldableTalentsDialog(QDialog):
                 self.repository.list_attacks(self.character_id),
                 self.repository.list_equipment(self.character_id),
                 self,
+                excluded_choices=tinker_packages([
+                    *self.repository.list_martial_talents(self.character_id),
+                    *(SimpleNamespace(enabled=True,sphere=item["sphere"],catalog_key=item["catalog_key"],
+                        catalog_category=item["category"],choice=item["choice"])
+                      for item in self.selections[:self._target_slot()] if item["talent_kind"]=="martial"),
+                ]) if choice_type=="tinker_packages_two" else (),
             )
             if picker.exec() != QDialog.DialogCode.Accepted:
                 return None

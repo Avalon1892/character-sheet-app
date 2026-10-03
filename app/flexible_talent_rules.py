@@ -16,6 +16,7 @@ from app.drawback_rules import (
 )
 from app.models import FlexibleTalentSelection, MartialTalent, SheetEffect, Spell
 from app.sphere_rules import base_sphere_choice_options, martial_base_granted_talent_name
+from app.engineering_rules import validate_tinker_package_choice
 
 
 def _martial_starting_talent(selection):
@@ -213,6 +214,8 @@ def validate_flexible_talent_entries(
             0, character_id, source_key, index - 1, **record
         )
         if kind == "martial":
+            if (entry.get("automation") or {}).get("choice_type")=="tinker_packages_two":
+                validate_tinker_package_choice(record["choice"],[*permanent_martial,*projected_martial])
             restriction = martial_talent_restriction_reason(
                 entry, [*permanent_martial, *projected_martial]
             )
