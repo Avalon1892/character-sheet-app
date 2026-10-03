@@ -16,6 +16,7 @@ Updated: 2026-10-03. This is an implementation ledger, not a claim of complete a
 - Tinker batteries can attach to owned non-battery gizmos, multiple batteries can be depleted atomically, and personal battery uses enforce minimum battery level. Battery costs are selected manually; individual talent costs and reload-time reductions are not automated. Import/export remaps battery host identities.
 - Tech pool begins empty, recharges by the associated-rank rule, spends without going negative, transfers charges atomically between pool and devices.
 - Charges allocated to regular gadgets remain counted against the total pool maximum.
+- Tech batteries are created charged, remain outside the pool maximum, attach one per same-system device, and are drained first through atomic device spending. Explicit recharge and detach controls are available; excess pool charging requires confirmation. Abandonment discards battery charges.
 - Rest preserves Tech charges and does not silently maintain Tinker batteries.
 - Device and resource import/export with ownership checks.
 - First Tech gadget choices exclude routine talents.
@@ -35,7 +36,7 @@ Updated: 2026-10-03. This is an implementation ledger, not a claim of complete a
 
 1. Function-level recipes and configurations for every gadget/gizmo talent and base package.
 2. Automatic equipment/attack/AC/save/movement/skill modifiers from installed and activated devices.
-3. Tech batteries and their separate charge-storage exemption. Their construction is deliberately blocked instead of using incorrect ordinary-device behavior.
+3. Tech batteries attached to external technological inventory items. Current hosts are character-owned workbench devices. Nonpositive-modifier pool charging follows the separate printed creator-modifier cap; interpretation needs rules verification because creation explicitly has a minimum of one.
 4. Augment/graft slots, installation checks, incompatibilities and polymorph suppression.
 5. Drone and mechanoid stat blocks, upgrades, piloting, innate devices and rote functions.
 6. AI stat blocks, commands, routines, hosts and installation.
@@ -50,11 +51,13 @@ Updated: 2026-10-03. This is an implementation ledger, not a claim of complete a
 15. Complete rules-safe validation of minor/advanced/exempt devices and alternate construction sources.
 16. Automatic handling of all sphere drawbacks and interactions with other spheres.
 17. Current website completeness verification. The table below describes bundled entries only.
-18. Complete isolated regression suite and packaged-runtime verification for this batch.
+18. Packaged-runtime verification for this batch. The full isolated suite has run; three pre-existing failures remain separate from engineering work.
 
 ## Validation
 
 74 focused tests and two theme subtests passed across engineering, database, sphere choices, crafting, skill ranks, recovery, Codex and import/export. The full isolated suite was not run; no assertion is made about its current baseline. Actual workbench renders were inspected in parchment and dark themes.
+
+Tech battery follow-up: full isolated run completed with 1,991 cases, 1,988 passing and 3 failing. All three failures reproduce against the untouched `87b4e8e` baseline: stale archetype count, custom-tracker parent placement, and tradition placement. Latest focused engineering run: 14 tests and 2 theme subtests passed, including the subsequent Tinker battery host-level guard and cancelled-overfill checks. Normal/portable deployment and packaged verification are not yet performed for this follow-up.
 
 ## Verified rule sources
 
@@ -112,7 +115,7 @@ Every entry remains available through existing catalogs/Codex. “Roster” mean
 | Tech | Artificial Intelligence (drone, gadget, routine) | Gadget Talent | Roster; device-specific effects not automated |
 | Tech | Auto Injector (augment, gadget) | Gadget Talent | Roster; device-specific effects not automated |
 | Tech | Automator (gadget) | Gadget Talent | Roster; device-specific effects not automated |
-| Tech | Battery (gadget) | Gadget Talent | Reference only; construction blocked pending special battery rules |
+| Tech | Battery (gadget) | Gadget Talent | Construction, exempt storage, attachment, atomic battery-first spending and explicit recharge; external inventory hosts pending |
 | Tech | Camera (drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
 | Tech | Chameleon Suit (gadget, accessory) | Gadget Talent | Roster; device-specific effects not automated |
 | Tech | Chemalyzer (gadget) | Gadget Talent | Roster; device-specific effects not automated |

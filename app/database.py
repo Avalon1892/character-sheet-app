@@ -4,6 +4,7 @@ import json
 import math
 import re
 import sqlite3
+from app.engineering_rules import is_battery, TECH_BATTERY_KEY, tech_battery_capacity
 from datetime import datetime
 from pathlib import Path
 
@@ -976,6 +977,11 @@ class CharacterRepository:
             )
         """)
         self._ensure_column("engineering_devices", "host_id", "INTEGER REFERENCES engineering_devices(id) ON DELETE SET NULL")
+        self._connection.execute(f"""
+            CREATE UNIQUE INDEX IF NOT EXISTS engineering_tech_battery_host
+            ON engineering_devices(host_id)
+            WHERE sphere='Tech' AND catalog_key='{TECH_BATTERY_KEY}' AND host_id IS NOT NULL
+        """)
         self._connection.execute(
             """
             CREATE TABLE IF NOT EXISTS custom_trackers (
@@ -3065,8 +3071,12 @@ class CharacterRepository:
         if host_id is not None:
             host=self._connection.execute("SELECT sphere,catalog_key FROM engineering_devices WHERE id=? AND character_id=?",(host_id,character_id)).fetchone()
             if (host is None or host["sphere"]!=sphere or host_id==device_id
-                    or record.get("catalog_key")!="tinker:battery" or host["catalog_key"]=="tinker:battery"):
-                raise ValueError("A Tinker battery must attach to a non-battery gizmo owned by this character.")
+                    or not is_battery(record) or is_battery(dict(host))):
+                raise ValueError("A battery must attach to a non-battery device of the same sphere owned by this character.")
+            if sphere=="Tech" and self._connection.execute(
+                "SELECT 1 FROM engineering_devices WHERE sphere='Tech' AND catalog_key=? AND host_id=? AND (? IS NULL OR id!=?)",
+                (TECH_BATTERY_KEY,host_id,device_id,device_id)).fetchone():
+                raise ValueError("A Tech device can have only one attached battery. Detach its existing battery first.")
         fields = ("sphere", "catalog_key", "name", "level", "modifier", "state", "charges", "minor", "advanced", "host_id")
         values = (sphere, str(record.get("catalog_key", "")), name,
                   int(record.get("level", 0)), int(record.get("modifier", 0)), state,
@@ -3091,24 +3101,53 @@ class CharacterRepository:
         self._connection.commit()
         return device_id
 
-    def transfer_engineering_charges(self, character_id, device_id, tracker_id, amount):
+    def transfer_engineering_charges(self, character_id, device_id, tracker_id, amount, *, received_amount=None):
         """Move existing charges atomically; both records must have one owner."""
         amount=int(amount)
         with self._connection:
             device=self._connection.execute(
-                "SELECT charges FROM engineering_devices WHERE id=? AND character_id=? AND sphere='Tech' AND state NOT IN ('abandoned','depleted')",
+                "SELECT charges,modifier,catalog_key FROM engineering_devices WHERE id=? AND character_id=? AND sphere='Tech' AND state NOT IN ('abandoned','depleted')",
                 (device_id,character_id)).fetchone()
             pool=self._connection.execute(
                 "SELECT current_value FROM custom_trackers WHERE id=? AND character_id=?",
                 (tracker_id,character_id)).fetchone()
             if device is None or pool is None:
                 raise ValueError("Charge transfer records do not belong to this character or are unavailable.")
-            charges=device["charges"]+amount
+            received=amount if received_amount is None else int(received_amount)
+            if received_amount is not None and not 0<=received<=amount:
+                raise ValueError("Invalid credited charge amount.")
+            charges=device["charges"]+received
             current=pool["current_value"]-amount
             if not 0<=charges<=99999 or current<0:
                 raise ValueError("Not enough charges for this transfer.")
+            if device["catalog_key"]==TECH_BATTERY_KEY:
+                if amount<0 or received>max(0,tech_battery_capacity(device["modifier"],from_pool=True)-device["charges"]):
+                    raise ValueError("Invalid Tech battery pool transfer.")
             self._connection.execute("UPDATE engineering_devices SET charges=? WHERE id=?",(charges,device_id))
             self._connection.execute("UPDATE custom_trackers SET current_value=? WHERE id=?",(current,tracker_id))
+            self._touch_character(character_id)
+
+    def spend_tech_device_charges(self, character_id, device_id, amount):
+        """Atomic battery-first spending, preserving charges on failed uses."""
+        amount=int(amount)
+        if amount<=0:
+            raise ValueError("Charge cost must be positive.")
+        with self._connection:
+            host=self._connection.execute(
+                "SELECT * FROM engineering_devices WHERE id=? AND character_id=? AND sphere='Tech' AND state NOT IN ('abandoned','depleted')",
+                (device_id,character_id)).fetchone()
+            if host is None:
+                raise ValueError("Select a functioning Tech device.")
+            battery=None if host["catalog_key"]==TECH_BATTERY_KEY else self._connection.execute(
+                "SELECT * FROM engineering_devices WHERE host_id=? AND character_id=? AND catalog_key=? AND state NOT IN ('abandoned','depleted')",
+                (device_id,character_id,TECH_BATTERY_KEY)).fetchone()
+            available=host["charges"]+(battery["charges"] if battery else 0)
+            if amount>available:
+                raise ValueError("Not enough charges in this device and its attached battery.")
+            battery_spent=min(amount,battery["charges"]) if battery else 0
+            if battery:
+                self._connection.execute("UPDATE engineering_devices SET charges=charges-? WHERE id=?",(battery_spent,battery["id"]))
+            self._connection.execute("UPDATE engineering_devices SET charges=charges-? WHERE id=?",(amount-battery_spent,device_id))
             self._touch_character(character_id)
 
     def deplete_engineering_batteries(self,character_id,host_id,battery_ids):
@@ -3118,7 +3157,7 @@ class CharacterRepository:
         placeholders=",".join("?" for _ in ids)
         with self._connection:
             rows=self._connection.execute(
-                "SELECT id FROM engineering_devices WHERE character_id=? AND host_id=? AND catalog_key='tinker:battery' AND state='active' AND id IN ("+placeholders+")",
+                "SELECT b.id FROM engineering_devices b JOIN engineering_devices h ON h.id=b.host_id WHERE b.character_id=? AND b.host_id=? AND b.catalog_key='tinker:battery' AND b.state='active' AND b.level>=h.level AND b.id IN ("+placeholders+")",
                 (character_id,host_id,*ids)).fetchall()
             if len(rows)!=len(ids):
                 raise ValueError("Attached battery is no longer available.")

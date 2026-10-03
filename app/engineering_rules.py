@@ -2,6 +2,20 @@
 from dataclasses import dataclass
 from math import ceil
 
+TECH_BATTERY_KEY = "tech:gadget-talent:battery-gadget"
+TINKER_BATTERY_KEY = "tinker:battery"
+
+
+def is_battery(device):
+    return (device["sphere"],device["catalog_key"]) in {
+        ("Tech",TECH_BATTERY_KEY),("Tinker",TINKER_BATTERY_KEY)}
+
+
+def tech_battery_capacity(modifier, *, from_pool=False):
+    # Creation/full recharge explicitly has minimum 1; pool charging uses the
+    # separate creator-modifier cap in the Charging Batteries paragraph.
+    return max(0 if from_pool else 1, int(modifier))
+
 
 @dataclass(frozen=True)
 class EngineeringLimits:

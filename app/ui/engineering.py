@@ -5,7 +5,7 @@ from PySide6.QtWidgets import (QDialog,QVBoxLayout,QHBoxLayout,QComboBox,QLabel,
     QPushButton,QTableWidget,QTableWidgetItem,QHeaderView,QAbstractItemView,
     QSpinBox,QCheckBox,QTextBrowser,QSplitter,QWidget,QMessageBox,QInputDialog)
 from app.services.engineering import EngineeringService
-from app.engineering_rules import occupied_limit
+from app.engineering_rules import occupied_limit,is_battery,TECH_BATTERY_KEY,tech_battery_capacity
 from app.content import martial_entry
 from app.ui.dialog_theme import dialog_stylesheet
 
@@ -68,13 +68,17 @@ class EngineeringDialog(QDialog):
         self.spend=QSpinBox();self.spend.setRange(1,99999);resources.addWidget(self.spend)
         self.use=QPushButton("Spend charges");resources.addWidget(self.use)
         self.recharge=QPushButton("Recharge");resources.addWidget(self.recharge)
+        resources.addStretch()
+        resources=QHBoxLayout();root.addLayout(resources)
         self.attach=QPushButton("Attach battery");resources.addWidget(self.attach)
+        self.detach=QPushButton("Detach selected battery");resources.addWidget(self.detach)
+        self.battery_recharge=QPushButton("Recharge battery (+1 min)");resources.addWidget(self.battery_recharge)
         self.battery_use=QPushButton("Use attached batteries");resources.addWidget(self.battery_use)
         self.personal=QCheckBox("Personal battery use");resources.addWidget(self.personal)
         self.device_charge_controls=[]
-        for label,operation in (("Load selected",lambda:self.service().transfer_charges(self.selected(),self.spend.value())),
+        for label,operation in (("Load selected",self.load_charges),
                                 ("Return selected",lambda:self.service().transfer_charges(self.selected(),-self.spend.value())),
-                                ("Use stored charges",lambda:self.service().transfer_charges(self.selected(),self.spend.value(),spend=True))):
+                                ("Use device charges",lambda:self.service().transfer_charges(self.selected(),self.spend.value(),spend=True))):
             button=QPushButton(label);button.clicked.connect(lambda checked=False,op=operation:self.perform(op))
             resources.addWidget(button);self.device_charge_controls.append(button)
         resources.addStretch()
@@ -89,6 +93,8 @@ class EngineeringDialog(QDialog):
         self.use.clicked.connect(lambda:self.perform(lambda:self.service().change_charges(-self.spend.value())))
         self.recharge.clicked.connect(lambda:self.perform(lambda:self.service().recharge()))
         self.attach.clicked.connect(self.attach_battery)
+        self.detach.clicked.connect(lambda:self.perform(lambda:self.service().attach_battery(self.selected(),None)))
+        self.battery_recharge.clicked.connect(lambda:self.perform(lambda:self.service().recharge_tech_battery(self.selected())))
         self.battery_use.clicked.connect(lambda:self.perform(lambda:self.service().use_batteries(self.selected(),self.spend.value(),personal=self.personal.isChecked())))
         self.refresh()
 
@@ -114,7 +120,9 @@ class EngineeringDialog(QDialog):
         for row,device in enumerate(devices):
             stats=service.statistics(device)
             attached=[d for d in devices if d["host_id"]==device["id"] and d["state"]!="abandoned"]
-            energy=(device["charges"] if sphere=="Tech" else
+            energy=(f"{device['charges']} + {sum(d['charges'] for d in attached if d['state'] not in {'depleted','abandoned'})} battery" if sphere=="Tech" and attached else
+                    f"{device['charges']}/{tech_battery_capacity(device['modifier'])}" if sphere=="Tech" and is_battery(device) else
+                    device["charges"] if sphere=="Tech" else
                     f"#{device['host_id']}" if device["host_id"] else
                     f"{sum(d['state']=='active' for d in attached)}/{len(attached)} batteries" if attached else "—")
             values=(device["name"],device["level"],device["state"],stats["hp"],stats["hardness"],stats["save"],stats["dc"],energy)
@@ -128,7 +136,9 @@ class EngineeringDialog(QDialog):
         self.charges.setText(f"Tech charges: {int(pool.current_value) if pool else 0} / {limits.charge_maximum}" if sphere=="Tech" else "Tinker: deplete individual batteries; rest does not replace maintenance.")
         self.spend.setVisible(True)
         for control in (self.use,self.recharge,*self.device_charge_controls):control.setVisible(sphere=="Tech")
-        for control in (self.attach,self.battery_use,self.personal):control.setVisible(sphere=="Tinker")
+        for control in (self.battery_use,self.personal):control.setVisible(sphere=="Tinker")
+        self.battery_recharge.setVisible(sphere=="Tech")
+        self.detach.setEnabled(False);self.battery_recharge.setEnabled(False)
         self.attach.setEnabled(False);self.battery_use.setEnabled(False)
         for button in self.device_charge_controls:button.setEnabled(False)
         self.recharge.setText(f"Recharge (+{limits.recharge_amount}, {minutes} min)")
@@ -150,13 +160,18 @@ class EngineeringDialog(QDialog):
         device=next((d for d in self.service().devices(self.system.currentText()) if d["id"]==self.selected()),None)
         for button in self.actions:button.setEnabled(device is not None and device["state"]!="abandoned")
         for button in self.device_charge_controls:button.setEnabled(device is not None and device["state"] not in {"abandoned","depleted"})
-        host=bool(device and device["sphere"]=="Tinker" and device["catalog_key"]!="tinker:battery" and device["state"] not in {"abandoned","depleted"})
+        self.device_charge_controls[1].setEnabled(bool(device and not is_battery(device) and device["state"] not in {"abandoned","depleted"}))
+        self.device_charge_controls[2].setToolTip("Spend attached Tech battery charges first, then charges stored in the device.")
+        host=bool(device and not is_battery(device) and device["state"] not in {"abandoned","depleted"})
         self.attach.setEnabled(host);self.battery_use.setEnabled(host)
+        self.detach.setEnabled(bool(device and is_battery(device) and device["host_id"] and device["state"]!="abandoned"))
+        self.battery_recharge.setEnabled(bool(device and device["catalog_key"]==TECH_BATTERY_KEY and device["state"]!="abandoned"))
         if device:self.show_details(martial_entry(device["catalog_key"]) or {"name":device["name"],"description":"Tinker battery. Deplete to spend; maintain to restore."})
 
     def perform(self,operation):
         try:
-            operation()
+            if operation() is False:
+                return
         except (ValueError,KeyError) as error:
             self.status.setText(str(error));return
         self.status.setText("Saved.")
@@ -169,16 +184,26 @@ class EngineeringDialog(QDialog):
                      minor=self.minor.isChecked() if sphere=="Tinker" else False,
                      advanced=self.advanced.value() if sphere=="Tinker" else 0))
 
+    def load_charges(self):
+        device=next((d for d in self.service().devices("Tech") if d["id"]==self.selected()),None)
+        if device and is_battery(device):
+            room=max(0,tech_battery_capacity(device["modifier"],from_pool=True)-device["charges"])
+            wasted=max(0,self.spend.value()-room)
+            if wasted and QMessageBox.question(self,"Excess battery charges",
+                f"This transfer will waste {wasted} charges. Continue?")!=QMessageBox.StandardButton.Yes:
+                return False
+        self.service().transfer_charges(self.selected(),self.spend.value())
+
     def change_state(self,state):
         if state=="abandoned" and QMessageBox.question(self,"Abandon device",
-            "The selected device stops functioning permanently and no longer counts against your limit. Abandon it?"
+            "The selected device stops functioning permanently and no longer counts against your limit. Any Tech battery charges are lost. Abandon it?"
             )!=QMessageBox.StandardButton.Yes:return
         if self.selected() is not None:self.perform(lambda:self.service().change_state(self.selected(),state))
 
     def attach_battery(self):
-        batteries=[d for d in self.service().devices("Tinker") if d["catalog_key"]=="tinker:battery" and d["state"]!="abandoned"]
+        batteries=[d for d in self.service().devices(self.system.currentText()) if is_battery(d) and d["state"]!="abandoned"]
         labels=[f"#{d['id']} {d['name']} · level {d['level']} · {d['state']}" for d in batteries]
         if not labels:
-            self.status.setText("Craft a Tinker battery first.");return
+            self.status.setText("Craft a battery first.");return
         label,accepted=QInputDialog.getItem(self,"Attach battery","Battery (swift action by default)",labels,0,False)
         if accepted:self.perform(lambda:self.service().attach_battery(batteries[labels.index(label)]["id"],self.selected()))
