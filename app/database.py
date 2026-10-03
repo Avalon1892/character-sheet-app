@@ -3185,8 +3185,8 @@ class CharacterRepository:
         if not 1<=rounds<=999999:
             raise ValueError("Elapsed rounds must be between 1 and 999,999.")
         with self._connection:
-            self._connection.execute("UPDATE engineering_devices SET effect_rounds=MAX(0,effect_rounds-?),state=CASE WHEN effect_rounds<=? AND state='active' THEN 'inactive' ELSE state END WHERE character_id=? AND state!='abandoned' AND effect_rounds>0",
-                (rounds,rounds,character_id))
+            self._connection.execute("UPDATE engineering_devices SET effect_rounds=MAX(0,effect_rounds-?),state=CASE WHEN effect_rounds<=? AND state='active' AND catalog_key=? THEN 'inactive' ELSE state END WHERE character_id=? AND state!='abandoned' AND effect_rounds>0",
+                (rounds,rounds,JET_BOOSTERS_KEY,character_id))
             self._touch_character(character_id)
 
     def deplete_engineering_batteries(self,character_id,host_id,battery_ids):

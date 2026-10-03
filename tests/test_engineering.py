@@ -86,6 +86,17 @@ class EngineeringTests(unittest.TestCase):
             self.service.damage_device(device["id"],999,apply_hardness=False)
         self.assertEqual(cmd,CharacterCalculationService(self.repo,self.cid).combat_results()["cmd"].total)
 
+    def test_tinker_effect_expiry_preserves_passive_device_activation(self):
+        from app.engineering_rules import TACTILE_FIELD_KEY
+        device=self.repo.save_engineering_device(self.cid,dict(sphere="Tinker",catalog_key=TACTILE_FIELD_KEY,name="Tactile Field",level=4,modifier=3,state="active",applied_to_character=True,effect_rounds=10))
+        self.service.advance_time(9)
+        record=next(d for d in self.service.devices("Tinker") if d["id"]==device)
+        self.assertEqual(("active",1),(record["state"],record["effect_rounds"]))
+        self.service.advance_time(1)
+        record=next(d for d in self.service.devices("Tinker") if d["id"]==device)
+        self.assertEqual(("active",0),(record["state"],record["effect_rounds"]))
+        self.assertTrue(record["applied_to_character"])
+
     def test_distinct_rules_and_repeatable_limits(self):
         self.assertEqual((9,4,6),(engineering_limits("Tinker",6,1,extra=1).device_limit,
                                   engineering_limits("Tinker",8,1,extra=1).batch_size,
