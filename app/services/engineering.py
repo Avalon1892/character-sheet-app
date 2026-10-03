@@ -6,7 +6,7 @@ from app.engineering_rules import (engineering_limits, occupied_limit, device_st
 from app.engineering_rules import physical_augmentor_bonus
 from app.services.character_calculations import CharacterCalculationService
 from app.exploitant_rules import effective_martial_talents
-from app.engineering_rules import TACTILE_FIELD_KEY
+from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY,resistance_routine_bonus
 
 
 def device_talent(entry):
@@ -37,6 +37,10 @@ class EngineeringService:
             entries["tinker:battery"] = {"key":"tinker:battery", "name":"Battery (gizmo)",
                                         "description":"Depleting this battery powers a battery-use ability. A depleted battery still counts against your gizmo limit."}
             augmentation="Augmentation" in tinker_packages(self.records(sphere))
+            if "Computation" in tinker_packages(self.records(sphere)) and any(t.catalog_key=="tinker:gizmo-talent:defensive-set-gizmo" for t in self.records(sphere)):
+                entries[RESISTANCE_ROUTINE_KEY]={"key":RESISTANCE_ROUTINE_KEY,"name":"Resistance Routine (gizmo, minor, routine)",
+                    "description":"Install in a gizmo to grant that gizmo a +1 insight bonus to all saves, +1 per 4 effective routine levels. Activate the routine after installation. This protects the host device, not the character. Multiple copies do not stack.",
+                    "source_url":"https://spheresofpower.wikidot.com/tinker"}
             if augmentation:
                 entries[PHYSICAL_AUGMENTOR_KEY]={"key":PHYSICAL_AUGMENTOR_KEY,"name":"Physical Augmentor (gizmo)",
                     "description":"Choose Strength, Dexterity or Constitution. Grants a competence bonus to checks based on that ability: 2 + 1 per 4 effective gizmo levels. Deplete an attached battery before a benefiting check to roll twice and take the higher result.",
@@ -84,6 +88,8 @@ class EngineeringService:
             raise ValueError("Choose an appropriate ability for the augmentor.")
         if key==JET_BOOSTERS_KEY and configuration not in {"flight","aquatic"}:
             raise ValueError("Choose flight or aquatic boosters at creation.")
+        if key==RESISTANCE_ROUTINE_KEY:
+            minor=True
         ranks = CharacterCalculationService(self.repository,self.character_id).effective_skill_ranks().get(self.skill_key,0)
         if sphere=="Tinker" and ranks<1:
             raise ValueError("A gizmo requires at least one rank in its associated skill.")
@@ -273,6 +279,18 @@ class EngineeringService:
             self.change_charges(amount)
         return amount
 
-    @staticmethod
-    def statistics(device):
-        return device_statistics(device["sphere"],device["level"],device["modifier"])
+    def install_resistance_routine(self,device_id,host_id):
+        devices={d["id"]:d for d in self.devices("Tinker")}
+        routine=devices.get(device_id)
+        host=devices.get(host_id)
+        if not self.available("Tinker") or not routine or routine["catalog_key"]!=RESISTANCE_ROUTINE_KEY or routine["state"]=="abandoned":
+            raise ValueError("Select an available Resistance Routine.")
+        if host_id is not None and (not host or host["catalog_key"]==RESISTANCE_ROUTINE_KEY or host["state"] in {"abandoned","depleted"} or device_condition(host)["destroyed"]):
+            raise ValueError("Select a functioning host gizmo; nested routines are not yet supported.")
+        self.repository.save_engineering_device(self.character_id,{**routine,"host_id":host_id},device_id)
+
+    def statistics(self,device):
+        stats=device_statistics(device["sphere"],device["level"],device["modifier"])
+        if device["state"]!="abandoned" and not device_condition(device)["destroyed"]:
+            stats["save"]+=max((resistance_routine_bonus(d) for d in self.devices(device["sphere"]) if d["host_id"]==device["id"]),default=0)
+        return stats

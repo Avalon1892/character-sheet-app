@@ -28,6 +28,17 @@ PHYSICAL_AUGMENTOR_KEY = "tinker:device:physical-augmentor"
 MENTAL_AUGMENTOR_KEY = "tinker:device:mental-augmentor"
 LOAD_BEARER_KEY = "tinker:device:load-bearer"
 TACTILE_FIELD_KEY = "tinker:device:tactile-field"
+RESISTANCE_ROUTINE_KEY = "tinker:device:resistance-routine"
+
+
+def resistance_routine_bonus(device):
+    if (device["sphere"]!="Tinker" or device["catalog_key"]!=RESISTANCE_ROUTINE_KEY
+            or device["state"]!="active" or device.get("host_id") is None
+            or device_condition(device)["destroyed"]):
+        return 0
+    return 1+device_condition(device)["effective_level"]//4
+
+
 AUGMENTOR_ABILITIES = {
     PHYSICAL_AUGMENTOR_KEY: ("strength","dexterity","constitution"),
     MENTAL_AUGMENTOR_KEY: ("intelligence","wisdom","charisma"),

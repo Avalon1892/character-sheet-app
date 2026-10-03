@@ -209,7 +209,7 @@ def _import_engineering_devices(repository,character_id,character):
         if old_effect_battery is not None:device_effects.append((new_id,old_effect_battery))
     for device_id,host_id,device in device_hosts:
         if host_id not in device_ids:
-            raise ValueError("Engineering device has a missing battery host.")
+            raise ValueError("Engineering device has a missing attachment host.")
         repository.save_engineering_device(character_id,{**device,"host_id":device_ids[host_id]},device_id)
     for device_id,battery_id in device_effects:
         if battery_id not in device_ids:

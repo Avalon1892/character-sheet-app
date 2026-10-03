@@ -5,7 +5,7 @@ import math
 import re
 import sqlite3
 from app.engineering_rules import is_battery, TECH_BATTERY_KEY, tech_battery_capacity,device_condition,JET_BOOSTERS_KEY,JET_MODES
-from app.engineering_rules import TACTILE_FIELD_KEY
+from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY
 from datetime import datetime
 from pathlib import Path
 
@@ -3081,8 +3081,9 @@ class CharacterRepository:
         if host_id is not None:
             host=self._connection.execute("SELECT sphere,catalog_key FROM engineering_devices WHERE id=? AND character_id=?",(host_id,character_id)).fetchone()
             if (host is None or host["sphere"]!=sphere or host_id==device_id
-                    or not is_battery(record) or is_battery(dict(host))):
-                raise ValueError("A battery must attach to a non-battery device of the same sphere owned by this character.")
+                    or not (is_battery(record) or (sphere=="Tinker" and record.get("catalog_key")==RESISTANCE_ROUTINE_KEY))
+                    or (is_battery(record) and is_battery(dict(host))) or host["catalog_key"]==RESISTANCE_ROUTINE_KEY):
+                raise ValueError("A battery or supported routine must attach to a compatible device of the same sphere owned by this character.")
             if sphere=="Tech" and self._connection.execute(
                 "SELECT 1 FROM engineering_devices WHERE sphere='Tech' AND catalog_key=? AND host_id=? AND (? IS NULL OR id!=?)",
                 (TECH_BATTERY_KEY,host_id,device_id,device_id)).fetchone():

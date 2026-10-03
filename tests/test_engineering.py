@@ -47,6 +47,40 @@ class EngineeringTests(unittest.TestCase):
         with self.assertRaises(ValueError):self.service.use_augmentor_reroll(host)
         self.assertEqual("active",next(d for d in self.service.devices("Tinker") if d["id"]==host)["state"])
 
+    def test_resistance_routine_installation_saves_stacking_and_transfer(self):
+        from app.engineering_rules import RESISTANCE_ROUTINE_KEY
+        entry=next(e for e in martial_entries("Tinker") if e["key"]=="tinker:gizmo-talent:defensive-set-gizmo")
+        self.add("Tinker",entry["name"],entry["key"],entry["category"])
+        with self.assertRaises(ValueError):self.service.create("Tinker",RESISTANCE_ROUTINE_KEY,3)
+        base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")
+        self.repo.update_martial_talent(self.cid,base.id,base.name,"Tinker","Base Sphere",catalog_key=base.catalog_key,catalog_category="Base Sphere",choice="Computation")
+        host=self.service.create("Tinker","tinker:battery",3)
+        record=lambda key:next(d for d in self.service.devices("Tinker") if d["id"]==key)
+        before=self.service.statistics(record(host))["save"]
+        routines=[]
+        for _ in range(2):
+            routine=self.service.create("Tinker",RESISTANCE_ROUTINE_KEY,3)
+            # A retained level-4 routine crosses a bonus breakpoint when broken.
+            self.repo.save_engineering_device(self.cid,{**record(routine),"level":4},routine)
+            self.assertTrue(record(routine)["minor"])
+            self.service.install_resistance_routine(routine,host)
+            self.assertEqual(before if not routines else before+2,self.service.statistics(record(host))["save"])
+            self.service.change_state(routine,"active");routines.append(routine)
+        self.assertEqual(before+2,self.service.statistics(record(host))["save"])
+        for routine in routines:self.service.damage_device(routine,7,apply_hardness=False)
+        self.assertEqual(before+1,self.service.statistics(record(host))["save"])
+        path=Path(self.temp.name)/"routine.json";export_character(self.repo,self.cid,path)
+        imported=import_character(self.repo,path)
+        service=EngineeringService(self.repo,imported)
+        imported_host=next(d for d in service.devices("Tinker") if d["catalog_key"]=="tinker:battery")
+        self.assertEqual(before+1,service.statistics(imported_host)["save"])
+        self.assertTrue(all(d["host_id"]==imported_host["id"] for d in service.devices("Tinker") if d["catalog_key"]==RESISTANCE_ROUTINE_KEY))
+        for routine in routines:self.service.install_resistance_routine(routine,None)
+        self.assertEqual(before,self.service.statistics(record(host))["save"])
+        with self.assertRaises(ValueError):self.service.install_resistance_routine(routines[0],routines[0])
+        foreign=self.repo.create_character("Other","Spheres")
+        with self.assertRaises(ValueError):self.repo.save_engineering_device(foreign,{**record(routines[0]),"host_id":host})
+
     def test_practitioner_ability_uses_live_calculated_modifier(self):
         from app.services.character_calculations import CharacterCalculationService
         for ability in ("strength","dexterity","constitution","intelligence","wisdom","charisma"):

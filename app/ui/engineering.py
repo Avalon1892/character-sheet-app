@@ -5,7 +5,7 @@ from PySide6.QtWidgets import (QDialog,QVBoxLayout,QHBoxLayout,QComboBox,QLabel,
     QPushButton,QTableWidget,QTableWidgetItem,QHeaderView,QAbstractItemView,
     QSpinBox,QCheckBox,QTextBrowser,QSplitter,QWidget,QMessageBox,QInputDialog)
 from app.services.engineering import EngineeringService
-from app.engineering_rules import TACTILE_FIELD_KEY
+from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY
 from app.engineering_rules import occupied_limit,is_battery,TECH_BATTERY_KEY,tech_battery_capacity,device_condition,PHYSICAL_AUGMENTOR_KEY,AUGMENTOR_ABILITIES,JET_BOOSTERS_KEY,JET_MODES
 from app.content import martial_entry
 from app.ui.dialog_theme import dialog_stylesheet
@@ -124,6 +124,10 @@ class EngineeringDialog(QDialog):
         self.repair_button.clicked.connect(lambda:self.perform(lambda:self.service().repair_tinker_device(self.selected(),self.modifier.value(),has_tools=self.kit.isChecked())))
         resources=QHBoxLayout();root.addLayout(resources)
         self.attach=QPushButton("Attach battery");resources.addWidget(self.attach)
+        self.install_routine=QPushButton("Install routine");resources.addWidget(self.install_routine)
+        self.remove_routine=QPushButton("Remove routine");resources.addWidget(self.remove_routine)
+        self.install_routine.clicked.connect(self.install_resistance_routine)
+        self.remove_routine.clicked.connect(lambda:self.perform(lambda:self.service().install_resistance_routine(self.selected(),None)))
         self.detach=QPushButton("Detach selected battery");resources.addWidget(self.detach)
         self.battery_recharge=QPushButton("Recharge battery (+1 min)");resources.addWidget(self.battery_recharge)
         self.battery_use=QPushButton("Use attached batteries");resources.addWidget(self.battery_use)
@@ -180,7 +184,7 @@ class EngineeringDialog(QDialog):
         for row,device in enumerate(devices):
             stats=service.statistics(device)
             condition=device_condition(device)
-            attached=[d for d in devices if d["host_id"]==device["id"] and d["state"]!="abandoned"]
+            attached=[d for d in devices if is_battery(d) and d["host_id"]==device["id"] and d["state"]!="abandoned"]
             energy=(f"{device['charges']} + {sum(d['charges'] for d in attached if d['state'] not in {'depleted','abandoned'} and not device_condition(d)['destroyed'])} battery" if sphere=="Tech" and attached else
                     f"{device['charges']}/{tech_battery_capacity(device['modifier'])}" if sphere=="Tech" and is_battery(device) else
                     device["charges"] if sphere=="Tech" else
@@ -222,6 +226,8 @@ class EngineeringDialog(QDialog):
 
     def preview_known(self,*_):
         key=self.known.currentData()
+        self.minor.setEnabled(self.system.currentText()=="Tinker" and key!=RESISTANCE_ROUTINE_KEY)
+        if key==RESISTANCE_ROUTINE_KEY:self.minor.setChecked(True)
         previous=self.configuration.currentData()
         self.configuration.clear()
         for option in (("flight","aquatic") if key==JET_BOOSTERS_KEY else AUGMENTOR_ABILITIES.get(key,())):
@@ -238,12 +244,18 @@ class EngineeringDialog(QDialog):
                               if entry.get("key") in AUGMENTOR_ABILITIES else
                               "CMD, Acrobatics and Escape Artist bonuses, one-battery enhancement and duration are automatic. Resolve the immediate-action reroll manually, then use the reroll/end button to end the enhancement."
                               if entry.get("key")==TACTILE_FIELD_KEY else
+                              "Install and activate this routine to improve its host gizmo's saving throws. The live save column includes the highest active insight bonus; character saves are unchanged."
+                              if entry.get("key")==RESISTANCE_ROUTINE_KEY else
                               "Flight/swim speed, maneuverability, charge costs and paid durations are automatic. Flight slow burn is limited to 3 feet above the surface; height and hover/exhaust effects require manual resolution."
                               if entry.get("key")==JET_BOOSTERS_KEY else "Device-specific effects are reference-only in this batch.")+"</b></p>")
 
     def preview_device(self):
         device=next((d for d in self.service().devices(self.system.currentText()) if d["id"]==self.selected()),None)
         tactile=bool(device and device["catalog_key"]==TACTILE_FIELD_KEY)
+        routine=bool(device and device["catalog_key"]==RESISTANCE_ROUTINE_KEY)
+        self.install_routine.setVisible(routine);self.remove_routine.setVisible(routine)
+        self.install_routine.setEnabled(bool(routine and device["state"]!="abandoned"))
+        self.remove_routine.setEnabled(bool(routine and device["host_id"] is not None and device["state"]!="abandoned"))
         augmentor=bool(device and device["catalog_key"] in AUGMENTOR_ABILITIES)
         self.augmentor_reroll.setVisible(augmentor)
         self.augmentor_reroll.setEnabled(bool(augmentor and device["state"]=="active" and device["applied_to_character"] and not device_condition(device)["destroyed"]))
@@ -265,7 +277,7 @@ class EngineeringDialog(QDialog):
         for button in self.device_charge_controls:button.setEnabled(device is not None and device["state"] not in {"abandoned","depleted"})
         self.device_charge_controls[1].setEnabled(bool(device and not is_battery(device) and device["state"] not in {"abandoned","depleted"}))
         self.device_charge_controls[2].setToolTip("Spend attached Tech battery charges first, then charges stored in the device.")
-        host=bool(device and not is_battery(device) and device["state"] not in {"abandoned","depleted"})
+        host=bool(device and not is_battery(device) and device["catalog_key"]!=RESISTANCE_ROUTINE_KEY and device["state"] not in {"abandoned","depleted"})
         self.attach.setEnabled(host);self.battery_use.setEnabled(host)
         self.detach.setEnabled(bool(device and is_battery(device) and device["host_id"] and device["state"]!="abandoned"))
         self.battery_recharge.setEnabled(bool(device and device["catalog_key"]==TECH_BATTERY_KEY and device["state"]!="abandoned"))
@@ -311,3 +323,11 @@ class EngineeringDialog(QDialog):
             self.status.setText("Craft a battery first.");return
         label,accepted=QInputDialog.getItem(self,"Attach battery","Battery (swift action by default)",labels,0,False)
         if accepted:self.perform(lambda:self.service().attach_battery(batteries[labels.index(label)]["id"],self.selected()))
+
+    def install_resistance_routine(self):
+        hosts=[d for d in self.service().devices("Tinker") if d["catalog_key"]!=RESISTANCE_ROUTINE_KEY and d["state"] not in {"abandoned","depleted"} and not device_condition(d)["destroyed"]]
+        if not hosts:
+            self.status.setText("Craft a functioning host gizmo first.");return
+        labels=[f"#{d['id']} · {d['name']}" for d in hosts]
+        label,accepted=QInputDialog.getItem(self,"Install Resistance Routine","Host gizmo",labels,0,False)
+        if accepted:self.perform(lambda:self.service().install_resistance_routine(self.selected(),hosts[labels.index(label)]["id"]))
