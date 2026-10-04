@@ -3158,9 +3158,9 @@ class CharacterRepository:
         if record.get("energy_efficient") and sphere!="Tech":
             raise ValueError("Energy Efficient Augments construction belongs to Tech, not Tinker.")
         construction_kind=str(record.get("construction_kind",""))
-        if construction_kind not in {"","graft_appliance","graft_contraption"} or (construction_kind and (sphere!="Tech" or record.get("catalog_key") not in TECH_AUGMENT_SLOTS)):
+        if construction_kind not in {"","graft_appliance","graft_contraption","graft_custom"} or (construction_kind and (sphere!="Tech" or record.get("catalog_key") not in TECH_AUGMENT_SLOTS)):
             raise ValueError("Unsupported permanent graft construction.")
-        if construction_kind and (int(record.get("level",0))<1 or int(record.get("charges",0))>max(1,int(record.get("level",0))//2)):
+        if construction_kind and (int(record.get("level",0))<1 or (construction_kind!="graft_custom" and int(record.get("charges",0))>max(1,int(record.get("level",0))//2))):
             raise ValueError("Permanent graft charges exceed construction capacity.")
         if construction_kind and record.get("applied_to_character"):
             raise ValueError("Use the graft surgical workflow; a graft cannot be worn as an ordinary augment.")
@@ -3228,7 +3228,7 @@ class CharacterRepository:
             if received_amount is not None and not 0<=received<=amount:
                 raise ValueError("Invalid credited charge amount.")
             charges=device["charges"]+received
-            if device["construction_kind"] and (amount<0 or charges>max(1,device["level"]//2)):
+            if device["construction_kind"] in {"graft_appliance","graft_contraption"} and (amount<0 or charges>max(1,device["level"]//2)):
                 raise ValueError("Permanent graft charges cannot return to the pool or exceed capacity.")
             current=pool["current_value"]-amount
             if not 0<=charges<=99999 or current<0:

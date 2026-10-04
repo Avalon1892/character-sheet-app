@@ -48,6 +48,76 @@ class EngineeringTests(unittest.TestCase):
         imported=import_character(self.repo,path)
         self.assertEqual(profile,self.repo.engineering_implant_profile(imported))
 
+    def test_machinehead_custom_graft_allowance_charging_effects_and_transfer(self):
+        from app.engineering_rules import DERMAL_PLATING_KEY,SYNAPTIC_MAXIMIZER_KEY
+        from app.class_choice_rules import resolve_class_choice_slots,class_choice_selection_record
+        from app.services.character_calculations import CharacterCalculationService
+        self.add("Tech","Dermal Plating",DERMAL_PLATING_KEY);self.add("Tech","Synaptic Reaction Maximizer",SYNAPTIC_MAXIMIZER_KEY)
+        before=self.repo.sqlite_connection.total_changes
+        with self.assertRaises(ValueError):self.service.create_custom_graft(DERMAL_PLATING_KEY,2,construction_completed=True)
+        self.assertEqual(before,self.repo.sqlite_connection.total_changes)
+        level=self.repo.add_class_level(self.cid,"Armiger",6,"Full","Good","Poor","Poor",preset_key="spheres-class:armiger",hit_die=10,hp_gained=30)
+        self.repo.set_class_archetype_keys(self.cid,level,("spheres-archetype:spheres-class:armiger:machinehead",))
+        slot=next(s for s in resolve_class_choice_slots(self.repo,self.cid) if s.key=="machinehead-prowesses")
+        option=next(o for o in slot.options if o.name=="Custom Graft")
+        self.repo.save_class_feature_selection(class_choice_selection_record(self.cid,slot,(option.key,option.key)))
+        self.assertEqual(2,self.service.custom_graft_allowance())
+        graft=self.service.create_custom_graft(DERMAL_PLATING_KEY,2,construction_completed=True)
+        second=self.service.create_custom_graft(SYNAPTIC_MAXIMIZER_KEY,2,construction_completed=True)
+        with self.assertRaises(ValueError):self.service.create_custom_graft(DERMAL_PLATING_KEY,2,construction_completed=True)
+        self.assertEqual(0,occupied_limit(self.service.devices("Tech"),self.service.limits("Tech")))
+        self.assertEqual(0,self.service.charge_total())
+        with self.assertRaises(ValueError):self.service.recharge_graft(graft,recharge_completed=True)
+        self.service.recharge();total=self.service.charge_total()
+        self.service.transfer_charges(graft,2)
+        self.assertEqual(total,self.service.charge_total())
+        self.service.transfer_charges(graft,-1)
+        self.assertEqual(total,self.service.charge_total())
+        self.service.install_graft(graft,subject_willing_or_helpless=True,installation_completed=True)
+        baseline=CharacterCalculationService(self.repo,self.cid).combat_results()["ac"].total
+        self.service.start_timed_augment(graft)
+        self.assertEqual(total-1,self.service.charge_total())
+        self.assertEqual(baseline+4,CharacterCalculationService(self.repo,self.cid).combat_results()["ac"].total)
+        path=Path(self.temp.name)/"custom-graft.json";export_character(self.repo,self.cid,path)
+        imported=import_character(self.repo,path)
+        self.assertEqual(2,EngineeringService(self.repo,imported).custom_graft_allowance())
+        self.assertEqual(baseline+4,CharacterCalculationService(self.repo,imported).combat_results()["ac"].total)
+        self.repo.add_class_level(self.cid,"Conscript",5,"Full","Good","Poor","Poor",hit_die=10,hp_gained=20)
+        self.assertEqual(baseline+5,CharacterCalculationService(self.repo,self.cid).combat_results()["ac"].total)
+        self.repo.save_class_feature_selection(class_choice_selection_record(self.cid,slot,()))
+        self.assertEqual(baseline,CharacterCalculationService(self.repo,self.cid).combat_results()["ac"].total)
+
+    def test_custom_graft_workbench_cancel_and_single_refresh(self):
+        from unittest.mock import patch
+        from PySide6.QtWidgets import QApplication,QWidget,QMessageBox
+        from PySide6.QtCore import QEvent
+        from app.ui.engineering import EngineeringDialog
+        from app.engineering_rules import DERMAL_PLATING_KEY
+        from app.class_choice_rules import resolve_class_choice_slots,class_choice_selection_record
+        self.add("Tech","Dermal Plating",DERMAL_PLATING_KEY)
+        level=self.repo.add_class_level(self.cid,"Armiger",4,"Full","Good","Poor","Poor",preset_key="spheres-class:armiger",hit_die=10,hp_gained=20)
+        self.repo.set_class_archetype_keys(self.cid,level,("spheres-archetype:spheres-class:armiger:machinehead",))
+        slot=next(s for s in resolve_class_choice_slots(self.repo,self.cid) if s.key=="machinehead-prowesses")
+        key=next(o.key for o in slot.options if o.name=="Custom Graft")
+        self.repo.save_class_feature_selection(class_choice_selection_record(self.cid,slot,(key,)))
+        app=QApplication.instance() or QApplication([])
+        for theme in ("classic","dark"):
+            with self.subTest(theme=theme):
+                sheet=QWidget();sheet.repository=self.repo;sheet.character_id=self.cid;sheet.theme=theme
+                refreshed=[];sheet.refresh_all=lambda:refreshed.append(True)
+                dialog=EngineeringDialog(sheet);dialog.system.setCurrentText("Tech");dialog.known.setCurrentIndex(dialog.known.findData(DERMAL_PLATING_KEY))
+                self.assertTrue(dialog.custom_graft.isEnabled())
+                before=self.repo.sqlite_connection.total_changes
+                with patch.object(QMessageBox,"question",return_value=QMessageBox.StandardButton.No):dialog.custom_graft.click()
+                self.assertEqual(before,self.repo.sqlite_connection.total_changes);self.assertEqual([],refreshed)
+                with patch.object(QMessageBox,"question",return_value=QMessageBox.StandardButton.Yes):dialog.custom_graft.click()
+                self.assertEqual([True],refreshed)
+                graft=next(d for d in self.service.devices("Tech") if d["state"]!="abandoned")
+                self.assertEqual(("graft_custom",0),(graft["construction_kind"],graft["charges"]))
+                self.assertFalse(dialog.custom_graft.isEnabled())
+                self.service.change_state(graft["id"],"abandoned")
+                dialog.deleteLater();sheet.deleteLater();app.sendPostedEvents(None,QEvent.Type.DeferredDelete)
+
     def test_bio_graft_creation_validation_polymorph_transfer_and_remote_susceptibility(self):
         from app.models import SkillState
         from app.engineering_rules import DERMAL_PLATING_KEY,CLAMP_BOOTS_KEY,EXO_MUSCLES_KEY

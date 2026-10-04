@@ -772,9 +772,13 @@ class CharacterCalculationService:
         cybertech=profile["cybertech_value"] if cybertech_value is None else cybertech_value
         status=graft_implantation_status(*scores,graft_values=[2]*len(installed)+list(additional_values),cybertech_value=cybertech)
         used=cybertech;functional=[];blocked=[]
+        allowance=sum(option.name=="Custom Graft" for slot in resolve_class_choice_slots(self.repository,self.character_id)
+            if slot.key=="machinehead-prowesses" for option in slot.selected_options)
+        custom_ids=sorted(d["id"] for d in self.repository.list_engineering_devices(self.character_id) if d["construction_kind"]=="graft_custom" and d["state"]!="abandoned")[:allowance]
         for device in installed:
             used+=2
-            (functional if status["has_controlling_score"] and used<=status["capacity"] else blocked).append(device["id"])
+            maintained=device["construction_kind"]!="graft_custom" or device["id"] in custom_ids
+            (functional if maintained and status["has_controlling_score"] and used<=status["capacity"] else blocked).append(device["id"])
         bio_worn=any(d["bio_augment"] and (d["graft_slot"] or d["applied_to_character"]) for d in self.repository.list_engineering_devices(self.character_id))
         return {**status,"functional_ids":tuple(functional),"blocked_ids":tuple(blocked),"remote_control_save_penalty":(-5 if installed else 0)+(-5 if bio_worn else 0)}
 

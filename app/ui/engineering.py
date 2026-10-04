@@ -153,6 +153,8 @@ class EngineeringDialog(QDialog):
         self.create=QPushButton("Craft device");controls.addWidget(self.create)
         self.plan_graft=QPushButton("Plan augment graft");controls.addWidget(self.plan_graft)
         self.plan_graft.clicked.connect(lambda:GraftPlanningDialog(self.service(),self.known.currentData(),self).exec())
+        self.custom_graft=QPushButton("Create Custom Graft");controls.addWidget(self.custom_graft)
+        self.custom_graft.clicked.connect(self.create_custom_graft)
         split=QSplitter();root.addWidget(split,1)
         left=QWidget();layout=QVBoxLayout(left);split.addWidget(left)
         self.table=QTableWidget(0,9)
@@ -277,6 +279,10 @@ class EngineeringDialog(QDialog):
         if QMessageBox.question(self,"Recharge graft","Confirm that the selected graft's 15-minute recharge has been completed? Appliances and contraptions recharge as though an engineering kit were available. This restores their own charges, not the Tech pool.")!=QMessageBox.StandardButton.Yes:return
         self.perform(lambda:self.service().recharge_graft(self.selected(),recharge_completed=True))
 
+    def create_custom_graft(self):
+        if QMessageBox.question(self,"Create Custom Graft","Confirm construction was completed using the duration agreed for this class feature? This consumes one selected Custom Graft allowance, costs no gold, starts with no charges, cannot be sold, and uses the normal Tech charge pool. Self-implantation requires the separate surgery action.")!=QMessageBox.StandardButton.Yes:return
+        self.perform(lambda:self.service().create_custom_graft(self.known.currentData(),self.modifier.value(),construction_completed=True,bio_augment=self.bio_augment.isChecked()))
+
     def install_graft(self):
         cybertech,accepted=QInputDialog.getInt(self,"Shared implantation limit","Existing cybertech implantation value (not grafts):",self.sheet.repository.engineering_implant_profile(self.sheet.character_id)["cybertech_value"],0,99999)
         if not accepted:return
@@ -370,6 +376,7 @@ class EngineeringDialog(QDialog):
 
     def preview_known(self,*_):
         key=self.known.currentData()
+        self.custom_graft.setEnabled(self.system.currentText()=="Tech" and key in TECH_AUGMENT_SLOTS and self.service().custom_graft_remaining()>0)
         bio_allowed=self.system.currentText()=="Tech" and self.service().can_create_bio_augment(key)
         self.bio_augment.setVisible(self.system.currentText()=="Tech")
         self.bio_augment.setEnabled(bio_allowed)
@@ -440,7 +447,7 @@ class EngineeringDialog(QDialog):
         self.damage_button.setEnabled(bool(device and device["state"]!="abandoned"))
         self.repair_button.setEnabled(bool(device and device["state"]!="abandoned" and device["damage"] and self.kit.isChecked()))
         self.applied.setEnabled(bool(device and not device["construction_kind"] and device["catalog_key"] in {*AUGMENTOR_ABILITIES,TACTILE_FIELD_KEY,*TECH_AUGMENT_SLOTS} and device["state"]!="abandoned"))
-        self.graft_recharge.setEnabled(bool(device and device["construction_kind"] and device["state"]!="abandoned" and not device_condition(device)["destroyed"]))
+        self.graft_recharge.setEnabled(bool(device and device["construction_kind"] in {"graft_appliance","graft_contraption"} and device["state"]!="abandoned" and not device_condition(device)["destroyed"]))
         self.graft_install.setEnabled(bool(device and device["construction_kind"] and not device["graft_slot"] and device["state"]!="abandoned" and not device_condition(device)["destroyed"]))
         self.graft_remove.setEnabled(bool(device and device["graft_slot"]))
         self.applied.setChecked(bool(device and device["applied_to_character"]))

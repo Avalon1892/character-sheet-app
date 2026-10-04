@@ -114,6 +114,30 @@ class EngineeringService:
             raise ValueError("Requires Craft Appliances And Contraptions and Craft Augment Graft.")
         return tech_graft_quote(kind,ranks,complexity,versatile_crafter="versatile crafter" in feats)
 
+    def custom_graft_allowance(self):
+        from app.class_choice_rules import resolve_class_choice_slots
+        return sum(option.name=="Custom Graft" for slot in resolve_class_choice_slots(self.repository,self.character_id)
+            if slot.key=="machinehead-prowesses" for option in slot.selected_options)
+
+    def custom_graft_remaining(self):
+        occupied=sum(d["construction_kind"]=="graft_custom" and d["state"]!="abandoned" for d in self.devices("Tech"))
+        return max(0,self.custom_graft_allowance()-occupied)
+
+    def create_custom_graft(self,key,modifier,*,construction_completed=False,bio_augment=False):
+        if construction_completed is not True:raise ValueError("Confirm the custom graft construction period was completed.")
+        if not self.custom_graft_remaining():raise ValueError("Select an unused Machinehead Custom Graft prowess first.")
+        if not self.available("Tech") or key not in TECH_AUGMENT_SLOTS or not any(e["key"]==key for e in self.known_devices("Tech")):
+            raise ValueError("Select a supported augment talent this character possesses.")
+        if type(bio_augment) is not bool or (bio_augment and not self.can_create_bio_augment(key)):
+            raise ValueError("Bio graft construction requires qualifying training.")
+        ranks=CharacterCalculationService(self.repository,self.character_id).effective_skill_ranks().get("craft",0)
+        if ranks<1:raise ValueError("Custom grafts require Craft ranks to function.")
+        efficient=tech_minute_augment_rounds(ranks,energy_efficient=any(t.catalog_key=="tech:legendary-talent:energy-efficient-augments" for t in self.records("Tech")),
+            augment_talents=sum("augment" in (martial_entry(t.catalog_key) or {}).get("name","").partition("(")[2].casefold() for t in self.records("Tech")))>10
+        entry=martial_entry(key)
+        return self.repository.save_engineering_device(self.character_id,dict(sphere="Tech",catalog_key=key,name=entry["name"],level=ranks,modifier=modifier,
+            state="inactive",charges=0,construction_kind="graft_custom",bio_augment=bio_augment,energy_efficient=efficient))
+
     def record_completed_graft(self,key,kind,ranks,modifier,*,check_result,materials_paid=False,time_completed=False,gm_permission=False,bio_augment=False):
         if type(bio_augment) is not bool or (bio_augment and not self.can_create_bio_augment(key)):
             raise ValueError("Bio graft construction requires qualifying Bio Augment or Untraceable Gadget training.")
@@ -135,7 +159,7 @@ class EngineeringService:
 
     def recharge_graft(self,device_id,*,recharge_completed=False):
         device=next((d for d in self.devices("Tech") if d["id"]==device_id),None)
-        if recharge_completed is not True or not device or not device["construction_kind"] or device["state"]=="abandoned" or device_condition(device)["destroyed"]:
+        if recharge_completed is not True or not device or device["construction_kind"] not in {"graft_appliance","graft_contraption"} or device["state"]=="abandoned" or device_condition(device)["destroyed"]:
             raise ValueError("Select a functioning graft and confirm its 15-minute recharge was completed.")
         self.repository.save_engineering_device(self.character_id,{**device,"charges":max(1,device["level"]//2)},device_id)
 
@@ -146,6 +170,9 @@ class EngineeringService:
             raise ValueError("Confirm the subject remained willing or helpless throughout the completed two-hour installation.")
         if not device or not device["construction_kind"] or device["graft_slot"] or device["state"]=="abandoned" or device_condition(device)["destroyed"]:
             raise ValueError("Select a functioning, uninstalled graft owned by this character.")
+        if device["construction_kind"]=="graft_custom":
+            maintained=sorted(d["id"] for d in self.devices("Tech") if d["construction_kind"]=="graft_custom" and d["state"]!="abandoned")[:self.custom_graft_allowance()]
+            if device_id not in maintained:raise ValueError("This custom graft requires its selected Machinehead prowess for self-implantation.")
         calculations=CharacterCalculationService(self.repository,self.character_id)
         profile=self.repository.engineering_implant_profile(self.character_id)
         if cybertech_value is None:cybertech_value=profile["cybertech_value"]
@@ -224,11 +251,11 @@ class EngineeringService:
         if key is None and device:key=device["catalog_key"]
         if key not in TECH_TIMED_AUGMENT_MODES or not device or device["catalog_key"]!=key:
             raise ValueError("Select your supported timed augment.")
-        if not device["construction_kind"] and not self.available("Tech"):
+        if device["construction_kind"] in {"","graft_custom"} and not self.available("Tech"):
             raise ValueError("The Tech sphere is required for temporary gadgets.")
         if device["graft_slot"] and device_id in CharacterCalculationService(self.repository,self.character_id).graft_status()["blocked_ids"]:
-            raise ValueError("This implanted graft cannot function within the current implantation limit.")
-        ranks=device["level"] if device["construction_kind"] else CharacterCalculationService(self.repository,self.character_id).effective_skill_ranks().get("craft",0)
+            raise ValueError("This implanted graft lacks its supporting prowess or exceeds the current implantation limit.")
+        ranks=device["level"] if device["construction_kind"] in {"graft_appliance","graft_contraption"} else CharacterCalculationService(self.repository,self.character_id).effective_skill_ranks().get("craft",0)
         duration=tech_minute_augment_rounds(ranks,
             energy_efficient=bool(device["energy_efficient"]),augment_talents=2)
         if device["construction_kind"]:duration*=2
@@ -247,7 +274,7 @@ class EngineeringService:
         if device and device["graft_slot"] and device_id in CharacterCalculationService(self.repository,self.character_id).graft_status()["blocked_ids"]:return 0
         if not device or device["function_mode"]!="clamped" or not clamp_boots_active(device,polymorphed=self.repository.engineering_polymorphed(self.character_id),retain_innate=self.repository.engineering_retains_innate(self.character_id)):
             return 0
-        ranks=device["level"] if device["construction_kind"] else CharacterCalculationService(self.repository,self.character_id).effective_skill_ranks().get("craft",0)
+        ranks=device["level"] if device["construction_kind"] in {"graft_appliance","graft_contraption"} else CharacterCalculationService(self.repository,self.character_id).effective_skill_ranks().get("craft",0)
         return max(1,ranks//2)
 
     def stop_function(self,device_id,*,unequip=False):
@@ -376,7 +403,7 @@ class EngineeringService:
         return next((t for t in self.repository.list_custom_trackers(self.character_id) if t.key=="engineering_tech_charges"),None)
 
     def charge_total(self):
-        return int(self.pool().current_value if self.pool() else 0) + sum(d["charges"] for d in self.devices("Tech") if not is_battery(d) and not d["construction_kind"])
+        return int(self.pool().current_value if self.pool() else 0) + sum(d["charges"] for d in self.devices("Tech") if not is_battery(d) and d["construction_kind"] in {"","graft_custom"})
 
     def change_charges(self, amount):
         if not self.available("Tech"):

@@ -104,7 +104,7 @@ def dermal_plating_bonus(device,ranks,*,polymorphed=False,retain_innate=False):
             or device["state"]!="active" or not tech_augment_installed(device,"Body") or device.get("effect_rounds",0)<=0
             or device_condition(device)["destroyed"] or tech_augment_suppressed(device,polymorphed,retain_innate=retain_innate)):
         return 0
-    return 2+max(0,int(device["level"] if device.get("construction_kind") else ranks))//5
+    return 2+max(0,int(device["level"] if device.get("construction_kind") in {"graft_appliance","graft_contraption"} else ranks))//5
 
 
 def tech_ability_augment_bonus(device,ranks,*,polymorphed=False,retain_innate=False):
@@ -114,7 +114,7 @@ def tech_ability_augment_bonus(device,ranks,*,polymorphed=False,retain_innate=Fa
             or device.get("effect_rounds",0)<=0 or device.get("function_mode")!=ability
             or device_condition(device)["destroyed"] or tech_augment_suppressed(device,polymorphed,retain_innate=retain_innate)):
         return None
-    ranks=device["level"] if device.get("construction_kind") else ranks
+    ranks=device["level"] if device.get("construction_kind") in {"graft_appliance","graft_contraption"} else ranks
     return ability,2+2*(max(0,int(ranks))//7)
 
 
@@ -227,7 +227,7 @@ def tactile_field_bonus(device):
 def occupied_limit(devices, limits):
     normal, minor = 0, 0
     for device in devices:
-        if device["state"] == "abandoned" or device.get("construction_kind") in {"graft_appliance","graft_contraption"}:
+        if device["state"] == "abandoned" or device.get("construction_kind") in {"graft_appliance","graft_contraption","graft_custom"}:
             continue
         if device["sphere"] == "Tinker" and device["minor"] and not device["advanced"]:
             minor += 1
