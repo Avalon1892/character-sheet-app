@@ -928,6 +928,7 @@ class EngineeringTests(unittest.TestCase):
                 parent=EngineeringDialog(sheet)
                 planner=GraftPlanningDialog(self.service,DERMAL_PLATING_KEY,parent)
                 self.assertIn("GM permission",planner.result.text())
+                self.assertFalse(planner.record.isEnabled())
                 planner.permission.setChecked(True)
                 self.assertIn("1,200 gp",planner.result.text())
                 self.assertIn("20 working hours",planner.result.text())
@@ -937,3 +938,37 @@ class EngineeringTests(unittest.TestCase):
                 self.assertEqual(before,self.repo.sqlite_connection.total_changes)
                 planner.deleteLater();parent.deleteLater();sheet.deleteLater()
                 app.sendPostedEvents(None,QEvent.Type.DeferredDelete)
+
+    def test_graft_completion_ui_confirmation_and_single_refresh(self):
+        from unittest.mock import patch
+        from PySide6.QtWidgets import QApplication,QWidget,QMessageBox
+        from PySide6.QtCore import QEvent
+        from app.ui.engineering import EngineeringDialog,GraftPlanningDialog
+        from app.engineering_rules import DERMAL_PLATING_KEY
+        self.add("Tech","Dermal Plating",DERMAL_PLATING_KEY)
+        self.repo.add_feat(self.cid,"Craft Appliances And Contraptions")
+        self.repo.add_feat(self.cid,"Craft Augment Graft")
+        app=QApplication.instance() or QApplication([])
+        sheet=QWidget();sheet.repository=self.repo;sheet.character_id=self.cid;sheet.theme="classic"
+        refreshed=[];sheet.refresh_all=lambda:refreshed.append(True)
+        parent=EngineeringDialog(sheet);planner=GraftPlanningDialog(self.service,DERMAL_PLATING_KEY,parent)
+        planner.permission.setChecked(True);planner.materials_paid.setChecked(True)
+        planner.time_completed.setChecked(True);planner.check_result.setValue(13)
+        self.assertTrue(planner.record.isEnabled())
+        planner.complexity.setValue(2);self.assertFalse(planner.record.isEnabled())
+        planner.complexity.setValue(1)
+        with patch.object(QMessageBox,"question",return_value=QMessageBox.StandardButton.No):planner.record.click()
+        self.assertEqual([],self.repo.list_engineering_devices(self.cid));self.assertEqual([],refreshed)
+        with patch.object(QMessageBox,"question",return_value=QMessageBox.StandardButton.Yes):planner.record.click()
+        self.assertEqual(1,len(self.repo.list_engineering_devices(self.cid)));self.assertEqual([True],refreshed)
+        self.assertIn("Graft Appliance",parent.table.item(0,0).text())
+        parent.table.selectRow(0);self.assertFalse(parent.applied.isEnabled())
+        self.assertTrue(parent.graft_recharge.isEnabled())
+        graft=self.repo.list_engineering_devices(self.cid)[0]["id"]
+        self.repo.spend_tech_device_charges(self.cid,graft,1)
+        with patch.object(QMessageBox,"question",return_value=QMessageBox.StandardButton.No):parent.graft_recharge.click()
+        self.assertEqual(0,self.repo.list_engineering_devices(self.cid)[0]["charges"])
+        with patch.object(QMessageBox,"question",return_value=QMessageBox.StandardButton.Yes):parent.graft_recharge.click()
+        self.assertEqual(1,self.repo.list_engineering_devices(self.cid)[0]["charges"])
+        self.assertEqual([True,True],refreshed)
+        planner.deleteLater();parent.deleteLater();sheet.deleteLater();app.sendPostedEvents(None,QEvent.Type.DeferredDelete)

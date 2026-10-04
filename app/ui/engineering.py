@@ -15,7 +15,7 @@ class GraftPlanningDialog(QDialog):
     def __init__(self,service,key,parent=None):
         super().__init__(parent)
         self.setWindowTitle("Augment graft construction plan")
-        self.resize(620,430)
+        self.resize(680,580)
         root=QVBoxLayout(self)
         entry=martial_entry(key) or {}
         title=QLabel(entry.get("name","Select an augment"));root.addWidget(title)
@@ -27,16 +27,35 @@ class GraftPlanningDialog(QDialog):
         self.permission=QCheckBox("GM permits expanded technical-item crafting")
         root.addWidget(self.permission)
         self.result=QLabel();self.result.setWordWrap(True);root.addWidget(self.result,1)
-        note=QLabel("Planning only: no gold is spent, no graft is created or implanted. Prices exclude additional materials and supplied objects. Construction needs a suitable workspace; installation needs a willing or helpless subject. Drawbacks, allies/blueprints, anatomy and special device exceptions need review.")
+        note=QLabel("Recording does not deduct gold or advance time: confirm those separately. Only single-talent Dermal Plating and Clamp Boots grafts can currently be recorded. Implantation is not yet available. Prices exclude supplied objects; workspace, drawbacks and special device exceptions require review.")
         note.setWordWrap(True);root.addWidget(note)
+        self.materials_paid=QCheckBox("Materials already paid")
+        self.time_completed=QCheckBox("Construction time already completed")
+        self.check_result=QSpinBox();self.check_result.setRange(-100,999)
+        root.addWidget(self.materials_paid);root.addWidget(self.time_completed)
+        row=QHBoxLayout();row.addWidget(QLabel("Final Craft check total"));row.addWidget(self.check_result);root.addLayout(row)
+        self.record=QPushButton("Record completed graft");root.addWidget(self.record)
+        def record_completed():
+            if QMessageBox.question(self,"Record completed graft",self.result.text()+"\n\nRecord this completed construction? Materials and elapsed time are not changed by this action.")!=QMessageBox.StandardButton.Yes:return
+            try:
+                service.record_completed_graft(key,self.kind.currentData(),self.ranks.value(),parent.modifier.value(),
+                    check_result=self.check_result.value(),materials_paid=self.materials_paid.isChecked(),
+                    time_completed=self.time_completed.isChecked(),gm_permission=self.permission.isChecked())
+            except ValueError as error:
+                self.result.setText(str(error));return
+            parent.sheet.refresh_all();parent.refresh();self.accept()
+        self.record.clicked.connect(record_completed)
         close=QPushButton("Close");close.clicked.connect(self.accept);root.addWidget(close)
         def update(*_):
+            self.record.setEnabled(False)
             try:
                 quote=service.graft_plan(key,self.kind.currentData(),self.ranks.value(),self.complexity.value(),gm_permission=self.permission.isChecked())
                 self.result.setText(f"Materials: {quote['cost_gp']:,} gp · Base price: {quote['base_price_gp']:,} gp\nCraft DC {quote['craft_dc']} · {quote['hours']} working hours / {quote['days']} days\nStarts fully charged: {quote['charge_capacity']} charges\nDefault implantation: {quote['implantation_value']} · Hand installation: {quote['installation_hours']} hours\nCharged durations: ×{quote['charged_duration_multiplier']}\n"+("Other users require an activation check." if quote['activation_check_required_for_other_users'] else "No activation check required."))
+                self.record.setEnabled(bool(parent and key in TECH_AUGMENT_SLOTS and self.complexity.value()==1 and self.materials_paid.isChecked() and self.time_completed.isChecked() and self.check_result.value()>=quote['craft_dc']))
             except ValueError as error:self.result.setText(str(error))
         self.kind.currentIndexChanged.connect(update);self.ranks.valueChanged.connect(update)
         self.complexity.valueChanged.connect(update);self.permission.toggled.connect(update)
+        self.materials_paid.toggled.connect(update);self.time_completed.toggled.connect(update);self.check_result.valueChanged.connect(update)
         update()
 
 
@@ -117,6 +136,8 @@ class EngineeringDialog(QDialog):
         self.spend=QSpinBox();self.spend.setRange(1,99999);resources.addWidget(self.spend)
         self.use=QPushButton("Spend charges");resources.addWidget(self.use)
         self.recharge=QPushButton("Recharge");resources.addWidget(self.recharge)
+        self.graft_recharge=QPushButton("Recharge graft");resources.addWidget(self.graft_recharge)
+        self.graft_recharge.clicked.connect(self.recharge_graft)
         resources.addStretch()
         timed=QHBoxLayout();root.addLayout(timed)
         self.jet_slot=QComboBox()
@@ -206,6 +227,11 @@ class EngineeringDialog(QDialog):
     def service(self):
         return EngineeringService(self.sheet.repository,self.sheet.character_id,self.skill.currentData())
 
+    def recharge_graft(self):
+        minutes=15 if self.kit.isChecked() else 30
+        if QMessageBox.question(self,"Recharge graft",f"Confirm that the selected graft's {minutes}-minute recharge has been completed? This restores its own charges, not the Tech pool.")!=QMessageBox.StandardButton.Yes:return
+        self.perform(lambda:self.service().recharge_graft(self.selected(),recharge_completed=True))
+
     def update_practitioner_modifier(self,*_):
         ability=self.practitioner_ability.currentData()
         self.modifier.setEnabled(not bool(ability))
@@ -245,6 +271,7 @@ class EngineeringDialog(QDialog):
             if device["augment_slot"]:name+=f" · Augment: {device['augment_slot']}"
             if device["bio_augment"]:name+=" · Bio"
             if device["energy_efficient"]:name+=" · Energy efficient"
+            if device["construction_kind"]:name+=" · "+device["construction_kind"].replace("_"," ").title()
             values=(name,level,status,f"{condition['current_hp']}/{condition['maximum_hp']}",stats["hardness"],stats["save"],stats["dc"],energy,f"{device['effect_rounds']} rounds" if device["effect_rounds"] else "—")
             for column,value in enumerate(values):
                 item=QTableWidgetItem(str(value));item.setData(Qt.ItemDataRole.UserRole,device["id"])
@@ -261,6 +288,7 @@ class EngineeringDialog(QDialog):
         self.detach.setEnabled(False);self.battery_recharge.setEnabled(False)
         self.damage_button.setEnabled(False);self.repair_button.setEnabled(False)
         self.applied.setEnabled(False);self.applied.setChecked(False)
+        self.graft_recharge.setEnabled(False)
         for button in (*self.jet_buttons,self.stop,self.unequip_jet):button.setEnabled(False)
         has_jets=any(e["key"]==JET_BOOSTERS_KEY for e in service.known_devices(sphere))
         for control in (*self.jet_buttons,self.stop,self.unequip_jet,self.jet_slot):control.setVisible(has_jets)
@@ -339,7 +367,8 @@ class EngineeringDialog(QDialog):
         self.tactile_reroll.setEnabled(bool(tactile and device["state"]=="active" and device["applied_to_character"] and not device_condition(device)["destroyed"] and (device["effect_rounds"]>0 or at_will)))
         self.damage_button.setEnabled(bool(device and device["state"]!="abandoned"))
         self.repair_button.setEnabled(bool(device and device["state"]!="abandoned" and device["damage"] and self.kit.isChecked()))
-        self.applied.setEnabled(bool(device and device["catalog_key"] in {*AUGMENTOR_ABILITIES,TACTILE_FIELD_KEY,*TECH_AUGMENT_SLOTS} and device["state"]!="abandoned"))
+        self.applied.setEnabled(bool(device and not device["construction_kind"] and device["catalog_key"] in {*AUGMENTOR_ABILITIES,TACTILE_FIELD_KEY,*TECH_AUGMENT_SLOTS} and device["state"]!="abandoned"))
+        self.graft_recharge.setEnabled(bool(device and device["construction_kind"] and device["state"]!="abandoned" and not device_condition(device)["destroyed"]))
         self.applied.setChecked(bool(device and device["applied_to_character"]))
         jet=bool(device and device["catalog_key"]==JET_BOOSTERS_KEY and device["state"]!="abandoned" and not device_condition(device)["destroyed"])
         for button in self.jet_buttons:button.setEnabled(jet and device["effect_rounds"]==0)
