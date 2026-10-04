@@ -48,6 +48,33 @@ class EngineeringTests(unittest.TestCase):
         imported=import_character(self.repo,path)
         self.assertEqual(profile,self.repo.engineering_implant_profile(imported))
 
+    def test_bio_graft_creation_validation_polymorph_transfer_and_remote_susceptibility(self):
+        from app.models import SkillState
+        from app.engineering_rules import DERMAL_PLATING_KEY,CLAMP_BOOTS_KEY,EXO_MUSCLES_KEY
+        from app.services.character_calculations import CharacterCalculationService
+        self.add("Tech","Dermal Plating",DERMAL_PLATING_KEY)
+        self.repo.add_feat(self.cid,"Craft Appliances And Contraptions");self.repo.add_feat(self.cid,"Craft Augment Graft")
+        options=dict(check_result=13,materials_paid=True,time_completed=True,gm_permission=True,bio_augment=True)
+        before=self.repo.sqlite_connection.total_changes
+        with self.assertRaises(ValueError):self.service.record_completed_graft(DERMAL_PLATING_KEY,"appliance",3,2,**options)
+        self.assertEqual(before,self.repo.sqlite_connection.total_changes)
+        self.repo.add_class_level(self.cid,"Conscript",4,"Full","Good","Poor","Poor",hit_die=10,hp_gained=20)
+        self.repo.update_skill_state(self.cid,SkillState("disguise",ranks=10))
+        for name,key in (("Hidden Gadget","tech:legendary-talent:hidden-gadget"),("Bio Augment","tech:legendary-talent:bio-augment"),("Clamp Boots",CLAMP_BOOTS_KEY),("Exo-Skeletal Muscles",EXO_MUSCLES_KEY)):self.add("Tech",name,key)
+        graft=self.service.record_completed_graft(DERMAL_PLATING_KEY,"appliance",3,2,**options)
+        self.service.install_graft(graft,subject_willing_or_helpless=True,installation_completed=True)
+        baseline=CharacterCalculationService(self.repo,self.cid).combat_results()["ac"].total
+        self.service.start_timed_augment(graft);self.service.set_polymorphed(True)
+        calculation=CharacterCalculationService(self.repo,self.cid)
+        self.assertEqual(baseline+2,calculation.combat_results()["ac"].total)
+        self.assertEqual(-10,calculation.graft_status()["remote_control_save_penalty"])
+        path=Path(self.temp.name)/"bio-graft.json";export_character(self.repo,self.cid,path)
+        imported=import_character(self.repo,path)
+        self.assertTrue(self.repo.list_engineering_devices(imported)[0]["bio_augment"])
+        self.assertEqual(baseline+2,CharacterCalculationService(self.repo,imported).combat_results()["ac"].total)
+        self.service.remove_graft(graft,removal_completed=True,save_succeeded=True)
+        self.assertEqual(0,CharacterCalculationService(self.repo,self.cid).graft_status()["remote_control_save_penalty"])
+
     def test_graft_install_persists_cybertech_and_installation_order_atomically(self):
         from app.engineering_rules import DERMAL_PLATING_KEY,SYNAPTIC_MAXIMIZER_KEY
         for key in (DERMAL_PLATING_KEY,SYNAPTIC_MAXIMIZER_KEY):self.add("Tech",key,key)

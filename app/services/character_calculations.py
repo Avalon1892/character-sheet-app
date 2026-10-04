@@ -775,7 +775,8 @@ class CharacterCalculationService:
         for device in installed:
             used+=2
             (functional if status["has_controlling_score"] and used<=status["capacity"] else blocked).append(device["id"])
-        return {**status,"functional_ids":tuple(functional),"blocked_ids":tuple(blocked),"remote_control_save_penalty":-5 if installed else 0}
+        bio_worn=any(d["bio_augment"] and (d["graft_slot"] or d["applied_to_character"]) for d in self.repository.list_engineering_devices(self.character_id))
+        return {**status,"functional_ids":tuple(functional),"blocked_ids":tuple(blocked),"remote_control_save_penalty":(-5 if installed else 0)+(-5 if bio_worn else 0)}
 
     def graft_status(self, *, additional_values=(), cybertech_value=None):
         modifiers=self.automatic_modifier_map()

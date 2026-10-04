@@ -114,7 +114,9 @@ class EngineeringService:
             raise ValueError("Requires Craft Appliances And Contraptions and Craft Augment Graft.")
         return tech_graft_quote(kind,ranks,complexity,versatile_crafter="versatile crafter" in feats)
 
-    def record_completed_graft(self,key,kind,ranks,modifier,*,check_result,materials_paid=False,time_completed=False,gm_permission=False):
+    def record_completed_graft(self,key,kind,ranks,modifier,*,check_result,materials_paid=False,time_completed=False,gm_permission=False,bio_augment=False):
+        if type(bio_augment) is not bool or (bio_augment and not self.can_create_bio_augment(key)):
+            raise ValueError("Bio graft construction requires qualifying Bio Augment or Untraceable Gadget training.")
         quote=self.graft_plan(key,kind,ranks,gm_permission=gm_permission)
         if materials_paid is not True or time_completed is not True:
             raise ValueError("Confirm materials were paid and construction time completed outside this recording action.")
@@ -129,7 +131,7 @@ class EngineeringService:
             augment_talents=sum(t.enabled and "augment" in (martial_entry(t.catalog_key) or {}).get("name","").partition("(")[2].casefold() for t in permanent))>10
         return self.repository.save_engineering_device(self.character_id,dict(sphere="Tech",catalog_key=key,name=entry["name"],
             level=ranks,modifier=modifier,state="inactive",charges=quote["charge_capacity"],
-            construction_kind="graft_"+kind,energy_efficient=efficient))
+            construction_kind="graft_"+kind,energy_efficient=efficient,bio_augment=bio_augment))
 
     def recharge_graft(self,device_id,*,recharge_completed=False):
         device=next((d for d in self.devices("Tech") if d["id"]==device_id),None)

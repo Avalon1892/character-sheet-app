@@ -66,16 +66,18 @@ class GraftPlanningDialog(QDialog):
         note.setWordWrap(True);root.addWidget(note)
         self.materials_paid=QCheckBox("Materials already paid")
         self.time_completed=QCheckBox("Construction time already completed")
+        self.bio=QCheckBox("Bio augment graft — made for this character")
+        self.bio.setEnabled(service.can_create_bio_augment(key));root.addWidget(self.bio)
         self.check_result=QSpinBox();self.check_result.setRange(-100,999)
         root.addWidget(self.materials_paid);root.addWidget(self.time_completed)
         row=QHBoxLayout();row.addWidget(QLabel("Final Craft check total"));row.addWidget(self.check_result);root.addLayout(row)
         self.record=QPushButton("Record completed graft");root.addWidget(self.record)
         def record_completed():
-            if QMessageBox.question(self,"Record completed graft",self.result.text()+"\n\nRecord this completed construction? Materials and elapsed time are not changed by this action.")!=QMessageBox.StandardButton.Yes:return
+            if QMessageBox.question(self,"Record completed graft",self.result.text()+f"\nBio augment graft: {'Yes' if self.bio.isChecked() else 'No'}\n\nRecord this completed construction? Materials and elapsed time are not changed by this action.")!=QMessageBox.StandardButton.Yes:return
             try:
                 service.record_completed_graft(key,self.kind.currentData(),self.ranks.value(),parent.modifier.value(),
                     check_result=self.check_result.value(),materials_paid=self.materials_paid.isChecked(),
-                    time_completed=self.time_completed.isChecked(),gm_permission=self.permission.isChecked())
+                    time_completed=self.time_completed.isChecked(),gm_permission=self.permission.isChecked(),bio_augment=self.bio.isChecked())
             except ValueError as error:
                 self.result.setText(str(error));return
             parent.sheet.refresh_all();parent.refresh();self.accept()
