@@ -90,6 +90,10 @@ Clamp Boots follow-up: 76 engineering, database, transfer and recovery tests and
 
 ## Validation
 
+Latest full isolated run at `d4ea479`: 142 modules, 2,022 cases, 2,019 passing, 3 failures, 0 errors, 0 skipped; 595.02 seconds. Each failure matches the confirmed baseline: archetype count 1,830 versus 1,887, custom-tracker parent placement, and obsolete `PLACEMENTS['build']` tradition ordering with secondary Windows SQLite cleanup lock. Engineering, formulas, movement-related rules, recovery, database, transfer and theme modules passed. Reports: `artifacts/engineering-validation-d4ea479/summary.json` and `complete.xml`. This covers accumulated Bio Augment, polymorph, efficiency construction and Clamp Boots changes; it does not prove completion of remaining device effects or graft installation, and no distribution was rebuilt.
+
+Graft integration inspection: Craft Augment Graft and Craft Appliances And Contraptions are absent from the shared feat catalog; they must be added with official provenance before catalog-based creation can work. Receptive to Grafts already exists as `spheres:receptive-to-grafts` and increases implantation capacity by half Hit Dice (minimum 1); do not duplicate its catalog record. Genuine missing Constitution/Intelligence requires explicit support rather than interpreting the application's numeric default as an absent score.
+
 Bio augment follow-up: 68 focused engineering, database and transfer tests plus 2 theme subtests passed; additional alternative-training assertions cover Bio Augment and Untraceable Gadget eligibility. This remains partial augmentation implementation, not a claim that contextual checks or graft installation are complete.
 
 Polymorph follow-up: 74 focused engineering, persistence, transfer and formula tests plus 11 subtests passed. Coverage includes AC suppression/restoration, unchanged installed-device records, per-character ownership, invalid state rejection, formula exposure and transfer of current form state. This does not prove bio/graft exceptions or automatic form selection, and the full suite has not been rerun after this change.
