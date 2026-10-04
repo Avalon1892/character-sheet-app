@@ -54,6 +54,19 @@ class EngineeringTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.repo.spend_tech_device_charges(self.cid,host,1,function_mode="dermal",dermal_rounds=999)
 
+    def test_graft_implantation_shared_capacity_and_absent_scores(self):
+        from app.engineering_rules import graft_implantation_status
+        status=graft_implantation_status(12,8,graft_values=(2,2),cybertech_value=4)
+        self.assertEqual((8,8,0,False,0),tuple(status[key] for key in ("capacity","total","remaining","overloaded","save_penalty")))
+        self.assertEqual(-4,graft_implantation_status(12,8,graft_values=(2,2,2),cybertech_value=4)["save_penalty"])
+        self.assertEqual(12,graft_implantation_status(None,12,graft_values=(2,))["capacity"])
+        self.assertEqual(12,graft_implantation_status(12,None,graft_values=(2,))["capacity"])
+        self.assertFalse(graft_implantation_status(None,None,graft_values=(2,))["has_controlling_score"])
+        self.assertEqual(0,graft_implantation_status(12,8,cybertech_value=20)["save_penalty"])
+        for kwargs in ({"graft_values":(-1,)},{"cybertech_value":1.5},{"graft_values":(True,)}):
+            with self.assertRaises(ValueError):graft_implantation_status(12,8,**kwargs)
+        with self.assertRaises(ValueError):graft_implantation_status("12",8)
+
     def test_augmentor_reroll_requires_wearer_and_spends_one_battery(self):
         from app.engineering_rules import PHYSICAL_AUGMENTOR_KEY
         base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")

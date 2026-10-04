@@ -263,7 +263,7 @@ class EngineeringDialog(QDialog):
                               if entry.get("key")==TACTILE_FIELD_KEY else
                               "Install and activate this routine to improve its host gizmo's saving throws. The live save column includes the highest active insight bonus; character saves are unchanged."
                               if entry.get("key")==RESISTANCE_ROUTINE_KEY else
-                              "Install in the dedicated Body augment slot (separate from magic-item slots), then pay one charge for one minute. Natural armor enhancement and expiry are automatic. Ordinary donning/removal follows leather armor; hasty donning, grafts and polymorph exceptions are not yet automated."
+                              "Install in the dedicated Body augment slot (separate from magic-item slots), then pay one charge for a timed period. Energy Efficient Augments extends the base one-minute duration when qualified. Natural armor enhancement, expiry and ordinary polymorph suppression are automatic; crafted bio augments retain their effects. Donning/removal follows leather armor; hasty donning and graft installation are not yet automated."
                               if entry.get("key")==DERMAL_PLATING_KEY else
                               "Flight/swim speed, maneuverability, charge costs and paid durations are automatic. Flight slow burn is limited to 3 feet above the surface; height and hover/exhaust effects require manual resolution."
                               if entry.get("key")==JET_BOOSTERS_KEY else "Device-specific effects are reference-only in this batch.")+"</b></p>")

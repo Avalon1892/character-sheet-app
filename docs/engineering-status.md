@@ -4,6 +4,8 @@ Updated: 2026-10-04. This is an implementation ledger, not a claim of complete a
 
 Energy Efficient Augments follow-up validation: 74 focused engineering, database, transfer and recovery tests plus 2 theme subtests passed. Thresholds, minimum training, paid expiry and invalid duration rejection are covered. Full-suite results below predate this follow-up.
 
+Graft-capacity foundation validation: 41 engineering tests and 2 theme subtests passed, including shared cybertech usage, exact-limit/over-limit cases, missing ability scores and invalid values. No claim of a usable graft installation workflow is made yet.
+
 ## Implemented in this batch
 
 - Energy Efficient Augments now extends paid Dermal Plating periods to 5/10/30 minutes at 5/10/15 live Craft ranks, requiring enabled training and two augment talents. The paid period is stored at activation and is not retroactively resized. Other minute-per-charge augment functions must use the same shared duration helper when implemented; creation-time persistence of efficiency training remains to be verified against the rules.
@@ -34,6 +36,8 @@ Energy Efficient Augments follow-up validation: 74 focused engineering, database
 - Cognitive Set unlocks a separate Mental Augmentor recipe with Intelligence/Wisdom/Charisma configuration and active/worn competence skill bonuses. Brain Jack/storage, ability-check rolls and battery rerolls remain pending.
 
 ## Partial support / manual inputs
+
+- Graft implantation now has a tested shared capacity assessment: Constitution/Intelligence use the lower present score, a genuinely absent score is distinct from a score treated as 10, cybertech consumes the same capacity, and overload assessment retains installed records and reports the -4 save penalty. This helper is not yet connected to persisted graft installations or automatic saves; prerequisite/crafting, surgery, graft slots, doubled charged durations and retained-innate polymorph behavior remain unfinished. Official removal text requires a Fortitude save but does not specify its DC in this section; needs rules verification rather than an invented DC.
 
 - Bio augment construction is an explicit per-device, creation-time choice for Tech augments. It checks 10 Craft/Disguise ranks and Hidden Gadget, plus Bio Augment with three augment talents or the Untraceable Gadget alternative. It is made for the current character; other wearers are not yet supported. Constructed bio augments remain effective during polymorph, preserve their identity on transfer and do not retroactively convert ordinary devices. Conditional disguise/detection benefits, remote-control penalties and graft surgery are still pending.
 

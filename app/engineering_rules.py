@@ -39,6 +39,26 @@ def tech_minute_augment_rounds(ranks, *, energy_efficient=False, augment_talents
     return 300 if ranks >= 15 else 100 if ranks >= 10 else 50
 
 
+def graft_implantation_status(constitution, intelligence, *, graft_values=(), cybertech_value=0):
+    """Assess the shared implant limit; None represents a genuinely absent score.
+
+    Scores must include applicable implantation-limit adjustments before calling.
+    An overloaded implant remains installed; this assessment never removes records.
+    """
+    values=tuple(graft_values)
+    if any(type(value) is not int or value < 0 for value in (*values,cybertech_value)):
+        raise ValueError("Implantation values must be nonnegative integers.")
+    scores=tuple(score for score in (constitution,intelligence) if score is not None)
+    if any(type(score) is not int or score < 0 for score in scores):
+        raise ValueError("Implantation scores must be nonnegative integers or absent.")
+    capacity=min(scores) if scores else 0
+    total=sum(values)+cybertech_value
+    overloaded=bool(values) and total>capacity
+    return {"capacity":capacity,"total":total,"remaining":max(0,capacity-total),
+            "has_controlling_score":bool(scores),"overloaded":overloaded,
+            "save_penalty":-4 if overloaded else 0}
+
+
 def tech_augment_suppressed(device,polymorphed):
     return bool(polymorphed and device["sphere"]=="Tech" and device.get("augment_slot")
                 and device.get("applied_to_character") and not device.get("bio_augment"))
