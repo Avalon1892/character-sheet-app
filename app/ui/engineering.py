@@ -110,7 +110,7 @@ class EngineeringDialog(QDialog):
         self.tactile_reroll.setToolTip("Resolve the immediate-action reroll manually; clicking ends the enhanced bonus and remaining duration.")
         field_controls.addWidget(self.tactile_boost);field_controls.addWidget(self.tactile_reroll);field_controls.addStretch()
         self.tactile_boost.clicked.connect(lambda:self.perform(lambda:self.service().use_batteries(self.selected(),1,tactile_boost=True)))
-        self.tactile_reroll.clicked.connect(lambda:self.perform(lambda:self.service().end_tactile_enhancement(self.selected())))
+        self.tactile_reroll.clicked.connect(lambda:self.perform(self.use_tactile_reroll))
         health=QHBoxLayout();root.addLayout(health)
         self.damage_amount=QSpinBox();self.damage_amount.setRange(1,99999)
         health.addWidget(QLabel("Incoming device damage"));health.addWidget(self.damage_amount)
@@ -261,7 +261,10 @@ class EngineeringDialog(QDialog):
         self.augmentor_reroll.setEnabled(bool(augmentor and device["state"]=="active" and device["applied_to_character"] and not device_condition(device)["destroyed"]))
         self.tactile_boost.setVisible(tactile);self.tactile_reroll.setVisible(tactile)
         self.tactile_boost.setEnabled(bool(tactile and device["state"]=="active" and device["applied_to_character"] and device["effect_rounds"]==0))
-        self.tactile_reroll.setEnabled(bool(tactile and device["effect_rounds"]>0))
+        at_will=self.service().tactile_reroll_at_will() if tactile else False
+        self.tactile_reroll.setText("Use reroll — At will" if at_will and not device["effect_rounds"] else "Use reroll / end enhancement")
+        self.tactile_reroll.setToolTip("Resolve the immediate-action reroll manually. Advanced Field Projectors allows it at will; using an active battery enhancement ends that enhancement. The defensive bonus increase still costs a battery.")
+        self.tactile_reroll.setEnabled(bool(tactile and device["state"]=="active" and device["applied_to_character"] and not device_condition(device)["destroyed"] and (device["effect_rounds"]>0 or at_will)))
         self.damage_button.setEnabled(bool(device and device["state"]!="abandoned"))
         self.repair_button.setEnabled(bool(device and device["state"]!="abandoned" and device["damage"] and self.kit.isChecked()))
         self.applied.setEnabled(bool(device and device["catalog_key"] in {*AUGMENTOR_ABILITIES,TACTILE_FIELD_KEY} and device["state"]!="abandoned"))
@@ -292,6 +295,11 @@ class EngineeringDialog(QDialog):
         self.status.setText("Saved.")
         self.sheet.refresh_all()
         self.refresh()
+
+    def use_tactile_reroll(self):
+        result=self.service().use_tactile_reroll(self.selected())
+        if result is False:self.status.setText("At-will reroll: resolve the immediate-action roll manually. No battery spent.")
+        return result
 
     def craft(self):
         sphere=self.system.currentText()

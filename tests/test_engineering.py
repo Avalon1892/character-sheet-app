@@ -217,6 +217,27 @@ class EngineeringTests(unittest.TestCase):
         record=next(d for d in self.service.devices("Tinker") if d["id"]==host)
         self.assertEqual((0,2,"active"),(record["effect_rounds"],tactile_field_bonus(record),record["state"]))
 
+    def test_advanced_tactile_reroll_is_free_but_enhancement_is_not(self):
+        from app.engineering_rules import TACTILE_FIELD_KEY
+        host=self.repo.save_engineering_device(self.cid,dict(sphere="Tinker",catalog_key=TACTILE_FIELD_KEY,name="Field",level=6,modifier=3,state="active",applied_to_character=True))
+        with self.assertRaises(ValueError):self.service.use_tactile_reroll(host)
+        base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")
+        self.repo.update_martial_talent(self.cid,base.id,base.name,"Tinker","Base Sphere",catalog_key=base.catalog_key,catalog_category="Base Sphere",choice="Modification")
+        key="tinker:legendary-talent:advanced-field-projectors-gizmo-modification"
+        self.add("Tinker","Advanced Field Projectors",key,"Legendary Talent")
+        self.assertTrue(self.service.tactile_reroll_at_will())
+        before=self.repo.sqlite_connection.total_changes
+        self.assertIs(False,self.service.use_tactile_reroll(host))
+        self.assertEqual(before,self.repo.sqlite_connection.total_changes)
+        with self.assertRaises(ValueError):self.service.use_batteries(host,1,tactile_boost=True)
+        battery=self.service.create("Tinker","tinker:battery",3);self.service.attach_battery(battery,host)
+        self.service.use_batteries(host,1,tactile_boost=True)
+        self.assertEqual("depleted",next(d for d in self.service.devices("Tinker") if d["id"]==battery)["state"])
+        self.service.use_tactile_reroll(host)
+        self.assertEqual(0,next(d for d in self.service.devices("Tinker") if d["id"]==host)["effect_rounds"])
+        self.service.apply_to_character(host,False)
+        with self.assertRaises(ValueError):self.service.use_tactile_reroll(host)
+
     def test_distinct_rules_and_repeatable_limits(self):
         self.assertEqual((9,4,6),(engineering_limits("Tinker",6,1,extra=1).device_limit,
                                   engineering_limits("Tinker",8,1,extra=1).batch_size,

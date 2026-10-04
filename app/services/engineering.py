@@ -220,6 +220,24 @@ class EngineeringService:
             raise ValueError("Select a Tactile Field with an active enhancement.")
         self.repository.save_engineering_device(self.character_id,{**device,"effect_rounds":0,"effect_battery_id":None},device_id)
 
+    def tactile_reroll_at_will(self):
+        return (self.available("Tinker")
+                and "Modification" in tinker_packages(self.records("Tinker"))
+                and CharacterCalculationService(self.repository,self.character_id).effective_skill_ranks().get(self.skill_key,0)>=5
+                and any(t.catalog_key=="tinker:legendary-talent:advanced-field-projectors-gizmo-modification" for t in self.records("Tinker")))
+
+    def use_tactile_reroll(self,device_id):
+        device=next((d for d in self.devices("Tinker") if d["id"]==device_id),None)
+        if (not device or device["catalog_key"]!=TACTILE_FIELD_KEY or device["state"]!="active"
+                or not device["applied_to_character"] or device_condition(device)["destroyed"] or not self.available("Tinker")):
+            raise ValueError("Wear an active, functioning Tactile Field first.")
+        if device["effect_rounds"]>0 and device["function_mode"]=="tactile_boost":
+            self.end_tactile_enhancement(device_id)
+        elif not self.tactile_reroll_at_will():
+            raise ValueError("Enhance the field with a battery first, or qualify for Advanced Field Projectors' at-will reroll.")
+        else:
+            return False  # No resource mutation or sheet refresh for an at-will roll.
+
     def pool(self):
         return next((t for t in self.repository.list_custom_trackers(self.character_id) if t.key=="engineering_tech_charges"),None)
 
