@@ -986,6 +986,7 @@ class CharacterRepository:
         self._ensure_column("engineering_devices", "effect_battery_id", "INTEGER")
         self._ensure_column("engineering_devices", "worn_slot", "TEXT NOT NULL DEFAULT ''")
         self._ensure_column("engineering_devices", "augment_slot", "TEXT NOT NULL DEFAULT ''")
+        self._connection.execute("CREATE TABLE IF NOT EXISTS character_engineering_form (character_id INTEGER PRIMARY KEY REFERENCES characters(id) ON DELETE CASCADE, polymorphed INTEGER NOT NULL DEFAULT 0 CHECK(polymorphed IN (0,1)))")
         self._connection.execute("CREATE UNIQUE INDEX IF NOT EXISTS engineering_augment_occupancy ON engineering_devices(character_id,augment_slot) WHERE sphere='Tech' AND augment_slot!='' AND applied_to_character=1 AND state!='abandoned'")
         self._connection.execute(f"""
             CREATE UNIQUE INDEX IF NOT EXISTS engineering_tech_battery_host
@@ -3070,6 +3071,18 @@ class CharacterRepository:
     def list_engineering_devices(self, character_id):
         return [dict(row) for row in self._connection.execute(
             "SELECT * FROM engineering_devices WHERE character_id=? ORDER BY id", (character_id,))]
+
+    def engineering_polymorphed(self,character_id):
+        row=self._connection.execute("SELECT polymorphed FROM character_engineering_form WHERE character_id=?",(character_id,)).fetchone()
+        return bool(row and row["polymorphed"])
+
+    def set_engineering_polymorphed(self,character_id,enabled):
+        if not isinstance(enabled,bool):
+            raise ValueError("Polymorph state must be true or false.")
+        if not self._connection.execute("SELECT 1 FROM characters WHERE id=?",(character_id,)).fetchone():
+            raise KeyError("Unknown character.")
+        self._connection.execute("INSERT INTO character_engineering_form(character_id,polymorphed) VALUES (?,?) ON CONFLICT(character_id) DO UPDATE SET polymorphed=excluded.polymorphed",(character_id,int(enabled)))
+        self._touch_character(character_id);self._connection.commit()
 
     def save_engineering_device(self, character_id, record, device_id=None):
         sphere = record.get("sphere")

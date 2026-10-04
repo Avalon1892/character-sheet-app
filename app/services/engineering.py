@@ -141,6 +141,9 @@ class EngineeringService:
     def advance_time(self,rounds):
         self.repository.advance_engineering_time(self.character_id,rounds)
 
+    def set_polymorphed(self,enabled):
+        self.repository.set_engineering_polymorphed(self.character_id,enabled)
+
     def change_state(self, device_id, state):
         record = next((d for d in self.repository.list_engineering_devices(self.character_id) if d["id"]==device_id),None)
         if record is None:

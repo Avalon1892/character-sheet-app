@@ -259,17 +259,36 @@ class EngineeringTests(unittest.TestCase):
         self.service.start_dermal_plating(host)
         self.assertEqual((0,10),(record(host)["charges"],record(host)["effect_rounds"]))
         self.assertEqual(baseline+3,ac())
+        paid=dict(record(host))
+        self.service.set_polymorphed(True)
+        self.assertEqual(baseline,ac())
+        self.assertEqual(paid,record(host))
+        self.assertTrue(CharacterCalculationService(self.repo,self.cid).formula_context().evaluate(f"devices.device_{host}.suppressed"))
+        self.service.set_polymorphed(False)
+        self.assertEqual(baseline+3,ac())
         self.service.advance_time(10)
         self.assertEqual("inactive",record(host)["state"])
         self.assertEqual(baseline,ac())
         self.repo.add_modifier(self.cid,"ac","Existing natural armor enhancement","natural armor enhancement",5)
         self.service.transfer_charges(host,1);self.service.start_dermal_plating(host)
         self.assertEqual(baseline+5,ac())
+        self.service.set_polymorphed(True)
         path=Path(self.temp.name)/"dermal.json";export_character(self.repo,self.cid,path)
         imported=import_character(self.repo,path)
+        self.assertTrue(self.repo.engineering_polymorphed(imported))
         self.assertEqual("Body",next(d for d in self.repo.list_engineering_devices(imported) if d["applied_to_character"])["augment_slot"])
         self.service.apply_to_character(host,False);self.service.apply_to_character(other,True)
         self.assertEqual("",record(host)["augment_slot"])
+
+    def test_polymorph_state_is_owned_and_does_not_apply_tech_rule_to_tinker(self):
+        from app.engineering_rules import tech_augment_suppressed
+        self.assertFalse(self.repo.engineering_polymorphed(self.cid))
+        with self.assertRaises(ValueError):self.service.set_polymorphed("yes")
+        with self.assertRaises(KeyError):self.repo.set_engineering_polymorphed(999999,True)
+        self.service.set_polymorphed(True)
+        other=self.repo.create_character("Other","Spheres")
+        self.assertFalse(self.repo.engineering_polymorphed(other))
+        self.assertFalse(tech_augment_suppressed(dict(sphere="Tinker",augment_slot="Body",applied_to_character=True),True))
 
     def test_distinct_rules_and_repeatable_limits(self):
         self.assertEqual((9,4,6),(engineering_limits("Tinker",6,1,extra=1).device_limit,

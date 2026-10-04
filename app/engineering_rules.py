@@ -32,11 +32,15 @@ RESISTANCE_ROUTINE_KEY = "tinker:device:resistance-routine"
 DERMAL_PLATING_KEY = "tech:gadget-talent:dermal-plating-augment-drone-gadget"
 
 
-def dermal_plating_bonus(device,ranks):
+def tech_augment_suppressed(device,polymorphed):
+    return bool(polymorphed and device["sphere"]=="Tech" and device.get("augment_slot") and device.get("applied_to_character"))
+
+
+def dermal_plating_bonus(device,ranks,*,polymorphed=False):
     if (device["sphere"]!="Tech" or device["catalog_key"]!=DERMAL_PLATING_KEY
             or device["state"]!="active" or not device.get("applied_to_character")
             or device.get("augment_slot")!="Body" or device.get("effect_rounds",0)<=0
-            or device_condition(device)["destroyed"]):
+            or device_condition(device)["destroyed"] or tech_augment_suppressed(device,polymorphed)):
         return 0
     return 2+max(0,int(ranks))//5
 

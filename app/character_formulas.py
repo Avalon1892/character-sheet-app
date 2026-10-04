@@ -19,7 +19,7 @@ from app.class_choice_rules import (
 )
 from app.class_power_rules import class_power_reference_values, resolve_class_power_sets
 from app.models import ABILITIES
-from app.engineering_rules import device_condition
+from app.engineering_rules import device_condition,tech_augment_suppressed
 from app.prodigy_content import SPHERE_IMBUES, imbue_numeric_value
 from app.race_rules import (
     racial_identity_tags,
@@ -270,6 +270,7 @@ class CharacterFormulaContext:
             for field, value in aggregate.items():
                 values[f"item.{key}.{field}"] = value
 
+        polymorphed=self.repository.engineering_polymorphed(self.character_id)
         for device in self.devices.values():
             condition=device_condition(device)
             prefix=f"devices.device_{device['id']}"
@@ -282,6 +283,7 @@ class CharacterFormulaContext:
                 f"{prefix}.rounds_remaining":float(device["effect_rounds"]),
                 f"{prefix}.active":device["state"]=="active" and not condition["destroyed"],
                 f"{prefix}.worn":bool(device["applied_to_character"]),
+                f"{prefix}.suppressed":tech_augment_suppressed(device,polymorphed),
                 f"{prefix}.broken":condition["broken"],
                 f"{prefix}.destroyed":condition["destroyed"],
                 f"{prefix}.depleted":device["state"]=="depleted",

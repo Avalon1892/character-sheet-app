@@ -5,7 +5,7 @@ from PySide6.QtWidgets import (QDialog,QVBoxLayout,QHBoxLayout,QComboBox,QLabel,
     QPushButton,QTableWidget,QTableWidgetItem,QHeaderView,QAbstractItemView,
     QSpinBox,QCheckBox,QTextBrowser,QSplitter,QWidget,QMessageBox,QInputDialog)
 from app.services.engineering import EngineeringService
-from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY,DERMAL_PLATING_KEY
+from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY,DERMAL_PLATING_KEY,tech_augment_suppressed
 from app.engineering_rules import occupied_limit,is_battery,TECH_BATTERY_KEY,tech_battery_capacity,device_condition,PHYSICAL_AUGMENTOR_KEY,AUGMENTOR_ABILITIES,JET_BOOSTERS_KEY,JET_MODES
 from app.content import martial_entry
 from app.ui.dialog_theme import dialog_stylesheet
@@ -43,6 +43,10 @@ class EngineeringDialog(QDialog):
         practitioner.addWidget(self.practitioner_ability)
         self.modifier=QSpinBox();self.modifier.setRange(-100,100);practitioner.addWidget(self.modifier)
         practitioner.addStretch()
+        self.polymorphed=QCheckBox("Polymorphed — suppress worn Tech augments")
+        self.polymorphed.setToolTip("Tracks the current transformation for augment effects. It does not remove installed devices, refund charges or stop paid timers. Bio-augment/graft exceptions are not yet available.")
+        practitioner.addWidget(self.polymorphed)
+        self.polymorphed.clicked.connect(lambda checked:self.perform(lambda:self.service().set_polymorphed(checked)))
         self.summary=QLabel();root.addWidget(self.summary)
         notice=QLabel("Baseline lifecycle and resource tracking. Device-specific effects and construction exceptions still require manual rules review.")
         notice.setWordWrap(True);root.addWidget(notice)
@@ -168,6 +172,7 @@ class EngineeringDialog(QDialog):
         if ability:self.modifier.setValue(self.service().practitioner_modifier(ability))
 
     def refresh(self,*_):
+        self.polymorphed.setChecked(self.sheet.repository.engineering_polymorphed(self.sheet.character_id))
         self.update_practitioner_modifier()
         service=self.service();sphere=self.system.currentText()
         if not sphere:return
@@ -194,6 +199,7 @@ class EngineeringDialog(QDialog):
                     f"#{device['host_id']}" if device["host_id"] else
                     f"{sum(d['state']=='active' for d in attached)}/{len(attached)} batteries" if attached else "—")
             status="abandoned" if device["state"]=="abandoned" else "Destroyed" if condition["destroyed"] else f"Broken · {device['state']}" if condition["broken"] else device["state"]
+            if tech_augment_suppressed(device,self.polymorphed.isChecked()):status+=" · Polymorph-suppressed"
             level=f"{device['level']} → {condition['effective_level']}" if condition["effective_level"]!=device["level"] else device["level"]
             name=device["name"]+(f" · {device['configuration'].title()}" if device["configuration"] else "")+(f" · {device['worn_slot']}" if device["worn_slot"] else " · Worn" if device["applied_to_character"] else "")
             if device["augment_slot"]:name+=f" · Augment: {device['augment_slot']}"

@@ -31,6 +31,8 @@ Updated: 2026-10-04. This is an implementation ledger, not a claim of complete a
 
 ## Partial support / manual inputs
 
+- Explicit character-owned polymorph state now suppresses installed ordinary Tech augment effects without changing saved activation, slot occupancy, charges or paid duration. The workbench shows suppression and formulas expose `devices.device_<id>.suppressed`. State is additive, defaults off for older characters and survives transfer. This currently affects the implemented Dermal Plating path; no blanket Tech-specific suppression is imposed on Tinker. Bio augment/Untraceable Gadget exceptions, innate-trait retention for grafts and automatic linkage to transformation effects remain pending.
+
 - Tech Dermal Plating has a separate persistent Body augment slot with repository ownership/occupancy validation and a unique database constraint. It coexists with ordinary Body-slot equipment. Installation/removal is controlled through wearer state; paid activation atomically spends one charge battery-first for 10 rounds. Shared AC receives a typed natural-armor enhancement based on current Craft ranks, so other natural-armor enhancements do not stack. Expiry deactivates the function, removal ends it, and character transfer preserves the dedicated slot. Donning time/hasty penalties, remote-control suppression, nonstandard anatomy, graft installation and polymorph exceptions remain pending; this is not complete augmentation support.
 
 - Advanced Field Projectors plus Modification and at least 5 associated-skill ranks enables Tactile Field's immediate-action reroll at will. The action requires an active, worn, functioning field and spends no battery or unnecessary refresh when no enhancement is active. Using the existing enhanced-period reroll still ends that period; increasing CMD/skill bonuses still requires a battery. Actual dice resolution remains manual. Other Advanced Field Projectors functions remain pending.
@@ -71,6 +73,8 @@ Updated: 2026-10-04. This is an implementation ledger, not a claim of complete a
 18. Packaged-runtime verification for this batch. The full isolated suite has run; three pre-existing failures remain separate from engineering work.
 
 ## Validation
+
+Polymorph follow-up: 74 focused engineering, persistence, transfer and formula tests plus 11 subtests passed. Coverage includes AC suppression/restoration, unchanged installed-device records, per-character ownership, invalid state rejection, formula exposure and transfer of current form state. This does not prove bio/graft exceptions or automatic form selection, and the full suite has not been rerun after this change.
 
 Dermal Plating follow-up: 81 focused engineering, database, transfer, recovery and item-effect tests plus 2 theme subtests passed. Coverage includes ordinary/dedicated slot coexistence, occupied-slot rejection, failed unpaid activation, charge spending, live AC projection, typed non-stacking, expiry and dedicated-slot character transfer. The full suite has not been repeated after this follow-up.
 

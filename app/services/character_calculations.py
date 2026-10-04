@@ -656,8 +656,9 @@ class CharacterCalculationService:
         for modifier_map in modifier_maps:
             for target, modifiers in modifier_map.items():
                 result.setdefault(target, []).extend(modifiers)
+        polymorphed=self.repository.engineering_polymorphed(self.character_id)
         for device in self.repository.list_engineering_devices(self.character_id):
-            dermal=dermal_plating_bonus(device,effective_ranks.get("craft",0))
+            dermal=dermal_plating_bonus(device,effective_ranks.get("craft",0),polymorphed=polymorphed)
             if dermal:
                 result.setdefault("ac",[]).append(StatModifier(None,"ac",f"{device['name']} #{device['id']}","natural armor enhancement",dermal,True))
             bonus=physical_augmentor_bonus(device)
