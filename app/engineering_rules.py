@@ -82,23 +82,23 @@ def tech_augment_installed(device,slot):
     return bool(device.get("graft_slot")==slot or (device.get("applied_to_character") and device.get("augment_slot")==slot))
 
 
-def tech_augment_suppressed(device,polymorphed):
+def tech_augment_suppressed(device,polymorphed,*,retain_innate=False):
     return bool(polymorphed and device["sphere"]=="Tech"
                 and (device.get("graft_slot") or (device.get("augment_slot") and device.get("applied_to_character")))
-                and not device.get("bio_augment"))
+                and not device.get("bio_augment") and not (device.get("graft_slot") and retain_innate))
 
 
-def clamp_boots_active(device, *, polymorphed=False):
+def clamp_boots_active(device, *, polymorphed=False,retain_innate=False):
     return bool(device["sphere"]=="Tech" and device["catalog_key"]==CLAMP_BOOTS_KEY
         and device["state"]=="active" and tech_augment_installed(device,"Legs") and device.get("effect_rounds",0)>0
         and device.get("function_mode") in {"climb","clamped"}
-        and not device_condition(device)["destroyed"] and not tech_augment_suppressed(device,polymorphed))
+        and not device_condition(device)["destroyed"] and not tech_augment_suppressed(device,polymorphed,retain_innate=retain_innate))
 
 
-def dermal_plating_bonus(device,ranks,*,polymorphed=False):
+def dermal_plating_bonus(device,ranks,*,polymorphed=False,retain_innate=False):
     if (device["sphere"]!="Tech" or device["catalog_key"]!=DERMAL_PLATING_KEY
             or device["state"]!="active" or not tech_augment_installed(device,"Body") or device.get("effect_rounds",0)<=0
-            or device_condition(device)["destroyed"] or tech_augment_suppressed(device,polymorphed)):
+            or device_condition(device)["destroyed"] or tech_augment_suppressed(device,polymorphed,retain_innate=retain_innate)):
         return 0
     return 2+max(0,int(device["level"] if device.get("construction_kind") else ranks))//5
 

@@ -182,6 +182,7 @@ def export_character(repository: CharacterRepository, character_id: int, path: P
             ],
             "engineering_devices": repository.list_engineering_devices(character_id),
             "engineering_polymorphed": repository.engineering_polymorphed(character_id),
+            "engineering_retains_innate": repository.engineering_retains_innate(character_id),
             "rest_preferences": repository.get_rest_preferences(character_id),
             "audit_ignores": repository.list_audit_ignores(character_id),
             "sheet_layout": repository.get_character_sheet_layout(character_id),
@@ -250,7 +251,7 @@ def import_character(repository: CharacterRepository, path: Path) -> int:
     try:
         device_ids=_import_engineering_devices(repository,character_id,character)
         if "engineering_polymorphed" in character:
-            repository.set_engineering_polymorphed(character_id,character["engineering_polymorphed"])
+            repository.set_engineering_polymorphed(character_id,character["engineering_polymorphed"],retain_innate=character.get("engineering_retains_innate",False))
         character=_remap_device_references(character,device_ids)
         _populate_character(repository, character_id, character)
         styles = character.get("sheet_styles", {})

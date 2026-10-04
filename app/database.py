@@ -991,6 +991,7 @@ class CharacterRepository:
         self._ensure_column("engineering_devices", "construction_kind", "TEXT NOT NULL DEFAULT ''")
         self._ensure_column("engineering_devices", "graft_slot", "TEXT NOT NULL DEFAULT ''")
         self._connection.execute("CREATE TABLE IF NOT EXISTS character_engineering_form (character_id INTEGER PRIMARY KEY REFERENCES characters(id) ON DELETE CASCADE, polymorphed INTEGER NOT NULL DEFAULT 0 CHECK(polymorphed IN (0,1)))")
+        self._ensure_column("character_engineering_form", "retain_innate", "INTEGER NOT NULL DEFAULT 0")
         self._connection.execute("CREATE UNIQUE INDEX IF NOT EXISTS engineering_augment_occupancy ON engineering_devices(character_id,augment_slot) WHERE sphere='Tech' AND augment_slot!='' AND applied_to_character=1 AND state!='abandoned'")
         self._connection.execute("CREATE UNIQUE INDEX IF NOT EXISTS engineering_graft_occupancy ON engineering_devices(character_id,graft_slot) WHERE graft_slot!=''")
         self._connection.execute(f"""
@@ -3081,12 +3082,16 @@ class CharacterRepository:
         row=self._connection.execute("SELECT polymorphed FROM character_engineering_form WHERE character_id=?",(character_id,)).fetchone()
         return bool(row and row["polymorphed"])
 
-    def set_engineering_polymorphed(self,character_id,enabled):
-        if not isinstance(enabled,bool):
+    def engineering_retains_innate(self,character_id):
+        row=self._connection.execute("SELECT polymorphed,retain_innate FROM character_engineering_form WHERE character_id=?",(character_id,)).fetchone()
+        return bool(row and row["polymorphed"] and row["retain_innate"])
+
+    def set_engineering_polymorphed(self,character_id,enabled,*,retain_innate=False):
+        if not isinstance(enabled,bool) or not isinstance(retain_innate,bool):
             raise ValueError("Polymorph state must be true or false.")
         if not self._connection.execute("SELECT 1 FROM characters WHERE id=?",(character_id,)).fetchone():
             raise KeyError("Unknown character.")
-        self._connection.execute("INSERT INTO character_engineering_form(character_id,polymorphed) VALUES (?,?) ON CONFLICT(character_id) DO UPDATE SET polymorphed=excluded.polymorphed",(character_id,int(enabled)))
+        self._connection.execute("INSERT INTO character_engineering_form(character_id,polymorphed,retain_innate) VALUES (?,?,?) ON CONFLICT(character_id) DO UPDATE SET polymorphed=excluded.polymorphed,retain_innate=excluded.retain_innate",(character_id,int(enabled),int(enabled and retain_innate)))
         self._touch_character(character_id);self._connection.commit()
 
     def save_engineering_device(self, character_id, record, device_id=None):

@@ -227,13 +227,13 @@ class EngineeringService:
 
     def set_boots_clamped(self,device_id,clamped):
         device=next((d for d in self.devices("Tech") if d["id"]==device_id),None)
-        if not device or not clamp_boots_active(device,polymorphed=self.repository.engineering_polymorphed(self.character_id)):
+        if not device or not clamp_boots_active(device,polymorphed=self.repository.engineering_polymorphed(self.character_id),retain_innate=self.repository.engineering_retains_innate(self.character_id)):
             raise ValueError("Wear powered, functioning Clamp Boots first.")
         self.repository.save_engineering_device(self.character_id,{**device,"function_mode":"clamped" if clamped else "climb"},device_id)
 
     def clamp_boots_resistance(self,device_id):
         device=next((d for d in self.devices("Tech") if d["id"]==device_id),None)
-        if not device or device["function_mode"]!="clamped" or not clamp_boots_active(device,polymorphed=self.repository.engineering_polymorphed(self.character_id)):
+        if not device or device["function_mode"]!="clamped" or not clamp_boots_active(device,polymorphed=self.repository.engineering_polymorphed(self.character_id),retain_innate=self.repository.engineering_retains_innate(self.character_id)):
             return 0
         ranks=device["level"] if device["construction_kind"] else CharacterCalculationService(self.repository,self.character_id).effective_skill_ranks().get("craft",0)
         return max(1,ranks//2)
@@ -248,8 +248,8 @@ class EngineeringService:
     def advance_time(self,rounds):
         self.repository.advance_engineering_time(self.character_id,rounds)
 
-    def set_polymorphed(self,enabled):
-        self.repository.set_engineering_polymorphed(self.character_id,enabled)
+    def set_polymorphed(self,enabled,*,retain_innate=False):
+        self.repository.set_engineering_polymorphed(self.character_id,enabled,retain_innate=retain_innate)
 
     def change_state(self, device_id, state):
         record = next((d for d in self.repository.list_engineering_devices(self.character_id) if d["id"]==device_id),None)

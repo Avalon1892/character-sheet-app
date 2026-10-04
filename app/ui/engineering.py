@@ -91,10 +91,13 @@ class EngineeringDialog(QDialog):
         practitioner.addWidget(self.practitioner_ability)
         self.modifier=QSpinBox();self.modifier.setRange(-100,100);practitioner.addWidget(self.modifier)
         practitioner.addStretch()
-        self.polymorphed=QCheckBox("Polymorphed — suppress worn Tech augments")
-        self.polymorphed.setToolTip("Tracks the current transformation for augment effects. It does not remove installed devices, refund charges or stop paid timers. Devices crafted as bio augments retain their effects; graft handling is still pending.")
+        self.polymorphed=QCheckBox("Polymorphed")
+        self.polymorphed.setToolTip("Suppresses ordinary Tech augments and grafts without removing them, refunding charges or pausing timers. Crafted bio augments retain their effects.")
         practitioner.addWidget(self.polymorphed)
-        self.polymorphed.clicked.connect(lambda checked:self.perform(lambda:self.service().set_polymorphed(checked)))
+        self.retain_innate=QCheckBox("Retains innate traits (grafts)");practitioner.addWidget(self.retain_innate)
+        self.retain_innate.setToolTip("Enable only when this transformation retains innate abilities. Preserves implanted grafts, not ordinary worn augments. Does not grant or choose a transformation.")
+        self.polymorphed.clicked.connect(lambda checked:self.perform(lambda:self.service().set_polymorphed(checked,retain_innate=checked and self.retain_innate.isChecked())))
+        self.retain_innate.clicked.connect(lambda checked:self.perform(lambda:self.service().set_polymorphed(self.polymorphed.isChecked(),retain_innate=checked)))
         self.summary=QLabel();root.addWidget(self.summary)
         notice=QLabel("Baseline lifecycle and resource tracking. Device-specific effects and construction exceptions still require manual rules review.")
         notice.setWordWrap(True);root.addWidget(notice)
@@ -254,6 +257,8 @@ class EngineeringDialog(QDialog):
 
     def refresh(self,*_):
         self.polymorphed.setChecked(self.sheet.repository.engineering_polymorphed(self.sheet.character_id))
+        self.retain_innate.setChecked(self.sheet.repository.engineering_retains_innate(self.sheet.character_id))
+        self.retain_innate.setEnabled(self.polymorphed.isChecked())
         self.update_practitioner_modifier()
         service=self.service();sphere=self.system.currentText()
         if not sphere:return
@@ -280,7 +285,7 @@ class EngineeringDialog(QDialog):
                     f"#{device['host_id']}" if device["host_id"] else
                     f"{sum(d['state']=='active' for d in attached)}/{len(attached)} batteries" if attached else "—")
             status="abandoned" if device["state"]=="abandoned" else "Destroyed" if condition["destroyed"] else f"Broken · {device['state']}" if condition["broken"] else device["state"]
-            if tech_augment_suppressed(device,self.polymorphed.isChecked()):status+=" · Polymorph-suppressed"
+            if tech_augment_suppressed(device,self.polymorphed.isChecked(),retain_innate=self.retain_innate.isChecked()):status+=" · Polymorph-suppressed"
             level=f"{device['level']} → {condition['effective_level']}" if condition["effective_level"]!=device["level"] else device["level"]
             name=device["name"]+(f" · {device['configuration'].title()}" if device["configuration"] else "")+(f" · {device['worn_slot']}" if device["worn_slot"] else " · Worn" if device["applied_to_character"] else "")
             if device["augment_slot"]:name+=f" · Augment: {device['augment_slot']}"
@@ -349,7 +354,7 @@ class EngineeringDialog(QDialog):
                               if entry.get("key")==TACTILE_FIELD_KEY else
                               "Install and activate this routine to improve its host gizmo's saving throws. The live save column includes the highest active insight bonus; character saves are unchanged."
                               if entry.get("key")==RESISTANCE_ROUTINE_KEY else
-                              "Wear in the dedicated Body augment slot, or surgically implant a crafted graft in its separate graft slot. Pay one charge for a timed period; graft durations are doubled and use stored item ranks. Natural armor enhancement, expiry and polymorph suppression are automatic; crafted bio augments retain their effects. Hasty donning, overload and innate-trait-retaining transformations remain pending."
+                              "Wear in the dedicated Body augment slot, or surgically implant a crafted graft in its separate graft slot. Pay one charge for a timed period; graft durations are doubled and use stored item ranks. Natural armor enhancement, expiry and polymorph suppression are automatic. Bio augments retain effects; implanted grafts also retain effects when the current transformation preserves innate traits. Hasty donning and overload remain pending."
                               if entry.get("key")==DERMAL_PLATING_KEY else
                               "Dedicated Legs augment or graft slot, paid climb movement, clamp/unclamp, expiry and polymorph suppression are automatic. Grafts double paid duration and retain their item rank. Climbing walls or ceilings requires neither hands nor Climb checks. Clamp resistance applies only against forced movement. Composition, remote control, overload and nonstandard anatomy remain pending."
                               if entry.get("key")==CLAMP_BOOTS_KEY else
@@ -363,7 +368,7 @@ class EngineeringDialog(QDialog):
         self.dermal_activate.setVisible(dermal)
         boots=bool(device and device["catalog_key"]==CLAMP_BOOTS_KEY)
         for button in (self.boots_activate,self.boots_clamp,self.boots_unclamp):button.setVisible(boots)
-        powered=bool(boots and clamp_boots_active(device,polymorphed=self.polymorphed.isChecked()))
+        powered=bool(boots and clamp_boots_active(device,polymorphed=self.polymorphed.isChecked(),retain_innate=self.retain_innate.isChecked()))
         self.boots_activate.setEnabled(bool(boots and tech_augment_installed(device,"Legs") and device["state"] not in {"abandoned","depleted"} and device["effect_rounds"]==0 and not device_condition(device)["destroyed"]))
         self.boots_clamp.setEnabled(powered and device["function_mode"]!="clamped")
         self.boots_unclamp.setEnabled(powered and device["function_mode"]=="clamped")

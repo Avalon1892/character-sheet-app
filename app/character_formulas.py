@@ -271,6 +271,7 @@ class CharacterFormulaContext:
                 values[f"item.{key}.{field}"] = value
 
         polymorphed=self.repository.engineering_polymorphed(self.character_id)
+        retain_innate=self.repository.engineering_retains_innate(self.character_id)
         for device in self.devices.values():
             condition=device_condition(device)
             prefix=f"devices.device_{device['id']}"
@@ -283,7 +284,7 @@ class CharacterFormulaContext:
                 f"{prefix}.rounds_remaining":float(device["effect_rounds"]),
                 f"{prefix}.active":device["state"]=="active" and not condition["destroyed"],
                 f"{prefix}.worn":bool(device["applied_to_character"]),
-                f"{prefix}.suppressed":tech_augment_suppressed(device,polymorphed),
+                f"{prefix}.suppressed":tech_augment_suppressed(device,polymorphed,retain_innate=retain_innate),
                 f"{prefix}.broken":condition["broken"],
                 f"{prefix}.destroyed":condition["destroyed"],
                 f"{prefix}.depleted":device["state"]=="depleted",

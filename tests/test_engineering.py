@@ -186,6 +186,43 @@ class EngineeringTests(unittest.TestCase):
         self.assertTrue(all(d["graft_slot"] and d["effect_rounds"]==0 for d in records()))
         with self.assertRaises(ValueError):self.repo.spend_tech_device_charges(self.cid,grafts[0],1,function_mode="dermal",dermal_rounds=10)
 
+    def test_polymorph_retains_grafts_not_worn_augments_and_transfers(self):
+        from app.engineering_rules import DERMAL_PLATING_KEY,CLAMP_BOOTS_KEY
+        from app.services.character_calculations import CharacterCalculationService
+        self.repo.add_feat(self.cid,"Craft Appliances And Contraptions")
+        self.repo.add_feat(self.cid,"Craft Augment Graft")
+        grafts=[]
+        for key in (DERMAL_PLATING_KEY,CLAMP_BOOTS_KEY):
+            self.add("Tech","Supported augment",key)
+            graft=self.service.record_completed_graft(key,"appliance",3,2,check_result=13,materials_paid=True,time_completed=True,gm_permission=True)
+            self.service.install_graft(graft,subject_willing_or_helpless=True,installation_completed=True)
+            self.service.start_timed_augment(graft,key);grafts.append(graft)
+        ordinary=self.service.create("Tech",DERMAL_PLATING_KEY,2)
+        self.service.apply_to_character(ordinary,True);self.service.recharge()
+        self.service.transfer_charges(ordinary,1);self.service.start_dermal_plating(ordinary)
+        ac=lambda:CharacterCalculationService(self.repo,self.cid).combat_results()["ac"].total
+        before=ac();devices=self.service.devices("Tech")
+        self.service.set_polymorphed(True)
+        suppressed_ac=ac();self.assertEqual(before-3,suppressed_ac)
+        self.service.set_polymorphed(True,retain_innate=True)
+        self.assertEqual(suppressed_ac+2,ac())
+        self.assertEqual(devices,self.service.devices("Tech"))
+        context=CharacterCalculationService(self.repo,self.cid).formula_context()
+        for graft in grafts:self.assertFalse(context.evaluate(f"devices.device_{graft}.suppressed"))
+        self.assertTrue(context.evaluate(f"devices.device_{ordinary}.suppressed"))
+        self.service.set_boots_clamped(grafts[1],True)
+        self.assertEqual(1,self.service.clamp_boots_resistance(grafts[1]))
+        path=Path(self.temp.name)/"retained-innate.json";export_character(self.repo,self.cid,path)
+        imported=import_character(self.repo,path)
+        self.assertTrue(self.repo.engineering_retains_innate(imported))
+        self.assertEqual(ac(),CharacterCalculationService(self.repo,imported).combat_results()["ac"].total)
+        self.service.set_polymorphed(False)
+        self.assertFalse(self.repo.engineering_retains_innate(self.cid))
+        self.assertTrue(self.repo.engineering_retains_innate(imported))
+        self.service.set_polymorphed(True);self.assertEqual(suppressed_ac,ac())
+        with self.assertRaises(ValueError):self.service.set_polymorphed(True,retain_innate=1)
+        with self.assertRaises(KeyError):self.repo.set_engineering_polymorphed(999999,True,retain_innate=True)
+
     def test_clamp_boots_paid_movement_clamping_polymorph_and_transfer(self):
         from app.engineering_rules import CLAMP_BOOTS_KEY
         from app.services.character_calculations import CharacterCalculationService
@@ -1044,3 +1081,22 @@ class EngineeringTests(unittest.TestCase):
         self.assertEqual("",self.repo.list_engineering_devices(self.cid)[0]["graft_slot"])
         self.assertEqual([True]*4,refreshed)
         planner.deleteLater();parent.deleteLater();sheet.deleteLater();app.sendPostedEvents(None,QEvent.Type.DeferredDelete)
+
+    def test_retained_innate_ui_state_and_refresh_in_both_themes(self):
+        from PySide6.QtWidgets import QApplication,QWidget
+        from PySide6.QtCore import QEvent
+        from app.ui.engineering import EngineeringDialog
+        app=QApplication.instance() or QApplication([])
+        for theme in ("classic","dark"):
+            with self.subTest(theme=theme):
+                self.service.set_polymorphed(False)
+                sheet=QWidget();sheet.repository=self.repo;sheet.character_id=self.cid;sheet.theme=theme
+                refreshed=[];sheet.refresh_all=lambda:refreshed.append(True)
+                dialog=EngineeringDialog(sheet)
+                self.assertFalse(dialog.retain_innate.isEnabled())
+                dialog.polymorphed.click();self.assertTrue(dialog.retain_innate.isEnabled())
+                dialog.retain_innate.click();self.assertTrue(self.repo.engineering_retains_innate(self.cid))
+                dialog.polymorphed.click()
+                self.assertFalse(dialog.retain_innate.isEnabled());self.assertFalse(dialog.retain_innate.isChecked())
+                self.assertFalse(self.repo.engineering_retains_innate(self.cid));self.assertEqual([True]*3,refreshed)
+                dialog.deleteLater();sheet.deleteLater();app.sendPostedEvents(None,QEvent.Type.DeferredDelete)

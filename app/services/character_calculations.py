@@ -657,8 +657,9 @@ class CharacterCalculationService:
             for target, modifiers in modifier_map.items():
                 result.setdefault(target, []).extend(modifiers)
         polymorphed=self.repository.engineering_polymorphed(self.character_id)
+        retain_innate=self.repository.engineering_retains_innate(self.character_id)
         for device in self.repository.list_engineering_devices(self.character_id):
-            dermal=dermal_plating_bonus(device,effective_ranks.get("craft",0),polymorphed=polymorphed)
+            dermal=dermal_plating_bonus(device,effective_ranks.get("craft",0),polymorphed=polymorphed,retain_innate=retain_innate)
             if dermal:
                 result.setdefault("ac",[]).append(StatModifier(None,"ac",f"{device['name']} #{device['id']}","natural armor enhancement",dermal,True))
             bonus=physical_augmentor_bonus(device)
@@ -809,8 +810,9 @@ class CharacterCalculationService:
         maneuverability=profile.fly_maneuverability
         clamped=False
         polymorphed=self.repository.engineering_polymorphed(self.character_id)
+        retain_innate=self.repository.engineering_retains_innate(self.character_id)
         for device in self.repository.list_engineering_devices(self.character_id):
-            if clamp_boots_active(device,polymorphed=polymorphed):
+            if clamp_boots_active(device,polymorphed=polymorphed,retain_innate=retain_innate):
                 bases["climb_speed"]=max(bases["climb_speed"],unrestricted_land)
                 clamped=clamped or device["function_mode"]=="clamped"
             grant=jet_movement(device,light_load=self.encumbrance(unrestricted_land).load=="Light")
