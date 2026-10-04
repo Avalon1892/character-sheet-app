@@ -29,6 +29,16 @@ MENTAL_AUGMENTOR_KEY = "tinker:device:mental-augmentor"
 LOAD_BEARER_KEY = "tinker:device:load-bearer"
 TACTILE_FIELD_KEY = "tinker:device:tactile-field"
 RESISTANCE_ROUTINE_KEY = "tinker:device:resistance-routine"
+DERMAL_PLATING_KEY = "tech:gadget-talent:dermal-plating-augment-drone-gadget"
+
+
+def dermal_plating_bonus(device,ranks):
+    if (device["sphere"]!="Tech" or device["catalog_key"]!=DERMAL_PLATING_KEY
+            or device["state"]!="active" or not device.get("applied_to_character")
+            or device.get("augment_slot")!="Body" or device.get("effect_rounds",0)<=0
+            or device_condition(device)["destroyed"]):
+        return 0
+    return 2+max(0,int(ranks))//5
 
 
 def resistance_routine_bonus(device,host):

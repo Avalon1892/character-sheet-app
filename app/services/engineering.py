@@ -6,7 +6,7 @@ from app.engineering_rules import (engineering_limits, occupied_limit, device_st
 from app.engineering_rules import physical_augmentor_bonus
 from app.services.character_calculations import CharacterCalculationService
 from app.exploitant_rules import effective_martial_talents
-from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY,resistance_routine_bonus
+from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY,resistance_routine_bonus,DERMAL_PLATING_KEY
 
 
 def device_talent(entry):
@@ -103,6 +103,13 @@ class EngineeringService:
 
     def apply_to_character(self,device_id,enabled):
         device=next((d for d in self.repository.list_engineering_devices(self.character_id) if d["id"]==device_id),None)
+        if device and device["catalog_key"]==DERMAL_PLATING_KEY:
+            if device["state"]=="abandoned" or (enabled and not self.available("Tech")):
+                raise ValueError("Select an available Dermal Plating augment.")
+            changes={"applied_to_character":bool(enabled),"augment_slot":"Body" if enabled else ""}
+            if not enabled:changes.update(state="inactive",effect_rounds=0)
+            self.repository.save_engineering_device(self.character_id,{**device,**changes},device_id)
+            return
         if not device or device["catalog_key"] not in {*AUGMENTOR_ABILITIES,TACTILE_FIELD_KEY}:
             raise ValueError("This device does not yet support automatic wearer effects.")
         if enabled and (device["state"]!="active" or device_condition(device)["destroyed"] or not self.available(device["sphere"])):
@@ -118,6 +125,11 @@ class EngineeringService:
         if mode=="slow_burn" and CharacterCalculationService(self.repository,self.character_id).encumbrance().load!="Light":
             raise ValueError("Slow burn requires a light load.")
         self.repository.spend_tech_device_charges(self.character_id,device_id,JET_MODES[mode][0],function_mode=mode,worn_slot=slot)
+
+    def start_dermal_plating(self,device_id):
+        if not self.available("Tech"):
+            raise ValueError("The Tech sphere is required.")
+        self.repository.spend_tech_device_charges(self.character_id,device_id,1,function_mode="dermal")
 
     def stop_function(self,device_id,*,unequip=False):
         device=next((d for d in self.repository.list_engineering_devices(self.character_id) if d["id"]==device_id),None)
@@ -145,9 +157,9 @@ class EngineeringService:
             raise ValueError("Tinker batteries cannot be deactivated.")
         if record["catalog_key"]==TECH_BATTERY_KEY and state=="abandoned":
             record={**record,"charges":0,"host_id":None}
-        if record["catalog_key"] in {JET_BOOSTERS_KEY,TACTILE_FIELD_KEY} and state!="active":
+        if record["catalog_key"] in {JET_BOOSTERS_KEY,TACTILE_FIELD_KEY,DERMAL_PLATING_KEY} and state!="active":
             record={**record,"effect_rounds":0,"effect_battery_id":None}
-            if state=="abandoned":record={**record,"worn_slot":"","applied_to_character":False}
+            if state=="abandoned":record={**record,"worn_slot":"","augment_slot":"","applied_to_character":False}
         if state in {"abandoned","depleted"} and record["charges"]:
             raise ValueError("Return or spend stored charges before abandoning or depleting this device.")
         self.repository.save_engineering_device(self.character_id,{**record,"state":state},device_id)

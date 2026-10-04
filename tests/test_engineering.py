@@ -238,6 +238,39 @@ class EngineeringTests(unittest.TestCase):
         self.service.apply_to_character(host,False)
         with self.assertRaises(ValueError):self.service.use_tactile_reroll(host)
 
+    def test_dermal_plating_dedicated_slot_payment_ac_and_expiration(self):
+        from app.engineering_rules import DERMAL_PLATING_KEY
+        from app.services.character_calculations import CharacterCalculationService
+        entry=next(e for e in martial_entries("Tech") if e["key"]==DERMAL_PLATING_KEY)
+        self.add("Tech",entry["name"],entry["key"],entry["category"])
+        host=self.service.create("Tech",DERMAL_PLATING_KEY,3)
+        other=self.service.create("Tech",DERMAL_PLATING_KEY,3)
+        ac=lambda:CharacterCalculationService(self.repo,self.cid).combat_results()["ac"].total
+        baseline=ac()
+        with self.assertRaises(ValueError):self.service.start_dermal_plating(host)
+        self.service.apply_to_character(host,True)
+        with self.assertRaises(ValueError):self.service.apply_to_character(other,True)
+        self.repo.add_equipment(self.cid,"Robe","Gear",1,0,True,0,"untyped",None,"",slot="Body")
+        record=lambda key:next(d for d in self.service.devices("Tech") if d["id"]==key)
+        self.assertEqual("Body",record(host)["augment_slot"])
+        self.assertEqual(baseline,ac())
+        with self.assertRaises(ValueError):self.service.start_dermal_plating(host)
+        self.service.recharge();self.service.transfer_charges(host,1)
+        self.service.start_dermal_plating(host)
+        self.assertEqual((0,10),(record(host)["charges"],record(host)["effect_rounds"]))
+        self.assertEqual(baseline+3,ac())
+        self.service.advance_time(10)
+        self.assertEqual("inactive",record(host)["state"])
+        self.assertEqual(baseline,ac())
+        self.repo.add_modifier(self.cid,"ac","Existing natural armor enhancement","natural armor enhancement",5)
+        self.service.transfer_charges(host,1);self.service.start_dermal_plating(host)
+        self.assertEqual(baseline+5,ac())
+        path=Path(self.temp.name)/"dermal.json";export_character(self.repo,self.cid,path)
+        imported=import_character(self.repo,path)
+        self.assertEqual("Body",next(d for d in self.repo.list_engineering_devices(imported) if d["applied_to_character"])["augment_slot"])
+        self.service.apply_to_character(host,False);self.service.apply_to_character(other,True)
+        self.assertEqual("",record(host)["augment_slot"])
+
     def test_distinct_rules_and_repeatable_limits(self):
         self.assertEqual((9,4,6),(engineering_limits("Tinker",6,1,extra=1).device_limit,
                                   engineering_limits("Tinker",8,1,extra=1).batch_size,

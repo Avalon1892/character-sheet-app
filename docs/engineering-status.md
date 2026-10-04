@@ -31,6 +31,8 @@ Updated: 2026-10-04. This is an implementation ledger, not a claim of complete a
 
 ## Partial support / manual inputs
 
+- Tech Dermal Plating has a separate persistent Body augment slot with repository ownership/occupancy validation and a unique database constraint. It coexists with ordinary Body-slot equipment. Installation/removal is controlled through wearer state; paid activation atomically spends one charge battery-first for 10 rounds. Shared AC receives a typed natural-armor enhancement based on current Craft ranks, so other natural-armor enhancements do not stack. Expiry deactivates the function, removal ends it, and character transfer preserves the dedicated slot. Donning time/hasty penalties, remote-control suppression, nonstandard anatomy, graft installation and polymorph exceptions remain pending; this is not complete augmentation support.
+
 - Advanced Field Projectors plus Modification and at least 5 associated-skill ranks enables Tactile Field's immediate-action reroll at will. The action requires an active, worn, functioning field and spends no battery or unnecessary refresh when no enhancement is active. Using the existing enhanced-period reroll still ends that period; increasing CMD/skill bonuses still requires a battery. Actual dice resolution remains manual. Other Advanced Field Projectors functions remain pending.
 
 - Defensive Set plus Computation unlocks a separate Resistance Routine recipe, automatically classified as minor. Installation/removal uses owned Tinker host identities and existing transfer remapping. Active functioning routines add the highest applicable insight save bonus to their host's displayed saves (including broken-level changes), never to character saves. AI sharing and nested routine composition remain pending.
@@ -69,6 +71,8 @@ Updated: 2026-10-04. This is an implementation ledger, not a claim of complete a
 18. Packaged-runtime verification for this batch. The full isolated suite has run; three pre-existing failures remain separate from engineering work.
 
 ## Validation
+
+Dermal Plating follow-up: 81 focused engineering, database, transfer, recovery and item-effect tests plus 2 theme subtests passed. Coverage includes ordinary/dedicated slot coexistence, occupied-slot rejection, failed unpaid activation, charge spending, live AC projection, typed non-stacking, expiry and dedicated-slot character transfer. The full suite has not been repeated after this follow-up.
 
 Latest complete isolated run at `54e2f84`: 142 modules, 2,015 cases, 2,012 passing, 3 failures, 0 errors, 0 skipped; 596.79 seconds. The three failures match the confirmed baseline: archetype catalog count (1,830 expected, 1,887 actual), custom-tracker parent placement, and obsolete tradition-placement expectations with a secondary SQLite cleanup lock. No additional regression was found in this run. Reports: `artifacts/engineering-validation-54e2f84/summary.json` and `complete.xml`. This covers the accumulated package-choice, formula, Tactile Field, augmentor battery-action and Resistance Routine changes; it does not establish completeness of unimplemented device functions or packaged runtime behavior.
 
@@ -160,7 +164,7 @@ Every entry remains available through existing catalogs/Codex. “Roster” mean
 | Tech | Compact Shield (gadget, moddable) | Gadget Talent | Roster; device-specific effects not automated |
 | Tech | Control Harness (accessory, drone, gadget, signal) | Gadget Talent | Roster; device-specific effects not automated |
 | Tech | Dash Engine (accessory, augment, drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
-| Tech | Dermal Plating (augment, drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Dermal Plating (augment, drone, gadget) | Gadget Talent | Dedicated Body slot, paid activation, typed live-rank AC enhancement and expiry automated; graft/polymorph/remote-control interactions pending |
 | Tech | Diga Drill (drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
 | Tech | Disarmer (accessory, gadget) | Gadget Talent | Roster; device-specific effects not automated |
 | Tech | Drone (gadget, signal) | Gadget Talent | Roster; device-specific effects not automated |

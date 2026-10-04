@@ -5,7 +5,7 @@ from PySide6.QtWidgets import (QDialog,QVBoxLayout,QHBoxLayout,QComboBox,QLabel,
     QPushButton,QTableWidget,QTableWidgetItem,QHeaderView,QAbstractItemView,
     QSpinBox,QCheckBox,QTextBrowser,QSplitter,QWidget,QMessageBox,QInputDialog)
 from app.services.engineering import EngineeringService
-from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY
+from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY,DERMAL_PLATING_KEY
 from app.engineering_rules import occupied_limit,is_battery,TECH_BATTERY_KEY,tech_battery_capacity,device_condition,PHYSICAL_AUGMENTOR_KEY,AUGMENTOR_ABILITIES,JET_BOOSTERS_KEY,JET_MODES
 from app.content import martial_entry
 from app.ui.dialog_theme import dialog_stylesheet
@@ -102,6 +102,9 @@ class EngineeringDialog(QDialog):
         clock.addStretch()
         field_controls=QHBoxLayout();root.addLayout(field_controls)
         self.tactile_boost=QPushButton("Enhance Tactile Field — 1 battery")
+        self.dermal_activate=QPushButton("Power Dermal Plating — 1 charge / minute")
+        field_controls.addWidget(self.dermal_activate)
+        self.dermal_activate.clicked.connect(lambda:self.perform(lambda:self.service().start_dermal_plating(self.selected())))
         self.tactile_reroll=QPushButton("Use reroll / end enhancement")
         self.augmentor_reroll=QPushButton("Roll benefiting check twice — 1 battery")
         self.augmentor_reroll.setToolTip("Before a check benefiting from this augmentor, spend one attached battery. Roll the check twice and take the higher result; resolve the dice manually.")
@@ -193,6 +196,7 @@ class EngineeringDialog(QDialog):
             status="abandoned" if device["state"]=="abandoned" else "Destroyed" if condition["destroyed"] else f"Broken · {device['state']}" if condition["broken"] else device["state"]
             level=f"{device['level']} → {condition['effective_level']}" if condition["effective_level"]!=device["level"] else device["level"]
             name=device["name"]+(f" · {device['configuration'].title()}" if device["configuration"] else "")+(f" · {device['worn_slot']}" if device["worn_slot"] else " · Worn" if device["applied_to_character"] else "")
+            if device["augment_slot"]:name+=f" · Augment: {device['augment_slot']}"
             values=(name,level,status,f"{condition['current_hp']}/{condition['maximum_hp']}",stats["hardness"],stats["save"],stats["dc"],energy,f"{device['effect_rounds']} rounds" if device["effect_rounds"] else "—")
             for column,value in enumerate(values):
                 item=QTableWidgetItem(str(value));item.setData(Qt.ItemDataRole.UserRole,device["id"])
@@ -246,12 +250,17 @@ class EngineeringDialog(QDialog):
                               if entry.get("key")==TACTILE_FIELD_KEY else
                               "Install and activate this routine to improve its host gizmo's saving throws. The live save column includes the highest active insight bonus; character saves are unchanged."
                               if entry.get("key")==RESISTANCE_ROUTINE_KEY else
+                              "Install in the dedicated Body augment slot (separate from magic-item slots), then pay one charge for one minute. Natural armor enhancement and expiry are automatic. Ordinary donning/removal follows leather armor; hasty donning, grafts and polymorph exceptions are not yet automated."
+                              if entry.get("key")==DERMAL_PLATING_KEY else
                               "Flight/swim speed, maneuverability, charge costs and paid durations are automatic. Flight slow burn is limited to 3 feet above the surface; height and hover/exhaust effects require manual resolution."
                               if entry.get("key")==JET_BOOSTERS_KEY else "Device-specific effects are reference-only in this batch.")+"</b></p>")
 
     def preview_device(self):
         device=next((d for d in self.service().devices(self.system.currentText()) if d["id"]==self.selected()),None)
         tactile=bool(device and device["catalog_key"]==TACTILE_FIELD_KEY)
+        dermal=bool(device and device["catalog_key"]==DERMAL_PLATING_KEY)
+        self.dermal_activate.setVisible(dermal)
+        self.dermal_activate.setEnabled(bool(dermal and device["applied_to_character"] and device["state"] not in {"abandoned","depleted"} and device["effect_rounds"]==0 and not device_condition(device)["destroyed"]))
         routine=bool(device and device["catalog_key"]==RESISTANCE_ROUTINE_KEY)
         self.install_routine.setVisible(routine);self.remove_routine.setVisible(routine)
         self.install_routine.setEnabled(bool(routine and device["state"]!="abandoned"))
@@ -267,7 +276,7 @@ class EngineeringDialog(QDialog):
         self.tactile_reroll.setEnabled(bool(tactile and device["state"]=="active" and device["applied_to_character"] and not device_condition(device)["destroyed"] and (device["effect_rounds"]>0 or at_will)))
         self.damage_button.setEnabled(bool(device and device["state"]!="abandoned"))
         self.repair_button.setEnabled(bool(device and device["state"]!="abandoned" and device["damage"] and self.kit.isChecked()))
-        self.applied.setEnabled(bool(device and device["catalog_key"] in {*AUGMENTOR_ABILITIES,TACTILE_FIELD_KEY} and device["state"]!="abandoned"))
+        self.applied.setEnabled(bool(device and device["catalog_key"] in {*AUGMENTOR_ABILITIES,TACTILE_FIELD_KEY,DERMAL_PLATING_KEY} and device["state"]!="abandoned"))
         self.applied.setChecked(bool(device and device["applied_to_character"]))
         jet=bool(device and device["catalog_key"]==JET_BOOSTERS_KEY and device["state"]!="abandoned" and not device_condition(device)["destroyed"])
         for button in self.jet_buttons:button.setEnabled(jet and device["effect_rounds"]==0)

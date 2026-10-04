@@ -95,7 +95,7 @@ from app.class_feature_systems import (
 )
 from app.class_power_rules import class_power_modifier_map
 from app.engineering_rules import physical_augmentor_bonus,jet_movement,LOAD_BEARER_KEY
-from app.engineering_rules import tactile_field_bonus
+from app.engineering_rules import tactile_field_bonus,dermal_plating_bonus
 from app.class_combat_rules import generated_class_attacks, class_attack_context_notes
 from app.race_rules import generated_racial_attacks, racial_class_skills, racial_automatic_values, racial_per_level_hit_points
 from app.class_choice_rules import (
@@ -657,6 +657,9 @@ class CharacterCalculationService:
             for target, modifiers in modifier_map.items():
                 result.setdefault(target, []).extend(modifiers)
         for device in self.repository.list_engineering_devices(self.character_id):
+            dermal=dermal_plating_bonus(device,effective_ranks.get("craft",0))
+            if dermal:
+                result.setdefault("ac",[]).append(StatModifier(None,"ac",f"{device['name']} #{device['id']}","natural armor enhancement",dermal,True))
             bonus=physical_augmentor_bonus(device)
             if not bonus:
                 continue

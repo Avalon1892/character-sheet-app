@@ -5,7 +5,7 @@ import math
 import re
 import sqlite3
 from app.engineering_rules import is_battery, TECH_BATTERY_KEY, tech_battery_capacity,device_condition,JET_BOOSTERS_KEY,JET_MODES
-from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY
+from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY,DERMAL_PLATING_KEY
 from datetime import datetime
 from pathlib import Path
 
@@ -985,6 +985,8 @@ class CharacterRepository:
         self._ensure_column("engineering_devices", "effect_rounds", "INTEGER NOT NULL DEFAULT 0")
         self._ensure_column("engineering_devices", "effect_battery_id", "INTEGER")
         self._ensure_column("engineering_devices", "worn_slot", "TEXT NOT NULL DEFAULT ''")
+        self._ensure_column("engineering_devices", "augment_slot", "TEXT NOT NULL DEFAULT ''")
+        self._connection.execute("CREATE UNIQUE INDEX IF NOT EXISTS engineering_augment_occupancy ON engineering_devices(character_id,augment_slot) WHERE sphere='Tech' AND augment_slot!='' AND applied_to_character=1 AND state!='abandoned'")
         self._connection.execute(f"""
             CREATE UNIQUE INDEX IF NOT EXISTS engineering_tech_battery_host
             ON engineering_devices(host_id)
@@ -3097,13 +3099,22 @@ class CharacterRepository:
             routine_host=self._connection.execute("SELECT * FROM engineering_devices WHERE id=? AND character_id=?",(host_id,character_id)).fetchone()
             if routine_host is None or routine_host["state"]!="active" or device_condition(dict(routine_host))["destroyed"]:
                 raise ValueError("A routine can activate only inside an active, functioning host gizmo.")
-        fields = ("sphere", "catalog_key", "name", "level", "modifier", "state", "charges", "minor", "advanced", "host_id", "damage", "configuration", "applied_to_character", "function_mode", "effect_rounds", "worn_slot", "effect_battery_id")
+        augment_slot=str(record.get("augment_slot", ""))
+        if augment_slot and (sphere!="Tech" or augment_slot!="Body" or record.get("catalog_key")!=DERMAL_PLATING_KEY):
+            raise ValueError("Unsupported dedicated augment slot for this device.")
+        if record.get("applied_to_character") and record.get("catalog_key")==DERMAL_PLATING_KEY and augment_slot!="Body":
+            raise ValueError("Dermal Plating must occupy the Body augment slot.")
+        if augment_slot and record.get("applied_to_character") and state!="abandoned" and self._connection.execute(
+                "SELECT 1 FROM engineering_devices WHERE character_id=? AND sphere='Tech' AND augment_slot=? AND applied_to_character=1 AND state!='abandoned' AND (? IS NULL OR id!=?)",
+                (character_id,augment_slot,device_id,device_id)).fetchone():
+            raise ValueError("That dedicated augment slot is already occupied.")
+        fields = ("sphere", "catalog_key", "name", "level", "modifier", "state", "charges", "minor", "advanced", "host_id", "damage", "configuration", "applied_to_character", "function_mode", "effect_rounds", "worn_slot", "effect_battery_id", "augment_slot")
         values = (sphere, str(record.get("catalog_key", "")), name,
                   int(record.get("level", 0)), int(record.get("modifier", 0)), state,
                   int(record.get("charges", 0)), int(bool(record.get("minor", False))),
                   int(record.get("advanced", 0)), host_id, int(record.get("damage",0)),
                   str(record.get("configuration", "")),int(bool(record.get("applied_to_character",False))),
-                  str(record.get("function_mode","")),int(record.get("effect_rounds",0)),str(record.get("worn_slot","")),effect_battery_id)
+                  str(record.get("function_mode","")),int(record.get("effect_rounds",0)),str(record.get("worn_slot","")),effect_battery_id,augment_slot)
         if not 0 <= values[3] <= 999 or not -100 <= values[4] <= 100 or not 0 <= values[6] <= 99999 or not 0 <= values[8] <= 99:
             raise ValueError("Device statistics are outside supported bounds.")
         if not 0<=values[10]<=99999:
@@ -3172,11 +3183,14 @@ class CharacterRepository:
                 (device_id,character_id)).fetchone()
             if host is None or device_condition(dict(host))["destroyed"]:
                 raise ValueError("Select a functioning Tech device.")
-            if function_mode is not None and (host["catalog_key"]!=JET_BOOSTERS_KEY
+            dermal=function_mode=="dermal" and host["catalog_key"]==DERMAL_PLATING_KEY
+            if dermal and (amount!=1 or not host["applied_to_character"] or host["augment_slot"]!="Body" or host["effect_rounds"]>0):
+                raise ValueError("Install Dermal Plating before activating a fresh one-minute period.")
+            if function_mode is not None and not dermal and (host["catalog_key"]!=JET_BOOSTERS_KEY
                     or function_mode not in JET_MODES or host["configuration"] not in {"flight","aquatic"}
                     or amount!=JET_MODES[function_mode][0] or host["effect_rounds"]>0):
                 raise ValueError("Invalid device function activation.")
-            if function_mode is not None:
+            if function_mode is not None and not dermal:
                 if not worn_slot or worn_slot=="Slotless" or worn_slot not in self.list_worn_slots(character_id):
                     raise ValueError("Choose an equipment slot for the boosters.")
                 if self._connection.execute("SELECT 1 FROM equipment WHERE character_id=? AND slot=? AND equipped=1 AND state IN ('','stored','worn','armor','shield')",(character_id,worn_slot)).fetchone() or self._connection.execute("SELECT 1 FROM engineering_devices WHERE character_id=? AND worn_slot=? AND id!=? AND state!='abandoned'",(character_id,worn_slot,device_id)).fetchone():
@@ -3195,7 +3209,7 @@ class CharacterRepository:
             self._connection.execute("UPDATE engineering_devices SET charges=charges-? WHERE id=?",(amount-battery_spent,device_id))
             if function_mode is not None:
                 self._connection.execute("UPDATE engineering_devices SET state='active',applied_to_character=1,function_mode=?,effect_rounds=?,worn_slot=? WHERE id=?",
-                    (function_mode,JET_MODES[function_mode][1],worn_slot,device_id))
+                    (function_mode,10 if dermal else JET_MODES[function_mode][1],host["worn_slot"] if dermal else worn_slot,device_id))
             self._touch_character(character_id)
 
     def advance_engineering_time(self,character_id,rounds):
@@ -3203,8 +3217,8 @@ class CharacterRepository:
         if not 1<=rounds<=999999:
             raise ValueError("Elapsed rounds must be between 1 and 999,999.")
         with self._connection:
-            self._connection.execute("UPDATE engineering_devices SET effect_rounds=MAX(0,effect_rounds-?),state=CASE WHEN effect_rounds<=? AND state='active' AND catalog_key=? THEN 'inactive' ELSE state END WHERE character_id=? AND state!='abandoned' AND effect_rounds>0",
-                (rounds,rounds,JET_BOOSTERS_KEY,character_id))
+            self._connection.execute("UPDATE engineering_devices SET effect_rounds=MAX(0,effect_rounds-?),state=CASE WHEN effect_rounds<=? AND state='active' AND catalog_key IN (?,?) THEN 'inactive' ELSE state END WHERE character_id=? AND state!='abandoned' AND effect_rounds>0",
+                (rounds,rounds,JET_BOOSTERS_KEY,DERMAL_PLATING_KEY,character_id))
             self._touch_character(character_id)
 
     def deplete_engineering_batteries(self,character_id,host_id,battery_ids,*,tactile_boost=False):
