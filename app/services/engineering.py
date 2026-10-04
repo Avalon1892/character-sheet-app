@@ -3,7 +3,7 @@ from app.content import martial_entry
 from app.engineering_rules import (engineering_limits, occupied_limit, device_statistics,
                                    is_battery, TECH_BATTERY_KEY, tech_battery_capacity,device_condition,
                                    PHYSICAL_AUGMENTOR_KEY,MENTAL_AUGMENTOR_KEY,LOAD_BEARER_KEY,AUGMENTOR_ABILITIES,JET_BOOSTERS_KEY,JET_MODES,tinker_packages)
-from app.engineering_rules import physical_augmentor_bonus
+from app.engineering_rules import physical_augmentor_bonus, tech_minute_augment_rounds
 from app.services.character_calculations import CharacterCalculationService
 from app.exploitant_rules import effective_martial_talents
 from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY,resistance_routine_bonus,DERMAL_PLATING_KEY
@@ -144,7 +144,12 @@ class EngineeringService:
     def start_dermal_plating(self,device_id):
         if not self.available("Tech"):
             raise ValueError("The Tech sphere is required.")
-        self.repository.spend_tech_device_charges(self.character_id,device_id,1,function_mode="dermal")
+        records=self.records("Tech")
+        ranks=CharacterCalculationService(self.repository,self.character_id).effective_skill_ranks().get("craft",0)
+        duration=tech_minute_augment_rounds(ranks,
+            energy_efficient=any(t.catalog_key=="tech:legendary-talent:energy-efficient-augments" for t in records),
+            augment_talents=sum("augment" in (martial_entry(t.catalog_key) or {}).get("name","").partition("(")[2].casefold() for t in records))
+        self.repository.spend_tech_device_charges(self.character_id,device_id,1,function_mode="dermal",dermal_rounds=duration)
 
     def stop_function(self,device_id,*,unequip=False):
         device=next((d for d in self.repository.list_engineering_devices(self.character_id) if d["id"]==device_id),None)

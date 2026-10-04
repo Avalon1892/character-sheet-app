@@ -31,6 +31,29 @@ class EngineeringTests(unittest.TestCase):
         self.add("Tech",entry["name"],entry["key"],entry["category"])
         return self.service.create("Tech",entry["key"],3)
 
+    def test_energy_efficient_augment_duration_and_paid_expiry(self):
+        from app.engineering_rules import DERMAL_PLATING_KEY,tech_minute_augment_rounds
+        for ranks,expected in ((4,10),(5,50),(9,50),(10,100),(14,100),(15,300),(20,300)):
+            self.assertEqual(expected,tech_minute_augment_rounds(ranks,energy_efficient=True,augment_talents=2))
+            self.assertEqual(10,tech_minute_augment_rounds(ranks,augment_talents=2))
+            self.assertEqual(10,tech_minute_augment_rounds(ranks,energy_efficient=True,augment_talents=1))
+        self.add("Tech","Dermal Plating",DERMAL_PLATING_KEY)
+        self.add("Tech","Energy Efficient Augments","tech:legendary-talent:energy-efficient-augments","Legendary Talent")
+        self.add("Tech","Clamp Boots","tech:gadget-talent:clamp-boots-augment-drone-gadget")
+        host=self.service.create("Tech",DERMAL_PLATING_KEY,3)
+        self.service.apply_to_character(host,True)
+        self.service.recharge();self.service.transfer_charges(host,1)
+        self.service.start_dermal_plating(host)
+        record=lambda:next(d for d in self.service.devices("Tech") if d["id"]==host)
+        self.assertEqual(50,record()["effect_rounds"])
+        self.assertEqual(0,record()["charges"])
+        self.service.advance_time(49)
+        self.assertEqual("active",record()["state"])
+        self.service.advance_time(1)
+        self.assertEqual("inactive",record()["state"])
+        with self.assertRaises(ValueError):
+            self.repo.spend_tech_device_charges(self.cid,host,1,function_mode="dermal",dermal_rounds=999)
+
     def test_augmentor_reroll_requires_wearer_and_spends_one_battery(self):
         from app.engineering_rules import PHYSICAL_AUGMENTOR_KEY
         base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")

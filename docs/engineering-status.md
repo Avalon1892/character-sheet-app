@@ -2,7 +2,11 @@
 
 Updated: 2026-10-04. This is an implementation ledger, not a claim of complete automation.
 
+Energy Efficient Augments follow-up validation: 74 focused engineering, database, transfer and recovery tests plus 2 theme subtests passed. Thresholds, minimum training, paid expiry and invalid duration rejection are covered. Full-suite results below predate this follow-up.
+
 ## Implemented in this batch
+
+- Energy Efficient Augments now extends paid Dermal Plating periods to 5/10/30 minutes at 5/10/15 live Craft ranks, requiring enabled training and two augment talents. The paid period is stored at activation and is not retroactively resized. Other minute-per-charge augment functions must use the same shared duration helper when implemented; creation-time persistence of efficiency training remains to be verified against the rules.
 
 - Conditional Engineering Workbench on the Crafting page for characters with an active Tech or Tinker base sphere.
 - Character-owned, persistent device roster with stable catalog provenance.
@@ -228,7 +232,7 @@ Every entry remains available through existing catalogs/Codex. “Roster” mean
 | Tech | Compactor (accessory, gadget) | Legendary Talent | Roster; device-specific effects not automated |
 | Tech | Computer (gadget) | Legendary Talent | Roster; device-specific effects not automated |
 | Tech | Drawback Alleviator (gadget) | Legendary Talent | Roster; device-specific effects not automated |
-| Tech | Energy Efficient Augments | Legendary Talent | Reference / existing selection only |
+| Tech | Energy Efficient Augments | Legendary Talent | Shared duration thresholds and Dermal Plating activation automated; remaining augment functions and creation-time training semantics pending |
 | Tech | Extreme Distance Communication (gadget) | Legendary Talent | Roster; device-specific effects not automated |
 | Tech | Generator (drone, gadget) | Legendary Talent | Roster; device-specific effects not automated |
 | Tech | Hammerspace Augment | Legendary Talent | Reference / existing selection only |

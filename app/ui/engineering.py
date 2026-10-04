@@ -108,7 +108,7 @@ class EngineeringDialog(QDialog):
         clock.addStretch()
         field_controls=QHBoxLayout();root.addLayout(field_controls)
         self.tactile_boost=QPushButton("Enhance Tactile Field — 1 battery")
-        self.dermal_activate=QPushButton("Power Dermal Plating — 1 charge / minute")
+        self.dermal_activate=QPushButton("Power Dermal Plating — 1 charge")
         field_controls.addWidget(self.dermal_activate)
         self.dermal_activate.clicked.connect(lambda:self.perform(lambda:self.service().start_dermal_plating(self.selected())))
         self.tactile_reroll=QPushButton("Use reroll / end enhancement")

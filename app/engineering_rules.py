@@ -32,6 +32,13 @@ RESISTANCE_ROUTINE_KEY = "tinker:device:resistance-routine"
 DERMAL_PLATING_KEY = "tech:gadget-talent:dermal-plating-augment-drone-gadget"
 
 
+def tech_minute_augment_rounds(ranks, *, energy_efficient=False, augment_talents=0):
+    """Duration for augment functions whose base cost is one charge per minute."""
+    if not energy_efficient or ranks < 5 or augment_talents < 2:
+        return 10
+    return 300 if ranks >= 15 else 100 if ranks >= 10 else 50
+
+
 def tech_augment_suppressed(device,polymorphed):
     return bool(polymorphed and device["sphere"]=="Tech" and device.get("augment_slot")
                 and device.get("applied_to_character") and not device.get("bio_augment"))

@@ -3188,11 +3188,13 @@ class CharacterRepository:
             self._connection.execute("UPDATE custom_trackers SET current_value=? WHERE id=?",(current,tracker_id))
             self._touch_character(character_id)
 
-    def spend_tech_device_charges(self, character_id, device_id, amount, *, function_mode=None,worn_slot=""):
+    def spend_tech_device_charges(self, character_id, device_id, amount, *, function_mode=None,worn_slot="",dermal_rounds=10):
         """Atomic battery-first spending, preserving charges on failed uses."""
         amount=int(amount)
         if amount<=0:
             raise ValueError("Charge cost must be positive.")
+        if dermal_rounds not in (10,50,100,300):
+            raise ValueError("Invalid powered augment duration.")
         with self._connection:
             host=self._connection.execute(
                 "SELECT * FROM engineering_devices WHERE id=? AND character_id=? AND sphere='Tech' AND state NOT IN ('abandoned','depleted')",
@@ -3201,7 +3203,7 @@ class CharacterRepository:
                 raise ValueError("Select a functioning Tech device.")
             dermal=function_mode=="dermal" and host["catalog_key"]==DERMAL_PLATING_KEY
             if dermal and (amount!=1 or not host["applied_to_character"] or host["augment_slot"]!="Body" or host["effect_rounds"]>0):
-                raise ValueError("Install Dermal Plating before activating a fresh one-minute period.")
+                raise ValueError("Install Dermal Plating before activating a fresh powered period.")
             if function_mode is not None and not dermal and (host["catalog_key"]!=JET_BOOSTERS_KEY
                     or function_mode not in JET_MODES or host["configuration"] not in {"flight","aquatic"}
                     or amount!=JET_MODES[function_mode][0] or host["effect_rounds"]>0):
@@ -3225,7 +3227,7 @@ class CharacterRepository:
             self._connection.execute("UPDATE engineering_devices SET charges=charges-? WHERE id=?",(amount-battery_spent,device_id))
             if function_mode is not None:
                 self._connection.execute("UPDATE engineering_devices SET state='active',applied_to_character=1,function_mode=?,effect_rounds=?,worn_slot=? WHERE id=?",
-                    (function_mode,10 if dermal else JET_MODES[function_mode][1],host["worn_slot"] if dermal else worn_slot,device_id))
+                    (function_mode,dermal_rounds if dermal else JET_MODES[function_mode][1],host["worn_slot"] if dermal else worn_slot,device_id))
             self._touch_character(character_id)
 
     def advance_engineering_time(self,character_id,rounds):
