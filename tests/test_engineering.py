@@ -48,6 +48,39 @@ class EngineeringTests(unittest.TestCase):
         imported=import_character(self.repo,path)
         self.assertEqual(profile,self.repo.engineering_implant_profile(imported))
 
+    def test_pressure_jack_live_values_damage_and_transfer(self):
+        from app.engineering_rules import PRESSURE_JACK_KEY,pressure_jack_profile
+        self.add("Tinker","Pressure Jack (gizmo)",PRESSURE_JACK_KEY)
+        device=self.service.create("Tinker",PRESSURE_JACK_KEY,2)
+        record=next(d for d in self.service.devices("Tinker") if d["id"]==device)
+        self.assertTrue(record["minor"])
+        profile=self.service.pressure_jack_profile(device)
+        self.assertEqual(26,profile["strength"])
+        self.assertEqual(2,profile["extension_feet"])
+        self.assertEqual("4d8",profile["damage"])
+        self.assertEqual(2,profile["long_lift_size_steps"])
+        self.assertFalse(profile["available"])
+        self.repo.save_engineering_device(self.cid,{**record,"state":"active","advanced":1},device)
+        profile=self.service.pressure_jack_profile(device,jack_count=2)
+        self.assertEqual(32,profile["strength"])
+        self.assertEqual("4d12",profile["damage"])
+        self.assertEqual(3,profile["long_lift_size_steps"])
+        self.assertTrue(profile["available"])
+        active=next(d for d in self.service.devices("Tinker") if d["id"]==device)
+        self.repo.save_engineering_device(self.cid,{**active,"damage":10},device)
+        broken=self.service.pressure_jack_profile(device)
+        self.assertEqual(28,broken["strength"])
+        self.assertEqual("3d12",broken["damage"])
+        path=Path(self.temp.name)/"jack.json";export_character(self.repo,self.cid,path)
+        imported=import_character(self.repo,path)
+        copied=next(d for d in self.repo.list_engineering_devices(imported) if d["catalog_key"]==PRESSURE_JACK_KEY)
+        self.assertEqual(broken,pressure_jack_profile(copied))
+        self.repo.save_engineering_device(self.cid,{**active,"damage":18},device)
+        self.assertFalse(self.service.pressure_jack_profile(device)["available"])
+        for invalid in (0,-1,True,1.5):
+            with self.assertRaises(ValueError):self.service.pressure_jack_profile(device,jack_count=invalid)
+        with self.assertRaises(ValueError):self.service.pressure_jack_profile(99999)
+
     def test_tech_load_bearer_paid_capacity_thresholds_suppression_and_expiry(self):
         from app.engineering_rules import TECH_LOAD_BEARER_KEY,tech_load_bearer_steps
         from app.services.character_calculations import CharacterCalculationService
@@ -1440,6 +1473,27 @@ class EngineeringTests(unittest.TestCase):
                 dialog.polymorphed.click()
                 self.assertFalse(dialog.retain_innate.isEnabled());self.assertFalse(dialog.retain_innate.isChecked())
                 self.assertFalse(self.repo.engineering_retains_innate(self.cid));self.assertEqual([True]*3,refreshed)
+                dialog.deleteLater();sheet.deleteLater();app.sendPostedEvents(None,QEvent.Type.DeferredDelete)
+
+    def test_pressure_jack_ui_live_profile_in_both_themes(self):
+        from PySide6.QtWidgets import QApplication,QWidget
+        from PySide6.QtCore import QEvent
+        from app.ui.engineering import EngineeringDialog
+        from app.engineering_rules import PRESSURE_JACK_KEY
+        self.add("Tinker","Pressure Jack (gizmo)",PRESSURE_JACK_KEY)
+        self.service.create("Tinker",PRESSURE_JACK_KEY,2)
+        app=QApplication.instance() or QApplication([])
+        for theme in ("classic","dark"):
+            with self.subTest(theme=theme):
+                sheet=QWidget();sheet.repository=self.repo;sheet.character_id=self.cid;sheet.theme=theme
+                sheet.refresh_all=lambda:None
+                dialog=EngineeringDialog(sheet);dialog.system.setCurrentText("Tinker");dialog.table.selectRow(0)
+                self.assertFalse(dialog.jack_count.isHidden())
+                self.assertIn("Strength 26",dialog.details.toPlainText())
+                self.assertIn("Gargantuan",dialog.details.toPlainText())
+                dialog.jack_count.setValue(2)
+                self.assertIn("Colossal",dialog.details.toPlainText())
+                self.assertIn("4d8",dialog.details.toPlainText())
                 dialog.deleteLater();sheet.deleteLater();app.sendPostedEvents(None,QEvent.Type.DeferredDelete)
 
     def test_ability_augment_ui_power_control_in_both_themes(self):

@@ -27,6 +27,7 @@ TINKER_BATTERY_KEY = "tinker:battery"
 PHYSICAL_AUGMENTOR_KEY = "tinker:device:physical-augmentor"
 MENTAL_AUGMENTOR_KEY = "tinker:device:mental-augmentor"
 LOAD_BEARER_KEY = "tinker:device:load-bearer"
+PRESSURE_JACK_KEY = "tinker:gizmo-talent:pressure-jack-gizmo"
 TACTILE_FIELD_KEY = "tinker:device:tactile-field"
 RESISTANCE_ROUTINE_KEY = "tinker:device:resistance-routine"
 DERMAL_PLATING_KEY = "tech:gadget-talent:dermal-plating-augment-drone-gadget"
@@ -222,6 +223,22 @@ def physical_augmentor_bonus(device):
             or device_condition(device)["destroyed"]):
         return 0
     return 2+device_condition(device)["effective_level"]//4
+
+
+def pressure_jack_profile(device, *, jack_count=1):
+    """Contextual jack values; neither character Strength nor size is changed."""
+    if device["sphere"]!="Tinker" or device["catalog_key"]!=PRESSURE_JACK_KEY:
+        return None
+    if isinstance(jack_count,bool) or not isinstance(jack_count,int) or jack_count<1:
+        raise ValueError("Choose a positive number of applied pressure jacks.")
+    condition=device_condition(device)
+    level=condition["effective_level"]
+    advanced=bool(device["advanced"])
+    return {"strength":20+2*(level if advanced else level//2),
+            "extension_feet":1+level//4,
+            "damage":f"{1+level//2}d{12 if advanced else 8}",
+            "long_lift_size_steps":level//3+jack_count-1,
+            "available":device["state"]=="active" and not condition["destroyed"]}
 
 
 def tactile_field_bonus(device):

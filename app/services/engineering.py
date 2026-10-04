@@ -7,6 +7,7 @@ from app.engineering_rules import physical_augmentor_bonus, tech_minute_augment_
 from app.services.character_calculations import CharacterCalculationService
 from app.exploitant_rules import effective_martial_talents
 from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY,resistance_routine_bonus,DERMAL_PLATING_KEY
+from app.engineering_rules import PRESSURE_JACK_KEY,pressure_jack_profile
 
 
 def device_talent(entry):
@@ -201,7 +202,7 @@ class EngineeringService:
             raise ValueError("Choose an appropriate ability for the augmentor.")
         if key==JET_BOOSTERS_KEY and configuration not in {"flight","aquatic"}:
             raise ValueError("Choose flight or aquatic boosters at creation.")
-        if key==RESISTANCE_ROUTINE_KEY:
+        if key in {RESISTANCE_ROUTINE_KEY,PRESSURE_JACK_KEY}:
             minor=True
         ranks = CharacterCalculationService(self.repository,self.character_id).effective_skill_ranks().get(self.skill_key,0)
         if sphere=="Tinker" and ranks<1:
@@ -474,3 +475,9 @@ class EngineeringService:
         if device["state"]!="abandoned" and not device_condition(device)["destroyed"]:
             stats["save"]+=max((resistance_routine_bonus(d,device) for d in self.devices(device["sphere"]) if d["host_id"]==device["id"]),default=0)
         return stats
+
+    def pressure_jack_profile(self,device_id,*,jack_count=1):
+        device=next((d for d in self.devices("Tinker") if d["id"]==device_id),None)
+        if device is None:
+            raise ValueError("Select an owned Tinker device.")
+        return pressure_jack_profile(device,jack_count=jack_count)

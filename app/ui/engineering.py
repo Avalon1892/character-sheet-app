@@ -6,7 +6,7 @@ from PySide6.QtWidgets import (QDialog,QVBoxLayout,QHBoxLayout,QComboBox,QLabel,
     QSpinBox,QCheckBox,QTextBrowser,QSplitter,QWidget,QMessageBox,QInputDialog)
 from app.services.engineering import EngineeringService
 from app.services.character_calculations import CharacterCalculationService
-from app.engineering_rules import TECH_LOAD_BEARER_KEY
+from app.engineering_rules import TECH_LOAD_BEARER_KEY,PRESSURE_JACK_KEY
 from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY,DERMAL_PLATING_KEY,tech_augment_suppressed,tech_augment_installed,CLAMP_BOOTS_KEY,TECH_AUGMENT_SLOTS,TECH_ABILITY_AUGMENTS,clamp_boots_active
 from app.engineering_rules import occupied_limit,is_battery,TECH_BATTERY_KEY,tech_battery_capacity,device_condition,PHYSICAL_AUGMENTOR_KEY,AUGMENTOR_ABILITIES,JET_BOOSTERS_KEY,JET_MODES
 from app.content import martial_entry
@@ -216,6 +216,11 @@ class EngineeringDialog(QDialog):
         self.boots_clamp.clicked.connect(lambda:self.perform(lambda:self.service().set_boots_clamped(self.selected(),True)))
         self.boots_unclamp.clicked.connect(lambda:self.perform(lambda:self.service().set_boots_clamped(self.selected(),False)))
         self.tactile_reroll=QPushButton("Use reroll / end enhancement")
+        self.jack_count_label=QLabel("Applied jacks")
+        self.jack_count=QSpinBox();self.jack_count.setRange(1,100)
+        self.jack_count.setToolTip("Number of pressure jacks applied together; resolve other jacks and placement externally.")
+        field_controls.addWidget(self.jack_count_label);field_controls.addWidget(self.jack_count)
+        self.jack_count.valueChanged.connect(lambda:self.preview_device())
         self.augmentor_reroll=QPushButton("Roll benefiting check twice — 1 battery")
         self.augmentor_reroll.setToolTip("Before a check benefiting from this augmentor, spend one attached battery. Roll the check twice and take the higher result; resolve the dice manually.")
         field_controls.addWidget(self.augmentor_reroll)
@@ -382,8 +387,8 @@ class EngineeringDialog(QDialog):
         self.bio_augment.setVisible(self.system.currentText()=="Tech")
         self.bio_augment.setEnabled(bio_allowed)
         if not bio_allowed:self.bio_augment.setChecked(False)
-        self.minor.setEnabled(self.system.currentText()=="Tinker" and key!=RESISTANCE_ROUTINE_KEY)
-        if key==RESISTANCE_ROUTINE_KEY:self.minor.setChecked(True)
+        self.minor.setEnabled(self.system.currentText()=="Tinker" and key not in {RESISTANCE_ROUTINE_KEY,PRESSURE_JACK_KEY})
+        if key in {RESISTANCE_ROUTINE_KEY,PRESSURE_JACK_KEY}:self.minor.setChecked(True)
         previous=self.configuration.currentData()
         self.configuration.clear()
         for option in (("flight","aquatic") if key==JET_BOOSTERS_KEY else AUGMENTOR_ABILITIES.get(key,())):
@@ -416,6 +421,8 @@ class EngineeringDialog(QDialog):
 
     def preview_device(self):
         device=next((d for d in self.service().devices(self.system.currentText()) if d["id"]==self.selected()),None)
+        jack=bool(device and device["catalog_key"]==PRESSURE_JACK_KEY)
+        self.jack_count_label.setVisible(jack);self.jack_count.setVisible(jack)
         tactile=bool(device and device["catalog_key"]==TACTILE_FIELD_KEY)
         dermal=bool(device and device["catalog_key"] in {DERMAL_PLATING_KEY,TECH_LOAD_BEARER_KEY,*TECH_ABILITY_AUGMENTS})
         self.dermal_activate.setVisible(dermal)
@@ -470,6 +477,12 @@ class EngineeringDialog(QDialog):
         self.detach.setEnabled(bool(device and is_battery(device) and device["host_id"] and device["state"]!="abandoned"))
         self.battery_recharge.setEnabled(bool(device and device["catalog_key"]==TECH_BATTERY_KEY and device["state"]!="abandoned"))
         if device:self.show_details(martial_entry(device["catalog_key"]) or next((e for e in self.service().known_devices(device["sphere"]) if e["key"]==device["catalog_key"]),None) or {"name":device["name"],"description":"Saved engineering device."})
+        if device and device["catalog_key"]==PRESSURE_JACK_KEY:
+            profile=self.service().pressure_jack_profile(device["id"],jack_count=self.jack_count.value())
+            sizes=("Large","Huge","Gargantuan","Colossal")
+            step=profile["long_lift_size_steps"]
+            size=sizes[step] if step<len(sizes) else "Beyond Colossal — needs rules verification"
+            self.details.append(f"<h3>Live pressure jack</h3><p>{'Available' if profile['available'] else 'Unavailable'} · Strength {profile['strength']} · Extension {profile['extension_feet']} ft · Crushing {profile['damage']} bludgeoning (Fortitude half).</p><p>Apply: swift action; expand: move action. Crushing requires a solid surface. For lifting beyond one minute: {size} breaks the jack; smaller targets can be held indefinitely. Each additional applied jack increases the size threshold by one category. Resolve target saves and object placement manually.</p>")
 
     def perform(self,operation):
         try:
