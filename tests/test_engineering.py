@@ -31,6 +31,61 @@ class EngineeringTests(unittest.TestCase):
         self.add("Tech",entry["name"],entry["key"],entry["category"])
         return self.service.create("Tech",entry["key"],3)
 
+    def test_implant_profile_validation_preservation_and_transfer(self):
+        default=dict(cybertech_value=0,absent_constitution=False,absent_intelligence=False,capacity_adjustment=0)
+        self.assertEqual(default,self.repo.engineering_implant_profile(self.cid))
+        profile=dict(cybertech_value=3,absent_constitution=True,absent_intelligence=False,capacity_adjustment=2)
+        self.service.set_polymorphed(True,retain_innate=True)
+        self.repo.set_engineering_implant_profile(self.cid,**profile)
+        self.assertTrue(self.repo.engineering_retains_innate(self.cid))
+        self.service.set_polymorphed(False)
+        self.assertEqual(profile,self.repo.engineering_implant_profile(self.cid))
+        for invalid in (dict(cybertech_value=True),dict(cybertech_value=-1),dict(absent_constitution=1),dict(capacity_adjustment=1000)):
+            with self.assertRaises(ValueError):self.repo.set_engineering_implant_profile(self.cid,**invalid)
+            self.assertEqual(profile,self.repo.engineering_implant_profile(self.cid))
+        with self.assertRaises(KeyError):self.repo.set_engineering_implant_profile(999999,**default)
+        path=Path(self.temp.name)/"implant-profile.json";export_character(self.repo,self.cid,path)
+        imported=import_character(self.repo,path)
+        self.assertEqual(profile,self.repo.engineering_implant_profile(imported))
+
+    def test_graft_install_persists_cybertech_and_installation_order_atomically(self):
+        from app.engineering_rules import DERMAL_PLATING_KEY,SYNAPTIC_MAXIMIZER_KEY
+        for key in (DERMAL_PLATING_KEY,SYNAPTIC_MAXIMIZER_KEY):self.add("Tech",key,key)
+        self.repo.add_feat(self.cid,"Craft Appliances And Contraptions");self.repo.add_feat(self.cid,"Craft Augment Graft")
+        grafts=[self.service.record_completed_graft(key,"appliance",3,2,check_result=13,materials_paid=True,time_completed=True,gm_permission=True)
+            for key in (DERMAL_PLATING_KEY,SYNAPTIC_MAXIMIZER_KEY)]
+        options=dict(subject_willing_or_helpless=True,installation_completed=True)
+        self.service.install_graft(grafts[1],cybertech_value=7,**options)
+        self.assertEqual(7,self.repo.engineering_implant_profile(self.cid)["cybertech_value"])
+        with self.assertRaises(ValueError):self.service.install_graft(grafts[0],**options)
+        records={d["id"]:d for d in self.service.devices("Tech")}
+        self.assertEqual(("",0),(records[grafts[0]]["graft_slot"],records[grafts[0]]["graft_order"]))
+        self.assertEqual(1,records[grafts[1]]["graft_order"])
+        self.service.install_graft(grafts[0],cybertech_value=4,**options)
+        self.assertEqual(4,self.repo.engineering_implant_profile(self.cid)["cybertech_value"])
+        records={d["id"]:d for d in self.service.devices("Tech")}
+        self.assertEqual(2,records[grafts[0]]["graft_order"])
+        with self.assertRaises(ValueError):self.repo.install_engineering_graft(self.cid,grafts[0],cybertech_value=0)
+        self.assertEqual(4,self.repo.engineering_implant_profile(self.cid)["cybertech_value"])
+        path=Path(self.temp.name)/"ordered-grafts.json";export_character(self.repo,self.cid,path)
+        imported=import_character(self.repo,path)
+        self.assertEqual([2,1],[d["graft_order"] for d in self.repo.list_engineering_devices(imported)])
+
+    def test_installation_respects_genuinely_absent_scores_and_manual_capacity(self):
+        from app.engineering_rules import DERMAL_PLATING_KEY
+        self.add("Tech","Dermal Plating",DERMAL_PLATING_KEY)
+        self.repo.add_feat(self.cid,"Craft Appliances And Contraptions");self.repo.add_feat(self.cid,"Craft Augment Graft")
+        graft=self.service.record_completed_graft(DERMAL_PLATING_KEY,"appliance",3,2,check_result=13,materials_paid=True,time_completed=True,gm_permission=True)
+        options=dict(subject_willing_or_helpless=True,installation_completed=True)
+        self.repo.set_engineering_implant_profile(self.cid,absent_constitution=True,absent_intelligence=True)
+        before=self.repo.sqlite_connection.total_changes
+        with self.assertRaises(ValueError):self.service.install_graft(graft,**options)
+        self.assertEqual(before,self.repo.sqlite_connection.total_changes)
+        self.repo.update_ability_score(self.cid,"constitution",1)
+        self.repo.set_engineering_implant_profile(self.cid,absent_constitution=True,cybertech_value=9,capacity_adjustment=1)
+        self.service.install_graft(graft,**options)
+        self.assertEqual("Body",self.repo.list_engineering_devices(self.cid)[0]["graft_slot"])
+
     def test_tech_ability_augments_scaling_payment_stacking_and_expiry(self):
         from app.engineering_rules import EXO_MUSCLES_KEY,SYNAPTIC_MAXIMIZER_KEY,DERMAL_PLATING_KEY,tech_ability_augment_bonus
         from app.services.character_calculations import CharacterCalculationService

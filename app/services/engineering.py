@@ -134,7 +134,7 @@ class EngineeringService:
             raise ValueError("Select a functioning graft and confirm its 15-minute recharge was completed.")
         self.repository.save_engineering_device(self.character_id,{**device,"charges":max(1,device["level"]//2)},device_id)
 
-    def install_graft(self,device_id,*,subject_willing_or_helpless=False,installation_completed=False,cybertech_value=0):
+    def install_graft(self,device_id,*,subject_willing_or_helpless=False,installation_completed=False,cybertech_value=None):
         from app.engineering_rules import graft_implantation_status
         device=next((d for d in self.devices("Tech") if d["id"]==device_id),None)
         if subject_willing_or_helpless is not True or installation_completed is not True:
@@ -142,12 +142,16 @@ class EngineeringService:
         if not device or not device["construction_kind"] or device["graft_slot"] or device["state"]=="abandoned" or device_condition(device)["destroyed"]:
             raise ValueError("Select a functioning, uninstalled graft owned by this character.")
         calculations=CharacterCalculationService(self.repository,self.character_id)
+        profile=self.repository.engineering_implant_profile(self.character_id)
+        if cybertech_value is None:cybertech_value=profile["cybertech_value"]
         installed=[d for d in self.devices("Tech") if d["graft_slot"]]
-        status=graft_implantation_status(calculations.ability_result("constitution").total,
-            calculations.ability_result("intelligence").total,graft_values=[2]*(len(installed)+1),cybertech_value=cybertech_value)
+        scores=[None if profile[f"absent_{ability}"] else max(0,calculations.ability_result(ability).total+profile["capacity_adjustment"])
+            for ability in ("constitution","intelligence")]
+        status=graft_implantation_status(*scores,graft_values=[2]*(len(installed)+1),cybertech_value=cybertech_value)
         if status["overloaded"]:
             raise ValueError("This graft exceeds the current shared cybertech/graft limit; overloaded implantation is not yet supported.")
-        self.repository.save_engineering_device(self.character_id,{**device,"graft_slot":TECH_AUGMENT_SLOTS[device["catalog_key"]]},device_id)
+        if not status["has_controlling_score"]:raise ValueError("A creature without Constitution and Intelligence cannot benefit from grafts.")
+        self.repository.install_engineering_graft(self.character_id,device_id,cybertech_value=cybertech_value)
 
     def remove_graft(self,device_id,*,removal_completed=False,save_succeeded=None):
         if removal_completed is not True:

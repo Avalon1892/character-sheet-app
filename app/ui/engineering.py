@@ -239,7 +239,7 @@ class EngineeringDialog(QDialog):
         self.perform(lambda:self.service().recharge_graft(self.selected(),recharge_completed=True))
 
     def install_graft(self):
-        cybertech,accepted=QInputDialog.getInt(self,"Shared implantation limit","Existing cybertech implantation value (not grafts):",0,0,99999)
+        cybertech,accepted=QInputDialog.getInt(self,"Shared implantation limit","Existing cybertech implantation value (not grafts):",self.sheet.repository.engineering_implant_profile(self.sheet.character_id)["cybertech_value"],0,99999)
         if not accepted:return
         if QMessageBox.question(self,"Implant graft","Confirm two hours of hand installation have been completed and the subject remained willing or helpless throughout? No Heal check or Constitution damage applies. Current over-limit implantation is not yet supported.")!=QMessageBox.StandardButton.Yes:return
         self.perform(lambda:self.service().install_graft(self.selected(),subject_willing_or_helpless=True,installation_completed=True,cybertech_value=cybertech))

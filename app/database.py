@@ -990,8 +990,13 @@ class CharacterRepository:
         self._ensure_column("engineering_devices", "energy_efficient", "INTEGER NOT NULL DEFAULT 0")
         self._ensure_column("engineering_devices", "construction_kind", "TEXT NOT NULL DEFAULT ''")
         self._ensure_column("engineering_devices", "graft_slot", "TEXT NOT NULL DEFAULT ''")
+        self._ensure_column("engineering_devices", "graft_order", "INTEGER NOT NULL DEFAULT 0")
         self._connection.execute("CREATE TABLE IF NOT EXISTS character_engineering_form (character_id INTEGER PRIMARY KEY REFERENCES characters(id) ON DELETE CASCADE, polymorphed INTEGER NOT NULL DEFAULT 0 CHECK(polymorphed IN (0,1)))")
         self._ensure_column("character_engineering_form", "retain_innate", "INTEGER NOT NULL DEFAULT 0")
+        self._ensure_column("character_engineering_form", "cybertech_value", "INTEGER NOT NULL DEFAULT 0")
+        self._ensure_column("character_engineering_form", "absent_constitution", "INTEGER NOT NULL DEFAULT 0")
+        self._ensure_column("character_engineering_form", "absent_intelligence", "INTEGER NOT NULL DEFAULT 0")
+        self._ensure_column("character_engineering_form", "capacity_adjustment", "INTEGER NOT NULL DEFAULT 0")
         self._connection.execute("CREATE UNIQUE INDEX IF NOT EXISTS engineering_augment_occupancy ON engineering_devices(character_id,augment_slot) WHERE sphere='Tech' AND augment_slot!='' AND applied_to_character=1 AND state!='abandoned'")
         self._connection.execute("CREATE UNIQUE INDEX IF NOT EXISTS engineering_graft_occupancy ON engineering_devices(character_id,graft_slot) WHERE graft_slot!=''")
         self._connection.execute(f"""
@@ -3086,6 +3091,23 @@ class CharacterRepository:
         row=self._connection.execute("SELECT polymorphed,retain_innate FROM character_engineering_form WHERE character_id=?",(character_id,)).fetchone()
         return bool(row and row["polymorphed"] and row["retain_innate"])
 
+    def engineering_implant_profile(self,character_id):
+        row=self._connection.execute("SELECT cybertech_value,absent_constitution,absent_intelligence,capacity_adjustment FROM character_engineering_form WHERE character_id=?",(character_id,)).fetchone()
+        return {"cybertech_value":int(row["cybertech_value"]) if row else 0,
+                "absent_constitution":bool(row and row["absent_constitution"]),
+                "absent_intelligence":bool(row and row["absent_intelligence"]),
+                "capacity_adjustment":int(row["capacity_adjustment"]) if row else 0}
+
+    def set_engineering_implant_profile(self,character_id,*,cybertech_value=0,absent_constitution=False,absent_intelligence=False,capacity_adjustment=0):
+        if type(cybertech_value) is not int or not 0<=cybertech_value<=99999 or type(capacity_adjustment) is not int or not -999<=capacity_adjustment<=999:
+            raise ValueError("Invalid implantation values or capacity adjustment.")
+        if type(absent_constitution) is not bool or type(absent_intelligence) is not bool:
+            raise ValueError("Absent-score indicators must be true or false.")
+        if not self._connection.execute("SELECT 1 FROM characters WHERE id=?",(character_id,)).fetchone():raise KeyError("Unknown character.")
+        self._connection.execute("INSERT INTO character_engineering_form(character_id,cybertech_value,absent_constitution,absent_intelligence,capacity_adjustment) VALUES (?,?,?,?,?) ON CONFLICT(character_id) DO UPDATE SET cybertech_value=excluded.cybertech_value,absent_constitution=excluded.absent_constitution,absent_intelligence=excluded.absent_intelligence,capacity_adjustment=excluded.capacity_adjustment",
+            (character_id,cybertech_value,int(absent_constitution),int(absent_intelligence),capacity_adjustment))
+        self._touch_character(character_id);self._connection.commit()
+
     def set_engineering_polymorphed(self,character_id,enabled,*,retain_innate=False):
         if not isinstance(enabled,bool) or not isinstance(retain_innate,bool):
             raise ValueError("Polymorph state must be true or false.")
@@ -3150,13 +3172,15 @@ class CharacterRepository:
         existing_graft=self._connection.execute("SELECT graft_slot FROM engineering_devices WHERE id=? AND character_id=?",(device_id,character_id)).fetchone() if device_id else None
         if existing_graft and existing_graft["graft_slot"] and graft_slot!=existing_graft["graft_slot"]:
             raise ValueError("Installed grafts require the surgical removal action.")
-        fields = ("sphere", "catalog_key", "name", "level", "modifier", "state", "charges", "minor", "advanced", "host_id", "damage", "configuration", "applied_to_character", "function_mode", "effect_rounds", "worn_slot", "effect_battery_id", "augment_slot", "bio_augment", "energy_efficient", "construction_kind", "graft_slot")
+        graft_order=record.get("graft_order",0)
+        if type(graft_order) is not int or graft_order<0:raise ValueError("Invalid graft installation order.")
+        fields = ("sphere", "catalog_key", "name", "level", "modifier", "state", "charges", "minor", "advanced", "host_id", "damage", "configuration", "applied_to_character", "function_mode", "effect_rounds", "worn_slot", "effect_battery_id", "augment_slot", "bio_augment", "energy_efficient", "construction_kind", "graft_slot", "graft_order")
         values = (sphere, str(record.get("catalog_key", "")), name,
                   int(record.get("level", 0)), int(record.get("modifier", 0)), state,
                   int(record.get("charges", 0)), int(bool(record.get("minor", False))),
                   int(record.get("advanced", 0)), host_id, int(record.get("damage",0)),
                   str(record.get("configuration", "")),int(bool(record.get("applied_to_character",False))),
-                  str(record.get("function_mode","")),int(record.get("effect_rounds",0)),str(record.get("worn_slot","")),effect_battery_id,augment_slot,int(bool(record.get("bio_augment",False))),int(bool(record.get("energy_efficient",False))),construction_kind,graft_slot)
+                  str(record.get("function_mode","")),int(record.get("effect_rounds",0)),str(record.get("worn_slot","")),effect_battery_id,augment_slot,int(bool(record.get("bio_augment",False))),int(bool(record.get("energy_efficient",False))),construction_kind,graft_slot,graft_order)
         if not 0 <= values[3] <= 999 or not -100 <= values[4] <= 100 or not 0 <= values[6] <= 99999 or not 0 <= values[8] <= 99:
             raise ValueError("Device statistics are outside supported bounds.")
         if not 0<=values[10]<=99999:
@@ -3214,6 +3238,18 @@ class CharacterRepository:
                     raise ValueError("Invalid Tech battery pool transfer.")
             self._connection.execute("UPDATE engineering_devices SET charges=? WHERE id=?",(charges,device_id))
             self._connection.execute("UPDATE custom_trackers SET current_value=? WHERE id=?",(current,tracker_id))
+            self._touch_character(character_id)
+
+    def install_engineering_graft(self,character_id,device_id,*,cybertech_value):
+        if type(cybertech_value) is not int or not 0<=cybertech_value<=99999:raise ValueError("Invalid cybertech implantation value.")
+        with self._connection:
+            row=self._connection.execute("SELECT * FROM engineering_devices WHERE id=? AND character_id=?",(device_id,character_id)).fetchone()
+            if not row or not row["construction_kind"] or row["graft_slot"] or row["state"]=="abandoned" or device_condition(dict(row))["destroyed"]:raise ValueError("Select a functioning, uninstalled graft.")
+            slot=TECH_AUGMENT_SLOTS[row["catalog_key"]]
+            if self._connection.execute("SELECT 1 FROM engineering_devices WHERE character_id=? AND graft_slot=?",(character_id,slot)).fetchone():raise ValueError("That graft slot is already occupied.")
+            order=self._connection.execute("SELECT COALESCE(MAX(graft_order),0)+1 FROM engineering_devices WHERE character_id=?",(character_id,)).fetchone()[0]
+            self._connection.execute("UPDATE engineering_devices SET graft_slot=?,graft_order=? WHERE id=?",(slot,order,device_id))
+            self._connection.execute("INSERT INTO character_engineering_form(character_id,cybertech_value) VALUES (?,?) ON CONFLICT(character_id) DO UPDATE SET cybertech_value=excluded.cybertech_value",(character_id,cybertech_value))
             self._touch_character(character_id)
 
     def remove_engineering_graft(self,character_id,device_id,*,save_succeeded):
