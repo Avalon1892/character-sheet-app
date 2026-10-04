@@ -5,7 +5,7 @@ from PySide6.QtWidgets import (QDialog,QVBoxLayout,QHBoxLayout,QComboBox,QLabel,
     QPushButton,QTableWidget,QTableWidgetItem,QHeaderView,QAbstractItemView,
     QSpinBox,QCheckBox,QTextBrowser,QSplitter,QWidget,QMessageBox,QInputDialog)
 from app.services.engineering import EngineeringService
-from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY,DERMAL_PLATING_KEY,tech_augment_suppressed
+from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY,DERMAL_PLATING_KEY,tech_augment_suppressed,CLAMP_BOOTS_KEY,TECH_AUGMENT_SLOTS,clamp_boots_active
 from app.engineering_rules import occupied_limit,is_battery,TECH_BATTERY_KEY,tech_battery_capacity,device_condition,PHYSICAL_AUGMENTOR_KEY,AUGMENTOR_ABILITIES,JET_BOOSTERS_KEY,JET_MODES
 from app.content import martial_entry
 from app.ui.dialog_theme import dialog_stylesheet
@@ -111,6 +111,13 @@ class EngineeringDialog(QDialog):
         self.dermal_activate=QPushButton("Power Dermal Plating — 1 charge")
         field_controls.addWidget(self.dermal_activate)
         self.dermal_activate.clicked.connect(lambda:self.perform(lambda:self.service().start_dermal_plating(self.selected())))
+        self.boots_activate=QPushButton("Power Clamp Boots — 1 charge")
+        self.boots_clamp=QPushButton("Clamp — immediate action")
+        self.boots_unclamp=QPushButton("Unclamp — free action")
+        for button in (self.boots_activate,self.boots_clamp,self.boots_unclamp):field_controls.addWidget(button)
+        self.boots_activate.clicked.connect(lambda:self.perform(lambda:self.service().start_timed_augment(self.selected(),CLAMP_BOOTS_KEY)))
+        self.boots_clamp.clicked.connect(lambda:self.perform(lambda:self.service().set_boots_clamped(self.selected(),True)))
+        self.boots_unclamp.clicked.connect(lambda:self.perform(lambda:self.service().set_boots_clamped(self.selected(),False)))
         self.tactile_reroll=QPushButton("Use reroll / end enhancement")
         self.augmentor_reroll=QPushButton("Roll benefiting check twice — 1 battery")
         self.augmentor_reroll.setToolTip("Before a check benefiting from this augmentor, spend one attached battery. Roll the check twice and take the higher result; resolve the dice manually.")
@@ -266,6 +273,8 @@ class EngineeringDialog(QDialog):
                               if entry.get("key")==RESISTANCE_ROUTINE_KEY else
                               "Install in the dedicated Body augment slot (separate from magic-item slots), then pay one charge for a timed period. Energy Efficient Augments extends the base one-minute duration when qualified. Natural armor enhancement, expiry and ordinary polymorph suppression are automatic; crafted bio augments retain their effects. Donning/removal follows leather armor; hasty donning and graft installation are not yet automated."
                               if entry.get("key")==DERMAL_PLATING_KEY else
+                              "Dedicated Legs slot, paid climb movement, clamp/unclamp, expiry and polymorph suppression are automatic. Climbing walls or ceilings does not require free hands or Climb checks. The clamp resistance tooltip applies only against forced movement. Extendo-limb composition, remote control, grafts and nonstandard anatomy remain pending."
+                              if entry.get("key")==CLAMP_BOOTS_KEY else
                               "Flight/swim speed, maneuverability, charge costs and paid durations are automatic. Flight slow burn is limited to 3 feet above the surface; height and hover/exhaust effects require manual resolution."
                               if entry.get("key")==JET_BOOSTERS_KEY else "Device-specific effects are reference-only in this batch.")+"</b></p>")
 
@@ -274,6 +283,14 @@ class EngineeringDialog(QDialog):
         tactile=bool(device and device["catalog_key"]==TACTILE_FIELD_KEY)
         dermal=bool(device and device["catalog_key"]==DERMAL_PLATING_KEY)
         self.dermal_activate.setVisible(dermal)
+        boots=bool(device and device["catalog_key"]==CLAMP_BOOTS_KEY)
+        for button in (self.boots_activate,self.boots_clamp,self.boots_unclamp):button.setVisible(boots)
+        powered=bool(boots and clamp_boots_active(device,polymorphed=self.polymorphed.isChecked()))
+        self.boots_activate.setEnabled(bool(boots and device["applied_to_character"] and device["state"] not in {"abandoned","depleted"} and device["effect_rounds"]==0 and not device_condition(device)["destroyed"]))
+        self.boots_clamp.setEnabled(powered and device["function_mode"]!="clamped")
+        self.boots_unclamp.setEnabled(powered and device["function_mode"]=="clamped")
+        bonus=self.service().clamp_boots_resistance(device["id"]) if boots else 0
+        self.boots_unclamp.setToolTip(f"While clamped: +{bonus} circumstance bonus to CMD and saves only against forced movement. This is not a bonus to all CMD checks or saves.")
         self.dermal_activate.setEnabled(bool(dermal and device["applied_to_character"] and device["state"] not in {"abandoned","depleted"} and device["effect_rounds"]==0 and not device_condition(device)["destroyed"]))
         routine=bool(device and device["catalog_key"]==RESISTANCE_ROUTINE_KEY)
         self.install_routine.setVisible(routine);self.remove_routine.setVisible(routine)
@@ -290,7 +307,7 @@ class EngineeringDialog(QDialog):
         self.tactile_reroll.setEnabled(bool(tactile and device["state"]=="active" and device["applied_to_character"] and not device_condition(device)["destroyed"] and (device["effect_rounds"]>0 or at_will)))
         self.damage_button.setEnabled(bool(device and device["state"]!="abandoned"))
         self.repair_button.setEnabled(bool(device and device["state"]!="abandoned" and device["damage"] and self.kit.isChecked()))
-        self.applied.setEnabled(bool(device and device["catalog_key"] in {*AUGMENTOR_ABILITIES,TACTILE_FIELD_KEY,DERMAL_PLATING_KEY} and device["state"]!="abandoned"))
+        self.applied.setEnabled(bool(device and device["catalog_key"] in {*AUGMENTOR_ABILITIES,TACTILE_FIELD_KEY,*TECH_AUGMENT_SLOTS} and device["state"]!="abandoned"))
         self.applied.setChecked(bool(device and device["applied_to_character"]))
         jet=bool(device and device["catalog_key"]==JET_BOOSTERS_KEY and device["state"]!="abandoned" and not device_condition(device)["destroyed"])
         for button in self.jet_buttons:button.setEnabled(jet and device["effect_rounds"]==0)

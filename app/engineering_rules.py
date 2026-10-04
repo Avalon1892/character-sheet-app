@@ -30,6 +30,8 @@ LOAD_BEARER_KEY = "tinker:device:load-bearer"
 TACTILE_FIELD_KEY = "tinker:device:tactile-field"
 RESISTANCE_ROUTINE_KEY = "tinker:device:resistance-routine"
 DERMAL_PLATING_KEY = "tech:gadget-talent:dermal-plating-augment-drone-gadget"
+CLAMP_BOOTS_KEY = "tech:gadget-talent:clamp-boots-augment-drone-gadget"
+TECH_AUGMENT_SLOTS = {DERMAL_PLATING_KEY:"Body",CLAMP_BOOTS_KEY:"Legs"}
 
 
 def tech_minute_augment_rounds(ranks, *, energy_efficient=False, augment_talents=0):
@@ -62,6 +64,14 @@ def graft_implantation_status(constitution, intelligence, *, graft_values=(), cy
 def tech_augment_suppressed(device,polymorphed):
     return bool(polymorphed and device["sphere"]=="Tech" and device.get("augment_slot")
                 and device.get("applied_to_character") and not device.get("bio_augment"))
+
+
+def clamp_boots_active(device, *, polymorphed=False):
+    return bool(device["sphere"]=="Tech" and device["catalog_key"]==CLAMP_BOOTS_KEY
+        and device["state"]=="active" and device.get("applied_to_character")
+        and device.get("augment_slot")=="Legs" and device.get("effect_rounds",0)>0
+        and device.get("function_mode") in {"climb","clamped"}
+        and not device_condition(device)["destroyed"] and not tech_augment_suppressed(device,polymorphed))
 
 
 def dermal_plating_bonus(device,ranks,*,polymorphed=False):

@@ -94,7 +94,7 @@ from app.class_feature_systems import (
     resolve_class_feature_modules,
 )
 from app.class_power_rules import class_power_modifier_map
-from app.engineering_rules import physical_augmentor_bonus,jet_movement,LOAD_BEARER_KEY
+from app.engineering_rules import physical_augmentor_bonus,jet_movement,LOAD_BEARER_KEY,clamp_boots_active
 from app.engineering_rules import tactile_field_bonus,dermal_plating_bonus
 from app.class_combat_rules import generated_class_attacks, class_attack_context_notes
 from app.race_rules import generated_racial_attacks, racial_class_skills, racial_automatic_values, racial_per_level_hit_points
@@ -807,7 +807,12 @@ class CharacterCalculationService:
         unrestricted_land = max(0, land_base + self.automatic_total("land_speed"))
         jet_sources={}
         maneuverability=profile.fly_maneuverability
+        clamped=False
+        polymorphed=self.repository.engineering_polymorphed(self.character_id)
         for device in self.repository.list_engineering_devices(self.character_id):
+            if clamp_boots_active(device,polymorphed=polymorphed):
+                bases["climb_speed"]=max(bases["climb_speed"],unrestricted_land)
+                clamped=clamped or device["function_mode"]=="clamped"
             grant=jet_movement(device,light_load=self.encumbrance(unrestricted_land).load=="Light")
             if grant:
                 target,speed,jet_maneuverability=grant
@@ -890,6 +895,10 @@ class CharacterCalculationService:
                     f"{imbue.name} · once per turn, move action"
                     if movement_target == "teleport_speed" else imbue.name
                 )
+        if clamped:
+            result["movement_restricted"]="Clamp Boots: unclamp as a free action before moving."
+            for target in ("land_speed","armor_speed","fly_speed","swim_speed","climb_speed","burrow_speed","teleport_speed","run_speed"):
+                result[target]=0
         return result
 
     def worn_armor_movement(self) -> tuple[str, str]:

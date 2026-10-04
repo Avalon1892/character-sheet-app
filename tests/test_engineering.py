@@ -76,6 +76,37 @@ class EngineeringTests(unittest.TestCase):
             with self.assertRaises(ValueError):graft_implantation_status(12,8,**kwargs)
         with self.assertRaises(ValueError):graft_implantation_status("12",8)
 
+    def test_clamp_boots_paid_movement_clamping_polymorph_and_transfer(self):
+        from app.engineering_rules import CLAMP_BOOTS_KEY
+        from app.services.character_calculations import CharacterCalculationService
+        self.add("Tech","Clamp Boots",CLAMP_BOOTS_KEY)
+        boots=self.service.create("Tech",CLAMP_BOOTS_KEY,3)
+        with self.assertRaises(ValueError):self.service.set_boots_clamped(boots,True)
+        self.service.apply_to_character(boots,True)
+        other=self.service.create("Tech",CLAMP_BOOTS_KEY,3)
+        with self.assertRaises(ValueError):self.service.apply_to_character(other,True)
+        self.service.recharge();self.service.transfer_charges(boots,1)
+        self.service.start_timed_augment(boots,CLAMP_BOOTS_KEY)
+        movement=lambda:CharacterCalculationService(self.repo,self.cid).movement_results()
+        self.assertGreater(movement()["climb_speed"],0)
+        self.assertEqual(movement()["land_speed"],movement()["climb_speed"])
+        self.service.set_boots_clamped(boots,True)
+        self.assertEqual(0,movement()["land_speed"])
+        self.assertEqual(3,self.service.clamp_boots_resistance(boots))
+        self.service.set_polymorphed(True)
+        self.assertGreater(movement()["land_speed"],0)
+        self.assertEqual(0,self.service.clamp_boots_resistance(boots))
+        self.service.set_polymorphed(False)
+        path=Path(self.temp.name)/"boots.json";export_character(self.repo,self.cid,path)
+        imported=import_character(self.repo,path)
+        self.assertEqual(0,CharacterCalculationService(self.repo,imported).movement_results()["land_speed"])
+        self.service.set_boots_clamped(boots,False)
+        self.assertGreater(movement()["land_speed"],0)
+        self.service.advance_time(10)
+        self.assertEqual(0,movement()["climb_speed"])
+        self.service.apply_to_character(boots,False)
+        self.service.apply_to_character(other,True)
+
     def test_augmentor_reroll_requires_wearer_and_spends_one_battery(self):
         from app.engineering_rules import PHYSICAL_AUGMENTOR_KEY
         base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")

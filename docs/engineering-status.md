@@ -8,7 +8,11 @@ Graft-capacity foundation validation: 41 engineering tests and 2 theme subtests 
 
 Creation-specific efficiency validation: 70 engineering, database and transfer tests and 2 theme subtests passed. The regression checks distinguish ordinary devices created before training from efficient devices, preserve constructed efficiency after training is disabled, and preserve the construction flag on export/import.
 
+Clamp Boots follow-up: 76 engineering, database, transfer and recovery tests and 2 theme subtests passed. New coverage checks unpaid clamping rejection, Legs occupancy, paid climb movement, clamp/unclamp, contextual resistance, polymorph suppression, transfer, expiry and removal freeing the slot.
+
 ## Implemented in this batch
+
+- Clamp Boots: dedicated Legs augment occupancy, battery-first one-charge powered periods, creation-specific Energy Efficient Augments duration, shared climb movement matching base land speed, immediate-action clamp/free-action unclamp, paid expiry, ordinary polymorph suppression/Bio exception and transfer persistence. Clamped movement is restricted; the conditional half-Craft-ranks circumstance resistance is shown in the unclamp tooltip rather than applied to every save/CMD. Wall/ceiling traversal requires neither hands nor Climb checks. Extendo-limb composition, remote-control actions, grafts and extra-anatomy slots remain pending.
 
 - Energy Efficient Augments records qualifying construction on each newly created Tech augment, requiring enabled training, at least 5 creation ranks and two augment talents. Paid Dermal Plating periods scale to 5/10/30 minutes at 5/10/15 live Craft ranks. Learning the talent later does not retrofit old devices; losing training does not erase constructed efficiency. Older saves default to ordinary construction, transfer preserves the flag, and the roster labels efficient devices. Paid periods are stored at activation and not retroactively resized. Other minute-per-charge augment functions must use the same shared duration helper when implemented.
 
@@ -176,7 +180,7 @@ Every entry remains available through existing catalogs/Codex. “Roster” mean
 | Tech | Camera (drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
 | Tech | Chameleon Suit (gadget, accessory) | Gadget Talent | Roster; device-specific effects not automated |
 | Tech | Chemalyzer (gadget) | Gadget Talent | Roster; device-specific effects not automated |
-| Tech | Clamp Boots (augment, drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Clamp Boots (augment, drone, gadget) | Gadget Talent | Legs slot, paid climb movement, clamp/unclamp, conditional resistance display, expiry, polymorph and transfer implemented; composition/remote control/grafts/nonstandard anatomy pending |
 | Tech | Collapsible Vehicle (drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
 | Tech | Commset (gadget, signal) | Gadget Talent | Roster; device-specific effects not automated |
 | Tech | Compact Shield (gadget, moddable) | Gadget Talent | Roster; device-specific effects not automated |

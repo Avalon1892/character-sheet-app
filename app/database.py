@@ -5,7 +5,7 @@ import math
 import re
 import sqlite3
 from app.engineering_rules import is_battery, TECH_BATTERY_KEY, tech_battery_capacity,device_condition,JET_BOOSTERS_KEY,JET_MODES
-from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY,DERMAL_PLATING_KEY
+from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY,DERMAL_PLATING_KEY,CLAMP_BOOTS_KEY,TECH_AUGMENT_SLOTS
 from datetime import datetime
 from pathlib import Path
 
@@ -3115,10 +3115,10 @@ class CharacterRepository:
             if routine_host is None or routine_host["state"]!="active" or device_condition(dict(routine_host))["destroyed"]:
                 raise ValueError("A routine can activate only inside an active, functioning host gizmo.")
         augment_slot=str(record.get("augment_slot", ""))
-        if augment_slot and (sphere!="Tech" or augment_slot!="Body" or record.get("catalog_key")!=DERMAL_PLATING_KEY):
+        if augment_slot and (sphere!="Tech" or augment_slot!=TECH_AUGMENT_SLOTS.get(record.get("catalog_key"))):
             raise ValueError("Unsupported dedicated augment slot for this device.")
-        if record.get("applied_to_character") and record.get("catalog_key")==DERMAL_PLATING_KEY and augment_slot!="Body":
-            raise ValueError("Dermal Plating must occupy the Body augment slot.")
+        if record.get("applied_to_character") and record.get("catalog_key") in TECH_AUGMENT_SLOTS and augment_slot!=TECH_AUGMENT_SLOTS[record["catalog_key"]]:
+            raise ValueError("Install this device in its dedicated augment slot.")
         if augment_slot and record.get("applied_to_character") and state!="abandoned" and self._connection.execute(
                 "SELECT 1 FROM engineering_devices WHERE character_id=? AND sphere='Tech' AND augment_slot=? AND applied_to_character=1 AND state!='abandoned' AND (? IS NULL OR id!=?)",
                 (character_id,augment_slot,device_id,device_id)).fetchone():
@@ -3204,9 +3204,9 @@ class CharacterRepository:
                 (device_id,character_id)).fetchone()
             if host is None or device_condition(dict(host))["destroyed"]:
                 raise ValueError("Select a functioning Tech device.")
-            dermal=function_mode=="dermal" and host["catalog_key"]==DERMAL_PLATING_KEY
-            if dermal and (amount!=1 or not host["applied_to_character"] or host["augment_slot"]!="Body" or host["effect_rounds"]>0):
-                raise ValueError("Install Dermal Plating before activating a fresh powered period.")
+            dermal=(function_mode=="dermal" and host["catalog_key"]==DERMAL_PLATING_KEY) or (function_mode=="climb" and host["catalog_key"]==CLAMP_BOOTS_KEY)
+            if dermal and (amount!=1 or not host["applied_to_character"] or host["augment_slot"]!=TECH_AUGMENT_SLOTS[host["catalog_key"]] or host["effect_rounds"]>0):
+                raise ValueError("Install the augment before activating a fresh powered period.")
             if function_mode is not None and not dermal and (host["catalog_key"]!=JET_BOOSTERS_KEY
                     or function_mode not in JET_MODES or host["configuration"] not in {"flight","aquatic"}
                     or amount!=JET_MODES[function_mode][0] or host["effect_rounds"]>0):
@@ -3238,8 +3238,8 @@ class CharacterRepository:
         if not 1<=rounds<=999999:
             raise ValueError("Elapsed rounds must be between 1 and 999,999.")
         with self._connection:
-            self._connection.execute("UPDATE engineering_devices SET effect_rounds=MAX(0,effect_rounds-?),state=CASE WHEN effect_rounds<=? AND state='active' AND catalog_key IN (?,?) THEN 'inactive' ELSE state END WHERE character_id=? AND state!='abandoned' AND effect_rounds>0",
-                (rounds,rounds,JET_BOOSTERS_KEY,DERMAL_PLATING_KEY,character_id))
+            self._connection.execute("UPDATE engineering_devices SET effect_rounds=MAX(0,effect_rounds-?),state=CASE WHEN effect_rounds<=? AND state='active' AND catalog_key IN (?,?,?) THEN 'inactive' ELSE state END WHERE character_id=? AND state!='abandoned' AND effect_rounds>0",
+                (rounds,rounds,JET_BOOSTERS_KEY,DERMAL_PLATING_KEY,CLAMP_BOOTS_KEY,character_id))
             self._touch_character(character_id)
 
     def deplete_engineering_batteries(self,character_id,host_id,battery_ids,*,tactile_boost=False):
