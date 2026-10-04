@@ -5,7 +5,7 @@ from PySide6.QtWidgets import (QDialog,QVBoxLayout,QHBoxLayout,QComboBox,QLabel,
     QPushButton,QTableWidget,QTableWidgetItem,QHeaderView,QAbstractItemView,
     QSpinBox,QCheckBox,QTextBrowser,QSplitter,QWidget,QMessageBox,QInputDialog)
 from app.services.engineering import EngineeringService
-from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY,DERMAL_PLATING_KEY,tech_augment_suppressed,tech_augment_installed,CLAMP_BOOTS_KEY,TECH_AUGMENT_SLOTS,clamp_boots_active
+from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY,DERMAL_PLATING_KEY,tech_augment_suppressed,tech_augment_installed,CLAMP_BOOTS_KEY,TECH_AUGMENT_SLOTS,TECH_ABILITY_AUGMENTS,clamp_boots_active
 from app.engineering_rules import occupied_limit,is_battery,TECH_BATTERY_KEY,tech_battery_capacity,device_condition,PHYSICAL_AUGMENTOR_KEY,AUGMENTOR_ABILITIES,JET_BOOSTERS_KEY,JET_MODES
 from app.content import martial_entry
 from app.ui.dialog_theme import dialog_stylesheet
@@ -27,7 +27,7 @@ class GraftPlanningDialog(QDialog):
         self.permission=QCheckBox("GM permits expanded technical-item crafting")
         root.addWidget(self.permission)
         self.result=QLabel();self.result.setWordWrap(True);root.addWidget(self.result,1)
-        note=QLabel("Recording does not deduct gold or advance time: confirm those separately. Only single-talent Dermal Plating and Clamp Boots grafts can currently be recorded and implanted through the workbench. Prices exclude supplied objects; workspace, drawbacks and special device exceptions require review.")
+        note=QLabel("Recording does not deduct gold or advance time: confirm those separately. Supported single-talent augment grafts can be recorded and implanted through the workbench. Prices exclude supplied objects; workspace, drawbacks and special device exceptions require review.")
         note.setWordWrap(True);root.addWidget(note)
         self.materials_paid=QCheckBox("Materials already paid")
         self.time_completed=QCheckBox("Construction time already completed")
@@ -165,7 +165,7 @@ class EngineeringDialog(QDialog):
         self.tactile_boost=QPushButton("Enhance Tactile Field — 1 battery")
         self.dermal_activate=QPushButton("Power Dermal Plating — 1 charge")
         field_controls.addWidget(self.dermal_activate)
-        self.dermal_activate.clicked.connect(lambda:self.perform(lambda:self.service().start_dermal_plating(self.selected())))
+        self.dermal_activate.clicked.connect(lambda:self.perform(lambda:self.service().start_timed_augment(self.selected())))
         self.boots_activate=QPushButton("Power Clamp Boots — 1 charge")
         self.boots_clamp=QPushButton("Clamp — immediate action")
         self.boots_unclamp=QPushButton("Unclamp — free action")
@@ -356,6 +356,8 @@ class EngineeringDialog(QDialog):
                               if entry.get("key")==RESISTANCE_ROUTINE_KEY else
                               "Wear in the dedicated Body augment slot, or surgically implant a crafted graft in its separate graft slot. Pay one charge for a timed period; graft durations are doubled and use stored item ranks. Natural armor enhancement, expiry and polymorph suppression are automatic. Bio augments retain effects; implanted grafts also retain effects when the current transformation preserves innate traits. Hasty donning and overload remain pending."
                               if entry.get("key")==DERMAL_PLATING_KEY else
+                              "Strength/Dexterity enhancement, dedicated augment/graft occupancy, charge payment, expiry and polymorph exceptions are automatic. The bonus is +2, increasing by +2 per 7 Craft ranks; enhancement bonuses do not stack. Grafts use their stored item ranks and double paid duration. Drone use, remote-control consequences and nonstandard anatomy remain pending."
+                              if entry.get("key") in TECH_ABILITY_AUGMENTS else
                               "Dedicated Legs augment or graft slot, paid climb movement, clamp/unclamp, expiry and polymorph suppression are automatic. Grafts double paid duration and retain their item rank. Climbing walls or ceilings requires neither hands nor Climb checks. Clamp resistance applies only against forced movement. Composition, remote control, overload and nonstandard anatomy remain pending."
                               if entry.get("key")==CLAMP_BOOTS_KEY else
                               "Flight/swim speed, maneuverability, charge costs and paid durations are automatic. Flight slow burn is limited to 3 feet above the surface; height and hover/exhaust effects require manual resolution."
@@ -364,8 +366,9 @@ class EngineeringDialog(QDialog):
     def preview_device(self):
         device=next((d for d in self.service().devices(self.system.currentText()) if d["id"]==self.selected()),None)
         tactile=bool(device and device["catalog_key"]==TACTILE_FIELD_KEY)
-        dermal=bool(device and device["catalog_key"]==DERMAL_PLATING_KEY)
+        dermal=bool(device and device["catalog_key"] in {DERMAL_PLATING_KEY,*TECH_ABILITY_AUGMENTS})
         self.dermal_activate.setVisible(dermal)
+        if dermal:self.dermal_activate.setText("Power "+device["name"].partition(" (")[0]+" — 1 charge")
         boots=bool(device and device["catalog_key"]==CLAMP_BOOTS_KEY)
         for button in (self.boots_activate,self.boots_clamp,self.boots_unclamp):button.setVisible(boots)
         powered=bool(boots and clamp_boots_active(device,polymorphed=self.polymorphed.isChecked(),retain_innate=self.retain_innate.isChecked()))
@@ -374,7 +377,7 @@ class EngineeringDialog(QDialog):
         self.boots_unclamp.setEnabled(powered and device["function_mode"]=="clamped")
         bonus=self.service().clamp_boots_resistance(device["id"]) if boots else 0
         self.boots_unclamp.setToolTip(f"While clamped: +{bonus} circumstance bonus to CMD and saves only against forced movement. This is not a bonus to all CMD checks or saves.")
-        self.dermal_activate.setEnabled(bool(dermal and tech_augment_installed(device,"Body") and device["state"] not in {"abandoned","depleted"} and device["effect_rounds"]==0 and not device_condition(device)["destroyed"]))
+        self.dermal_activate.setEnabled(bool(dermal and tech_augment_installed(device,TECH_AUGMENT_SLOTS[device["catalog_key"]]) and device["state"] not in {"abandoned","depleted"} and device["effect_rounds"]==0 and not device_condition(device)["destroyed"]))
         routine=bool(device and device["catalog_key"]==RESISTANCE_ROUTINE_KEY)
         self.install_routine.setVisible(routine);self.remove_routine.setVisible(routine)
         self.install_routine.setEnabled(bool(routine and device["state"]!="abandoned"))

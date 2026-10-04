@@ -31,6 +31,63 @@ class EngineeringTests(unittest.TestCase):
         self.add("Tech",entry["name"],entry["key"],entry["category"])
         return self.service.create("Tech",entry["key"],3)
 
+    def test_tech_ability_augments_scaling_payment_stacking_and_expiry(self):
+        from app.engineering_rules import EXO_MUSCLES_KEY,SYNAPTIC_MAXIMIZER_KEY,DERMAL_PLATING_KEY,tech_ability_augment_bonus
+        from app.services.character_calculations import CharacterCalculationService
+        before=CharacterCalculationService(self.repo,self.cid)
+        scores={ability:before.ability_result(ability).total for ability in ("strength","dexterity")}
+        combat={target:before.combat_results()[target].total for target in ("ac","reflex","initiative")}
+        devices=[]
+        for key,ability in ((EXO_MUSCLES_KEY,"strength"),(SYNAPTIC_MAXIMIZER_KEY,"dexterity")):
+            entry=next(e for e in martial_entries("Tech") if e["key"]==key)
+            self.add("Tech",entry["name"],key)
+            device=self.service.create("Tech",key,2);devices.append(device)
+            with self.assertRaises(ValueError):self.service.start_timed_augment(device)
+            self.service.apply_to_character(device,True);self.service.recharge();self.service.transfer_charges(device,1)
+            self.service.start_timed_augment(device)
+            record=next(d for d in self.service.devices("Tech") if d["id"]==device)
+            self.assertEqual((0,10,ability),(record["charges"],record["effect_rounds"],record["function_mode"]))
+            for ranks,bonus in ((0,2),(4,2),(6,2),(7,4),(13,4),(14,6),(21,8)):
+                self.assertEqual((ability,bonus),tech_ability_augment_bonus(record,ranks))
+            self.assertIsNone(tech_ability_augment_bonus({**record,"effect_rounds":0},6))
+            self.assertIsNone(tech_ability_augment_bonus({**record,"damage":9999},6))
+            with self.assertRaises(ValueError):self.service.start_timed_augment(device)
+        after=CharacterCalculationService(self.repo,self.cid)
+        for ability in scores:self.assertEqual(scores[ability]+2,after.ability_result(ability).total)
+        for target in combat:self.assertEqual(combat[target]+1,after.combat_results()[target].total)
+        self.repo.add_modifier(self.cid,"strength","Existing enhancement","enhancement",6)
+        self.assertEqual(scores["strength"]+6,CharacterCalculationService(self.repo,self.cid).ability_result("strength").total)
+        self.add("Tech","Dermal Plating",DERMAL_PLATING_KEY)
+        conflicting=self.service.create("Tech",DERMAL_PLATING_KEY,2)
+        with self.assertRaises(ValueError):self.service.apply_to_character(conflicting,True)
+        self.service.set_polymorphed(True,retain_innate=True)
+        self.assertEqual(scores["dexterity"],CharacterCalculationService(self.repo,self.cid).ability_result("dexterity").total)
+        self.service.set_polymorphed(False)
+        self.service.advance_time(10)
+        for device in devices:
+            record=next(d for d in self.service.devices("Tech") if d["id"]==device)
+            self.assertEqual(("inactive",0),(record["state"],record["effect_rounds"]))
+        self.assertEqual(scores["dexterity"],CharacterCalculationService(self.repo,self.cid).ability_result("dexterity").total)
+
+    def test_ability_augment_graft_snapshot_duration_transfer_and_removal(self):
+        from app.engineering_rules import SYNAPTIC_MAXIMIZER_KEY
+        from app.services.character_calculations import CharacterCalculationService
+        self.add("Tech","Synaptic Reaction Maximizer",SYNAPTIC_MAXIMIZER_KEY)
+        self.repo.add_feat(self.cid,"Craft Appliances And Contraptions");self.repo.add_feat(self.cid,"Craft Augment Graft")
+        graft=self.service.record_completed_graft(SYNAPTIC_MAXIMIZER_KEY,"appliance",3,2,check_result=13,materials_paid=True,time_completed=True,gm_permission=True)
+        self.service.install_graft(graft,subject_willing_or_helpless=True,installation_completed=True)
+        before=CharacterCalculationService(self.repo,self.cid).ability_result("dexterity").total
+        self.service.start_timed_augment(graft)
+        record=next(d for d in self.service.devices("Tech") if d["id"]==graft)
+        self.assertEqual(("Brain",20),(record["graft_slot"],record["effect_rounds"]))
+        self.service.set_polymorphed(True,retain_innate=True)
+        self.assertEqual(before+2,CharacterCalculationService(self.repo,self.cid).ability_result("dexterity").total)
+        path=Path(self.temp.name)/"ability-graft.json";export_character(self.repo,self.cid,path)
+        imported=import_character(self.repo,path)
+        self.assertEqual(before+2,CharacterCalculationService(self.repo,imported).ability_result("dexterity").total)
+        self.service.remove_graft(graft,removal_completed=True,save_succeeded=True)
+        self.assertEqual(before,CharacterCalculationService(self.repo,self.cid).ability_result("dexterity").total)
+
     def test_energy_efficient_augment_duration_and_paid_expiry(self):
         from app.engineering_rules import DERMAL_PLATING_KEY,tech_minute_augment_rounds
         for ranks,expected in ((4,10),(5,50),(9,50),(10,100),(14,100),(15,300),(20,300)):
@@ -1099,4 +1156,29 @@ class EngineeringTests(unittest.TestCase):
                 dialog.polymorphed.click()
                 self.assertFalse(dialog.retain_innate.isEnabled());self.assertFalse(dialog.retain_innate.isChecked())
                 self.assertFalse(self.repo.engineering_retains_innate(self.cid));self.assertEqual([True]*3,refreshed)
+                dialog.deleteLater();sheet.deleteLater();app.sendPostedEvents(None,QEvent.Type.DeferredDelete)
+
+    def test_ability_augment_ui_power_control_in_both_themes(self):
+        from PySide6.QtWidgets import QApplication,QWidget
+        from PySide6.QtCore import QEvent
+        from app.ui.engineering import EngineeringDialog
+        from app.engineering_rules import EXO_MUSCLES_KEY
+        entry=next(e for e in martial_entries("Tech") if e["key"]==EXO_MUSCLES_KEY)
+        self.add("Tech",entry["name"],EXO_MUSCLES_KEY)
+        device=self.service.create("Tech",EXO_MUSCLES_KEY,2)
+        self.service.apply_to_character(device,True)
+        app=QApplication.instance() or QApplication([])
+        for theme in ("classic","dark"):
+            with self.subTest(theme=theme):
+                self.service.recharge();self.service.transfer_charges(device,1)
+                sheet=QWidget();sheet.repository=self.repo;sheet.character_id=self.cid;sheet.theme=theme
+                refreshed=[];sheet.refresh_all=lambda:refreshed.append(True)
+                dialog=EngineeringDialog(sheet);dialog.table.selectRow(0)
+                self.assertTrue(dialog.dermal_activate.isEnabled())
+                self.assertIn("Exo-Skeletal Muscles",dialog.dermal_activate.text())
+                dialog.dermal_activate.click()
+                self.assertEqual([True],refreshed)
+                self.assertFalse(dialog.dermal_activate.isEnabled())
+                self.assertEqual(10,self.service.devices("Tech")[0]["effect_rounds"])
+                self.service.advance_time(10)
                 dialog.deleteLater();sheet.deleteLater();app.sendPostedEvents(None,QEvent.Type.DeferredDelete)

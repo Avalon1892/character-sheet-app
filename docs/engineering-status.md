@@ -1,5 +1,9 @@
 # Tech & Tinker implementation status
 
+Ability augment validation: 137 engineering, database, transfer, recovery, core-rules, formula, defense and unarmed/enchantment tests plus 17 subtests passed. Covers rank thresholds, failure-safe spending, enhancement stacking, AC/reflex/initiative propagation, slot conflicts, expiry, graft transfer/removal and shared power controls in Parchment/Dark. Full isolated suite has not been rerun after this increment; the previous run immediately before it had only the three documented pre-existing failures.
+
+Ability augment follow-up: Exo-Skeletal Muscles and Synaptic Reaction Maximizer now contribute typed Strength/Dexterity enhancement bonuses through shared calculations (+2, plus +2 per seven Craft ranks). Body/Brain occupancy, one-charge paid periods, Energy Efficient Augments duration, expiry, damage suppression, polymorph/Bio/retained-innate exceptions, crafting as supported single-talent grafts and transfer reuse the existing augment lifecycle. Grafts use stored item ranks and doubled duration. The workbench's shared power control displays the selected augment name. Remote-control failure conditions, drone integration, composition, overload and nonstandard anatomy are still pending; these entries are not fully complete.
+
 Retained-innate validation: 119 focused tests plus 15 subtests passed. Full isolated suite: 142 modules, 2,035 reported cases, 2,032 passed / 3 failed / 0 errors / 0 skipped (525.82 seconds), recorded in `artifacts/engineering-validation-retained-innate/summary.json` and `complete.xml`. All three failures match the previous `engineering-validation-d4ea479` baseline: class/archetype count 1830 vs 1887; custom-tracker parent-widget expectation; obsolete traditions placement assertion with secondary Windows SQLite cleanup failure. No new failing test was found; these unrelated failures were not changed.
 
 Retained-innate polymorph exception: persisted current-form state now distinguishes ordinary polymorph from a transformation retaining innate traits. Shared suppression preserves only implanted graft effects in the latter; ordinary worn augments remain suppressed unless independently crafted as Bio Augments. AC, movement/clamp controls, formula suppression flags and workbench status agree. Ending polymorph clears the exception, and export/import preserves active form state with backward-compatible defaults. This is an explicit rules-state control, not automatic selection or detection of Alteration forms. Full bio-graft construction, overload/capacity adjustments, nonstandard anatomy and remaining devices are still pending.
@@ -214,7 +218,7 @@ Every entry remains available through existing catalogs/Codex. “Roster” mean
 | Tech | Drone (gadget, signal) | Gadget Talent | Roster; device-specific effects not automated |
 | Tech | Emergency Gear (drone, gadget, signal) | Gadget Talent | Roster; device-specific effects not automated |
 | Tech | Evac Pack (augment, drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
-| Tech | Exo-Skeletal Muscles (augment, drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Exo-Skeletal Muscles (augment, drone, gadget) | Gadget Talent | Body augment/graft, paid Strength enhancement, typed stacking, expiry, polymorph and transfer automated; remote-control/drone/composition/anatomy pending |
 | Tech | Extendo Appendage (augment, drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
 | Tech | External Health Modulator (augment, drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
 | Tech | Firefighter Equipment (drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
@@ -245,7 +249,7 @@ Every entry remains available through existing catalogs/Codex. “Roster” mean
 | Tech | Sniper Scope (accessory, augment, gadget) | Gadget Talent | Roster; device-specific effects not automated |
 | Tech | Speed Lever (accessory, gadget) | Gadget Talent | Roster; device-specific effects not automated |
 | Tech | Superior Joints (gadget, accessory) | Gadget Talent | Roster; device-specific effects not automated |
-| Tech | Synaptic Reaction Maximizer (augment, drone, gadget) | Gadget Talent | Roster; device-specific effects not automated |
+| Tech | Synaptic Reaction Maximizer (augment, drone, gadget) | Gadget Talent | Brain augment/graft, paid Dexterity enhancement, typed stacking, expiry, polymorph and transfer automated; remote-control/drone/composition/anatomy pending |
 | Tech | Targeting Application (gadget, routine) | Gadget Talent | Roster; device-specific effects not automated |
 | Tech | Taser (gadget, moddable) | Gadget Talent | Roster; device-specific effects not automated |
 | Tech | Tracker Chip (gadget, signal) | Gadget Talent | Roster; device-specific effects not automated |

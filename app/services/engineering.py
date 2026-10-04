@@ -3,7 +3,7 @@ from app.content import martial_entry
 from app.engineering_rules import (engineering_limits, occupied_limit, device_statistics,
                                    is_battery, TECH_BATTERY_KEY, tech_battery_capacity,device_condition,
                                    PHYSICAL_AUGMENTOR_KEY,MENTAL_AUGMENTOR_KEY,LOAD_BEARER_KEY,AUGMENTOR_ABILITIES,JET_BOOSTERS_KEY,JET_MODES,tinker_packages)
-from app.engineering_rules import physical_augmentor_bonus, tech_minute_augment_rounds,TECH_AUGMENT_SLOTS,CLAMP_BOOTS_KEY,clamp_boots_active
+from app.engineering_rules import physical_augmentor_bonus, tech_minute_augment_rounds,TECH_AUGMENT_SLOTS,TECH_TIMED_AUGMENT_MODES,CLAMP_BOOTS_KEY,clamp_boots_active
 from app.services.character_calculations import CharacterCalculationService
 from app.exploitant_rules import effective_martial_talents
 from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY,resistance_routine_bonus,DERMAL_PLATING_KEY
@@ -213,9 +213,10 @@ class EngineeringService:
     def start_dermal_plating(self,device_id):
         self.start_timed_augment(device_id,DERMAL_PLATING_KEY)
 
-    def start_timed_augment(self,device_id,key):
+    def start_timed_augment(self,device_id,key=None):
         device=next((d for d in self.devices("Tech") if d["id"]==device_id),None)
-        if key not in TECH_AUGMENT_SLOTS or not device or device["catalog_key"]!=key:
+        if key is None and device:key=device["catalog_key"]
+        if key not in TECH_TIMED_AUGMENT_MODES or not device or device["catalog_key"]!=key:
             raise ValueError("Select your supported timed augment.")
         if not device["construction_kind"] and not self.available("Tech"):
             raise ValueError("The Tech sphere is required for temporary gadgets.")
@@ -223,7 +224,7 @@ class EngineeringService:
         duration=tech_minute_augment_rounds(ranks,
             energy_efficient=bool(device["energy_efficient"]),augment_talents=2)
         if device["construction_kind"]:duration*=2
-        self.repository.spend_tech_device_charges(self.character_id,device_id,1,function_mode="dermal" if key==DERMAL_PLATING_KEY else "climb",dermal_rounds=duration)
+        self.repository.spend_tech_device_charges(self.character_id,device_id,1,function_mode=TECH_TIMED_AUGMENT_MODES[key],dermal_rounds=duration)
 
     def set_boots_clamped(self,device_id,clamped):
         device=next((d for d in self.devices("Tech") if d["id"]==device_id),None)

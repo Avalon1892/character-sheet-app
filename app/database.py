@@ -5,7 +5,7 @@ import math
 import re
 import sqlite3
 from app.engineering_rules import is_battery, TECH_BATTERY_KEY, tech_battery_capacity,device_condition,JET_BOOSTERS_KEY,JET_MODES
-from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY,DERMAL_PLATING_KEY,CLAMP_BOOTS_KEY,TECH_AUGMENT_SLOTS
+from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY,DERMAL_PLATING_KEY,CLAMP_BOOTS_KEY,TECH_AUGMENT_SLOTS,TECH_TIMED_AUGMENT_MODES
 from datetime import datetime
 from pathlib import Path
 
@@ -3246,7 +3246,7 @@ class CharacterRepository:
                 (device_id,character_id)).fetchone()
             if host is None or device_condition(dict(host))["destroyed"]:
                 raise ValueError("Select a functioning Tech device.")
-            dermal=(function_mode=="dermal" and host["catalog_key"]==DERMAL_PLATING_KEY) or (function_mode=="climb" and host["catalog_key"]==CLAMP_BOOTS_KEY)
+            dermal=function_mode is not None and function_mode==TECH_TIMED_AUGMENT_MODES.get(host["catalog_key"])
             installed=host["graft_slot"]==TECH_AUGMENT_SLOTS.get(host["catalog_key"]) or (host["applied_to_character"] and host["augment_slot"]==TECH_AUGMENT_SLOTS.get(host["catalog_key"]))
             if dermal and dermal_rounds not in ((20,100,200,600) if host["construction_kind"] else (10,50,100,300)):
                 raise ValueError("Powered duration does not match this device's construction type.")
@@ -3283,8 +3283,9 @@ class CharacterRepository:
         if not 1<=rounds<=999999:
             raise ValueError("Elapsed rounds must be between 1 and 999,999.")
         with self._connection:
-            self._connection.execute("UPDATE engineering_devices SET effect_rounds=MAX(0,effect_rounds-?),state=CASE WHEN effect_rounds<=? AND state='active' AND catalog_key IN (?,?,?) THEN 'inactive' ELSE state END WHERE character_id=? AND state!='abandoned' AND effect_rounds>0",
-                (rounds,rounds,JET_BOOSTERS_KEY,DERMAL_PLATING_KEY,CLAMP_BOOTS_KEY,character_id))
+            timed_keys=(JET_BOOSTERS_KEY,*TECH_TIMED_AUGMENT_MODES)
+            self._connection.execute("UPDATE engineering_devices SET effect_rounds=MAX(0,effect_rounds-?),state=CASE WHEN effect_rounds<=? AND state='active' AND catalog_key IN ("+",".join("?" for _ in timed_keys)+") THEN 'inactive' ELSE state END WHERE character_id=? AND state!='abandoned' AND effect_rounds>0",
+                (rounds,rounds,*timed_keys,character_id))
             self._touch_character(character_id)
 
     def deplete_engineering_batteries(self,character_id,host_id,battery_ids,*,tactile_boost=False):

@@ -95,7 +95,7 @@ from app.class_feature_systems import (
 )
 from app.class_power_rules import class_power_modifier_map
 from app.engineering_rules import physical_augmentor_bonus,jet_movement,LOAD_BEARER_KEY,clamp_boots_active
-from app.engineering_rules import tactile_field_bonus,dermal_plating_bonus
+from app.engineering_rules import tactile_field_bonus,dermal_plating_bonus,tech_ability_augment_bonus
 from app.class_combat_rules import generated_class_attacks, class_attack_context_notes
 from app.race_rules import generated_racial_attacks, racial_class_skills, racial_automatic_values, racial_per_level_hit_points
 from app.class_choice_rules import (
@@ -659,6 +659,10 @@ class CharacterCalculationService:
         polymorphed=self.repository.engineering_polymorphed(self.character_id)
         retain_innate=self.repository.engineering_retains_innate(self.character_id)
         for device in self.repository.list_engineering_devices(self.character_id):
+            ability_bonus=tech_ability_augment_bonus(device,effective_ranks.get("craft",0),polymorphed=polymorphed,retain_innate=retain_innate)
+            if ability_bonus:
+                ability,value=ability_bonus
+                result.setdefault(ability,[]).append(StatModifier(None,ability,f"{device['name']} #{device['id']}","enhancement",value,True))
             dermal=dermal_plating_bonus(device,effective_ranks.get("craft",0),polymorphed=polymorphed,retain_innate=retain_innate)
             if dermal:
                 result.setdefault("ac",[]).append(StatModifier(None,"ac",f"{device['name']} #{device['id']}","natural armor enhancement",dermal,True))
