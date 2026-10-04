@@ -34,7 +34,7 @@ class FeatCatalogUiTests(unittest.TestCase):
 
     def test_feat_browser_filters_sources_and_automatic_behavior(self) -> None:
         dialog = FeatCatalogDialog([], self.sheet)
-        self.assertEqual(4670, dialog.results.rowCount())  # Includes the previously missing Forge Construct.
+        self.assertEqual(4672, dialog.results.rowCount())  # Includes Forge Construct and the two Tech graft-crafting feats.
 
         dialog.source_filter.setCurrentIndex(
             dialog.source_filter.findData("Pathfinder")

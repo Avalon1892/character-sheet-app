@@ -58,6 +58,24 @@ class ItemCreationRuleTests(unittest.TestCase):
         self.assertIn('Creating Scrolls', dialog.browser.toPlainText())
         dialog.close()
 
+    def test_tech_graft_creation_feats_are_shared_catalog_and_codex_entries(self):
+        dialog=CodexDialog()
+        try:
+            for key,name in (("spheres:craft-appliances-and-contraptions","Craft Appliances And Contraptions"),
+                             ("spheres:craft-augment-graft","Craft Augment Graft")):
+                entry=DEFAULT_CATALOG.feat_entry(key)
+                self.assertIsNotNone(entry)
+                self.assertEqual(name,entry["name"])
+                self.assertIn("Item Creation",entry["categories"])
+                self.assertEqual("Tech",entry["sphere"])
+                self.assertIn("Craft (mechanical) 3 ranks",entry["prerequisites"])
+                self.assertEqual(1,sum(e["key"]==key for e in DEFAULT_CATALOG.feat_entries()))
+                dialog._open_codex_link(QUrl("codex:feature:feat:"+key))
+                self.assertIn(name,dialog.browser.toPlainText())
+            self.assertIn("Remote Control",dialog.browser.toPlainText())
+            self.assertIn("Fortitude",dialog.browser.toPlainText())
+        finally:dialog.close()
+
 
 if __name__ == '__main__':
     unittest.main()

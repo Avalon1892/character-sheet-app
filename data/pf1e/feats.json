@@ -66130,6 +66130,34 @@
       "full_rules": true
     },
     {
+      "key": "spheres:craft-appliances-and-contraptions",
+      "name": "Craft Appliances And Contraptions",
+      "categories": ["Item Creation"],
+      "source_group": "Spheres",
+      "source_name": "Spheres of Power Wiki",
+      "description": "Create permanent Tech appliances or contraptions. Both can be recharged by any creature using the Tech recharge procedure with an engineering kit. Appliances need no activation check; contraptions require one from users other than their creator. Construction costs are 400 gp × Craft (mechanical) ranks × complexity for an appliance, or 200 gp × ranks × complexity for a contraption. Use the expanded technical-item crafting rules for complexity, construction checks, creation-time statistics and charge capacity.",
+      "prerequisites": "Craft (mechanical) 3 ranks, Tech sphere.",
+      "source_tags": [],
+      "source_url": "https://spheresofpower.wikidot.com/tech",
+      "sphere": "Tech",
+      "repeatable": false,
+      "full_rules": false
+    },
+    {
+      "key": "spheres:craft-augment-graft",
+      "name": "Craft Augment Graft",
+      "categories": ["Item Creation"],
+      "source_group": "Spheres",
+      "source_name": "Spheres of Power Wiki",
+      "description": "Create appliance/contraption augment grafts. Charged durations double, including augments attached to grafted Modular Slots. Grafts use separate slots and impose −5 against Remote Control. Default implantation value: 2; combined graft/cybertech capacity uses the lower present Constitution/Intelligence score. Excess implants remain installed but do not function; overload imposes −4 on saves. Neither score present means no benefit. Hand installation takes implantation-value hours, with a willing/helpless subject, no Heal check and no Constitution damage. Removal requires a Fortitude save; failure advances fatigue to exhaustion to unconsciousness. The removal DC is unspecified here. Consult the linked rules for complete construction and implantation details.",
+      "prerequisites": "Craft (mechanical) 3 ranks, Tech sphere, Craft Appliances And Contraptions.",
+      "source_tags": [],
+      "source_url": "https://spheresofpower.wikidot.com/tech",
+      "sphere": "Tech",
+      "repeatable": false,
+      "full_rules": false
+    },
+    {
       "key": "spheres:craft-apparatus-replaces-craft-rod",
       "name": "Craft Apparatus (replaces Craft Rod)",
       "categories": [

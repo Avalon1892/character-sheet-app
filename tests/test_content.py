@@ -72,9 +72,9 @@ class ContentCatalogTests(unittest.TestCase):
         )
 
     def test_feat_catalog_contains_pathfinder_spheres_and_automation(self) -> None:
-        self.assertEqual(4670, len(feat_entries()))
+        self.assertEqual(4672, len(feat_entries()))
         self.assertEqual(3442, len(feat_entries("Pathfinder")))
-        self.assertEqual(1228, len(feat_entries("Spheres")))
+        self.assertEqual(1230, len(feat_entries("Spheres")))
         self.assertEqual(
             {"Pathfinder", "Spheres"},
             {entry["source_group"] for entry in feat_entries()},

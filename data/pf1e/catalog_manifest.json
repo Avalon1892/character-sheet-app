@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "catalog_version": "2026.10.03.1",
-  "created_utc": "2026-10-03T00:00:00Z",
+  "catalog_version": "2026.10.04.1",
+  "created_utc": "2026-10-04T00:00:00Z",
   "application_schema_min": 1,
   "files": [
     {"path": "animal_companions.json", "sha256": "1b1fcacd25155803e1e677f21db5c97cf8730f96697d14ef7d7b1208cd01a3e7", "size": 201610},
@@ -12,7 +12,7 @@
     {"path": "class_powers.json", "sha256": "0d328a6ad553b57793107b1aab98cd081834aa65a6be4df1f241eee865872a02", "size": 2033945},
     {"path": "classes.json", "sha256": "4b69037119a0defefefd646d0584585c322cb042d6163f27a1a5f4eaeffe5118", "size": 4530},
     {"path": "enchantments.json", "sha256": "c3b33f4b7c77625fb393ccc3adefe05f2f81d97bb00512149ecb35ee9ea4dd0a", "size": 427287},
-    {"path": "feats.json", "sha256": "f125d1b440dd22b351529f50834cdedf84bd29f12fd1787719fec6ccc5f00400", "size": 3529417},
+    {"path": "feats.json", "sha256": "d72fd30121d2090087de3be80528c377a8e6ec200ac8b44ab82ee76cf5f6f0de", "size": 3531703},
     {"path": "familiars.json", "sha256": "3a8e16afbda2f38a9465e771392879dd221ebf4ccda5712bd08f59b0c86a73f2", "size": 98670},
     {"path": "inquisitions.json", "sha256": "2f5ff7c16157bb2b7ad5c92a29b389271574328f3f225d03547716427da97c33", "size": 46291},
     {"path": "item_automation_audit.json", "sha256": "eed81040961c7ed74cc8d212138363c5af8df498407c390f6473d975d82ad250", "size": 784339},
