@@ -61,6 +61,25 @@ class ClassChoiceUiTests(unittest.TestCase):
         finally:
             sheet.close()
 
+    def test_repeatable_machinehead_choice_count_survives_search_and_uses_slots(self):
+        class_id=self.repository.add_class_level(self.character,"Armiger",6,"Full","Good","Poor","Poor","spheres-class:armiger",10,30)
+        self.repository.set_class_archetype_keys(self.character,class_id,("spheres-archetype:spheres-class:armiger:machinehead",))
+        slot=next(s for s in resolve_class_choice_slots(self.repository,self.character) if s.key=="machinehead-prowesses")
+        dialog=ClassChoiceDialog(slot);dialog.search.setText("Custom Graft")
+        self.assertEqual(1,dialog.results.count())
+        dialog.results.setCurrentRow(0);dialog.repeat_count.setValue(2)
+        self.assertEqual(2,len(dialog.selected_keys))
+        self.assertTrue(dialog.buttons.button(QDialogButtonBox.StandardButton.Ok).isEnabled())
+        dialog.search.setText("Armored Armiger")
+        dialog.results.item(0).setCheckState(Qt.CheckState.Checked)
+        self.assertEqual(2,len(dialog.selected_keys))
+        dialog.search.setText("Custom Graft");dialog.results.setCurrentRow(0);dialog.repeat_count.setValue(1)
+        self.assertEqual(1,len(dialog.selected_keys))
+        self.assertFalse(dialog.buttons.button(QDialogButtonBox.StandardButton.Ok).isEnabled())
+        record=class_choice_selection_record(self.character,slot,dialog.selected_keys)
+        self.repository.save_class_feature_selection(record)
+        dialog.close();dialog.deleteLater()
+
     def test_choice_dependencies_disable_confirmation_until_satisfied(self) -> None:
         base = resolve_class_choice_slots(self.repository, self.character)[0]
         slot = replace(base, minimum=1, maximum=2, selected_keys=(), selected_options=(), options=(

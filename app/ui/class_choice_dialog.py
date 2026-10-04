@@ -20,6 +20,7 @@ from PySide6.QtWidgets import (
     QListWidgetItem,
     QTextBrowser,
     QVBoxLayout,
+    QSpinBox,
 )
 
 from app.class_choice_rules import (
@@ -34,6 +35,7 @@ class ClassChoiceDialog(QDialog):
         super().__init__(parent)
         self.slot = slot
         self._selected = set(slot.selected_keys)
+        self._counts={option.key:(slot.selected_keys.count(option.key) if option.repeatable else 1) for option in slot.options}
         self._updating = False
         self.setWindowTitle(f"{slot.class_name} — {slot.label}")
         if len(slot.options) > 12:
@@ -80,6 +82,8 @@ class ClassChoiceDialog(QDialog):
         layout.addLayout(body, 1)
 
         self.selection_status = QLabel()
+        self.repeat_count=QSpinBox();self.repeat_count.setPrefix("Selections: ");self.repeat_count.hide()
+        self.repeat_count.valueChanged.connect(self._repeat_changed);layout.addWidget(self.repeat_count)
         self.selection_status.setObjectName("mutedText")
         layout.addWidget(self.selection_status)
         self.buttons = QDialogButtonBox(
@@ -97,14 +101,14 @@ class ClassChoiceDialog(QDialog):
 
     @property
     def selected_keys(self) -> tuple[str, ...]:
-        ordered = [option.key for option in self.slot.options if option.key in self._selected]
+        ordered = [option.key for option in self.slot.options if option.key in self._selected for _ in range(max(1,self._counts.get(option.key,1)) if option.repeatable else 1)]
         return tuple(ordered[: self.slot.maximum])
 
     def _selected_cost(self, extra_key: str = "") -> int:
         keys = set(self._selected)
         if extra_key:
             keys.add(extra_key)
-        return sum(option.cost for option in self.slot.options if option.key in keys)
+        return sum(option.cost*(max(1,self._counts.get(option.key,1)) if option.repeatable else 1) for option in self.slot.options if option.key in keys)
 
     def _visible_options(self) -> tuple[ClassChoiceOption, ...]:
         query = self.search.text().strip().casefold()
@@ -158,7 +162,7 @@ class ClassChoiceDialog(QDialog):
             return
         key = str(item.data(Qt.ItemDataRole.UserRole) or "")
         if item.checkState() == Qt.CheckState.Checked:
-            exceeds_count = key not in self._selected and len(self._selected) >= self.slot.maximum
+            exceeds_count = key not in self._selected and len(self.selected_keys)+max(1,self._counts.get(key,1)) > self.slot.maximum
             exceeds_points = (
                 key not in self._selected
                 and bool(self.slot.point_budget)
@@ -173,8 +177,19 @@ class ClassChoiceDialog(QDialog):
         else:
             self._selected.discard(key)
         self._update_status()
+        self._show_details(self.results.currentItem())
+
+    def _repeat_changed(self,value):
+        item=self.results.currentItem()
+        if item is None:return
+        key=str(item.data(Qt.ItemDataRole.UserRole) or "")
+        self._counts[key]=value
+        if value:self._selected.add(key)
+        else:self._selected.discard(key)
+        self._populate()
 
     def _show_details(self, item: QListWidgetItem | None, _previous=None) -> None:
+        self.repeat_count.hide()
         if item is None:
             self.details.clear()
             return
@@ -183,6 +198,12 @@ class ClassChoiceDialog(QDialog):
         if option is None:
             self.details.clear()
             return
+        if option.repeatable:
+            current=self._counts.get(key,0) if key in self._selected else 0
+            available=self.slot.maximum-len(self.selected_keys)+current
+            if self.slot.point_budget:
+                available=min(available,(self.slot.point_budget-self._selected_cost()+current*option.cost)//option.cost)
+            self.repeat_count.blockSignals(True);self.repeat_count.setRange(0,max(0,available));self.repeat_count.setValue(current);self.repeat_count.blockSignals(False);self.repeat_count.show()
         source = html.escape(option.source)
         source_line = f"<p><i>{source}</i></p>" if source else ""
         link = (
@@ -205,7 +226,7 @@ class ClassChoiceDialog(QDialog):
         )
 
     def _update_status(self) -> None:
-        count = len(self._selected)
+        count = len(self.selected_keys)
         errors = class_choice_requirement_errors(self.slot, self._selected)
         if self.slot.minimum == self.slot.maximum:
             requirement = f"choose {self.slot.maximum}"

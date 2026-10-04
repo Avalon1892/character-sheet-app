@@ -38,6 +38,7 @@ class ClassChoiceOption:
     cost: int = 1
     minimum_level: int = 1
     required_options: tuple[str, ...] = ()
+    repeatable: bool = False
 
 
 @dataclass(frozen=True, slots=True)
@@ -271,6 +272,7 @@ def _runtime_choice_providers(
                     category=str(option.get("category") or ""),
                     minimum_level=max(1, int(option.get("minimum_level") or 1)),
                     cost=max(1, int(option.get("cost", 1) or 1)),
+                    repeatable=bool(option.get("repeatable",False)),
                     class_skills=tuple(
                         str(value)
                         for value in option.get("class_skills", ())
@@ -408,6 +410,7 @@ def _configured_providers(
                     class_skills=tuple(
                         str(value) for value in raw.get("class_skills", ()) if str(value)
                     ),
+                    repeatable=bool(raw.get("repeatable",False)),
                 )
                 for raw in declaration.get("fixed_options", ())
                 if isinstance(raw, Mapping)
@@ -565,11 +568,12 @@ def class_choice_feature_key(provider_key: str) -> str:
     return f"class-choice:{provider_key}"
 
 
-def encode_class_choice_option_keys(values: Iterable[str]) -> str:
-    return json.dumps(list(dict.fromkeys(str(value) for value in values if str(value))))
+def encode_class_choice_option_keys(values: Iterable[str], *, preserve_duplicates=False) -> str:
+    keys=[str(value) for value in values if str(value)]
+    return json.dumps(keys if preserve_duplicates else list(dict.fromkeys(keys)))
 
 
-def decode_class_choice_option_keys(value: str) -> tuple[str, ...]:
+def decode_class_choice_option_keys(value: str, *, preserve_duplicates=False) -> tuple[str, ...]:
     text = str(value or "").strip()
     if not text:
         return ()
@@ -578,7 +582,8 @@ def decode_class_choice_option_keys(value: str) -> tuple[str, ...]:
     except (TypeError, ValueError):
         return (text,)
     if isinstance(decoded, list):
-        return tuple(dict.fromkeys(str(item) for item in decoded if str(item)))
+        keys=tuple(str(item) for item in decoded if str(item))
+        return keys if preserve_duplicates else tuple(dict.fromkeys(keys))
     return (text,)
 
 
@@ -763,7 +768,7 @@ def resolve_class_choice_slots_for_class(
             options = list(
                 _filter_choice_options(options, option_filters[provider.key])
             )
-        selected_keys = decode_class_choice_option_keys(selection.option_key) if selection else ()
+        selected_keys = decode_class_choice_option_keys(selection.option_key,preserve_duplicates=True) if selection else ()
         if selection and selection.name:
             known_keys = {option.key for option in options}
             if not any(key in known_keys for key in selected_keys):
@@ -812,10 +817,12 @@ def resolve_class_choice_slots_for_class(
         option_map = {option.key: option for option in options}
         selected_candidates = tuple(
             option_map[key] for key in selected_keys if key in option_map
-        )[:maximum]
+        )
         selected_options_list: list[ClassChoiceOption] = []
         spent_points = 0
         for option in selected_candidates:
+            if option in selected_options_list and not option.repeatable:continue
+            if len(selected_options_list)>=maximum:break
             if provider.point_budget and spent_points + option.cost > provider.point_budget:
                 continue
             selected_options_list.append(option)
@@ -1055,7 +1062,12 @@ def class_choice_selection_record(
     slot: ResolvedClassChoice,
     selected_keys: Iterable[str],
 ) -> ClassFeatureSelection:
-    keys = tuple(dict.fromkeys(str(value) for value in selected_keys if str(value)))[: slot.maximum]
+    options = {option.key: option for option in slot.options}
+    keys_list=[]
+    for value in selected_keys:
+        key=str(value)
+        if key and (key not in keys_list or (key in options and options[key].repeatable)):keys_list.append(key)
+    keys=tuple(keys_list)[:slot.maximum]
     errors = class_choice_requirement_errors(slot, keys)
     if errors:
         raise ValueError("; ".join(errors))
@@ -1076,7 +1088,7 @@ def class_choice_selection_record(
         slot.class_level_id,
         slot.feature_key,
         "Class choice",
-        encode_class_choice_option_keys(option.key for option in selected),
+        encode_class_choice_option_keys((option.key for option in selected),preserve_duplicates=True),
         ", ".join(option.name for option in selected),
         "\n\n".join(
             f"{option.name}\n{option.description}" if option.description else option.name

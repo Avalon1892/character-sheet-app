@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "entries": [{
+    "key": "spheres-archetype:spheres-class:armiger:machinehead",
+    "source_url": "https://spheresofpower.wikidot.com/machinehead",
+    "system_features": ["new-prowesses"],
+    "choice_provider_overrides": [{"key":"armiger-prowesses","minimum":0,"maximum":0,"minimum_levels":[],"maximum_levels":[]}],
+    "choice_providers": [{
+      "key": "machinehead-prowesses",
+      "label": "Prowesses",
+      "feature_tokens": ["new-prowesses"],
+      "minimum": 0,
+      "maximum": 9,
+      "minimum_levels": [4,6,8,10,12,14,16,18,20],
+      "maximum_levels": [4,6,8,10,12,14,16,18,20],
+      "options_from_provider": "armiger-prowesses",
+      "description": "Choose a prowess at each even level from 4th onward; Basic Cybernetics replaces the 2nd-level prowess. Custom Graft may be selected repeatedly, using one prowess slot per selection.",
+      "fixed_options": [{
+        "key": "custom-graft",
+        "name": "Custom Graft",
+        "repeatable": true,
+        "description": "Each selection permits one self-installed augment graft from an augment talent you possess. It costs no gold, cannot be bought or sold, requires maintenance, uses normal Tech recharging instead of an internal battery, and does not count against prepared gadgets. Automatic custom-graft construction is not yet implemented."
+      }]
+    }]
+  }]
+}

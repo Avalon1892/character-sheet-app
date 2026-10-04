@@ -38,6 +38,25 @@ class ClassChoiceRulesTests(unittest.TestCase):
         self.assertIn("Fire Domain", names)
         self.assertIn("Ash Subdomain", names)
 
+    def test_machinehead_custom_graft_repeatability_uses_real_prowess_slots(self):
+        class_id=self.add_class("Armiger","spheres-class:armiger",6)
+        self.repository.set_class_archetype_keys(self.character,class_id,("spheres-archetype:spheres-class:armiger:machinehead",))
+        slot=next(s for s in resolve_class_choice_slots(self.repository,self.character) if s.key=="machinehead-prowesses")
+        self.assertTrue(all(s.maximum==0 for s in resolve_class_choice_slots(self.repository,self.character) if s.key=="armiger-prowesses"))
+        self.assertEqual(2,slot.maximum)
+        custom=next(o for o in slot.options if o.name=="Custom Graft")
+        self.assertTrue(custom.repeatable)
+        self.assertTrue(any(o.name=="Armored Armiger" for o in slot.options))
+        record=class_choice_selection_record(self.character,slot,(custom.key,custom.key,custom.key))
+        self.repository.save_class_feature_selection(record)
+        restored=next(s for s in resolve_class_choice_slots(self.repository,self.character) if s.key==slot.key)
+        self.assertEqual((custom.key,custom.key),restored.selected_keys)
+        ordinary=next(o for o in slot.options if o.name=="Armored Armiger")
+        record=class_choice_selection_record(self.character,slot,(ordinary.key,ordinary.key,custom.key))
+        self.repository.save_class_feature_selection(record)
+        restored=next(s for s in resolve_class_choice_slots(self.repository,self.character) if s.key==slot.key)
+        self.assertEqual(2,len(restored.selected_keys))
+
     def test_inquisitor_can_choose_domain_or_inquisition(self) -> None:
         self.add_class("Inquisitor", "pathfinder-class:inquisitor")
         slot = next(item for item in resolve_class_choice_slots(self.repository, self.character) if item.key == "inquisitor-domain")
