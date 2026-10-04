@@ -6,6 +6,7 @@ from PySide6.QtWidgets import (QDialog,QVBoxLayout,QHBoxLayout,QComboBox,QLabel,
     QSpinBox,QCheckBox,QTextBrowser,QSplitter,QWidget,QMessageBox,QInputDialog)
 from app.services.engineering import EngineeringService
 from app.services.character_calculations import CharacterCalculationService
+from app.engineering_rules import TECH_LOAD_BEARER_KEY
 from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY,DERMAL_PLATING_KEY,tech_augment_suppressed,tech_augment_installed,CLAMP_BOOTS_KEY,TECH_AUGMENT_SLOTS,TECH_ABILITY_AUGMENTS,clamp_boots_active
 from app.engineering_rules import occupied_limit,is_battery,TECH_BATTERY_KEY,tech_battery_capacity,device_condition,PHYSICAL_AUGMENTOR_KEY,AUGMENTOR_ABILITIES,JET_BOOSTERS_KEY,JET_MODES
 from app.content import martial_entry
@@ -402,6 +403,8 @@ class EngineeringDialog(QDialog):
                               if entry.get("key")==TACTILE_FIELD_KEY else
                               "Install and activate this routine to improve its host gizmo's saving throws. The live save column includes the highest active insight bonus; character saves are unchanged."
                               if entry.get("key")==RESISTANCE_ROUTINE_KEY else
+                              "Dedicated Body augment/graft occupancy, paid one-charge periods, live size-based carrying capacity, expiry and polymorph exceptions are automatic. The size increase is 1 category, 2 at 7 Craft ranks, and 3 at 14. Weapon wield-size integration, remote-control staggering, drone use and carrying sizes beyond Colossal still need implementation/rules verification. This does not physically resize the character or change existing weapon damage."
+                              if entry.get("key")==TECH_LOAD_BEARER_KEY else
                               "Wear in the dedicated Body augment slot, or surgically implant a crafted graft in its separate graft slot. Pay one charge for a timed period; graft durations are doubled and use stored item ranks. Natural armor enhancement, expiry, implantation limits and polymorph suppression are automatic. Bio augments retain effects; implanted grafts also retain effects when the current transformation preserves innate traits. Hasty donning remains pending."
                               if entry.get("key")==DERMAL_PLATING_KEY else
                               "Strength/Dexterity enhancement, dedicated augment/graft occupancy, charge payment, expiry and polymorph exceptions are automatic. The bonus is +2, increasing by +2 per 7 Craft ranks; enhancement bonuses do not stack. Grafts use their stored item ranks and double paid duration. Drone use, remote-control consequences and nonstandard anatomy remain pending."
@@ -414,7 +417,7 @@ class EngineeringDialog(QDialog):
     def preview_device(self):
         device=next((d for d in self.service().devices(self.system.currentText()) if d["id"]==self.selected()),None)
         tactile=bool(device and device["catalog_key"]==TACTILE_FIELD_KEY)
-        dermal=bool(device and device["catalog_key"] in {DERMAL_PLATING_KEY,*TECH_ABILITY_AUGMENTS})
+        dermal=bool(device and device["catalog_key"] in {DERMAL_PLATING_KEY,TECH_LOAD_BEARER_KEY,*TECH_ABILITY_AUGMENTS})
         self.dermal_activate.setVisible(dermal)
         if dermal:self.dermal_activate.setText("Power "+device["name"].partition(" (")[0]+" — 1 charge")
         boots=bool(device and device["catalog_key"]==CLAMP_BOOTS_KEY)

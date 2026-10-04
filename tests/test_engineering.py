@@ -48,6 +48,49 @@ class EngineeringTests(unittest.TestCase):
         imported=import_character(self.repo,path)
         self.assertEqual(profile,self.repo.engineering_implant_profile(imported))
 
+    def test_tech_load_bearer_paid_capacity_thresholds_suppression_and_expiry(self):
+        from app.engineering_rules import TECH_LOAD_BEARER_KEY,tech_load_bearer_steps
+        from app.services.character_calculations import CharacterCalculationService
+        from app.rules import carrying_capacity
+        self.add("Tech","Load Bearer",TECH_LOAD_BEARER_KEY)
+        device=self.service.create("Tech",TECH_LOAD_BEARER_KEY,2)
+        before=CharacterCalculationService(self.repo,self.cid).encumbrance().capacity
+        with self.assertRaises(ValueError):self.service.start_timed_augment(device)
+        self.service.apply_to_character(device,True);self.service.recharge();self.service.transfer_charges(device,1)
+        self.service.start_timed_augment(device)
+        record=next(d for d in self.service.devices("Tech") if d["id"]==device)
+        for ranks,steps in ((0,1),(6,1),(7,2),(13,2),(14,3),(21,3)):
+            self.assertEqual(steps,tech_load_bearer_steps(record,ranks))
+        boosted=CharacterCalculationService(self.repo,self.cid).encumbrance().capacity
+        self.assertEqual(before.heavy*2,boosted.heavy)
+        self.repo.add_equipment(self.cid,"Heavy cargo","Gear",1,150,False,0,"untyped",None,"",state="carried")
+        self.assertEqual("Heavy",CharacterCalculationService(self.repo,self.cid).encumbrance(30).load)
+        self.assertEqual(10,CharacterCalculationService(self.repo,self.cid).ability_result("strength").total)
+        self.assertEqual(carrying_capacity(10,"Medium"),carrying_capacity(10,"Small",size_steps=1))
+        self.assertEqual(carrying_capacity(10,"Small"),carrying_capacity(10,"Fine",size_steps=3))
+        self.service.set_polymorphed(True)
+        self.assertEqual(before,CharacterCalculationService(self.repo,self.cid).encumbrance().capacity)
+        self.assertEqual("Overloaded",CharacterCalculationService(self.repo,self.cid).encumbrance(30).load)
+        self.service.set_polymorphed(False)
+        self.service.advance_time(10)
+        self.assertEqual(before,CharacterCalculationService(self.repo,self.cid).encumbrance().capacity)
+
+    def test_tech_load_bearer_graft_snapshot_transfer_and_capacity_limit(self):
+        from app.engineering_rules import TECH_LOAD_BEARER_KEY
+        from app.services.character_calculations import CharacterCalculationService
+        self.add("Tech","Load Bearer",TECH_LOAD_BEARER_KEY)
+        self.repo.add_feat(self.cid,"Craft Appliances And Contraptions");self.repo.add_feat(self.cid,"Craft Augment Graft")
+        graft=self.service.record_completed_graft(TECH_LOAD_BEARER_KEY,"appliance",3,2,check_result=13,materials_paid=True,time_completed=True,gm_permission=True)
+        self.service.install_graft(graft,subject_willing_or_helpless=True,installation_completed=True)
+        self.service.start_timed_augment(graft)
+        self.repo.add_class_level(self.cid,"Conscript",10,"Full","Good","Poor","Poor",hit_die=10,hp_gained=20)
+        self.assertEqual(1,CharacterCalculationService(self.repo,self.cid).tech_load_bearer_size_steps())
+        path=Path(self.temp.name)/"load-graft.json";export_character(self.repo,self.cid,path)
+        imported=import_character(self.repo,path)
+        self.assertEqual(1,CharacterCalculationService(self.repo,imported).tech_load_bearer_size_steps())
+        self.repo.set_engineering_implant_profile(self.cid,cybertech_value=20)
+        self.assertEqual(0,CharacterCalculationService(self.repo,self.cid).tech_load_bearer_size_steps())
+
     def test_machinehead_custom_graft_allowance_charging_effects_and_transfer(self):
         from app.engineering_rules import DERMAL_PLATING_KEY,SYNAPTIC_MAXIMIZER_KEY
         from app.class_choice_rules import resolve_class_choice_slots,class_choice_selection_record

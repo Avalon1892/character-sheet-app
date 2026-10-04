@@ -411,7 +411,7 @@ def prodigy_inspired_sequence_bonus(level: int, links: int, active: bool) -> int
     return max(1, links // 2)
 
 
-def carrying_capacity(strength: int, size: str = "Medium") -> CarryingCapacity:
+def carrying_capacity(strength: int, size: str = "Medium", *, size_steps: int = 0) -> CarryingCapacity:
     """Return PF1e bipedal carrying thresholds for a Strength score and size."""
     if strength <= 0:
         return CarryingCapacity(0, 0, 0)
@@ -422,6 +422,10 @@ def carrying_capacity(strength: int, size: str = "Medium") -> CarryingCapacity:
         multiplier *= 4
     light, medium, heavy = _BASE_CARRYING_CAPACITY[base_strength]
     size_multiplier = SIZE_LOAD_MULTIPLIERS.get(size, 1)
+    if size_steps:
+        sizes=tuple(SIZE_LOAD_MULTIPLIERS)
+        index=(sizes.index(size) if size in sizes else sizes.index("Medium"))+max(0,int(size_steps))
+        size_multiplier=SIZE_LOAD_MULTIPLIERS[sizes[min(index,len(sizes)-1)]]
     return CarryingCapacity(
         light * multiplier * size_multiplier,
         medium * multiplier * size_multiplier,
@@ -434,6 +438,7 @@ def calculate_encumbrance(
     size: str,
     weight: float,
     base_speed: int,
+    *, size_steps: int = 0,
 ) -> Encumbrance:
     """Apply the PF1e encumbrance-by-weight table.
 
@@ -443,7 +448,7 @@ def calculate_encumbrance(
     which the creature cannot move the load.
     """
 
-    capacity = carrying_capacity(strength, size)
+    capacity = carrying_capacity(strength, size,size_steps=size_steps)
     weight = max(0.0, float(weight))
     load = capacity.load_for(weight)
     if load == "Light":

@@ -33,9 +33,10 @@ DERMAL_PLATING_KEY = "tech:gadget-talent:dermal-plating-augment-drone-gadget"
 CLAMP_BOOTS_KEY = "tech:gadget-talent:clamp-boots-augment-drone-gadget"
 EXO_MUSCLES_KEY = "tech:gadget-talent:exo-skeletal-muscles-augment-drone-gadget"
 SYNAPTIC_MAXIMIZER_KEY = "tech:gadget-talent:synaptic-reaction-maximizer-augment-drone-gadget"
+TECH_LOAD_BEARER_KEY = "tech:gadget-talent:load-bearer-augment-drone-gadget"
 TECH_ABILITY_AUGMENTS = {EXO_MUSCLES_KEY:"strength",SYNAPTIC_MAXIMIZER_KEY:"dexterity"}
-TECH_AUGMENT_SLOTS = {DERMAL_PLATING_KEY:"Body",CLAMP_BOOTS_KEY:"Legs",EXO_MUSCLES_KEY:"Body",SYNAPTIC_MAXIMIZER_KEY:"Brain"}
-TECH_TIMED_AUGMENT_MODES = {DERMAL_PLATING_KEY:"dermal",CLAMP_BOOTS_KEY:"climb",**TECH_ABILITY_AUGMENTS}
+TECH_AUGMENT_SLOTS = {DERMAL_PLATING_KEY:"Body",CLAMP_BOOTS_KEY:"Legs",EXO_MUSCLES_KEY:"Body",SYNAPTIC_MAXIMIZER_KEY:"Brain",TECH_LOAD_BEARER_KEY:"Body"}
+TECH_TIMED_AUGMENT_MODES = {DERMAL_PLATING_KEY:"dermal",CLAMP_BOOTS_KEY:"climb",TECH_LOAD_BEARER_KEY:"load_bearer",**TECH_ABILITY_AUGMENTS}
 
 
 def tech_minute_augment_rounds(ranks, *, energy_efficient=False, augment_talents=0):
@@ -116,6 +117,14 @@ def tech_ability_augment_bonus(device,ranks,*,polymorphed=False,retain_innate=Fa
         return None
     ranks=device["level"] if device.get("construction_kind") in {"graft_appliance","graft_contraption"} else ranks
     return ability,2+2*(max(0,int(ranks))//7)
+
+
+def tech_load_bearer_steps(device,ranks,*,polymorphed=False,retain_innate=False):
+    if (device["sphere"]!="Tech" or device["catalog_key"]!=TECH_LOAD_BEARER_KEY or device["state"]!="active"
+            or not tech_augment_installed(device,"Body") or device.get("effect_rounds",0)<=0 or device.get("function_mode")!="load_bearer"
+            or device_condition(device)["destroyed"] or tech_augment_suppressed(device,polymorphed,retain_innate=retain_innate)):return 0
+    ranks=device["level"] if device.get("construction_kind") in {"graft_appliance","graft_contraption"} else ranks
+    return min(3,1+max(0,int(ranks))//7)
 
 
 def resistance_routine_bonus(device,host):
