@@ -11,6 +11,35 @@ from app.content import martial_entry
 from app.ui.dialog_theme import dialog_stylesheet
 
 
+class GraftPlanningDialog(QDialog):
+    def __init__(self,service,key,parent=None):
+        super().__init__(parent)
+        self.setWindowTitle("Augment graft construction plan")
+        self.resize(620,430)
+        root=QVBoxLayout(self)
+        entry=martial_entry(key) or {}
+        title=QLabel(entry.get("name","Select an augment"));root.addWidget(title)
+        self.kind=QComboBox();self.kind.addItem("Appliance","appliance");self.kind.addItem("Contraption","contraption")
+        self.ranks=QSpinBox();self.ranks.setRange(1,999);self.ranks.setValue(3)
+        self.complexity=QSpinBox();self.complexity.setRange(1,999)
+        for label,widget in (("Construction",self.kind),("Item Craft ranks",self.ranks),("Complexity",self.complexity)):
+            row=QHBoxLayout();row.addWidget(QLabel(label));row.addWidget(widget);root.addLayout(row)
+        self.permission=QCheckBox("GM permits expanded technical-item crafting")
+        root.addWidget(self.permission)
+        self.result=QLabel();self.result.setWordWrap(True);root.addWidget(self.result,1)
+        note=QLabel("Planning only: no gold is spent, no graft is created or implanted. Prices exclude additional materials and supplied objects. Construction needs a suitable workspace; installation needs a willing or helpless subject. Drawbacks, allies/blueprints, anatomy and special device exceptions need review.")
+        note.setWordWrap(True);root.addWidget(note)
+        close=QPushButton("Close");close.clicked.connect(self.accept);root.addWidget(close)
+        def update(*_):
+            try:
+                quote=service.graft_plan(key,self.kind.currentData(),self.ranks.value(),self.complexity.value(),gm_permission=self.permission.isChecked())
+                self.result.setText(f"Materials: {quote['cost_gp']:,} gp · Base price: {quote['base_price_gp']:,} gp\nCraft DC {quote['craft_dc']} · {quote['hours']} working hours / {quote['days']} days\nStarts fully charged: {quote['charge_capacity']} charges\nDefault implantation: {quote['implantation_value']} · Hand installation: {quote['installation_hours']} hours\nCharged durations: ×{quote['charged_duration_multiplier']}\n"+("Other users require an activation check." if quote['activation_check_required_for_other_users'] else "No activation check required."))
+            except ValueError as error:self.result.setText(str(error))
+        self.kind.currentIndexChanged.connect(update);self.ranks.valueChanged.connect(update)
+        self.complexity.valueChanged.connect(update);self.permission.toggled.connect(update)
+        update()
+
+
 class EngineeringDialog(QDialog):
     def __init__(self,sheet):
         super().__init__(sheet)
@@ -61,6 +90,8 @@ class EngineeringDialog(QDialog):
         controls.addWidget(QLabel("Advanced increases"))
         self.advanced=QSpinBox();self.advanced.setRange(0,99);controls.addWidget(self.advanced)
         self.create=QPushButton("Craft device");controls.addWidget(self.create)
+        self.plan_graft=QPushButton("Plan augment graft");controls.addWidget(self.plan_graft)
+        self.plan_graft.clicked.connect(lambda:GraftPlanningDialog(self.service(),self.known.currentData(),self).exec())
         split=QSplitter();root.addWidget(split,1)
         left=QWidget();layout=QVBoxLayout(left);split.addWidget(left)
         self.table=QTableWidget(0,9)
@@ -263,6 +294,7 @@ class EngineeringDialog(QDialog):
         self.show_details(entry)
 
     def show_details(self,entry):
+        self.plan_graft.setEnabled(bool(self.system.currentText()=="Tech" and entry and "augment" in entry["name"].partition("(")[2].casefold()))
         self.details.setHtml("" if entry is None else "<h2>"+escape(entry["name"])+"</h2><p>"+
                              escape(entry.get("description","")).replace("\n","<br>")+"</p><p><b>"+
                              ("Selected-ability skill bonuses are automatic when active and worn. Ability checks and battery-use rerolls are currently resolved manually."

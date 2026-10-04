@@ -76,6 +76,27 @@ class EngineeringTests(unittest.TestCase):
             with self.assertRaises(ValueError):graft_implantation_status(12,8,**kwargs)
         with self.assertRaises(ValueError):graft_implantation_status("12",8)
 
+    def test_graft_construction_plan_cost_time_prerequisites_and_no_writes(self):
+        from app.engineering_rules import DERMAL_PLATING_KEY,tech_graft_quote
+        quote=tech_graft_quote("appliance",3)
+        self.assertEqual((1200,2400,13,20,3,1),tuple(quote[k] for k in ("cost_gp","base_price_gp","craft_dc","hours","days","charge_capacity")))
+        self.assertEqual(600,tech_graft_quote("contraption",3)["cost_gp"])
+        self.assertEqual(8,tech_graft_quote("contraption",1)["hours"])
+        with self.assertRaises(ValueError):tech_graft_quote("appliance",1,2)
+        self.assertEqual(800,tech_graft_quote("appliance",1,2,versatile_crafter=True)["cost_gp"])
+        for args in (("gizmo",3),("appliance",0),("contraption",True)):
+            with self.assertRaises(ValueError):tech_graft_quote(*args)
+        self.add("Tech","Dermal Plating",DERMAL_PLATING_KEY)
+        before=self.repo.list_engineering_devices(self.cid)
+        with self.assertRaises(ValueError):self.service.graft_plan(DERMAL_PLATING_KEY,"appliance",3)
+        with self.assertRaises(ValueError):self.service.graft_plan(DERMAL_PLATING_KEY,"appliance",3,gm_permission=True)
+        self.repo.add_feat(self.cid,"Craft Appliances And Contraptions")
+        self.repo.add_feat(self.cid,"Craft Augment Graft")
+        self.assertEqual(quote,self.service.graft_plan(DERMAL_PLATING_KEY,"appliance",3,gm_permission=True))
+        with self.assertRaises(ValueError):self.service.graft_plan(DERMAL_PLATING_KEY,"appliance",7,gm_permission=True)
+        with self.assertRaises(ValueError):self.service.graft_plan("tech:gadget-talent:camera-drone-gadget","appliance",3,gm_permission=True)
+        self.assertEqual(before,self.repo.list_engineering_devices(self.cid))
+
     def test_clamp_boots_paid_movement_clamping_polymorph_and_transfer(self):
         from app.engineering_rules import CLAMP_BOOTS_KEY
         from app.services.character_calculations import CharacterCalculationService
@@ -861,3 +882,29 @@ class EngineeringTests(unittest.TestCase):
         self.assertEqual([],refreshed)
         dialog.close();dialog.deleteLater();sheet.deleteLater()
         app.sendPostedEvents(None,QEvent.Type.DeferredDelete)
+
+    def test_graft_planner_themes_and_cancel_have_no_writes(self):
+        from PySide6.QtWidgets import QApplication,QWidget
+        from PySide6.QtCore import QEvent
+        from app.ui.engineering import EngineeringDialog,GraftPlanningDialog
+        from app.engineering_rules import DERMAL_PLATING_KEY
+        self.add("Tech","Dermal Plating",DERMAL_PLATING_KEY)
+        self.repo.add_feat(self.cid,"Craft Appliances And Contraptions")
+        self.repo.add_feat(self.cid,"Craft Augment Graft")
+        app=QApplication.instance() or QApplication([])
+        for theme in ("classic","dark"):
+            with self.subTest(theme=theme):
+                sheet=QWidget();sheet.repository=self.repo;sheet.character_id=self.cid;sheet.theme=theme
+                before=self.repo.sqlite_connection.total_changes
+                parent=EngineeringDialog(sheet)
+                planner=GraftPlanningDialog(self.service,DERMAL_PLATING_KEY,parent)
+                self.assertIn("GM permission",planner.result.text())
+                planner.permission.setChecked(True)
+                self.assertIn("1,200 gp",planner.result.text())
+                self.assertIn("20 working hours",planner.result.text())
+                planner.kind.setCurrentIndex(1)
+                self.assertIn("600 gp",planner.result.text())
+                planner.reject()
+                self.assertEqual(before,self.repo.sqlite_connection.total_changes)
+                planner.deleteLater();parent.deleteLater();sheet.deleteLater()
+                app.sendPostedEvents(None,QEvent.Type.DeferredDelete)

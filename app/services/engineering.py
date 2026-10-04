@@ -89,6 +89,28 @@ class EngineeringService:
         augments=sum("augment" in (martial_entry(t.catalog_key) or {}).get("name","").partition("(")[2].casefold() for t in records)
         return "tech:legendary-talent:bio-augment" in keys and augments>=3
 
+    def graft_plan(self,key,kind,ranks,complexity=1,*,gm_permission=False):
+        from app.services.crafting import CraftingService
+        from app.skill_rank_rules import effective_skill_ranks
+        from app.engineering_rules import tech_graft_quote
+        if not gm_permission:
+            raise ValueError("Expanded technical-item crafting requires GM permission.")
+        permanent=self.repository.list_martial_talents(self.character_id)
+        if not any(t.enabled and t.catalog_key=="tech:base" for t in permanent):
+            raise ValueError("Permanent Tech sphere training is required for this owned-talent planner.")
+        entry=martial_entry(key)
+        if not entry or "augment" not in entry["name"].partition("(")[2].casefold() or not any(t.enabled and t.catalog_key==key for t in permanent):
+            raise ValueError("Select a permanently learned augment talent.")
+        calculations=CharacterCalculationService(self.repository,self.character_id)
+        maximum=effective_skill_ranks(permanent,calculations.state.skills,calculations.state.character_level).get("craft",0)
+        if maximum<3 or type(ranks) is not int or ranks>maximum:
+            raise ValueError("Crafting requires 3 permanent Craft ranks; item ranks cannot exceed permanent ranks.")
+        feats=CraftingService(self.repository,self.character_id).feats
+        required={"craft appliances and contraptions","craft augment graft"}
+        if not required<=feats:
+            raise ValueError("Requires Craft Appliances And Contraptions and Craft Augment Graft.")
+        return tech_graft_quote(kind,ranks,complexity,versatile_crafter="versatile crafter" in feats)
+
     def create(self, sphere, key, modifier, *, minor=False, advanced=0,configuration="",bio_augment=False):
         if not self.available(sphere):
             raise ValueError("This character does not currently have that base sphere.")

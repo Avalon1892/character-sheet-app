@@ -61,6 +61,23 @@ def graft_implantation_status(constitution, intelligence, *, graft_values=(), cy
             "save_penalty":-4 if overloaded else 0}
 
 
+def tech_graft_quote(kind,ranks,complexity=1,*,versatile_crafter=False):
+    """Expanded Tech construction, distinct from free temporary gadgets."""
+    if kind not in {"appliance","contraption"}:
+        raise ValueError("Choose appliance or contraption construction.")
+    if any(type(value) is not int or not 1<=value<=999 for value in (ranks,complexity)):
+        raise ValueError("Craft ranks and complexity must be positive integers within supported bounds.")
+    if complexity>ranks and not versatile_crafter:
+        raise ValueError("Item Craft ranks must cover complexity unless Versatile Crafter applies.")
+    cost=(400 if kind=="appliance" else 200)*ranks*complexity
+    hours=max(8,4*ceil(2*cost/1000*2))
+    days=ceil(hours/8)
+    return {"cost_gp":cost,"base_price_gp":2*cost,"craft_dc":10+ranks,
+            "days":days,"hours":hours,"charge_capacity":max(1,ranks//2),
+            "implantation_value":2,"installation_hours":2,
+            "charged_duration_multiplier":2,"activation_check_required_for_other_users":kind=="contraption"}
+
+
 def tech_augment_suppressed(device,polymorphed):
     return bool(polymorphed and device["sphere"]=="Tech" and device.get("augment_slot")
                 and device.get("applied_to_character") and not device.get("bio_augment"))
