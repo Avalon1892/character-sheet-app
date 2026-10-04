@@ -157,6 +157,35 @@ class EngineeringTests(unittest.TestCase):
         self.service.remove_graft(graft,removal_completed=True,save_succeeded=True)
         self.assertEqual("",record()["graft_slot"])
 
+    def test_implanted_graft_power_snapshot_expiry_and_polymorph(self):
+        from app.engineering_rules import DERMAL_PLATING_KEY,CLAMP_BOOTS_KEY
+        from app.services.character_calculations import CharacterCalculationService
+        self.repo.add_feat(self.cid,"Craft Appliances And Contraptions")
+        self.repo.add_feat(self.cid,"Craft Augment Graft")
+        grafts=[]
+        for key in (DERMAL_PLATING_KEY,CLAMP_BOOTS_KEY):
+            self.add("Tech","Supported augment",key)
+            graft=self.service.record_completed_graft(key,"appliance",3,2,check_result=13,
+                materials_paid=True,time_completed=True,gm_permission=True)
+            self.service.install_graft(graft,subject_willing_or_helpless=True,installation_completed=True)
+            grafts.append(graft)
+        ac=lambda:CharacterCalculationService(self.repo,self.cid).combat_results()["ac"].total
+        before=ac()
+        self.service.start_dermal_plating(grafts[0])
+        self.assertEqual(before+2,ac())
+        self.service.start_timed_augment(grafts[1],CLAMP_BOOTS_KEY)
+        records=lambda:self.service.devices("Tech")
+        self.assertTrue(all(d["effect_rounds"]==20 and not d["applied_to_character"] and d["charges"]==0 for d in records()))
+        self.service.set_boots_clamped(grafts[1],True)
+        self.assertEqual(1,self.service.clamp_boots_resistance(grafts[1]))
+        self.service.set_polymorphed(True);self.assertEqual(before,ac())
+        with self.assertRaises(ValueError):self.service.set_boots_clamped(grafts[1],False)
+        self.service.set_polymorphed(False);self.assertEqual(before+2,ac())
+        self.service.advance_time(19);self.assertEqual(before+2,ac())
+        self.service.advance_time(1);self.assertEqual(before,ac())
+        self.assertTrue(all(d["graft_slot"] and d["effect_rounds"]==0 for d in records()))
+        with self.assertRaises(ValueError):self.repo.spend_tech_device_charges(self.cid,grafts[0],1,function_mode="dermal",dermal_rounds=10)
+
     def test_clamp_boots_paid_movement_clamping_polymorph_and_transfer(self):
         from app.engineering_rules import CLAMP_BOOTS_KEY
         from app.services.character_calculations import CharacterCalculationService
@@ -972,7 +1001,7 @@ class EngineeringTests(unittest.TestCase):
 
     def test_graft_completion_ui_confirmation_and_single_refresh(self):
         from unittest.mock import patch
-        from PySide6.QtWidgets import QApplication,QWidget,QMessageBox
+        from PySide6.QtWidgets import QApplication,QWidget,QMessageBox,QInputDialog
         from PySide6.QtCore import QEvent
         from app.ui.engineering import EngineeringDialog,GraftPlanningDialog
         from app.engineering_rules import DERMAL_PLATING_KEY
@@ -1002,4 +1031,16 @@ class EngineeringTests(unittest.TestCase):
         with patch.object(QMessageBox,"question",return_value=QMessageBox.StandardButton.Yes):parent.graft_recharge.click()
         self.assertEqual(1,self.repo.list_engineering_devices(self.cid)[0]["charges"])
         self.assertEqual([True,True],refreshed)
+        parent.table.selectRow(0)
+        self.assertTrue(parent.graft_install.isEnabled(),parent.status.text())
+        with patch.object(QInputDialog,"getInt",return_value=(0,True)),patch.object(QMessageBox,"question",return_value=QMessageBox.StandardButton.No):parent.graft_install.click()
+        self.assertEqual("",self.repo.list_engineering_devices(self.cid)[0]["graft_slot"])
+        with patch.object(QInputDialog,"getInt",return_value=(0,True)),patch.object(QMessageBox,"question",return_value=QMessageBox.StandardButton.Yes):parent.graft_install.click()
+        self.assertEqual("Body",self.repo.list_engineering_devices(self.cid)[0]["graft_slot"],parent.status.text())
+        parent.table.selectRow(0);self.assertTrue(parent.graft_remove.isEnabled())
+        with patch.object(QMessageBox,"question",return_value=QMessageBox.StandardButton.Yes),patch.object(QInputDialog,"getItem",return_value=("Failed",False)):parent.graft_remove.click()
+        self.assertEqual("Body",self.repo.list_engineering_devices(self.cid)[0]["graft_slot"])
+        with patch.object(QMessageBox,"question",return_value=QMessageBox.StandardButton.Yes),patch.object(QInputDialog,"getItem",return_value=("Passed",True)):parent.graft_remove.click()
+        self.assertEqual("",self.repo.list_engineering_devices(self.cid)[0]["graft_slot"])
+        self.assertEqual([True]*4,refreshed)
         planner.deleteLater();parent.deleteLater();sheet.deleteLater();app.sendPostedEvents(None,QEvent.Type.DeferredDelete)

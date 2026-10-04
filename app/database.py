@@ -3233,7 +3233,7 @@ class CharacterRepository:
         amount=int(amount)
         if amount<=0:
             raise ValueError("Charge cost must be positive.")
-        if dermal_rounds not in (10,50,100,300):
+        if dermal_rounds not in (10,20,50,100,200,300,600):
             raise ValueError("Invalid powered augment duration.")
         with self._connection:
             host=self._connection.execute(
@@ -3242,7 +3242,10 @@ class CharacterRepository:
             if host is None or device_condition(dict(host))["destroyed"]:
                 raise ValueError("Select a functioning Tech device.")
             dermal=(function_mode=="dermal" and host["catalog_key"]==DERMAL_PLATING_KEY) or (function_mode=="climb" and host["catalog_key"]==CLAMP_BOOTS_KEY)
-            if dermal and (amount!=1 or not host["applied_to_character"] or host["augment_slot"]!=TECH_AUGMENT_SLOTS[host["catalog_key"]] or host["effect_rounds"]>0):
+            installed=host["graft_slot"]==TECH_AUGMENT_SLOTS.get(host["catalog_key"]) or (host["applied_to_character"] and host["augment_slot"]==TECH_AUGMENT_SLOTS.get(host["catalog_key"]))
+            if dermal and dermal_rounds not in ((20,100,200,600) if host["construction_kind"] else (10,50,100,300)):
+                raise ValueError("Powered duration does not match this device's construction type.")
+            if dermal and (amount!=1 or not installed or host["effect_rounds"]>0):
                 raise ValueError("Install the augment before activating a fresh powered period.")
             if function_mode is not None and not dermal and (host["catalog_key"]!=JET_BOOSTERS_KEY
                     or function_mode not in JET_MODES or host["configuration"] not in {"flight","aquatic"}
@@ -3266,7 +3269,7 @@ class CharacterRepository:
                 self._connection.execute("UPDATE engineering_devices SET charges=charges-? WHERE id=?",(battery_spent,battery["id"]))
             self._connection.execute("UPDATE engineering_devices SET charges=charges-? WHERE id=?",(amount-battery_spent,device_id))
             if function_mode is not None:
-                self._connection.execute("UPDATE engineering_devices SET state='active',applied_to_character=1,function_mode=?,effect_rounds=?,worn_slot=? WHERE id=?",
+                self._connection.execute("UPDATE engineering_devices SET state='active',applied_to_character=CASE WHEN graft_slot='' THEN 1 ELSE 0 END,function_mode=?,effect_rounds=?,worn_slot=? WHERE id=?",
                     (function_mode,dermal_rounds if dermal else JET_MODES[function_mode][1],host["worn_slot"] if dermal else worn_slot,device_id))
             self._touch_character(character_id)
 

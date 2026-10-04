@@ -78,26 +78,29 @@ def tech_graft_quote(kind,ranks,complexity=1,*,versatile_crafter=False):
             "charged_duration_multiplier":2,"activation_check_required_for_other_users":kind=="contraption"}
 
 
+def tech_augment_installed(device,slot):
+    return bool(device.get("graft_slot")==slot or (device.get("applied_to_character") and device.get("augment_slot")==slot))
+
+
 def tech_augment_suppressed(device,polymorphed):
-    return bool(polymorphed and device["sphere"]=="Tech" and device.get("augment_slot")
-                and device.get("applied_to_character") and not device.get("bio_augment"))
+    return bool(polymorphed and device["sphere"]=="Tech"
+                and (device.get("graft_slot") or (device.get("augment_slot") and device.get("applied_to_character")))
+                and not device.get("bio_augment"))
 
 
 def clamp_boots_active(device, *, polymorphed=False):
     return bool(device["sphere"]=="Tech" and device["catalog_key"]==CLAMP_BOOTS_KEY
-        and device["state"]=="active" and device.get("applied_to_character")
-        and device.get("augment_slot")=="Legs" and device.get("effect_rounds",0)>0
+        and device["state"]=="active" and tech_augment_installed(device,"Legs") and device.get("effect_rounds",0)>0
         and device.get("function_mode") in {"climb","clamped"}
         and not device_condition(device)["destroyed"] and not tech_augment_suppressed(device,polymorphed))
 
 
 def dermal_plating_bonus(device,ranks,*,polymorphed=False):
     if (device["sphere"]!="Tech" or device["catalog_key"]!=DERMAL_PLATING_KEY
-            or device["state"]!="active" or not device.get("applied_to_character")
-            or device.get("augment_slot")!="Body" or device.get("effect_rounds",0)<=0
+            or device["state"]!="active" or not tech_augment_installed(device,"Body") or device.get("effect_rounds",0)<=0
             or device_condition(device)["destroyed"] or tech_augment_suppressed(device,polymorphed)):
         return 0
-    return 2+max(0,int(ranks))//5
+    return 2+max(0,int(device["level"] if device.get("construction_kind") else ranks))//5
 
 
 def resistance_routine_bonus(device,host):

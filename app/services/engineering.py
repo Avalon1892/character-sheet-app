@@ -131,7 +131,7 @@ class EngineeringService:
     def recharge_graft(self,device_id,*,recharge_completed=False):
         device=next((d for d in self.devices("Tech") if d["id"]==device_id),None)
         if recharge_completed is not True or not device or not device["construction_kind"] or device["state"]=="abandoned" or device_condition(device)["destroyed"]:
-            raise ValueError("Select a functioning graft and confirm its 15/30-minute recharge was completed.")
+            raise ValueError("Select a functioning graft and confirm its 15-minute recharge was completed.")
         self.repository.save_engineering_device(self.character_id,{**device,"charges":max(1,device["level"]//2)},device_id)
 
     def install_graft(self,device_id,*,subject_willing_or_helpless=False,installation_completed=False,cybertech_value=0):
@@ -214,14 +214,15 @@ class EngineeringService:
         self.start_timed_augment(device_id,DERMAL_PLATING_KEY)
 
     def start_timed_augment(self,device_id,key):
-        if not self.available("Tech"):
-            raise ValueError("The Tech sphere is required.")
         device=next((d for d in self.devices("Tech") if d["id"]==device_id),None)
         if key not in TECH_AUGMENT_SLOTS or not device or device["catalog_key"]!=key:
             raise ValueError("Select your supported timed augment.")
-        ranks=CharacterCalculationService(self.repository,self.character_id).effective_skill_ranks().get("craft",0)
+        if not device["construction_kind"] and not self.available("Tech"):
+            raise ValueError("The Tech sphere is required for temporary gadgets.")
+        ranks=device["level"] if device["construction_kind"] else CharacterCalculationService(self.repository,self.character_id).effective_skill_ranks().get("craft",0)
         duration=tech_minute_augment_rounds(ranks,
             energy_efficient=bool(device["energy_efficient"]),augment_talents=2)
+        if device["construction_kind"]:duration*=2
         self.repository.spend_tech_device_charges(self.character_id,device_id,1,function_mode="dermal" if key==DERMAL_PLATING_KEY else "climb",dermal_rounds=duration)
 
     def set_boots_clamped(self,device_id,clamped):
@@ -234,7 +235,7 @@ class EngineeringService:
         device=next((d for d in self.devices("Tech") if d["id"]==device_id),None)
         if not device or device["function_mode"]!="clamped" or not clamp_boots_active(device,polymorphed=self.repository.engineering_polymorphed(self.character_id)):
             return 0
-        ranks=CharacterCalculationService(self.repository,self.character_id).effective_skill_ranks().get("craft",0)
+        ranks=device["level"] if device["construction_kind"] else CharacterCalculationService(self.repository,self.character_id).effective_skill_ranks().get("craft",0)
         return max(1,ranks//2)
 
     def stop_function(self,device_id,*,unequip=False):

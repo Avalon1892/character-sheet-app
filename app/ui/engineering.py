@@ -5,7 +5,7 @@ from PySide6.QtWidgets import (QDialog,QVBoxLayout,QHBoxLayout,QComboBox,QLabel,
     QPushButton,QTableWidget,QTableWidgetItem,QHeaderView,QAbstractItemView,
     QSpinBox,QCheckBox,QTextBrowser,QSplitter,QWidget,QMessageBox,QInputDialog)
 from app.services.engineering import EngineeringService
-from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY,DERMAL_PLATING_KEY,tech_augment_suppressed,CLAMP_BOOTS_KEY,TECH_AUGMENT_SLOTS,clamp_boots_active
+from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY,DERMAL_PLATING_KEY,tech_augment_suppressed,tech_augment_installed,CLAMP_BOOTS_KEY,TECH_AUGMENT_SLOTS,clamp_boots_active
 from app.engineering_rules import occupied_limit,is_battery,TECH_BATTERY_KEY,tech_battery_capacity,device_condition,PHYSICAL_AUGMENTOR_KEY,AUGMENTOR_ABILITIES,JET_BOOSTERS_KEY,JET_MODES
 from app.content import martial_entry
 from app.ui.dialog_theme import dialog_stylesheet
@@ -27,7 +27,7 @@ class GraftPlanningDialog(QDialog):
         self.permission=QCheckBox("GM permits expanded technical-item crafting")
         root.addWidget(self.permission)
         self.result=QLabel();self.result.setWordWrap(True);root.addWidget(self.result,1)
-        note=QLabel("Recording does not deduct gold or advance time: confirm those separately. Only single-talent Dermal Plating and Clamp Boots grafts can currently be recorded. Implantation is not yet available. Prices exclude supplied objects; workspace, drawbacks and special device exceptions require review.")
+        note=QLabel("Recording does not deduct gold or advance time: confirm those separately. Only single-talent Dermal Plating and Clamp Boots grafts can currently be recorded and implanted through the workbench. Prices exclude supplied objects; workspace, drawbacks and special device exceptions require review.")
         note.setWordWrap(True);root.addWidget(note)
         self.materials_paid=QCheckBox("Materials already paid")
         self.time_completed=QCheckBox("Construction time already completed")
@@ -186,6 +186,10 @@ class EngineeringDialog(QDialog):
         self.damage_button=QPushButton("Damage selected");health.addWidget(self.damage_button)
         self.repair_button=QPushButton("Repair selected (1 minute)");health.addWidget(self.repair_button)
         self.applied=QCheckBox("Worn / used by this character");health.addWidget(self.applied)
+        self.graft_install=QPushButton("Implant graft");health.addWidget(self.graft_install)
+        self.graft_remove=QPushButton("Remove graft");health.addWidget(self.graft_remove)
+        self.graft_install.clicked.connect(self.install_graft)
+        self.graft_remove.clicked.connect(self.remove_graft)
         self.applied.clicked.connect(lambda checked:self.perform(lambda:self.service().apply_to_character(self.selected(),checked)))
         health.addStretch()
         self.damage_button.clicked.connect(lambda:self.perform(lambda:self.service().damage_device(self.selected(),self.damage_amount.value(),apply_hardness=self.hardness.isChecked())))
@@ -228,9 +232,20 @@ class EngineeringDialog(QDialog):
         return EngineeringService(self.sheet.repository,self.sheet.character_id,self.skill.currentData())
 
     def recharge_graft(self):
-        minutes=15 if self.kit.isChecked() else 30
-        if QMessageBox.question(self,"Recharge graft",f"Confirm that the selected graft's {minutes}-minute recharge has been completed? This restores its own charges, not the Tech pool.")!=QMessageBox.StandardButton.Yes:return
+        if QMessageBox.question(self,"Recharge graft","Confirm that the selected graft's 15-minute recharge has been completed? Appliances and contraptions recharge as though an engineering kit were available. This restores their own charges, not the Tech pool.")!=QMessageBox.StandardButton.Yes:return
         self.perform(lambda:self.service().recharge_graft(self.selected(),recharge_completed=True))
+
+    def install_graft(self):
+        cybertech,accepted=QInputDialog.getInt(self,"Shared implantation limit","Existing cybertech implantation value (not grafts):",0,0,99999)
+        if not accepted:return
+        if QMessageBox.question(self,"Implant graft","Confirm two hours of hand installation have been completed and the subject remained willing or helpless throughout? No Heal check or Constitution damage applies. Current over-limit implantation is not yet supported.")!=QMessageBox.StandardButton.Yes:return
+        self.perform(lambda:self.service().install_graft(self.selected(),subject_willing_or_helpless=True,installation_completed=True,cybertech_value=cybertech))
+
+    def remove_graft(self):
+        if QMessageBox.question(self,"Remove graft","Confirm surgical removal is completed? A Fortitude save must be resolved externally; the Tech rule does not specify its DC. Failure causes fatigue, exhaustion if already fatigued, or unconsciousness if already exhausted.")!=QMessageBox.StandardButton.Yes:return
+        result,accepted=QInputDialog.getItem(self,"Removal Fortitude save","Resolved save outcome:",("Passed","Failed"),0,False)
+        if not accepted:return
+        self.perform(lambda:self.service().remove_graft(self.selected(),removal_completed=True,save_succeeded=result=="Passed"))
 
     def update_practitioner_modifier(self,*_):
         ability=self.practitioner_ability.currentData()
@@ -272,6 +287,7 @@ class EngineeringDialog(QDialog):
             if device["bio_augment"]:name+=" · Bio"
             if device["energy_efficient"]:name+=" · Energy efficient"
             if device["construction_kind"]:name+=" · "+device["construction_kind"].replace("_"," ").title()
+            if device["graft_slot"]:name+=" · Implanted: "+device["graft_slot"]
             values=(name,level,status,f"{condition['current_hp']}/{condition['maximum_hp']}",stats["hardness"],stats["save"],stats["dc"],energy,f"{device['effect_rounds']} rounds" if device["effect_rounds"] else "—")
             for column,value in enumerate(values):
                 item=QTableWidgetItem(str(value));item.setData(Qt.ItemDataRole.UserRole,device["id"])
@@ -289,6 +305,7 @@ class EngineeringDialog(QDialog):
         self.damage_button.setEnabled(False);self.repair_button.setEnabled(False)
         self.applied.setEnabled(False);self.applied.setChecked(False)
         self.graft_recharge.setEnabled(False)
+        self.graft_install.setEnabled(False);self.graft_remove.setEnabled(False)
         for button in (*self.jet_buttons,self.stop,self.unequip_jet):button.setEnabled(False)
         has_jets=any(e["key"]==JET_BOOSTERS_KEY for e in service.known_devices(sphere))
         for control in (*self.jet_buttons,self.stop,self.unequip_jet,self.jet_slot):control.setVisible(has_jets)
@@ -299,6 +316,7 @@ class EngineeringDialog(QDialog):
         for button in self.device_charge_controls:button.setEnabled(False)
         self.recharge.setText(f"Recharge (+{limits.recharge_amount}, {minutes} min)")
         self.preview_known()
+        if self.selected() is not None:self.preview_device()
 
     def selected(self):
         row=self.table.currentRow()
@@ -331,9 +349,9 @@ class EngineeringDialog(QDialog):
                               if entry.get("key")==TACTILE_FIELD_KEY else
                               "Install and activate this routine to improve its host gizmo's saving throws. The live save column includes the highest active insight bonus; character saves are unchanged."
                               if entry.get("key")==RESISTANCE_ROUTINE_KEY else
-                              "Install in the dedicated Body augment slot (separate from magic-item slots), then pay one charge for a timed period. Energy Efficient Augments extends the base one-minute duration when qualified. Natural armor enhancement, expiry and ordinary polymorph suppression are automatic; crafted bio augments retain their effects. Donning/removal follows leather armor; hasty donning and graft installation are not yet automated."
+                              "Wear in the dedicated Body augment slot, or surgically implant a crafted graft in its separate graft slot. Pay one charge for a timed period; graft durations are doubled and use stored item ranks. Natural armor enhancement, expiry and polymorph suppression are automatic; crafted bio augments retain their effects. Hasty donning, overload and innate-trait-retaining transformations remain pending."
                               if entry.get("key")==DERMAL_PLATING_KEY else
-                              "Dedicated Legs slot, paid climb movement, clamp/unclamp, expiry and polymorph suppression are automatic. Climbing walls or ceilings does not require free hands or Climb checks. The clamp resistance tooltip applies only against forced movement. Extendo-limb composition, remote control, grafts and nonstandard anatomy remain pending."
+                              "Dedicated Legs augment or graft slot, paid climb movement, clamp/unclamp, expiry and polymorph suppression are automatic. Grafts double paid duration and retain their item rank. Climbing walls or ceilings requires neither hands nor Climb checks. Clamp resistance applies only against forced movement. Composition, remote control, overload and nonstandard anatomy remain pending."
                               if entry.get("key")==CLAMP_BOOTS_KEY else
                               "Flight/swim speed, maneuverability, charge costs and paid durations are automatic. Flight slow burn is limited to 3 feet above the surface; height and hover/exhaust effects require manual resolution."
                               if entry.get("key")==JET_BOOSTERS_KEY else "Device-specific effects are reference-only in this batch.")+"</b></p>")
@@ -346,12 +364,12 @@ class EngineeringDialog(QDialog):
         boots=bool(device and device["catalog_key"]==CLAMP_BOOTS_KEY)
         for button in (self.boots_activate,self.boots_clamp,self.boots_unclamp):button.setVisible(boots)
         powered=bool(boots and clamp_boots_active(device,polymorphed=self.polymorphed.isChecked()))
-        self.boots_activate.setEnabled(bool(boots and device["applied_to_character"] and device["state"] not in {"abandoned","depleted"} and device["effect_rounds"]==0 and not device_condition(device)["destroyed"]))
+        self.boots_activate.setEnabled(bool(boots and tech_augment_installed(device,"Legs") and device["state"] not in {"abandoned","depleted"} and device["effect_rounds"]==0 and not device_condition(device)["destroyed"]))
         self.boots_clamp.setEnabled(powered and device["function_mode"]!="clamped")
         self.boots_unclamp.setEnabled(powered and device["function_mode"]=="clamped")
         bonus=self.service().clamp_boots_resistance(device["id"]) if boots else 0
         self.boots_unclamp.setToolTip(f"While clamped: +{bonus} circumstance bonus to CMD and saves only against forced movement. This is not a bonus to all CMD checks or saves.")
-        self.dermal_activate.setEnabled(bool(dermal and device["applied_to_character"] and device["state"] not in {"abandoned","depleted"} and device["effect_rounds"]==0 and not device_condition(device)["destroyed"]))
+        self.dermal_activate.setEnabled(bool(dermal and tech_augment_installed(device,"Body") and device["state"] not in {"abandoned","depleted"} and device["effect_rounds"]==0 and not device_condition(device)["destroyed"]))
         routine=bool(device and device["catalog_key"]==RESISTANCE_ROUTINE_KEY)
         self.install_routine.setVisible(routine);self.remove_routine.setVisible(routine)
         self.install_routine.setEnabled(bool(routine and device["state"]!="abandoned"))
@@ -369,6 +387,8 @@ class EngineeringDialog(QDialog):
         self.repair_button.setEnabled(bool(device and device["state"]!="abandoned" and device["damage"] and self.kit.isChecked()))
         self.applied.setEnabled(bool(device and not device["construction_kind"] and device["catalog_key"] in {*AUGMENTOR_ABILITIES,TACTILE_FIELD_KEY,*TECH_AUGMENT_SLOTS} and device["state"]!="abandoned"))
         self.graft_recharge.setEnabled(bool(device and device["construction_kind"] and device["state"]!="abandoned" and not device_condition(device)["destroyed"]))
+        self.graft_install.setEnabled(bool(device and device["construction_kind"] and not device["graft_slot"] and device["state"]!="abandoned" and not device_condition(device)["destroyed"]))
+        self.graft_remove.setEnabled(bool(device and device["graft_slot"]))
         self.applied.setChecked(bool(device and device["applied_to_character"]))
         jet=bool(device and device["catalog_key"]==JET_BOOSTERS_KEY and device["state"]!="abandoned" and not device_condition(device)["destroyed"])
         for button in self.jet_buttons:button.setEnabled(jet and device["effect_rounds"]==0)
