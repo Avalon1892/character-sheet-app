@@ -6,9 +6,11 @@ Energy Efficient Augments follow-up validation: 74 focused engineering, database
 
 Graft-capacity foundation validation: 41 engineering tests and 2 theme subtests passed, including shared cybertech usage, exact-limit/over-limit cases, missing ability scores and invalid values. No claim of a usable graft installation workflow is made yet.
 
+Creation-specific efficiency validation: 70 engineering, database and transfer tests and 2 theme subtests passed. The regression checks distinguish ordinary devices created before training from efficient devices, preserve constructed efficiency after training is disabled, and preserve the construction flag on export/import.
+
 ## Implemented in this batch
 
-- Energy Efficient Augments now extends paid Dermal Plating periods to 5/10/30 minutes at 5/10/15 live Craft ranks, requiring enabled training and two augment talents. The paid period is stored at activation and is not retroactively resized. Other minute-per-charge augment functions must use the same shared duration helper when implemented; creation-time persistence of efficiency training remains to be verified against the rules.
+- Energy Efficient Augments records qualifying construction on each newly created Tech augment, requiring enabled training, at least 5 creation ranks and two augment talents. Paid Dermal Plating periods scale to 5/10/30 minutes at 5/10/15 live Craft ranks. Learning the talent later does not retrofit old devices; losing training does not erase constructed efficiency. Older saves default to ordinary construction, transfer preserves the flag, and the roster labels efficient devices. Paid periods are stored at activation and not retroactively resized. Other minute-per-charge augment functions must use the same shared duration helper when implemented.
 
 - Conditional Engineering Workbench on the Crafting page for characters with an active Tech or Tinker base sphere.
 - Character-owned, persistent device roster with stable catalog provenance.
@@ -236,7 +238,7 @@ Every entry remains available through existing catalogs/Codex. “Roster” mean
 | Tech | Compactor (accessory, gadget) | Legendary Talent | Roster; device-specific effects not automated |
 | Tech | Computer (gadget) | Legendary Talent | Roster; device-specific effects not automated |
 | Tech | Drawback Alleviator (gadget) | Legendary Talent | Roster; device-specific effects not automated |
-| Tech | Energy Efficient Augments | Legendary Talent | Shared duration thresholds and Dermal Plating activation automated; remaining augment functions and creation-time training semantics pending |
+| Tech | Energy Efficient Augments | Legendary Talent | Creation-specific persistence, shared duration thresholds and Dermal Plating activation automated; remaining augment functions pending |
 | Tech | Extreme Distance Communication (gadget) | Legendary Talent | Roster; device-specific effects not automated |
 | Tech | Generator (drone, gadget) | Legendary Talent | Roster; device-specific effects not automated |
 | Tech | Hammerspace Augment | Legendary Talent | Reference / existing selection only |

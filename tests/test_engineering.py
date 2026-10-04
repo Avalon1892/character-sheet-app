@@ -38,9 +38,14 @@ class EngineeringTests(unittest.TestCase):
             self.assertEqual(10,tech_minute_augment_rounds(ranks,augment_talents=2))
             self.assertEqual(10,tech_minute_augment_rounds(ranks,energy_efficient=True,augment_talents=1))
         self.add("Tech","Dermal Plating",DERMAL_PLATING_KEY)
+        ordinary=self.service.create("Tech",DERMAL_PLATING_KEY,3)
         self.add("Tech","Energy Efficient Augments","tech:legendary-talent:energy-efficient-augments","Legendary Talent")
         self.add("Tech","Clamp Boots","tech:gadget-talent:clamp-boots-augment-drone-gadget")
         host=self.service.create("Tech",DERMAL_PLATING_KEY,3)
+        self.assertFalse(next(d for d in self.service.devices("Tech") if d["id"]==ordinary)["energy_efficient"])
+        self.assertTrue(next(d for d in self.service.devices("Tech") if d["id"]==host)["energy_efficient"])
+        training=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tech:legendary-talent:energy-efficient-augments")
+        self.repo.set_martial_talent_enabled(self.cid,training.id,False)
         self.service.apply_to_character(host,True)
         self.service.recharge();self.service.transfer_charges(host,1)
         self.service.start_dermal_plating(host)
@@ -53,6 +58,10 @@ class EngineeringTests(unittest.TestCase):
         self.assertEqual("inactive",record()["state"])
         with self.assertRaises(ValueError):
             self.repo.spend_tech_device_charges(self.cid,host,1,function_mode="dermal",dermal_rounds=999)
+        path=Path(self.temp.name)/"efficient.json"
+        export_character(self.repo,self.cid,path)
+        imported=import_character(self.repo,path)
+        self.assertEqual(1,sum(d["energy_efficient"] for d in self.repo.list_engineering_devices(imported)))
 
     def test_graft_implantation_shared_capacity_and_absent_scores(self):
         from app.engineering_rules import graft_implantation_status

@@ -108,10 +108,14 @@ class EngineeringService:
         ranks = CharacterCalculationService(self.repository,self.character_id).effective_skill_ranks().get(self.skill_key,0)
         if sphere=="Tinker" and ranks<1:
             raise ValueError("A gizmo requires at least one rank in its associated skill.")
+        tech_records=self.records("Tech") if sphere=="Tech" else ()
+        efficient=sphere=="Tech" and "augment" in entry["name"].partition("(")[2].casefold() and tech_minute_augment_rounds(ranks,
+            energy_efficient=any(t.catalog_key=="tech:legendary-talent:energy-efficient-augments" for t in tech_records),
+            augment_talents=sum("augment" in (martial_entry(t.catalog_key) or {}).get("name","").partition("(")[2].casefold() for t in tech_records))>10
         record = dict(sphere=sphere,catalog_key=key,name=entry["name"],level=ranks,modifier=modifier,
                       state="active" if key in {"tinker:battery",TECH_BATTERY_KEY} else "inactive",
                       charges=tech_battery_capacity(modifier) if key==TECH_BATTERY_KEY else 0,
-                      minor=minor,advanced=advanced,configuration=configuration,bio_augment=bio_augment)
+                      minor=minor,advanced=advanced,configuration=configuration,bio_augment=bio_augment,energy_efficient=efficient)
         if occupied_limit((*self.devices(sphere),record),self.limits(sphere)) > self.limits(sphere).device_limit:
             raise ValueError("Device limit exceeded. Abandon an existing device first.")
         return self.repository.save_engineering_device(self.character_id,record)
@@ -144,11 +148,12 @@ class EngineeringService:
     def start_dermal_plating(self,device_id):
         if not self.available("Tech"):
             raise ValueError("The Tech sphere is required.")
-        records=self.records("Tech")
+        device=next((d for d in self.devices("Tech") if d["id"]==device_id),None)
+        if not device or device["catalog_key"]!=DERMAL_PLATING_KEY:
+            raise ValueError("Select your Dermal Plating augment.")
         ranks=CharacterCalculationService(self.repository,self.character_id).effective_skill_ranks().get("craft",0)
         duration=tech_minute_augment_rounds(ranks,
-            energy_efficient=any(t.catalog_key=="tech:legendary-talent:energy-efficient-augments" for t in records),
-            augment_talents=sum("augment" in (martial_entry(t.catalog_key) or {}).get("name","").partition("(")[2].casefold() for t in records))
+            energy_efficient=bool(device["energy_efficient"]),augment_talents=2)
         self.repository.spend_tech_device_charges(self.character_id,device_id,1,function_mode="dermal",dermal_rounds=duration)
 
     def stop_function(self,device_id,*,unequip=False):

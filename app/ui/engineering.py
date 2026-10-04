@@ -206,6 +206,7 @@ class EngineeringDialog(QDialog):
             name=device["name"]+(f" · {device['configuration'].title()}" if device["configuration"] else "")+(f" · {device['worn_slot']}" if device["worn_slot"] else " · Worn" if device["applied_to_character"] else "")
             if device["augment_slot"]:name+=f" · Augment: {device['augment_slot']}"
             if device["bio_augment"]:name+=" · Bio"
+            if device["energy_efficient"]:name+=" · Energy efficient"
             values=(name,level,status,f"{condition['current_hp']}/{condition['maximum_hp']}",stats["hardness"],stats["save"],stats["dc"],energy,f"{device['effect_rounds']} rounds" if device["effect_rounds"] else "—")
             for column,value in enumerate(values):
                 item=QTableWidgetItem(str(value));item.setData(Qt.ItemDataRole.UserRole,device["id"])

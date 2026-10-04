@@ -987,6 +987,7 @@ class CharacterRepository:
         self._ensure_column("engineering_devices", "worn_slot", "TEXT NOT NULL DEFAULT ''")
         self._ensure_column("engineering_devices", "augment_slot", "TEXT NOT NULL DEFAULT ''")
         self._ensure_column("engineering_devices", "bio_augment", "INTEGER NOT NULL DEFAULT 0")
+        self._ensure_column("engineering_devices", "energy_efficient", "INTEGER NOT NULL DEFAULT 0")
         self._connection.execute("CREATE TABLE IF NOT EXISTS character_engineering_form (character_id INTEGER PRIMARY KEY REFERENCES characters(id) ON DELETE CASCADE, polymorphed INTEGER NOT NULL DEFAULT 0 CHECK(polymorphed IN (0,1)))")
         self._connection.execute("CREATE UNIQUE INDEX IF NOT EXISTS engineering_augment_occupancy ON engineering_devices(character_id,augment_slot) WHERE sphere='Tech' AND augment_slot!='' AND applied_to_character=1 AND state!='abandoned'")
         self._connection.execute(f"""
@@ -3124,13 +3125,15 @@ class CharacterRepository:
             raise ValueError("That dedicated augment slot is already occupied.")
         if record.get("bio_augment") and sphere!="Tech":
             raise ValueError("Bio Augment construction belongs to Tech, not Tinker.")
-        fields = ("sphere", "catalog_key", "name", "level", "modifier", "state", "charges", "minor", "advanced", "host_id", "damage", "configuration", "applied_to_character", "function_mode", "effect_rounds", "worn_slot", "effect_battery_id", "augment_slot", "bio_augment")
+        if record.get("energy_efficient") and sphere!="Tech":
+            raise ValueError("Energy Efficient Augments construction belongs to Tech, not Tinker.")
+        fields = ("sphere", "catalog_key", "name", "level", "modifier", "state", "charges", "minor", "advanced", "host_id", "damage", "configuration", "applied_to_character", "function_mode", "effect_rounds", "worn_slot", "effect_battery_id", "augment_slot", "bio_augment", "energy_efficient")
         values = (sphere, str(record.get("catalog_key", "")), name,
                   int(record.get("level", 0)), int(record.get("modifier", 0)), state,
                   int(record.get("charges", 0)), int(bool(record.get("minor", False))),
                   int(record.get("advanced", 0)), host_id, int(record.get("damage",0)),
                   str(record.get("configuration", "")),int(bool(record.get("applied_to_character",False))),
-                  str(record.get("function_mode","")),int(record.get("effect_rounds",0)),str(record.get("worn_slot","")),effect_battery_id,augment_slot,int(bool(record.get("bio_augment",False))))
+                  str(record.get("function_mode","")),int(record.get("effect_rounds",0)),str(record.get("worn_slot","")),effect_battery_id,augment_slot,int(bool(record.get("bio_augment",False))),int(bool(record.get("energy_efficient",False))))
         if not 0 <= values[3] <= 999 or not -100 <= values[4] <= 100 or not 0 <= values[6] <= 99999 or not 0 <= values[8] <= 99:
             raise ValueError("Device statistics are outside supported bounds.")
         if not 0<=values[10]<=99999:
