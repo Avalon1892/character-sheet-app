@@ -86,6 +86,95 @@ class EngineeringTests(unittest.TestCase):
         self.service.install_graft(graft,**options)
         self.assertEqual("Body",self.repo.list_engineering_devices(self.cid)[0]["graft_slot"])
 
+    def test_live_graft_capacity_suppression_saves_feat_and_restoration(self):
+        from app.engineering_rules import DERMAL_PLATING_KEY,SYNAPTIC_MAXIMIZER_KEY
+        from app.services.character_calculations import CharacterCalculationService
+        self.repo.add_feat(self.cid,"Craft Appliances And Contraptions");self.repo.add_feat(self.cid,"Craft Augment Graft")
+        grafts=[]
+        for key in (DERMAL_PLATING_KEY,SYNAPTIC_MAXIMIZER_KEY):
+            self.add("Tech",key,key)
+            graft=self.service.record_completed_graft(key,"appliance",3,2,check_result=13,materials_paid=True,time_completed=True,gm_permission=True)
+            self.service.install_graft(graft,subject_willing_or_helpless=True,installation_completed=True,cybertech_value=4)
+            grafts.append(graft)
+        baseline=CharacterCalculationService(self.repo,self.cid).combat_results()
+        for graft in grafts:self.service.start_timed_augment(graft)
+        self.repo.update_ability_score(self.cid,"constitution",6)
+        limited=CharacterCalculationService(self.repo,self.cid)
+        self.assertEqual((grafts[0],),limited.graft_status()["functional_ids"])
+        self.assertEqual((grafts[1],),limited.graft_status()["blocked_ids"])
+        self.assertEqual(-5,limited.graft_status()["remote_control_save_penalty"])
+        self.assertEqual(10,limited.ability_result("dexterity").total)
+        self.assertEqual(baseline["ac"].total+2,limited.combat_results()["ac"].total)
+        for target in ("reflex","will"):
+            self.assertEqual(baseline[target].total-4,limited.combat_results()[target].total)
+        context=limited.formula_context()
+        self.assertTrue(context.resolve_reference(f"devices.device_{grafts[1]}.suppressed"))
+        self.assertFalse(context.resolve_reference(f"devices.device_{grafts[0]}.suppressed"))
+        feat=self.repo.add_feat(self.cid,"Receptive to Grafts",catalog_key="spheres:receptive-to-grafts")
+        restored=CharacterCalculationService(self.repo,self.cid)
+        self.assertEqual(9,restored.graft_status()["capacity"])
+        self.assertEqual((),restored.graft_status()["blocked_ids"])
+        self.assertEqual(12,restored.ability_result("dexterity").total)
+        self.assertEqual(baseline["reflex"].total+1,restored.combat_results()["reflex"].total)
+        self.repo.delete_feat(self.cid,feat)
+        self.repo.set_engineering_implant_profile(self.cid,cybertech_value=20)
+        before=self.repo.sqlite_connection.total_changes
+        with self.assertRaises(ValueError):self.service.start_timed_augment(grafts[0])
+        self.assertEqual(before,self.repo.sqlite_connection.total_changes)
+        self.assertEqual(tuple(grafts),CharacterCalculationService(self.repo,self.cid).graft_status()["blocked_ids"])
+        self.repo.set_engineering_implant_profile(self.cid,cybertech_value=0)
+        self.assertEqual((),CharacterCalculationService(self.repo,self.cid).graft_status()["blocked_ids"])
+        self.assertEqual([20,20],[d["effect_rounds"] for d in self.service.devices("Tech")])
+
+    def test_confirmed_overload_preserves_surgery_but_blocks_power_until_capacity_recovers(self):
+        from app.engineering_rules import CLAMP_BOOTS_KEY
+        from app.services.character_calculations import CharacterCalculationService
+        self.add("Tech","Clamp Boots",CLAMP_BOOTS_KEY)
+        self.repo.add_feat(self.cid,"Craft Appliances And Contraptions");self.repo.add_feat(self.cid,"Craft Augment Graft")
+        graft=self.service.record_completed_graft(CLAMP_BOOTS_KEY,"appliance",3,2,check_result=13,materials_paid=True,time_completed=True,gm_permission=True)
+        options=dict(subject_willing_or_helpless=True,installation_completed=True,cybertech_value=10)
+        for confirmation in (False,1):
+            before=self.repo.sqlite_connection.total_changes
+            with self.assertRaises(ValueError):self.service.install_graft(graft,allow_overload=confirmation,**options)
+            self.assertEqual(before,self.repo.sqlite_connection.total_changes)
+        self.service.install_graft(graft,allow_overload=True,**options)
+        self.assertEqual("Legs",self.repo.list_engineering_devices(self.cid)[0]["graft_slot"])
+        with self.assertRaises(ValueError):self.service.start_timed_augment(graft)
+        self.repo.set_engineering_implant_profile(self.cid,cybertech_value=0)
+        self.service.start_timed_augment(graft);self.service.set_boots_clamped(graft,True)
+        self.repo.set_engineering_implant_profile(self.cid,cybertech_value=10)
+        self.assertEqual(0,self.service.clamp_boots_resistance(graft))
+        self.assertNotEqual(0,CharacterCalculationService(self.repo,self.cid).movement_results()["land_speed"])
+        with self.assertRaises(ValueError):self.service.set_boots_clamped(graft,False)
+        self.repo.set_engineering_implant_profile(self.cid,cybertech_value=0)
+        self.assertEqual(0,CharacterCalculationService(self.repo,self.cid).movement_results()["land_speed"])
+
+    def test_implant_limits_ui_confirmation_cancel_and_single_refresh_in_both_themes(self):
+        from unittest.mock import patch
+        from PySide6.QtWidgets import QApplication,QWidget,QMessageBox
+        from PySide6.QtCore import QEvent
+        from app.ui.engineering import EngineeringDialog,ImplantProfileDialog
+        app=QApplication.instance() or QApplication([])
+        for theme in ("classic","dark"):
+            with self.subTest(theme=theme):
+                self.repo.set_engineering_implant_profile(self.cid,cybertech_value=2)
+                sheet=QWidget();sheet.repository=self.repo;sheet.character_id=self.cid;sheet.theme=theme
+                refreshed=[];sheet.refresh_all=lambda:refreshed.append(True)
+                parent=EngineeringDialog(sheet);dialog=ImplantProfileDialog(parent)
+                self.assertEqual(2,dialog.cybertech.value())
+                dialog.cybertech.setValue(5);dialog.absent_constitution.setChecked(True);dialog.adjustment.setValue(3)
+                before=self.repo.sqlite_connection.total_changes
+                with patch.object(QMessageBox,"question",return_value=QMessageBox.StandardButton.No):dialog.save.click()
+                self.assertEqual(before,self.repo.sqlite_connection.total_changes);self.assertEqual([],refreshed)
+                with patch.object(QMessageBox,"question",return_value=QMessageBox.StandardButton.Yes):dialog.save.click()
+                self.assertEqual(dict(cybertech_value=5,absent_constitution=True,absent_intelligence=False,capacity_adjustment=3),self.repo.engineering_implant_profile(self.cid))
+                self.assertEqual([True],refreshed)
+                cancelled=ImplantProfileDialog(parent);cancelled.cybertech.setValue(99)
+                before=self.repo.sqlite_connection.total_changes;cancelled.reject()
+                self.assertEqual(before,self.repo.sqlite_connection.total_changes);self.assertEqual([True],refreshed)
+                cancelled.deleteLater();dialog.deleteLater();parent.deleteLater();sheet.deleteLater()
+                app.sendPostedEvents(None,QEvent.Type.DeferredDelete)
+
     def test_tech_ability_augments_scaling_payment_stacking_and_expiry(self):
         from app.engineering_rules import EXO_MUSCLES_KEY,SYNAPTIC_MAXIMIZER_KEY,DERMAL_PLATING_KEY,tech_ability_augment_bonus
         from app.services.character_calculations import CharacterCalculationService

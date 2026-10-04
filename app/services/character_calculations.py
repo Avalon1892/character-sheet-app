@@ -125,6 +125,7 @@ class CharacterCalculationService:
         self.formulas_enabled = formulas_enabled
         self.state = CharacterStateSnapshot.load(repository, character_id)
         self._automatic_modifiers: dict[str, list[StatModifier]] | None = None
+        self._graft_status = None
         self._ability_results: dict[str, CalculationResult] | None = None
         self._formula_context: CharacterFormulaContext | None = None
         self._resolved_equipment: tuple[EquipmentItem, ...] | None = None
@@ -658,14 +659,19 @@ class CharacterCalculationService:
                 result.setdefault(target, []).extend(modifiers)
         polymorphed=self.repository.engineering_polymorphed(self.character_id)
         retain_innate=self.repository.engineering_retains_innate(self.character_id)
+        graft_modifiers=[]
         for device in self.repository.list_engineering_devices(self.character_id):
             ability_bonus=tech_ability_augment_bonus(device,effective_ranks.get("craft",0),polymorphed=polymorphed,retain_innate=retain_innate)
             if ability_bonus:
                 ability,value=ability_bonus
-                result.setdefault(ability,[]).append(StatModifier(None,ability,f"{device['name']} #{device['id']}","enhancement",value,True))
+                modifier=StatModifier(None,ability,f"{device['name']} #{device['id']}","enhancement",value,True)
+                if device["graft_slot"]:graft_modifiers.append((device["id"],ability,modifier))
+                else:result.setdefault(ability,[]).append(modifier)
             dermal=dermal_plating_bonus(device,effective_ranks.get("craft",0),polymorphed=polymorphed,retain_innate=retain_innate)
             if dermal:
-                result.setdefault("ac",[]).append(StatModifier(None,"ac",f"{device['name']} #{device['id']}","natural armor enhancement",dermal,True))
+                modifier=StatModifier(None,"ac",f"{device['name']} #{device['id']}","natural armor enhancement",dermal,True)
+                if device["graft_slot"]:graft_modifiers.append((device["id"],"ac",modifier))
+                else:result.setdefault("ac",[]).append(modifier)
             bonus=physical_augmentor_bonus(device)
             if not bonus:
                 continue
@@ -738,8 +744,45 @@ class CharacterCalculationService:
                         True,
                     )
                 )
+        installed=any(d["graft_slot"] for d in self.repository.list_engineering_devices(self.character_id))
+        self._graft_status=self._calculate_graft_status(result) if installed else None
+        for device_id,target,modifier in graft_modifiers:
+            if device_id in self._graft_status["functional_ids"]:result.setdefault(target,[]).append(modifier)
+        if self._graft_status and self._graft_status["save_penalty"]:
+            for target in ("fortitude","reflex","will"):
+                result.setdefault(target,[]).append(StatModifier(None,target,"Graft implantation overload","untyped",-4,True))
         self._automatic_modifiers = result
         return result
+
+    def _calculate_graft_status(self, modifiers, *, additional_values=(), cybertech_value=None):
+        from app.engineering_rules import graft_implantation_status
+        from app.class_feature_context import resolved_class_features_for_level
+        profile=self.repository.engineering_implant_profile(self.character_id)
+        feats={f.name.casefold() for f in self.state.feats if f.enabled}
+        for level in self.state.classes:
+            feats.update(f.name.casefold() for f in resolved_class_features_for_level(self.repository,self.character_id,level))
+        adjustment=profile["capacity_adjustment"]+(max(1,self.state.character_level//2) if "receptive to grafts" in feats else 0)
+        scores=[]
+        for ability in ("constitution","intelligence"):
+            if profile[f"absent_{ability}"]:scores.append(None);continue
+            applicable=self.resolved_modifiers(self.repository.list_modifiers(self.character_id,ability))
+            applicable+=modifiers.get(ability,[])+race_modifiers(self.state.details).get(ability,[])
+            scores.append(max(0,calculate_ability(self.state.ability_scores[ability],applicable).total+adjustment))
+        installed=sorted((d for d in self.repository.list_engineering_devices(self.character_id) if d["graft_slot"]),key=lambda d:(d["graft_order"],d["id"]))
+        cybertech=profile["cybertech_value"] if cybertech_value is None else cybertech_value
+        status=graft_implantation_status(*scores,graft_values=[2]*len(installed)+list(additional_values),cybertech_value=cybertech)
+        used=cybertech;functional=[];blocked=[]
+        for device in installed:
+            used+=2
+            (functional if status["has_controlling_score"] and used<=status["capacity"] else blocked).append(device["id"])
+        return {**status,"functional_ids":tuple(functional),"blocked_ids":tuple(blocked),"remote_control_save_penalty":-5 if installed else 0}
+
+    def graft_status(self, *, additional_values=(), cybertech_value=None):
+        modifiers=self.automatic_modifier_map()
+        if additional_values or cybertech_value is not None:
+            return self._calculate_graft_status(modifiers,additional_values=additional_values,cybertech_value=cybertech_value)
+        if self._graft_status is None:self._graft_status=self._calculate_graft_status(modifiers)
+        return self._graft_status
 
     def casting_tradition_automation(self):
         """Expose applied drawback rules and conditional reminders to presenters."""
@@ -816,6 +859,7 @@ class CharacterCalculationService:
         polymorphed=self.repository.engineering_polymorphed(self.character_id)
         retain_innate=self.repository.engineering_retains_innate(self.character_id)
         for device in self.repository.list_engineering_devices(self.character_id):
+            if device["graft_slot"] and device["id"] in self.graft_status()["blocked_ids"]:continue
             if clamp_boots_active(device,polymorphed=polymorphed,retain_innate=retain_innate):
                 bases["climb_speed"]=max(bases["climb_speed"],unrestricted_land)
                 clamped=clamped or device["function_mode"]=="clamped"

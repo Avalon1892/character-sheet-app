@@ -284,7 +284,7 @@ class CharacterFormulaContext:
                 f"{prefix}.rounds_remaining":float(device["effect_rounds"]),
                 f"{prefix}.active":device["state"]=="active" and not condition["destroyed"],
                 f"{prefix}.worn":bool(device["applied_to_character"]),
-                f"{prefix}.suppressed":tech_augment_suppressed(device,polymorphed,retain_innate=retain_innate),
+                f"{prefix}.suppressed":tech_augment_suppressed(device,polymorphed,retain_innate=retain_innate) or device["id"] in self.calculations.graft_status()["blocked_ids"],
                 f"{prefix}.broken":condition["broken"],
                 f"{prefix}.destroyed":condition["destroyed"],
                 f"{prefix}.depleted":device["state"]=="depleted",

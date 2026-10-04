@@ -5,10 +5,45 @@ from PySide6.QtWidgets import (QDialog,QVBoxLayout,QHBoxLayout,QComboBox,QLabel,
     QPushButton,QTableWidget,QTableWidgetItem,QHeaderView,QAbstractItemView,
     QSpinBox,QCheckBox,QTextBrowser,QSplitter,QWidget,QMessageBox,QInputDialog)
 from app.services.engineering import EngineeringService
+from app.services.character_calculations import CharacterCalculationService
 from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY,DERMAL_PLATING_KEY,tech_augment_suppressed,tech_augment_installed,CLAMP_BOOTS_KEY,TECH_AUGMENT_SLOTS,TECH_ABILITY_AUGMENTS,clamp_boots_active
 from app.engineering_rules import occupied_limit,is_battery,TECH_BATTERY_KEY,tech_battery_capacity,device_condition,PHYSICAL_AUGMENTOR_KEY,AUGMENTOR_ABILITIES,JET_BOOSTERS_KEY,JET_MODES
 from app.content import martial_entry
 from app.ui.dialog_theme import dialog_stylesheet
+
+
+class ImplantProfileDialog(QDialog):
+    def __init__(self,parent):
+        super().__init__(parent)
+        self.workbench=parent
+        self.setWindowTitle("Shared implantation limits")
+        self.resize(520,300)
+        self.setStyleSheet(dialog_stylesheet(parent.sheet.theme))
+        root=QVBoxLayout(self)
+        service=parent.service();profile=service.repository.engineering_implant_profile(service.character_id)
+        status=CharacterCalculationService(service.repository,service.character_id).graft_status()
+        summary=QLabel(f"Current implantation value: {status['total']} / {status['capacity']}. Receptive to Grafts is included automatically.\nRemote Control saves: {status['remote_control_save_penalty']:+d} (only against Remote Control).")
+        summary.setWordWrap(True);root.addWidget(summary)
+        root.addWidget(QLabel("Existing cybertech implantation value (excluding grafts)"))
+        self.cybertech=QSpinBox();self.cybertech.setRange(0,99999);self.cybertech.setValue(profile["cybertech_value"]);root.addWidget(self.cybertech)
+        self.absent_constitution=QCheckBox("Genuinely absent Constitution score")
+        self.absent_intelligence=QCheckBox("Genuinely absent Intelligence score")
+        for field in ("absent_constitution","absent_intelligence"):
+            control=getattr(self,field);control.setChecked(profile[field]);root.addWidget(control)
+        root.addWidget(QLabel("Manual capacity adjustment (verified exceptions only)"))
+        self.adjustment=QSpinBox();self.adjustment.setRange(-999,999);self.adjustment.setValue(profile["capacity_adjustment"]);root.addWidget(self.adjustment)
+        self.status=QLabel();self.status.setWordWrap(True);root.addWidget(self.status)
+        buttons=QHBoxLayout();root.addLayout(buttons)
+        cancel=QPushButton("Cancel");cancel.clicked.connect(self.reject);buttons.addWidget(cancel)
+        self.save=QPushButton("Save limits");self.save.clicked.connect(self.apply);buttons.addWidget(self.save)
+
+    def apply(self):
+        profile=dict(cybertech_value=self.cybertech.value(),absent_constitution=self.absent_constitution.isChecked(),
+            absent_intelligence=self.absent_intelligence.isChecked(),capacity_adjustment=self.adjustment.value())
+        if QMessageBox.question(self,"Change implantation limits",f"Save cybertech value {profile['cybertech_value']}, absent Constitution: {profile['absent_constitution']}, absent Intelligence: {profile['absent_intelligence']}, manual adjustment {profile['capacity_adjustment']:+d}?\nInstalled grafts remain installed. Over-limit effects stop functioning and incur a −4 penalty on all saves; legal effects resume without refunding charges or restarting timers.")!=QMessageBox.StandardButton.Yes:return
+        try:self.workbench.service().set_implant_profile(**profile)
+        except (ValueError,KeyError) as error:self.status.setText(str(error));return
+        self.workbench.sheet.refresh_all();self.workbench.refresh();self.accept()
 
 
 class GraftPlanningDialog(QDialog):
@@ -98,6 +133,8 @@ class EngineeringDialog(QDialog):
         self.retain_innate.setToolTip("Enable only when this transformation retains innate abilities. Preserves implanted grafts, not ordinary worn augments. Does not grant or choose a transformation.")
         self.polymorphed.clicked.connect(lambda checked:self.perform(lambda:self.service().set_polymorphed(checked,retain_innate=checked and self.retain_innate.isChecked())))
         self.retain_innate.clicked.connect(lambda checked:self.perform(lambda:self.service().set_polymorphed(self.polymorphed.isChecked(),retain_innate=checked)))
+        self.implant_limits=QPushButton("Implant limits");practitioner.addWidget(self.implant_limits)
+        self.implant_limits.clicked.connect(lambda:ImplantProfileDialog(self).exec())
         self.summary=QLabel();root.addWidget(self.summary)
         notice=QLabel("Baseline lifecycle and resource tracking. Device-specific effects and construction exceptions still require manual rules review.")
         notice.setWordWrap(True);root.addWidget(notice)
@@ -241,8 +278,10 @@ class EngineeringDialog(QDialog):
     def install_graft(self):
         cybertech,accepted=QInputDialog.getInt(self,"Shared implantation limit","Existing cybertech implantation value (not grafts):",self.sheet.repository.engineering_implant_profile(self.sheet.character_id)["cybertech_value"],0,99999)
         if not accepted:return
-        if QMessageBox.question(self,"Implant graft","Confirm two hours of hand installation have been completed and the subject remained willing or helpless throughout? No Heal check or Constitution damage applies. Current over-limit implantation is not yet supported.")!=QMessageBox.StandardButton.Yes:return
-        self.perform(lambda:self.service().install_graft(self.selected(),subject_willing_or_helpless=True,installation_completed=True,cybertech_value=cybertech))
+        preview=CharacterCalculationService(self.sheet.repository,self.sheet.character_id).graft_status(additional_values=(2,),cybertech_value=cybertech)
+        warning="\nThis exceeds the limit: the new graft will not function, still occupies its slot, and causes a −4 penalty on all saves." if preview["overloaded"] else ""
+        if QMessageBox.question(self,"Implant graft",f"Implantation value after surgery: {preview['total']} / {preview['capacity']}.{warning}\nConfirm two hours of hand installation have been completed and the subject remained willing or helpless throughout? No Heal check or Constitution damage applies.")!=QMessageBox.StandardButton.Yes:return
+        self.perform(lambda:self.service().install_graft(self.selected(),subject_willing_or_helpless=True,installation_completed=True,cybertech_value=cybertech,allow_overload=preview["overloaded"]))
 
     def remove_graft(self):
         if QMessageBox.question(self,"Remove graft","Confirm surgical removal is completed? A Fortitude save must be resolved externally; the Tech rule does not specify its DC. Failure causes fatigue, exhaustion if already fatigued, or unconsciousness if already exhausted.")!=QMessageBox.StandardButton.Yes:return
@@ -354,11 +393,11 @@ class EngineeringDialog(QDialog):
                               if entry.get("key")==TACTILE_FIELD_KEY else
                               "Install and activate this routine to improve its host gizmo's saving throws. The live save column includes the highest active insight bonus; character saves are unchanged."
                               if entry.get("key")==RESISTANCE_ROUTINE_KEY else
-                              "Wear in the dedicated Body augment slot, or surgically implant a crafted graft in its separate graft slot. Pay one charge for a timed period; graft durations are doubled and use stored item ranks. Natural armor enhancement, expiry and polymorph suppression are automatic. Bio augments retain effects; implanted grafts also retain effects when the current transformation preserves innate traits. Hasty donning and overload remain pending."
+                              "Wear in the dedicated Body augment slot, or surgically implant a crafted graft in its separate graft slot. Pay one charge for a timed period; graft durations are doubled and use stored item ranks. Natural armor enhancement, expiry, implantation limits and polymorph suppression are automatic. Bio augments retain effects; implanted grafts also retain effects when the current transformation preserves innate traits. Hasty donning remains pending."
                               if entry.get("key")==DERMAL_PLATING_KEY else
                               "Strength/Dexterity enhancement, dedicated augment/graft occupancy, charge payment, expiry and polymorph exceptions are automatic. The bonus is +2, increasing by +2 per 7 Craft ranks; enhancement bonuses do not stack. Grafts use their stored item ranks and double paid duration. Drone use, remote-control consequences and nonstandard anatomy remain pending."
                               if entry.get("key") in TECH_ABILITY_AUGMENTS else
-                              "Dedicated Legs augment or graft slot, paid climb movement, clamp/unclamp, expiry and polymorph suppression are automatic. Grafts double paid duration and retain their item rank. Climbing walls or ceilings requires neither hands nor Climb checks. Clamp resistance applies only against forced movement. Composition, remote control, overload and nonstandard anatomy remain pending."
+                              "Dedicated Legs augment or graft slot, paid climb movement, clamp/unclamp, expiry, implantation limits and polymorph suppression are automatic. Grafts double paid duration and retain their item rank. Climbing walls or ceilings requires neither hands nor Climb checks. Clamp resistance applies only against forced movement. Composition, remote control and nonstandard anatomy remain pending."
                               if entry.get("key")==CLAMP_BOOTS_KEY else
                               "Flight/swim speed, maneuverability, charge costs and paid durations are automatic. Flight slow burn is limited to 3 feet above the surface; height and hover/exhaust effects require manual resolution."
                               if entry.get("key")==JET_BOOSTERS_KEY else "Device-specific effects are reference-only in this batch.")+"</b></p>")
@@ -371,13 +410,18 @@ class EngineeringDialog(QDialog):
         if dermal:self.dermal_activate.setText("Power "+device["name"].partition(" (")[0]+" — 1 charge")
         boots=bool(device and device["catalog_key"]==CLAMP_BOOTS_KEY)
         for button in (self.boots_activate,self.boots_clamp,self.boots_unclamp):button.setVisible(boots)
-        powered=bool(boots and clamp_boots_active(device,polymorphed=self.polymorphed.isChecked(),retain_innate=self.retain_innate.isChecked()))
+        blocked=bool(device and device["graft_slot"] and device["id"] in CharacterCalculationService(self.sheet.repository,self.sheet.character_id).graft_status()["blocked_ids"])
+        powered=bool(boots and not blocked and clamp_boots_active(device,polymorphed=self.polymorphed.isChecked(),retain_innate=self.retain_innate.isChecked()))
         self.boots_activate.setEnabled(bool(boots and tech_augment_installed(device,"Legs") and device["state"] not in {"abandoned","depleted"} and device["effect_rounds"]==0 and not device_condition(device)["destroyed"]))
         self.boots_clamp.setEnabled(powered and device["function_mode"]!="clamped")
         self.boots_unclamp.setEnabled(powered and device["function_mode"]=="clamped")
         bonus=self.service().clamp_boots_resistance(device["id"]) if boots else 0
         self.boots_unclamp.setToolTip(f"While clamped: +{bonus} circumstance bonus to CMD and saves only against forced movement. This is not a bonus to all CMD checks or saves.")
         self.dermal_activate.setEnabled(bool(dermal and tech_augment_installed(device,TECH_AUGMENT_SLOTS[device["catalog_key"]]) and device["state"] not in {"abandoned","depleted"} and device["effect_rounds"]==0 and not device_condition(device)["destroyed"]))
+        if blocked:
+            self.dermal_activate.setEnabled(False);self.boots_activate.setEnabled(False)
+            self.dermal_activate.setToolTip("Implanted graft exceeds the current implantation limit.")
+        else:self.dermal_activate.setToolTip("")
         routine=bool(device and device["catalog_key"]==RESISTANCE_ROUTINE_KEY)
         self.install_routine.setVisible(routine);self.remove_routine.setVisible(routine)
         self.install_routine.setEnabled(bool(routine and device["state"]!="abandoned"))

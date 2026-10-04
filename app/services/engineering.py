@@ -27,6 +27,9 @@ class EngineeringService:
             raise ValueError("Choose a valid practitioner ability.")
         return CharacterCalculationService(self.repository,self.character_id).ability_result(ability).ability_modifier
 
+    def set_implant_profile(self,**profile):
+        self.repository.set_engineering_implant_profile(self.character_id,**profile)
+
     def known_devices(self, sphere):
         entries = {}
         for talent in self.records(sphere):
@@ -134,8 +137,8 @@ class EngineeringService:
             raise ValueError("Select a functioning graft and confirm its 15-minute recharge was completed.")
         self.repository.save_engineering_device(self.character_id,{**device,"charges":max(1,device["level"]//2)},device_id)
 
-    def install_graft(self,device_id,*,subject_willing_or_helpless=False,installation_completed=False,cybertech_value=None):
-        from app.engineering_rules import graft_implantation_status
+    def install_graft(self,device_id,*,subject_willing_or_helpless=False,installation_completed=False,cybertech_value=None,allow_overload=False):
+        if type(allow_overload) is not bool:raise ValueError("Over-limit installation requires an explicit true/false confirmation.")
         device=next((d for d in self.devices("Tech") if d["id"]==device_id),None)
         if subject_willing_or_helpless is not True or installation_completed is not True:
             raise ValueError("Confirm the subject remained willing or helpless throughout the completed two-hour installation.")
@@ -144,13 +147,10 @@ class EngineeringService:
         calculations=CharacterCalculationService(self.repository,self.character_id)
         profile=self.repository.engineering_implant_profile(self.character_id)
         if cybertech_value is None:cybertech_value=profile["cybertech_value"]
-        installed=[d for d in self.devices("Tech") if d["graft_slot"]]
-        scores=[None if profile[f"absent_{ability}"] else max(0,calculations.ability_result(ability).total+profile["capacity_adjustment"])
-            for ability in ("constitution","intelligence")]
-        status=graft_implantation_status(*scores,graft_values=[2]*(len(installed)+1),cybertech_value=cybertech_value)
-        if status["overloaded"]:
-            raise ValueError("This graft exceeds the current shared cybertech/graft limit; overloaded implantation is not yet supported.")
-        if not status["has_controlling_score"]:raise ValueError("A creature without Constitution and Intelligence cannot benefit from grafts.")
+        status=calculations.graft_status(additional_values=(2,),cybertech_value=cybertech_value)
+        if status["overloaded"] and not allow_overload:
+            raise ValueError("This graft exceeds the current shared cybertech/graft limit. Explicitly confirm nonfunctioning, over-limit implantation first.")
+        if not status["has_controlling_score"] and not allow_overload:raise ValueError("A creature without Constitution and Intelligence cannot benefit from grafts.")
         self.repository.install_engineering_graft(self.character_id,device_id,cybertech_value=cybertech_value)
 
     def remove_graft(self,device_id,*,removal_completed=False,save_succeeded=None):
@@ -224,6 +224,8 @@ class EngineeringService:
             raise ValueError("Select your supported timed augment.")
         if not device["construction_kind"] and not self.available("Tech"):
             raise ValueError("The Tech sphere is required for temporary gadgets.")
+        if device["graft_slot"] and device_id in CharacterCalculationService(self.repository,self.character_id).graft_status()["blocked_ids"]:
+            raise ValueError("This implanted graft cannot function within the current implantation limit.")
         ranks=device["level"] if device["construction_kind"] else CharacterCalculationService(self.repository,self.character_id).effective_skill_ranks().get("craft",0)
         duration=tech_minute_augment_rounds(ranks,
             energy_efficient=bool(device["energy_efficient"]),augment_talents=2)
@@ -232,12 +234,15 @@ class EngineeringService:
 
     def set_boots_clamped(self,device_id,clamped):
         device=next((d for d in self.devices("Tech") if d["id"]==device_id),None)
+        if device and device["graft_slot"] and device_id in CharacterCalculationService(self.repository,self.character_id).graft_status()["blocked_ids"]:
+            raise ValueError("The implanted Clamp Boots exceed the current implantation limit.")
         if not device or not clamp_boots_active(device,polymorphed=self.repository.engineering_polymorphed(self.character_id),retain_innate=self.repository.engineering_retains_innate(self.character_id)):
             raise ValueError("Wear powered, functioning Clamp Boots first.")
         self.repository.save_engineering_device(self.character_id,{**device,"function_mode":"clamped" if clamped else "climb"},device_id)
 
     def clamp_boots_resistance(self,device_id):
         device=next((d for d in self.devices("Tech") if d["id"]==device_id),None)
+        if device and device["graft_slot"] and device_id in CharacterCalculationService(self.repository,self.character_id).graft_status()["blocked_ids"]:return 0
         if not device or device["function_mode"]!="clamped" or not clamp_boots_active(device,polymorphed=self.repository.engineering_polymorphed(self.character_id),retain_innate=self.repository.engineering_retains_innate(self.character_id)):
             return 0
         ranks=device["level"] if device["construction_kind"] else CharacterCalculationService(self.repository,self.character_id).effective_skill_ranks().get("craft",0)
