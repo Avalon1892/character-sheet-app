@@ -290,6 +290,44 @@ class EngineeringTests(unittest.TestCase):
         self.assertFalse(self.repo.engineering_polymorphed(other))
         self.assertFalse(tech_augment_suppressed(dict(sphere="Tinker",augment_slot="Body",applied_to_character=True),True))
 
+    def test_bio_augment_is_creation_specific_and_survives_polymorph_and_transfer(self):
+        from app.models import SkillState
+        from app.engineering_rules import DERMAL_PLATING_KEY
+        from app.services.character_calculations import CharacterCalculationService
+        entry=next(e for e in martial_entries("Tech") if e["key"]==DERMAL_PLATING_KEY)
+        self.add("Tech",entry["name"],entry["key"],entry["category"])
+        plain=self.service.create("Tech",DERMAL_PLATING_KEY,3)
+        with self.assertRaises(ValueError):self.service.create("Tech",DERMAL_PLATING_KEY,3,bio_augment=True)
+        self.repo.add_class_level(self.cid,"Conscript",4,"Full","Good","Poor","Poor",hit_die=10,hp_gained=20)
+        self.repo.update_skill_state(self.cid,SkillState("disguise",ranks=10))
+        self.add("Tech","Hidden Gadget","tech:legendary-talent:hidden-gadget","Legendary Talent")
+        self.add("Tech","Bio Augment","tech:legendary-talent:bio-augment","Legendary Talent")
+        self.assertFalse(self.service.can_create_bio_augment(DERMAL_PLATING_KEY))
+        for name in ("Auto Injector (","Clamp Boots ("):
+            extra=next(e for e in martial_entries("Tech") if e["name"].startswith(name))
+            self.add("Tech",extra["name"],extra["key"],extra["category"])
+        self.assertTrue(self.service.can_create_bio_augment(DERMAL_PLATING_KEY))
+        bio=self.service.create("Tech",DERMAL_PLATING_KEY,3,bio_augment=True)
+        training=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tech:legendary-talent:bio-augment")
+        self.repo.set_martial_talent_enabled(self.cid,training.id,False)
+        self.assertFalse(self.service.can_create_bio_augment(DERMAL_PLATING_KEY))
+        self.add("Tech","Untraceable Gadget","tech:legendary-talent:untraceable-gadget","Legendary Talent")
+        self.assertTrue(self.service.can_create_bio_augment(DERMAL_PLATING_KEY))
+        self.assertFalse(next(d for d in self.service.devices("Tech") if d["id"]==plain)["bio_augment"])
+        self.service.apply_to_character(bio,True)
+        self.service.recharge();self.service.transfer_charges(bio,1);self.service.start_dermal_plating(bio)
+        ac=lambda:CharacterCalculationService(self.repo,self.cid).combat_results()["ac"].total
+        before=ac();self.service.set_polymorphed(True)
+        self.assertEqual(before,ac())
+        self.assertFalse(CharacterCalculationService(self.repo,self.cid).formula_context().evaluate(f"devices.device_{bio}.suppressed"))
+        path=Path(self.temp.name)/"bio.json";export_character(self.repo,self.cid,path)
+        imported=import_character(self.repo,path)
+        imported_bio=next(d for d in self.repo.list_engineering_devices(imported) if d["bio_augment"])
+        self.assertTrue(imported_bio["applied_to_character"])
+        self.assertTrue(self.repo.engineering_polymorphed(imported))
+        self.assertEqual(before,CharacterCalculationService(self.repo,imported).combat_results()["ac"].total)
+        with self.assertRaises(ValueError):self.service.create("Tinker","tinker:battery",3,bio_augment=True)
+
     def test_distinct_rules_and_repeatable_limits(self):
         self.assertEqual((9,4,6),(engineering_limits("Tinker",6,1,extra=1).device_limit,
                                   engineering_limits("Tinker",8,1,extra=1).batch_size,

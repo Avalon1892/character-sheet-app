@@ -76,12 +76,27 @@ class EngineeringService:
     def devices(self, sphere):
         return tuple(d for d in self.repository.list_engineering_devices(self.character_id) if d["sphere"]==sphere)
 
-    def create(self, sphere, key, modifier, *, minor=False, advanced=0,configuration=""):
+    def can_create_bio_augment(self,key):
+        entry=next((e for e in self.known_devices("Tech") if e["key"]==key),None)
+        if not entry or "augment" not in entry["name"].partition("(")[2].casefold():
+            return False
+        ranks=CharacterCalculationService(self.repository,self.character_id).effective_skill_ranks()
+        records=self.records("Tech");keys={t.catalog_key for t in records}
+        if ranks.get("craft",0)<10 or ranks.get("disguise",0)<10 or "tech:legendary-talent:hidden-gadget" not in keys:
+            return False
+        if "tech:legendary-talent:untraceable-gadget" in keys:
+            return True
+        augments=sum("augment" in (martial_entry(t.catalog_key) or {}).get("name","").partition("(")[2].casefold() for t in records)
+        return "tech:legendary-talent:bio-augment" in keys and augments>=3
+
+    def create(self, sphere, key, modifier, *, minor=False, advanced=0,configuration="",bio_augment=False):
         if not self.available(sphere):
             raise ValueError("This character does not currently have that base sphere.")
         entry = next((e for e in self.known_devices(sphere) if e["key"]==key),None)
         if entry is None:
             raise ValueError("Learn the device's talent first.")
+        if bio_augment and (sphere!="Tech" or not self.can_create_bio_augment(key)):
+            raise ValueError("Bio construction requires an augment, 10 Craft/Disguise ranks, Hidden Gadget, and qualifying Bio Augment or Untraceable Gadget training.")
         if sphere == "Tech" and (minor or advanced):
             raise ValueError("Minor and advanced gizmo rules belong to Tinker, not Tech.")
         if key in AUGMENTOR_ABILITIES and configuration not in AUGMENTOR_ABILITIES[key]:
@@ -96,7 +111,7 @@ class EngineeringService:
         record = dict(sphere=sphere,catalog_key=key,name=entry["name"],level=ranks,modifier=modifier,
                       state="active" if key in {"tinker:battery",TECH_BATTERY_KEY} else "inactive",
                       charges=tech_battery_capacity(modifier) if key==TECH_BATTERY_KEY else 0,
-                      minor=minor,advanced=advanced,configuration=configuration)
+                      minor=minor,advanced=advanced,configuration=configuration,bio_augment=bio_augment)
         if occupied_limit((*self.devices(sphere),record),self.limits(sphere)) > self.limits(sphere).device_limit:
             raise ValueError("Device limit exceeded. Abandon an existing device first.")
         return self.repository.save_engineering_device(self.character_id,record)

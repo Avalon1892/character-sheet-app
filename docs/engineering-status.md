@@ -31,6 +31,8 @@ Updated: 2026-10-04. This is an implementation ledger, not a claim of complete a
 
 ## Partial support / manual inputs
 
+- Bio augment construction is an explicit per-device, creation-time choice for Tech augments. It checks 10 Craft/Disguise ranks and Hidden Gadget, plus Bio Augment with three augment talents or the Untraceable Gadget alternative. It is made for the current character; other wearers are not yet supported. Constructed bio augments remain effective during polymorph, preserve their identity on transfer and do not retroactively convert ordinary devices. Conditional disguise/detection benefits, remote-control penalties and graft surgery are still pending.
+
 - Explicit character-owned polymorph state now suppresses installed ordinary Tech augment effects without changing saved activation, slot occupancy, charges or paid duration. The workbench shows suppression and formulas expose `devices.device_<id>.suppressed`. State is additive, defaults off for older characters and survives transfer. This currently affects the implemented Dermal Plating path; no blanket Tech-specific suppression is imposed on Tinker. Bio augment/Untraceable Gadget exceptions, innate-trait retention for grafts and automatic linkage to transformation effects remain pending.
 
 - Tech Dermal Plating has a separate persistent Body augment slot with repository ownership/occupancy validation and a unique database constraint. It coexists with ordinary Body-slot equipment. Installation/removal is controlled through wearer state; paid activation atomically spends one charge battery-first for 10 rounds. Shared AC receives a typed natural-armor enhancement based on current Craft ranks, so other natural-armor enhancements do not stack. Expiry deactivates the function, removal ends it, and character transfer preserves the dedicated slot. Donning time/hasty penalties, remote-control suppression, nonstandard anatomy, graft installation and polymorph exceptions remain pending; this is not complete augmentation support.
@@ -73,6 +75,8 @@ Updated: 2026-10-04. This is an implementation ledger, not a claim of complete a
 18. Packaged-runtime verification for this batch. The full isolated suite has run; three pre-existing failures remain separate from engineering work.
 
 ## Validation
+
+Bio augment follow-up: 68 focused engineering, database and transfer tests plus 2 theme subtests passed; additional alternative-training assertions cover Bio Augment and Untraceable Gadget eligibility. This remains partial augmentation implementation, not a claim that contextual checks or graft installation are complete.
 
 Polymorph follow-up: 74 focused engineering, persistence, transfer and formula tests plus 11 subtests passed. Coverage includes AC suppression/restoration, unchanged installed-device records, per-character ownership, invalid state rejection, formula exposure and transfer of current form state. This does not prove bio/graft exceptions or automatic form selection, and the full suite has not been rerun after this change.
 

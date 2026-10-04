@@ -33,7 +33,8 @@ DERMAL_PLATING_KEY = "tech:gadget-talent:dermal-plating-augment-drone-gadget"
 
 
 def tech_augment_suppressed(device,polymorphed):
-    return bool(polymorphed and device["sphere"]=="Tech" and device.get("augment_slot") and device.get("applied_to_character"))
+    return bool(polymorphed and device["sphere"]=="Tech" and device.get("augment_slot")
+                and device.get("applied_to_character") and not device.get("bio_augment"))
 
 
 def dermal_plating_bonus(device,ranks,*,polymorphed=False):

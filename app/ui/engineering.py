@@ -44,7 +44,7 @@ class EngineeringDialog(QDialog):
         self.modifier=QSpinBox();self.modifier.setRange(-100,100);practitioner.addWidget(self.modifier)
         practitioner.addStretch()
         self.polymorphed=QCheckBox("Polymorphed — suppress worn Tech augments")
-        self.polymorphed.setToolTip("Tracks the current transformation for augment effects. It does not remove installed devices, refund charges or stop paid timers. Bio-augment/graft exceptions are not yet available.")
+        self.polymorphed.setToolTip("Tracks the current transformation for augment effects. It does not remove installed devices, refund charges or stop paid timers. Devices crafted as bio augments retain their effects; graft handling is still pending.")
         practitioner.addWidget(self.polymorphed)
         self.polymorphed.clicked.connect(lambda checked:self.perform(lambda:self.service().set_polymorphed(checked)))
         self.summary=QLabel();root.addWidget(self.summary)
@@ -56,6 +56,8 @@ class EngineeringDialog(QDialog):
         for key in ("strength","dexterity","constitution"):self.configuration.addItem(key.title(),key)
         controls.addWidget(self.configuration)
         self.minor=QCheckBox("Minor (confirm device rule)");controls.addWidget(self.minor)
+        self.bio_augment=QCheckBox("Bio augment (made for this character)");controls.addWidget(self.bio_augment)
+        self.bio_augment.setToolTip("Creation-time variant requiring qualifying Tech training. Preserves the augment through polymorph; contextual disguise/detection and remote-control checks remain manual.")
         controls.addWidget(QLabel("Advanced increases"))
         self.advanced=QSpinBox();self.advanced.setRange(0,99);controls.addWidget(self.advanced)
         self.create=QPushButton("Craft device");controls.addWidget(self.create)
@@ -203,6 +205,7 @@ class EngineeringDialog(QDialog):
             level=f"{device['level']} → {condition['effective_level']}" if condition["effective_level"]!=device["level"] else device["level"]
             name=device["name"]+(f" · {device['configuration'].title()}" if device["configuration"] else "")+(f" · {device['worn_slot']}" if device["worn_slot"] else " · Worn" if device["applied_to_character"] else "")
             if device["augment_slot"]:name+=f" · Augment: {device['augment_slot']}"
+            if device["bio_augment"]:name+=" · Bio"
             values=(name,level,status,f"{condition['current_hp']}/{condition['maximum_hp']}",stats["hardness"],stats["save"],stats["dc"],energy,f"{device['effect_rounds']} rounds" if device["effect_rounds"] else "—")
             for column,value in enumerate(values):
                 item=QTableWidgetItem(str(value));item.setData(Qt.ItemDataRole.UserRole,device["id"])
@@ -236,6 +239,10 @@ class EngineeringDialog(QDialog):
 
     def preview_known(self,*_):
         key=self.known.currentData()
+        bio_allowed=self.system.currentText()=="Tech" and self.service().can_create_bio_augment(key)
+        self.bio_augment.setVisible(self.system.currentText()=="Tech")
+        self.bio_augment.setEnabled(bio_allowed)
+        if not bio_allowed:self.bio_augment.setChecked(False)
         self.minor.setEnabled(self.system.currentText()=="Tinker" and key!=RESISTANCE_ROUTINE_KEY)
         if key==RESISTANCE_ROUTINE_KEY:self.minor.setChecked(True)
         previous=self.configuration.currentData()
@@ -321,6 +328,7 @@ class EngineeringDialog(QDialog):
         self.perform(lambda:self.service().create(sphere,self.known.currentData(),self.modifier.value(),
                      minor=self.minor.isChecked() if sphere=="Tinker" else False,
                      advanced=self.advanced.value() if sphere=="Tinker" else 0,
+                     bio_augment=self.bio_augment.isChecked() if sphere=="Tech" else False,
                      configuration=self.configuration.currentData() if self.known.currentData() in AUGMENTOR_ABILITIES or self.known.currentData()==JET_BOOSTERS_KEY else ""))
 
     def load_charges(self):
