@@ -134,6 +134,26 @@ class EngineeringService:
             raise ValueError("Select a functioning graft and confirm its 15/30-minute recharge was completed.")
         self.repository.save_engineering_device(self.character_id,{**device,"charges":max(1,device["level"]//2)},device_id)
 
+    def install_graft(self,device_id,*,subject_willing_or_helpless=False,installation_completed=False,cybertech_value=0):
+        from app.engineering_rules import graft_implantation_status
+        device=next((d for d in self.devices("Tech") if d["id"]==device_id),None)
+        if subject_willing_or_helpless is not True or installation_completed is not True:
+            raise ValueError("Confirm the subject remained willing or helpless throughout the completed two-hour installation.")
+        if not device or not device["construction_kind"] or device["graft_slot"] or device["state"]=="abandoned" or device_condition(device)["destroyed"]:
+            raise ValueError("Select a functioning, uninstalled graft owned by this character.")
+        calculations=CharacterCalculationService(self.repository,self.character_id)
+        installed=[d for d in self.devices("Tech") if d["graft_slot"]]
+        status=graft_implantation_status(calculations.ability_result("constitution").total,
+            calculations.ability_result("intelligence").total,graft_values=[2]*(len(installed)+1),cybertech_value=cybertech_value)
+        if status["overloaded"]:
+            raise ValueError("This graft exceeds the current shared cybertech/graft limit; overloaded implantation is not yet supported.")
+        self.repository.save_engineering_device(self.character_id,{**device,"graft_slot":TECH_AUGMENT_SLOTS[device["catalog_key"]]},device_id)
+
+    def remove_graft(self,device_id,*,removal_completed=False,save_succeeded=None):
+        if removal_completed is not True:
+            raise ValueError("Confirm surgical removal was completed first.")
+        self.repository.remove_engineering_graft(self.character_id,device_id,save_succeeded=save_succeeded)
+
     def create(self, sphere, key, modifier, *, minor=False, advanced=0,configuration="",bio_augment=False):
         if not self.available(sphere):
             raise ValueError("This character does not currently have that base sphere.")

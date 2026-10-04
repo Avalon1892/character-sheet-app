@@ -126,6 +126,37 @@ class EngineeringTests(unittest.TestCase):
         restored=self.repo.list_engineering_devices(imported)
         self.assertEqual(("graft_appliance",1),(restored[0]["construction_kind"],restored[0]["charges"]))
 
+    def test_graft_surgery_separate_slots_transfer_and_removal_save(self):
+        from app.engineering_rules import DERMAL_PLATING_KEY
+        self.add("Tech","Dermal Plating",DERMAL_PLATING_KEY)
+        self.repo.add_feat(self.cid,"Craft Appliances And Contraptions")
+        self.repo.add_feat(self.cid,"Craft Augment Graft")
+        graft=self.service.record_completed_graft(DERMAL_PLATING_KEY,"appliance",3,2,
+            check_result=13,materials_paid=True,time_completed=True,gm_permission=True)
+        for options in ({},{"subject_willing_or_helpless":True},{"subject_willing_or_helpless":True,"installation_completed":True,"cybertech_value":999}):
+            with self.assertRaises(ValueError):self.service.install_graft(graft,**options)
+        ordinary=self.service.create("Tech",DERMAL_PLATING_KEY,2)
+        self.service.apply_to_character(ordinary,True)
+        self.service.install_graft(graft,subject_willing_or_helpless=True,installation_completed=True)
+        record=lambda:next(d for d in self.service.devices("Tech") if d["id"]==graft)
+        self.assertEqual("Body",record()["graft_slot"])
+        self.assertEqual("",record()["augment_slot"])
+        with self.assertRaises(ValueError):self.service.change_state(graft,"abandoned")
+        with self.assertRaises(ValueError):self.service.remove_graft(graft,save_succeeded=True)
+        with self.assertRaises(ValueError):self.service.remove_graft(graft,removal_completed=True)
+        other=self.repo.create_character("Other","Spheres")
+        with self.assertRaises(ValueError):EngineeringService(self.repo,other).remove_graft(graft,removal_completed=True,save_succeeded=True)
+        path=Path(self.temp.name)/"installed-graft.json";export_character(self.repo,self.cid,path)
+        imported=import_character(self.repo,path)
+        self.assertEqual(1,sum(d["graft_slot"]=="Body" for d in self.repo.list_engineering_devices(imported)))
+        for expected in ("Fatigued","Exhausted","Unconscious"):
+            self.service.remove_graft(graft,removal_completed=True,save_succeeded=False)
+            self.assertEqual("",record()["graft_slot"])
+            self.assertIn(expected,{c.name for c in self.repo.list_conditions(self.cid) if c.enabled})
+            self.service.install_graft(graft,subject_willing_or_helpless=True,installation_completed=True)
+        self.service.remove_graft(graft,removal_completed=True,save_succeeded=True)
+        self.assertEqual("",record()["graft_slot"])
+
     def test_clamp_boots_paid_movement_clamping_polymorph_and_transfer(self):
         from app.engineering_rules import CLAMP_BOOTS_KEY
         from app.services.character_calculations import CharacterCalculationService

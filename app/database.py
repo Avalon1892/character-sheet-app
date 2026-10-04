@@ -989,8 +989,10 @@ class CharacterRepository:
         self._ensure_column("engineering_devices", "bio_augment", "INTEGER NOT NULL DEFAULT 0")
         self._ensure_column("engineering_devices", "energy_efficient", "INTEGER NOT NULL DEFAULT 0")
         self._ensure_column("engineering_devices", "construction_kind", "TEXT NOT NULL DEFAULT ''")
+        self._ensure_column("engineering_devices", "graft_slot", "TEXT NOT NULL DEFAULT ''")
         self._connection.execute("CREATE TABLE IF NOT EXISTS character_engineering_form (character_id INTEGER PRIMARY KEY REFERENCES characters(id) ON DELETE CASCADE, polymorphed INTEGER NOT NULL DEFAULT 0 CHECK(polymorphed IN (0,1)))")
         self._connection.execute("CREATE UNIQUE INDEX IF NOT EXISTS engineering_augment_occupancy ON engineering_devices(character_id,augment_slot) WHERE sphere='Tech' AND augment_slot!='' AND applied_to_character=1 AND state!='abandoned'")
+        self._connection.execute("CREATE UNIQUE INDEX IF NOT EXISTS engineering_graft_occupancy ON engineering_devices(character_id,graft_slot) WHERE graft_slot!=''")
         self._connection.execute(f"""
             CREATE UNIQUE INDEX IF NOT EXISTS engineering_tech_battery_host
             ON engineering_devices(host_id)
@@ -3134,14 +3136,22 @@ class CharacterRepository:
         if construction_kind and (int(record.get("level",0))<1 or int(record.get("charges",0))>max(1,int(record.get("level",0))//2)):
             raise ValueError("Permanent graft charges exceed construction capacity.")
         if construction_kind and record.get("applied_to_character"):
-            raise ValueError("Permanent graft implantation is not yet supported; do not wear it as an ordinary augment.")
-        fields = ("sphere", "catalog_key", "name", "level", "modifier", "state", "charges", "minor", "advanced", "host_id", "damage", "configuration", "applied_to_character", "function_mode", "effect_rounds", "worn_slot", "effect_battery_id", "augment_slot", "bio_augment", "energy_efficient", "construction_kind")
+            raise ValueError("Use the graft surgical workflow; a graft cannot be worn as an ordinary augment.")
+        graft_slot=str(record.get("graft_slot",""))
+        if graft_slot and (not construction_kind or graft_slot!=TECH_AUGMENT_SLOTS.get(record.get("catalog_key")) or state=="abandoned"):
+            raise ValueError("Unsupported installed graft slot.")
+        if graft_slot and self._connection.execute("SELECT 1 FROM engineering_devices WHERE character_id=? AND graft_slot=? AND (? IS NULL OR id!=?)",(character_id,graft_slot,device_id,device_id)).fetchone():
+            raise ValueError("That graft slot is already occupied.")
+        existing_graft=self._connection.execute("SELECT graft_slot FROM engineering_devices WHERE id=? AND character_id=?",(device_id,character_id)).fetchone() if device_id else None
+        if existing_graft and existing_graft["graft_slot"] and graft_slot!=existing_graft["graft_slot"]:
+            raise ValueError("Installed grafts require the surgical removal action.")
+        fields = ("sphere", "catalog_key", "name", "level", "modifier", "state", "charges", "minor", "advanced", "host_id", "damage", "configuration", "applied_to_character", "function_mode", "effect_rounds", "worn_slot", "effect_battery_id", "augment_slot", "bio_augment", "energy_efficient", "construction_kind", "graft_slot")
         values = (sphere, str(record.get("catalog_key", "")), name,
                   int(record.get("level", 0)), int(record.get("modifier", 0)), state,
                   int(record.get("charges", 0)), int(bool(record.get("minor", False))),
                   int(record.get("advanced", 0)), host_id, int(record.get("damage",0)),
                   str(record.get("configuration", "")),int(bool(record.get("applied_to_character",False))),
-                  str(record.get("function_mode","")),int(record.get("effect_rounds",0)),str(record.get("worn_slot","")),effect_battery_id,augment_slot,int(bool(record.get("bio_augment",False))),int(bool(record.get("energy_efficient",False))),construction_kind)
+                  str(record.get("function_mode","")),int(record.get("effect_rounds",0)),str(record.get("worn_slot","")),effect_battery_id,augment_slot,int(bool(record.get("bio_augment",False))),int(bool(record.get("energy_efficient",False))),construction_kind,graft_slot)
         if not 0 <= values[3] <= 999 or not -100 <= values[4] <= 100 or not 0 <= values[6] <= 99999 or not 0 <= values[8] <= 99:
             raise ValueError("Device statistics are outside supported bounds.")
         if not 0<=values[10]<=99999:
@@ -3199,6 +3209,23 @@ class CharacterRepository:
                     raise ValueError("Invalid Tech battery pool transfer.")
             self._connection.execute("UPDATE engineering_devices SET charges=? WHERE id=?",(charges,device_id))
             self._connection.execute("UPDATE custom_trackers SET current_value=? WHERE id=?",(current,tracker_id))
+            self._touch_character(character_id)
+
+    def remove_engineering_graft(self,character_id,device_id,*,save_succeeded):
+        """Record completed surgery and its externally resolved Fortitude save atomically."""
+        if type(save_succeeded) is not bool:
+            raise ValueError("Resolve the removal Fortitude save first.")
+        with self._connection:
+            graft=self._connection.execute("SELECT * FROM engineering_devices WHERE id=? AND character_id=? AND graft_slot!=''",(device_id,character_id)).fetchone()
+            if graft is None:raise ValueError("Select an installed graft owned by this character.")
+            if not save_succeeded:
+                active={row["name"] for row in self._connection.execute("SELECT name FROM conditions WHERE character_id=? AND enabled=1",(character_id,))}
+                condition="Unconscious" if "Exhausted" in active else "Exhausted" if "Fatigued" in active else "Fatigued"
+                existing=self._connection.execute("SELECT id FROM conditions WHERE character_id=? AND name=?",(character_id,condition)).fetchone()
+                if existing:self._connection.execute("UPDATE conditions SET enabled=1 WHERE id=?",(existing["id"],))
+                else:self._connection.execute("INSERT INTO conditions(character_id,name,notes) VALUES (?,?,?)",(character_id,condition,"Failed augment graft removal Fortitude save; DC resolved externally."))
+                if condition=="Exhausted":self._connection.execute("UPDATE conditions SET enabled=0 WHERE character_id=? AND name='Fatigued'",(character_id,))
+            self._connection.execute("UPDATE engineering_devices SET graft_slot='',state='inactive',effect_rounds=0,function_mode='' WHERE id=?",(device_id,))
             self._touch_character(character_id)
 
     def spend_tech_device_charges(self, character_id, device_id, amount, *, function_mode=None,worn_slot="",dermal_rounds=10):

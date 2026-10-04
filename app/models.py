@@ -529,6 +529,7 @@ class SheetNote:
 
 
 CONDITION_PRESETS = {
+    "Unconscious": (),
     "Battered": (("cmd", -2),),
     "Blinded": (("ac", -2), ("skills", -4)),
     "Dazzled": (("attack", -1),),
