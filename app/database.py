@@ -988,6 +988,7 @@ class CharacterRepository:
         self._ensure_column("engineering_devices", "augment_slot", "TEXT NOT NULL DEFAULT ''")
         self._ensure_column("engineering_devices", "bio_augment", "INTEGER NOT NULL DEFAULT 0")
         self._ensure_column("engineering_devices", "energy_efficient", "INTEGER NOT NULL DEFAULT 0")
+        self._ensure_column("engineering_devices", "construction_kind", "TEXT NOT NULL DEFAULT ''")
         self._connection.execute("CREATE TABLE IF NOT EXISTS character_engineering_form (character_id INTEGER PRIMARY KEY REFERENCES characters(id) ON DELETE CASCADE, polymorphed INTEGER NOT NULL DEFAULT 0 CHECK(polymorphed IN (0,1)))")
         self._connection.execute("CREATE UNIQUE INDEX IF NOT EXISTS engineering_augment_occupancy ON engineering_devices(character_id,augment_slot) WHERE sphere='Tech' AND augment_slot!='' AND applied_to_character=1 AND state!='abandoned'")
         self._connection.execute(f"""
@@ -3127,13 +3128,20 @@ class CharacterRepository:
             raise ValueError("Bio Augment construction belongs to Tech, not Tinker.")
         if record.get("energy_efficient") and sphere!="Tech":
             raise ValueError("Energy Efficient Augments construction belongs to Tech, not Tinker.")
-        fields = ("sphere", "catalog_key", "name", "level", "modifier", "state", "charges", "minor", "advanced", "host_id", "damage", "configuration", "applied_to_character", "function_mode", "effect_rounds", "worn_slot", "effect_battery_id", "augment_slot", "bio_augment", "energy_efficient")
+        construction_kind=str(record.get("construction_kind",""))
+        if construction_kind not in {"","graft_appliance","graft_contraption"} or (construction_kind and (sphere!="Tech" or record.get("catalog_key") not in TECH_AUGMENT_SLOTS)):
+            raise ValueError("Unsupported permanent graft construction.")
+        if construction_kind and (int(record.get("level",0))<1 or int(record.get("charges",0))>max(1,int(record.get("level",0))//2)):
+            raise ValueError("Permanent graft charges exceed construction capacity.")
+        if construction_kind and record.get("applied_to_character"):
+            raise ValueError("Permanent graft implantation is not yet supported; do not wear it as an ordinary augment.")
+        fields = ("sphere", "catalog_key", "name", "level", "modifier", "state", "charges", "minor", "advanced", "host_id", "damage", "configuration", "applied_to_character", "function_mode", "effect_rounds", "worn_slot", "effect_battery_id", "augment_slot", "bio_augment", "energy_efficient", "construction_kind")
         values = (sphere, str(record.get("catalog_key", "")), name,
                   int(record.get("level", 0)), int(record.get("modifier", 0)), state,
                   int(record.get("charges", 0)), int(bool(record.get("minor", False))),
                   int(record.get("advanced", 0)), host_id, int(record.get("damage",0)),
                   str(record.get("configuration", "")),int(bool(record.get("applied_to_character",False))),
-                  str(record.get("function_mode","")),int(record.get("effect_rounds",0)),str(record.get("worn_slot","")),effect_battery_id,augment_slot,int(bool(record.get("bio_augment",False))),int(bool(record.get("energy_efficient",False))))
+                  str(record.get("function_mode","")),int(record.get("effect_rounds",0)),str(record.get("worn_slot","")),effect_battery_id,augment_slot,int(bool(record.get("bio_augment",False))),int(bool(record.get("energy_efficient",False))),construction_kind)
         if not 0 <= values[3] <= 999 or not -100 <= values[4] <= 100 or not 0 <= values[6] <= 99999 or not 0 <= values[8] <= 99:
             raise ValueError("Device statistics are outside supported bounds.")
         if not 0<=values[10]<=99999:
@@ -3181,6 +3189,8 @@ class CharacterRepository:
             if received_amount is not None and not 0<=received<=amount:
                 raise ValueError("Invalid credited charge amount.")
             charges=device["charges"]+received
+            if device["construction_kind"] and (amount<0 or charges>max(1,device["level"]//2)):
+                raise ValueError("Permanent graft charges cannot return to the pool or exceed capacity.")
             current=pool["current_value"]-amount
             if not 0<=charges<=99999 or current<0:
                 raise ValueError("Not enough charges for this transfer.")

@@ -97,6 +97,35 @@ class EngineeringTests(unittest.TestCase):
         with self.assertRaises(ValueError):self.service.graft_plan("tech:gadget-talent:camera-drone-gadget","appliance",3,gm_permission=True)
         self.assertEqual(before,self.repo.list_engineering_devices(self.cid))
 
+    def test_completed_graft_recording_validation_charges_and_transfer(self):
+        from app.engineering_rules import DERMAL_PLATING_KEY
+        self.add("Tech","Dermal Plating",DERMAL_PLATING_KEY)
+        self.repo.add_feat(self.cid,"Craft Appliances And Contraptions")
+        self.repo.add_feat(self.cid,"Craft Augment Graft")
+        options=dict(check_result=13,materials_paid=True,time_completed=True,gm_permission=True)
+        for invalid in ({"materials_paid":False},{"time_completed":False},{"check_result":12},{"check_result":True},{"gm_permission":False}):
+            with self.assertRaises(ValueError):
+                self.service.record_completed_graft(DERMAL_PLATING_KEY,"appliance",3,2,**{**options,**invalid})
+        self.assertEqual([],self.repo.list_engineering_devices(self.cid))
+        graft=self.service.record_completed_graft(DERMAL_PLATING_KEY,"appliance",3,2,**options)
+        record=lambda:next(d for d in self.service.devices("Tech") if d["id"]==graft)
+        self.assertEqual(("graft_appliance",1,"inactive"),(record()["construction_kind"],record()["charges"],record()["state"]))
+        self.assertEqual(0,occupied_limit(self.service.devices("Tech"),self.service.limits("Tech")))
+        with self.assertRaises(ValueError):self.service.apply_to_character(graft,True)
+        self.service.recharge()
+        for amount in (-1,1):
+            with self.assertRaises(ValueError):self.service.transfer_charges(graft,amount)
+        self.repo.spend_tech_device_charges(self.cid,graft,1)
+        with self.assertRaises(ValueError):self.service.recharge_graft(graft)
+        self.assertEqual(0,record()["charges"])
+        self.service.recharge_graft(graft,recharge_completed=True)
+        self.assertEqual(1,record()["charges"])
+        path=Path(self.temp.name)/"graft.json"
+        export_character(self.repo,self.cid,path)
+        imported=import_character(self.repo,path)
+        restored=self.repo.list_engineering_devices(imported)
+        self.assertEqual(("graft_appliance",1),(restored[0]["construction_kind"],restored[0]["charges"]))
+
     def test_clamp_boots_paid_movement_clamping_polymorph_and_transfer(self):
         from app.engineering_rules import CLAMP_BOOTS_KEY
         from app.services.character_calculations import CharacterCalculationService

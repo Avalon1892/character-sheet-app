@@ -209,7 +209,7 @@ def tactile_field_bonus(device):
 def occupied_limit(devices, limits):
     normal, minor = 0, 0
     for device in devices:
-        if device["state"] == "abandoned":
+        if device["state"] == "abandoned" or device.get("construction_kind") in {"graft_appliance","graft_contraption"}:
             continue
         if device["sphere"] == "Tinker" and device["minor"] and not device["advanced"]:
             minor += 1

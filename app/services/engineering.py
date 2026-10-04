@@ -111,6 +111,29 @@ class EngineeringService:
             raise ValueError("Requires Craft Appliances And Contraptions and Craft Augment Graft.")
         return tech_graft_quote(kind,ranks,complexity,versatile_crafter="versatile crafter" in feats)
 
+    def record_completed_graft(self,key,kind,ranks,modifier,*,check_result,materials_paid=False,time_completed=False,gm_permission=False):
+        quote=self.graft_plan(key,kind,ranks,gm_permission=gm_permission)
+        if materials_paid is not True or time_completed is not True:
+            raise ValueError("Confirm materials were paid and construction time completed outside this recording action.")
+        if type(check_result) is not int or check_result<quote["craft_dc"]:
+            raise ValueError("A successful final construction check is required.")
+        if key not in TECH_AUGMENT_SLOTS:
+            raise ValueError("This graft's device effect and slot are not yet supported.")
+        entry=martial_entry(key)
+        permanent=self.repository.list_martial_talents(self.character_id)
+        efficient=tech_minute_augment_rounds(ranks,
+            energy_efficient=any(t.enabled and t.catalog_key=="tech:legendary-talent:energy-efficient-augments" for t in permanent),
+            augment_talents=sum(t.enabled and "augment" in (martial_entry(t.catalog_key) or {}).get("name","").partition("(")[2].casefold() for t in permanent))>10
+        return self.repository.save_engineering_device(self.character_id,dict(sphere="Tech",catalog_key=key,name=entry["name"],
+            level=ranks,modifier=modifier,state="inactive",charges=quote["charge_capacity"],
+            construction_kind="graft_"+kind,energy_efficient=efficient))
+
+    def recharge_graft(self,device_id,*,recharge_completed=False):
+        device=next((d for d in self.devices("Tech") if d["id"]==device_id),None)
+        if recharge_completed is not True or not device or not device["construction_kind"] or device["state"]=="abandoned" or device_condition(device)["destroyed"]:
+            raise ValueError("Select a functioning graft and confirm its 15/30-minute recharge was completed.")
+        self.repository.save_engineering_device(self.character_id,{**device,"charges":max(1,device["level"]//2)},device_id)
+
     def create(self, sphere, key, modifier, *, minor=False, advanced=0,configuration="",bio_augment=False):
         if not self.available(sphere):
             raise ValueError("This character does not currently have that base sphere.")
@@ -320,7 +343,7 @@ class EngineeringService:
         return next((t for t in self.repository.list_custom_trackers(self.character_id) if t.key=="engineering_tech_charges"),None)
 
     def charge_total(self):
-        return int(self.pool().current_value if self.pool() else 0) + sum(d["charges"] for d in self.devices("Tech") if not is_battery(d))
+        return int(self.pool().current_value if self.pool() else 0) + sum(d["charges"] for d in self.devices("Tech") if not is_battery(d) and not d["construction_kind"])
 
     def change_charges(self, amount):
         if not self.available("Tech"):

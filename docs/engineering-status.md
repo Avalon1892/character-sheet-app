@@ -1,5 +1,7 @@
 # Tech & Tinker implementation status
 
+Permanent-graft recording foundation: repository/service support stores completed single-talent Dermal Plating and Clamp Boots appliance/contraption grafts with separate capped charges. Recording requires crafting prerequisites, GM permission, a successful final check, and explicit externally completed material/time confirmations. Unfinished construction performs no writes; grafts cannot be worn as ordinary augments. Recharge requires explicit completion, pool transfers cannot refund initial charges, and export/import preserves construction type. Backend only: completion/recharge UI, implantation, graft effects, composition and removal remain pending. Validation: 79 engineering/database/transfer/recovery tests and 4 subtests passed. Full suite has not been rerun for this increment.
+
 Updated: 2026-10-04. This is an implementation ledger, not a claim of complete automation.
 
 Energy Efficient Augments follow-up validation: 74 focused engineering, database, transfer and recovery tests plus 2 theme subtests passed. Thresholds, minimum training, paid expiry and invalid duration rejection are covered. Full-suite results below predate this follow-up.
