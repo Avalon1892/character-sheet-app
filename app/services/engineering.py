@@ -44,7 +44,7 @@ class EngineeringService:
             augmentation="Augmentation" in tinker_packages(self.records(sphere))
             if "Transmission" in tinker_packages(self.records(sphere)) and any(t.catalog_key==PRESSURE_JACK_KEY for t in self.records(sphere)):
                 entries[PRESSURE_SENSOR_KEY]={"key":PRESSURE_SENSOR_KEY,"name":"Pressure Sensor (gizmo)",
-                    "description":"Detect ground-based hazards within signal range. Grants a circumstance bonus to relevant hazard-detection skill checks, not all Perception checks. Normal detector activation takes one minute and requires a full-round action each turn, leaving the user flat-footed. Advanced tremorsense battery activation and detector upkeep automation are not yet supported.",
+                    "description":"Detect ground-based hazards within signal range. Grants a circumstance bonus to relevant hazard-detection skill checks, not all Perception checks. Confirm one-minute activation and pay full-round upkeep each turn, leaving the user flat-footed. Advanced sensors can spend a battery for timed tremorsense. Quick activation, automatic renewal, range upgrades and hazard prompts remain pending.",
                     "source_url":"https://spheresofpower.wikidot.com/tinker"}
             if "Computation" in tinker_packages(self.records(sphere)) and any(t.catalog_key=="tinker:gizmo-talent:defensive-set-gizmo" for t in self.records(sphere)):
                 entries[RESISTANCE_ROUTINE_KEY]={"key":RESISTANCE_ROUTINE_KEY,"name":"Resistance Routine (gizmo, minor, routine)",
@@ -303,6 +303,8 @@ class EngineeringService:
         record = next((d for d in self.repository.list_engineering_devices(self.character_id) if d["id"]==device_id),None)
         if record is None:
             raise ValueError("Unknown device for this character.")
+        if record["catalog_key"]==PRESSURE_SENSOR_KEY and state=="active":
+            raise ValueError("Use the detector activation control and confirm the required activation time.")
         if state not in {"active","inactive","depleted","abandoned"}:
             raise ValueError("Unknown device state.")
         if state=="active" and device_condition(record)["destroyed"]:
@@ -315,7 +317,7 @@ class EngineeringService:
             raise ValueError("Tinker batteries cannot be deactivated.")
         if record["catalog_key"]==TECH_BATTERY_KEY and state=="abandoned":
             record={**record,"charges":0,"host_id":None}
-        if record["catalog_key"] in {JET_BOOSTERS_KEY,TACTILE_FIELD_KEY,SPRING_BOOTS_KEY,*TECH_AUGMENT_SLOTS} and state!="active":
+        if record["catalog_key"] in {JET_BOOSTERS_KEY,TACTILE_FIELD_KEY,SPRING_BOOTS_KEY,PRESSURE_SENSOR_KEY,*TECH_AUGMENT_SLOTS} and state!="active":
             record={**record,"effect_rounds":0,"effect_battery_id":None}
             if state=="abandoned":record={**record,"worn_slot":"","augment_slot":"","applied_to_character":False}
         if state in {"abandoned","depleted"} and record["charges"]:
@@ -363,20 +365,20 @@ class EngineeringService:
             raise ValueError("Select a functioning gizmo as the battery host.")
         self.repository.save_engineering_device(self.character_id,{**battery,"host_id":host_id},battery_id)
 
-    def use_batteries(self,host_id,amount,*,personal=False,tactile_boost=False,spring_boost=False):
+    def use_batteries(self,host_id,amount,*,personal=False,tactile_boost=False,spring_boost=False,sensor_tremor=False):
         if not self.available("Tinker"):
             raise ValueError("The Tinker sphere is required.")
         host=next((d for d in self.devices("Tinker") if d["id"]==host_id),None)
         if not host or host["state"]!="active" or device_condition(host)["destroyed"]:
             raise ValueError("Activate the host gizmo first.")
         level=CharacterCalculationService(self.repository,self.character_id).state.character_level
-        batteries=[d for d in self.devices("Tinker") if d["host_id"]==host_id
+        batteries=[d for d in self.devices("Tinker") if is_battery(d) and d["host_id"]==host_id
                    and d["state"]=="active" and d["level"]>=host["level"]
                    and not device_condition(d)["destroyed"]
                    and (not personal or d["level"]>=level)]
         if amount<=0 or len(batteries)<amount:
             raise ValueError("Not enough usable attached batteries: battery level must reach the host level, and personal uses also require character level.")
-        self.repository.deplete_engineering_batteries(self.character_id,host_id,[b["id"] for b in batteries[:amount]],tactile_boost=tactile_boost,spring_boost=spring_boost)
+        self.repository.deplete_engineering_batteries(self.character_id,host_id,[b["id"] for b in batteries[:amount]],tactile_boost=tactile_boost,spring_boost=spring_boost,sensor_tremor=sensor_tremor)
 
     def spring_boots_profile(self,device_id):
         device=next((d for d in self.devices("Tinker") if d["id"]==device_id),None)
@@ -523,3 +525,16 @@ class EngineeringService:
         device=next((d for d in self.devices("Tinker") if d["id"]==device_id),None)
         if device is None:raise ValueError("Select an owned Tinker device.")
         return pressure_sensor_profile(device)
+
+    def activate_pressure_sensor(self,device_id,*,activation_completed=False):
+        device=next((d for d in self.devices("Tinker") if d["id"]==device_id),None)
+        if not activation_completed or not self.available("Tinker") or not device or device["catalog_key"]!=PRESSURE_SENSOR_KEY or device["state"]!="inactive" or device_condition(device)["destroyed"]:
+            raise ValueError("Confirm one minute of activation for an inactive, functioning Pressure Sensor.")
+        self.repository.save_engineering_device(self.character_id,{**device,"state":"active","detector_maintained":True},device_id)
+
+    def maintain_pressure_sensor(self,device_id):
+        device=next((d for d in self.devices("Tinker") if d["id"]==device_id),None)
+        if not self.available("Tinker") or not device or device["catalog_key"]!=PRESSURE_SENSOR_KEY or not pressure_sensor_profile(device)["available"]:
+            raise ValueError("Activate a functioning Pressure Sensor first.")
+        if device["detector_maintained"]:raise ValueError("Detector upkeep has already been reported this turn.")
+        self.repository.save_engineering_device(self.character_id,{**device,"detector_maintained":True},device_id)

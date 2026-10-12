@@ -93,7 +93,7 @@ class EngineeringTests(unittest.TestCase):
         self.assertEqual(40,profile["base_signal_range_feet"])
         self.assertEqual(6,profile["tremorsense_duration_rounds"])
         self.assertFalse(profile["available"])
-        self.service.change_state(sensor,"active")
+        self.service.activate_pressure_sensor(sensor,activation_completed=True)
         self.assertTrue(self.service.pressure_sensor_profile(sensor)["available"])
         record=next(d for d in self.service.devices("Tinker") if d["id"]==sensor)
         self.repo.save_engineering_device(self.cid,{**record,"damage":10},sensor)
@@ -107,6 +107,42 @@ class EngineeringTests(unittest.TestCase):
         self.repo.save_engineering_device(self.cid,{**record,"damage":18},sensor)
         self.assertFalse(self.service.pressure_sensor_profile(sensor)["available"])
         with self.assertRaises(ValueError):self.service.pressure_sensor_profile(99999)
+
+    def test_pressure_sensor_upkeep_and_paid_tremorsense(self):
+        from app.engineering_rules import PRESSURE_JACK_KEY,PRESSURE_SENSOR_KEY,RESISTANCE_ROUTINE_KEY
+        base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")
+        self.repo.update_martial_talent(self.cid,base.id,base.name,"Tinker","Base Sphere",catalog_key=base.catalog_key,catalog_category="Base Sphere",choice="Transmission / Computation")
+        self.add("Tinker","Pressure Jack (gizmo)",PRESSURE_JACK_KEY)
+        sensor=self.service.create("Tinker",PRESSURE_SENSOR_KEY,2,advanced=1)
+        changes=self.repo.sqlite_connection.total_changes
+        with self.assertRaises(ValueError):self.service.activate_pressure_sensor(sensor)
+        with self.assertRaises(ValueError):self.service.change_state(sensor,"active")
+        self.assertEqual(changes,self.repo.sqlite_connection.total_changes)
+        self.service.activate_pressure_sensor(sensor,activation_completed=True)
+        self.add("Tinker","Defensive Set (gizmo)","tinker:gizmo-talent:defensive-set-gizmo")
+        routine=self.service.create("Tinker",RESISTANCE_ROUTINE_KEY,2)
+        self.service.install_resistance_routine(routine,sensor);self.service.change_state(routine,"active")
+        battery=self.service.create("Tinker","tinker:battery",2);self.service.attach_battery(battery,sensor)
+        self.service.use_batteries(sensor,1,sensor_tremor=True)
+        self.assertEqual(40,self.service.pressure_sensor_profile(sensor)["tremorsense_range_feet"])
+        path=Path(self.temp.name)/"active-sensor.json";export_character(self.repo,self.cid,path)
+        imported=import_character(self.repo,path)
+        copied=next(d for d in self.repo.list_engineering_devices(imported) if d["catalog_key"]==PRESSURE_SENSOR_KEY)
+        self.assertEqual(self.service.pressure_sensor_profile(sensor),EngineeringService(self.repo,imported).pressure_sensor_profile(copied["id"]))
+        self.assertTrue(self.service.pressure_sensor_profile(sensor)["flat_footed"])
+        self.service.end_wearer_turn()
+        self.assertTrue(self.service.pressure_sensor_profile(sensor)["available"])
+        self.service.maintain_pressure_sensor(sensor)
+        with self.assertRaises(ValueError):self.service.maintain_pressure_sensor(sensor)
+        self.service.advance_time(1)
+        self.assertEqual(4,next(d for d in self.service.devices("Tinker") if d["id"]==sensor)["effect_rounds"])
+        self.service.end_wearer_turn()
+        self.assertFalse(self.service.pressure_sensor_profile(sensor)["available"])
+        self.assertEqual(0,self.service.pressure_sensor_profile(sensor)["tremorsense_range_feet"])
+        self.assertEqual("inactive",next(d for d in self.service.devices("Tinker") if d["id"]==routine)["state"])
+        self.service.activate_pressure_sensor(sensor,activation_completed=True)
+        self.service.advance_time(2)
+        self.assertFalse(self.service.pressure_sensor_profile(sensor)["available"])
 
     def test_spring_boots_pressure_battery_duration_and_transfer(self):
         from app.engineering_rules import PRESSURE_JACK_KEY,SPRING_BOOTS_KEY
@@ -1596,7 +1632,7 @@ class EngineeringTests(unittest.TestCase):
                 self.assertIn("4d8",dialog.details.toPlainText())
                 dialog.deleteLater();sheet.deleteLater();app.sendPostedEvents(None,QEvent.Type.DeferredDelete)
 
-    def test_pressure_sensor_ui_marks_pending_activation_in_both_themes(self):
+    def test_pressure_sensor_ui_controls_in_both_themes(self):
         from PySide6.QtWidgets import QApplication,QWidget
         from PySide6.QtCore import QEvent
         from app.ui.engineering import EngineeringDialog
@@ -1615,6 +1651,12 @@ class EngineeringTests(unittest.TestCase):
                 self.assertIn("+3 circumstance",text);self.assertIn("40 ft",text)
                 self.assertIn("still pending",text);self.assertIn("flat-footed manually",text)
                 self.assertTrue(dialog.spring_boost.isHidden())
+                self.assertTrue(dialog.sensor_activate.isEnabled());self.assertFalse(dialog.sensor_tremor.isEnabled())
+                from unittest.mock import patch
+                from PySide6.QtWidgets import QMessageBox
+                changes=self.repo.sqlite_connection.total_changes
+                with patch.object(QMessageBox,"question",return_value=QMessageBox.StandardButton.No):dialog.sensor_activate.click()
+                self.assertEqual(changes,self.repo.sqlite_connection.total_changes)
                 dialog.deleteLater();sheet.deleteLater();app.sendPostedEvents(None,QEvent.Type.DeferredDelete)
 
     def test_spring_boots_ui_pressure_controls_in_both_themes(self):

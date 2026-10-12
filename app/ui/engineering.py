@@ -245,6 +245,17 @@ class EngineeringDialog(QDialog):
         self.spring_end_turn.clicked.connect(lambda:self.perform(lambda:self.service().end_wearer_turn()))
         self.spring_jump.setToolTip("Resolve the jump with the displayed pressure bonus. Roll twice and take the higher result without spending a battery; this consumes pressure.")
         self.spring_end_turn.setToolTip("Report each end of the wearer's turn. Pressure expires at the end of the next turn; this does not advance timed battery enhancements. Elapsed rounds also advance pressure: do not report the same interval twice.")
+        sensor_controls=QHBoxLayout();root.addLayout(sensor_controls)
+        self.sensor_activate=QPushButton("Activate detector — 1 minute")
+        self.sensor_maintain=QPushButton("Maintain detector — full-round")
+        self.sensor_tremor=QPushButton("Tremorsense — 1 battery / move action")
+        self.sensor_end_turn=QPushButton("End wearer turn")
+        for button in (self.sensor_activate,self.sensor_maintain,self.sensor_tremor,self.sensor_end_turn):sensor_controls.addWidget(button)
+        sensor_controls.addStretch()
+        self.sensor_activate.clicked.connect(lambda:self.perform(self.activate_sensor))
+        self.sensor_maintain.clicked.connect(lambda:self.perform(lambda:self.service().maintain_pressure_sensor(self.selected())))
+        self.sensor_tremor.clicked.connect(lambda:self.perform(lambda:self.service().use_batteries(self.selected(),1,sensor_tremor=True)))
+        self.sensor_end_turn.clicked.connect(lambda:self.perform(lambda:self.service().end_wearer_turn()))
         health=QHBoxLayout();root.addLayout(health)
         self.damage_amount=QSpinBox();self.damage_amount.setRange(1,99999)
         health.addWidget(QLabel("Incoming device damage"));health.addWidget(self.damage_amount)
@@ -437,6 +448,13 @@ class EngineeringDialog(QDialog):
 
     def preview_device(self):
         device=next((d for d in self.service().devices(self.system.currentText()) if d["id"]==self.selected()),None)
+        sensor_selected=bool(device and device["catalog_key"]==PRESSURE_SENSOR_KEY)
+        for button in (self.sensor_activate,self.sensor_maintain,self.sensor_tremor,self.sensor_end_turn):button.setVisible(sensor_selected)
+        if sensor_selected:
+            sensor=self.service().pressure_sensor_profile(device["id"])
+            self.sensor_activate.setEnabled(device["state"]=="inactive" and not device_condition(device)["destroyed"])
+            self.sensor_maintain.setEnabled(sensor["available"] and not sensor["upkeep_paid"])
+            self.sensor_tremor.setEnabled(sensor["available"] and bool(device["advanced"]) and not device["effect_rounds"])
         spring=bool(device and device["catalog_key"]==SPRING_BOOTS_KEY)
         for button in (self.spring_pressure,self.spring_jump,self.spring_boost,self.spring_long_jump,self.spring_end_turn):button.setVisible(spring)
         if spring:
@@ -512,7 +530,7 @@ class EngineeringDialog(QDialog):
             self.details.append(f"<h3>Live jump benefits</h3><p>{'Available' if profile['available'] else 'Unavailable'} · Pressure jump bonus +{profile['pressure_jump_bonus']} (in addition to the normal Dexterity augmentor bonus). High-jump DC multiplier ×{profile['high_jump_multiplier']}. Running start: {'Yes' if profile['running_start'] else 'Normal rules'}. Exceed base speed: {'Yes' if profile['exceed_base_speed'] else 'No'}.</p><p>While worn and functioning: minimum falling damage and no falling-damage prone. Pressure expires after two reported turn ends (current and next). Consume pressure for its bonus and a jump reroll; dice and fall damage are resolved manually.</p>")
         if device and device["catalog_key"]==PRESSURE_SENSOR_KEY:
             sensor=self.service().pressure_sensor_profile(device["id"])
-            self.details.append(f"<h3>Pressure sensor values</h3><p>Ground-hazard detection checks: +{sensor['hazard_check_bonus']} circumstance. Base signal range: {sensor['base_signal_range_feet']} ft. Advanced tremorsense duration: {sensor['tremorsense_duration_rounds']} rounds per battery.</p><p>Contextual values only: maintain ordinary detection with a full-round action each turn and apply flat-footed manually. Automatic hazard prompts, signal-range upgrades, activation timing and tremorsense spending are still pending. Do not add this bonus to unrelated Perception checks.</p>")
+            self.details.append(f"<h3>Pressure sensor values</h3><p>Ground-hazard detection checks: +{sensor['hazard_check_bonus']} circumstance. Base signal range: {sensor['base_signal_range_feet']} ft. Advanced tremorsense duration: {sensor['tremorsense_duration_rounds']} rounds per battery. Current tremorsense: {sensor['tremorsense_range_feet']} ft.</p><p>Full-round upkeep paid: {'Yes' if sensor['upkeep_paid'] else 'No'}. Flat-footed: {'Yes' if sensor['flat_footed'] else 'No'} (apply flat-footed manually). Missing upkeep deactivates detection at turn end. Report each interval once, using wearer-turn end or elapsed rounds. Automatic hazard prompts, signal-range upgrades, quick activation and automatic battery renewal are still pending. Do not add this bonus to unrelated Perception checks.</p>")
 
     def perform(self,operation):
         try:
@@ -529,6 +547,10 @@ class EngineeringDialog(QDialog):
         result=self.service().use_spring_jump(self.selected(),exceed_base_speed=exceed_base_speed)
         return (f"Resolve jump: +{result['pressure_jump_bonus']} pressure bonus in addition to the normal augmentor bonus; roll twice and take the higher result. Pressure consumed."
                 if result["reroll"] else "Resolve jump beyond base speed. Enhancement duration reduced by one minute.")
+
+    def activate_sensor(self):
+        if QMessageBox.question(self,"Activate Pressure Sensor","Has the required one minute of detector activation been completed?")!=QMessageBox.StandardButton.Yes:return False
+        self.service().activate_pressure_sensor(self.selected(),activation_completed=True)
 
     def use_tactile_reroll(self):
         result=self.service().use_tactile_reroll(self.selected())
