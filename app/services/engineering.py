@@ -44,7 +44,7 @@ class EngineeringService:
             augmentation="Augmentation" in tinker_packages(self.records(sphere))
             if "Transmission" in tinker_packages(self.records(sphere)) and any(t.catalog_key==PRESSURE_JACK_KEY for t in self.records(sphere)):
                 entries[PRESSURE_SENSOR_KEY]={"key":PRESSURE_SENSOR_KEY,"name":"Pressure Sensor (gizmo)",
-                    "description":"Detect ground-based hazards within signal range. Grants a circumstance bonus to relevant hazard-detection skill checks, not all Perception checks. Confirm one-minute activation or spend one battery to activate as a standard action. Pay full-round upkeep each turn, leaving the user flat-footed. Advanced sensors can spend a separate battery for timed tremorsense and opt into automatic paid renewal at expiry. Range upgrades and hazard prompts remain pending.",
+                    "description":"Detect ground-based hazards within signal range. Grants a circumstance bonus to relevant hazard-detection skill checks, not all Perception checks. Confirm one-minute activation or spend one battery to activate as a standard action. Pay full-round upkeep each turn, leaving the user flat-footed. Advanced sensors can spend a separate battery for timed tremorsense and opt into automatic paid renewal at expiry. Choose supported signal range at construction. Additional accommodations and hazard prompts remain pending.",
                     "source_url":"https://spheresofpower.wikidot.com/tinker"}
             if "Computation" in tinker_packages(self.records(sphere)) and any(t.catalog_key=="tinker:gizmo-talent:defensive-set-gizmo" for t in self.records(sphere)):
                 entries[RESISTANCE_ROUTINE_KEY]={"key":RESISTANCE_ROUTINE_KEY,"name":"Resistance Routine (gizmo, minor, routine)",
@@ -231,8 +231,13 @@ class EngineeringService:
 
     def detector_range_options(self):
         options=["","close"]
-        if any(t.catalog_key=="tinker:gizmo-talent:transmission-mastery-gizmo-transmission-utility" for t in self.records("Tinker")):
+        keys={t.catalog_key for t in self.records("Tinker")}
+        if "tinker:gizmo-talent:transmission-mastery-gizmo-transmission-utility" in keys:
             options.append("medium")
+            if "tinker:legendary-talent:advanced-transmission-gizmo-transmission" in keys:
+                ranks=CharacterCalculationService(self.repository,self.character_id).effective_skill_ranks().get(self.skill_key,0)
+                if ranks>=10:options.append("long")
+                if ranks>=15:options.append("extra_long")
         return tuple(options)
 
     def apply_to_character(self,device_id,enabled):

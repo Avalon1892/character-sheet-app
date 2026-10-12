@@ -427,7 +427,7 @@ class EngineeringDialog(QDialog):
         options=("flight","aquatic") if key==JET_BOOSTERS_KEY else AUGMENTOR_ABILITIES.get(key,())
         if key==PRESSURE_SENSOR_KEY:options=tuple(o for o in self.service().detector_range_options() if o)
         for option in options:
-            self.configuration.addItem(option.title(),option)
+            self.configuration.addItem(option.replace("_"," ").title(),option)
         if self.configuration.findData(previous)>=0:self.configuration.setCurrentIndex(self.configuration.findData(previous))
         self.configuration.setVisible(key in AUGMENTOR_ABILITIES or key in {JET_BOOSTERS_KEY,PRESSURE_SENSOR_KEY})
         entry=next((e for e in self.service().known_devices(self.system.currentText()) if e["key"]==self.known.currentData()),None)
@@ -544,7 +544,7 @@ class EngineeringDialog(QDialog):
             self.details.append(f"<h3>Live jump benefits</h3><p>{'Available' if profile['available'] else 'Unavailable'} · Pressure jump bonus +{profile['pressure_jump_bonus']} (in addition to the normal Dexterity augmentor bonus). High-jump DC multiplier ×{profile['high_jump_multiplier']}. Running start: {'Yes' if profile['running_start'] else 'Normal rules'}. Exceed base speed: {'Yes' if profile['exceed_base_speed'] else 'No'}.</p><p>While worn and functioning: minimum falling damage and no falling-damage prone. Pressure expires after two reported turn ends (current and next). Consume pressure for its bonus and a jump reroll; dice and fall damage are resolved manually.</p>")
         if device and device["catalog_key"]==PRESSURE_SENSOR_KEY:
             sensor=self.service().pressure_sensor_profile(device["id"])
-            self.details.append(f"<p>Crafted signal range: {device['configuration'] or 'close'} · Barrier penetration multiplier: ×{sensor['signal_penetration_multiplier']}. Close and optional Transmission Mastery medium range are supported; greater/superior range construction remains pending.</p>")
+            self.details.append(f"<p>Crafted signal range: {(device['configuration'] or 'close').replace('_',' ')} · Barrier penetration multiplier: ×{sensor['signal_penetration_multiplier']}. Range upgrades are chosen at construction; signals remain blocked by sufficient barriers.</p>")
             self.details.append(f"<h3>Pressure sensor values</h3><p>Ground-hazard detection checks: +{sensor['hazard_check_bonus']} circumstance. Base signal range: {sensor['base_signal_range_feet']} ft. Advanced tremorsense duration: {sensor['tremorsense_duration_rounds']} rounds per battery. Current tremorsense: {sensor['tremorsense_range_feet']} ft. Auto-renew: {'On' if sensor['auto_renew'] else 'Off'}.</p><p>Full-round upkeep paid: {'Yes' if sensor['upkeep_paid'] else 'No'}. Flat-footed: {'Yes' if sensor['flat_footed'] else 'No'} (apply flat-footed manually). Missing upkeep deactivates detection at turn end. Report each interval once, using wearer-turn end or elapsed rounds. Automatic hazard prompts and signal-range upgrades are still pending. Do not add this bonus to unrelated Perception checks.</p>")
 
     def perform(self,operation):

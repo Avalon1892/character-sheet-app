@@ -1,5 +1,9 @@
 # Tech & Tinker implementation status
 
+Pressure Sensor greater/superior validation: 111 engineering/database/transfer/recovery tests plus 20 subtests passed. Final boundary assertions passed in 8 sensor tests plus 4 theme subtests, covering 9/10 and 14/15 ranks, both required talents, saved ranges, broken scaling, paid tremorsense and export/import. Full isolated suite not repeated for this increment; the preceding full run's three known baseline failures remain documented. No deployment.
+
+Pressure Sensor greater/superior ranges: optional long construction requires Advanced Transmission, Transmission Mastery and 10 associated-skill ranks; extra-long requires the same talents and 15 ranks. Existing sensors are not silently upgraded. Shared detection/tremorsense projections use effective gizmo level and the Tinker-specific extra-long formula (1,000 + 100 feet/level), with improved penetration retained. Creation rejects unsupported choices; persistence/export/import retain crafted ranges. Further accommodations, wearable sensors, obstruction adjudication and automatic detector flat-footed mechanics remain pending. Sources: https://spheresofpower.wikidot.com/tinker and https://spheresofpower.wikidot.com/using-tinker-sphere.
+
 Pressure Sensor improved-range validation: 110 engineering/database/transfer/recovery tests plus 18 subtests passed. Coverage includes construction prerequisites, preservation of old close-range devices, medium-range paid tremorsense, broken scaling, invalid configuration, export/import and construction controls in both retained themes. Full isolated suite not repeated for this increment; the preceding full run's three known baseline failures remain documented. No deployment.
 
 Pressure Sensor optional improved range: construction now offers close range, or medium range with Transmission Mastery. Saved configuration—not current talent ownership—determines the crafted range; old sensors remain close until explicitly reconstructed. Shared projections use effective gizmo level, including broken devices, for detection and paid tremorsense range, and expose the improved signal's ×5 barrier penetration. The workbench presents the construction choice and live values; export/import preserves them. Greater/superior range, other accommodations, map-based obstruction adjudication and further detector variants remain pending. Sources: https://spheresofpower.wikidot.com/tinker and https://spheresofpower.wikidot.com/mastering-gizmos.
@@ -381,7 +385,7 @@ Every entry remains available through existing catalogs/Codex. “Roster” mean
 | Tinker | Table: Power Plants | Gizmo Talent | Reference / existing selection only |
 | Tinker | Table: Translator Fluency | Gizmo Talent | Reference / existing selection only |
 | Tinker | Technological Weapons (gizmo) | Gizmo Talent | Roster; device-specific effects not automated |
-| Tinker | Transmission Mastery (gizmo, transmission) [utility] | Gizmo Talent | Roster; device-specific effects not automated |
+| Tinker | Transmission Mastery (gizmo, transmission) [utility] | Gizmo Talent | Optional medium range and improved penetration for crafted Pressure Sensors; other detectors/transmitters, repeaters, remote installation and transmitted aid pending |
 | Tinker | Transportation Mastery (gizmo, transportation) | Gizmo Talent | Roster; device-specific effects not automated |
 | Tinker | Weapon Modifications (gizmo, modification) | Gizmo Talent | Roster; device-specific effects not automated |
 | Tinker | Advanced Arsenal (gizmo) | Legendary Talent | Roster; device-specific effects not automated |
@@ -393,7 +397,7 @@ Every entry remains available through existing catalogs/Codex. “Roster” mean
 | Tinker | Advanced Movement (gizmo) | Legendary Talent | Roster; device-specific effects not automated |
 | Tinker | Advanced Prosthetics (gizmo, augmentation) | Legendary Talent | Roster; device-specific effects not automated |
 | Tinker | Advanced Ranged Set (gizmo, modification) | Legendary Talent | Roster; device-specific effects not automated |
-| Tinker | Advanced Transmission (gizmo, transmission) | Legendary Talent | Roster; device-specific effects not automated |
+| Tinker | Advanced Transmission (gizmo, transmission) | Legendary Talent | Optional long/extra-long Pressure Sensor ranges with training/rank prerequisites; wearable sensors, other detectors and accommodations pending |
 | Tinker | Advanced Transportation (gizmo, transportation) | Legendary Talent | Roster; device-specific effects not automated |
 | Tinker | Automation Set (gizmo) | Legendary Talent | Roster; device-specific effects not automated |
 | Tinker | Dynamic Repurposing [LG] | Legendary Talent | Reference / existing selection only |
