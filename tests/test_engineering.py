@@ -167,6 +167,64 @@ class EngineeringTests(unittest.TestCase):
         self.assertFalse(self.service.pressure_sensor_profile(sensor)["available"])
         self.assertEqual(0,self.service.pressure_sensor_profile(sensor)["tremorsense_range_feet"])
 
+    def test_pressure_sensor_opt_in_renewal_expiry_exhaustion_and_transfer(self):
+        from app.engineering_rules import PRESSURE_JACK_KEY,PRESSURE_SENSOR_KEY
+        base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")
+        self.repo.update_martial_talent(self.cid,base.id,base.name,"Tinker","Base Sphere",catalog_key=base.catalog_key,catalog_category="Base Sphere",choice="Transmission")
+        self.add("Tinker","Pressure Jack (gizmo)",PRESSURE_JACK_KEY)
+        sensor=self.service.create("Tinker",PRESSURE_SENSOR_KEY,2,advanced=1)
+        batteries=[self.service.create("Tinker","tinker:battery",2) for _ in range(2)]
+        for battery in batteries:self.service.attach_battery(battery,sensor)
+        self.service.activate_pressure_sensor(sensor,activation_completed=True)
+        self.service.use_batteries(sensor,1,sensor_tremor=True)
+        self.assertFalse(self.service.pressure_sensor_profile(sensor)["auto_renew"])
+        self.service.set_sensor_auto_renew(sensor,True)
+        for turn in range(6):
+            if turn:self.service.maintain_pressure_sensor(sensor)
+            self.service.end_wearer_turn()
+        record=next(d for d in self.service.devices("Tinker") if d["id"]==sensor)
+        self.assertEqual(6,record["effect_rounds"]);self.assertEqual(batteries[1],record["effect_battery_id"])
+        self.assertTrue(self.service.pressure_sensor_profile(sensor)["auto_renew"])
+        path=Path(self.temp.name)/"renew-sensor.json";export_character(self.repo,self.cid,path)
+        imported=import_character(self.repo,path)
+        copied=next(d for d in self.repo.list_engineering_devices(imported) if d["catalog_key"]==PRESSURE_SENSOR_KEY)
+        self.assertEqual(self.service.pressure_sensor_profile(sensor),EngineeringService(self.repo,imported).pressure_sensor_profile(copied["id"]))
+        for _ in range(6):
+            self.service.maintain_pressure_sensor(sensor);self.service.end_wearer_turn()
+        self.assertEqual(0,self.service.pressure_sensor_profile(sensor)["tremorsense_range_feet"])
+        extra=self.service.create("Tinker","tinker:battery",2);self.service.attach_battery(extra,sensor)
+        self.service.maintain_pressure_sensor(sensor);self.service.end_wearer_turn()
+        self.assertEqual(0,self.service.pressure_sensor_profile(sensor)["tremorsense_range_feet"])
+        self.assertEqual("active",next(d for d in self.service.devices("Tinker") if d["id"]==extra)["state"])
+        self.service.use_batteries(sensor,1,sensor_tremor=True)
+        reserve=self.service.create("Tinker","tinker:battery",2);self.service.attach_battery(reserve,sensor)
+        for _ in range(6):
+            self.service.maintain_pressure_sensor(sensor);self.service.advance_time(1)
+        self.assertEqual("depleted",next(d for d in self.service.devices("Tinker") if d["id"]==reserve)["state"])
+        self.assertEqual(40,self.service.pressure_sensor_profile(sensor)["tremorsense_range_feet"])
+
+    def test_pressure_sensor_renewal_does_not_pay_upkeep_or_override_opt_out(self):
+        from app.engineering_rules import PRESSURE_JACK_KEY,PRESSURE_SENSOR_KEY
+        base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")
+        self.repo.update_martial_talent(self.cid,base.id,base.name,"Tinker","Base Sphere",catalog_key=base.catalog_key,catalog_category="Base Sphere",choice="Transmission")
+        self.add("Tinker","Pressure Jack (gizmo)",PRESSURE_JACK_KEY)
+        sensor=self.service.create("Tinker",PRESSURE_SENSOR_KEY,2,advanced=1)
+        batteries=[self.service.create("Tinker","tinker:battery",2) for _ in range(3)]
+        for battery in batteries:self.service.attach_battery(battery,sensor)
+        self.service.activate_pressure_sensor(sensor,activation_completed=True)
+        self.service.use_batteries(sensor,1,sensor_tremor=True)
+        for turn in range(6):
+            if turn:self.service.maintain_pressure_sensor(sensor)
+            self.service.advance_time(1)
+        self.assertEqual(0,self.service.pressure_sensor_profile(sensor)["tremorsense_range_feet"])
+        self.assertEqual("active",next(d for d in self.service.devices("Tinker") if d["id"]==batteries[1])["state"])
+        self.service.set_sensor_auto_renew(sensor,True)
+        self.service.use_batteries(sensor,1,sensor_tremor=True)
+        self.service.advance_time(6)
+        self.assertFalse(self.service.pressure_sensor_profile(sensor)["available"])
+        self.assertEqual("active",next(d for d in self.service.devices("Tinker") if d["id"]==batteries[2])["state"])
+        with self.assertRaises(ValueError):self.service.set_sensor_auto_renew(sensor,1)
+
     def test_spring_boots_pressure_battery_duration_and_transfer(self):
         from app.engineering_rules import PRESSURE_JACK_KEY,SPRING_BOOTS_KEY
         base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")
@@ -1684,6 +1742,9 @@ class EngineeringTests(unittest.TestCase):
                 dialog.sensor_quick.click()
                 self.assertTrue(self.service.pressure_sensor_profile(sensor_id)["available"])
                 self.assertEqual("depleted",next(d for d in self.service.devices("Tinker") if d["id"]==battery)["state"])
+                dialog.table.selectRow(0);dialog.sensor_auto_renew.setChecked(True)
+                self.assertTrue(self.service.pressure_sensor_profile(sensor_id)["auto_renew"])
+                dialog.table.selectRow(0);dialog.sensor_auto_renew.setChecked(False)
                 self.service.change_state(sensor_id,"inactive")
                 dialog.deleteLater();sheet.deleteLater();app.sendPostedEvents(None,QEvent.Type.DeferredDelete)
 

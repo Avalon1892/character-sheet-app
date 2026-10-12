@@ -987,6 +987,7 @@ class CharacterRepository:
         self._ensure_column("engineering_devices", "effect_rounds", "INTEGER NOT NULL DEFAULT 0")
         self._ensure_column("engineering_devices", "pressure_turn_ends", "INTEGER NOT NULL DEFAULT 0")
         self._ensure_column("engineering_devices", "detector_maintained", "INTEGER NOT NULL DEFAULT 0")
+        self._ensure_column("engineering_devices", "sensor_auto_renew", "INTEGER NOT NULL DEFAULT 0")
         self._ensure_column("engineering_devices", "effect_battery_id", "INTEGER")
         self._ensure_column("engineering_devices", "worn_slot", "TEXT NOT NULL DEFAULT ''")
         self._ensure_column("engineering_devices", "augment_slot", "TEXT NOT NULL DEFAULT ''")
@@ -3186,14 +3187,17 @@ class CharacterRepository:
         if type(maintained) not in (bool,int) or maintained not in (False,True,0,1) or (maintained and (sphere!="Tinker" or record.get("catalog_key")!=PRESSURE_SENSOR_KEY)):
             raise ValueError("Invalid detector upkeep state.")
         if state!="active" or device_condition(record)["destroyed"]:maintained=False
+        renew=record.get("sensor_auto_renew",False)
+        if type(renew) not in (bool,int) or renew not in (False,True,0,1) or (renew and (sphere!="Tinker" or record.get("catalog_key")!=PRESSURE_SENSOR_KEY or not record.get("advanced"))):
+            raise ValueError("Automatic tremorsense renewal requires an advanced Pressure Sensor.")
         fields = ("sphere", "catalog_key", "name", "level", "modifier", "state", "charges", "minor", "advanced", "host_id", "damage", "configuration", "applied_to_character", "function_mode", "effect_rounds", "worn_slot", "effect_battery_id", "augment_slot", "bio_augment", "energy_efficient", "construction_kind", "graft_slot", "graft_order","pressure_turn_ends")
-        fields=(*fields,"detector_maintained")
+        fields=(*fields,"detector_maintained","sensor_auto_renew")
         values = (sphere, str(record.get("catalog_key", "")), name,
                   int(record.get("level", 0)), int(record.get("modifier", 0)), state,
                   int(record.get("charges", 0)), int(bool(record.get("minor", False))),
                   int(record.get("advanced", 0)), host_id, int(record.get("damage",0)),
                   str(record.get("configuration", "")),int(bool(record.get("applied_to_character",False))),
-                  str(record.get("function_mode","")),int(record.get("effect_rounds",0)),str(record.get("worn_slot","")),effect_battery_id,augment_slot,int(bool(record.get("bio_augment",False))),int(bool(record.get("energy_efficient",False))),construction_kind,graft_slot,graft_order,pressure,int(bool(maintained)))
+                  str(record.get("function_mode","")),int(record.get("effect_rounds",0)),str(record.get("worn_slot","")),effect_battery_id,augment_slot,int(bool(record.get("bio_augment",False))),int(bool(record.get("energy_efficient",False))),construction_kind,graft_slot,graft_order,pressure,int(bool(maintained)),int(bool(renew)))
         if not 0 <= values[3] <= 999 or not -100 <= values[4] <= 100 or not 0 <= values[6] <= 99999 or not 0 <= values[8] <= 99:
             raise ValueError("Device statistics are outside supported bounds.")
         if not 0<=values[10]<=99999:
@@ -3332,21 +3336,39 @@ class CharacterRepository:
         if not 1<=rounds<=999999:
             raise ValueError("Elapsed rounds must be between 1 and 999,999.")
         with self._connection:
+            expiring=self._expiring_pressure_sensors(character_id,rounds)
             timed_keys=(JET_BOOSTERS_KEY,*TECH_TIMED_AUGMENT_MODES)
             self._connection.execute("UPDATE engineering_devices SET pressure_turn_ends=MAX(0,pressure_turn_ends-?) WHERE character_id=? AND pressure_turn_ends>0",(rounds,character_id))
             self._connection.execute("UPDATE engineering_devices SET state=CASE WHEN detector_maintained=0 OR ?>1 THEN 'inactive' ELSE state END,effect_rounds=CASE WHEN detector_maintained=0 OR ?>1 THEN 0 ELSE effect_rounds END,detector_maintained=0 WHERE character_id=? AND catalog_key=? AND state='active'",(rounds,rounds,character_id,PRESSURE_SENSOR_KEY))
             self._connection.execute("UPDATE engineering_devices SET state='inactive',effect_rounds=0,effect_battery_id=NULL WHERE character_id=? AND catalog_key=? AND host_id IN (SELECT id FROM engineering_devices WHERE character_id=? AND catalog_key=? AND state!='active')",(character_id,RESISTANCE_ROUTINE_KEY,character_id,PRESSURE_SENSOR_KEY))
             self._connection.execute("UPDATE engineering_devices SET effect_rounds=MAX(0,effect_rounds-?),state=CASE WHEN effect_rounds<=? AND state='active' AND catalog_key IN ("+",".join("?" for _ in timed_keys)+") THEN 'inactive' ELSE state END WHERE character_id=? AND state!='abandoned' AND effect_rounds>0",
                 (rounds,rounds,*timed_keys,character_id))
+            self._renew_pressure_sensors(character_id,expiring)
             self._touch_character(character_id)
 
     def end_engineering_wearer_turn(self,character_id):
         with self._connection:
+            expiring=self._expiring_pressure_sensors(character_id,1)
             self._connection.execute("UPDATE engineering_devices SET effect_rounds=MAX(0,effect_rounds-1) WHERE character_id=? AND catalog_key=? AND state='active' AND effect_rounds>0",(character_id,PRESSURE_SENSOR_KEY))
             self._connection.execute("UPDATE engineering_devices SET pressure_turn_ends=MAX(0,pressure_turn_ends-1) WHERE character_id=? AND pressure_turn_ends>0",(character_id,))
             self._connection.execute("UPDATE engineering_devices SET state=CASE WHEN detector_maintained=0 THEN 'inactive' ELSE state END,effect_rounds=CASE WHEN detector_maintained=0 THEN 0 ELSE effect_rounds END,detector_maintained=0 WHERE character_id=? AND catalog_key=? AND state='active'",(character_id,PRESSURE_SENSOR_KEY))
             self._connection.execute("UPDATE engineering_devices SET state='inactive',effect_rounds=0,effect_battery_id=NULL WHERE character_id=? AND catalog_key=? AND host_id IN (SELECT id FROM engineering_devices WHERE character_id=? AND catalog_key=? AND state!='active')",(character_id,RESISTANCE_ROUTINE_KEY,character_id,PRESSURE_SENSOR_KEY))
+            self._renew_pressure_sensors(character_id,expiring)
             self._touch_character(character_id)
+
+    def _expiring_pressure_sensors(self,character_id,rounds):
+        return tuple(row["id"] for row in self._connection.execute("SELECT id FROM engineering_devices WHERE character_id=? AND catalog_key=? AND state='active' AND sensor_auto_renew=1 AND function_mode='sensor_tremor' AND effect_battery_id IS NOT NULL AND effect_rounds>0 AND effect_rounds<=? ORDER BY id",(character_id,PRESSURE_SENSOR_KEY,rounds)))
+
+    def _renew_pressure_sensors(self,character_id,device_ids):
+        # Called only inside the elapsed-time transaction, for effects expiring now.
+        for device_id in device_ids:
+            host=self._connection.execute("SELECT * FROM engineering_devices WHERE id=? AND character_id=? AND state='active'",(device_id,character_id)).fetchone()
+            if host is None or not host["advanced"] or device_condition(dict(host))["destroyed"]:continue
+            battery=self._connection.execute("SELECT * FROM engineering_devices WHERE character_id=? AND host_id=? AND catalog_key='tinker:battery' AND sphere='Tinker' AND state='active' AND level>=? AND damage<3*level ORDER BY id LIMIT 1",(character_id,device_id,host["level"])).fetchone()
+            if battery is None:continue
+            self._connection.execute("UPDATE engineering_devices SET state='depleted' WHERE id=?",(battery["id"],))
+            self._connection.execute("UPDATE engineering_devices SET state='inactive',effect_rounds=0,effect_battery_id=NULL WHERE character_id=? AND catalog_key=? AND host_id=?",(character_id,RESISTANCE_ROUTINE_KEY,battery["id"]))
+            self._connection.execute("UPDATE engineering_devices SET effect_rounds=?,effect_battery_id=? WHERE id=?",(device_condition(dict(host))["effective_level"],battery["id"],device_id))
 
     def deplete_engineering_batteries(self,character_id,host_id,battery_ids,*,tactile_boost=False,spring_boost=False,sensor_tremor=False,sensor_activate=False):
         ids=tuple(dict.fromkeys(int(i) for i in battery_ids))

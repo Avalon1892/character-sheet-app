@@ -44,7 +44,7 @@ class EngineeringService:
             augmentation="Augmentation" in tinker_packages(self.records(sphere))
             if "Transmission" in tinker_packages(self.records(sphere)) and any(t.catalog_key==PRESSURE_JACK_KEY for t in self.records(sphere)):
                 entries[PRESSURE_SENSOR_KEY]={"key":PRESSURE_SENSOR_KEY,"name":"Pressure Sensor (gizmo)",
-                    "description":"Detect ground-based hazards within signal range. Grants a circumstance bonus to relevant hazard-detection skill checks, not all Perception checks. Confirm one-minute activation or spend one battery to activate as a standard action. Pay full-round upkeep each turn, leaving the user flat-footed. Advanced sensors can spend a separate battery for timed tremorsense. Automatic renewal, range upgrades and hazard prompts remain pending.",
+                    "description":"Detect ground-based hazards within signal range. Grants a circumstance bonus to relevant hazard-detection skill checks, not all Perception checks. Confirm one-minute activation or spend one battery to activate as a standard action. Pay full-round upkeep each turn, leaving the user flat-footed. Advanced sensors can spend a separate battery for timed tremorsense and opt into automatic paid renewal at expiry. Range upgrades and hazard prompts remain pending.",
                     "source_url":"https://spheresofpower.wikidot.com/tinker"}
             if "Computation" in tinker_packages(self.records(sphere)) and any(t.catalog_key=="tinker:gizmo-talent:defensive-set-gizmo" for t in self.records(sphere)):
                 entries[RESISTANCE_ROUTINE_KEY]={"key":RESISTANCE_ROUTINE_KEY,"name":"Resistance Routine (gizmo, minor, routine)",
@@ -538,3 +538,10 @@ class EngineeringService:
             raise ValueError("Activate a functioning Pressure Sensor first.")
         if device["detector_maintained"]:raise ValueError("Detector upkeep has already been reported this turn.")
         self.repository.save_engineering_device(self.character_id,{**device,"detector_maintained":True},device_id)
+
+    def set_sensor_auto_renew(self,device_id,enabled):
+        if type(enabled) is not bool:raise ValueError("Choose whether automatic renewal is enabled.")
+        device=next((d for d in self.devices("Tinker") if d["id"]==device_id),None)
+        if not device or device["catalog_key"]!=PRESSURE_SENSOR_KEY or not device["advanced"] or device["state"]=="abandoned":
+            raise ValueError("Select a non-abandoned advanced Pressure Sensor.")
+        self.repository.save_engineering_device(self.character_id,{**device,"sensor_auto_renew":enabled},device_id)

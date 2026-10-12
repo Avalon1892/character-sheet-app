@@ -251,13 +251,17 @@ class EngineeringDialog(QDialog):
         self.sensor_maintain=QPushButton("Maintain detector — full-round")
         self.sensor_tremor=QPushButton("Tremorsense — 1 battery / move action")
         self.sensor_end_turn=QPushButton("End wearer turn")
+        self.sensor_auto_renew=QCheckBox("Auto-renew tremorsense")
+        self.sensor_auto_renew.setToolTip("At paid tremorsense expiry, consume another valid attached battery without an action. Does not pay detector upkeep or restart an expired effect later.")
         for button in (self.sensor_activate,self.sensor_quick,self.sensor_maintain,self.sensor_tremor,self.sensor_end_turn):sensor_controls.addWidget(button)
+        sensor_controls.addWidget(self.sensor_auto_renew)
         sensor_controls.addStretch()
         self.sensor_activate.clicked.connect(lambda:self.perform(self.activate_sensor))
         self.sensor_quick.clicked.connect(lambda:self.perform(lambda:self.service().use_batteries(self.selected(),1,sensor_activate=True)))
         self.sensor_maintain.clicked.connect(lambda:self.perform(lambda:self.service().maintain_pressure_sensor(self.selected())))
         self.sensor_tremor.clicked.connect(lambda:self.perform(lambda:self.service().use_batteries(self.selected(),1,sensor_tremor=True)))
         self.sensor_end_turn.clicked.connect(lambda:self.perform(lambda:self.service().end_wearer_turn()))
+        self.sensor_auto_renew.toggled.connect(lambda enabled:self.perform(lambda:self.service().set_sensor_auto_renew(self.selected(),enabled)))
         health=QHBoxLayout();root.addLayout(health)
         self.damage_amount=QSpinBox();self.damage_amount.setRange(1,99999)
         health.addWidget(QLabel("Incoming device damage"));health.addWidget(self.damage_amount)
@@ -452,6 +456,11 @@ class EngineeringDialog(QDialog):
         device=next((d for d in self.service().devices(self.system.currentText()) if d["id"]==self.selected()),None)
         sensor_selected=bool(device and device["catalog_key"]==PRESSURE_SENSOR_KEY)
         for button in (self.sensor_activate,self.sensor_quick,self.sensor_maintain,self.sensor_tremor,self.sensor_end_turn):button.setVisible(sensor_selected)
+        self.sensor_auto_renew.setVisible(sensor_selected)
+        self.sensor_auto_renew.blockSignals(True)
+        self.sensor_auto_renew.setChecked(bool(sensor_selected and device["sensor_auto_renew"]))
+        self.sensor_auto_renew.blockSignals(False)
+        self.sensor_auto_renew.setEnabled(bool(sensor_selected and device["advanced"] and device["state"]!="abandoned"))
         if sensor_selected:
             sensor=self.service().pressure_sensor_profile(device["id"])
             self.sensor_activate.setEnabled(device["state"]=="inactive" and not device_condition(device)["destroyed"])
@@ -533,7 +542,7 @@ class EngineeringDialog(QDialog):
             self.details.append(f"<h3>Live jump benefits</h3><p>{'Available' if profile['available'] else 'Unavailable'} · Pressure jump bonus +{profile['pressure_jump_bonus']} (in addition to the normal Dexterity augmentor bonus). High-jump DC multiplier ×{profile['high_jump_multiplier']}. Running start: {'Yes' if profile['running_start'] else 'Normal rules'}. Exceed base speed: {'Yes' if profile['exceed_base_speed'] else 'No'}.</p><p>While worn and functioning: minimum falling damage and no falling-damage prone. Pressure expires after two reported turn ends (current and next). Consume pressure for its bonus and a jump reroll; dice and fall damage are resolved manually.</p>")
         if device and device["catalog_key"]==PRESSURE_SENSOR_KEY:
             sensor=self.service().pressure_sensor_profile(device["id"])
-            self.details.append(f"<h3>Pressure sensor values</h3><p>Ground-hazard detection checks: +{sensor['hazard_check_bonus']} circumstance. Base signal range: {sensor['base_signal_range_feet']} ft. Advanced tremorsense duration: {sensor['tremorsense_duration_rounds']} rounds per battery. Current tremorsense: {sensor['tremorsense_range_feet']} ft.</p><p>Full-round upkeep paid: {'Yes' if sensor['upkeep_paid'] else 'No'}. Flat-footed: {'Yes' if sensor['flat_footed'] else 'No'} (apply flat-footed manually). Missing upkeep deactivates detection at turn end. Report each interval once, using wearer-turn end or elapsed rounds. Automatic hazard prompts, signal-range upgrades and automatic battery renewal are still pending. Do not add this bonus to unrelated Perception checks.</p>")
+            self.details.append(f"<h3>Pressure sensor values</h3><p>Ground-hazard detection checks: +{sensor['hazard_check_bonus']} circumstance. Base signal range: {sensor['base_signal_range_feet']} ft. Advanced tremorsense duration: {sensor['tremorsense_duration_rounds']} rounds per battery. Current tremorsense: {sensor['tremorsense_range_feet']} ft. Auto-renew: {'On' if sensor['auto_renew'] else 'Off'}.</p><p>Full-round upkeep paid: {'Yes' if sensor['upkeep_paid'] else 'No'}. Flat-footed: {'Yes' if sensor['flat_footed'] else 'No'} (apply flat-footed manually). Missing upkeep deactivates detection at turn end. Report each interval once, using wearer-turn end or elapsed rounds. Automatic hazard prompts and signal-range upgrades are still pending. Do not add this bonus to unrelated Perception checks.</p>")
 
     def perform(self,operation):
         try:

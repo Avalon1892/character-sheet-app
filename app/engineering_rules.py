@@ -254,6 +254,7 @@ def pressure_sensor_profile(device):
             "tremorsense_duration_rounds":level if device["advanced"] else 0,
             "tremorsense_range_feet":25+5*(level//2) if device["state"]=="active" and not condition["destroyed"] and device.get("function_mode")=="sensor_tremor" and device.get("effect_rounds",0)>0 and device.get("effect_battery_id") is not None else 0,
             "upkeep_paid":bool(device.get("detector_maintained",False)),
+            "auto_renew":bool(device.get("sensor_auto_renew",False)),
             "flat_footed":device["state"]=="active" and not condition["destroyed"]}
 
 
