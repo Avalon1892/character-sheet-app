@@ -8,6 +8,7 @@ from app.services.character_calculations import CharacterCalculationService
 from app.exploitant_rules import effective_martial_talents
 from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY,resistance_routine_bonus,DERMAL_PLATING_KEY
 from app.engineering_rules import PRESSURE_JACK_KEY,pressure_jack_profile,SPRING_BOOTS_KEY,spring_boots_profile
+from app.engineering_rules import PRESSURE_SENSOR_KEY,pressure_sensor_profile
 
 
 def device_talent(entry):
@@ -41,6 +42,10 @@ class EngineeringService:
             entries["tinker:battery"] = {"key":"tinker:battery", "name":"Battery (gizmo)",
                                         "description":"Depleting this battery powers a battery-use ability. A depleted battery still counts against your gizmo limit."}
             augmentation="Augmentation" in tinker_packages(self.records(sphere))
+            if "Transmission" in tinker_packages(self.records(sphere)) and any(t.catalog_key==PRESSURE_JACK_KEY for t in self.records(sphere)):
+                entries[PRESSURE_SENSOR_KEY]={"key":PRESSURE_SENSOR_KEY,"name":"Pressure Sensor (gizmo)",
+                    "description":"Detect ground-based hazards within signal range. Grants a circumstance bonus to relevant hazard-detection skill checks, not all Perception checks. Normal detector activation takes one minute and requires a full-round action each turn, leaving the user flat-footed. Advanced tremorsense battery activation and detector upkeep automation are not yet supported.",
+                    "source_url":"https://spheresofpower.wikidot.com/tinker"}
             if "Computation" in tinker_packages(self.records(sphere)) and any(t.catalog_key=="tinker:gizmo-talent:defensive-set-gizmo" for t in self.records(sphere)):
                 entries[RESISTANCE_ROUTINE_KEY]={"key":RESISTANCE_ROUTINE_KEY,"name":"Resistance Routine (gizmo, minor, routine)",
                     "description":"Install in a gizmo to grant that gizmo a +1 insight bonus to all saves, +1 per 4 effective routine levels. Activate the routine after installation. This protects the host device, not the character. Multiple copies do not stack.",
@@ -513,3 +518,8 @@ class EngineeringService:
         if device is None:
             raise ValueError("Select an owned Tinker device.")
         return pressure_jack_profile(device,jack_count=jack_count)
+
+    def pressure_sensor_profile(self,device_id):
+        device=next((d for d in self.devices("Tinker") if d["id"]==device_id),None)
+        if device is None:raise ValueError("Select an owned Tinker device.")
+        return pressure_sensor_profile(device)

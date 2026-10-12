@@ -7,6 +7,7 @@ from PySide6.QtWidgets import (QDialog,QVBoxLayout,QHBoxLayout,QComboBox,QLabel,
 from app.services.engineering import EngineeringService
 from app.services.character_calculations import CharacterCalculationService
 from app.engineering_rules import TECH_LOAD_BEARER_KEY,PRESSURE_JACK_KEY,SPRING_BOOTS_KEY
+from app.engineering_rules import PRESSURE_SENSOR_KEY
 from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY,DERMAL_PLATING_KEY,tech_augment_suppressed,tech_augment_installed,CLAMP_BOOTS_KEY,TECH_AUGMENT_SLOTS,TECH_ABILITY_AUGMENTS,clamp_boots_active
 from app.engineering_rules import occupied_limit,is_battery,TECH_BATTERY_KEY,tech_battery_capacity,device_condition,PHYSICAL_AUGMENTOR_KEY,AUGMENTOR_ABILITIES,JET_BOOSTERS_KEY,JET_MODES
 from app.content import martial_entry
@@ -509,6 +510,9 @@ class EngineeringDialog(QDialog):
             self.details.append(f"<h3>Live pressure jack</h3><p>{'Available' if profile['available'] else 'Unavailable'} · Strength {profile['strength']} · Extension {profile['extension_feet']} ft · Crushing {profile['damage']} bludgeoning (Fortitude half).</p><p>Apply: swift action; expand: move action. Crushing requires a solid surface. For lifting beyond one minute: {size} breaks the jack; smaller targets can be held indefinitely. Each additional applied jack increases the size threshold by one category. Resolve target saves and object placement manually.</p>")
         if spring:
             self.details.append(f"<h3>Live jump benefits</h3><p>{'Available' if profile['available'] else 'Unavailable'} · Pressure jump bonus +{profile['pressure_jump_bonus']} (in addition to the normal Dexterity augmentor bonus). High-jump DC multiplier ×{profile['high_jump_multiplier']}. Running start: {'Yes' if profile['running_start'] else 'Normal rules'}. Exceed base speed: {'Yes' if profile['exceed_base_speed'] else 'No'}.</p><p>While worn and functioning: minimum falling damage and no falling-damage prone. Pressure expires after two reported turn ends (current and next). Consume pressure for its bonus and a jump reroll; dice and fall damage are resolved manually.</p>")
+        if device and device["catalog_key"]==PRESSURE_SENSOR_KEY:
+            sensor=self.service().pressure_sensor_profile(device["id"])
+            self.details.append(f"<h3>Pressure sensor values</h3><p>Ground-hazard detection checks: +{sensor['hazard_check_bonus']} circumstance. Base signal range: {sensor['base_signal_range_feet']} ft. Advanced tremorsense duration: {sensor['tremorsense_duration_rounds']} rounds per battery.</p><p>Contextual values only: maintain ordinary detection with a full-round action each turn and apply flat-footed manually. Automatic hazard prompts, signal-range upgrades, activation timing and tremorsense spending are still pending. Do not add this bonus to unrelated Perception checks.</p>")
 
     def perform(self,operation):
         try:

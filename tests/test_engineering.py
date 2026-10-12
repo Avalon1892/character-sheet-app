@@ -81,6 +81,33 @@ class EngineeringTests(unittest.TestCase):
             with self.assertRaises(ValueError):self.service.pressure_jack_profile(device,jack_count=invalid)
         with self.assertRaises(ValueError):self.service.pressure_jack_profile(99999)
 
+    def test_pressure_sensor_recipe_contextual_values_and_transfer(self):
+        from app.engineering_rules import PRESSURE_JACK_KEY,PRESSURE_SENSOR_KEY,pressure_sensor_profile
+        self.add("Tinker","Pressure Jack (gizmo)",PRESSURE_JACK_KEY)
+        with self.assertRaises(ValueError):self.service.create("Tinker",PRESSURE_SENSOR_KEY,2)
+        base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")
+        self.repo.update_martial_talent(self.cid,base.id,base.name,"Tinker","Base Sphere",catalog_key=base.catalog_key,catalog_category="Base Sphere",choice="Transmission")
+        sensor=self.service.create("Tinker",PRESSURE_SENSOR_KEY,2,advanced=1)
+        profile=self.service.pressure_sensor_profile(sensor)
+        self.assertEqual(3,profile["hazard_check_bonus"])
+        self.assertEqual(40,profile["base_signal_range_feet"])
+        self.assertEqual(6,profile["tremorsense_duration_rounds"])
+        self.assertFalse(profile["available"])
+        self.service.change_state(sensor,"active")
+        self.assertTrue(self.service.pressure_sensor_profile(sensor)["available"])
+        record=next(d for d in self.service.devices("Tinker") if d["id"]==sensor)
+        self.repo.save_engineering_device(self.cid,{**record,"damage":10},sensor)
+        profile=self.service.pressure_sensor_profile(sensor)
+        self.assertEqual(35,profile["base_signal_range_feet"])
+        self.assertEqual(4,profile["tremorsense_duration_rounds"])
+        path=Path(self.temp.name)/"sensor.json";export_character(self.repo,self.cid,path)
+        imported=import_character(self.repo,path)
+        copied=next(d for d in self.repo.list_engineering_devices(imported) if d["catalog_key"]==PRESSURE_SENSOR_KEY)
+        self.assertEqual(profile,pressure_sensor_profile(copied))
+        self.repo.save_engineering_device(self.cid,{**record,"damage":18},sensor)
+        self.assertFalse(self.service.pressure_sensor_profile(sensor)["available"])
+        with self.assertRaises(ValueError):self.service.pressure_sensor_profile(99999)
+
     def test_spring_boots_pressure_battery_duration_and_transfer(self):
         from app.engineering_rules import PRESSURE_JACK_KEY,SPRING_BOOTS_KEY
         base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")
@@ -1567,6 +1594,27 @@ class EngineeringTests(unittest.TestCase):
                 dialog.jack_count.setValue(2)
                 self.assertIn("Colossal",dialog.details.toPlainText())
                 self.assertIn("4d8",dialog.details.toPlainText())
+                dialog.deleteLater();sheet.deleteLater();app.sendPostedEvents(None,QEvent.Type.DeferredDelete)
+
+    def test_pressure_sensor_ui_marks_pending_activation_in_both_themes(self):
+        from PySide6.QtWidgets import QApplication,QWidget
+        from PySide6.QtCore import QEvent
+        from app.ui.engineering import EngineeringDialog
+        from app.engineering_rules import PRESSURE_JACK_KEY,PRESSURE_SENSOR_KEY
+        base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")
+        self.repo.update_martial_talent(self.cid,base.id,base.name,"Tinker","Base Sphere",catalog_key=base.catalog_key,catalog_category="Base Sphere",choice="Transmission")
+        self.add("Tinker","Pressure Jack (gizmo)",PRESSURE_JACK_KEY)
+        self.service.create("Tinker",PRESSURE_SENSOR_KEY,2,advanced=1)
+        app=QApplication.instance() or QApplication([])
+        for theme in ("classic","dark"):
+            with self.subTest(theme=theme):
+                sheet=QWidget();sheet.repository=self.repo;sheet.character_id=self.cid;sheet.theme=theme
+                sheet.refresh_all=lambda:None
+                dialog=EngineeringDialog(sheet);dialog.system.setCurrentText("Tinker");dialog.table.selectRow(0)
+                text=dialog.details.toPlainText()
+                self.assertIn("+3 circumstance",text);self.assertIn("40 ft",text)
+                self.assertIn("still pending",text);self.assertIn("flat-footed manually",text)
+                self.assertTrue(dialog.spring_boost.isHidden())
                 dialog.deleteLater();sheet.deleteLater();app.sendPostedEvents(None,QEvent.Type.DeferredDelete)
 
     def test_spring_boots_ui_pressure_controls_in_both_themes(self):

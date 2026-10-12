@@ -29,6 +29,7 @@ MENTAL_AUGMENTOR_KEY = "tinker:device:mental-augmentor"
 LOAD_BEARER_KEY = "tinker:device:load-bearer"
 PRESSURE_JACK_KEY = "tinker:gizmo-talent:pressure-jack-gizmo"
 SPRING_BOOTS_KEY = "tinker:device:spring-boots"
+PRESSURE_SENSOR_KEY = "tinker:device:pressure-sensor"
 TACTILE_FIELD_KEY = "tinker:device:tactile-field"
 RESISTANCE_ROUTINE_KEY = "tinker:device:resistance-routine"
 DERMAL_PLATING_KEY = "tech:gadget-talent:dermal-plating-augment-drone-gadget"
@@ -241,6 +242,16 @@ def pressure_jack_profile(device, *, jack_count=1):
             "damage":f"{1+level//2}d{12 if advanced else 8}",
             "long_lift_size_steps":level//3+jack_count-1,
             "available":device["state"]=="active" and not condition["destroyed"]}
+
+
+def pressure_sensor_profile(device):
+    if device["sphere"]!="Tinker" or device["catalog_key"]!=PRESSURE_SENSOR_KEY:
+        return None
+    condition=device_condition(device)
+    level=condition["effective_level"]
+    return {"available":device["state"]=="active" and not condition["destroyed"],
+            "hazard_check_bonus":2+level//4,"base_signal_range_feet":25+5*(level//2),
+            "tremorsense_duration_rounds":level if device["advanced"] else 0}
 
 
 def spring_boots_profile(device):
