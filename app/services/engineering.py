@@ -7,7 +7,7 @@ from app.engineering_rules import physical_augmentor_bonus, tech_minute_augment_
 from app.services.character_calculations import CharacterCalculationService
 from app.exploitant_rules import effective_martial_talents
 from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY,resistance_routine_bonus,DERMAL_PLATING_KEY
-from app.engineering_rules import PRESSURE_JACK_KEY,pressure_jack_profile
+from app.engineering_rules import PRESSURE_JACK_KEY,pressure_jack_profile,SPRING_BOOTS_KEY,spring_boots_profile
 
 
 def device_talent(entry):
@@ -54,6 +54,9 @@ class EngineeringService:
                     "description":"Choose Intelligence, Wisdom or Charisma. Functions as a physical augmentor: competence bonus to matching ability and skill checks, 2 + 1 per 4 effective gizmo levels. Its battery use rolls a benefiting check twice and takes the higher result.",
                     "source_url":"https://spheresofpower.wikidot.com/tinker"}
             if augmentation and any(t.catalog_key=="tinker:gizmo-talent:pressure-jack-gizmo" for t in self.records(sphere)):
+                entries[SPRING_BOOTS_KEY]={"key":SPRING_BOOTS_KEY,"name":"Spring Boots (gizmo)",
+                    "description":"Dexterity augmentor with minimum falling damage and no falling-damage prone. Build pressure for the next jump, or spend a battery for improved high jumps and a running start. Advanced boots can build pressure as a swift action and exceed base speed during the battery enhancement.",
+                    "source_url":"https://spheresofpower.wikidot.com/tinker"}
                 entries[LOAD_BEARER_KEY]={"key":LOAD_BEARER_KEY,"name":"Load Bearer (gizmo)",
                     "description":"A Strength physical augmentor which also adds its bonus to Strength for carrying capacity. An advanced Load Bearer doubles that carrying-capacity bonus and treats the user as one size larger for Strength checks to break objects. Ability-check rolls and battery rerolls are resolved manually.",
                     "source_url":"https://spheresofpower.wikidot.com/tinker"}
@@ -307,7 +310,7 @@ class EngineeringService:
             raise ValueError("Tinker batteries cannot be deactivated.")
         if record["catalog_key"]==TECH_BATTERY_KEY and state=="abandoned":
             record={**record,"charges":0,"host_id":None}
-        if record["catalog_key"] in {JET_BOOSTERS_KEY,TACTILE_FIELD_KEY,*TECH_AUGMENT_SLOTS} and state!="active":
+        if record["catalog_key"] in {JET_BOOSTERS_KEY,TACTILE_FIELD_KEY,SPRING_BOOTS_KEY,*TECH_AUGMENT_SLOTS} and state!="active":
             record={**record,"effect_rounds":0,"effect_battery_id":None}
             if state=="abandoned":record={**record,"worn_slot":"","augment_slot":"","applied_to_character":False}
         if state in {"abandoned","depleted"} and record["charges"]:
@@ -355,7 +358,7 @@ class EngineeringService:
             raise ValueError("Select a functioning gizmo as the battery host.")
         self.repository.save_engineering_device(self.character_id,{**battery,"host_id":host_id},battery_id)
 
-    def use_batteries(self,host_id,amount,*,personal=False,tactile_boost=False):
+    def use_batteries(self,host_id,amount,*,personal=False,tactile_boost=False,spring_boost=False):
         if not self.available("Tinker"):
             raise ValueError("The Tinker sphere is required.")
         host=next((d for d in self.devices("Tinker") if d["id"]==host_id),None)
@@ -368,7 +371,36 @@ class EngineeringService:
                    and (not personal or d["level"]>=level)]
         if amount<=0 or len(batteries)<amount:
             raise ValueError("Not enough usable attached batteries: battery level must reach the host level, and personal uses also require character level.")
-        self.repository.deplete_engineering_batteries(self.character_id,host_id,[b["id"] for b in batteries[:amount]],tactile_boost=tactile_boost)
+        self.repository.deplete_engineering_batteries(self.character_id,host_id,[b["id"] for b in batteries[:amount]],tactile_boost=tactile_boost,spring_boost=spring_boost)
+
+    def spring_boots_profile(self,device_id):
+        device=next((d for d in self.devices("Tinker") if d["id"]==device_id),None)
+        if device is None:raise ValueError("Select an owned Tinker device.")
+        return spring_boots_profile(device)
+
+    def pressurize_spring_boots(self,device_id):
+        device=next((d for d in self.devices("Tinker") if d["id"]==device_id),None)
+        profile=spring_boots_profile(device) if device else None
+        if not self.available("Tinker") or not profile or not profile["available"]:
+            raise ValueError("Wear active, functioning Spring Boots first.")
+        if device["pressure_turn_ends"]:raise ValueError("Spring Boots are already pressurized.")
+        self.repository.save_engineering_device(self.character_id,{**device,"pressure_turn_ends":2},device_id)
+
+    def use_spring_jump(self,device_id,*,exceed_base_speed=False):
+        device=next((d for d in self.devices("Tinker") if d["id"]==device_id),None)
+        profile=spring_boots_profile(device) if device else None
+        if not self.available("Tinker") or not profile or not profile["available"]:
+            raise ValueError("Wear active, functioning Spring Boots first.")
+        if exceed_base_speed and not profile["exceed_base_speed"]:
+            raise ValueError("Exceeding base speed requires advanced boots with an active battery enhancement.")
+        if not profile["pressure_jump_bonus"] and not exceed_base_speed:
+            raise ValueError("Build pressure before using its jump reroll.")
+        self.repository.save_engineering_device(self.character_id,{**device,"pressure_turn_ends":0,
+            "effect_rounds":max(0,device["effect_rounds"]-(10 if exceed_base_speed else 0))},device_id)
+        return {**profile,"reroll":bool(profile["pressure_jump_bonus"])}
+
+    def end_wearer_turn(self):
+        self.repository.end_engineering_wearer_turn(self.character_id)
 
     def use_augmentor_reroll(self,device_id):
         device=next((d for d in self.devices("Tinker") if d["id"]==device_id),None)

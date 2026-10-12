@@ -6,7 +6,7 @@ from PySide6.QtWidgets import (QDialog,QVBoxLayout,QHBoxLayout,QComboBox,QLabel,
     QSpinBox,QCheckBox,QTextBrowser,QSplitter,QWidget,QMessageBox,QInputDialog)
 from app.services.engineering import EngineeringService
 from app.services.character_calculations import CharacterCalculationService
-from app.engineering_rules import TECH_LOAD_BEARER_KEY,PRESSURE_JACK_KEY
+from app.engineering_rules import TECH_LOAD_BEARER_KEY,PRESSURE_JACK_KEY,SPRING_BOOTS_KEY
 from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY,DERMAL_PLATING_KEY,tech_augment_suppressed,tech_augment_installed,CLAMP_BOOTS_KEY,TECH_AUGMENT_SLOTS,TECH_ABILITY_AUGMENTS,clamp_boots_active
 from app.engineering_rules import occupied_limit,is_battery,TECH_BATTERY_KEY,tech_battery_capacity,device_condition,PHYSICAL_AUGMENTOR_KEY,AUGMENTOR_ABILITIES,JET_BOOSTERS_KEY,JET_MODES
 from app.content import martial_entry
@@ -229,6 +229,21 @@ class EngineeringDialog(QDialog):
         field_controls.addWidget(self.tactile_boost);field_controls.addWidget(self.tactile_reroll);field_controls.addStretch()
         self.tactile_boost.clicked.connect(lambda:self.perform(lambda:self.service().use_batteries(self.selected(),1,tactile_boost=True)))
         self.tactile_reroll.clicked.connect(lambda:self.perform(self.use_tactile_reroll))
+        spring_controls=QHBoxLayout();root.addLayout(spring_controls)
+        self.spring_pressure=QPushButton("Build jump pressure")
+        self.spring_jump=QPushButton("Jump with pressure — reroll")
+        self.spring_boost=QPushButton("Enhance jumps — 1 battery")
+        self.spring_long_jump=QPushButton("Jump beyond speed — consume 1 minute")
+        self.spring_end_turn=QPushButton("End wearer turn")
+        for button in (self.spring_pressure,self.spring_jump,self.spring_boost,self.spring_long_jump,self.spring_end_turn):spring_controls.addWidget(button)
+        spring_controls.addStretch()
+        self.spring_pressure.clicked.connect(lambda:self.perform(lambda:self.service().pressurize_spring_boots(self.selected())))
+        self.spring_jump.clicked.connect(lambda:self.perform(lambda:self.spring_jump_action()))
+        self.spring_boost.clicked.connect(lambda:self.perform(lambda:self.service().use_batteries(self.selected(),1,spring_boost=True)))
+        self.spring_long_jump.clicked.connect(lambda:self.perform(lambda:self.spring_jump_action(exceed_base_speed=True)))
+        self.spring_end_turn.clicked.connect(lambda:self.perform(lambda:self.service().end_wearer_turn()))
+        self.spring_jump.setToolTip("Resolve the jump with the displayed pressure bonus. Roll twice and take the higher result without spending a battery; this consumes pressure.")
+        self.spring_end_turn.setToolTip("Report each end of the wearer's turn. Pressure expires at the end of the next turn; this does not advance timed battery enhancements. Elapsed rounds also advance pressure: do not report the same interval twice.")
         health=QHBoxLayout();root.addLayout(health)
         self.damage_amount=QSpinBox();self.damage_amount.setRange(1,99999)
         health.addWidget(QLabel("Incoming device damage"));health.addWidget(self.damage_amount)
@@ -421,6 +436,15 @@ class EngineeringDialog(QDialog):
 
     def preview_device(self):
         device=next((d for d in self.service().devices(self.system.currentText()) if d["id"]==self.selected()),None)
+        spring=bool(device and device["catalog_key"]==SPRING_BOOTS_KEY)
+        for button in (self.spring_pressure,self.spring_jump,self.spring_boost,self.spring_long_jump,self.spring_end_turn):button.setVisible(spring)
+        if spring:
+            profile=self.service().spring_boots_profile(device["id"])
+            self.spring_pressure.setEnabled(profile["available"] and not device["pressure_turn_ends"])
+            self.spring_jump.setEnabled(bool(profile["pressure_jump_bonus"]))
+            self.spring_boost.setEnabled(profile["available"] and not device["effect_rounds"])
+            self.spring_long_jump.setEnabled(profile["exceed_base_speed"])
+            self.spring_pressure.setText("Build jump pressure — "+profile["pressure_action"])
         jack=bool(device and device["catalog_key"]==PRESSURE_JACK_KEY)
         self.jack_count_label.setVisible(jack);self.jack_count.setVisible(jack)
         tactile=bool(device and device["catalog_key"]==TACTILE_FIELD_KEY)
@@ -483,16 +507,24 @@ class EngineeringDialog(QDialog):
             step=profile["long_lift_size_steps"]
             size=sizes[step] if step<len(sizes) else "Beyond Colossal — needs rules verification"
             self.details.append(f"<h3>Live pressure jack</h3><p>{'Available' if profile['available'] else 'Unavailable'} · Strength {profile['strength']} · Extension {profile['extension_feet']} ft · Crushing {profile['damage']} bludgeoning (Fortitude half).</p><p>Apply: swift action; expand: move action. Crushing requires a solid surface. For lifting beyond one minute: {size} breaks the jack; smaller targets can be held indefinitely. Each additional applied jack increases the size threshold by one category. Resolve target saves and object placement manually.</p>")
+        if spring:
+            self.details.append(f"<h3>Live jump benefits</h3><p>{'Available' if profile['available'] else 'Unavailable'} · Pressure jump bonus +{profile['pressure_jump_bonus']} (in addition to the normal Dexterity augmentor bonus). High-jump DC multiplier ×{profile['high_jump_multiplier']}. Running start: {'Yes' if profile['running_start'] else 'Normal rules'}. Exceed base speed: {'Yes' if profile['exceed_base_speed'] else 'No'}.</p><p>While worn and functioning: minimum falling damage and no falling-damage prone. Pressure expires after two reported turn ends (current and next). Consume pressure for its bonus and a jump reroll; dice and fall damage are resolved manually.</p>")
 
     def perform(self,operation):
         try:
-            if operation() is False:
+            outcome=operation()
+            if outcome is False:
                 return
         except (ValueError,KeyError) as error:
             self.status.setText(str(error));return
-        self.status.setText("Saved.")
+        self.status.setText(outcome if isinstance(outcome,str) else "Saved.")
         self.sheet.refresh_all()
         self.refresh()
+
+    def spring_jump_action(self,*,exceed_base_speed=False):
+        result=self.service().use_spring_jump(self.selected(),exceed_base_speed=exceed_base_speed)
+        return (f"Resolve jump: +{result['pressure_jump_bonus']} pressure bonus in addition to the normal augmentor bonus; roll twice and take the higher result. Pressure consumed."
+                if result["reroll"] else "Resolve jump beyond base speed. Enhancement duration reduced by one minute.")
 
     def use_tactile_reroll(self):
         result=self.service().use_tactile_reroll(self.selected())

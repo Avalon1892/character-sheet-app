@@ -6,6 +6,7 @@ import re
 import sqlite3
 from app.engineering_rules import is_battery, TECH_BATTERY_KEY, tech_battery_capacity,device_condition,JET_BOOSTERS_KEY,JET_MODES
 from app.engineering_rules import TACTILE_FIELD_KEY,RESISTANCE_ROUTINE_KEY,DERMAL_PLATING_KEY,CLAMP_BOOTS_KEY,TECH_AUGMENT_SLOTS,TECH_TIMED_AUGMENT_MODES
+from app.engineering_rules import SPRING_BOOTS_KEY
 from datetime import datetime
 from pathlib import Path
 
@@ -983,6 +984,7 @@ class CharacterRepository:
         self._ensure_column("engineering_devices", "applied_to_character", "INTEGER NOT NULL DEFAULT 0")
         self._ensure_column("engineering_devices", "function_mode", "TEXT NOT NULL DEFAULT ''")
         self._ensure_column("engineering_devices", "effect_rounds", "INTEGER NOT NULL DEFAULT 0")
+        self._ensure_column("engineering_devices", "pressure_turn_ends", "INTEGER NOT NULL DEFAULT 0")
         self._ensure_column("engineering_devices", "effect_battery_id", "INTEGER")
         self._ensure_column("engineering_devices", "worn_slot", "TEXT NOT NULL DEFAULT ''")
         self._ensure_column("engineering_devices", "augment_slot", "TEXT NOT NULL DEFAULT ''")
@@ -3174,13 +3176,17 @@ class CharacterRepository:
             raise ValueError("Installed grafts require the surgical removal action.")
         graft_order=record.get("graft_order",0)
         if type(graft_order) is not int or graft_order<0:raise ValueError("Invalid graft installation order.")
-        fields = ("sphere", "catalog_key", "name", "level", "modifier", "state", "charges", "minor", "advanced", "host_id", "damage", "configuration", "applied_to_character", "function_mode", "effect_rounds", "worn_slot", "effect_battery_id", "augment_slot", "bio_augment", "energy_efficient", "construction_kind", "graft_slot", "graft_order")
+        pressure=record.get("pressure_turn_ends",0)
+        if type(pressure) is not int or not 0<=pressure<=2 or (pressure and (sphere!="Tinker" or record.get("catalog_key")!=SPRING_BOOTS_KEY)):
+            raise ValueError("Invalid Spring Boots pressure state.")
+        if state!="active" or not record.get("applied_to_character") or device_condition(record)["destroyed"]:pressure=0
+        fields = ("sphere", "catalog_key", "name", "level", "modifier", "state", "charges", "minor", "advanced", "host_id", "damage", "configuration", "applied_to_character", "function_mode", "effect_rounds", "worn_slot", "effect_battery_id", "augment_slot", "bio_augment", "energy_efficient", "construction_kind", "graft_slot", "graft_order","pressure_turn_ends")
         values = (sphere, str(record.get("catalog_key", "")), name,
                   int(record.get("level", 0)), int(record.get("modifier", 0)), state,
                   int(record.get("charges", 0)), int(bool(record.get("minor", False))),
                   int(record.get("advanced", 0)), host_id, int(record.get("damage",0)),
                   str(record.get("configuration", "")),int(bool(record.get("applied_to_character",False))),
-                  str(record.get("function_mode","")),int(record.get("effect_rounds",0)),str(record.get("worn_slot","")),effect_battery_id,augment_slot,int(bool(record.get("bio_augment",False))),int(bool(record.get("energy_efficient",False))),construction_kind,graft_slot,graft_order)
+                  str(record.get("function_mode","")),int(record.get("effect_rounds",0)),str(record.get("worn_slot","")),effect_battery_id,augment_slot,int(bool(record.get("bio_augment",False))),int(bool(record.get("energy_efficient",False))),construction_kind,graft_slot,graft_order,pressure)
         if not 0 <= values[3] <= 999 or not -100 <= values[4] <= 100 or not 0 <= values[6] <= 99999 or not 0 <= values[8] <= 99:
             raise ValueError("Device statistics are outside supported bounds.")
         if not 0<=values[10]<=99999:
@@ -3320,20 +3326,28 @@ class CharacterRepository:
             raise ValueError("Elapsed rounds must be between 1 and 999,999.")
         with self._connection:
             timed_keys=(JET_BOOSTERS_KEY,*TECH_TIMED_AUGMENT_MODES)
+            self._connection.execute("UPDATE engineering_devices SET pressure_turn_ends=MAX(0,pressure_turn_ends-?) WHERE character_id=? AND pressure_turn_ends>0",(rounds,character_id))
             self._connection.execute("UPDATE engineering_devices SET effect_rounds=MAX(0,effect_rounds-?),state=CASE WHEN effect_rounds<=? AND state='active' AND catalog_key IN ("+",".join("?" for _ in timed_keys)+") THEN 'inactive' ELSE state END WHERE character_id=? AND state!='abandoned' AND effect_rounds>0",
                 (rounds,rounds,*timed_keys,character_id))
             self._touch_character(character_id)
 
-    def deplete_engineering_batteries(self,character_id,host_id,battery_ids,*,tactile_boost=False):
+    def end_engineering_wearer_turn(self,character_id):
+        with self._connection:
+            self._connection.execute("UPDATE engineering_devices SET pressure_turn_ends=MAX(0,pressure_turn_ends-1) WHERE character_id=? AND pressure_turn_ends>0",(character_id,))
+            self._touch_character(character_id)
+
+    def deplete_engineering_batteries(self,character_id,host_id,battery_ids,*,tactile_boost=False,spring_boost=False):
         ids=tuple(dict.fromkeys(int(i) for i in battery_ids))
         if not ids:
             raise ValueError("Select at least one battery.")
         placeholders=",".join("?" for _ in ids)
         with self._connection:
-            if tactile_boost:
+            if tactile_boost and spring_boost:raise ValueError("Choose one battery-use function.")
+            if tactile_boost or spring_boost:
                 host=self._connection.execute("SELECT * FROM engineering_devices WHERE id=? AND character_id=?",(host_id,character_id)).fetchone()
-                if host is None or host["catalog_key"]!=TACTILE_FIELD_KEY or not host["applied_to_character"] or host["effect_rounds"]>0 or len(ids)!=1:
-                    raise ValueError("Select an attached Tactile Field without an active enhancement.")
+                key=SPRING_BOOTS_KEY if spring_boost else TACTILE_FIELD_KEY
+                if host is None or host["catalog_key"]!=key or host["sphere"]!="Tinker" or not host["applied_to_character"] or host["effect_rounds"]>0 or len(ids)!=1:
+                    raise ValueError("Select the worn device without an active enhancement.")
             rows=self._connection.execute(
                 "SELECT b.id FROM engineering_devices b JOIN engineering_devices h ON h.id=b.host_id WHERE b.character_id=? AND b.host_id=? AND b.catalog_key='tinker:battery' AND b.state='active' AND h.state='active' AND b.damage<3*b.level AND h.damage<3*h.level AND b.level>=h.level AND b.id IN ("+placeholders+")",
                 (character_id,host_id,*ids)).fetchall()
@@ -3342,9 +3356,9 @@ class CharacterRepository:
             self._connection.execute("UPDATE engineering_devices SET state='depleted' WHERE id IN ("+placeholders+")",ids)
             self._connection.execute("UPDATE engineering_devices SET state='inactive',effect_rounds=0,effect_battery_id=NULL WHERE character_id=? AND catalog_key=? AND state='active' AND host_id IN ("+placeholders+")",
                 (character_id,RESISTANCE_ROUTINE_KEY,*ids))
-            if tactile_boost:
-                self._connection.execute("UPDATE engineering_devices SET function_mode='tactile_boost',effect_rounds=?,effect_battery_id=? WHERE id=? AND character_id=?",
-                    (10*device_condition(dict(host))["effective_level"],ids[0],host_id,character_id))
+            if tactile_boost or spring_boost:
+                self._connection.execute("UPDATE engineering_devices SET function_mode=?,effect_rounds=?,effect_battery_id=? WHERE id=? AND character_id=?",
+                    ("spring_boost" if spring_boost else "tactile_boost",10*device_condition(dict(host))["effective_level"],ids[0],host_id,character_id))
             self._touch_character(character_id)
 
     def add_custom_tracker(

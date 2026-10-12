@@ -81,6 +81,79 @@ class EngineeringTests(unittest.TestCase):
             with self.assertRaises(ValueError):self.service.pressure_jack_profile(device,jack_count=invalid)
         with self.assertRaises(ValueError):self.service.pressure_jack_profile(99999)
 
+    def test_spring_boots_pressure_battery_duration_and_transfer(self):
+        from app.engineering_rules import PRESSURE_JACK_KEY,SPRING_BOOTS_KEY
+        base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")
+        self.repo.update_martial_talent(self.cid,base.id,base.name,"Tinker","Base Sphere",catalog_key=base.catalog_key,catalog_category="Base Sphere",choice="Augmentation / Modification")
+        self.assertNotIn(SPRING_BOOTS_KEY,{e["key"] for e in self.service.known_devices("Tinker")})
+        self.add("Tinker","Pressure Jack (gizmo)",PRESSURE_JACK_KEY)
+        boots=self.service.create("Tinker",SPRING_BOOTS_KEY,2,configuration="dexterity",advanced=1)
+        self.service.change_state(boots,"active");self.service.apply_to_character(boots,True)
+        battery=self.service.create("Tinker","tinker:battery",2);self.service.attach_battery(battery,boots)
+        self.service.pressurize_spring_boots(boots)
+        self.assertEqual(16,self.service.spring_boots_profile(boots)["pressure_jump_bonus"])
+        with self.assertRaises(ValueError):self.service.pressurize_spring_boots(boots)
+        self.service.end_wearer_turn()
+        self.assertEqual(16,self.service.spring_boots_profile(boots)["pressure_jump_bonus"])
+        self.service.end_wearer_turn()
+        self.assertEqual(0,self.service.spring_boots_profile(boots)["pressure_jump_bonus"])
+        self.service.pressurize_spring_boots(boots)
+        result=self.service.use_spring_jump(boots)
+        self.assertTrue(result["reroll"]);self.assertEqual(16,result["pressure_jump_bonus"])
+        self.assertEqual("active",next(d for d in self.service.devices("Tinker") if d["id"]==battery)["state"])
+        self.service.use_batteries(boots,1,spring_boost=True)
+        profile=self.service.spring_boots_profile(boots)
+        self.assertEqual(2,profile["high_jump_multiplier"])
+        self.assertTrue(profile["running_start"]);self.assertTrue(profile["exceed_base_speed"])
+        with self.assertRaises(ValueError):self.service.use_batteries(boots,1,spring_boost=True)
+        self.service.use_spring_jump(boots,exceed_base_speed=True)
+        self.assertEqual(50,next(d for d in self.service.devices("Tinker") if d["id"]==boots)["effect_rounds"])
+        self.service.pressurize_spring_boots(boots)
+        path=Path(self.temp.name)/"spring.json";export_character(self.repo,self.cid,path)
+        imported=import_character(self.repo,path)
+        copied=next(d for d in self.repo.list_engineering_devices(imported) if d["catalog_key"]==SPRING_BOOTS_KEY)
+        imported_service=EngineeringService(self.repo,imported)
+        self.assertEqual(self.service.spring_boots_profile(boots),imported_service.spring_boots_profile(copied["id"]))
+        imported_battery=next(d for d in self.repo.list_engineering_devices(imported) if d["catalog_key"]=="tinker:battery")
+        imported_service.attach_battery(imported_battery["id"],None)
+        self.assertFalse(imported_service.spring_boots_profile(copied["id"])["running_start"])
+        self.assertEqual(16,imported_service.spring_boots_profile(copied["id"])["pressure_jump_bonus"])
+        for _ in range(5):self.service.use_spring_jump(boots,exceed_base_speed=True)
+        self.assertEqual(0,next(d for d in self.service.devices("Tinker") if d["id"]==boots)["effect_rounds"])
+        with self.assertRaises(ValueError):self.service.use_spring_jump(boots,exceed_base_speed=True)
+        self.service.advance_time(50)
+        self.assertFalse(self.service.spring_boots_profile(boots)["running_start"])
+        self.service.apply_to_character(boots,False)
+        self.assertFalse(self.service.spring_boots_profile(boots)["minimum_fall_damage"])
+        self.assertEqual(0,next(d for d in self.service.devices("Tinker") if d["id"]==boots)["pressure_turn_ends"])
+
+    def test_spring_boots_normal_failure_bounds_and_damage(self):
+        from app.engineering_rules import PRESSURE_JACK_KEY,SPRING_BOOTS_KEY
+        base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")
+        self.repo.update_martial_talent(self.cid,base.id,base.name,"Tinker","Base Sphere",catalog_key=base.catalog_key,catalog_category="Base Sphere",choice="Augmentation")
+        self.add("Tinker","Pressure Jack (gizmo)",PRESSURE_JACK_KEY)
+        with self.assertRaises(ValueError):self.service.create("Tinker",SPRING_BOOTS_KEY,2,configuration="strength")
+        boots=self.service.create("Tinker",SPRING_BOOTS_KEY,2,configuration="dexterity")
+        with self.assertRaises(ValueError):self.service.pressurize_spring_boots(boots)
+        self.service.change_state(boots,"active");self.service.apply_to_character(boots,True)
+        changes=self.repo.sqlite_connection.total_changes
+        with self.assertRaises(ValueError):self.service.use_batteries(boots,1,spring_boost=True)
+        self.assertEqual(changes,self.repo.sqlite_connection.total_changes)
+        self.service.pressurize_spring_boots(boots);self.service.advance_time(1)
+        self.assertEqual(16,self.service.spring_boots_profile(boots)["pressure_jump_bonus"])
+        self.service.advance_time(1)
+        self.assertEqual(0,self.service.spring_boots_profile(boots)["pressure_jump_bonus"])
+        self.service.pressurize_spring_boots(boots)
+        with self.assertRaises(ValueError):self.service.use_spring_jump(boots,exceed_base_speed=True)
+        record=next(d for d in self.service.devices("Tinker") if d["id"]==boots)
+        self.repo.save_engineering_device(self.cid,{**record,"damage":10},boots)
+        self.assertEqual(14,self.service.spring_boots_profile(boots)["pressure_jump_bonus"])
+        self.repo.save_engineering_device(self.cid,{**record,"damage":18},boots)
+        self.assertFalse(self.service.spring_boots_profile(boots)["available"])
+        self.assertEqual(0,next(d for d in self.service.devices("Tinker") if d["id"]==boots)["pressure_turn_ends"])
+        for invalid in (-1,3,True):
+            with self.assertRaises(ValueError):self.repo.save_engineering_device(self.cid,{**record,"pressure_turn_ends":invalid},boots)
+
     def test_tech_load_bearer_paid_capacity_thresholds_suppression_and_expiry(self):
         from app.engineering_rules import TECH_LOAD_BEARER_KEY,tech_load_bearer_steps
         from app.services.character_calculations import CharacterCalculationService
@@ -1494,6 +1567,32 @@ class EngineeringTests(unittest.TestCase):
                 dialog.jack_count.setValue(2)
                 self.assertIn("Colossal",dialog.details.toPlainText())
                 self.assertIn("4d8",dialog.details.toPlainText())
+                dialog.deleteLater();sheet.deleteLater();app.sendPostedEvents(None,QEvent.Type.DeferredDelete)
+
+    def test_spring_boots_ui_pressure_controls_in_both_themes(self):
+        from PySide6.QtWidgets import QApplication,QWidget
+        from PySide6.QtCore import QEvent
+        from app.ui.engineering import EngineeringDialog
+        from app.engineering_rules import PRESSURE_JACK_KEY,SPRING_BOOTS_KEY
+        base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")
+        self.repo.update_martial_talent(self.cid,base.id,base.name,"Tinker","Base Sphere",catalog_key=base.catalog_key,catalog_category="Base Sphere",choice="Augmentation")
+        self.add("Tinker","Pressure Jack (gizmo)",PRESSURE_JACK_KEY)
+        boots=self.service.create("Tinker",SPRING_BOOTS_KEY,2,configuration="dexterity")
+        self.service.change_state(boots,"active");self.service.apply_to_character(boots,True)
+        app=QApplication.instance() or QApplication([])
+        for theme in ("classic","dark"):
+            with self.subTest(theme=theme):
+                sheet=QWidget();sheet.repository=self.repo;sheet.character_id=self.cid;sheet.theme=theme
+                refreshed=[];sheet.refresh_all=lambda:refreshed.append(True)
+                dialog=EngineeringDialog(sheet);dialog.system.setCurrentText("Tinker");dialog.table.selectRow(0)
+                self.assertFalse(dialog.spring_pressure.isHidden());self.assertTrue(dialog.spring_pressure.isEnabled())
+                dialog.spring_pressure.click();dialog.table.selectRow(0)
+                self.assertEqual([True],refreshed)
+                self.assertIn("+16",dialog.details.toPlainText());self.assertFalse(dialog.spring_pressure.isEnabled())
+                dialog.spring_jump.click()
+                self.assertIn("+16 pressure bonus",dialog.status.text())
+                self.assertIn("roll twice",dialog.status.text())
+                self.assertEqual([True,True],refreshed)
                 dialog.deleteLater();sheet.deleteLater();app.sendPostedEvents(None,QEvent.Type.DeferredDelete)
 
     def test_ability_augment_ui_power_control_in_both_themes(self):

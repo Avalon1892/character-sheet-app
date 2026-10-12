@@ -28,6 +28,7 @@ PHYSICAL_AUGMENTOR_KEY = "tinker:device:physical-augmentor"
 MENTAL_AUGMENTOR_KEY = "tinker:device:mental-augmentor"
 LOAD_BEARER_KEY = "tinker:device:load-bearer"
 PRESSURE_JACK_KEY = "tinker:gizmo-talent:pressure-jack-gizmo"
+SPRING_BOOTS_KEY = "tinker:device:spring-boots"
 TACTILE_FIELD_KEY = "tinker:device:tactile-field"
 RESISTANCE_ROUTINE_KEY = "tinker:device:resistance-routine"
 DERMAL_PLATING_KEY = "tech:gadget-talent:dermal-plating-augment-drone-gadget"
@@ -142,6 +143,7 @@ AUGMENTOR_ABILITIES = {
     PHYSICAL_AUGMENTOR_KEY: ("strength","dexterity","constitution"),
     MENTAL_AUGMENTOR_KEY: ("intelligence","wisdom","charisma"),
     LOAD_BEARER_KEY: ("strength",),
+    SPRING_BOOTS_KEY: ("dexterity",),
 }
 JET_BOOSTERS_KEY = "tech:gadget-talent:jet-boosters-drone-gadget"
 # cost, paid duration in rounds, speed, flight maneuverability
@@ -239,6 +241,19 @@ def pressure_jack_profile(device, *, jack_count=1):
             "damage":f"{1+level//2}d{12 if advanced else 8}",
             "long_lift_size_steps":level//3+jack_count-1,
             "available":device["state"]=="active" and not condition["destroyed"]}
+
+
+def spring_boots_profile(device):
+    if device["sphere"]!="Tinker" or device["catalog_key"]!=SPRING_BOOTS_KEY:
+        return None
+    level=device_condition(device)["effective_level"]
+    available=bool(physical_augmentor_bonus(device))
+    enhanced=available and device.get("function_mode")=="spring_boost" and device.get("effect_rounds",0)>0 and device.get("effect_battery_id") is not None
+    return {"available":available,"minimum_fall_damage":available,"no_fall_prone":available,
+            "pressure_jump_bonus":10+level if available and device.get("pressure_turn_ends",0)>0 else 0,
+            "high_jump_multiplier":max(1,3-level//5) if enhanced else 4,
+            "running_start":enhanced,"exceed_base_speed":enhanced and bool(device["advanced"]),
+            "pressure_action":"Move or swift" if device["advanced"] else "Move"}
 
 
 def tactile_field_bonus(device):
