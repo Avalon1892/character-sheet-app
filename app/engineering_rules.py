@@ -249,10 +249,12 @@ def pressure_sensor_profile(device):
         return None
     condition=device_condition(device)
     level=condition["effective_level"]
+    signal_range=100+10*level if device.get("configuration")=="medium" else 25+5*(level//2)
     return {"available":device["state"]=="active" and not condition["destroyed"],
-            "hazard_check_bonus":2+level//4,"base_signal_range_feet":25+5*(level//2),
+            "hazard_check_bonus":2+level//4,"base_signal_range_feet":signal_range,
+            "signal_penetration_multiplier":5 if device.get("configuration")=="medium" else 1,
             "tremorsense_duration_rounds":level if device["advanced"] else 0,
-            "tremorsense_range_feet":25+5*(level//2) if device["state"]=="active" and not condition["destroyed"] and device.get("function_mode")=="sensor_tremor" and device.get("effect_rounds",0)>0 and device.get("effect_battery_id") is not None else 0,
+            "tremorsense_range_feet":signal_range if device["state"]=="active" and not condition["destroyed"] and device.get("function_mode")=="sensor_tremor" and device.get("effect_rounds",0)>0 and device.get("effect_battery_id") is not None else 0,
             "upkeep_paid":bool(device.get("detector_maintained",False)),
             "auto_renew":bool(device.get("sensor_auto_renew",False)),
             "flat_footed":device["state"]=="active" and not condition["destroyed"]}

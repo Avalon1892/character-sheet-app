@@ -210,6 +210,8 @@ class EngineeringService:
             raise ValueError("Choose an appropriate ability for the augmentor.")
         if key==JET_BOOSTERS_KEY and configuration not in {"flight","aquatic"}:
             raise ValueError("Choose flight or aquatic boosters at creation.")
+        if key==PRESSURE_SENSOR_KEY and configuration not in self.detector_range_options():
+            raise ValueError("Choose a detector range supported by the character's training.")
         if key in {RESISTANCE_ROUTINE_KEY,PRESSURE_JACK_KEY}:
             minor=True
         ranks = CharacterCalculationService(self.repository,self.character_id).effective_skill_ranks().get(self.skill_key,0)
@@ -226,6 +228,12 @@ class EngineeringService:
         if occupied_limit((*self.devices(sphere),record),self.limits(sphere)) > self.limits(sphere).device_limit:
             raise ValueError("Device limit exceeded. Abandon an existing device first.")
         return self.repository.save_engineering_device(self.character_id,record)
+
+    def detector_range_options(self):
+        options=["","close"]
+        if any(t.catalog_key=="tinker:gizmo-talent:transmission-mastery-gizmo-transmission-utility" for t in self.records("Tinker")):
+            options.append("medium")
+        return tuple(options)
 
     def apply_to_character(self,device_id,enabled):
         device=next((d for d in self.repository.list_engineering_devices(self.character_id) if d["id"]==device_id),None)

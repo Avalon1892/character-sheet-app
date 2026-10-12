@@ -167,6 +167,31 @@ class EngineeringTests(unittest.TestCase):
         self.assertFalse(self.service.pressure_sensor_profile(sensor)["available"])
         self.assertEqual(0,self.service.pressure_sensor_profile(sensor)["tremorsense_range_feet"])
 
+    def test_pressure_sensor_optional_improved_range_and_transfer(self):
+        from app.engineering_rules import PRESSURE_JACK_KEY,PRESSURE_SENSOR_KEY
+        base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")
+        self.repo.update_martial_talent(self.cid,base.id,base.name,"Tinker","Base Sphere",catalog_key=base.catalog_key,catalog_category="Base Sphere",choice="Transmission")
+        self.add("Tinker","Pressure Jack (gizmo)",PRESSURE_JACK_KEY)
+        with self.assertRaises(ValueError):self.service.create("Tinker",PRESSURE_SENSOR_KEY,2,configuration="medium")
+        old=self.service.create("Tinker",PRESSURE_SENSOR_KEY,2)
+        self.add("Tinker","Transmission Mastery (gizmo, transmission) [utility]","tinker:gizmo-talent:transmission-mastery-gizmo-transmission-utility")
+        sensor=self.service.create("Tinker",PRESSURE_SENSOR_KEY,2,advanced=1,configuration="medium")
+        self.assertEqual(40,self.service.pressure_sensor_profile(old)["base_signal_range_feet"])
+        self.assertEqual(160,self.service.pressure_sensor_profile(sensor)["base_signal_range_feet"])
+        self.assertEqual(5,self.service.pressure_sensor_profile(sensor)["signal_penetration_multiplier"])
+        battery=self.service.create("Tinker","tinker:battery",2);self.service.attach_battery(battery,sensor)
+        self.service.activate_pressure_sensor(sensor,activation_completed=True)
+        self.service.use_batteries(sensor,1,sensor_tremor=True)
+        self.assertEqual(160,self.service.pressure_sensor_profile(sensor)["tremorsense_range_feet"])
+        record=next(d for d in self.service.devices("Tinker") if d["id"]==sensor)
+        self.repo.save_engineering_device(self.cid,{**record,"damage":10},sensor)
+        self.assertEqual(140,self.service.pressure_sensor_profile(sensor)["tremorsense_range_feet"])
+        with self.assertRaises(ValueError):self.repo.save_engineering_device(self.cid,{**record,"configuration":"invalid"},sensor)
+        path=Path(self.temp.name)/"sensor-range.json";export_character(self.repo,self.cid,path)
+        imported=import_character(self.repo,path)
+        copied=next(d for d in self.repo.list_engineering_devices(imported) if d["configuration"]=="medium")
+        self.assertEqual(self.service.pressure_sensor_profile(sensor),EngineeringService(self.repo,imported).pressure_sensor_profile(copied["id"]))
+
     def test_pressure_sensor_opt_in_renewal_expiry_exhaustion_and_transfer(self):
         from app.engineering_rules import PRESSURE_JACK_KEY,PRESSURE_SENSOR_KEY
         base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")
@@ -1728,6 +1753,10 @@ class EngineeringTests(unittest.TestCase):
                 sheet=QWidget();sheet.repository=self.repo;sheet.character_id=self.cid;sheet.theme=theme
                 sheet.refresh_all=lambda:None
                 dialog=EngineeringDialog(sheet);dialog.system.setCurrentText("Tinker");dialog.table.selectRow(0)
+                dialog.known.setCurrentIndex(dialog.known.findData(PRESSURE_SENSOR_KEY))
+                self.assertEqual(["close"],[dialog.configuration.itemData(i) for i in range(dialog.configuration.count())])
+                self.assertFalse(dialog.configuration.isHidden())
+                dialog.preview_device()
                 text=dialog.details.toPlainText()
                 self.assertIn("+3 circumstance",text);self.assertIn("40 ft",text)
                 self.assertIn("still pending",text);self.assertIn("flat-footed manually",text)

@@ -3184,6 +3184,8 @@ class CharacterRepository:
             raise ValueError("Invalid Spring Boots pressure state.")
         if state!="active" or not record.get("applied_to_character") or device_condition(record)["destroyed"]:pressure=0
         maintained=record.get("detector_maintained",False)
+        if record.get("catalog_key")==PRESSURE_SENSOR_KEY and record.get("configuration","") not in {"","close","medium"}:
+            raise ValueError("Unsupported Pressure Sensor signal range.")
         if type(maintained) not in (bool,int) or maintained not in (False,True,0,1) or (maintained and (sphere!="Tinker" or record.get("catalog_key")!=PRESSURE_SENSOR_KEY)):
             raise ValueError("Invalid detector upkeep state.")
         if state!="active" or device_condition(record)["destroyed"]:maintained=False
