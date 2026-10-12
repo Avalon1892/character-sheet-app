@@ -44,7 +44,7 @@ class EngineeringService:
             augmentation="Augmentation" in tinker_packages(self.records(sphere))
             if "Transmission" in tinker_packages(self.records(sphere)) and any(t.catalog_key==PRESSURE_JACK_KEY for t in self.records(sphere)):
                 entries[PRESSURE_SENSOR_KEY]={"key":PRESSURE_SENSOR_KEY,"name":"Pressure Sensor (gizmo)",
-                    "description":"Detect ground-based hazards within signal range. Grants a circumstance bonus to relevant hazard-detection skill checks, not all Perception checks. Confirm one-minute activation and pay full-round upkeep each turn, leaving the user flat-footed. Advanced sensors can spend a battery for timed tremorsense. Quick activation, automatic renewal, range upgrades and hazard prompts remain pending.",
+                    "description":"Detect ground-based hazards within signal range. Grants a circumstance bonus to relevant hazard-detection skill checks, not all Perception checks. Confirm one-minute activation or spend one battery to activate as a standard action. Pay full-round upkeep each turn, leaving the user flat-footed. Advanced sensors can spend a separate battery for timed tremorsense. Automatic renewal, range upgrades and hazard prompts remain pending.",
                     "source_url":"https://spheresofpower.wikidot.com/tinker"}
             if "Computation" in tinker_packages(self.records(sphere)) and any(t.catalog_key=="tinker:gizmo-talent:defensive-set-gizmo" for t in self.records(sphere)):
                 entries[RESISTANCE_ROUTINE_KEY]={"key":RESISTANCE_ROUTINE_KEY,"name":"Resistance Routine (gizmo, minor, routine)",
@@ -365,11 +365,11 @@ class EngineeringService:
             raise ValueError("Select a functioning gizmo as the battery host.")
         self.repository.save_engineering_device(self.character_id,{**battery,"host_id":host_id},battery_id)
 
-    def use_batteries(self,host_id,amount,*,personal=False,tactile_boost=False,spring_boost=False,sensor_tremor=False):
+    def use_batteries(self,host_id,amount,*,personal=False,tactile_boost=False,spring_boost=False,sensor_tremor=False,sensor_activate=False):
         if not self.available("Tinker"):
             raise ValueError("The Tinker sphere is required.")
         host=next((d for d in self.devices("Tinker") if d["id"]==host_id),None)
-        if not host or host["state"]!="active" or device_condition(host)["destroyed"]:
+        if not host or host["state"]!=("inactive" if sensor_activate else "active") or device_condition(host)["destroyed"]:
             raise ValueError("Activate the host gizmo first.")
         level=CharacterCalculationService(self.repository,self.character_id).state.character_level
         batteries=[d for d in self.devices("Tinker") if is_battery(d) and d["host_id"]==host_id
@@ -378,7 +378,7 @@ class EngineeringService:
                    and (not personal or d["level"]>=level)]
         if amount<=0 or len(batteries)<amount:
             raise ValueError("Not enough usable attached batteries: battery level must reach the host level, and personal uses also require character level.")
-        self.repository.deplete_engineering_batteries(self.character_id,host_id,[b["id"] for b in batteries[:amount]],tactile_boost=tactile_boost,spring_boost=spring_boost,sensor_tremor=sensor_tremor)
+        self.repository.deplete_engineering_batteries(self.character_id,host_id,[b["id"] for b in batteries[:amount]],tactile_boost=tactile_boost,spring_boost=spring_boost,sensor_tremor=sensor_tremor,sensor_activate=sensor_activate)
 
     def spring_boots_profile(self,device_id):
         device=next((d for d in self.devices("Tinker") if d["id"]==device_id),None)

@@ -144,6 +144,29 @@ class EngineeringTests(unittest.TestCase):
         self.service.advance_time(2)
         self.assertFalse(self.service.pressure_sensor_profile(sensor)["available"])
 
+    def test_pressure_sensor_quick_activation_is_atomic_and_distinct_from_tremorsense(self):
+        from app.engineering_rules import PRESSURE_JACK_KEY,PRESSURE_SENSOR_KEY
+        base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")
+        self.repo.update_martial_talent(self.cid,base.id,base.name,"Tinker","Base Sphere",catalog_key=base.catalog_key,catalog_category="Base Sphere",choice="Transmission")
+        self.add("Tinker","Pressure Jack (gizmo)",PRESSURE_JACK_KEY)
+        sensor=self.service.create("Tinker",PRESSURE_SENSOR_KEY,2)
+        changes=self.repo.sqlite_connection.total_changes
+        with self.assertRaises(ValueError):self.service.use_batteries(sensor,1,sensor_activate=True)
+        self.assertEqual(changes,self.repo.sqlite_connection.total_changes)
+        battery=self.service.create("Tinker","tinker:battery",2);self.service.attach_battery(battery,sensor)
+        changes=self.repo.sqlite_connection.total_changes
+        with self.assertRaises(ValueError):self.service.use_batteries(sensor,1,sensor_activate=True,sensor_tremor=True)
+        self.assertEqual(changes,self.repo.sqlite_connection.total_changes)
+        self.service.use_batteries(sensor,1,sensor_activate=True)
+        self.assertTrue(self.service.pressure_sensor_profile(sensor)["available"])
+        self.assertTrue(self.service.pressure_sensor_profile(sensor)["upkeep_paid"])
+        self.assertEqual(0,self.service.pressure_sensor_profile(sensor)["tremorsense_range_feet"])
+        self.assertEqual("depleted",next(d for d in self.service.devices("Tinker") if d["id"]==battery)["state"])
+        with self.assertRaises(ValueError):self.service.use_batteries(sensor,1,sensor_activate=True)
+        self.service.end_wearer_turn();self.service.end_wearer_turn()
+        self.assertFalse(self.service.pressure_sensor_profile(sensor)["available"])
+        self.assertEqual(0,self.service.pressure_sensor_profile(sensor)["tremorsense_range_feet"])
+
     def test_spring_boots_pressure_battery_duration_and_transfer(self):
         from app.engineering_rules import PRESSURE_JACK_KEY,SPRING_BOOTS_KEY
         base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")
@@ -1640,7 +1663,7 @@ class EngineeringTests(unittest.TestCase):
         base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")
         self.repo.update_martial_talent(self.cid,base.id,base.name,"Tinker","Base Sphere",catalog_key=base.catalog_key,catalog_category="Base Sphere",choice="Transmission")
         self.add("Tinker","Pressure Jack (gizmo)",PRESSURE_JACK_KEY)
-        self.service.create("Tinker",PRESSURE_SENSOR_KEY,2,advanced=1)
+        sensor_id=self.service.create("Tinker",PRESSURE_SENSOR_KEY,2,advanced=1)
         app=QApplication.instance() or QApplication([])
         for theme in ("classic","dark"):
             with self.subTest(theme=theme):
@@ -1657,6 +1680,11 @@ class EngineeringTests(unittest.TestCase):
                 changes=self.repo.sqlite_connection.total_changes
                 with patch.object(QMessageBox,"question",return_value=QMessageBox.StandardButton.No):dialog.sensor_activate.click()
                 self.assertEqual(changes,self.repo.sqlite_connection.total_changes)
+                battery=self.service.create("Tinker","tinker:battery",2);self.service.attach_battery(battery,sensor_id)
+                dialog.sensor_quick.click()
+                self.assertTrue(self.service.pressure_sensor_profile(sensor_id)["available"])
+                self.assertEqual("depleted",next(d for d in self.service.devices("Tinker") if d["id"]==battery)["state"])
+                self.service.change_state(sensor_id,"inactive")
                 dialog.deleteLater();sheet.deleteLater();app.sendPostedEvents(None,QEvent.Type.DeferredDelete)
 
     def test_spring_boots_ui_pressure_controls_in_both_themes(self):

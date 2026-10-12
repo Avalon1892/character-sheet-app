@@ -3348,24 +3348,30 @@ class CharacterRepository:
             self._connection.execute("UPDATE engineering_devices SET state='inactive',effect_rounds=0,effect_battery_id=NULL WHERE character_id=? AND catalog_key=? AND host_id IN (SELECT id FROM engineering_devices WHERE character_id=? AND catalog_key=? AND state!='active')",(character_id,RESISTANCE_ROUTINE_KEY,character_id,PRESSURE_SENSOR_KEY))
             self._touch_character(character_id)
 
-    def deplete_engineering_batteries(self,character_id,host_id,battery_ids,*,tactile_boost=False,spring_boost=False,sensor_tremor=False):
+    def deplete_engineering_batteries(self,character_id,host_id,battery_ids,*,tactile_boost=False,spring_boost=False,sensor_tremor=False,sensor_activate=False):
         ids=tuple(dict.fromkeys(int(i) for i in battery_ids))
         if not ids:
             raise ValueError("Select at least one battery.")
         placeholders=",".join("?" for _ in ids)
         with self._connection:
-            if sum((bool(tactile_boost),bool(spring_boost),bool(sensor_tremor)))>1:raise ValueError("Choose one battery-use function.")
+            if sum((bool(tactile_boost),bool(spring_boost),bool(sensor_tremor),bool(sensor_activate)))>1:raise ValueError("Choose one battery-use function.")
+            if sensor_activate:
+                host=self._connection.execute("SELECT * FROM engineering_devices WHERE id=? AND character_id=?",(host_id,character_id)).fetchone()
+                if host is None or host["sphere"]!="Tinker" or host["catalog_key"]!=PRESSURE_SENSOR_KEY or host["state"]!="inactive" or device_condition(dict(host))["destroyed"] or len(ids)!=1:
+                    raise ValueError("Select an inactive, functioning Pressure Sensor for quick activation.")
             if tactile_boost or spring_boost or sensor_tremor:
                 host=self._connection.execute("SELECT * FROM engineering_devices WHERE id=? AND character_id=?",(host_id,character_id)).fetchone()
                 key=PRESSURE_SENSOR_KEY if sensor_tremor else SPRING_BOOTS_KEY if spring_boost else TACTILE_FIELD_KEY
                 if host is None or host["catalog_key"]!=key or host["sphere"]!="Tinker" or (not sensor_tremor and not host["applied_to_character"]) or (sensor_tremor and not host["advanced"]) or host["effect_rounds"]>0 or len(ids)!=1:
                     raise ValueError("Select the worn device without an active enhancement.")
             rows=self._connection.execute(
-                "SELECT b.id FROM engineering_devices b JOIN engineering_devices h ON h.id=b.host_id WHERE b.character_id=? AND b.host_id=? AND b.catalog_key='tinker:battery' AND b.state='active' AND h.state='active' AND b.damage<3*b.level AND h.damage<3*h.level AND b.level>=h.level AND b.id IN ("+placeholders+")",
-                (character_id,host_id,*ids)).fetchall()
+                "SELECT b.id FROM engineering_devices b JOIN engineering_devices h ON h.id=b.host_id WHERE b.character_id=? AND b.host_id=? AND b.catalog_key='tinker:battery' AND b.state='active' AND h.state=? AND b.damage<3*b.level AND h.damage<3*h.level AND b.level>=h.level AND b.id IN ("+placeholders+")",
+                (character_id,host_id,"inactive" if sensor_activate else "active",*ids)).fetchall()
             if len(rows)!=len(ids):
                 raise ValueError("Attached battery is no longer available.")
             self._connection.execute("UPDATE engineering_devices SET state='depleted' WHERE id IN ("+placeholders+")",ids)
+            if sensor_activate:
+                self._connection.execute("UPDATE engineering_devices SET state='active',detector_maintained=1,effect_rounds=0,function_mode='',effect_battery_id=NULL WHERE id=? AND character_id=?",(host_id,character_id))
             self._connection.execute("UPDATE engineering_devices SET state='inactive',effect_rounds=0,effect_battery_id=NULL WHERE character_id=? AND catalog_key=? AND state='active' AND host_id IN ("+placeholders+")",
                 (character_id,RESISTANCE_ROUTINE_KEY,*ids))
             if tactile_boost or spring_boost or sensor_tremor:
