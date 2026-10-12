@@ -467,7 +467,7 @@ class EngineeringDialog(QDialog):
             sensor=self.service().pressure_sensor_profile(device["id"])
             self.sensor_activate.setEnabled(device["state"]=="inactive" and not device_condition(device)["destroyed"])
             self.sensor_quick.setEnabled(self.sensor_activate.isEnabled())
-            self.sensor_maintain.setEnabled(sensor["available"] and not sensor["upkeep_paid"])
+            self.sensor_maintain.setEnabled(sensor["available"] and sensor["upkeep_required"] and not sensor["upkeep_paid"])
             self.sensor_tremor.setEnabled(sensor["available"] and bool(device["advanced"]) and not device["effect_rounds"])
         spring=bool(device and device["catalog_key"]==SPRING_BOOTS_KEY)
         for button in (self.spring_pressure,self.spring_jump,self.spring_boost,self.spring_long_jump,self.spring_end_turn):button.setVisible(spring)
@@ -513,7 +513,8 @@ class EngineeringDialog(QDialog):
         self.tactile_reroll.setEnabled(bool(tactile and device["state"]=="active" and device["applied_to_character"] and not device_condition(device)["destroyed"] and (device["effect_rounds"]>0 or at_will)))
         self.damage_button.setEnabled(bool(device and device["state"]!="abandoned"))
         self.repair_button.setEnabled(bool(device and device["state"]!="abandoned" and device["damage"] and self.kit.isChecked()))
-        self.applied.setEnabled(bool(device and not device["construction_kind"] and device["catalog_key"] in {*AUGMENTOR_ABILITIES,TACTILE_FIELD_KEY,*TECH_AUGMENT_SLOTS} and device["state"]!="abandoned"))
+        wearable_sensor=bool(device and device["catalog_key"]==PRESSURE_SENSOR_KEY and device["configuration"]=="wearable")
+        self.applied.setEnabled(bool(device and not device["construction_kind"] and (device["catalog_key"] in {*AUGMENTOR_ABILITIES,TACTILE_FIELD_KEY,*TECH_AUGMENT_SLOTS} or wearable_sensor) and device["state"]!="abandoned"))
         self.graft_recharge.setEnabled(bool(device and device["construction_kind"] in {"graft_appliance","graft_contraption"} and device["state"]!="abandoned" and not device_condition(device)["destroyed"]))
         self.graft_install.setEnabled(bool(device and device["construction_kind"] and not device["graft_slot"] and device["state"]!="abandoned" and not device_condition(device)["destroyed"]))
         self.graft_remove.setEnabled(bool(device and device["graft_slot"]))
@@ -545,7 +546,8 @@ class EngineeringDialog(QDialog):
         if device and device["catalog_key"]==PRESSURE_SENSOR_KEY:
             sensor=self.service().pressure_sensor_profile(device["id"])
             self.details.append(f"<p>Crafted signal range: {(device['configuration'] or 'close').replace('_',' ')} · Barrier penetration multiplier: ×{sensor['signal_penetration_multiplier']}. Range upgrades are chosen at construction; signals remain blocked by sufficient barriers.</p>")
-            self.details.append(f"<h3>Pressure sensor values</h3><p>Ground-hazard detection checks: +{sensor['hazard_check_bonus']} circumstance. Base signal range: {sensor['base_signal_range_feet']} ft. Advanced tremorsense duration: {sensor['tremorsense_duration_rounds']} rounds per battery. Current tremorsense: {sensor['tremorsense_range_feet']} ft. Auto-renew: {'On' if sensor['auto_renew'] else 'Off'}.</p><p>Full-round upkeep paid: {'Yes' if sensor['upkeep_paid'] else 'No'}. Flat-footed: {'Yes' if sensor['flat_footed'] else 'No'} (apply flat-footed manually). Missing upkeep deactivates detection at turn end. Report each interval once, using wearer-turn end or elapsed rounds. Automatic hazard prompts and signal-range upgrades are still pending. Do not add this bonus to unrelated Perception checks.</p>")
+            upkeep="No upkeep required while worn; passive detection remains active." if sensor['wearable'] else "Missing full-round upkeep deactivates detection at turn end."
+            self.details.append(f"<h3>Pressure sensor values</h3><p>Ground-hazard detection checks: +{sensor['hazard_check_bonus']} circumstance. Signal range: {sensor['base_signal_range_feet']} ft. Advanced tremorsense duration: {sensor['tremorsense_duration_rounds']} rounds per battery. Current tremorsense: {sensor['tremorsense_range_feet']} ft. Auto-renew: {'On' if sensor['auto_renew'] else 'Off'}.</p><p>Full-round upkeep paid: {'Yes' if sensor['upkeep_paid'] else 'No'}. Flat-footed: {'Yes' if sensor['flat_footed'] else 'No'} (apply flat-footed manually). {upkeep} Report each interval once, using wearer-turn end or elapsed rounds. Automatic hazard prompts and additional accommodations are still pending. Do not add this bonus to unrelated Perception checks.</p>")
 
     def perform(self,operation):
         try:

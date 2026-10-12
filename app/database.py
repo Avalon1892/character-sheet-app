@@ -3184,8 +3184,10 @@ class CharacterRepository:
             raise ValueError("Invalid Spring Boots pressure state.")
         if state!="active" or not record.get("applied_to_character") or device_condition(record)["destroyed"]:pressure=0
         maintained=record.get("detector_maintained",False)
-        if record.get("catalog_key")==PRESSURE_SENSOR_KEY and record.get("configuration","") not in {"","close","medium","long","extra_long"}:
+        if record.get("catalog_key")==PRESSURE_SENSOR_KEY and record.get("configuration","") not in {"","close","medium","long","extra_long","wearable"}:
             raise ValueError("Unsupported Pressure Sensor signal range.")
+        if record.get("catalog_key")==PRESSURE_SENSOR_KEY and record.get("configuration")=="wearable" and not record.get("advanced"):
+            raise ValueError("A wearable detector must be an advanced gizmo.")
         if type(maintained) not in (bool,int) or maintained not in (False,True,0,1) or (maintained and (sphere!="Tinker" or record.get("catalog_key")!=PRESSURE_SENSOR_KEY)):
             raise ValueError("Invalid detector upkeep state.")
         if state!="active" or device_condition(record)["destroyed"]:maintained=False
@@ -3341,7 +3343,7 @@ class CharacterRepository:
             expiring=self._expiring_pressure_sensors(character_id,rounds)
             timed_keys=(JET_BOOSTERS_KEY,*TECH_TIMED_AUGMENT_MODES)
             self._connection.execute("UPDATE engineering_devices SET pressure_turn_ends=MAX(0,pressure_turn_ends-?) WHERE character_id=? AND pressure_turn_ends>0",(rounds,character_id))
-            self._connection.execute("UPDATE engineering_devices SET state=CASE WHEN detector_maintained=0 OR ?>1 THEN 'inactive' ELSE state END,effect_rounds=CASE WHEN detector_maintained=0 OR ?>1 THEN 0 ELSE effect_rounds END,detector_maintained=0 WHERE character_id=? AND catalog_key=? AND state='active'",(rounds,rounds,character_id,PRESSURE_SENSOR_KEY))
+            self._connection.execute("UPDATE engineering_devices SET state=CASE WHEN detector_maintained=0 OR ?>1 THEN 'inactive' ELSE state END,effect_rounds=CASE WHEN detector_maintained=0 OR ?>1 THEN 0 ELSE effect_rounds END,detector_maintained=0 WHERE character_id=? AND catalog_key=? AND state='active' AND configuration!='wearable'",(rounds,rounds,character_id,PRESSURE_SENSOR_KEY))
             self._connection.execute("UPDATE engineering_devices SET state='inactive',effect_rounds=0,effect_battery_id=NULL WHERE character_id=? AND catalog_key=? AND host_id IN (SELECT id FROM engineering_devices WHERE character_id=? AND catalog_key=? AND state!='active')",(character_id,RESISTANCE_ROUTINE_KEY,character_id,PRESSURE_SENSOR_KEY))
             self._connection.execute("UPDATE engineering_devices SET effect_rounds=MAX(0,effect_rounds-?),state=CASE WHEN effect_rounds<=? AND state='active' AND catalog_key IN ("+",".join("?" for _ in timed_keys)+") THEN 'inactive' ELSE state END WHERE character_id=? AND state!='abandoned' AND effect_rounds>0",
                 (rounds,rounds,*timed_keys,character_id))
@@ -3353,24 +3355,28 @@ class CharacterRepository:
             expiring=self._expiring_pressure_sensors(character_id,1)
             self._connection.execute("UPDATE engineering_devices SET effect_rounds=MAX(0,effect_rounds-1) WHERE character_id=? AND catalog_key=? AND state='active' AND effect_rounds>0",(character_id,PRESSURE_SENSOR_KEY))
             self._connection.execute("UPDATE engineering_devices SET pressure_turn_ends=MAX(0,pressure_turn_ends-1) WHERE character_id=? AND pressure_turn_ends>0",(character_id,))
-            self._connection.execute("UPDATE engineering_devices SET state=CASE WHEN detector_maintained=0 THEN 'inactive' ELSE state END,effect_rounds=CASE WHEN detector_maintained=0 THEN 0 ELSE effect_rounds END,detector_maintained=0 WHERE character_id=? AND catalog_key=? AND state='active'",(character_id,PRESSURE_SENSOR_KEY))
+            self._connection.execute("UPDATE engineering_devices SET state=CASE WHEN detector_maintained=0 THEN 'inactive' ELSE state END,effect_rounds=CASE WHEN detector_maintained=0 THEN 0 ELSE effect_rounds END,detector_maintained=0 WHERE character_id=? AND catalog_key=? AND state='active' AND configuration!='wearable'",(character_id,PRESSURE_SENSOR_KEY))
             self._connection.execute("UPDATE engineering_devices SET state='inactive',effect_rounds=0,effect_battery_id=NULL WHERE character_id=? AND catalog_key=? AND host_id IN (SELECT id FROM engineering_devices WHERE character_id=? AND catalog_key=? AND state!='active')",(character_id,RESISTANCE_ROUTINE_KEY,character_id,PRESSURE_SENSOR_KEY))
             self._renew_pressure_sensors(character_id,expiring)
             self._touch_character(character_id)
 
     def _expiring_pressure_sensors(self,character_id,rounds):
-        return tuple(row["id"] for row in self._connection.execute("SELECT id FROM engineering_devices WHERE character_id=? AND catalog_key=? AND state='active' AND sensor_auto_renew=1 AND function_mode='sensor_tremor' AND effect_battery_id IS NOT NULL AND effect_rounds>0 AND effect_rounds<=? ORDER BY id",(character_id,PRESSURE_SENSOR_KEY,rounds)))
+        return tuple((row["id"],rounds-row["effect_rounds"]) for row in self._connection.execute("SELECT id,effect_rounds FROM engineering_devices WHERE character_id=? AND catalog_key=? AND state='active' AND sensor_auto_renew=1 AND function_mode='sensor_tremor' AND effect_battery_id IS NOT NULL AND effect_rounds>0 AND effect_rounds<=? ORDER BY id",(character_id,PRESSURE_SENSOR_KEY,rounds)))
 
     def _renew_pressure_sensors(self,character_id,device_ids):
         # Called only inside the elapsed-time transaction, for effects expiring now.
-        for device_id in device_ids:
+        for device_id,elapsed_after_expiry in device_ids:
             host=self._connection.execute("SELECT * FROM engineering_devices WHERE id=? AND character_id=? AND state='active'",(device_id,character_id)).fetchone()
-            if host is None or not host["advanced"] or device_condition(dict(host))["destroyed"]:continue
-            battery=self._connection.execute("SELECT * FROM engineering_devices WHERE character_id=? AND host_id=? AND catalog_key='tinker:battery' AND sphere='Tinker' AND state='active' AND level>=? AND damage<3*level ORDER BY id LIMIT 1",(character_id,device_id,host["level"])).fetchone()
-            if battery is None:continue
-            self._connection.execute("UPDATE engineering_devices SET state='depleted' WHERE id=?",(battery["id"],))
-            self._connection.execute("UPDATE engineering_devices SET state='inactive',effect_rounds=0,effect_battery_id=NULL WHERE character_id=? AND catalog_key=? AND host_id=?",(character_id,RESISTANCE_ROUTINE_KEY,battery["id"]))
-            self._connection.execute("UPDATE engineering_devices SET effect_rounds=?,effect_battery_id=? WHERE id=?",(device_condition(dict(host))["effective_level"],battery["id"],device_id))
+            if host is None or not host["advanced"] or device_condition(dict(host))["destroyed"] or (host["configuration"]=="wearable" and not host["applied_to_character"]):continue
+            duration=device_condition(dict(host))["effective_level"]
+            while True:
+                battery=self._connection.execute("SELECT * FROM engineering_devices WHERE character_id=? AND host_id=? AND catalog_key='tinker:battery' AND sphere='Tinker' AND state='active' AND level>=? AND damage<3*level ORDER BY id LIMIT 1",(character_id,device_id,host["level"])).fetchone()
+                if battery is None:break
+                self._connection.execute("UPDATE engineering_devices SET state='depleted' WHERE id=?",(battery["id"],))
+                self._connection.execute("UPDATE engineering_devices SET state='inactive',effect_rounds=0,effect_battery_id=NULL WHERE character_id=? AND catalog_key=? AND host_id=?",(character_id,RESISTANCE_ROUTINE_KEY,battery["id"]))
+                self._connection.execute("UPDATE engineering_devices SET effect_rounds=?,effect_battery_id=? WHERE id=?",(max(0,duration-elapsed_after_expiry),battery["id"],device_id))
+                if elapsed_after_expiry<duration:break
+                elapsed_after_expiry-=duration
 
     def deplete_engineering_batteries(self,character_id,host_id,battery_ids,*,tactile_boost=False,spring_boost=False,sensor_tremor=False,sensor_activate=False):
         ids=tuple(dict.fromkeys(int(i) for i in battery_ids))
@@ -3388,6 +3394,8 @@ class CharacterRepository:
                 key=PRESSURE_SENSOR_KEY if sensor_tremor else SPRING_BOOTS_KEY if spring_boost else TACTILE_FIELD_KEY
                 if host is None or host["catalog_key"]!=key or host["sphere"]!="Tinker" or (not sensor_tremor and not host["applied_to_character"]) or (sensor_tremor and not host["advanced"]) or host["effect_rounds"]>0 or len(ids)!=1:
                     raise ValueError("Select the worn device without an active enhancement.")
+                if sensor_tremor and host["configuration"]=="wearable" and not host["applied_to_character"]:
+                    raise ValueError("Wear this sensor before powering its tremorsense.")
             rows=self._connection.execute(
                 "SELECT b.id FROM engineering_devices b JOIN engineering_devices h ON h.id=b.host_id WHERE b.character_id=? AND b.host_id=? AND b.catalog_key='tinker:battery' AND b.state='active' AND h.state=? AND b.damage<3*b.level AND h.damage<3*h.level AND b.level>=h.level AND b.id IN ("+placeholders+")",
                 (character_id,host_id,"inactive" if sensor_activate else "active",*ids)).fetchall()

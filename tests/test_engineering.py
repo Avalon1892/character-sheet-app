@@ -237,6 +237,63 @@ class EngineeringTests(unittest.TestCase):
         copied=next(d for d in self.repo.list_engineering_devices(imported) if d["configuration"]=="extra_long")
         self.assertEqual(self.service.pressure_sensor_profile(sensor),EngineeringService(self.repo,imported).pressure_sensor_profile(copied["id"]))
 
+    def test_wearable_pressure_sensor_prerequisites_upkeep_and_paid_periods(self):
+        from app.engineering_rules import PRESSURE_JACK_KEY,PRESSURE_SENSOR_KEY
+        base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")
+        self.repo.update_martial_talent(self.cid,base.id,base.name,"Tinker","Base Sphere",catalog_key=base.catalog_key,catalog_category="Base Sphere",choice="Transmission")
+        self.add("Tinker","Pressure Jack (gizmo)",PRESSURE_JACK_KEY)
+        with self.assertRaises(ValueError):self.service.create("Tinker",PRESSURE_SENSOR_KEY,2,configuration="wearable")
+        self.add("Tinker","Advanced Transmission (gizmo, transmission)","tinker:legendary-talent:advanced-transmission-gizmo-transmission","Legendary Talent")
+        self.assertNotIn("wearable",self.service.detector_range_options())
+        self.repo.update_martial_talent(self.cid,base.id,base.name,"Tinker","Base Sphere",catalog_key=base.catalog_key,catalog_category="Base Sphere",choice="Transmission/Augmentation")
+        sensor=self.service.create("Tinker",PRESSURE_SENSOR_KEY,2,configuration="wearable")
+        record=next(d for d in self.service.devices("Tinker") if d["id"]==sensor)
+        self.assertEqual(1,record["advanced"])
+        with self.assertRaises(ValueError):self.repo.save_engineering_device(self.cid,{**record,"advanced":0},sensor)
+        self.service.activate_pressure_sensor(sensor,activation_completed=True)
+        self.assertFalse(self.service.pressure_sensor_profile(sensor)["available"])
+        unworn_battery=self.service.create("Tinker","tinker:battery",2);self.service.attach_battery(unworn_battery,sensor)
+        changes=self.repo.sqlite_connection.total_changes
+        with self.assertRaises(ValueError):self.service.use_batteries(sensor,1,sensor_tremor=True)
+        self.assertEqual(changes,self.repo.sqlite_connection.total_changes)
+        self.service.attach_battery(unworn_battery,None)
+        self.service.apply_to_character(sensor,True)
+        profile=self.service.pressure_sensor_profile(sensor)
+        self.assertTrue(profile["available"]);self.assertFalse(profile["flat_footed"]);self.assertFalse(profile["upkeep_required"])
+        self.assertEqual(40,profile["base_signal_range_feet"])
+        from PySide6.QtWidgets import QApplication,QWidget
+        from PySide6.QtCore import QEvent
+        from app.ui.engineering import EngineeringDialog
+        app=QApplication.instance() or QApplication([])
+        for theme in ("classic","dark"):
+            with self.subTest(theme=theme):
+                sheet=QWidget();sheet.repository=self.repo;sheet.character_id=self.cid;sheet.theme=theme;sheet.refresh_all=lambda:None
+                dialog=EngineeringDialog(sheet);dialog.system.setCurrentText("Tinker");dialog.table.selectRow(0)
+                self.assertTrue(dialog.applied.isEnabled());self.assertTrue(dialog.applied.isChecked())
+                self.assertFalse(dialog.sensor_maintain.isEnabled())
+                self.assertIn("No upkeep required while worn",dialog.details.toPlainText())
+                dialog.deleteLater();sheet.deleteLater();app.sendPostedEvents(None,QEvent.Type.DeferredDelete)
+        with self.assertRaises(ValueError):self.service.maintain_pressure_sensor(sensor)
+        self.service.advance_time(50);self.service.end_wearer_turn()
+        self.assertTrue(self.service.pressure_sensor_profile(sensor)["available"])
+        batteries=[self.service.create("Tinker","tinker:battery",2) for _ in range(3)]
+        for battery in batteries:self.service.attach_battery(battery,sensor)
+        self.service.use_batteries(sensor,1,sensor_tremor=True);self.service.set_sensor_auto_renew(sensor,True)
+        self.service.advance_time(13)
+        current=next(d for d in self.service.devices("Tinker") if d["id"]==sensor)
+        self.assertEqual(5,current["effect_rounds"])
+        self.assertTrue(all(d["state"]=="depleted" for d in self.service.devices("Tinker") if d["id"] in batteries))
+        path=Path(self.temp.name)/"wearable.json";export_character(self.repo,self.cid,path)
+        imported=import_character(self.repo,path)
+        copied=next(d for d in self.repo.list_engineering_devices(imported) if d["catalog_key"]==PRESSURE_SENSOR_KEY)
+        self.assertEqual(self.service.pressure_sensor_profile(sensor),EngineeringService(self.repo,imported).pressure_sensor_profile(copied["id"]))
+        self.service.advance_time(5)
+        self.assertEqual(0,self.service.pressure_sensor_profile(sensor)["tremorsense_range_feet"])
+        self.assertTrue(self.service.pressure_sensor_profile(sensor)["available"])
+        self.service.apply_to_character(sensor,False)
+        self.assertFalse(self.service.pressure_sensor_profile(sensor)["available"])
+        self.assertEqual("inactive",next(d for d in self.service.devices("Tinker") if d["id"]==sensor)["state"])
+
     def test_pressure_sensor_opt_in_renewal_expiry_exhaustion_and_transfer(self):
         from app.engineering_rules import PRESSURE_JACK_KEY,PRESSURE_SENSOR_KEY
         base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")

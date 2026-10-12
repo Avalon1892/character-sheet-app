@@ -212,6 +212,7 @@ class EngineeringService:
             raise ValueError("Choose flight or aquatic boosters at creation.")
         if key==PRESSURE_SENSOR_KEY and configuration not in self.detector_range_options():
             raise ValueError("Choose a detector range supported by the character's training.")
+        if key==PRESSURE_SENSOR_KEY and configuration=="wearable" and advanced==0:advanced=1
         if key in {RESISTANCE_ROUTINE_KEY,PRESSURE_JACK_KEY}:
             minor=True
         ranks = CharacterCalculationService(self.repository,self.character_id).effective_skill_ranks().get(self.skill_key,0)
@@ -232,6 +233,8 @@ class EngineeringService:
     def detector_range_options(self):
         options=["","close"]
         keys={t.catalog_key for t in self.records("Tinker")}
+        if "tinker:legendary-talent:advanced-transmission-gizmo-transmission" in keys and "Augmentation" in tinker_packages(self.records("Tinker")):
+            options.append("wearable")
         if "tinker:gizmo-talent:transmission-mastery-gizmo-transmission-utility" in keys:
             options.append("medium")
             if "tinker:legendary-talent:advanced-transmission-gizmo-transmission" in keys:
@@ -242,6 +245,13 @@ class EngineeringService:
 
     def apply_to_character(self,device_id,enabled):
         device=next((d for d in self.repository.list_engineering_devices(self.character_id) if d["id"]==device_id),None)
+        if device and device["catalog_key"]==PRESSURE_SENSOR_KEY and device["configuration"]=="wearable":
+            if enabled and (device["state"]!="active" or device_condition(device)["destroyed"] or not self.available("Tinker")):
+                raise ValueError("Activate a functioning wearable sensor before wearing it.")
+            changes={"applied_to_character":bool(enabled)}
+            if not enabled:changes.update(state="inactive",effect_rounds=0,effect_battery_id=None)
+            self.repository.save_engineering_device(self.character_id,{**device,**changes},device_id)
+            return
         if device and device["catalog_key"] in TECH_AUGMENT_SLOTS:
             if device["state"]=="abandoned" or (enabled and not self.available("Tech")):
                 raise ValueError("Select an available Tech augment.")
@@ -549,6 +559,7 @@ class EngineeringService:
         device=next((d for d in self.devices("Tinker") if d["id"]==device_id),None)
         if not self.available("Tinker") or not device or device["catalog_key"]!=PRESSURE_SENSOR_KEY or not pressure_sensor_profile(device)["available"]:
             raise ValueError("Activate a functioning Pressure Sensor first.")
+        if device["configuration"]=="wearable":raise ValueError("Wearable sensors do not require detector upkeep.")
         if device["detector_maintained"]:raise ValueError("Detector upkeep has already been reported this turn.")
         self.repository.save_engineering_device(self.character_id,{**device,"detector_maintained":True},device_id)
 
