@@ -4,7 +4,7 @@ import json
 
 from PySide6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QFormLayout,
     QLineEdit, QTextEdit, QTextBrowser, QComboBox, QSpinBox, QLabel, QPushButton,
-    QTableWidget, QTableWidgetItem, QHeaderView, QDialogButtonBox, QCheckBox, QMessageBox)
+    QTableWidget, QTableWidgetItem, QHeaderView, QDialogButtonBox, QCheckBox, QMessageBox, QDateEdit)
 from app.catalogs import DEFAULT_CATALOG
 from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_remaining_uses
 from app.services.crafting import CraftingService
@@ -300,11 +300,25 @@ class MarvelousItemUseDialog(QDialog):
         self.table.setColumnWidth(1, 140); self.table.setColumnWidth(2, 260); self.table.setColumnWidth(3, 220)
         self.table.cellDoubleClicked.connect(self.edit_design)
         root.addWidget(self.table, 1)
+        self.construction = QPushButton('Construction project'); self.construction.setEnabled(False)
+        root.addWidget(self.construction)
+        self.table.itemSelectionChanged.connect(lambda: self.construction.setEnabled(self.table.currentRow() >= 0))
+        self.construction.clicked.connect(self.open_construction)
         self.result = QLabel('Effect durations must be tracked manually. Other targets and modified effects are manual.')
         self.result.setWordWrap(True); root.addWidget(self.result)
         buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Close)
         buttons.rejected.connect(self.reject); root.addWidget(buttons)
         self.refresh()
+
+    def open_construction(self):
+        from PySide6.QtCore import Qt
+        row = self.table.currentRow()
+        if row < 0: return
+        dialog = MarvelousProjectDialog(self.repository, self.character_id,
+            self.table.item(row, 0).data(Qt.ItemDataRole.UserRole), self)
+        dialog.exec()
+        if dialog.changed:
+            self.changed = True; self.refresh()
 
     def refresh(self):
         self.table.setRowCount(0)
@@ -362,3 +376,92 @@ class MarvelousItemUseDialog(QDialog):
         self.result.setText('Activated: ' + ' · '.join(f'{key.replace("_", " ")}: {value}' for key, value in effect.items())
                             + '. Track the effect duration manually.')
         self.refresh()
+
+
+class MarvelousProjectDialog(QDialog):
+    """Explicit work/payment UI; project transitions remain in shared rules."""
+    def __init__(self, repository, character_id, item_id, parent=None):
+        super().__init__(parent)
+        from PySide6.QtCore import QDate
+        self.repository, self.character_id, self.item_id = repository, character_id, item_id
+        self.changed = False
+        self.setWindowTitle('Marvelous construction project'); self.resize(700, 480)
+        root = QVBoxLayout(self)
+        self.summary = QLabel(); self.summary.setWordWrap(True); root.addWidget(self.summary)
+        self.start = QPushButton('Start construction — pay materials'); root.addWidget(self.start)
+        form = QFormLayout(); root.addLayout(form)
+        self.day = QDateEdit(QDate.currentDate()); self.day.setCalendarPopup(True); self.day.setDisplayFormat('yyyy-MM-dd')
+        self.hours = QSpinBox(); self.hours.setRange(4, 8); self.hours.setValue(8)
+        self.distracting = QCheckBox('Distracting surroundings (half progress)')
+        self.adventuring = QCheckBox('Adventuring day (two effective hours)')
+        form.addRow('Work date', self.day); form.addRow('Hours worked', self.hours)
+        form.addRow(self.distracting); form.addRow(self.adventuring)
+        self.work = QPushButton('Record work'); root.addWidget(self.work)
+        self.check = QSpinBox(); self.check.setRange(-1000, 1000)
+        form.addRow('Final Spellcraft / approved Craft check total', self.check)
+        self.finish = QPushButton('Resolve final construction check'); root.addWidget(self.finish)
+        buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Close)
+        buttons.rejected.connect(self.reject); root.addWidget(buttons)
+        self.start.clicked.connect(self.start_construction)
+        self.work.clicked.connect(self.record_work); self.finish.clicked.connect(self.finish_construction)
+        self.adventuring.toggled.connect(self.change_work_mode)
+        self.refresh()
+
+    def change_work_mode(self, checked):
+        self.hours.setRange(2, 2) if checked else self.hours.setRange(4, 8)
+        self.distracting.setEnabled(not checked)
+
+    def refresh(self):
+        self.start.setEnabled(False); self.work.setEnabled(False); self.finish.setEnabled(False)
+        item = next((item for item in self.repository.list_equipment(self.character_id) if item.id == self.item_id), None)
+        if item is None:
+            self.summary.setText('The item no longer exists.'); return
+        metadata = json.loads(item.automation_json or '{}')
+        self.project = metadata.get('marvelous_project')
+        if self.project:
+            p = self.project
+            self.summary.setText(f'{item.name}\nStatus: {p["status"]}\nProgress: {p["worked_hours"]:g} / {p["required_hours"]:g} effective hours\nMaterials paid: {p["materials_gp"]} gp · Final check DC {p["dc"]}')
+            active = p['status'] == 'crafting'
+            self.work.setEnabled(active and p['worked_hours'] < p['required_hours'])
+            self.finish.setEnabled(active and p['worked_hours'] >= p['required_hours'])
+            return
+        try:
+            from app.marvelous_projects import start_project
+            service = CraftingService(self.repository, self.character_id)
+            plan = metadata['marvelous_blueprint']
+            if plan.get('extra_effects'): raise ValueError('Combined construction eligibility is not yet integrated.')
+            self.proposed = start_project(plan, service.marvelous_plan_requirements(plan))
+            p = self.proposed
+            self.summary.setText(f'{item.name}\nMaterials: {p["materials_gp"]} gp · Work: {p["required_hours"]:g} hours · Final check DC {p["dc"]}\nStarting pays materials from your purse and locks the design. Currency may be exchanged to make change. Additional permanent bonuses, tradition restrictions and advanced prerequisites still require review.')
+            self.start.setEnabled(item.quantity == 1)
+        except (ValueError, KeyError) as error:
+            self.summary.setText(f'{item.name}\nCannot start: {error}')
+
+    def start_construction(self):
+        if QMessageBox.question(self, 'Pay construction materials',
+            f'Pay {self.proposed["materials_gp"]} gp and start this project? Materials are spent even if the final check fails. Confirm that remaining construction requirements have been reviewed.') != QMessageBox.StandardButton.Yes: return
+        try:
+            CraftingService(self.repository, self.character_id).start_marvelous_construction(self.item_id)
+        except ValueError as error:
+            QMessageBox.warning(self, 'Cannot start construction', str(error)); return
+        self.changed = True; self.refresh()
+
+    def record_work(self):
+        try:
+            self.repository.advance_marvelous_project(self.character_id, self.item_id,
+                day=self.day.date().toString('yyyy-MM-dd'), hours=self.hours.value(),
+                distracting=self.distracting.isChecked(), adventuring=self.adventuring.isChecked())
+        except ValueError as error:
+            QMessageBox.warning(self, 'Cannot record work', str(error)); return
+        self.changed = True; self.refresh()
+
+    def finish_construction(self):
+        from app.marvelous_projects import finish_project
+        result = finish_project(self.project, self.check.value())
+        if QMessageBox.question(self, 'Resolve construction',
+            f'Check total {self.check.value()} versus DC {self.project["dc"]}: {result["status"]}. Confirm this final result?') != QMessageBox.StandardButton.Yes: return
+        try:
+            self.repository.advance_marvelous_project(self.character_id, self.item_id, check_total=self.check.value())
+        except ValueError as error:
+            QMessageBox.warning(self, 'Cannot finish construction', str(error)); return
+        self.changed = True; self.refresh()

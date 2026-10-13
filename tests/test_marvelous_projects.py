@@ -62,3 +62,32 @@ def test_persistent_project_pays_once_and_gates_activation(tmp_path, monkeypatch
     assert repo.advance_marvelous_project(cid, iid, check_total=11)['status'] == 'complete'
     repo.consume_marvelous_item_use(cid, iid)
     repo.close()
+
+
+def test_project_ui_confirmations_and_progress(tmp_path, monkeypatch):
+    from PySide6.QtWidgets import QApplication, QMessageBox
+    from app.ui.marvelous_crafting import MarvelousProjectDialog
+    from app.database import CharacterRepository
+    from app.services.crafting import CraftingService
+    from dataclasses import replace
+    app = QApplication.instance() or QApplication([])
+    repo = CharacterRepository(tmp_path / 'ui.db')
+    cid = repo.create_character('Crafter', 'Spheres'); repo.add_feat(cid, 'Craft Marvelous Item')
+    repo.update_currency_purse(replace(repo.get_currency_purse(cid), gold=1000))
+    plan = dict(schema_version=1, sphere='Life', base_power='life:cure', caster_level=1,
+                uses=1, activation='standard', range_steps=0, duration_steps=0, unique_changes=0, contributions=[])
+    iid = CraftingService(repo, cid).save_marvelous_design(plan, name='Project', slot='', description='')
+    monkeypatch.setattr(CraftingService, 'marvelous_plan_requirements', lambda self, p: MarvelousRequirements((), (), 0))
+    dialog = MarvelousProjectDialog(repo, cid, iid)
+    before = repo._connection.total_changes
+    monkeypatch.setattr(QMessageBox, 'question', lambda *args: QMessageBox.StandardButton.No)
+    dialog.start_construction()
+    assert repo._connection.total_changes == before
+    monkeypatch.setattr(QMessageBox, 'question', lambda *args: QMessageBox.StandardButton.Yes)
+    dialog.start_construction()
+    assert not dialog.start.isEnabled() and dialog.work.isEnabled()
+    dialog.record_work()
+    assert dialog.finish.isEnabled() and not dialog.work.isEnabled()
+    dialog.check.setValue(11); dialog.finish_construction()
+    assert dialog.project['status'] == 'complete' and dialog.changed
+    dialog.close(); repo.close()

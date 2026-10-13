@@ -305,4 +305,5 @@ class CraftingPanel(QWidget):
             if dialog.changed:
                 self.sheet._refresh_calculation_views(self.sheet._refresh_hit_points,
                                                       self.sheet._refresh_equipment,
+                                                      self.sheet._refresh_currency,
                                                       self.sheet._refresh_formula_dependents)
