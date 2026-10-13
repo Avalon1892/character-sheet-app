@@ -57,6 +57,17 @@ def test_full_blast_option_prices_and_restores(composer):
     assert not dialog.blueprint()['full_blast_damage']
 
 
+@pytest.mark.parametrize('sphere,key', [('Alteration', 'alteration:talent:mass-alteration-mass'),
+                                       ('Illusion', 'illusion:talent:suppression-glamer')])
+def test_published_talent_exceptions_default_to_two_complexity(composer, sphere, key):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText(sphere); dialog.cl.setValue(5)
+    index = next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key)
+    dialog.talent.setCurrentIndex(index); dialog.add_contribution()
+    assert dialog.table.cellWidget(0, 1).value() == 2
+    assert dialog.quotation()[0] == 3
+
+
 def test_overrides_and_blueprint_persist_without_activating_effects(composer):
     dialog, repo, cid = composer
     dialog.name.setText('My crafted device')

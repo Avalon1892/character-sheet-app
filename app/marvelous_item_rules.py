@@ -121,6 +121,8 @@ def talent_construction_cost(entry, *, additional_spell_points=0):
         raise ValueError('Additional spell points must be a nonnegative integer.')
     if entry.get('key') == 'destruction:talent:admixture':
         return 0
+    if entry.get('key') in {'alteration:talent:mass-alteration-mass', 'illusion:talent:suppression-glamer'}:
+        return 2 + additional_spell_points
     return (2 if 'advanced' in str(entry.get('category', '')).casefold() else 1) + additional_spell_points
 
 
