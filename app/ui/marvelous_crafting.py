@@ -277,7 +277,7 @@ class MarvelousCraftingDialog(QDialog):
             automatic = automatic_self_effect(self.blueprint())
             automation_notice = ('Activation can heal a living self, including nonlethal damage.' if automatic == 'cure'
                 else 'Activation can apply temporary HP to self; expiration remains manual.' if automatic == 'temporary_hp'
-                else 'Activation adds a deflection aegis to ongoing effects; expiration remains manual.' if automatic == 'aegis'
+                else 'Activation adds the supported aegis to ongoing effects; expiration remains manual.' if automatic == 'aegis'
                 else 'This effect currently requires manual application; item uses are tracked automatically.')
             requirements = self.service.marvelous_plan_requirements(self.blueprint(), access=self.crafting_access)
             extra_review = ''

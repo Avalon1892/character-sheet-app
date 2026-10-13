@@ -2229,11 +2229,12 @@ class CharacterRepository:
                     effect['healing_rolled'] = amount
                 elif plan['base_power'] == 'protection:aegis':
                     name = f'{effect["power"]} — {row["name"]}'
-                    self._validate_ongoing_effect(name, 'Sphere', 'ac', 'deflection')
-                    self._connection.execute(
-                        'INSERT INTO ongoing_effects (character_id,name,source_type,duration,target,bonus_type,value,notes) VALUES (?,?,?,?,?,?,?,?)',
-                        (character_id, name, 'Sphere', effect['duration'], 'ac', 'deflection', effect['deflection_ac'],
-                         f'Crafted item {item_id}, power {effect_index}; item caster level {plan["caster_level"]}. Expiration is manual.'))
+                    for target, bonus_type, value in effect['ongoing_modifiers']:
+                        self._validate_ongoing_effect(name, 'Sphere', target, bonus_type)
+                        self._connection.execute(
+                            'INSERT INTO ongoing_effects (character_id,name,source_type,duration,target,bonus_type,value,notes) VALUES (?,?,?,?,?,?,?,?)',
+                            (character_id, name, 'Sphere', effect['duration'], target, bonus_type, value,
+                             f'Crafted item {item_id}, power {effect_index}; item caster level {plan["caster_level"]}. Expiration is manual.'))
                 else:
                     if hp.current >= maximum:
                         raise ValueError('Base Invigorate requires an injured target.')
