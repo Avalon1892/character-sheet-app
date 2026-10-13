@@ -6,6 +6,13 @@ No runtime description parsing or custom-blueprint price substitution.
 from copy import deepcopy
 
 NAMED_EFFECTS = {
+    'spheres:marvelous-items:timeshifting-gloves': dict(
+        power='Timeshifting Gloves', caster_level=4, daily_uses=1, range='35 ft.',
+        activation='Standard action; swift for self; free when gaining a swift action for self.',
+        benefit='One creature immediately takes a standard, move, or swift action.',
+        restriction='Only one activation per turn. Recipient loses the granted action on their next turn (errata).',
+        application='Resolve action choice, target eligibility and next-turn repayment manually.',
+        upgrade_review='Base gloves only; upgrades are not configured.'),
     'spheres:marvelous-items:thunderbolt-ring': dict(
         power='Thunderbolt Ring', caster_level=4, daily_uses=1, activation='Standard action',
         damage_dice=4, die_sides=6, damage_type='electricity', damage='4d6 electricity',
@@ -22,6 +29,9 @@ def named_marvelous_effect(catalog_key, metadata=None):
     upgrades = (metadata or {}).get('marvelous_flask_shards', 0)
     if isinstance(upgrades, bool) or not isinstance(upgrades, int) or not 0 <= upgrades <= 4:
         raise ValueError('Thunderbolt Ring supports zero to four recorded Flask Shards.')
+    if catalog_key != 'spheres:marvelous-items:thunderbolt-ring':
+        if upgrades: raise ValueError('Recorded upgrades are not supported for this item.')
+        return effect
     cl = 4 * (upgrades + 1)
     effect.update(caster_level=cl, daily_uses=1 + upgrades, damage_dice=cl,
                   damage=f'{cl}d6 electricity', area=f'5-foot-wide, {100 + 10 * cl}-foot line', save_dc=10 + cl // 2)

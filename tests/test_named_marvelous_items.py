@@ -57,3 +57,17 @@ def test_named_ring_in_activation_window_without_custom_design_controls(tmp_path
     dialog.record_shards()
     assert dialog.table.item(0, 1).text() == '4' and dialog.table.cellWidget(0, 3).isEnabled()
     dialog.close(); repo.close()
+
+
+def test_non_damage_named_item_preserves_errata_and_recovers(tmp_path):
+    repo = CharacterRepository(tmp_path / 'gloves.db')
+    cid = repo.create_character('User', 'Spheres')
+    key = 'spheres:marvelous-items:timeshifting-gloves'
+    iid = repo.add_equipment(cid, 'Timeshifting Gloves', 'Gear', 1, 2, False, 0, 'untyped', None, '', catalog_key=key)
+    effect = repo.consume_marvelous_item_use(cid, iid)
+    assert 'damage_rolled' not in effect and 'next turn' in effect['restriction']
+    assert effect['range'] == '35 ft.'
+    with pytest.raises(ValueError, match='No item uses'): repo.consume_marvelous_item_use(cid, iid)
+    assert repo.reset_marvelous_daily_uses(cid) == 1
+    with pytest.raises(ValueError): named_marvelous_effect(key, {'marvelous_flask_shards':1})
+    repo.close()

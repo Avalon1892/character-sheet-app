@@ -2204,12 +2204,13 @@ class CharacterRepository:
                 effect = named_marvelous_effect(row['catalog_key'], metadata)
                 if effect is not None:
                     if apply_to_self or effect_index != 0:
-                        raise ValueError('Use this named offensive effect with manual target resolution.')
+                        raise ValueError('Use this named effect with manual target resolution.')
                     if not named_marvelous_remaining(row['catalog_key'], metadata):
                         raise ValueError('No item uses remain.')
-                    import random
-                    effect['damage_rolls'] = [random.randint(1, effect['die_sides']) for _ in range(effect['damage_dice'])]
-                    effect['damage_rolled'] = sum(effect['damage_rolls'])
+                    if 'damage_dice' in effect:
+                        import random
+                        effect['damage_rolls'] = [random.randint(1, effect['die_sides']) for _ in range(effect['damage_dice'])]
+                        effect['damage_rolled'] = sum(effect['damage_rolls'])
                     metadata['marvelous_uses_used'] = metadata.get('marvelous_uses_used', 0) + 1
                     self._connection.execute('UPDATE equipment SET automation_json=? WHERE character_id=? AND id=?',
                         (json.dumps(metadata), character_id, item_id))

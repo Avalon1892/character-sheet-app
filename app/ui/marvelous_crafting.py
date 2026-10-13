@@ -459,7 +459,8 @@ class MarvelousItemUseDialog(QDialog):
                                    'protection:aegis': 'Apply aegis to recipient'}
                 button = QPushButton(automatic_label[power['base_power']] if automatic else 'Record use — manual effect')
                 from app.marvelous_base_powers import automatic_damage_dice
-                if not mixed and (automatic_damage_dice(power) is not None or not custom):
+                if not custom: button.setText('Use — resolve action manually')
+                if not mixed and (automatic_damage_dice(power) is not None or (not custom and 'damage_dice' in effect)):
                     button.setText('Use and roll damage')
                 if mixed: button.setText('Use mixed power — manual' if index == 0 else 'Included in mixed activation')
                 available = all(entry[2] != 0 for entry in effects) if mixed else remaining != 0
