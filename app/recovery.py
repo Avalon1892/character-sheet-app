@@ -32,6 +32,8 @@ class FullRestEngine:
     """One extensible registry for every effect produced by an eight-hour rest."""
 
     BUILT_IN_TARGETS = (
+        RecoveryTarget('marvelous_items.daily_uses', 'Restore Marvelous Item daily uses',
+                       'Restore daily activations; limited-total item charges are not restored.', 'Resources'),
         RecoveryTarget(
             "hit_points.natural_healing",
             "Natural HP healing",
@@ -143,6 +145,9 @@ class FullRestEngine:
         synchronize_racial_trackers(self.repository, self.character_id)
         choices = enabled or self.effective_preferences()
         results: list[RecoveryResult] = []
+        if choices.get('marvelous_items.daily_uses', False):
+            restored = self.repository.reset_marvelous_daily_uses(self.character_id)
+            results.append(RecoveryResult('marvelous_items.daily_uses', 'Marvelous Items', f'Restored {restored} daily uses.'))
         if choices.get("engineering.elapsed_time",False):
             self.repository.advance_engineering_time(self.character_id,4800)
             results.append(RecoveryResult("engineering.elapsed_time","Timed device effects","Advanced device durations by eight hours."))

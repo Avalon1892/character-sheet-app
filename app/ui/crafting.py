@@ -252,6 +252,9 @@ class CraftingPanel(QWidget):
         self.marvelous = QPushButton('Design a Marvelous Item')
         self.marvelous.clicked.connect(self.open_marvelous)
         self.layout_.addWidget(self.marvelous)
+        self.marvelous_uses = QPushButton('Use Marvelous Items')
+        self.marvelous_uses.clicked.connect(self.open_marvelous_uses)
+        self.layout_.addWidget(self.marvelous_uses)
         self.engineering = QPushButton('Open Engineering Workbench — Tech & Tinker')
         self.engineering.clicked.connect(self.open_engineering)
         self.layout_.addWidget(self.engineering)
@@ -292,4 +295,14 @@ class CraftingPanel(QWidget):
             dialog = MarvelousCraftingDialog(self.sheet.repository, self.sheet.character_id, self)
             if dialog.exec() == QDialog.DialogCode.Accepted:
                 self.sheet._refresh_calculation_views(self.sheet._refresh_equipment,
+                                                      self.sheet._refresh_formula_dependents)
+
+    def open_marvelous_uses(self):
+        from app.ui.marvelous_crafting import MarvelousItemUseDialog
+        if self.sheet.character_id is not None:
+            dialog = MarvelousItemUseDialog(self.sheet.repository, self.sheet.character_id, self)
+            dialog.exec()
+            if dialog.changed:
+                self.sheet._refresh_calculation_views(self.sheet._refresh_hit_points,
+                                                      self.sheet._refresh_equipment,
                                                       self.sheet._refresh_formula_dependents)

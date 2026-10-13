@@ -2112,6 +2112,61 @@ class CharacterRepository:
         self._touch_character(character_id)
         self._connection.commit()
 
+    def consume_marvelous_item_use(self, character_id: int, item_id: int, *, apply_to_self=False) -> dict:
+        """Atomically consume a saved custom item's use; preserve unrelated metadata.
+
+        Returns the structured effect for the activation adapter. No effect is
+        inferred from the description or applied as an equipped passive bonus.
+        """
+        from app.marvelous_item_rules import marvelous_remaining_uses
+        from app.marvelous_base_powers import resolve_base_power
+        with self._connection:
+            row = self._connection.execute(
+                'SELECT automation_json, quantity FROM equipment WHERE character_id=? AND id=?',
+                (character_id, item_id)).fetchone()
+            if row is None: raise ValueError('Item does not belong to this character.')
+            if row['quantity'] < 1: raise ValueError('No item is available to activate.')
+            if row['quantity'] > 1: raise ValueError('Separate activated devices into individual inventory records to track their uses independently.')
+            metadata = json.loads(row['automation_json'] or '{}')
+            plan = metadata.get('marvelous_blueprint')
+            if not plan: raise ValueError('This item has no structured Marvelous blueprint.')
+            remaining = marvelous_remaining_uses(metadata)
+            if remaining == 0: raise ValueError('No item uses remain.')
+            effect = resolve_base_power(plan)
+            if apply_to_self:
+                if plan['base_power'] != 'life:temporary-hp' or plan['contributions'] or plan['unique_changes']:
+                    raise ValueError('Automatic self-application is not supported for this custom effect.')
+                self._connection.execute('UPDATE hit_points SET temporary=MAX(temporary, ?) WHERE character_id=?',
+                                         (effect['temporary_hp'], character_id))
+                self._touch_character(character_id)
+            if remaining is not None:
+                metadata['marvelous_uses_used'] = metadata.get('marvelous_uses_used', 0) + 1
+                self._connection.execute('UPDATE equipment SET automation_json=? WHERE character_id=? AND id=?',
+                    (json.dumps(metadata), character_id, item_id))
+                self._touch_character(character_id)
+        return effect
+
+    def reset_marvelous_daily_uses(self, character_id: int) -> int:
+        """Restore daily uses only, never fifty-total-use item charges."""
+        restored = 0
+        with self._connection:
+            for row in self._connection.execute('SELECT id, automation_json FROM equipment WHERE character_id=?', (character_id,)).fetchall():
+                try:
+                    metadata = json.loads(row['automation_json'] or '{}')
+                    plan = metadata.get('marvelous_blueprint', {})
+                    used = metadata.get('marvelous_uses_used', 0)
+                    if not plan or plan.get('uses') not in (1, 2, 3, 4) or not used: continue
+                    from app.marvelous_item_rules import marvelous_remaining_uses
+                    marvelous_remaining_uses(metadata)
+                except (ValueError, KeyError, TypeError):
+                    continue
+                restored += used
+                metadata['marvelous_uses_used'] = 0
+                self._connection.execute('UPDATE equipment SET automation_json=? WHERE character_id=? AND id=?',
+                    (json.dumps(metadata), character_id, row['id']))
+            if restored: self._touch_character(character_id)
+        return restored
+
     def delete_equipment(self, character_id: int, item_id: int) -> None:
         self._connection.execute(
             "UPDATE attacks SET equipment_id = NULL WHERE character_id = ? AND equipment_id = ?",

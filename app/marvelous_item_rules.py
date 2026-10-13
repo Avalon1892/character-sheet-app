@@ -153,6 +153,16 @@ def quote_marvelous_blueprint(plan):
     return complexity, price, marvelous_crafting_quote(price, plan['caster_level'])
 
 
+def marvelous_remaining_uses(metadata):
+    """None means unlimited; limited-total charges never recover on rest."""
+    _, price, _ = quote_marvelous_blueprint(metadata['marvelous_blueprint'])
+    used = metadata.get('marvelous_uses_used', 0)
+    if isinstance(used, bool) or not isinstance(used, int) or used < 0:
+        raise ValueError('Invalid saved Marvelous Item usage.')
+    maximum = price.daily_uses if price.daily_uses is not None else price.total_uses
+    return None if maximum is None else max(0, maximum - used)
+
+
 def marvelous_crafting_quote(price: MarvelousItemPrice, caster_level: int, *,
                               missing_talents=0, adventuring=False,
                               distracting=False, requirements=None) -> CraftingQuote:

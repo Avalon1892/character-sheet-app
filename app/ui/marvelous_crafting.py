@@ -1,11 +1,12 @@
 """Custom Marvelous Item composer; pricing stays in the rules module."""
 from html import escape
+import json
 
 from PySide6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QFormLayout,
     QLineEdit, QTextEdit, QTextBrowser, QComboBox, QSpinBox, QLabel, QPushButton,
     QTableWidget, QTableWidgetItem, QHeaderView, QDialogButtonBox, QCheckBox, QMessageBox)
 from app.catalogs import DEFAULT_CATALOG
-from app.marvelous_item_rules import quote_marvelous_blueprint
+from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_remaining_uses
 from app.services.crafting import CraftingService
 from app.marvelous_base_powers import base_powers, resolve_base_power, RANGES, DURATIONS
 
@@ -155,3 +156,60 @@ class MarvelousCraftingDialog(QDialog):
             QMessageBox.warning(self, 'Cannot save design', str(error))
             return
         self.accept()
+
+
+class MarvelousItemUseDialog(QDialog):
+    """Activation adapter for custom blueprints; unsupported effects stay explicit."""
+    def __init__(self, repository, character_id, parent=None):
+        super().__init__(parent)
+        self.repository, self.character_id = repository, character_id
+        self.service = CraftingService(repository, character_id)
+        self.changed = False
+        self.setWindowTitle('Marvelous Items'); self.resize(1040, 650)
+        root = QVBoxLayout(self)
+        self.table = QTableWidget(0, 4)
+        self.table.setHorizontalHeaderLabels(['Item', 'Remaining uses', 'Base effect', 'Activate'])
+        self.table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
+        self.table.setColumnWidth(1, 140); self.table.setColumnWidth(2, 260); self.table.setColumnWidth(3, 220)
+        root.addWidget(self.table, 1)
+        self.result = QLabel('Effect durations must be tracked manually. Other targets and modified effects are manual.')
+        self.result.setWordWrap(True); root.addWidget(self.result)
+        buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Close)
+        buttons.rejected.connect(self.reject); root.addWidget(buttons)
+        self.refresh()
+
+    def refresh(self):
+        self.table.setRowCount(0)
+        for item in self.repository.list_equipment(self.character_id):
+            try:
+                metadata = json.loads(item.automation_json or '{}')
+                plan = metadata.get('marvelous_blueprint')
+                if not plan: continue
+                remaining = marvelous_remaining_uses(metadata)
+                effect = resolve_base_power(plan)
+            except (ValueError, KeyError, TypeError):
+                continue
+            row = self.table.rowCount(); self.table.insertRow(row)
+            self.table.setItem(row, 0, QTableWidgetItem(item.name))
+            self.table.setItem(row, 1, QTableWidgetItem('Unlimited' if remaining is None else str(remaining)))
+            detail = QTableWidgetItem(effect['power']); detail.setToolTip('\n'.join(f'{k}: {v}' for k, v in effect.items()))
+            self.table.setItem(row, 2, detail)
+            automatic = plan['base_power'] == 'life:temporary-hp' and not plan['contributions'] and not plan['unique_changes']
+            button = QPushButton('Apply temporary HP to self' if automatic else 'Record use — manual effect')
+            button.setEnabled(remaining != 0 and item.quantity == 1)
+            if item.quantity > 1: button.setToolTip('Separate these devices into individual records to track independent uses.')
+            button.clicked.connect(lambda checked=False, iid=item.id, auto=automatic:self.activate(iid, auto))
+            self.table.setCellWidget(row, 3, button)
+
+    def activate(self, item_id, automatic):
+        if not automatic and QMessageBox.question(self, 'Record item use',
+            'Apply this effect manually? Confirming consumes one item activation.') != QMessageBox.StandardButton.Yes:
+            return
+        try:
+            effect = self.service.activate_marvelous_item(item_id, apply_to_self=automatic)
+        except ValueError as error:
+            QMessageBox.warning(self, 'Cannot activate item', str(error)); return
+        self.changed = True
+        self.result.setText('Activated: ' + ' · '.join(f'{key.replace("_", " ")}: {value}' for key, value in effect.items())
+                            + '. Track the effect duration manually.')
+        self.refresh()
