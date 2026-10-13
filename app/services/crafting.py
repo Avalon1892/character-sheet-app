@@ -156,9 +156,10 @@ class CraftingService:
             catalog_source='Custom Spheres Marvelous Item', state='stored',
             automation_json=json.dumps(metadata))
 
-    def activate_marvelous_item(self, item_id, *, apply_to_self=False, effect_index=0):
+    def activate_marvelous_item(self, item_id, *, apply_to_self=False, effect_index=0, target_character_id=None):
         return self.repository.consume_marvelous_item_use(self.character_id, item_id,
-                                                          apply_to_self=apply_to_self, effect_index=effect_index)
+                                                          apply_to_self=apply_to_self, effect_index=effect_index,
+                                                          target_character_id=target_character_id)
 
     def start_marvelous_construction(self, item_id):
         import json

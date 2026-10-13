@@ -366,6 +366,11 @@ class MarvelousItemUseDialog(QDialog):
         root = QVBoxLayout(self)
         self.table = QTableWidget(0, 4)
         self.table.setHorizontalHeaderLabels(['Item', 'Remaining uses', 'Base effect', 'Activate'])
+        recipients = QHBoxLayout(); root.addLayout(recipients)
+        recipients.addWidget(QLabel('Recipient for supported effects'))
+        self.recipient = QComboBox(); recipients.addWidget(self.recipient, 1)
+        for character in repository.list_characters(): self.recipient.addItem(character.name, character.id)
+        self.recipient.setCurrentIndex(self.recipient.findData(character_id))
         self.table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
         self.table.setColumnWidth(1, 140); self.table.setColumnWidth(2, 260); self.table.setColumnWidth(3, 220)
         self.table.cellDoubleClicked.connect(self.edit_design)
@@ -374,7 +379,7 @@ class MarvelousItemUseDialog(QDialog):
         root.addWidget(self.construction)
         self.table.itemSelectionChanged.connect(lambda: self.construction.setEnabled(self.table.currentRow() >= 0))
         self.construction.clicked.connect(self.open_construction)
-        self.result = QLabel('Effect durations must be tracked manually. Other targets and modified effects are manual.')
+        self.result = QLabel('Supported effects can affect the selected saved character. Confirm range and eligibility; durations and unsupported effects remain manual.')
         self.result.setWordWrap(True); root.addWidget(self.result)
         buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Close)
         buttons.rejected.connect(self.reject); root.addWidget(buttons)
@@ -413,8 +418,8 @@ class MarvelousItemUseDialog(QDialog):
                 detail = QTableWidgetItem(effect['power']); detail.setToolTip('\n'.join(f'{k}: {v}' for k, v in effect.items()))
                 self.table.setItem(row, 2, detail)
                 automatic = automatic_self_effect(power) is not None and not mixed
-                automatic_label = {'life:cure': 'Cure living self', 'life:temporary-hp': 'Apply temporary HP to self',
-                                   'protection:aegis': 'Apply aegis to self'}
+                automatic_label = {'life:cure': 'Cure selected recipient', 'life:temporary-hp': 'Apply temporary HP',
+                                   'protection:aegis': 'Apply aegis to recipient'}
                 button = QPushButton(automatic_label[power['base_power']] if automatic else 'Record use — manual effect')
                 from app.marvelous_base_powers import automatic_damage_dice
                 if not mixed and automatic_damage_dice(power) is not None:
@@ -440,11 +445,16 @@ class MarvelousItemUseDialog(QDialog):
             self.changed = True; self.refresh()
 
     def activate(self, item_id, automatic, effect_index=0):
+        recipient = self.recipient.currentData() if automatic else None
+        if automatic and recipient != self.character_id and QMessageBox.question(self, 'Apply crafted effect',
+            f'Apply to {self.recipient.currentText()}? Confirm range, willingness, spell resistance and recipient eligibility. This spends the item owner’s activation.') != QMessageBox.StandardButton.Yes:
+            return
         if not automatic and QMessageBox.question(self, 'Record item use',
             'Apply this effect manually? Confirming consumes one activation of this power (every component for a mixed power).') != QMessageBox.StandardButton.Yes:
             return
         try:
-            effect = self.service.activate_marvelous_item(item_id, apply_to_self=automatic, effect_index=effect_index)
+            effect = self.service.activate_marvelous_item(item_id, apply_to_self=automatic, effect_index=effect_index,
+                                                        target_character_id=recipient)
         except ValueError as error:
             QMessageBox.warning(self, 'Cannot activate item', str(error)); return
         self.changed = True

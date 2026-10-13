@@ -71,6 +71,24 @@ def test_atomic_activation_and_zero_floor(crafter):
     assert repo._connection.total_changes == before
 
 
+def test_cure_recipient_is_separate_from_item_owner(crafter, monkeypatch):
+    repo, cid = crafter
+    recipient = repo.create_character('Recipient', 'Spheres')
+    repo.update_hit_points(replace(repo.get_hit_points(recipient), maximum=30, current=5, auto_calculate=False))
+    plan = dict(schema_version=1, sphere='Life', base_power='life:cure', caster_level=5,
+        activation='standard', uses=2, range_steps=0, duration_steps=0, unique_changes=0, contributions=[])
+    iid = CraftingService(repo, cid).save_marvelous_design(plan, name='Cure device', slot='', description='')
+    monkeypatch.setattr('random.randint', lambda a, b: 4)
+    effect = repo.consume_marvelous_item_use(cid, iid, apply_to_self=True, target_character_id=recipient)
+    assert effect['recipient_character_id'] == recipient
+    assert repo.get_hit_points(recipient).current == 14 and repo.get_hit_points(cid).current == 10
+    assert marvelous_remaining_uses(metadata(repo, cid, iid)) == 1
+    before = repo._connection.total_changes
+    with pytest.raises(ValueError, match='existing recipient'):
+        repo.consume_marvelous_item_use(cid, iid, apply_to_self=True, target_character_id=-1)
+    assert repo._connection.total_changes == before
+
+
 def test_aegis_creates_shared_ongoing_deflection_effect_atomically(crafter):
     from app.rules import ongoing_effect_modifiers
     repo, cid = crafter
@@ -87,6 +105,18 @@ def test_aegis_creates_shared_ongoing_deflection_effect_atomically(crafter):
     with pytest.raises(ValueError, match='No item uses'):
         repo.consume_marvelous_item_use(cid, iid, apply_to_self=True)
     assert repo._connection.total_changes == before and len(repo.list_ongoing_effects(cid)) == 1
+
+
+def test_personal_aegis_rejects_other_recipient_without_spending(crafter):
+    repo, cid = crafter
+    recipient = repo.create_character('Other', 'Spheres')
+    plan = dict(schema_version=1, sphere='Protection', base_power='protection:aegis', caster_level=5,
+        activation='standard', uses=1, range_steps=0, duration_steps=0, unique_changes=0, contributions=[])
+    iid = CraftingService(repo, cid).save_marvelous_design(plan, name='Personal', slot='', description='')
+    before = repo._connection.total_changes
+    with pytest.raises(ValueError, match='personal-range'):
+        repo.consume_marvelous_item_use(cid, iid, apply_to_self=True, target_character_id=recipient)
+    assert repo._connection.total_changes == before
 
 
 def test_aegis_deflection_reaches_all_ac_profiles_and_does_not_stack(crafter):
