@@ -51,6 +51,14 @@ def test_spheres_crafting_dc_materials_and_work_conditions():
     assert marvelous_crafting_quote(marvelous_item_price(1, 1), 1).days == 1
 
 
+def test_talent_construction_defaults_and_admixture_exception():
+    from app.marvelous_item_rules import talent_construction_cost
+    assert talent_construction_cost({'key': 'destruction:talent:admixture', 'category': 'Talent'}) == 0
+    assert talent_construction_cost({'category': 'Talent'}, additional_spell_points=2) == 3
+    assert talent_construction_cost({'category': 'Advanced Talent'}, additional_spell_points=1) == 3
+    with pytest.raises(ValueError): talent_construction_cost({}, additional_spell_points=True)
+
+
 @pytest.mark.parametrize("kwargs", [{"talent_costs": (-1,)}, {"alternative_costs": (0.5,)},
                                     {"activation": "free"}, {"range_steps": 1.5}])
 def test_invalid_effect_contributions(kwargs):

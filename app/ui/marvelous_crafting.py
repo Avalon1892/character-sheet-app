@@ -209,7 +209,10 @@ class MarvelousCraftingDialog(QDialog):
         item.setFlags(item.flags() & ~Qt.ItemFlag.ItemIsEditable)
         self.table.setItem(row, 0, item)
         cost = QSpinBox(); cost.setRange(0, 100)
-        cost.setValue(2 if 'advanced' in entry.get('category', '').casefold() else 1)
+        from app.marvelous_item_rules import talent_construction_cost
+        cost.setValue(talent_construction_cost(entry))
+        if entry['key'] == 'destruction:talent:admixture':
+            cost.setToolTip('Admixture adds no complexity. Pay for each included blast type separately.')
         cost.valueChanged.connect(self.update_preview); self.table.setCellWidget(row, 1, cost)
         alternative = QCheckBox(); alternative.setToolTip('Mutually exclusive option in the same alternative group. Most expensive costs full; other options cost half.')
         alternative.toggled.connect(self.update_preview); self.table.setCellWidget(row, 2, alternative)
