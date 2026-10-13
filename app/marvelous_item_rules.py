@@ -113,6 +113,7 @@ def marvelous_item_price(caster_level: int, complexity: int | Fraction, *, daily
 
 # Reviewed construction prerequisites use catalog identities, never prose parsing.
 ADVANCED_CONSTRUCTION_REQUIREMENTS = {
+    'life:advanced-talent:feline-good-catgirl-hb': (5, ('life:talent:lingering-resilience',)),
     'life:advanced-talent:hypervitalize': (15, ('life:cure-talent:restore-health-cure', 'life:talent:revitalize')),
     'life:advanced-talent:make-whole': (10, ('life:talent:break-enchantment',
         'life:cure-talent:restore-senses-cure', 'life:cure-talent:restore-spirit-cure')),
@@ -123,6 +124,12 @@ ADVANCED_CONSTRUCTION_REQUIREMENTS = {
     'life:advanced-talent:resurrection-supreme-warden': (20, ('life:talent:break-enchantment',
         'life:advanced-talent:resurrection-greater', 'life:advanced-talent:make-whole',
         'life:cure-talent:restore-senses-cure', 'life:cure-talent:restore-spirit-cure',
+        'life:advanced-talent:resurrection', 'life:talent:resuscitate')),
+    'life:advanced-talent:transfiguration': (10, ('life:cure-talent:restore-health-cure',)),
+    'life:advanced-talent:reincarnation-utility-3pp': (10, ('life:advanced-talent:resurrection', 'life:talent:resuscitate')),
+    'life:advanced-talent:reincarnation-instant-3pp': (15, ('life:advanced-talent:reincarnation-utility-3pp',
+        'life:advanced-talent:resurrection', 'life:talent:resuscitate')),
+    'life:advanced-talent:reincarnation-manipulated-utility-3pp': (20, ('life:advanced-talent:reincarnation-utility-3pp',
         'life:advanced-talent:resurrection', 'life:talent:resuscitate')),
 }
 
@@ -139,16 +146,17 @@ def missing_construction_prerequisites(contributions):
     return tuple(missing)
 
 
-def advanced_construction_blockers(contributions, caster_level):
+def advanced_construction_blockers(contributions, caster_level, *, display_names=None):
     keys = {row['catalog_key'] for row in contributions}
     blockers = []
+    names = display_names or {}
     for key in sorted(keys):
         requirement = ADVANCED_CONSTRUCTION_REQUIREMENTS.get(key)
         if requirement is None: continue
         minimum, required = requirement
         if caster_level < minimum:
-            blockers.append(f'{key}: item caster level must be at least {minimum}.')
-        blockers.extend(f'{key}: prerequisite talent must be included in this effect: {talent}.'
+            blockers.append(f'{names.get(key, key)}: item caster level must be at least {minimum}.')
+        blockers.extend(f'{names.get(key, key)}: prerequisite talent must be included in this effect: {names.get(talent, talent)}.'
                         for talent in required if talent not in keys)
     return tuple(blockers)
 

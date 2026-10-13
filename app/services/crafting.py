@@ -87,7 +87,8 @@ class CraftingService:
             if power['caster_level'] != plan['caster_level']:
                 raise ValueError('All item effects must have the same caster level.')
             spheres.append(power['sphere'])
-            construction_blockers.extend(advanced_construction_blockers(power['contributions'], power['caster_level']))
+            construction_blockers.extend(advanced_construction_blockers(power['contributions'], power['caster_level'],
+                display_names={key: entry['name'] for key, entry in self.magic_entries_by_key.items()}))
             for contribution in power['contributions']:
                 entry = self.magic_entries_by_key.get(contribution['catalog_key'])
                 if entry is None or str(entry.get('sphere', '')).casefold() != power['sphere'].casefold():

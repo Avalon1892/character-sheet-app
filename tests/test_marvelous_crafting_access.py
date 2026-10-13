@@ -84,7 +84,10 @@ def test_hypervitalize_requires_item_level_and_prerequisite_effects(crafter):
 
 
 @pytest.mark.parametrize('key', ['life:advanced-talent:make-whole', 'life:advanced-talent:resurrection',
-    'life:advanced-talent:resurrection-greater', 'life:advanced-talent:resurrection-supreme-warden'])
+    'life:advanced-talent:resurrection-greater', 'life:advanced-talent:resurrection-supreme-warden',
+    'life:advanced-talent:feline-good-catgirl-hb', 'life:advanced-talent:transfiguration',
+    'life:advanced-talent:reincarnation-utility-3pp', 'life:advanced-talent:reincarnation-instant-3pp',
+    'life:advanced-talent:reincarnation-manipulated-utility-3pp'])
 def test_reviewed_life_chains_require_each_component_and_item_level(crafter, key):
     from app.marvelous_item_rules import ADVANCED_CONSTRUCTION_REQUIREMENTS
     repo, cid = crafter
