@@ -138,6 +138,18 @@ def effect_complexity(*, talent_costs=(), alternative_costs=(), range_steps=0,
                                    + unique_changes))
 
 
+def quote_marvelous_blueprint(plan):
+    """Price the persisted composer blueprint using the same pure rules."""
+    if plan.get('schema_version') != 1:
+        raise ValueError('Unsupported Marvelous blueprint version.')
+    complexity = effect_complexity(talent_costs=[x['complexity'] for x in plan['contributions']],
+        range_steps=plan['range_steps'], duration_steps=plan['duration_steps'],
+        activation=plan['activation'], unique_changes=plan['unique_changes'])
+    price = marvelous_item_price(plan['caster_level'], complexity,
+                                daily_uses=1 if plan['uses'] == 50 else plan['uses'], limited_uses=plan['uses'] == 50)
+    return complexity, price, marvelous_crafting_quote(price, plan['caster_level'])
+
+
 def marvelous_crafting_quote(price: MarvelousItemPrice, caster_level: int, *,
                               missing_talents=0, adventuring=False,
                               distracting=False, requirements=None) -> CraftingQuote:

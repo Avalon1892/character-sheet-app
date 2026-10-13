@@ -44,6 +44,27 @@ class CraftingService:
         from app.marvelous_item_rules import marvelous_requirements
         return marvelous_requirements(feats=self.feats, **construction_access)
 
+    def save_marvelous_design(self, plan, *, name, slot, description):
+        """Save a reviewed blueprint without claiming completion of a craft project.
+
+        Unknown construction effects remain rules-only; do not attach passive
+        modifiers to a device whose power requires activation.
+        """
+        import json
+        from app.marvelous_item_rules import quote_marvelous_blueprint
+        if not self.feats.intersection({'craft marvelous item', 'craft wondrous item'}):
+            raise ValueError('A Marvelous Item creation feat is required.')
+        _, price, _ = quote_marvelous_blueprint(plan)
+        metadata = dict(status='rules_only', provider='marvelous-composer',
+                        rules_only=['Custom activated effect; activation automation pending.'],
+                        marvelous_blueprint=plan)
+        return self.repository.add_equipment(self.character_id,
+            name=name, category='Gear', quantity=1, weight=0, equipped=False,
+            ac_bonus=0, bonus_type='untyped', max_dex_bonus=None, notes=description,
+            slot=slot, value_gp=float(price.market_price_gp),
+            catalog_source='Custom Spheres Marvelous Item', state='stored',
+            automation_json=json.dumps(metadata))
+
     def spell_crafting_levels(self, recipe):
         """Standard progression providers only; unusual profiles remain reviewable."""
         from app.prepared_spell_rules import HIGH_PREPARED, MED_PREPARED, LOW_PREPARED

@@ -1,0 +1,133 @@
+"""Custom Marvelous Item composer; pricing stays in the rules module."""
+from html import escape
+
+from PySide6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QFormLayout,
+    QLineEdit, QTextEdit, QTextBrowser, QComboBox, QSpinBox, QLabel, QPushButton,
+    QTableWidget, QTableWidgetItem, QHeaderView, QDialogButtonBox, QCheckBox, QMessageBox)
+from app.catalogs import DEFAULT_CATALOG
+from app.marvelous_item_rules import quote_marvelous_blueprint
+from app.services.crafting import CraftingService
+
+
+class MarvelousCraftingDialog(QDialog):
+    def __init__(self, repository, character_id, parent=None):
+        super().__init__(parent)
+        self.repository, self.character_id = repository, character_id
+        self.service = CraftingService(repository, character_id)
+        self.item_id = None
+        self.setWindowTitle('Design a Marvelous Item')
+        self.resize(1280, 820)
+        root = QVBoxLayout(self)
+        columns = QHBoxLayout(); root.addLayout(columns, 1)
+        left = QVBoxLayout(); columns.addLayout(left, 3)
+        form = QFormLayout(); left.addLayout(form)
+        self.name = QLineEdit('Custom Marvelous Item')
+        self.slot = QComboBox(); self.slot.addItem('Held / carried', '')
+        for slot in repository.list_worn_slots(character_id): self.slot.addItem(slot, slot)
+        self.sphere = QComboBox()
+        for sphere in DEFAULT_CATALOG.magic_spheres(): self.sphere.addItem(sphere['name'])
+        self.cl = QSpinBox(); self.cl.setRange(1, 100); self.cl.setValue(1)
+        self.activation = QComboBox()
+        for label, key in [('Standard action', 'standard'), ('Full-round action', 'full-round'),
+                           ('Move action', 'move'), ('Swift action', 'swift')]:
+            self.activation.addItem(label, key)
+        self.uses = QComboBox()
+        for count in range(1, 5): self.uses.addItem(f'{count} / day', count)
+        self.uses.addItem('Unlimited', 5); self.uses.addItem('50 total activations', 50)
+        self.range_steps = QSpinBox(); self.range_steps.setRange(-4, 4)
+        self.duration_steps = QSpinBox(); self.duration_steps.setRange(-3, 3)
+        self.unique = QSpinBox(); self.unique.setRange(-50, 50)
+        for label, widget in [('Name', self.name), ('Slot', self.slot), ('Base sphere', self.sphere),
+                              ('Item caster level', self.cl), ('Activation', self.activation),
+                              ('Uses', self.uses), ('Range steps', self.range_steps),
+                              ('Duration steps', self.duration_steps), ('Unique changes / limitations', self.unique)]:
+            form.addRow(label, widget)
+        picker = QHBoxLayout(); left.addLayout(picker)
+        self.talent = QComboBox(); picker.addWidget(self.talent, 1)
+        add = QPushButton('Add effect contribution'); picker.addWidget(add)
+        self.table = QTableWidget(0, 2)
+        self.table.setHorizontalHeaderLabels(['Talent / effect', 'Verified complexity contribution'])
+        self.table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
+        self.table.setColumnWidth(1, 235); left.addWidget(self.table, 1)
+        remove = QPushButton('Remove selected contribution'); left.addWidget(remove)
+        self.description = QTextEdit(); self.description.setPlaceholderText('Your item description and chosen base power…')
+        left.addWidget(self.description, 1)
+        self.preview = QTextBrowser(); columns.addWidget(self.preview, 2)
+        self.review = QCheckBox('Construction prerequisites and sphere-specific costs have been reviewed with the GM')
+        root.addWidget(self.review)
+        self.result = QLabel(); root.addWidget(self.result)
+        buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Cancel)
+        self.save = buttons.addButton('Add designed item to inventory', QDialogButtonBox.ButtonRole.AcceptRole)
+        root.addWidget(buttons)
+        buttons.rejected.connect(self.reject); self.save.clicked.connect(self.save_item)
+        add.clicked.connect(self.add_contribution); remove.clicked.connect(self.remove_contribution)
+        self.sphere.currentTextChanged.connect(self.populate_talents)
+        for widget in (self.cl, self.range_steps, self.duration_steps, self.unique): widget.valueChanged.connect(self.update_preview)
+        for widget in (self.activation, self.uses, self.slot): widget.currentIndexChanged.connect(self.update_preview)
+        self.name.textChanged.connect(self.update_preview); self.description.textChanged.connect(self.update_preview)
+        self.review.toggled.connect(self.update_preview)
+        self.populate_talents()
+
+    def populate_talents(self, *_):
+        self.table.setRowCount(0)
+        self.talent.clear()
+        for entry in DEFAULT_CATALOG.magic_entries(self.sphere.currentText()):
+            if entry.get('category') not in {'Base Sphere', 'Drawback', 'Sphere-Specific Drawback'}:
+                self.talent.addItem(entry['name'], entry)
+        self.update_preview()
+
+    def add_contribution(self):
+        entry = self.talent.currentData()
+        if not entry: return
+        row = self.table.rowCount(); self.table.insertRow(row)
+        item = QTableWidgetItem(entry['name'])
+        from PySide6.QtCore import Qt
+        item.setData(Qt.ItemDataRole.UserRole, entry['key'])
+        item.setFlags(item.flags() & ~Qt.ItemFlag.ItemIsEditable)
+        self.table.setItem(row, 0, item)
+        cost = QSpinBox(); cost.setRange(0, 100)
+        cost.setValue(2 if 'advanced' in entry.get('category', '').casefold() else 1)
+        cost.valueChanged.connect(self.update_preview); self.table.setCellWidget(row, 1, cost)
+        self.update_preview()
+
+    def remove_contribution(self):
+        if self.table.currentRow() >= 0: self.table.removeRow(self.table.currentRow())
+        self.update_preview()
+
+    def blueprint(self):
+        from PySide6.QtCore import Qt
+        contributions = [{'catalog_key': self.table.item(r, 0).data(Qt.ItemDataRole.UserRole),
+                          'complexity': self.table.cellWidget(r, 1).value()}
+                         for r in range(self.table.rowCount())]
+        return dict(schema_version=1, sphere=self.sphere.currentText(), caster_level=self.cl.value(),
+                    activation=self.activation.currentData(), uses=self.uses.currentData(),
+                    range_steps=self.range_steps.value(), duration_steps=self.duration_steps.value(),
+                    unique_changes=self.unique.value(), contributions=contributions,
+                    automation_status='rules_only')
+
+    def quotation(self):
+        return quote_marvelous_blueprint(self.blueprint())
+
+    def update_preview(self, *_):
+        try:
+            complexity, price, quote = self.quotation()
+            self.result.setText(f'Market price {float(price.market_price_gp):,.2f} gp · Materials {float(quote.cost_gp):,.2f} gp · Craft DC {quote.dc} · {quote.days} days · Save DC {price.save_dc}')
+            self.preview.setHtml(f'<h2>{escape(self.name.text())}</h2><p>{escape(self.sphere.currentText())} · Complexity {complexity}</p>'
+                f'<p>{escape(self.description.toPlainText())}</p><h3>Construction review</h3>'
+                '<p>Contribution defaults are general talent costs, not verified sphere-specific costs. Include additional spell-point costs and exceptions. Range/duration changes must fit the published base power.</p>'
+                '<p>Effect activation is not automated yet. This saves a mechanical blueprint and inventory item; it does not spend gold or advance crafting time.</p>')
+            feats = self.service.feats
+            permitted = bool(feats.intersection({'craft marvelous item', 'craft wondrous item'}))
+            self.save.setEnabled(permitted and self.review.isChecked() and bool(self.name.text().strip()))
+        except ValueError as error:
+            self.result.setText(str(error)); self.save.setEnabled(False)
+
+    def save_item(self):
+        if not self.save.isEnabled(): return
+        try:
+            self.item_id = self.service.save_marvelous_design(self.blueprint(),
+                name=self.name.text(), slot=self.slot.currentData(), description=self.description.toPlainText())
+        except ValueError as error:
+            QMessageBox.warning(self, 'Cannot save design', str(error))
+            return
+        self.accept()
