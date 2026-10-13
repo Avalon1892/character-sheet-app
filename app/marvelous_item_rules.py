@@ -142,6 +142,9 @@ def quote_marvelous_blueprint(plan):
     """Price the persisted composer blueprint using the same pure rules."""
     if plan.get('schema_version') != 1:
         raise ValueError('Unsupported Marvelous blueprint version.')
+    if plan.get('base_power'):
+        from app.marvelous_base_powers import resolve_base_power
+        resolve_base_power(plan)
     complexity = effect_complexity(talent_costs=[x['complexity'] for x in plan['contributions']],
         range_steps=plan['range_steps'], duration_steps=plan['duration_steps'],
         activation=plan['activation'], unique_changes=plan['unique_changes'])

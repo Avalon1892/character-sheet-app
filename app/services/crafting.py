@@ -52,12 +52,14 @@ class CraftingService:
         """
         import json
         from app.marvelous_item_rules import quote_marvelous_blueprint
+        from app.marvelous_base_powers import resolve_base_power
         if not self.feats.intersection({'craft marvelous item', 'craft wondrous item'}):
             raise ValueError('A Marvelous Item creation feat is required.')
         _, price, _ = quote_marvelous_blueprint(plan)
+        effect = resolve_base_power(plan)
         metadata = dict(status='rules_only', provider='marvelous-composer',
                         rules_only=['Custom activated effect; activation automation pending.'],
-                        marvelous_blueprint=plan)
+                        marvelous_blueprint=plan, marvelous_base_effect=effect)
         return self.repository.add_equipment(self.character_id,
             name=name, category='Gear', quantity=1, weight=0, equipped=False,
             ac_bonus=0, bonus_type='untyped', max_dex_bonus=None, notes=description,

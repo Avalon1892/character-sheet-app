@@ -7,6 +7,7 @@ from PySide6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QFormLayout,
 from app.catalogs import DEFAULT_CATALOG
 from app.marvelous_item_rules import quote_marvelous_blueprint
 from app.services.crafting import CraftingService
+from app.marvelous_base_powers import base_powers, resolve_base_power, RANGES, DURATIONS
 
 
 class MarvelousCraftingDialog(QDialog):
@@ -26,6 +27,7 @@ class MarvelousCraftingDialog(QDialog):
         for slot in repository.list_worn_slots(character_id): self.slot.addItem(slot, slot)
         self.sphere = QComboBox()
         for sphere in DEFAULT_CATALOG.magic_spheres(): self.sphere.addItem(sphere['name'])
+        self.base_power = QComboBox()
         self.cl = QSpinBox(); self.cl.setRange(1, 100); self.cl.setValue(1)
         self.activation = QComboBox()
         for label, key in [('Standard action', 'standard'), ('Full-round action', 'full-round'),
@@ -38,6 +40,7 @@ class MarvelousCraftingDialog(QDialog):
         self.duration_steps = QSpinBox(); self.duration_steps.setRange(-3, 3)
         self.unique = QSpinBox(); self.unique.setRange(-50, 50)
         for label, widget in [('Name', self.name), ('Slot', self.slot), ('Base sphere', self.sphere),
+                              ('Base power', self.base_power),
                               ('Item caster level', self.cl), ('Activation', self.activation),
                               ('Uses', self.uses), ('Range steps', self.range_steps),
                               ('Duration steps', self.duration_steps), ('Unique changes / limitations', self.unique)]:
@@ -62,6 +65,7 @@ class MarvelousCraftingDialog(QDialog):
         buttons.rejected.connect(self.reject); self.save.clicked.connect(self.save_item)
         add.clicked.connect(self.add_contribution); remove.clicked.connect(self.remove_contribution)
         self.sphere.currentTextChanged.connect(self.populate_talents)
+        self.base_power.currentIndexChanged.connect(self.power_changed)
         for widget in (self.cl, self.range_steps, self.duration_steps, self.unique): widget.valueChanged.connect(self.update_preview)
         for widget in (self.activation, self.uses, self.slot): widget.currentIndexChanged.connect(self.update_preview)
         self.name.textChanged.connect(self.update_preview); self.description.textChanged.connect(self.update_preview)
@@ -70,10 +74,26 @@ class MarvelousCraftingDialog(QDialog):
 
     def populate_talents(self, *_):
         self.table.setRowCount(0)
+        self.base_power.blockSignals(True)
+        self.base_power.clear()
+        for power in base_powers(self.sphere.currentText()): self.base_power.addItem(power.name, power.key)
+        self.base_power.blockSignals(False)
         self.talent.clear()
         for entry in DEFAULT_CATALOG.magic_entries(self.sphere.currentText()):
             if entry.get('category') not in {'Base Sphere', 'Drawback', 'Sphere-Specific Drawback'}:
                 self.talent.addItem(entry['name'], entry)
+        self.power_changed()
+
+    def power_changed(self, *_):
+        powers = base_powers(self.sphere.currentText())
+        power = next((p for p in powers if p.key == self.base_power.currentData()), None)
+        if power:
+            self.range_steps.setRange(-RANGES.index(power.range), len(RANGES) - RANGES.index(power.range) - 1)
+            self.duration_steps.setEnabled(power.duration in DURATIONS)
+            if power.duration in DURATIONS:
+                index = DURATIONS.index(power.duration)
+                self.duration_steps.setRange(-index, len(DURATIONS) - index - 1)
+            else: self.duration_steps.setRange(0, 0)
         self.update_preview()
 
     def add_contribution(self):
@@ -100,6 +120,7 @@ class MarvelousCraftingDialog(QDialog):
                           'complexity': self.table.cellWidget(r, 1).value()}
                          for r in range(self.table.rowCount())]
         return dict(schema_version=1, sphere=self.sphere.currentText(), caster_level=self.cl.value(),
+                    base_power=self.base_power.currentData(),
                     activation=self.activation.currentData(), uses=self.uses.currentData(),
                     range_steps=self.range_steps.value(), duration_steps=self.duration_steps.value(),
                     unique_changes=self.unique.value(), contributions=contributions,
@@ -111,9 +132,12 @@ class MarvelousCraftingDialog(QDialog):
     def update_preview(self, *_):
         try:
             complexity, price, quote = self.quotation()
+            effect = resolve_base_power(self.blueprint())
             self.result.setText(f'Market price {float(price.market_price_gp):,.2f} gp · Materials {float(quote.cost_gp):,.2f} gp · Craft DC {quote.dc} · {quote.days} days · Save DC {price.save_dc}')
             self.preview.setHtml(f'<h2>{escape(self.name.text())}</h2><p>{escape(self.sphere.currentText())} · Complexity {complexity}</p>'
-                f'<p>{escape(self.description.toPlainText())}</p><h3>Construction review</h3>'
+                f'<p>{escape(self.description.toPlainText())}</p><h3>Calculated base effect</h3>'
+                + ''.join(f'<p><b>{escape(key.replace("_", " ").title())}:</b> {escape(str(value))}</p>' for key, value in effect.items())
+                + '<h3>Construction review</h3>'
                 '<p>Contribution defaults are general talent costs, not verified sphere-specific costs. Include additional spell-point costs and exceptions. Range/duration changes must fit the published base power.</p>'
                 '<p>Effect activation is not automated yet. This saves a mechanical blueprint and inventory item; it does not spend gold or advance crafting time.</p>')
             feats = self.service.feats
