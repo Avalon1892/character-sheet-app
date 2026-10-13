@@ -2134,14 +2134,23 @@ class CharacterRepository:
             if remaining == 0: raise ValueError('No item uses remain.')
             effect = resolve_base_power(plan)
             if apply_to_self:
-                if plan['base_power'] != 'life:temporary-hp' or plan['contributions'] or plan['unique_changes'] or plan.get('permanent'):
+                if plan['base_power'] not in {'life:temporary-hp', 'life:cure'} or plan['contributions'] or plan['unique_changes'] or plan.get('permanent'):
                     raise ValueError('Automatic self-application is not supported for this custom effect.')
                 hp = self.get_hit_points(character_id)
-                if hp.current >= hp.maximum:
-                    raise ValueError('Base Invigorate requires an injured target.')
-                granted = min(effect['temporary_hp'], max(0, hp.maximum - hp.current))
-                self._connection.execute('UPDATE hit_points SET temporary=MAX(temporary, ?) WHERE character_id=?',
-                                         (granted, character_id))
+                from app.services.character_calculations import CharacterCalculationService
+                maximum = CharacterCalculationService(self, character_id).hit_point_maximum()
+                if plan['base_power'] == 'life:cure':
+                    from random import randint
+                    amount = randint(1, 8) + plan['caster_level']
+                    self._connection.execute('UPDATE hit_points SET current=?, nonlethal=? WHERE character_id=?',
+                        (min(maximum, hp.current + amount), max(0, hp.nonlethal - amount), character_id))
+                    effect['healing_rolled'] = amount
+                else:
+                    if hp.current >= maximum:
+                        raise ValueError('Base Invigorate requires an injured target.')
+                    granted = min(effect['temporary_hp'], max(0, maximum - hp.current))
+                    self._connection.execute('UPDATE hit_points SET temporary=MAX(temporary, ?) WHERE character_id=?',
+                                             (granted, character_id))
                 self._touch_character(character_id)
             if remaining is not None:
                 metadata['marvelous_uses_used'] = metadata.get('marvelous_uses_used', 0) + 1

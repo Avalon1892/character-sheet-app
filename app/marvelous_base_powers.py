@@ -95,6 +95,7 @@ def resolve_base_power(plan):
     summary = {'power': power.name, 'range': distances[RANGES[range_index]], 'duration': durations[duration]}
     if plan.get('permanent', False): summary['duration'] = 'Permanent (dispellable)'
     if power.key == 'life:temporary-hp': summary['temporary_hp'] = cl
+    if power.key == 'life:cure': summary['healing'] = f'1d8+{cl}'
     if power.key == 'destruction:blast': summary['damage'] = f'{cl // 2}d6 bludgeoning'
     if power.key == 'warp:teleport': summary['teleport_distance'] = f'{25 + 5 * (cl // 2)} ft.'
     if power.key in {'blood:construct', 'death:reanimate'}: summary['maximum_hit_dice'] = cl

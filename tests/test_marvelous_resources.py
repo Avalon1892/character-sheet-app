@@ -12,7 +12,7 @@ def crafter(tmp_path):
     repo = CharacterRepository(tmp_path / 'test.db')
     cid = repo.create_character('Crafter', 'Spheres')
     repo.add_feat(cid, 'Craft Marvelous Item')
-    repo.update_hit_points(replace(repo.get_hit_points(cid), maximum=20, current=10))
+    repo.update_hit_points(replace(repo.get_hit_points(cid), maximum=20, current=10, auto_calculate=False))
     yield repo, cid
     repo.close()
 
@@ -88,6 +88,19 @@ def test_unsupported_modified_effect_fails_before_usage_write(crafter):
         repo.consume_marvelous_item_use(cid, iid, apply_to_self=True)
     assert repo._connection.total_changes == before
     assert marvelous_remaining_uses(metadata(repo, cid, iid)) == 1
+
+
+def test_basic_cure_rolls_and_heals_nonlethal_atomically(crafter, monkeypatch):
+    repo, cid = crafter; iid = item(repo, cid)
+    data = metadata(repo, cid, iid); data['marvelous_blueprint']['base_power'] = 'life:cure'
+    repo._connection.execute('UPDATE equipment SET automation_json=? WHERE id=?', (json.dumps(data), iid)); repo._connection.commit()
+    repo.update_hit_points(replace(repo.get_hit_points(cid), current=18, nonlethal=12))
+    monkeypatch.setattr('random.randint', lambda low, high: 4)
+    effect = repo.consume_marvelous_item_use(cid, iid, apply_to_self=True)
+    assert effect['healing'] == '1d8+5' and effect['healing_rolled'] == 9
+    assert repo.get_hit_points(cid).current == 20
+    assert repo.get_hit_points(cid).nonlethal == 3
+    assert marvelous_remaining_uses(metadata(repo, cid, iid)) == 0
 
 
 def test_activation_dialog_updates_available_state(crafter):
