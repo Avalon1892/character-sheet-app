@@ -148,6 +148,39 @@ def test_personal_aegis_rejects_other_recipient_without_spending(crafter):
     assert repo._connection.total_changes == before
 
 
+def test_supported_mixed_cure_and_aegis_apply_and_spend_atomically(crafter, monkeypatch):
+    repo, cid = crafter
+    base = dict(schema_version=1,caster_level=5,activation='standard',uses=2,range_steps=0,
+                duration_steps=0,unique_changes=0,contributions=[])
+    plan = {**base,'sphere':'Life','base_power':'life:cure','combination_mode':'mixed',
+            'extra_effects':[{**base,'sphere':'Protection','base_power':'protection:aegis','uses':1}]}
+    iid = CraftingService(repo,cid).save_marvelous_design(plan,name='Mixed',slot='',description='')
+    other = repo.create_character('Other', 'Spheres')
+    original = metadata(repo,cid,iid)
+    with pytest.raises(ValueError, match='personal-range'):
+        repo.consume_marvelous_item_use(cid,iid,apply_to_self=True,target_character_id=other)
+    assert repo.get_hit_points(cid).current == 10 and metadata(repo,cid,iid) == original
+    monkeypatch.setattr('random.randint', lambda a,b:4)
+    apply = repo._apply_marvelous_effect
+    def fail_second(*args):
+        if args[4] == 1: raise ValueError('Simulated component failure')
+        return apply(*args)
+    with monkeypatch.context() as patch:
+        patch.setattr(repo, '_apply_marvelous_effect', fail_second)
+        with pytest.raises(ValueError, match='Simulated component'):
+            repo.consume_marvelous_item_use(cid,iid,apply_to_self=True)
+    assert repo.get_hit_points(cid).current == 10 and metadata(repo,cid,iid) == original
+    assert repo.list_ongoing_effects(cid) == []
+    result = repo.consume_marvelous_item_use(cid,iid,apply_to_self=True)
+    assert repo.get_hit_points(cid).current == 19 and len(repo.list_ongoing_effects(cid)) == 1
+    assert result['application'] == 'Applied to selected recipient'
+    saved = metadata(repo,cid,iid)
+    assert marvelous_remaining_uses(saved,0) == 1 and marvelous_remaining_uses(saved,1) == 0
+    with pytest.raises(ValueError, match='no uses remaining'):
+        repo.consume_marvelous_item_use(cid,iid,apply_to_self=True)
+    assert repo.get_hit_points(cid).current == 19 and len(repo.list_ongoing_effects(cid)) == 1
+
+
 def test_aegis_deflection_reaches_all_ac_profiles_and_does_not_stack(crafter):
     from app.services.character_calculations import CharacterCalculationService
     repo, cid = crafter

@@ -2178,6 +2178,40 @@ class CharacterRepository:
             self._touch_character(character_id)
         return updated
 
+    def _apply_marvelous_effect(self, owner, recipient, item_id, item_name, index, plan, effect):
+        """Apply a supported component inside the caller's transaction."""
+        from app.marvelous_base_powers import automatic_self_effect, item_dice_result
+        if automatic_self_effect(plan) is None:
+            raise ValueError('Automatic self-application is not supported for this custom effect.')
+        if isinstance(recipient, bool) or not isinstance(recipient, int) or not self._connection.execute('SELECT id FROM characters WHERE id=?', (recipient,)).fetchone():
+            raise ValueError('Select an existing recipient character.')
+        if recipient != owner and effect['range'] == 'Personal':
+            raise ValueError('A personal-range item cannot affect another character.')
+        hp = self.get_hit_points(recipient)
+        from app.services.character_calculations import CharacterCalculationService
+        maximum = CharacterCalculationService(self, recipient).hit_point_maximum()
+        if plan['base_power'] == 'life:cure':
+            from random import randint
+            rolls, amount = item_dice_result(plan, effect['healing_dice'], 8, effect['healing_bonus'], randint)
+            effect['healing_rolls'] = rolls
+            self._connection.execute('UPDATE hit_points SET current=?, nonlethal=? WHERE character_id=?',
+                (min(maximum, hp.current + amount), max(0, hp.nonlethal - amount), recipient))
+            effect['healing_rolled'] = amount
+        elif plan['base_power'] == 'protection:aegis':
+            name = f'{effect["power"]} — {item_name}'
+            for target, bonus_type, value in effect['ongoing_modifiers']:
+                self._validate_ongoing_effect(name, 'Sphere', target, bonus_type)
+                self._connection.execute(
+                    'INSERT INTO ongoing_effects (character_id,name,source_type,duration,target,bonus_type,value,notes) VALUES (?,?,?,?,?,?,?,?)',
+                    (recipient, name, 'Sphere', effect['duration'], target, bonus_type, value,
+                     f'Crafted item {item_id}, power {index}; item caster level {plan["caster_level"]}. Expiration is manual.'))
+        else:
+            if hp.current >= maximum: raise ValueError('Base Invigorate requires an injured target.')
+            granted = min(effect['temporary_hp'], max(0, maximum - hp.current))
+            self._connection.execute('UPDATE hit_points SET temporary=MAX(temporary, ?) WHERE character_id=?', (granted, recipient))
+        self._touch_character(recipient)
+        effect['recipient_character_id'] = recipient
+
     def consume_marvelous_item_use(self, character_id: int, item_id: int, *, apply_to_self=False, effect_index=0, target_character_id=None) -> dict:
         """Atomically consume a saved custom item's use; preserve unrelated metadata.
 
@@ -2218,14 +2252,28 @@ class CharacterRepository:
                     return effect
             if not plan: raise ValueError('This item has no structured Marvelous blueprint.')
             if plan.get('extra_effects') and plan.get('combination_mode') == 'mixed':
-                if effect_index != 0 or apply_to_self:
-                    raise ValueError('Use the complete mixed effect with manual application.')
+                if effect_index != 0:
+                    raise ValueError('Use the complete mixed effect, not an individual component.')
                 from app.marvelous_item_rules import quote_marvelous_blueprint
                 quote_marvelous_blueprint(plan)
                 effects = [resolve_base_power(power) for power in [plan, *plan['extra_effects']]]
                 remaining_all = [marvelous_remaining_uses(metadata, index) for index in range(len(effects))]
                 if any(remaining == 0 for remaining in remaining_all):
                     raise ValueError('A component of the mixed effect has no uses remaining.')
+                if apply_to_self:
+                    powers = [plan, *plan['extra_effects']]
+                    if any(automatic_self_effect(power) is None for power in powers):
+                        raise ValueError('Every mixed component must support automatic application.')
+                    recipient = character_id if target_character_id is None else target_character_id
+                    if isinstance(recipient, bool) or not isinstance(recipient, int) or not self._connection.execute('SELECT id FROM characters WHERE id=?', (recipient,)).fetchone():
+                        raise ValueError('Select an existing recipient character.')
+                    if recipient != character_id and any(effect['range'] == 'Personal' for effect in effects):
+                        raise ValueError('A personal-range item cannot affect another character.')
+                    # Apply temporary HP before healing so simultaneous injury
+                    # eligibility is based on the pre-activation HP state.
+                    order = sorted(range(len(powers)), key=lambda i: powers[i]['base_power'] != 'life:temporary-hp')
+                    for index in order:
+                        self._apply_marvelous_effect(character_id, recipient, item_id, row['name'], index, powers[index], effects[index])
                 for index, remaining in enumerate(remaining_all):
                     if remaining is None: continue
                     if index == 0:
@@ -2236,46 +2284,14 @@ class CharacterRepository:
                 self._connection.execute('UPDATE equipment SET automation_json=? WHERE character_id=? AND id=?',
                     (json.dumps(metadata), character_id, item_id))
                 self._touch_character(character_id)
-                return {'combined_effects': effects, 'application': 'Manual simultaneous effect'}
+                return {'combined_effects': effects, 'application': 'Applied to selected recipient' if apply_to_self else 'Manual simultaneous effect'}
             remaining = marvelous_remaining_uses(metadata, effect_index)
             plan = marvelous_effect_plan(plan, effect_index)
             if remaining == 0: raise ValueError('No item uses remain.')
             effect = resolve_base_power(plan)
             if apply_to_self:
-                if automatic_self_effect(plan) is None:
-                    raise ValueError('Automatic self-application is not supported for this custom effect.')
                 recipient = character_id if target_character_id is None else target_character_id
-                if isinstance(recipient, bool) or not isinstance(recipient, int) or not self._connection.execute('SELECT id FROM characters WHERE id=?', (recipient,)).fetchone():
-                    raise ValueError('Select an existing recipient character.')
-                if recipient != character_id and effect['range'] == 'Personal':
-                    raise ValueError('A personal-range item cannot affect another character.')
-                hp = self.get_hit_points(recipient)
-                from app.services.character_calculations import CharacterCalculationService
-                maximum = CharacterCalculationService(self, recipient).hit_point_maximum()
-                if plan['base_power'] == 'life:cure':
-                    from random import randint
-                    from app.marvelous_base_powers import item_dice_result
-                    rolls, amount = item_dice_result(plan, effect['healing_dice'], 8, effect['healing_bonus'], randint)
-                    effect['healing_rolls'] = rolls
-                    self._connection.execute('UPDATE hit_points SET current=?, nonlethal=? WHERE character_id=?',
-                        (min(maximum, hp.current + amount), max(0, hp.nonlethal - amount), recipient))
-                    effect['healing_rolled'] = amount
-                elif plan['base_power'] == 'protection:aegis':
-                    name = f'{effect["power"]} — {row["name"]}'
-                    for target, bonus_type, value in effect['ongoing_modifiers']:
-                        self._validate_ongoing_effect(name, 'Sphere', target, bonus_type)
-                        self._connection.execute(
-                            'INSERT INTO ongoing_effects (character_id,name,source_type,duration,target,bonus_type,value,notes) VALUES (?,?,?,?,?,?,?,?)',
-                            (recipient, name, 'Sphere', effect['duration'], target, bonus_type, value,
-                             f'Crafted item {item_id}, power {effect_index}; item caster level {plan["caster_level"]}. Expiration is manual.'))
-                else:
-                    if hp.current >= maximum:
-                        raise ValueError('Base Invigorate requires an injured target.')
-                    granted = min(effect['temporary_hp'], max(0, maximum - hp.current))
-                    self._connection.execute('UPDATE hit_points SET temporary=MAX(temporary, ?) WHERE character_id=?',
-                                             (granted, recipient))
-                self._touch_character(recipient)
-                effect['recipient_character_id'] = recipient
+                self._apply_marvelous_effect(character_id, recipient, item_id, row['name'], effect_index, plan, effect)
             from app.marvelous_base_powers import automatic_damage_dice
             damage_dice = automatic_damage_dice(plan)
             if damage_dice is not None:
