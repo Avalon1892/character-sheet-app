@@ -162,6 +162,22 @@ def test_removing_first_extra_keeps_second_extra_spent_uses(crafter):
     assert marvelous_remaining_uses(metadata(repo, cid, iid)) == 2
 
 
+def test_modified_cure_rolls_every_die_and_applies_talent_bonus(crafter, monkeypatch):
+    repo, cid = crafter; iid = item(repo, cid)
+    plan = metadata(repo, cid, iid)['marvelous_blueprint']
+    plan['base_power'] = 'life:cure'
+    plan['contributions'] = [dict(catalog_key=key, complexity=1) for key in
+        ('life:talent:deeper-healing', 'life:cure-talent:restore-health-cure')]
+    CraftingService(repo, cid).save_marvelous_design(plan, name='Healing device', slot='', description='', item_id=iid)
+    repo.update_hit_points(replace(repo.get_hit_points(cid), current=0))
+    rolls = iter((1, 2, 3))
+    monkeypatch.setattr('random.randint', lambda low, high: next(rolls))
+    effect = repo.consume_marvelous_item_use(cid, iid, apply_to_self=True)
+    assert effect['healing_rolled'] == 16
+    assert repo.get_hit_points(cid).current == 16
+    assert marvelous_remaining_uses(metadata(repo, cid, iid)) == 0
+
+
 def test_activation_dialog_updates_available_state(crafter):
     from PySide6.QtWidgets import QApplication
     from app.ui.marvelous_crafting import MarvelousItemUseDialog

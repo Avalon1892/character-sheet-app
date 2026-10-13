@@ -2144,7 +2144,7 @@ class CharacterRepository:
                 maximum = CharacterCalculationService(self, character_id).hit_point_maximum()
                 if plan['base_power'] == 'life:cure':
                     from random import randint
-                    amount = randint(1, 8) + plan['caster_level']
+                    amount = sum(randint(1, 8) for _ in range(effect['healing_dice'])) + effect['healing_bonus']
                     self._connection.execute('UPDATE hit_points SET current=?, nonlethal=? WHERE character_id=?',
                         (min(maximum, hp.current + amount), max(0, hp.nonlethal - amount), character_id))
                     effect['healing_rolled'] = amount

@@ -62,9 +62,29 @@ def base_powers(sphere):
 
 def automatic_self_effect(plan):
     """Supported activation kind, independent of editable prose and Qt."""
-    if plan.get('contributions') or plan.get('unique_changes') or plan.get('permanent'):
+    if plan.get('unique_changes') or plan.get('permanent'):
         return None
+    if plan.get('base_power') == 'life:cure':
+        return 'cure' if cure_healing_components(plan) is not None else None
+    if plan.get('contributions'): return None
     return {'life:cure': 'cure', 'life:temporary-hp': 'temporary_hp'}.get(plan.get('base_power'))
+
+
+def cure_healing_components(plan):
+    """Verified Ultimate Life healing; unknown/choice effects remain manual.
+
+    Restore talent benefits here affect cure healing only, not restore actions.
+    Source: https://spheresofpower.wikidot.com/life
+    """
+    boosts = {'life:cure-talent:restore-capacity-cure', 'life:cure-talent:restore-health-cure',
+              'life:cure-talent:restore-senses-cure', 'life:cure-talent:restore-spirit-cure'}
+    deeper = 'life:talent:deeper-healing'
+    contributions = plan.get('contributions', [])
+    keys = [row.get('catalog_key') for row in contributions]
+    if any(key not in boosts | {deeper} for key in keys) or len(set(keys)) != len(keys): return None
+    if any(row.get('alternative') for row in contributions): return None
+    cl = plan['caster_level']
+    return (1 + (1 + cl // 5 if deeper in keys else 0), cl * (1 + sum(key in boosts for key in keys)))
 
 
 def resolve_base_power(plan):
@@ -102,7 +122,14 @@ def resolve_base_power(plan):
     summary = {'power': power.name, 'range': distances[RANGES[range_index]], 'duration': durations[duration]}
     if plan.get('permanent', False): summary['duration'] = 'Permanent (dispellable)'
     if power.key == 'life:temporary-hp': summary['temporary_hp'] = cl
-    if power.key == 'life:cure': summary['healing'] = f'1d8+{cl}'
+    if power.key == 'life:cure':
+        healing = cure_healing_components(plan)
+        if healing is not None:
+            dice, bonus = healing
+            summary['healing'] = f'{dice}d8+{bonus}'
+            summary['healing_dice'] = dice; summary['healing_bonus'] = bonus
+        else:
+            summary['healing'] = f'Base 1d8+{cl}; selected modifications require manual resolution'
     if power.key == 'destruction:blast': summary['damage'] = f'{cl // 2}d6 bludgeoning'
     if power.key == 'warp:teleport': summary['teleport_distance'] = f'{25 + 5 * (cl // 2)} ft.'
     if power.key in {'blood:construct', 'death:reanimate'}: summary['maximum_hit_dice'] = cl
