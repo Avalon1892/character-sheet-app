@@ -114,6 +114,16 @@ def marvelous_item_price(caster_level: int, complexity: int | Fraction, *, daily
 # Reviewed construction prerequisites use catalog identities, never prose parsing.
 ADVANCED_CONSTRUCTION_REQUIREMENTS = {
     'life:advanced-talent:hypervitalize': (15, ('life:cure-talent:restore-health-cure', 'life:talent:revitalize')),
+    'life:advanced-talent:make-whole': (10, ('life:talent:break-enchantment',
+        'life:cure-talent:restore-senses-cure', 'life:cure-talent:restore-spirit-cure')),
+    'life:advanced-talent:resurrection': (10, ('life:talent:resuscitate',)),
+    'life:advanced-talent:resurrection-greater': (15, ('life:talent:break-enchantment',
+        'life:advanced-talent:make-whole', 'life:cure-talent:restore-senses-cure',
+        'life:cure-talent:restore-spirit-cure', 'life:advanced-talent:resurrection', 'life:talent:resuscitate')),
+    'life:advanced-talent:resurrection-supreme-warden': (20, ('life:talent:break-enchantment',
+        'life:advanced-talent:resurrection-greater', 'life:advanced-talent:make-whole',
+        'life:cure-talent:restore-senses-cure', 'life:cure-talent:restore-spirit-cure',
+        'life:advanced-talent:resurrection', 'life:talent:resuscitate')),
 }
 
 

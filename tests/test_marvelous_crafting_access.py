@@ -81,3 +81,22 @@ def test_hypervitalize_requires_item_level_and_prerequisite_effects(crafter):
     plan['caster_level'] = 15
     plan['contributions'].extend(dict(catalog_key=key, complexity=1) for key in keys[1:])
     assert service.marvelous_plan_requirements(plan, access=access).eligible
+
+
+@pytest.mark.parametrize('key', ['life:advanced-talent:make-whole', 'life:advanced-talent:resurrection',
+    'life:advanced-talent:resurrection-greater', 'life:advanced-talent:resurrection-supreme-warden'])
+def test_reviewed_life_chains_require_each_component_and_item_level(crafter, key):
+    from app.marvelous_item_rules import ADVANCED_CONSTRUCTION_REQUIREMENTS
+    repo, cid = crafter
+    service = CraftingService(repo, cid)
+    minimum, required = ADVANCED_CONSTRUCTION_REQUIREMENTS[key]
+    keys = [key, *required]
+    access = dict(sphere_levels={'Life': 20}, available_talents=[service.magic_entries_by_key[k]['name'] for k in keys])
+    plan = dict(sphere='Life', base_power='life:restore', caster_level=minimum, range_steps=0,
+                duration_steps=0, contributions=[dict(catalog_key=k, complexity=2) for k in keys])
+    assert service.marvelous_plan_requirements(plan, access=access).eligible
+    plan['caster_level'] = minimum - 1
+    assert not service.marvelous_plan_requirements(plan, access=access).eligible
+    plan['caster_level'] = minimum
+    plan['contributions'].pop()
+    assert not service.marvelous_plan_requirements(plan, access=access).eligible
