@@ -142,6 +142,7 @@ def test_feat_editor_is_draft_only_and_preserves_live_pricing(composer):
     assert editor.table.rowCount() == 0
     editor.feat.setCurrentIndex(1); editor.add_selected(); editor.add_selected()
     assert editor.table.rowCount() == 1
+    assert editor.table.cellWidget(0, 1).isChecked() and editor.table.cellWidget(0, 2).value() == 3
     editor.table.cellWidget(0, 1).setChecked(True)
     editor.table.cellWidget(0, 2).setValue(3)
     records = editor.records(); editor.confirm()

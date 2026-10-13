@@ -161,6 +161,14 @@ def advanced_construction_blockers(contributions, caster_level, *, display_names
     return tuple(blockers)
 
 
+REVIEWED_METAMAGIC_SP_COSTS = {'maximize spell': 3}
+
+
+def feat_integration_defaults(name):
+    points = REVIEWED_METAMAGIC_SP_COSTS.get(name.casefold())
+    return dict(name=name, metamagic=points is not None, additional_spell_points=points or 0)
+
+
 def feat_integration_complexity(integrations):
     """Explicit reviewed feat integration; metamagic adds its extra SP cost."""
     seen, total = set(), 0
@@ -171,6 +179,9 @@ def feat_integration_complexity(integrations):
         if not isinstance(metamagic, bool) or isinstance(points, bool) or not isinstance(points, int) or points < 0:
             raise ValueError('Invalid metamagic integration cost.')
         if not metamagic and points: raise ValueError('Only metamagic feats add spell-point integration costs.')
+        minimum = REVIEWED_METAMAGIC_SP_COSTS.get(name.casefold())
+        if minimum is not None and (not metamagic or points < minimum):
+            raise ValueError(f'{name} requires metamagic integration and at least {minimum} additional spell points.')
         seen.add(name.casefold()); total += 1 + points
     return total
 

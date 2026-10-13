@@ -405,7 +405,8 @@ class MarvelousFeatDialog(QDialog):
         metamagic.toggled.connect(lambda enabled: points.setValue(0) if not enabled else None)
 
     def add_selected(self):
-        if self.feat.currentData(): self.add_record({'name': self.feat.currentData()})
+        from app.marvelous_item_rules import feat_integration_defaults
+        if self.feat.currentData(): self.add_record(feat_integration_defaults(self.feat.currentData()))
 
     def records(self):
         from PySide6.QtCore import Qt
