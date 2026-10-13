@@ -60,6 +60,13 @@ def base_powers(sphere):
     return tuple(power for power in BASE_POWERS if power.sphere.casefold() == sphere.casefold())
 
 
+def automatic_self_effect(plan):
+    """Supported activation kind, independent of editable prose and Qt."""
+    if plan.get('contributions') or plan.get('unique_changes') or plan.get('permanent'):
+        return None
+    return {'life:cure': 'cure', 'life:temporary-hp': 'temporary_hp'}.get(plan.get('base_power'))
+
+
 def resolve_base_power(plan):
     for field in ('caster_level', 'range_steps', 'duration_steps'):
         value = plan[field]

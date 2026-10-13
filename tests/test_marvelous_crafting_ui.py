@@ -92,3 +92,12 @@ def test_cancel_edit_does_not_write(composer):
     edit.name.setText('Not saved'); edit.reject()
     assert repo._connection.total_changes == before
     edit.close()
+
+
+def test_preview_distinguishes_supported_and_manual_effects(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Life')
+    dialog.base_power.setCurrentIndex(dialog.base_power.findData('life:cure'))
+    assert 'heal a living self' in dialog.preview.toPlainText()
+    dialog.cl.setValue(5); dialog.unique.setValue(1)
+    assert 'requires manual application' in dialog.preview.toPlainText()

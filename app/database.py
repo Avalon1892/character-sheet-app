@@ -2119,7 +2119,7 @@ class CharacterRepository:
         inferred from the description or applied as an equipped passive bonus.
         """
         from app.marvelous_item_rules import marvelous_remaining_uses
-        from app.marvelous_base_powers import resolve_base_power
+        from app.marvelous_base_powers import resolve_base_power, automatic_self_effect
         with self._connection:
             row = self._connection.execute(
                 'SELECT automation_json, quantity FROM equipment WHERE character_id=? AND id=?',
@@ -2134,7 +2134,7 @@ class CharacterRepository:
             if remaining == 0: raise ValueError('No item uses remain.')
             effect = resolve_base_power(plan)
             if apply_to_self:
-                if plan['base_power'] not in {'life:temporary-hp', 'life:cure'} or plan['contributions'] or plan['unique_changes'] or plan.get('permanent'):
+                if automatic_self_effect(plan) is None:
                     raise ValueError('Automatic self-application is not supported for this custom effect.')
                 hp = self.get_hit_points(character_id)
                 from app.services.character_calculations import CharacterCalculationService

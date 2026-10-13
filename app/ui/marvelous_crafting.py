@@ -8,7 +8,7 @@ from PySide6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QFormLayout,
 from app.catalogs import DEFAULT_CATALOG
 from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_remaining_uses
 from app.services.crafting import CraftingService
-from app.marvelous_base_powers import base_powers, resolve_base_power, RANGES, DURATIONS
+from app.marvelous_base_powers import base_powers, resolve_base_power, automatic_self_effect, RANGES, DURATIONS
 
 
 class MarvelousCraftingDialog(QDialog):
@@ -178,6 +178,10 @@ class MarvelousCraftingDialog(QDialog):
         try:
             complexity, price, quote = self.quotation()
             effect = resolve_base_power(self.blueprint())
+            automatic = automatic_self_effect(self.blueprint())
+            automation_notice = ('Activation can heal a living self, including nonlethal damage.' if automatic == 'cure'
+                else 'Activation can apply temporary HP to self; expiration remains manual.' if automatic == 'temporary_hp'
+                else 'This effect currently requires manual application; item uses are tracked automatically.')
             requirements = self.service.marvelous_plan_requirements(self.blueprint(), access=self.crafting_access)
             self.result.setText(f'Market price {float(price.market_price_gp):,.2f} gp · Materials {float(quote.cost_gp):,.2f} gp · Craft DC {quote.dc} · {quote.days} days · Save DC {price.save_dc}')
             self.preview.setHtml(f'<h2>{escape(self.name.text())}</h2><p>{escape(self.sphere.currentText())} · Complexity {complexity}</p>'
@@ -189,7 +193,7 @@ class MarvelousCraftingDialog(QDialog):
                 + f'</p><p>Eligible bypasses add +{requirements.dc_increase} to crafting DC. '
                 + 'Additional permanent bonuses, cooperating providers, tradition restrictions and advanced-talent prerequisites require review. Saving a design does not complete crafting.</p>'
                 '<p>Contribution defaults are general talent costs, not verified sphere-specific costs. Include additional spell-point costs and exceptions. Range/duration changes must fit the published base power.</p>'
-                '<p>Effect activation is not automated yet. This saves a mechanical blueprint and inventory item; it does not spend gold or advance crafting time.</p>')
+                f'<p>{escape(automation_notice)}</p><p>Saving a design does not spend gold or advance crafting time.</p>')
             feats = self.service.feats
             permitted = bool(feats.intersection({'craft marvelous item', 'craft wondrous item'}))
             self.save.setEnabled(permitted and self.review.isChecked() and bool(self.name.text().strip()))
@@ -248,7 +252,7 @@ class MarvelousItemUseDialog(QDialog):
             self.table.setItem(row, 1, QTableWidgetItem('Unlimited' if remaining is None else str(remaining)))
             detail = QTableWidgetItem(effect['power']); detail.setToolTip('\n'.join(f'{k}: {v}' for k, v in effect.items()))
             self.table.setItem(row, 2, detail)
-            automatic = plan['base_power'] in {'life:temporary-hp', 'life:cure'} and not plan['contributions'] and not plan['unique_changes'] and not plan.get('permanent')
+            automatic = automatic_self_effect(plan) is not None
             button = QPushButton(('Cure living self' if plan['base_power'] == 'life:cure' else 'Apply temporary HP to self') if automatic else 'Record use — manual effect')
             button.setEnabled(remaining != 0 and item.quantity == 1)
             if item.quantity > 1: button.setToolTip('Separate these devices into individual records to track independent uses.')
