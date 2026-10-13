@@ -13,6 +13,7 @@ def test_every_base_power_has_a_resolvable_projection(power):
     result = resolve_base_power(plan(power.key))
     assert result['power'] == power.name
     assert result['range'] and result['duration']
+    assert result['caster_level'] == 5 and result['save_dc'] == 12 and result['magic_skill_bonus'] == 5
 
 
 def test_level_scaling_and_instantaneous_effects():

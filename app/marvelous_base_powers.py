@@ -134,7 +134,8 @@ def resolve_base_power(plan):
                  'ten-minutes': f'{10 * cl} minutes', 'hour': f'{cl} hours',
                  'fixed-round': '1 round', 'instantaneous': 'Instantaneous',
                  'concentration': 'Concentration', 'variable': 'As selected effect'}
-    summary = {'power': power.name, 'range': distances[RANGES[range_index]], 'duration': durations[duration]}
+    summary = {'power': power.name, 'range': distances[RANGES[range_index]], 'duration': durations[duration],
+               'caster_level': cl, 'save_dc': 10 + cl // 2, 'magic_skill_bonus': cl}
     if plan.get('permanent', False): summary['duration'] = 'Permanent (dispellable)'
     if power.key == 'life:temporary-hp': summary['temporary_hp'] = cl
     if power.key == 'life:cure':

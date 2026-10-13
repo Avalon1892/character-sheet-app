@@ -81,6 +81,7 @@ def test_base_destructive_item_rolls_damage_and_spends_once(crafter, monkeypatch
     monkeypatch.setattr('random.randint', lambda low, high: 4)
     effect = repo.consume_marvelous_item_use(cid, iid)
     assert effect['damage_rolls'] == [4] * count and effect['damage_rolled'] == 4 * count
+    assert effect['save_dc'] == 12 and effect['magic_skill_bonus'] == 5
     assert repo.get_hit_points(cid).current == 10
     assert marvelous_remaining_uses(metadata(repo, cid, iid)) == 0
 
