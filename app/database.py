@@ -2134,7 +2134,7 @@ class CharacterRepository:
             if remaining == 0: raise ValueError('No item uses remain.')
             effect = resolve_base_power(plan)
             if apply_to_self:
-                if plan['base_power'] != 'life:temporary-hp' or plan['contributions'] or plan['unique_changes']:
+                if plan['base_power'] != 'life:temporary-hp' or plan['contributions'] or plan['unique_changes'] or plan.get('permanent'):
                     raise ValueError('Automatic self-application is not supported for this custom effect.')
                 self._connection.execute('UPDATE hit_points SET temporary=MAX(temporary, ?) WHERE character_id=?',
                                          (effect['temporary_hp'], character_id))

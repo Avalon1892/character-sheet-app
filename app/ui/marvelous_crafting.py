@@ -41,17 +41,20 @@ class MarvelousCraftingDialog(QDialog):
         self.range_steps = QSpinBox(); self.range_steps.setRange(-4, 4)
         self.duration_steps = QSpinBox(); self.duration_steps.setRange(-3, 3)
         self.unique = QSpinBox(); self.unique.setRange(-50, 50)
+        self.slotless = QCheckBox('No need to wear or hold the item (×2 price)')
+        self.permanent = QCheckBox('Permanent, dispellable effect (+2 complexity; CL 10; hours duration)')
         for label, widget in [('Name', self.name), ('Slot', self.slot), ('Base sphere', self.sphere),
                               ('Base power', self.base_power),
                               ('Item caster level', self.cl), ('Activation', self.activation),
                               ('Uses', self.uses), ('Range steps', self.range_steps),
                               ('Duration steps', self.duration_steps), ('Unique changes / limitations', self.unique)]:
             form.addRow(label, widget)
+        form.addRow(self.slotless); form.addRow(self.permanent)
         picker = QHBoxLayout(); left.addLayout(picker)
         self.talent = QComboBox(); picker.addWidget(self.talent, 1)
         add = QPushButton('Add effect contribution'); picker.addWidget(add)
-        self.table = QTableWidget(0, 2)
-        self.table.setHorizontalHeaderLabels(['Talent / effect', 'Verified complexity contribution'])
+        self.table = QTableWidget(0, 3)
+        self.table.setHorizontalHeaderLabels(['Talent / effect', 'Verified complexity contribution', 'Alternative'])
         self.table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
         self.table.setColumnWidth(1, 235); left.addWidget(self.table, 1)
         remove = QPushButton('Remove selected contribution'); left.addWidget(remove)
@@ -72,6 +75,7 @@ class MarvelousCraftingDialog(QDialog):
         for widget in (self.activation, self.uses, self.slot): widget.currentIndexChanged.connect(self.update_preview)
         self.name.textChanged.connect(self.update_preview); self.description.textChanged.connect(self.update_preview)
         self.review.toggled.connect(self.update_preview)
+        self.slotless.toggled.connect(self.update_preview); self.permanent.toggled.connect(self.update_preview)
         self.populate_talents()
 
     def populate_talents(self, *_):
@@ -110,6 +114,8 @@ class MarvelousCraftingDialog(QDialog):
         cost = QSpinBox(); cost.setRange(0, 100)
         cost.setValue(2 if 'advanced' in entry.get('category', '').casefold() else 1)
         cost.valueChanged.connect(self.update_preview); self.table.setCellWidget(row, 1, cost)
+        alternative = QCheckBox(); alternative.setToolTip('Mutually exclusive option in the same alternative group. Most expensive costs full; other options cost half.')
+        alternative.toggled.connect(self.update_preview); self.table.setCellWidget(row, 2, alternative)
         self.update_preview()
 
     def remove_contribution(self):
@@ -119,13 +125,15 @@ class MarvelousCraftingDialog(QDialog):
     def blueprint(self):
         from PySide6.QtCore import Qt
         contributions = [{'catalog_key': self.table.item(r, 0).data(Qt.ItemDataRole.UserRole),
-                          'complexity': self.table.cellWidget(r, 1).value()}
+                          'complexity': self.table.cellWidget(r, 1).value(),
+                          'alternative': self.table.cellWidget(r, 2).isChecked()}
                          for r in range(self.table.rowCount())]
         return dict(schema_version=1, sphere=self.sphere.currentText(), caster_level=self.cl.value(),
                     base_power=self.base_power.currentData(),
                     activation=self.activation.currentData(), uses=self.uses.currentData(),
                     range_steps=self.range_steps.value(), duration_steps=self.duration_steps.value(),
                     unique_changes=self.unique.value(), contributions=contributions,
+                    no_space_limitation=self.slotless.isChecked(), permanent=self.permanent.isChecked(),
                     automation_status='rules_only')
 
     def quotation(self):
@@ -200,7 +208,7 @@ class MarvelousItemUseDialog(QDialog):
             self.table.setItem(row, 1, QTableWidgetItem('Unlimited' if remaining is None else str(remaining)))
             detail = QTableWidgetItem(effect['power']); detail.setToolTip('\n'.join(f'{k}: {v}' for k, v in effect.items()))
             self.table.setItem(row, 2, detail)
-            automatic = plan['base_power'] == 'life:temporary-hp' and not plan['contributions'] and not plan['unique_changes']
+            automatic = plan['base_power'] == 'life:temporary-hp' and not plan['contributions'] and not plan['unique_changes'] and not plan.get('permanent')
             button = QPushButton('Apply temporary HP to self' if automatic else 'Record use — manual effect')
             button.setEnabled(remaining != 0 and item.quantity == 1)
             if item.quantity > 1: button.setToolTip('Separate these devices into individual records to track independent uses.')

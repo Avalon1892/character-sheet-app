@@ -83,6 +83,9 @@ def resolve_base_power(plan):
     elif plan['duration_steps']:
         raise ValueError('This base power does not use the adjustable duration ladder.')
     cl = plan['caster_level']
+    if plan.get('permanent', False):
+        if cl < 10 or duration != 'hour':
+            raise ValueError('Permanency requires caster level 10 and an effect duration measured in hours.')
     distances = {'personal': 'Personal', 'touch': 'Touch', 'close': f'{25 + 5 * (cl // 2)} ft.',
                  'medium': f'{100 + 10 * cl} ft.', 'long': f'{400 + 40 * cl} ft.'}
     durations = {'round': f'{cl} rounds', 'minute': f'{cl} minutes',
@@ -90,6 +93,7 @@ def resolve_base_power(plan):
                  'fixed-round': '1 round', 'instantaneous': 'Instantaneous',
                  'concentration': 'Concentration', 'variable': 'As selected effect'}
     summary = {'power': power.name, 'range': distances[RANGES[range_index]], 'duration': durations[duration]}
+    if plan.get('permanent', False): summary['duration'] = 'Permanent (dispellable)'
     if power.key == 'life:temporary-hp': summary['temporary_hp'] = cl
     if power.key == 'destruction:blast': summary['damage'] = f'{cl // 2}d6 bludgeoning'
     if power.key == 'warp:teleport': summary['teleport_distance'] = f'{25 + 5 * (cl // 2)} ft.'

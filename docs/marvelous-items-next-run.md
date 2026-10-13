@@ -26,6 +26,15 @@ Status: pricing, prerequisite checks, catalog import and initial custom composer
 
 ## Required next
 
+### Latest checkpoint
+
+- Composer now supports explicit no-space-limitation construction (double price), a single mutually exclusive alternative-contribution group (exact half-cost contributions), and dispellable permanency (+2 complexity, CL 10 minimum, hours-based duration required).
+- These settings are saved in existing blueprint metadata with defaulted fields for old designs. Permanent temporary-HP effects deliberately remain manual rather than silently using the ordinary temporary-HP application path.
+- Added six construction-option regression cases. Latest focused crafting, access, resources, import, UI and recovery run: **104 passed in 18.54 seconds**. A restricted-sandbox attempt failed due to temporary-directory permissions; rerunning outside that restriction passed.
+- Visually inspected the composer in Classic/Parchment and Dark using `tools/render_marvelous_crafting.py`; previews are under `artifacts/marvelous-crafting/`. Both are readable at 1280 × 820. This does not replace full interaction/accessibility verification.
+- Full isolated suite has not been rerun for this checkpoint. No desktop or portable deployment was performed.
+- Next concrete work: structured talent-specific costs and prerequisites, independent/mixed effects and multiple alternative groups, followed by saved-design editing and the actual crafting completion workflow. The currently saved inventory record is a design, not proof that crafting requirements, gold or time were fulfilled.
+
 1. Implement sphere-specific talent contributions (including extra spell points and advanced effects), additional permanent-access bonuses/cooperative sources, traditions and remaining optional multipliers. Baseline access collection is automatic; talent effect costs/exceptions are not yet fully mapped. Never substitute raw talent count. Advanced talents, creation feats and protected class requirements cannot be waived; base sphere/CL bypass requires Versatile Crafter.
 2. Reuse `app/crafting_catalog.py`, `app/services/crafting.py`, existing equipment persistence and reference-data import tooling. Do not duplicate the item database or assume ordinary PF1 crafting applies unchanged.
 3. Verify catalog coverage beyond the 122 construction entries imported from the two official pages (including entries without normal construction requirements and class-page items). Verify edition tags and grouped item variants, then implement structured sphere/talent prerequisite metadata; current text is preserved but not runtime-parsed. Slotted charms/apparatus are not automatically Marvelous Items.

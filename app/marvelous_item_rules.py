@@ -3,7 +3,7 @@
 Complexity is an already-resolved talent-based value, not a talent count.
 Source: https://spheresofpower.wikidot.com/magical-items
 """
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from fractions import Fraction
 from math import ceil
 
@@ -145,11 +145,21 @@ def quote_marvelous_blueprint(plan):
     if plan.get('base_power'):
         from app.marvelous_base_powers import resolve_base_power
         resolve_base_power(plan)
-    complexity = effect_complexity(talent_costs=[x['complexity'] for x in plan['contributions']],
+    for option in ('permanent', 'no_space_limitation'):
+        if not isinstance(plan.get(option, False), bool):
+            raise ValueError('Construction flags must be boolean.')
+    if plan.get('permanent') and not plan.get('base_power'):
+        raise ValueError('Permanency requires a structured base power.')
+    if any(not isinstance(x.get('alternative', False), bool) for x in plan['contributions']):
+        raise ValueError('Alternative-effect flags must be boolean.')
+    complexity = effect_complexity(talent_costs=[x['complexity'] for x in plan['contributions'] if not x.get('alternative', False)],
+        alternative_costs=[x['complexity'] for x in plan['contributions'] if x.get('alternative', False)],
         range_steps=plan['range_steps'], duration_steps=plan['duration_steps'],
-        activation=plan['activation'], unique_changes=plan['unique_changes'])
+        activation=plan['activation'], unique_changes=plan['unique_changes'] + (2 if plan.get('permanent') else 0))
     price = marvelous_item_price(plan['caster_level'], complexity,
                                 daily_uses=1 if plan['uses'] == 50 else plan['uses'], limited_uses=plan['uses'] == 50)
+    if plan.get('no_space_limitation'):
+        price = replace(price, market_price_gp=price.market_price_gp * 2)
     return complexity, price, marvelous_crafting_quote(price, plan['caster_level'])
 
 
