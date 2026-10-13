@@ -17,6 +17,8 @@ def test_every_base_power_has_a_resolvable_projection(power):
 
 def test_level_scaling_and_instantaneous_effects():
     assert resolve_base_power(plan('life:temporary-hp', 7))['temporary_hp'] == 7
+    # Item construction explicitly differs from ordinary Invigorate's one hour.
+    assert resolve_base_power(plan('life:temporary-hp', 7))['duration'] == '7 minutes'
     assert resolve_base_power(plan('destruction:blast', 6))['damage'] == '3d6 bludgeoning'
     assert resolve_base_power(plan('warp:teleport', 6))['teleport_distance'] == '40 ft.'
     assert resolve_base_power(plan('alteration:shapeshift', 10))['traits'] == 3
