@@ -477,11 +477,15 @@ class MarvelousProjectDialog(QDialog):
 
     def finish_construction(self):
         from app.marvelous_projects import finish_project
-        result = finish_project(self.project, self.check.value())
-        if QMessageBox.question(self, 'Resolve construction',
-            f'Check total {self.check.value()} versus DC {self.project["dc"]}: {result["status"]}. Confirm this final result?') != QMessageBox.StandardButton.Yes: return
+        day = self.day.date().toString('yyyy-MM-dd')
         try:
-            self.repository.advance_marvelous_project(self.character_id, self.item_id, check_total=self.check.value())
+            result = finish_project(self.project, self.check.value(), day=day)
+        except ValueError as error:
+            QMessageBox.warning(self, 'Cannot finish construction', str(error)); return
+        if QMessageBox.question(self, 'Resolve construction',
+            f'On {day}: check total {self.check.value()} versus DC {self.project["dc"]}: {result["status"]}. Confirm this final result?') != QMessageBox.StandardButton.Yes: return
+        try:
+            self.repository.advance_marvelous_project(self.character_id, self.item_id, day=day, check_total=self.check.value())
         except ValueError as error:
             QMessageBox.warning(self, 'Cannot finish construction', str(error)); return
         self.changed = True; self.refresh()

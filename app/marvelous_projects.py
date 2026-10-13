@@ -34,11 +34,17 @@ def work_on_project(project, *, day, hours, distracting=False, adventuring=False
     return updated
 
 
-def finish_project(project, check_total):
+def finish_project(project, check_total, *, day=None):
     if project.get('status') != 'crafting': raise ValueError('This project is not in progress.')
     if project['worked_hours'] < project['required_hours']: raise ValueError('Construction time is incomplete.')
     if isinstance(check_total, bool) or not isinstance(check_total, int): raise ValueError('Check total must be an integer.')
+    last_work = max(project['calendar'], default=None)
+    day = day if day is not None else last_work
+    if not isinstance(day, str): raise ValueError('Completion day must be an ISO date.')
+    date.fromisoformat(day)
+    if last_work and day < last_work: raise ValueError('Cannot finish before the last recorded work day.')
     updated = deepcopy(project)
+    updated['completion_day'] = day
     updated['check_total'] = check_total
     updated['status'] = 'complete' if check_total >= project['dc'] else 'cursed' if check_total <= project['dc'] - 5 else 'failed'
     return updated

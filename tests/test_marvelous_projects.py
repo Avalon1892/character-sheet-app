@@ -127,4 +127,11 @@ def test_work_calendar_is_shared_between_retained_projects(tmp_path, monkeypatch
         repo.advance_marvelous_project(cid, ids[1], day='2026-10-13', hours=4)
     assert repo._connection.total_changes == before
     assert repo.advance_marvelous_project(cid, ids[1], day='2026-10-14', hours=4)['worked_hours'] == 8
+    repo.advance_marvelous_project(cid, ids[0], day='2026-10-15', hours=4)
+    repo.advance_marvelous_project(cid, ids[0], day='2026-10-15', check_total=11)
+    before = repo._connection.total_changes
+    with pytest.raises(ValueError, match='one item'):
+        repo.advance_marvelous_project(cid, ids[1], day='2026-10-15', check_total=11)
+    assert repo._connection.total_changes == before
+    assert repo.advance_marvelous_project(cid, ids[1], day='2026-10-16', check_total=11)['completion_day'] == '2026-10-16'
     repo.close()
