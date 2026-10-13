@@ -30,7 +30,8 @@ def parse_page(raw, stem):
             nodes.append(sibling.get_text(" ", strip=True) if hasattr(sibling, "get_text") else str(sibling))
         text = re.sub(r"\s+", " ", " ".join(nodes)).strip()
         title = heading.get_text(" ", strip=True)
-        has_construction = "Construction Requirements" in text
+        construction = re.search(r'\bConstruction Requirements\b\s*|\bConstruction\s+(?=(?:Craft|Forge|Brew|Scribe|Mythic)\b)', text)
+        has_construction = construction is not None
         artifact = bool(re.search(r'\((?:Minor|Major) Artifact\)', title, re.I))
         if not has_construction and not artifact:
             continue
@@ -43,13 +44,14 @@ def parse_page(raw, stem):
         if key in seen:
             raise ValueError(f"Duplicate source identity: {key}")
         seen.add(key)
-        requirements = text.split("Construction Requirements", 1)[1].strip() if has_construction else ''
+        requirements = text[construction.end():].strip() if construction else ''
+        metadata = text.replace(' — ', '; ')
         cost_match = re.search(r"\bCost\s+(.+)$", requirements)
         cost = money(cost_match[1]) if cost_match else None
-        price_match = re.search(r"\bPrice\s+([^;]+)", text)
+        price_match = re.search(r"\bPrice\s+([^;]+)", metadata)
         price = money(price_match[1]) if price_match else None
         cl = re.search(r"\bCL\s+(\d+)", text)
-        slot = re.search(r"\bSlot\s+([^;]+)", text)
+        slot = re.search(r"\bSlot\s+([^;]+)", metadata)
         weight = re.search(r"\bWeight\s+(\d+(?:\.\d+)?)\s*(?:lbs?\.?|pounds)", text)
         url = f"https://spheresofpower.wikidot.com/{stem}"
         entry = dict(key=key, name=name + (" (Original)" if key.endswith(":original") else ""),

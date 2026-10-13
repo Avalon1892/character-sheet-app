@@ -16,7 +16,7 @@
     {"path": "familiars.json", "sha256": "3a8e16afbda2f38a9465e771392879dd221ebf4ccda5712bd08f59b0c86a73f2", "size": 98670},
     {"path": "inquisitions.json", "sha256": "2f5ff7c16157bb2b7ad5c92a29b389271574328f3f225d03547716427da97c33", "size": 46291},
     {"path": "item_automation_audit.json", "sha256": "eed81040961c7ed74cc8d212138363c5af8df498407c390f6473d975d82ad250", "size": 784339},
-    {"path": "items.json", "sha256": "f110114e1228ce6394fed47716564966e290d52df8e05b25f6bbb6efa791e41a", "size": 4051734},
+    {"path": "items.json", "sha256": "589f24dbd584f19599e6e696708cab9912707af10fdc787a9129c44484b8aa72", "size": 4053962},
     {"path": "magic_spheres.json", "sha256": "74ab61cbe9425781ecfda3de3f20304df15eb8a0e7d9cabd8fd8b650412b1f9f", "size": 2195841},
     {"path": "martial_spheres.json", "sha256": "b45ac3f9dcb9f3ec1add64efba0349112f40f46ea918f46ea260d638026c2e54", "size": 1920490},
     {"path": "pathfinder_classes.json", "sha256": "c8ffde7d823ea001ba44014f774fb294b7fb10f969d8bc25e57c6886a74d47b3", "size": 652756},
