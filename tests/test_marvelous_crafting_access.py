@@ -67,3 +67,17 @@ def test_combined_requirements_check_all_spheres_and_deduplicate_shared_talents(
         range_steps=0, duration_steps=0, contributions=[])]
     result = service.marvelous_plan_requirements(plan)
     assert not result.eligible and any('Time' in blocker for blocker in result.blockers)
+
+
+def test_hypervitalize_requires_item_level_and_prerequisite_effects(crafter):
+    repo, cid = crafter
+    keys = ['life:advanced-talent:hypervitalize', 'life:cure-talent:restore-health-cure', 'life:talent:revitalize']
+    service = CraftingService(repo, cid)
+    access = dict(sphere_levels={'Life': 20}, available_talents=[service.magic_entries_by_key[key]['name'] for key in keys])
+    plan = dict(sphere='Life', base_power='life:cure', caster_level=10, range_steps=0, duration_steps=0,
+                contributions=[dict(catalog_key=keys[0], complexity=2)])
+    result = service.marvelous_plan_requirements(plan, access=access)
+    assert not result.eligible and len(result.blockers) == 3
+    plan['caster_level'] = 15
+    plan['contributions'].extend(dict(catalog_key=key, complexity=1) for key in keys[1:])
+    assert service.marvelous_plan_requirements(plan, access=access).eligible

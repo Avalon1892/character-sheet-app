@@ -111,6 +111,26 @@ def marvelous_item_price(caster_level: int, complexity: int | Fraction, *, daily
     )
 
 
+# Reviewed construction prerequisites use catalog identities, never prose parsing.
+ADVANCED_CONSTRUCTION_REQUIREMENTS = {
+    'life:advanced-talent:hypervitalize': (15, ('life:cure-talent:restore-health-cure', 'life:talent:revitalize')),
+}
+
+
+def advanced_construction_blockers(contributions, caster_level):
+    keys = {row['catalog_key'] for row in contributions}
+    blockers = []
+    for key in sorted(keys):
+        requirement = ADVANCED_CONSTRUCTION_REQUIREMENTS.get(key)
+        if requirement is None: continue
+        minimum, required = requirement
+        if caster_level < minimum:
+            blockers.append(f'{key}: item caster level must be at least {minimum}.')
+        blockers.extend(f'{key}: prerequisite talent must be included in this effect: {talent}.'
+                        for talent in required if talent not in keys)
+    return tuple(blockers)
+
+
 def tradition_costs(base_price, *, cheap=False, expensive=False, other_reduction=Fraction(0)):
     """Reviewed material/resale adjustments, separate from base work pricing.
 

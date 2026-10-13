@@ -80,21 +80,25 @@ class CraftingService:
     def marvelous_plan_requirements(self, plan, *, access=None):
         """Resolve selected catalog identities and feed the shared eligibility check."""
         from app.marvelous_base_powers import resolve_base_power
-        required, advanced, spheres = [], [], []
+        from app.marvelous_item_rules import advanced_construction_blockers
+        required, advanced, spheres, construction_blockers = [], [], [], []
         for power in [plan, *plan.get('extra_effects', [])]:
             resolve_base_power(power)
             if power['caster_level'] != plan['caster_level']:
                 raise ValueError('All item effects must have the same caster level.')
             spheres.append(power['sphere'])
+            construction_blockers.extend(advanced_construction_blockers(power['contributions'], power['caster_level']))
             for contribution in power['contributions']:
                 entry = self.magic_entries_by_key.get(contribution['catalog_key'])
                 if entry is None or str(entry.get('sphere', '')).casefold() != power['sphere'].casefold():
                     raise ValueError('Selected talent is not part of the blueprint base sphere.')
                 required.append(entry['name'])
                 if 'advanced' in str(entry.get('category', '')).casefold(): advanced.append(entry['name'])
-        return self.marvelous_requirements(caster_level=plan['caster_level'],
+        result = self.marvelous_requirements(caster_level=plan['caster_level'],
             required_spheres=spheres, required_talents=required,
             advanced_talents=advanced, **(access if access is not None else self.permanent_marvelous_access()))
+        from dataclasses import replace
+        return replace(result, blockers=result.blockers + tuple(construction_blockers))
 
     def save_marvelous_design(self, plan, *, name, slot, description, item_id=None):
         """Save a reviewed blueprint without claiming completion of a craft project.
