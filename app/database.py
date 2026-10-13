@@ -2254,7 +2254,9 @@ class CharacterRepository:
                 maximum = CharacterCalculationService(self, recipient).hit_point_maximum()
                 if plan['base_power'] == 'life:cure':
                     from random import randint
-                    amount = sum(randint(1, 8) for _ in range(effect['healing_dice'])) + effect['healing_bonus']
+                    from app.marvelous_base_powers import maximized_item_dice
+                    amount = (8 * effect['healing_dice'] if maximized_item_dice(plan) else
+                        sum(randint(1, 8) for _ in range(effect['healing_dice']))) + effect['healing_bonus']
                     self._connection.execute('UPDATE hit_points SET current=?, nonlethal=? WHERE character_id=?',
                         (min(maximum, hp.current + amount), max(0, hp.nonlethal - amount), recipient))
                     effect['healing_rolled'] = amount
@@ -2278,7 +2280,8 @@ class CharacterRepository:
             damage_dice = automatic_damage_dice(plan)
             if damage_dice is not None:
                 import random
-                dice = [random.randint(1, 6) for _ in range(damage_dice)]
+                from app.marvelous_base_powers import maximized_item_dice
+                dice = [6] * damage_dice if maximized_item_dice(plan) else [random.randint(1, 6) for _ in range(damage_dice)]
                 effect['damage_rolls'] = dice
                 effect['damage_rolled'] = sum(dice)
                 effect['damage_application'] = 'Apply bludgeoning damage to the target after resolving defenses.'

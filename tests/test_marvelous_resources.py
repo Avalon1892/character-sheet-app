@@ -89,6 +89,20 @@ def test_cure_recipient_is_separate_from_item_owner(crafter, monkeypatch):
     assert repo._connection.total_changes == before
 
 
+@pytest.mark.parametrize('sphere,power', [('Life','life:cure'), ('Destruction','destruction:blast')])
+def test_maximize_integrated_dice_without_random_rolls(crafter, monkeypatch, sphere, power):
+    repo, cid = crafter
+    plan = dict(schema_version=1, sphere=sphere, base_power=power, caster_level=5,
+        activation='standard', uses=1, range_steps=0, duration_steps=0, unique_changes=0, contributions=[],
+        feat_integrations=[dict(name='Maximize Spell', metamagic=True, additional_spell_points=3)])
+    iid = CraftingService(repo,cid).save_marvelous_design(plan,name='Maximum',slot='',description='')
+    monkeypatch.setattr('random.randint', lambda a,b: pytest.fail('Maximized dice must not roll.'))
+    effect = repo.consume_marvelous_item_use(cid,iid,apply_to_self=sphere=='Life')
+    assert effect['dice_mode'] == 'Maximized'
+    assert effect['healing_rolled' if sphere=='Life' else 'damage_rolled'] == (13 if sphere=='Life' else 12)
+    assert marvelous_remaining_uses(metadata(repo,cid,iid)) == 0
+
+
 def test_aegis_creates_shared_ongoing_deflection_effect_atomically(crafter):
     from app.rules import ongoing_effect_modifiers
     repo, cid = crafter
