@@ -96,7 +96,7 @@ def automatic_self_effect(plan):
     return {'life:cure': 'cure', 'life:temporary-hp': 'temporary_hp', 'protection:aegis': 'aegis'}.get(plan.get('base_power'))
 
 
-def restore_condition_changes(mode, conditions, *, ongoing=()):
+def restore_condition_changes(mode, conditions, *, ongoing=(), restore_health=False, restore_senses=False):
     """Reviewable Ultimate Restore transitions; ongoing sources need suppression.
 
     Results describe changes without altering persistence or losing provenance.
@@ -107,6 +107,13 @@ def restore_condition_changes(mode, conditions, *, ongoing=()):
         'body': {'Battered': None, 'Fatigued': None, 'Exhausted': 'Fatigued', 'Sickened': None, 'Nauseated': 'Sickened'},
     }
     if mode not in transitions: raise ValueError('Condition restoration requires mind or body.')
+    if not isinstance(restore_health, bool) or not isinstance(restore_senses, bool):
+        raise ValueError('Restore talent flags must be boolean.')
+    if restore_health:
+        transitions['body'].update(Exhausted=None, Nauseated=None)
+    if restore_senses:
+        transitions['mind'].update(Frightened=None, Panicked=None, Confused=None, Dazed=None,
+                                   Blinded=None, Deafened=None)
     ongoing = set(ongoing)
     return [{'condition': name, 'operation': 'suppress' if name in ongoing else 'replace' if replacement else 'remove',
              'replacement': None if name in ongoing else replacement}
@@ -206,8 +213,17 @@ def resolve_base_power(plan):
     if power.key == 'life:restore':
         summary['restore_mode'] = restore_mode or 'Not selected; manual review required'
         if restore_mode in {'mind', 'body'}:
-            names = ('Dazzled', 'Shaken', 'Frightened', 'Panicked', 'Staggered', 'Battered', 'Fatigued', 'Exhausted', 'Sickened', 'Nauseated')
-            summary['restore_changes'] = restore_condition_changes(restore_mode, names)
+            names = ('Dazzled', 'Shaken', 'Frightened', 'Panicked', 'Staggered', 'Battered', 'Fatigued', 'Exhausted', 'Sickened', 'Nauseated',
+                     'Confused', 'Dazed', 'Blinded', 'Deafened')
+            # Alternative contributions are choices, not simultaneously active talents.
+            keys = {row.get('catalog_key') for row in plan.get('contributions', []) if not row.get('alternative')}
+            health = 'life:cure-talent:restore-health-cure' in keys
+            senses = 'life:cure-talent:restore-senses-cure' in keys
+            summary['restore_changes'] = restore_condition_changes(restore_mode, names, restore_health=health, restore_senses=senses)
+            if restore_mode == 'body' and health:
+                summary['poison_disease'] = f'Magic skill check +{cl} against each poison/disease DC; damage already suffered is not reversed.'
+            if restore_mode == 'mind' and senses:
+                summary['sense_restoration'] = 'Temporary or magical sense loss only; permanent loss requires additional effects. Optional sanity/strain recovery is manual.'
             summary['ongoing_conditions'] = f'Suppress for {cl} rounds instead of removing; source review required.'
         elif restore_mode == 'soul': summary['ability_damage'] = '1d4 to one chosen ability; manual recording required.'
     if power.key == 'protection:aegis':

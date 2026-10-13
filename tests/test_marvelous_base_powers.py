@@ -42,6 +42,31 @@ def test_restore_transitions_preserve_downgrades_and_ongoing_sources():
     with pytest.raises(ValueError): restore_condition_changes('soul', [])
 
 
+@pytest.mark.parametrize('mode,key,conditions', [
+    ('body', 'restore-health', ('Exhausted', 'Nauseated')),
+    ('mind', 'restore-senses', ('Frightened', 'Panicked', 'Confused', 'Dazed', 'Blinded', 'Deafened')),
+])
+def test_restore_talent_projection_removes_upgraded_conditions(mode, key, conditions):
+    contribution = dict(catalog_key=f'life:cure-talent:{key}-cure')
+    result = resolve_base_power(plan('life:restore', restore_mode=mode, contributions=[contribution]))
+    changes = {change['condition']: change for change in result['restore_changes']}
+    assert all(changes[name]['operation'] == 'remove' for name in conditions)
+    assert all(changes[name]['replacement'] is None for name in conditions)
+    contribution['alternative'] = True
+    alternative = resolve_base_power(plan('life:restore', restore_mode=mode, contributions=[contribution]))
+    assert alternative['restore_changes'] != result['restore_changes']
+
+
+def test_upgraded_restore_preserves_ongoing_suppression_and_mode_boundaries():
+    from app.marvelous_base_powers import restore_condition_changes
+    assert restore_condition_changes('body', ['Exhausted'], ongoing=['Exhausted'], restore_health=True) == [
+        dict(condition='Exhausted', operation='suppress', replacement=None)]
+    assert restore_condition_changes('body', ['Confused'], restore_senses=True) == []
+    assert restore_condition_changes('mind', ['Exhausted'], restore_health=True) == []
+    with pytest.raises(ValueError, match='boolean'):
+        restore_condition_changes('body', [], restore_health=1)
+
+
 def test_range_duration_ladders_and_exclusions():
     p = plan('protection:aegis'); p.update(range_steps=2, duration_steps=2)
     result = resolve_base_power(p)
