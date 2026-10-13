@@ -2226,6 +2226,13 @@ class CharacterRepository:
                     self._connection.execute('UPDATE hit_points SET temporary=MAX(temporary, ?) WHERE character_id=?',
                                              (granted, character_id))
                 self._touch_character(character_id)
+            if (plan.get('base_power') == 'destruction:blast' and not plan.get('contributions')
+                    and not plan.get('unique_changes', 0)):
+                import random
+                dice = [random.randint(1, 6) for _ in range(plan['caster_level'] // 2)]
+                effect['damage_rolls'] = dice
+                effect['damage_rolled'] = sum(dice)
+                effect['damage_application'] = 'Apply bludgeoning damage to the target after resolving defenses.'
             if remaining is not None:
                 if effect_index == 0:
                     metadata['marvelous_uses_used'] = metadata.get('marvelous_uses_used', 0) + 1

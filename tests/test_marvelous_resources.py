@@ -39,6 +39,19 @@ def test_atomic_activation_and_zero_floor(crafter):
     assert repo._connection.total_changes == before
 
 
+def test_base_destructive_item_rolls_damage_and_spends_once(crafter, monkeypatch):
+    repo, cid = crafter
+    plan = dict(schema_version=1, sphere='Destruction', base_power='destruction:blast',
+                caster_level=5, activation='standard', uses=1, range_steps=0,
+                duration_steps=0, unique_changes=0, contributions=[])
+    iid = CraftingService(repo, cid).save_marvelous_design(plan, name='Blast', slot='', description='')
+    monkeypatch.setattr('random.randint', lambda low, high: 4)
+    effect = repo.consume_marvelous_item_use(cid, iid)
+    assert effect['damage_rolls'] == [4, 4] and effect['damage_rolled'] == 8
+    assert repo.get_hit_points(cid).current == 10
+    assert marvelous_remaining_uses(metadata(repo, cid, iid)) == 0
+
+
 def test_full_rest_daily_only_and_unlimited(crafter):
     repo, cid = crafter
     daily, limited, unlimited = [item(repo, cid, uses) for uses in (2, 50, 5)]
