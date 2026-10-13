@@ -134,6 +134,28 @@ def test_mythic_crafter_advanced_default_uses_existing_feature_access(composer):
     mythic.close()
 
 
+def test_feat_editor_is_draft_only_and_preserves_live_pricing(composer):
+    from app.ui.marvelous_crafting import MarvelousFeatDialog
+    dialog, repo, cid = composer
+    before = repo._connection.total_changes
+    editor = MarvelousFeatDialog(['Maximize Spell'], [])
+    assert editor.table.rowCount() == 0
+    editor.feat.setCurrentIndex(1); editor.add_selected(); editor.add_selected()
+    assert editor.table.rowCount() == 1
+    editor.table.cellWidget(0, 1).setChecked(True)
+    editor.table.cellWidget(0, 2).setValue(3)
+    records = editor.records(); editor.confirm()
+    dialog.cl.setValue(5); price = dialog.quotation()[1].market_price_gp
+    dialog.feat_integrations = records; dialog.update_preview()
+    assert dialog.quotation()[1].market_price_gp == price + 8000
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.feat_integrations == records
+    cancelled = MarvelousFeatDialog(['Maximize Spell'], records)
+    cancelled.table.cellWidget(0, 2).setValue(4); cancelled.reject()
+    assert dialog.feat_integrations == records and repo._connection.total_changes == before
+    editor.close(); cancelled.close()
+
+
 def test_recipient_ui_disables_personal_effect_and_cancel_spends_nothing(composer, monkeypatch):
     from dataclasses import replace
     from PySide6.QtWidgets import QMessageBox

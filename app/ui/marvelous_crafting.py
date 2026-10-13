@@ -98,6 +98,8 @@ class MarvelousCraftingDialog(QDialog):
         root.addWidget(self.review)
         self.result = QLabel(); root.addWidget(self.result)
         buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Cancel)
+        self.feats_button = buttons.addButton('Integrate feats…', QDialogButtonBox.ButtonRole.ActionRole)
+        self.feats_button.clicked.connect(self.edit_feat_integrations)
         self.save = buttons.addButton('Add designed item to inventory', QDialogButtonBox.ButtonRole.AcceptRole)
         root.addWidget(buttons)
         buttons.rejected.connect(self.reject); self.save.clicked.connect(self.save_item)
@@ -271,6 +273,12 @@ class MarvelousCraftingDialog(QDialog):
         choice.currentIndexChanged.connect(self.update_preview); self.table.setCellWidget(row, 5, choice)
         self.update_preview()
 
+    def edit_feat_integrations(self):
+        available = [self.service.integration_feats[name] for name in sorted(self.service.integration_feats)]
+        dialog = MarvelousFeatDialog(available, self.feat_integrations, self)
+        if dialog.exec() == QDialog.DialogCode.Accepted:
+            self.feat_integrations = dialog.records(); self.update_preview()
+
     def add_required_contributions(self):
         from app.marvelous_item_rules import missing_construction_prerequisites
         keys = missing_construction_prerequisites(self.blueprint()['contributions'])
@@ -316,6 +324,7 @@ class MarvelousCraftingDialog(QDialog):
         return quote_marvelous_blueprint(self.blueprint())
 
     def update_preview(self, *_):
+        self.feats_button.setText(f'Integrate feats… ({len(self.feat_integrations)})')
         from app.marvelous_item_rules import missing_construction_prerequisites
         self.add_prerequisites.setEnabled(bool(missing_construction_prerequisites(self.blueprint()['contributions'])))
         try:
@@ -358,6 +367,58 @@ class MarvelousCraftingDialog(QDialog):
         except ValueError as error:
             QMessageBox.warning(self, 'Cannot save design', str(error))
             return
+        self.accept()
+
+
+class MarvelousFeatDialog(QDialog):
+    """Draft-only choices; shared rules price and validate the integrations."""
+    def __init__(self, available, records, parent=None):
+        super().__init__(parent)
+        self.setWindowTitle('Integrated feats'); self.resize(760, 420)
+        root = QVBoxLayout(self)
+        notice = QLabel('Base contribution is +1 per feat. Metamagic adds its additional SP cost. Review effect compatibility and minimum CL/MSB; unsupported effects remain manual.')
+        notice.setWordWrap(True); root.addWidget(notice)
+        picker = QHBoxLayout(); root.addLayout(picker)
+        self.feat = QComboBox(); self.feat.addItem('Choose a possessed feat…', '')
+        for name in available: self.feat.addItem(name, name)
+        picker.addWidget(self.feat, 1)
+        add = QPushButton('Add feat'); picker.addWidget(add); add.clicked.connect(self.add_selected)
+        self.table = QTableWidget(0, 3); self.table.setHorizontalHeaderLabels(['Feat', 'Metamagic', 'Additional SP'])
+        self.table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
+        root.addWidget(self.table, 1)
+        remove = QPushButton('Remove selected feat'); root.addWidget(remove)
+        remove.clicked.connect(lambda: self.table.removeRow(self.table.currentRow()) if self.table.currentRow() >= 0 else None)
+        for record in records: self.add_record(record)
+        buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
+        buttons.accepted.connect(self.confirm); buttons.rejected.connect(self.reject); root.addWidget(buttons)
+
+    def add_record(self, record):
+        from PySide6.QtCore import Qt
+        if any(self.table.item(row, 0).text().casefold() == record['name'].casefold() for row in range(self.table.rowCount())): return
+        row = self.table.rowCount(); self.table.insertRow(row)
+        name = QTableWidgetItem(record['name']); name.setData(Qt.ItemDataRole.UserRole, dict(record))
+        name.setFlags(name.flags() & ~Qt.ItemFlag.ItemIsEditable); self.table.setItem(row, 0, name)
+        metamagic = QCheckBox(); metamagic.setChecked(record.get('metamagic', False)); self.table.setCellWidget(row, 1, metamagic)
+        points = QSpinBox(); points.setRange(0, 100); points.setValue(record.get('additional_spell_points', 0))
+        points.setEnabled(metamagic.isChecked()); self.table.setCellWidget(row, 2, points)
+        metamagic.toggled.connect(points.setEnabled)
+        metamagic.toggled.connect(lambda enabled: points.setValue(0) if not enabled else None)
+
+    def add_selected(self):
+        if self.feat.currentData(): self.add_record({'name': self.feat.currentData()})
+
+    def records(self):
+        from PySide6.QtCore import Qt
+        return [{**self.table.item(row, 0).data(Qt.ItemDataRole.UserRole),
+                 'metamagic':self.table.cellWidget(row, 1).isChecked(),
+                 'additional_spell_points':self.table.cellWidget(row, 2).value()}
+                for row in range(self.table.rowCount())]
+
+    def confirm(self):
+        from app.marvelous_item_rules import feat_integration_complexity
+        try: feat_integration_complexity(self.records())
+        except ValueError as error:
+            QMessageBox.warning(self, 'Cannot integrate feats', str(error)); return
         self.accept()
 
 

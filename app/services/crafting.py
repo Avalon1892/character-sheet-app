@@ -41,6 +41,14 @@ class CraftingService:
         from app.catalogs import DEFAULT_CATALOG
         return {entry['key']: entry for entry in DEFAULT_CATALOG.magic_entries()}
 
+    @cached_property
+    def integration_feats(self):
+        from app.catalogs import DEFAULT_CATALOG
+        names = {feat.name.casefold(): feat.name for feat in self.repository.list_feats(self.character_id) if feat.enabled}
+        for entry in DEFAULT_CATALOG.feat_entries():
+            if entry['name'].casefold() in self.feats: names.setdefault(entry['name'].casefold(), entry['name'])
+        return names
+
     def marvelous_requirements(self, **construction_access):
         """Check a composer plan using saved feats and explicit permanent access.
 
@@ -88,7 +96,7 @@ class CraftingService:
                 raise ValueError('All item effects must have the same caster level.')
             spheres.append(power['sphere'])
             for feat in power.get('feat_integrations', []):
-                if feat['name'].casefold() not in self.feats:
+                if feat['name'].casefold() not in self.integration_feats:
                     construction_blockers.append(f'Integrated feat must be possessed: {feat["name"]}.')
             construction_blockers.extend(advanced_construction_blockers(power['contributions'], power['caster_level'],
                 display_names={key: entry['name'] for key, entry in self.magic_entries_by_key.items()}))
