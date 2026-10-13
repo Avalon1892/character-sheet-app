@@ -16,6 +16,7 @@ class MarvelousCraftingDialog(QDialog):
         super().__init__(parent)
         self.repository, self.character_id = repository, character_id
         self.service = CraftingService(repository, character_id)
+        self.crafting_access = self.service.permanent_marvelous_access()
         self.item_id = None
         self.setWindowTitle('Design a Marvelous Item')
         self.resize(1280, 820)
@@ -134,11 +135,16 @@ class MarvelousCraftingDialog(QDialog):
         try:
             complexity, price, quote = self.quotation()
             effect = resolve_base_power(self.blueprint())
+            requirements = self.service.marvelous_plan_requirements(self.blueprint(), access=self.crafting_access)
             self.result.setText(f'Market price {float(price.market_price_gp):,.2f} gp · Materials {float(quote.cost_gp):,.2f} gp · Craft DC {quote.dc} · {quote.days} days · Save DC {price.save_dc}')
             self.preview.setHtml(f'<h2>{escape(self.name.text())}</h2><p>{escape(self.sphere.currentText())} · Complexity {complexity}</p>'
                 f'<p>{escape(self.description.toPlainText())}</p><h3>Calculated base effect</h3>'
                 + ''.join(f'<p><b>{escape(key.replace("_", " ").title())}:</b> {escape(str(value))}</p>' for key, value in effect.items())
                 + '<h3>Construction review</h3>'
+                + '<p><b>Automatic baseline check:</b> '
+                + escape('; '.join(requirements.blockers + requirements.bypassed) or 'Baseline class/sphere/talent access is present.')
+                + f'</p><p>Eligible bypasses add +{requirements.dc_increase} to crafting DC. '
+                + 'Additional permanent bonuses, cooperating providers, tradition restrictions and advanced-talent prerequisites require review. Saving a design does not complete crafting.</p>'
                 '<p>Contribution defaults are general talent costs, not verified sphere-specific costs. Include additional spell-point costs and exceptions. Range/duration changes must fit the published base power.</p>'
                 '<p>Effect activation is not automated yet. This saves a mechanical blueprint and inventory item; it does not spend gold or advance crafting time.</p>')
             feats = self.service.feats

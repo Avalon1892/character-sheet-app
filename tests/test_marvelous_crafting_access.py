@@ -1,0 +1,53 @@
+from dataclasses import replace
+import pytest
+from app.database import CharacterRepository
+from app.services.crafting import CraftingService
+from app.catalogs import DEFAULT_CATALOG
+
+
+@pytest.fixture
+def crafter(tmp_path):
+    repo = CharacterRepository(tmp_path / 'crafter.db')
+    cid = repo.create_character('Crafter', 'Spheres')
+    repo.add_class_level(cid, 'Prodigy', 8, '3/4', 'Poor', 'Good', 'Good', preset_key='prodigy')
+    repo.add_feat(cid, 'Craft Marvelous Item')
+    repo.add_spell(cid, 'Life Sphere', system='Sphere', school_or_sphere='Life',
+                   catalog_key='life:base', catalog_category='Base Sphere')
+    yield repo, cid
+    repo.close()
+
+
+def test_class_progression_excludes_saved_live_level_boost(crafter):
+    repo, cid = crafter
+    repo.update_casting_profile(replace(repo.get_casting_profile(cid), caster_level=30))
+    access = CraftingService(repo, cid).permanent_marvelous_access()
+    assert access['sphere_levels'] == {'Life': 6}
+
+
+def test_talent_does_not_silently_supply_a_missing_base_sphere(crafter):
+    repo, cid = crafter
+    repo.add_spell(cid, 'Haste', system='Sphere', school_or_sphere='Time', catalog_category='Talent')
+    access = CraftingService(repo, cid).permanent_marvelous_access()
+    assert 'Time' not in access['sphere_levels']
+    assert 'Haste' in access['available_talents']
+
+
+def test_owned_catalog_identity_survives_display_name_override(crafter):
+    repo, cid = crafter
+    entry = next(e for e in DEFAULT_CATALOG.magic_entries('Life') if e['category'] == 'Talent')
+    repo.add_spell(cid, 'My renamed talent', system='Sphere', school_or_sphere='Life',
+                   catalog_key=entry['key'], catalog_category=entry['category'])
+    service = CraftingService(repo, cid)
+    plan = dict(sphere='Life', base_power='life:cure', caster_level=5, range_steps=0,
+                duration_steps=0, contributions=[dict(catalog_key=entry['key'], complexity=1)])
+    result = service.marvelous_plan_requirements(plan)
+    assert result.eligible and not result.bypassed
+
+
+def test_foreign_catalog_contribution_is_rejected(crafter):
+    repo, cid = crafter
+    entry = next(e for e in DEFAULT_CATALOG.magic_entries('Destruction') if e['category'] == 'Talent')
+    plan = dict(sphere='Life', base_power='life:cure', caster_level=5, range_steps=0,
+                duration_steps=0, contributions=[dict(catalog_key=entry['key'], complexity=1)])
+    with pytest.raises(ValueError, match='base sphere'):
+        CraftingService(repo, cid).marvelous_plan_requirements(plan)

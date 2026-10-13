@@ -1,5 +1,6 @@
 """Character-aware, read-only prerequisite checks for crafting planners."""
 from dataclasses import dataclass
+from functools import cached_property
 from app.class_feature_context import resolved_class_features_for_level
 from app.crafting_catalog import creation_feats
 from app.crafting_rules import magical_base_price
@@ -35,6 +36,11 @@ class CraftingService:
         return tuple(sorted(f for f in creation_feats() if f.casefold() in self.feats
                             or (f == 'Craft Marvelous Item' and 'craft wondrous item' in self.feats)))
 
+    @cached_property
+    def magic_entries_by_key(self):
+        from app.catalogs import DEFAULT_CATALOG
+        return {entry['key']: entry for entry in DEFAULT_CATALOG.magic_entries()}
+
     def marvelous_requirements(self, **construction_access):
         """Check a composer plan using saved feats and explicit permanent access.
 
@@ -43,6 +49,48 @@ class CraftingService:
         """
         from app.marvelous_item_rules import marvelous_requirements
         return marvelous_requirements(feats=self.feats, **construction_access)
+
+    def permanent_marvelous_access(self):
+        """Collect baseline crafting access without live/temporary modifiers.
+
+        Class progression is archetype/choice-aware. Additional permanent bonuses
+        and cooperative sources remain explicit construction inputs; do not guess
+        permanence from a live modifier's positive value.
+        """
+        from app.content import entries, archetype_entry
+        from app.archetype_rules import archetype_choice_selections_from_records
+        from app.rules import automatic_sphere_casting
+        classes = self.repository.list_class_levels(self.character_id)
+        keys = self.repository.list_class_archetype_keys(self.character_id)
+        archetypes = {key: entry for group in keys.values() for key in group
+                      if (entry := archetype_entry(key)) is not None}
+        selections = self.repository.list_class_feature_selections(self.character_id)
+        casting = automatic_sphere_casting(classes, {entry['key']: entry for entry in entries('classes')},
+            keys, archetypes, {row.id: archetype_choice_selections_from_records(selections, row.id) for row in classes})
+        level = casting[1] if casting is not None else 0
+        spells = [spell for spell in self.repository.list_spells(self.character_id)
+                  if spell.enabled and spell.system.casefold() in {'sphere', 'spheres'}]
+        spheres = {spell.school_or_sphere for spell in spells
+                   if spell.catalog_category.casefold() == 'base sphere' or spell.catalog_key.endswith(':base')}
+        talents = tuple((entry['name'] if (entry := self.magic_entries_by_key.get(spell.catalog_key)) else spell.name)
+                        for spell in spells)
+        return dict(sphere_levels={sphere: level for sphere in spheres},
+                    available_talents=talents)
+
+    def marvelous_plan_requirements(self, plan, *, access=None):
+        """Resolve selected catalog identities and feed the shared eligibility check."""
+        from app.marvelous_base_powers import resolve_base_power
+        resolve_base_power(plan)
+        required, advanced = [], []
+        for contribution in plan['contributions']:
+            entry = self.magic_entries_by_key.get(contribution['catalog_key'])
+            if entry is None or str(entry.get('sphere', '')).casefold() != plan['sphere'].casefold():
+                raise ValueError('Selected talent is not part of the blueprint base sphere.')
+            required.append(entry['name'])
+            if 'advanced' in str(entry.get('category', '')).casefold(): advanced.append(entry['name'])
+        return self.marvelous_requirements(caster_level=plan['caster_level'],
+            required_spheres=(plan['sphere'],), required_talents=required,
+            advanced_talents=advanced, **(access if access is not None else self.permanent_marvelous_access()))
 
     def save_marvelous_design(self, plan, *, name, slot, description):
         """Save a reviewed blueprint without claiming completion of a craft project.
