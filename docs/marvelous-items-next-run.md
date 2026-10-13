@@ -28,6 +28,8 @@ Status: pricing, prerequisite checks, catalog import and initial custom composer
 
 ### Latest checkpoint
 
+- Full isolated intermediate run completed: **2,166 passed, 3 failed, 0 errors, 0 skipped**, 149 modules, 676.51 seconds (`artifacts/marvelous-validation/summary.json`). All Marvelous modules passed. Failures match the previously recorded baseline: archetype count 1830 versus 1887, custom tracker canvas parent assertion, obsolete tradition placement with secondary Windows SQLite cleanup failure. Changes occurred during the run, so this is not an immutable-final-HEAD certification; the affected editor/resource modules were also tested separately after their changes. A final fixed-HEAD isolated run is still required before declaring full completion.
+
 - Shared pure `automatic_self_effect` eligibility now drives both repository validation and the activation UI. Composer previews accurately identify automated cure/temporary HP versus manual effects, rather than incorrectly saying all activation is unavailable. Activation/editor tests: **14 passed in 10.14 seconds**; editor notice regression run: **7 passed in 5.90 seconds**.
 - Intermediate isolated suite confirmed the existing class-audit failure is the unchanged expected archetype count (1830) versus current catalog count (1887), not a crafting failure. Continue polling session 93283 until terminal and inspect the final summary; do not restart merely because a poll has no output.
 
