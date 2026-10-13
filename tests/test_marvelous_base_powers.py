@@ -32,6 +32,16 @@ def test_effect_range_is_separate_from_target_range(key, field):
     with pytest.raises(ValueError): resolve_base_power(plan(key, effect_range_steps=3))
 
 
+def test_restore_transitions_preserve_downgrades_and_ongoing_sources():
+    from app.marvelous_base_powers import restore_condition_changes
+    result = restore_condition_changes('body', ['Exhausted', 'Sickened', 'Battered'], ongoing=['Sickened'])
+    assert result == [dict(condition='Exhausted', operation='replace', replacement='Fatigued'),
+                      dict(condition='Sickened', operation='suppress', replacement=None),
+                      dict(condition='Battered', operation='remove', replacement=None)]
+    assert restore_condition_changes('mind', ['Panicked', 'Panicked'])[0]['replacement'] == 'Frightened'
+    with pytest.raises(ValueError): restore_condition_changes('soul', [])
+
+
 def test_range_duration_ladders_and_exclusions():
     p = plan('protection:aegis'); p.update(range_steps=2, duration_steps=2)
     result = resolve_base_power(p)

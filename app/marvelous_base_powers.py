@@ -72,6 +72,24 @@ def automatic_self_effect(plan):
     return {'life:cure': 'cure', 'life:temporary-hp': 'temporary_hp', 'protection:aegis': 'aegis'}.get(plan.get('base_power'))
 
 
+def restore_condition_changes(mode, conditions, *, ongoing=()):
+    """Reviewable Ultimate Restore transitions; ongoing sources need suppression.
+
+    Results describe changes without altering persistence or losing provenance.
+    Snapshot each starting condition once, so downgraded fear is not also removed.
+    """
+    transitions = {
+        'mind': {'Dazzled': None, 'Shaken': None, 'Frightened': 'Shaken', 'Panicked': 'Frightened', 'Staggered': None},
+        'body': {'Battered': None, 'Fatigued': None, 'Exhausted': 'Fatigued', 'Sickened': None, 'Nauseated': 'Sickened'},
+    }
+    if mode not in transitions: raise ValueError('Condition restoration requires mind or body.')
+    ongoing = set(ongoing)
+    return [{'condition': name, 'operation': 'suppress' if name in ongoing else 'replace' if replacement else 'remove',
+             'replacement': None if name in ongoing else replacement}
+            for name in dict.fromkeys(conditions) if name in transitions[mode]
+            for replacement in (transitions[mode][name],)]
+
+
 def aegis_modifiers(plan):
     """Supported replacement aegises; never combine unknown talents implicitly."""
     contributions = plan.get('contributions', [])
