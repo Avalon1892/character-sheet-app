@@ -2201,7 +2201,7 @@ class CharacterRepository:
             plan = metadata.get('marvelous_blueprint')
             if not plan:
                 from app.named_marvelous_items import named_marvelous_effect, named_marvelous_remaining
-                effect = named_marvelous_effect(row['catalog_key'])
+                effect = named_marvelous_effect(row['catalog_key'], metadata)
                 if effect is not None:
                     if apply_to_self or effect_index != 0:
                         raise ValueError('Use this named offensive effect with manual target resolution.')
@@ -2291,6 +2291,19 @@ class CharacterRepository:
                     (json.dumps(metadata), character_id, item_id))
                 self._touch_character(character_id)
         return effect
+
+    def record_marvelous_flask_shards(self, character_id, item_id, count):
+        """Record reviewed, already-applied upgrades; never imply shard consumption."""
+        from app.named_marvelous_items import named_marvelous_effect
+        with self._connection:
+            row = self._connection.execute('SELECT catalog_key,quantity,automation_json FROM equipment WHERE character_id=? AND id=?', (character_id,item_id)).fetchone()
+            if row is None or row['quantity'] != 1 or row['catalog_key'] != 'spheres:marvelous-items:thunderbolt-ring':
+                raise ValueError('Select one owned Thunderbolt Ring.')
+            metadata = json.loads(row['automation_json'] or '{}')
+            metadata['marvelous_flask_shards'] = count
+            named_marvelous_effect(row['catalog_key'], metadata)
+            self._connection.execute('UPDATE equipment SET automation_json=? WHERE character_id=? AND id=?', (json.dumps(metadata),character_id,item_id))
+            self._touch_character(character_id)
 
     def reset_marvelous_daily_uses(self, character_id: int) -> int:
         """Restore daily uses only, never fifty-total-use item charges."""

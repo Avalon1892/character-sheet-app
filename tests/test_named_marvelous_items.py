@@ -22,13 +22,19 @@ def test_named_ring_uses_published_roll_and_atomic_daily_spending(tmp_path, monk
     assert repo.consume_marvelous_item_use(cid, iid)['damage_rolled'] == 12
     copy = named_marvelous_effect(key); copy['daily_uses'] = 99
     assert named_marvelous_effect(key)['daily_uses'] == 1
+    repo.record_marvelous_flask_shards(cid, iid, 4)
+    upgraded = named_marvelous_effect(key, json.loads(repo.list_equipment(cid)[0].automation_json))
+    assert upgraded['daily_uses'] == 5 and upgraded['damage_dice'] == 20 and upgraded['save_dc'] == 20
+    for _ in range(4): repo.consume_marvelous_item_use(cid, iid)
+    with pytest.raises(ValueError, match='No item uses'): repo.consume_marvelous_item_use(cid, iid)
+    assert repo.reset_marvelous_daily_uses(cid) == 5
     repo.close()
 
 
 def test_named_ring_in_activation_window_without_custom_design_controls(tmp_path, monkeypatch):
     import os
     os.environ.setdefault('QT_QPA_PLATFORM', 'offscreen')
-    from PySide6.QtWidgets import QApplication, QMessageBox
+    from PySide6.QtWidgets import QApplication, QMessageBox, QInputDialog
     from app.ui.marvelous_crafting import MarvelousItemUseDialog
     app = QApplication.instance() or QApplication([])
     repo = CharacterRepository(tmp_path / 'named-ui.db')
@@ -45,4 +51,9 @@ def test_named_ring_in_activation_window_without_custom_design_controls(tmp_path
     dialog.table.cellWidget(0, 3).click()
     assert dialog.changed and 'damage rolled: 8' in dialog.result.text()
     assert not dialog.table.cellWidget(0, 3).isEnabled()
+    dialog.table.selectRow(0)
+    assert dialog.shards.isEnabled()
+    monkeypatch.setattr(QInputDialog, 'getInt', lambda *args: (4, True))
+    dialog.record_shards()
+    assert dialog.table.item(0, 1).text() == '4' and dialog.table.cellWidget(0, 3).isEnabled()
     dialog.close(); repo.close()

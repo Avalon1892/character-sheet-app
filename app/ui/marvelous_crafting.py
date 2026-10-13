@@ -378,6 +378,8 @@ class MarvelousItemUseDialog(QDialog):
         root.addWidget(self.table, 1)
         self.construction = QPushButton('Construction project'); self.construction.setEnabled(False)
         root.addWidget(self.construction)
+        self.shards = QPushButton('Record applied Flask Shards'); self.shards.setEnabled(False)
+        root.addWidget(self.shards); self.shards.clicked.connect(self.record_shards)
         self.table.itemSelectionChanged.connect(self.update_construction_selection)
         self.construction.clicked.connect(self.open_construction)
         self.result = QLabel('Supported effects can affect the selected saved character. Confirm range and eligibility; durations and unsupported effects remain manual.')
@@ -390,6 +392,26 @@ class MarvelousItemUseDialog(QDialog):
         from PySide6.QtCore import Qt
         item = self.table.item(self.table.currentRow(), 0)
         self.construction.setEnabled(bool(item and item.data(Qt.ItemDataRole.UserRole + 1)))
+        self.shards.setEnabled(bool(item and item.data(Qt.ItemDataRole.UserRole + 2)))
+
+    def record_shards(self):
+        from PySide6.QtCore import Qt
+        from PySide6.QtWidgets import QInputDialog
+        from app.named_marvelous_items import named_marvelous_effect
+        selected = self.table.item(self.table.currentRow(), 0)
+        if not selected or not selected.data(Qt.ItemDataRole.UserRole + 2): return
+        item = next(i for i in self.repository.list_equipment(self.character_id) if i.id == selected.data(Qt.ItemDataRole.UserRole))
+        metadata = json.loads(item.automation_json or '{}')
+        count, accepted = QInputDialog.getInt(self, 'Record applied Flask Shards',
+            'Number already applied (recording does not consume inventory shards):', metadata.get('marvelous_flask_shards', 0), 0, 4)
+        if not accepted: return
+        proposed = named_marvelous_effect(item.catalog_key, {**metadata, 'marvelous_flask_shards': count})
+        if QMessageBox.question(self, 'Confirm recorded upgrades',
+            f'{item.name}: CL {proposed["caster_level"]}, {proposed["damage"]}, DC {proposed["save_dc"]}, {proposed["daily_uses"]}/day. Preserve spent uses and record this configuration? Verify the shards were applied in order; inventory is unchanged.') != QMessageBox.StandardButton.Yes: return
+        try: self.repository.record_marvelous_flask_shards(self.character_id, item.id, count)
+        except ValueError as error:
+            QMessageBox.warning(self, 'Cannot record upgrades', str(error)); return
+        self.changed = True; self.refresh()
 
     def open_construction(self):
         from PySide6.QtCore import Qt
@@ -413,7 +435,7 @@ class MarvelousItemUseDialog(QDialog):
                                for index, power in enumerate([plan, *plan.get('extra_effects', [])])]
                 else:
                     from app.named_marvelous_items import named_marvelous_effect, named_marvelous_remaining
-                    effect = named_marvelous_effect(item.catalog_key)
+                    effect = named_marvelous_effect(item.catalog_key, metadata)
                     if effect is None: continue
                     plan = {}
                     effects = [(0, {}, named_marvelous_remaining(item.catalog_key, metadata), effect)]
@@ -426,6 +448,7 @@ class MarvelousItemUseDialog(QDialog):
                 from PySide6.QtCore import Qt
                 name.setData(Qt.ItemDataRole.UserRole, item.id)
                 name.setData(Qt.ItemDataRole.UserRole + 1, custom)
+                name.setData(Qt.ItemDataRole.UserRole + 2, not custom and item.catalog_key == 'spheres:marvelous-items:thunderbolt-ring')
                 name.setToolTip('Double-click to edit this custom design.' if custom else 'Published catalog item; custom design controls do not apply.')
                 self.table.setItem(row, 0, name)
                 self.table.setItem(row, 1, QTableWidgetItem('Unlimited' if remaining is None else str(remaining)))
