@@ -2,6 +2,7 @@ import pytest
 from fractions import Fraction
 
 from app.marvelous_item_rules import effect_complexity, marvelous_crafting_quote, marvelous_item_price
+from app.marvelous_item_rules import marvelous_requirements
 
 
 def test_base_and_use_modes():
@@ -54,3 +55,47 @@ def test_spheres_crafting_dc_materials_and_work_conditions():
 def test_invalid_effect_contributions(kwargs):
     with pytest.raises(ValueError):
         effect_complexity(**kwargs)
+
+
+def test_missing_ordinary_talent_is_bypassable_but_advanced_is_not():
+    result = marvelous_requirements(caster_level=5, sphere_levels={"Life": 5},
+        feats=("Craft Marvelous Item",), required_spheres=("Life",),
+        required_talents=("Restore", "Resurrection"), advanced_talents=("Resurrection",))
+    assert not result.eligible
+    assert result.dc_increase == 5
+    assert result.bypassed == ("Missing talent: Restore",)
+    assert result.blockers == ("Missing talent: Resurrection",)
+
+
+def test_versatile_crafter_waives_sphere_and_level_not_protected_features():
+    result = marvelous_requirements(caster_level=3, sphere_levels={},
+        feats=("Craft Wondrous Item", "Versatile Crafter"), required_spheres=("Life",),
+        protected_requirements=("Mythic Crafter",), prohibited_abilities=("Healing",))
+    assert result.dc_increase == 20
+    assert len(result.blockers) == 2
+    assert len(result.bypassed) == 2
+
+
+def test_cooperative_access_and_case_insensitive_identity():
+    result = marvelous_requirements(caster_level=3, sphere_levels={"life": 3},
+        feats=("CRAFT MARVELOUS ITEM",), required_spheres=("Life",),
+        required_talents=("Resurrection",), available_talents=("resurrection",),
+        advanced_talents=("Resurrection",))
+    assert result.eligible and not result.bypassed and result.dc_increase == 0
+
+
+def test_missing_creation_feat_cannot_be_waived():
+    result = marvelous_requirements(caster_level=1, sphere_levels={"Life": 1},
+        feats=("Versatile Crafter",), required_spheres=("Life",))
+    assert not result.eligible
+    with pytest.raises(ValueError, match="not met"):
+        marvelous_crafting_quote(marvelous_item_price(1, 1), 1, requirements=result)
+
+
+def test_validated_versatile_dc_flows_into_quote_once():
+    result = marvelous_requirements(caster_level=3, sphere_levels={"Life": 1},
+        feats=("Craft Marvelous Item", "Versatile Crafter"), required_spheres=("Life", "life"))
+    quote = marvelous_crafting_quote(marvelous_item_price(3, 1), 3, requirements=result)
+    assert quote.dc == 23
+    with pytest.raises(ValueError, match="second"):
+        marvelous_crafting_quote(marvelous_item_price(3, 1), 3, requirements=result, missing_talents=1)

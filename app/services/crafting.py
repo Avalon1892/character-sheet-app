@@ -34,6 +34,15 @@ class CraftingService:
     def available_feats(self):
         return tuple(sorted(f for f in creation_feats() if f.casefold() in self.feats))
 
+    def marvelous_requirements(self, **construction_access):
+        """Check a composer plan using saved feats and explicit permanent access.
+
+        Do not substitute live casting statistics: those include temporary
+        Sequence, implement and other bonuses ineligible for construction.
+        """
+        from app.marvelous_item_rules import marvelous_requirements
+        return marvelous_requirements(feats=self.feats, **construction_access)
+
     def spell_crafting_levels(self, recipe):
         """Standard progression providers only; unusual profiles remain reviewable."""
         from app.prepared_spell_rules import HIGH_PREPARED, MED_PREPARED, LOW_PREPARED

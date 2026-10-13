@@ -18,6 +18,73 @@ class MarvelousItemPrice:
     total_uses: int | None
 
 
+@dataclass(frozen=True)
+class MarvelousRequirements:
+    blockers: tuple[str, ...]
+    bypassed: tuple[str, ...]
+    dc_increase: int
+
+    @property
+    def eligible(self):
+        return not self.blockers
+
+
+def marvelous_requirements(*, caster_level, sphere_levels, feats, required_spheres,
+                            required_talents=(), available_talents=(),
+                            advanced_talents=(), protected_requirements=(),
+                            available_requirements=(), prohibited_abilities=()):
+    """Evaluate explicitly supplied crafting access, independently of Qt.
+
+    Sphere levels must exclude temporary bonuses. Cooperative sources must be
+    available for the entire construction period. Advanced talents and protected
+    class requirements are never waived. Versatile Crafter can waive base spheres
+    and each missing caster level, but not a tradition's prohibited abilities.
+    """
+    if isinstance(caster_level, bool) or not isinstance(caster_level, int) or caster_level < 1:
+        raise ValueError("Item caster level must be a positive integer.")
+    levels = {name.casefold(): value for name, value in sphere_levels.items()}
+    if any(isinstance(v, bool) or not isinstance(v, int) or v < 0 for v in levels.values()):
+        raise ValueError("Permanent sphere levels must be nonnegative integers.")
+    known_feats = {name.casefold() for name in feats}
+    known_talents = {name.casefold() for name in available_talents}
+    advanced = {name.casefold() for name in advanced_talents}
+    requirements = {name.casefold() for name in available_requirements}
+    versatile = "versatile crafter" in known_feats
+    blockers, bypassed = [], []
+    dc_increase = 0
+    if not known_feats.intersection({"craft marvelous item", "craft wondrous item"}):
+        blockers.append("Requires Craft Marvelous Item (or Craft Wondrous Item).")
+    spheres = {name.casefold(): name for name in required_spheres}
+    if not spheres or any(not name.strip() for name in spheres):
+        raise ValueError("At least one base sphere is required.")
+    for sphere in spheres.values():
+        level = levels.get(sphere.casefold(), 0)
+        if level == 0:
+            message = f"Missing base sphere: {sphere}"
+            (bypassed if versatile else blockers).append(message)
+            if versatile:
+                dc_increase += 5
+        deficit = max(0, caster_level - level)
+        if deficit:
+            message = f"{sphere}: permanent caster level {level}, requires {caster_level}"
+            (bypassed if versatile else blockers).append(message)
+            if versatile:
+                dc_increase += 5 * deficit
+    for talent in {name.casefold(): name for name in required_talents}.values():
+        if talent.casefold() in known_talents:
+            continue
+        message = f"Missing talent: {talent}"
+        if talent.casefold() in advanced:
+            blockers.append(message)
+        else:
+            bypassed.append(message)
+            dc_increase += 5
+    blockers.extend(f"Missing required feature: {name}" for name in protected_requirements
+                    if name.casefold() not in requirements)
+    blockers.extend(f"Casting tradition prohibits: {name}" for name in prohibited_abilities)
+    return MarvelousRequirements(tuple(blockers), tuple(bypassed), dc_increase)
+
+
 def marvelous_item_price(caster_level: int, complexity: int | Fraction, *, daily_uses: int = 1,
                          limited_uses: bool = False) -> MarvelousItemPrice:
     """Price the base effect, excluding optional traditions and costly components.
@@ -73,7 +140,7 @@ def effect_complexity(*, talent_costs=(), alternative_costs=(), range_steps=0,
 
 def marvelous_crafting_quote(price: MarvelousItemPrice, caster_level: int, *,
                               missing_talents=0, adventuring=False,
-                              distracting=False) -> CraftingQuote:
+                              distracting=False, requirements=None) -> CraftingQuote:
     """Spheres construction estimate; prerequisite eligibility is checked separately.
 
     Missing ordinary talents can raise the DC. Base spheres, advanced talents,
@@ -85,7 +152,13 @@ def marvelous_crafting_quote(price: MarvelousItemPrice, caster_level: int, *,
             raise ValueError("Crafting values must be nonnegative integers.")
     if caster_level < 1 or price.market_price_gp <= 0:
         raise ValueError("Caster level and price must be positive.")
+    if requirements is not None:
+        if missing_talents:
+            raise ValueError("Use the validated requirements, not a second missing-talent count.")
+        if not requirements.eligible:
+            raise ValueError("Construction requirements are not met: " + "; ".join(requirements.blockers))
+    dc_increase = requirements.dc_increase if requirements is not None else 5 * missing_talents
     days = max(1, ceil(price.market_price_gp / 1000))
     days *= 4 if adventuring else 2 if distracting else 1
-    return CraftingQuote(price.market_price_gp / 2, 10 + caster_level + 5 * missing_talents,
+    return CraftingQuote(price.market_price_gp / 2, 10 + caster_level + dc_increase,
                          days, "One item per day; materials paid at the start. Missing base spheres and advanced talents cannot be bypassed.")
