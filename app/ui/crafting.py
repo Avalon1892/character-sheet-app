@@ -181,7 +181,10 @@ class CraftingCatalogDialog(QDialog):
         extra = ''
         if self.feat:
             self.waive.setChecked(False)
-            self.waive.setEnabled(not any(f in self.current['feats'] for f in ('Brew Potion', 'Scribe Scroll', 'Craft Wand', 'Craft Staff')))
+            spheres = record.get('system') == 'spheres'
+            self.waive.setEnabled(not spheres and not any(f in self.current['feats'] for f in ('Brew Potion', 'Scribe Scroll', 'Craft Wand', 'Craft Staff')))
+            self.accelerated.setEnabled(not spheres)
+            if spheres: self.accelerated.setChecked(False)
             self.cost.setValue(record.get('creation_cost_gp') or 0); self.cl.setValue(record.get('caster_level') or 0)
             req = self.service.requirements(record)
             extra = '<h3>Construction requirements</h3><p>' + escape(record['requirements']) + '</p><p>' + escape(req.status) + '</p>'
@@ -190,7 +193,7 @@ class CraftingCatalogDialog(QDialog):
             if req.missing_spells: extra += '<p>Not listed on this character: ' + escape(', '.join(req.missing_spells)) + '. A collaborating caster or spell item may supply these.</p>'
             if req.review: extra += '<p>Confirm special conditions: ' + escape(req.review) + '</p>'
             if record.get('cost_text'): extra += '<p>Published construction cost: ' + escape(record['cost_text']) + '</p>'
-            extra += '<p>Magical base price is derived from the published market and construction costs. Published item CL is not automatically a creator-level prerequisite.</p>'
+            extra += ('<p>Spheres construction uses DC 10 + item CL. Permanent sphere caster level and all special requirements must be verified; temporary casting bonuses do not qualify.</p>' if spheres else '<p>Magical base price is derived from the published market and construction costs. Published item CL is not automatically a creator-level prerequisite.</p>')
             levels = self.service.spell_crafting_levels(record)
             if levels: extra += '<p>Supported class progression: ' + escape('; '.join(f'{name}: minimum item CL {minimum}, standard current CL {maximum}' for name,minimum,maximum in levels)) + '.</p>'
             if record.get('creation_cost_gp') is None: extra += '<p><b>Variable construction cost: enter the applicable cost before using this estimate.</b></p>'
@@ -216,6 +219,10 @@ class CraftingCatalogDialog(QDialog):
             requirements = self.service.requirements(self.current)
             missing = len(requirements.missing_spells) + len(requirements.missing_conditions) if self.waive.isChecked() and self.waive.isEnabled() else 0
             quote = magic_quote(self.price.value(), self.cost.value() + self.components.value(), self.cl.value(), missing=missing, accelerated=self.accelerated.isChecked(), consumable=self.feat in {'Brew Potion', 'Scribe Scroll'})
+            if self.current.get('system') == 'spheres':
+                from app.crafting_rules import CraftingQuote
+                quote = CraftingQuote(quote.cost_gp, 10 + self.cl.value(), quote.days,
+                                      'Spheres estimate only; sphere, talent and special prerequisites still require verification.')
             prefix = 'Standard estimate; prerequisites must be supplied. '
         else:
             quote = mundane_quote(self.price.value(), self.dc.value(), self.check.value(), masterwork_gp=self.masterwork.currentData(), faster=self.accelerated.isChecked())

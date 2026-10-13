@@ -32,7 +32,8 @@ class CraftingService:
         self.gold = purse.gold + purse.platinum * 10 + purse.silver / 10 + purse.copper / 100
 
     def available_feats(self):
-        return tuple(sorted(f for f in creation_feats() if f.casefold() in self.feats))
+        return tuple(sorted(f for f in creation_feats() if f.casefold() in self.feats
+                            or (f == 'Craft Marvelous Item' and 'craft wondrous item' in self.feats)))
 
     def marvelous_requirements(self, **construction_access):
         """Check a composer plan using saved feats and explicit permanent access.
@@ -87,7 +88,8 @@ class CraftingService:
         return result
 
     def requirements(self, recipe):
-        missing_feats = tuple(f for f in recipe['feats'] if f.casefold() not in self.feats)
+        missing_feats = tuple(f for f in recipe['feats'] if f.casefold() not in self.feats
+                              and not (f == 'Craft Marvelous Item' and 'craft wondrous item' in self.feats))
         alternatives = recipe.get('spell_any', [])
         alternative_names = {s.casefold() for group in alternatives for s in group}
         missing_spells = tuple(s for s in recipe['spells'] if s.casefold() not in self.spells and s.casefold() not in alternative_names)
