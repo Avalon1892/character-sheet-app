@@ -101,3 +101,23 @@ def test_preview_distinguishes_supported_and_manual_effects(composer):
     assert 'heal a living self' in dialog.preview.toPlainText()
     dialog.cl.setValue(5); dialog.unique.setValue(1)
     assert 'requires manual application' in dialog.preview.toPlainText()
+
+
+def test_additional_power_draft_does_not_write_and_parent_preserves_it(composer):
+    dialog, repo, cid = composer
+    before = repo._connection.total_changes
+    child = MarvelousCraftingDialog(repo, cid, draft_effect=True)
+    child.sphere.setCurrentText('Life')
+    child.base_power.setCurrentIndex(child.base_power.findData('life:cure'))
+    child.review.setChecked(True); child.save_item()
+    assert repo._connection.total_changes == before
+    plan = child.blueprint(); plan.pop('extra_effects'); plan.pop('combination_mode')
+    dialog.extra_effects.append(plan); dialog.refresh_extra_picker()
+    assert dialog.extra_picker.count() == 1
+    assert dialog.quotation()[1].market_price_gp == 1000
+    dialog.review.setChecked(True); dialog.save_item()
+    assert len(repo.list_equipment(cid)) == 1
+    edit = MarvelousCraftingDialog(repo, cid, item_id=dialog.item_id)
+    assert edit.extra_effects == [plan]
+    assert 'Cure' in edit.preview.toPlainText()
+    edit.close(); child.close()

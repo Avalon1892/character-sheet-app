@@ -12,7 +12,7 @@ from app.marvelous_base_powers import base_powers, resolve_base_power, automatic
 
 
 class MarvelousCraftingDialog(QDialog):
-    def __init__(self, repository, character_id, parent=None, *, item_id=None):
+    def __init__(self, repository, character_id, parent=None, *, item_id=None, draft_effect=False):
         super().__init__(parent)
         self.repository, self.character_id = repository, character_id
         self.service = CraftingService(repository, character_id)
@@ -20,6 +20,7 @@ class MarvelousCraftingDialog(QDialog):
         self.item_id = None
         self.extra_effects = []
         self.combination_mode = 'multiple'
+        self.draft_effect = draft_effect
         self.setWindowTitle('Design a Marvelous Item')
         self.resize(1280, 820)
         root = QVBoxLayout(self)
@@ -62,6 +63,14 @@ class MarvelousCraftingDialog(QDialog):
         remove = QPushButton('Remove selected contribution'); left.addWidget(remove)
         self.description = QTextEdit(); self.description.setPlaceholderText('Your item description and chosen base power…')
         left.addWidget(self.description, 1)
+        effect_controls = QHBoxLayout(); left.addLayout(effect_controls)
+        self.extra_picker = QComboBox(); effect_controls.addWidget(self.extra_picker, 1)
+        self.add_power = QPushButton('Add another power'); effect_controls.addWidget(self.add_power)
+        self.edit_power = QPushButton('Edit power'); effect_controls.addWidget(self.edit_power)
+        self.add_power.clicked.connect(lambda: self.edit_extra_effect())
+        self.edit_power.clicked.connect(lambda: self.edit_extra_effect(self.extra_picker.currentIndex()))
+        if draft_effect:
+            self.extra_picker.hide(); self.add_power.hide(); self.edit_power.hide()
         self.preview = QTextBrowser(); columns.addWidget(self.preview, 2)
         self.review = QCheckBox('Construction prerequisites and sphere-specific costs have been reviewed with the GM')
         root.addWidget(self.review)
@@ -79,6 +88,9 @@ class MarvelousCraftingDialog(QDialog):
         self.review.toggled.connect(self.update_preview)
         self.slotless.toggled.connect(self.update_preview); self.permanent.toggled.connect(self.update_preview)
         self.populate_talents()
+        self.refresh_extra_picker()
+        if draft_effect:
+            self.setWindowTitle('Design additional power'); self.save.setText('Use this power')
         if item_id is not None:
             self.load_design(item_id)
 
@@ -88,9 +100,16 @@ class MarvelousCraftingDialog(QDialog):
         metadata = json.loads(item.automation_json or '{}')
         if metadata.get('provider') != 'marvelous-composer': raise ValueError('Not a custom Marvelous design.')
         plan = metadata['marvelous_blueprint']
+        self.item_id = item_id
+        self.load_plan(plan)
+        self.name.setText(item.name); self.description.setPlainText(item.notes)
+        self.slot.setCurrentIndex(self.slot.findData(item.slot))
+        self.setWindowTitle('Edit Marvelous Item Design'); self.save.setText('Save design changes')
+
+    def load_plan(self, plan):
         self.extra_effects = plan.get('extra_effects', [])
         self.combination_mode = plan.get('combination_mode', 'multiple')
-        self.item_id = item_id
+        self.table.setRowCount(0)
         self.sphere.setCurrentText(plan['sphere'])
         self.base_power.setCurrentIndex(self.base_power.findData(plan['base_power']))
         self.cl.setValue(plan['caster_level'])
@@ -108,9 +127,26 @@ class MarvelousCraftingDialog(QDialog):
             self.table.cellWidget(row, 1).setValue(contribution['complexity'])
             self.table.cellWidget(row, 2).setChecked(contribution.get('alternative', False))
             self.table.cellWidget(row, 3).setValue(contribution.get('alternative_group', 1))
-        self.name.setText(item.name); self.description.setPlainText(item.notes)
-        self.slot.setCurrentIndex(self.slot.findData(item.slot))
-        self.setWindowTitle('Edit Marvelous Item Design'); self.save.setText('Save design changes')
+        self.refresh_extra_picker()
+
+    def refresh_extra_picker(self):
+        self.extra_picker.clear()
+        for plan in self.extra_effects:
+            self.extra_picker.addItem(f"{plan['sphere']} · {resolve_base_power(plan)['power']}")
+        self.edit_power.setEnabled(bool(self.extra_effects))
+        self.update_preview()
+
+    def edit_extra_effect(self, index=None):
+        dialog = MarvelousCraftingDialog(self.repository, self.character_id, self, draft_effect=True)
+        if index is not None and index >= 0:
+            dialog.load_plan(self.extra_effects[index])
+        dialog.cl.setValue(self.cl.value()); dialog.cl.setEnabled(False)
+        if dialog.exec() != QDialog.DialogCode.Accepted: return
+        plan = dialog.blueprint()
+        plan.pop('extra_effects', None); plan.pop('combination_mode', None)
+        if index is None or index < 0: self.extra_effects.append(plan)
+        else: self.extra_effects[index] = plan
+        self.refresh_extra_picker()
 
     def populate_talents(self, *_):
         self.table.setRowCount(0)
@@ -188,11 +224,15 @@ class MarvelousCraftingDialog(QDialog):
                 else 'Activation can apply temporary HP to self; expiration remains manual.' if automatic == 'temporary_hp'
                 else 'This effect currently requires manual application; item uses are tracked automatically.')
             requirements = self.service.marvelous_plan_requirements(self.blueprint(), access=self.crafting_access)
+            extra_review = ''
+            for plan in self.extra_effects:
+                extra = self.service.marvelous_plan_requirements(plan, access=self.crafting_access)
+                extra_review += f'<p><b>{escape(plan["sphere"])} — {escape(resolve_base_power(plan)["power"])}:</b> ' + escape('; '.join(extra.blockers + extra.bypassed) or 'Baseline access present.') + '</p>'
             self.result.setText(f'Market price {float(price.market_price_gp):,.2f} gp · Materials {float(quote.cost_gp):,.2f} gp · Craft DC {quote.dc} · {quote.days} days · Save DC {price.save_dc}')
             self.preview.setHtml(f'<h2>{escape(self.name.text())}</h2><p>{escape(self.sphere.currentText())} · Complexity {complexity}</p>'
                 f'<p>{escape(self.description.toPlainText())}</p><h3>Calculated base effect</h3>'
                 + ''.join(f'<p><b>{escape(key.replace("_", " ").title())}:</b> {escape(str(value))}</p>' for key, value in effect.items())
-                + '<h3>Construction review</h3>'
+                + '<h3>Additional powers</h3>' + extra_review + '<h3>Construction review</h3>'
                 + '<p><b>Automatic baseline check:</b> '
                 + escape('; '.join(requirements.blockers + requirements.bypassed) or 'Baseline class/sphere/talent access is present.')
                 + f'</p><p>Eligible bypasses add +{requirements.dc_increase} to crafting DC. '
@@ -207,6 +247,8 @@ class MarvelousCraftingDialog(QDialog):
 
     def save_item(self):
         if not self.save.isEnabled(): return
+        if self.draft_effect:
+            self.accept(); return
         try:
             self.item_id = self.service.save_marvelous_design(self.blueprint(),
                 name=self.name.text(), slot=self.slot.currentData(), description=self.description.toPlainText(), item_id=self.item_id)

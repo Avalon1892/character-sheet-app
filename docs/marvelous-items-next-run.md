@@ -28,6 +28,9 @@ Status: pricing, prerequisite checks, catalog import and initial custom composer
 
 ### Latest checkpoint
 
+- Composer now exposes `Add another power` and `Edit power`, reusing the existing composer in no-write draft mode. Parent save stores one inventory record with combined price; preview lists each additional power's baseline requirements. Saved designs reload the extra powers. Shared CL is fixed in child editors. Draft-confirmation/cancel do not independently create equipment. Editor tests: **8 passed in 4.10 seconds**; preceding editor/resource run **16 passed in 4.49 seconds**.
+- Next UI work: effect removal with counter remapping/confirmation, displaying/activating all powers in the use dialog, exposing mixed mode only alongside complete simultaneous activation, and visual inspection after the extra controls. Current use dialog still shows only the primary effect; do not describe additional-effect use UI as complete.
+
 - Combined-design persistence now prices saved `extra_effects` through the shared multi-effect quote. Separate powers have independent indexed activation counters; daily recovery resets only daily counters and leaves 50-use charges intact. Old single-effect counters remain compatible. Editing preserves extra-effect metadata instead of dropping it. **21 focused tests passed in 4.76 seconds**, including saved aggregate price, independent spending/rest and invalid-index no-write behavior.
 - Multi-effect UI construction and activation-row presentation are still pending: current composer preserves extra effects but does not yet expose their editors. Mixed simultaneous activation deliberately rejects rather than spending only the primary effect. Do not claim multi-effect UI/automation complete. Next: expose each effect through reusable composer controls, show all effects/requirements, and implement mixed activation transactions.
 
