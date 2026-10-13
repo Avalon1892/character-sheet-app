@@ -57,6 +57,19 @@ def test_full_blast_option_prices_and_restores(composer):
     assert not dialog.blueprint()['full_blast_damage']
 
 
+@pytest.mark.parametrize('sphere', ['Warp', 'Weather'])
+def test_effect_range_prices_and_restores_independently(composer, sphere):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText(sphere); dialog.cl.setValue(5)
+    before = dialog.quotation()[1].market_price_gp
+    dialog.effect_range.setValue(2)
+    assert dialog.quotation()[1].market_price_gp == before + 8000
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.effect_range.value() == 2 and dialog.range_steps.value() == 0
+    dialog.sphere.setCurrentText('Life')
+    assert dialog.effect_range.value() == 0
+
+
 @pytest.mark.parametrize('sphere,key', [('Alteration', 'alteration:talent:mass-alteration-mass'),
                                        ('Illusion', 'illusion:talent:suppression-glamer')])
 def test_published_talent_exceptions_default_to_two_complexity(composer, sphere, key):

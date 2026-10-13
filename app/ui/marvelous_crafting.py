@@ -47,6 +47,8 @@ class MarvelousCraftingDialog(QDialog):
         self.slotless = QCheckBox('No need to wear or hold the item (×2 price)')
         self.permanent = QCheckBox('Permanent, dispellable effect (+2 complexity; CL 10; hours duration)')
         self.full_blast = QCheckBox('Full blast damage: 1d6 per caster level (+1 complexity)')
+        self.effect_range = QSpinBox(); self.effect_range.setRange(0, 2)
+        self.effect_range.setToolTip('0: close; 1: medium; 2: long. +2 complexity per step. This changes teleport distance or weather radius, not target range.')
         for label, widget in [('Name', self.name), ('Slot', self.slot), ('Base sphere', self.sphere),
                               ('Base power', self.base_power),
                               ('Item caster level', self.cl), ('Activation', self.activation),
@@ -55,6 +57,8 @@ class MarvelousCraftingDialog(QDialog):
             form.addRow(label, widget)
         form.addRow(self.slotless); form.addRow(self.permanent)
         form.addRow(self.full_blast)
+        self.effect_range_label = QLabel('Distance / area steps')
+        form.addRow(self.effect_range_label, self.effect_range)
         picker = QHBoxLayout(); left.addLayout(picker)
         self.talent = QComboBox(); picker.addWidget(self.talent, 1)
         add = QPushButton('Add effect contribution'); picker.addWidget(add)
@@ -97,6 +101,7 @@ class MarvelousCraftingDialog(QDialog):
         self.review.toggled.connect(self.update_preview)
         self.slotless.toggled.connect(self.update_preview); self.permanent.toggled.connect(self.update_preview)
         self.full_blast.toggled.connect(self.update_preview)
+        self.effect_range.valueChanged.connect(self.update_preview)
         self.populate_talents()
         self.refresh_extra_picker()
         if draft_effect:
@@ -134,6 +139,7 @@ class MarvelousCraftingDialog(QDialog):
         self.slotless.setChecked(plan.get('no_space_limitation', False))
         self.permanent.setChecked(plan.get('permanent', False))
         self.full_blast.setChecked(plan.get('full_blast_damage', False))
+        self.effect_range.setValue(plan.get('effect_range_steps', 0))
         for contribution in plan['contributions']:
             index = next((i for i in range(self.talent.count()) if self.talent.itemData(i)['key'] == contribution['catalog_key']), -1)
             if index < 0: raise ValueError('A saved talent is no longer available; editing cannot safely continue.')
@@ -195,6 +201,9 @@ class MarvelousCraftingDialog(QDialog):
         self.power_changed()
 
     def power_changed(self, *_):
+        effect_range = self.base_power.currentData() in {'warp:teleport', 'weather:control'}
+        self.effect_range.setVisible(effect_range); self.effect_range_label.setVisible(effect_range)
+        if not effect_range: self.effect_range.setValue(0)
         blast = self.base_power.currentData() == 'destruction:blast'
         self.full_blast.setVisible(blast)
         if not blast: self.full_blast.setChecked(False)
@@ -254,6 +263,7 @@ class MarvelousCraftingDialog(QDialog):
                     unique_changes=self.unique.value(), contributions=contributions,
                     no_space_limitation=self.slotless.isChecked(), permanent=self.permanent.isChecked(),
                     full_blast_damage=self.full_blast.isChecked(),
+                    effect_range_steps=self.effect_range.value(),
                     extra_effects=self.extra_effects, combination_mode=self.combination_mode,
                     automation_status='rules_only')
 

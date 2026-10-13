@@ -24,6 +24,13 @@ def test_level_scaling_and_instantaneous_effects():
     assert resolve_base_power(plan('alteration:shapeshift', 10))['traits'] == 3
 
 
+@pytest.mark.parametrize('key,field', [('warp:teleport', 'teleport_distance'), ('weather:control', 'area_radius')])
+def test_effect_range_is_separate_from_target_range(key, field):
+    result = resolve_base_power(plan(key, 5, effect_range_steps=2))
+    assert result[field] == '600 ft.' and result['range'] == 'Personal'
+    with pytest.raises(ValueError): resolve_base_power(plan(key, effect_range_steps=3))
+
+
 def test_range_duration_ladders_and_exclusions():
     p = plan('protection:aegis'); p.update(range_steps=2, duration_steps=2)
     result = resolve_base_power(p)

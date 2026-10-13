@@ -103,6 +103,10 @@ def resolve_base_power(plan):
     if plan['caster_level'] < 1:
         raise ValueError('Item caster level must be positive.')
     key = plan.get('base_power')
+    effect_steps = plan.get('effect_range_steps', 0)
+    if (isinstance(effect_steps, bool) or not isinstance(effect_steps, int) or not 0 <= effect_steps <= 2
+            or (effect_steps and key not in {'warp:teleport', 'weather:control'})):
+        raise ValueError('Effect range steps require Warp teleport or Weather control, from zero to two.')
     boost = plan.get('full_blast_damage', False)
     if not isinstance(boost, bool) or (boost and key != 'destruction:blast'):
         raise ValueError('Full blast damage requires the Destruction blast base power.')
@@ -144,7 +148,8 @@ def resolve_base_power(plan):
     if power.key == 'destruction:blast':
         summary['damage_dice'] = cl if boost else cl // 2
         summary['damage'] = f'{summary["damage_dice"]}d6 bludgeoning'
-    if power.key == 'warp:teleport': summary['teleport_distance'] = f'{25 + 5 * (cl // 2)} ft.'
+    if power.key == 'warp:teleport': summary['teleport_distance'] = distances[('close', 'medium', 'long')[effect_steps]]
+    if power.key == 'weather:control': summary['area_radius'] = distances[('close', 'medium', 'long')[effect_steps]]
     if power.key in {'blood:construct', 'death:reanimate'}: summary['maximum_hit_dice'] = cl
     if power.key == 'dark:darkness': summary['radius'] = f'{10 + 5 * (cl // 2)} ft.'
     if power.key == 'alteration:shapeshift': summary['traits'] = 1 + cl // 5
