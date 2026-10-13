@@ -147,6 +147,8 @@ class EngineeringDialog(QDialog):
         self.configuration=QComboBox()
         for key in ("strength","dexterity","constitution"):self.configuration.addItem(key.title(),key)
         controls.addWidget(self.configuration)
+        self.sensor_effortless=QCheckBox("Effortless Detection");controls.addWidget(self.sensor_effortless)
+        self.sensor_effortless.setToolTip("Construction choice: full-round activation, or battery quick activation with 10 minutes per gizmo level of operation.")
         self.minor=QCheckBox("Minor (confirm device rule)");controls.addWidget(self.minor)
         self.bio_augment=QCheckBox("Bio augment (made for this character)");controls.addWidget(self.bio_augment)
         self.bio_augment.setToolTip("Creation-time variant requiring qualifying Tech training. Preserves the augment through polymorph; contextual disguise/detection and remote-control checks remain manual.")
@@ -430,6 +432,9 @@ class EngineeringDialog(QDialog):
             self.configuration.addItem(option.replace("_"," ").title(),option)
         if self.configuration.findData(previous)>=0:self.configuration.setCurrentIndex(self.configuration.findData(previous))
         self.configuration.setVisible(key in AUGMENTOR_ABILITIES or key in {JET_BOOSTERS_KEY,PRESSURE_SENSOR_KEY})
+        self.sensor_effortless.setVisible(key==PRESSURE_SENSOR_KEY)
+        self.sensor_effortless.setEnabled(key==PRESSURE_SENSOR_KEY and self.service().can_craft_effortless_detector())
+        if not self.sensor_effortless.isEnabled():self.sensor_effortless.setChecked(False)
         entry=next((e for e in self.service().known_devices(self.system.currentText()) if e["key"]==self.known.currentData()),None)
         self.show_details(entry)
 
@@ -465,6 +470,7 @@ class EngineeringDialog(QDialog):
         self.sensor_auto_renew.setEnabled(bool(sensor_selected and device["advanced"] and device["state"]!="abandoned"))
         if sensor_selected:
             sensor=self.service().pressure_sensor_profile(device["id"])
+            self.sensor_activate.setText("Activate detector — "+sensor["activation_action"])
             self.sensor_activate.setEnabled(device["state"]=="inactive" and not device_condition(device)["destroyed"])
             self.sensor_quick.setEnabled(self.sensor_activate.isEnabled())
             self.sensor_maintain.setEnabled(sensor["available"] and sensor["upkeep_required"] and not sensor["upkeep_paid"])
@@ -546,7 +552,7 @@ class EngineeringDialog(QDialog):
         if device and device["catalog_key"]==PRESSURE_SENSOR_KEY:
             sensor=self.service().pressure_sensor_profile(device["id"])
             self.details.append(f"<p>Crafted signal range: {(device['configuration'] or 'close').replace('_',' ')} · Barrier penetration multiplier: ×{sensor['signal_penetration_multiplier']}. Range upgrades are chosen at construction; signals remain blocked by sufficient barriers.</p>")
-            upkeep="No upkeep required while worn; passive detection remains active." if sensor['wearable'] else "Missing full-round upkeep deactivates detection at turn end."
+            upkeep="No upkeep required while worn; passive detection remains active." if sensor['wearable'] else f"No upkeep required for the remaining {sensor['free_operation_rounds']} rounds of paid operation." if sensor['free_operation_rounds'] else "Missing full-round upkeep deactivates detection at turn end."
             self.details.append(f"<h3>Pressure sensor values</h3><p>Ground-hazard detection checks: +{sensor['hazard_check_bonus']} circumstance. Signal range: {sensor['base_signal_range_feet']} ft. Advanced tremorsense duration: {sensor['tremorsense_duration_rounds']} rounds per battery. Current tremorsense: {sensor['tremorsense_range_feet']} ft. Auto-renew: {'On' if sensor['auto_renew'] else 'Off'}.</p><p>Full-round upkeep paid: {'Yes' if sensor['upkeep_paid'] else 'No'}. Flat-footed: {'Yes' if sensor['flat_footed'] else 'No'} (apply flat-footed manually). {upkeep} Report each interval once, using wearer-turn end or elapsed rounds. Automatic hazard prompts and additional accommodations are still pending. Do not add this bonus to unrelated Perception checks.</p>")
 
     def perform(self,operation):
@@ -566,7 +572,8 @@ class EngineeringDialog(QDialog):
                 if result["reroll"] else "Resolve jump beyond base speed. Enhancement duration reduced by one minute.")
 
     def activate_sensor(self):
-        if QMessageBox.question(self,"Activate Pressure Sensor","Has the required one minute of detector activation been completed?")!=QMessageBox.StandardButton.Yes:return False
+        profile=self.service().pressure_sensor_profile(self.selected())
+        if QMessageBox.question(self,"Activate Pressure Sensor",f"Has the required activation ({profile['activation_action']}) been completed?")!=QMessageBox.StandardButton.Yes:return False
         self.service().activate_pressure_sensor(self.selected(),activation_completed=True)
 
     def use_tactile_reroll(self):
@@ -580,6 +587,7 @@ class EngineeringDialog(QDialog):
                      minor=self.minor.isChecked() if sphere=="Tinker" else False,
                      advanced=self.advanced.value() if sphere=="Tinker" else 0,
                      bio_augment=self.bio_augment.isChecked() if sphere=="Tech" else False,
+                     sensor_effortless=self.sensor_effortless.isChecked() if self.known.currentData()==PRESSURE_SENSOR_KEY else False,
                      configuration=self.configuration.currentData() if self.known.currentData() in AUGMENTOR_ABILITIES or self.known.currentData() in {JET_BOOSTERS_KEY,PRESSURE_SENSOR_KEY} else ""))
 
     def load_charges(self):

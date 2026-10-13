@@ -294,6 +294,60 @@ class EngineeringTests(unittest.TestCase):
         self.assertFalse(self.service.pressure_sensor_profile(sensor)["available"])
         self.assertEqual("inactive",next(d for d in self.service.devices("Tinker") if d["id"]==sensor)["state"])
 
+    def test_pressure_sensor_effortless_activation_separate_timer_and_transfer(self):
+        from app.engineering_rules import PRESSURE_JACK_KEY,PRESSURE_SENSOR_KEY
+        base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")
+        self.repo.update_martial_talent(self.cid,base.id,base.name,"Tinker","Base Sphere",catalog_key=base.catalog_key,catalog_category="Base Sphere",choice="Transmission")
+        self.add("Tinker","Pressure Jack (gizmo)",PRESSURE_JACK_KEY)
+        with self.assertRaises(ValueError):self.service.create("Tinker",PRESSURE_SENSOR_KEY,2,sensor_effortless=True)
+        old=self.service.create("Tinker",PRESSURE_SENSOR_KEY,2)
+        self.add("Tinker","Advanced Transmission (gizmo, transmission)","tinker:legendary-talent:advanced-transmission-gizmo-transmission","Legendary Talent")
+        sensor=self.service.create("Tinker",PRESSURE_SENSOR_KEY,2,advanced=1,sensor_effortless=True)
+        self.assertEqual("One minute",self.service.pressure_sensor_profile(old)["activation_action"])
+        self.assertEqual("Full-round action",self.service.pressure_sensor_profile(sensor)["activation_action"])
+        self.service.activate_pressure_sensor(sensor,activation_completed=True)
+        self.assertEqual(0,self.service.pressure_sensor_profile(sensor)["free_operation_rounds"])
+        self.service.end_wearer_turn();self.service.end_wearer_turn()
+        self.assertFalse(self.service.pressure_sensor_profile(sensor)["available"])
+        battery=self.service.create("Tinker","tinker:battery",2);self.service.attach_battery(battery,sensor)
+        self.service.use_batteries(sensor,1,sensor_activate=True)
+        profile=self.service.pressure_sensor_profile(sensor)
+        self.assertEqual(600,profile["free_operation_rounds"]);self.assertFalse(profile["upkeep_required"])
+        self.assertFalse(profile["flat_footed"]);self.assertEqual(0,profile["tremorsense_range_feet"])
+        from PySide6.QtWidgets import QApplication,QWidget
+        from PySide6.QtCore import QEvent,Qt
+        from app.ui.engineering import EngineeringDialog
+        app=QApplication.instance() or QApplication([])
+        for theme in ("classic","dark"):
+            with self.subTest(theme=theme):
+                sheet=QWidget();sheet.repository=self.repo;sheet.character_id=self.cid;sheet.theme=theme;sheet.refresh_all=lambda:None
+                dialog=EngineeringDialog(sheet);dialog.system.setCurrentText("Tinker")
+                dialog.known.setCurrentIndex(dialog.known.findData(PRESSURE_SENSOR_KEY))
+                self.assertTrue(dialog.sensor_effortless.isEnabled());self.assertFalse(dialog.sensor_effortless.isHidden())
+                row=next(i for i in range(dialog.table.rowCount()) if dialog.table.item(i,0).data(Qt.ItemDataRole.UserRole)==sensor)
+                dialog.table.selectRow(row)
+                self.assertIn("Full-round action",dialog.sensor_activate.text())
+                self.assertFalse(dialog.sensor_maintain.isEnabled())
+                self.assertIn("600 rounds of paid operation",dialog.details.toPlainText())
+                dialog.deleteLater();sheet.deleteLater();app.sendPostedEvents(None,QEvent.Type.DeferredDelete)
+        with self.assertRaises(ValueError):self.service.maintain_pressure_sensor(sensor)
+        self.service.end_wearer_turn();self.service.advance_time(598)
+        self.assertEqual(1,self.service.pressure_sensor_profile(sensor)["free_operation_rounds"])
+        self.assertTrue(self.service.pressure_sensor_profile(sensor)["available"])
+        path=Path(self.temp.name)/"effortless.json";export_character(self.repo,self.cid,path)
+        imported=import_character(self.repo,path)
+        copied=next(d for d in self.repo.list_engineering_devices(imported) if d["sensor_effortless"])
+        self.assertEqual(self.service.pressure_sensor_profile(sensor),EngineeringService(self.repo,imported).pressure_sensor_profile(copied["id"]))
+        self.service.advance_time(1)
+        self.assertFalse(self.service.pressure_sensor_profile(sensor)["available"])
+        record=next(d for d in self.service.devices("Tinker") if d["id"]==sensor)
+        for changes in ({"detector_free_rounds":-1},{"sensor_effortless":False,"detector_free_rounds":1}):
+            with self.assertRaises(ValueError):self.repo.save_engineering_device(self.cid,{**record,**changes},sensor)
+        self.repo.save_engineering_device(self.cid,{**record,"damage":10},sensor)
+        reserve=self.service.create("Tinker","tinker:battery",2);self.service.attach_battery(reserve,sensor)
+        self.service.use_batteries(sensor,1,sensor_activate=True)
+        self.assertEqual(400,self.service.pressure_sensor_profile(sensor)["free_operation_rounds"])
+
     def test_pressure_sensor_opt_in_renewal_expiry_exhaustion_and_transfer(self):
         from app.engineering_rules import PRESSURE_JACK_KEY,PRESSURE_SENSOR_KEY
         base=next(t for t in self.repo.list_martial_talents(self.cid) if t.catalog_key=="tinker:base")

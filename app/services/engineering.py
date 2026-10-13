@@ -196,7 +196,7 @@ class EngineeringService:
             raise ValueError("Confirm surgical removal was completed first.")
         self.repository.remove_engineering_graft(self.character_id,device_id,save_succeeded=save_succeeded)
 
-    def create(self, sphere, key, modifier, *, minor=False, advanced=0,configuration="",bio_augment=False):
+    def create(self, sphere, key, modifier, *, minor=False, advanced=0,configuration="",bio_augment=False,sensor_effortless=False):
         if not self.available(sphere):
             raise ValueError("This character does not currently have that base sphere.")
         entry = next((e for e in self.known_devices(sphere) if e["key"]==key),None)
@@ -213,6 +213,8 @@ class EngineeringService:
         if key==PRESSURE_SENSOR_KEY and configuration not in self.detector_range_options():
             raise ValueError("Choose a detector range supported by the character's training.")
         if key==PRESSURE_SENSOR_KEY and configuration=="wearable" and advanced==0:advanced=1
+        if type(sensor_effortless) is not bool or (sensor_effortless and (key!=PRESSURE_SENSOR_KEY or not self.can_craft_effortless_detector())):
+            raise ValueError("Effortless Detection construction requires Advanced Transmission.")
         if key in {RESISTANCE_ROUTINE_KEY,PRESSURE_JACK_KEY}:
             minor=True
         ranks = CharacterCalculationService(self.repository,self.character_id).effective_skill_ranks().get(self.skill_key,0)
@@ -225,7 +227,7 @@ class EngineeringService:
         record = dict(sphere=sphere,catalog_key=key,name=entry["name"],level=ranks,modifier=modifier,
                       state="active" if key in {"tinker:battery",TECH_BATTERY_KEY} else "inactive",
                       charges=tech_battery_capacity(modifier) if key==TECH_BATTERY_KEY else 0,
-                      minor=minor,advanced=advanced,configuration=configuration,bio_augment=bio_augment,energy_efficient=efficient)
+                      minor=minor,advanced=advanced,configuration=configuration,bio_augment=bio_augment,energy_efficient=efficient,sensor_effortless=sensor_effortless)
         if occupied_limit((*self.devices(sphere),record),self.limits(sphere)) > self.limits(sphere).device_limit:
             raise ValueError("Device limit exceeded. Abandon an existing device first.")
         return self.repository.save_engineering_device(self.character_id,record)
@@ -242,6 +244,9 @@ class EngineeringService:
                 if ranks>=10:options.append("long")
                 if ranks>=15:options.append("extra_long")
         return tuple(options)
+
+    def can_craft_effortless_detector(self):
+        return any(t.catalog_key=="tinker:legendary-talent:advanced-transmission-gizmo-transmission" for t in self.records("Tinker"))
 
     def apply_to_character(self,device_id,enabled):
         device=next((d for d in self.repository.list_engineering_devices(self.character_id) if d["id"]==device_id),None)
@@ -552,14 +557,14 @@ class EngineeringService:
     def activate_pressure_sensor(self,device_id,*,activation_completed=False):
         device=next((d for d in self.devices("Tinker") if d["id"]==device_id),None)
         if not activation_completed or not self.available("Tinker") or not device or device["catalog_key"]!=PRESSURE_SENSOR_KEY or device["state"]!="inactive" or device_condition(device)["destroyed"]:
-            raise ValueError("Confirm one minute of activation for an inactive, functioning Pressure Sensor.")
+            raise ValueError("Confirm the detector's required activation action for an inactive, functioning Pressure Sensor.")
         self.repository.save_engineering_device(self.character_id,{**device,"state":"active","detector_maintained":True},device_id)
 
     def maintain_pressure_sensor(self,device_id):
         device=next((d for d in self.devices("Tinker") if d["id"]==device_id),None)
         if not self.available("Tinker") or not device or device["catalog_key"]!=PRESSURE_SENSOR_KEY or not pressure_sensor_profile(device)["available"]:
             raise ValueError("Activate a functioning Pressure Sensor first.")
-        if device["configuration"]=="wearable":raise ValueError("Wearable sensors do not require detector upkeep.")
+        if not pressure_sensor_profile(device)["upkeep_required"]:raise ValueError("This sensor does not currently require detector upkeep.")
         if device["detector_maintained"]:raise ValueError("Detector upkeep has already been reported this turn.")
         self.repository.save_engineering_device(self.character_id,{**device,"detector_maintained":True},device_id)
 

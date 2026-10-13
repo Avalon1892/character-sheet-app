@@ -253,16 +253,19 @@ def pressure_sensor_profile(device):
     wearable=range_category=="wearable"
     if wearable:range_category="close"
     available=device["state"]=="active" and not condition["destroyed"] and (not wearable or bool(device.get("applied_to_character")))
+    upkeep_required=not wearable and not device.get("detector_free_rounds",0)
     signal_range={"close":25+5*(level//2),"medium":100+10*level,
                   "long":400+40*level,"extra_long":1000+100*level}[range_category]
-    return {"available":available,"wearable":wearable,"upkeep_required":not wearable,
+    return {"available":available,"wearable":wearable,"upkeep_required":bool(upkeep_required),
+            "activation_action":"Full-round action" if device.get("sensor_effortless") else "One minute",
+            "free_operation_rounds":device.get("detector_free_rounds",0),
             "hazard_check_bonus":2+level//4,"base_signal_range_feet":signal_range,
             "signal_penetration_multiplier":5 if range_category!="close" else 1,
             "tremorsense_duration_rounds":level if device["advanced"] else 0,
             "tremorsense_range_feet":signal_range if available and device.get("function_mode")=="sensor_tremor" and device.get("effect_rounds",0)>0 and device.get("effect_battery_id") is not None else 0,
             "upkeep_paid":bool(device.get("detector_maintained",False)),
             "auto_renew":bool(device.get("sensor_auto_renew",False)),
-            "flat_footed":available and not wearable}
+            "flat_footed":available and bool(upkeep_required)}
 
 
 def spring_boots_profile(device):
