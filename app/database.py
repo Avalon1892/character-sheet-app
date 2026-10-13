@@ -2190,7 +2190,7 @@ class CharacterRepository:
             raise ValueError('A recipient requires supported automatic application.')
         with self._connection:
             row = self._connection.execute(
-                'SELECT automation_json, quantity, name FROM equipment WHERE character_id=? AND id=?',
+                'SELECT automation_json, quantity, name, catalog_key FROM equipment WHERE character_id=? AND id=?',
                 (character_id, item_id)).fetchone()
             if row is None: raise ValueError('Item does not belong to this character.')
             if row['quantity'] < 1: raise ValueError('No item is available to activate.')
@@ -2199,6 +2199,22 @@ class CharacterRepository:
             if metadata.get('marvelous_project', {}).get('status', 'complete') != 'complete':
                 raise ValueError('This construction project has not produced a usable item.')
             plan = metadata.get('marvelous_blueprint')
+            if not plan:
+                from app.named_marvelous_items import named_marvelous_effect, named_marvelous_remaining
+                effect = named_marvelous_effect(row['catalog_key'])
+                if effect is not None:
+                    if apply_to_self or effect_index != 0:
+                        raise ValueError('Use this named offensive effect with manual target resolution.')
+                    if not named_marvelous_remaining(row['catalog_key'], metadata):
+                        raise ValueError('No item uses remain.')
+                    import random
+                    effect['damage_rolls'] = [random.randint(1, effect['die_sides']) for _ in range(effect['damage_dice'])]
+                    effect['damage_rolled'] = sum(effect['damage_rolls'])
+                    metadata['marvelous_uses_used'] = metadata.get('marvelous_uses_used', 0) + 1
+                    self._connection.execute('UPDATE equipment SET automation_json=? WHERE character_id=? AND id=?',
+                        (json.dumps(metadata), character_id, item_id))
+                    self._touch_character(character_id)
+                    return effect
             if not plan: raise ValueError('This item has no structured Marvelous blueprint.')
             if plan.get('extra_effects') and plan.get('combination_mode') == 'mixed':
                 if effect_index != 0 or apply_to_self:
@@ -2280,11 +2296,21 @@ class CharacterRepository:
         """Restore daily uses only, never fifty-total-use item charges."""
         restored = 0
         with self._connection:
-            for row in self._connection.execute('SELECT id, automation_json FROM equipment WHERE character_id=?', (character_id,)).fetchall():
+            for row in self._connection.execute('SELECT id, automation_json, catalog_key FROM equipment WHERE character_id=?', (character_id,)).fetchall():
                 try:
                     metadata = json.loads(row['automation_json'] or '{}')
                     plan = metadata.get('marvelous_blueprint', {})
-                    if not plan: continue
+                    if not plan:
+                        from app.named_marvelous_items import named_marvelous_effect, named_marvelous_remaining
+                        if named_marvelous_effect(row['catalog_key']) is not None:
+                            named_marvelous_remaining(row['catalog_key'], metadata)
+                            used = metadata.get('marvelous_uses_used', 0)
+                            if used:
+                                metadata['marvelous_uses_used'] = 0
+                                self._connection.execute('UPDATE equipment SET automation_json=? WHERE character_id=? AND id=?',
+                                    (json.dumps(metadata), character_id, row['id']))
+                                restored += used
+                        continue
                     from app.marvelous_item_rules import marvelous_remaining_uses
                     reset = []
                     for index, effect in enumerate([plan, *plan.get('extra_effects', [])]):
