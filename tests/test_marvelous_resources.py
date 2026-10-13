@@ -71,6 +71,23 @@ def test_atomic_activation_and_zero_floor(crafter):
     assert repo._connection.total_changes == before
 
 
+def test_deeper_healing_invigorate_applies_and_spends_atomically(crafter):
+    repo, cid = crafter
+    plan = dict(schema_version=1, sphere='Life', base_power='life:temporary-hp',
+                caster_level=5, activation='standard', uses=2, range_steps=0,
+                duration_steps=0, unique_changes=0,
+                contributions=[dict(catalog_key='life:talent:deeper-healing', complexity=1)])
+    iid = CraftingService(repo, cid).save_marvelous_design(plan, name='Deep vigor', slot='', description='')
+    effect = repo.consume_marvelous_item_use(cid, iid, apply_to_self=True)
+    assert effect['temporary_hp'] == 10 and effect['duration'] == '5 minutes'
+    assert repo.get_hit_points(cid).temporary == 10
+    assert marvelous_remaining_uses(metadata(repo, cid, iid)) == 1
+    repo.update_hit_points(replace(repo.get_hit_points(cid), current=19, temporary=12))
+    repo.consume_marvelous_item_use(cid, iid, apply_to_self=True)
+    assert repo.get_hit_points(cid).temporary == 12
+    assert marvelous_remaining_uses(metadata(repo, cid, iid)) == 0
+
+
 def test_cure_recipient_is_separate_from_item_owner(crafter, monkeypatch):
     repo, cid = crafter
     recipient = repo.create_character('Recipient', 'Spheres')

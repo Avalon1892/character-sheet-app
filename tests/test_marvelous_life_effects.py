@@ -26,3 +26,18 @@ def test_unknown_duplicate_and_alternative_contributions_stay_manual():
     plan = cure(['life:talent:deeper-healing'])
     plan['contributions'][0]['alternative'] = True
     assert automatic_self_effect(plan) is None
+
+
+def test_deeper_healing_invigorate_doubles_amount_not_item_duration():
+    plan = cure(['life:talent:deeper-healing'], cl=7)
+    plan['base_power'] = 'life:temporary-hp'
+    effect = resolve_base_power(plan)
+    assert effect['temporary_hp'] == 14 and effect['duration'] == '7 minutes'
+    assert automatic_self_effect(plan) == 'temporary_hp'
+    plan['contributions'][0]['alternative'] = True
+    assert automatic_self_effect(plan) is None
+    assert 'manual' in resolve_base_power(plan)['temporary_hp_review']
+    plan['contributions'] = [dict(catalog_key='life:talent:deeper-healing')] * 2
+    assert automatic_self_effect(plan) is None
+    plan['contributions'] = [dict(catalog_key='unknown')]
+    assert automatic_self_effect(plan) is None

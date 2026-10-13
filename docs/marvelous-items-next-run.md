@@ -44,6 +44,8 @@ Reuse the current services/repository and catalogs; do not create a second item 
 
 ### Latest checkpoint
 
+- Crafted Invigorate now supports the reviewed Deeper Healing contribution: twice item CL in temporary HP, with the construction-specific minute-per-CL duration unchanged. Shared eligibility enables the existing atomic recipient/resource path; unknown, duplicate and alternative contributions remain manual. Existing missing-HP cap/non-stacking behavior is preserved pending the item-specific rules verification already noted. **102 focused Life/base-power/resource/UI tests passed in 29.37 seconds**. Source: https://spheresofpower.wikidot.com/life (Ultimate, Deeper Healing). Painkiller and Greater Invigorate are not yet implemented for crafted effects.
+
 - Restore follow-up validation: **70 passed in 12.82 seconds** across base-power, Life-effect and crafting-UI modules. Added regressions for both upgraded talents, alternative choices, mode boundaries, suppression precedence and boolean flag validation.
 
 - Restore Health and Restore Senses now affect the structured Restore preview: upgraded exhaustion/nausea and fear removal, confusion/daze and temporary/magical blindness/deafness coverage. Alternative contributions do not silently apply together; mode boundaries and ongoing-source suppression remain preserved. Poison/disease magic-skill-check and optional sanity/strain handling are explicitly manual. Source: https://spheresofpower.wikidot.com/life (Ultimate). This improves calculated effects, not condition persistence: actual condition mutation and suppression lifecycle are still next-run work.

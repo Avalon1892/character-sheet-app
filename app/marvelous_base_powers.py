@@ -92,6 +92,8 @@ def automatic_self_effect(plan):
         return 'cure' if cure_healing_components(plan) is not None else None
     if plan.get('base_power') == 'protection:aegis':
         return 'aegis' if aegis_modifiers(plan) is not None else None
+    if plan.get('base_power') == 'life:temporary-hp':
+        return 'temporary_hp' if invigorate_temporary_hp(plan) is not None else None
     if plan.get('contributions'): return None
     return {'life:cure': 'cure', 'life:temporary-hp': 'temporary_hp', 'protection:aegis': 'aegis'}.get(plan.get('base_power'))
 
@@ -134,6 +136,17 @@ def aegis_modifiers(plan):
         choice = contributions[0].get('effect_choice')
         if choice not in {'armor', 'shield'}: return None
         return [('ac', choice, (3 if choice == 'armor' else 1) + plan['caster_level'] // 5)]
+    return None
+
+
+def invigorate_temporary_hp(plan):
+    """Reviewed Deeper Healing contribution; other modified Invigorates stay manual."""
+    contributions = plan.get('contributions', [])
+    if not contributions: return plan['caster_level']
+    if (len(contributions) == 1
+            and contributions[0].get('catalog_key') == 'life:talent:deeper-healing'
+            and not contributions[0].get('alternative')):
+        return 2 * plan['caster_level']
     return None
 
 
@@ -209,7 +222,11 @@ def resolve_base_power(plan):
     mode = item_dice_metamagic(plan)
     if mode and any(mode): summary['dice_mode'] = ' + '.join(label for label, active in zip(('Maximized', 'Empowered'), mode) if active)
     if plan.get('permanent', False): summary['duration'] = 'Permanent (dispellable)'
-    if power.key == 'life:temporary-hp': summary['temporary_hp'] = cl
+    if power.key == 'life:temporary-hp':
+        temporary = invigorate_temporary_hp(plan)
+        summary['temporary_hp'] = cl if temporary is None else temporary
+        if temporary is None:
+            summary['temporary_hp_review'] = 'Base amount only; selected modifications require manual resolution.'
     if power.key == 'life:restore':
         summary['restore_mode'] = restore_mode or 'Not selected; manual review required'
         if restore_mode in {'mind', 'body'}:
