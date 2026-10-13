@@ -54,11 +54,24 @@ def test_imported_pages_share_inventory_and_crafting_identities():
     from app.catalog_versions import inspect_catalog, BUNDLED_CATALOG_ROOT
     recipes = [r for r in crafting_document()["recipes"] if r.get("system") == "spheres"
                and r.get("category") == "Marvelous Items"]
-    assert len(recipes) == 129
+    assert len(recipes) == 133
     assert {r["source_url"].rsplit("/", 1)[-1] for r in recipes} == {"marvelous-items", "marvelous-items-2"}
     for recipe in recipes:
         entry = DEFAULT_CATALOG.item_entry(recipe["item_key"])
         assert entry is not None
         assert entry["name"] == recipe["name"]
-        assert "Construction" in entry["description"]
+        assert "Construction" in entry["description"] or entry.get('variant_of')
     assert inspect_catalog(BUNDLED_CATALOG_ROOT, "Bundled").valid
+
+
+def test_ioun_variants_keep_prices_and_do_not_invent_construction_costs():
+    entries, recipes = parse_page('''<div id="page-content"><h3>Example Ioun Stone</h3>
+    <p>Aura strong Life; CL 12th</p><p>Price 14,000 gp</p><p>Base effect.</p>
+    <p>Cracked — Price 7,000 gp</p><p>Cracked effect.</p>
+    <p>Flawed — Price 4,000 gp</p><p>Flawed effect.</p>
+    <h4>Construction</h4><p>Craft Marvelous Item; Cost 9,000 gp</p></div>''', 'marvelous-items')
+    assert [entry['price_gp'] for entry in entries] == [14000, 7000, 4000]
+    assert entries[1]['key'].endswith(':cracked') and entries[2]['key'].endswith(':flawed')
+    assert 'Flawed effect' not in entries[1]['description']
+    assert 'Base effect' not in entries[2]['description']
+    assert recipes[1]['creation_cost_gp'] is None and recipes[2]['creation_cost_gp'] is None

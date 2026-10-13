@@ -75,6 +75,24 @@ def parse_page(raw, stem):
             caster_level=int(cl[1]) if cl else None, creation_cost_gp=None if variable else cost,
             price_gp=None if variable else price, category="Marvelous Items", source_url=url,
             description=text, rules_version=entry["rules_version"]))
+        if name.endswith('Ioun Stone'):
+            base_recipe = recipes[-1]
+            variants = list(re.finditer(r'\b(Cracked|Flawed)\s*[—–-]\s*Price\s+([\d,]+)\s*gp', text))
+            for index, variant in enumerate(variants):
+                variant_key = key + ':' + variant[1].casefold()
+                if variant_key in seen: raise ValueError(f'Duplicate source identity: {variant_key}')
+                seen.add(variant_key)
+                end = variants[index + 1].start() if index + 1 < len(variants) else construction.start()
+                description = text[variant.start():end].strip()
+                variant_name = entry['name'] + ' (' + variant[1] + ')'
+                variant_price = money(variant[2] + ' gp')
+                entries.append({**entry, 'key': variant_key, 'name': variant_name,
+                    'price_gp': variant_price, 'description': description,
+                    'variant_of': key, 'variant': variant[1], 'automation': {}})
+                recipes.append({**base_recipe,
+                    'key': 'craft:' + variant_key, 'item_key': variant_key, 'name': variant_name,
+                    'price_gp': variant_price, 'creation_cost_gp': None, 'description': description,
+                    'review': 'Variant construction cost is not separately published. Verify parent prerequisites and variant construction cost explicitly.'})
     if not entries:
         raise ValueError("No Marvelous Items parsed; refusing an empty import.")
     return entries, recipes
