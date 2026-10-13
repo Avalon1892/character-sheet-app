@@ -134,4 +134,20 @@ def test_work_calendar_is_shared_between_retained_projects(tmp_path, monkeypatch
         repo.advance_marvelous_project(cid, ids[1], day='2026-10-15', check_total=11)
     assert repo._connection.total_changes == before
     assert repo.advance_marvelous_project(cid, ids[1], day='2026-10-16', check_total=11)['completion_day'] == '2026-10-16'
+    repo.delete_equipment(cid, ids[0])
+    archived = {record['day']: record for record in repo.archived_crafting_days(cid)}
+    assert archived['2026-10-13']['hours'] == 4 and archived['2026-10-15']['completions'] == 1
+    third = service.save_marvelous_design(plan, name='Third', slot='', description='')
+    service.start_marvelous_construction(third)
+    with pytest.raises(ValueError, match='across all projects'):
+        repo.advance_marvelous_project(cid, third, day='2026-10-13', hours=4)
+    repo.advance_marvelous_project(cid, third, day='2026-10-14', hours=4)
+    repo.advance_marvelous_project(cid, third, day='2026-10-15', hours=4)
+    with pytest.raises(ValueError, match='one item'):
+        repo.advance_marvelous_project(cid, third, day='2026-10-15', check_total=11)
+    from app.transfer import export_character, import_character
+    export = tmp_path / 'archived.character.json'
+    export_character(repo, cid, export)
+    imported = import_character(repo, export)
+    assert repo.archived_crafting_days(imported) == repo.archived_crafting_days(cid)
     repo.close()

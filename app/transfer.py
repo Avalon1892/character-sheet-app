@@ -60,6 +60,7 @@ def export_character(repository: CharacterRepository, character_id: int, path: P
             "name": summary.name,
             "character_type": summary.character_type,
             "details": asdict(repository.get_character_details(character_id)),
+            "archived_crafting_days": repository.archived_crafting_days(character_id),
             "abilities": repository.get_ability_scores(character_id),
             "modifiers": [asdict(item) for item in repository.list_modifiers(character_id)],
             "classes": [
@@ -299,6 +300,7 @@ def _populate_character(
         if isinstance(choice, dict)
     )
     repository.update_character_details(CharacterDetails(character_id=character_id, **details))
+    repository.import_archived_crafting_days(character_id, character.get('archived_crafting_days', []))
     for ability, value in character.get("abilities", {}).items():
         repository.update_ability_score(character_id, ability, int(value))
     modifier_id_map: dict[int, int] = {}

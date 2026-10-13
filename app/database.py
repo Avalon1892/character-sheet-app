@@ -236,6 +236,10 @@ class CharacterRepository:
             )
             """
         )
+        self._connection.execute('''CREATE TABLE IF NOT EXISTS archived_crafting_days (
+            character_id INTEGER NOT NULL REFERENCES characters(id) ON DELETE CASCADE,
+            day TEXT NOT NULL, hours INTEGER NOT NULL DEFAULT 0,
+            completions INTEGER NOT NULL DEFAULT 0, PRIMARY KEY(character_id,day))''')
         self._connection.execute(
             """
             CREATE TABLE IF NOT EXISTS character_traditions (
@@ -2148,9 +2152,9 @@ class CharacterRepository:
             updated = (finish_project(project, check_total, day=day) if check_total is not None else
                 work_on_project(project, day=day, hours=hours, distracting=distracting, adventuring=adventuring))
             if check_total is None:
-                # ponytail: retained project records form the calendar; a durable
-                # character ledger is needed before deleted projects retain work.
-                other_hours = 0
+                # Live projects and archived deleted projects share one day budget.
+                archived = self._connection.execute('SELECT hours FROM archived_crafting_days WHERE character_id=? AND day=?', (character_id, day)).fetchone()
+                other_hours = archived['hours'] if archived else 0
                 for other in self._connection.execute(
                     'SELECT automation_json FROM equipment WHERE character_id=? AND id<>?',
                     (character_id, item_id)):
@@ -2159,6 +2163,9 @@ class CharacterRepository:
                 if other_hours + updated['calendar'][day] > 8:
                     raise ValueError('No more than eight hours of crafting per day across all projects.')
             elif updated['status'] in {'complete', 'cursed'}:
+                archived = self._connection.execute('SELECT completions FROM archived_crafting_days WHERE character_id=? AND day=?', (character_id, updated['completion_day'])).fetchone()
+                if archived and archived['completions']:
+                    raise ValueError('No more than one item can be created per day.')
                 for other in self._connection.execute(
                     'SELECT automation_json FROM equipment WHERE character_id=? AND id<>?',
                     (character_id, item_id)):
@@ -2290,6 +2297,20 @@ class CharacterRepository:
         return restored
 
     def delete_equipment(self, character_id: int, item_id: int) -> None:
+        row = self._connection.execute('SELECT automation_json FROM equipment WHERE character_id=? AND id=?', (character_id, item_id)).fetchone()
+        if row:
+            try:
+                project = json.loads(row['automation_json'] or '{}').get('marvelous_project', {})
+            except (ValueError, AttributeError):
+                project = {}
+            calendar = dict(project.get('calendar', {}))
+            completed = project.get('completion_day') if project.get('status') in {'complete', 'cursed'} else None
+            if completed: calendar.setdefault(completed, 0)
+            for day, hours in calendar.items():
+                self._connection.execute('''INSERT INTO archived_crafting_days(character_id,day,hours,completions)
+                    VALUES(?,?,?,?) ON CONFLICT(character_id,day) DO UPDATE SET
+                    hours=hours+excluded.hours, completions=completions+excluded.completions''',
+                    (character_id, day, hours, int(day == completed)))
         self._connection.execute(
             "UPDATE attacks SET equipment_id = NULL WHERE character_id = ? AND equipment_id = ?",
             (character_id, item_id),
@@ -2307,6 +2328,21 @@ class CharacterRepository:
         )
         self._touch_character(character_id)
         self._connection.commit()
+
+    def archived_crafting_days(self, character_id):
+        return [dict(row) for row in self._connection.execute('SELECT day,hours,completions FROM archived_crafting_days WHERE character_id=? ORDER BY day', (character_id,))]
+
+    def import_archived_crafting_days(self, character_id, records):
+        from datetime import date
+        reviewed = []
+        for record in records:
+            day = record['day']; date.fromisoformat(day)
+            hours, completions = record['hours'], record['completions']
+            if any(isinstance(v, bool) or not isinstance(v, int) for v in (hours, completions)) or not 0 <= hours <= 8 or not 0 <= completions <= 1:
+                raise ValueError('Invalid archived crafting day.')
+            reviewed.append((character_id, day, hours, completions))
+        with self._connection:
+            self._connection.executemany('INSERT INTO archived_crafting_days(character_id,day,hours,completions) VALUES(?,?,?,?)', reviewed)
 
     def get_currency_purse(self, character_id: int) -> CurrencyPurse:
         self._seed_currency(character_id)
