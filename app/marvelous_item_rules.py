@@ -180,7 +180,7 @@ def tradition_costs(base_price, *, cheap=False, expensive=False, other_reduction
     return materials, base * fraction if cheap else base
 
 
-def talent_construction_cost(entry, *, additional_spell_points=0):
+def talent_construction_cost(entry, *, additional_spell_points=0, mythic_crafter=False):
     """Default reviewed contribution; never extract spell-point rules from prose.
 
     Published Admixture construction is free; its blast types are paid separately.
@@ -188,11 +188,12 @@ def talent_construction_cost(entry, *, additional_spell_points=0):
     """
     if isinstance(additional_spell_points, bool) or not isinstance(additional_spell_points, int) or additional_spell_points < 0:
         raise ValueError('Additional spell points must be a nonnegative integer.')
+    if not isinstance(mythic_crafter, bool): raise ValueError('Mythic Crafter access must be boolean.')
     if entry.get('key') == 'destruction:talent:admixture':
         return 0
     if entry.get('key') in {'alteration:talent:mass-alteration-mass', 'illusion:talent:suppression-glamer'}:
         return 2 + additional_spell_points
-    return (2 if 'advanced' in str(entry.get('category', '')).casefold() else 1) + additional_spell_points
+    return (2 if 'advanced' in str(entry.get('category', '')).casefold() and not mythic_crafter else 1) + additional_spell_points
 
 
 def effect_complexity(*, talent_costs=(), alternative_costs=(), range_steps=0,

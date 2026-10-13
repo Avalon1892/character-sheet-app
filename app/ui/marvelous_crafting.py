@@ -245,7 +245,10 @@ class MarvelousCraftingDialog(QDialog):
         self.table.setItem(row, 0, item)
         cost = QSpinBox(); cost.setRange(0, 100)
         from app.marvelous_item_rules import talent_construction_cost
-        cost.setValue(talent_construction_cost(entry))
+        mythic = 'mythic crafter' in self.service.feats
+        cost.setValue(talent_construction_cost(entry, mythic_crafter=mythic))
+        if mythic and 'advanced' in entry.get('category', '').casefold():
+            cost.setToolTip('Mythic Crafter reduces the advanced talent base contribution to +1. Additional spell points still add complexity.')
         if entry['key'] == 'destruction:talent:admixture':
             cost.setToolTip('Admixture adds no complexity. Pay for each included blast type separately.')
         cost.valueChanged.connect(self.update_preview); self.table.setCellWidget(row, 1, cost)

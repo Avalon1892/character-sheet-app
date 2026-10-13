@@ -120,6 +120,20 @@ def test_composer_adds_reviewed_prerequisites_without_duplicates_or_writes(compo
     assert dialog.blueprint()['contributions'] == contributions
 
 
+def test_mythic_crafter_advanced_default_uses_existing_feature_access(composer):
+    dialog, repo, cid = composer
+    repo.add_feat(cid, 'Mythic Crafter')
+    mythic = MarvelousCraftingDialog(repo, cid)
+    mythic.sphere.setCurrentText('Life'); mythic.cl.setValue(15)
+    key = 'life:advanced-talent:hypervitalize'
+    index = next(i for i in range(mythic.talent.count()) if mythic.talent.itemData(i)['key'] == key)
+    mythic.talent.setCurrentIndex(index); mythic.add_contribution()
+    assert mythic.table.cellWidget(0, 1).value() == 1
+    mythic.table.cellWidget(0, 4).setValue(2)
+    assert mythic.blueprint()['contributions'][0]['complexity'] == 3
+    mythic.close()
+
+
 def test_recipient_ui_disables_personal_effect_and_cancel_spends_nothing(composer, monkeypatch):
     from dataclasses import replace
     from PySide6.QtWidgets import QMessageBox

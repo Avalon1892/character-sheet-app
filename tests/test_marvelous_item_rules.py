@@ -56,6 +56,8 @@ def test_talent_construction_defaults_and_admixture_exception():
     assert talent_construction_cost({'key': 'destruction:talent:admixture', 'category': 'Talent'}) == 0
     assert talent_construction_cost({'category': 'Talent'}, additional_spell_points=2) == 3
     assert talent_construction_cost({'category': 'Advanced Talent'}, additional_spell_points=1) == 3
+    assert talent_construction_cost({'category': 'Advanced Talent'}, additional_spell_points=1, mythic_crafter=True) == 2
+    with pytest.raises(ValueError): talent_construction_cost({}, mythic_crafter=1)
     assert talent_construction_cost({'key': 'alteration:talent:mass-alteration-mass', 'category': 'Talent'}) == 2
     assert talent_construction_cost({'key': 'illusion:talent:suppression-glamer', 'category': 'Talent'}) == 2
     with pytest.raises(ValueError): talent_construction_cost({}, additional_spell_points=True)
