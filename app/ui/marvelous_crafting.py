@@ -12,7 +12,7 @@ from app.marvelous_base_powers import base_powers, resolve_base_power, RANGES, D
 
 
 class MarvelousCraftingDialog(QDialog):
-    def __init__(self, repository, character_id, parent=None):
+    def __init__(self, repository, character_id, parent=None, *, item_id=None):
         super().__init__(parent)
         self.repository, self.character_id = repository, character_id
         self.service = CraftingService(repository, character_id)
@@ -77,6 +77,35 @@ class MarvelousCraftingDialog(QDialog):
         self.review.toggled.connect(self.update_preview)
         self.slotless.toggled.connect(self.update_preview); self.permanent.toggled.connect(self.update_preview)
         self.populate_talents()
+        if item_id is not None:
+            self.load_design(item_id)
+
+    def load_design(self, item_id):
+        item = next((item for item in self.repository.list_equipment(self.character_id) if item.id == item_id), None)
+        if item is None: raise ValueError('Unknown character item.')
+        metadata = json.loads(item.automation_json or '{}')
+        if metadata.get('provider') != 'marvelous-composer': raise ValueError('Not a custom Marvelous design.')
+        plan = metadata['marvelous_blueprint']
+        self.item_id = item_id
+        self.sphere.setCurrentText(plan['sphere'])
+        self.base_power.setCurrentIndex(self.base_power.findData(plan['base_power']))
+        self.cl.setValue(plan['caster_level'])
+        self.activation.setCurrentIndex(self.activation.findData(plan['activation']))
+        self.uses.setCurrentIndex(self.uses.findData(plan['uses']))
+        self.range_steps.setValue(plan['range_steps']); self.duration_steps.setValue(plan['duration_steps'])
+        self.unique.setValue(plan['unique_changes'])
+        self.slotless.setChecked(plan.get('no_space_limitation', False))
+        self.permanent.setChecked(plan.get('permanent', False))
+        for contribution in plan['contributions']:
+            index = next((i for i in range(self.talent.count()) if self.talent.itemData(i)['key'] == contribution['catalog_key']), -1)
+            if index < 0: raise ValueError('A saved talent is no longer available; editing cannot safely continue.')
+            self.talent.setCurrentIndex(index); self.add_contribution()
+            row = self.table.rowCount() - 1
+            self.table.cellWidget(row, 1).setValue(contribution['complexity'])
+            self.table.cellWidget(row, 2).setChecked(contribution.get('alternative', False))
+        self.name.setText(item.name); self.description.setPlainText(item.notes)
+        self.slot.setCurrentIndex(self.slot.findData(item.slot))
+        self.setWindowTitle('Edit Marvelous Item Design'); self.save.setText('Save design changes')
 
     def populate_talents(self, *_):
         self.table.setRowCount(0)
@@ -165,7 +194,7 @@ class MarvelousCraftingDialog(QDialog):
         if not self.save.isEnabled(): return
         try:
             self.item_id = self.service.save_marvelous_design(self.blueprint(),
-                name=self.name.text(), slot=self.slot.currentData(), description=self.description.toPlainText())
+                name=self.name.text(), slot=self.slot.currentData(), description=self.description.toPlainText(), item_id=self.item_id)
         except ValueError as error:
             QMessageBox.warning(self, 'Cannot save design', str(error))
             return
@@ -185,6 +214,7 @@ class MarvelousItemUseDialog(QDialog):
         self.table.setHorizontalHeaderLabels(['Item', 'Remaining uses', 'Base effect', 'Activate'])
         self.table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
         self.table.setColumnWidth(1, 140); self.table.setColumnWidth(2, 260); self.table.setColumnWidth(3, 220)
+        self.table.cellDoubleClicked.connect(self.edit_design)
         root.addWidget(self.table, 1)
         self.result = QLabel('Effect durations must be tracked manually. Other targets and modified effects are manual.')
         self.result.setWordWrap(True); root.addWidget(self.result)
@@ -204,7 +234,11 @@ class MarvelousItemUseDialog(QDialog):
             except (ValueError, KeyError, TypeError):
                 continue
             row = self.table.rowCount(); self.table.insertRow(row)
-            self.table.setItem(row, 0, QTableWidgetItem(item.name))
+            name = QTableWidgetItem(item.name)
+            from PySide6.QtCore import Qt
+            name.setData(Qt.ItemDataRole.UserRole, item.id)
+            name.setToolTip('Double-click to edit this custom design.')
+            self.table.setItem(row, 0, name)
             self.table.setItem(row, 1, QTableWidgetItem('Unlimited' if remaining is None else str(remaining)))
             detail = QTableWidgetItem(effect['power']); detail.setToolTip('\n'.join(f'{k}: {v}' for k, v in effect.items()))
             self.table.setItem(row, 2, detail)
@@ -214,6 +248,16 @@ class MarvelousItemUseDialog(QDialog):
             if item.quantity > 1: button.setToolTip('Separate these devices into individual records to track independent uses.')
             button.clicked.connect(lambda checked=False, iid=item.id, auto=automatic:self.activate(iid, auto))
             self.table.setCellWidget(row, 3, button)
+
+    def edit_design(self, row, column):
+        from PySide6.QtCore import Qt
+        try:
+            dialog = MarvelousCraftingDialog(self.repository, self.character_id, self,
+                item_id=self.table.item(row, 0).data(Qt.ItemDataRole.UserRole))
+        except ValueError as error:
+            QMessageBox.warning(self, 'Cannot edit design', str(error)); return
+        if dialog.exec() == QDialog.DialogCode.Accepted:
+            self.changed = True; self.refresh()
 
     def activate(self, item_id, automatic):
         if not automatic and QMessageBox.question(self, 'Record item use',

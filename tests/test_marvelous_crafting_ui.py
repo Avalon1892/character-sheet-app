@@ -64,3 +64,31 @@ def test_changing_sphere_does_not_retain_foreign_contributions(composer):
     assert dialog.table.rowCount() == 1
     dialog.sphere.setCurrentIndex(1)
     assert dialog.table.rowCount() == 0
+
+
+def test_edit_design_preserves_identity_and_spent_uses(composer):
+    dialog, repo, cid = composer
+    dialog.review.setChecked(True); dialog.save_item()
+    iid = dialog.item_id
+    repo.consume_marvelous_item_use(cid, iid)
+    edit = MarvelousCraftingDialog(repo, cid, item_id=iid)
+    edit.name.setText('Renamed device'); edit.cl.setValue(3)
+    edit.review.setChecked(True); edit.save_item()
+    items = repo.list_equipment(cid)
+    assert len(items) == 1 and items[0].id == iid
+    assert items[0].name == 'Renamed device'
+    metadata = json.loads(items[0].automation_json)
+    assert metadata['marvelous_blueprint']['caster_level'] == 3
+    from app.marvelous_item_rules import marvelous_remaining_uses
+    assert marvelous_remaining_uses(metadata) == 0
+    edit.close()
+
+
+def test_cancel_edit_does_not_write(composer):
+    dialog, repo, cid = composer
+    dialog.review.setChecked(True); dialog.save_item()
+    before = repo._connection.total_changes
+    edit = MarvelousCraftingDialog(repo, cid, item_id=dialog.item_id)
+    edit.name.setText('Not saved'); edit.reject()
+    assert repo._connection.total_changes == before
+    edit.close()

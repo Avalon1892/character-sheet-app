@@ -92,7 +92,7 @@ class CraftingService:
             required_spheres=(plan['sphere'],), required_talents=required,
             advanced_talents=advanced, **(access if access is not None else self.permanent_marvelous_access()))
 
-    def save_marvelous_design(self, plan, *, name, slot, description):
+    def save_marvelous_design(self, plan, *, name, slot, description, item_id=None):
         """Save a reviewed blueprint without claiming completion of a craft project.
 
         Unknown construction effects remain rules-only; do not attach passive
@@ -108,6 +108,23 @@ class CraftingService:
         metadata = dict(status='rules_only', provider='marvelous-composer',
                         rules_only=['Custom activated effect; activation automation pending.'],
                         marvelous_blueprint=plan, marvelous_base_effect=effect)
+        if item_id is not None:
+            item = next((item for item in self.repository.list_equipment(self.character_id) if item.id == item_id), None)
+            if item is None:
+                raise ValueError('This item does not belong to the active character.')
+            previous = json.loads(item.automation_json or '{}')
+            if previous.get('provider') != 'marvelous-composer':
+                raise ValueError('Only custom Marvelous designs can be edited here.')
+            if item.quantity != 1:
+                raise ValueError('Split stacked devices before editing a design.')
+            previous.update(metadata)
+            self.repository.update_equipment(self.character_id, item_id,
+                name=name, category=item.category, quantity=item.quantity, weight=item.weight,
+                equipped=item.equipped, ac_bonus=item.ac_bonus, bonus_type=item.bonus_type,
+                max_dex_bonus=item.max_dex_bonus, notes=description,
+                armor_check_penalty=item.armor_check_penalty, slot=slot,
+                value_gp=float(price.market_price_gp), automation_json=json.dumps(previous))
+            return item_id
         return self.repository.add_equipment(self.character_id,
             name=name, category='Gear', quantity=1, weight=0, equipped=False,
             ac_bonus=0, bonus_type='untyped', max_dex_bonus=None, notes=description,
