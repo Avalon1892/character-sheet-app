@@ -127,6 +127,27 @@ def test_combined_design_saves_price_and_independent_recovery(crafter):
     assert repo._connection.total_changes == before
 
 
+def test_use_dialog_lists_and_activates_the_exact_extra_power(crafter, monkeypatch):
+    from PySide6.QtWidgets import QApplication
+    from app.ui.marvelous_crafting import MarvelousItemUseDialog
+    app = QApplication.instance() or QApplication([])
+    repo, cid = crafter; iid = item(repo, cid, 2)
+    plan = metadata(repo, cid, iid)['marvelous_blueprint']
+    plan['extra_effects'] = [dict(plan, base_power='life:cure', uses=1)]
+    CraftingService(repo, cid).save_marvelous_design(plan, name='Two powers', slot='', description='', item_id=iid)
+    monkeypatch.setattr('random.randint', lambda low, high: 1)
+    dialog = MarvelousItemUseDialog(repo, cid)
+    assert dialog.table.rowCount() == 2
+    assert dialog.table.item(1, 2).text() == 'Cure'
+    dialog.table.cellWidget(1, 3).click()
+    assert repo.get_hit_points(cid).current == 16
+    assert marvelous_remaining_uses(metadata(repo, cid, iid)) == 2
+    assert marvelous_remaining_uses(metadata(repo, cid, iid), 1) == 0
+    assert dialog.table.cellWidget(0, 3).isEnabled()
+    assert not dialog.table.cellWidget(1, 3).isEnabled()
+    dialog.close()
+
+
 def test_activation_dialog_updates_available_state(crafter):
     from PySide6.QtWidgets import QApplication
     from app.ui.marvelous_crafting import MarvelousItemUseDialog

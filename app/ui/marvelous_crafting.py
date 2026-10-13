@@ -286,25 +286,28 @@ class MarvelousItemUseDialog(QDialog):
                 metadata = json.loads(item.automation_json or '{}')
                 plan = metadata.get('marvelous_blueprint')
                 if not plan: continue
-                remaining = marvelous_remaining_uses(metadata)
-                effect = resolve_base_power(plan)
+                effects = [(index, power, marvelous_remaining_uses(metadata, index), resolve_base_power(power))
+                           for index, power in enumerate([plan, *plan.get('extra_effects', [])])]
             except (ValueError, KeyError, TypeError):
                 continue
-            row = self.table.rowCount(); self.table.insertRow(row)
-            name = QTableWidgetItem(item.name)
-            from PySide6.QtCore import Qt
-            name.setData(Qt.ItemDataRole.UserRole, item.id)
-            name.setToolTip('Double-click to edit this custom design.')
-            self.table.setItem(row, 0, name)
-            self.table.setItem(row, 1, QTableWidgetItem('Unlimited' if remaining is None else str(remaining)))
-            detail = QTableWidgetItem(effect['power']); detail.setToolTip('\n'.join(f'{k}: {v}' for k, v in effect.items()))
-            self.table.setItem(row, 2, detail)
-            automatic = automatic_self_effect(plan) is not None
-            button = QPushButton(('Cure living self' if plan['base_power'] == 'life:cure' else 'Apply temporary HP to self') if automatic else 'Record use — manual effect')
-            button.setEnabled(remaining != 0 and item.quantity == 1)
-            if item.quantity > 1: button.setToolTip('Separate these devices into individual records to track independent uses.')
-            button.clicked.connect(lambda checked=False, iid=item.id, auto=automatic:self.activate(iid, auto))
-            self.table.setCellWidget(row, 3, button)
+            mixed = bool(plan.get('extra_effects')) and plan.get('combination_mode') == 'mixed'
+            for index, power, remaining, effect in effects:
+                row = self.table.rowCount(); self.table.insertRow(row)
+                name = QTableWidgetItem(item.name if index == 0 else f'↳ {item.name}')
+                from PySide6.QtCore import Qt
+                name.setData(Qt.ItemDataRole.UserRole, item.id)
+                name.setToolTip('Double-click to edit this custom design.')
+                self.table.setItem(row, 0, name)
+                self.table.setItem(row, 1, QTableWidgetItem('Unlimited' if remaining is None else str(remaining)))
+                detail = QTableWidgetItem(effect['power']); detail.setToolTip('\n'.join(f'{k}: {v}' for k, v in effect.items()))
+                self.table.setItem(row, 2, detail)
+                automatic = automatic_self_effect(power) is not None
+                button = QPushButton(('Cure living self' if power['base_power'] == 'life:cure' else 'Apply temporary HP to self') if automatic else 'Record use — manual effect')
+                button.setEnabled(remaining != 0 and item.quantity == 1 and not mixed)
+                if mixed: button.setToolTip('Mixed simultaneous activation is not implemented yet.')
+                elif item.quantity > 1: button.setToolTip('Separate these devices into individual records to track independent uses.')
+                button.clicked.connect(lambda checked=False, iid=item.id, auto=automatic, ei=index:self.activate(iid, auto, ei))
+                self.table.setCellWidget(row, 3, button)
 
     def edit_design(self, row, column):
         from PySide6.QtCore import Qt
@@ -316,12 +319,12 @@ class MarvelousItemUseDialog(QDialog):
         if dialog.exec() == QDialog.DialogCode.Accepted:
             self.changed = True; self.refresh()
 
-    def activate(self, item_id, automatic):
+    def activate(self, item_id, automatic, effect_index=0):
         if not automatic and QMessageBox.question(self, 'Record item use',
             'Apply this effect manually? Confirming consumes one item activation.') != QMessageBox.StandardButton.Yes:
             return
         try:
-            effect = self.service.activate_marvelous_item(item_id, apply_to_self=automatic)
+            effect = self.service.activate_marvelous_item(item_id, apply_to_self=automatic, effect_index=effect_index)
         except ValueError as error:
             QMessageBox.warning(self, 'Cannot activate item', str(error)); return
         self.changed = True

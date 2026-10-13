@@ -28,6 +28,8 @@ Status: pricing, prerequisite checks, catalog import and initial custom composer
 
 ### Latest checkpoint
 
+- Activation window now shows each independent power as its own row under the item, with exact remaining uses, effect tooltip and indexed activation control. Extra cure automation affects the same character while spending only that effect's counter. Exhausting an extra power does not disable the primary. Mixed powers are displayed but disabled until simultaneous activation is implemented. Added a UI regression that clicks the second power and checks HP, both counters and both button states. **18 activation/editor tests passed in 10.27 seconds**.
+
 - Composer now exposes `Add another power` and `Edit power`, reusing the existing composer in no-write draft mode. Parent save stores one inventory record with combined price; preview lists each additional power's baseline requirements. Saved designs reload the extra powers. Shared CL is fixed in child editors. Draft-confirmation/cancel do not independently create equipment. Editor tests: **8 passed in 4.10 seconds**; preceding editor/resource run **16 passed in 4.49 seconds**.
 - Next UI work: effect removal with counter remapping/confirmation, displaying/activating all powers in the use dialog, exposing mixed mode only alongside complete simultaneous activation, and visual inspection after the extra controls. Current use dialog still shows only the primary effect; do not describe additional-effect use UI as complete.
 
