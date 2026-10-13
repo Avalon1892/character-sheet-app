@@ -161,6 +161,20 @@ def advanced_construction_blockers(contributions, caster_level, *, display_names
     return tuple(blockers)
 
 
+def feat_integration_complexity(integrations):
+    """Explicit reviewed feat integration; metamagic adds its extra SP cost."""
+    seen, total = set(), 0
+    for feat in integrations:
+        name = feat.get('name', '').strip()
+        metamagic, points = feat.get('metamagic', False), feat.get('additional_spell_points', 0)
+        if not name or name.casefold() in seen: raise ValueError('Integrated feats must have unique names.')
+        if not isinstance(metamagic, bool) or isinstance(points, bool) or not isinstance(points, int) or points < 0:
+            raise ValueError('Invalid metamagic integration cost.')
+        if not metamagic and points: raise ValueError('Only metamagic feats add spell-point integration costs.')
+        seen.add(name.casefold()); total += 1 + points
+    return total
+
+
 def tradition_costs(base_price, *, cheap=False, expensive=False, other_reduction=Fraction(0)):
     """Reviewed material/resale adjustments, separate from base work pricing.
 
@@ -253,9 +267,10 @@ def quote_marvelous_blueprint(plan):
             groups.setdefault(group, []).append(contribution['complexity'])
     # Resolve each independent choice set separately; legacy alternatives use group 1.
     grouped_costs = [effect_complexity(alternative_costs=costs) - 1 for costs in groups.values()]
+    feat_cost = feat_integration_complexity(plan.get('feat_integrations', []))
     complexity = effect_complexity(talent_costs=[x['complexity'] for x in plan['contributions'] if not x.get('alternative', False)] + grouped_costs,
         range_steps=plan['range_steps'], duration_steps=plan['duration_steps'],
-        activation=plan['activation'], unique_changes=plan['unique_changes'] + (2 if plan.get('permanent') else 0) + int(plan.get('full_blast_damage', False)) + 2 * plan.get('effect_range_steps', 0))
+        activation=plan['activation'], unique_changes=plan['unique_changes'] + (2 if plan.get('permanent') else 0) + int(plan.get('full_blast_damage', False)) + 2 * plan.get('effect_range_steps', 0) + feat_cost)
     price = marvelous_item_price(plan['caster_level'], complexity,
                                 daily_uses=1 if plan['uses'] == 50 else plan['uses'], limited_uses=plan['uses'] == 50)
     if plan.get('no_space_limitation'):

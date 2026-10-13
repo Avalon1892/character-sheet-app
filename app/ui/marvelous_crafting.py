@@ -19,6 +19,7 @@ class MarvelousCraftingDialog(QDialog):
         self.crafting_access = self.service.permanent_marvelous_access()
         self.item_id = None
         self.extra_effects = []
+        self.feat_integrations = []
         self.combination_mode = 'multiple'
         self.draft_effect = draft_effect
         self.setWindowTitle('Design a Marvelous Item')
@@ -131,6 +132,7 @@ class MarvelousCraftingDialog(QDialog):
         self.setWindowTitle('Edit Marvelous Item Design'); self.save.setText('Save design changes')
 
     def load_plan(self, plan):
+        self.feat_integrations = [dict(feat) for feat in plan.get('feat_integrations', [])]
         self.extra_effects = [dict(extra, effect_id=extra.get('effect_id', f'legacy:{index}'))
                               for index, extra in enumerate(plan.get('extra_effects', []), 1)]
         self.combination_mode = plan.get('combination_mode', 'multiple')
@@ -307,6 +309,7 @@ class MarvelousCraftingDialog(QDialog):
                     effect_range_steps=self.effect_range.value(),
                     restore_mode=self.restore_mode.currentData(),
                     extra_effects=self.extra_effects, combination_mode=self.combination_mode,
+                    feat_integrations=self.feat_integrations,
                     automation_status='rules_only')
 
     def quotation(self):

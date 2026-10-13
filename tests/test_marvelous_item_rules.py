@@ -81,6 +81,14 @@ def test_crafting_tradition_costs_preserve_base_price_and_apply_floor():
     with pytest.raises(ValueError): tradition_costs(1000, cheap=True, expensive=True)
 
 
+def test_explicit_feat_integration_costs_and_duplicate_validation():
+    from app.marvelous_item_rules import feat_integration_complexity
+    assert feat_integration_complexity([dict(name='Maximize Spell', metamagic=True, additional_spell_points=3)]) == 4
+    assert feat_integration_complexity([dict(name='Example feat')]) == 1
+    with pytest.raises(ValueError): feat_integration_complexity([dict(name='A'), dict(name='a')])
+    with pytest.raises(ValueError): feat_integration_complexity([dict(name='A', additional_spell_points=1)])
+
+
 @pytest.mark.parametrize("kwargs", [{"talent_costs": (-1,)}, {"alternative_costs": (0.5,)},
                                     {"activation": "free"}, {"range_steps": 1.5}])
 def test_invalid_effect_contributions(kwargs):

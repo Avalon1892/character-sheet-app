@@ -87,6 +87,9 @@ class CraftingService:
             if power['caster_level'] != plan['caster_level']:
                 raise ValueError('All item effects must have the same caster level.')
             spheres.append(power['sphere'])
+            for feat in power.get('feat_integrations', []):
+                if feat['name'].casefold() not in self.feats:
+                    construction_blockers.append(f'Integrated feat must be possessed: {feat["name"]}.')
             construction_blockers.extend(advanced_construction_blockers(power['contributions'], power['caster_level'],
                 display_names={key: entry['name'] for key, entry in self.magic_entries_by_key.items()}))
             for contribution in power['contributions']:

@@ -83,6 +83,16 @@ def test_hypervitalize_requires_item_level_and_prerequisite_effects(crafter):
     assert service.marvelous_plan_requirements(plan, access=access).eligible
 
 
+def test_integrated_feat_cannot_be_bypassed_as_a_missing_talent(crafter):
+    repo, cid = crafter
+    plan = dict(sphere='Life', base_power='life:cure', caster_level=5, range_steps=0,
+                duration_steps=0, contributions=[], feat_integrations=[dict(name='Maximize Spell', metamagic=True, additional_spell_points=3)])
+    result = CraftingService(repo, cid).marvelous_plan_requirements(plan)
+    assert not result.eligible and any('Maximize Spell' in blocker for blocker in result.blockers)
+    repo.add_feat(cid, 'Maximize Spell')
+    assert CraftingService(repo, cid).marvelous_plan_requirements(plan).eligible
+
+
 @pytest.mark.parametrize('key', ['life:advanced-talent:make-whole', 'life:advanced-talent:resurrection',
     'life:advanced-talent:resurrection-greater', 'life:advanced-talent:resurrection-supreme-warden',
     'life:advanced-talent:feline-good-catgirl-hb', 'life:advanced-talent:transfiguration',
