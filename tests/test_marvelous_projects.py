@@ -150,4 +150,29 @@ def test_work_calendar_is_shared_between_retained_projects(tmp_path, monkeypatch
     export_character(repo, cid, export)
     imported = import_character(repo, export)
     assert repo.archived_crafting_days(imported) == repo.archived_crafting_days(cid)
+    before_archive = repo.archived_crafting_days(cid)
+    repo.delete_equipment(cid, ids[0])
+    assert repo.archived_crafting_days(cid) == before_archive
+    repo.delete_equipment(imported, ids[1])
+    assert repo.archived_crafting_days(cid) == before_archive
+    repo.close()
+    reopened = CharacterRepository(tmp_path / 'calendar.db')
+    assert reopened.archived_crafting_days(cid) == before_archive
+    reopened.close()
+
+
+@pytest.mark.parametrize('record', [
+    dict(day='not-a-date', hours=4, completions=0),
+    dict(day='2026-10-13', hours=9, completions=0),
+    dict(day='2026-10-13', hours=True, completions=0),
+    dict(day='2026-10-13', hours=4, completions=2),
+])
+def test_archived_crafting_import_validates_before_writes(tmp_path, record):
+    from app.database import CharacterRepository
+    repo = CharacterRepository(tmp_path / 'invalid-archive.db')
+    cid = repo.create_character('Crafter', 'Spheres')
+    before = repo._connection.total_changes
+    with pytest.raises(ValueError):
+        repo.import_archived_crafting_days(cid, [dict(day='2026-10-12', hours=4, completions=0), record])
+    assert repo._connection.total_changes == before and repo.archived_crafting_days(cid) == []
     repo.close()
