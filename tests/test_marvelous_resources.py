@@ -28,6 +28,38 @@ def metadata(repo, cid, iid):
     return json.loads(next(i for i in repo.list_equipment(cid) if i.id == iid).automation_json)
 
 
+def test_character_transfer_preserves_blueprint_project_and_independent_counters(crafter, tmp_path, monkeypatch):
+    from app.transfer import export_character, import_character
+    from app.marvelous_item_rules import MarvelousRequirements
+    repo, cid = crafter
+    repo.update_currency_purse(replace(repo.get_currency_purse(cid), gold=10000))
+    service = CraftingService(repo, cid)
+    plan = dict(schema_version=1, sphere='Life', base_power='life:cure', caster_level=1,
+                activation='standard', uses=2, range_steps=0, duration_steps=0,
+                unique_changes=0, contributions=[])
+    plan['extra_effects'] = [{**plan, 'uses': 50}]
+    slot = repo.list_worn_slots(cid)[0]
+    iid = service.save_marvelous_design(plan, name='Transferred device', slot=slot, description='Manual description')
+    monkeypatch.setattr(service, 'marvelous_plan_requirements', lambda p: MarvelousRequirements((), (), 0))
+    service.start_marvelous_construction(iid)
+    for day in ('2026-10-13', '2026-10-14', '2026-10-15'):
+        repo.advance_marvelous_project(cid, iid, day=day, hours=8)
+    repo.advance_marvelous_project(cid, iid, check_total=11)
+    repo.consume_marvelous_item_use(cid, iid)
+    repo.consume_marvelous_item_use(cid, iid, effect_index=1)
+    before = metadata(repo, cid, iid)
+    path = tmp_path / 'crafted.character.json'
+    export_character(repo, cid, path)
+    imported = import_character(repo, path)
+    transferred = next(i for i in repo.list_equipment(imported) if i.name == 'Transferred device')
+    assert transferred.id != iid and transferred.notes == 'Manual description' and transferred.slot == slot
+    assert json.loads(transferred.automation_json) == before
+    repo.consume_marvelous_item_use(imported, transferred.id, effect_index=1)
+    after = metadata(repo, imported, transferred.id)
+    assert marvelous_remaining_uses(after, 0) == 1 and marvelous_remaining_uses(after, 1) == 48
+    assert metadata(repo, cid, iid) == before
+
+
 def test_atomic_activation_and_zero_floor(crafter):
     repo, cid = crafter; iid = item(repo, cid)
     repo.consume_marvelous_item_use(cid, iid, apply_to_self=True)
