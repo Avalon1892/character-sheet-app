@@ -88,6 +88,20 @@ def test_armored_magic_choice_survives_editing_and_column_is_conditional(compose
     assert dialog.table.isColumnHidden(5)
 
 
+def test_restore_mode_is_explicit_saved_and_cleared_for_other_powers(composer):
+    from app.marvelous_base_powers import resolve_base_power
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Life')
+    dialog.base_power.setCurrentIndex(dialog.base_power.findData('life:restore'))
+    assert dialog.restore_mode.currentData() == ''
+    dialog.restore_mode.setCurrentIndex(dialog.restore_mode.findData('body'))
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.restore_mode.currentData() == 'body'
+    assert resolve_base_power(saved)['restore_mode'] == 'body'
+    dialog.base_power.setCurrentIndex(dialog.base_power.findData('life:cure'))
+    assert dialog.blueprint()['restore_mode'] == ''
+
+
 @pytest.mark.parametrize('sphere,key', [('Alteration', 'alteration:talent:mass-alteration-mass'),
                                        ('Illusion', 'illusion:talent:suppression-glamer')])
 def test_published_talent_exceptions_default_to_two_complexity(composer, sphere, key):

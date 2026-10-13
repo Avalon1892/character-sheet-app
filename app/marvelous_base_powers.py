@@ -139,6 +139,9 @@ def resolve_base_power(plan):
     if plan['caster_level'] < 1:
         raise ValueError('Item caster level must be positive.')
     key = plan.get('base_power')
+    restore_mode = plan.get('restore_mode', '')
+    if restore_mode not in {'', 'mind', 'body', 'soul'} or (restore_mode and key != 'life:restore'):
+        raise ValueError('Restore mode requires a Life restore base power.')
     effect_steps = plan.get('effect_range_steps', 0)
     if (isinstance(effect_steps, bool) or not isinstance(effect_steps, int) or not 0 <= effect_steps <= 2
             or (effect_steps and key not in {'warp:teleport', 'weather:control'})):
@@ -174,6 +177,13 @@ def resolve_base_power(plan):
                'caster_level': cl, 'save_dc': 10 + cl // 2, 'magic_skill_bonus': cl}
     if plan.get('permanent', False): summary['duration'] = 'Permanent (dispellable)'
     if power.key == 'life:temporary-hp': summary['temporary_hp'] = cl
+    if power.key == 'life:restore':
+        summary['restore_mode'] = restore_mode or 'Not selected; manual review required'
+        if restore_mode in {'mind', 'body'}:
+            names = ('Dazzled', 'Shaken', 'Frightened', 'Panicked', 'Staggered', 'Battered', 'Fatigued', 'Exhausted', 'Sickened', 'Nauseated')
+            summary['restore_changes'] = restore_condition_changes(restore_mode, names)
+            summary['ongoing_conditions'] = f'Suppress for {cl} rounds instead of removing; source review required.'
+        elif restore_mode == 'soul': summary['ability_damage'] = '1d4 to one chosen ability; manual recording required.'
     if power.key == 'protection:aegis':
         modifiers = aegis_modifiers(plan)
         if modifiers is not None:
