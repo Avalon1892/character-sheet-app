@@ -152,8 +152,16 @@ def quote_marvelous_blueprint(plan):
         raise ValueError('Permanency requires a structured base power.')
     if any(not isinstance(x.get('alternative', False), bool) for x in plan['contributions']):
         raise ValueError('Alternative-effect flags must be boolean.')
-    complexity = effect_complexity(talent_costs=[x['complexity'] for x in plan['contributions'] if not x.get('alternative', False)],
-        alternative_costs=[x['complexity'] for x in plan['contributions'] if x.get('alternative', False)],
+    groups = {}
+    for contribution in plan['contributions']:
+        group = contribution.get('alternative_group', 1)
+        if isinstance(group, bool) or not isinstance(group, int) or group < 1:
+            raise ValueError('Alternative groups must be positive integers.')
+        if contribution.get('alternative', False):
+            groups.setdefault(group, []).append(contribution['complexity'])
+    # Resolve each independent choice set separately; legacy alternatives use group 1.
+    grouped_costs = [effect_complexity(alternative_costs=costs) - 1 for costs in groups.values()]
+    complexity = effect_complexity(talent_costs=[x['complexity'] for x in plan['contributions'] if not x.get('alternative', False)] + grouped_costs,
         range_steps=plan['range_steps'], duration_steps=plan['duration_steps'],
         activation=plan['activation'], unique_changes=plan['unique_changes'] + (2 if plan.get('permanent') else 0))
     price = marvelous_item_price(plan['caster_level'], complexity,

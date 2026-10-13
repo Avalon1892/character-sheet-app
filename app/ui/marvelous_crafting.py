@@ -53,8 +53,8 @@ class MarvelousCraftingDialog(QDialog):
         picker = QHBoxLayout(); left.addLayout(picker)
         self.talent = QComboBox(); picker.addWidget(self.talent, 1)
         add = QPushButton('Add effect contribution'); picker.addWidget(add)
-        self.table = QTableWidget(0, 3)
-        self.table.setHorizontalHeaderLabels(['Talent / effect', 'Verified complexity contribution', 'Alternative'])
+        self.table = QTableWidget(0, 4)
+        self.table.setHorizontalHeaderLabels(['Talent / effect', 'Verified complexity contribution', 'Alternative', 'Choice group'])
         self.table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
         self.table.setColumnWidth(1, 235); left.addWidget(self.table, 1)
         remove = QPushButton('Remove selected contribution'); left.addWidget(remove)
@@ -103,6 +103,7 @@ class MarvelousCraftingDialog(QDialog):
             row = self.table.rowCount() - 1
             self.table.cellWidget(row, 1).setValue(contribution['complexity'])
             self.table.cellWidget(row, 2).setChecked(contribution.get('alternative', False))
+            self.table.cellWidget(row, 3).setValue(contribution.get('alternative_group', 1))
         self.name.setText(item.name); self.description.setPlainText(item.notes)
         self.slot.setCurrentIndex(self.slot.findData(item.slot))
         self.setWindowTitle('Edit Marvelous Item Design'); self.save.setText('Save design changes')
@@ -145,6 +146,10 @@ class MarvelousCraftingDialog(QDialog):
         cost.valueChanged.connect(self.update_preview); self.table.setCellWidget(row, 1, cost)
         alternative = QCheckBox(); alternative.setToolTip('Mutually exclusive option in the same alternative group. Most expensive costs full; other options cost half.')
         alternative.toggled.connect(self.update_preview); self.table.setCellWidget(row, 2, alternative)
+        group = QSpinBox(); group.setRange(1, 100); group.setEnabled(False)
+        group.setToolTip('Alternatives with the same group number are mutually exclusive. Different groups are independent choices.')
+        alternative.toggled.connect(group.setEnabled)
+        group.valueChanged.connect(self.update_preview); self.table.setCellWidget(row, 3, group)
         self.update_preview()
 
     def remove_contribution(self):
@@ -155,7 +160,8 @@ class MarvelousCraftingDialog(QDialog):
         from PySide6.QtCore import Qt
         contributions = [{'catalog_key': self.table.item(r, 0).data(Qt.ItemDataRole.UserRole),
                           'complexity': self.table.cellWidget(r, 1).value(),
-                          'alternative': self.table.cellWidget(r, 2).isChecked()}
+                          'alternative': self.table.cellWidget(r, 2).isChecked(),
+                          'alternative_group': self.table.cellWidget(r, 3).value()}
                          for r in range(self.table.rowCount())]
         return dict(schema_version=1, sphere=self.sphere.currentText(), caster_level=self.cl.value(),
                     base_power=self.base_power.currentData(),

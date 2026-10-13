@@ -28,6 +28,8 @@ Status: pricing, prerequisite checks, catalog import and initial custom composer
 
 ### Latest checkpoint
 
+- Added independent alternative-contribution groups: each group pays its highest option in full and remaining options at half complexity, using exact fractions. Composer exposes a choice-group number, saves/restores it, and defaults old alternatives to group 1. Focused construction/editor tests: **13 passed in 5.04 seconds**. This is variable-option pricing, not the separate multiple/mixed base-effect pricing rule; those remain unfinished.
+
 - Follow-up rules verification corrected an incorrect ordinary-casting substitution: crafted temporary HP explicitly lasts **one minute per caster level** under https://spheresofpower.wikidot.com/magical-items, not ordinary Invigorate's one hour. Restored the crafting duration ladder; saved duration-step designs remain valid. Added a regression asserting the item-specific duration. Do not use ordinary sphere descriptions to override explicit construction rules.
 - Injured-target and missing-HP limits currently follow base Invigorate in the self-application adapter; verify whether the construction-specific temporary-HP substitution retains those restrictions before claiming complete effect semantics. Existing larger pools are preserved. Greater Invigorate and other modified versions remain manual.
 - Isolated suite started in `artifacts/marvelous-validation`; session 93283. Duration correction was made during this run, so it is an intermediate run, not a single immutable-checkpoint validation. Re-run affected modules after it completes.

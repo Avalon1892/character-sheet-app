@@ -44,6 +44,15 @@ def test_old_blueprint_defaults_remain_unchanged():
     assert complexity == 1 and price.market_price_gp == 4000
 
 
+def test_independent_alternative_groups_each_pay_their_highest_in_full():
+    p = blueprint()
+    p['contributions'] = [dict(complexity=2, alternative=True, alternative_group=group)
+                          for group in (1, 1, 2, 2)]
+    assert quote_marvelous_blueprint(p)[0] == 7
+    p['contributions'][0]['alternative_group'] = 0
+    with pytest.raises(ValueError, match='positive integers'): quote_marvelous_blueprint(p)
+
+
 @pytest.mark.parametrize('changes', [dict(no_space_limitation='yes'), dict(permanent=1)])
 def test_flags_are_not_silently_coerced(changes):
     with pytest.raises(ValueError): quote_marvelous_blueprint(blueprint(**changes))
