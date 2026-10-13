@@ -89,6 +89,27 @@ def test_aegis_creates_shared_ongoing_deflection_effect_atomically(crafter):
     assert repo._connection.total_changes == before and len(repo.list_ongoing_effects(cid)) == 1
 
 
+def test_aegis_deflection_reaches_all_ac_profiles_and_does_not_stack(crafter):
+    from app.services.character_calculations import CharacterCalculationService
+    repo, cid = crafter
+    def defenses():
+        results = CharacterCalculationService(repo, cid).combat_results()
+        return tuple(results[key].total for key in ('ac', 'touch_ac', 'flat_footed_ac'))
+    before = defenses()
+    plan = dict(schema_version=1, sphere='Protection', base_power='protection:aegis', caster_level=5,
+                activation='standard', uses=2, range_steps=0, duration_steps=0,
+                unique_changes=0, contributions=[])
+    iid = CraftingService(repo, cid).save_marvelous_design(plan, name='Aegis', slot='', description='')
+    repo.consume_marvelous_item_use(cid, iid, apply_to_self=True)
+    assert defenses() == tuple(value + 2 for value in before)
+    repo.consume_marvelous_item_use(cid, iid, apply_to_self=True)
+    assert defenses() == tuple(value + 2 for value in before)
+    other = repo.add_ongoing_effect(cid, 'Stronger deflection', target='ac', bonus_type='deflection', value=3)
+    assert defenses() == tuple(value + 3 for value in before)
+    repo.set_ongoing_effect_enabled(cid, other, False)
+    assert defenses() == tuple(value + 2 for value in before)
+
+
 @pytest.mark.parametrize('boost,count', [(False, 2), (True, 5)])
 def test_base_destructive_item_rolls_damage_and_spends_once(crafter, monkeypatch, boost, count):
     repo, cid = crafter
