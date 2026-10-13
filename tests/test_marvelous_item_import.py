@@ -27,6 +27,16 @@ def test_merge_preserves_automation_order_and_unrelated_records():
     assert updated[1]["name"] == "B"
 
 
+def test_artifacts_are_catalogued_without_inventing_recipes():
+    entries, recipes = parse_page('''<div id="page-content">
+    <h3>Blood Bath (Minor Artifact)</h3><p>Aura moderate Alteration; CL 10th</p>
+    <p>Slot none; Weight 300 lbs.</p><p>Unique artifact effect.</p>
+    <h3>General Advice</h3><p>Not an item.</p></div>''', 'marvelous-items')
+    assert len(entries) == 1 and recipes == []
+    assert entries[0]['artifact'] and entries[0]['subcategory'] == 'Artifacts'
+    assert entries[0]['weight_lb'] == 300
+
+
 def test_imported_pages_share_inventory_and_crafting_identities():
     from app.catalogs import DEFAULT_CATALOG
     from app.crafting_catalog import crafting_document

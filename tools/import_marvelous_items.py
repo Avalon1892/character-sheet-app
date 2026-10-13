@@ -29,9 +29,11 @@ def parse_page(raw, stem):
                 break
             nodes.append(sibling.get_text(" ", strip=True) if hasattr(sibling, "get_text") else str(sibling))
         text = re.sub(r"\s+", " ", " ".join(nodes)).strip()
-        if "Construction Requirements" not in text:
-            continue
         title = heading.get_text(" ", strip=True)
+        has_construction = "Construction Requirements" in text
+        artifact = bool(re.search(r'\((?:Minor|Major) Artifact\)', title, re.I))
+        if not has_construction and not artifact:
+            continue
         name = re.sub(r"\s*\[[^]]+\]\s*$", "", title).strip()
         key = f"spheres:{stem}:{slug(name)}"
         # Current tab appears first; preserve a distinct legacy record when its
@@ -41,7 +43,7 @@ def parse_page(raw, stem):
         if key in seen:
             raise ValueError(f"Duplicate source identity: {key}")
         seen.add(key)
-        requirements = text.split("Construction Requirements", 1)[1].strip()
+        requirements = text.split("Construction Requirements", 1)[1].strip() if has_construction else ''
         cost_match = re.search(r"\bCost\s+(.+)$", requirements)
         cost = money(cost_match[1]) if cost_match else None
         price_match = re.search(r"\bPrice\s+([^;]+)", text)
@@ -57,6 +59,10 @@ def parse_page(raw, stem):
             slot=slot[1].strip() if slot else "", item_type="spheres-item", automation={},
             rules_version="Original" if key.endswith(":original") else "Current")
         entries.append(entry)
+        if not has_construction:
+            entry['subcategory'] = 'Artifacts'
+            entry['artifact'] = True
+            continue
         feats = [feat for feat in ("Craft Marvelous Item", "Craft Wondrous Item", "Craft Apparatus",
                  "Forge Charm", "Craft Implement Of Power", "Mythic Crafter") if feat.casefold() in requirements.casefold()]
         feats = list(dict.fromkeys("Craft Marvelous Item" if f == "Craft Wondrous Item" else f for f in feats))
