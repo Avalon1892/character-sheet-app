@@ -127,6 +127,18 @@ ADVANCED_CONSTRUCTION_REQUIREMENTS = {
 }
 
 
+def missing_construction_prerequisites(contributions):
+    """Reviewed transitive additions in deterministic dependency order."""
+    owned = {row['catalog_key'] for row in contributions}
+    seen, missing = set(owned), []
+    def visit(key):
+        for required in ADVANCED_CONSTRUCTION_REQUIREMENTS.get(key, (0, ()))[1]:
+            if required in seen: continue
+            seen.add(required); visit(required); missing.append(required)
+    for key in sorted(owned): visit(key)
+    return tuple(missing)
+
+
 def advanced_construction_blockers(contributions, caster_level):
     keys = {row['catalog_key'] for row in contributions}
     blockers = []

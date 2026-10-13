@@ -102,6 +102,24 @@ def test_restore_mode_is_explicit_saved_and_cleared_for_other_powers(composer):
     assert dialog.blueprint()['restore_mode'] == ''
 
 
+def test_composer_adds_reviewed_prerequisites_without_duplicates_or_writes(composer):
+    from app.marvelous_item_rules import advanced_construction_blockers
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Life'); dialog.cl.setValue(20)
+    key = 'life:advanced-talent:resurrection-supreme-warden'
+    index = next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key)
+    dialog.talent.setCurrentIndex(index); dialog.add_contribution()
+    before = repo._connection.total_changes
+    assert dialog.add_prerequisites.isEnabled()
+    dialog.add_required_contributions()
+    contributions = dialog.blueprint()['contributions']
+    assert not advanced_construction_blockers(contributions, 20)
+    assert len(contributions) == len({row['catalog_key'] for row in contributions})
+    assert not dialog.add_prerequisites.isEnabled() and repo._connection.total_changes == before
+    dialog.add_required_contributions()
+    assert dialog.blueprint()['contributions'] == contributions
+
+
 @pytest.mark.parametrize('sphere,key', [('Alteration', 'alteration:talent:mass-alteration-mass'),
                                        ('Illusion', 'illusion:talent:suppression-glamer')])
 def test_published_talent_exceptions_default_to_two_complexity(composer, sphere, key):

@@ -73,6 +73,9 @@ class MarvelousCraftingDialog(QDialog):
         self.table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
         self.table.setColumnWidth(1, 130); self.table.setColumnWidth(4, 75); left.addWidget(self.table, 1)
         remove = QPushButton('Remove selected contribution'); left.addWidget(remove)
+        self.add_prerequisites = QPushButton('Add required talents'); left.addWidget(self.add_prerequisites)
+        self.add_prerequisites.setToolTip('Adds only missing reviewed construction prerequisites. Verify additional SP costs and required choices; item caster level is unchanged.')
+        self.add_prerequisites.clicked.connect(self.add_required_contributions)
         self.description = QTextEdit(); self.description.setPlaceholderText('Your item description and chosen base power…')
         left.addWidget(self.description, 1)
         effect_controls = QHBoxLayout(); left.addLayout(effect_controls)
@@ -263,6 +266,18 @@ class MarvelousCraftingDialog(QDialog):
         choice.currentIndexChanged.connect(self.update_preview); self.table.setCellWidget(row, 5, choice)
         self.update_preview()
 
+    def add_required_contributions(self):
+        from app.marvelous_item_rules import missing_construction_prerequisites
+        keys = missing_construction_prerequisites(self.blueprint()['contributions'])
+        indices = [next((i for i in range(self.talent.count()) if self.talent.itemData(i)['key'] == key), -1) for key in keys]
+        if -1 in indices:
+            QMessageBox.warning(self, 'Cannot add prerequisites', 'A required talent is not available in the current sphere catalog. No talents were added.')
+            return
+        selected = self.talent.currentIndex()
+        for index in indices:
+            self.talent.setCurrentIndex(index); self.add_contribution()
+        self.talent.setCurrentIndex(selected)
+
     def remove_contribution(self):
         if self.table.currentRow() >= 0: self.table.removeRow(self.table.currentRow())
         self.table.setColumnHidden(5, not any(self.table.cellWidget(r, 5).isEnabled()
@@ -295,6 +310,8 @@ class MarvelousCraftingDialog(QDialog):
         return quote_marvelous_blueprint(self.blueprint())
 
     def update_preview(self, *_):
+        from app.marvelous_item_rules import missing_construction_prerequisites
+        self.add_prerequisites.setEnabled(bool(missing_construction_prerequisites(self.blueprint()['contributions'])))
         try:
             complexity, price, quote = self.quotation()
             effect = resolve_base_power(self.blueprint())
