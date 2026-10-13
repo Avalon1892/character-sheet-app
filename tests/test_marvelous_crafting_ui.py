@@ -120,6 +120,32 @@ def test_composer_adds_reviewed_prerequisites_without_duplicates_or_writes(compo
     assert dialog.blueprint()['contributions'] == contributions
 
 
+def test_recipient_ui_disables_personal_effect_and_cancel_spends_nothing(composer, monkeypatch):
+    from dataclasses import replace
+    from PySide6.QtWidgets import QMessageBox
+    from app.ui.marvelous_crafting import MarvelousItemUseDialog
+    from app.services.crafting import CraftingService
+    dialog, repo, cid = composer
+    other = repo.create_character('Recipient', 'Spheres')
+    repo.update_hit_points(replace(repo.get_hit_points(other), current=5, maximum=20, auto_calculate=False))
+    service = CraftingService(repo, cid)
+    base = dict(schema_version=1, caster_level=5, activation='standard', uses=1,
+                range_steps=0, duration_steps=0, unique_changes=0, contributions=[])
+    aegis = service.save_marvelous_design({**base, 'sphere':'Protection', 'base_power':'protection:aegis'}, name='Personal', slot='', description='')
+    cure = service.save_marvelous_design({**base, 'sphere':'Life', 'base_power':'life:cure'}, name='Cure', slot='', description='')
+    book = MarvelousItemUseDialog(repo, cid)
+    book.recipient.setCurrentIndex(book.recipient.findData(other))
+    from PySide6.QtCore import Qt
+    rows = {book.table.item(row, 0).data(Qt.ItemDataRole.UserRole):row for row in range(book.table.rowCount())}
+    assert not book.table.cellWidget(rows[aegis], 3).isEnabled()
+    assert book.table.cellWidget(rows[cure], 3).isEnabled()
+    before = repo._connection.total_changes
+    monkeypatch.setattr(QMessageBox, 'question', lambda *args: QMessageBox.StandardButton.No)
+    book.activate(cure, True)
+    assert repo._connection.total_changes == before and not book.changed
+    book.close()
+
+
 @pytest.mark.parametrize('sphere,key', [('Alteration', 'alteration:talent:mass-alteration-mass'),
                                        ('Illusion', 'illusion:talent:suppression-glamer')])
 def test_published_talent_exceptions_default_to_two_complexity(composer, sphere, key):

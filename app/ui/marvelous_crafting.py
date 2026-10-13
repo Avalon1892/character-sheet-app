@@ -371,6 +371,7 @@ class MarvelousItemUseDialog(QDialog):
         self.recipient = QComboBox(); recipients.addWidget(self.recipient, 1)
         for character in repository.list_characters(): self.recipient.addItem(character.name, character.id)
         self.recipient.setCurrentIndex(self.recipient.findData(character_id))
+        self.recipient.currentIndexChanged.connect(self.refresh)
         self.table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
         self.table.setColumnWidth(1, 140); self.table.setColumnWidth(2, 260); self.table.setColumnWidth(3, 220)
         self.table.cellDoubleClicked.connect(self.edit_design)
@@ -418,7 +419,7 @@ class MarvelousItemUseDialog(QDialog):
                 detail = QTableWidgetItem(effect['power']); detail.setToolTip('\n'.join(f'{k}: {v}' for k, v in effect.items()))
                 self.table.setItem(row, 2, detail)
                 automatic = automatic_self_effect(power) is not None and not mixed
-                automatic_label = {'life:cure': 'Cure selected recipient', 'life:temporary-hp': 'Apply temporary HP',
+                automatic_label = {'life:cure': 'Cure living recipient', 'life:temporary-hp': 'Apply temporary HP',
                                    'protection:aegis': 'Apply aegis to recipient'}
                 button = QPushButton(automatic_label[power['base_power']] if automatic else 'Record use — manual effect')
                 from app.marvelous_base_powers import automatic_damage_dice
@@ -427,7 +428,9 @@ class MarvelousItemUseDialog(QDialog):
                 if mixed: button.setText('Use mixed power — manual' if index == 0 else 'Included in mixed activation')
                 available = all(entry[2] != 0 for entry in effects) if mixed else remaining != 0
                 usable = metadata.get('marvelous_project', {}).get('status', 'complete') == 'complete'
-                button.setEnabled(available and usable and item.quantity == 1 and (not mixed or index == 0))
+                target_allowed = not automatic or self.recipient.currentData() == self.character_id or effect['range'] != 'Personal'
+                button.setEnabled(available and usable and item.quantity == 1 and (not mixed or index == 0) and target_allowed)
+                if not target_allowed: button.setToolTip('Personal-range effects can only affect the item user.')
                 if not usable: button.setToolTip('Construction has not produced a usable item.')
                 if mixed: button.setToolTip('Using the primary control spends one use of every limited component together. Apply the combined effect manually.')
                 elif item.quantity > 1: button.setToolTip('Separate these devices into individual records to track independent uses.')
