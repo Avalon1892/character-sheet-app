@@ -166,6 +166,9 @@ def quote_marvelous_blueprint(plan):
         raise ValueError('Alternative-effect flags must be boolean.')
     groups = {}
     for contribution in plan['contributions']:
+        extra_sp = contribution.get('additional_spell_points', 0)
+        if isinstance(extra_sp, bool) or not isinstance(extra_sp, int) or extra_sp < 0 or extra_sp > contribution['complexity']:
+            raise ValueError('Additional spell points must be included in the contribution complexity.')
         group = contribution.get('alternative_group', 1)
         if isinstance(group, bool) or not isinstance(group, int) or group < 1:
             raise ValueError('Alternative groups must be positive integers.')

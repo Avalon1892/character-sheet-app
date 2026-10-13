@@ -56,10 +56,10 @@ class MarvelousCraftingDialog(QDialog):
         picker = QHBoxLayout(); left.addLayout(picker)
         self.talent = QComboBox(); picker.addWidget(self.talent, 1)
         add = QPushButton('Add effect contribution'); picker.addWidget(add)
-        self.table = QTableWidget(0, 4)
-        self.table.setHorizontalHeaderLabels(['Talent / effect', 'Verified complexity contribution', 'Alternative', 'Choice group'])
+        self.table = QTableWidget(0, 5)
+        self.table.setHorizontalHeaderLabels(['Talent / effect', 'Base contribution', 'Alternative', 'Choice group', 'Extra SP'])
         self.table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
-        self.table.setColumnWidth(1, 235); left.addWidget(self.table, 1)
+        self.table.setColumnWidth(1, 130); self.table.setColumnWidth(4, 75); left.addWidget(self.table, 1)
         remove = QPushButton('Remove selected contribution'); left.addWidget(remove)
         self.description = QTextEdit(); self.description.setPlaceholderText('Your item description and chosen base power…')
         left.addWidget(self.description, 1)
@@ -134,7 +134,9 @@ class MarvelousCraftingDialog(QDialog):
             if index < 0: raise ValueError('A saved talent is no longer available; editing cannot safely continue.')
             self.talent.setCurrentIndex(index); self.add_contribution()
             row = self.table.rowCount() - 1
-            self.table.cellWidget(row, 1).setValue(contribution['complexity'])
+            extra_sp = contribution.get('additional_spell_points', 0)
+            self.table.cellWidget(row, 1).setValue(contribution['complexity'] - extra_sp)
+            self.table.cellWidget(row, 4).setValue(extra_sp)
             self.table.cellWidget(row, 2).setChecked(contribution.get('alternative', False))
             self.table.cellWidget(row, 3).setValue(contribution.get('alternative_group', 1))
         self.refresh_extra_picker()
@@ -220,6 +222,9 @@ class MarvelousCraftingDialog(QDialog):
         group.setToolTip('Alternatives with the same group number are mutually exclusive. Different groups are independent choices.')
         alternative.toggled.connect(group.setEnabled)
         group.valueChanged.connect(self.update_preview); self.table.setCellWidget(row, 3, group)
+        extra_sp = QSpinBox(); extra_sp.setRange(0, 100)
+        extra_sp.setToolTip('Additional spell points required by this effect add one complexity each. Confirm the published cost; no description parsing is used.')
+        extra_sp.valueChanged.connect(self.update_preview); self.table.setCellWidget(row, 4, extra_sp)
         self.update_preview()
 
     def remove_contribution(self):
@@ -229,7 +234,8 @@ class MarvelousCraftingDialog(QDialog):
     def blueprint(self):
         from PySide6.QtCore import Qt
         contributions = [{'catalog_key': self.table.item(r, 0).data(Qt.ItemDataRole.UserRole),
-                          'complexity': self.table.cellWidget(r, 1).value(),
+                          'complexity': self.table.cellWidget(r, 1).value() + self.table.cellWidget(r, 4).value(),
+                          'additional_spell_points': self.table.cellWidget(r, 4).value(),
                           'alternative': self.table.cellWidget(r, 2).isChecked(),
                           'alternative_group': self.table.cellWidget(r, 3).value()}
                          for r in range(self.table.rowCount())]

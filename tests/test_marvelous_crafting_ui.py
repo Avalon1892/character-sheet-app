@@ -32,6 +32,19 @@ def test_live_price_and_cancel_no_writes(composer):
     assert not repo.list_equipment(cid)
 
 
+def test_extra_spell_points_change_price_and_restore_without_double_counting(composer):
+    dialog, repo, cid = composer
+    dialog.cl.setValue(10)
+    dialog.add_contribution()
+    before = dialog.quotation()[1].market_price_gp
+    dialog.table.cellWidget(0, 4).setValue(2)
+    assert dialog.quotation()[1].market_price_gp == before + 8000
+    plan = dialog.blueprint()
+    assert plan['contributions'][0]['additional_spell_points'] == 2
+    dialog.load_plan(plan)
+    assert dialog.blueprint()['contributions'] == plan['contributions']
+
+
 def test_overrides_and_blueprint_persist_without_activating_effects(composer):
     dialog, repo, cid = composer
     dialog.name.setText('My crafted device')
