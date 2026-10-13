@@ -95,6 +95,9 @@ def resolve_base_power(plan):
     if plan['caster_level'] < 1:
         raise ValueError('Item caster level must be positive.')
     key = plan.get('base_power')
+    boost = plan.get('full_blast_damage', False)
+    if not isinstance(boost, bool) or (boost and key != 'destruction:blast'):
+        raise ValueError('Full blast damage requires the Destruction blast base power.')
     power = next((p for p in BASE_POWERS if p.key == key), None)
     if power is None or power.sphere.casefold() != plan['sphere'].casefold():
         raise ValueError('Choose a base power from the selected sphere.')
@@ -130,7 +133,9 @@ def resolve_base_power(plan):
             summary['healing_dice'] = dice; summary['healing_bonus'] = bonus
         else:
             summary['healing'] = f'Base 1d8+{cl}; selected modifications require manual resolution'
-    if power.key == 'destruction:blast': summary['damage'] = f'{cl // 2}d6 bludgeoning'
+    if power.key == 'destruction:blast':
+        summary['damage_dice'] = cl if boost else cl // 2
+        summary['damage'] = f'{summary["damage_dice"]}d6 bludgeoning'
     if power.key == 'warp:teleport': summary['teleport_distance'] = f'{25 + 5 * (cl // 2)} ft.'
     if power.key in {'blood:construct', 'death:reanimate'}: summary['maximum_hit_dice'] = cl
     if power.key == 'dark:darkness': summary['radius'] = f'{10 + 5 * (cl // 2)} ft.'

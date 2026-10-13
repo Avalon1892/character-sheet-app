@@ -45,6 +45,18 @@ def test_extra_spell_points_change_price_and_restore_without_double_counting(com
     assert dialog.blueprint()['contributions'] == plan['contributions']
 
 
+def test_full_blast_option_prices_and_restores(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(5)
+    before = dialog.quotation()[1].market_price_gp
+    dialog.full_blast.setChecked(True)
+    assert dialog.quotation()[1].market_price_gp == before + 2000
+    plan = dialog.blueprint(); dialog.load_plan(plan)
+    assert dialog.full_blast.isChecked()
+    dialog.sphere.setCurrentText('Life')
+    assert not dialog.blueprint()['full_blast_damage']
+
+
 def test_overrides_and_blueprint_persist_without_activating_effects(composer):
     dialog, repo, cid = composer
     dialog.name.setText('My crafted device')

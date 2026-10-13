@@ -2229,7 +2229,7 @@ class CharacterRepository:
             if (plan.get('base_power') == 'destruction:blast' and not plan.get('contributions')
                     and not plan.get('unique_changes', 0)):
                 import random
-                dice = [random.randint(1, 6) for _ in range(plan['caster_level'] // 2)]
+                dice = [random.randint(1, 6) for _ in range(effect['damage_dice'])]
                 effect['damage_rolls'] = dice
                 effect['damage_rolled'] = sum(dice)
                 effect['damage_application'] = 'Apply bludgeoning damage to the target after resolving defenses.'

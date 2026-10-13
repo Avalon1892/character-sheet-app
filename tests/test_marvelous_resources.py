@@ -39,15 +39,16 @@ def test_atomic_activation_and_zero_floor(crafter):
     assert repo._connection.total_changes == before
 
 
-def test_base_destructive_item_rolls_damage_and_spends_once(crafter, monkeypatch):
+@pytest.mark.parametrize('boost,count', [(False, 2), (True, 5)])
+def test_base_destructive_item_rolls_damage_and_spends_once(crafter, monkeypatch, boost, count):
     repo, cid = crafter
     plan = dict(schema_version=1, sphere='Destruction', base_power='destruction:blast',
                 caster_level=5, activation='standard', uses=1, range_steps=0,
-                duration_steps=0, unique_changes=0, contributions=[])
+                duration_steps=0, unique_changes=0, contributions=[], full_blast_damage=boost)
     iid = CraftingService(repo, cid).save_marvelous_design(plan, name='Blast', slot='', description='')
     monkeypatch.setattr('random.randint', lambda low, high: 4)
     effect = repo.consume_marvelous_item_use(cid, iid)
-    assert effect['damage_rolls'] == [4, 4] and effect['damage_rolled'] == 8
+    assert effect['damage_rolls'] == [4] * count and effect['damage_rolled'] == 4 * count
     assert repo.get_hit_points(cid).current == 10
     assert marvelous_remaining_uses(metadata(repo, cid, iid)) == 0
 

@@ -157,7 +157,7 @@ def quote_marvelous_blueprint(plan):
     if plan.get('base_power'):
         from app.marvelous_base_powers import resolve_base_power
         resolve_base_power(plan)
-    for option in ('permanent', 'no_space_limitation'):
+    for option in ('permanent', 'no_space_limitation', 'full_blast_damage'):
         if not isinstance(plan.get(option, False), bool):
             raise ValueError('Construction flags must be boolean.')
     if plan.get('permanent') and not plan.get('base_power'):
@@ -178,7 +178,7 @@ def quote_marvelous_blueprint(plan):
     grouped_costs = [effect_complexity(alternative_costs=costs) - 1 for costs in groups.values()]
     complexity = effect_complexity(talent_costs=[x['complexity'] for x in plan['contributions'] if not x.get('alternative', False)] + grouped_costs,
         range_steps=plan['range_steps'], duration_steps=plan['duration_steps'],
-        activation=plan['activation'], unique_changes=plan['unique_changes'] + (2 if plan.get('permanent') else 0))
+        activation=plan['activation'], unique_changes=plan['unique_changes'] + (2 if plan.get('permanent') else 0) + int(plan.get('full_blast_damage', False)))
     price = marvelous_item_price(plan['caster_level'], complexity,
                                 daily_uses=1 if plan['uses'] == 50 else plan['uses'], limited_uses=plan['uses'] == 50)
     if plan.get('no_space_limitation'):

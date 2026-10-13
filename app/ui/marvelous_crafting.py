@@ -46,6 +46,7 @@ class MarvelousCraftingDialog(QDialog):
         self.unique = QSpinBox(); self.unique.setRange(-50, 50)
         self.slotless = QCheckBox('No need to wear or hold the item (×2 price)')
         self.permanent = QCheckBox('Permanent, dispellable effect (+2 complexity; CL 10; hours duration)')
+        self.full_blast = QCheckBox('Full blast damage: 1d6 per caster level (+1 complexity)')
         for label, widget in [('Name', self.name), ('Slot', self.slot), ('Base sphere', self.sphere),
                               ('Base power', self.base_power),
                               ('Item caster level', self.cl), ('Activation', self.activation),
@@ -53,6 +54,7 @@ class MarvelousCraftingDialog(QDialog):
                               ('Duration steps', self.duration_steps), ('Unique changes / limitations', self.unique)]:
             form.addRow(label, widget)
         form.addRow(self.slotless); form.addRow(self.permanent)
+        form.addRow(self.full_blast)
         picker = QHBoxLayout(); left.addLayout(picker)
         self.talent = QComboBox(); picker.addWidget(self.talent, 1)
         add = QPushButton('Add effect contribution'); picker.addWidget(add)
@@ -93,6 +95,7 @@ class MarvelousCraftingDialog(QDialog):
         self.name.textChanged.connect(self.update_preview); self.description.textChanged.connect(self.update_preview)
         self.review.toggled.connect(self.update_preview)
         self.slotless.toggled.connect(self.update_preview); self.permanent.toggled.connect(self.update_preview)
+        self.full_blast.toggled.connect(self.update_preview)
         self.populate_talents()
         self.refresh_extra_picker()
         if draft_effect:
@@ -129,6 +132,7 @@ class MarvelousCraftingDialog(QDialog):
         self.unique.setValue(plan['unique_changes'])
         self.slotless.setChecked(plan.get('no_space_limitation', False))
         self.permanent.setChecked(plan.get('permanent', False))
+        self.full_blast.setChecked(plan.get('full_blast_damage', False))
         for contribution in plan['contributions']:
             index = next((i for i in range(self.talent.count()) if self.talent.itemData(i)['key'] == contribution['catalog_key']), -1)
             if index < 0: raise ValueError('A saved talent is no longer available; editing cannot safely continue.')
@@ -190,6 +194,9 @@ class MarvelousCraftingDialog(QDialog):
         self.power_changed()
 
     def power_changed(self, *_):
+        blast = self.base_power.currentData() == 'destruction:blast'
+        self.full_blast.setVisible(blast)
+        if not blast: self.full_blast.setChecked(False)
         powers = base_powers(self.sphere.currentText())
         power = next((p for p in powers if p.key == self.base_power.currentData()), None)
         if power:
@@ -245,6 +252,7 @@ class MarvelousCraftingDialog(QDialog):
                     range_steps=self.range_steps.value(), duration_steps=self.duration_steps.value(),
                     unique_changes=self.unique.value(), contributions=contributions,
                     no_space_limitation=self.slotless.isChecked(), permanent=self.permanent.isChecked(),
+                    full_blast_damage=self.full_blast.isChecked(),
                     extra_effects=self.extra_effects, combination_mode=self.combination_mode,
                     automation_status='rules_only')
 
