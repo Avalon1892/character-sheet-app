@@ -70,6 +70,24 @@ def test_effect_range_prices_and_restores_independently(composer, sphere):
     assert dialog.effect_range.value() == 0
 
 
+def test_armored_magic_choice_survives_editing_and_column_is_conditional(composer):
+    from app.marvelous_base_powers import automatic_self_effect, resolve_base_power
+    dialog, repo, cid = composer
+    assert dialog.table.isColumnHidden(5)
+    dialog.sphere.setCurrentText('Protection'); dialog.cl.setValue(5)
+    key = 'protection:aegis-ward-talent:armored-magic-aegis'
+    index = next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key)
+    dialog.talent.setCurrentIndex(index); dialog.add_contribution()
+    assert not dialog.table.isColumnHidden(5)
+    assert automatic_self_effect(dialog.blueprint()) is None
+    dialog.table.cellWidget(0, 5).setCurrentIndex(2)
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint()['contributions'] == saved['contributions']
+    assert resolve_base_power(dialog.blueprint())['shield_ac'] == 2
+    dialog.table.selectRow(0); dialog.remove_contribution()
+    assert dialog.table.isColumnHidden(5)
+
+
 @pytest.mark.parametrize('sphere,key', [('Alteration', 'alteration:talent:mass-alteration-mass'),
                                        ('Illusion', 'illusion:talent:suppression-glamer')])
 def test_published_talent_exceptions_default_to_two_complexity(composer, sphere, key):

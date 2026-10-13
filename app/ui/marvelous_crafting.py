@@ -65,6 +65,7 @@ class MarvelousCraftingDialog(QDialog):
         self.table = QTableWidget(0, 6)
         self.table.setHorizontalHeaderLabels(['Talent / effect', 'Base contribution', 'Alternative', 'Choice group', 'Extra SP', 'Effect choice'])
         self.table.setMinimumHeight(150)
+        self.table.setColumnHidden(5, True)
         self.table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
         self.table.setColumnWidth(1, 130); self.table.setColumnWidth(4, 75); left.addWidget(self.table, 1)
         remove = QPushButton('Remove selected contribution'); left.addWidget(remove)
@@ -192,6 +193,7 @@ class MarvelousCraftingDialog(QDialog):
 
     def populate_talents(self, *_):
         self.table.setRowCount(0)
+        self.table.setColumnHidden(5, True)
         self.base_power.blockSignals(True)
         self.base_power.clear()
         for power in base_powers(self.sphere.currentText()): self.base_power.addItem(power.name, power.key)
@@ -247,12 +249,15 @@ class MarvelousCraftingDialog(QDialog):
         choice = QComboBox(); choice.addItem('—', '')
         if entry['key'] == 'protection:aegis-ward-talent:armored-magic-aegis':
             choice.addItem('Armor', 'armor'); choice.addItem('Shield', 'shield')
+            self.table.setColumnHidden(5, False)
         choice.setEnabled(choice.count() > 1)
         choice.currentIndexChanged.connect(self.update_preview); self.table.setCellWidget(row, 5, choice)
         self.update_preview()
 
     def remove_contribution(self):
         if self.table.currentRow() >= 0: self.table.removeRow(self.table.currentRow())
+        self.table.setColumnHidden(5, not any(self.table.cellWidget(r, 5).isEnabled()
+                                            for r in range(self.table.rowCount())))
         self.update_preview()
 
     def blueprint(self):
