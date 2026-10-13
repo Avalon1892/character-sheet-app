@@ -91,3 +91,29 @@ def test_project_ui_confirmations_and_progress(tmp_path, monkeypatch):
     dialog.check.setValue(11); dialog.finish_construction()
     assert dialog.project['status'] == 'complete' and dialog.changed
     dialog.close(); repo.close()
+
+
+def test_work_calendar_is_shared_between_retained_projects(tmp_path, monkeypatch):
+    from app.database import CharacterRepository
+    from app.services.crafting import CraftingService
+    from dataclasses import replace
+    repo = CharacterRepository(tmp_path / 'calendar.db')
+    cid = repo.create_character('Crafter', 'Spheres')
+    repo.add_feat(cid, 'Craft Marvelous Item')
+    repo.update_currency_purse(replace(repo.get_currency_purse(cid), gold=1000))
+    service = CraftingService(repo, cid)
+    monkeypatch.setattr(service, 'marvelous_plan_requirements', lambda p: MarvelousRequirements((), (), 0))
+    plan = dict(schema_version=1, sphere='Life', base_power='life:cure', caster_level=1,
+                uses=1, activation='standard', range_steps=0, duration_steps=0,
+                unique_changes=0, contributions=[])
+    ids = [service.save_marvelous_design(plan, name=name, slot='', description='')
+           for name in ('First', 'Second')]
+    for iid in ids: service.start_marvelous_construction(iid)
+    repo.advance_marvelous_project(cid, ids[0], day='2026-10-13', hours=4)
+    repo.advance_marvelous_project(cid, ids[1], day='2026-10-13', hours=4)
+    before = repo._connection.total_changes
+    with pytest.raises(ValueError, match='across all projects'):
+        repo.advance_marvelous_project(cid, ids[1], day='2026-10-13', hours=4)
+    assert repo._connection.total_changes == before
+    assert repo.advance_marvelous_project(cid, ids[1], day='2026-10-14', hours=4)['worked_hours'] == 8
+    repo.close()

@@ -2147,6 +2147,17 @@ class CharacterRepository:
             if not project: raise ValueError('This item has no construction project.')
             updated = (finish_project(project, check_total) if check_total is not None else
                 work_on_project(project, day=day, hours=hours, distracting=distracting, adventuring=adventuring))
+            if check_total is None:
+                # ponytail: retained project records form the calendar; a durable
+                # character ledger is needed before deleted projects retain work.
+                other_hours = 0
+                for other in self._connection.execute(
+                    'SELECT automation_json FROM equipment WHERE character_id=? AND id<>?',
+                    (character_id, item_id)):
+                    other_project = json.loads(other['automation_json'] or '{}').get('marvelous_project', {})
+                    other_hours += other_project.get('calendar', {}).get(day, 0)
+                if other_hours + updated['calendar'][day] > 8:
+                    raise ValueError('No more than eight hours of crafting per day across all projects.')
             metadata['marvelous_project'] = updated
             self._connection.execute('UPDATE equipment SET automation_json=? WHERE character_id=? AND id=?', (json.dumps(metadata), character_id, item_id))
             self._touch_character(character_id)
