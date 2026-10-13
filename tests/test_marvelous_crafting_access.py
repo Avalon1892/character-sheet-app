@@ -51,3 +51,19 @@ def test_foreign_catalog_contribution_is_rejected(crafter):
                 duration_steps=0, contributions=[dict(catalog_key=entry['key'], complexity=1)])
     with pytest.raises(ValueError, match='base sphere'):
         CraftingService(repo, cid).marvelous_plan_requirements(plan)
+
+
+def test_combined_requirements_check_all_spheres_and_deduplicate_shared_talents(crafter):
+    repo, cid = crafter
+    entry = next(e for e in DEFAULT_CATALOG.magic_entries('Life') if e['category'] == 'Talent')
+    plan = dict(sphere='Life', base_power='life:cure', caster_level=5, range_steps=0,
+                duration_steps=0, contributions=[dict(catalog_key=entry['key'], complexity=1)])
+    extra = dict(plan)
+    plan['extra_effects'] = [extra]
+    service = CraftingService(repo, cid)
+    result = service.marvelous_plan_requirements(plan)
+    assert result.eligible and result.dc_increase == 5
+    plan['extra_effects'] = [dict(sphere='Time', base_power='time:haste', caster_level=5,
+        range_steps=0, duration_steps=0, contributions=[])]
+    result = service.marvelous_plan_requirements(plan)
+    assert not result.eligible and any('Time' in blocker for blocker in result.blockers)

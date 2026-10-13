@@ -429,7 +429,6 @@ class MarvelousProjectDialog(QDialog):
             from app.marvelous_projects import start_project
             service = CraftingService(self.repository, self.character_id)
             plan = metadata['marvelous_blueprint']
-            if plan.get('extra_effects'): raise ValueError('Combined construction eligibility is not yet integrated.')
             self.proposed = start_project(plan, service.marvelous_plan_requirements(plan))
             p = self.proposed
             self.summary.setText(f'{item.name}\nMaterials: {p["materials_gp"]} gp · Work: {p["required_hours"]:g} hours · Final check DC {p["dc"]}\nStarting pays materials from your purse and locks the design. Currency may be exchanged to make change. Additional permanent bonuses, tradition restrictions and advanced prerequisites still require review.')

@@ -80,16 +80,20 @@ class CraftingService:
     def marvelous_plan_requirements(self, plan, *, access=None):
         """Resolve selected catalog identities and feed the shared eligibility check."""
         from app.marvelous_base_powers import resolve_base_power
-        resolve_base_power(plan)
-        required, advanced = [], []
-        for contribution in plan['contributions']:
-            entry = self.magic_entries_by_key.get(contribution['catalog_key'])
-            if entry is None or str(entry.get('sphere', '')).casefold() != plan['sphere'].casefold():
-                raise ValueError('Selected talent is not part of the blueprint base sphere.')
-            required.append(entry['name'])
-            if 'advanced' in str(entry.get('category', '')).casefold(): advanced.append(entry['name'])
+        required, advanced, spheres = [], [], []
+        for power in [plan, *plan.get('extra_effects', [])]:
+            resolve_base_power(power)
+            if power['caster_level'] != plan['caster_level']:
+                raise ValueError('All item effects must have the same caster level.')
+            spheres.append(power['sphere'])
+            for contribution in power['contributions']:
+                entry = self.magic_entries_by_key.get(contribution['catalog_key'])
+                if entry is None or str(entry.get('sphere', '')).casefold() != power['sphere'].casefold():
+                    raise ValueError('Selected talent is not part of the blueprint base sphere.')
+                required.append(entry['name'])
+                if 'advanced' in str(entry.get('category', '')).casefold(): advanced.append(entry['name'])
         return self.marvelous_requirements(caster_level=plan['caster_level'],
-            required_spheres=(plan['sphere'],), required_talents=required,
+            required_spheres=spheres, required_talents=required,
             advanced_talents=advanced, **(access if access is not None else self.permanent_marvelous_access()))
 
     def save_marvelous_design(self, plan, *, name, slot, description, item_id=None):
@@ -158,8 +162,6 @@ class CraftingService:
         item = next((item for item in self.repository.list_equipment(self.character_id) if item.id == item_id), None)
         if item is None: raise ValueError('Item does not belong to this character.')
         plan = json.loads(item.automation_json or '{}')['marvelous_blueprint']
-        if plan.get('extra_effects'):
-            raise ValueError('Combined construction eligibility requires further integration.')
         project = start_project(plan, self.marvelous_plan_requirements(plan))
         self.repository.start_marvelous_project(self.character_id, item_id, project)
         return project
