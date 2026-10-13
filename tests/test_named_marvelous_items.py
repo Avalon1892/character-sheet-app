@@ -23,3 +23,26 @@ def test_named_ring_uses_published_roll_and_atomic_daily_spending(tmp_path, monk
     copy = named_marvelous_effect(key); copy['daily_uses'] = 99
     assert named_marvelous_effect(key)['daily_uses'] == 1
     repo.close()
+
+
+def test_named_ring_in_activation_window_without_custom_design_controls(tmp_path, monkeypatch):
+    import os
+    os.environ.setdefault('QT_QPA_PLATFORM', 'offscreen')
+    from PySide6.QtWidgets import QApplication, QMessageBox
+    from app.ui.marvelous_crafting import MarvelousItemUseDialog
+    app = QApplication.instance() or QApplication([])
+    repo = CharacterRepository(tmp_path / 'named-ui.db')
+    cid = repo.create_character('User', 'Spheres')
+    repo.add_equipment(cid, 'Thunderbolt Ring', 'Gear', 1, .5, False, 0, 'untyped', None, '',
+                       catalog_key='spheres:marvelous-items:thunderbolt-ring')
+    dialog = MarvelousItemUseDialog(repo, cid)
+    assert dialog.table.rowCount() == 1
+    dialog.table.selectRow(0)
+    assert not dialog.construction.isEnabled()
+    dialog.edit_design(0, 0); dialog.open_construction()
+    monkeypatch.setattr(QMessageBox, 'question', lambda *args: QMessageBox.StandardButton.Yes)
+    monkeypatch.setattr('random.randint', lambda a, b: 2)
+    dialog.table.cellWidget(0, 3).click()
+    assert dialog.changed and 'damage rolled: 8' in dialog.result.text()
+    assert not dialog.table.cellWidget(0, 3).isEnabled()
+    dialog.close(); repo.close()

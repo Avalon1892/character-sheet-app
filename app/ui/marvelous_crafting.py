@@ -378,7 +378,7 @@ class MarvelousItemUseDialog(QDialog):
         root.addWidget(self.table, 1)
         self.construction = QPushButton('Construction project'); self.construction.setEnabled(False)
         root.addWidget(self.construction)
-        self.table.itemSelectionChanged.connect(lambda: self.construction.setEnabled(self.table.currentRow() >= 0))
+        self.table.itemSelectionChanged.connect(self.update_construction_selection)
         self.construction.clicked.connect(self.open_construction)
         self.result = QLabel('Supported effects can affect the selected saved character. Confirm range and eligibility; durations and unsupported effects remain manual.')
         self.result.setWordWrap(True); root.addWidget(self.result)
@@ -386,10 +386,15 @@ class MarvelousItemUseDialog(QDialog):
         buttons.rejected.connect(self.reject); root.addWidget(buttons)
         self.refresh()
 
+    def update_construction_selection(self):
+        from PySide6.QtCore import Qt
+        item = self.table.item(self.table.currentRow(), 0)
+        self.construction.setEnabled(bool(item and item.data(Qt.ItemDataRole.UserRole + 1)))
+
     def open_construction(self):
         from PySide6.QtCore import Qt
         row = self.table.currentRow()
-        if row < 0: return
+        if row < 0 or not self.table.item(row, 0).data(Qt.ItemDataRole.UserRole + 1): return
         dialog = MarvelousProjectDialog(self.repository, self.character_id,
             self.table.item(row, 0).data(Qt.ItemDataRole.UserRole), self)
         dialog.exec()
@@ -402,9 +407,16 @@ class MarvelousItemUseDialog(QDialog):
             try:
                 metadata = json.loads(item.automation_json or '{}')
                 plan = metadata.get('marvelous_blueprint')
-                if not plan: continue
-                effects = [(index, power, marvelous_remaining_uses(metadata, index), resolve_base_power(power))
-                           for index, power in enumerate([plan, *plan.get('extra_effects', [])])]
+                custom = bool(plan)
+                if custom:
+                    effects = [(index, power, marvelous_remaining_uses(metadata, index), resolve_base_power(power))
+                               for index, power in enumerate([plan, *plan.get('extra_effects', [])])]
+                else:
+                    from app.named_marvelous_items import named_marvelous_effect, named_marvelous_remaining
+                    effect = named_marvelous_effect(item.catalog_key)
+                    if effect is None: continue
+                    plan = {}
+                    effects = [(0, {}, named_marvelous_remaining(item.catalog_key, metadata), effect)]
             except (ValueError, KeyError, TypeError):
                 continue
             mixed = bool(plan.get('extra_effects')) and plan.get('combination_mode') == 'mixed'
@@ -413,7 +425,8 @@ class MarvelousItemUseDialog(QDialog):
                 name = QTableWidgetItem(item.name if index == 0 else f'↳ {item.name}')
                 from PySide6.QtCore import Qt
                 name.setData(Qt.ItemDataRole.UserRole, item.id)
-                name.setToolTip('Double-click to edit this custom design.')
+                name.setData(Qt.ItemDataRole.UserRole + 1, custom)
+                name.setToolTip('Double-click to edit this custom design.' if custom else 'Published catalog item; custom design controls do not apply.')
                 self.table.setItem(row, 0, name)
                 self.table.setItem(row, 1, QTableWidgetItem('Unlimited' if remaining is None else str(remaining)))
                 detail = QTableWidgetItem(effect['power']); detail.setToolTip('\n'.join(f'{k}: {v}' for k, v in effect.items()))
@@ -423,7 +436,7 @@ class MarvelousItemUseDialog(QDialog):
                                    'protection:aegis': 'Apply aegis to recipient'}
                 button = QPushButton(automatic_label[power['base_power']] if automatic else 'Record use — manual effect')
                 from app.marvelous_base_powers import automatic_damage_dice
-                if not mixed and automatic_damage_dice(power) is not None:
+                if not mixed and (automatic_damage_dice(power) is not None or not custom):
                     button.setText('Use and roll damage')
                 if mixed: button.setText('Use mixed power — manual' if index == 0 else 'Included in mixed activation')
                 available = all(entry[2] != 0 for entry in effects) if mixed else remaining != 0
@@ -439,6 +452,7 @@ class MarvelousItemUseDialog(QDialog):
 
     def edit_design(self, row, column):
         from PySide6.QtCore import Qt
+        if not self.table.item(row, 0).data(Qt.ItemDataRole.UserRole + 1): return
         try:
             dialog = MarvelousCraftingDialog(self.repository, self.character_id, self,
                 item_id=self.table.item(row, 0).data(Qt.ItemDataRole.UserRole))
