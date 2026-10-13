@@ -1,6 +1,22 @@
 # Craft Marvelous Items handoff
 
-Status: pricing, prerequisite checks, catalog import and initial custom composer; the complete feature is not implemented.
+Status: implemented checkpoint, not a completed system. The summary below supersedes older chronological notes where they describe previously pending work.
+
+## Current checkpoint (2026-10-14)
+
+- Implemented: 133 construction records/recipes, 34 structured base powers, custom multi-power composer, exact pricing and baseline eligibility, persistent paid construction projects, character-wide Marvelous work/completion limits with deletion-safe history, independent resources/rest, recipient selection, atomic supported mixed effects, reviewed Life/Protection and Empower/Maximize effects, and Thunderbolt Ring/Timeshifting Gloves activation adapters.
+- Latest focused validation: **24 passed in 18.15 seconds** for the crafting UI and named-item modules, including actual mixed-effect button activation and readable effect formatting.
+- Last immutable full-suite checkpoint was `de7daed`: **2,203 passed / 3 known failures**. Later changes have focused coverage, not a new full-suite certification. No deployment at this checkpoint.
+
+### Next run: unfinished work
+
+1. Verify complete named-item, tier/variant and class-page catalog coverage; add structured adapters beyond the two reviewed named items. Flask Shard recording does not consume inventory shards or recalculate upgraded value.
+2. Complete sphere-specific talent/SP costs and advanced prerequisite chains, permanent CL bonuses, cooperative providers and casting-tradition restrictions. Tradition cost helpers exist but selection, snapshots and payment integration do not.
+3. Implement supported Restore condition mutation/suppression and effect expiration through existing services. Soul ability damage, hostile-target defenses/SR, physiology, range and action economy remain manual. Crafted Invigorate injury/cap behavior **needs rules verification**.
+4. Finish costly components, project cancellation/restart, named-recipe project integration and non-Marvelous shared crafting-calendar integration. Preserve stored projects and archived history.
+5. Visually inspect current composer/activation/project controls in Parchment and Dark, including small screens and active projects; run the isolated suite at an unchanged final commit and distinguish the three recorded baseline failures.
+
+Reuse the current services/repository and catalogs; do not create a second item database. Existing Tech/Tinker gaps are tracked separately in `engineering-next-run.md` and `engineering-status.md`. Neither feature set is complete. Do not deploy unless requested.
 
 ## Implemented
 
@@ -27,6 +43,8 @@ Status: pricing, prerequisite checks, catalog import and initial custom composer
 ## Required next
 
 ### Latest checkpoint
+
+- Verified atomic mixed cure/aegis through actual activation-button clicks: HP, ongoing modifier and both exhausted controls update together. Shared UI formatter now renders modifier bonuses, Restore downgrades, dice lists and combined components as readable text rather than raw list/dictionary representations; HTML preview still escapes all text. Named activation output remains compatible. This is presentation-only formatting of existing structured rules, not new rule inference.
 
 - Supported mixed cure/temp-HP/aegis components now apply through one shared repository helper and transaction, with all component resources checked/spent together. Unsupported components stay manual; individual mixed component use rejects. Personal-range/recipient checks precede mixed mutations. Temporary HP is applied before healing so injury eligibility uses pre-activation HP; this retains the previously documented item-Invigorate interpretation pending rules verification. UI enables atomic supported mixed application and considers every component's range. **50 resource/editor tests passed in 30.73 seconds**, then forced-second-component rollback coverage added. Recipient defense/SR confirmation, complex mixed targeting and unsupported effects remain pending.
 

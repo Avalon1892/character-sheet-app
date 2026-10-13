@@ -183,6 +183,29 @@ def test_recipient_ui_disables_personal_effect_and_cancel_spends_nothing(compose
     book.close()
 
 
+def test_mixed_effect_button_applies_both_components(composer, monkeypatch):
+    from dataclasses import replace
+    from app.ui.marvelous_crafting import MarvelousItemUseDialog, effect_detail_lines
+    from app.services.crafting import CraftingService
+    dialog, repo, cid = composer
+    repo.update_hit_points(replace(repo.get_hit_points(cid), current=10, maximum=20, auto_calculate=False))
+    base = dict(schema_version=1,caster_level=5,activation='standard',uses=1,range_steps=0,
+                duration_steps=0,unique_changes=0,contributions=[])
+    plan = {**base,'sphere':'Life','base_power':'life:cure','combination_mode':'mixed',
+            'extra_effects':[{**base,'sphere':'Protection','base_power':'protection:aegis'}]}
+    CraftingService(repo,cid).save_marvelous_design(plan,name='Mixed',slot='',description='')
+    book = MarvelousItemUseDialog(repo,cid)
+    assert book.table.cellWidget(0,3).text() == 'Apply mixed effects'
+    monkeypatch.setattr('random.randint', lambda a,b:4)
+    book.table.cellWidget(0,3).click()
+    assert repo.get_hit_points(cid).current == 19 and len(repo.list_ongoing_effects(cid)) == 1
+    assert not book.table.cellWidget(0,3).isEnabled() and not book.table.cellWidget(1,3).isEnabled()
+    assert '+2 deflection to ac' in book.result.text()
+    assert 'Lessen Exhausted to Fatigued' in dict(effect_detail_lines({'restore_changes':[
+        dict(condition='Exhausted',operation='replace',replacement='Fatigued')]}))['restore changes']
+    book.close()
+
+
 @pytest.mark.parametrize('sphere,key', [('Alteration', 'alteration:talent:mass-alteration-mass'),
                                        ('Illusion', 'illusion:talent:suppression-glamer')])
 def test_published_talent_exceptions_default_to_two_complexity(composer, sphere, key):

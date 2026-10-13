@@ -11,6 +11,26 @@ from app.services.crafting import CraftingService
 from app.marvelous_base_powers import base_powers, resolve_base_power, automatic_self_effect, RANGES, DURATIONS
 
 
+def effect_detail_lines(effect):
+    """Readable presentation of structured effects, without interpreting rules."""
+    lines = []
+    for key, value in effect.items():
+        if key == 'ongoing_modifiers':
+            value = '; '.join(f'{amount:+g} {kind} to {target.replace("_", " ")}' for target, kind, amount in value)
+        elif key == 'restore_changes':
+            value = '; '.join(('Lessen ' + change['condition'] + ' to ' + change['replacement'])
+                if change['operation'] == 'replace' else change['operation'].title() + ' ' + change['condition'] for change in value)
+        elif key == 'combined_effects':
+            for index, component in enumerate(value, 1):
+                lines.append((f'power {index}', component['power']))
+                lines.extend(effect_detail_lines(component))
+            continue
+        elif key in {'damage_rolls', 'healing_rolls'}:
+            value = ', '.join(str(number) for number in value)
+        lines.append((key.replace('_', ' '), str(value)))
+    return lines
+
+
 class MarvelousCraftingDialog(QDialog):
     def __init__(self, repository, character_id, parent=None, *, item_id=None, draft_effect=False):
         super().__init__(parent)
@@ -343,7 +363,7 @@ class MarvelousCraftingDialog(QDialog):
             self.result.setText(f'Market price {float(price.market_price_gp):,.2f} gp · Materials {float(quote.cost_gp):,.2f} gp · Craft DC {quote.dc} · {quote.days} days · Save DC {price.save_dc}')
             self.preview.setHtml(f'<h2>{escape(self.name.text())}</h2><p>{escape(self.sphere.currentText())} · Complexity {complexity}</p>'
                 f'<p>{escape(self.description.toPlainText())}</p><h3>Calculated base effect</h3>'
-                + ''.join(f'<p><b>{escape(key.replace("_", " ").title())}:</b> {escape(str(value))}</p>' for key, value in effect.items())
+                + ''.join(f'<p><b>{escape(key.title())}:</b> {escape(value)}</p>' for key, value in effect_detail_lines(effect))
                 + '<h3>Additional powers</h3>' + extra_review + '<h3>Construction review</h3>'
                 + '<p><b>Automatic baseline check:</b> '
                 + escape('; '.join(requirements.blockers + requirements.bypassed) or 'Baseline class/sphere/talent access is present.')
@@ -520,7 +540,7 @@ class MarvelousItemUseDialog(QDialog):
                 name.setToolTip('Double-click to edit this custom design.' if custom else 'Published catalog item; custom design controls do not apply.')
                 self.table.setItem(row, 0, name)
                 self.table.setItem(row, 1, QTableWidgetItem('Unlimited' if remaining is None else str(remaining)))
-                detail = QTableWidgetItem(effect['power']); detail.setToolTip('\n'.join(f'{k}: {v}' for k, v in effect.items()))
+                detail = QTableWidgetItem(effect['power']); detail.setToolTip('\n'.join(f'{k}: {v}' for k, v in effect_detail_lines(effect)))
                 self.table.setItem(row, 2, detail)
                 automatic = all(automatic_self_effect(entry[1]) is not None for entry in effects) if mixed else automatic_self_effect(power) is not None
                 automatic_label = {'life:cure': 'Cure living recipient', 'life:temporary-hp': 'Apply temporary HP',
@@ -567,7 +587,7 @@ class MarvelousItemUseDialog(QDialog):
         except ValueError as error:
             QMessageBox.warning(self, 'Cannot activate item', str(error)); return
         self.changed = True
-        self.result.setText('Activated: ' + ' · '.join(f'{key.replace("_", " ")}: {value}' for key, value in effect.items())
+        self.result.setText('Activated: ' + ' · '.join(f'{key}: {value}' for key, value in effect_detail_lines(effect))
                             + '. Track the effect duration manually.')
         self.refresh()
 
