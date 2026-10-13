@@ -2181,7 +2181,7 @@ class CharacterRepository:
         from app.marvelous_base_powers import resolve_base_power, automatic_self_effect
         with self._connection:
             row = self._connection.execute(
-                'SELECT automation_json, quantity FROM equipment WHERE character_id=? AND id=?',
+                'SELECT automation_json, quantity, name FROM equipment WHERE character_id=? AND id=?',
                 (character_id, item_id)).fetchone()
             if row is None: raise ValueError('Item does not belong to this character.')
             if row['quantity'] < 1: raise ValueError('No item is available to activate.')
@@ -2227,6 +2227,13 @@ class CharacterRepository:
                     self._connection.execute('UPDATE hit_points SET current=?, nonlethal=? WHERE character_id=?',
                         (min(maximum, hp.current + amount), max(0, hp.nonlethal - amount), character_id))
                     effect['healing_rolled'] = amount
+                elif plan['base_power'] == 'protection:aegis':
+                    name = f'{effect["power"]} — {row["name"]}'
+                    self._validate_ongoing_effect(name, 'Sphere', 'ac', 'deflection')
+                    self._connection.execute(
+                        'INSERT INTO ongoing_effects (character_id,name,source_type,duration,target,bonus_type,value,notes) VALUES (?,?,?,?,?,?,?,?)',
+                        (character_id, name, 'Sphere', effect['duration'], 'ac', 'deflection', effect['deflection_ac'],
+                         f'Crafted item {item_id}, power {effect_index}; item caster level {plan["caster_level"]}. Expiration is manual.'))
                 else:
                     if hp.current >= maximum:
                         raise ValueError('Base Invigorate requires an injured target.')

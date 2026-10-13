@@ -277,6 +277,7 @@ class MarvelousCraftingDialog(QDialog):
             automatic = automatic_self_effect(self.blueprint())
             automation_notice = ('Activation can heal a living self, including nonlethal damage.' if automatic == 'cure'
                 else 'Activation can apply temporary HP to self; expiration remains manual.' if automatic == 'temporary_hp'
+                else 'Activation adds a deflection aegis to ongoing effects; expiration remains manual.' if automatic == 'aegis'
                 else 'This effect currently requires manual application; item uses are tracked automatically.')
             requirements = self.service.marvelous_plan_requirements(self.blueprint(), access=self.crafting_access)
             extra_review = ''
@@ -371,7 +372,9 @@ class MarvelousItemUseDialog(QDialog):
                 detail = QTableWidgetItem(effect['power']); detail.setToolTip('\n'.join(f'{k}: {v}' for k, v in effect.items()))
                 self.table.setItem(row, 2, detail)
                 automatic = automatic_self_effect(power) is not None and not mixed
-                button = QPushButton(('Cure living self' if power['base_power'] == 'life:cure' else 'Apply temporary HP to self') if automatic else 'Record use — manual effect')
+                automatic_label = {'life:cure': 'Cure living self', 'life:temporary-hp': 'Apply temporary HP to self',
+                                   'protection:aegis': 'Apply aegis to self'}
+                button = QPushButton(automatic_label[power['base_power']] if automatic else 'Record use — manual effect')
                 from app.marvelous_base_powers import automatic_damage_dice
                 if not mixed and automatic_damage_dice(power) is not None:
                     button.setText('Use and roll damage')

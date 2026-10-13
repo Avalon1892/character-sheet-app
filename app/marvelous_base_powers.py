@@ -67,7 +67,7 @@ def automatic_self_effect(plan):
     if plan.get('base_power') == 'life:cure':
         return 'cure' if cure_healing_components(plan) is not None else None
     if plan.get('contributions'): return None
-    return {'life:cure': 'cure', 'life:temporary-hp': 'temporary_hp'}.get(plan.get('base_power'))
+    return {'life:cure': 'cure', 'life:temporary-hp': 'temporary_hp', 'protection:aegis': 'aegis'}.get(plan.get('base_power'))
 
 
 def cure_healing_components(plan):
@@ -138,6 +138,7 @@ def resolve_base_power(plan):
                'caster_level': cl, 'save_dc': 10 + cl // 2, 'magic_skill_bonus': cl}
     if plan.get('permanent', False): summary['duration'] = 'Permanent (dispellable)'
     if power.key == 'life:temporary-hp': summary['temporary_hp'] = cl
+    if power.key == 'protection:aegis': summary['deflection_ac'] = 1 + cl // 5
     if power.key == 'life:cure':
         healing = cure_healing_components(plan)
         if healing is not None:

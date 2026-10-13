@@ -71,6 +71,24 @@ def test_atomic_activation_and_zero_floor(crafter):
     assert repo._connection.total_changes == before
 
 
+def test_aegis_creates_shared_ongoing_deflection_effect_atomically(crafter):
+    from app.rules import ongoing_effect_modifiers
+    repo, cid = crafter
+    plan = dict(schema_version=1, sphere='Protection', base_power='protection:aegis', caster_level=5,
+                activation='standard', uses=1, range_steps=0, duration_steps=0,
+                unique_changes=0, contributions=[])
+    iid = CraftingService(repo, cid).save_marvelous_design(plan, name='Aegis charm', slot='', description='')
+    repo.consume_marvelous_item_use(cid, iid, apply_to_self=True)
+    effects = repo.list_ongoing_effects(cid)
+    assert len(effects) == 1 and effects[0].duration == '5 minutes'
+    assert effects[0].name == 'Basic aegis — Aegis charm'
+    assert ongoing_effect_modifiers(effects)['ac'][0].value == 2
+    before = repo._connection.total_changes
+    with pytest.raises(ValueError, match='No item uses'):
+        repo.consume_marvelous_item_use(cid, iid, apply_to_self=True)
+    assert repo._connection.total_changes == before and len(repo.list_ongoing_effects(cid)) == 1
+
+
 @pytest.mark.parametrize('boost,count', [(False, 2), (True, 5)])
 def test_base_destructive_item_rolls_damage_and_spends_once(crafter, monkeypatch, boost, count):
     repo, cid = crafter
