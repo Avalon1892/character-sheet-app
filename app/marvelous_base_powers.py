@@ -60,17 +60,33 @@ def base_powers(sphere):
     return tuple(power for power in BASE_POWERS if power.sphere.casefold() == sphere.casefold())
 
 
-def maximized_item_dice(plan):
+def item_dice_metamagic(plan):
     integrations = plan.get('feat_integrations', [])
-    return (plan.get('base_power') in {'life:cure', 'destruction:blast'} and len(integrations) == 1
-            and integrations[0].get('name', '').casefold() == 'maximize spell'
-            and integrations[0].get('metamagic') is True
-            and integrations[0].get('additional_spell_points') == 3)
+    if not integrations: return (False, False)
+    if plan.get('base_power') not in {'life:cure', 'destruction:blast'}: return None
+    costs = {'maximize spell': 3, 'empower spell': 2}
+    names = [feat.get('name', '').casefold() for feat in integrations]
+    if len(names) != len(set(names)) or any(name not in costs or feat.get('metamagic') is not True
+        or feat.get('additional_spell_points') != costs[name] for name, feat in zip(names, integrations)):
+        return None
+    return ('maximize spell' in names, 'empower spell' in names)
+
+
+def item_dice_result(plan, count, sides, bonus, roll):
+    """Maximize and Empower combine independently; Empower includes die bonuses."""
+    mode = item_dice_metamagic(plan)
+    if mode is None: raise ValueError('Unsupported integrated dice effects.')
+    maximize, empower = mode
+    rolls = [sides] * count if maximize and not empower else [roll(1, sides) for _ in range(count)]
+    ordinary = sum(rolls) + bonus
+    total = count * sides + bonus if maximize else ordinary
+    if empower: total += ordinary // 2
+    return rolls, total
 
 
 def automatic_self_effect(plan):
     """Supported activation kind, independent of editable prose and Qt."""
-    if plan.get('unique_changes') or plan.get('permanent') or (plan.get('feat_integrations') and not maximized_item_dice(plan)):
+    if plan.get('unique_changes') or plan.get('permanent') or item_dice_metamagic(plan) is None:
         return None
     if plan.get('base_power') == 'life:cure':
         return 'cure' if cure_healing_components(plan) is not None else None
@@ -134,7 +150,7 @@ def cure_healing_components(plan):
 def automatic_damage_dice(plan):
     """Supported offensive roll; target defenses/application are separate."""
     if (plan.get('base_power') != 'destruction:blast' or plan.get('contributions')
-            or plan.get('unique_changes', 0) or (plan.get('feat_integrations') and not maximized_item_dice(plan))):
+            or plan.get('unique_changes', 0) or item_dice_metamagic(plan) is None):
         return None
     return resolve_base_power(plan)['damage_dice']
 
@@ -183,7 +199,8 @@ def resolve_base_power(plan):
                  'concentration': 'Concentration', 'variable': 'As selected effect'}
     summary = {'power': power.name, 'range': distances[RANGES[range_index]], 'duration': durations[duration],
                'caster_level': cl, 'save_dc': 10 + cl // 2, 'magic_skill_bonus': cl}
-    if maximized_item_dice(plan): summary['dice_mode'] = 'Maximized'
+    mode = item_dice_metamagic(plan)
+    if mode and any(mode): summary['dice_mode'] = ' + '.join(label for label, active in zip(('Maximized', 'Empowered'), mode) if active)
     if plan.get('permanent', False): summary['duration'] = 'Permanent (dispellable)'
     if power.key == 'life:temporary-hp': summary['temporary_hp'] = cl
     if power.key == 'life:restore':

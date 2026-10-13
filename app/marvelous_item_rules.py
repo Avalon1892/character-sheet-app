@@ -161,7 +161,7 @@ def advanced_construction_blockers(contributions, caster_level, *, display_names
     return tuple(blockers)
 
 
-REVIEWED_METAMAGIC_SP_COSTS = {'maximize spell': 3}
+REVIEWED_METAMAGIC_SP_COSTS = {'maximize spell': 3, 'empower spell': 2}
 
 
 def feat_integration_defaults(name):

@@ -103,6 +103,21 @@ def test_maximize_integrated_dice_without_random_rolls(crafter, monkeypatch, sph
     assert marvelous_remaining_uses(metadata(repo,cid,iid)) == 0
 
 
+@pytest.mark.parametrize('sphere,power,empowered,combined', [('Life','life:cure',16,21), ('Destruction','destruction:blast',18,30)])
+@pytest.mark.parametrize('maximize', [False, True])
+def test_empower_and_maximize_apply_separate_benefits(crafter, monkeypatch, sphere, power, empowered, combined, maximize):
+    repo, cid = crafter
+    feats = [dict(name='Empower Spell', metamagic=True, additional_spell_points=2)]
+    if maximize: feats.append(dict(name='Maximize Spell', metamagic=True, additional_spell_points=3))
+    plan = dict(schema_version=1,sphere=sphere,base_power=power,caster_level=8,activation='standard',uses=1,
+                range_steps=0,duration_steps=0,unique_changes=0,contributions=[],feat_integrations=feats)
+    iid = CraftingService(repo,cid).save_marvelous_design(plan,name='Empowered',slot='',description='')
+    monkeypatch.setattr('random.randint', lambda a,b: 3)
+    result = repo.consume_marvelous_item_use(cid,iid,apply_to_self=sphere=='Life')
+    assert result['healing_rolled' if sphere=='Life' else 'damage_rolled'] == (combined if maximize else empowered)
+    assert result['save_dc'] == 14
+
+
 def test_aegis_creates_shared_ongoing_deflection_effect_atomically(crafter):
     from app.rules import ongoing_effect_modifiers
     repo, cid = crafter

@@ -89,6 +89,7 @@ def test_explicit_feat_integration_costs_and_duplicate_validation():
     with pytest.raises(ValueError): feat_integration_complexity([dict(name='A', additional_spell_points=1)])
     with pytest.raises(ValueError): feat_integration_complexity([dict(name='Maximize Spell')])
     with pytest.raises(ValueError): feat_integration_complexity([dict(name='Maximize Spell', metamagic=True, additional_spell_points=2)])
+    assert feat_integration_complexity([dict(name='Empower Spell', metamagic=True, additional_spell_points=2)]) == 3
 
 
 @pytest.mark.parametrize("kwargs", [{"talent_costs": (-1,)}, {"alternative_costs": (0.5,)},
