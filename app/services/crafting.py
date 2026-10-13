@@ -125,6 +125,8 @@ class CraftingService:
                 raise ValueError('Only custom Marvelous designs can be edited here.')
             if item.quantity != 1:
                 raise ValueError('Split stacked devices before editing a design.')
+            if previous.get('marvelous_project'):
+                raise ValueError('A construction project locks its design; create a new design for changes.')
             old_powers = previous.get('marvelous_blueprint', {}).get('extra_effects', [])
             old_counts = previous.get('marvelous_extra_uses_used', {})
             spent_by_id = {power.get('effect_id', f'legacy:{index}'): old_counts.get(str(index), 0)
@@ -149,6 +151,18 @@ class CraftingService:
     def activate_marvelous_item(self, item_id, *, apply_to_self=False, effect_index=0):
         return self.repository.consume_marvelous_item_use(self.character_id, item_id,
                                                           apply_to_self=apply_to_self, effect_index=effect_index)
+
+    def start_marvelous_construction(self, item_id):
+        import json
+        from app.marvelous_projects import start_project
+        item = next((item for item in self.repository.list_equipment(self.character_id) if item.id == item_id), None)
+        if item is None: raise ValueError('Item does not belong to this character.')
+        plan = json.loads(item.automation_json or '{}')['marvelous_blueprint']
+        if plan.get('extra_effects'):
+            raise ValueError('Combined construction eligibility requires further integration.')
+        project = start_project(plan, self.marvelous_plan_requirements(plan))
+        self.repository.start_marvelous_project(self.character_id, item_id, project)
+        return project
 
     def spell_crafting_levels(self, recipe):
         """Standard progression providers only; unusual profiles remain reviewable."""

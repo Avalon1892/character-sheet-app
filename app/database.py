@@ -2112,6 +2112,46 @@ class CharacterRepository:
         self._touch_character(character_id)
         self._connection.commit()
 
+    def start_marvelous_project(self, character_id, item_id, project):
+        """Atomically pay construction materials and persist the reviewed project."""
+        from fractions import Fraction
+        with self._connection:
+            row = self._connection.execute('SELECT automation_json, quantity FROM equipment WHERE character_id=? AND id=?', (character_id, item_id)).fetchone()
+            if row is None: raise ValueError('Item does not belong to this character.')
+            metadata = json.loads(row['automation_json'] or '{}')
+            if metadata.get('provider') != 'marvelous-composer' or row['quantity'] != 1:
+                raise ValueError('Construction requires one custom Marvelous design.')
+            if metadata.get('marvelous_project'): raise ValueError('This design already has a construction project.')
+            cost = Fraction(project['materials_gp']) * 100
+            if cost <= 0 or cost.denominator != 1: raise ValueError('Material cost must be a positive copper amount.')
+            purse = self._connection.execute('SELECT copper, silver, gold, platinum FROM currency_purses WHERE character_id=?', (character_id,)).fetchone()
+            total = purse['copper'] + purse['silver'] * 10 + purse['gold'] * 100 + purse['platinum'] * 1000
+            if total < cost: raise ValueError('Insufficient currency for construction materials.')
+            remainder = int(total - cost)
+            platinum, remainder = divmod(remainder, 1000)
+            gold, remainder = divmod(remainder, 100)
+            silver, copper = divmod(remainder, 10)
+            metadata['marvelous_project'] = project
+            self._connection.execute('UPDATE currency_purses SET copper=?, silver=?, gold=?, platinum=? WHERE character_id=?', (copper, silver, gold, platinum, character_id))
+            self._connection.execute('UPDATE equipment SET automation_json=? WHERE character_id=? AND id=?', (json.dumps(metadata), character_id, item_id))
+            self._touch_character(character_id)
+
+    def advance_marvelous_project(self, character_id, item_id, *, day=None, hours=None, distracting=False, adventuring=False, check_total=None):
+        """Persist work or the final check; never charge materials a second time."""
+        from app.marvelous_projects import work_on_project, finish_project
+        with self._connection:
+            row = self._connection.execute('SELECT automation_json FROM equipment WHERE character_id=? AND id=?', (character_id, item_id)).fetchone()
+            if row is None: raise ValueError('Item does not belong to this character.')
+            metadata = json.loads(row['automation_json'] or '{}')
+            project = metadata.get('marvelous_project')
+            if not project: raise ValueError('This item has no construction project.')
+            updated = (finish_project(project, check_total) if check_total is not None else
+                work_on_project(project, day=day, hours=hours, distracting=distracting, adventuring=adventuring))
+            metadata['marvelous_project'] = updated
+            self._connection.execute('UPDATE equipment SET automation_json=? WHERE character_id=? AND id=?', (json.dumps(metadata), character_id, item_id))
+            self._touch_character(character_id)
+        return updated
+
     def consume_marvelous_item_use(self, character_id: int, item_id: int, *, apply_to_self=False, effect_index=0) -> dict:
         """Atomically consume a saved custom item's use; preserve unrelated metadata.
 
@@ -2128,6 +2168,8 @@ class CharacterRepository:
             if row['quantity'] < 1: raise ValueError('No item is available to activate.')
             if row['quantity'] > 1: raise ValueError('Separate activated devices into individual inventory records to track their uses independently.')
             metadata = json.loads(row['automation_json'] or '{}')
+            if metadata.get('marvelous_project', {}).get('status', 'complete') != 'complete':
+                raise ValueError('This construction project has not produced a usable item.')
             plan = metadata.get('marvelous_blueprint')
             if not plan: raise ValueError('This item has no structured Marvelous blueprint.')
             if plan.get('extra_effects') and plan.get('combination_mode') == 'mixed':

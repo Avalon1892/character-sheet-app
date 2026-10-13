@@ -35,3 +35,30 @@ def test_incomplete_and_blocked_projects_are_rejected():
     with pytest.raises(ValueError, match='requirements'):
         marvelous_crafting_quote(marvelous_item_price(1, 1), 1,
             requirements=MarvelousRequirements(('Missing sphere',), (), 0))
+
+
+def test_persistent_project_pays_once_and_gates_activation(tmp_path, monkeypatch):
+    from app.database import CharacterRepository
+    from app.services.crafting import CraftingService
+    from dataclasses import replace
+    repo = CharacterRepository(tmp_path / 'project.db')
+    cid = repo.create_character('Crafter', 'Spheres'); repo.add_feat(cid, 'Craft Marvelous Item')
+    repo.update_currency_purse(replace(repo.get_currency_purse(cid), gold=1000))
+    service = CraftingService(repo, cid)
+    plan = dict(schema_version=1, sphere='Life', base_power='life:cure', caster_level=1,
+                uses=1, activation='standard', range_steps=0, duration_steps=0, unique_changes=0, contributions=[])
+    iid = service.save_marvelous_design(plan, name='Project', slot='', description='')
+    with pytest.raises(ValueError, match='requirements'): service.start_marvelous_construction(iid)
+    assert repo.get_currency_purse(cid).gold == 1000
+    monkeypatch.setattr(service, 'marvelous_plan_requirements', lambda p: MarvelousRequirements((), (), 0))
+    service.start_marvelous_construction(iid)
+    purse = repo.get_currency_purse(cid)
+    assert purse.platinum * 10 + purse.gold == 800
+    before = repo._connection.total_changes
+    with pytest.raises(ValueError, match='already'): service.start_marvelous_construction(iid)
+    assert repo._connection.total_changes == before
+    with pytest.raises(ValueError, match='usable'): repo.consume_marvelous_item_use(cid, iid)
+    repo.advance_marvelous_project(cid, iid, day='2026-10-13', hours=8)
+    assert repo.advance_marvelous_project(cid, iid, check_total=11)['status'] == 'complete'
+    repo.consume_marvelous_item_use(cid, iid)
+    repo.close()

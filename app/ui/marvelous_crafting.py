@@ -332,7 +332,9 @@ class MarvelousItemUseDialog(QDialog):
                 button = QPushButton(('Cure living self' if power['base_power'] == 'life:cure' else 'Apply temporary HP to self') if automatic else 'Record use — manual effect')
                 if mixed: button.setText('Use mixed power — manual' if index == 0 else 'Included in mixed activation')
                 available = all(entry[2] != 0 for entry in effects) if mixed else remaining != 0
-                button.setEnabled(available and item.quantity == 1 and (not mixed or index == 0))
+                usable = metadata.get('marvelous_project', {}).get('status', 'complete') == 'complete'
+                button.setEnabled(available and usable and item.quantity == 1 and (not mixed or index == 0))
+                if not usable: button.setToolTip('Construction has not produced a usable item.')
                 if mixed: button.setToolTip('Using the primary control spends one use of every limited component together. Apply the combined effect manually.')
                 elif item.quantity > 1: button.setToolTip('Separate these devices into individual records to track independent uses.')
                 button.clicked.connect(lambda checked=False, iid=item.id, auto=automatic, ei=index:self.activate(iid, auto, ei))
