@@ -5,7 +5,6 @@ Source: https://spheresofpower.wikidot.com/magical-items
 """
 from dataclasses import dataclass, replace
 from fractions import Fraction
-from math import ceil
 
 from app.crafting_rules import CraftingQuote
 
@@ -245,7 +244,9 @@ def marvelous_crafting_quote(price: MarvelousItemPrice, caster_level: int, *,
         if not requirements.eligible:
             raise ValueError("Construction requirements are not met: " + "; ".join(requirements.blockers))
     dc_increase = requirements.dc_increase if requirements is not None else 5 * missing_talents
-    days = max(1, ceil(price.market_price_gp / 1000))
+    # Work is proportional to price; whole calendar days are a presentation
+    # estimate, not extra required crafting time.
+    days = float(max(Fraction(1), price.market_price_gp / 1000))
     days *= 4 if adventuring else 2 if distracting else 1
     return CraftingQuote(price.market_price_gp / 2, 10 + caster_level + dc_increase,
                          days, "One item per day; materials paid at the start. Missing base spheres and advanced talents cannot be bypassed.")

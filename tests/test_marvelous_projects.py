@@ -37,6 +37,17 @@ def test_incomplete_and_blocked_projects_are_rejected():
             requirements=MarvelousRequirements(('Missing sphere',), (), 0))
 
 
+def test_project_uses_proportional_hours_not_rounded_calendar_days():
+    plan = dict(schema_version=1, sphere='Life', base_power='life:cure', caster_level=3,
+                uses=1, activation='standard', range_steps=0, duration_steps=0,
+                unique_changes=1, contributions=[])
+    p = start_project(plan, MarvelousRequirements((), (), 0))
+    assert p['required_hours'] == pytest.approx(19.2)
+    for day, hours in [('2026-10-13', 8), ('2026-10-14', 8), ('2026-10-15', 4)]:
+        p = work_on_project(p, day=day, hours=hours)
+    assert finish_project(p, 13)['status'] == 'complete'
+
+
 def test_persistent_project_pays_once_and_gates_activation(tmp_path, monkeypatch):
     from app.database import CharacterRepository
     from app.services.crafting import CraftingService

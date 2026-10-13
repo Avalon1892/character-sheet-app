@@ -45,9 +45,10 @@ def test_construction_adjustments_and_minimum():
 def test_spheres_crafting_dc_materials_and_work_conditions():
     price = marvelous_item_price(3, 2)
     normal = marvelous_crafting_quote(price, 3, missing_talents=2)
-    assert (normal.cost_gp, normal.dc, normal.days) == (1200, 23, 3)
-    assert marvelous_crafting_quote(price, 3, distracting=True).days == 6
-    assert marvelous_crafting_quote(price, 3, adventuring=True, distracting=True).days == 12
+    assert (normal.cost_gp, normal.dc, normal.days) == (1200, 23, 2.4)
+    assert marvelous_crafting_quote(price, 3, distracting=True).days == 4.8
+    assert marvelous_crafting_quote(price, 3, adventuring=True, distracting=True).days == 9.6
+    assert marvelous_crafting_quote(marvelous_item_price(1, 1), 1).days == 1
 
 
 @pytest.mark.parametrize("kwargs", [{"talent_costs": (-1,)}, {"alternative_costs": (0.5,)},
