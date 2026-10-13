@@ -71,6 +71,14 @@ def test_mana_transfer_cannot_be_applied_to_crafted_manipulation():
         quote_marvelous_blueprint(plan)
 
 
+def test_crafting_tradition_costs_preserve_base_price_and_apply_floor():
+    from app.marvelous_item_rules import tradition_costs
+    assert tradition_costs(1000, cheap=True) == (450, 900)
+    assert tradition_costs(1000, expensive=True) == (625, 1000)
+    assert tradition_costs(1000, cheap=True, other_reduction=Fraction(1, 5)) == (400, 800)
+    with pytest.raises(ValueError): tradition_costs(1000, cheap=True, expensive=True)
+
+
 @pytest.mark.parametrize("kwargs", [{"talent_costs": (-1,)}, {"alternative_costs": (0.5,)},
                                     {"activation": "free"}, {"range_steps": 1.5}])
 def test_invalid_effect_contributions(kwargs):

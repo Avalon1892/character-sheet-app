@@ -111,6 +111,25 @@ def marvelous_item_price(caster_level: int, complexity: int | Fraction, *, daily
     )
 
 
+def tradition_costs(base_price, *, cheap=False, expensive=False, other_reduction=Fraction(0)):
+    """Reviewed material/resale adjustments, separate from base work pricing.
+
+    Cheap reduces original materials by 10%, stacks additively with reductions,
+    and floors materials at 40% of base price. Expensive changes materials only.
+    Other reduction is a fraction of original material cost, not market value.
+    """
+    if not isinstance(cheap, bool) or not isinstance(expensive, bool) or (cheap and expensive):
+        raise ValueError('Cheap and Expensive are mutually exclusive boolean options.')
+    if isinstance(base_price, bool) or not isinstance(base_price, (int, Fraction)) or base_price <= 0:
+        raise ValueError('Base price must be a positive exact value.')
+    if isinstance(other_reduction, bool) or not isinstance(other_reduction, (int, Fraction)) or not 0 <= other_reduction <= 1:
+        raise ValueError('Other reduction must be an exact fraction from zero to one.')
+    base = Fraction(base_price)
+    fraction = max(Fraction(4, 5), 1 - Fraction(1, 10) - other_reduction) if cheap else 1 - other_reduction
+    materials = base / 2 * fraction * (Fraction(5, 4) if expensive else 1)
+    return materials, base * fraction if cheap else base
+
+
 def talent_construction_cost(entry, *, additional_spell_points=0):
     """Default reviewed contribution; never extract spell-point rules from prose.
 
