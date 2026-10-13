@@ -103,6 +103,30 @@ def test_basic_cure_rolls_and_heals_nonlethal_atomically(crafter, monkeypatch):
     assert marvelous_remaining_uses(metadata(repo, cid, iid)) == 0
 
 
+def test_combined_design_saves_price_and_independent_recovery(crafter):
+    repo, cid = crafter; iid = item(repo, cid, 2)
+    data = metadata(repo, cid, iid); plan = data['marvelous_blueprint']
+    extra = dict(plan, uses=50, base_power='life:cure')
+    plan['extra_effects'] = [extra]; plan['combination_mode'] = 'multiple'
+    service = CraftingService(repo, cid)
+    service.save_marvelous_design(plan, name='Two powers', slot='', description='', item_id=iid)
+    saved = repo.list_equipment(cid)[0]
+    assert saved.value_gp == 11000
+    repo.consume_marvelous_item_use(cid, iid)
+    repo.consume_marvelous_item_use(cid, iid, effect_index=1)
+    data = metadata(repo, cid, iid)
+    assert marvelous_remaining_uses(data) == 1
+    assert marvelous_remaining_uses(data, 1) == 49
+    repo.reset_marvelous_daily_uses(cid)
+    data = metadata(repo, cid, iid)
+    assert marvelous_remaining_uses(data) == 2
+    assert marvelous_remaining_uses(data, 1) == 49
+    before = repo._connection.total_changes
+    with pytest.raises(ValueError, match='Unknown item effect'):
+        repo.consume_marvelous_item_use(cid, iid, effect_index=2)
+    assert repo._connection.total_changes == before
+
+
 def test_activation_dialog_updates_available_state(crafter):
     from PySide6.QtWidgets import QApplication
     from app.ui.marvelous_crafting import MarvelousItemUseDialog

@@ -132,9 +132,9 @@ class CraftingService:
             catalog_source='Custom Spheres Marvelous Item', state='stored',
             automation_json=json.dumps(metadata))
 
-    def activate_marvelous_item(self, item_id, *, apply_to_self=False):
+    def activate_marvelous_item(self, item_id, *, apply_to_self=False, effect_index=0):
         return self.repository.consume_marvelous_item_use(self.character_id, item_id,
-                                                          apply_to_self=apply_to_self)
+                                                          apply_to_self=apply_to_self, effect_index=effect_index)
 
     def spell_crafting_levels(self, recipe):
         """Standard progression providers only; unusual profiles remain reviewable."""

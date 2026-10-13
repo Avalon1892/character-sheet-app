@@ -18,6 +18,8 @@ class MarvelousCraftingDialog(QDialog):
         self.service = CraftingService(repository, character_id)
         self.crafting_access = self.service.permanent_marvelous_access()
         self.item_id = None
+        self.extra_effects = []
+        self.combination_mode = 'multiple'
         self.setWindowTitle('Design a Marvelous Item')
         self.resize(1280, 820)
         root = QVBoxLayout(self)
@@ -86,6 +88,8 @@ class MarvelousCraftingDialog(QDialog):
         metadata = json.loads(item.automation_json or '{}')
         if metadata.get('provider') != 'marvelous-composer': raise ValueError('Not a custom Marvelous design.')
         plan = metadata['marvelous_blueprint']
+        self.extra_effects = plan.get('extra_effects', [])
+        self.combination_mode = plan.get('combination_mode', 'multiple')
         self.item_id = item_id
         self.sphere.setCurrentText(plan['sphere'])
         self.base_power.setCurrentIndex(self.base_power.findData(plan['base_power']))
@@ -169,6 +173,7 @@ class MarvelousCraftingDialog(QDialog):
                     range_steps=self.range_steps.value(), duration_steps=self.duration_steps.value(),
                     unique_changes=self.unique.value(), contributions=contributions,
                     no_space_limitation=self.slotless.isChecked(), permanent=self.permanent.isChecked(),
+                    extra_effects=self.extra_effects, combination_mode=self.combination_mode,
                     automation_status='rules_only')
 
     def quotation(self):

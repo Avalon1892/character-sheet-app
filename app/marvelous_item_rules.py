@@ -168,17 +168,34 @@ def quote_marvelous_blueprint(plan):
                                 daily_uses=1 if plan['uses'] == 50 else plan['uses'], limited_uses=plan['uses'] == 50)
     if plan.get('no_space_limitation'):
         price = replace(price, market_price_gp=price.market_price_gp * 2)
+    if plan.get('extra_effects'):
+        primary = {key: value for key, value in plan.items() if key not in {'extra_effects', 'combination_mode'}}
+        if any(extra.get('extra_effects') for extra in plan['extra_effects']):
+            raise ValueError('Nested effect combinations are not supported.')
+        combined = quote_marvelous_effects([primary, *plan['extra_effects']], mode=plan.get('combination_mode', 'multiple'))
+        price = replace(price, market_price_gp=combined['market_price_gp'])
     return complexity, price, marvelous_crafting_quote(price, plan['caster_level'])
 
 
-def marvelous_remaining_uses(metadata):
+def marvelous_remaining_uses(metadata, effect_index=0):
     """None means unlimited; limited-total charges never recover on rest."""
-    _, price, _ = quote_marvelous_blueprint(metadata['marvelous_blueprint'])
-    used = metadata.get('marvelous_uses_used', 0)
+    plan = marvelous_effect_plan(metadata['marvelous_blueprint'], effect_index)
+    _, price, _ = quote_marvelous_blueprint(plan)
+    used = metadata.get('marvelous_uses_used', 0) if effect_index == 0 else metadata.get('marvelous_extra_uses_used', {}).get(str(effect_index), 0)
     if isinstance(used, bool) or not isinstance(used, int) or used < 0:
         raise ValueError('Invalid saved Marvelous Item usage.')
     maximum = price.daily_uses if price.daily_uses is not None else price.total_uses
     return None if maximum is None else max(0, maximum - used)
+
+
+def marvelous_effect_plan(plan, effect_index=0):
+    if isinstance(effect_index, bool) or not isinstance(effect_index, int) or effect_index < 0:
+        raise ValueError('Invalid effect index.')
+    if effect_index == 0:
+        return {key: value for key, value in plan.items() if key not in {'extra_effects', 'combination_mode'}}
+    extras = plan.get('extra_effects', [])
+    if effect_index > len(extras): raise ValueError('Unknown item effect.')
+    return extras[effect_index - 1]
 
 
 def quote_marvelous_effects(plans, *, mode='multiple'):

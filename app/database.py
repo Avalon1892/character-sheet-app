@@ -2112,13 +2112,13 @@ class CharacterRepository:
         self._touch_character(character_id)
         self._connection.commit()
 
-    def consume_marvelous_item_use(self, character_id: int, item_id: int, *, apply_to_self=False) -> dict:
+    def consume_marvelous_item_use(self, character_id: int, item_id: int, *, apply_to_self=False, effect_index=0) -> dict:
         """Atomically consume a saved custom item's use; preserve unrelated metadata.
 
         Returns the structured effect for the activation adapter. No effect is
         inferred from the description or applied as an equipped passive bonus.
         """
-        from app.marvelous_item_rules import marvelous_remaining_uses
+        from app.marvelous_item_rules import marvelous_remaining_uses, marvelous_effect_plan
         from app.marvelous_base_powers import resolve_base_power, automatic_self_effect
         with self._connection:
             row = self._connection.execute(
@@ -2130,7 +2130,10 @@ class CharacterRepository:
             metadata = json.loads(row['automation_json'] or '{}')
             plan = metadata.get('marvelous_blueprint')
             if not plan: raise ValueError('This item has no structured Marvelous blueprint.')
-            remaining = marvelous_remaining_uses(metadata)
+            if plan.get('extra_effects') and plan.get('combination_mode') == 'mixed':
+                raise ValueError('Mixed-effect simultaneous activation is not implemented yet.')
+            remaining = marvelous_remaining_uses(metadata, effect_index)
+            plan = marvelous_effect_plan(plan, effect_index)
             if remaining == 0: raise ValueError('No item uses remain.')
             effect = resolve_base_power(plan)
             if apply_to_self:
@@ -2153,7 +2156,11 @@ class CharacterRepository:
                                              (granted, character_id))
                 self._touch_character(character_id)
             if remaining is not None:
-                metadata['marvelous_uses_used'] = metadata.get('marvelous_uses_used', 0) + 1
+                if effect_index == 0:
+                    metadata['marvelous_uses_used'] = metadata.get('marvelous_uses_used', 0) + 1
+                else:
+                    counters = metadata.setdefault('marvelous_extra_uses_used', {})
+                    counters[str(effect_index)] = counters.get(str(effect_index), 0) + 1
                 self._connection.execute('UPDATE equipment SET automation_json=? WHERE character_id=? AND id=?',
                     (json.dumps(metadata), character_id, item_id))
                 self._touch_character(character_id)
@@ -2167,14 +2174,21 @@ class CharacterRepository:
                 try:
                     metadata = json.loads(row['automation_json'] or '{}')
                     plan = metadata.get('marvelous_blueprint', {})
-                    used = metadata.get('marvelous_uses_used', 0)
-                    if not plan or plan.get('uses') not in (1, 2, 3, 4) or not used: continue
+                    if not plan: continue
                     from app.marvelous_item_rules import marvelous_remaining_uses
-                    marvelous_remaining_uses(metadata)
+                    reset = []
+                    for index, effect in enumerate([plan, *plan.get('extra_effects', [])]):
+                        used = metadata.get('marvelous_uses_used', 0) if index == 0 else metadata.get('marvelous_extra_uses_used', {}).get(str(index), 0)
+                        if effect.get('uses') in (1, 2, 3, 4) and used:
+                            marvelous_remaining_uses(metadata, index)
+                            reset.append((index, used))
                 except (ValueError, KeyError, TypeError):
                     continue
-                restored += used
-                metadata['marvelous_uses_used'] = 0
+                if not reset: continue
+                for index, used in reset:
+                    restored += used
+                    if index == 0: metadata['marvelous_uses_used'] = 0
+                    else: metadata['marvelous_extra_uses_used'][str(index)] = 0
                 self._connection.execute('UPDATE equipment SET automation_json=? WHERE character_id=? AND id=?',
                     (json.dumps(metadata), character_id, row['id']))
             if restored: self._touch_character(character_id)
