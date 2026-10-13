@@ -67,10 +67,12 @@ class MarvelousCraftingDialog(QDialog):
         self.extra_picker = QComboBox(); effect_controls.addWidget(self.extra_picker, 1)
         self.add_power = QPushButton('Add another power'); effect_controls.addWidget(self.add_power)
         self.edit_power = QPushButton('Edit power'); effect_controls.addWidget(self.edit_power)
+        self.remove_power = QPushButton('Remove power'); effect_controls.addWidget(self.remove_power)
         self.add_power.clicked.connect(lambda: self.edit_extra_effect())
         self.edit_power.clicked.connect(lambda: self.edit_extra_effect(self.extra_picker.currentIndex()))
+        self.remove_power.clicked.connect(self.remove_extra_effect)
         if draft_effect:
-            self.extra_picker.hide(); self.add_power.hide(); self.edit_power.hide()
+            self.extra_picker.hide(); self.add_power.hide(); self.edit_power.hide(); self.remove_power.hide()
         self.preview = QTextBrowser(); columns.addWidget(self.preview, 2)
         self.review = QCheckBox('Construction prerequisites and sphere-specific costs have been reviewed with the GM')
         root.addWidget(self.review)
@@ -107,7 +109,8 @@ class MarvelousCraftingDialog(QDialog):
         self.setWindowTitle('Edit Marvelous Item Design'); self.save.setText('Save design changes')
 
     def load_plan(self, plan):
-        self.extra_effects = plan.get('extra_effects', [])
+        self.extra_effects = [dict(extra, effect_id=extra.get('effect_id', f'legacy:{index}'))
+                              for index, extra in enumerate(plan.get('extra_effects', []), 1)]
         self.combination_mode = plan.get('combination_mode', 'multiple')
         self.table.setRowCount(0)
         self.sphere.setCurrentText(plan['sphere'])
@@ -134,6 +137,7 @@ class MarvelousCraftingDialog(QDialog):
         for plan in self.extra_effects:
             self.extra_picker.addItem(f"{plan['sphere']} · {resolve_base_power(plan)['power']}")
         self.edit_power.setEnabled(bool(self.extra_effects))
+        self.remove_power.setEnabled(bool(self.extra_effects))
         self.update_preview()
 
     def edit_extra_effect(self, index=None):
@@ -144,9 +148,21 @@ class MarvelousCraftingDialog(QDialog):
         if dialog.exec() != QDialog.DialogCode.Accepted: return
         plan = dialog.blueprint()
         plan.pop('extra_effects', None); plan.pop('combination_mode', None)
-        if index is None or index < 0: self.extra_effects.append(plan)
-        else: self.extra_effects[index] = plan
+        if index is None or index < 0:
+            from uuid import uuid4
+            plan['effect_id'] = str(uuid4()); self.extra_effects.append(plan)
+        else:
+            plan['effect_id'] = self.extra_effects[index]['effect_id']; self.extra_effects[index] = plan
         self.refresh_extra_picker()
+
+    def remove_extra_effect(self):
+        index = self.extra_picker.currentIndex()
+        if index < 0: return
+        power = self.extra_picker.currentText()
+        if QMessageBox.question(self, 'Remove additional power',
+            f'Remove {power}? Saving will remove this power and its usage counter. Other powers retain their spent uses.') != QMessageBox.StandardButton.Yes:
+            return
+        self.extra_effects.pop(index); self.refresh_extra_picker()
 
     def populate_talents(self, *_):
         self.table.setRowCount(0)

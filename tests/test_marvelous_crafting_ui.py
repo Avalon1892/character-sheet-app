@@ -118,6 +118,7 @@ def test_additional_power_draft_does_not_write_and_parent_preserves_it(composer)
     dialog.review.setChecked(True); dialog.save_item()
     assert len(repo.list_equipment(cid)) == 1
     edit = MarvelousCraftingDialog(repo, cid, item_id=dialog.item_id)
-    assert edit.extra_effects == [plan]
+    assert len(edit.extra_effects) == 1
+    assert {key: value for key, value in edit.extra_effects[0].items() if key != 'effect_id'} == plan
     assert 'Cure' in edit.preview.toPlainText()
     edit.close(); child.close()

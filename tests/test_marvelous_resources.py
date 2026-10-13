@@ -148,6 +148,20 @@ def test_use_dialog_lists_and_activates_the_exact_extra_power(crafter, monkeypat
     dialog.close()
 
 
+def test_removing_first_extra_keeps_second_extra_spent_uses(crafter):
+    repo, cid = crafter; iid = item(repo, cid, 2)
+    plan = metadata(repo, cid, iid)['marvelous_blueprint']
+    plan['extra_effects'] = [dict(plan, base_power='life:cure', uses=2), dict(plan, uses=50)]
+    service = CraftingService(repo, cid)
+    service.save_marvelous_design(plan, name='Three powers', slot='', description='', item_id=iid)
+    repo.consume_marvelous_item_use(cid, iid, effect_index=2)
+    saved = metadata(repo, cid, iid)['marvelous_blueprint']
+    saved['extra_effects'].pop(0)
+    service.save_marvelous_design(saved, name='Two powers', slot='', description='', item_id=iid)
+    assert marvelous_remaining_uses(metadata(repo, cid, iid), 1) == 49
+    assert marvelous_remaining_uses(metadata(repo, cid, iid)) == 2
+
+
 def test_activation_dialog_updates_available_state(crafter):
     from PySide6.QtWidgets import QApplication
     from app.ui.marvelous_crafting import MarvelousItemUseDialog

@@ -99,10 +99,18 @@ class CraftingService:
         modifiers to a device whose power requires activation.
         """
         import json
+        from copy import deepcopy
+        from uuid import uuid4
         from app.marvelous_item_rules import quote_marvelous_blueprint
         from app.marvelous_base_powers import resolve_base_power
         if not self.feats.intersection({'craft marvelous item', 'craft wondrous item'}):
             raise ValueError('A Marvelous Item creation feat is required.')
+        plan = deepcopy(plan)
+        for extra in plan.get('extra_effects', []):
+            extra.setdefault('effect_id', str(uuid4()))
+        identities = [extra['effect_id'] for extra in plan.get('extra_effects', [])]
+        if any(not isinstance(identity, str) or not identity for identity in identities) or len(set(identities)) != len(identities):
+            raise ValueError('Additional powers must have unique identities.')
         _, price, _ = quote_marvelous_blueprint(plan)
         effect = resolve_base_power(plan)
         metadata = dict(status='rules_only', provider='marvelous-composer',
@@ -117,6 +125,12 @@ class CraftingService:
                 raise ValueError('Only custom Marvelous designs can be edited here.')
             if item.quantity != 1:
                 raise ValueError('Split stacked devices before editing a design.')
+            old_powers = previous.get('marvelous_blueprint', {}).get('extra_effects', [])
+            old_counts = previous.get('marvelous_extra_uses_used', {})
+            spent_by_id = {power.get('effect_id', f'legacy:{index}'): old_counts.get(str(index), 0)
+                           for index, power in enumerate(old_powers, 1)}
+            previous['marvelous_extra_uses_used'] = {str(index): spent_by_id.get(power['effect_id'], 0)
+                for index, power in enumerate(plan.get('extra_effects', []), 1)}
             previous.update(metadata)
             self.repository.update_equipment(self.character_id, item_id,
                 name=name, category=item.category, quantity=item.quantity, weight=item.weight,

@@ -28,6 +28,8 @@ Status: pricing, prerequisite checks, catalog import and initial custom composer
 
 ### Latest checkpoint
 
+- Added confirmed additional-power removal. Stable per-power identities preserve counters through removal/reindexing and edits; deleted powers lose only their own counter. Legacy extra powers receive deterministic identities when opened for editing. Save copies input plans and rejects duplicate/invalid identities. Editor/resource run: **18 passed in 9.96 seconds**; resource run with explicit removal/reindex regression: **11 passed in 6.71 seconds**. Primary-power replacement still preserves its primary spent-use count intentionally. Reinspect composer layout with the additional controls in both themes.
+
 - Activation window now shows each independent power as its own row under the item, with exact remaining uses, effect tooltip and indexed activation control. Extra cure automation affects the same character while spending only that effect's counter. Exhausting an extra power does not disable the primary. Mixed powers are displayed but disabled until simultaneous activation is implemented. Added a UI regression that clicks the second power and checks HP, both counters and both button states. **18 activation/editor tests passed in 10.27 seconds**.
 
 - Composer now exposes `Add another power` and `Edit power`, reusing the existing composer in no-write draft mode. Parent save stores one inventory record with combined price; preview lists each additional power's baseline requirements. Saved designs reload the extra powers. Shared CL is fixed in child editors. Draft-confirmation/cancel do not independently create equipment. Editor tests: **8 passed in 4.10 seconds**; preceding editor/resource run **16 passed in 4.49 seconds**.
