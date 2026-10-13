@@ -28,6 +28,9 @@ Status: pricing, prerequisite checks, catalog import and initial custom composer
 
 ### Latest checkpoint
 
+- Rules review corrected base Life Invigorate: fixed one-hour duration, injured target required, temporary HP capped to missing HP, existing larger temporary pools preserved. Rejection occurs before spending an activation. Verified against https://spheresofpower.wikidot.com/life (Ultimate and Original base Invigorate agree). Focused resources/base-powers/construction/editor tests: **56 passed in 8.11 seconds**. Greater Invigorate and other modified versions remain manual.
+- Old Invigorate designs with nonzero duration steps now fail validation rather than silently claiming a CL-scaled duration. A migration/review UX for those designs is still needed; no stored data was rewritten. Fixed-hour construction adjustments beyond the confirmed base duration need rules verification before implementation.
+
 - Saved custom designs can now be reopened by double-clicking their row in the Marvelous Items dialog. Composer restores base power, contribution costs/alternatives, construction settings and manual text. Save updates the same owned equipment record and retains unrelated metadata and spent-use counters; cancel performs no writes. Stacked devices and non-composer items cannot be rewritten through this service. Missing saved catalog contributions block editing instead of silently dropping them.
 - Editing/activation focused verification: **12 passed in 7.47 seconds**, including unchanged identity, preserved spending and cancellation. Full isolated suite remains pending. No deployment.
 

@@ -12,6 +12,7 @@ def crafter(tmp_path):
     repo = CharacterRepository(tmp_path / 'test.db')
     cid = repo.create_character('Crafter', 'Spheres')
     repo.add_feat(cid, 'Craft Marvelous Item')
+    repo.update_hit_points(replace(repo.get_hit_points(cid), maximum=20, current=10))
     yield repo, cid
     repo.close()
 
@@ -61,6 +62,19 @@ def test_temp_hp_does_not_stack_or_reduce_a_larger_pool(crafter):
     repo.update_hit_points(replace(repo.get_hit_points(cid), temporary=9))
     repo.consume_marvelous_item_use(cid, iid, apply_to_self=True)
     assert repo.get_hit_points(cid).temporary == 9
+
+
+def test_invigorate_caps_to_missing_hp_and_rejects_uninjured_without_spending(crafter):
+    repo, cid = crafter; iid = item(repo, cid, 2)
+    repo.update_hit_points(replace(repo.get_hit_points(cid), current=18))
+    repo.consume_marvelous_item_use(cid, iid, apply_to_self=True)
+    assert repo.get_hit_points(cid).temporary == 2
+    repo.update_hit_points(replace(repo.get_hit_points(cid), current=20))
+    before = repo._connection.total_changes
+    with pytest.raises(ValueError, match='injured'):
+        repo.consume_marvelous_item_use(cid, iid, apply_to_self=True)
+    assert repo._connection.total_changes == before
+    assert marvelous_remaining_uses(metadata(repo, cid, iid)) == 1
 
 
 def test_unsupported_modified_effect_fails_before_usage_write(crafter):

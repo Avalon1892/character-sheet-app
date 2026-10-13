@@ -29,6 +29,7 @@ def test_alternative_options_use_exact_half_costs():
 
 def test_permanency_requires_hours_and_level_ten_and_adds_complexity():
     p = blueprint(permanent=True)
+    p['base_power'] = 'protection:aegis'; p['sphere'] = 'Protection'
     with pytest.raises(ValueError, match='hours'): quote_marvelous_blueprint(p)
     p['duration_steps'] = 2
     complexity, _, _ = quote_marvelous_blueprint(p)

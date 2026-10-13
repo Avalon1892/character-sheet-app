@@ -35,7 +35,7 @@ _ROWS = (
     ('illusion:figment', 'Illusion', 'Silent visual illusion', 'touch', 'round'),
     ('life:cure', 'Life', 'Cure', 'touch', 'instantaneous'),
     ('life:restore', 'Life', 'Restore', 'touch', 'instantaneous'),
-    ('life:temporary-hp', 'Life', 'Temporary hit points', 'touch', 'minute'),
+    ('life:temporary-hp', 'Life', 'Temporary hit points', 'touch', 'fixed-hour'),
     ('light:glow', 'Light', 'Bright glow', 'personal', 'minute'),
     ('mana:expunge', 'Mana', 'Spellburn', 'close', 'instantaneous'),
     ('mana:manipulate', 'Mana', 'Shuffle', 'close', 'fixed-round'),
@@ -84,13 +84,13 @@ def resolve_base_power(plan):
         raise ValueError('This base power does not use the adjustable duration ladder.')
     cl = plan['caster_level']
     if plan.get('permanent', False):
-        if cl < 10 or duration != 'hour':
+        if cl < 10 or duration not in {'hour', 'fixed-hour'}:
             raise ValueError('Permanency requires caster level 10 and an effect duration measured in hours.')
     distances = {'personal': 'Personal', 'touch': 'Touch', 'close': f'{25 + 5 * (cl // 2)} ft.',
                  'medium': f'{100 + 10 * cl} ft.', 'long': f'{400 + 40 * cl} ft.'}
     durations = {'round': f'{cl} rounds', 'minute': f'{cl} minutes',
                  'ten-minutes': f'{10 * cl} minutes', 'hour': f'{cl} hours',
-                 'fixed-round': '1 round', 'instantaneous': 'Instantaneous',
+                 'fixed-round': '1 round', 'fixed-hour': '1 hour', 'instantaneous': 'Instantaneous',
                  'concentration': 'Concentration', 'variable': 'As selected effect'}
     summary = {'power': power.name, 'range': distances[RANGES[range_index]], 'duration': durations[duration]}
     if plan.get('permanent', False): summary['duration'] = 'Permanent (dispellable)'

@@ -2136,8 +2136,12 @@ class CharacterRepository:
             if apply_to_self:
                 if plan['base_power'] != 'life:temporary-hp' or plan['contributions'] or plan['unique_changes'] or plan.get('permanent'):
                     raise ValueError('Automatic self-application is not supported for this custom effect.')
+                hp = self.get_hit_points(character_id)
+                if hp.current >= hp.maximum:
+                    raise ValueError('Base Invigorate requires an injured target.')
+                granted = min(effect['temporary_hp'], max(0, hp.maximum - hp.current))
                 self._connection.execute('UPDATE hit_points SET temporary=MAX(temporary, ?) WHERE character_id=?',
-                                         (effect['temporary_hp'], character_id))
+                                         (granted, character_id))
                 self._touch_character(character_id)
             if remaining is not None:
                 metadata['marvelous_uses_used'] = metadata.get('marvelous_uses_used', 0) + 1
