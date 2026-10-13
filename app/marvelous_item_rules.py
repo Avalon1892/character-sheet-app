@@ -170,6 +170,9 @@ def quote_marvelous_blueprint(plan):
         raise ValueError('Alternative-effect flags must be boolean.')
     groups = {}
     for contribution in plan['contributions']:
+        if (plan.get('base_power') == 'mana:manipulate'
+                and contribution.get('catalog_key') == 'mana:manipulation-talent:transfer-manipulation'):
+            raise ValueError('Mana Transfer cannot be applied to a crafted manipulate effect.')
         extra_sp = contribution.get('additional_spell_points', 0)
         if isinstance(extra_sp, bool) or not isinstance(extra_sp, int) or extra_sp < 0 or extra_sp > contribution['complexity']:
             raise ValueError('Additional spell points must be included in the contribution complexity.')

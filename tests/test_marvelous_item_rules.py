@@ -61,6 +61,16 @@ def test_talent_construction_defaults_and_admixture_exception():
     with pytest.raises(ValueError): talent_construction_cost({}, additional_spell_points=True)
 
 
+def test_mana_transfer_cannot_be_applied_to_crafted_manipulation():
+    from app.marvelous_item_rules import quote_marvelous_blueprint
+    plan = dict(schema_version=1, sphere='Mana', base_power='mana:manipulate', caster_level=5,
+                activation='standard', uses=1, range_steps=0, duration_steps=0,
+                unique_changes=0, contributions=[dict(
+                    catalog_key='mana:manipulation-talent:transfer-manipulation', complexity=1)])
+    with pytest.raises(ValueError, match='Mana Transfer'):
+        quote_marvelous_blueprint(plan)
+
+
 @pytest.mark.parametrize("kwargs", [{"talent_costs": (-1,)}, {"alternative_costs": (0.5,)},
                                     {"activation": "free"}, {"range_steps": 1.5}])
 def test_invalid_effect_contributions(kwargs):
