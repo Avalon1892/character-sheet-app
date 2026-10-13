@@ -178,6 +178,25 @@ def test_modified_cure_rolls_every_die_and_applies_talent_bonus(crafter, monkeyp
     assert marvelous_remaining_uses(metadata(repo, cid, iid)) == 0
 
 
+def test_mixed_activation_is_all_or_nothing(crafter):
+    repo, cid = crafter; iid = item(repo, cid, 2)
+    plan = metadata(repo, cid, iid)['marvelous_blueprint']
+    plan['extra_effects'] = [dict(plan, uses=1, base_power='life:cure')]
+    plan['combination_mode'] = 'mixed'
+    CraftingService(repo, cid).save_marvelous_design(plan, name='Mixed power', slot='', description='', item_id=iid)
+    result = repo.consume_marvelous_item_use(cid, iid)
+    assert len(result['combined_effects']) == 2
+    assert marvelous_remaining_uses(metadata(repo, cid, iid)) == 1
+    assert marvelous_remaining_uses(metadata(repo, cid, iid), 1) == 0
+    before = repo._connection.total_changes
+    with pytest.raises(ValueError, match='component'):
+        repo.consume_marvelous_item_use(cid, iid)
+    assert repo._connection.total_changes == before
+    assert marvelous_remaining_uses(metadata(repo, cid, iid)) == 1
+    with pytest.raises(ValueError, match='complete mixed'):
+        repo.consume_marvelous_item_use(cid, iid, effect_index=1)
+
+
 def test_activation_dialog_updates_available_state(crafter):
     from PySide6.QtWidgets import QApplication
     from app.ui.marvelous_crafting import MarvelousItemUseDialog

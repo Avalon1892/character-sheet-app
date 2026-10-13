@@ -65,6 +65,10 @@ class MarvelousCraftingDialog(QDialog):
         left.addWidget(self.description, 1)
         effect_controls = QHBoxLayout(); left.addLayout(effect_controls)
         self.extra_picker = QComboBox(); effect_controls.addWidget(self.extra_picker, 1)
+        self.mode_picker = QComboBox()
+        self.mode_picker.addItem('Separate powers', 'multiple'); self.mode_picker.addItem('Mixed simultaneous power', 'mixed')
+        left.addWidget(self.mode_picker)
+        self.mode_picker.currentIndexChanged.connect(self.change_combination_mode)
         self.add_power = QPushButton('Add another power'); effect_controls.addWidget(self.add_power)
         self.edit_power = QPushButton('Edit power'); effect_controls.addWidget(self.edit_power)
         self.remove_power = QPushButton('Remove power'); effect_controls.addWidget(self.remove_power)
@@ -72,7 +76,7 @@ class MarvelousCraftingDialog(QDialog):
         self.edit_power.clicked.connect(lambda: self.edit_extra_effect(self.extra_picker.currentIndex()))
         self.remove_power.clicked.connect(self.remove_extra_effect)
         if draft_effect:
-            self.extra_picker.hide(); self.add_power.hide(); self.edit_power.hide(); self.remove_power.hide()
+            self.extra_picker.hide(); self.add_power.hide(); self.edit_power.hide(); self.remove_power.hide(); self.mode_picker.hide()
         self.preview = QTextBrowser(); columns.addWidget(self.preview, 2)
         self.review = QCheckBox('Construction prerequisites and sphere-specific costs have been reviewed with the GM')
         root.addWidget(self.review)
@@ -112,6 +116,9 @@ class MarvelousCraftingDialog(QDialog):
         self.extra_effects = [dict(extra, effect_id=extra.get('effect_id', f'legacy:{index}'))
                               for index, extra in enumerate(plan.get('extra_effects', []), 1)]
         self.combination_mode = plan.get('combination_mode', 'multiple')
+        self.mode_picker.blockSignals(True)
+        self.mode_picker.setCurrentIndex(self.mode_picker.findData(self.combination_mode))
+        self.mode_picker.blockSignals(False)
         self.table.setRowCount(0)
         self.sphere.setCurrentText(plan['sphere'])
         self.base_power.setCurrentIndex(self.base_power.findData(plan['base_power']))
@@ -138,6 +145,10 @@ class MarvelousCraftingDialog(QDialog):
             self.extra_picker.addItem(f"{plan['sphere']} · {resolve_base_power(plan)['power']}")
         self.edit_power.setEnabled(bool(self.extra_effects))
         self.remove_power.setEnabled(bool(self.extra_effects))
+        self.update_preview()
+
+    def change_combination_mode(self):
+        self.combination_mode = self.mode_picker.currentData()
         self.update_preview()
 
     def edit_extra_effect(self, index=None):
@@ -317,10 +328,12 @@ class MarvelousItemUseDialog(QDialog):
                 self.table.setItem(row, 1, QTableWidgetItem('Unlimited' if remaining is None else str(remaining)))
                 detail = QTableWidgetItem(effect['power']); detail.setToolTip('\n'.join(f'{k}: {v}' for k, v in effect.items()))
                 self.table.setItem(row, 2, detail)
-                automatic = automatic_self_effect(power) is not None
+                automatic = automatic_self_effect(power) is not None and not mixed
                 button = QPushButton(('Cure living self' if power['base_power'] == 'life:cure' else 'Apply temporary HP to self') if automatic else 'Record use — manual effect')
-                button.setEnabled(remaining != 0 and item.quantity == 1 and not mixed)
-                if mixed: button.setToolTip('Mixed simultaneous activation is not implemented yet.')
+                if mixed: button.setText('Use mixed power — manual' if index == 0 else 'Included in mixed activation')
+                available = all(entry[2] != 0 for entry in effects) if mixed else remaining != 0
+                button.setEnabled(available and item.quantity == 1 and (not mixed or index == 0))
+                if mixed: button.setToolTip('Using the primary control spends one use of every limited component together. Apply the combined effect manually.')
                 elif item.quantity > 1: button.setToolTip('Separate these devices into individual records to track independent uses.')
                 button.clicked.connect(lambda checked=False, iid=item.id, auto=automatic, ei=index:self.activate(iid, auto, ei))
                 self.table.setCellWidget(row, 3, button)
@@ -337,7 +350,7 @@ class MarvelousItemUseDialog(QDialog):
 
     def activate(self, item_id, automatic, effect_index=0):
         if not automatic and QMessageBox.question(self, 'Record item use',
-            'Apply this effect manually? Confirming consumes one item activation.') != QMessageBox.StandardButton.Yes:
+            'Apply this effect manually? Confirming consumes one activation of this power (every component for a mixed power).') != QMessageBox.StandardButton.Yes:
             return
         try:
             effect = self.service.activate_marvelous_item(item_id, apply_to_self=automatic, effect_index=effect_index)

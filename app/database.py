@@ -2131,7 +2131,25 @@ class CharacterRepository:
             plan = metadata.get('marvelous_blueprint')
             if not plan: raise ValueError('This item has no structured Marvelous blueprint.')
             if plan.get('extra_effects') and plan.get('combination_mode') == 'mixed':
-                raise ValueError('Mixed-effect simultaneous activation is not implemented yet.')
+                if effect_index != 0 or apply_to_self:
+                    raise ValueError('Use the complete mixed effect with manual application.')
+                from app.marvelous_item_rules import quote_marvelous_blueprint
+                quote_marvelous_blueprint(plan)
+                effects = [resolve_base_power(power) for power in [plan, *plan['extra_effects']]]
+                remaining_all = [marvelous_remaining_uses(metadata, index) for index in range(len(effects))]
+                if any(remaining == 0 for remaining in remaining_all):
+                    raise ValueError('A component of the mixed effect has no uses remaining.')
+                for index, remaining in enumerate(remaining_all):
+                    if remaining is None: continue
+                    if index == 0:
+                        metadata['marvelous_uses_used'] = metadata.get('marvelous_uses_used', 0) + 1
+                    else:
+                        counters = metadata.setdefault('marvelous_extra_uses_used', {})
+                        counters[str(index)] = counters.get(str(index), 0) + 1
+                self._connection.execute('UPDATE equipment SET automation_json=? WHERE character_id=? AND id=?',
+                    (json.dumps(metadata), character_id, item_id))
+                self._touch_character(character_id)
+                return {'combined_effects': effects, 'application': 'Manual simultaneous effect'}
             remaining = marvelous_remaining_uses(metadata, effect_index)
             plan = marvelous_effect_plan(plan, effect_index)
             if remaining == 0: raise ValueError('No item uses remain.')
