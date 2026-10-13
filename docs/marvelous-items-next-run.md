@@ -28,6 +28,8 @@ Status: pricing, prerequisite checks, catalog import and initial custom composer
 
 ### Latest checkpoint
 
+- Added pure `quote_marvelous_effects` calculation for multiple independent powers and mixed powers. Enforces common item CL, preserves per-effect quotes/resources, charges exactly one highest-priced effect in full and the remainder at ×1.5 or ×2, then calculates aggregate materials/DC/duration. Handles tied prices and differing usage tiers. **32 focused pricing tests passed in 0.14 seconds**. This API is not yet connected to composer multi-effect editing or persistence/activation; that integration is the next concrete step. Do not store the aggregate as a shared unlimited usage pool.
+
 - Full isolated intermediate run completed: **2,166 passed, 3 failed, 0 errors, 0 skipped**, 149 modules, 676.51 seconds (`artifacts/marvelous-validation/summary.json`). All Marvelous modules passed. Failures match the previously recorded baseline: archetype count 1830 versus 1887, custom tracker canvas parent assertion, obsolete tradition placement with secondary Windows SQLite cleanup failure. Changes occurred during the run, so this is not an immutable-final-HEAD certification; the affected editor/resource modules were also tested separately after their changes. A final fixed-HEAD isolated run is still required before declaring full completion.
 
 - Shared pure `automatic_self_effect` eligibility now drives both repository validation and the activation UI. Composer previews accurately identify automated cure/temporary HP versus manual effects, rather than incorrectly saying all activation is unavailable. Activation/editor tests: **14 passed in 10.14 seconds**; editor notice regression run: **7 passed in 5.90 seconds**.

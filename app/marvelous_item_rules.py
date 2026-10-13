@@ -181,6 +181,33 @@ def marvelous_remaining_uses(metadata):
     return None if maximum is None else max(0, maximum - used)
 
 
+def quote_marvelous_effects(plans, *, mode='multiple'):
+    """Quote independent or mixed powers without flattening their mechanics.
+
+    Each entry is an ordinary single-effect blueprint. One most expensive
+    effect is paid in full; the others cost 3/2 (multiple) or 2 (mixed).
+    Creation eligibility and individual activation resources remain separate.
+    """
+    if mode not in {'multiple', 'mixed'}:
+        raise ValueError('Unsupported effect combination mode.')
+    plans = tuple(plans)
+    if not plans:
+        raise ValueError('At least one effect is required.')
+    levels = {plan['caster_level'] for plan in plans}
+    if len(levels) != 1:
+        raise ValueError('All item effects must have the same caster level.')
+    quoted = tuple(quote_marvelous_blueprint(plan) for plan in plans)
+    prices = tuple(result[1].market_price_gp for result in quoted)
+    multiplier = Fraction(3, 2) if mode == 'multiple' else Fraction(2)
+    highest = max(prices)
+    total = highest + (sum(prices) - highest) * multiplier
+    cl = plans[0]['caster_level']
+    # This aggregate is only a construction quote, not a shared usage pool.
+    combined = MarvelousItemPrice(total, 10 + cl // 2, None, None)
+    return dict(effects=quoted, market_price_gp=total,
+                crafting=marvelous_crafting_quote(combined, cl), mode=mode)
+
+
 def marvelous_crafting_quote(price: MarvelousItemPrice, caster_level: int, *,
                               missing_talents=0, adventuring=False,
                               distracting=False, requirements=None) -> CraftingQuote:
