@@ -62,8 +62,8 @@ class MarvelousCraftingDialog(QDialog):
         picker = QHBoxLayout(); left.addLayout(picker)
         self.talent = QComboBox(); picker.addWidget(self.talent, 1)
         add = QPushButton('Add effect contribution'); picker.addWidget(add)
-        self.table = QTableWidget(0, 5)
-        self.table.setHorizontalHeaderLabels(['Talent / effect', 'Base contribution', 'Alternative', 'Choice group', 'Extra SP'])
+        self.table = QTableWidget(0, 6)
+        self.table.setHorizontalHeaderLabels(['Talent / effect', 'Base contribution', 'Alternative', 'Choice group', 'Extra SP', 'Effect choice'])
         self.table.setMinimumHeight(150)
         self.table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
         self.table.setColumnWidth(1, 130); self.table.setColumnWidth(4, 75); left.addWidget(self.table, 1)
@@ -148,6 +148,8 @@ class MarvelousCraftingDialog(QDialog):
             extra_sp = contribution.get('additional_spell_points', 0)
             self.table.cellWidget(row, 1).setValue(contribution['complexity'] - extra_sp)
             self.table.cellWidget(row, 4).setValue(extra_sp)
+            choice = self.table.cellWidget(row, 5)
+            choice.setCurrentIndex(max(0, choice.findData(contribution.get('effect_choice', ''))))
             self.table.cellWidget(row, 2).setChecked(contribution.get('alternative', False))
             self.table.cellWidget(row, 3).setValue(contribution.get('alternative_group', 1))
         self.refresh_extra_picker()
@@ -242,6 +244,11 @@ class MarvelousCraftingDialog(QDialog):
         extra_sp = QSpinBox(); extra_sp.setRange(0, 100)
         extra_sp.setToolTip('Additional spell points required by this effect add one complexity each. Confirm the published cost; no description parsing is used.')
         extra_sp.valueChanged.connect(self.update_preview); self.table.setCellWidget(row, 4, extra_sp)
+        choice = QComboBox(); choice.addItem('—', '')
+        if entry['key'] == 'protection:aegis-ward-talent:armored-magic-aegis':
+            choice.addItem('Armor', 'armor'); choice.addItem('Shield', 'shield')
+        choice.setEnabled(choice.count() > 1)
+        choice.currentIndexChanged.connect(self.update_preview); self.table.setCellWidget(row, 5, choice)
         self.update_preview()
 
     def remove_contribution(self):
@@ -256,6 +263,8 @@ class MarvelousCraftingDialog(QDialog):
                           'alternative': self.table.cellWidget(r, 2).isChecked(),
                           'alternative_group': self.table.cellWidget(r, 3).value()}
                          for r in range(self.table.rowCount())]
+        for r, contribution in enumerate(contributions):
+            if choice := self.table.cellWidget(r, 5).currentData(): contribution['effect_choice'] = choice
         return dict(schema_version=1, sphere=self.sphere.currentText(), caster_level=self.cl.value(),
                     base_power=self.base_power.currentData(),
                     activation=self.activation.currentData(), uses=self.uses.currentData(),

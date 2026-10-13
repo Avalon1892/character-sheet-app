@@ -126,6 +126,22 @@ def test_resistance_aegis_replaces_deflection_and_uses_ultimate_progression(craf
         assert after[save].total == before[save].total + 3
 
 
+@pytest.mark.parametrize('choice,bonus', [('armor', 4), ('shield', 2)])
+def test_armored_magic_aegis_uses_selected_ac_type(crafter, choice, bonus):
+    from app.services.character_calculations import CharacterCalculationService
+    repo, cid = crafter
+    before = CharacterCalculationService(repo, cid).combat_results()
+    plan = dict(schema_version=1, sphere='Protection', base_power='protection:aegis', caster_level=5,
+        activation='standard', uses=1, range_steps=0, duration_steps=0, unique_changes=0,
+        contributions=[dict(catalog_key='protection:aegis-ward-talent:armored-magic-aegis', complexity=1, effect_choice=choice)])
+    iid = CraftingService(repo, cid).save_marvelous_design(plan, name='Armor device', slot='', description='')
+    repo.consume_marvelous_item_use(cid, iid, apply_to_self=True)
+    after = CharacterCalculationService(repo, cid).combat_results()
+    assert after['ac'].total == before['ac'].total + bonus
+    assert after['flat_footed_ac'].total == before['flat_footed_ac'].total + bonus
+    assert after['touch_ac'].total == before['touch_ac'].total
+
+
 @pytest.mark.parametrize('boost,count', [(False, 2), (True, 5)])
 def test_base_destructive_item_rolls_damage_and_spends_once(crafter, monkeypatch, boost, count):
     repo, cid = crafter

@@ -80,6 +80,11 @@ def aegis_modifiers(plan):
     if (len(contributions) == 1 and not contributions[0].get('alternative')
             and contributions[0].get('catalog_key') == 'protection:aegis-ward-talent:resistance-aegis'):
         return [(save, 'resistance', 1 + plan['caster_level'] // 4) for save in ('fortitude', 'reflex', 'will')]
+    if (len(contributions) == 1 and not contributions[0].get('alternative')
+            and contributions[0].get('catalog_key') == 'protection:aegis-ward-talent:armored-magic-aegis'):
+        choice = contributions[0].get('effect_choice')
+        if choice not in {'armor', 'shield'}: return None
+        return [('ac', choice, (3 if choice == 'armor' else 1) + plan['caster_level'] // 5)]
     return None
 
 
@@ -155,7 +160,9 @@ def resolve_base_power(plan):
         modifiers = aegis_modifiers(plan)
         if modifiers is not None:
             summary['ongoing_modifiers'] = modifiers
-            if modifiers[0][0] == 'ac': summary['deflection_ac'] = modifiers[0][2]
+            if modifiers[0][0] == 'ac':
+                summary[modifiers[0][1] + '_ac'] = modifiers[0][2]
+                if modifiers[0][1] != 'deflection': summary['power'] = 'Armored Magic aegis (' + modifiers[0][1] + ')'
             else:
                 summary['power'] = 'Resistance aegis'
                 summary['resistance_saves'] = modifiers[0][2]
