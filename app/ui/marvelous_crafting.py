@@ -60,6 +60,7 @@ class MarvelousCraftingDialog(QDialog):
         add = QPushButton('Add effect contribution'); picker.addWidget(add)
         self.table = QTableWidget(0, 5)
         self.table.setHorizontalHeaderLabels(['Talent / effect', 'Base contribution', 'Alternative', 'Choice group', 'Extra SP'])
+        self.table.setMinimumHeight(150)
         self.table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
         self.table.setColumnWidth(1, 130); self.table.setColumnWidth(4, 75); left.addWidget(self.table, 1)
         remove = QPushButton('Remove selected contribution'); left.addWidget(remove)
@@ -361,6 +362,9 @@ class MarvelousItemUseDialog(QDialog):
                 self.table.setItem(row, 2, detail)
                 automatic = automatic_self_effect(power) is not None and not mixed
                 button = QPushButton(('Cure living self' if power['base_power'] == 'life:cure' else 'Apply temporary HP to self') if automatic else 'Record use — manual effect')
+                from app.marvelous_base_powers import automatic_damage_dice
+                if not mixed and automatic_damage_dice(power) is not None:
+                    button.setText('Use and roll damage')
                 if mixed: button.setText('Use mixed power — manual' if index == 0 else 'Included in mixed activation')
                 available = all(entry[2] != 0 for entry in effects) if mixed else remaining != 0
                 usable = metadata.get('marvelous_project', {}).get('status', 'complete') == 'complete'

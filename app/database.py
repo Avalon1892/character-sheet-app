@@ -2226,10 +2226,11 @@ class CharacterRepository:
                     self._connection.execute('UPDATE hit_points SET temporary=MAX(temporary, ?) WHERE character_id=?',
                                              (granted, character_id))
                 self._touch_character(character_id)
-            if (plan.get('base_power') == 'destruction:blast' and not plan.get('contributions')
-                    and not plan.get('unique_changes', 0)):
+            from app.marvelous_base_powers import automatic_damage_dice
+            damage_dice = automatic_damage_dice(plan)
+            if damage_dice is not None:
                 import random
-                dice = [random.randint(1, 6) for _ in range(effect['damage_dice'])]
+                dice = [random.randint(1, 6) for _ in range(damage_dice)]
                 effect['damage_rolls'] = dice
                 effect['damage_rolled'] = sum(dice)
                 effect['damage_application'] = 'Apply bludgeoning damage to the target after resolving defenses.'

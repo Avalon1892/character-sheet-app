@@ -87,6 +87,14 @@ def cure_healing_components(plan):
     return (1 + (1 + cl // 5 if deeper in keys else 0), cl * (1 + sum(key in boosts for key in keys)))
 
 
+def automatic_damage_dice(plan):
+    """Supported offensive roll; target defenses/application are separate."""
+    if (plan.get('base_power') != 'destruction:blast' or plan.get('contributions')
+            or plan.get('unique_changes', 0)):
+        return None
+    return resolve_base_power(plan)['damage_dice']
+
+
 def resolve_base_power(plan):
     for field in ('caster_level', 'range_steps', 'duration_steps'):
         value = plan[field]
