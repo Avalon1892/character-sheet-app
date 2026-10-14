@@ -46,6 +46,8 @@ The user's latest priority is the designer, not construction-calendar automation
 
 ## Required next (current remaining work)
 
+Stored-weight safety checkpoint: loading validates explicit weight before widget conversion, then adapts decimal precision and the editor maximum to the stored finite value. Small fractional and large saved weights no longer silently round/clamp; boolean or invalid values reject without writes. UI regression: 64 passed in 39.23 seconds. This preserves stored designer inputs without changing inventory weight rules.
+
 Compact pricing-table checkpoint: prioritized name, base complexity and extra SP visually without changing logical column bindings or persisted values. Alternative-group controls now appear only when a contribution is marked alternative; previously chosen group numbers are preserved when hidden. Names retain wrapping/full tooltips. UI regression: 61 passed in 36.09 seconds. Re-rendered both themes and inspected compact views: cost and SP inputs are now visible together; advanced controls remain accessible through table scrolling.
 
 Live-description correction: custom base prose no longer replaces/hides the calculated effect summary. The central block keeps the user's text first and shows live effect values beneath it, without repeating range/duration/CL/DC already displayed in the header. Parent/child locked descriptions still override the generated text exactly. Additional powers now display their own caster-level label, including a locked display override. Presentation/UI run: 66 passed in 34.35 seconds; final projection/lock tests: 6 passed in 0.61 seconds. Re-rendered normal/compact Parchment and Dark and inspected compact views with custom prose plus calculated temporary HP.

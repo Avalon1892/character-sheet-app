@@ -262,6 +262,14 @@ class MarvelousCraftingDialog(QDialog):
     def load_plan(self, plan):
         from app.marvelous_item_rules import drawback_complexity
         drawback_complexity(plan.get('drawbacks', []))
+        from app.marvelous_item_rules import marvelous_item_weight
+        marvelous_item_weight(plan)
+        stored_weight = plan.get('base_weight_lb')
+        if stored_weight is not None:
+            from decimal import Decimal
+            decimals = max(3, -Decimal(str(stored_weight)).as_tuple().exponent)
+            self.base_weight.setDecimals(min(323, decimals))
+            self.base_weight.setMaximum(max(1000000000, float(stored_weight)))
         self.drawbacks = [dict(record) for record in plan.get('drawbacks', [])]
         self.crafting_tradition = plan.get('crafting_tradition')
         saved_bound = plan.get('area_bound_mode', '')

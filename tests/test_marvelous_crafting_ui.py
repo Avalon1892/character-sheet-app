@@ -161,6 +161,25 @@ def test_bulky_weight_updates_card_inventory_and_reopens_without_double_multipli
     reopened.close()
 
 
+@pytest.mark.parametrize('weight', [0.0000125, 1000000001.25])
+def test_loaded_base_weight_is_not_silently_rounded_or_clamped(composer, weight):
+    dialog, repo, cid = composer
+    saved = dialog.blueprint(); saved['base_weight_lb'] = weight
+    before = repo._connection.total_changes
+    dialog.load_plan(saved)
+    assert dialog.blueprint()['base_weight_lb'] == weight
+    assert repo._connection.total_changes == before
+
+
+def test_invalid_loaded_weight_is_rejected_before_editor_normalization(composer):
+    dialog, repo, cid = composer
+    saved = dialog.blueprint(); saved['base_weight_lb'] = True
+    before = repo._connection.total_changes
+    with pytest.raises(ValueError, match='finite nonnegative'):
+        dialog.load_plan(saved)
+    assert repo._connection.total_changes == before
+
+
 def test_force_blast_updates_live_cost_damage_and_saved_preview(composer):
     from app.services.crafting import CraftingService
     dialog, repo, cid = composer
