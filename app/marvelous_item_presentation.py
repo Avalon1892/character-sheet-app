@@ -24,6 +24,12 @@ def item_card_fields(plan, *, name, slot, description):
                   price=f'{float(price.market_price_gp):,.2f} gp',
                   description=description or '\n'.join(f'{key.replace("_", " ").title()}: {value}'
                       for key, value in effect.items() if isinstance(value, (str, int))))
+    from app.content import magic_entry
+    for contribution in plan.get('contributions', []):
+        entry = magic_entry(contribution['catalog_key'])
+        if entry is None: continue
+        label = f"Alternative group {contribution.get('alternative_group', 1)}" if contribution.get('alternative') else 'Effect'
+        values['description'] += f"\n\n{label} — {entry['name']}\n{entry.get('description', '')}"
     records = plan.get('display_overrides', {})
     if plan.get('drawbacks'):
         values['description'] += '\n\nDrawbacks:\n' + '\n'.join(

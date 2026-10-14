@@ -378,6 +378,9 @@ class MarvelousCraftingDialog(QDialog):
             index = next((i for i in range(self.talent.count()) if self.talent.itemData(i)['key'] == entry['key']), -1)
             if index >= 0:
                 self.talent.setCurrentIndex(index); self.add_contribution(); existing.add(entry['key'])
+        # Required construction talents are part of the same draft; eligibility
+        # still checks ownership and CL separately and never grants them to a PC.
+        self.add_required_contributions()
 
     def add_contribution(self):
         entry = self.talent.currentData()
@@ -404,6 +407,8 @@ class MarvelousCraftingDialog(QDialog):
         alternative.toggled.connect(group.setEnabled)
         group.valueChanged.connect(self.update_preview); self.table.setCellWidget(row, 3, group)
         extra_sp = QSpinBox(); extra_sp.setRange(0, 100)
+        from app.marvelous_item_rules import talent_construction_spell_points
+        extra_sp.setValue(talent_construction_spell_points(entry))
         extra_sp.setToolTip('Additional spell points required by this effect add one complexity each. Confirm the published cost; no description parsing is used.')
         extra_sp.valueChanged.connect(self.update_preview); self.table.setCellWidget(row, 4, extra_sp)
         choice = QComboBox(); choice.addItem('—', '')

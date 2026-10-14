@@ -5,6 +5,22 @@ from app.marvelous_item_rules import effect_complexity, marvelous_crafting_quote
 from app.marvelous_item_rules import marvelous_requirements
 
 
+def test_warp_construction_dependency_chains_and_beacon_sp():
+    from app.marvelous_item_rules import missing_construction_prerequisites, advanced_construction_blockers, talent_construction_spell_points
+    from app.content import magic_entry
+    assert talent_construction_spell_points(magic_entry('warp:space-talent:teleport-beacon-space')) == 1
+    portal = [dict(catalog_key='warp:advanced-talent:portal-network-dbh')]
+    missing = missing_construction_prerequisites(portal)
+    assert len(missing) == len(set(missing))
+    assert {'warp:advanced-talent:enduring-portal', 'warp:advanced-talent:portal',
+            'warp:space-talent:teleport-beacon-space', 'warp:space-talent:wormhole-space'} <= set(missing)
+    assert all(magic_entry(key) is not None for key in missing)
+    complete = portal + [dict(catalog_key=key) for key in missing]
+    assert not advanced_construction_blockers(complete, 15)
+    assert advanced_construction_blockers(complete, 14)
+    assert missing_construction_prerequisites([dict(catalog_key='warp:space-talent:teleport-beacon-space')]) == ()
+
+
 def test_live_formula_reports_slotless_limited_and_combined_quotes():
     from app.marvelous_item_rules import marvelous_price_formula
     plan = dict(schema_version=1, caster_level=5, uses=50, range_steps=0,

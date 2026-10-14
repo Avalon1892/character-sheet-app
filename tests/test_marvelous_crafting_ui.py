@@ -158,6 +158,40 @@ def test_published_drawback_selection_is_draft_only_and_deduplicated(composer, m
     reopened.close()
 
 
+def test_beacon_default_sp_is_included_once_and_saved_values_restore(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Warp'); dialog.cl.setValue(5)
+    index = next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == 'warp:space-talent:teleport-beacon-space')
+    dialog.talent.setCurrentIndex(index); dialog.add_contribution()
+    assert dialog.table.cellWidget(0, 4).value() == 1
+    assert dialog.blueprint()['contributions'][0]['complexity'] == 2
+    assert dialog.quotation()[1].market_price_gp == 6000
+    assert 'Teleport Beacon' in dialog.card_edits['description'].toPlainText()
+    plan = dialog.blueprint(); dialog.load_plan(plan)
+    assert dialog.blueprint()['contributions'] == plan['contributions']
+
+
+def test_choosing_advanced_warp_effect_adds_required_chain(composer, monkeypatch):
+    from app.ui.marvelous_effect_picker import MarvelousEffectPicker
+    from app.content import magic_entry
+    from app.marvelous_item_rules import missing_construction_prerequisites
+    from PySide6.QtWidgets import QDialog
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Warp'); dialog.cl.setValue(15)
+    entry = magic_entry('warp:advanced-talent:portal-network-dbh')
+    monkeypatch.setattr(dialog.service, 'accessible_marvelous_effects', lambda sphere: (entry,))
+    def choose(picker):
+        picker.selected_entries = (entry,)
+        return QDialog.DialogCode.Accepted
+    monkeypatch.setattr(MarvelousEffectPicker, 'exec', choose)
+    before = repo._connection.total_changes
+    dialog.choose_accessible_effects()
+    records = dialog.blueprint()['contributions']
+    assert len(records) > 1 and not missing_construction_prerequisites(records)
+    assert any(row['catalog_key'] == 'warp:space-talent:teleport-beacon-space' and row['additional_spell_points'] == 1 for row in records)
+    assert repo._connection.total_changes == before
+
+
 def test_live_price_and_cancel_no_writes(composer):
     dialog, repo, cid = composer
     before = repo._connection.total_changes

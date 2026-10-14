@@ -113,6 +113,17 @@ def marvelous_item_price(caster_level: int, complexity: int | Fraction, *, daily
 
 # Reviewed construction prerequisites use catalog identities, never prose parsing.
 ADVANCED_CONSTRUCTION_REQUIREMENTS = {
+    'warp:advanced-talent:true-teleport': (10, ('warp:talent:distant-teleport', 'warp:talent:unseeing-teleport')),
+    'warp:advanced-talent:flawless-teleport-utility': (15, ('warp:talent:distant-teleport',
+        'warp:advanced-talent:true-teleport', 'warp:talent:unseeing-teleport')),
+    'warp:advanced-talent:planeshift': (10, ('warp:talent:distant-teleport',
+        'warp:advanced-talent:true-teleport', 'warp:talent:unseeing-teleport')),
+    'warp:advanced-talent:portal': (5, ('warp:talent:mass-teleport-mass', 'warp:space-talent:wormhole-space')),
+    'warp:advanced-talent:enduring-portal': (15, ('warp:talent:mass-teleport-mass', 'warp:advanced-talent:portal',
+        'warp:space-talent:teleport-beacon-space', 'warp:talent:unwilling-teleport', 'warp:space-talent:wormhole-space')),
+    'warp:advanced-talent:portal-network-dbh': (15, ('warp:advanced-talent:enduring-portal',
+        'warp:talent:mass-teleport-mass', 'warp:advanced-talent:portal', 'warp:space-talent:teleport-beacon-space',
+        'warp:talent:unwilling-teleport', 'warp:space-talent:wormhole-space')),
     'life:advanced-talent:feline-good-catgirl-hb': (5, ('life:talent:lingering-resilience',)),
     'life:advanced-talent:hypervitalize': (15, ('life:cure-talent:restore-health-cure', 'life:talent:revitalize')),
     'life:advanced-talent:make-whole': (10, ('life:talent:break-enchantment',
@@ -203,6 +214,16 @@ def tradition_costs(base_price, *, cheap=False, expensive=False, other_reduction
     fraction = max(Fraction(4, 5), 1 - Fraction(1, 10) - other_reduction) if cheap else 1 - other_reduction
     materials = base / 2 * fraction * (Fraction(5, 4) if expensive else 1)
     return materials, base * fraction if cheap else base
+
+
+def talent_construction_spell_points(entry):
+    """Reviewed mandatory default, not optional SP inferred from catalog prose.
+
+    Ultimate Teleport Beacon spends one SP to place or use a beacon. These are
+    separate activations, not two SP charged together. Basic Teleport comes
+    from the Warp base power and is not another talent contribution.
+    """
+    return 1 if entry.get('key') == 'warp:space-talent:teleport-beacon-space' else 0
 
 
 def talent_construction_cost(entry, *, additional_spell_points=0, mythic_crafter=False):
