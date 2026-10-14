@@ -161,6 +161,22 @@ def test_bulky_weight_updates_card_inventory_and_reopens_without_double_multipli
     reopened.close()
 
 
+def test_force_blast_updates_live_cost_damage_and_saved_preview(composer):
+    from app.services.crafting import CraftingService
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(6)
+    key = 'destruction:blast-type-talent:force-blast-blast-type-force'
+    index = next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key)
+    dialog.talent.setCurrentIndex(index); dialog.add_contribution()
+    assert dialog.table.cellWidget(0, 4).value() == 1
+    assert dialog.quotation()[0] == 3
+    assert '3d6 force' in dialog.item_preview.toPlainText()
+    iid = CraftingService(repo, cid).save_marvelous_design(dialog.blueprint(), name='Force device', slot='', description='')
+    reopened = MarvelousCraftingDialog(repo, cid, item_id=iid)
+    assert '3d6 force' in reopened.item_preview.toPlainText()
+    reopened.close()
+
+
 def test_accessible_effect_picker_reuses_basket_without_learning_rules(composer):
     from app.ui.marvelous_effect_picker import MarvelousEffectPicker
     from app.catalogs import DEFAULT_CATALOG

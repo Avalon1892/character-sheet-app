@@ -56,6 +56,23 @@ BASE_POWERS = tuple(MarvelousBasePower(*row) for row in _ROWS)
 RANGES = ('personal', 'touch', 'close', 'medium', 'long')
 DURATIONS = ('round', 'minute', 'ten-minutes', 'hour')
 
+# Reviewed Ultimate blast types: name, damage, die size, additional SP.
+DESTRUCTION_BLAST_TYPES = {
+    'destruction:blast-type-talent:acid-blast-blast-type-acid': ('Acid Blast', 'acid', 6, 0),
+    'destruction:blast-type-talent:crystal-blast-blast-type-crystal': ('Crystal Blast', 'piercing', 4, 0),
+    'destruction:blast-type-talent:electric-blast-blast-type-electricity': ('Electric Blast', 'electricity', 6, 0),
+    'destruction:blast-type-talent:fire-blast-blast-type-fire': ('Fire Blast', 'fire', 6, 0),
+    'destruction:blast-type-talent:force-blast-blast-type-force': ('Force Blast', 'force', 6, 1),
+    'destruction:blast-type-talent:frost-blast-blast-type-cold': ('Frost Blast', 'cold', 6, 0),
+}
+
+
+def destructive_blast_profile(plan):
+    rows = plan.get('contributions', [])
+    if not rows: return ('Bludgeoning destructive blast', 'bludgeoning', 6, 0)
+    if len(rows) != 1 or rows[0].get('alternative'): return None
+    return DESTRUCTION_BLAST_TYPES.get(rows[0].get('catalog_key'))
+
 
 def talent_effect_choices(key):
     """Reviewed construction choices, shared by the editor and projections."""
@@ -183,7 +200,7 @@ def cure_healing_components(plan):
 
 def automatic_damage_dice(plan):
     """Supported offensive roll; target defenses/application are separate."""
-    if (plan.get('base_power') != 'destruction:blast' or plan.get('contributions')
+    if (plan.get('base_power') != 'destruction:blast' or destructive_blast_profile(plan) is None
             or plan.get('unique_changes', 0) or item_dice_metamagic(plan) is None):
         return None
     return resolve_base_power(plan)['damage_dice']
@@ -326,7 +343,16 @@ def resolve_base_power(plan):
             summary['healing'] = f'Base 1d8+{cl}; selected modifications require manual resolution'
     if power.key == 'destruction:blast':
         summary['damage_dice'] = cl if boost else cl // 2
-        summary['damage'] = f'{summary["damage_dice"]}d6 bludgeoning'
+        profile = destructive_blast_profile(plan)
+        if profile is None:
+            summary['damage'] = 'Selected modifications require manual damage/type resolution.'
+        else:
+            name, damage_type, sides, _ = profile
+            summary['power'] = name; summary['damage_type'] = damage_type
+            summary['damage_die_size'] = sides
+            summary['damage'] = f'{summary["damage_dice"]}d{sides} {damage_type}'
+            if plan.get('contributions'):
+                summary['secondary_effects'] = 'Resolve saves, secondary damage, conditions and target-specific defenses from the talent description manually.'
     if power.key == 'warp:teleport': summary['teleport_distance'] = distances[('close', 'medium', 'long')[effect_steps]]
     if power.key == 'warp:beacon':
         summary['target'] = 'One spot, object or creature; placement is manual.'

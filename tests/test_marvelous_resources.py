@@ -130,6 +130,26 @@ def test_editing_legacy_design_keeps_inventory_weight_unless_explicitly_replaced
     assert next(item for item in repo.list_equipment(cid) if item.id == iid).weight == 0
 
 
+@pytest.mark.parametrize('suffix,sides,kind', [('crystal-blast-blast-type-crystal', 4, 'piercing'),
+                                             ('force-blast-blast-type-force', 6, 'force')])
+def test_blast_type_damage_roll_uses_selected_die_size_and_type(crafter, monkeypatch, suffix, sides, kind):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_construction_spell_points, talent_construction_cost
+    repo, cid = crafter
+    entry = magic_entry('destruction:blast-type-talent:' + suffix)
+    points = talent_construction_spell_points(entry)
+    assert points == (1 if kind == 'force' else 0)
+    plan = dict(schema_version=1, sphere='Destruction', base_power='destruction:blast', caster_level=6,
+                activation='standard', uses=1, range_steps=0, duration_steps=0, unique_changes=0,
+                contributions=[dict(catalog_key=entry['key'], additional_spell_points=points,
+                                    complexity=talent_construction_cost(entry, additional_spell_points=points))])
+    iid = CraftingService(repo, cid).save_marvelous_design(plan, name='Blast device', slot='', description='')
+    monkeypatch.setattr('random.randint', lambda low, high: high)
+    result = repo.consume_marvelous_item_use(cid, iid)
+    assert result['damage_rolls'] == [sides] * 3 and result['damage_rolled'] == sides * 3
+    assert kind in result['damage_application'] and 'manually' in result['damage_application']
+
+
 @pytest.mark.parametrize('mode', ['', 'distance', 'recharge'])
 @pytest.mark.parametrize('source', ['tradition', 'drawback'])
 def test_area_bound_recovery_follows_selected_variant_without_guessing_legacy_mode(crafter, mode, source):

@@ -246,6 +246,9 @@ def talent_construction_spell_points(entry):
     Planeshift adds two, Portal adds one, and sustained Enduring Portal adds
     one beyond its integrated prerequisites. Optional variants remain explicit.
     """
+    from app.marvelous_base_powers import DESTRUCTION_BLAST_TYPES
+    if profile := DESTRUCTION_BLAST_TYPES.get(entry.get('key')):
+        return profile[3]
     return {
         'warp:space-talent:teleport-beacon-space': 1,
         'warp:advanced-talent:true-teleport': 2,

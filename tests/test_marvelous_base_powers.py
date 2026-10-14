@@ -67,6 +67,26 @@ def test_spell_ward_modes_and_antimagic_upgrade_descriptors():
         resolve_base_power(plan('protection:aegis', 10, contributions=rows))
 
 
+@pytest.mark.parametrize('suffix,kind,sides', [
+    ('acid-blast-blast-type-acid', 'acid', 6), ('crystal-blast-blast-type-crystal', 'piercing', 4),
+    ('electric-blast-blast-type-electricity', 'electricity', 6), ('fire-blast-blast-type-fire', 'fire', 6),
+    ('force-blast-blast-type-force', 'force', 6), ('frost-blast-blast-type-cold', 'cold', 6),
+])
+def test_reviewed_blast_type_changes_damage_projection(suffix, kind, sides):
+    from app.content import magic_entry
+    from app.marvelous_base_powers import automatic_damage_dice
+    key = 'destruction:blast-type-talent:' + suffix
+    assert magic_entry(key) is not None
+    blueprint = plan('destruction:blast', 6, contributions=[dict(catalog_key=key)])
+    result = resolve_base_power(blueprint)
+    assert result['damage'] == f'3d{sides} {kind}'
+    assert automatic_damage_dice(blueprint) == 3
+    assert 'manually' in result['secondary_effects']
+    blueprint['contributions'][0]['alternative'] = True
+    assert automatic_damage_dice(blueprint) is None
+    assert 'manual' in resolve_base_power(blueprint)['damage']
+
+
 def test_beacon_placement_range_duration_and_required_contribution():
     result = resolve_base_power(plan('warp:beacon', 7))
     assert result['range'] == 'Touch' and result['duration'] == '7 hours'

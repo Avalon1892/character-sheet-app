@@ -2301,10 +2301,10 @@ class CharacterRepository:
             if damage_dice is not None:
                 import random
                 from app.marvelous_base_powers import item_dice_result
-                dice, amount = item_dice_result(plan, damage_dice, 6, 0, random.randint)
+                dice, amount = item_dice_result(plan, damage_dice, effect['damage_die_size'], 0, random.randint)
                 effect['damage_rolls'] = dice
                 effect['damage_rolled'] = amount
-                effect['damage_application'] = 'Apply bludgeoning damage to the target after resolving defenses.'
+                effect['damage_application'] = f'Apply {effect["damage_type"]} damage to the target after resolving defenses; resolve any secondary effects manually.'
             if remaining is not None:
                 if effect_index == 0:
                     metadata['marvelous_uses_used'] = metadata.get('marvelous_uses_used', 0) + 1
