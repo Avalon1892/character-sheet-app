@@ -72,6 +72,26 @@ def test_energy_choice_updates_card_cost_and_survives_saved_design(composer):
     reopened.close()
 
 
+def test_unrecognized_saved_effect_choice_is_preserved_and_can_be_corrected(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Protection'); dialog.cl.setValue(5)
+    key = 'protection:aegis-ward-talent:armored-magic-aegis'
+    index = next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key)
+    dialog.talent.setCurrentIndex(index); dialog.add_contribution()
+    saved = dialog.blueprint(); saved['contributions'][0]['effect_choice'] = 'unsupported-value'
+    before = repo._connection.total_changes
+    dialog.load_plan(saved)
+    assert dialog.blueprint()['contributions'][0]['effect_choice'] == 'unsupported-value'
+    assert 'Unrecognized:' in dialog.table.cellWidget(0, 5).currentText()
+    assert 'supported effect option' in dialog.cost_formula.text()
+    assert not dialog.save.isEnabled()
+    assert repo._connection.total_changes == before
+    choice = dialog.table.cellWidget(0, 5)
+    choice.setCurrentIndex(choice.findData('armor'))
+    assert dialog.blueprint()['contributions'][0]['effect_choice'] == 'armor'
+    assert 'Armored Magic aegis (armor)' in dialog.item_preview.toPlainText()
+
+
 def test_accessible_effect_picker_reuses_basket_without_learning_rules(composer):
     from app.ui.marvelous_effect_picker import MarvelousEffectPicker
     from app.catalogs import DEFAULT_CATALOG

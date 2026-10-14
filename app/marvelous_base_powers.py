@@ -196,6 +196,11 @@ def resolve_base_power(plan):
             raise ValueError('Base-power parameters must be integers.')
     if plan['caster_level'] < 1:
         raise ValueError('Item caster level must be positive.')
+    for row in plan.get('contributions', []):
+        choices = talent_effect_choices(row.get('catalog_key'))
+        selected = row.get('effect_choice', '')
+        if choices and selected != '' and selected not in choices:
+            raise ValueError('Choose a supported effect option for ' + row['catalog_key'] + '.')
     key = plan.get('base_power')
     if key == 'warp:beacon':
         beacons = [row for row in plan.get('contributions', []) if row.get('catalog_key') == 'warp:space-talent:teleport-beacon-space']

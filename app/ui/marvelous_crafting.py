@@ -287,7 +287,13 @@ class MarvelousCraftingDialog(QDialog):
             self.table.cellWidget(row, 1).setValue(contribution['complexity'] - extra_sp)
             self.table.cellWidget(row, 4).setValue(extra_sp)
             choice = self.table.cellWidget(row, 5)
-            choice.setCurrentIndex(max(0, choice.findData(contribution.get('effect_choice', ''))))
+            saved_choice = contribution.get('effect_choice', '')
+            choice_index = choice.findData(saved_choice)
+            if choice_index < 0:
+                choice.addItem('Unrecognized: ' + str(saved_choice), saved_choice)
+                choice_index = choice.count() - 1
+                choice.setEnabled(True); self.table.setColumnHidden(5, False)
+            choice.setCurrentIndex(choice_index)
             from PySide6.QtCore import Qt
             self.table.item(row, 0).setData(Qt.ItemDataRole.UserRole + 1, contribution.get('effect_spheres', []))
             self.table.cellWidget(row, 2).setChecked(contribution.get('alternative', False))
@@ -617,7 +623,8 @@ class MarvelousCraftingDialog(QDialog):
                           'alternative_group': self.table.cellWidget(r, 3).value()}
                          for r in range(self.table.rowCount())]
         for r, contribution in enumerate(contributions):
-            if choice := self.table.cellWidget(r, 5).currentData(): contribution['effect_choice'] = choice
+            choice = self.table.cellWidget(r, 5).currentData()
+            if choice != '': contribution['effect_choice'] = choice
             if names := self.table.item(r, 0).data(Qt.ItemDataRole.UserRole + 1): contribution['effect_spheres'] = list(names)
         return dict(schema_version=1, sphere=self.sphere.currentText(), caster_level=self.cl.value(),
                     base_power=self.base_power.currentData(),

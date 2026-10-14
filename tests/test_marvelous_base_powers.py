@@ -33,7 +33,7 @@ def test_energy_resistance_choice_scales_and_rejects_unknown_energy(base):
     result = resolve_base_power(plan(base, 10, contributions=[row]))
     assert result['energy_type'] == 'Fire' and result['energy_protection'] == '20'
     row['effect_choice'] = 'force'
-    with pytest.raises(ValueError, match='supported energy'):
+    with pytest.raises(ValueError, match='supported effect option'):
         resolve_base_power(plan(base, 10, contributions=[row]))
 
 
