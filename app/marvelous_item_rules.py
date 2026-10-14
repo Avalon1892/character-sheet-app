@@ -300,7 +300,17 @@ def crafting_item_limitations(plan):
     tradition = (plan.get('crafting_tradition') or {}).get('key')
     if tradition == 'crafting:evil-artifice': keys.add('crafting:sacrificing')
     if tradition == 'crafting:ley-linked': keys.add('crafting:taxing')
+    if tradition in {'crafting:city-construction', 'crafting:cryptwood-artifice'}:
+        keys.add('crafting:area-bound')
     return keys
+
+
+def marvelous_area_bound_mode(plan):
+    if 'crafting:area-bound' not in crafting_item_limitations(plan): return None
+    mode = plan.get('area_bound_mode', '')
+    if mode not in ('', 'distance', 'recharge'):
+        raise ValueError('Choose distance or location recharge for Area-Bound.')
+    return mode
 
 
 def spell_selectivity_options(plan):
@@ -325,6 +335,13 @@ def crafting_limitation_details(plan):
     """Concrete item requirements; no location, clock or sacrifice simulation."""
     keys = crafting_item_limitations(plan)
     lines = []
+    bound = marvelous_area_bound_mode(plan)
+    if bound == 'distance':
+        lines.append(f'Area-Bound: functions only within {plan["caster_level"]} miles of the bonded location (a smaller distance may be chosen); location is checked manually.')
+    elif bound == 'recharge':
+        lines.append('Area-Bound: recharge at the bonded location for at least 5 minutes, at most once per day. Without daily uses, recharge every 24 hours; location and elapsed time are manual.')
+    elif bound == '':
+        lines.append('Area-Bound: choose distance-limited use or location recharge before resolving recovery.')
     if 'crafting:charged' in keys:
         complexity, _, _ = quote_marvelous_blueprint(plan)
         points = sum(row.get('additional_spell_points', 0) for row in plan['contributions'])
@@ -349,9 +366,16 @@ def crafting_limitation_details(plan):
 
 def marvelous_manual_recharge_requirements(plan):
     """Only reviewed replacement recovery contracts; no inferred clock state."""
+    requirements = []
     if 'crafting:sacrificing' in crafting_item_limitations(plan):
-        return (f'Qualifying sacrifice of at least {(plan["caster_level"] + 1) // 2} HD, killed by coup de grace with the item within 5 feet; at most once per day. Verify any tradition-specific exceptions with the GM.',)
-    return ()
+        requirements.append(f'Qualifying sacrifice of at least {(plan["caster_level"] + 1) // 2} HD, killed by coup de grace with the item within 5 feet; at most once per day. Verify any tradition-specific exceptions with the GM.')
+    if marvelous_area_bound_mode(plan) == 'recharge':
+        requirements.append('Item remained at its specified bonded recharge location for at least 5 minutes; recharge is allowed at most once per day. Verify the location and elapsed time manually.')
+    return tuple(requirements)
+
+
+def marvelous_recovers_on_rest(plan):
+    return marvelous_area_bound_mode(plan) != '' and not marvelous_manual_recharge_requirements(plan)
 
 
 def effect_complexity(*, talent_costs=(), alternative_costs=(), range_steps=0,
@@ -434,6 +458,7 @@ def quote_marvelous_blueprint(plan):
     grouped_costs = [effect_complexity(alternative_costs=costs) - 1 for costs in groups.values()]
     feat_cost = feat_integration_complexity(plan.get('feat_integrations', []))
     simple = simple_tradition_reduction(plan)
+    marvelous_area_bound_mode(plan)
     limitations = crafting_item_limitations(plan)
     for power in [plan, *plan.get('extra_effects', [])]:
         if 'crafting:charged' in limitations and power['uses'] != 5:

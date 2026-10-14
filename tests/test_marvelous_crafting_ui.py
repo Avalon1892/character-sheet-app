@@ -116,6 +116,28 @@ def test_special_recharge_control_requires_confirmation_and_refreshes_counts(com
     window.close()
 
 
+def test_area_bound_choice_updates_descriptors_and_survives_save(composer):
+    from app.optional_traditions import catalog
+    from app.services.crafting import CraftingService
+    dialog, repo, cid = composer
+    assert dialog.area_bound.isHidden()
+    dialog.cl.setValue(5)
+    dialog.crafting_tradition = next(e for e in catalog()['entries'] if e['key'] == 'crafting:city-construction')
+    dialog.update_preview()
+    assert not dialog.area_bound.isHidden()
+    assert 'choose distance-limited use' in dialog.item_preview.toPlainText()
+    dialog.area_bound.setCurrentIndex(dialog.area_bound.findData('distance'))
+    assert 'within 5 miles' in dialog.item_preview.toPlainText()
+    price = dialog.quotation()[1].market_price_gp
+    dialog.area_bound.setCurrentIndex(dialog.area_bound.findData('recharge'))
+    assert 'at least 5 minutes' in dialog.item_preview.toPlainText()
+    assert dialog.quotation()[1].market_price_gp == price
+    iid = CraftingService(repo, cid).save_marvelous_design(dialog.blueprint(), name='Bound item', slot='', description='')
+    reopened = MarvelousCraftingDialog(repo, cid, item_id=iid)
+    assert reopened.area_bound.currentData() == 'recharge'
+    reopened.close()
+
+
 def test_accessible_effect_picker_reuses_basket_without_learning_rules(composer):
     from app.ui.marvelous_effect_picker import MarvelousEffectPicker
     from app.catalogs import DEFAULT_CATALOG

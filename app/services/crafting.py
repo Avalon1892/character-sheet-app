@@ -100,6 +100,9 @@ class CraftingService:
         from app.marvelous_base_powers import resolve_base_power
         from app.marvelous_item_rules import advanced_construction_blockers
         required, advanced, spheres, construction_blockers = [], [], [], []
+        from app.marvelous_item_rules import marvelous_area_bound_mode
+        if marvelous_area_bound_mode(plan) == '':
+            construction_blockers.append('Area-Bound: choose distance-limited use or location recharge.')
         for power in [plan, *plan.get('extra_effects', [])]:
             resolve_base_power(power)
             if power['caster_level'] != plan['caster_level']:

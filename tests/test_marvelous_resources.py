@@ -115,6 +115,27 @@ def test_custom_drawback_name_does_not_invent_special_recharge(crafter):
     assert repo._connection.total_changes == before
 
 
+@pytest.mark.parametrize('mode', ['', 'distance', 'recharge'])
+@pytest.mark.parametrize('source', ['tradition', 'drawback'])
+def test_area_bound_recovery_follows_selected_variant_without_guessing_legacy_mode(crafter, mode, source):
+    repo, cid = crafter
+    plan = dict(schema_version=1, sphere='Life', base_power='life:temporary-hp', caster_level=5,
+                activation='standard', uses=2, range_steps=0, duration_steps=0, unique_changes=0,
+                contributions=[], crafting_tradition={'key': 'crafting:city-construction'}, area_bound_mode=mode)
+    if source == 'drawback':
+        plan.pop('crafting_tradition')
+        plan['drawbacks'] = [dict(source='published', catalog_key='crafting:area-bound', name='Area-Bound', reduction=0)]
+    iid = CraftingService(repo, cid).save_marvelous_design(plan, name='Bound device', slot='', description='')
+    repo.consume_marvelous_item_use(cid, iid)
+    assert repo.reset_marvelous_daily_uses(cid) == (1 if mode == 'distance' else 0)
+    assert marvelous_remaining_uses(metadata(repo, cid, iid)) == (2 if mode == 'distance' else 1)
+    if mode == 'recharge':
+        assert repo.record_marvelous_recharge(cid, iid, confirmed=True) == 1
+    else:
+        with pytest.raises(ValueError, match='no supported'):
+            repo.record_marvelous_recharge(cid, iid, confirmed=True)
+
+
 def test_deeper_healing_invigorate_applies_and_spends_atomically(crafter):
     repo, cid = crafter
     plan = dict(schema_version=1, sphere='Life', base_power='life:temporary-hp',

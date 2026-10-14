@@ -2333,7 +2333,7 @@ class CharacterRepository:
         """Record a manually verified special recharge; never simulate days/events."""
         if confirmed is not True:
             raise ValueError('Confirm that the special recharge requirements were fulfilled.')
-        from app.marvelous_item_rules import marvelous_manual_recharge_requirements, marvelous_remaining_uses, quote_marvelous_blueprint
+        from app.marvelous_item_rules import marvelous_manual_recharge_requirements, marvelous_remaining_uses, quote_marvelous_blueprint, marvelous_area_bound_mode
         row = self._connection.execute('SELECT quantity, automation_json FROM equipment WHERE character_id=? AND id=?',
                                        (character_id, item_id)).fetchone()
         if row is None or row['quantity'] != 1:
@@ -2342,6 +2342,8 @@ class CharacterRepository:
         plan = metadata.get('marvelous_blueprint', {})
         if metadata.get('provider') != 'marvelous-composer' or not marvelous_manual_recharge_requirements(plan):
             raise ValueError('This item has no supported special recharge contract.')
+        if marvelous_area_bound_mode(plan) == '':
+            raise ValueError('Configure the Area-Bound rule before recording recharge.')
         if metadata.get('marvelous_project', {}).get('status', 'complete') != 'complete':
             raise ValueError('Construction has not produced a usable item.')
         quote_marvelous_blueprint(plan)
@@ -2378,8 +2380,8 @@ class CharacterRepository:
                                     (json.dumps(metadata), character_id, row['id']))
                                 restored += used
                         continue
-                    from app.marvelous_item_rules import marvelous_remaining_uses, marvelous_manual_recharge_requirements
-                    if marvelous_manual_recharge_requirements(plan): continue
+                    from app.marvelous_item_rules import marvelous_remaining_uses, marvelous_recovers_on_rest
+                    if not marvelous_recovers_on_rest(plan): continue
                     reset = []
                     for index, effect in enumerate([plan, *plan.get('extra_effects', [])]):
                         used = metadata.get('marvelous_uses_used', 0) if index == 0 else metadata.get('marvelous_extra_uses_used', {}).get(str(index), 0)

@@ -109,6 +109,12 @@ class MarvelousCraftingDialog(QDialog):
         self.tradition_button.clicked.connect(self.choose_crafting_tradition)
         self.clear_tradition = QPushButton('Clear tradition'); left.insertWidget(1, self.clear_tradition)
         self.clear_tradition.clicked.connect(self.remove_crafting_tradition)
+        self.area_bound = QComboBox()
+        for label, value in [('Area-Bound: choose a rule…', ''), ('Area-Bound: distance-limited use', 'distance'),
+                             ('Area-Bound: recharge at bonded location', 'recharge')]:
+            self.area_bound.addItem(label, value)
+        self.area_bound.hide(); left.insertWidget(2, self.area_bound)
+        self.area_bound.currentIndexChanged.connect(self.update_preview)
         self.talent = QComboBox(); picker.addWidget(self.talent, 1)
         add = QPushButton('Add effect contribution'); picker.addWidget(add)
         # Retain catalog-backed restoration for saved plans/prerequisites, but new
@@ -252,6 +258,12 @@ class MarvelousCraftingDialog(QDialog):
         drawback_complexity(plan.get('drawbacks', []))
         self.drawbacks = [dict(record) for record in plan.get('drawbacks', [])]
         self.crafting_tradition = plan.get('crafting_tradition')
+        saved_bound = plan.get('area_bound_mode', '')
+        bound_index = self.area_bound.findData(saved_bound)
+        if bound_index < 0:
+            self.area_bound.addItem('Unrecognized Area-Bound rule: ' + str(saved_bound), saved_bound)
+            bound_index = self.area_bound.count() - 1
+        self.area_bound.setCurrentIndex(bound_index)
         from app.marvelous_item_presentation import validate_display_overrides
         validate_display_overrides(plan.get('display_overrides', {}))
         self.display_overrides = {key: dict(record) for key, record in plan.get('display_overrides', {}).items()}
@@ -640,7 +652,8 @@ class MarvelousCraftingDialog(QDialog):
                     extra_effects=self.extra_effects, combination_mode=self.combination_mode,
                     feat_integrations=self.feat_integrations,
                     automation_status='rules_only', display_overrides=self.display_overrides,
-                    crafting_tradition=self.crafting_tradition, drawbacks=self.drawbacks)
+                    crafting_tradition=self.crafting_tradition, drawbacks=self.drawbacks,
+                    area_bound_mode=self.area_bound.currentData())
 
     def quotation(self):
         return quote_marvelous_blueprint(self.blueprint())
@@ -655,6 +668,8 @@ class MarvelousCraftingDialog(QDialog):
             self.drawbacks_list.setCurrentRow(min(selected_drawback, len(self.drawbacks) - 1))
         self.tradition_button.setText(self.crafting_tradition['name'] if self.crafting_tradition else 'Choose a crafting tradition…')
         self.clear_tradition.setEnabled(self.crafting_tradition is not None)
+        from app.marvelous_item_rules import crafting_item_limitations
+        self.area_bound.setVisible('crafting:area-bound' in crafting_item_limitations(self.blueprint()))
         self.feats_button.setText(f'Integrate feats… ({len(self.feat_integrations)})')
         from app.marvelous_item_rules import missing_construction_prerequisites
         self.add_prerequisites.setEnabled(bool(missing_construction_prerequisites(self.blueprint()['contributions'])))
