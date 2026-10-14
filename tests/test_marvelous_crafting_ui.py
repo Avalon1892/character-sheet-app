@@ -19,6 +19,36 @@ def composer(tmp_path):
     repo.close()
 
 
+def test_item_card_locks_survive_changes_save_and_reopen(composer):
+    from app.services.crafting import CraftingService
+    dialog, repo, cid = composer
+    dialog.cl.setValue(5)
+    dialog.card_locks['price'].setChecked(True)
+    dialog.card_edits['price'].setText('Priceless')
+    dialog.cl.setValue(6)
+    assert dialog.card_edits['price'].text() == 'Priceless'
+    assert dialog.card_edits['caster_level'].text() == '6'
+    assert dialog.quotation()[1].market_price_gp == 2400
+    iid = CraftingService(repo, cid).save_marvelous_design(dialog.blueprint(), name='Locked card', slot='', description='')
+    reopened = MarvelousCraftingDialog(repo, cid, item_id=iid)
+    assert reopened.card_locks['price'].isChecked()
+    assert reopened.card_edits['price'].text() == 'Priceless'
+    reopened.card_locks['price'].setChecked(False)
+    assert reopened.card_edits['price'].text() == '2,400.00 gp'
+    assert reopened.card_edits['price'].isReadOnly()
+    reopened.close()
+
+
+def test_invalid_item_card_override_performs_no_writes(composer):
+    from app.services.crafting import CraftingService
+    dialog, repo, cid = composer
+    plan = dialog.blueprint(); plan['display_overrides'] = {'price': {'locked': 'yes', 'value': 'free'}}
+    before = repo._connection.total_changes
+    with pytest.raises(ValueError, match='boolean lock'):
+        CraftingService(repo, cid).save_marvelous_design(plan, name='Invalid', slot='', description='')
+    assert repo._connection.total_changes == before
+
+
 def test_live_price_and_cancel_no_writes(composer):
     dialog, repo, cid = composer
     before = repo._connection.total_changes

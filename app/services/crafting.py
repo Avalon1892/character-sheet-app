@@ -126,6 +126,8 @@ class CraftingService:
         if not self.feats.intersection({'craft marvelous item', 'craft wondrous item'}):
             raise ValueError('A Marvelous Item creation feat is required.')
         plan = deepcopy(plan)
+        from app.marvelous_item_presentation import validate_display_overrides
+        validate_display_overrides(plan.get('display_overrides', {}))
         for extra in plan.get('extra_effects', []):
             extra.setdefault('effect_id', str(uuid4()))
         identities = [extra['effect_id'] for extra in plan.get('extra_effects', [])]

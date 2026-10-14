@@ -41,6 +41,7 @@ class MarvelousCraftingDialog(QDialog):
         self.extra_effects = []
         self.feat_integrations = []
         self.combination_mode = 'multiple'
+        self.display_overrides = {}
         self.draft_effect = draft_effect
         self.setWindowTitle('Design a Marvelous Item')
         self.resize(1280, 820)
@@ -113,7 +114,24 @@ class MarvelousCraftingDialog(QDialog):
         self.remove_power.clicked.connect(self.remove_extra_effect)
         if draft_effect:
             self.extra_picker.hide(); self.add_power.hide(); self.edit_power.hide(); self.remove_power.hide(); self.mode_picker.hide()
-        self.preview = QTextBrowser(); columns.addWidget(self.preview, 2)
+        center = QVBoxLayout(); columns.addLayout(center, 3)
+        center.addWidget(QLabel('ITEM DESCRIPTION'))
+        hint = QLabel('Lock a field to edit its displayed text. Locked text is preserved; calculated price and activation rules remain unchanged.')
+        hint.setWordWrap(True); center.addWidget(hint)
+        card = QFormLayout(); center.addLayout(card)
+        self.card_edits, self.card_locks = {}, {}
+        from app.marvelous_item_presentation import ITEM_FIELDS
+        for key in ITEM_FIELDS:
+            edit = QTextEdit() if key == 'description' else QLineEdit()
+            if key == 'description': edit.setMaximumHeight(130)
+            edit.setReadOnly(True)
+            lock = QCheckBox('Lock')
+            line = QHBoxLayout(); line.addWidget(edit, 1); line.addWidget(lock)
+            card.addRow(key.replace('_', ' ').title(), line)
+            self.card_edits[key], self.card_locks[key] = edit, lock
+            lock.toggled.connect(lambda checked, key=key: self.set_card_lock(key, checked))
+            edit.textChanged.connect(lambda *_, key=key: self.edit_card_field(key))
+        self.preview = QTextBrowser(); center.addWidget(self.preview, 1)
         self.review = QCheckBox('Construction prerequisites and sphere-specific costs have been reviewed with the GM')
         root.addWidget(self.review)
         self.result = QLabel(); root.addWidget(self.result)
@@ -157,6 +175,12 @@ class MarvelousCraftingDialog(QDialog):
         self.setWindowTitle('Edit Marvelous Item Design'); self.save.setText('Save design changes')
 
     def load_plan(self, plan):
+        from app.marvelous_item_presentation import validate_display_overrides
+        validate_display_overrides(plan.get('display_overrides', {}))
+        self.display_overrides = {key: dict(record) for key, record in plan.get('display_overrides', {}).items()}
+        for key, lock in self.card_locks.items():
+            lock.blockSignals(True); lock.setChecked(self.display_overrides.get(key, {}).get('locked', False)); lock.blockSignals(False)
+            self.card_edits[key].setReadOnly(not lock.isChecked())
         self.feat_integrations = [dict(feat) for feat in plan.get('feat_integrations', [])]
         self.extra_effects = [dict(extra, effect_id=extra.get('effect_id', f'legacy:{index}'))
                               for index, extra in enumerate(plan.get('extra_effects', []), 1)]
@@ -320,6 +344,28 @@ class MarvelousCraftingDialog(QDialog):
                                             for r in range(self.table.rowCount())))
         self.update_preview()
 
+    def set_card_lock(self, key, checked):
+        edit = self.card_edits[key]
+        text = edit.toPlainText() if isinstance(edit, QTextEdit) else edit.text()
+        self.display_overrides[key] = dict(locked=checked, value=text)
+        edit.setReadOnly(not checked)
+        self.update_preview()
+
+    def edit_card_field(self, key):
+        if not self.card_locks[key].isChecked(): return
+        edit = self.card_edits[key]
+        self.display_overrides[key] = dict(locked=True, value=edit.toPlainText() if isinstance(edit, QTextEdit) else edit.text())
+
+    def refresh_item_card(self):
+        from app.marvelous_item_presentation import item_card_fields
+        values = item_card_fields(self.blueprint(), name=self.name.text(), slot=self.slot.currentData(),
+                                  description=self.description.toPlainText())
+        for key, text in values.items():
+            edit = self.card_edits[key]
+            edit.blockSignals(True)
+            edit.setPlainText(text) if isinstance(edit, QTextEdit) else edit.setText(text)
+            edit.blockSignals(False)
+
     def blueprint(self):
         from PySide6.QtCore import Qt
         contributions = [{'catalog_key': self.table.item(r, 0).data(Qt.ItemDataRole.UserRole),
@@ -341,7 +387,7 @@ class MarvelousCraftingDialog(QDialog):
                     restore_mode=self.restore_mode.currentData(),
                     extra_effects=self.extra_effects, combination_mode=self.combination_mode,
                     feat_integrations=self.feat_integrations,
-                    automation_status='rules_only')
+                    automation_status='rules_only', display_overrides=self.display_overrides)
 
     def quotation(self):
         return quote_marvelous_blueprint(self.blueprint())
@@ -353,6 +399,7 @@ class MarvelousCraftingDialog(QDialog):
         try:
             complexity, price, quote = self.quotation()
             self.cost_formula.setText('Cost: ' + marvelous_price_formula(self.blueprint()))
+            self.refresh_item_card()
             effect = resolve_base_power(self.blueprint())
             automatic = automatic_self_effect(self.blueprint())
             automation_notice = ('Activation can heal a living self, including nonlethal damage.' if automatic == 'cure'
