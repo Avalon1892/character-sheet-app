@@ -186,6 +186,11 @@ class MarvelousCraftingDialog(QDialog):
         self.drawbacks_list = QListWidget(); self.drawbacks_list.setWordWrap(True)
         self.drawbacks_list.setMinimumWidth(160); self.drawbacks_list.setMaximumWidth(260)
         right.addWidget(self.drawbacks_list, 1)
+        self.edit_drawback_button = QPushButton('Edit drawback'); right.addWidget(self.edit_drawback_button)
+        self.edit_drawback_button.setEnabled(False)
+        self.drawbacks_list.currentRowChanged.connect(lambda row: self.edit_drawback_button.setEnabled(row >= 0))
+        self.edit_drawback_button.clicked.connect(self.edit_selected_drawback)
+        self.drawbacks_list.itemDoubleClicked.connect(lambda *_: self.edit_selected_drawback())
         self.remove_drawback_button = QPushButton('Remove drawback'); right.addWidget(self.remove_drawback_button)
         self.remove_drawback_button.setEnabled(False)
         self.drawbacks_list.currentRowChanged.connect(lambda row: self.remove_drawback_button.setEnabled(row >= 0))
@@ -368,19 +373,34 @@ class MarvelousCraftingDialog(QDialog):
         self.update_preview()
 
     def add_custom_drawback(self):
-        dialog = QDialog(self); dialog.setWindowTitle('Custom item drawback')
+        self.edit_drawback()
+
+    def edit_selected_drawback(self):
+        row = self.drawbacks_list.currentRow()
+        if row >= 0: self.edit_drawback(row)
+
+    def edit_drawback(self, index=None):
+        previous = self.drawbacks[index] if index is not None else None
+        dialog = QDialog(self); dialog.setWindowTitle('Edit item drawback' if previous else 'Custom item drawback')
         form = QFormLayout(dialog)
         name = QLineEdit(); description = QTextEdit(); reduction = QSpinBox(); reduction.setRange(0, 100); reduction.setValue(1)
+        if previous:
+            name.setText(previous['name']); description.setPlainText(previous.get('description', '')); reduction.setValue(previous['reduction'])
+            name.setReadOnly(previous['source'] == 'published'); description.setReadOnly(previous['source'] == 'published')
         form.addRow('Name', name); form.addRow('Description / restriction', description); form.addRow('Complexity reduction', reduction)
         buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
-        buttons.button(QDialogButtonBox.StandardButton.Ok).setEnabled(False)
+        buttons.button(QDialogButtonBox.StandardButton.Ok).setEnabled(bool(name.text().strip()))
         name.textChanged.connect(lambda value: buttons.button(QDialogButtonBox.StandardButton.Ok).setEnabled(bool(value.strip())))
         buttons.accepted.connect(dialog.accept); buttons.rejected.connect(dialog.reject); form.addRow(buttons)
         if dialog.exec() != QDialog.DialogCode.Accepted: return
-        if any(record['name'].casefold() == name.text().strip().casefold() for record in self.drawbacks):
+        if any(row != index and record['name'].casefold() == name.text().strip().casefold()
+               for row, record in enumerate(self.drawbacks)):
             QMessageBox.warning(self, 'Duplicate drawback', 'This drawback is already included.'); return
-        self.drawbacks.append(dict(source='custom', name=name.text().strip(), description=description.toPlainText(), reduction=reduction.value()))
+        updated = dict(previous or {'source': 'custom'}, name=name.text().strip(), description=description.toPlainText(), reduction=reduction.value())
+        if index is None: self.drawbacks.append(updated)
+        else: self.drawbacks[index] = updated
         self.update_preview()
+        self.drawbacks_list.setCurrentRow(len(self.drawbacks) - 1 if index is None else index)
 
     def remove_drawback(self):
         row = self.drawbacks_list.currentRow()
@@ -542,10 +562,13 @@ class MarvelousCraftingDialog(QDialog):
         return quote_marvelous_blueprint(self.blueprint())
 
     def update_preview(self, *_):
+        selected_drawback = self.drawbacks_list.currentRow()
         self.drawbacks_list.clear()
         for record in self.drawbacks:
             self.drawbacks_list.addItem(f"{record['name']}\n−{record['reduction']} complexity · {record['source']}")
             self.drawbacks_list.item(self.drawbacks_list.count() - 1).setToolTip(record.get('description', ''))
+        if selected_drawback >= 0:
+            self.drawbacks_list.setCurrentRow(min(selected_drawback, len(self.drawbacks) - 1))
         self.tradition_button.setText(self.crafting_tradition['name'] if self.crafting_tradition else 'Choose a crafting tradition…')
         self.clear_tradition.setEnabled(self.crafting_tradition is not None)
         self.feats_button.setText(f'Integrate feats… ({len(self.feat_integrations)})')

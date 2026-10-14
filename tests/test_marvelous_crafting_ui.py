@@ -225,6 +225,51 @@ def test_invalid_design_clears_stale_item_preview(composer):
     assert 'Custom Marvelous Item' in dialog.item_preview.toPlainText()
 
 
+def test_drawback_editor_updates_reduction_preserves_locks_and_cancel(composer, monkeypatch):
+    from PySide6.QtWidgets import QDialog, QSpinBox, QLineEdit
+    dialog, repo, cid = composer
+    dialog.cl.setValue(5); dialog.unique.setValue(2)
+    dialog.drawbacks = [dict(source='custom', name='Dawn', description='At sunrise', reduction=1)]
+    dialog.update_preview(); dialog.drawbacks_list.setCurrentRow(0)
+    dialog.card_locks['price'].setChecked(True); dialog.card_edits['price'].setText('Fixed display')
+    before = repo._connection.total_changes
+    def accept(editor):
+        editor.findChild(QSpinBox).setValue(2)
+        editor.findChild(QLineEdit).setText('Dawn only')
+        return QDialog.DialogCode.Accepted
+    monkeypatch.setattr(QDialog, 'exec', accept)
+    dialog.edit_selected_drawback()
+    assert dialog.drawbacks[0]['name'] == 'Dawn only' and dialog.drawbacks[0]['reduction'] == 2
+    assert dialog.quotation()[1].market_price_gp == 2000
+    assert dialog.card_edits['price'].text() == 'Fixed display'
+    assert 'Dawn only' in dialog.item_preview.toPlainText()
+    assert dialog.drawbacks_list.currentRow() == 0
+    monkeypatch.setattr(QDialog, 'exec', lambda editor: QDialog.DialogCode.Rejected)
+    previous = dialog.blueprint()
+    dialog.edit_selected_drawback()
+    assert dialog.blueprint() == previous and repo._connection.total_changes == before
+
+
+def test_published_drawback_editor_preserves_catalog_text(composer, monkeypatch):
+    from PySide6.QtWidgets import QDialog, QSpinBox, QLineEdit, QTextEdit
+    from app.catalogs import DEFAULT_CATALOG
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Life'); dialog.cl.setValue(5); dialog.unique.setValue(2)
+    entry = next(e for e in DEFAULT_CATALOG.magic_entries('Life') if 'drawback' in e['category'].casefold())
+    dialog.drawbacks = [dict(source='published', catalog_key=entry['key'], name=entry['name'], description=entry['description'], reduction=1)]
+    dialog.update_preview(); dialog.drawbacks_list.setCurrentRow(0)
+    def accept(editor):
+        assert editor.findChild(QLineEdit).isReadOnly() and editor.findChild(QTextEdit).isReadOnly()
+        editor.findChild(QSpinBox).setValue(0)
+        return QDialog.DialogCode.Accepted
+    monkeypatch.setattr(QDialog, 'exec', accept)
+    dialog.edit_selected_drawback()
+    assert dialog.drawbacks[0]['catalog_key'] == entry['key']
+    assert dialog.drawbacks[0]['description'] == entry['description']
+    assert dialog.drawbacks[0]['reduction'] == 0
+    assert dialog.quotation()[1].market_price_gp == 6000
+
+
 def test_live_price_and_cancel_no_writes(composer):
     dialog, repo, cid = composer
     before = repo._connection.total_changes

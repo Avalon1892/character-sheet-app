@@ -4,6 +4,9 @@ The user's latest priority is the designer, not construction-calendar automation
 
 ## Implemented checkpoint
 
+- Final drawback-editor checkpoint: **36 passed in 20.81 seconds**, including published text protection and zero-reduction pricing.
+- Drawbacks now support an explicit Edit button and double-click editing, reusing the same draft form as custom creation. Custom name/description/reduction are editable; published catalog text/identity remain read-only while the GM-reviewed reduction can change, including to zero. Cancellation does not mutate the draft or database. Live preview refresh now preserves the selected drawback, fixing selection loss when another control/lock changes. Existing display locks remain intact during reduction edits.
+- Initial edited-drawback/selection UI run: **35 passed in 20.14 seconds**, before adding the published read-only-text regression.
 - Final item-block checkpoint: **36 passed in 21.05 seconds** at unchanged source, including stale-preview prevention.
 - Center now defaults to a theme-neutral Pathfinder-style item block; construction review is a separate tab. Editable lock controls are in a collapsible, independently scrollable editor. Added range, duration, aura, weight, material cost and construction-requirement display fields. Aura/weight default to explicitly unspecified rather than inventing values. Manual locked edits update the item block immediately and HTML is escaped. All field locks remain additive display metadata, not hidden mechanical changes. Invalid designs clear the stale item block. Compact Parchment and Dark renders were visually inspected.
 - Item-template/projection/UI run: **35 passed in 20.85 seconds**, before the final stale-preview regression. Tests cover every display-field lock, unlock/recompute, escaped manual HTML and scroll-to-editor-field behavior.
