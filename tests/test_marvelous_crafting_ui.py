@@ -25,6 +25,7 @@ def test_item_card_locks_survive_changes_save_and_reopen(composer):
     dialog.cl.setValue(5)
     dialog.card_locks['price'].setChecked(True)
     dialog.card_edits['price'].setText('Priceless')
+    assert 'Priceless' in dialog.item_preview.toPlainText()
     dialog.cl.setValue(6)
     assert dialog.card_edits['price'].text() == 'Priceless'
     assert dialog.card_edits['caster_level'].text() == '6'
@@ -199,6 +200,9 @@ def test_designer_compact_layout_keeps_card_and_formula_in_window(composer, them
     dialog, repo, cid = composer
     dialog.setStyleSheet(dialog_stylesheet(theme))
     dialog.resize(1100, 720); dialog.show(); QApplication.instance().processEvents()
+    dialog.card_editor_toggle.click(); QApplication.instance().processEvents()
+    dialog.card_editor_scroll.ensureWidgetVisible(dialog.card_locks['price'])
+    QApplication.instance().processEvents()
     for widget in (dialog.cost_formula, dialog.card_locks['price'], dialog.drawbacks_button, dialog.save):
         corner = widget.mapTo(dialog, QPoint(widget.width() - 1, widget.height() - 1))
         assert dialog.rect().contains(corner)
@@ -209,6 +213,16 @@ def test_designer_compact_layout_keeps_card_and_formula_in_window(composer, them
     corner = dialog.cost_formula.mapTo(dialog, QPoint(dialog.cost_formula.width() - 1, dialog.cost_formula.height() - 1))
     assert dialog.rect().contains(corner)
     dialog.hide()
+
+
+def test_invalid_design_clears_stale_item_preview(composer):
+    dialog, repo, cid = composer
+    assert 'Custom Marvelous Item' in dialog.item_preview.toPlainText()
+    dialog.unique.setValue(10)
+    assert 'valid design' in dialog.item_preview.toPlainText()
+    assert 'invalid design' in dialog.cost_formula.text()
+    dialog.unique.setValue(0)
+    assert 'Custom Marvelous Item' in dialog.item_preview.toPlainText()
 
 
 def test_live_price_and_cancel_no_writes(composer):

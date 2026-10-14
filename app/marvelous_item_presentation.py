@@ -1,8 +1,10 @@
 """Item-card projections and display locks; no mechanical overrides."""
 from app.marvelous_item_rules import quote_marvelous_blueprint
 from app.marvelous_base_powers import resolve_base_power
+from html import escape
 
-ITEM_FIELDS = ('name', 'slot', 'caster_level', 'save_dc', 'activation', 'uses', 'price', 'description')
+ITEM_FIELDS = ('name', 'slot', 'aura', 'weight', 'caster_level', 'save_dc', 'activation', 'uses',
+               'range', 'duration', 'price', 'construction_cost', 'construction_requirements', 'description')
 
 
 def validate_display_overrides(records):
@@ -16,18 +18,22 @@ def validate_display_overrides(records):
 
 def item_card_fields(plan, *, name, slot, description):
     """Locked text changes the card, never the quoted price or activation rules."""
-    _, price, _ = quote_marvelous_blueprint(plan)
+    _, price, quote = quote_marvelous_blueprint(plan)
     effect = resolve_base_power(plan)
     values = dict(name=name, slot=slot or 'Held / carried', caster_level=str(plan['caster_level']),
+                  aura='Not specified', weight='Not specified', range=effect['range'], duration=effect['duration'],
                   save_dc=str(price.save_dc), activation=plan['activation'].replace('-', ' ').title(),
                   uses='50 total activations' if plan['uses'] == 50 else 'At will' if plan['uses'] == 5 else f"{plan['uses']}/day",
                   price=f'{float(price.market_price_gp):,.2f} gp',
+                  construction_cost=f'{float(quote.cost_gp):,.2f} gp',
+                  construction_requirements=f"Craft Marvelous Item (or Craft Wondrous Item); {plan['sphere']} sphere; permanent CL {plan['caster_level']}",
                   description=description or '\n'.join(f'{key.replace("_", " ").title()}: {value}'
                       for key, value in effect.items() if isinstance(value, (str, int))))
     from app.content import magic_entry
     for contribution in plan.get('contributions', []):
         entry = magic_entry(contribution['catalog_key'])
         if entry is None: continue
+        values['construction_requirements'] += '; ' + entry['name']
         label = f"Alternative group {contribution.get('alternative_group', 1)}" if contribution.get('alternative') else 'Effect'
         values['description'] += f"\n\n{label} — {entry['name']}\n{entry.get('description', '')}"
     records = plan.get('display_overrides', {})
@@ -38,3 +44,16 @@ def item_card_fields(plan, *, name, slot, description):
     validate_display_overrides(records)
     values.update({key: record['value'] for key, record in records.items() if record['locked']})
     return values
+
+
+def item_card_html(fields):
+    """A theme-neutral PF-style item block; all manual/catalog text is escaped."""
+    text = {key: escape(value).replace('\n', '<br>') for key, value in fields.items()}
+    return (f'<h2>{text["name"]}</h2><hr>'
+            f'<p><b>Aura</b> {text["aura"]}; <b>CL</b> {text["caster_level"]}<br>'
+            f'<b>Slot</b> {text["slot"]}; <b>Price</b> {text["price"]}; <b>Weight</b> {text["weight"]}<br>'
+            f'<b>Activation</b> {text["activation"]}; <b>Uses</b> {text["uses"]}<br>'
+            f'<b>Range</b> {text["range"]}; <b>Duration</b> {text["duration"]}; <b>Save DC</b> {text["save_dc"]}</p>'
+            f'<h3>DESCRIPTION</h3><hr><p>{text["description"]}</p>'
+            f'<h3>CONSTRUCTION</h3><hr><p><b>Requirements</b> {text["construction_requirements"]}<br>'
+            f'<b>Materials</b> {text["construction_cost"]}</p>')

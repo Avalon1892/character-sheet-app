@@ -5,7 +5,7 @@ import json
 from PySide6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QFormLayout,
     QLineEdit, QTextEdit, QTextBrowser, QComboBox, QSpinBox, QLabel, QPushButton,
     QTableWidget, QTableWidgetItem, QHeaderView, QDialogButtonBox, QCheckBox, QMessageBox, QDateEdit, QListWidget,
-    QScrollArea, QWidget, QSizePolicy, QToolButton)
+    QScrollArea, QWidget, QSizePolicy, QToolButton, QTabWidget)
 from app.catalogs import DEFAULT_CATALOG
 from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_remaining_uses, marvelous_price_formula
 from app.services.crafting import CraftingService
@@ -152,7 +152,16 @@ class MarvelousCraftingDialog(QDialog):
         heading = QLabel('ITEM DESCRIPTION'); heading.setObjectName('sectionTitle'); center.addWidget(heading)
         hint = QLabel('Lock a field to edit its displayed text. Locked text is preserved; calculated price and activation rules remain unchanged.')
         hint.setWordWrap(True); center.addWidget(hint)
-        card = QFormLayout(); center.addLayout(card)
+        self.card_tabs = QTabWidget(); center.addWidget(self.card_tabs, 3)
+        self.item_preview = QTextBrowser(); self.card_tabs.addTab(self.item_preview, 'Item')
+        self.card_editor_toggle = QToolButton(); self.card_editor_toggle.setText('Edit / lock item fields')
+        self.card_editor_toggle.setCheckable(True); center.addWidget(self.card_editor_toggle)
+        self.card_editor_scroll = QScrollArea(); self.card_editor_scroll.setWidgetResizable(True)
+        self.card_editor_scroll.setMinimumHeight(130)
+        card_widget = QWidget(); card = QFormLayout(card_widget)
+        self.card_editor_scroll.setWidget(card_widget); center.addWidget(self.card_editor_scroll, 2)
+        self.card_editor_scroll.hide()
+        self.card_editor_toggle.toggled.connect(self.card_editor_scroll.setVisible)
         self.card_edits, self.card_locks = {}, {}
         from app.marvelous_item_presentation import ITEM_FIELDS
         for key in ITEM_FIELDS:
@@ -165,7 +174,7 @@ class MarvelousCraftingDialog(QDialog):
             self.card_edits[key], self.card_locks[key] = edit, lock
             lock.toggled.connect(lambda checked, key=key: self.set_card_lock(key, checked))
             edit.textChanged.connect(lambda *_, key=key: self.edit_card_field(key))
-        self.preview = QTextBrowser(); center.addWidget(self.preview, 1)
+        self.preview = QTextBrowser(); self.card_tabs.addTab(self.preview, 'Construction review')
         self.drawbacks_panel = QWidget(); self.drawbacks_panel.setMinimumWidth(155); self.drawbacks_panel.setMaximumWidth(235)
         right = QVBoxLayout(self.drawbacks_panel); right.setContentsMargins(0, 0, 0, 0)
         columns.addWidget(self.drawbacks_panel, 2)
@@ -483,6 +492,16 @@ class MarvelousCraftingDialog(QDialog):
         if not self.card_locks[key].isChecked(): return
         edit = self.card_edits[key]
         self.display_overrides[key] = dict(locked=True, value=edit.toPlainText() if isinstance(edit, QTextEdit) else edit.text())
+        self.render_item_card()
+
+    def render_item_card(self):
+        from app.marvelous_item_presentation import item_card_fields, item_card_html
+        try:
+            fields = item_card_fields(self.blueprint(), name=self.name.text(), slot=self.slot.currentData(),
+                                      description=self.description.toPlainText())
+            self.item_preview.setHtml(item_card_html(fields))
+        except ValueError:
+            self.item_preview.setPlainText('Complete a valid design to preview the item.')
 
     def refresh_item_card(self):
         from app.marvelous_item_presentation import item_card_fields
@@ -493,6 +512,7 @@ class MarvelousCraftingDialog(QDialog):
             edit.blockSignals(True)
             edit.setPlainText(text) if isinstance(edit, QTextEdit) else edit.setText(text)
             edit.blockSignals(False)
+        self.render_item_card()
 
     def blueprint(self):
         from PySide6.QtCore import Qt
@@ -563,6 +583,7 @@ class MarvelousCraftingDialog(QDialog):
             self.save.setEnabled(permitted and self.review.isChecked() and bool(self.name.text().strip()))
         except ValueError as error:
             self.cost_formula.setText('Cost: invalid design — ' + str(error))
+            self.render_item_card()
             self.result.setText(str(error)); self.save.setEnabled(False)
 
     def save_item(self):
