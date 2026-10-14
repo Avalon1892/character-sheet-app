@@ -140,14 +140,13 @@ def aegis_modifiers(plan):
 
 
 def invigorate_temporary_hp(plan):
-    """Reviewed Deeper Healing contribution; other modified Invigorates stay manual."""
+    """Reviewed Deeper Healing/Painkiller; other modified Invigorates stay manual."""
     contributions = plan.get('contributions', [])
-    if not contributions: return plan['caster_level']
-    if (len(contributions) == 1
-            and contributions[0].get('catalog_key') == 'life:talent:deeper-healing'
-            and not contributions[0].get('alternative')):
-        return 2 * plan['caster_level']
-    return None
+    keys = [row.get('catalog_key') for row in contributions]
+    if (any(key not in {'life:talent:deeper-healing', 'life:talent:painkiller'} for key in keys)
+            or len(keys) != len(set(keys)) or any(row.get('alternative') for row in contributions)):
+        return None
+    return plan['caster_level'] * (2 if 'life:talent:deeper-healing' in keys else 1)
 
 
 def cure_healing_components(plan):
@@ -227,6 +226,8 @@ def resolve_base_power(plan):
         summary['temporary_hp'] = cl if temporary is None else temporary
         if temporary is None:
             summary['temporary_hp_review'] = 'Base amount only; selected modifications require manual resolution.'
+        elif any(row.get('catalog_key') == 'life:talent:painkiller' for row in plan.get('contributions', [])):
+            summary['nonlethal_healing'] = temporary
     if power.key == 'life:restore':
         summary['restore_mode'] = restore_mode or 'Not selected; manual review required'
         if restore_mode in {'mind', 'body'}:

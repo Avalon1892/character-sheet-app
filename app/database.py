@@ -2208,7 +2208,11 @@ class CharacterRepository:
         else:
             if hp.current >= maximum: raise ValueError('Base Invigorate requires an injured target.')
             granted = min(effect['temporary_hp'], max(0, maximum - hp.current))
-            self._connection.execute('UPDATE hit_points SET temporary=MAX(temporary, ?) WHERE character_id=?', (granted, recipient))
+            healed = min(hp.nonlethal, effect.get('nonlethal_healing', 0))
+            self._connection.execute('UPDATE hit_points SET temporary=MAX(temporary, ?), nonlethal=? WHERE character_id=?',
+                (granted, max(0, hp.nonlethal - healed), recipient))
+            effect['temporary_hp_granted'] = granted
+            if 'nonlethal_healing' in effect: effect['nonlethal_healed'] = healed
         self._touch_character(recipient)
         effect['recipient_character_id'] = recipient
 

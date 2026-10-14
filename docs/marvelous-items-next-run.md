@@ -44,6 +44,10 @@ Reuse the current services/repository and catalogs; do not create a second item 
 
 ### Latest checkpoint
 
+- Actual Painkiller activation-button regression passed with the full UI module: **22 passed in 13.43 seconds**. It verifies capped temporary HP, full potential nonlethal healing, exhausted-button state and readable result output.
+
+- Painkiller is now supported on crafted Invigorate, alone or with Deeper Healing. Nonlethal healing uses the full potential amount, independently of the missing-HP cap on temporary HP; both changes and resource spending use the existing transaction. Results distinguish potential/granted temporary HP and actual nonlethal healing. Unknown, duplicate and alternative modifications remain manual. **63 focused Life/resource/UI tests passed in 53.16 seconds** before the additional actual-button UI regression. Source: https://spheresofpower.wikidot.com/life (Ultimate, Painkiller). Greater Invigorate, effect expiration and the previously documented item-specific injury/cap interpretation remain unfinished.
+
 - Crafted Invigorate now supports the reviewed Deeper Healing contribution: twice item CL in temporary HP, with the construction-specific minute-per-CL duration unchanged. Shared eligibility enables the existing atomic recipient/resource path; unknown, duplicate and alternative contributions remain manual. Existing missing-HP cap/non-stacking behavior is preserved pending the item-specific rules verification already noted. **102 focused Life/base-power/resource/UI tests passed in 29.37 seconds**. Source: https://spheresofpower.wikidot.com/life (Ultimate, Deeper Healing). Painkiller and Greater Invigorate are not yet implemented for crafted effects.
 
 - Restore follow-up validation: **70 passed in 12.82 seconds** across base-power, Life-effect and crafting-UI modules. Added regressions for both upgraded talents, alternative choices, mode boundaries, suppression precedence and boolean flag validation.

@@ -88,6 +88,22 @@ def test_deeper_healing_invigorate_applies_and_spends_atomically(crafter):
     assert marvelous_remaining_uses(metadata(repo, cid, iid)) == 0
 
 
+@pytest.mark.parametrize('nonlethal,remaining', [(15, 5), (3, 0)])
+def test_painkiller_heals_potential_not_capped_temporary_hp(crafter, nonlethal, remaining):
+    repo, cid = crafter
+    repo.update_hit_points(replace(repo.get_hit_points(cid), current=19, nonlethal=nonlethal))
+    plan = dict(schema_version=1, sphere='Life', base_power='life:temporary-hp', caster_level=5,
+                activation='standard', uses=1, range_steps=0, duration_steps=0, unique_changes=0,
+                contributions=[dict(catalog_key=key, complexity=1) for key in
+                               ('life:talent:painkiller', 'life:talent:deeper-healing')])
+    iid = CraftingService(repo, cid).save_marvelous_design(plan, name='Pain relief', slot='', description='')
+    result = repo.consume_marvelous_item_use(cid, iid, apply_to_self=True)
+    hp = repo.get_hit_points(cid)
+    assert hp.current == 19 and hp.temporary == 1 and hp.nonlethal == remaining
+    assert result['temporary_hp_granted'] == 1 and result['nonlethal_healed'] == nonlethal - remaining
+    assert marvelous_remaining_uses(metadata(repo, cid, iid)) == 0
+
+
 def test_cure_recipient_is_separate_from_item_owner(crafter, monkeypatch):
     repo, cid = crafter
     recipient = repo.create_character('Recipient', 'Spheres')

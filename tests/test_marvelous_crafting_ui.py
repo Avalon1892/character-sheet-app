@@ -183,6 +183,26 @@ def test_recipient_ui_disables_personal_effect_and_cancel_spends_nothing(compose
     book.close()
 
 
+def test_painkiller_activation_button_updates_nonlethal_and_resource(composer):
+    from dataclasses import replace
+    from app.ui.marvelous_crafting import MarvelousItemUseDialog
+    from app.services.crafting import CraftingService
+    dialog, repo, cid = composer
+    repo.update_hit_points(replace(repo.get_hit_points(cid), current=19, maximum=20,
+                                  nonlethal=12, auto_calculate=False))
+    plan = dict(schema_version=1, sphere='Life', base_power='life:temporary-hp', caster_level=5,
+                activation='standard', uses=1, range_steps=0, duration_steps=0, unique_changes=0,
+                contributions=[dict(catalog_key=key, complexity=1) for key in
+                               ('life:talent:painkiller', 'life:talent:deeper-healing')])
+    CraftingService(repo, cid).save_marvelous_design(plan, name='Pain relief', slot='', description='')
+    book = MarvelousItemUseDialog(repo, cid)
+    book.table.cellWidget(0, 3).click()
+    assert repo.get_hit_points(cid).nonlethal == 2 and repo.get_hit_points(cid).temporary == 1
+    assert not book.table.cellWidget(0, 3).isEnabled()
+    assert 'nonlethal healed: 10' in book.result.text()
+    book.close()
+
+
 def test_mixed_effect_button_applies_both_components(composer, monkeypatch):
     from dataclasses import replace
     from app.ui.marvelous_crafting import MarvelousItemUseDialog, effect_detail_lines

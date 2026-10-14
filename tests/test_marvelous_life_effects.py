@@ -26,8 +26,6 @@ def test_unknown_duplicate_and_alternative_contributions_stay_manual():
     plan = cure(['life:talent:deeper-healing'])
     plan['contributions'][0]['alternative'] = True
     assert automatic_self_effect(plan) is None
-
-
 def test_deeper_healing_invigorate_doubles_amount_not_item_duration():
     plan = cure(['life:talent:deeper-healing'], cl=7)
     plan['base_power'] = 'life:temporary-hp'
@@ -41,3 +39,13 @@ def test_deeper_healing_invigorate_doubles_amount_not_item_duration():
     assert automatic_self_effect(plan) is None
     plan['contributions'] = [dict(catalog_key='unknown')]
     assert automatic_self_effect(plan) is None
+
+
+@pytest.mark.parametrize('deeper,amount', [(False, 7), (True, 14)])
+def test_painkiller_uses_full_invigorate_potential(deeper, amount):
+    keys = ['life:talent:painkiller'] + (['life:talent:deeper-healing'] if deeper else [])
+    plan = cure(keys, cl=7)
+    plan['base_power'] = 'life:temporary-hp'
+    result = resolve_base_power(plan)
+    assert result['temporary_hp'] == result['nonlethal_healing'] == amount
+    assert automatic_self_effect(plan) == 'temporary_hp'
