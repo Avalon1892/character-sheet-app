@@ -244,6 +244,8 @@ def talent_construction_spell_points(entry):
         'warp:advanced-talent:enduring-portal': 1,
         'protection:advanced-talent:antimagic-aura': 1,
         'protection:advanced-talent:automatic-fortification-3pp': 1,
+        # Adaptation's two-SP aegis adds one beyond the ordinary one-SP aegis.
+        'protection:advanced-talent:adaptation-aegis': 1,
     }.get(entry.get('key'), 0)
 
 

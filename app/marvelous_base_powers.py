@@ -57,6 +57,16 @@ RANGES = ('personal', 'touch', 'close', 'medium', 'long')
 DURATIONS = ('round', 'minute', 'ten-minutes', 'hour')
 
 
+def talent_effect_choices(key):
+    """Reviewed construction choices, shared by the editor and projections."""
+    if key == 'protection:aegis-ward-talent:armored-magic-aegis':
+        return ('armor', 'shield')
+    if key in {'protection:aegis-ward-talent:energy-resistance-aegis-ward',
+               'protection:advanced-talent:adaptation-aegis'}:
+        return ('acid', 'cold', 'electricity', 'fire', 'sonic')
+    return ()
+
+
 def base_powers(sphere):
     return tuple(power for power in BASE_POWERS if power.sphere.casefold() == sphere.casefold())
 
@@ -264,6 +274,23 @@ def resolve_base_power(plan):
             else:
                 summary['power'] = 'Resistance aegis'
                 summary['resistance_saves'] = modifiers[0][2]
+    if power.key in {'protection:aegis', 'protection:ward'}:
+        energy = 'protection:aegis-ward-talent:energy-resistance-aegis-ward'
+        adaptation = 'protection:advanced-talent:adaptation-aegis'
+        rows = [row for row in plan.get('contributions', []) if not row.get('alternative')]
+        selected = next((row for row in rows if row.get('catalog_key') == adaptation), None)
+        if selected is None:
+            selected = next((row for row in rows if row.get('catalog_key') == energy), None)
+        if selected is not None:
+            choice = selected.get('effect_choice', '')
+            if choice and choice not in talent_effect_choices(selected['catalog_key']):
+                raise ValueError('Choose a supported energy type for this Protection effect.')
+            kind = 'immunity' if selected['catalog_key'] == adaptation else 'resistance'
+            summary['power'] = f'Energy {kind} ' + ('aegis' if power.key == 'protection:aegis' else 'ward')
+            summary['energy_type'] = choice.title() if choice else 'Not selected; choose an energy type'
+            summary['energy_protection'] = 'Immune' if kind == 'immunity' else str(10 + cl)
+            if kind == 'immunity' and power.key != 'protection:aegis':
+                raise ValueError('Adaptation grants an aegis, not a ward.')
     if power.key == 'life:cure':
         healing = cure_healing_components(plan)
         if healing is not None:

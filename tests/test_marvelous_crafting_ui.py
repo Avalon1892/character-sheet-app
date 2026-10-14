@@ -50,6 +50,28 @@ def test_invalid_item_card_override_performs_no_writes(composer):
     assert repo._connection.total_changes == before
 
 
+def test_energy_choice_updates_card_cost_and_survives_saved_design(composer):
+    from app.services.crafting import CraftingService
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Protection'); dialog.cl.setValue(10)
+    key = 'protection:advanced-talent:adaptation-aegis'
+    index = next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key)
+    dialog.talent.setCurrentIndex(index); dialog.add_contribution()
+    dialog.add_required_contributions()
+    choice = dialog.table.cellWidget(0, 5)
+    assert choice.isEnabled() and not dialog.table.isColumnHidden(5)
+    assert dialog.table.cellWidget(0, 4).value() == 1
+    choice.setCurrentIndex(choice.findData('cold'))
+    assert 'Energy Type: Cold' in dialog.item_preview.toPlainText()
+    assert 'Energy Protection: Immune' in dialog.item_preview.toPlainText()
+    assert dialog.quotation()[0] == 5
+    iid = CraftingService(repo, cid).save_marvelous_design(dialog.blueprint(), name='Cold aegis', slot='', description='')
+    reopened = MarvelousCraftingDialog(repo, cid, item_id=iid)
+    assert reopened.table.cellWidget(0, 5).currentData() == 'cold'
+    assert 'Energy Protection: Immune' in reopened.item_preview.toPlainText()
+    reopened.close()
+
+
 def test_accessible_effect_picker_reuses_basket_without_learning_rules(composer):
     from app.ui.marvelous_effect_picker import MarvelousEffectPicker
     from app.catalogs import DEFAULT_CATALOG

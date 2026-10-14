@@ -93,7 +93,7 @@ def test_live_formula_reports_slotless_limited_and_combined_quotes():
 
 
 @pytest.mark.parametrize('suffix,minimum,required,points', [
-    ('adaptation-aegis', 10, 'protection:aegis-ward-talent:energy-resistance-aegis-ward', 0),
+    ('adaptation-aegis', 10, 'protection:aegis-ward-talent:energy-resistance-aegis-ward', 1),
     ('antimagic-aura', 10, 'protection:aegis-ward-talent:spell-ward-aegis-ward', 1),
     ('automatic-fortification-3pp', 5, 'protection:talent:fortifier-3pp', 1),
     ('complex-glyph', 5, 'protection:talent:glyph', 0),

@@ -493,8 +493,9 @@ class MarvelousCraftingDialog(QDialog):
         extra_sp.setToolTip('Additional spell points required by this effect add one complexity each. Confirm the published cost; no description parsing is used.')
         extra_sp.valueChanged.connect(self.update_preview); self.table.setCellWidget(row, 4, extra_sp)
         choice = QComboBox(); choice.addItem('—', '')
-        if entry['key'] == 'protection:aegis-ward-talent:armored-magic-aegis':
-            choice.addItem('Armor', 'armor'); choice.addItem('Shield', 'shield')
+        from app.marvelous_base_powers import talent_effect_choices
+        if choices := talent_effect_choices(entry['key']):
+            for value in choices: choice.addItem(value.title(), value)
             self.table.setColumnHidden(5, False)
         choice.setEnabled(choice.count() > 1)
         choice.currentIndexChanged.connect(self.update_preview); self.table.setCellWidget(row, 5, choice)

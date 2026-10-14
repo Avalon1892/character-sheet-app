@@ -27,6 +27,32 @@ def test_level_scaling_and_instantaneous_effects():
     assert resolve_base_power(plan('alteration:shapeshift', 10))['traits'] == 3
 
 
+@pytest.mark.parametrize('base', ['protection:aegis', 'protection:ward'])
+def test_energy_resistance_choice_scales_and_rejects_unknown_energy(base):
+    row = dict(catalog_key='protection:aegis-ward-talent:energy-resistance-aegis-ward', effect_choice='fire')
+    result = resolve_base_power(plan(base, 10, contributions=[row]))
+    assert result['energy_type'] == 'Fire' and result['energy_protection'] == '20'
+    row['effect_choice'] = 'force'
+    with pytest.raises(ValueError, match='supported energy'):
+        resolve_base_power(plan(base, 10, contributions=[row]))
+
+
+def test_adaptation_immunity_takes_precedence_over_prerequisite_resistance():
+    from app.marvelous_base_powers import automatic_self_effect
+    rows = [dict(catalog_key='protection:aegis-ward-talent:energy-resistance-aegis-ward'),
+            dict(catalog_key='protection:advanced-talent:adaptation-aegis', effect_choice='cold')]
+    result = resolve_base_power(plan('protection:aegis', 10, contributions=rows))
+    assert result['power'] == 'Energy immunity aegis'
+    assert result['energy_type'] == 'Cold' and result['energy_protection'] == 'Immune'
+    assert 'deflection_ac' not in result
+    assert automatic_self_effect(plan('protection:aegis', 10, contributions=rows)) is None
+    with pytest.raises(ValueError, match='not a ward'):
+        resolve_base_power(plan('protection:ward', 10, contributions=rows))
+    rows[-1]['alternative'] = True
+    result = resolve_base_power(plan('protection:aegis', 10, contributions=rows))
+    assert result['energy_protection'] == '20' and 'Not selected' in result['energy_type']
+
+
 def test_beacon_placement_range_duration_and_required_contribution():
     result = resolve_base_power(plan('warp:beacon', 7))
     assert result['range'] == 'Touch' and result['duration'] == '7 hours'
