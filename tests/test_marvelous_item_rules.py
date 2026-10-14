@@ -36,6 +36,13 @@ def test_warp_construction_dependency_chains_and_beacon_sp():
     assert missing_construction_prerequisites([dict(catalog_key='warp:space-talent:teleport-beacon-space')]) == ()
 
 
+@pytest.mark.parametrize('key,points', [('true-teleport', 2), ('planeshift', 2), ('portal', 1), ('enduring-portal', 1)])
+def test_reviewed_warp_selected_effect_sp_defaults(key, points):
+    from app.marvelous_item_rules import talent_construction_spell_points
+    from app.content import magic_entry
+    assert talent_construction_spell_points(magic_entry('warp:advanced-talent:' + key)) == points
+
+
 def test_live_formula_reports_slotless_limited_and_combined_quotes():
     from app.marvelous_item_rules import marvelous_price_formula
     plan = dict(schema_version=1, caster_level=5, uses=50, range_steps=0,

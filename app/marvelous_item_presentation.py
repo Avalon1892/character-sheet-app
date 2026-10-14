@@ -37,6 +37,10 @@ def item_card_fields(plan, *, name, slot, description):
         label = f"Alternative group {contribution.get('alternative_group', 1)}" if contribution.get('alternative') else 'Effect'
         values['description'] += f"\n\n{label} — {entry['name']}\n{entry.get('description', '')}"
     records = plan.get('display_overrides', {})
+    if tradition := plan.get('crafting_tradition'):
+        values['description'] += '\n\nCrafting tradition — ' + tradition.get('name', tradition['key'])
+        values['description'] += '\n' + tradition.get('description', '')
+        if tradition.get('notes'): values['description'] += '\n' + tradition['notes']
     if plan.get('drawbacks'):
         values['description'] += '\n\nDrawbacks:\n' + '\n'.join(
             f"{record['name']}: {record.get('description', '')} (−{record['reduction']} complexity; {record['source']}, GM review)"

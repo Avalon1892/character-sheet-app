@@ -222,8 +222,17 @@ def talent_construction_spell_points(entry):
     Ultimate Teleport Beacon spends one SP to place or use a beacon. These are
     separate activations, not two SP charged together. Basic Teleport comes
     from the Warp base power and is not another talent contribution.
+    Ultimate basic teleport is free; True Teleport therefore adds two SP.
+    Planeshift adds two, Portal adds one, and sustained Enduring Portal adds
+    one beyond its integrated prerequisites. Optional variants remain explicit.
     """
-    return 1 if entry.get('key') == 'warp:space-talent:teleport-beacon-space' else 0
+    return {
+        'warp:space-talent:teleport-beacon-space': 1,
+        'warp:advanced-talent:true-teleport': 2,
+        'warp:advanced-talent:planeshift': 2,
+        'warp:advanced-talent:portal': 1,
+        'warp:advanced-talent:enduring-portal': 1,
+    }.get(entry.get('key'), 0)
 
 
 def talent_construction_cost(entry, *, additional_spell_points=0, mythic_crafter=False):

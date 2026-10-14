@@ -26,3 +26,14 @@ def test_item_block_escapes_manual_html():
     html = item_card_html(fields)
     assert '<script>' not in html and '<img src=x>' not in html
     assert '&lt;script&gt;' in html and '&lt;img src=x&gt;<br>Second line' in html
+
+
+def test_tradition_rules_appear_in_item_description_without_overriding_lock():
+    plan = blueprint()
+    plan['crafting_tradition'] = dict(key='crafting:diviner-s-sight', name='Diviner’s Sight',
+                                    description='Drawbacks: Educated, Fragile. Boon: Cheap.', notes='Divination requirement')
+    fields = item_card_fields(plan, name='Gem', slot='', description='A gem.')
+    assert 'Fragile' in fields['description'] and 'Divination requirement' in fields['description']
+    assert fields['price'] == '1,800.00 gp'
+    plan['display_overrides'] = {'description': dict(locked=True, value='Locked text')}
+    assert item_card_fields(plan, name='Gem', slot='', description='A gem.')['description'] == 'Locked text'

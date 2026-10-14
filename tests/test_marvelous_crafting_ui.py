@@ -298,6 +298,23 @@ def test_beacon_power_automatically_includes_talent_and_reopens_without_duplicat
     reopened.close()
 
 
+@pytest.mark.parametrize('key,points', [('true-teleport', 2), ('planeshift', 2), ('portal', 1), ('enduring-portal', 1)])
+def test_warp_effect_sp_defaults_update_price_and_restore(composer, key, points):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Warp'); dialog.cl.setValue(20)
+    index = next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == 'warp:advanced-talent:' + key)
+    dialog.talent.setCurrentIndex(index); dialog.add_contribution()
+    assert dialog.table.cellWidget(0, 4).value() == points
+    assert dialog.quotation()[1].market_price_gp == 400 * 20 * (1 + 2 + points)
+    plan = dialog.blueprint(); dialog.load_plan(plan)
+    assert dialog.blueprint()['contributions'] == plan['contributions']
+    # Existing explicit/saved adjustments are not silently overwritten by new defaults.
+    plan['contributions'][0]['additional_spell_points'] = 0
+    plan['contributions'][0]['complexity'] = 2
+    dialog.load_plan(plan)
+    assert dialog.table.cellWidget(0, 4).value() == 0
+
+
 def test_live_price_and_cancel_no_writes(composer):
     dialog, repo, cid = composer
     before = repo._connection.total_changes
