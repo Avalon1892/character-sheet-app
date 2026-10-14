@@ -37,7 +37,13 @@ def main():
             dialog.cl.setValue(10)
             dialog.name.setText('Heart of the Dawn')
             dialog.description.setPlainText('A small crystal that grants a protective surge of vitality.')
-            for _ in range(3): dialog.add_contribution()
+            for key in ('life:talent:deeper-healing', 'life:talent:painkiller'):
+                index = next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key)
+                dialog.talent.setCurrentIndex(index); dialog.add_contribution()
+            dialog.extra_effects = [dict(schema_version=1, sphere='Life', base_power='life:cure', caster_level=10,
+                uses=2, activation='standard', range_steps=0, duration_steps=0, unique_changes=0,
+                contributions=[], effect_name='Reserve healing', effect_description='A second power restores vitality.')]
+            dialog.refresh_extra_picker()
             dialog.show(); settle(app)
             if not dialog.grab().save(str(output / f'{theme}.png')):
                 raise RuntimeError('Could not render composer.')

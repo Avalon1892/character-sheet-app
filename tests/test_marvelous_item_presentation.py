@@ -37,3 +37,20 @@ def test_tradition_rules_appear_in_item_description_without_overriding_lock():
     assert fields['price'] == '1,800.00 gp'
     plan['display_overrides'] = {'description': dict(locked=True, value='Locked text')}
     assert item_card_fields(plan, name='Gem', slot='', description='A gem.')['description'] == 'Locked text'
+
+
+def test_multiple_powers_show_each_limit_description_and_child_locks():
+    plan = blueprint()
+    extra = dict(blueprint(), uses=50, effect_name='Reserve cure', effect_description='<custom> reserve effect',
+                 display_overrides={'duration': dict(locked=True, value='Reviewed duration')})
+    plan['extra_effects'] = [extra]
+    fields = item_card_fields(plan, name='Dual gem', slot='', description='Primary text')
+    assert 'Independent' in fields['uses']
+    assert '1/day' in fields['description'] and '50 total activations' in fields['description']
+    assert 'Reserve cure' in fields['description'] and 'Reviewed duration' in fields['description']
+    assert '&lt;custom&gt;' in item_card_html(fields)
+    assert 'Power 2:' in fields['construction_requirements']
+    plan['combination_mode'] = 'mixed'
+    assert item_card_fields(plan, name='Dual gem', slot='', description='')['uses'] == 'All component limits apply'
+    plan['display_overrides'] = {'description': dict(locked=True, value='Whole item locked')}
+    assert item_card_fields(plan, name='Dual gem', slot='', description='')['description'] == 'Whole item locked'

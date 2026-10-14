@@ -342,6 +342,64 @@ def test_crafting_drawbacks_are_available_and_expensive_updates_materials(compos
     reopened.close()
 
 
+def test_additional_power_custom_text_preview_cl_and_reopen(composer, monkeypatch):
+    from PySide6.QtWidgets import QDialog
+    from app.services.crafting import CraftingService
+    from copy import deepcopy
+    dialog, repo, cid = composer
+    dialog.cl.setValue(5)
+    def choose(child):
+        child.sphere.setCurrentText('Life')
+        child.base_power.setCurrentIndex(child.base_power.findData('life:cure'))
+        child.name.setText('Reserve cure'); child.description.setPlainText('A reserve of healing.')
+        child.uses.setCurrentIndex(child.uses.findData(50))
+        return QDialog.DialogCode.Accepted
+    monkeypatch.setattr(MarvelousCraftingDialog, 'exec', choose)
+    before = repo._connection.total_changes
+    dialog.edit_extra_effect()
+    assert 'Reserve cure' in dialog.item_preview.toPlainText()
+    assert '50 total activations' in dialog.item_preview.toPlainText()
+    assert repo._connection.total_changes == before
+    saved = deepcopy(dialog.extra_effects)
+    def cancel(child):
+        assert child.name.text() == 'Reserve cure'
+        assert child.description.toPlainText() == 'A reserve of healing.'
+        return QDialog.DialogCode.Rejected
+    monkeypatch.setattr(MarvelousCraftingDialog, 'exec', cancel)
+    dialog.edit_extra_effect(0)
+    assert dialog.extra_effects == saved
+    dialog.cl.setValue(6)
+    assert dialog.extra_effects[0]['caster_level'] == 6
+    assert dialog.extra_effects[0]['effect_id'] == saved[0]['effect_id']
+    iid = CraftingService(repo, cid).save_marvelous_design(dialog.blueprint(), name='Dual item', slot='', description='')
+    reopened = MarvelousCraftingDialog(repo, cid, item_id=iid)
+    assert reopened.extra_effects[0]['effect_description'] == 'A reserve of healing.'
+    assert 'Reserve cure' in reopened.item_preview.toPlainText()
+    reopened.close()
+
+
+def test_load_does_not_silently_normalize_mismatched_power_levels(composer):
+    dialog, repo, cid = composer
+    plan = dialog.blueprint()
+    plan['caster_level'] = 5
+    plan['extra_effects'] = [dict(plan, caster_level=4)]
+    dialog.load_plan(plan)
+    assert dialog.extra_effects[0]['caster_level'] == 4
+    assert 'same caster level' in dialog.result.text()
+
+
+def test_invalid_additional_power_text_or_lock_performs_no_writes(composer):
+    from app.services.crafting import CraftingService
+    dialog, repo, cid = composer
+    base = dialog.blueprint()
+    for field, value in (('effect_name', 123), ('display_overrides', {'price': {'locked': 'yes', 'value': 'free'}})):
+        plan = dict(base, extra_effects=[dict(base, **{field: value})])
+        before = repo._connection.total_changes
+        with pytest.raises(ValueError):
+            CraftingService(repo, cid).save_marvelous_design(plan, name='Invalid', slot='', description='')
+        assert repo._connection.total_changes == before
+
+
 def test_live_price_and_cancel_no_writes(composer):
     dialog, repo, cid = composer
     before = repo._connection.total_changes

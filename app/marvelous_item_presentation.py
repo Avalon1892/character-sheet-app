@@ -45,6 +45,23 @@ def item_card_fields(plan, *, name, slot, description):
         values['description'] += '\n\nDrawbacks:\n' + '\n'.join(
             f"{record['name']}: {record.get('description', '')} (−{record['reduction']} complexity; {record['source']}, GM review)"
             for record in plan['drawbacks'])
+    if plan.get('extra_effects'):
+        mixed = plan.get('combination_mode') == 'mixed'
+        primary_uses = values['uses']
+        values['uses'] = 'All component limits apply' if mixed else 'Independent per-power limits'
+        for key in ('activation', 'range', 'duration'): values[key] += ' (primary)'
+        values['description'] = (('Mixed simultaneous powers' if mixed else 'Separate selectable powers')
+                                 + f'\nPrimary power — {effect["power"]}; {primary_uses}\n\n' + values['description'])
+        for index, extra in enumerate(plan['extra_effects'], 2):
+            effect_name = extra.get('effect_name', resolve_base_power(extra)['power'])
+            effect_description = extra.get('effect_description', '')
+            if not isinstance(effect_name, str) or not isinstance(effect_description, str):
+                raise ValueError('Additional power name and description must be text.')
+            child = item_card_fields(extra, name=effect_name, slot=slot, description=effect_description)
+            values['description'] += (f'\n\nPower {index} — {child["name"]}\n'
+                f'Activation: {child["activation"]}; Uses: {child["uses"]}; Range: {child["range"]}; '
+                f'Duration: {child["duration"]}; Save DC: {child["save_dc"]}\n{child["description"]}')
+            values['construction_requirements'] += f'\nPower {index}: {child["construction_requirements"]}'
     validate_display_overrides(records)
     values.update({key: record['value'] for key, record in records.items() if record['locked']})
     return values

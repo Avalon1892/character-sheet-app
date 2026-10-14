@@ -214,7 +214,8 @@ class MarvelousCraftingDialog(QDialog):
         add.clicked.connect(self.add_contribution); remove.clicked.connect(self.remove_contribution)
         self.sphere.currentTextChanged.connect(self.populate_talents)
         self.base_power.currentIndexChanged.connect(self.power_changed)
-        for widget in (self.cl, self.range_steps, self.duration_steps, self.unique): widget.valueChanged.connect(self.update_preview)
+        self.cl.valueChanged.connect(self.change_item_caster_level)
+        for widget in (self.range_steps, self.duration_steps, self.unique): widget.valueChanged.connect(self.update_preview)
         for widget in (self.activation, self.uses, self.slot): widget.currentIndexChanged.connect(self.update_preview)
         self.name.textChanged.connect(self.update_preview); self.description.textChanged.connect(self.update_preview)
         self.review.toggled.connect(self.update_preview)
@@ -263,7 +264,6 @@ class MarvelousCraftingDialog(QDialog):
         self.loading_plan = True
         self.sphere.setCurrentText(plan['sphere'])
         self.base_power.setCurrentIndex(self.base_power.findData(plan['base_power']))
-        self.loading_plan = False
         self.cl.setValue(plan['caster_level'])
         self.activation.setCurrentIndex(self.activation.findData(plan['activation']))
         self.uses.setCurrentIndex(self.uses.findData(plan['uses']))
@@ -286,12 +286,18 @@ class MarvelousCraftingDialog(QDialog):
             choice.setCurrentIndex(max(0, choice.findData(contribution.get('effect_choice', ''))))
             self.table.cellWidget(row, 2).setChecked(contribution.get('alternative', False))
             self.table.cellWidget(row, 3).setValue(contribution.get('alternative_group', 1))
+        self.loading_plan = False
         self.refresh_extra_picker()
+
+    def change_item_caster_level(self, value):
+        if not self.loading_plan:
+            for power in self.extra_effects: power['caster_level'] = value
+        self.update_preview()
 
     def refresh_extra_picker(self):
         self.extra_picker.clear()
         for plan in self.extra_effects:
-            self.extra_picker.addItem(f"{plan['sphere']} · {resolve_base_power(plan)['power']}")
+            self.extra_picker.addItem(f"{plan['sphere']} · {plan.get('effect_name', resolve_base_power(plan)['power'])}")
         self.edit_power.setEnabled(bool(self.extra_effects))
         self.remove_power.setEnabled(bool(self.extra_effects))
         self.update_preview()
@@ -304,11 +310,15 @@ class MarvelousCraftingDialog(QDialog):
         dialog = MarvelousCraftingDialog(self.repository, self.character_id, self, draft_effect=True)
         if index is not None and index >= 0:
             dialog.load_plan(self.extra_effects[index])
+            dialog.name.setText(self.extra_effects[index].get('effect_name', resolve_base_power(self.extra_effects[index])['power']))
+            dialog.description.setPlainText(self.extra_effects[index].get('effect_description', ''))
         dialog.cl.setValue(self.cl.value()); dialog.cl.setEnabled(False)
         if dialog.exec() != QDialog.DialogCode.Accepted: return
         plan = dialog.blueprint()
         plan.pop('extra_effects', None); plan.pop('combination_mode', None)
         plan.pop('crafting_tradition', None)
+        plan['effect_name'] = dialog.name.text() if dialog.name.text() != 'Custom Marvelous Item' else resolve_base_power(plan)['power']
+        plan['effect_description'] = dialog.description.toPlainText()
         if index is None or index < 0:
             from uuid import uuid4
             plan['effect_id'] = str(uuid4()); self.extra_effects.append(plan)
