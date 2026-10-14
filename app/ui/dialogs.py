@@ -1640,6 +1640,7 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
         *,
         selection_limit: int = 0,
         play_mode: bool = False,
+        catalog_entries=None,
     ) -> None:
         super().__init__(parent)
         self.selection_limit = max(0, int(selection_limit))
@@ -1657,7 +1658,7 @@ class MartialTalentCatalogDialog(CatalogBasketDialogMixin, QDialog):
             or talent.catalog_category == "Base Sphere"
         }
         self._entries = tuple(
-            entry for entry in (magic_entries() if self._magic_catalog else martial_entries())
+            entry for entry in (catalog_entries if catalog_entries is not None else magic_entries() if self._magic_catalog else martial_entries())
             if not play_mode or (
                 entry["category"] not in {"Base Sphere", "Drawback"}
                 and str(entry["sphere"]).casefold() in self._owned_spheres
@@ -2642,9 +2643,10 @@ class MagicTalentCatalogDialog(MartialTalentCatalogDialog):
         play_mode: bool = False,
         *,
         selection_limit: int = 0,
+        catalog_entries=None,
     ) -> None:
         self._magic_owned_spells = owned_spells
-        super().__init__(owned_spells, parent, selection_limit=selection_limit, play_mode=play_mode)
+        super().__init__(owned_spells, parent, selection_limit=selection_limit, play_mode=play_mode, catalog_entries=catalog_entries)
         self.setWindowTitle("Magic Sphere & Talent Catalog")
         self.catalog_heading.setText("MAGIC SPHERE & TALENT CATALOG")
         self.custom_button.setText("+ Custom spell or ability")

@@ -49,6 +49,44 @@ def test_invalid_item_card_override_performs_no_writes(composer):
     assert repo._connection.total_changes == before
 
 
+def test_accessible_effect_picker_reuses_basket_without_learning_rules(composer):
+    from app.ui.marvelous_effect_picker import MarvelousEffectPicker
+    from app.catalogs import DEFAULT_CATALOG
+    dialog, repo, cid = composer
+    entry = next(e for e in DEFAULT_CATALOG.magic_entries('Life') if e['key'] == 'life:talent:painkiller')
+    picker = MarvelousEffectPicker([entry], dialog)
+    assert picker._entries == (entry,)
+    assert picker._entry_selectable(entry)
+    assert picker.selected_entries == ()
+    assert not picker.results.selectedItems()
+    assert not picker.selection_basket.entries
+    picker.reject()
+    picker.close()
+
+
+def test_effect_picker_confirmation_updates_design_without_database_writes(composer, monkeypatch):
+    from app.ui.marvelous_effect_picker import MarvelousEffectPicker
+    from PySide6.QtWidgets import QDialog
+    from app.catalogs import DEFAULT_CATALOG
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Life'); dialog.cl.setValue(5)
+    entry = next(e for e in DEFAULT_CATALOG.magic_entries('Life') if e['key'] == 'life:talent:painkiller')
+    monkeypatch.setattr(dialog.service, 'accessible_marvelous_effects', lambda sphere: (entry,))
+    def accept(picker):
+        picker.selected_entries = (entry,)
+        return QDialog.DialogCode.Accepted
+    monkeypatch.setattr(MarvelousEffectPicker, 'exec', accept)
+    before = repo._connection.total_changes
+    dialog.choose_accessible_effects()
+    assert dialog.blueprint()['contributions'][0]['catalog_key'] == entry['key']
+    assert dialog.quotation()[1].market_price_gp == 4000
+    dialog.choose_accessible_effects()
+    assert dialog.table.rowCount() == 1
+    monkeypatch.setattr(MarvelousEffectPicker, 'exec', lambda picker: QDialog.DialogCode.Rejected)
+    dialog.choose_accessible_effects()
+    assert dialog.table.rowCount() == 1 and repo._connection.total_changes == before
+
+
 def test_live_price_and_cancel_no_writes(composer):
     dialog, repo, cid = composer
     before = repo._connection.total_changes

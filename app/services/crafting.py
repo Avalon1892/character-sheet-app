@@ -58,6 +58,16 @@ class CraftingService:
         from app.marvelous_item_rules import marvelous_requirements
         return marvelous_requirements(feats=self.feats, **construction_access)
 
+    def accessible_marvelous_effects(self, sphere=None):
+        """Current effective choices, including flexible talents; not permanent eligibility."""
+        from app.exploitant_rules import effective_magic_talents
+        keys = {spell.catalog_key for spell in effective_magic_talents(self.repository, self.character_id)
+                if spell.enabled and spell.system.casefold() in {'sphere', 'spheres'}}
+        return tuple(sorted((entry for key in keys if (entry := self.magic_entries_by_key.get(key))
+            and (sphere is None or entry['sphere'].casefold() == sphere.casefold())
+            and entry.get('category') != 'Base Sphere' and 'drawback' not in entry.get('category', '').casefold()),
+            key=lambda entry: (entry['sphere'].casefold(), entry['name'].casefold())))
+
     def permanent_marvelous_access(self):
         """Collect baseline crafting access without live/temporary modifiers.
 

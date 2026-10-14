@@ -17,6 +17,24 @@ def crafter(tmp_path):
     repo.close()
 
 
+def test_effect_picker_access_includes_effective_not_disabled_or_unowned(crafter, monkeypatch):
+    from app.models import Spell
+    repo, cid = crafter
+    deeper = 'life:talent:deeper-healing'
+    painkiller = 'life:talent:painkiller'
+    repo.add_spell(cid, 'Renamed deeper healing', system='Sphere', school_or_sphere='Life',
+                   catalog_key=deeper, catalog_category='Talent')
+    stored = repo.list_spells(cid)
+    flexible = Spell(-1, 'Flexible Painkiller', system='Sphere', school_or_sphere='Life',
+                     catalog_key=painkiller, catalog_category='Talent')
+    disabled = replace(flexible, catalog_key='life:talent:greater-invigorate', enabled=False)
+    monkeypatch.setattr('app.exploitant_rules.effective_magic_talents', lambda r, c: [*stored, flexible, flexible, disabled])
+    service = CraftingService(repo, cid)
+    assert {entry['key'] for entry in service.accessible_marvelous_effects('Life')} == {deeper, painkiller}
+    assert service.accessible_marvelous_effects('Warp') == ()
+    assert 'Painkiller' not in service.permanent_marvelous_access()['available_talents']
+
+
 def test_class_progression_excludes_saved_live_level_boost(crafter):
     repo, cid = crafter
     repo.update_casting_profile(replace(repo.get_casting_profile(cid), caster_level=30))

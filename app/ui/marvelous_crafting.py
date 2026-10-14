@@ -86,8 +86,14 @@ class MarvelousCraftingDialog(QDialog):
         form.addRow(self.effect_range_label, self.effect_range)
         self.restore_label = QLabel('Restore mode'); form.addRow(self.restore_label, self.restore_mode)
         picker = QHBoxLayout(); left.addLayout(picker)
+        self.effects_button = QPushButton('Add effects…'); left.insertWidget(0, self.effects_button)
+        self.effects_button.clicked.connect(self.choose_accessible_effects)
         self.talent = QComboBox(); picker.addWidget(self.talent, 1)
         add = QPushButton('Add effect contribution'); picker.addWidget(add)
+        # Retain catalog-backed restoration for saved plans/prerequisites, but new
+        # user selections go through the effective-access picker.
+        self.talent.hide(); add.hide()
+        self.effects_button.setToolTip('Add currently accessible talents for the selected base sphere, including Moldable Talents. Change the base sphere to design a different power.')
         self.table = QTableWidget(0, 6)
         self.table.setHorizontalHeaderLabels(['Talent / effect', 'Base contribution', 'Alternative', 'Choice group', 'Extra SP', 'Effect choice'])
         self.table.setMinimumHeight(150)
@@ -284,6 +290,19 @@ class MarvelousCraftingDialog(QDialog):
                 self.duration_steps.setRange(-index, len(DURATIONS) - index - 1)
             else: self.duration_steps.setRange(0, 0)
         self.update_preview()
+
+    def choose_accessible_effects(self):
+        from app.ui.marvelous_effect_picker import MarvelousEffectPicker
+        from PySide6.QtCore import Qt
+        entries = self.service.accessible_marvelous_effects(self.sphere.currentText())
+        dialog = MarvelousEffectPicker(entries, self)
+        if dialog.exec() != QDialog.DialogCode.Accepted: return
+        existing = {self.table.item(row, 0).data(Qt.ItemDataRole.UserRole) for row in range(self.table.rowCount())}
+        for entry in dialog.selected_entries:
+            if entry['key'] in existing: continue
+            index = next((i for i in range(self.talent.count()) if self.talent.itemData(i)['key'] == entry['key']), -1)
+            if index >= 0:
+                self.talent.setCurrentIndex(index); self.add_contribution(); existing.add(entry['key'])
 
     def add_contribution(self):
         entry = self.talent.currentData()
