@@ -46,6 +46,10 @@ The user's latest priority is the designer, not construction-calendar automation
 
 ## Required next (current remaining work)
 
+Desktop deployment checkpoint (2026-10-14): installed the current designer through commit 54a1dcd, backed up changed runtime files and the live database, verified copied file hashes, and passed the installed smoke test with disposable data. Portable was not rebuilt.
+
+Follow-up: shared blueprint quoting now rejects published Fragile with City Construction or Evil Artifice, whose Resilient boon is incompatible. Custom limitations with similar names are not interpreted as published rules. Source: https://spheresofpower.wikidot.com/magical-items. Focused pricing/designer validation is recorded in the next commit report.
+
 1. Complete structured talent/SP costs, effect-choice models and prerequisite coverage beyond the reviewed subsets. Beacon placement and six Warp chains are implemented; do not mistake those for full catalog coverage.
 2. Integrate other crafting-tradition boons/drawbacks where the app has relevant statistics, and enforce applicability/incompatibilities without runtime description parsing. Cheap and Expensive pricing are implemented; other mechanics remain manual. Do not add round/day tracking for this goal.
 3. Verify final multi-power item blocks with representative varied choices and old saved designs; primary/additional descriptors and custom text are now implemented. Preserve lock precedence, safe HTML, independent resource contracts and identity-based counter remapping.

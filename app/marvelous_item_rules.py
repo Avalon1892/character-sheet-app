@@ -356,6 +356,10 @@ def quote_marvelous_blueprint(plan):
         if not isinstance(tradition, dict) or not isinstance(tradition.get('key'), str):
             raise ValueError('Crafting tradition requires a catalog identity.')
         cheap = tradition['key'] in {'crafting:city-construction', 'crafting:diviner-s-sight'}
+        if tradition['key'] in {'crafting:city-construction', 'crafting:evil-artifice'} and any(
+                row.get('source') == 'published' and row.get('catalog_key') == 'crafting:fragile'
+                for row in plan.get('drawbacks', [])):
+            raise ValueError('Fragile is incompatible with the Resilient boon of this crafting tradition.')
     expensive = any(record['source'] == 'published' and record.get('catalog_key') == 'crafting:expensive'
                     for record in plan.get('drawbacks', []))
     if cheap or expensive:

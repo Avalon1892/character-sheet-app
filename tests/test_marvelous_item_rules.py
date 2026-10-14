@@ -23,6 +23,22 @@ def test_expensive_item_drawback_changes_materials_not_price_and_rejects_cheap()
     with pytest.raises(ValueError, match='mutually exclusive'): quote_marvelous_blueprint(plan)
 
 
+@pytest.mark.parametrize('tradition', ['crafting:city-construction', 'crafting:evil-artifice'])
+def test_fragile_rejects_resilient_traditions(tradition):
+    from app.marvelous_item_rules import quote_marvelous_blueprint
+    plan = dict(schema_version=1, caster_level=5, uses=1, range_steps=0,
+                duration_steps=0, activation='standard', unique_changes=0, contributions=[],
+                crafting_tradition={'key': tradition}, drawbacks=[dict(source='published',
+                    catalog_key='crafting:fragile', name='Fragile', reduction=0)])
+    with pytest.raises(ValueError, match='Fragile is incompatible'):
+        quote_marvelous_blueprint(plan)
+    plan['crafting_tradition'] = {'key': 'crafting:diviner-s-sight'}
+    assert quote_marvelous_blueprint(plan)[0] == 1
+    plan['crafting_tradition'] = {'key': tradition}
+    plan['drawbacks'][0]['source'] = 'custom'
+    assert quote_marvelous_blueprint(plan)[0] == 1
+
+
 def test_complexity_formula_exposes_sp_alternatives_and_reductions():
     from app.marvelous_item_rules import marvelous_complexity_formula, quote_marvelous_blueprint
     plan = dict(schema_version=1, caster_level=20, uses=1, range_steps=1, duration_steps=-1,
