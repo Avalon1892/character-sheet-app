@@ -113,6 +113,9 @@ def marvelous_item_price(caster_level: int, complexity: int | Fraction, *, daily
 
 # Reviewed construction prerequisites use catalog identities, never prose parsing.
 ADVANCED_CONSTRUCTION_REQUIREMENTS = {
+    'protection:advanced-talent:pithing-protection-3pp': (10, ('protection:advanced-talent:spell-selectivity-dbh',
+        'protection:aegis-ward-talent:spell-ward-aegis-ward')),
+    'protection:advanced-talent:pithing-protection-arcforge-addendum-lg': (10, ()),
     'protection:advanced-talent:antimagic-aura-arcforge-addendum-lg': (10, ()),
     'protection:advanced-talent:spell-selectivity-arcforge-addendum-lg': (10, ()),
     'destruction:advanced-talent:adaptive-admixture-sm': (0, ('destruction:talent:admixture',)),
@@ -173,25 +176,28 @@ ADVANCED_CONSTRUCTION_REQUIREMENTS = {
 }
 
 ALTERNATIVE_CONSTRUCTION_REQUIREMENTS = {
-    'protection:advanced-talent:antimagic-aura-arcforge-addendum-lg': (
-        'protection:aegis-ward-talent:spell-ward-aegis-ward', 'protection:aegis-ward-talent:technological-suppression-aegis-ward-lg'),
-    'protection:advanced-talent:spell-selectivity-arcforge-addendum-lg': (
-        'protection:aegis-ward-talent:spell-ward-aegis-ward', 'protection:aegis-ward-talent:technological-suppression-aegis-ward-lg'),
-    'destruction:advanced-talent:calamity-blast-shape': (
-        'destruction:blast-shape-talent:explosive-orb-blast-shape', 'destruction:blast-shape-talent:sculpt-blast-blast-shape'),
-    'destruction:advanced-talent:blast-juggler-sm': (
-        'destruction:advanced-talent:energy-cloud-blast-shape', 'destruction:blast-shape-talent:energy-sphere-blast-shape'),
-    'destruction:advanced-talent:destructive-verticality-sm': (
+    'protection:advanced-talent:pithing-protection-arcforge-addendum-lg': (
+        ('protection:advanced-talent:spell-selectivity-dbh', 'protection:advanced-talent:spell-selectivity-arcforge-addendum-lg'),
+        ('protection:aegis-ward-talent:spell-ward-aegis-ward', 'protection:aegis-ward-talent:technological-suppression-aegis-ward-lg')),
+    'protection:advanced-talent:antimagic-aura-arcforge-addendum-lg': ((
+        'protection:aegis-ward-talent:spell-ward-aegis-ward', 'protection:aegis-ward-talent:technological-suppression-aegis-ward-lg'),),
+    'protection:advanced-talent:spell-selectivity-arcforge-addendum-lg': ((
+        'protection:aegis-ward-talent:spell-ward-aegis-ward', 'protection:aegis-ward-talent:technological-suppression-aegis-ward-lg'),),
+    'destruction:advanced-talent:calamity-blast-shape': ((
+        'destruction:blast-shape-talent:explosive-orb-blast-shape', 'destruction:blast-shape-talent:sculpt-blast-blast-shape'),),
+    'destruction:advanced-talent:blast-juggler-sm': ((
+        'destruction:advanced-talent:energy-cloud-blast-shape', 'destruction:blast-shape-talent:energy-sphere-blast-shape'),),
+    'destruction:advanced-talent:destructive-verticality-sm': ((
         'destruction:blast-shape-talent:energy-sphere-blast-shape', 'destruction:blast-shape-talent:explosive-orb-blast-shape',
-        'destruction:blast-shape-talent:sculpt-blast-blast-shape'),
+        'destruction:blast-shape-talent:sculpt-blast-blast-shape'),),
 }
 
 
 def missing_construction_alternatives(contributions):
     keys = {row['catalog_key'] for row in contributions}
-    return tuple((key, ALTERNATIVE_CONSTRUCTION_REQUIREMENTS[key]) for key in sorted(keys)
+    return tuple((key, options) for key in sorted(keys)
                  if key in ALTERNATIVE_CONSTRUCTION_REQUIREMENTS
-                 and not keys.intersection(ALTERNATIVE_CONSTRUCTION_REQUIREMENTS[key]))
+                 for options in ALTERNATIVE_CONSTRUCTION_REQUIREMENTS[key] if not keys.intersection(options))
 
 
 def missing_construction_prerequisites(contributions):

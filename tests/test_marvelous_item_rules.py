@@ -260,8 +260,8 @@ def test_reviewed_destruction_fixed_prerequisites_have_catalog_identities_and_pa
     assert talent_construction_spell_points(magic_entry('destruction:advanced-talent:energy-cloud-blast-shape')) == 3
     assert talent_construction_spell_points(magic_entry('destruction:advanced-talent:calamity-blast-shape')) == 2
     from app.marvelous_item_rules import ALTERNATIVE_CONSTRUCTION_REQUIREMENTS
-    for key, options in ALTERNATIVE_CONSTRUCTION_REQUIREMENTS.items():
-        assert magic_entry(key) and all(magic_entry(option) for option in options)
+    for key, groups in ALTERNATIVE_CONSTRUCTION_REQUIREMENTS.items():
+        assert magic_entry(key) and all(magic_entry(option) for options in groups for option in options)
 
 
 @pytest.mark.parametrize('suffix', ['antimagic-aura', 'spell-selectivity'])
@@ -278,6 +278,19 @@ def test_arcforge_protection_accepts_either_magic_or_technology_prerequisite(suf
         assert not advanced_construction_blockers(complete, 10)
         assert advanced_construction_blockers(complete, 9)
     assert talent_construction_spell_points(magic_entry(key)) == 1
+
+
+def test_pithing_requires_each_independent_choice_group():
+    from app.marvelous_item_rules import missing_construction_alternatives, advanced_construction_blockers
+    key = 'protection:advanced-talent:pithing-protection-arcforge-addendum-lg'
+    rows = [dict(catalog_key=key)]
+    assert len(missing_construction_alternatives(rows)) == 2
+    rows.append(dict(catalog_key='protection:advanced-talent:spell-selectivity-arcforge-addendum-lg'))
+    assert len([group for owner, group in missing_construction_alternatives(rows) if owner == key]) == 1
+    rows.append(dict(catalog_key='protection:aegis-ward-talent:technological-suppression-aegis-ward-lg'))
+    assert not missing_construction_alternatives(rows)
+    assert not advanced_construction_blockers(rows, 10)
+    assert advanced_construction_blockers(rows, 9)
 
 
 def test_cheap_tradition_applies_once_to_combined_design():

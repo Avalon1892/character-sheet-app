@@ -201,6 +201,35 @@ def test_alternative_prerequisite_choice_is_atomic_and_prices_only_chosen_talent
     assert dialog.blueprint()['contributions'] == contributions
 
 
+def test_multiple_prerequisite_choices_cancel_atomically_and_share_dependencies(composer, monkeypatch):
+    from PySide6.QtWidgets import QInputDialog
+    from app.marvelous_item_rules import advanced_construction_blockers
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Protection'); dialog.cl.setValue(10)
+    key = 'protection:advanced-talent:pithing-protection-arcforge-addendum-lg'
+    index = next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key)
+    dialog.talent.setCurrentIndex(index); dialog.add_contribution()
+    original = dialog.blueprint()['contributions']; before = repo._connection.total_changes
+    prompts = []
+    def cancel_second(*args):
+        prompts.append(args[3])
+        return (args[3][-1], True) if len(prompts) == 1 else ('', False)
+    monkeypatch.setattr(QInputDialog, 'getItem', cancel_second)
+    dialog.add_required_contributions()
+    assert len(prompts) == 2 and dialog.blueprint()['contributions'] == original
+    prompts.clear()
+    def choose(*args):
+        prompts.append(args[3]); return args[3][-1], True
+    monkeypatch.setattr(QInputDialog, 'getItem', choose)
+    dialog.add_required_contributions()
+    rows = dialog.blueprint()['contributions']
+    assert len(prompts) == 2 and len(rows) == 3
+    assert not advanced_construction_blockers(rows, 10)
+    assert repo._connection.total_changes == before
+    dialog.add_required_contributions()
+    assert len(prompts) == 2 and dialog.blueprint()['contributions'] == rows
+
+
 def test_accessible_effect_picker_reuses_basket_without_learning_rules(composer):
     from app.ui.marvelous_effect_picker import MarvelousEffectPicker
     from app.catalogs import DEFAULT_CATALOG
