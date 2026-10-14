@@ -49,6 +49,7 @@ _ROWS = (
     ('time:slow', 'Time', 'Slow', 'personal', 'round'),
     ('war:totem', 'War', 'Base totem', 'personal', 'round'),
     ('warp:teleport', 'Warp', 'Teleport within close range', 'personal', 'instantaneous'),
+    ('warp:beacon', 'Warp', 'Place teleport beacon', 'touch', 'hour'),
     ('weather:control', 'Weather', 'Change one weather category', 'personal', 'round'),
 )
 BASE_POWERS = tuple(MarvelousBasePower(*row) for row in _ROWS)
@@ -182,6 +183,13 @@ def resolve_base_power(plan):
     if plan['caster_level'] < 1:
         raise ValueError('Item caster level must be positive.')
     key = plan.get('base_power')
+    if key == 'warp:beacon':
+        beacons = [row for row in plan.get('contributions', []) if row.get('catalog_key') == 'warp:space-talent:teleport-beacon-space']
+        if (len(beacons) != 1 or beacons[0].get('alternative')
+                or isinstance(beacons[0].get('additional_spell_points'), bool)
+                or not isinstance(beacons[0].get('additional_spell_points'), int)
+                or beacons[0]['additional_spell_points'] < 1):
+            raise ValueError('Beacon placement requires one Teleport Beacon contribution and its one-SP cost.')
     restore_mode = plan.get('restore_mode', '')
     if restore_mode not in {'', 'mind', 'body', 'soul'} or (restore_mode and key != 'life:restore'):
         raise ValueError('Restore mode requires a Life restore base power.')
@@ -266,6 +274,9 @@ def resolve_base_power(plan):
         summary['damage_dice'] = cl if boost else cl // 2
         summary['damage'] = f'{summary["damage_dice"]}d6 bludgeoning'
     if power.key == 'warp:teleport': summary['teleport_distance'] = distances[('close', 'medium', 'long')[effect_steps]]
+    if power.key == 'warp:beacon':
+        summary['target'] = 'One spot, object or creature; placement is manual.'
+        summary['beacon'] = 'Creates a personal dimensional beacon. Travel to/from it is a separate teleport activation, on the same plane; unwilling creatures require Unwilling Teleport and a save.'
     if power.key == 'weather:control': summary['area_radius'] = distances[('close', 'medium', 'long')[effect_steps]]
     if power.key in {'blood:construct', 'death:reanimate'}: summary['maximum_hit_dice'] = cl
     if power.key == 'dark:darkness': summary['radius'] = f'{10 + 5 * (cl // 2)} ft.'

@@ -4,6 +4,8 @@ from app.marvelous_base_powers import BASE_POWERS, resolve_base_power
 
 def plan(key, cl=5, **changes):
     power = next(p for p in BASE_POWERS if p.key == key)
+    if key == 'warp:beacon':
+        changes.setdefault('contributions', [dict(catalog_key='warp:space-talent:teleport-beacon-space', complexity=2, additional_spell_points=1)])
     return dict(base_power=key, sphere=power.sphere, caster_level=cl,
                 range_steps=0, duration_steps=0, **changes)
 
@@ -23,6 +25,16 @@ def test_level_scaling_and_instantaneous_effects():
     assert resolve_base_power(plan('destruction:blast', 6))['damage'] == '3d6 bludgeoning'
     assert resolve_base_power(plan('warp:teleport', 6))['teleport_distance'] == '40 ft.'
     assert resolve_base_power(plan('alteration:shapeshift', 10))['traits'] == 3
+
+
+def test_beacon_placement_range_duration_and_required_contribution():
+    result = resolve_base_power(plan('warp:beacon', 7))
+    assert result['range'] == 'Touch' and result['duration'] == '7 hours'
+    assert 'teleport_distance' not in result
+    with pytest.raises(ValueError, match='Beacon contribution'):
+        resolve_base_power(plan('warp:beacon', contributions=[]))
+    with pytest.raises(ValueError, match='one-SP'):
+        resolve_base_power(plan('warp:beacon', contributions=[dict(catalog_key='warp:space-talent:teleport-beacon-space', complexity=1, additional_spell_points=0)]))
 
 
 @pytest.mark.parametrize('key,field', [('warp:teleport', 'teleport_distance'), ('weather:control', 'area_radius')])

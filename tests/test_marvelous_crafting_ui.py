@@ -270,6 +270,32 @@ def test_published_drawback_editor_preserves_catalog_text(composer, monkeypatch)
     assert dialog.quotation()[1].market_price_gp == 6000
 
 
+def test_beacon_power_automatically_includes_talent_and_reopens_without_duplicates(composer, monkeypatch):
+    from app.services.crafting import CraftingService
+    from app.ui.marvelous_effect_picker import MarvelousEffectPicker
+    from app.content import magic_entry
+    from PySide6.QtWidgets import QDialog
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Warp'); dialog.cl.setValue(5)
+    entry = magic_entry('warp:space-talent:teleport-beacon-space')
+    monkeypatch.setattr(dialog.service, 'accessible_marvelous_effects', lambda sphere: (entry,))
+    def choose(picker):
+        picker.selected_entries = (entry,)
+        return QDialog.DialogCode.Accepted
+    monkeypatch.setattr(MarvelousEffectPicker, 'exec', choose)
+    dialog.choose_accessible_effects()
+    assert dialog.table.rowCount() == 1
+    assert dialog.quotation()[1].market_price_gp == 6000
+    assert dialog.card_edits['range'].text() == 'Touch'
+    assert dialog.card_edits['duration'].text() == '5 hours'
+    iid = CraftingService(repo, cid).save_marvelous_design(dialog.blueprint(), name='Beacon placer', slot='', description='')
+    reopened = MarvelousCraftingDialog(repo, cid, item_id=iid)
+    assert reopened.base_power.currentData() == 'warp:beacon'
+    assert reopened.table.rowCount() == 1
+    assert reopened.quotation()[1].market_price_gp == 6000
+    reopened.close()
+
+
 def test_live_price_and_cancel_no_writes(composer):
     dialog, repo, cid = composer
     before = repo._connection.total_changes

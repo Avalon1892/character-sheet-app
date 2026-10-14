@@ -4,6 +4,9 @@ The user's latest priority is the designer, not construction-calendar automation
 
 ## Implemented checkpoint
 
+- Final Beacon picker/reopen checkpoint: **37 passed in 22.67 seconds** at unchanged source.
+- Added a distinct derived Warp power for **placing** a Teleport Beacon, using the explicit item Bend Space rule and Ultimate Beacon duration/range: touch, one hour per CL. Selecting Beacon through Add effects chooses placement and includes exactly one required Beacon contribution with its one-SP cost. Basic teleport/travel remains separate; no world beacon registry/timer was invented. Missing/alternative/zero-SP placement contributions reject. Saved plans restore without automatic duplicate insertion. This adds one reviewed derived power to the previous 34 standard base-power projections. Sources: https://spheresofpower.wikidot.com/magical-items (Warp/Bend Space) and https://spheresofpower.wikidot.com/warp (Teleport Beacon).
+- Beacon rules/designer/pricing validation: **109 passed in 21.70 seconds**; auto-insertion/reopen/resource follow-up **70 passed in 39.34 seconds**, before tightening the regression to use effect-picker confirmation directly.
 - Final drawback-editor checkpoint: **36 passed in 20.81 seconds**, including published text protection and zero-reduction pricing.
 - Drawbacks now support an explicit Edit button and double-click editing, reusing the same draft form as custom creation. Custom name/description/reduction are editable; published catalog text/identity remain read-only while the GM-reviewed reduction can change, including to zero. Cancellation does not mutate the draft or database. Live preview refresh now preserves the selected drawback, fixing selection loss when another control/lock changes. Existing display locks remain intact during reduction edits.
 - Initial edited-drawback/selection UI run: **35 passed in 20.14 seconds**, before adding the published read-only-text regression.

@@ -45,6 +45,7 @@ class MarvelousCraftingDialog(QDialog):
         self.display_overrides = {}
         self.crafting_tradition = None
         self.drawbacks = []
+        self.loading_plan = False
         self.draft_effect = draft_effect
         self.setWindowTitle('Design a Marvelous Item')
         self.resize(1360, 840)
@@ -259,8 +260,10 @@ class MarvelousCraftingDialog(QDialog):
         self.mode_picker.setCurrentIndex(self.mode_picker.findData(self.combination_mode))
         self.mode_picker.blockSignals(False)
         self.table.setRowCount(0)
+        self.loading_plan = True
         self.sphere.setCurrentText(plan['sphere'])
         self.base_power.setCurrentIndex(self.base_power.findData(plan['base_power']))
+        self.loading_plan = False
         self.cl.setValue(plan['caster_level'])
         self.activation.setCurrentIndex(self.activation.findData(plan['activation']))
         self.uses.setCurrentIndex(self.uses.findData(plan['uses']))
@@ -354,6 +357,13 @@ class MarvelousCraftingDialog(QDialog):
                 index = DURATIONS.index(power.duration)
                 self.duration_steps.setRange(-index, len(DURATIONS) - index - 1)
             else: self.duration_steps.setRange(0, 0)
+        if self.base_power.currentData() == 'warp:beacon' and not self.loading_plan:
+            from PySide6.QtCore import Qt
+            beacon = 'warp:space-talent:teleport-beacon-space'
+            if not any(self.table.item(row, 0).data(Qt.ItemDataRole.UserRole) == beacon for row in range(self.table.rowCount())):
+                index = next((i for i in range(self.talent.count()) if self.talent.itemData(i)['key'] == beacon), -1)
+                if index >= 0:
+                    self.talent.setCurrentIndex(index); self.add_contribution()
         self.update_preview()
 
     def choose_drawbacks(self):
@@ -431,6 +441,8 @@ class MarvelousCraftingDialog(QDialog):
             index = next((i for i in range(self.talent.count()) if self.talent.itemData(i)['key'] == entry['key']), -1)
             if index >= 0:
                 self.talent.setCurrentIndex(index); self.add_contribution(); existing.add(entry['key'])
+                if entry['key'] == 'warp:space-talent:teleport-beacon-space':
+                    self.base_power.setCurrentIndex(self.base_power.findData('warp:beacon'))
         # Required construction talents are part of the same draft; eligibility
         # still checks ownership and CL separately and never grants them to a PC.
         self.add_required_contributions()
