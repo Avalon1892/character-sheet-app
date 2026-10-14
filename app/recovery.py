@@ -33,7 +33,7 @@ class FullRestEngine:
 
     BUILT_IN_TARGETS = (
         RecoveryTarget('marvelous_items.daily_uses', 'Restore Marvelous Item daily uses',
-                       'Restore daily activations; limited-total item charges are not restored.', 'Resources'),
+                       'Restore ordinary daily activations; limited-total charges and special-recharge items are not restored.', 'Resources'),
         RecoveryTarget(
             "hit_points.natural_healing",
             "Natural HP healing",

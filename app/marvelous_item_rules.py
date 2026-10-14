@@ -347,6 +347,13 @@ def crafting_limitation_details(plan):
     return tuple(lines)
 
 
+def marvelous_manual_recharge_requirements(plan):
+    """Only reviewed replacement recovery contracts; no inferred clock state."""
+    if 'crafting:sacrificing' in crafting_item_limitations(plan):
+        return (f'Qualifying sacrifice of at least {(plan["caster_level"] + 1) // 2} HD, killed by coup de grace with the item within 5 feet; at most once per day. Verify any tradition-specific exceptions with the GM.',)
+    return ()
+
+
 def effect_complexity(*, talent_costs=(), alternative_costs=(), range_steps=0,
                       duration_steps=0, activation="standard", unique_changes=0):
     """Resolve explicit construction contributions, never infer them from prose.

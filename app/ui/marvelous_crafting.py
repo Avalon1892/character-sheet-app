@@ -789,6 +789,8 @@ class MarvelousItemUseDialog(QDialog):
         root.addWidget(self.construction)
         self.shards = QPushButton('Record applied Flask Shards'); self.shards.setEnabled(False)
         root.addWidget(self.shards); self.shards.clicked.connect(self.record_shards)
+        self.recharge = QPushButton('Record special recharge'); self.recharge.setEnabled(False)
+        root.addWidget(self.recharge); self.recharge.clicked.connect(self.record_recharge)
         self.table.itemSelectionChanged.connect(self.update_construction_selection)
         self.construction.clicked.connect(self.open_construction)
         self.result = QLabel('Supported effects can affect the selected saved character. Confirm range and eligibility; durations and unsupported effects remain manual.')
@@ -802,6 +804,24 @@ class MarvelousItemUseDialog(QDialog):
         item = self.table.item(self.table.currentRow(), 0)
         self.construction.setEnabled(bool(item and item.data(Qt.ItemDataRole.UserRole + 1)))
         self.shards.setEnabled(bool(item and item.data(Qt.ItemDataRole.UserRole + 2)))
+        self.recharge.setEnabled(bool(item and item.data(Qt.ItemDataRole.UserRole + 3)))
+
+    def record_recharge(self):
+        from PySide6.QtCore import Qt
+        selected = self.table.item(self.table.currentRow(), 0)
+        if selected is None: return
+        requirements = selected.data(Qt.ItemDataRole.UserRole + 3)
+        if not requirements: return
+        if QMessageBox.question(self, 'Confirm special recharge', selected.text() + '\n\n'
+                + '\n'.join(requirements) + '\n\nHave these requirements been fulfilled? This restores daily uses; no event, creature or day is tracked automatically.') != QMessageBox.StandardButton.Yes:
+            return
+        try:
+            restored = self.repository.record_marvelous_recharge(self.character_id,
+                selected.data(Qt.ItemDataRole.UserRole), confirmed=True)
+        except ValueError as error:
+            QMessageBox.warning(self, 'Cannot recharge item', str(error)); return
+        self.changed = self.changed or bool(restored)
+        self.refresh(); self.result.setText(f'Recorded special recharge: restored {restored} daily uses.')
 
     def record_shards(self):
         from PySide6.QtCore import Qt
@@ -858,6 +878,8 @@ class MarvelousItemUseDialog(QDialog):
                 name.setData(Qt.ItemDataRole.UserRole, item.id)
                 name.setData(Qt.ItemDataRole.UserRole + 1, custom)
                 name.setData(Qt.ItemDataRole.UserRole + 2, not custom and item.catalog_key == 'spheres:marvelous-items:thunderbolt-ring')
+                from app.marvelous_item_rules import marvelous_manual_recharge_requirements
+                name.setData(Qt.ItemDataRole.UserRole + 3, list(marvelous_manual_recharge_requirements(plan)) if custom else [])
                 name.setToolTip('Double-click to edit this custom design.' if custom else 'Published catalog item; custom design controls do not apply.')
                 self.table.setItem(row, 0, name)
                 self.table.setItem(row, 1, QTableWidgetItem('Unlimited' if remaining is None else str(remaining)))

@@ -71,6 +71,50 @@ def test_atomic_activation_and_zero_floor(crafter):
     assert repo._connection.total_changes == before
 
 
+@pytest.mark.parametrize('source', ['tradition', 'drawback'])
+def test_sacrificing_preserves_spent_uses_on_rest_and_requires_confirmed_recharge(crafter, source):
+    repo, cid = crafter
+    plan = dict(schema_version=1, sphere='Life', base_power='life:temporary-hp', caster_level=5,
+                activation='standard', uses=2, range_steps=0, duration_steps=0, unique_changes=0, contributions=[])
+    if source == 'tradition':
+        plan['crafting_tradition'] = {'key': 'crafting:evil-artifice'}
+    else:
+        plan['drawbacks'] = [dict(source='published', catalog_key='crafting:sacrificing', name='Sacrificing', reduction=0)]
+    plan['extra_effects'] = [{key: value for key, value in plan.items() if key not in {'crafting_tradition', 'drawbacks'}}]
+    iid = CraftingService(repo, cid).save_marvelous_design(plan, name='Sacrificial device', slot='', description='')
+    repo.consume_marvelous_item_use(cid, iid)
+    repo.consume_marvelous_item_use(cid, iid, effect_index=1)
+    assert repo.reset_marvelous_daily_uses(cid) == 0
+    FullRestEngine(repo, cid).perform({'marvelous_items.daily_uses': True})
+    assert marvelous_remaining_uses(metadata(repo, cid, iid)) == 1
+    assert marvelous_remaining_uses(metadata(repo, cid, iid), 1) == 1
+    before = repo._connection.total_changes
+    with pytest.raises(ValueError, match='Confirm'):
+        repo.record_marvelous_recharge(cid, iid)
+    assert repo._connection.total_changes == before
+    assert repo.record_marvelous_recharge(cid, iid, confirmed=True) == 2
+    assert marvelous_remaining_uses(metadata(repo, cid, iid)) == 2
+    assert marvelous_remaining_uses(metadata(repo, cid, iid), 1) == 2
+    assert repo.record_marvelous_recharge(cid, iid, confirmed=True) == 0
+    other = repo.create_character('Other owner', 'Spheres')
+    with pytest.raises(ValueError, match='owned'):
+        repo.record_marvelous_recharge(other, iid, confirmed=True)
+
+
+def test_custom_drawback_name_does_not_invent_special_recharge(crafter):
+    repo, cid = crafter
+    plan = dict(schema_version=1, sphere='Life', base_power='life:temporary-hp', caster_level=5,
+                activation='standard', uses=1, range_steps=0, duration_steps=0, unique_changes=0,
+                contributions=[], drawbacks=[dict(source='custom', name='Sacrificing', reduction=0)])
+    iid = CraftingService(repo, cid).save_marvelous_design(plan, name='Custom limit', slot='', description='')
+    repo.consume_marvelous_item_use(cid, iid)
+    assert repo.reset_marvelous_daily_uses(cid) == 1
+    before = repo._connection.total_changes
+    with pytest.raises(ValueError, match='no supported'):
+        repo.record_marvelous_recharge(cid, iid, confirmed=True)
+    assert repo._connection.total_changes == before
+
+
 def test_deeper_healing_invigorate_applies_and_spends_atomically(crafter):
     repo, cid = crafter
     plan = dict(schema_version=1, sphere='Life', base_power='life:temporary-hp',

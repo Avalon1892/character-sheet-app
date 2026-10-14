@@ -2329,8 +2329,38 @@ class CharacterRepository:
             self._connection.execute('UPDATE equipment SET automation_json=? WHERE character_id=? AND id=?', (json.dumps(metadata),character_id,item_id))
             self._touch_character(character_id)
 
+    def record_marvelous_recharge(self, character_id: int, item_id: int, *, confirmed=False) -> int:
+        """Record a manually verified special recharge; never simulate days/events."""
+        if confirmed is not True:
+            raise ValueError('Confirm that the special recharge requirements were fulfilled.')
+        from app.marvelous_item_rules import marvelous_manual_recharge_requirements, marvelous_remaining_uses, quote_marvelous_blueprint
+        row = self._connection.execute('SELECT quantity, automation_json FROM equipment WHERE character_id=? AND id=?',
+                                       (character_id, item_id)).fetchone()
+        if row is None or row['quantity'] != 1:
+            raise ValueError('Select one owned custom Marvelous Item.')
+        metadata = json.loads(row['automation_json'] or '{}')
+        plan = metadata.get('marvelous_blueprint', {})
+        if metadata.get('provider') != 'marvelous-composer' or not marvelous_manual_recharge_requirements(plan):
+            raise ValueError('This item has no supported special recharge contract.')
+        if metadata.get('marvelous_project', {}).get('status', 'complete') != 'complete':
+            raise ValueError('Construction has not produced a usable item.')
+        quote_marvelous_blueprint(plan)
+        restored = 0
+        for index, power in enumerate([plan, *plan.get('extra_effects', [])]):
+            remaining = marvelous_remaining_uses(metadata, index)
+            if power['uses'] not in (1, 2, 3, 4): continue
+            restored += power['uses'] - remaining
+            if index == 0: metadata['marvelous_uses_used'] = 0
+            else: metadata.setdefault('marvelous_extra_uses_used', {})[str(index)] = 0
+        if restored:
+            with self._connection:
+                self._connection.execute('UPDATE equipment SET automation_json=? WHERE character_id=? AND id=?',
+                                         (json.dumps(metadata), character_id, item_id))
+                self._touch_character(character_id)
+        return restored
+
     def reset_marvelous_daily_uses(self, character_id: int) -> int:
-        """Restore daily uses only, never fifty-total-use item charges."""
+        """Restore ordinary daily uses, excluding special recharge and total charges."""
         restored = 0
         with self._connection:
             for row in self._connection.execute('SELECT id, automation_json, catalog_key FROM equipment WHERE character_id=?', (character_id,)).fetchall():
@@ -2348,7 +2378,8 @@ class CharacterRepository:
                                     (json.dumps(metadata), character_id, row['id']))
                                 restored += used
                         continue
-                    from app.marvelous_item_rules import marvelous_remaining_uses
+                    from app.marvelous_item_rules import marvelous_remaining_uses, marvelous_manual_recharge_requirements
+                    if marvelous_manual_recharge_requirements(plan): continue
                     reset = []
                     for index, effect in enumerate([plan, *plan.get('extra_effects', [])]):
                         used = metadata.get('marvelous_uses_used', 0) if index == 0 else metadata.get('marvelous_extra_uses_used', {}).get(str(index), 0)

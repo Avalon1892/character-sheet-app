@@ -92,6 +92,30 @@ def test_unrecognized_saved_effect_choice_is_preserved_and_can_be_corrected(comp
     assert 'Armored Magic aegis (armor)' in dialog.item_preview.toPlainText()
 
 
+def test_special_recharge_control_requires_confirmation_and_refreshes_counts(composer, monkeypatch):
+    from app.ui.marvelous_crafting import MarvelousItemUseDialog
+    from app.services.crafting import CraftingService
+    from PySide6.QtWidgets import QMessageBox
+    dialog, repo, cid = composer
+    plan = dialog.blueprint(); plan['crafting_tradition'] = {'key': 'crafting:evil-artifice'}
+    iid = CraftingService(repo, cid).save_marvelous_design(plan, name='Restricted device', slot='', description='')
+    repo.consume_marvelous_item_use(cid, iid)
+    window = MarvelousItemUseDialog(repo, cid)
+    window.table.selectRow(0)
+    assert window.recharge.isEnabled() and window.table.item(0, 1).text() == '0'
+    before = repo._connection.total_changes
+    monkeypatch.setattr(QMessageBox, 'question', lambda *args: QMessageBox.StandardButton.No)
+    window.record_recharge()
+    assert repo._connection.total_changes == before and not window.changed
+    def confirm(*args):
+        assert 'once per day' in args[2] and '5 feet' in args[2]
+        return QMessageBox.StandardButton.Yes
+    monkeypatch.setattr(QMessageBox, 'question', confirm)
+    window.record_recharge()
+    assert window.changed and window.table.item(0, 1).text() == '1'
+    window.close()
+
+
 def test_accessible_effect_picker_reuses_basket_without_learning_rules(composer):
     from app.ui.marvelous_effect_picker import MarvelousEffectPicker
     from app.catalogs import DEFAULT_CATALOG
