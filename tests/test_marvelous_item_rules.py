@@ -126,6 +126,36 @@ def test_mobile_and_permanent_ward_cannot_be_integrated_together():
     assert any('cannot benefit' in issue for issue in advanced_construction_blockers(rows, 20))
 
 
+@pytest.mark.parametrize('key', ['crafting:evil-artifice', 'crafting:sacred-artifice'])
+def test_simple_boon_reduces_complexity_before_pricing_and_combining(key):
+    from app.marvelous_item_rules import (quote_marvelous_blueprint, marvelous_complexity_formula,
+        marvelous_price_formula, marvelous_effect_plan)
+    plan = dict(schema_version=1, caster_level=5, uses=1, range_steps=0, duration_steps=0,
+                activation='standard', unique_changes=2, contributions=[], crafting_tradition={'key': key})
+    complexity, price, quote = quote_marvelous_blueprint(plan)
+    assert complexity == 2 and price.market_price_gp == 4000 and quote.cost_gp == 2000
+    assert '− 1 Simple boon' in marvelous_complexity_formula(plan)
+    plan['extra_effects'] = [{k: v for k, v in plan.items() if k not in {'extra_effects', 'crafting_tradition'}}]
+    assert quote_marvelous_blueprint(plan)[1].market_price_gp == 10000
+    assert marvelous_price_formula(plan) == '4000 + (8000 − 4000) × 1.5 = 10000 gp'
+    simple_copy = marvelous_effect_plan(plan, 1)
+    assert simple_copy['crafting_tradition']['key'] == key
+    assert 'crafting_tradition' not in plan['extra_effects'][0]
+    plan['combination_mode'] = 'mixed'
+    assert quote_marvelous_blueprint(plan)[1].market_price_gp == 12000
+    plan.pop('extra_effects'); plan['unique_changes'] = 0
+    assert quote_marvelous_blueprint(plan)[0] == 1
+
+
+@pytest.mark.parametrize('tradition', ['bad', {}, {'key': []}])
+def test_malformed_tradition_rejects_before_simple_pricing(tradition):
+    from app.marvelous_item_rules import quote_marvelous_blueprint
+    plan = dict(schema_version=1, caster_level=5, uses=1, range_steps=0, duration_steps=0,
+                activation='standard', unique_changes=0, contributions=[], crafting_tradition=tradition)
+    with pytest.raises(ValueError, match='catalog identity'):
+        quote_marvelous_blueprint(plan)
+
+
 def test_cheap_tradition_applies_once_to_combined_design():
     from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_price_formula
     base = dict(schema_version=1, caster_level=5, uses=1, range_steps=0,

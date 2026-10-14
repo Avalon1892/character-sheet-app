@@ -312,6 +312,9 @@ class MarvelousCraftingDialog(QDialog):
             dialog.load_plan(self.extra_effects[index])
             dialog.name.setText(self.extra_effects[index].get('effect_name', resolve_base_power(self.extra_effects[index])['power']))
             dialog.description.setPlainText(self.extra_effects[index].get('effect_description', ''))
+        from app.marvelous_item_rules import simple_tradition_reduction
+        if simple_tradition_reduction(self.blueprint()):
+            dialog.crafting_tradition = self.crafting_tradition
         dialog.cl.setValue(self.cl.value()); dialog.cl.setEnabled(False)
         if dialog.exec() != QDialog.DialogCode.Accepted: return
         plan = dialog.blueprint()
@@ -604,8 +607,9 @@ class MarvelousCraftingDialog(QDialog):
             self.cost_formula.setText('Cost: ' + marvelous_price_formula(self.blueprint())
                                       + '\nComplexity: ' + marvelous_complexity_formula(self.blueprint())
                                       + '\nMaterials: ' + marvelous_materials_formula(self.blueprint()))
-            self.cost_formula.setToolTip('\n'.join(f'Power {index}: {marvelous_complexity_formula(power)}'
-                for index, power in enumerate([self.blueprint(), *self.extra_effects], 1)))
+            from app.marvelous_item_rules import marvelous_effect_plan
+            self.cost_formula.setToolTip('\n'.join(f'Power {index + 1}: {marvelous_complexity_formula(marvelous_effect_plan(self.blueprint(), index))}'
+                for index in range(1 + len(self.extra_effects))))
             self.refresh_item_card()
             effect = resolve_base_power(self.blueprint())
             automatic = automatic_self_effect(self.blueprint())
@@ -621,7 +625,7 @@ class MarvelousCraftingDialog(QDialog):
             self.result.setText(f'Market price {float(price.market_price_gp):,.2f} gp · Materials {float(quote.cost_gp):,.2f} gp · Craft DC {quote.dc} · Save DC {price.save_dc}')
             self.preview.setHtml(f'<h2>{escape(self.name.text())}</h2><p>{escape(self.sphere.currentText())} · Complexity {complexity}</p>'
                 f'<p>{escape(self.description.toPlainText())}</p><h3>Calculated base effect</h3>'
-                + (f'<h3>Crafting tradition: {escape(self.crafting_tradition["name"])}</h3><p>{escape(self.crafting_tradition["description"])}</p><p>Cheap price adjustment is automatic where applicable. Other tradition requirements/effects require manual review.</p>' if self.crafting_tradition else '')
+                + (f'<h3>Crafting tradition: {escape(self.crafting_tradition["name"])}</h3><p>{escape(self.crafting_tradition["description"])}</p><p>Cheap pricing and Simple complexity adjustments are automatic where applicable. Other tradition requirements/effects require manual review.</p>' if self.crafting_tradition else '')
                 + ''.join(f'<p><b>{escape(key.title())}:</b> {escape(value)}</p>' for key, value in effect_detail_lines(effect))
                 + '<h3>Additional powers</h3>' + extra_review + '<h3>Construction review</h3>'
                 + '<p><b>Automatic baseline check:</b> '

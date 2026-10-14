@@ -110,22 +110,28 @@ def test_effect_picker_confirmation_updates_design_without_database_writes(compo
     assert dialog.table.rowCount() == 1 and repo._connection.total_changes == before
 
 
-def test_design_tradition_updates_price_without_character_selection(composer, monkeypatch):
+@pytest.mark.parametrize('key,unique,price,label', [
+    ('crafting:diviner-s-sight', 0, 1800, 'Cheap'),
+    ('crafting:evil-artifice', 2, 4000, 'Simple boon'),
+    ('crafting:sacred-artifice', 2, 4000, 'Simple boon'),
+])
+def test_design_tradition_updates_price_without_character_selection(composer, monkeypatch, key, unique, price, label):
     from app.ui.optional_traditions import OptionalTraditionDialog
     from app.optional_traditions import catalog
     from PySide6.QtWidgets import QDialog
     dialog, repo, cid = composer
     dialog.cl.setValue(5)
-    entry = next(e for e in catalog()['entries'] if e['key'] == 'crafting:diviner-s-sight')
+    dialog.unique.setValue(unique)
+    entry = next(e for e in catalog()['entries'] if e['key'] == key)
     def choose(picker):
         picker.selected_entry = entry
         return QDialog.DialogCode.Accepted
     monkeypatch.setattr(OptionalTraditionDialog, 'exec', choose)
     before = repo._connection.total_changes
     dialog.choose_crafting_tradition()
-    assert dialog.quotation()[1].market_price_gp == 1800
-    assert dialog.quotation()[2].cost_gp == 900
-    assert 'Cheap' in dialog.cost_formula.text()
+    assert dialog.quotation()[1].market_price_gp == price
+    assert dialog.quotation()[2].cost_gp == price / 2
+    assert label in dialog.cost_formula.text()
     assert dialog.tradition_button.text() == entry['name']
     assert not repo.list_character_traditions(cid)
     assert repo._connection.total_changes == before
@@ -134,10 +140,10 @@ def test_design_tradition_updates_price_without_character_selection(composer, mo
     reopened = MarvelousCraftingDialog(repo, cid, item_id=iid)
     assert reopened.crafting_tradition['key'] == entry['key']
     assert reopened.crafting_tradition['description'] == entry['description']
-    assert reopened.quotation()[1].market_price_gp == 1800
+    assert reopened.quotation()[1].market_price_gp == price
     reopened.close()
     dialog.remove_crafting_tradition()
-    assert dialog.quotation()[1].market_price_gp == 2000
+    assert dialog.quotation()[1].market_price_gp == 2000 * (1 + unique)
 
 
 def test_custom_drawback_live_price_card_save_reopen_and_remove(composer):
@@ -364,17 +370,25 @@ def test_crafting_drawbacks_are_available_and_expensive_updates_materials(compos
     reopened.close()
 
 
-def test_additional_power_custom_text_preview_cl_and_reopen(composer, monkeypatch):
+@pytest.mark.parametrize('simple', [False, True])
+def test_additional_power_custom_text_preview_cl_and_reopen(composer, monkeypatch, simple):
     from PySide6.QtWidgets import QDialog
     from app.services.crafting import CraftingService
     from copy import deepcopy
     dialog, repo, cid = composer
     dialog.cl.setValue(5)
+    if simple:
+        from app.optional_traditions import catalog
+        dialog.crafting_tradition = next(e for e in catalog()['entries'] if e['key'] == 'crafting:sacred-artifice')
     def choose(child):
         child.sphere.setCurrentText('Life')
         child.base_power.setCurrentIndex(child.base_power.findData('life:cure'))
         child.name.setText('Reserve cure'); child.description.setPlainText('A reserve of healing.')
         child.uses.setCurrentIndex(child.uses.findData(50))
+        if simple:
+            child.unique.setValue(2)
+            assert child.quotation()[0] == 2
+            assert 'Simple boon' in child.cost_formula.text()
         return QDialog.DialogCode.Accepted
     monkeypatch.setattr(MarvelousCraftingDialog, 'exec', choose)
     before = repo._connection.total_changes
@@ -383,6 +397,7 @@ def test_additional_power_custom_text_preview_cl_and_reopen(composer, monkeypatc
     assert '50 total activations' in dialog.item_preview.toPlainText()
     assert repo._connection.total_changes == before
     saved = deepcopy(dialog.extra_effects)
+    assert 'crafting_tradition' not in saved[0]
     def cancel(child):
         assert child.name.text() == 'Reserve cure'
         assert child.description.toPlainText() == 'A reserve of healing.'

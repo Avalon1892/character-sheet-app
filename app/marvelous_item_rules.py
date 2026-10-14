@@ -268,6 +268,16 @@ def talent_construction_cost(entry, *, additional_spell_points=0, mythic_crafter
 ACTIVATION_COMPLEXITY = {"standard": 0, "full-round": -1, "move": 3, "swift": 5}
 
 
+def simple_tradition_reduction(plan):
+    """Reviewed sample traditions; never infer boons from user/catalog prose."""
+    tradition = plan.get('crafting_tradition')
+    if tradition is None: return 0
+    if not isinstance(tradition, dict) or not isinstance(tradition.get('key'), str):
+        raise ValueError('Crafting tradition requires a catalog identity.')
+    return int(tradition['key'] in {
+        'crafting:evil-artifice', 'crafting:sacred-artifice'})
+
+
 def effect_complexity(*, talent_costs=(), alternative_costs=(), range_steps=0,
                       duration_steps=0, activation="standard", unique_changes=0):
     """Resolve explicit construction contributions, never infer them from prose.
@@ -348,7 +358,7 @@ def quote_marvelous_blueprint(plan):
     feat_cost = feat_integration_complexity(plan.get('feat_integrations', []))
     complexity = effect_complexity(talent_costs=[x['complexity'] for x in plan['contributions'] if not x.get('alternative', False)] + grouped_costs,
         range_steps=plan['range_steps'], duration_steps=plan['duration_steps'],
-        activation=plan['activation'], unique_changes=plan['unique_changes'] - drawback_complexity(plan.get('drawbacks', [])) + (2 if plan.get('permanent') else 0) + int(plan.get('full_blast_damage', False)) + 2 * plan.get('effect_range_steps', 0) + feat_cost)
+        activation=plan['activation'], unique_changes=plan['unique_changes'] - drawback_complexity(plan.get('drawbacks', [])) - simple_tradition_reduction(plan) + (2 if plan.get('permanent') else 0) + int(plan.get('full_blast_damage', False)) + 2 * plan.get('effect_range_steps', 0) + feat_cost)
     price = marvelous_item_price(plan['caster_level'], complexity,
                                 daily_uses=1 if plan['uses'] == 50 else plan['uses'], limited_uses=plan['uses'] == 50)
     if plan.get('no_space_limitation'):
@@ -357,18 +367,14 @@ def quote_marvelous_blueprint(plan):
         if any(row.get('source') == 'published' and row.get('catalog_key', '').startswith('crafting:')
                for extra in plan['extra_effects'] for row in extra.get('drawbacks', [])):
             raise ValueError('Crafting-specific drawbacks belong to the whole item, not individual powers.')
-        primary = {key: value for key, value in plan.items() if key not in {'extra_effects', 'combination_mode', 'crafting_tradition'}}
         if any(extra.get('extra_effects') for extra in plan['extra_effects']):
             raise ValueError('Nested effect combinations are not supported.')
-        extras = [{key: value for key, value in extra.items() if key != 'crafting_tradition'} for extra in plan['extra_effects']]
-        combined = quote_marvelous_effects([primary, *extras], mode=plan.get('combination_mode', 'multiple'))
+        combined = quote_marvelous_effects(marvelous_pricing_powers(plan), mode=plan.get('combination_mode', 'multiple'))
         price = replace(price, market_price_gp=combined['market_price_gp'])
     quote = marvelous_crafting_quote(price, plan['caster_level'])
     tradition = plan.get('crafting_tradition')
     cheap = False
     if tradition is not None:
-        if not isinstance(tradition, dict) or not isinstance(tradition.get('key'), str):
-            raise ValueError('Crafting tradition requires a catalog identity.')
         cheap = tradition['key'] in {'crafting:city-construction', 'crafting:diviner-s-sight'}
         if tradition['key'] in {'crafting:city-construction', 'crafting:evil-artifice'} and any(
                 row.get('source') == 'published' and row.get('catalog_key') == 'crafting:fragile'
@@ -401,7 +407,18 @@ def marvelous_effect_plan(plan, effect_index=0):
         return {key: value for key, value in plan.items() if key not in {'extra_effects', 'combination_mode'}}
     extras = plan.get('extra_effects', [])
     if effect_index > len(extras): raise ValueError('Unknown item effect.')
-    return extras[effect_index - 1]
+    result = dict(extras[effect_index - 1])
+    if simple_tradition_reduction(plan):
+        result['crafting_tradition'] = plan['crafting_tradition']
+    return result
+
+
+def marvelous_pricing_powers(plan):
+    """Apply per-effect Simple before combining, whole-item Cheap afterwards."""
+    powers = [marvelous_effect_plan(plan, index) for index in range(1 + len(plan.get('extra_effects', [])))]
+    if not simple_tradition_reduction(plan):
+        powers = [{key: value for key, value in power.items() if key != 'crafting_tradition'} for power in powers]
+    return powers
 
 
 def quote_marvelous_effects(plans, *, mode='multiple'):
@@ -447,7 +464,8 @@ def marvelous_complexity_formula(plan):
              ('permanency', 2 if plan.get('permanent') else 0), ('full blast', int(plan.get('full_blast_damage', False))),
              ('distance/area', 2 * plan.get('effect_range_steps', 0)),
              ('feats', feat_integration_complexity(plan.get('feat_integrations', []))),
-             ('drawbacks', -drawback_complexity(plan.get('drawbacks', [])))]
+             ('drawbacks', -drawback_complexity(plan.get('drawbacks', []))),
+             ('Simple boon', -simple_tradition_reduction(plan))]
     rendered = '1 base' + ''.join(f" {'+' if value > 0 else '−'} {abs(value)} {label}" for label, value in terms[1:] if value)
     return f'max(1, {rendered}) = {complexity}'
 
@@ -469,9 +487,7 @@ def marvelous_price_formula(plan):
         base = {key: value for key, value in plan.items() if key != 'crafting_tradition'}
         return marvelous_price_formula(base) + f' → × 0.9 (Cheap) = {price.market_price_gp} gp'
     if plan.get('extra_effects'):
-        primary = {key: value for key, value in plan.items() if key not in {'extra_effects', 'combination_mode', 'crafting_tradition'}}
-        extras = [{key: value for key, value in extra.items() if key != 'crafting_tradition'} for extra in plan['extra_effects']]
-        amounts = [quote_marvelous_blueprint(power)[1].market_price_gp for power in [primary, *extras]]
+        amounts = [quote_marvelous_blueprint(power)[1].market_price_gp for power in marvelous_pricing_powers(plan)]
         highest = max(amounts)
         factor = '2' if plan.get('combination_mode') == 'mixed' else '1.5'
         return f'{highest} + ({sum(amounts)} − {highest}) × {factor} = {price.market_price_gp} gp'

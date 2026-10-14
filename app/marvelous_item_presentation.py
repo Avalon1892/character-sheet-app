@@ -52,7 +52,9 @@ def item_card_fields(plan, *, name, slot, description):
         for key in ('activation', 'range', 'duration'): values[key] += ' (primary)'
         values['description'] = (('Mixed simultaneous powers' if mixed else 'Separate selectable powers')
                                  + f'\nPrimary power — {effect["power"]}; {primary_uses}\n\n' + values['description'])
-        for index, extra in enumerate(plan['extra_effects'], 2):
+        from app.marvelous_item_rules import marvelous_effect_plan
+        for index in range(2, len(plan['extra_effects']) + 2):
+            extra = marvelous_effect_plan(plan, index - 1)
             effect_name = extra.get('effect_name', resolve_base_power(extra)['power'])
             effect_description = extra.get('effect_description', '')
             if not isinstance(effect_name, str) or not isinstance(effect_description, str):
