@@ -4,6 +4,9 @@ The user's latest priority is the designer, not construction-calendar automation
 
 ## Implemented checkpoint
 
+- Final drawback UI checkpoint: **29 passed in 17.06 seconds**, including published picker deduplication and save/reopen.
+- Added right-side Add Drawbacks, custom drawback creation, selected-drawback list/tooltips and removal. Published options reuse the magic catalog for the selected sphere plus Universal; custom entries accept name/description and an integer reduction. Published defaults are explicitly a GM-reviewed −1 unique limitation, **not a claimed catalog-specific discount**. Shared validation rejects malformed/negative/fractional/boolean reductions and duplicate identities; complexity retains its minimum of one. Save validates published catalog identity/sphere and canonicalizes text. Card descriptions include restrictions unless description is locked. Unsupported restrictions disable automatic self-effect application, while manual activation/resource tracking remains available. Automatic enforcement of individual drawback restrictions and editing reductions after creation remain unfinished.
+- Drawback validation: **88 pricing/UI/resource tests passed in 34.27 seconds** before adding the additional published-picker persistence regression. Three-column layout is now structurally present but requires substantial sizing/visual polish; do not mark designer complete.
 - Final tradition/formula/UI checkpoint: **53 passed in 15.59 seconds** at unchanged source, including double-discount prevention and saved snapshot/reopen.
 - A permanently visible, wrapping cost formula below the designer preview. It obtains values from the existing authoritative quote, including daily/unlimited/50-use, slotless and separate/mixed power pricing.
 - Formula and price update through existing control signals; invalid designs show an explicit error rather than a stale formula.

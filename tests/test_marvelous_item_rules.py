@@ -33,6 +33,22 @@ def test_cheap_tradition_applies_once_to_combined_design():
     assert marvelous_price_formula(plan) == '2000 + (4000 − 2000) × 1.5 = 5000 gp → × 0.9 (Cheap) = 4500 gp'
 
 
+def test_reviewed_drawback_reductions_and_validation():
+    from app.marvelous_item_rules import quote_marvelous_blueprint, drawback_complexity
+    plan = dict(schema_version=1, caster_level=5, uses=1, range_steps=0, duration_steps=0,
+                activation='standard', unique_changes=3, contributions=[],
+                drawbacks=[dict(source='custom', name='Dawn only', description='Only at sunrise', reduction=2)])
+    assert quote_marvelous_blueprint(plan)[0] == 2
+    assert quote_marvelous_blueprint(plan)[1].market_price_gp == 4000
+    plan['drawbacks'][0]['reduction'] = 100
+    assert quote_marvelous_blueprint(plan)[0] == 1
+    for invalid in (-1, 1.5, True, '2', 101):
+        plan['drawbacks'][0]['reduction'] = invalid
+        with pytest.raises(ValueError, match='reduction'): quote_marvelous_blueprint(plan)
+    record = dict(source='custom', name='Dawn only', reduction=1)
+    with pytest.raises(ValueError, match='Duplicate'): drawback_complexity([record, record])
+
+
 def test_base_and_use_modes():
     quote = marvelous_item_price(3, 2)
     assert (quote.market_price_gp, quote.save_dc, quote.daily_uses) == (2400, 11, 1)

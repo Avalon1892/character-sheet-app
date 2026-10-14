@@ -86,7 +86,7 @@ def item_dice_result(plan, count, sides, bonus, roll):
 
 def automatic_self_effect(plan):
     """Supported activation kind, independent of editable prose and Qt."""
-    if plan.get('unique_changes') or plan.get('permanent') or item_dice_metamagic(plan) is None:
+    if plan.get('unique_changes') or plan.get('drawbacks') or plan.get('permanent') or item_dice_metamagic(plan) is None:
         return None
     if plan.get('base_power') == 'life:cure':
         return 'cure' if cure_healing_components(plan) is not None else None

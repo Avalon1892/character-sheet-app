@@ -25,6 +25,10 @@ def item_card_fields(plan, *, name, slot, description):
                   description=description or '\n'.join(f'{key.replace("_", " ").title()}: {value}'
                       for key, value in effect.items() if isinstance(value, (str, int))))
     records = plan.get('display_overrides', {})
+    if plan.get('drawbacks'):
+        values['description'] += '\n\nDrawbacks:\n' + '\n'.join(
+            f"{record['name']}: {record.get('description', '')} (−{record['reduction']} complexity; {record['source']}, GM review)"
+            for record in plan['drawbacks'])
     validate_display_overrides(records)
     values.update({key: record['value'] for key, record in records.items() if record['locked']})
     return values

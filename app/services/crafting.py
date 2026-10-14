@@ -136,6 +136,16 @@ class CraftingService:
         if not self.feats.intersection({'craft marvelous item', 'craft wondrous item'}):
             raise ValueError('A Marvelous Item creation feat is required.')
         plan = deepcopy(plan)
+        from app.marvelous_item_rules import drawback_complexity
+        drawback_complexity(plan.get('drawbacks', []))
+        for record in plan.get('drawbacks', []):
+            if record['source'] == 'published':
+                entry = self.magic_entries_by_key.get(record['catalog_key'])
+                if entry is None or 'drawback' not in entry.get('category', '').casefold():
+                    raise ValueError('Unknown published item drawback.')
+                if entry['sphere'] not in {plan['sphere'], 'Universal'}:
+                    raise ValueError('A sphere drawback must match the item effect.')
+                record.update(name=entry['name'], description=entry.get('description', ''))
         if plan.get('crafting_tradition') is not None:
             from app.optional_traditions import catalog
             selected = plan['crafting_tradition']

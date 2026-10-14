@@ -117,6 +117,47 @@ def test_design_tradition_updates_price_without_character_selection(composer, mo
     assert dialog.quotation()[1].market_price_gp == 2000
 
 
+def test_custom_drawback_live_price_card_save_reopen_and_remove(composer):
+    from app.services.crafting import CraftingService
+    from app.marvelous_base_powers import automatic_self_effect
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Life'); dialog.cl.setValue(5); dialog.unique.setValue(2)
+    dialog.drawbacks = [dict(source='custom', name='At dawn', description='Sunrise only', reduction=1)]
+    dialog.update_preview()
+    assert dialog.quotation()[1].market_price_gp == 4000
+    assert 'At dawn' in dialog.card_edits['description'].toPlainText()
+    assert automatic_self_effect(dialog.blueprint()) is None
+    iid = CraftingService(repo, cid).save_marvelous_design(dialog.blueprint(), name='Limited design', slot='', description='')
+    reopened = MarvelousCraftingDialog(repo, cid, item_id=iid)
+    assert reopened.drawbacks == dialog.drawbacks
+    reopened.drawbacks_list.setCurrentRow(0); reopened.remove_drawback()
+    assert reopened.drawbacks == [] and reopened.quotation()[1].market_price_gp == 6000
+    reopened.close()
+
+
+def test_published_drawback_selection_is_draft_only_and_deduplicated(composer, monkeypatch):
+    from app.ui.marvelous_effect_picker import MarvelousEffectPicker
+    from app.catalogs import DEFAULT_CATALOG
+    from PySide6.QtWidgets import QDialog
+    from app.services.crafting import CraftingService
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Life'); dialog.cl.setValue(5); dialog.unique.setValue(2)
+    entry = next(e for e in DEFAULT_CATALOG.magic_entries('Life') if 'drawback' in e['category'].casefold())
+    def accept(picker):
+        assert entry['key'] in picker._entries_by_key
+        picker.selected_entries = (entry,)
+        return QDialog.DialogCode.Accepted
+    monkeypatch.setattr(MarvelousEffectPicker, 'exec', accept)
+    before = repo._connection.total_changes
+    dialog.choose_drawbacks(); dialog.choose_drawbacks()
+    assert len(dialog.drawbacks) == 1 and dialog.drawbacks[0]['source'] == 'published'
+    assert repo._connection.total_changes == before
+    iid = CraftingService(repo, cid).save_marvelous_design(dialog.blueprint(), name='Published limitation', slot='', description='')
+    reopened = MarvelousCraftingDialog(repo, cid, item_id=iid)
+    assert reopened.drawbacks[0]['catalog_key'] == entry['key']
+    reopened.close()
+
+
 def test_live_price_and_cancel_no_writes(composer):
     dialog, repo, cid = composer
     before = repo._connection.total_changes

@@ -247,6 +247,26 @@ def effect_complexity(*, talent_costs=(), alternative_costs=(), range_steps=0,
                                    + unique_changes))
 
 
+def drawback_complexity(records):
+    """Explicit reviewed reductions; published text alone never implies a price."""
+    if not isinstance(records, list): raise ValueError('Drawbacks must be a list.')
+    seen, total = set(), 0
+    for record in records:
+        if not isinstance(record, dict) or record.get('source') not in {'published', 'custom'}:
+            raise ValueError('Each drawback needs a published/custom source.')
+        name, reduction = record.get('name'), record.get('reduction')
+        if not isinstance(name, str) or not name.strip() or not isinstance(record.get('description', ''), str):
+            raise ValueError('Drawbacks require a name and text description.')
+        identity = record.get('catalog_key') if record['source'] == 'published' else name.strip().casefold()
+        if not isinstance(identity, str) or not identity or identity in seen:
+            raise ValueError('Duplicate or missing drawback identity.')
+        seen.add(identity)
+        if isinstance(reduction, bool) or not isinstance(reduction, int) or not 0 <= reduction <= 100:
+            raise ValueError('Drawback reduction must be an integer from 0 to 100.')
+        total += reduction
+    return total
+
+
 def quote_marvelous_blueprint(plan):
     """Price the persisted composer blueprint using the same pure rules."""
     if plan.get('schema_version') != 1:
@@ -281,7 +301,7 @@ def quote_marvelous_blueprint(plan):
     feat_cost = feat_integration_complexity(plan.get('feat_integrations', []))
     complexity = effect_complexity(talent_costs=[x['complexity'] for x in plan['contributions'] if not x.get('alternative', False)] + grouped_costs,
         range_steps=plan['range_steps'], duration_steps=plan['duration_steps'],
-        activation=plan['activation'], unique_changes=plan['unique_changes'] + (2 if plan.get('permanent') else 0) + int(plan.get('full_blast_damage', False)) + 2 * plan.get('effect_range_steps', 0) + feat_cost)
+        activation=plan['activation'], unique_changes=plan['unique_changes'] - drawback_complexity(plan.get('drawbacks', [])) + (2 if plan.get('permanent') else 0) + int(plan.get('full_blast_damage', False)) + 2 * plan.get('effect_range_steps', 0) + feat_cost)
     price = marvelous_item_price(plan['caster_level'], complexity,
                                 daily_uses=1 if plan['uses'] == 50 else plan['uses'], limited_uses=plan['uses'] == 50)
     if plan.get('no_space_limitation'):

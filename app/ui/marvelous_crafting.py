@@ -4,7 +4,7 @@ import json
 
 from PySide6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QFormLayout,
     QLineEdit, QTextEdit, QTextBrowser, QComboBox, QSpinBox, QLabel, QPushButton,
-    QTableWidget, QTableWidgetItem, QHeaderView, QDialogButtonBox, QCheckBox, QMessageBox, QDateEdit)
+    QTableWidget, QTableWidgetItem, QHeaderView, QDialogButtonBox, QCheckBox, QMessageBox, QDateEdit, QListWidget)
 from app.catalogs import DEFAULT_CATALOG
 from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_remaining_uses, marvelous_price_formula
 from app.services.crafting import CraftingService
@@ -43,6 +43,7 @@ class MarvelousCraftingDialog(QDialog):
         self.combination_mode = 'multiple'
         self.display_overrides = {}
         self.crafting_tradition = None
+        self.drawbacks = []
         self.draft_effect = draft_effect
         self.setWindowTitle('Design a Marvelous Item')
         self.resize(1280, 820)
@@ -144,6 +145,21 @@ class MarvelousCraftingDialog(QDialog):
             lock.toggled.connect(lambda checked, key=key: self.set_card_lock(key, checked))
             edit.textChanged.connect(lambda *_, key=key: self.edit_card_field(key))
         self.preview = QTextBrowser(); center.addWidget(self.preview, 1)
+        right = QVBoxLayout(); columns.addLayout(right, 1)
+        right.addWidget(QLabel('DRAWBACKS'))
+        self.drawbacks_button = QPushButton('Add Drawbacks…'); right.addWidget(self.drawbacks_button)
+        self.drawbacks_button.clicked.connect(self.choose_drawbacks)
+        self.custom_drawback_button = QPushButton('Custom drawback…'); right.addWidget(self.custom_drawback_button)
+        self.custom_drawback_button.clicked.connect(self.add_custom_drawback)
+        self.drawbacks_list = QListWidget(); self.drawbacks_list.setWordWrap(True)
+        self.drawbacks_list.setMinimumWidth(160); self.drawbacks_list.setMaximumWidth(260)
+        right.addWidget(self.drawbacks_list, 1)
+        self.remove_drawback_button = QPushButton('Remove drawback'); right.addWidget(self.remove_drawback_button)
+        self.remove_drawback_button.setEnabled(False)
+        self.drawbacks_list.currentRowChanged.connect(lambda row: self.remove_drawback_button.setEnabled(row >= 0))
+        self.remove_drawback_button.clicked.connect(self.remove_drawback)
+        drawback_notice = QLabel('Reductions require GM review. Published drawbacks default to −1 as a unique limitation, not a catalog-mandated discount. Unsupported restrictions make effect application manual.')
+        drawback_notice.setWordWrap(True); drawback_notice.setMaximumWidth(260); right.addWidget(drawback_notice)
         self.review = QCheckBox('Construction prerequisites and sphere-specific costs have been reviewed with the GM')
         root.addWidget(self.review)
         self.result = QLabel(); root.addWidget(self.result)
@@ -187,6 +203,9 @@ class MarvelousCraftingDialog(QDialog):
         self.setWindowTitle('Edit Marvelous Item Design'); self.save.setText('Save design changes')
 
     def load_plan(self, plan):
+        from app.marvelous_item_rules import drawback_complexity
+        drawback_complexity(plan.get('drawbacks', []))
+        self.drawbacks = [dict(record) for record in plan.get('drawbacks', [])]
         self.crafting_tradition = plan.get('crafting_tradition')
         from app.marvelous_item_presentation import validate_display_overrides
         validate_display_overrides(plan.get('display_overrides', {}))
@@ -298,6 +317,42 @@ class MarvelousCraftingDialog(QDialog):
                 self.duration_steps.setRange(-index, len(DURATIONS) - index - 1)
             else: self.duration_steps.setRange(0, 0)
         self.update_preview()
+
+    def choose_drawbacks(self):
+        from app.ui.marvelous_effect_picker import MarvelousEffectPicker
+        entries = [entry for entry in DEFAULT_CATALOG.magic_entries()
+                   if 'drawback' in entry.get('category', '').casefold()
+                   and entry['sphere'] in {self.sphere.currentText(), 'Universal'}]
+        dialog = MarvelousEffectPicker(entries, self)
+        dialog.setWindowTitle('Add item drawbacks'); dialog.catalog_heading.setText('ITEM DRAWBACKS — GM REVIEW REQUIRED')
+        if dialog.exec() != QDialog.DialogCode.Accepted: return
+        existing = {record.get('catalog_key') for record in self.drawbacks}
+        for entry in dialog.selected_entries:
+            if entry['key'] not in existing:
+                self.drawbacks.append(dict(source='published', catalog_key=entry['key'], name=entry['name'],
+                                           description=entry.get('description', ''), reduction=1))
+                existing.add(entry['key'])
+        self.update_preview()
+
+    def add_custom_drawback(self):
+        dialog = QDialog(self); dialog.setWindowTitle('Custom item drawback')
+        form = QFormLayout(dialog)
+        name = QLineEdit(); description = QTextEdit(); reduction = QSpinBox(); reduction.setRange(0, 100); reduction.setValue(1)
+        form.addRow('Name', name); form.addRow('Description / restriction', description); form.addRow('Complexity reduction', reduction)
+        buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
+        buttons.button(QDialogButtonBox.StandardButton.Ok).setEnabled(False)
+        name.textChanged.connect(lambda value: buttons.button(QDialogButtonBox.StandardButton.Ok).setEnabled(bool(value.strip())))
+        buttons.accepted.connect(dialog.accept); buttons.rejected.connect(dialog.reject); form.addRow(buttons)
+        if dialog.exec() != QDialog.DialogCode.Accepted: return
+        if any(record['name'].casefold() == name.text().strip().casefold() for record in self.drawbacks):
+            QMessageBox.warning(self, 'Duplicate drawback', 'This drawback is already included.'); return
+        self.drawbacks.append(dict(source='custom', name=name.text().strip(), description=description.toPlainText(), reduction=reduction.value()))
+        self.update_preview()
+
+    def remove_drawback(self):
+        row = self.drawbacks_list.currentRow()
+        if row < 0: return
+        self.drawbacks.pop(row); self.update_preview()
 
     def choose_crafting_tradition(self):
         from app.ui.optional_traditions import OptionalTraditionDialog
@@ -427,12 +482,16 @@ class MarvelousCraftingDialog(QDialog):
                     extra_effects=self.extra_effects, combination_mode=self.combination_mode,
                     feat_integrations=self.feat_integrations,
                     automation_status='rules_only', display_overrides=self.display_overrides,
-                    crafting_tradition=self.crafting_tradition)
+                    crafting_tradition=self.crafting_tradition, drawbacks=self.drawbacks)
 
     def quotation(self):
         return quote_marvelous_blueprint(self.blueprint())
 
     def update_preview(self, *_):
+        self.drawbacks_list.clear()
+        for record in self.drawbacks:
+            self.drawbacks_list.addItem(f"{record['name']}\n−{record['reduction']} complexity · {record['source']}")
+            self.drawbacks_list.item(self.drawbacks_list.count() - 1).setToolTip(record.get('description', ''))
         self.tradition_button.setText(self.crafting_tradition['name'] if self.crafting_tradition else 'Choose a crafting tradition…')
         self.clear_tradition.setEnabled(self.crafting_tradition is not None)
         self.feats_button.setText(f'Integrate feats… ({len(self.feat_integrations)})')
