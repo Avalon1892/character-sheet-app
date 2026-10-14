@@ -113,6 +113,16 @@ def marvelous_item_price(caster_level: int, complexity: int | Fraction, *, daily
 
 # Reviewed construction prerequisites use catalog identities, never prose parsing.
 ADVANCED_CONSTRUCTION_REQUIREMENTS = {
+    'protection:advanced-talent:permanent-ward': (10, ('protection:talent:enduring-protection',)),
+    'protection:advanced-talent:planar-refuge-aegis-ward-rw-hb': (5, ()),
+    'protection:advanced-talent:preserve-integrity-aegis-alienist-hb': (10, ()),
+    'protection:advanced-talent:rapid-glyph-3pp': (0, ('protection:talent:glyph',)),
+    'protection:advanced-talent:spell-eater-aegis-3pp': (10, ('protection:succor-talent:negation-succor-3pp',)),
+    'protection:advanced-talent:spell-selectivity-dbh': (10, ('protection:aegis-ward-talent:spell-ward-aegis-ward',)),
+    'protection:advanced-talent:subtle-aegis': (5, ()),
+    'protection:advanced-talent:true-protection': (10, ()),
+    'protection:advanced-talent:undying-aegis': (7, ('protection:aegis-ward-talent:deathless-aegis',)),
+    'protection:advanced-talent:unplottable-aegis': (15, ('protection:aegis-ward-talent:resistance-aegis',)),
     'protection:advanced-talent:adaptation-aegis': (10, ('protection:aegis-ward-talent:energy-resistance-aegis-ward',)),
     'protection:advanced-talent:antimagic-aura': (10, ('protection:aegis-ward-talent:spell-ward-aegis-ward',)),
     'protection:advanced-talent:automatic-fortification-3pp': (5, ('protection:talent:fortifier-3pp',)),
@@ -246,6 +256,12 @@ def talent_construction_spell_points(entry):
         'protection:advanced-talent:automatic-fortification-3pp': 1,
         # Adaptation's two-SP aegis adds one beyond the ordinary one-SP aegis.
         'protection:advanced-talent:adaptation-aegis': 1,
+        'protection:aegis-ward-talent:spell-ward-aegis-ward': 1,
+        'protection:advanced-talent:spell-eater-aegis-3pp': 2,
+        'protection:advanced-talent:spell-selectivity-dbh': 1,
+        'protection:advanced-talent:undying-aegis': 1,
+        'protection:succor-talent:negation-succor-3pp': 1,
+        'protection:succor-talent:reflection-succor': 1,
     }.get(entry.get('key'), 0)
 
 

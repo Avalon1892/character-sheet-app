@@ -100,6 +100,16 @@ def test_live_formula_reports_slotless_limited_and_combined_quotes():
     ('improved-negation-3pp', 10, 'protection:succor-talent:negation-succor-3pp', 0),
     ('layered-glyph-3pp', 0, 'protection:talent:glyph', 0),
     ('mobile-ward-alienist-hb', 5, None, 0),
+    ('permanent-ward', 10, 'protection:talent:enduring-protection', 0),
+    ('planar-refuge-aegis-ward-rw-hb', 5, None, 0),
+    ('preserve-integrity-aegis-alienist-hb', 10, None, 0),
+    ('rapid-glyph-3pp', 0, 'protection:talent:glyph', 0),
+    ('spell-eater-aegis-3pp', 10, 'protection:succor-talent:negation-succor-3pp', 2),
+    ('spell-selectivity-dbh', 10, 'protection:aegis-ward-talent:spell-ward-aegis-ward', 1),
+    ('subtle-aegis', 5, None, 0),
+    ('true-protection', 10, None, 0),
+    ('undying-aegis', 7, 'protection:aegis-ward-talent:deathless-aegis', 1),
+    ('unplottable-aegis', 15, 'protection:aegis-ward-talent:resistance-aegis', 0),
 ])
 def test_reviewed_protection_construction_requirements(suffix, minimum, required, points):
     from app.content import magic_entry

@@ -53,6 +53,20 @@ def test_adaptation_immunity_takes_precedence_over_prerequisite_resistance():
     assert result['energy_protection'] == '20' and 'Not selected' in result['energy_type']
 
 
+def test_spell_ward_modes_and_antimagic_upgrade_descriptors():
+    rows = [dict(catalog_key='protection:aegis-ward-talent:spell-ward-aegis-ward')]
+    result = resolve_base_power(plan('protection:aegis', 10, contributions=rows))
+    assert result['spell_resistance'] == 20 and result['power'] == 'Spell Ward aegis'
+    result = resolve_base_power(plan('protection:ward', 10, contributions=rows))
+    assert '+10' in result['magic_skill_check'] and result['magic_skill_defense'] == 21
+    rows.append(dict(catalog_key='protection:advanced-talent:antimagic-aura'))
+    result = resolve_base_power(plan('protection:ward', 10, contributions=rows))
+    assert 'without a magic skill check' in result['suppression']
+    assert 'magic_skill_check' not in result
+    with pytest.raises(ValueError, match='not its spell-resistance'):
+        resolve_base_power(plan('protection:aegis', 10, contributions=rows))
+
+
 def test_beacon_placement_range_duration_and_required_contribution():
     result = resolve_base_power(plan('warp:beacon', 7))
     assert result['range'] == 'Touch' and result['duration'] == '7 hours'

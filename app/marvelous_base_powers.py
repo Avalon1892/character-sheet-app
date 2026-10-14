@@ -291,6 +291,21 @@ def resolve_base_power(plan):
             summary['energy_protection'] = 'Immune' if kind == 'immunity' else str(10 + cl)
             if kind == 'immunity' and power.key != 'protection:aegis':
                 raise ValueError('Adaptation grants an aegis, not a ward.')
+        keys = {row.get('catalog_key') for row in rows}
+        if 'protection:aegis-ward-talent:spell-ward-aegis-ward' in keys:
+            if power.key == 'protection:aegis':
+                summary['power'] = 'Spell Ward aegis'
+                summary['spell_resistance'] = 10 + cl
+            else:
+                summary['power'] = 'Spell Ward'
+                summary['magic_skill_check'] = f'+{cl}; magical items resist with MSD 10 + their caster level.'
+                summary['magic_skill_defense'] = 11 + cl
+            if 'protection:advanced-talent:antimagic-aura' in keys:
+                if power.key != 'protection:ward':
+                    raise ValueError('Antimagic Aura modifies a Spell Ward ward, not its spell-resistance aegis.')
+                summary['power'] = 'Antimagic Aura ward'
+                summary['suppression'] = 'Stops magic and summoned creatures without a magic skill check; summoned creatures with SR still require a check against their SR.'
+                summary.pop('magic_skill_check', None)
     if power.key == 'life:cure':
         healing = cure_healing_components(plan)
         if healing is not None:

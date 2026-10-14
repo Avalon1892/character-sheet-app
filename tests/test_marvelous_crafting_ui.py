@@ -146,6 +146,29 @@ def test_design_tradition_updates_price_without_character_selection(composer, mo
     assert dialog.quotation()[1].market_price_gp == 2000 * (1 + unique)
 
 
+def test_antimagic_picker_selects_ward_and_prices_integrated_prerequisite(composer, monkeypatch):
+    from app.ui.marvelous_effect_picker import MarvelousEffectPicker
+    from app.content import magic_entry
+    from PySide6.QtWidgets import QDialog
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Protection'); dialog.cl.setValue(10)
+    entry = magic_entry('protection:advanced-talent:antimagic-aura')
+    monkeypatch.setattr(dialog.service, 'accessible_marvelous_effects', lambda sphere: (entry,))
+    def accept(picker):
+        picker.selected_entries = (entry,)
+        return QDialog.DialogCode.Accepted
+    monkeypatch.setattr(MarvelousEffectPicker, 'exec', accept)
+    before = repo._connection.total_changes
+    dialog.choose_accessible_effects()
+    assert dialog.base_power.currentData() == 'protection:ward'
+    assert dialog.quotation()[0] == 6
+    assert 'Antimagic Aura ward' in dialog.item_preview.toPlainText()
+    assert repo._connection.total_changes == before
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.base_power.currentData() == 'protection:ward'
+    assert dialog.quotation()[0] == 6
+
+
 def test_custom_drawback_live_price_card_save_reopen_and_remove(composer):
     from app.services.crafting import CraftingService
     from app.marvelous_base_powers import automatic_self_effect

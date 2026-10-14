@@ -458,6 +458,8 @@ class MarvelousCraftingDialog(QDialog):
                 self.talent.setCurrentIndex(index); self.add_contribution(); existing.add(entry['key'])
                 if entry['key'] == 'warp:space-talent:teleport-beacon-space':
                     self.base_power.setCurrentIndex(self.base_power.findData('warp:beacon'))
+                if entry['key'] == 'protection:advanced-talent:antimagic-aura':
+                    self.base_power.setCurrentIndex(self.base_power.findData('protection:ward'))
         # Required construction talents are part of the same draft; eligibility
         # still checks ownership and CL separately and never grants them to a PC.
         self.add_required_contributions()
