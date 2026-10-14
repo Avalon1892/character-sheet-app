@@ -15,6 +15,14 @@ def catalog():
     return json.loads(path.read_text(encoding='utf-8'))
 
 
+def crafting_drawbacks():
+    """Published item limitations, excluding section headings and Tinker rules."""
+    return tuple(dict(entry, sphere='Universal', category='Item Drawback')
+                 for entry in catalog().get('rules', []) if entry['kind'] == 'Crafting'
+                 and entry['category'] == 'Drawback'
+                 and entry['key'] not in {'crafting:drawbacks', 'crafting:general-drawbacks'})
+
+
 class OptionalTraditionService:
     def __init__(self, repository, character_id):
         self.repository, self.character_id = repository, character_id

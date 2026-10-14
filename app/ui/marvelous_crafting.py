@@ -7,7 +7,7 @@ from PySide6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QFormLayout,
     QTableWidget, QTableWidgetItem, QHeaderView, QDialogButtonBox, QCheckBox, QMessageBox, QDateEdit, QListWidget,
     QScrollArea, QWidget, QSizePolicy, QToolButton, QTabWidget)
 from app.catalogs import DEFAULT_CATALOG
-from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_remaining_uses, marvelous_price_formula, marvelous_complexity_formula
+from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_remaining_uses, marvelous_price_formula, marvelous_complexity_formula, marvelous_materials_formula
 from app.services.crafting import CraftingService
 from app.marvelous_base_powers import base_powers, resolve_base_power, automatic_self_effect, RANGES, DURATIONS
 
@@ -196,7 +196,7 @@ class MarvelousCraftingDialog(QDialog):
         self.remove_drawback_button.setEnabled(False)
         self.drawbacks_list.currentRowChanged.connect(lambda row: self.remove_drawback_button.setEnabled(row >= 0))
         self.remove_drawback_button.clicked.connect(self.remove_drawback)
-        drawback_notice = QLabel('Reductions require GM review. Published drawbacks default to −1 as a unique limitation, not a catalog-mandated discount. Unsupported restrictions make effect application manual.')
+        drawback_notice = QLabel('Reductions require GM review. Sphere limitations default to −1; crafting drawbacks default to 0. These are not catalog-mandated discounts. Unsupported restrictions make application manual.')
         drawback_notice.setWordWrap(True); drawback_notice.setMaximumWidth(260); right.addWidget(drawback_notice)
         self.review = QCheckBox('Construction prerequisites and sphere-specific costs have been reviewed with the GM')
         root.addWidget(self.review)
@@ -368,9 +368,11 @@ class MarvelousCraftingDialog(QDialog):
 
     def choose_drawbacks(self):
         from app.ui.marvelous_effect_picker import MarvelousEffectPicker
+        from app.optional_traditions import crafting_drawbacks
         entries = [entry for entry in DEFAULT_CATALOG.magic_entries()
                    if 'drawback' in entry.get('category', '').casefold()
                    and entry['sphere'] in {self.sphere.currentText(), 'Universal'}]
+        if not self.draft_effect: entries.extend(crafting_drawbacks())
         dialog = MarvelousEffectPicker(entries, self)
         dialog.setWindowTitle('Add item drawbacks'); dialog.catalog_heading.setText('ITEM DRAWBACKS — GM REVIEW REQUIRED')
         if dialog.exec() != QDialog.DialogCode.Accepted: return
@@ -378,7 +380,7 @@ class MarvelousCraftingDialog(QDialog):
         for entry in dialog.selected_entries:
             if entry['key'] not in existing:
                 self.drawbacks.append(dict(source='published', catalog_key=entry['key'], name=entry['name'],
-                                           description=entry.get('description', ''), reduction=1))
+                                           description=entry.get('description', ''), reduction=0 if entry['key'].startswith('crafting:') else 1))
                 existing.add(entry['key'])
         self.update_preview()
 
@@ -589,7 +591,8 @@ class MarvelousCraftingDialog(QDialog):
         try:
             complexity, price, quote = self.quotation()
             self.cost_formula.setText('Cost: ' + marvelous_price_formula(self.blueprint())
-                                      + '\nComplexity: ' + marvelous_complexity_formula(self.blueprint()))
+                                      + '\nComplexity: ' + marvelous_complexity_formula(self.blueprint())
+                                      + '\nMaterials: ' + marvelous_materials_formula(self.blueprint()))
             self.cost_formula.setToolTip('\n'.join(f'Power {index}: {marvelous_complexity_formula(power)}'
                 for index, power in enumerate([self.blueprint(), *self.extra_effects], 1)))
             self.refresh_item_card()

@@ -315,6 +315,33 @@ def test_warp_effect_sp_defaults_update_price_and_restore(composer, key, points)
     assert dialog.table.cellWidget(0, 4).value() == 0
 
 
+def test_crafting_drawbacks_are_available_and_expensive_updates_materials(composer, monkeypatch):
+    from app.optional_traditions import crafting_drawbacks
+    from app.ui.marvelous_effect_picker import MarvelousEffectPicker
+    from PySide6.QtWidgets import QDialog
+    from app.services.crafting import CraftingService
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Life'); dialog.cl.setValue(5)
+    entries = crafting_drawbacks()
+    assert entries and all(entry['key'] not in {'crafting:drawbacks', 'crafting:general-drawbacks'} for entry in entries)
+    entry = next(entry for entry in entries if entry['key'] == 'crafting:expensive')
+    def choose(picker):
+        assert 'crafting:expensive' in picker._entries_by_key
+        picker.selected_entries = (entry,)
+        return QDialog.DialogCode.Accepted
+    monkeypatch.setattr(MarvelousEffectPicker, 'exec', choose)
+    dialog.choose_drawbacks()
+    assert dialog.drawbacks[0]['reduction'] == 0
+    assert dialog.quotation()[1].market_price_gp == 2000 and dialog.quotation()[2].cost_gp == 1250
+    assert dialog.card_edits['construction_cost'].text() == '1,250.00 gp'
+    assert '× 1.25 (Expensive) = 1250 gp' in dialog.cost_formula.text()
+    iid = CraftingService(repo, cid).save_marvelous_design(dialog.blueprint(), name='Expensive design', slot='', description='')
+    reopened = MarvelousCraftingDialog(repo, cid, item_id=iid)
+    assert reopened.drawbacks[0]['description'] == entry['description']
+    assert reopened.quotation()[2].cost_gp == 1250
+    reopened.close()
+
+
 def test_live_price_and_cancel_no_writes(composer):
     dialog, repo, cid = composer
     before = repo._connection.total_changes

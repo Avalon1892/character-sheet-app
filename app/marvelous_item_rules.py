@@ -340,6 +340,9 @@ def quote_marvelous_blueprint(plan):
     if plan.get('no_space_limitation'):
         price = replace(price, market_price_gp=price.market_price_gp * 2)
     if plan.get('extra_effects'):
+        if any(row.get('source') == 'published' and row.get('catalog_key', '').startswith('crafting:')
+               for extra in plan['extra_effects'] for row in extra.get('drawbacks', [])):
+            raise ValueError('Crafting-specific drawbacks belong to the whole item, not individual powers.')
         primary = {key: value for key, value in plan.items() if key not in {'extra_effects', 'combination_mode', 'crafting_tradition'}}
         if any(extra.get('extra_effects') for extra in plan['extra_effects']):
             raise ValueError('Nested effect combinations are not supported.')
@@ -348,13 +351,17 @@ def quote_marvelous_blueprint(plan):
         price = replace(price, market_price_gp=combined['market_price_gp'])
     quote = marvelous_crafting_quote(price, plan['caster_level'])
     tradition = plan.get('crafting_tradition')
+    cheap = False
     if tradition is not None:
         if not isinstance(tradition, dict) or not isinstance(tradition.get('key'), str):
             raise ValueError('Crafting tradition requires a catalog identity.')
-        if tradition['key'] in {'crafting:city-construction', 'crafting:diviner-s-sight'}:
-            materials, selling = tradition_costs(price.market_price_gp, cheap=True)
-            price = replace(price, market_price_gp=selling)
-            quote = replace(quote, cost_gp=float(materials))
+        cheap = tradition['key'] in {'crafting:city-construction', 'crafting:diviner-s-sight'}
+    expensive = any(record['source'] == 'published' and record.get('catalog_key') == 'crafting:expensive'
+                    for record in plan.get('drawbacks', []))
+    if cheap or expensive:
+        materials, selling = tradition_costs(price.market_price_gp, cheap=cheap, expensive=expensive)
+        price = replace(price, market_price_gp=selling)
+        quote = replace(quote, cost_gp=float(materials))
     return complexity, price, quote
 
 
@@ -425,6 +432,15 @@ def marvelous_complexity_formula(plan):
              ('drawbacks', -drawback_complexity(plan.get('drawbacks', [])))]
     rendered = '1 base' + ''.join(f" {'+' if value > 0 else '−'} {abs(value)} {label}" for label, value in terms[1:] if value)
     return f'max(1, {rendered}) = {complexity}'
+
+
+def marvelous_materials_formula(plan):
+    """Explain the construction materials separately from selling price."""
+    _, price, quote = quote_marvelous_blueprint(plan)
+    expensive = any(row.get('source') == 'published' and row.get('catalog_key') == 'crafting:expensive'
+                    for row in plan.get('drawbacks', []))
+    factor = ' × 1.25 (Expensive)' if expensive else ''
+    return f'{price.market_price_gp} gp ÷ 2{factor} = {float(quote.cost_gp):g} gp'
 
 
 def marvelous_price_formula(plan):

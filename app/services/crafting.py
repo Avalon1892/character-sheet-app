@@ -137,10 +137,12 @@ class CraftingService:
             raise ValueError('A Marvelous Item creation feat is required.')
         plan = deepcopy(plan)
         from app.marvelous_item_rules import drawback_complexity
+        from app.optional_traditions import crafting_drawbacks
+        item_drawbacks = {entry['key']: entry for entry in crafting_drawbacks()}
         drawback_complexity(plan.get('drawbacks', []))
         for record in plan.get('drawbacks', []):
             if record['source'] == 'published':
-                entry = self.magic_entries_by_key.get(record['catalog_key'])
+                entry = self.magic_entries_by_key.get(record['catalog_key']) or item_drawbacks.get(record['catalog_key'])
                 if entry is None or 'drawback' not in entry.get('category', '').casefold():
                     raise ValueError('Unknown published item drawback.')
                 if entry['sphere'] not in {plan['sphere'], 'Universal'}:

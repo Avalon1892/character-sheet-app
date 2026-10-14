@@ -5,6 +5,24 @@ from app.marvelous_item_rules import effect_complexity, marvelous_crafting_quote
 from app.marvelous_item_rules import marvelous_requirements
 
 
+def test_expensive_item_drawback_changes_materials_not_price_and_rejects_cheap():
+    from app.marvelous_item_rules import quote_marvelous_blueprint
+    from app.marvelous_base_powers import automatic_self_effect
+    plan = dict(schema_version=1, sphere='Life', base_power='life:cure', caster_level=5,
+                uses=1, range_steps=0, duration_steps=0, activation='standard', unique_changes=0,
+                contributions=[], drawbacks=[dict(source='published', catalog_key='crafting:expensive', name='Expensive', reduction=0)])
+    _, price, quote = quote_marvelous_blueprint(plan)
+    assert price.market_price_gp == 2000 and quote.cost_gp == 1250
+    assert automatic_self_effect(plan) == 'cure'
+    plan['extra_effects'] = [{key: value for key, value in plan.items() if key != 'drawbacks'}]
+    assert quote_marvelous_blueprint(plan)[2].cost_gp == 3125
+    plan['extra_effects'][0]['drawbacks'] = list(plan['drawbacks'])
+    with pytest.raises(ValueError, match='whole item'): quote_marvelous_blueprint(plan)
+    plan.pop('extra_effects')
+    plan['crafting_tradition'] = {'key': 'crafting:diviner-s-sight'}
+    with pytest.raises(ValueError, match='mutually exclusive'): quote_marvelous_blueprint(plan)
+
+
 def test_complexity_formula_exposes_sp_alternatives_and_reductions():
     from app.marvelous_item_rules import marvelous_complexity_formula, quote_marvelous_blueprint
     plan = dict(schema_version=1, caster_level=20, uses=1, range_steps=1, duration_steps=-1,
