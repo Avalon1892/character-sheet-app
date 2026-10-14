@@ -200,6 +200,11 @@ def test_selectivity_sphere_dialog_cancel_save_reopen_and_live_preview(composer,
     dialog.table.selectRow(0)
     mode = dialog.table.cellWidget(0, 5); mode.setCurrentIndex(mode.findData('only'))
     assert dialog.effect_options.isEnabled()
+    assert not dialog.effect_options.isHidden()
+    dialog.table.selectRow(1)
+    assert dialog.effect_options.isHidden()
+    dialog.table.selectRow(0)
+    assert not dialog.effect_options.isHidden()
     before = repo._connection.total_changes
     monkeypatch.setattr(QDialog, 'exec', lambda child: QDialog.DialogCode.Rejected)
     dialog.choose_selectivity_spheres()

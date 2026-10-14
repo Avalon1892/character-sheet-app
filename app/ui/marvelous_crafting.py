@@ -127,6 +127,7 @@ class MarvelousCraftingDialog(QDialog):
         remove = QPushButton('Remove selected contribution'); left.addWidget(remove)
         self.effect_options = QPushButton('Choose affected spheres…'); left.addWidget(self.effect_options)
         self.effect_options.setEnabled(False)
+        self.effect_options.hide()
         self.effect_options.clicked.connect(self.choose_selectivity_spheres)
         self.table.itemSelectionChanged.connect(self.refresh_effect_options)
         self.add_prerequisites = QPushButton('Add required talents'); left.addWidget(self.add_prerequisites)
@@ -525,6 +526,7 @@ class MarvelousCraftingDialog(QDialog):
         item = self.table.item(row, 0) if row >= 0 else None
         self.effect_options.setEnabled(bool(item and item.data(Qt.ItemDataRole.UserRole)
                                        == 'protection:advanced-talent:spell-selectivity-dbh'))
+        self.effect_options.setVisible(self.effect_options.isEnabled())
 
     def choose_selectivity_spheres(self):
         from PySide6.QtCore import Qt
