@@ -41,6 +41,9 @@ def main():
             dialog.show(); settle(app)
             if not dialog.grab().save(str(output / f'{theme}.png')):
                 raise RuntimeError('Could not render composer.')
+            dialog.resize(1100, 720); settle(app)
+            if not dialog.grab().save(str(output / f'{theme}-compact.png')):
+                raise RuntimeError('Could not render compact composer.')
             dialog.close(); dialog.deleteLater(); settle(app)
             for kind, window in [('activation', MarvelousItemUseDialog(repository, cid)),
                                  ('project', MarvelousProjectDialog(repository, cid, item_id))]:

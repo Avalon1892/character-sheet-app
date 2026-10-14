@@ -192,6 +192,25 @@ def test_choosing_advanced_warp_effect_adds_required_chain(composer, monkeypatch
     assert repo._connection.total_changes == before
 
 
+@pytest.mark.parametrize('theme', ['classic', 'dark'])
+def test_designer_compact_layout_keeps_card_and_formula_in_window(composer, theme):
+    from app.ui.dialog_theme import dialog_stylesheet
+    from PySide6.QtCore import QPoint
+    dialog, repo, cid = composer
+    dialog.setStyleSheet(dialog_stylesheet(theme))
+    dialog.resize(1100, 720); dialog.show(); QApplication.instance().processEvents()
+    for widget in (dialog.cost_formula, dialog.card_locks['price'], dialog.drawbacks_button, dialog.save):
+        corner = widget.mapTo(dialog, QPoint(widget.width() - 1, widget.height() - 1))
+        assert dialog.rect().contains(corner)
+    assert not dialog.settings_panel.isVisible()
+    dialog.settings_toggle.click(); QApplication.instance().processEvents()
+    assert dialog.settings_panel.isVisible()
+    assert dialog.controls_scroll.verticalScrollBar().maximum() > 0
+    corner = dialog.cost_formula.mapTo(dialog, QPoint(dialog.cost_formula.width() - 1, dialog.cost_formula.height() - 1))
+    assert dialog.rect().contains(corner)
+    dialog.hide()
+
+
 def test_live_price_and_cancel_no_writes(composer):
     dialog, repo, cid = composer
     before = repo._connection.total_changes
