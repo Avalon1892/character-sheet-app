@@ -58,6 +58,14 @@ DURATIONS = ('round', 'minute', 'ten-minutes', 'hour')
 
 # Reviewed Ultimate blast types: name, damage, die size, additional SP.
 DESTRUCTION_BLAST_TYPES = {
+    'destruction:blast-type-talent:adhesive-blast-blast-type-acid': ('Adhesive Blast', 'acid', 6, 0),
+    'destruction:blast-type-talent:alkali-blast-blast-type-acid': ('Alkali Blast', 'acid', 4, 0),
+    'destruction:blast-type-talent:attracting-blast-blast-type-electric-lg': ('Attracting Blast', 'electricity', 6, 0),
+    'destruction:blast-type-talent:battering-blast-blast-type-stone': ('Battering Blast', 'bludgeoning', 4, 0),
+    'destruction:blast-type-talent:blistering-blast-blast-type-fire': ('Blistering Blast', 'fire', 6, 0),
+    'destruction:blast-type-talent:drowning-blast-blast-type-cold': ('Drowning Blast', 'bludgeoning', 6, 1),
+    'destruction:blast-type-talent:living-crystal-blast-blast-type-crystal': ('Living Crystal Blast', 'piercing', 6, 1),
+    'destruction:blast-type-talent:numbing-blast-blast-type-cold': ('Numbing Blast', 'cold', 6, 0),
     'destruction:blast-type-talent:acid-blast-blast-type-acid': ('Acid Blast', 'acid', 6, 0),
     'destruction:blast-type-talent:crystal-blast-blast-type-crystal': ('Crystal Blast', 'piercing', 4, 0),
     'destruction:blast-type-talent:electric-blast-blast-type-electricity': ('Electric Blast', 'electricity', 6, 0),
@@ -345,6 +353,7 @@ def resolve_base_power(plan):
         summary['damage_dice'] = cl if boost else cl // 2
         profile = destructive_blast_profile(plan)
         if profile is None:
+            summary['power'] = 'Modified destructive blast — manual resolution'
             summary['damage'] = 'Selected modifications require manual damage/type resolution.'
         else:
             name, damage_type, sides, _ = profile

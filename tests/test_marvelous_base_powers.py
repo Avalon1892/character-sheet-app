@@ -71,6 +71,10 @@ def test_spell_ward_modes_and_antimagic_upgrade_descriptors():
     ('acid-blast-blast-type-acid', 'acid', 6), ('crystal-blast-blast-type-crystal', 'piercing', 4),
     ('electric-blast-blast-type-electricity', 'electricity', 6), ('fire-blast-blast-type-fire', 'fire', 6),
     ('force-blast-blast-type-force', 'force', 6), ('frost-blast-blast-type-cold', 'cold', 6),
+    ('adhesive-blast-blast-type-acid', 'acid', 6), ('alkali-blast-blast-type-acid', 'acid', 4),
+    ('attracting-blast-blast-type-electric-lg', 'electricity', 6), ('battering-blast-blast-type-stone', 'bludgeoning', 4),
+    ('blistering-blast-blast-type-fire', 'fire', 6), ('drowning-blast-blast-type-cold', 'bludgeoning', 6),
+    ('living-crystal-blast-blast-type-crystal', 'piercing', 6), ('numbing-blast-blast-type-cold', 'cold', 6),
 ])
 def test_reviewed_blast_type_changes_damage_projection(suffix, kind, sides):
     from app.content import magic_entry
@@ -85,6 +89,17 @@ def test_reviewed_blast_type_changes_damage_projection(suffix, kind, sides):
     blueprint['contributions'][0]['alternative'] = True
     assert automatic_damage_dice(blueprint) is None
     assert 'manual' in resolve_base_power(blueprint)['damage']
+    assert 'Bludgeoning' not in resolve_base_power(blueprint)['power']
+
+
+@pytest.mark.parametrize('suffix', ['drowning-blast-blast-type-cold', 'living-crystal-blast-blast-type-crystal'])
+def test_reviewed_paid_blast_profiles_supply_additional_sp(suffix):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_construction_spell_points, talent_construction_cost
+    entry = magic_entry('destruction:blast-type-talent:' + suffix)
+    points = talent_construction_spell_points(entry)
+    assert points == 1
+    assert talent_construction_cost(entry, additional_spell_points=points) == 2
 
 
 def test_beacon_placement_range_duration_and_required_contribution():
