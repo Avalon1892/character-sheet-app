@@ -25,8 +25,11 @@ def test_live_price_and_cancel_no_writes(composer):
     dialog.cl.setValue(5)
     dialog.range_steps.setValue(1)
     assert dialog.quotation()[1].market_price_gp == 4000
+    assert '400 gp × 5 (CL) × 2 (complexity)' in dialog.cost_formula.text()
+    assert '4000 gp' in dialog.cost_formula.text()
     dialog.uses.setCurrentIndex(4)
     assert dialog.quotation()[1].market_price_gp == 20000
+    assert 'unlimited' in dialog.cost_formula.text() and '20000 gp' in dialog.cost_formula.text()
     dialog.reject()
     assert repo._connection.total_changes == before
     assert not repo.list_equipment(cid)

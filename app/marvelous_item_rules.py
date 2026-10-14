@@ -343,6 +343,20 @@ def quote_marvelous_effects(plans, *, mode='multiple'):
                 crafting=marvelous_crafting_quote(combined, cl), mode=mode)
 
 
+def marvelous_price_formula(plan):
+    """Readable live formula from the authoritative quote, not a second calculator."""
+    complexity, price, _ = quote_marvelous_blueprint(plan)
+    if plan.get('extra_effects'):
+        primary = {key: value for key, value in plan.items() if key not in {'extra_effects', 'combination_mode'}}
+        amounts = [quote_marvelous_blueprint(power)[1].market_price_gp for power in [primary, *plan['extra_effects']]]
+        highest = max(amounts)
+        factor = '2' if plan.get('combination_mode') == 'mixed' else '1.5'
+        return f'{highest} + ({sum(amounts)} − {highest}) × {factor} = {price.market_price_gp} gp'
+    usage = '2.5 (50 total uses)' if plan['uses'] == 50 else f"{plan['uses']}" + (' (unlimited)' if plan['uses'] == 5 else ' (daily uses)')
+    slot = ' × 2 (slotless)' if plan.get('no_space_limitation') else ''
+    return f"400 gp × {plan['caster_level']} (CL) × {complexity} (complexity) × {usage}{slot} = {price.market_price_gp} gp"
+
+
 def marvelous_crafting_quote(price: MarvelousItemPrice, caster_level: int, *,
                               missing_talents=0, adventuring=False,
                               distracting=False, requirements=None) -> CraftingQuote:

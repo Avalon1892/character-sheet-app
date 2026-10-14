@@ -5,6 +5,21 @@ from app.marvelous_item_rules import effect_complexity, marvelous_crafting_quote
 from app.marvelous_item_rules import marvelous_requirements
 
 
+def test_live_formula_reports_slotless_limited_and_combined_quotes():
+    from app.marvelous_item_rules import marvelous_price_formula
+    plan = dict(schema_version=1, caster_level=5, uses=50, range_steps=0,
+                duration_steps=0, activation='standard', unique_changes=0,
+                contributions=[], no_space_limitation=True)
+    formula = marvelous_price_formula(plan)
+    assert '2.5 (50 total uses) × 2 (slotless)' in formula and '= 10000 gp' in formula
+    plan.update(uses=1, no_space_limitation=False,
+                extra_effects=[dict(schema_version=1, caster_level=5, uses=1, range_steps=0,
+                                    duration_steps=0, activation='standard', unique_changes=0, contributions=[])])
+    assert marvelous_price_formula(plan) == '2000 + (4000 − 2000) × 1.5 = 5000 gp'
+    plan['combination_mode'] = 'mixed'
+    assert marvelous_price_formula(plan) == '2000 + (4000 − 2000) × 2 = 6000 gp'
+
+
 def test_base_and_use_modes():
     quote = marvelous_item_price(3, 2)
     assert (quote.market_price_gp, quote.save_dc, quote.daily_uses) == (2400, 11, 1)

@@ -6,7 +6,7 @@ from PySide6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QFormLayout,
     QLineEdit, QTextEdit, QTextBrowser, QComboBox, QSpinBox, QLabel, QPushButton,
     QTableWidget, QTableWidgetItem, QHeaderView, QDialogButtonBox, QCheckBox, QMessageBox, QDateEdit)
 from app.catalogs import DEFAULT_CATALOG
-from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_remaining_uses
+from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_remaining_uses, marvelous_price_formula
 from app.services.crafting import CraftingService
 from app.marvelous_base_powers import base_powers, resolve_base_power, automatic_self_effect, RANGES, DURATIONS
 
@@ -117,6 +117,9 @@ class MarvelousCraftingDialog(QDialog):
         self.review = QCheckBox('Construction prerequisites and sphere-specific costs have been reviewed with the GM')
         root.addWidget(self.review)
         self.result = QLabel(); root.addWidget(self.result)
+        self.cost_formula = QLabel(); self.cost_formula.setWordWrap(True)
+        self.cost_formula.setToolTip('Market price uses the live rules quote. Complexity includes talents, additional SP, range, duration, activation and reviewed adjustments. Materials are half market price before tradition adjustments.')
+        root.addWidget(self.cost_formula)
         buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Cancel)
         self.feats_button = buttons.addButton('Integrate feats…', QDialogButtonBox.ButtonRole.ActionRole)
         self.feats_button.clicked.connect(self.edit_feat_integrations)
@@ -349,6 +352,7 @@ class MarvelousCraftingDialog(QDialog):
         self.add_prerequisites.setEnabled(bool(missing_construction_prerequisites(self.blueprint()['contributions'])))
         try:
             complexity, price, quote = self.quotation()
+            self.cost_formula.setText('Cost: ' + marvelous_price_formula(self.blueprint()))
             effect = resolve_base_power(self.blueprint())
             automatic = automatic_self_effect(self.blueprint())
             automation_notice = ('Activation can heal a living self, including nonlethal damage.' if automatic == 'cure'
@@ -360,7 +364,7 @@ class MarvelousCraftingDialog(QDialog):
             for plan in self.extra_effects:
                 extra = self.service.marvelous_plan_requirements(plan, access=self.crafting_access)
                 extra_review += f'<p><b>{escape(plan["sphere"])} — {escape(resolve_base_power(plan)["power"])}:</b> ' + escape('; '.join(extra.blockers + extra.bypassed) or 'Baseline access present.') + '</p>'
-            self.result.setText(f'Market price {float(price.market_price_gp):,.2f} gp · Materials {float(quote.cost_gp):,.2f} gp · Craft DC {quote.dc} · {quote.days} days · Save DC {price.save_dc}')
+            self.result.setText(f'Market price {float(price.market_price_gp):,.2f} gp · Materials {float(quote.cost_gp):,.2f} gp · Craft DC {quote.dc} · Save DC {price.save_dc}')
             self.preview.setHtml(f'<h2>{escape(self.name.text())}</h2><p>{escape(self.sphere.currentText())} · Complexity {complexity}</p>'
                 f'<p>{escape(self.description.toPlainText())}</p><h3>Calculated base effect</h3>'
                 + ''.join(f'<p><b>{escape(key.title())}:</b> {escape(value)}</p>' for key, value in effect_detail_lines(effect))
@@ -375,6 +379,7 @@ class MarvelousCraftingDialog(QDialog):
             permitted = bool(feats.intersection({'craft marvelous item', 'craft wondrous item'}))
             self.save.setEnabled(permitted and self.review.isChecked() and bool(self.name.text().strip()))
         except ValueError as error:
+            self.cost_formula.setText('Cost: invalid design — ' + str(error))
             self.result.setText(str(error)); self.save.setEnabled(False)
 
     def save_item(self):
