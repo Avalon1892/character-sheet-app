@@ -28,6 +28,17 @@ def test_item_block_escapes_manual_html():
     assert '&lt;script&gt;' in html and '&lt;img src=x&gt;<br>Second line' in html
 
 
+def test_custom_prose_keeps_live_effect_summary_until_description_is_locked():
+    plan = blueprint()
+    fields = item_card_fields(plan, name='Gem', slot='', description='A small red gem.')
+    assert fields['description'].startswith('A small red gem.')
+    assert 'Healing: 1d8+5' in fields['description']
+    plan['caster_level'] = 8
+    assert 'Healing: 1d8+8' in item_card_fields(plan, name='Gem', slot='', description='A small red gem.')['description']
+    plan['display_overrides'] = {'description': dict(locked=True, value='Fully manual effect')}
+    assert item_card_fields(plan, name='Gem', slot='', description='Other prose')['description'] == 'Fully manual effect'
+
+
 def test_tradition_rules_appear_in_item_description_without_overriding_lock():
     plan = blueprint()
     plan['crafting_tradition'] = dict(key='crafting:diviner-s-sight', name='Diviner’s Sight',
@@ -55,12 +66,14 @@ def test_activation_requirement_values_update_without_overwriting_description_lo
 def test_multiple_powers_show_each_limit_description_and_child_locks():
     plan = blueprint()
     extra = dict(blueprint(), uses=50, effect_name='Reserve cure', effect_description='<custom> reserve effect',
-                 display_overrides={'duration': dict(locked=True, value='Reviewed duration')})
+                 display_overrides={'duration': dict(locked=True, value='Reviewed duration'),
+                                    'caster_level': dict(locked=True, value='Reviewed CL')})
     plan['extra_effects'] = [extra]
     fields = item_card_fields(plan, name='Dual gem', slot='', description='Primary text')
     assert 'Independent' in fields['uses']
     assert '1/day' in fields['description'] and '50 total activations' in fields['description']
     assert 'Reserve cure' in fields['description'] and 'Reviewed duration' in fields['description']
+    assert 'CL: Reviewed CL' in fields['description'] and 'Healing: 1d8+5' in fields['description']
     assert '&lt;custom&gt;' in item_card_html(fields)
     assert 'Power 2:' in fields['construction_requirements']
     plan['combination_mode'] = 'mixed'

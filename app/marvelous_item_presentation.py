@@ -29,8 +29,9 @@ def item_card_fields(plan, *, name, slot, description):
                   price=f'{float(price.market_price_gp):,.2f} gp',
                   construction_cost=f'{float(quote.cost_gp):,.2f} gp',
                   construction_requirements=f"Craft Marvelous Item (or Craft Wondrous Item); {plan['sphere']} sphere; permanent CL {plan['caster_level']}",
-                  description=description or '\n'.join(f'{key.replace("_", " ").title()}: {value}'
-                      for key, value in effect.items() if isinstance(value, (str, int))))
+                  description=(description + '\n\n' if description else '') + '\n'.join(
+                      f'{key.replace("_", " ").title()}: {value}' for key, value in effect.items()
+                      if isinstance(value, (str, int)) and key not in {'range', 'duration', 'caster_level', 'save_dc'}))
     from app.content import magic_entry
     for contribution in plan.get('contributions', []):
         entry = magic_entry(contribution['catalog_key'])
@@ -66,7 +67,7 @@ def item_card_fields(plan, *, name, slot, description):
                 raise ValueError('Additional power name and description must be text.')
             child = item_card_fields(extra, name=effect_name, slot=slot, description=effect_description)
             values['description'] += (f'\n\nPower {index} — {child["name"]}\n'
-                f'Activation: {child["activation"]}; Uses: {child["uses"]}; Range: {child["range"]}; '
+                f'CL: {child["caster_level"]}; Activation: {child["activation"]}; Uses: {child["uses"]}; Range: {child["range"]}; '
                 f'Duration: {child["duration"]}; Save DC: {child["save_dc"]}\n{child["description"]}')
             values['construction_requirements'] += f'\nPower {index}: {child["construction_requirements"]}'
     validate_display_overrides(records)
