@@ -113,6 +113,13 @@ def marvelous_item_price(caster_level: int, complexity: int | Fraction, *, daily
 
 # Reviewed construction prerequisites use catalog identities, never prose parsing.
 ADVANCED_CONSTRUCTION_REQUIREMENTS = {
+    'protection:advanced-talent:adaptation-aegis': (10, ('protection:aegis-ward-talent:energy-resistance-aegis-ward',)),
+    'protection:advanced-talent:antimagic-aura': (10, ('protection:aegis-ward-talent:spell-ward-aegis-ward',)),
+    'protection:advanced-talent:automatic-fortification-3pp': (5, ('protection:talent:fortifier-3pp',)),
+    'protection:advanced-talent:complex-glyph': (5, ('protection:talent:glyph',)),
+    'protection:advanced-talent:improved-negation-3pp': (10, ('protection:succor-talent:negation-succor-3pp',)),
+    'protection:advanced-talent:layered-glyph-3pp': (0, ('protection:talent:glyph',)),
+    'protection:advanced-talent:mobile-ward-alienist-hb': (5, ()),
     'warp:advanced-talent:true-teleport': (10, ('warp:talent:distant-teleport', 'warp:talent:unseeing-teleport')),
     'warp:advanced-talent:flawless-teleport-utility': (15, ('warp:talent:distant-teleport',
         'warp:advanced-talent:true-teleport', 'warp:talent:unseeing-teleport')),
@@ -161,6 +168,9 @@ def advanced_construction_blockers(contributions, caster_level, *, display_names
     keys = {row['catalog_key'] for row in contributions}
     blockers = []
     names = display_names or {}
+    if {'protection:advanced-talent:mobile-ward-alienist-hb',
+            'protection:advanced-talent:permanent-ward'} <= keys:
+        blockers.append('Mobile Ward cannot benefit from Permanent Ward in the same effect.')
     for key in sorted(keys):
         requirement = ADVANCED_CONSTRUCTION_REQUIREMENTS.get(key)
         if requirement is None: continue
@@ -232,6 +242,8 @@ def talent_construction_spell_points(entry):
         'warp:advanced-talent:planeshift': 2,
         'warp:advanced-talent:portal': 1,
         'warp:advanced-talent:enduring-portal': 1,
+        'protection:advanced-talent:antimagic-aura': 1,
+        'protection:advanced-talent:automatic-fortification-3pp': 1,
     }.get(entry.get('key'), 0)
 
 

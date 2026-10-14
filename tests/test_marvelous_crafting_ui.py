@@ -486,11 +486,14 @@ def test_restore_mode_is_explicit_saved_and_cleared_for_other_powers(composer):
     assert dialog.blueprint()['restore_mode'] == ''
 
 
-def test_composer_adds_reviewed_prerequisites_without_duplicates_or_writes(composer):
+@pytest.mark.parametrize('sphere,key', [
+    ('Life', 'life:advanced-talent:resurrection-supreme-warden'),
+    ('Protection', 'protection:advanced-talent:antimagic-aura'),
+])
+def test_composer_adds_reviewed_prerequisites_without_duplicates_or_writes(composer, sphere, key):
     from app.marvelous_item_rules import advanced_construction_blockers
     dialog, repo, cid = composer
-    dialog.sphere.setCurrentText('Life'); dialog.cl.setValue(20)
-    key = 'life:advanced-talent:resurrection-supreme-warden'
+    dialog.sphere.setCurrentText(sphere); dialog.cl.setValue(20)
     index = next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key)
     dialog.talent.setCurrentIndex(index); dialog.add_contribution()
     before = repo._connection.total_changes
@@ -502,6 +505,8 @@ def test_composer_adds_reviewed_prerequisites_without_duplicates_or_writes(compo
     assert not dialog.add_prerequisites.isEnabled() and repo._connection.total_changes == before
     dialog.add_required_contributions()
     assert dialog.blueprint()['contributions'] == contributions
+    if sphere == 'Protection':
+        assert contributions[0]['additional_spell_points'] == 1
 
 
 def test_mythic_crafter_advanced_default_uses_existing_feature_access(composer):

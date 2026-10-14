@@ -46,6 +46,8 @@ The user's latest priority is the designer, not construction-calendar automation
 
 ## Required next (current remaining work)
 
+Protection follow-up: added seven reviewed construction prerequisite/minimum-CL mappings (Adaptation, Antimagic Aura, Automatic Fortification, Complex Glyph, Improved Negation, Layered Glyph, Mobile Ward), using existing catalog IDs and draft prerequisite insertion. Antimagic Aura and Automatic Fortification default to one additional SP. Mobile Ward with Permanent Ward in the same effect is blocked per published errata. Arcforge alternative-prerequisite versions and variant-dependent SP costs are not covered by these mappings. Source: https://spheresofpower.wikidot.com/protection. Tests cover catalog identity, missing/present prerequisites, minimum CL, SP defaults, duplicate prevention and no database writes during draft insertion.
+
 Desktop deployment checkpoint (2026-10-14): installed the current designer through commit 54a1dcd, backed up changed runtime files and the live database, verified copied file hashes, and passed the installed smoke test with disposable data. Portable was not rebuilt.
 
 Follow-up: shared blueprint quoting now rejects published Fragile with City Construction or Evil Artifice, whose Resilient boon is incompatible. Custom limitations with similar names are not interpreted as published rules. Source: https://spheresofpower.wikidot.com/magical-items. Focused pricing/designer validation is recorded in the next commit report.

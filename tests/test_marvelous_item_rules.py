@@ -92,6 +92,40 @@ def test_live_formula_reports_slotless_limited_and_combined_quotes():
     assert marvelous_price_formula(plan) == '2000 + (4000 − 2000) × 2 = 6000 gp'
 
 
+@pytest.mark.parametrize('suffix,minimum,required,points', [
+    ('adaptation-aegis', 10, 'protection:aegis-ward-talent:energy-resistance-aegis-ward', 0),
+    ('antimagic-aura', 10, 'protection:aegis-ward-talent:spell-ward-aegis-ward', 1),
+    ('automatic-fortification-3pp', 5, 'protection:talent:fortifier-3pp', 1),
+    ('complex-glyph', 5, 'protection:talent:glyph', 0),
+    ('improved-negation-3pp', 10, 'protection:succor-talent:negation-succor-3pp', 0),
+    ('layered-glyph-3pp', 0, 'protection:talent:glyph', 0),
+    ('mobile-ward-alienist-hb', 5, None, 0),
+])
+def test_reviewed_protection_construction_requirements(suffix, minimum, required, points):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import (missing_construction_prerequisites,
+        advanced_construction_blockers, talent_construction_spell_points)
+    key = 'protection:advanced-talent:' + suffix
+    rows = [dict(catalog_key=key)]
+    assert magic_entry(key) is not None
+    assert missing_construction_prerequisites(rows) == ((required,) if required else ())
+    if required:
+        assert magic_entry(required) is not None
+        assert advanced_construction_blockers(rows, max(1, minimum))
+        rows.append(dict(catalog_key=required))
+    assert not advanced_construction_blockers(rows, max(1, minimum))
+    if minimum:
+        assert advanced_construction_blockers(rows, minimum - 1)
+    assert talent_construction_spell_points(magic_entry(key)) == points
+
+
+def test_mobile_and_permanent_ward_cannot_be_integrated_together():
+    from app.marvelous_item_rules import advanced_construction_blockers
+    rows = [dict(catalog_key='protection:advanced-talent:' + suffix)
+            for suffix in ('mobile-ward-alienist-hb', 'permanent-ward')]
+    assert any('cannot benefit' in issue for issue in advanced_construction_blockers(rows, 20))
+
+
 def test_cheap_tradition_applies_once_to_combined_design():
     from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_price_formula
     base = dict(schema_version=1, caster_level=5, uses=1, range_steps=0,
