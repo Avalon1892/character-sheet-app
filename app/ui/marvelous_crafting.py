@@ -5,7 +5,7 @@ import json
 from PySide6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QFormLayout,
     QLineEdit, QTextEdit, QTextBrowser, QComboBox, QSpinBox, QLabel, QPushButton,
     QTableWidget, QTableWidgetItem, QHeaderView, QDialogButtonBox, QCheckBox, QMessageBox, QDateEdit, QListWidget,
-    QScrollArea, QWidget, QSizePolicy, QToolButton, QTabWidget)
+    QScrollArea, QWidget, QSizePolicy, QToolButton, QTabWidget, QAbstractItemView)
 from app.catalogs import DEFAULT_CATALOG
 from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_remaining_uses, marvelous_price_formula, marvelous_complexity_formula, marvelous_materials_formula
 from app.services.crafting import CraftingService
@@ -125,6 +125,10 @@ class MarvelousCraftingDialog(QDialog):
             self.table.setColumnWidth(column, width)
         left.addWidget(self.table, 1)
         remove = QPushButton('Remove selected contribution'); left.addWidget(remove)
+        self.effect_options = QPushButton('Choose affected spheres…'); left.addWidget(self.effect_options)
+        self.effect_options.setEnabled(False)
+        self.effect_options.clicked.connect(self.choose_selectivity_spheres)
+        self.table.itemSelectionChanged.connect(self.refresh_effect_options)
         self.add_prerequisites = QPushButton('Add required talents'); left.addWidget(self.add_prerequisites)
         self.add_prerequisites.setToolTip('Adds only missing reviewed construction prerequisites. Verify additional SP costs and required choices; item caster level is unchanged.')
         self.add_prerequisites.clicked.connect(self.add_required_contributions)
@@ -284,6 +288,8 @@ class MarvelousCraftingDialog(QDialog):
             self.table.cellWidget(row, 4).setValue(extra_sp)
             choice = self.table.cellWidget(row, 5)
             choice.setCurrentIndex(max(0, choice.findData(contribution.get('effect_choice', ''))))
+            from PySide6.QtCore import Qt
+            self.table.item(row, 0).setData(Qt.ItemDataRole.UserRole + 1, contribution.get('effect_spheres', []))
             self.table.cellWidget(row, 2).setChecked(contribution.get('alternative', False))
             self.table.cellWidget(row, 3).setValue(contribution.get('alternative_group', 1))
         self.loading_plan = False
@@ -507,6 +513,44 @@ class MarvelousCraftingDialog(QDialog):
         self.table.resizeRowsToContents()
         self.update_preview()
 
+    def refresh_effect_options(self):
+        from PySide6.QtCore import Qt
+        row = self.table.currentRow()
+        item = self.table.item(row, 0) if row >= 0 else None
+        self.effect_options.setEnabled(bool(item and item.data(Qt.ItemDataRole.UserRole)
+                                       == 'protection:advanced-talent:spell-selectivity-dbh'))
+
+    def choose_selectivity_spheres(self):
+        from PySide6.QtCore import Qt
+        self.refresh_effect_options()
+        if not self.effect_options.isEnabled(): return
+        row = self.table.currentRow()
+        item = self.table.item(row, 0)
+        selected = set(item.data(Qt.ItemDataRole.UserRole + 1) or [])
+        maximum = 1 + self.cl.value() // 5
+        dialog = QDialog(self); dialog.setWindowTitle('Spell Selectivity — affected spheres'); dialog.resize(460, 560)
+        layout = QVBoxLayout(dialog)
+        count = QLabel(); layout.addWidget(count)
+        picker = QListWidget(); picker.setObjectName('selectivitySpheres')
+        picker.setSelectionMode(QAbstractItemView.SelectionMode.MultiSelection)
+        for sphere in sorted(DEFAULT_CATALOG.magic_spheres(), key=lambda entry: entry['name'].casefold()):
+            picker.addItem(sphere['name'])
+            picker.item(picker.count() - 1).setSelected(sphere['name'] in selected)
+        layout.addWidget(picker, 1)
+        buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
+        layout.addWidget(buttons)
+        def refresh():
+            number = len(picker.selectedItems())
+            count.setText(f'{number} selected · choose 1–{maximum} spheres')
+            buttons.button(QDialogButtonBox.StandardButton.Ok).setEnabled(1 <= number <= maximum)
+        picker.itemSelectionChanged.connect(refresh); refresh()
+        buttons.accepted.connect(dialog.accept); buttons.rejected.connect(dialog.reject)
+        if dialog.exec() != QDialog.DialogCode.Accepted: return
+        names = [entry.text() for entry in picker.selectedItems()]
+        if not 1 <= len(names) <= maximum: return
+        item.setData(Qt.ItemDataRole.UserRole + 1, names)
+        self.update_preview()
+
     def edit_feat_integrations(self):
         available = [self.service.integration_feats[name] for name in sorted(self.service.integration_feats)]
         dialog = MarvelousFeatDialog(available, self.feat_integrations, self)
@@ -574,6 +618,7 @@ class MarvelousCraftingDialog(QDialog):
                          for r in range(self.table.rowCount())]
         for r, contribution in enumerate(contributions):
             if choice := self.table.cellWidget(r, 5).currentData(): contribution['effect_choice'] = choice
+            if names := self.table.item(r, 0).data(Qt.ItemDataRole.UserRole + 1): contribution['effect_spheres'] = list(names)
         return dict(schema_version=1, sphere=self.sphere.currentText(), caster_level=self.cl.value(),
                     base_power=self.base_power.currentData(),
                     activation=self.activation.currentData(), uses=self.uses.currentData(),

@@ -116,6 +116,13 @@ class CraftingService:
                     raise ValueError('Selected talent is not part of the blueprint base sphere.')
                 required.append(entry['name'])
                 if 'advanced' in str(entry.get('category', '')).casefold(): advanced.append(entry['name'])
+            from app.marvelous_item_rules import spell_selectivity_options
+            if options := spell_selectivity_options(power):
+                if not options['mode'] or not options['spheres']:
+                    construction_blockers.append('Spell Selectivity: choose affected spheres and a mode.')
+                known = {entry['sphere'] for entry in self.magic_entries_by_key.values()}
+                if any(sphere not in known for sphere in options['spheres']):
+                    raise ValueError('Spell Selectivity contains an unknown magic sphere.')
         result = self.marvelous_requirements(caster_level=plan['caster_level'],
             required_spheres=spheres, required_talents=required,
             advanced_talents=advanced, **(access if access is not None else self.permanent_marvelous_access()))
@@ -157,6 +164,12 @@ class CraftingService:
             plan['crafting_tradition'] = dict(entry, notes=str(selected.get('notes', '')))
         from app.marvelous_item_presentation import validate_display_overrides
         validate_display_overrides(plan.get('display_overrides', {}))
+        from app.marvelous_item_rules import spell_selectivity_options
+        known_spheres = {entry['sphere'] for entry in self.magic_entries_by_key.values()}
+        for power in [plan, *plan.get('extra_effects', [])]:
+            if options := spell_selectivity_options(power):
+                if any(sphere not in known_spheres for sphere in options['spheres']):
+                    raise ValueError('Spell Selectivity contains an unknown magic sphere.')
         for extra in plan.get('extra_effects', []):
             validate_display_overrides(extra.get('display_overrides', {}))
             if any(not isinstance(extra.get(field, ''), str) for field in ('effect_name', 'effect_description')):

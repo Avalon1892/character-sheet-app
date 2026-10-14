@@ -61,6 +61,8 @@ def talent_effect_choices(key):
     """Reviewed construction choices, shared by the editor and projections."""
     if key == 'protection:aegis-ward-talent:armored-magic-aegis':
         return ('armor', 'shield')
+    if key == 'protection:advanced-talent:spell-selectivity-dbh':
+        return ('only', 'except')
     if key in {'protection:aegis-ward-talent:energy-resistance-aegis-ward',
                'protection:advanced-talent:adaptation-aegis'}:
         return ('acid', 'cold', 'electricity', 'fire', 'sonic')
@@ -292,6 +294,9 @@ def resolve_base_power(plan):
             if kind == 'immunity' and power.key != 'protection:aegis':
                 raise ValueError('Adaptation grants an aegis, not a ward.')
         keys = {row.get('catalog_key') for row in rows}
+        from app.marvelous_item_rules import spell_selectivity_options
+        if options := spell_selectivity_options(plan):
+            summary['spell_selectivity'] = ('Affects only ' if options['mode'] == 'only' else 'Affects all except ') + ', '.join(options['spheres']) if options['mode'] and options['spheres'] else 'Not configured; choose affected spheres and mode'
         if 'protection:aegis-ward-talent:spell-ward-aegis-ward' in keys:
             if power.key == 'protection:aegis':
                 summary['power'] = 'Spell Ward aegis'

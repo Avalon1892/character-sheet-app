@@ -203,6 +203,22 @@ def test_charged_descriptor_includes_integrated_metamagic_sp():
     assert '6 charges per activation' in crafting_limitation_details(plan)[0]
 
 
+def test_spell_selectivity_choice_limit_duplicate_validation_and_antimagic_conflict():
+    from app.marvelous_item_rules import spell_selectivity_options
+    row = dict(catalog_key='protection:advanced-talent:spell-selectivity-dbh', effect_choice='only', effect_spheres=['Life', 'Warp'])
+    plan = dict(caster_level=5, contributions=[row])
+    assert spell_selectivity_options(plan)['maximum'] == 2
+    plan['caster_level'] = 4
+    with pytest.raises(ValueError, match='exceed'): spell_selectivity_options(plan)
+    plan['caster_level'] = 10; row['effect_spheres'] = ['Life', 'life']
+    with pytest.raises(ValueError, match='duplicates'): spell_selectivity_options(plan)
+    row['effect_spheres'] = ['Life']; row['effect_choice'] = 'except'
+    plan['contributions'].append(dict(catalog_key='protection:advanced-talent:antimagic-aura'))
+    with pytest.raises(ValueError, match='except-mode'): spell_selectivity_options(plan)
+    row['effect_choice'] = 'only'
+    assert spell_selectivity_options(plan)['spheres'] == ('Life',)
+
+
 def test_cheap_tradition_applies_once_to_combined_design():
     from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_price_formula
     base = dict(schema_version=1, caster_level=5, uses=1, range_steps=0,

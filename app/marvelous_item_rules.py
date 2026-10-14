@@ -303,6 +303,24 @@ def crafting_item_limitations(plan):
     return keys
 
 
+def spell_selectivity_options(plan):
+    """Reviewed DbH sphere-selection mode; source-type variants remain separate."""
+    rows = [row for row in plan.get('contributions', [])
+            if row.get('catalog_key') == 'protection:advanced-talent:spell-selectivity-dbh']
+    if not rows: return None
+    row = rows[0]
+    mode, spheres = row.get('effect_choice', ''), row.get('effect_spheres', [])
+    if mode not in {'', 'only', 'except'} or not isinstance(spheres, list) or any(
+            not isinstance(name, str) or not name.strip() for name in spheres):
+        raise ValueError('Spell Selectivity requires a valid mode and sphere list.')
+    if len({name.casefold() for name in spheres}) != len(spheres) or len(spheres) > 1 + plan['caster_level'] // 5:
+        raise ValueError('Spell Selectivity sphere choices exceed the limit or contain duplicates.')
+    if mode == 'except' and any(item.get('catalog_key') == 'protection:advanced-talent:antimagic-aura'
+                               for item in plan['contributions']):
+        raise ValueError('Spell Selectivity except-mode cannot be combined with Antimagic Aura.')
+    return dict(mode=mode, spheres=tuple(spheres), maximum=1 + plan['caster_level'] // 5)
+
+
 def crafting_limitation_details(plan):
     """Concrete item requirements; no location, clock or sacrifice simulation."""
     keys = crafting_item_limitations(plan)
@@ -379,6 +397,7 @@ def quote_marvelous_blueprint(plan):
     """Price the persisted composer blueprint using the same pure rules."""
     if plan.get('schema_version') != 1:
         raise ValueError('Unsupported Marvelous blueprint version.')
+    spell_selectivity_options(plan)
     if plan.get('base_power'):
         from app.marvelous_base_powers import resolve_base_power
         resolve_base_power(plan)

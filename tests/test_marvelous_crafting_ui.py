@@ -169,6 +169,47 @@ def test_antimagic_picker_selects_ward_and_prices_integrated_prerequisite(compos
     assert dialog.quotation()[0] == 6
 
 
+def test_selectivity_sphere_dialog_cancel_save_reopen_and_live_preview(composer, monkeypatch):
+    from PySide6.QtWidgets import QDialog, QListWidget
+    from app.services.crafting import CraftingService
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Protection'); dialog.cl.setValue(10)
+    key = 'protection:advanced-talent:spell-selectivity-dbh'
+    index = next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key)
+    dialog.talent.setCurrentIndex(index); dialog.add_contribution(); dialog.add_required_contributions()
+    dialog.table.selectRow(0)
+    mode = dialog.table.cellWidget(0, 5); mode.setCurrentIndex(mode.findData('only'))
+    assert dialog.effect_options.isEnabled()
+    before = repo._connection.total_changes
+    monkeypatch.setattr(QDialog, 'exec', lambda child: QDialog.DialogCode.Rejected)
+    dialog.choose_selectivity_spheres()
+    assert 'effect_spheres' not in dialog.blueprint()['contributions'][0]
+    def choose(child):
+        picker = child.findChild(QListWidget, 'selectivitySpheres')
+        for i in range(picker.count()):
+            picker.item(i).setSelected(picker.item(i).text() in {'Life', 'Warp'})
+        return QDialog.DialogCode.Accepted
+    monkeypatch.setattr(QDialog, 'exec', choose)
+    dialog.choose_selectivity_spheres()
+    assert 'Affects only Life, Warp' in dialog.item_preview.toPlainText()
+    assert repo._connection.total_changes == before
+    iid = CraftingService(repo, cid).save_marvelous_design(dialog.blueprint(), name='Selective device', slot='', description='')
+    reopened = MarvelousCraftingDialog(repo, cid, item_id=iid)
+    assert reopened.blueprint()['contributions'][0]['effect_spheres'] == ['Life', 'Warp']
+    assert 'Affects only Life, Warp' in reopened.item_preview.toPlainText()
+    reopened.close()
+    invalid = dialog.blueprint(); invalid['contributions'][0]['effect_spheres'] = ['Unknown sphere']
+    before = repo._connection.total_changes
+    with pytest.raises(ValueError, match='unknown magic sphere'):
+        CraftingService(repo, cid).save_marvelous_design(invalid, name='Invalid', slot='', description='')
+    assert repo._connection.total_changes == before
+    dialog.cl.setValue(4)
+    assert 'exceed the limit' in dialog.cost_formula.text()
+    assert not dialog.save.isEnabled()
+    dialog.cl.setValue(10)
+    assert 'Affects only Life, Warp' in dialog.item_preview.toPlainText()
+
+
 def test_custom_drawback_live_price_card_save_reopen_and_remove(composer):
     from app.services.crafting import CraftingService
     from app.marvelous_base_powers import automatic_self_effect
