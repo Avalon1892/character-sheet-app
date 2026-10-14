@@ -177,6 +177,30 @@ def test_force_blast_updates_live_cost_damage_and_saved_preview(composer):
     reopened.close()
 
 
+def test_alternative_prerequisite_choice_is_atomic_and_prices_only_chosen_talent(composer, monkeypatch):
+    from PySide6.QtWidgets import QInputDialog
+    from app.marvelous_item_rules import missing_construction_alternatives
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(10)
+    key = 'destruction:advanced-talent:calamity-blast-shape'
+    index = next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key)
+    dialog.talent.setCurrentIndex(index); dialog.add_contribution()
+    before = dialog.blueprint()['contributions']; writes = repo._connection.total_changes
+    monkeypatch.setattr(QInputDialog, 'getItem', lambda *args: ('', False))
+    dialog.add_required_contributions()
+    assert dialog.blueprint()['contributions'] == before
+    monkeypatch.setattr(QInputDialog, 'getItem', lambda *args: (args[3][1], True))
+    dialog.add_required_contributions()
+    contributions = dialog.blueprint()['contributions']
+    assert len(contributions) == 2
+    assert contributions[1]['catalog_key'] == 'destruction:blast-shape-talent:sculpt-blast-blast-shape'
+    assert not missing_construction_alternatives(contributions)
+    assert dialog.table.cellWidget(0, 4).value() == 2
+    assert repo._connection.total_changes == writes
+    dialog.add_required_contributions()
+    assert dialog.blueprint()['contributions'] == contributions
+
+
 def test_accessible_effect_picker_reuses_basket_without_learning_rules(composer):
     from app.ui.marvelous_effect_picker import MarvelousEffectPicker
     from app.catalogs import DEFAULT_CATALOG

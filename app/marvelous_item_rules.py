@@ -113,6 +113,15 @@ def marvelous_item_price(caster_level: int, complexity: int | Fraction, *, daily
 
 # Reviewed construction prerequisites use catalog identities, never prose parsing.
 ADVANCED_CONSTRUCTION_REQUIREMENTS = {
+    'destruction:advanced-talent:adaptive-admixture-sm': (0, ('destruction:talent:admixture',)),
+    'destruction:advanced-talent:conflagrant-cluster-3pp': (5, ()),
+    'destruction:advanced-talent:disintegrate-blast-type': (5, ()),
+    'destruction:advanced-talent:energy-cloud-blast-shape': (10, ()),
+    'destruction:advanced-talent:greater-admixture': (5, ('destruction:talent:admixture',)),
+    'destruction:advanced-talent:split-blast-alienist-hb': (0, ('destruction:talent:admixture', 'destruction:blast-shape-talent:blast-salvo-blast-shape-bap')),
+    'destruction:advanced-talent:detonating-salvo-lg': (0, ('destruction:blast-shape-talent:blast-salvo-blast-shape-bap', 'destruction:blast-shape-talent:explosive-orb-blast-shape')),
+    'destruction:advanced-talent:hounding-sphere-sm': (10, ('destruction:blast-shape-talent:energy-sphere-blast-shape',)),
+    'destruction:advanced-talent:calamity-blast-shape': (10, ()),
     'protection:advanced-talent:permanent-ward': (10, ('protection:talent:enduring-protection',)),
     'protection:advanced-talent:planar-refuge-aegis-ward-rw-hb': (5, ()),
     'protection:advanced-talent:preserve-integrity-aegis-alienist-hb': (10, ()),
@@ -161,6 +170,23 @@ ADVANCED_CONSTRUCTION_REQUIREMENTS = {
         'life:advanced-talent:resurrection', 'life:talent:resuscitate')),
 }
 
+ALTERNATIVE_CONSTRUCTION_REQUIREMENTS = {
+    'destruction:advanced-talent:calamity-blast-shape': (
+        'destruction:blast-shape-talent:explosive-orb-blast-shape', 'destruction:blast-shape-talent:sculpt-blast-blast-shape'),
+    'destruction:advanced-talent:blast-juggler-sm': (
+        'destruction:advanced-talent:energy-cloud-blast-shape', 'destruction:blast-shape-talent:energy-sphere-blast-shape'),
+    'destruction:advanced-talent:destructive-verticality-sm': (
+        'destruction:blast-shape-talent:energy-sphere-blast-shape', 'destruction:blast-shape-talent:explosive-orb-blast-shape',
+        'destruction:blast-shape-talent:sculpt-blast-blast-shape'),
+}
+
+
+def missing_construction_alternatives(contributions):
+    keys = {row['catalog_key'] for row in contributions}
+    return tuple((key, ALTERNATIVE_CONSTRUCTION_REQUIREMENTS[key]) for key in sorted(keys)
+                 if key in ALTERNATIVE_CONSTRUCTION_REQUIREMENTS
+                 and not keys.intersection(ALTERNATIVE_CONSTRUCTION_REQUIREMENTS[key]))
+
 
 def missing_construction_prerequisites(contributions):
     """Reviewed transitive additions in deterministic dependency order."""
@@ -178,6 +204,9 @@ def advanced_construction_blockers(contributions, caster_level, *, display_names
     keys = {row['catalog_key'] for row in contributions}
     blockers = []
     names = display_names or {}
+    blockers.extend(f'{names.get(key, key)}: include one prerequisite talent: '
+                    + ' or '.join(names.get(option, option) for option in options) + '.'
+                    for key, options in missing_construction_alternatives(contributions))
     if {'protection:advanced-talent:mobile-ward-alienist-hb',
             'protection:advanced-talent:permanent-ward'} <= keys:
         blockers.append('Mobile Ward cannot benefit from Permanent Ward in the same effect.')
@@ -250,6 +279,12 @@ def talent_construction_spell_points(entry):
     if profile := DESTRUCTION_BLAST_TYPES.get(entry.get('key')):
         return profile[3]
     return {
+        'destruction:advanced-talent:adaptive-admixture-sm': 1,
+        'destruction:advanced-talent:disintegrate-blast-type': 1,
+        'destruction:advanced-talent:energy-cloud-blast-shape': 3,
+        'destruction:advanced-talent:greater-admixture': 1,
+        'destruction:advanced-talent:calamity-blast-shape': 2,
+        'destruction:advanced-talent:detonating-salvo-lg': 1,
         'warp:space-talent:teleport-beacon-space': 1,
         'warp:advanced-talent:true-teleport': 2,
         'warp:advanced-talent:planeshift': 2,

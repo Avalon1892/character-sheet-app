@@ -583,15 +583,32 @@ class MarvelousCraftingDialog(QDialog):
             self.feat_integrations = dialog.records(); self.update_preview()
 
     def add_required_contributions(self):
-        from app.marvelous_item_rules import missing_construction_prerequisites
-        keys = missing_construction_prerequisites(self.blueprint()['contributions'])
-        indices = [next((i for i in range(self.talent.count()) if self.talent.itemData(i)['key'] == key), -1) for key in keys]
-        if -1 in indices:
+        from app.marvelous_item_rules import missing_construction_prerequisites, missing_construction_alternatives
+        from PySide6.QtWidgets import QInputDialog
+        catalog = {self.talent.itemData(i)['key']: (i, self.talent.itemData(i)['name']) for i in range(self.talent.count())}
+        pending = list(self.blueprint()['contributions']); additions = []
+        while True:
+            keys = missing_construction_prerequisites(pending)
+            additions.extend(keys); pending.extend(dict(catalog_key=key) for key in keys)
+            groups = missing_construction_alternatives(pending)
+            if not groups: break
+            for owner, options in groups:
+                if any(row['catalog_key'] in options for row in pending): continue
+                if any(key not in catalog for key in options):
+                    QMessageBox.warning(self, 'Cannot add prerequisites', 'A required choice is missing from the current catalog. No prerequisites were added.')
+                    return
+                labels = [catalog[key][1] for key in options]
+                selected, accepted = QInputDialog.getItem(self, 'Choose construction prerequisite',
+                    catalog.get(owner, (-1, owner))[1] + ': include one of these talents in the item effect.', labels, 0, False)
+                if not accepted or selected not in labels: return
+                key = options[labels.index(selected)]
+                additions.append(key); pending.append(dict(catalog_key=key))
+        if any(key not in catalog for key in additions):
             QMessageBox.warning(self, 'Cannot add prerequisites', 'A required talent is not available in the current sphere catalog. No talents were added.')
             return
         selected = self.talent.currentIndex()
-        for index in indices:
-            self.talent.setCurrentIndex(index); self.add_contribution()
+        for key in additions:
+            self.talent.setCurrentIndex(catalog[key][0]); self.add_contribution()
         self.talent.setCurrentIndex(selected)
 
     def remove_contribution(self):
@@ -677,8 +694,9 @@ class MarvelousCraftingDialog(QDialog):
         from app.marvelous_item_rules import crafting_item_limitations
         self.area_bound.setVisible('crafting:area-bound' in crafting_item_limitations(self.blueprint()))
         self.feats_button.setText(f'Integrate feats… ({len(self.feat_integrations)})')
-        from app.marvelous_item_rules import missing_construction_prerequisites
-        self.add_prerequisites.setEnabled(bool(missing_construction_prerequisites(self.blueprint()['contributions'])))
+        from app.marvelous_item_rules import missing_construction_prerequisites, missing_construction_alternatives
+        contributions = self.blueprint()['contributions']
+        self.add_prerequisites.setEnabled(bool(missing_construction_prerequisites(contributions) or missing_construction_alternatives(contributions)))
         try:
             complexity, price, quote = self.quotation()
             self.cost_formula.setText('Cost: ' + marvelous_price_formula(self.blueprint())
