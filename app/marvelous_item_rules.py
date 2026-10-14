@@ -287,12 +287,22 @@ def quote_marvelous_blueprint(plan):
     if plan.get('no_space_limitation'):
         price = replace(price, market_price_gp=price.market_price_gp * 2)
     if plan.get('extra_effects'):
-        primary = {key: value for key, value in plan.items() if key not in {'extra_effects', 'combination_mode'}}
+        primary = {key: value for key, value in plan.items() if key not in {'extra_effects', 'combination_mode', 'crafting_tradition'}}
         if any(extra.get('extra_effects') for extra in plan['extra_effects']):
             raise ValueError('Nested effect combinations are not supported.')
-        combined = quote_marvelous_effects([primary, *plan['extra_effects']], mode=plan.get('combination_mode', 'multiple'))
+        extras = [{key: value for key, value in extra.items() if key != 'crafting_tradition'} for extra in plan['extra_effects']]
+        combined = quote_marvelous_effects([primary, *extras], mode=plan.get('combination_mode', 'multiple'))
         price = replace(price, market_price_gp=combined['market_price_gp'])
-    return complexity, price, marvelous_crafting_quote(price, plan['caster_level'])
+    quote = marvelous_crafting_quote(price, plan['caster_level'])
+    tradition = plan.get('crafting_tradition')
+    if tradition is not None:
+        if not isinstance(tradition, dict) or not isinstance(tradition.get('key'), str):
+            raise ValueError('Crafting tradition requires a catalog identity.')
+        if tradition['key'] in {'crafting:city-construction', 'crafting:diviner-s-sight'}:
+            materials, selling = tradition_costs(price.market_price_gp, cheap=True)
+            price = replace(price, market_price_gp=selling)
+            quote = replace(quote, cost_gp=float(materials))
+    return complexity, price, quote
 
 
 def marvelous_remaining_uses(metadata, effect_index=0):
@@ -346,9 +356,14 @@ def quote_marvelous_effects(plans, *, mode='multiple'):
 def marvelous_price_formula(plan):
     """Readable live formula from the authoritative quote, not a second calculator."""
     complexity, price, _ = quote_marvelous_blueprint(plan)
+    tradition = plan.get('crafting_tradition') or {}
+    if tradition.get('key') in {'crafting:city-construction', 'crafting:diviner-s-sight'}:
+        base = {key: value for key, value in plan.items() if key != 'crafting_tradition'}
+        return marvelous_price_formula(base) + f' → × 0.9 (Cheap) = {price.market_price_gp} gp'
     if plan.get('extra_effects'):
-        primary = {key: value for key, value in plan.items() if key not in {'extra_effects', 'combination_mode'}}
-        amounts = [quote_marvelous_blueprint(power)[1].market_price_gp for power in [primary, *plan['extra_effects']]]
+        primary = {key: value for key, value in plan.items() if key not in {'extra_effects', 'combination_mode', 'crafting_tradition'}}
+        extras = [{key: value for key, value in extra.items() if key != 'crafting_tradition'} for extra in plan['extra_effects']]
+        amounts = [quote_marvelous_blueprint(power)[1].market_price_gp for power in [primary, *extras]]
         highest = max(amounts)
         factor = '2' if plan.get('combination_mode') == 'mixed' else '1.5'
         return f'{highest} + ({sum(amounts)} − {highest}) × {factor} = {price.market_price_gp} gp'

@@ -136,6 +136,13 @@ class CraftingService:
         if not self.feats.intersection({'craft marvelous item', 'craft wondrous item'}):
             raise ValueError('A Marvelous Item creation feat is required.')
         plan = deepcopy(plan)
+        if plan.get('crafting_tradition') is not None:
+            from app.optional_traditions import catalog
+            selected = plan['crafting_tradition']
+            entry = next((entry for entry in catalog()['entries'] if entry['kind'] == 'Crafting'
+                          and isinstance(selected, dict) and entry['key'] == selected.get('key')), None)
+            if entry is None: raise ValueError('Unknown crafting tradition.')
+            plan['crafting_tradition'] = dict(entry, notes=str(selected.get('notes', '')))
         from app.marvelous_item_presentation import validate_display_overrides
         validate_display_overrides(plan.get('display_overrides', {}))
         for extra in plan.get('extra_effects', []):

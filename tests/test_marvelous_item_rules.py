@@ -20,6 +20,19 @@ def test_live_formula_reports_slotless_limited_and_combined_quotes():
     assert marvelous_price_formula(plan) == '2000 + (4000 − 2000) × 2 = 6000 gp'
 
 
+def test_cheap_tradition_applies_once_to_combined_design():
+    from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_price_formula
+    base = dict(schema_version=1, caster_level=5, uses=1, range_steps=0,
+                duration_steps=0, activation='standard', unique_changes=0, contributions=[])
+    plan = dict(base, extra_effects=[dict(base)], crafting_tradition={'key': 'crafting:city-construction'})
+    _, price, quote = quote_marvelous_blueprint(plan)
+    assert price.market_price_gp == 4500 and quote.cost_gp == 2250
+    assert quote.days == 5  # Work is based on the unmodified 5,000 gp value.
+    assert '× 0.9 (Cheap) = 4500 gp' in marvelous_price_formula(plan)
+    plan['extra_effects'][0]['crafting_tradition'] = {'key': 'crafting:diviner-s-sight'}
+    assert marvelous_price_formula(plan) == '2000 + (4000 − 2000) × 1.5 = 5000 gp → × 0.9 (Cheap) = 4500 gp'
+
+
 def test_base_and_use_modes():
     quote = marvelous_item_price(3, 2)
     assert (quote.market_price_gp, quote.save_dc, quote.daily_uses) == (2400, 11, 1)

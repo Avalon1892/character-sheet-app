@@ -42,6 +42,7 @@ class MarvelousCraftingDialog(QDialog):
         self.feat_integrations = []
         self.combination_mode = 'multiple'
         self.display_overrides = {}
+        self.crafting_tradition = None
         self.draft_effect = draft_effect
         self.setWindowTitle('Design a Marvelous Item')
         self.resize(1280, 820)
@@ -88,6 +89,10 @@ class MarvelousCraftingDialog(QDialog):
         picker = QHBoxLayout(); left.addLayout(picker)
         self.effects_button = QPushButton('Add effects…'); left.insertWidget(0, self.effects_button)
         self.effects_button.clicked.connect(self.choose_accessible_effects)
+        self.tradition_button = QPushButton('Choose a crafting tradition…'); left.insertWidget(0, self.tradition_button)
+        self.tradition_button.clicked.connect(self.choose_crafting_tradition)
+        self.clear_tradition = QPushButton('Clear tradition'); left.insertWidget(1, self.clear_tradition)
+        self.clear_tradition.clicked.connect(self.remove_crafting_tradition)
         self.talent = QComboBox(); picker.addWidget(self.talent, 1)
         add = QPushButton('Add effect contribution'); picker.addWidget(add)
         # Retain catalog-backed restoration for saved plans/prerequisites, but new
@@ -120,6 +125,7 @@ class MarvelousCraftingDialog(QDialog):
         self.remove_power.clicked.connect(self.remove_extra_effect)
         if draft_effect:
             self.extra_picker.hide(); self.add_power.hide(); self.edit_power.hide(); self.remove_power.hide(); self.mode_picker.hide()
+            self.tradition_button.hide(); self.clear_tradition.hide()
         center = QVBoxLayout(); columns.addLayout(center, 3)
         center.addWidget(QLabel('ITEM DESCRIPTION'))
         hint = QLabel('Lock a field to edit its displayed text. Locked text is preserved; calculated price and activation rules remain unchanged.')
@@ -181,6 +187,7 @@ class MarvelousCraftingDialog(QDialog):
         self.setWindowTitle('Edit Marvelous Item Design'); self.save.setText('Save design changes')
 
     def load_plan(self, plan):
+        self.crafting_tradition = plan.get('crafting_tradition')
         from app.marvelous_item_presentation import validate_display_overrides
         validate_display_overrides(plan.get('display_overrides', {}))
         self.display_overrides = {key: dict(record) for key, record in plan.get('display_overrides', {}).items()}
@@ -241,6 +248,7 @@ class MarvelousCraftingDialog(QDialog):
         if dialog.exec() != QDialog.DialogCode.Accepted: return
         plan = dialog.blueprint()
         plan.pop('extra_effects', None); plan.pop('combination_mode', None)
+        plan.pop('crafting_tradition', None)
         if index is None or index < 0:
             from uuid import uuid4
             plan['effect_id'] = str(uuid4()); self.extra_effects.append(plan)
@@ -289,6 +297,18 @@ class MarvelousCraftingDialog(QDialog):
                 index = DURATIONS.index(power.duration)
                 self.duration_steps.setRange(-index, len(DURATIONS) - index - 1)
             else: self.duration_steps.setRange(0, 0)
+        self.update_preview()
+
+    def choose_crafting_tradition(self):
+        from app.ui.optional_traditions import OptionalTraditionDialog
+        dialog = OptionalTraditionDialog('Crafting', parent=self)
+        dialog.confirm.setText('Use for this design')
+        if dialog.exec() != QDialog.DialogCode.Accepted or dialog.selected_entry is None: return
+        self.crafting_tradition = dict(dialog.selected_entry, notes=dialog.notes.toPlainText())
+        self.update_preview()
+
+    def remove_crafting_tradition(self):
+        self.crafting_tradition = None
         self.update_preview()
 
     def choose_accessible_effects(self):
@@ -406,12 +426,15 @@ class MarvelousCraftingDialog(QDialog):
                     restore_mode=self.restore_mode.currentData(),
                     extra_effects=self.extra_effects, combination_mode=self.combination_mode,
                     feat_integrations=self.feat_integrations,
-                    automation_status='rules_only', display_overrides=self.display_overrides)
+                    automation_status='rules_only', display_overrides=self.display_overrides,
+                    crafting_tradition=self.crafting_tradition)
 
     def quotation(self):
         return quote_marvelous_blueprint(self.blueprint())
 
     def update_preview(self, *_):
+        self.tradition_button.setText(self.crafting_tradition['name'] if self.crafting_tradition else 'Choose a crafting tradition…')
+        self.clear_tradition.setEnabled(self.crafting_tradition is not None)
         self.feats_button.setText(f'Integrate feats… ({len(self.feat_integrations)})')
         from app.marvelous_item_rules import missing_construction_prerequisites
         self.add_prerequisites.setEnabled(bool(missing_construction_prerequisites(self.blueprint()['contributions'])))
@@ -433,6 +456,7 @@ class MarvelousCraftingDialog(QDialog):
             self.result.setText(f'Market price {float(price.market_price_gp):,.2f} gp · Materials {float(quote.cost_gp):,.2f} gp · Craft DC {quote.dc} · Save DC {price.save_dc}')
             self.preview.setHtml(f'<h2>{escape(self.name.text())}</h2><p>{escape(self.sphere.currentText())} · Complexity {complexity}</p>'
                 f'<p>{escape(self.description.toPlainText())}</p><h3>Calculated base effect</h3>'
+                + (f'<h3>Crafting tradition: {escape(self.crafting_tradition["name"])}</h3><p>{escape(self.crafting_tradition["description"])}</p><p>Cheap price adjustment is automatic where applicable. Other tradition requirements/effects require manual review.</p>' if self.crafting_tradition else '')
                 + ''.join(f'<p><b>{escape(key.title())}:</b> {escape(value)}</p>' for key, value in effect_detail_lines(effect))
                 + '<h3>Additional powers</h3>' + extra_review + '<h3>Construction review</h3>'
                 + '<p><b>Automatic baseline check:</b> '

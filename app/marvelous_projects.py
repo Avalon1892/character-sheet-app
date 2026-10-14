@@ -5,8 +5,10 @@ from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_crafti
 
 
 def start_project(plan, requirements):
-    _, price, _ = quote_marvelous_blueprint(plan)
-    quote = marvelous_crafting_quote(price, plan['caster_level'], requirements=requirements)
+    from dataclasses import replace
+    _, price, quote = quote_marvelous_blueprint(plan)
+    checked = marvelous_crafting_quote(price, plan['caster_level'], requirements=requirements)
+    quote = replace(quote, dc=checked.dc)
     return dict(status='crafting', required_hours=quote.days * 8, worked_hours=0,
                 materials_gp=str(quote.cost_gp), dc=quote.dc, calendar={})
 
