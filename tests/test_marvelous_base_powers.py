@@ -102,6 +102,20 @@ def test_reviewed_paid_blast_profiles_supply_additional_sp(suffix):
     assert talent_construction_cost(entry, additional_spell_points=points) == 2
 
 
+def test_arcforge_technology_ward_upgrade_and_aegis_are_distinct():
+    rows = [dict(catalog_key='protection:aegis-ward-talent:technological-suppression-aegis-ward-lg')]
+    result = resolve_base_power(plan('protection:ward', 10, contributions=rows))
+    assert 'craft DC − 4' in result['technology_check']
+    result = resolve_base_power(plan('protection:aegis', 10, contributions=rows))
+    assert result['magic_skill_defense'] == 21 and 'non-physical' in result['technology_protection']
+    rows.append(dict(catalog_key='protection:advanced-talent:antimagic-aura-arcforge-addendum-lg'))
+    result = resolve_base_power(plan('protection:ward', 10, contributions=rows))
+    assert result['power'] == 'Antimagic Aura technological ward'
+    assert 'without a check' in result['technology_check']
+    with pytest.raises(ValueError, match='not its aegis'):
+        resolve_base_power(plan('protection:aegis', 10, contributions=rows))
+
+
 def test_beacon_placement_range_duration_and_required_contribution():
     result = resolve_base_power(plan('warp:beacon', 7))
     assert result['range'] == 'Touch' and result['duration'] == '7 hours'

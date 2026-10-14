@@ -113,6 +113,8 @@ def marvelous_item_price(caster_level: int, complexity: int | Fraction, *, daily
 
 # Reviewed construction prerequisites use catalog identities, never prose parsing.
 ADVANCED_CONSTRUCTION_REQUIREMENTS = {
+    'protection:advanced-talent:antimagic-aura-arcforge-addendum-lg': (10, ()),
+    'protection:advanced-talent:spell-selectivity-arcforge-addendum-lg': (10, ()),
     'destruction:advanced-talent:adaptive-admixture-sm': (0, ('destruction:talent:admixture',)),
     'destruction:advanced-talent:conflagrant-cluster-3pp': (5, ()),
     'destruction:advanced-talent:disintegrate-blast-type': (5, ()),
@@ -171,6 +173,10 @@ ADVANCED_CONSTRUCTION_REQUIREMENTS = {
 }
 
 ALTERNATIVE_CONSTRUCTION_REQUIREMENTS = {
+    'protection:advanced-talent:antimagic-aura-arcforge-addendum-lg': (
+        'protection:aegis-ward-talent:spell-ward-aegis-ward', 'protection:aegis-ward-talent:technological-suppression-aegis-ward-lg'),
+    'protection:advanced-talent:spell-selectivity-arcforge-addendum-lg': (
+        'protection:aegis-ward-talent:spell-ward-aegis-ward', 'protection:aegis-ward-talent:technological-suppression-aegis-ward-lg'),
     'destruction:advanced-talent:calamity-blast-shape': (
         'destruction:blast-shape-talent:explosive-orb-blast-shape', 'destruction:blast-shape-talent:sculpt-blast-blast-shape'),
     'destruction:advanced-talent:blast-juggler-sm': (
@@ -291,6 +297,9 @@ def talent_construction_spell_points(entry):
         'warp:advanced-talent:portal': 1,
         'warp:advanced-talent:enduring-portal': 1,
         'protection:advanced-talent:antimagic-aura': 1,
+        'protection:advanced-talent:antimagic-aura-arcforge-addendum-lg': 1,
+        'protection:advanced-talent:spell-selectivity-arcforge-addendum-lg': 1,
+        'protection:aegis-ward-talent:technological-suppression-aegis-ward-lg': 1,
         'protection:advanced-talent:automatic-fortification-3pp': 1,
         # Adaptation's two-SP aegis adds one beyond the ordinary one-SP aegis.
         'protection:advanced-talent:adaptation-aegis': 1,
@@ -380,7 +389,8 @@ def spell_selectivity_options(plan):
         raise ValueError('Spell Selectivity requires a valid mode and sphere list.')
     if len({name.casefold() for name in spheres}) != len(spheres) or len(spheres) > 1 + plan['caster_level'] // 5:
         raise ValueError('Spell Selectivity sphere choices exceed the limit or contain duplicates.')
-    if mode == 'except' and any(item.get('catalog_key') == 'protection:advanced-talent:antimagic-aura'
+    from app.marvelous_base_powers import ANTIMAGIC_AURA_KEYS
+    if mode == 'except' and any(item.get('catalog_key') in ANTIMAGIC_AURA_KEYS
                                for item in plan['contributions']):
         raise ValueError('Spell Selectivity except-mode cannot be combined with Antimagic Aura.')
     return dict(mode=mode, spheres=tuple(spheres), maximum=1 + plan['caster_level'] // 5)

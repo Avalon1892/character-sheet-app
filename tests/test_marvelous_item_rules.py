@@ -264,6 +264,22 @@ def test_reviewed_destruction_fixed_prerequisites_have_catalog_identities_and_pa
         assert magic_entry(key) and all(magic_entry(option) for option in options)
 
 
+@pytest.mark.parametrize('suffix', ['antimagic-aura', 'spell-selectivity'])
+def test_arcforge_protection_accepts_either_magic_or_technology_prerequisite(suffix):
+    from app.marvelous_item_rules import missing_construction_alternatives, advanced_construction_blockers, talent_construction_spell_points
+    from app.content import magic_entry
+    key = 'protection:advanced-talent:' + suffix + '-arcforge-addendum-lg'
+    rows = [dict(catalog_key=key)]
+    assert missing_construction_alternatives(rows)
+    for dependency in ('protection:aegis-ward-talent:spell-ward-aegis-ward',
+                       'protection:aegis-ward-talent:technological-suppression-aegis-ward-lg'):
+        complete = [*rows, dict(catalog_key=dependency)]
+        assert not missing_construction_alternatives(complete)
+        assert not advanced_construction_blockers(complete, 10)
+        assert advanced_construction_blockers(complete, 9)
+    assert talent_construction_spell_points(magic_entry(key)) == 1
+
+
 def test_cheap_tradition_applies_once_to_combined_design():
     from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_price_formula
     base = dict(schema_version=1, caster_level=5, uses=1, range_steps=0,

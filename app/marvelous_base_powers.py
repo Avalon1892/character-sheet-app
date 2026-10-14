@@ -55,6 +55,8 @@ _ROWS = (
 BASE_POWERS = tuple(MarvelousBasePower(*row) for row in _ROWS)
 RANGES = ('personal', 'touch', 'close', 'medium', 'long')
 DURATIONS = ('round', 'minute', 'ten-minutes', 'hour')
+ANTIMAGIC_AURA_KEYS = frozenset({'protection:advanced-talent:antimagic-aura',
+                               'protection:advanced-talent:antimagic-aura-arcforge-addendum-lg'})
 
 # Reviewed Ultimate blast types: name, damage, die size, additional SP.
 DESTRUCTION_BLAST_TYPES = {
@@ -335,12 +337,26 @@ def resolve_base_power(plan):
                 summary['power'] = 'Spell Ward'
                 summary['magic_skill_check'] = f'+{cl}; magical items resist with MSD 10 + their caster level.'
                 summary['magic_skill_defense'] = 11 + cl
-            if 'protection:advanced-talent:antimagic-aura' in keys:
+            if ANTIMAGIC_AURA_KEYS.intersection(keys):
                 if power.key != 'protection:ward':
                     raise ValueError('Antimagic Aura modifies a Spell Ward ward, not its spell-resistance aegis.')
                 summary['power'] = 'Antimagic Aura ward'
                 summary['suppression'] = 'Stops magic and summoned creatures without a magic skill check; summoned creatures with SR still require a check against their SR.'
                 summary.pop('magic_skill_check', None)
+        if 'protection:aegis-ward-talent:technological-suppression-aegis-ward-lg' in keys:
+            summary['magic_skill_defense'] = 11 + cl
+            summary['power'] = 'Technological Suppression ' + ('aegis' if power.key == 'protection:aegis' else 'ward')
+            if power.key == 'protection:aegis':
+                if 'protection:advanced-talent:antimagic-aura-arcforge-addendum-lg' in keys:
+                    raise ValueError('Antimagic Aura modifies a technological ward, not its aegis.')
+                summary['technology_protection'] = 'Technological conditions and non-physical damage require a gizmo penetration check against this MSD; resolve manually.'
+            else:
+                summary['technology_check'] = f'Magic skill check +{cl}; item DC = craft DC − 4; creature DC = 10 + CR. Resolve charge use and affected creatures manually.'
+                if 'protection:advanced-talent:antimagic-aura-arcforge-addendum-lg' in keys:
+                    summary['power'] = 'Antimagic Aura technological ward'
+                    summary['technology_check'] = 'Stops technological abilities and charge use without a check; constructs/cyborgs with SR still require a check against their SR.'
+            if 'protection:aegis-ward-talent:spell-ward-aegis-ward' in keys:
+                summary['power'] = 'Combined magical/technological protection — manual resolution'
     if power.key == 'life:cure':
         healing = cure_healing_components(plan)
         if healing is not None:
