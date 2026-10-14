@@ -302,7 +302,24 @@ def crafting_item_limitations(plan):
     if tradition == 'crafting:ley-linked': keys.add('crafting:taxing')
     if tradition in {'crafting:city-construction', 'crafting:cryptwood-artifice'}:
         keys.add('crafting:area-bound')
+    if tradition == 'crafting:city-construction': keys.add('crafting:bulky')
     return keys
+
+
+def marvelous_item_weight(plan):
+    """Resolve an explicitly supplied base weight; unknown is not zero."""
+    value = plan.get('base_weight_lb')
+    if value is None: return None
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        raise ValueError('Base item weight must be a finite nonnegative number.')
+    from math import isfinite
+    try:
+        weight = float(value) * (200 if 'crafting:bulky' in crafting_item_limitations(plan) else 1)
+    except OverflowError as error:
+        raise ValueError('Base item weight is too large.') from error
+    if not isfinite(weight) or weight < 0:
+        raise ValueError('Base item weight must be a finite nonnegative number.')
+    return weight
 
 
 def marvelous_area_bound_mode(plan):
@@ -458,6 +475,7 @@ def quote_marvelous_blueprint(plan):
     grouped_costs = [effect_complexity(alternative_costs=costs) - 1 for costs in groups.values()]
     feat_cost = feat_integration_complexity(plan.get('feat_integrations', []))
     simple = simple_tradition_reduction(plan)
+    marvelous_item_weight(plan)
     marvelous_area_bound_mode(plan)
     limitations = crafting_item_limitations(plan)
     for power in [plan, *plan.get('extra_effects', [])]:

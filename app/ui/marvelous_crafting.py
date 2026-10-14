@@ -5,7 +5,7 @@ import json
 from PySide6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QFormLayout,
     QLineEdit, QTextEdit, QTextBrowser, QComboBox, QSpinBox, QLabel, QPushButton,
     QTableWidget, QTableWidgetItem, QHeaderView, QDialogButtonBox, QCheckBox, QMessageBox, QDateEdit, QListWidget,
-    QScrollArea, QWidget, QSizePolicy, QToolButton, QTabWidget, QAbstractItemView)
+    QScrollArea, QWidget, QSizePolicy, QToolButton, QTabWidget, QAbstractItemView, QDoubleSpinBox)
 from app.catalogs import DEFAULT_CATALOG
 from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_remaining_uses, marvelous_price_formula, marvelous_complexity_formula, marvelous_materials_formula
 from app.services.crafting import CraftingService
@@ -64,6 +64,10 @@ class MarvelousCraftingDialog(QDialog):
         self.settings_toggle.toggled.connect(lambda checked: self.settings_toggle.setText('− Item settings' if checked else '+ Item settings'))
         form.setRowWrapPolicy(QFormLayout.RowWrapPolicy.WrapLongRows)
         self.name = QLineEdit('Custom Marvelous Item')
+        self.base_weight = QDoubleSpinBox(); self.base_weight.setRange(-1, 1000000000)
+        self.base_weight.setDecimals(3); self.base_weight.setValue(-1)
+        self.base_weight.setSpecialValueText('Not specified')
+        self.base_weight.setToolTip('Ordinary item weight before crafting-tradition adjustments. This sets inventory weight; the item-card weight lock changes displayed text only.')
         self.slot = QComboBox(); self.slot.addItem('Held / carried', '')
         for slot in repository.list_worn_slots(character_id): self.slot.addItem(slot, slot)
         self.sphere = QComboBox()
@@ -91,7 +95,7 @@ class MarvelousCraftingDialog(QDialog):
         for label, key in [('Choose Restore mode…', ''), ('Mind', 'mind'), ('Body', 'body'), ('Soul', 'soul')]:
             self.restore_mode.addItem(label, key)
         self.effect_range.setToolTip('0: close; 1: medium; 2: long. +2 complexity per step. This changes teleport distance or weather radius, not target range.')
-        for label, widget in [('Name', self.name), ('Slot', self.slot), ('Base sphere', self.sphere),
+        for label, widget in [('Name', self.name), ('Slot', self.slot), ('Base weight (lb)', self.base_weight), ('Base sphere', self.sphere),
                               ('Base power', self.base_power),
                               ('Item caster level', self.cl), ('Activation', self.activation),
                               ('Uses', self.uses), ('Range steps', self.range_steps),
@@ -226,7 +230,7 @@ class MarvelousCraftingDialog(QDialog):
         self.sphere.currentTextChanged.connect(self.populate_talents)
         self.base_power.currentIndexChanged.connect(self.power_changed)
         self.cl.valueChanged.connect(self.change_item_caster_level)
-        for widget in (self.range_steps, self.duration_steps, self.unique): widget.valueChanged.connect(self.update_preview)
+        for widget in (self.range_steps, self.duration_steps, self.unique, self.base_weight): widget.valueChanged.connect(self.update_preview)
         for widget in (self.activation, self.uses, self.slot): widget.currentIndexChanged.connect(self.update_preview)
         self.name.textChanged.connect(self.update_preview); self.description.textChanged.connect(self.update_preview)
         self.review.toggled.connect(self.update_preview)
@@ -282,6 +286,7 @@ class MarvelousCraftingDialog(QDialog):
         self.sphere.setCurrentText(plan['sphere'])
         self.base_power.setCurrentIndex(self.base_power.findData(plan['base_power']))
         self.cl.setValue(plan['caster_level'])
+        self.base_weight.setValue(-1 if plan.get('base_weight_lb') is None else plan['base_weight_lb'])
         self.activation.setCurrentIndex(self.activation.findData(plan['activation']))
         self.uses.setCurrentIndex(self.uses.findData(plan['uses']))
         self.range_steps.setValue(plan['range_steps']); self.duration_steps.setValue(plan['duration_steps'])
@@ -653,7 +658,8 @@ class MarvelousCraftingDialog(QDialog):
                     feat_integrations=self.feat_integrations,
                     automation_status='rules_only', display_overrides=self.display_overrides,
                     crafting_tradition=self.crafting_tradition, drawbacks=self.drawbacks,
-                    area_bound_mode=self.area_bound.currentData())
+                    area_bound_mode=self.area_bound.currentData(),
+                    base_weight_lb=None if self.base_weight.value() < 0 else self.base_weight.value())
 
     def quotation(self):
         return quote_marvelous_blueprint(self.blueprint())

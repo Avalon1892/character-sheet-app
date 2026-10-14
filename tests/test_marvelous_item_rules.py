@@ -219,6 +219,24 @@ def test_spell_selectivity_choice_limit_duplicate_validation_and_antimagic_confl
     assert spell_selectivity_options(plan)['spheres'] == ('Life',)
 
 
+def test_explicit_weight_applies_bulky_once_and_preserves_unknown():
+    from app.marvelous_item_rules import marvelous_item_weight
+    assert marvelous_item_weight({}) is None
+    plan = dict(base_weight_lb=2, crafting_tradition={'key': 'crafting:city-construction'},
+                drawbacks=[dict(source='published', catalog_key='crafting:bulky')])
+    assert marvelous_item_weight(plan) == 400
+    plan['base_weight_lb'] = 0
+    assert marvelous_item_weight(plan) == 0
+    plan['base_weight_lb'] = 2; plan.pop('crafting_tradition'); plan['drawbacks'][0]['source'] = 'custom'
+    assert marvelous_item_weight(plan) == 2
+
+
+@pytest.mark.parametrize('weight', [-1, True, '2', float('inf'), float('nan')])
+def test_invalid_base_weight_is_rejected(weight):
+    from app.marvelous_item_rules import marvelous_item_weight
+    with pytest.raises(ValueError): marvelous_item_weight({'base_weight_lb': weight})
+
+
 def test_cheap_tradition_applies_once_to_combined_design():
     from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_price_formula
     base = dict(schema_version=1, caster_level=5, uses=1, range_steps=0,

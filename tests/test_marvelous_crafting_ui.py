@@ -138,6 +138,29 @@ def test_area_bound_choice_updates_descriptors_and_survives_save(composer):
     reopened.close()
 
 
+def test_bulky_weight_updates_card_inventory_and_reopens_without_double_multiplier(composer):
+    from app.optional_traditions import catalog
+    from app.services.crafting import CraftingService
+    dialog, repo, cid = composer
+    dialog.cl.setValue(5); dialog.base_weight.setValue(2)
+    dialog.crafting_tradition = next(e for e in catalog()['entries'] if e['key'] == 'crafting:city-construction')
+    dialog.area_bound.setCurrentIndex(dialog.area_bound.findData('distance')); dialog.update_preview()
+    assert dialog.card_edits['weight'].text() == '400 lb.'
+    price = dialog.quotation()[1].market_price_gp
+    dialog.card_locks['weight'].setChecked(True); dialog.card_edits['weight'].setText('Manual weight label')
+    iid = CraftingService(repo, cid).save_marvelous_design(dialog.blueprint(), name='Heavy item', slot='', description='')
+    item = next(item for item in repo.list_equipment(cid) if item.id == iid)
+    assert item.weight == 400 and item.value_gp == price
+    reopened = MarvelousCraftingDialog(repo, cid, item_id=iid)
+    assert reopened.base_weight.value() == 2
+    assert reopened.card_edits['weight'].text() == 'Manual weight label'
+    reopened.card_locks['weight'].setChecked(False)
+    assert reopened.card_edits['weight'].text() == '400 lb.'
+    reopened.remove_crafting_tradition()
+    assert reopened.card_edits['weight'].text() == '2 lb.'
+    reopened.close()
+
+
 def test_accessible_effect_picker_reuses_basket_without_learning_rules(composer):
     from app.ui.marvelous_effect_picker import MarvelousEffectPicker
     from app.catalogs import DEFAULT_CATALOG

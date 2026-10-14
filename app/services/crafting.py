@@ -183,6 +183,8 @@ class CraftingService:
         if any(not isinstance(identity, str) or not identity for identity in identities) or len(set(identities)) != len(identities):
             raise ValueError('Additional powers must have unique identities.')
         _, price, _ = quote_marvelous_blueprint(plan)
+        from app.marvelous_item_rules import marvelous_item_weight
+        weight = marvelous_item_weight(plan)
         effect = resolve_base_power(plan)
         metadata = dict(status='rules_only', provider='marvelous-composer',
                         rules_only=['Custom activated effect; activation automation pending.'],
@@ -206,14 +208,14 @@ class CraftingService:
                 for index, power in enumerate(plan.get('extra_effects', []), 1)}
             previous.update(metadata)
             self.repository.update_equipment(self.character_id, item_id,
-                name=name, category=item.category, quantity=item.quantity, weight=item.weight,
+                name=name, category=item.category, quantity=item.quantity, weight=item.weight if weight is None else weight,
                 equipped=item.equipped, ac_bonus=item.ac_bonus, bonus_type=item.bonus_type,
                 max_dex_bonus=item.max_dex_bonus, notes=description,
                 armor_check_penalty=item.armor_check_penalty, slot=slot,
                 value_gp=float(price.market_price_gp), automation_json=json.dumps(previous))
             return item_id
         return self.repository.add_equipment(self.character_id,
-            name=name, category='Gear', quantity=1, weight=0, equipped=False,
+            name=name, category='Gear', quantity=1, weight=0 if weight is None else weight, equipped=False,
             ac_bonus=0, bonus_type='untyped', max_dex_bonus=None, notes=description,
             slot=slot, value_gp=float(price.market_price_gp),
             catalog_source='Custom Spheres Marvelous Item', state='stored',

@@ -115,6 +115,21 @@ def test_custom_drawback_name_does_not_invent_special_recharge(crafter):
     assert repo._connection.total_changes == before
 
 
+def test_editing_legacy_design_keeps_inventory_weight_unless_explicitly_replaced(crafter):
+    repo, cid = crafter
+    service = CraftingService(repo, cid)
+    plan = dict(schema_version=1, sphere='Life', base_power='life:temporary-hp', caster_level=5,
+                activation='standard', uses=1, range_steps=0, duration_steps=0, unique_changes=0,
+                contributions=[], base_weight_lb=3)
+    iid = service.save_marvelous_design(plan, name='Weighted device', slot='', description='')
+    plan.pop('base_weight_lb')
+    service.save_marvelous_design(plan, name='Old design', slot='', description='', item_id=iid)
+    assert next(item for item in repo.list_equipment(cid) if item.id == iid).weight == 3
+    plan['base_weight_lb'] = 0
+    service.save_marvelous_design(plan, name='Weightless device', slot='', description='', item_id=iid)
+    assert next(item for item in repo.list_equipment(cid) if item.id == iid).weight == 0
+
+
 @pytest.mark.parametrize('mode', ['', 'distance', 'recharge'])
 @pytest.mark.parametrize('source', ['tradition', 'drawback'])
 def test_area_bound_recovery_follows_selected_variant_without_guessing_legacy_mode(crafter, mode, source):
