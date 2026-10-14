@@ -156,6 +156,43 @@ def test_malformed_tradition_rejects_before_simple_pricing(tradition):
         quote_marvelous_blueprint(plan)
 
 
+@pytest.mark.parametrize('key,invalid,valid,message', [
+    ('charged', 1, 5, 'unlimited-use'), ('sacrificing', 5, 2, 'limited daily'),
+])
+def test_item_limitation_use_contracts_apply_to_every_power(key, invalid, valid, message):
+    from app.marvelous_item_rules import quote_marvelous_blueprint
+    plan = dict(schema_version=1, caster_level=5, uses=invalid, range_steps=0, duration_steps=0,
+                activation='standard', unique_changes=0, contributions=[],
+                drawbacks=[dict(source='published', catalog_key='crafting:' + key, name=key, reduction=0)])
+    with pytest.raises(ValueError, match=message): quote_marvelous_blueprint(plan)
+    plan['uses'] = valid
+    quote_marvelous_blueprint(plan)
+    plan['extra_effects'] = [{k: v for k, v in plan.items() if k not in {'drawbacks', 'extra_effects'}}]
+    plan['extra_effects'][0]['uses'] = invalid
+    with pytest.raises(ValueError, match=message): quote_marvelous_blueprint(plan)
+
+
+def test_tradition_limits_are_identity_based_and_taxing_excludes_permanency():
+    from app.marvelous_item_rules import quote_marvelous_blueprint
+    plan = dict(schema_version=1, sphere='Protection', base_power='protection:aegis', caster_level=10,
+                uses=50, range_steps=0, duration_steps=2, activation='standard', unique_changes=0,
+                contributions=[], crafting_tradition={'key': 'crafting:evil-artifice'})
+    with pytest.raises(ValueError, match='limited daily'): quote_marvelous_blueprint(plan)
+    plan.update(uses=1, permanent=True, crafting_tradition={'key': 'crafting:ley-linked'})
+    with pytest.raises(ValueError, match='unlimited duration'): quote_marvelous_blueprint(plan)
+    plan.pop('crafting_tradition'); plan['drawbacks'] = [dict(source='custom', name='Taxing', reduction=0)]
+    quote_marvelous_blueprint(plan)
+
+
+def test_charged_descriptor_includes_integrated_metamagic_sp():
+    from app.marvelous_item_rules import crafting_limitation_details
+    plan = dict(schema_version=1, caster_level=10, uses=5, range_steps=0, duration_steps=0,
+                activation='standard', unique_changes=0, contributions=[],
+                feat_integrations=[dict(name='Empower Spell', metamagic=True, additional_spell_points=2)],
+                drawbacks=[dict(source='published', catalog_key='crafting:charged', name='Charged', reduction=0)])
+    assert '6 charges per activation' in crafting_limitation_details(plan)[0]
+
+
 def test_cheap_tradition_applies_once_to_combined_design():
     from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_price_formula
     base = dict(schema_version=1, caster_level=5, uses=1, range_steps=0,

@@ -278,6 +278,41 @@ def simple_tradition_reduction(plan):
         'crafting:evil-artifice', 'crafting:sacred-artifice'})
 
 
+def crafting_item_limitations(plan):
+    """Reviewed identities, independent of editable tradition/drawback prose."""
+    keys = {row.get('catalog_key') for row in plan.get('drawbacks', []) if row.get('source') == 'published'}
+    tradition = (plan.get('crafting_tradition') or {}).get('key')
+    if tradition == 'crafting:evil-artifice': keys.add('crafting:sacrificing')
+    if tradition == 'crafting:ley-linked': keys.add('crafting:taxing')
+    return keys
+
+
+def crafting_limitation_details(plan):
+    """Concrete item requirements; no location, clock or sacrifice simulation."""
+    keys = crafting_item_limitations(plan)
+    lines = []
+    if 'crafting:charged' in keys:
+        complexity, _, _ = quote_marvelous_blueprint(plan)
+        points = sum(row.get('additional_spell_points', 0) for row in plan['contributions'])
+        points += sum(row.get('additional_spell_points', 0) for row in plan.get('feat_integrations', []))
+        if any(row.get('alternative') for row in plan['contributions']):
+            lines.append(f'Charged: {complexity} base charges per activation, plus the additional SP of the selected alternative; charge supply is manual.')
+        else:
+            lines.append(f'Charged: {complexity + points} charges per activation; charge supply is manual.')
+    if 'crafting:sacrificing' in keys:
+        lines.append(f'Sacrificing: recharge requires a qualifying sacrifice of at least {(plan["caster_level"] + 1) // 2} HD; once per day, manually verified.')
+    if 'crafting:taxing' in keys:
+        lines.append('Taxing: concentration is required when applicable; use normal concentration or half HD (rounded down, minimum 1), whichever is higher.')
+    tradition = (plan.get('crafting_tradition') or {}).get('key')
+    skills = {'crafting:fey-touched': ('Knowledge (nature)',),
+              'crafting:ridiculously-complicated': ('Acrobatics', 'Disable Device', 'Linguistics', 'Use Magic Device')}.get(tradition, ())
+    if skills:
+        lines.append(f'Complex: DC {5 + plan["caster_level"]} {", ".join(skills)} checks to activate; crafter must be trained in each skill.')
+    if tradition == 'crafting:diviner-s-sight':
+        lines.append('Educated: user must be trained in the Divination sphere; Use Magic Device cannot bypass this requirement.')
+    return tuple(lines)
+
+
 def effect_complexity(*, talent_costs=(), alternative_costs=(), range_steps=0,
                       duration_steps=0, activation="standard", unique_changes=0):
     """Resolve explicit construction contributions, never infer them from prose.
@@ -356,9 +391,18 @@ def quote_marvelous_blueprint(plan):
     # Resolve each independent choice set separately; legacy alternatives use group 1.
     grouped_costs = [effect_complexity(alternative_costs=costs) - 1 for costs in groups.values()]
     feat_cost = feat_integration_complexity(plan.get('feat_integrations', []))
+    simple = simple_tradition_reduction(plan)
+    limitations = crafting_item_limitations(plan)
+    for power in [plan, *plan.get('extra_effects', [])]:
+        if 'crafting:charged' in limitations and power['uses'] != 5:
+            raise ValueError('Charged requires an unlimited-use Marvelous Item.')
+        if 'crafting:sacrificing' in limitations and power['uses'] not in (1, 2, 3, 4):
+            raise ValueError('Sacrificing requires limited daily uses, not unlimited or fifty-total uses.')
+        if 'crafting:taxing' in limitations and power.get('permanent'):
+            raise ValueError('Taxing cannot restrict an effect usable for an unlimited duration.')
     complexity = effect_complexity(talent_costs=[x['complexity'] for x in plan['contributions'] if not x.get('alternative', False)] + grouped_costs,
         range_steps=plan['range_steps'], duration_steps=plan['duration_steps'],
-        activation=plan['activation'], unique_changes=plan['unique_changes'] - drawback_complexity(plan.get('drawbacks', [])) - simple_tradition_reduction(plan) + (2 if plan.get('permanent') else 0) + int(plan.get('full_blast_damage', False)) + 2 * plan.get('effect_range_steps', 0) + feat_cost)
+        activation=plan['activation'], unique_changes=plan['unique_changes'] - drawback_complexity(plan.get('drawbacks', [])) - simple + (2 if plan.get('permanent') else 0) + int(plan.get('full_blast_damage', False)) + 2 * plan.get('effect_range_steps', 0) + feat_cost)
     price = marvelous_item_price(plan['caster_level'], complexity,
                                 daily_uses=1 if plan['uses'] == 50 else plan['uses'], limited_uses=plan['uses'] == 50)
     if plan.get('no_space_limitation'):

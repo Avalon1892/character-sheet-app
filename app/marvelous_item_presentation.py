@@ -45,6 +45,9 @@ def item_card_fields(plan, *, name, slot, description):
         values['description'] += '\n\nDrawbacks:\n' + '\n'.join(
             f"{record['name']}: {record.get('description', '')} (−{record['reduction']} complexity; {record['source']}, GM review)"
             for record in plan['drawbacks'])
+    from app.marvelous_item_rules import crafting_limitation_details
+    if limitations := crafting_limitation_details(plan):
+        values['description'] += '\n\nActivation requirements:\n' + '\n'.join(limitations)
     if plan.get('extra_effects'):
         mixed = plan.get('combination_mode') == 'mixed'
         primary_uses = values['uses']

@@ -39,6 +39,19 @@ def test_tradition_rules_appear_in_item_description_without_overriding_lock():
     assert item_card_fields(plan, name='Gem', slot='', description='A gem.')['description'] == 'Locked text'
 
 
+def test_activation_requirement_values_update_without_overwriting_description_lock():
+    plan = blueprint()
+    plan['crafting_tradition'] = dict(key='crafting:fey-touched', name='Fey-Touched', description='Tradition')
+    fields = item_card_fields(plan, name='Gem', slot='', description='')
+    assert 'DC 10 Knowledge (nature)' in fields['description']
+    plan['caster_level'] = 7
+    assert 'DC 12 Knowledge (nature)' in item_card_fields(plan, name='Gem', slot='', description='')['description']
+    plan['crafting_tradition']['key'] = 'crafting:evil-artifice'
+    assert 'at least 4 HD' in item_card_fields(plan, name='Gem', slot='', description='')['description']
+    plan['display_overrides'] = {'description': dict(locked=True, value='Manual description')}
+    assert item_card_fields(plan, name='Gem', slot='', description='')['description'] == 'Manual description'
+
+
 def test_multiple_powers_show_each_limit_description_and_child_locks():
     plan = blueprint()
     extra = dict(blueprint(), uses=50, effect_name='Reserve cure', effect_description='<custom> reserve effect',
