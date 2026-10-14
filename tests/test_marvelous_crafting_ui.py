@@ -177,6 +177,23 @@ def test_force_blast_updates_live_cost_damage_and_saved_preview(composer):
     reopened.close()
 
 
+def test_pricing_columns_are_prioritized_and_alternative_groups_are_conditional(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Life'); dialog.cl.setValue(5)
+    index = next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == 'life:talent:deeper-healing')
+    dialog.talent.setCurrentIndex(index); dialog.add_contribution()
+    assert dialog.table.horizontalHeader().visualIndex(4) == 2
+    assert dialog.table.isColumnHidden(3)
+    checkbox = dialog.table.cellWidget(0, 2)
+    checkbox.setChecked(True)
+    assert not dialog.table.isColumnHidden(3)
+    dialog.table.cellWidget(0, 3).setValue(2)
+    checkbox.setChecked(False)
+    assert dialog.table.isColumnHidden(3)
+    checkbox.setChecked(True)
+    assert dialog.blueprint()['contributions'][0]['alternative_group'] == 2
+
+
 def test_alternative_prerequisite_choice_is_atomic_and_prices_only_chosen_talent(composer, monkeypatch):
     from PySide6.QtWidgets import QInputDialog
     from app.marvelous_item_rules import missing_construction_alternatives

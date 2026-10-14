@@ -129,10 +129,12 @@ class MarvelousCraftingDialog(QDialog):
         self.table.setHorizontalHeaderLabels(['Effect', 'Cost', 'Alt.', 'Group', 'SP', 'Choice'])
         self.table.setMinimumHeight(160); self.table.setMaximumHeight(240)
         self.table.setColumnHidden(5, True)
+        self.table.setColumnHidden(3, True)
         self.table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Interactive)
-        self.table.setColumnWidth(0, 175); self.table.setWordWrap(True)
-        for column, width in ((1, 60), (2, 40), (3, 55), (4, 50)):
+        self.table.setColumnWidth(0, 150); self.table.setWordWrap(True)
+        for column, width in ((1, 50), (2, 40), (3, 55), (4, 45)):
             self.table.setColumnWidth(column, width)
+        self.table.horizontalHeader().moveSection(self.table.horizontalHeader().visualIndex(4), 2)
         left.addWidget(self.table, 1)
         remove = QPushButton('Remove selected contribution'); left.addWidget(remove)
         self.effect_options = QPushButton('Choose affected spheres…'); left.addWidget(self.effect_options)
@@ -697,6 +699,7 @@ class MarvelousCraftingDialog(QDialog):
         self.feats_button.setText(f'Integrate feats… ({len(self.feat_integrations)})')
         from app.marvelous_item_rules import missing_construction_prerequisites, missing_construction_alternatives
         contributions = self.blueprint()['contributions']
+        self.table.setColumnHidden(3, not any(row.get('alternative') for row in contributions))
         self.add_prerequisites.setEnabled(bool(missing_construction_prerequisites(contributions) or missing_construction_alternatives(contributions)))
         try:
             complexity, price, quote = self.quotation()
