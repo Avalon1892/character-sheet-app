@@ -127,6 +127,7 @@ def test_custom_drawback_live_price_card_save_reopen_and_remove(composer):
     dialog.update_preview()
     assert dialog.quotation()[1].market_price_gp == 4000
     assert 'At dawn' in dialog.card_edits['description'].toPlainText()
+    assert '− 1 drawbacks' in dialog.cost_formula.text()
     assert automatic_self_effect(dialog.blueprint()) is None
     iid = CraftingService(repo, cid).save_marvelous_design(dialog.blueprint(), name='Limited design', slot='', description='')
     reopened = MarvelousCraftingDialog(repo, cid, item_id=iid)
@@ -167,6 +168,7 @@ def test_beacon_default_sp_is_included_once_and_saved_values_restore(composer):
     assert dialog.table.cellWidget(0, 4).value() == 1
     assert dialog.blueprint()['contributions'][0]['complexity'] == 2
     assert dialog.quotation()[1].market_price_gp == 6000
+    assert '+ 1 talents + 1 extra SP' in dialog.cost_formula.text()
     assert 'Teleport Beacon' in dialog.card_edits['description'].toPlainText()
     plan = dialog.blueprint(); dialog.load_plan(plan)
     assert dialog.blueprint()['contributions'] == plan['contributions']

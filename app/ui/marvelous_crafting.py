@@ -7,7 +7,7 @@ from PySide6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QFormLayout,
     QTableWidget, QTableWidgetItem, QHeaderView, QDialogButtonBox, QCheckBox, QMessageBox, QDateEdit, QListWidget,
     QScrollArea, QWidget, QSizePolicy, QToolButton, QTabWidget)
 from app.catalogs import DEFAULT_CATALOG
-from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_remaining_uses, marvelous_price_formula
+from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_remaining_uses, marvelous_price_formula, marvelous_complexity_formula
 from app.services.crafting import CraftingService
 from app.marvelous_base_powers import base_powers, resolve_base_power, automatic_self_effect, RANGES, DURATIONS
 
@@ -588,7 +588,10 @@ class MarvelousCraftingDialog(QDialog):
         self.add_prerequisites.setEnabled(bool(missing_construction_prerequisites(self.blueprint()['contributions'])))
         try:
             complexity, price, quote = self.quotation()
-            self.cost_formula.setText('Cost: ' + marvelous_price_formula(self.blueprint()))
+            self.cost_formula.setText('Cost: ' + marvelous_price_formula(self.blueprint())
+                                      + '\nComplexity: ' + marvelous_complexity_formula(self.blueprint()))
+            self.cost_formula.setToolTip('\n'.join(f'Power {index}: {marvelous_complexity_formula(power)}'
+                for index, power in enumerate([self.blueprint(), *self.extra_effects], 1)))
             self.refresh_item_card()
             effect = resolve_base_power(self.blueprint())
             automatic = automatic_self_effect(self.blueprint())

@@ -242,6 +242,9 @@ def talent_construction_cost(entry, *, additional_spell_points=0, mythic_crafter
     return (2 if 'advanced' in str(entry.get('category', '')).casefold() and not mythic_crafter else 1) + additional_spell_points
 
 
+ACTIVATION_COMPLEXITY = {"standard": 0, "full-round": -1, "move": 3, "swift": 5}
+
+
 def effect_complexity(*, talent_costs=(), alternative_costs=(), range_steps=0,
                       duration_steps=0, activation="standard", unique_changes=0):
     """Resolve explicit construction contributions, never infer them from prose.
@@ -251,7 +254,7 @@ def effect_complexity(*, talent_costs=(), alternative_costs=(), range_steps=0,
     in full and the others at half cost. Sphere-specific exceptions must supply
     their published costs rather than the general one-point talent default.
     """
-    activation_cost = {"standard": 0, "full-round": -1, "move": 3, "swift": 5}
+    activation_cost = ACTIVATION_COMPLEXITY
     if activation not in activation_cost:
         raise ValueError("Unsupported activation time.")
     for value in (range_steps, duration_steps, unique_changes):
@@ -392,6 +395,27 @@ def quote_marvelous_effects(plans, *, mode='multiple'):
     combined = MarvelousItemPrice(total, 10 + cl // 2, None, None)
     return dict(effects=quoted, market_price_gp=total,
                 crafting=marvelous_crafting_quote(combined, cl), mode=mode)
+
+
+def marvelous_complexity_formula(plan):
+    """Explain every primary-effect term; use the quote for the final result."""
+    complexity, _, _ = quote_marvelous_blueprint(plan)
+    ordinary = [row for row in plan['contributions'] if not row.get('alternative')]
+    groups = {}
+    for row in plan['contributions']:
+        if row.get('alternative'):
+            groups.setdefault(row.get('alternative_group', 1), []).append(row['complexity'])
+    terms = [('base', 1), ('talents', sum(row['complexity'] - row.get('additional_spell_points', 0) for row in ordinary)),
+             ('extra SP', sum(row.get('additional_spell_points', 0) for row in ordinary)),
+             ('choices', sum(effect_complexity(alternative_costs=costs) - 1 for costs in groups.values())),
+             ('range', plan['range_steps']), ('duration', 2 * plan['duration_steps']),
+             ('activation', ACTIVATION_COMPLEXITY[plan['activation']]), ('unique changes', plan['unique_changes']),
+             ('permanency', 2 if plan.get('permanent') else 0), ('full blast', int(plan.get('full_blast_damage', False))),
+             ('distance/area', 2 * plan.get('effect_range_steps', 0)),
+             ('feats', feat_integration_complexity(plan.get('feat_integrations', []))),
+             ('drawbacks', -drawback_complexity(plan.get('drawbacks', [])))]
+    rendered = '1 base' + ''.join(f" {'+' if value > 0 else '−'} {abs(value)} {label}" for label, value in terms[1:] if value)
+    return f'max(1, {rendered}) = {complexity}'
 
 
 def marvelous_price_formula(plan):

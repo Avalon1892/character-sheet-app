@@ -5,6 +5,21 @@ from app.marvelous_item_rules import effect_complexity, marvelous_crafting_quote
 from app.marvelous_item_rules import marvelous_requirements
 
 
+def test_complexity_formula_exposes_sp_alternatives_and_reductions():
+    from app.marvelous_item_rules import marvelous_complexity_formula, quote_marvelous_blueprint
+    plan = dict(schema_version=1, caster_level=20, uses=1, range_steps=1, duration_steps=-1,
+                activation='move', unique_changes=0, contributions=[
+                    dict(catalog_key='test:a', complexity=3, additional_spell_points=2),
+                    dict(catalog_key='test:b', complexity=4, alternative=True),
+                    dict(catalog_key='test:c', complexity=2, alternative=True)],
+                drawbacks=[dict(source='custom', name='Restriction', reduction=1)])
+    result = marvelous_complexity_formula(plan)
+    assert '+ 1 talents + 2 extra SP + 5 choices + 1 range − 2 duration + 3 activation − 1 drawbacks' in result
+    assert result.endswith('= ' + str(quote_marvelous_blueprint(plan)[0]))
+    plan['contributions'] = []; plan.update(range_steps=0, duration_steps=0, activation='full-round')
+    assert marvelous_complexity_formula(plan) == 'max(1, 1 base − 1 activation − 1 drawbacks) = 1'
+
+
 def test_warp_construction_dependency_chains_and_beacon_sp():
     from app.marvelous_item_rules import missing_construction_prerequisites, advanced_construction_blockers, talent_construction_spell_points
     from app.content import magic_entry
