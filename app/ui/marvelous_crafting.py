@@ -260,6 +260,15 @@ class MarvelousCraftingDialog(QDialog):
         self.setWindowTitle('Edit Marvelous Item Design'); self.save.setText('Save design changes')
 
     def load_plan(self, plan):
+        self.loading_plan = True
+        try:
+            self._load_plan(plan)
+        finally:
+            self.loading_plan = False
+        self.table.resizeRowsToContents()
+        self.refresh_extra_picker()
+
+    def _load_plan(self, plan):
         from app.marvelous_item_rules import drawback_complexity
         drawback_complexity(plan.get('drawbacks', []))
         from app.marvelous_item_rules import marvelous_item_weight
@@ -292,7 +301,6 @@ class MarvelousCraftingDialog(QDialog):
         self.mode_picker.setCurrentIndex(self.mode_picker.findData(self.combination_mode))
         self.mode_picker.blockSignals(False)
         self.table.setRowCount(0)
-        self.loading_plan = True
         self.sphere.setCurrentText(plan['sphere'])
         self.base_power.setCurrentIndex(self.base_power.findData(plan['base_power']))
         self.cl.setValue(plan['caster_level'])
@@ -326,8 +334,6 @@ class MarvelousCraftingDialog(QDialog):
             self.table.item(row, 0).setData(Qt.ItemDataRole.UserRole + 1, contribution.get('effect_spheres', []))
             self.table.cellWidget(row, 2).setChecked(contribution.get('alternative', False))
             self.table.cellWidget(row, 3).setValue(contribution.get('alternative_group', 1))
-        self.loading_plan = False
-        self.refresh_extra_picker()
 
     def change_item_caster_level(self, value):
         if not self.loading_plan:
@@ -545,7 +551,7 @@ class MarvelousCraftingDialog(QDialog):
             self.table.setColumnHidden(5, False)
         choice.setEnabled(choice.count() > 1)
         choice.currentIndexChanged.connect(self.update_preview); self.table.setCellWidget(row, 5, choice)
-        self.table.resizeRowsToContents()
+        if not self.loading_plan: self.table.resizeRowsToContents()
         self.update_preview()
 
     def refresh_effect_options(self):
@@ -703,6 +709,7 @@ class MarvelousCraftingDialog(QDialog):
         return quote_marvelous_blueprint(self.blueprint())
 
     def update_preview(self, *_):
+        if self.loading_plan: return
         selected_drawback = self.drawbacks_list.currentRow()
         self.drawbacks_list.clear()
         for record in self.drawbacks:

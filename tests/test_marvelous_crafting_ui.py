@@ -288,6 +288,31 @@ def test_optional_prerequisite_promotion_requires_confirmation_without_duplicate
     assert repo._connection.total_changes == before
 
 
+def test_loading_plan_calculates_once_and_keeps_live_updates_after_failure(composer, monkeypatch):
+    dialog, repo, cid = composer
+    saved = dialog.blueprint()
+    saved.update(sphere='Life', base_power='life:cure', caster_level=10, uses=3, unique_changes=1,
+                 contributions=[dict(catalog_key='life:talent:deeper-healing', complexity=1, additional_spell_points=0)])
+    saved['display_overrides'] = {'description': dict(locked=True, value='Locked manual text')}
+    quote = dialog.quotation
+    calls = []
+    def counted():
+        calls.append(True); return quote()
+    monkeypatch.setattr(dialog, 'quotation', counted)
+    before = repo._connection.total_changes
+    dialog.load_plan(saved)
+    assert len(calls) == 1
+    assert dialog.card_edits['description'].toPlainText() == 'Locked manual text'
+    dialog.cl.setValue(11)
+    assert len(calls) == 2 and dialog.card_edits['description'].toPlainText() == 'Locked manual text'
+    invalid = {**saved, 'base_weight_lb': True}
+    with pytest.raises(ValueError): dialog.load_plan(invalid)
+    assert not dialog.loading_plan
+    dialog.cl.setValue(12)
+    assert len(calls) == 3
+    assert repo._connection.total_changes == before
+
+
 def test_accessible_effect_picker_reuses_basket_without_learning_rules(composer):
     from app.ui.marvelous_effect_picker import MarvelousEffectPicker
     from app.catalogs import DEFAULT_CATALOG
