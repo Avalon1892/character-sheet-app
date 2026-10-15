@@ -26,7 +26,7 @@ def test_visible_construction_status_opens_review_without_disabling_draft_save(c
     assert 'construction requirement' in dialog.construction_status.text()
     assert 'Missing base sphere' in dialog.construction_status.toolTip()
     assert dialog.save.isEnabled()
-    dialog.construction_status.linkActivated.emit('review')
+    dialog.review_requirements.click()
     assert dialog.card_tabs.currentWidget() is dialog.preview
     dialog.cl.setValue(100)
     assert dialog.construction_status.toolTip()

@@ -199,8 +199,10 @@ class MarvelousCraftingDialog(QDialog):
             edit.textChanged.connect(lambda *_, key=key: self.edit_card_field(key))
         self.preview = QTextBrowser(); self.card_tabs.addTab(self.preview, 'Construction review')
         self.construction_status = QLabel(); self.construction_status.setWordWrap(True)
-        self.construction_status.linkActivated.connect(lambda _: self.card_tabs.setCurrentIndex(1))
-        center.addWidget(self.construction_status)
+        status_row = QHBoxLayout(); status_row.addWidget(self.construction_status, 1)
+        self.review_requirements = QPushButton('Review…'); status_row.addWidget(self.review_requirements)
+        self.review_requirements.clicked.connect(lambda: self.card_tabs.setCurrentIndex(1))
+        center.addLayout(status_row)
         self.drawbacks_panel = QWidget(); self.drawbacks_panel.setMinimumWidth(155); self.drawbacks_panel.setMaximumWidth(235)
         right = QVBoxLayout(self.drawbacks_panel); right.setContentsMargins(0, 0, 0, 0)
         columns.addWidget(self.drawbacks_panel, 2)
@@ -841,9 +843,9 @@ class MarvelousCraftingDialog(QDialog):
             if requirements.blockers:
                 count = len(requirements.blockers)
                 wording = 'requirement needs' if count == 1 else 'requirements need'
-                self.construction_status.setText(f'Draft — {count} construction {wording} attention. <a href="review">Review</a>')
+                self.construction_status.setText(f'Draft — {count} construction {wording} attention.')
             else:
-                self.construction_status.setText('Baseline construction checks passed. <a href="review">Review requirements</a>')
+                self.construction_status.setText('Baseline construction checks passed.')
             self.construction_status.setToolTip('\n'.join(requirements.blockers + requirements.bypassed))
             extra_review = ''
             for plan in self.extra_effects:
