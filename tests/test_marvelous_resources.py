@@ -52,6 +52,33 @@ def test_diviners_sight_requires_enabled_base_training_before_any_writes(crafter
     assert metadata(repo, cid, iid)['marvelous_uses_used'] == 1
 
 
+def test_educated_requires_every_selected_magic_and_martial_base(crafter):
+    repo, cid = crafter
+    plan = dict(drawbacks=[dict(source='published', catalog_key='crafting:educated', required_spheres=['Life', 'Boxing'])])
+    assert len(repo.marvelous_activation_blockers(cid, plan)) == 2
+    repo.add_spell(cid, 'Life', system='Sphere', school_or_sphere='Life', catalog_key='life:base', catalog_category='Base Sphere')
+    assert len(repo.marvelous_activation_blockers(cid, plan)) == 1
+    repo.add_martial_talent(cid, 'Boxing', sphere='Boxing', catalog_key='boxing:base', catalog_category='Base Sphere')
+    assert not repo.marvelous_activation_blockers(cid, plan)
+    plan['drawbacks'][0]['required_spheres'] = []
+    assert 'choose required spheres' in repo.marvelous_activation_blockers(cid, plan)[0]
+
+
+def test_educated_save_rejects_unknown_spheres_without_writes_and_preserves_choices(crafter):
+    repo, cid = crafter
+    plan = dict(schema_version=1, sphere='Life', base_power='life:cure', caster_level=5,
+        activation='standard', uses=1, range_steps=0, duration_steps=0, unique_changes=0, contributions=[],
+        drawbacks=[dict(source='published', catalog_key='crafting:educated', name='Educated', reduction=0, required_spheres=['Unknown sphere'])])
+    service = CraftingService(repo, cid)
+    before = repo._connection.total_changes
+    with pytest.raises(ValueError, match='unknown sphere'):
+        service.save_marvelous_design(plan, name='Educated', slot='', description='')
+    assert repo._connection.total_changes == before
+    plan['drawbacks'][0]['required_spheres'] = ['Life', 'Boxing']
+    iid = service.save_marvelous_design(plan, name='Educated', slot='', description='')
+    assert metadata(repo, cid, iid)['marvelous_blueprint']['drawbacks'][0]['required_spheres'] == ['Life', 'Boxing']
+
+
 def test_character_transfer_preserves_blueprint_project_and_independent_counters(crafter, tmp_path, monkeypatch):
     from app.transfer import export_character, import_character
     from app.marvelous_item_rules import MarvelousRequirements

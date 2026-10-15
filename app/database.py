@@ -2218,13 +2218,17 @@ class CharacterRepository:
 
     def marvelous_activation_blockers(self, character_id, plan):
         """Reviewed user requirements, separate from permanent crafting access."""
-        if (plan.get('crafting_tradition') or {}).get('key') != 'crafting:diviner-s-sight': return ()
-        from app.exploitant_rules import effective_magic_talents
-        if any(spell.enabled and spell.school_or_sphere.casefold() == 'divination'
-               and (spell.catalog_category.casefold() == 'base sphere' or spell.catalog_key.endswith(':base'))
-               for spell in effective_magic_talents(self, character_id)):
-            return ()
-        return ('Educated: requires Divination sphere training; Use Magic Device cannot bypass this requirement.',)
+        from app.marvelous_item_rules import educated_required_spheres
+        required = educated_required_spheres(plan)
+        if required is None: return ()
+        if not required: return ('Educated: choose required spheres before activation.',)
+        from app.exploitant_rules import effective_magic_talents, effective_martial_talents
+        trained = {spell.school_or_sphere.casefold() for spell in effective_magic_talents(self, character_id)
+            if spell.enabled and (spell.catalog_category.casefold() == 'base sphere' or spell.catalog_key.endswith(':base'))}
+        trained.update(talent.sphere.casefold() for talent in effective_martial_talents(self, character_id)
+            if talent.enabled and (talent.catalog_category.casefold() == 'base sphere' or talent.catalog_key.endswith(':base')))
+        return tuple(f'Educated: requires {sphere} sphere training; Use Magic Device cannot bypass this requirement.'
+                     for sphere in required if sphere.casefold() not in trained)
 
     def consume_marvelous_item_use(self, character_id: int, item_id: int, *, apply_to_self=False, effect_index=0, target_character_id=None) -> dict:
         """Atomically consume a saved custom item's use; preserve unrelated metadata.

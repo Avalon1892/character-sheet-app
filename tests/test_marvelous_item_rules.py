@@ -362,6 +362,13 @@ def test_group_teleport_pays_two_sp_across_integrated_prerequisites():
                ('warp:advanced-talent:group-teleport', 'warp:talent:mass-teleport-mass')) == 2
 
 
+@pytest.mark.parametrize('selected', [['Life', 'life'], ['Life'] * 4, [''], 'Life', [True]])
+def test_educated_choices_reject_malformed_or_duplicate_spheres(selected):
+    from app.marvelous_item_rules import educated_required_spheres
+    with pytest.raises(ValueError, match='Educated'):
+        educated_required_spheres(dict(drawbacks=[dict(source='published', catalog_key='crafting:educated', required_spheres=selected)]))
+
+
 def test_counted_prerequisites_require_two_applied_extended_ranges():
     from app.marvelous_item_rules import missing_construction_prerequisites, advanced_construction_blockers
     key = 'destruction:talent:extended-range-range'

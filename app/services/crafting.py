@@ -100,6 +100,9 @@ class CraftingService:
         from app.marvelous_base_powers import resolve_base_power
         from app.marvelous_item_rules import advanced_construction_blockers
         required, advanced, spheres, construction_blockers = [], [], [], []
+        from app.marvelous_item_rules import educated_required_spheres
+        if educated_required_spheres(plan) == ():
+            construction_blockers.append('Educated: choose required spheres.')
         from app.marvelous_item_rules import marvelous_area_bound_mode
         if marvelous_area_bound_mode(plan) == '':
             construction_blockers.append('Area-Bound: choose distance-limited use or location recharge.')
@@ -150,6 +153,13 @@ class CraftingService:
         from app.optional_traditions import crafting_drawbacks
         item_drawbacks = {entry['key']: entry for entry in crafting_drawbacks()}
         drawback_complexity(plan.get('drawbacks', []))
+        from app.marvelous_item_rules import educated_required_spheres
+        educated = educated_required_spheres(plan)
+        if educated:
+            from app.catalogs import DEFAULT_CATALOG
+            known = {entry['name'].casefold() for entry in (*DEFAULT_CATALOG.magic_spheres(), *DEFAULT_CATALOG.martial_spheres())}
+            if any(sphere.casefold() not in known for sphere in educated):
+                raise ValueError('Educated contains an unknown sphere.')
         for record in plan.get('drawbacks', []):
             if record['source'] == 'published':
                 entry = self.magic_entries_by_key.get(record['catalog_key']) or item_drawbacks.get(record['catalog_key'])

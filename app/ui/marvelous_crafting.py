@@ -445,12 +445,15 @@ class MarvelousCraftingDialog(QDialog):
         dialog.setWindowTitle('Add item drawbacks'); dialog.catalog_heading.setText('ITEM DRAWBACKS — GM REVIEW REQUIRED')
         if dialog.exec() != QDialog.DialogCode.Accepted: return
         existing = {record.get('catalog_key') for record in self.drawbacks}
+        configure = []
         for entry in dialog.selected_entries:
             if entry['key'] not in existing:
                 self.drawbacks.append(dict(source='published', catalog_key=entry['key'], name=entry['name'],
                                            description=entry.get('description', ''), reduction=0 if entry['key'].startswith('crafting:') else 1))
                 existing.add(entry['key'])
+                if entry['key'] == 'crafting:educated': configure.append(len(self.drawbacks) - 1)
         self.update_preview()
+        for index in configure: self.edit_drawback(index)
 
     def add_custom_drawback(self):
         self.edit_drawback()
@@ -468,15 +471,30 @@ class MarvelousCraftingDialog(QDialog):
             name.setText(previous['name']); description.setPlainText(previous.get('description', '')); reduction.setValue(previous['reduction'])
             name.setReadOnly(previous['source'] == 'published'); description.setReadOnly(previous['source'] == 'published')
         form.addRow('Name', name); form.addRow('Description / restriction', description); form.addRow('Complexity reduction', reduction)
+        spheres = None
+        if previous and previous.get('source') == 'published' and previous.get('catalog_key') == 'crafting:educated':
+            spheres = QListWidget(); spheres.setObjectName('educatedSpheres')
+            spheres.setSelectionMode(QAbstractItemView.SelectionMode.MultiSelection)
+            selected = previous.get('required_spheres', [])
+            available = {entry['name'] for entry in (*DEFAULT_CATALOG.magic_spheres(), *DEFAULT_CATALOG.martial_spheres())}
+            for sphere in sorted(available | set(selected), key=str.casefold):
+                spheres.addItem(sphere); spheres.item(spheres.count() - 1).setSelected(sphere in selected)
+            form.addRow('Required spheres (choose 1–3)', spheres)
+            dialog.resize(600, 650)
         buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
-        buttons.button(QDialogButtonBox.StandardButton.Ok).setEnabled(bool(name.text().strip()))
-        name.textChanged.connect(lambda value: buttons.button(QDialogButtonBox.StandardButton.Ok).setEnabled(bool(value.strip())))
+        def refresh_accept():
+            buttons.button(QDialogButtonBox.StandardButton.Ok).setEnabled(bool(name.text().strip())
+                and (spheres is None or 1 <= len(spheres.selectedItems()) <= 3))
+        name.textChanged.connect(refresh_accept)
+        if spheres is not None: spheres.itemSelectionChanged.connect(refresh_accept)
+        refresh_accept()
         buttons.accepted.connect(dialog.accept); buttons.rejected.connect(dialog.reject); form.addRow(buttons)
         if dialog.exec() != QDialog.DialogCode.Accepted: return
         if any(row != index and record['name'].casefold() == name.text().strip().casefold()
                for row, record in enumerate(self.drawbacks)):
             QMessageBox.warning(self, 'Duplicate drawback', 'This drawback is already included.'); return
         updated = dict(previous or {'source': 'custom'}, name=name.text().strip(), description=description.toPlainText(), reduction=reduction.value())
+        if spheres is not None: updated['required_spheres'] = [item.text() for item in spheres.selectedItems()]
         if index is None: self.drawbacks.append(updated)
         else: self.drawbacks[index] = updated
         self.update_preview()

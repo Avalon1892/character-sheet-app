@@ -588,6 +588,30 @@ def test_diviners_sight_use_button_tracks_training_and_explains_requirement(comp
     window.close()
 
 
+def test_educated_sphere_editor_saves_choices_and_cancellation_does_not_write(composer, monkeypatch):
+    from PySide6.QtWidgets import QDialog, QListWidget, QDialogButtonBox
+    dialog, repo, cid = composer
+    dialog.drawbacks = [dict(source='published', catalog_key='crafting:educated', name='Educated', description='', reduction=0)]
+    dialog.update_preview()
+    before = repo._connection.total_changes
+    def choose(child):
+        picker = child.findChild(QListWidget, 'educatedSpheres')
+        buttons = child.findChild(QDialogButtonBox)
+        assert not buttons.button(QDialogButtonBox.StandardButton.Ok).isEnabled()
+        for index in range(picker.count()):
+            if picker.item(index).text() in {'Life', 'Boxing'}: picker.item(index).setSelected(True)
+        assert buttons.button(QDialogButtonBox.StandardButton.Ok).isEnabled()
+        return QDialog.DialogCode.Accepted
+    monkeypatch.setattr(QDialog, 'exec', choose)
+    dialog.edit_drawback(0)
+    assert set(dialog.drawbacks[0]['required_spheres']) == {'Life', 'Boxing'}
+    saved = dialog.blueprint()
+    monkeypatch.setattr(QDialog, 'exec', lambda child: QDialog.DialogCode.Rejected)
+    dialog.edit_drawback(0)
+    assert dialog.blueprint()['drawbacks'] == saved['drawbacks']
+    assert repo._connection.total_changes == before
+
+
 def test_chain_blast_preview_tracks_item_caster_level(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(6)

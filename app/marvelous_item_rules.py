@@ -410,6 +410,31 @@ def simple_tradition_reduction(plan):
         'crafting:evil-artifice', 'crafting:sacred-artifice'})
 
 
+def educated_required_spheres(plan):
+    """None when absent, empty when pending; names are catalog-validated on save."""
+    tradition = plan.get('crafting_tradition')
+    if tradition is not None and (not isinstance(tradition, dict) or not isinstance(tradition.get('key'), str)):
+        raise ValueError('Crafting tradition requires a catalog identity.')
+    required = ['Divination'] if (tradition or {}).get('key') == 'crafting:diviner-s-sight' else []
+    present = bool(required)
+    records = plan.get('drawbacks', [])
+    if not isinstance(records, list) or any(not isinstance(row, dict) for row in records):
+        raise ValueError('Drawbacks must be a list of records.')
+    for row in records:
+        if row.get('source') != 'published' or row.get('catalog_key') != 'crafting:educated': continue
+        present = True
+        selected = row.get('required_spheres', [])
+        if (not isinstance(selected, list) or len(selected) > 3
+                or any(not isinstance(name, str) or not name.strip() for name in selected)
+                or len({name.strip().casefold() for name in selected}) != len(selected)):
+            raise ValueError('Educated requires up to three distinct sphere names.')
+        if not selected: return ()
+        required.extend(name.strip() for name in selected)
+    required = tuple({name.casefold(): name for name in required}.values())
+    if len(required) > 3: raise ValueError('Educated requires up to three distinct sphere names.')
+    return required if present else None
+
+
 def crafting_item_limitations(plan):
     """Reviewed identities, independent of editable tradition/drawback prose."""
     keys = {row.get('catalog_key') for row in plan.get('drawbacks', []) if row.get('source') == 'published'}
@@ -501,8 +526,10 @@ def crafting_limitation_details(plan, *, quotation=None):
               'crafting:ridiculously-complicated': ('Acrobatics', 'Disable Device', 'Linguistics', 'Use Magic Device')}.get(tradition, ())
     if skills:
         lines.append(f'Complex: DC {5 + plan["caster_level"]} {", ".join(skills)} checks to activate; crafter must be trained in each skill.')
-    if tradition == 'crafting:diviner-s-sight':
-        lines.append('Educated: user must be trained in the Divination sphere; Use Magic Device cannot bypass this requirement.')
+    if educated := educated_required_spheres(plan):
+        lines.append('Educated: user must be trained in every required sphere: ' + ', '.join(educated) + '; Use Magic Device cannot bypass this requirement.')
+    elif educated == ():
+        lines.append('Educated: choose required spheres before using or completing this design.')
     return tuple(lines)
 
 
@@ -571,6 +598,7 @@ def quote_marvelous_blueprint(plan):
     if plan.get('schema_version') != 1:
         raise ValueError('Unsupported Marvelous blueprint version.')
     spell_selectivity_options(plan)
+    educated_required_spheres(plan)
     if plan.get('base_power'):
         from app.marvelous_base_powers import resolve_base_power
         resolve_base_power(plan)
