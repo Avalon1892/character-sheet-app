@@ -106,6 +106,13 @@ def test_additional_warp_prerequisites_and_minimum_levels(key, minimum, required
     ('warp:advanced-talent:portal-interstice-sm', 5),
     ('warp:advanced-talent:portal-security-space-sm', 5),
     ('warp:advanced-talent:universal-teleport', 17),
+    ('warp:advanced-talent:brain-preservation-alienist-hb', 15),
+    ('warp:advanced-talent:organ-detachment-space-alienist-hb', 10),
+    ('warp:advanced-talent:randomized-planeshift-sm', 5),
+    ('warp:advanced-talent:repel-the-unnatural-alienist-hb', 0),
+    ('warp:advanced-talent:warp-manipulator', 1),
+    ('warp:advanced-talent:manifest-planar-zone-space-dbh', 5),
+    ('warp:advanced-talent:greater-planar-zone-sm', 5),
 ])
 def test_warp_chain_expansion_adds_all_dependencies_once_and_checks_level(key, level):
     from app.content import magic_entry
@@ -116,8 +123,8 @@ def test_warp_chain_expansion_adds_all_dependencies_once_and_checks_level(key, l
     assert len(missing) == len(set(missing))
     rows.extend(dict(catalog_key=required) for required in missing)
     assert not missing_construction_prerequisites(rows)
-    assert not advanced_construction_blockers(rows, level)
-    assert advanced_construction_blockers(rows, level - 1)
+    assert not advanced_construction_blockers(rows, max(1, level))
+    if level: assert advanced_construction_blockers(rows, level - 1)
 
 
 def test_weather_construction_sp_defaults_and_modes_are_catalog_backed():

@@ -68,19 +68,24 @@ def test_empty_marvelous_window_can_open_designer_without_writes(composer, monke
     window.close()
 
 
-def test_dimensional_lock_adds_plane_manipulator_and_enforces_level(composer):
+@pytest.mark.parametrize('key,required,level,points', [
+    ('warp:advanced-talent:dimensional-lock-space', 'warp:space-talent:plane-manipulator-space', 15, 2),
+    ('warp:advanced-talent:brain-preservation-alienist-hb', 'warp:advanced-talent:organ-detachment-space-alienist-hb', 15, 0),
+])
+def test_warp_advanced_effect_adds_prerequisite_and_enforces_level(composer, key, required, level, points):
     dialog, repo, cid = composer
-    dialog.sphere.setCurrentText('Warp'); dialog.cl.setValue(15)
-    key = 'warp:advanced-talent:dimensional-lock-space'
+    dialog.sphere.setCurrentText('Warp'); dialog.cl.setValue(level)
     index = next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key)
     dialog.talent.setCurrentIndex(index); dialog.add_contribution()
     assert dialog.add_prerequisites.isEnabled()
     dialog.add_required_contributions()
     rows = dialog.blueprint()['contributions']
-    assert {row['catalog_key'] for row in rows} == {key, 'warp:space-talent:plane-manipulator-space'}
-    assert next(row for row in rows if row['catalog_key'] == key)['additional_spell_points'] == 2
-    dialog.cl.setValue(14)
-    assert '15' in dialog.construction_status.toolTip()
+    assert {row['catalog_key'] for row in rows} == {key, required}
+    assert next(row for row in rows if row['catalog_key'] == key)['additional_spell_points'] == points
+    if 'brain-preservation' in key:
+        assert next(row for row in rows if row['catalog_key'] == required)['additional_spell_points'] == 3
+    dialog.cl.setValue(level - 1)
+    assert str(level) in dialog.construction_status.toolTip()
 
 
 def test_fluctuate_picker_updates_cost_duration_and_survives_reopen(composer, monkeypatch):
