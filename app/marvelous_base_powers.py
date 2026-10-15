@@ -78,9 +78,11 @@ DESTRUCTION_BLAST_TYPES = {
 GUIDED_STRIKE_KEY = 'destruction:blast-shape-talent:guided-strike-blast-shape'
 KNIGHTS_BLAST_KEY = 'destruction:blast-shape-talent:knight-s-blast-blast-shape-jester-s-hb'
 GRANDMASTER_KEY = 'destruction:advanced-talent:grandmaster-jester-s-hb'
+EXPLOSIVE_ORB_KEY = 'destruction:blast-shape-talent:explosive-orb-blast-shape'
 DESTRUCTION_INSTANT_SHAPES = {
     GUIDED_STRIKE_KEY: 'Guided',
     KNIGHTS_BLAST_KEY: "Knight's",
+    EXPLOSIVE_ORB_KEY: 'Explosive Orb',
     'destruction:blast-shape-talent:chain-blast-blast-shape': 'Chain',
     'destruction:blast-shape-talent:mutable-blast-blast-shape': 'Mutable',
 }
@@ -90,6 +92,8 @@ def destructive_blast_profile(plan):
     rows = plan.get('contributions', [])
     keys = [row.get('catalog_key') for row in rows]
     if any(row.get('alternative') for row in rows) or len(keys) != len(set(keys)): return None
+    if any(row.get('catalog_key') == EXPLOSIVE_ORB_KEY and row.get('effect_choice') not in talent_effect_choices(EXPLOSIVE_ORB_KEY)
+           for row in rows): return None
     if GRANDMASTER_KEY in keys:
         if KNIGHTS_BLAST_KEY not in keys: return None
         keys.remove(GRANDMASTER_KEY)
@@ -102,6 +106,8 @@ def destructive_blast_profile(plan):
 
 def talent_effect_choices(key):
     """Reviewed construction choices, shared by the editor and projections."""
+    if key == EXPLOSIVE_ORB_KEY:
+        return ('single square', 'expanded burst')
     if key == 'protection:aegis-ward-talent:armored-magic-aegis':
         return ('armor', 'shield')
     if key == 'protection:advanced-talent:spell-selectivity-dbh':
@@ -398,6 +404,10 @@ def resolve_base_power(plan):
                 summary['power'] = DESTRUCTION_INSTANT_SHAPES[shape] + ' ' + name
             if shape == GUIDED_STRIKE_KEY:
                 summary['attack_circumstance_bonus'] = 20
+            elif shape == EXPLOSIVE_ORB_KEY:
+                choice = next(row['effect_choice'] for row in plan['contributions'] if row.get('catalog_key') == shape)
+                summary['area'] = 'One 5-foot square' if choice == 'single square' else f'Burst radius up to {10 + 5 * (cl // 5)} ft.'
+                summary['saving_throw'] = 'Reflex negates' if choice == 'single square' else 'Reflex half'
             elif shape == KNIGHTS_BLAST_KEY:
                 close = 25 + 5 * (cl // 2)
                 grandmaster = any(row.get('catalog_key') == GRANDMASTER_KEY for row in plan.get('contributions', []))

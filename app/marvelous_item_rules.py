@@ -329,6 +329,7 @@ def talent_construction_spell_points(entry):
     one beyond its integrated prerequisites. Optional variants remain explicit.
     """
     from app.marvelous_base_powers import DESTRUCTION_BLAST_TYPES, DESTRUCTION_INSTANT_SHAPES
+    if entry.get('key') == 'destruction:blast-shape-talent:explosive-orb-blast-shape': return 0
     if profile := DESTRUCTION_BLAST_TYPES.get(entry.get('key')):
         return profile[3]
     if entry.get('key') in DESTRUCTION_INSTANT_SHAPES: return 1
@@ -369,6 +370,13 @@ def talent_construction_spell_points(entry):
         'protection:succor-talent:negation-succor-3pp': 1,
         'protection:succor-talent:reflection-succor': 1,
     }.get(entry.get('key'), 0)
+
+
+def talent_choice_spell_points(key, choice):
+    """Reviewed mode costs; None leaves an unrelated/manual value unchanged."""
+    if key == 'destruction:blast-shape-talent:explosive-orb-blast-shape':
+        return {'single square': 0, 'expanded burst': 1}.get(choice)
+    return None
 
 
 def talent_construction_cost(entry, *, additional_spell_points=0, mythic_crafter=False):

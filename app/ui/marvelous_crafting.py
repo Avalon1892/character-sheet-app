@@ -550,8 +550,21 @@ class MarvelousCraftingDialog(QDialog):
             for value in choices: choice.addItem(value.title(), value)
             self.table.setColumnHidden(5, False)
         choice.setEnabled(choice.count() > 1)
-        choice.currentIndexChanged.connect(self.update_preview); self.table.setCellWidget(row, 5, choice)
+        choice.currentIndexChanged.connect(lambda: self.contribution_choice_changed(choice)); self.table.setCellWidget(row, 5, choice)
         if not self.loading_plan: self.table.resizeRowsToContents()
+        self.update_preview()
+
+    def contribution_choice_changed(self, choice):
+        if self.loading_plan: return
+        from app.marvelous_item_rules import talent_choice_spell_points
+        from PySide6.QtCore import Qt
+        for row in range(self.table.rowCount()):
+            if self.table.cellWidget(row, 5) is not choice: continue
+            points = talent_choice_spell_points(self.table.item(row, 0).data(Qt.ItemDataRole.UserRole), choice.currentData())
+            if points is not None:
+                editor = self.table.cellWidget(row, 4)
+                editor.blockSignals(True); editor.setValue(points); editor.blockSignals(False)
+            break
         self.update_preview()
 
     def refresh_effect_options(self):

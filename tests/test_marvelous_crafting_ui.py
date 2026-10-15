@@ -471,6 +471,29 @@ def test_preview_reuses_one_fresh_base_quote_per_edit(composer, monkeypatch, cha
     assert ('12000 gp' if charged else '2400 gp') in dialog.cost_formula.text()
 
 
+def test_explosive_orb_choice_updates_price_after_row_removal_and_preserves_saved_override(composer):
+    from app.marvelous_base_powers import EXPLOSIVE_ORB_KEY
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(10)
+    for key in ('destruction:blast-type-talent:acid-blast-blast-type-acid', EXPLOSIVE_ORB_KEY):
+        dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+        dialog.add_contribution()
+    choice = dialog.table.cellWidget(1, 5)
+    dialog.table.selectRow(0); dialog.remove_contribution()
+    choice.setCurrentIndex(choice.findData('single square'))
+    assert dialog.quotation()[0] == 2
+    assert 'Reflex negates' in dialog.item_preview.toPlainText()
+    choice.setCurrentIndex(choice.findData('expanded burst'))
+    assert dialog.quotation()[0] == 3
+    assert 'Burst radius up to 20 ft.' in dialog.item_preview.toPlainText()
+    dialog.cl.setValue(15)
+    assert 'Burst radius up to 25 ft.' in dialog.item_preview.toPlainText()
+    dialog.table.cellWidget(0, 4).setValue(4)
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.table.cellWidget(0, 4).value() == 4
+    assert dialog.blueprint()['contributions'] == saved['contributions']
+
+
 def test_chain_blast_preview_tracks_item_caster_level(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(6)

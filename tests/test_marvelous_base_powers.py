@@ -165,6 +165,19 @@ def test_knights_blast_and_grandmaster_preserve_typed_dice_and_scale_path():
     assert automatic_damage_dice(blueprint) is None
 
 
+@pytest.mark.parametrize('choice,area,save', [('single square', 'One 5-foot square', 'Reflex negates'),
+                                          ('expanded burst', 'Burst radius up to 20 ft.', 'Reflex half')])
+def test_explosive_orb_modes_preserve_typed_damage(choice, area, save):
+    from app.marvelous_base_powers import EXPLOSIVE_ORB_KEY, automatic_damage_dice
+    blueprint = plan('destruction:blast', 10, contributions=[dict(catalog_key=EXPLOSIVE_ORB_KEY, effect_choice=choice),
+        dict(catalog_key='destruction:blast-type-talent:crystal-blast-blast-type-crystal')])
+    effect = resolve_base_power(blueprint)
+    assert effect['area'] == area and effect['saving_throw'] == save
+    assert effect['damage'] == '5d4 piercing' and automatic_damage_dice(blueprint) == 5
+    blueprint['contributions'][0].pop('effect_choice')
+    assert automatic_damage_dice(blueprint) is None
+
+
 def test_beacon_placement_range_duration_and_required_contribution():
     result = resolve_base_power(plan('warp:beacon', 7))
     assert result['range'] == 'Touch' and result['duration'] == '7 hours'
