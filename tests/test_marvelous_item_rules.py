@@ -75,6 +75,15 @@ def test_mass_aegis_adds_one_spell_point_without_changing_item_duration():
     assert automatic_self_effect(plan) is None
 
 
+@pytest.mark.parametrize('key', ['warp:talent:segmented-warp', 'warp:space-talent:dimension-pierce-space',
+                               'warp:space-talent:fluctuate-space'])
+def test_reviewed_warp_activation_costs_are_one_sp(key):
+    from app.catalogs import DEFAULT_CATALOG
+    from app.marvelous_item_rules import talent_construction_spell_points
+    entry = next(entry for entry in DEFAULT_CATALOG.magic_entries('Warp') if entry['key'] == key)
+    assert talent_construction_spell_points(entry) == 1
+
+
 def test_weather_construction_sp_defaults_and_modes_are_catalog_backed():
     from app.catalogs import DEFAULT_CATALOG
     from app.marvelous_item_rules import talent_construction_spell_points, talent_choice_spell_points
