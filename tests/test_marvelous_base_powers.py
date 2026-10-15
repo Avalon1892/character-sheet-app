@@ -8,6 +8,8 @@ def plan(key, cl=5, **changes):
         changes.setdefault('contributions', [dict(catalog_key='warp:space-talent:teleport-beacon-space', complexity=2, additional_spell_points=1)])
     if key == 'warp:dimension-pierce':
         changes.setdefault('contributions', [dict(catalog_key='warp:space-talent:dimension-pierce-space', complexity=2, additional_spell_points=1)])
+    if key == 'warp:fluctuate':
+        changes.setdefault('contributions', [dict(catalog_key='warp:space-talent:fluctuate-space', complexity=2, additional_spell_points=1)])
     return dict(base_power=key, sphere=power.sphere, caster_level=cl,
                 range_steps=0, duration_steps=0, **changes)
 
@@ -29,6 +31,18 @@ def test_dimension_pierce_is_not_a_teleport_and_requires_its_own_talent_cost():
     with pytest.raises(ValueError, match='one-SP'):
         resolve_base_power(plan('warp:dimension-pierce', contributions=[dict(
             catalog_key='warp:space-talent:dimension-pierce-space', additional_spell_points=0)]))
+
+
+def test_fluctuate_modes_use_their_own_duration_and_teleport_distance():
+    selected = dict(catalog_key='warp:space-talent:fluctuate-space', additional_spell_points=1, effect_choice='concentration')
+    value = plan('warp:fluctuate', 8, contributions=[selected])
+    result = resolve_base_power(value)
+    assert result['duration'] == 'Concentration' and result['teleport_distance'] == '20 ft.'
+    assert result['range'] == 'Touch'
+    selected.update(effect_choice='rounds per caster level', additional_spell_points=2)
+    assert resolve_base_power(value)['duration'] == '8 rounds'
+    with pytest.raises(ValueError, match='talent contribution'):
+        resolve_base_power(plan('warp:fluctuate', contributions=[]))
 
 
 def test_level_scaling_and_instantaneous_effects():

@@ -68,6 +68,40 @@ def test_empty_marvelous_window_can_open_designer_without_writes(composer, monke
     window.close()
 
 
+def test_fluctuate_picker_updates_cost_duration_and_survives_reopen(composer, monkeypatch):
+    from app.content import magic_entry
+    from app.ui.marvelous_effect_picker import MarvelousEffectPicker
+    from app.services.crafting import CraftingService
+    from PySide6.QtWidgets import QDialog
+    dialog, repo, cid = composer
+    entry = magic_entry('warp:space-talent:fluctuate-space')
+    repo.add_spell(cid, entry['name'], system='Sphere', school_or_sphere='Warp',
+                   catalog_key=entry['key'], catalog_category=entry['category'])
+    dialog.sphere.setCurrentText('Warp'); dialog.cl.setValue(8)
+    def choose(picker):
+        picker.selected_entries = (entry,)
+        return QDialog.DialogCode.Accepted
+    monkeypatch.setattr(MarvelousEffectPicker, 'exec', choose)
+    dialog.choose_accessible_effects()
+    assert dialog.base_power.currentData() == 'warp:fluctuate'
+    choice = dialog.table.cellWidget(0, 5)
+    choice.setCurrentIndex(choice.findData('concentration'))
+    price = dialog.quotation()[1].market_price_gp
+    assert not dialog.duration_steps.isEnabled()
+    choice.setCurrentIndex(choice.findData('rounds per caster level'))
+    assert dialog.duration_steps.isEnabled()
+    assert dialog.quotation()[1].market_price_gp == price + 3200
+    assert '8 rounds' in dialog.item_preview.toPlainText()
+    iid = CraftingService(repo, cid).save_marvelous_design(dialog.blueprint(), name='Flicker charm', slot='', description='')
+    reopened = MarvelousCraftingDialog(repo, cid, item_id=iid)
+    try:
+        assert reopened.base_power.currentData() == 'warp:fluctuate'
+        assert reopened.blueprint()['contributions'][0]['additional_spell_points'] == 2
+        assert '8 rounds' in reopened.item_preview.toPlainText()
+    finally:
+        reopened.close()
+
+
 def test_dimension_pierce_picker_uses_space_effect_not_teleport(composer, monkeypatch):
     from app.content import magic_entry
     from app.ui.marvelous_effect_picker import MarvelousEffectPicker

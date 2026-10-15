@@ -51,6 +51,7 @@ _ROWS = (
     ('warp:teleport', 'Warp', 'Teleport within close range', 'personal', 'instantaneous'),
     ('warp:beacon', 'Warp', 'Place teleport beacon', 'touch', 'hour'),
     ('warp:dimension-pierce', 'Warp', 'Dimension Pierce', 'touch', 'hour'),
+    ('warp:fluctuate', 'Warp', 'Fluctuate', 'touch', 'concentration'),
     ('weather:control', 'Weather', 'Change one weather category', 'personal', 'round'),
 )
 BASE_POWERS = tuple(MarvelousBasePower(*row) for row in _ROWS)
@@ -85,6 +86,7 @@ SCULPT_BLAST_KEY = 'destruction:blast-shape-talent:sculpt-blast-blast-shape'
 ENERGY_SPHERE_KEY = 'destruction:blast-shape-talent:energy-sphere-blast-shape'
 ENERGY_WALL_KEY = 'destruction:blast-shape-talent:energy-wall-blast-shape'
 TALENT_EFFECT_SP_CHOICES = {
+    'warp:space-talent:fluctuate-space': {'concentration': 1, 'rounds per caster level': 2},
     'weather:talent:greater-weather': {'two weather categories': 1, 'three weather categories': 2},
     ENERGY_WALL_KEY: {'concentration cube': 0, 'straight wall': 1, 'hemisphere': 1},
     ENERGY_SPHERE_KEY: {'concentration': 0, 'rounds per caster level': 1},
@@ -145,6 +147,9 @@ def effective_base_duration(plan):
     """Duration before construction adjustments, including reviewed effect modes."""
     power = next((power for power in BASE_POWERS if power.key == plan.get('base_power')), None)
     if power is None: return 'instantaneous'
+    if power.key == 'warp:fluctuate':
+        selected = next((row for row in plan.get('contributions', []) if row.get('catalog_key') == 'warp:space-talent:fluctuate-space'), {})
+        return 'round' if selected.get('effect_choice') == 'rounds per caster level' else 'concentration'
     if power.key == 'destruction:blast' and destructive_blast_profile(plan):
         persistent = next((row for row in plan.get('contributions', []) if row.get('catalog_key') in {ENERGY_SPHERE_KEY, ENERGY_WALL_KEY}), None)
         if persistent: return 'concentration' if persistent['effect_choice'] in {'concentration', 'concentration cube'} else 'round'
@@ -303,6 +308,13 @@ def resolve_base_power(plan):
                 or not isinstance(selected[0].get('additional_spell_points'), int)
                 or selected[0]['additional_spell_points'] < 1):
             raise ValueError('Dimension Pierce requires its talent contribution and one-SP cost.')
+    if key == 'warp:fluctuate':
+        selected = [row for row in plan.get('contributions', []) if row.get('catalog_key') == 'warp:space-talent:fluctuate-space']
+        if (len(selected) != 1 or selected[0].get('alternative')
+                or isinstance(selected[0].get('additional_spell_points'), bool)
+                or not isinstance(selected[0].get('additional_spell_points'), int)
+                or selected[0]['additional_spell_points'] < 1):
+            raise ValueError('Fluctuate requires its talent contribution and one-SP cost.')
     restore_mode = plan.get('restore_mode', '')
     if restore_mode not in {'', 'mind', 'body', 'soul'} or (restore_mode and key != 'life:restore'):
         raise ValueError('Restore mode requires a Life restore base power.')
@@ -537,6 +549,12 @@ def resolve_base_power(plan):
     if power.key == 'warp:dimension-pierce':
         summary['target'] = 'One touched creature or object.'
         summary['planar_interaction'] = 'The creature can interact with ethereal/incorporeal targets without their normal 50% miss chance or reduced damage; an ethereal/incorporeal target can interact corporeally. An object gains ghost touch. Resolve target-specific interactions manually.'
+    if power.key == 'warp:fluctuate':
+        summary['target'] = 'One touched creature.'
+        summary['teleport_distance'] = f'{10 + 5 * (cl // 4)} ft.'
+        summary['teleport_action'] = 'The target may teleport as a swift action each turn; resolve movement manually.'
+        selected = next(row for row in plan['contributions'] if row.get('catalog_key') == 'warp:space-talent:fluctuate-space')
+        if not selected.get('effect_choice'): summary['mode_review'] = 'Choose concentration or rounds-per-caster-level mode before construction.'
     if power.key == 'weather:control':
         summary['area_radius'] = distances[('close', 'medium', 'long')[effect_steps]]
         rows = plan.get('contributions', [])
