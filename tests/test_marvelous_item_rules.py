@@ -203,6 +203,31 @@ def test_charged_descriptor_includes_integrated_metamagic_sp():
     assert '6 charges per activation' in crafting_limitation_details(plan)[0]
 
 
+def test_charged_alternatives_keep_fixed_and_metamagic_sp_in_base():
+    from app.marvelous_item_rules import crafting_limitation_details, quote_marvelous_blueprint
+    plan = dict(schema_version=1, caster_level=20, uses=5, range_steps=0, duration_steps=0,
+                activation='standard', unique_changes=0,
+                contributions=[dict(catalog_key='fixed', complexity=3, additional_spell_points=2),
+                    dict(catalog_key='option-a', complexity=2, additional_spell_points=1, alternative=True),
+                    dict(catalog_key='option-b', complexity=4, additional_spell_points=3, alternative=True)],
+                feat_integrations=[dict(name='Empower Spell', metamagic=True, additional_spell_points=2)],
+                drawbacks=[dict(source='published', catalog_key='crafting:charged', name='Charged', reduction=0)])
+    complexity = quote_marvelous_blueprint(plan)[0]
+    text = crafting_limitation_details(plan)[0]
+    assert f'{complexity + 4} base charges' in text
+    assert 'selected alternative in each group' in text
+
+
+def test_charged_multi_power_description_does_not_claim_primary_cost_is_total():
+    from app.marvelous_item_rules import crafting_limitation_details
+    power = dict(schema_version=1, caster_level=10, uses=5, range_steps=0, duration_steps=0,
+                 activation='standard', unique_changes=0, contributions=[])
+    plan = dict(power, extra_effects=[dict(power)],
+                drawbacks=[dict(source='published', catalog_key='crafting:charged', name='Charged', reduction=0)])
+    text = '\n'.join(crafting_limitation_details(plan))
+    assert 'primary power only' in text and 'not a whole-item activation total' in text
+
+
 def test_spell_selectivity_choice_limit_duplicate_validation_and_antimagic_conflict():
     from app.marvelous_item_rules import spell_selectivity_options
     row = dict(catalog_key='protection:advanced-talent:spell-selectivity-dbh', effect_choice='only', effect_spheres=['Life', 'Warp'])

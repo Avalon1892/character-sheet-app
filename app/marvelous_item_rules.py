@@ -480,12 +480,15 @@ def crafting_limitation_details(plan, *, quotation=None):
         lines.append('Area-Bound: choose distance-limited use or location recharge before resolving recovery.')
     if 'crafting:charged' in keys:
         complexity, _, _ = quotation if quotation is not None else quote_marvelous_blueprint(plan)
-        points = sum(row.get('additional_spell_points', 0) for row in plan['contributions'])
+        points = sum(row.get('additional_spell_points', 0) for row in plan['contributions'] if not row.get('alternative'))
         points += sum(row.get('additional_spell_points', 0) for row in plan.get('feat_integrations', []))
+        scope = ' (primary power only)' if plan.get('extra_effects') else ''
         if any(row.get('alternative') for row in plan['contributions']):
-            lines.append(f'Charged: {complexity} base charges per activation, plus the additional SP of the selected alternative; charge supply is manual.')
+            lines.append(f'Charged{scope}: {complexity + points} base charges per activation, plus the additional SP of the selected alternative in each group; charge supply is manual.')
         else:
-            lines.append(f'Charged: {complexity + points} charges per activation; charge supply is manual.')
+            lines.append(f'Charged{scope}: {complexity + points} charges per activation; charge supply is manual.')
+        if plan.get('extra_effects'):
+            lines.append('Charged: multi-power charge accounting needs GM review; the primary-power figure is not a whole-item activation total.')
     if 'crafting:sacrificing' in keys:
         lines.append(f'Sacrificing: recharge requires a qualifying sacrifice of at least {(plan["caster_level"] + 1) // 2} HD; once per day, manually verified.')
     if 'crafting:taxing' in keys:
