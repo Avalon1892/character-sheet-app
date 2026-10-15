@@ -17,6 +17,27 @@ def crafter(tmp_path):
     repo.close()
 
 
+def test_complex_training_uses_current_effective_ranks(crafter, monkeypatch):
+    repo, cid = crafter
+    plan = dict(sphere='Life', base_power='life:cure', caster_level=5, range_steps=0,
+                duration_steps=0, contributions=[], drawbacks=[dict(source='published',
+                    catalog_key='crafting:complex', required_skill='Acrobatics')])
+    service = CraftingService(repo, cid)
+    assert any('trained in Acrobatics' in text for text in service.marvelous_plan_requirements(plan).blockers)
+    state = repo.list_skill_states(cid)['acrobatics']
+    repo.update_skill_state(cid, replace(state, ranks=1))
+    assert service.marvelous_plan_requirements(plan).eligible
+    repo.update_skill_state(cid, replace(state, ranks=0))
+    monkeypatch.setattr('app.services.character_calculations.CharacterCalculationService.effective_skill_ranks',
+                        lambda self: {'acrobatics': 5})
+    assert service.marvelous_plan_requirements(plan).eligible
+    plan['crafting_tradition'] = {'key': 'crafting:ridiculously-complicated'}
+    result = service.marvelous_plan_requirements(plan)
+    assert not result.eligible and any('trained in Disable Device' in text for text in result.blockers)
+    plan['crafting_tradition'] = {'key': 'crafting:fey-touched'}
+    assert any('trained in Knowledge (nature)' in text for text in service.marvelous_plan_requirements(plan).blockers)
+
+
 def test_effect_picker_access_includes_effective_not_disabled_or_unowned(crafter, monkeypatch):
     from app.models import Spell
     repo, cid = crafter

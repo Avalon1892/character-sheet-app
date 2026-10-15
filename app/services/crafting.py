@@ -106,6 +106,14 @@ class CraftingService:
         from app.marvelous_item_rules import complex_required_skill
         if complex_required_skill(plan) == '':
             construction_blockers.append('Complex: choose the required skill.')
+        from app.marvelous_item_rules import complex_crafting_skills
+        if required_skills := complex_crafting_skills(plan):
+            from app.models import SKILLS
+            from app.services.character_calculations import CharacterCalculationService
+            ranks = CharacterCalculationService(self.repository, self.character_id).effective_skill_ranks()
+            keys = {skill.name.casefold(): skill.key for skill in SKILLS}
+            construction_blockers.extend(f'Complex: crafter must be trained in {name}.'
+                for name in required_skills if ranks.get(keys[name.casefold()], 0) < 1)
         from app.marvelous_item_rules import marvelous_area_bound_mode
         if marvelous_area_bound_mode(plan) == '':
             construction_blockers.append('Area-Bound: choose distance-limited use or location recharge.')

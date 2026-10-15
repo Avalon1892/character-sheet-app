@@ -493,6 +493,15 @@ def crafting_item_limitations(plan):
     return keys
 
 
+def complex_crafting_skills(plan):
+    """Skill training required by the selected published restriction/tradition."""
+    required = {'crafting:fey-touched': ('Knowledge (nature)',),
+                'crafting:ridiculously-complicated': ('Acrobatics', 'Disable Device', 'Linguistics', 'Use Magic Device')}.get(
+                    (plan.get('crafting_tradition') or {}).get('key'), ())
+    chosen = complex_required_skill(plan)
+    return tuple(dict.fromkeys((*required, *((chosen,) if chosen else ()))))
+
+
 def marvelous_item_weight(plan):
     """Resolve an explicitly supplied base weight; unknown is not zero."""
     value = plan.get('base_weight_lb')
@@ -574,7 +583,7 @@ def crafting_limitation_details(plan, *, quotation=None):
         lines.append(f'Complex: DC {5 + plan["caster_level"]} {", ".join(skills)} checks to activate; crafter must be trained in each skill.')
     skill = complex_required_skill(plan)
     if skill:
-        lines.append(f'Complex: DC {5 + plan["caster_level"]} {skill} check as part of activation; crafter training and the check result are manually verified.')
+        lines.append(f'Complex: DC {5 + plan["caster_level"]} {skill} check as part of activation; crafter must be trained in this skill. Resolve the activation check manually.')
     elif skill == '': lines.append('Complex: choose the required skill before completing this design.')
     if educated := educated_required_spheres(plan):
         lines.append('Educated: user must be trained in every required sphere: ' + ', '.join(educated) + '; Use Magic Device cannot bypass this requirement.')
