@@ -293,6 +293,20 @@ def test_pithing_requires_each_independent_choice_group():
     assert advanced_construction_blockers(rows, 9)
 
 
+def test_optional_alternative_does_not_satisfy_an_applied_prerequisite():
+    from app.marvelous_item_rules import missing_construction_prerequisites, missing_construction_alternatives, advanced_construction_blockers
+    rows = [dict(catalog_key='warp:advanced-talent:true-teleport'),
+            dict(catalog_key='warp:talent:distant-teleport', alternative=True),
+            dict(catalog_key='warp:talent:unseeing-teleport')]
+    assert missing_construction_prerequisites(rows) == ('warp:talent:distant-teleport',)
+    assert advanced_construction_blockers(rows, 10)
+    rows[1]['alternative'] = False
+    assert not advanced_construction_blockers(rows, 10)
+    rows = [dict(catalog_key='destruction:advanced-talent:calamity-blast-shape'),
+            dict(catalog_key='destruction:blast-shape-talent:explosive-orb-blast-shape', alternative=True)]
+    assert missing_construction_alternatives(rows)
+
+
 def test_cheap_tradition_applies_once_to_combined_design():
     from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_price_formula
     base = dict(schema_version=1, caster_level=5, uses=1, range_steps=0,

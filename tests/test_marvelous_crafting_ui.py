@@ -266,6 +266,28 @@ def test_multiple_prerequisite_choices_cancel_atomically_and_share_dependencies(
     assert len(prompts) == 2 and dialog.blueprint()['contributions'] == rows
 
 
+def test_optional_prerequisite_promotion_requires_confirmation_without_duplicates(composer, monkeypatch):
+    from PySide6.QtWidgets import QMessageBox
+    from app.marvelous_item_rules import advanced_construction_blockers
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Warp'); dialog.cl.setValue(10)
+    for key in ('warp:advanced-talent:true-teleport', 'warp:talent:distant-teleport', 'warp:talent:unseeing-teleport'):
+        index = next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key)
+        dialog.talent.setCurrentIndex(index); dialog.add_contribution()
+    dialog.table.cellWidget(1, 2).setChecked(True); dialog.table.cellWidget(2, 2).setChecked(True)
+    original = dialog.blueprint()['contributions']; before = repo._connection.total_changes
+    assert advanced_construction_blockers(original, 10)
+    monkeypatch.setattr(QMessageBox, 'question', lambda *args: QMessageBox.StandardButton.No)
+    dialog.add_required_contributions()
+    assert dialog.blueprint()['contributions'] == original
+    monkeypatch.setattr(QMessageBox, 'question', lambda *args: QMessageBox.StandardButton.Yes)
+    dialog.add_required_contributions()
+    rows = dialog.blueprint()['contributions']
+    assert len(rows) == 3 and not advanced_construction_blockers(rows, 10)
+    assert dialog.quotation()[0] == 7
+    assert repo._connection.total_changes == before
+
+
 def test_accessible_effect_picker_reuses_basket_without_learning_rules(composer):
     from app.ui.marvelous_effect_picker import MarvelousEffectPicker
     from app.catalogs import DEFAULT_CATALOG

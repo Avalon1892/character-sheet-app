@@ -604,7 +604,7 @@ class MarvelousCraftingDialog(QDialog):
             groups = missing_construction_alternatives(pending)
             if not groups: break
             for owner, options in groups:
-                if any(row['catalog_key'] in options for row in pending): continue
+                if any(row['catalog_key'] in options and not row.get('alternative') for row in pending): continue
                 if any(key not in catalog for key in options):
                     QMessageBox.warning(self, 'Cannot add prerequisites', 'A required choice is missing from the current catalog. No prerequisites were added.')
                     return
@@ -617,9 +617,19 @@ class MarvelousCraftingDialog(QDialog):
         if any(key not in catalog for key in additions):
             QMessageBox.warning(self, 'Cannot add prerequisites', 'A required talent is not available in the current sphere catalog. No talents were added.')
             return
+        from PySide6.QtCore import Qt
+        existing = {self.table.item(row, 0).data(Qt.ItemDataRole.UserRole): row for row in range(self.table.rowCount())}
+        promotions = [key for key in additions if key in existing and self.table.cellWidget(existing[key], 2).isChecked()]
+        if promotions and QMessageBox.question(self, 'Apply required talents',
+                'These prerequisites are currently optional alternatives:\n' + '\n'.join(catalog[key][1] for key in promotions)
+                + '\n\nMake them fixed contributions so they are applied with the advanced effect? Pricing will update; existing SP and custom cost values are preserved.') != QMessageBox.StandardButton.Yes:
+            return
         selected = self.talent.currentIndex()
         for key in additions:
-            self.talent.setCurrentIndex(catalog[key][0]); self.add_contribution()
+            if key in existing:
+                self.table.cellWidget(existing[key], 2).setChecked(False)
+            else:
+                self.talent.setCurrentIndex(catalog[key][0]); self.add_contribution()
         self.talent.setCurrentIndex(selected)
 
     def remove_contribution(self):

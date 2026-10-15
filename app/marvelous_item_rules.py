@@ -195,15 +195,16 @@ ALTERNATIVE_CONSTRUCTION_REQUIREMENTS = {
 
 def missing_construction_alternatives(contributions):
     keys = {row['catalog_key'] for row in contributions}
+    applied = {row['catalog_key'] for row in contributions if not row.get('alternative')}
     return tuple((key, options) for key in sorted(keys)
                  if key in ALTERNATIVE_CONSTRUCTION_REQUIREMENTS
-                 for options in ALTERNATIVE_CONSTRUCTION_REQUIREMENTS[key] if not keys.intersection(options))
+                 for options in ALTERNATIVE_CONSTRUCTION_REQUIREMENTS[key] if not applied.intersection(options))
 
 
 def missing_construction_prerequisites(contributions):
     """Reviewed transitive additions in deterministic dependency order."""
     owned = {row['catalog_key'] for row in contributions}
-    seen, missing = set(owned), []
+    seen, missing = {row['catalog_key'] for row in contributions if not row.get('alternative')}, []
     def visit(key):
         for required in ADVANCED_CONSTRUCTION_REQUIREMENTS.get(key, (0, ()))[1]:
             if required in seen: continue
@@ -214,6 +215,7 @@ def missing_construction_prerequisites(contributions):
 
 def advanced_construction_blockers(contributions, caster_level, *, display_names=None):
     keys = {row['catalog_key'] for row in contributions}
+    applied = {row['catalog_key'] for row in contributions if not row.get('alternative')}
     blockers = []
     names = display_names or {}
     blockers.extend(f'{names.get(key, key)}: include one prerequisite talent: '
@@ -229,7 +231,7 @@ def advanced_construction_blockers(contributions, caster_level, *, display_names
         if caster_level < minimum:
             blockers.append(f'{names.get(key, key)}: item caster level must be at least {minimum}.')
         blockers.extend(f'{names.get(key, key)}: prerequisite talent must be included in this effect: {names.get(talent, talent)}.'
-                        for talent in required if talent not in keys)
+                        for talent in required if talent not in applied)
     return tuple(blockers)
 
 
