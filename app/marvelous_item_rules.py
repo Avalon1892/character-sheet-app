@@ -357,6 +357,11 @@ def talent_construction_spell_points(entry):
         return profile[3]
     if entry.get('key') in DESTRUCTION_BLAST_SHAPES: return 1
     return {
+        'life:talent:break-enchantment': 1,
+        'life:talent:greater-restore-warden': 1,
+        'life:talent:mass-healing-mass': 1,
+        'life:talent:restorative-cure': 1,
+        'life:advanced-talent:hypervitalize': 2,
         'weather:talent:greater-weather': 1,
         'weather:talent:severe-weather': 1,
         'time:talent:mass-time-mass': 1,

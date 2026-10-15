@@ -46,6 +46,8 @@ The user's latest priority is the designer, not construction-calendar automation
 
 ## Required next (current remaining work)
 
+Life extra-SP defaults: added reviewed +1 costs for Break Enchantment, Greater Restore (Warden), Mass Healing and Restorative Cure, plus +2 for Hypervitalize beyond its underlying Revitalize effect. Existing explicit saved costs remain untouched; new contributions use the defaults. Source: https://spheresofpower.wikidot.com/life (Ultimate). Rules/Life/resources: 203 passed; existing related UI checks: 2 passed; new Mass Healing live-price regression: 1 passed. Target-side special effects and broader Life modes remain separate/manual where unsupported. Not deployed.
+
 Required-mode construction safety: the character-aware construction review now blocks any contribution whose shared reviewed effect-choice list requires a mode but has no selected value. Applies to every component, including additional powers; drafts remain saveable and editable. Reuses `talent_effect_choices` rather than duplicating per-widget rules. Access/project tests: 32 passed; final draft-save/choice regression: 1 passed. No deployment.
 
 Base-effect discoverability: Base sphere and Base power selectors now remain visible below Add Effects, outside collapsed Item Settings. This exposes the filter controlling available talent choices and the current base effect without expanding advanced settings. Add Effects tooltip explains additional powers. Three focused entry-point/base-selection/Weather tests passed; regenerated and inspected compact Parchment/Dark views, with persistent formulas visible. The left column scrolls to secondary power and description controls at compact height. Not deployed.

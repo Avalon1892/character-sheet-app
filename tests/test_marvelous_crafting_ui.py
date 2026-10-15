@@ -648,6 +648,18 @@ def test_educated_sphere_editor_saves_choices_and_cancellation_does_not_write(co
     assert repo._connection.total_changes == before
 
 
+def test_mass_healing_contribution_includes_its_extra_sp_in_live_price(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Life'); dialog.cl.setValue(10)
+    initial = dialog.quotation()[1].market_price_gp
+    key = 'life:talent:mass-healing-mass'
+    index = next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key)
+    dialog.talent.setCurrentIndex(index); dialog.add_contribution()
+    row = dialog.blueprint()['contributions'][0]
+    assert row['additional_spell_points'] == 1 and row['complexity'] == 2
+    assert dialog.quotation()[1].market_price_gp == initial + 8000
+
+
 def test_greater_weather_mode_changes_live_sp_and_price(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Weather'); dialog.cl.setValue(10)

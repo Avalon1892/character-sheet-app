@@ -39,6 +39,20 @@ def test_complex_drawback_skill_choice_and_live_dc():
     assert complex_required_skill(plan) is None
 
 
+@pytest.mark.parametrize('key,points', [
+    ('life:talent:break-enchantment', 1),
+    ('life:talent:greater-restore-warden', 1),
+    ('life:talent:mass-healing-mass', 1),
+    ('life:talent:restorative-cure', 1),
+    ('life:advanced-talent:hypervitalize', 2),
+])
+def test_reviewed_life_construction_extra_sp_costs(key, points):
+    from app.catalogs import DEFAULT_CATALOG
+    from app.marvelous_item_rules import talent_construction_spell_points
+    entry = next(entry for entry in DEFAULT_CATALOG.magic_entries('Life') if entry['key'] == key)
+    assert talent_construction_spell_points(entry) == points
+
+
 def test_weather_construction_sp_defaults_and_modes_are_catalog_backed():
     from app.catalogs import DEFAULT_CATALOG
     from app.marvelous_item_rules import talent_construction_spell_points, talent_choice_spell_points
