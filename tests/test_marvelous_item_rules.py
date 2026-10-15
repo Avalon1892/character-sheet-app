@@ -53,6 +53,11 @@ def test_reviewed_life_construction_extra_sp_costs(key, points):
     assert talent_construction_spell_points(entry) == points
 
 
+def test_custom_named_tradition_does_not_gain_published_boons():
+    from app.marvelous_item_rules import crafting_boon_details
+    assert crafting_boon_details({'crafting_tradition': {'key': 'custom:ley-linked', 'name': 'Ley-Linked'}}) == ()
+
+
 def test_weather_construction_sp_defaults_and_modes_are_catalog_backed():
     from app.catalogs import DEFAULT_CATALOG
     from app.marvelous_item_rules import talent_construction_spell_points, talent_choice_spell_points

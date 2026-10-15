@@ -21,6 +21,19 @@ def test_item_block_descriptors_and_all_field_locks():
     assert item_card_fields(plan, name='Other', slot='', description='Changed')['range'] == 'Touch'
 
 
+def test_sample_tradition_boons_are_concrete_but_do_not_invent_item_statistics():
+    plan = blueprint()
+    for key, phrase in [('city-construction', '+2 hardness'), ('evil-artifice', '25% more item HP'),
+                        ('fey-touched', '8 continuous hours'), ('ley-linked', '+2 effective caster levels')]:
+        plan['crafting_tradition'] = dict(key='crafting:' + key, name=key, description='')
+        fields = item_card_fields(plan, name='Gem', slot='', description='')
+        assert phrase in fields['description']
+        assert fields['caster_level'] == '5'
+        plan['display_overrides'] = {'description': dict(locked=True, value='Manual')}
+        assert item_card_fields(plan, name='Gem', slot='', description='')['description'] == 'Manual'
+        plan.pop('display_overrides')
+
+
 def test_item_block_escapes_manual_html():
     fields = item_card_fields(blueprint(), name='<script>bad</script>', slot='', description='<img src=x>\nSecond line')
     html = item_card_html(fields)

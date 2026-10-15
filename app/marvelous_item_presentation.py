@@ -46,6 +46,8 @@ def item_card_fields(plan, *, name, slot, description, quotation=None):
         values['description'] += '\n\nCrafting tradition — ' + tradition.get('name', tradition['key'])
         values['description'] += '\n' + tradition.get('description', '')
         if tradition.get('notes'): values['description'] += '\n' + tradition['notes']
+        from app.marvelous_item_rules import crafting_boon_details
+        for detail in crafting_boon_details(plan): values['description'] += '\n' + detail
     if plan.get('drawbacks'):
         values['description'] += '\n\nDrawbacks:\n' + '\n'.join(
             f"{record['name']}: {record.get('description', '')} (−{record['reduction']} complexity; {record['source']}, GM review)"

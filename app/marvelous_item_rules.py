@@ -510,6 +510,18 @@ def complex_crafting_skills(plan):
     return tuple(dict.fromkeys((*required, *((chosen,) if chosen else ()), *extra)))
 
 
+def crafting_boon_details(plan):
+    """Published sample-tradition effects without invented durability or clocks."""
+    key = (plan.get('crafting_tradition') or {}).get('key')
+    if key in {'crafting:city-construction', 'crafting:evil-artifice'}:
+        return ('Resilient: +2 hardness and 25% more item HP (round down, minimum 1). Apply to the actual item material; no baseline durability is assumed. Armor also has a 25% chance to negate extra critical-hit damage, without stacking with fortification or similar effects.',)
+    if key == 'crafting:fey-touched':
+        return ('Living: repairs 1 item HP per day after at least 8 continuous hours with suitable nutrients; broken items require two days per HP. Nutrients depend on material: bone, leather/hide, soil/sunlight for wood, or ore/ingot for metal. Exposure and repair are tracked manually.',)
+    if key == 'crafting:ley-linked':
+        return ('Ley-Charged: atop a leyline, the GM chooses +2 effective caster levels, +1 to the normal effect/save DC, or a comparable benefit. This conditional use bonus is not a permanent construction CL or an automatic price adjustment.',)
+    return ()
+
+
 def complex_additional_skills(plan):
     """Additional activation rolls for repeat selections; legacy drafts need none."""
     from app.models import SKILLS
