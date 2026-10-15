@@ -67,6 +67,22 @@ def test_unknown_sp_default_is_distinct_from_reviewed_free_without_changing_draf
     assert talent_construction_spell_points(free, reviewed_only=True) == 0
 
 
+@pytest.mark.parametrize('suffix,cost', [('self-renewal', 1), ('sudden-invigoration', 1),
+    ('deeper-healing', 0), ('painkiller', 0), ('esoteric-healing', 0), ('latent-healing', 0),
+    ('lingering-resilience', 0), ('lingering-vitality-warden', 0), ('resuscitate', 0), ('stabilizing-invigoration-warden', 0)])
+def test_reviewed_life_modifiers_have_explicit_sp_defaults(suffix, cost):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_construction_spell_points
+    assert talent_construction_spell_points(magic_entry('life:talent:' + suffix), reviewed_only=True) == cost
+
+
+def test_greater_invigorate_optional_sp_cost():
+    from app.marvelous_item_rules import talent_choice_spell_points
+    key = 'life:talent:greater-invigorate'
+    assert talent_choice_spell_points(key, 'normal HP limit') == 0
+    assert talent_choice_spell_points(key, 'exceed normal HP limit') == 1
+
+
 @pytest.mark.parametrize('suffix', ['causality-time', 'delay-pain-time', 'eject-time', 'fast-time-time',
     'lethargy-time', 'repetition-time', 'retroactive-preparation', 'second-chance', 'temporal-trap', 'time-bubble-time'])
 def test_reviewed_time_one_spell_point_construction_costs(suffix):

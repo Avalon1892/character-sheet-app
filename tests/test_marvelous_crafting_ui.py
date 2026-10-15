@@ -1019,6 +1019,23 @@ def test_time_item_card_updates_haste_and_fast_healing_from_caster_level(compose
     assert '+30 ft. to all movement modes' in text
 
 
+def test_greater_invigorate_optional_cost_updates_and_reopens(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Life'); dialog.cl.setValue(10)
+    key = 'life:talent:greater-invigorate'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    dialog.add_contribution()
+    choice = dialog.table.cellWidget(0, 5)
+    choice.setCurrentIndex(choice.findData('normal HP limit'))
+    initial = dialog.quotation()[1].market_price_gp
+    choice.setCurrentIndex(choice.findData('exceed normal HP limit'))
+    assert dialog.blueprint()['contributions'][0]['additional_spell_points'] == 1
+    assert dialog.quotation()[1].market_price_gp > initial
+    assert 'exceed normal HP limit' in dialog.item_preview.toPlainText()
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint()['contributions'] == saved['contributions']
+
+
 def test_chain_blast_preview_tracks_item_caster_level(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(6)

@@ -86,6 +86,7 @@ SCULPT_BLAST_KEY = 'destruction:blast-shape-talent:sculpt-blast-blast-shape'
 ENERGY_SPHERE_KEY = 'destruction:blast-shape-talent:energy-sphere-blast-shape'
 ENERGY_WALL_KEY = 'destruction:blast-shape-talent:energy-wall-blast-shape'
 TALENT_EFFECT_SP_CHOICES = {
+    'life:talent:greater-invigorate': {'normal HP limit': 0, 'exceed normal HP limit': 1},
     'time:talent:delay-pain-time': {'delay until next turn': 1, 'split damage across two turns': 2},
     'time:talent:time-bubble-time': {'time bubble only': 1, 'include Haste or Slow': 2},
     'time:advanced-talent:past-sight-utility': {'view hours': 1, 'view days': 2, 'view years': 3},
