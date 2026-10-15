@@ -114,6 +114,10 @@ def marvelous_item_price(caster_level: int, complexity: int | Fraction, *, daily
 
 # Reviewed construction prerequisites use catalog identities, never prose parsing.
 ADVANCED_CONSTRUCTION_REQUIREMENTS = {
+    'warp:advanced-talent:group-teleport': (10, ('warp:talent:mass-teleport-mass', 'warp:talent:ranged-warp-range')),
+    'warp:advanced-talent:universal-teleport': (17, ('warp:talent:distant-teleport', 'warp:advanced-talent:flawless-teleport-utility',
+        'warp:advanced-talent:true-teleport', 'warp:talent:unseeing-teleport')),
+    'warp:advanced-talent:extradimensional-capacity-utility-apoc': (0, ('warp:space-talent:extradimensional-storage-space-utility',)),
     'destruction:advanced-talent:crystal-cocoon': (10, ()),
     'destruction:advanced-talent:radiation-blast-blast-type-fire-light': (5, ()),
     'destruction:advanced-talent:extreme-range': (5, ('destruction:talent:extended-range-range',) * 2),
@@ -341,6 +345,9 @@ def talent_construction_spell_points(entry):
         'destruction:advanced-talent:crystal-cocoon': 1,
         'destruction:advanced-talent:detonating-salvo-lg': 1,
         'warp:space-talent:teleport-beacon-space': 1,
+        'warp:talent:emergency-teleport': 1,
+        'warp:talent:instill-teleport-instill': 1,
+        'warp:talent:mass-teleport-mass': 1,
         'warp:advanced-talent:true-teleport': 2,
         'warp:advanced-talent:planeshift': 2,
         'warp:advanced-talent:portal': 1,

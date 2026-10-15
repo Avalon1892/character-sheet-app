@@ -305,6 +305,31 @@ def test_crafting_penalty_and_curse_descriptors_scale_from_item_level(level, pen
                for line in crafting_limitation_details(blueprint))
 
 
+@pytest.mark.parametrize('owner,minimum,required', [
+    ('group-teleport', 10, ('warp:talent:mass-teleport-mass', 'warp:talent:ranged-warp-range')),
+    ('universal-teleport', 17, ('warp:talent:distant-teleport', 'warp:advanced-talent:flawless-teleport-utility',
+                              'warp:advanced-talent:true-teleport', 'warp:talent:unseeing-teleport')),
+    ('extradimensional-capacity-utility-apoc', 0, ('warp:space-talent:extradimensional-storage-space-utility',)),
+])
+def test_reviewed_warp_prerequisite_chains(owner, minimum, required):
+    from app.marvelous_item_rules import missing_construction_prerequisites, advanced_construction_blockers
+    from app.content import magic_entry
+    key = 'warp:advanced-talent:' + owner
+    assert magic_entry(key) and all(magic_entry(dependency) for dependency in required)
+    rows = [dict(catalog_key=key)]
+    assert set(missing_construction_prerequisites(rows)) == set(required)
+    rows.extend(dict(catalog_key=dependency) for dependency in required)
+    assert not advanced_construction_blockers(rows, max(1, minimum))
+    if minimum: assert advanced_construction_blockers(rows, minimum - 1)
+
+
+@pytest.mark.parametrize('name', ['mass-teleport-mass', 'emergency-teleport', 'instill-teleport-instill'])
+def test_reviewed_warp_paid_talents_have_one_extra_sp(name):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_construction_spell_points
+    assert talent_construction_spell_points(magic_entry('warp:talent:' + name)) == 1
+
+
 def test_counted_prerequisites_require_two_applied_extended_ranges():
     from app.marvelous_item_rules import missing_construction_prerequisites, advanced_construction_blockers
     key = 'destruction:talent:extended-range-range'

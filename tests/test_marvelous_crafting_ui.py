@@ -426,6 +426,23 @@ def test_drawback_item_values_update_live_without_overwriting_description_lock(c
     assert 'Unwieldy: −4' not in dialog.item_preview.toPlainText()
 
 
+def test_group_teleport_adds_and_prices_mass_prerequisite_without_changing_saved_overrides(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Warp'); dialog.cl.setValue(10)
+    key = 'warp:advanced-talent:group-teleport'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    dialog.add_contribution(); dialog.add_required_contributions()
+    rows = dialog.blueprint()['contributions']
+    mass = next(row for row in rows if row['catalog_key'] == 'warp:talent:mass-teleport-mass')
+    assert mass['additional_spell_points'] == 1 and mass['complexity'] == 2
+    assert dialog.quotation()[0] == 6
+    saved = dialog.blueprint()
+    mass = next(row for row in saved['contributions'] if row['catalog_key'] == 'warp:talent:mass-teleport-mass')
+    mass['additional_spell_points'] = 0; mass['complexity'] = 1
+    dialog.load_plan(saved)
+    assert dialog.quotation()[0] == 5
+
+
 def test_chain_blast_preview_tracks_item_caster_level(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(6)
