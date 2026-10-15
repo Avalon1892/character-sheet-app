@@ -6,6 +6,8 @@ def plan(key, cl=5, **changes):
     power = next(p for p in BASE_POWERS if p.key == key)
     if key == 'warp:beacon':
         changes.setdefault('contributions', [dict(catalog_key='warp:space-talent:teleport-beacon-space', complexity=2, additional_spell_points=1)])
+    if key == 'warp:dimension-pierce':
+        changes.setdefault('contributions', [dict(catalog_key='warp:space-talent:dimension-pierce-space', complexity=2, additional_spell_points=1)])
     return dict(base_power=key, sphere=power.sphere, caster_level=cl,
                 range_steps=0, duration_steps=0, **changes)
 
@@ -16,6 +18,17 @@ def test_every_base_power_has_a_resolvable_projection(power):
     assert result['power'] == power.name
     assert result['range'] and result['duration']
     assert result['caster_level'] == 5 and result['save_dc'] == 12 and result['magic_skill_bonus'] == 5
+
+
+def test_dimension_pierce_is_not_a_teleport_and_requires_its_own_talent_cost():
+    result = resolve_base_power(plan('warp:dimension-pierce'))
+    assert result['range'] == 'Touch' and result['duration'] == '5 hours'
+    assert 'ghost touch' in result['planar_interaction'] and 'teleport_distance' not in result
+    with pytest.raises(ValueError, match='talent contribution'):
+        resolve_base_power(plan('warp:dimension-pierce', contributions=[]))
+    with pytest.raises(ValueError, match='one-SP'):
+        resolve_base_power(plan('warp:dimension-pierce', contributions=[dict(
+            catalog_key='warp:space-talent:dimension-pierce-space', additional_spell_points=0)]))
 
 
 def test_level_scaling_and_instantaneous_effects():

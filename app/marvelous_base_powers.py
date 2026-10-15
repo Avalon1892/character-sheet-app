@@ -50,6 +50,7 @@ _ROWS = (
     ('war:totem', 'War', 'Base totem', 'personal', 'round'),
     ('warp:teleport', 'Warp', 'Teleport within close range', 'personal', 'instantaneous'),
     ('warp:beacon', 'Warp', 'Place teleport beacon', 'touch', 'hour'),
+    ('warp:dimension-pierce', 'Warp', 'Dimension Pierce', 'touch', 'hour'),
     ('weather:control', 'Weather', 'Change one weather category', 'personal', 'round'),
 )
 BASE_POWERS = tuple(MarvelousBasePower(*row) for row in _ROWS)
@@ -295,6 +296,13 @@ def resolve_base_power(plan):
                 or not isinstance(beacons[0].get('additional_spell_points'), int)
                 or beacons[0]['additional_spell_points'] < 1):
             raise ValueError('Beacon placement requires one Teleport Beacon contribution and its one-SP cost.')
+    if key == 'warp:dimension-pierce':
+        selected = [row for row in plan.get('contributions', []) if row.get('catalog_key') == 'warp:space-talent:dimension-pierce-space']
+        if (len(selected) != 1 or selected[0].get('alternative')
+                or isinstance(selected[0].get('additional_spell_points'), bool)
+                or not isinstance(selected[0].get('additional_spell_points'), int)
+                or selected[0]['additional_spell_points'] < 1):
+            raise ValueError('Dimension Pierce requires its talent contribution and one-SP cost.')
     restore_mode = plan.get('restore_mode', '')
     if restore_mode not in {'', 'mind', 'body', 'soul'} or (restore_mode and key != 'life:restore'):
         raise ValueError('Restore mode requires a Life restore base power.')
@@ -526,6 +534,9 @@ def resolve_base_power(plan):
     if power.key == 'warp:beacon':
         summary['target'] = 'One spot, object or creature; placement is manual.'
         summary['beacon'] = 'Creates a personal dimensional beacon. Travel to/from it is a separate teleport activation, on the same plane; unwilling creatures require Unwilling Teleport and a save.'
+    if power.key == 'warp:dimension-pierce':
+        summary['target'] = 'One touched creature or object.'
+        summary['planar_interaction'] = 'The creature can interact with ethereal/incorporeal targets without their normal 50% miss chance or reduced damage; an ethereal/incorporeal target can interact corporeally. An object gains ghost touch. Resolve target-specific interactions manually.'
     if power.key == 'weather:control':
         summary['area_radius'] = distances[('close', 'medium', 'long')[effect_steps]]
         rows = plan.get('contributions', [])

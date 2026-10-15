@@ -68,6 +68,27 @@ def test_empty_marvelous_window_can_open_designer_without_writes(composer, monke
     window.close()
 
 
+def test_dimension_pierce_picker_uses_space_effect_not_teleport(composer, monkeypatch):
+    from app.content import magic_entry
+    from app.ui.marvelous_effect_picker import MarvelousEffectPicker
+    from PySide6.QtWidgets import QDialog
+    dialog, repo, cid = composer
+    entry = magic_entry('warp:space-talent:dimension-pierce-space')
+    repo.add_spell(cid, entry['name'], system='Sphere', school_or_sphere='Warp',
+                   catalog_key=entry['key'], catalog_category=entry['category'])
+    dialog.sphere.setCurrentText('Warp'); dialog.cl.setValue(5)
+    def choose(picker):
+        picker.selected_entries = (entry,)
+        return QDialog.DialogCode.Accepted
+    monkeypatch.setattr(MarvelousEffectPicker, 'exec', choose)
+    dialog.choose_accessible_effects()
+    assert dialog.base_power.currentData() == 'warp:dimension-pierce'
+    assert dialog.blueprint()['contributions'][0]['additional_spell_points'] == 1
+    text = dialog.item_preview.toPlainText()
+    assert 'Dimension Pierce' in text and '5 hours' in text and 'ghost touch' in text
+    assert 'Teleport Distance' not in text
+
+
 def test_complete_design_workflow_keeps_live_price_separate_from_locked_card(composer, monkeypatch):
     from app.content import magic_entry
     from app.optional_traditions import catalog

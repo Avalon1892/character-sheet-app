@@ -569,6 +569,8 @@ class MarvelousCraftingDialog(QDialog):
                 self.talent.setCurrentIndex(index); self.add_contribution(); existing.add(entry['key'])
                 if entry['key'] == 'warp:space-talent:teleport-beacon-space':
                     self.base_power.setCurrentIndex(self.base_power.findData('warp:beacon'))
+                if entry['key'] == 'warp:space-talent:dimension-pierce-space':
+                    self.base_power.setCurrentIndex(self.base_power.findData('warp:dimension-pierce'))
                 from app.marvelous_base_powers import ANTIMAGIC_AURA_KEYS
                 if entry['key'] in ANTIMAGIC_AURA_KEYS:
                     self.base_power.setCurrentIndex(self.base_power.findData('protection:ward'))
