@@ -101,6 +101,25 @@ def test_additional_warp_prerequisites_and_minimum_levels(key, minimum, required
     assert talent_construction_spell_points(magic_entry(key)) == points
 
 
+@pytest.mark.parametrize('key,level', [
+    ('warp:advanced-talent:lethal-teleport-apoc', 5),
+    ('warp:advanced-talent:portal-interstice-sm', 5),
+    ('warp:advanced-talent:portal-security-space-sm', 5),
+    ('warp:advanced-talent:universal-teleport', 17),
+])
+def test_warp_chain_expansion_adds_all_dependencies_once_and_checks_level(key, level):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import missing_construction_prerequisites, advanced_construction_blockers
+    rows = [dict(catalog_key=key)]
+    missing = missing_construction_prerequisites(rows)
+    assert all(magic_entry(required) for required in missing)
+    assert len(missing) == len(set(missing))
+    rows.extend(dict(catalog_key=required) for required in missing)
+    assert not missing_construction_prerequisites(rows)
+    assert not advanced_construction_blockers(rows, level)
+    assert advanced_construction_blockers(rows, level - 1)
+
+
 def test_weather_construction_sp_defaults_and_modes_are_catalog_backed():
     from app.catalogs import DEFAULT_CATALOG
     from app.marvelous_item_rules import talent_construction_spell_points, talent_choice_spell_points
