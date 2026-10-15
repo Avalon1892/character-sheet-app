@@ -17,6 +17,23 @@ def crafter(tmp_path):
     repo.close()
 
 
+def test_required_effect_mode_blocks_construction_until_selected(crafter):
+    repo, cid = crafter
+    service = CraftingService(repo, cid)
+    key = 'weather:talent:greater-weather'
+    name = service.magic_entries_by_key[key]['name']
+    contribution = dict(catalog_key=key, complexity=2, additional_spell_points=1)
+    plan = dict(sphere='Weather', base_power='weather:control', caster_level=5,
+                range_steps=0, duration_steps=0, contributions=[contribution])
+    access = dict(sphere_levels={'Weather': 5}, available_talents=[name])
+    result = service.marvelous_plan_requirements(plan, access=access)
+    assert not result.eligible and any('choose the effect mode' in text for text in result.blockers)
+    draft = dict(plan, schema_version=1, uses=1, activation='standard', unique_changes=0)
+    assert service.save_marvelous_design(draft, name='Unfinished weather device', slot='', description='')
+    contribution['effect_choice'] = 'two weather categories'
+    assert service.marvelous_plan_requirements(plan, access=access).eligible
+
+
 def test_complex_training_uses_current_effective_ranks(crafter, monkeypatch):
     repo, cid = crafter
     plan = dict(sphere='Life', base_power='life:cure', caster_level=5, range_steps=0,

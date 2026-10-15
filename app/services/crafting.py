@@ -97,7 +97,7 @@ class CraftingService:
 
     def marvelous_plan_requirements(self, plan, *, access=None):
         """Resolve selected catalog identities and feed the shared eligibility check."""
-        from app.marvelous_base_powers import resolve_base_power
+        from app.marvelous_base_powers import resolve_base_power, talent_effect_choices
         from app.marvelous_item_rules import advanced_construction_blockers
         required, advanced, spheres, construction_blockers = [], [], [], []
         from app.marvelous_item_rules import educated_required_spheres
@@ -132,6 +132,8 @@ class CraftingService:
                 if entry is None or str(entry.get('sphere', '')).casefold() != power['sphere'].casefold():
                     raise ValueError('Selected talent is not part of the blueprint base sphere.')
                 required.append(entry['name'])
+                if talent_effect_choices(entry['key']) and not contribution.get('effect_choice'):
+                    construction_blockers.append(f'{entry["name"]}: choose the effect mode before construction.')
                 if 'advanced' in str(entry.get('category', '')).casefold(): advanced.append(entry['name'])
             from app.marvelous_item_rules import spell_selectivity_options
             if options := spell_selectivity_options(power):
