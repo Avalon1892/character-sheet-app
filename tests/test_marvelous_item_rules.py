@@ -148,6 +148,15 @@ def test_warp_either_or_dependency_does_not_require_both(key, options):
         assert advanced_construction_blockers(rows, 1)
 
 
+def test_bundled_advanced_warp_entries_have_explicit_construction_requirement_metadata():
+    from app.catalogs import DEFAULT_CATALOG
+    from app.marvelous_item_rules import ADVANCED_CONSTRUCTION_REQUIREMENTS
+    entries = {entry['key'] for entry in DEFAULT_CATALOG.magic_entries('Warp')
+               if 'advanced' in entry.get('category', '').casefold()
+               and entry['key'] != 'warp:advanced-talent:warping-structures-store-and-teleport-structure'}
+    assert entries <= ADVANCED_CONSTRUCTION_REQUIREMENTS.keys()
+
+
 def test_weather_construction_sp_defaults_and_modes_are_catalog_backed():
     from app.catalogs import DEFAULT_CATALOG
     from app.marvelous_item_rules import talent_construction_spell_points, talent_choice_spell_points

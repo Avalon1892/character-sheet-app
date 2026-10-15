@@ -89,6 +89,15 @@ def test_complex_training_uses_current_effective_ranks(crafter, monkeypatch):
     assert any('trained in Knowledge (nature)' in text for text in service.marvelous_plan_requirements(plan).blockers)
 
 
+def test_shared_warp_structure_rules_are_not_offered_as_an_item_talent(crafter):
+    repo, cid = crafter
+    key = 'warp:advanced-talent:warping-structures-store-and-teleport-structure'
+    repo.add_spell(cid, 'Warping Structures', system='Sphere', school_or_sphere='Warp',
+                   catalog_key=key, catalog_category='Advanced Talent')
+    assert key not in {entry['key'] for entry in CraftingService(repo, cid).accessible_marvelous_effects('Warp')}
+    assert any(row.catalog_key == key for row in repo.list_spells(cid))
+
+
 def test_effect_picker_access_includes_effective_not_disabled_or_unowned(crafter, monkeypatch):
     from app.models import Spell
     repo, cid = crafter
