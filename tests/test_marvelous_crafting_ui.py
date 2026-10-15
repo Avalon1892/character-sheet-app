@@ -319,6 +319,22 @@ def test_loading_plan_calculates_once_and_keeps_live_updates_after_failure(compo
     assert repo._connection.total_changes == before
 
 
+def test_chain_blast_preview_tracks_item_caster_level(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(6)
+    dialog.description.setPlainText('A branching bolt.')
+    for key in ('destruction:blast-type-talent:force-blast-blast-type-force',
+                'destruction:blast-shape-talent:chain-blast-blast-shape'):
+        index = next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key)
+        dialog.talent.setCurrentIndex(index); dialog.add_contribution()
+    text = dialog.item_preview.toPlainText()
+    assert 'A branching bolt.' in text and 'Maximum Targets: 4' in text and '3d6 force' in text
+    assert dialog.quotation()[0] == 5
+    dialog.cl.setValue(10)
+    assert 'Maximum Targets: 6' in dialog.item_preview.toPlainText()
+    assert 'Maximum Jump Distance: 20 ft.' in dialog.item_preview.toPlainText()
+
+
 def test_accessible_effect_picker_reuses_basket_without_learning_rules(composer):
     from app.ui.marvelous_effect_picker import MarvelousEffectPicker
     from app.catalogs import DEFAULT_CATALOG

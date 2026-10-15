@@ -76,13 +76,20 @@ DESTRUCTION_BLAST_TYPES = {
     'destruction:blast-type-talent:frost-blast-blast-type-cold': ('Frost Blast', 'cold', 6, 0),
 }
 GUIDED_STRIKE_KEY = 'destruction:blast-shape-talent:guided-strike-blast-shape'
+DESTRUCTION_INSTANT_SHAPES = {
+    GUIDED_STRIKE_KEY: 'Guided',
+    'destruction:blast-shape-talent:chain-blast-blast-shape': 'Chain',
+    'destruction:blast-shape-talent:mutable-blast-blast-shape': 'Mutable',
+}
 
 
 def destructive_blast_profile(plan):
     rows = plan.get('contributions', [])
     keys = [row.get('catalog_key') for row in rows]
     if any(row.get('alternative') for row in rows) or len(keys) != len(set(keys)): return None
-    if GUIDED_STRIKE_KEY in keys: keys.remove(GUIDED_STRIKE_KEY)
+    shapes = [key for key in keys if key in DESTRUCTION_INSTANT_SHAPES]
+    if len(shapes) > 1: return None
+    keys = [key for key in keys if key not in DESTRUCTION_INSTANT_SHAPES]
     if not keys: return ('Bludgeoning destructive blast', 'bludgeoning', 6, 0)
     return DESTRUCTION_BLAST_TYPES.get(keys[0]) if len(keys) == 1 else None
 
@@ -379,9 +386,20 @@ def resolve_base_power(plan):
             summary['power'] = name; summary['damage_type'] = damage_type
             summary['damage_die_size'] = sides
             summary['damage'] = f'{summary["damage_dice"]}d{sides} {damage_type}'
-            if any(row.get('catalog_key') == GUIDED_STRIKE_KEY for row in plan.get('contributions', [])):
-                summary['power'] = 'Guided ' + name
+            shape = next((row['catalog_key'] for row in plan.get('contributions', [])
+                          if row.get('catalog_key') in DESTRUCTION_INSTANT_SHAPES), None)
+            if shape:
+                summary['power'] = DESTRUCTION_INSTANT_SHAPES[shape] + ' ' + name
+            if shape == GUIDED_STRIKE_KEY:
                 summary['attack_circumstance_bonus'] = 20
+            elif shape == 'destruction:blast-shape-talent:chain-blast-blast-shape':
+                summary['maximum_targets'] = max(2, 1 + cl // 2)
+                summary['maximum_jump_distance'] = f'{10 + 5 * (cl // 5)} ft.'
+                summary['attack_resolution'] = 'Resolve ranged touch attacks in order; the chain stops when a target takes no damage.'
+            elif shape == 'destruction:blast-shape-talent:mutable-blast-blast-shape':
+                summary['maximum_cubes'] = 5 + cl // 2
+                summary['geometry'] = 'Contiguous 5-foot cubes; at least one cube must be adjacent to the user. Placement is manual.'
+                summary['saving_throw'] = 'Reflex half'
             if any(row.get('catalog_key') in DESTRUCTION_BLAST_TYPES for row in plan.get('contributions', [])):
                 summary['secondary_effects'] = 'Resolve saves, secondary damage, conditions and target-specific defenses from the talent description manually.'
     if power.key == 'warp:teleport': summary['teleport_distance'] = distances[('close', 'medium', 'long')[effect_steps]]

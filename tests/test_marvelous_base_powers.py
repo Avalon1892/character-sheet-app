@@ -128,6 +128,26 @@ def test_guided_base_blast_and_unsupported_shape_combinations():
     assert 'attack_circumstance_bonus' not in resolve_base_power(blueprint)
 
 
+@pytest.mark.parametrize('shape', ['chain-blast-blast-shape', 'mutable-blast-blast-shape'])
+def test_instant_shape_geometry_scales_without_changing_blast_dice(shape):
+    from app.marvelous_base_powers import automatic_damage_dice
+    rows = [dict(catalog_key='destruction:blast-shape-talent:' + shape),
+            dict(catalog_key='destruction:blast-type-talent:crystal-blast-blast-type-crystal')]
+    blueprint = plan('destruction:blast', 6, contributions=rows)
+    result = resolve_base_power(blueprint)
+    assert result['damage'] == '3d4 piercing' and automatic_damage_dice(blueprint) == 3
+    if shape.startswith('chain'):
+        assert result['maximum_targets'] == 4 and result['maximum_jump_distance'] == '15 ft.'
+    else:
+        assert result['maximum_cubes'] == 8 and result['saving_throw'] == 'Reflex half'
+    blueprint['caster_level'] = 10
+    result = resolve_base_power(blueprint)
+    if shape.startswith('chain'):
+        assert result['maximum_targets'] == 6 and result['maximum_jump_distance'] == '20 ft.'
+    else:
+        assert result['maximum_cubes'] == 10
+
+
 def test_beacon_placement_range_duration_and_required_contribution():
     result = resolve_base_power(plan('warp:beacon', 7))
     assert result['range'] == 'Touch' and result['duration'] == '7 hours'
