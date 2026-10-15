@@ -39,6 +39,20 @@ def test_complex_drawback_skill_choice_and_live_dc():
     assert complex_required_skill(plan) is None
 
 
+def test_repeated_complex_checks_preserve_each_roll_and_validate_skills():
+    from app.marvelous_item_rules import complex_additional_skills, complex_crafting_skills, crafting_limitation_details
+    record = dict(source='published', catalog_key='crafting:complex', required_skill='Acrobatics',
+                  additional_skills=['Linguistics', 'Acrobatics'])
+    plan = dict(caster_level=5, drawbacks=[record])
+    assert complex_additional_skills(plan) == ('Linguistics', 'Acrobatics')
+    assert complex_crafting_skills(plan) == ('Acrobatics', 'Linguistics')
+    assert sum('DC 10' in line for line in crafting_limitation_details(plan)) == 3
+    for invalid in ('Acrobatics', [None], ['Unknown']):
+        record['additional_skills'] = invalid
+        with pytest.raises(ValueError, match='known skills'):
+            complex_additional_skills(plan)
+
+
 def test_expensive_item_drawback_changes_materials_not_price_and_rejects_cheap():
     from app.marvelous_item_rules import quote_marvelous_blueprint
     from app.marvelous_base_powers import automatic_self_effect

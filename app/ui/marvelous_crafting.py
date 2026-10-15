@@ -473,6 +473,7 @@ class MarvelousCraftingDialog(QDialog):
         form.addRow('Name', name); form.addRow('Description / restriction', description); form.addRow('Complexity reduction', reduction)
         spheres = None
         skill = None
+        extra_skills = None
         if previous and previous.get('source') == 'published' and previous.get('catalog_key') == 'crafting:complex':
             from app.models import SKILLS
             skill = QComboBox(); skill.setObjectName('complexSkill'); skill.addItem('Choose a required skill…', '')
@@ -483,6 +484,20 @@ class MarvelousCraftingDialog(QDialog):
                 skill.addItem('Unrecognized: ' + str(saved), saved); index_found = skill.count() - 1
             skill.setCurrentIndex(index_found)
             form.addRow('Required activation check', skill)
+            extra_skills = QListWidget(); extra_skills.setObjectName('complexAdditionalSkills')
+            for saved_skill in previous.get('additional_skills', []): extra_skills.addItem(saved_skill)
+            form.addRow('Additional checks (each repeats on activation)', extra_skills)
+            extra_controls = QHBoxLayout()
+            add_check = QPushButton('Add another check for chosen skill'); extra_controls.addWidget(add_check)
+            remove_check = QPushButton('Remove selected check'); extra_controls.addWidget(remove_check)
+            remove_check.setEnabled(False)
+            extra_skills.currentRowChanged.connect(lambda row: remove_check.setEnabled(row >= 0))
+            add_check.setEnabled(skill.currentData() in {row.name for row in SKILLS})
+            skill.currentIndexChanged.connect(lambda: add_check.setEnabled(skill.currentData() in {row.name for row in SKILLS}))
+            add_check.clicked.connect(lambda: extra_skills.addItem(skill.currentData())
+                if skill.currentData() in {row.name for row in SKILLS} else None)
+            remove_check.clicked.connect(lambda: extra_skills.takeItem(extra_skills.currentRow()))
+            form.addRow(extra_controls)
         if previous and previous.get('source') == 'published' and previous.get('catalog_key') == 'crafting:educated':
             spheres = QListWidget(); spheres.setObjectName('educatedSpheres')
             spheres.setSelectionMode(QAbstractItemView.SelectionMode.MultiSelection)
@@ -509,6 +524,7 @@ class MarvelousCraftingDialog(QDialog):
         updated = dict(previous or {'source': 'custom'}, name=name.text().strip(), description=description.toPlainText(), reduction=reduction.value())
         if spheres is not None: updated['required_spheres'] = [item.text() for item in spheres.selectedItems()]
         if skill is not None: updated['required_skill'] = skill.currentData()
+        if extra_skills is not None: updated['additional_skills'] = [extra_skills.item(row).text() for row in range(extra_skills.count())]
         if index is None: self.drawbacks.append(updated)
         else: self.drawbacks[index] = updated
         self.update_preview()

@@ -499,7 +499,22 @@ def complex_crafting_skills(plan):
                 'crafting:ridiculously-complicated': ('Acrobatics', 'Disable Device', 'Linguistics', 'Use Magic Device')}.get(
                     (plan.get('crafting_tradition') or {}).get('key'), ())
     chosen = complex_required_skill(plan)
-    return tuple(dict.fromkeys((*required, *((chosen,) if chosen else ()))))
+    extra = complex_additional_skills(plan)
+    return tuple(dict.fromkeys((*required, *((chosen,) if chosen else ()), *extra)))
+
+
+def complex_additional_skills(plan):
+    """Additional activation rolls for repeat selections; legacy drafts need none."""
+    from app.models import SKILLS
+    names = {skill.name.casefold(): skill.name for skill in SKILLS}
+    result = []
+    for record in plan.get('drawbacks', []):
+        if record.get('source') != 'published' or record.get('catalog_key') != 'crafting:complex': continue
+        selected = record.get('additional_skills', [])
+        if not isinstance(selected, list) or any(not isinstance(name, str) or name.casefold() not in names for name in selected):
+            raise ValueError('Complex additional checks require known skills.')
+        result.extend(names[name.casefold()] for name in selected)
+    return tuple(result)
 
 
 def marvelous_item_weight(plan):
@@ -584,6 +599,8 @@ def crafting_limitation_details(plan, *, quotation=None):
     skill = complex_required_skill(plan)
     if skill:
         lines.append(f'Complex: DC {5 + plan["caster_level"]} {skill} check as part of activation; crafter must be trained in this skill. Resolve the activation check manually.')
+        for extra in complex_additional_skills(plan):
+            lines.append(f'Complex: additional DC {5 + plan["caster_level"]} {extra} check on every activation; resolve manually.')
     elif skill == '': lines.append('Complex: choose the required skill before completing this design.')
     if educated := educated_required_spheres(plan):
         lines.append('Educated: user must be trained in every required sphere: ' + ', '.join(educated) + '; Use Magic Device cannot bypass this requirement.')
@@ -659,6 +676,7 @@ def quote_marvelous_blueprint(plan):
     spell_selectivity_options(plan)
     educated_required_spheres(plan)
     complex_required_skill(plan)
+    complex_additional_skills(plan)
     if plan.get('base_power'):
         from app.marvelous_base_powers import resolve_base_power
         resolve_base_power(plan)

@@ -638,7 +638,7 @@ def test_educated_sphere_editor_saves_choices_and_cancellation_does_not_write(co
 
 
 def test_complex_skill_editor_requires_choice_and_cancel_preserves_draft(composer, monkeypatch):
-    from PySide6.QtWidgets import QDialog, QComboBox, QDialogButtonBox
+    from PySide6.QtWidgets import QDialog, QComboBox, QDialogButtonBox, QPushButton, QListWidget
     dialog, repo, cid = composer
     dialog.drawbacks = [dict(source='published', catalog_key='crafting:complex', name='Complex', description='', reduction=0)]
     before = repo._connection.total_changes
@@ -648,10 +648,17 @@ def test_complex_skill_editor_requires_choice_and_cancel_preserves_draft(compose
         assert picker.currentData() == '' and not button.isEnabled()
         picker.setCurrentIndex(picker.findData('Acrobatics'))
         assert button.isEnabled()
+        add = next(button for button in child.findChildren(QPushButton) if button.text() == 'Add another check for chosen skill')
+        add.click()
+        picker.setCurrentIndex(picker.findData('Linguistics'))
+        add.click()
+        picker.setCurrentIndex(picker.findData('Acrobatics'))
+        assert child.findChild(QListWidget, 'complexAdditionalSkills').count() == 2
         return QDialog.DialogCode.Accepted
     monkeypatch.setattr(QDialog, 'exec', choose)
     dialog.edit_drawback(0)
     assert dialog.drawbacks[0]['required_skill'] == 'Acrobatics'
+    assert dialog.drawbacks[0]['additional_skills'] == ['Acrobatics', 'Linguistics']
     saved = dialog.blueprint()
     monkeypatch.setattr(QDialog, 'exec', lambda child: QDialog.DialogCode.Rejected)
     dialog.edit_drawback(0)
