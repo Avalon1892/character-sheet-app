@@ -271,6 +271,20 @@ def test_mass_healing_projects_target_limit_without_applying_an_alternative(key,
     assert 'maximum_targets' not in resolve_base_power(plan(key, level, contributions=[mass]))
 
 
+def test_mass_healing_keeps_per_target_amount_but_does_not_enable_single_target_automation():
+    from app.marvelous_base_powers import automatic_self_effect
+    rows = [dict(catalog_key='life:talent:mass-healing-mass'), dict(catalog_key='life:talent:deeper-healing')]
+    cure = plan('life:cure', 10, contributions=rows)
+    result = resolve_base_power(cure)
+    assert result['healing'] == '4d8+10' and result['maximum_targets'] == 6
+    assert automatic_self_effect(cure) is None
+    invigorate = plan('life:temporary-hp', 10, contributions=rows)
+    assert resolve_base_power(invigorate)['temporary_hp'] == 20
+    assert automatic_self_effect(invigorate) is None
+    rows.append(dict(catalog_key='life:talent:revitalize'))
+    assert 'manual resolution' in resolve_base_power(cure)['healing']
+
+
 def test_weather_category_projection_tracks_modes_and_does_not_guess_unknown_combinations():
     greater = dict(catalog_key='weather:talent:greater-weather', effect_choice='three weather categories')
     severe = dict(catalog_key='weather:talent:severe-weather')

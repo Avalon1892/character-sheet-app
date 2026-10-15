@@ -258,6 +258,15 @@ def cure_healing_components(plan):
     return (1 + (1 + cl // 5 if deeper in keys else 0), cl * (1 + sum(key in boosts for key in keys)))
 
 
+def life_per_target_plan(plan):
+    """Mass changes targeting, not each target's cure/invigorate amount."""
+    rows = plan.get('contributions', [])
+    mass = [row for row in rows if row.get('catalog_key') == 'life:talent:mass-healing-mass']
+    if len(mass) == 1 and not mass[0].get('alternative'):
+        return dict(plan, contributions=[row for row in rows if row is not mass[0]])
+    return plan
+
+
 def automatic_damage_dice(plan):
     """Supported offensive roll; target defenses/application are separate."""
     if (plan.get('base_power') != 'destruction:blast' or destructive_blast_profile(plan) is None
@@ -357,7 +366,7 @@ def resolve_base_power(plan):
                     summary['healing_suppression'] = 'Stops natural healing, fast healing and suppressible regeneration; other magical/extraordinary healing still functions. Resolve manually.'
             if 'time:talent:mass-time-mass' in keys: summary['maximum_targets'] = 1 + max(1, cl // 2)
     if power.key == 'life:temporary-hp':
-        temporary = invigorate_temporary_hp(plan)
+        temporary = invigorate_temporary_hp(life_per_target_plan(plan))
         summary['temporary_hp'] = cl if temporary is None else temporary
         if temporary is None:
             summary['temporary_hp_review'] = 'Base amount only; selected modifications require manual resolution.'
@@ -444,7 +453,7 @@ def resolve_base_power(plan):
             if 'protection:aegis-ward-talent:spell-ward-aegis-ward' in keys:
                 summary['power'] = 'Combined magical/technological protection — manual resolution'
     if power.key == 'life:cure':
-        healing = cure_healing_components(plan)
+        healing = cure_healing_components(life_per_target_plan(plan))
         if healing is not None:
             dice, bonus = healing
             summary['healing'] = f'{dice}d8+{bonus}'
