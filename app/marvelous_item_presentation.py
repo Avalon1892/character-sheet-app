@@ -21,10 +21,10 @@ def item_card_fields(plan, *, name, slot, description, quotation=None):
     quotation = quotation if quotation is not None else quote_marvelous_blueprint(plan)
     _, price, quote = quotation
     effect = resolve_base_power(plan)
-    from app.marvelous_item_rules import marvelous_item_weight
+    from app.marvelous_item_rules import marvelous_item_weight, marvelous_aura_strength
     weight = marvelous_item_weight(plan)
     values = dict(name=name, slot=slot or 'Held / carried', caster_level=str(plan['caster_level']),
-                  aura='Not specified', weight='Not specified' if weight is None else f'{weight:g} lb.', range=effect['range'], duration=effect['duration'],
+                  aura=marvelous_aura_strength(plan['caster_level']) + ' (school not specified)', weight='Not specified' if weight is None else f'{weight:g} lb.', range=effect['range'], duration=effect['duration'],
                   save_dc=str(price.save_dc), activation=plan['activation'].replace('-', ' ').title(),
                   uses='50 total activations' if plan['uses'] == 50 else 'At will' if plan['uses'] == 5 else f"{plan['uses']}/day",
                   price=f'{float(price.market_price_gp):,.2f} gp',

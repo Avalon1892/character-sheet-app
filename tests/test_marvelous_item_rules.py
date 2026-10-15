@@ -394,6 +394,19 @@ def test_reviewed_time_costs(key, points):
     assert talent_construction_spell_points(magic_entry(key)) == points
 
 
+@pytest.mark.parametrize('level,strength', [(1, 'Faint'), (5, 'Faint'), (6, 'Moderate'), (11, 'Moderate'),
+                                         (12, 'Strong'), (20, 'Strong'), (21, 'Overwhelming')])
+def test_item_aura_strength_uses_caster_level_bands(level, strength):
+    from app.marvelous_item_rules import marvelous_aura_strength
+    assert marvelous_aura_strength(level) == strength
+
+
+@pytest.mark.parametrize('level', [0, -1, True, 5.5, '5'])
+def test_item_aura_strength_rejects_invalid_levels(level):
+    from app.marvelous_item_rules import marvelous_aura_strength
+    with pytest.raises(ValueError): marvelous_aura_strength(level)
+
+
 def test_counted_prerequisites_require_two_applied_extended_ranges():
     from app.marvelous_item_rules import missing_construction_prerequisites, advanced_construction_blockers
     key = 'destruction:talent:extended-range-range'

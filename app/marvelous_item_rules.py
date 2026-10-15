@@ -29,6 +29,13 @@ class MarvelousRequirements:
         return not self.blockers
 
 
+def marvelous_aura_strength(caster_level):
+    """PF1e magic-item aura bands (Detect Magic), not spell-level aura bands."""
+    if isinstance(caster_level, bool) or not isinstance(caster_level, int) or caster_level < 1:
+        raise ValueError('Item caster level must be a positive integer.')
+    return 'Faint' if caster_level <= 5 else 'Moderate' if caster_level <= 11 else 'Strong' if caster_level <= 20 else 'Overwhelming'
+
+
 def marvelous_requirements(*, caster_level, sphere_levels, feats, required_spheres,
                             required_talents=(), available_talents=(),
                             advanced_talents=(), protected_requirements=(),

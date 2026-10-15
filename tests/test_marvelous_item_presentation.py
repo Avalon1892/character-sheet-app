@@ -28,6 +28,18 @@ def test_item_block_escapes_manual_html():
     assert '&lt;script&gt;' in html and '&lt;img src=x&gt;<br>Second line' in html
 
 
+def test_aura_updates_with_real_caster_level_and_respects_its_own_lock():
+    plan = blueprint()
+    assert item_card_fields(plan, name='Gem', slot='', description='')['aura'] == 'Faint (school not specified)'
+    plan['caster_level'] = 12
+    plan['display_overrides'] = dict(caster_level=dict(locked=True, value='1'))
+    fields = item_card_fields(plan, name='Gem', slot='', description='')
+    assert fields['caster_level'] == '1' and fields['aura'] == 'Strong (school not specified)'
+    plan['display_overrides']['aura'] = dict(locked=True, value='No visible aura')
+    plan['caster_level'] = 21
+    assert item_card_fields(plan, name='Gem', slot='', description='')['aura'] == 'No visible aura'
+
+
 def test_custom_prose_keeps_live_effect_summary_until_description_is_locked():
     plan = blueprint()
     fields = item_card_fields(plan, name='Gem', slot='', description='A small red gem.')
