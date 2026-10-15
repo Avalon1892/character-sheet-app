@@ -1605,6 +1605,7 @@ def test_restore_mode_is_explicit_saved_and_cleared_for_other_powers(composer):
 
 @pytest.mark.parametrize('sphere,key', [
     ('Life', 'life:advanced-talent:resurrection-supreme-warden'),
+    ('Warp', 'warp:advanced-talent:time-warp-jester-s-hb'),
     ('Life', 'life:advanced-talent:soul-consumption-dbh'),
     ('Protection', 'protection:advanced-talent:antimagic-aura'),
     ('Protection', 'protection:advanced-talent:tripped-glyph-3pp'),

@@ -472,6 +472,8 @@ def talent_construction_spell_points(entry, *, reviewed_only=False):
         'warp:advanced-talent:organ-detachment-space-alienist-hb': 3,
         'warp:advanced-talent:create-demiplane-utility': 3,
         'warp:advanced-talent:timeline-drift-lg': 2,
+        # Time Warp's five-SP total replaces True Teleport's included two SP.
+        'warp:advanced-talent:time-warp-jester-s-hb': 3,
         'warp:talent:emergency-teleport': 1,
         'warp:talent:instill-teleport-instill': 1,
         'warp:talent:mass-teleport-mass': 1,

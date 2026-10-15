@@ -54,7 +54,7 @@ def test_time_warp_requires_time_sphere_without_inventing_a_time_cl_gate(crafter
     access['sphere_levels']['Time'] = 1
     assert service.marvelous_plan_requirements(plan, access=access).eligible
     from app.marvelous_base_powers import resolve_base_power
-    assert 'five-SP activation' in resolve_base_power(plan)['pricing_review']
+    assert '5 SP total' in resolve_base_power(plan)['spell_point_accounting']
 
 
 def test_required_effect_mode_blocks_construction_until_selected(crafter):

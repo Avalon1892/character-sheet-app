@@ -363,7 +363,8 @@ def resolve_base_power(plan):
     if mode and any(mode): summary['dice_mode'] = ' + '.join(label for label, active in zip(('Maximized', 'Empowered'), mode) if active)
     if plan.get('permanent', False): summary['duration'] = 'Permanent (dispellable)'
     if any(row.get('catalog_key') == 'warp:advanced-talent:time-warp-jester-s-hb' for row in plan.get('contributions', [])):
-        summary['pricing_review'] = 'Time Warp lists a five-SP activation. Verify how its cost combines with the included True Teleport prerequisite before crafting; no extra-SP default is inferred for this interaction.'
+        summary['time_travel'] = f'Up to {100 * cl:,} years forward or backward, within True Teleport range; destination familiarity, mishaps and timeline consequences require GM resolution.'
+        summary['spell_point_accounting'] = 'Time Warp costs 5 SP total: 2 SP from the integrated True Teleport prerequisite plus 3 additional SP. Other teleport modifiers may add costs separately.'
     if power.key in {'time:haste', 'time:slow'}:
         rows = plan.get('contributions', [])
         keys = {row.get('catalog_key') for row in rows}
