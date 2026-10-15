@@ -68,6 +68,22 @@ def test_empty_marvelous_window_can_open_designer_without_writes(composer, monke
     window.close()
 
 
+def test_invalid_design_clears_stale_calculations_but_keeps_locked_text(composer):
+    dialog, repo, cid = composer
+    dialog.card_locks['description'].setChecked(True)
+    dialog.card_edits['description'].setPlainText('Keep my text')
+    original_price = dialog.card_edits['price'].text()
+    dialog.permanent.setChecked(True)
+    assert 'Invalid design:' in dialog.preview.toPlainText()
+    assert dialog.card_edits['price'].text() == '—'
+    assert dialog.card_edits['description'].toPlainText() == 'Keep my text'
+    assert not dialog.save.isEnabled()
+    dialog.permanent.setChecked(False)
+    assert dialog.card_edits['price'].text() == original_price
+    assert dialog.card_edits['description'].toPlainText() == 'Keep my text'
+    assert 'Invalid design:' not in dialog.preview.toPlainText()
+
+
 def test_every_item_field_lock_survives_repository_roundtrip_and_later_changes(composer):
     from app.marvelous_item_presentation import ITEM_FIELDS
     from app.services.crafting import CraftingService

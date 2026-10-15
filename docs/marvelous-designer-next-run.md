@@ -46,6 +46,8 @@ The user's latest priority is the designer, not construction-calendar automation
 
 ## Required next (current remaining work)
 
+Invalid-preview recovery: invalid drafts now replace stale construction-review content with the current error and clear unlocked calculated field editors to an em dash. Locked user text remains intact; correcting the input restores live values immediately. Existing item preview/error formula behavior remains in place. Four focused invalid-state/all-lock/status checks passed. No rules/database changes; not deployed.
+
 Mass Healing amount follow-up: item projections now separate a single fixed Mass Healing targeting modifier from the per-target Cure/Invigorate amount calculation. Deeper Healing and supported cure talents retain their correct amounts; unknown, duplicate or alternative modifiers still fall back to manual resolution. Automatic single-recipient activation remains disabled for Mass effects, preserving resource/use behavior. Source: https://spheresofpower.wikidot.com/life. Base-power/Life/resource validation: 157 passed in 29.78 seconds. Not deployed.
 
 All-field persistence and Mass Healing projection: added a repository-backed UI regression locking every `ITEM_FIELDS` value, reopening, changing CL/uses, and unlocking price independently. Three lock/roundtrip checks passed. Fixed Mass Healing contributions now project `1 + max(1, floor(CL/2))` targets for cure/restore/invigorate and explain same-effect/in-range restrictions; alternative-only contributions do not apply an unconditional target limit. No multi-target automation or resource contract changed. Source: https://spheresofpower.wikidot.com/life. Base-power/presentation checks: 105 passed. Not deployed.

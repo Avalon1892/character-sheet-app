@@ -863,6 +863,12 @@ class MarvelousCraftingDialog(QDialog):
         except ValueError as error:
             self.construction_status.setText('Invalid design — correct the calculation error below.')
             self.construction_status.setToolTip(str(error))
+            self.preview.setPlainText('Invalid design: ' + str(error))
+            for key, editor in self.card_edits.items():
+                if self.card_locks[key].isChecked(): continue
+                editor.blockSignals(True)
+                editor.setPlainText('—') if isinstance(editor, QTextEdit) else editor.setText('—')
+                editor.blockSignals(False)
             self.cost_formula.setText('Base power price: 400 gp × caster level × complexity × uses factor'
                 '\nUses factor: 1–4 daily; 5 unlimited; 2.5 for 50 total activations. Slotless ×2.'
                 '\nMultiple powers and tradition adjustments apply after base pricing.'
