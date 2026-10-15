@@ -651,6 +651,19 @@ def test_greater_weather_mode_changes_live_sp_and_price(composer):
     assert dialog.blueprint()['contributions'][0]['additional_spell_points'] == 2
     assert dialog.quotation()[1].market_price_gp == initial + 4000
     assert 'three weather categories' in dialog.item_preview.toPlainText()
+    # Loading a reviewed mode must preserve the user's explicitly edited cost.
+    dialog.table.cellWidget(0, 4).setValue(4)
+    from app.services.crafting import CraftingService
+    iid = CraftingService(repo, cid).save_marvelous_design(dialog.blueprint(), name='Weather device', slot='', description='')
+    reopened = MarvelousCraftingDialog(repo, cid, item_id=iid)
+    try:
+        saved = reopened.blueprint()['contributions'][0]
+        assert saved['effect_choice'] == 'three weather categories'
+        assert saved['additional_spell_points'] == 4
+        reopened.table.cellWidget(0, 5).setCurrentIndex(choice.findData('two weather categories'))
+        assert reopened.blueprint()['contributions'][0]['additional_spell_points'] == 1
+    finally:
+        reopened.close()
 
 
 def test_repeated_complex_checks_save_reopen_and_preserve_description_lock(composer):
