@@ -570,6 +570,8 @@ class MarvelousCraftingDialog(QDialog):
         entries = self.service.accessible_marvelous_effects(self.sphere.currentText())
         dialog = MarvelousEffectPicker(entries, self)
         if dialog.exec() != QDialog.DialogCode.Accepted: return
+        from copy import deepcopy
+        previous = deepcopy(self.blueprint())
         existing = {self.table.item(row, 0).data(Qt.ItemDataRole.UserRole) for row in range(self.table.rowCount())}
         for entry in dialog.selected_entries:
             if entry['key'] in existing: continue
@@ -587,7 +589,8 @@ class MarvelousCraftingDialog(QDialog):
                     self.base_power.setCurrentIndex(self.base_power.findData('protection:ward'))
         # Required construction talents are part of the same draft; eligibility
         # still checks ownership and CL separately and never grants them to a PC.
-        self.add_required_contributions()
+        if not self.add_required_contributions():
+            self.load_plan(previous)
 
     def add_contribution(self):
         entry = self.talent.currentData()
@@ -706,16 +709,16 @@ class MarvelousCraftingDialog(QDialog):
                 if any(row['catalog_key'] in options and not row.get('alternative') for row in pending): continue
                 if any(key not in catalog for key in options):
                     QMessageBox.warning(self, 'Cannot add prerequisites', 'A required choice is missing from the current catalog. No prerequisites were added.')
-                    return
+                    return False
                 labels = [catalog[key][1] for key in options]
                 selected, accepted = QInputDialog.getItem(self, 'Choose construction prerequisite',
                     catalog.get(owner, (-1, owner))[1] + ': include one of these talents in the item effect.', labels, 0, False)
-                if not accepted or selected not in labels: return
+                if not accepted or selected not in labels: return False
                 key = options[labels.index(selected)]
                 additions.append(key); pending.append(dict(catalog_key=key))
         if any(key not in catalog for key in additions):
             QMessageBox.warning(self, 'Cannot add prerequisites', 'A required talent is not available in the current sphere catalog. No talents were added.')
-            return
+            return False
         from PySide6.QtCore import Qt
         existing = {}
         for row in range(self.table.rowCount()):
@@ -725,7 +728,7 @@ class MarvelousCraftingDialog(QDialog):
         if promotions and QMessageBox.question(self, 'Apply required talents',
                 'These prerequisites are currently optional alternatives:\n' + '\n'.join(catalog[key][1] for key in promotions)
                 + '\n\nMake them fixed contributions so they are applied with the advanced effect? Pricing will update; existing SP and custom cost values are preserved.') != QMessageBox.StandardButton.Yes:
-            return
+            return False
         selected = self.talent.currentIndex()
         was_loading = self.loading_plan
         self.loading_plan = True
@@ -741,6 +744,7 @@ class MarvelousCraftingDialog(QDialog):
             if not was_loading:
                 self.table.resizeRowsToContents()
                 self.update_preview()
+        return True
 
     def remove_contribution(self):
         if self.table.currentRow() >= 0: self.table.removeRow(self.table.currentRow())

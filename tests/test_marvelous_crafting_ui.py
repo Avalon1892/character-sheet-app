@@ -1152,6 +1152,32 @@ def test_antimagic_picker_selects_ward_and_prices_integrated_prerequisite(compos
     assert dialog.quotation()[0] == 6
 
 
+def test_add_effects_cancelled_prerequisite_restores_entire_draft(composer, monkeypatch):
+    from app.ui.marvelous_effect_picker import MarvelousEffectPicker
+    from app.content import magic_entry
+    from PySide6.QtWidgets import QDialog, QInputDialog
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Protection'); dialog.cl.setValue(10)
+    dialog.name.setText('Existing design')
+    dialog.description.setPlainText('Keep my description.')
+    entry = magic_entry('protection:advanced-talent:antimagic-aura-arcforge-addendum-lg')
+    monkeypatch.setattr(dialog.service, 'accessible_marvelous_effects', lambda sphere: (entry,))
+    def accept(picker):
+        picker.selected_entries = (entry,)
+        return QDialog.DialogCode.Accepted
+    monkeypatch.setattr(MarvelousEffectPicker, 'exec', accept)
+    monkeypatch.setattr(QInputDialog, 'getItem', lambda *args: ('', False))
+    before = dialog.blueprint()
+    price = dialog.quotation()[1].market_price_gp
+    writes = repo._connection.total_changes
+    dialog.choose_accessible_effects()
+    assert dialog.blueprint() == before
+    assert dialog.quotation()[1].market_price_gp == price
+    assert dialog.name.text() == 'Existing design'
+    assert dialog.description.toPlainText() == 'Keep my description.'
+    assert repo._connection.total_changes == writes
+
+
 def test_selectivity_sphere_dialog_cancel_save_reopen_and_live_preview(composer, monkeypatch):
     from PySide6.QtWidgets import QDialog, QListWidget
     from app.services.crafting import CraftingService
