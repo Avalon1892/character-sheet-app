@@ -17,6 +17,24 @@ def crafter(tmp_path):
     repo.close()
 
 
+def test_demiplane_checks_foreign_prerequisite_without_adding_a_foreign_effect(crafter):
+    repo, cid = crafter
+    service = CraftingService(repo, cid)
+    keys = ['warp:advanced-talent:create-demiplane-utility', 'warp:space-talent:extradimensional-room-space']
+    plan = dict(sphere='Warp', base_power='warp:teleport', caster_level=15,
+                range_steps=0, duration_steps=0, contributions=[dict(catalog_key=key) for key in keys])
+    access = dict(sphere_levels={'Warp': 15}, available_talents=[service.magic_entries_by_key[key]['name'] for key in keys])
+    missing = service.marvelous_plan_requirements(plan, access=access)
+    assert not missing.eligible and any('Creation base sphere' in text for text in missing.blockers)
+    access['sphere_levels']['Creation'] = 1
+    assert not service.marvelous_plan_requirements(plan, access=access).eligible
+    access['available_talents'].append(service.magic_entries_by_key['creation:material-talent:expanded-materials-material']['name'])
+    assert service.marvelous_plan_requirements(plan, access=access).eligible
+    assert [row['catalog_key'] for row in plan['contributions']] == keys
+    plan['caster_level'] = 14
+    assert not service.marvelous_plan_requirements(plan, access=access).eligible
+
+
 def test_required_effect_mode_blocks_construction_until_selected(crafter):
     repo, cid = crafter
     service = CraftingService(repo, cid)

@@ -98,7 +98,10 @@ class CraftingService:
     def marvelous_plan_requirements(self, plan, *, access=None):
         """Resolve selected catalog identities and feed the shared eligibility check."""
         from app.marvelous_base_powers import resolve_base_power, talent_effect_choices
-        from app.marvelous_item_rules import advanced_construction_blockers
+        from app.marvelous_item_rules import advanced_construction_blockers, CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS
+        construction_access = access if access is not None else self.permanent_marvelous_access()
+        known_talents = {name.casefold() for name in construction_access.get('available_talents', ())}
+        known_spheres = {name.casefold() for name, level in construction_access.get('sphere_levels', {}).items() if level > 0}
         required, advanced, spheres, construction_blockers = [], [], [], []
         from app.marvelous_item_rules import educated_required_spheres
         if educated_required_spheres(plan) == ():
@@ -132,6 +135,12 @@ class CraftingService:
                 if entry is None or str(entry.get('sphere', '')).casefold() != power['sphere'].casefold():
                     raise ValueError('Selected talent is not part of the blueprint base sphere.')
                 required.append(entry['name'])
+                for sphere, talent_key in CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS.get(entry['key'], ()):
+                    talent = self.magic_entries_by_key[talent_key]['name']
+                    if sphere.casefold() not in known_spheres:
+                        construction_blockers.append(f'{entry["name"]}: requires the {sphere} base sphere as a construction prerequisite.')
+                    if talent.casefold() not in known_talents:
+                        construction_blockers.append(f'{entry["name"]}: requires {talent} as a construction prerequisite.')
                 if talent_effect_choices(entry['key']) and not contribution.get('effect_choice'):
                     construction_blockers.append(f'{entry["name"]}: choose the effect mode before construction.')
                 if 'advanced' in str(entry.get('category', '')).casefold(): advanced.append(entry['name'])
@@ -144,7 +153,7 @@ class CraftingService:
                     raise ValueError('Spell Selectivity contains an unknown magic sphere.')
         result = self.marvelous_requirements(caster_level=plan['caster_level'],
             required_spheres=spheres, required_talents=required,
-            advanced_talents=advanced, **(access if access is not None else self.permanent_marvelous_access()))
+            advanced_talents=advanced, **construction_access)
         from dataclasses import replace
         return replace(result, blockers=result.blockers + tuple(construction_blockers))
 

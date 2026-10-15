@@ -117,6 +117,7 @@ def test_additional_warp_prerequisites_and_minimum_levels(key, minimum, required
     ('warp:advanced-talent:store-structure', 1),
     ('warp:advanced-talent:teleport-structure', 5),
     ('warp:advanced-talent:warping-frenzy-lg', 5),
+    ('warp:advanced-talent:create-demiplane-utility', 15),
 ])
 def test_warp_chain_expansion_adds_all_dependencies_once_and_checks_level(key, level):
     from app.content import magic_entry

@@ -34,6 +34,16 @@ def test_sample_tradition_boons_are_concrete_but_do_not_invent_item_statistics()
         plan.pop('display_overrides')
 
 
+def test_cross_sphere_requirements_appear_in_item_card_and_respect_lock():
+    plan = dict(blueprint(), sphere='Warp', base_power='warp:teleport', caster_level=15,
+                contributions=[dict(catalog_key='warp:advanced-talent:create-demiplane-utility', complexity=5, additional_spell_points=3),
+                               dict(catalog_key='warp:space-talent:extradimensional-room-space', complexity=1)])
+    fields = item_card_fields(plan, name='World seed', slot='', description='')
+    assert 'Creation sphere / Expanded Materials' in fields['construction_requirements']
+    plan['display_overrides'] = {'construction_requirements': dict(locked=True, value='Reviewed by GM')}
+    assert item_card_fields(plan, name='World seed', slot='', description='')['construction_requirements'] == 'Reviewed by GM'
+
+
 def test_item_block_escapes_manual_html():
     fields = item_card_fields(blueprint(), name='<script>bad</script>', slot='', description='<img src=x>\nSecond line')
     html = item_card_html(fields)
