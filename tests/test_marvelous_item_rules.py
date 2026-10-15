@@ -369,6 +369,31 @@ def test_educated_choices_reject_malformed_or_duplicate_spheres(selected):
         educated_required_spheres(dict(drawbacks=[dict(source='published', catalog_key='crafting:educated', required_spheres=selected)]))
 
 
+def test_reviewed_time_prerequisites_have_catalog_identities_and_correct_gates():
+    from app.content import magic_entry
+    from app.marvelous_item_rules import ADVANCED_CONSTRUCTION_REQUIREMENTS, advanced_construction_blockers, missing_construction_prerequisites
+    for key, (minimum, required) in ADVANCED_CONSTRUCTION_REQUIREMENTS.items():
+        if not key.startswith('time:'): continue
+        assert magic_entry(key) and all(magic_entry(dependency) for dependency in required)
+        rows = [dict(catalog_key=key)]
+        assert set(missing_construction_prerequisites(rows)) == set(required)
+        rows.extend(dict(catalog_key=dependency) for dependency in required)
+        assert not advanced_construction_blockers(rows, max(1, minimum))
+        if minimum: assert advanced_construction_blockers(rows, minimum - 1)
+
+
+@pytest.mark.parametrize('key,points', [('time:talent:mass-time-mass', 1), ('time:talent:augment-healing', 1),
+    ('time:talent:retry-time', 2), ('time:talent:shift-time-time', 1), ('time:talent:steal-time-time', 1),
+    ('time:talent:stretch-time-time', 1), ('time:talent:time-freeze-time', 1),
+    ('time:advanced-talent:past-sight-utility', 1), ('time:advanced-talent:query-self-utility', 2),
+    ('time:advanced-talent:reversion-utility', 10), ('time:advanced-talent:temporal-haste', 1),
+    ('time:advanced-talent:temporal-stasis', 3)])
+def test_reviewed_time_costs(key, points):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_construction_spell_points
+    assert talent_construction_spell_points(magic_entry(key)) == points
+
+
 def test_counted_prerequisites_require_two_applied_extended_ranges():
     from app.marvelous_item_rules import missing_construction_prerequisites, advanced_construction_blockers
     key = 'destruction:talent:extended-range-range'

@@ -114,6 +114,19 @@ def marvelous_item_price(caster_level: int, complexity: int | Fraction, *, daily
 
 # Reviewed construction prerequisites use catalog identities, never prose parsing.
 ADVANCED_CONSTRUCTION_REQUIREMENTS = {
+    'time:advanced-talent:advanced-rewind': (10, ('time:talent:age-time',)),
+    'time:advanced-talent:combo-breaker-sm': (0, ('time:talent:eject-time',)),
+    'time:advanced-talent:divergent-retry-sm': (0, ('time:talent:retry-time',)),
+    'time:advanced-talent:grey-hawk-s-gambit-3pp': (0, ('time:advanced-talent:shuffle-time-time-3pp',)),
+    'time:advanced-talent:improved-eject-time': (17, ('time:talent:eject-time',)),
+    'time:advanced-talent:interlocutor-across-time-lg': (10, ('time:advanced-talent:witness-across-time-lg',)),
+    'time:advanced-talent:past-sight-utility': (5, ()),
+    'time:advanced-talent:query-self-utility': (10, ()),
+    'time:advanced-talent:reversion-utility': (10, ()),
+    'time:advanced-talent:reversion-complete-utility': (15, ('time:advanced-talent:reversion-utility',)),
+    'time:advanced-talent:temporal-haste': (9, ('time:talent:improved-haste',)),
+    'time:advanced-talent:temporal-stasis': (15, ()),
+    'time:advanced-talent:time-clone-time': (10, ()),
     'warp:advanced-talent:group-teleport': (10, ('warp:talent:mass-teleport-mass', 'warp:talent:ranged-warp-range')),
     'warp:advanced-talent:universal-teleport': (17, ('warp:talent:distant-teleport', 'warp:advanced-talent:flawless-teleport-utility',
         'warp:advanced-talent:true-teleport', 'warp:talent:unseeing-teleport')),
@@ -337,6 +350,18 @@ def talent_construction_spell_points(entry):
         return profile[3]
     if entry.get('key') in DESTRUCTION_BLAST_SHAPES: return 1
     return {
+        'time:talent:mass-time-mass': 1,
+        'time:talent:augment-healing': 1,
+        'time:talent:retry-time': 2,
+        'time:talent:shift-time-time': 1,
+        'time:talent:steal-time-time': 1,
+        'time:talent:stretch-time-time': 1,
+        'time:talent:time-freeze-time': 1,
+        'time:advanced-talent:past-sight-utility': 1,
+        'time:advanced-talent:query-self-utility': 2,
+        'time:advanced-talent:reversion-utility': 10,
+        'time:advanced-talent:temporal-haste': 1,
+        'time:advanced-talent:temporal-stasis': 3,
         'destruction:blast-shape-talent:energy-aura-blast-shape': 1,
         'destruction:blast-shape-talent:energy-leap-blast-shape': 1,
         'destruction:blast-shape-talent:retributive-blast-blast-shape': 1,

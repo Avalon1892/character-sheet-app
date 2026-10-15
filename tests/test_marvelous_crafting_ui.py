@@ -612,6 +612,20 @@ def test_educated_sphere_editor_saves_choices_and_cancellation_does_not_write(co
     assert repo._connection.total_changes == before
 
 
+def test_temporal_haste_adds_required_talent_and_sp_to_live_price(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Time'); dialog.cl.setValue(10)
+    key = 'time:advanced-talent:temporal-haste'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    dialog.add_contribution(); dialog.add_required_contributions()
+    rows = dialog.blueprint()['contributions']
+    assert {row['catalog_key'] for row in rows} == {key, 'time:talent:improved-haste'}
+    assert next(row for row in rows if row['catalog_key'] == key)['additional_spell_points'] == 1
+    assert dialog.quotation()[0] == 5
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint()['contributions'] == rows
+
+
 def test_chain_blast_preview_tracks_item_caster_level(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(6)
