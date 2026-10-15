@@ -114,6 +114,9 @@ def test_additional_warp_prerequisites_and_minimum_levels(key, minimum, required
     ('warp:advanced-talent:manifest-planar-zone-space-dbh', 5),
     ('warp:advanced-talent:greater-planar-zone-sm', 5),
     ('warp:advanced-talent:planting-warp-3pp', 0),
+    ('warp:advanced-talent:store-structure', 1),
+    ('warp:advanced-talent:teleport-structure', 5),
+    ('warp:advanced-talent:warping-frenzy-lg', 5),
 ])
 def test_warp_chain_expansion_adds_all_dependencies_once_and_checks_level(key, level):
     from app.content import magic_entry
@@ -128,10 +131,12 @@ def test_warp_chain_expansion_adds_all_dependencies_once_and_checks_level(key, l
     if level: assert advanced_construction_blockers(rows, level - 1)
 
 
-def test_dimensional_tracery_requires_either_dependency_not_both():
+@pytest.mark.parametrize('key,options', [
+    ('warp:advanced-talent:dimensional-tracery-3pp', ('warp:space-talent:teleport-beacon-space', 'warp:space-talent:warp-link-space')),
+    ('warp:advanced-talent:brutalizing-shunt-apoc', ('warp:space-talent:create-gap-space', 'warp:talent:unseeing-teleport')),
+])
+def test_warp_either_or_dependency_does_not_require_both(key, options):
     from app.marvelous_item_rules import missing_construction_alternatives, advanced_construction_blockers
-    key = 'warp:advanced-talent:dimensional-tracery-3pp'
-    options = ('warp:space-talent:teleport-beacon-space', 'warp:space-talent:warp-link-space')
     assert missing_construction_alternatives([dict(catalog_key=key)]) == ((key, options),)
     for selected in options:
         rows = [dict(catalog_key=key), dict(catalog_key=selected)]

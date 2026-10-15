@@ -177,6 +177,10 @@ ADVANCED_CONSTRUCTION_REQUIREMENTS = {
     'warp:advanced-talent:dimensional-lock-space': (15, ('warp:space-talent:plane-manipulator-space',)),
     'warp:advanced-talent:dimensional-tracery-3pp': (0, ()),
     'warp:advanced-talent:planting-warp-3pp': (0, ('warp:talent:teleport-object', 'warp:talent:unwilling-teleport')),
+    'warp:advanced-talent:store-structure': (1, ('warp:space-talent:extradimensional-storage-space-utility',)),
+    'warp:advanced-talent:teleport-structure': (5, ('warp:talent:teleport-object',)),
+    'warp:advanced-talent:warping-frenzy-lg': (5, ('warp:talent:pouncing-teleport', 'warp:talent:segmented-warp')),
+    'warp:advanced-talent:brutalizing-shunt-apoc': (0, ()),
     'warp:advanced-talent:lethal-teleport-apoc': (5, ('warp:talent:unwilling-teleport',)),
     'warp:advanced-talent:portal-interstice-sm': (5, ('warp:space-talent:extradimensional-room-space',
         'warp:talent:mass-teleport-mass', 'warp:advanced-talent:portal', 'warp:space-talent:wormhole-space')),
@@ -223,6 +227,8 @@ ADVANCED_CONSTRUCTION_REQUIREMENTS = {
 }
 
 ALTERNATIVE_CONSTRUCTION_REQUIREMENTS = {
+    'warp:advanced-talent:brutalizing-shunt-apoc': ((
+        'warp:space-talent:create-gap-space', 'warp:talent:unseeing-teleport'),),
     'warp:advanced-talent:dimensional-tracery-3pp': ((
         'warp:space-talent:teleport-beacon-space', 'warp:space-talent:warp-link-space'),),
     'destruction:advanced-talent:crystal-cocoon': ((
