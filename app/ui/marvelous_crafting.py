@@ -620,7 +620,9 @@ class MarvelousCraftingDialog(QDialog):
         extra_sp.setButtonSymbols(QSpinBox.ButtonSymbols.NoButtons)
         from app.marvelous_item_rules import talent_construction_spell_points
         extra_sp.setValue(talent_construction_spell_points(entry))
-        extra_sp.setToolTip('Additional spell points required by this effect add one complexity each. Confirm the published cost; no description parsing is used.')
+        reviewed = talent_construction_spell_points(entry, reviewed_only=True)
+        extra_sp.setToolTip(('No reviewed automatic SP default is registered for this talent. Zero is an editable draft value, not confirmation that the effect is free. ' if reviewed is None else '')
+            + 'Additional spell points required by this effect add one complexity each. Confirm the published cost; no description parsing is used.')
         extra_sp.valueChanged.connect(self.update_preview); self.table.setCellWidget(row, 4, extra_sp)
         choice = QComboBox(); choice.addItem('—', '')
         from app.marvelous_base_powers import talent_effect_choices

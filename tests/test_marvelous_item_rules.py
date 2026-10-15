@@ -58,6 +58,15 @@ def test_custom_named_tradition_does_not_gain_published_boons():
     assert crafting_boon_details({'crafting_tradition': {'key': 'custom:ley-linked', 'name': 'Ley-Linked'}}) == ()
 
 
+def test_unknown_sp_default_is_distinct_from_reviewed_free_without_changing_drafts():
+    from app.marvelous_item_rules import talent_construction_spell_points
+    unknown = {'key': 'future:talent:unreviewed'}
+    assert talent_construction_spell_points(unknown) == 0
+    assert talent_construction_spell_points(unknown, reviewed_only=True) is None
+    free = {'key': 'destruction:blast-shape-talent:energy-sphere-blast-shape'}
+    assert talent_construction_spell_points(free, reviewed_only=True) == 0
+
+
 @pytest.mark.parametrize('suffix', ['causality-time', 'delay-pain-time', 'eject-time', 'fast-time-time',
     'lethargy-time', 'repetition-time', 'retroactive-preparation', 'second-chance', 'temporal-trap', 'time-bubble-time'])
 def test_reviewed_time_one_spell_point_construction_costs(suffix):

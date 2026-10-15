@@ -52,6 +52,16 @@ def test_item_block_escapes_manual_html():
     assert '&lt;script&gt;' in html and '&lt;img src=x&gt;<br>Second line' in html
 
 
+def test_unreviewed_sp_cost_is_visible_without_changing_quote_or_manual_lock():
+    plan = blueprint()
+    plan['contributions'] = [dict(catalog_key='life:talent:deeper-healing', complexity=3, additional_spell_points=2)]
+    fields = item_card_fields(plan, name='Gem', slot='', description='')
+    assert 'SP cost requires review' in fields['construction_requirements']
+    assert fields['price'] == '8,000.00 gp'
+    plan['display_overrides'] = {'construction_requirements': dict(locked=True, value='Reviewed manually')}
+    assert item_card_fields(plan, name='Gem', slot='', description='')['construction_requirements'] == 'Reviewed manually'
+
+
 def test_aura_updates_with_real_caster_level_and_respects_its_own_lock():
     plan = blueprint()
     assert item_card_fields(plan, name='Gem', slot='', description='')['aura'] == 'Faint (school not specified)'

@@ -38,6 +38,9 @@ def item_card_fields(plan, *, name, slot, description, quotation=None):
         entry = magic_entry(contribution['catalog_key'])
         if entry is None: continue
         values['construction_requirements'] += '; ' + entry['name']
+        from app.marvelous_item_rules import talent_construction_spell_points
+        if talent_construction_spell_points(entry, reviewed_only=True) is None:
+            values['construction_requirements'] += ' (SP cost requires review; no registered automatic default)'
         from app.marvelous_item_rules import CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS
         for sphere, required_key in CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS.get(entry['key'], ()):
             required = magic_entry(required_key) if required_key else None

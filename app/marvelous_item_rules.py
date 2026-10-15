@@ -382,7 +382,7 @@ def tradition_costs(base_price, *, cheap=False, expensive=False, other_reduction
     return materials, base * fraction if cheap else base
 
 
-def talent_construction_spell_points(entry):
+def talent_construction_spell_points(entry, *, reviewed_only=False):
     """Reviewed mandatory default, not optional SP inferred from catalog prose.
 
     Ultimate Teleport Beacon spends one SP to place or use a beacon. These are
@@ -392,7 +392,9 @@ def talent_construction_spell_points(entry):
     Planeshift adds two, Portal adds one, and sustained Enduring Portal adds
     one beyond its integrated prerequisites. Optional variants remain explicit.
     """
-    from app.marvelous_base_powers import DESTRUCTION_BLAST_TYPES, DESTRUCTION_BLAST_SHAPES
+    from app.marvelous_base_powers import DESTRUCTION_BLAST_TYPES, DESTRUCTION_BLAST_SHAPES, TALENT_EFFECT_SP_CHOICES
+    if choices := TALENT_EFFECT_SP_CHOICES.get(entry.get('key')):
+        return min(choices.values())
     if entry.get('key') == 'destruction:blast-shape-talent:energy-sphere-blast-shape': return 0
     if entry.get('key') == 'destruction:blast-shape-talent:energy-wall-blast-shape': return 0
     if entry.get('key') == 'destruction:blast-shape-talent:explosive-orb-blast-shape': return 0
@@ -474,7 +476,7 @@ def talent_construction_spell_points(entry):
         'protection:advanced-talent:undying-aegis': 1,
         'protection:succor-talent:negation-succor-3pp': 1,
         'protection:succor-talent:reflection-succor': 1,
-    }.get(entry.get('key'), 0)
+    }.get(entry.get('key'), None if reviewed_only else 0)
 
 
 def talent_choice_spell_points(key, choice):
