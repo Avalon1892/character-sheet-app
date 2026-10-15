@@ -268,6 +268,22 @@ def test_reviewed_destruction_fixed_prerequisites_have_catalog_identities_and_pa
         assert magic_entry(key) and all(magic_entry(option) for options in groups for option in options)
 
 
+def test_counted_prerequisites_require_two_applied_extended_ranges():
+    from app.marvelous_item_rules import missing_construction_prerequisites, advanced_construction_blockers
+    key = 'destruction:talent:extended-range-range'
+    rows = [dict(catalog_key='destruction:advanced-talent:extreme-range')]
+    assert missing_construction_prerequisites(rows) == (key, key)
+    rows.append(dict(catalog_key=key))
+    assert missing_construction_prerequisites(rows) == (key,)
+    assert any('requires 2, included 1' in text for text in advanced_construction_blockers(rows, 5))
+    rows.append(dict(catalog_key=key, alternative=True))
+    assert missing_construction_prerequisites(rows) == (key,)
+    rows[-1]['alternative'] = False
+    assert not missing_construction_prerequisites(rows)
+    assert not advanced_construction_blockers(rows, 5)
+    assert advanced_construction_blockers(rows, 4)
+
+
 @pytest.mark.parametrize('suffix', ['antimagic-aura', 'spell-selectivity'])
 def test_arcforge_protection_accepts_either_magic_or_technology_prerequisite(suffix):
     from app.marvelous_item_rules import missing_construction_alternatives, advanced_construction_blockers, talent_construction_spell_points

@@ -624,16 +624,19 @@ class MarvelousCraftingDialog(QDialog):
             QMessageBox.warning(self, 'Cannot add prerequisites', 'A required talent is not available in the current sphere catalog. No talents were added.')
             return
         from PySide6.QtCore import Qt
-        existing = {self.table.item(row, 0).data(Qt.ItemDataRole.UserRole): row for row in range(self.table.rowCount())}
-        promotions = [key for key in additions if key in existing and self.table.cellWidget(existing[key], 2).isChecked()]
+        existing = {}
+        for row in range(self.table.rowCount()):
+            if self.table.cellWidget(row, 2).isChecked():
+                existing.setdefault(self.table.item(row, 0).data(Qt.ItemDataRole.UserRole), []).append(row)
+        promotions = list(dict.fromkeys(key for key in additions if existing.get(key)))
         if promotions and QMessageBox.question(self, 'Apply required talents',
                 'These prerequisites are currently optional alternatives:\n' + '\n'.join(catalog[key][1] for key in promotions)
                 + '\n\nMake them fixed contributions so they are applied with the advanced effect? Pricing will update; existing SP and custom cost values are preserved.') != QMessageBox.StandardButton.Yes:
             return
         selected = self.talent.currentIndex()
         for key in additions:
-            if key in existing:
-                self.table.cellWidget(existing[key], 2).setChecked(False)
+            if existing.get(key):
+                self.table.cellWidget(existing[key].pop(0), 2).setChecked(False)
             else:
                 self.talent.setCurrentIndex(catalog[key][0]); self.add_contribution()
         self.talent.setCurrentIndex(selected)

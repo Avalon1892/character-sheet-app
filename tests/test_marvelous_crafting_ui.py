@@ -319,6 +319,26 @@ def test_loading_plan_calculates_once_and_keeps_live_updates_after_failure(compo
     assert repo._connection.total_changes == before
 
 
+@pytest.mark.parametrize('already_applied', [0, 1, 2])
+def test_counted_prerequisite_addition_is_idempotent_and_does_not_write(composer, already_applied):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(10)
+    key = 'destruction:advanced-talent:extreme-range'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    dialog.add_contribution()
+    extended = 'destruction:talent:extended-range-range'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == extended))
+    for _ in range(already_applied): dialog.add_contribution()
+    before = repo._connection.total_changes
+    dialog.add_required_contributions()
+    keys = [row['catalog_key'] for row in dialog.blueprint()['contributions']]
+    assert keys.count('destruction:talent:extended-range-range') == 2
+    price = dialog.quotation()[1].market_price_gp
+    dialog.add_required_contributions()
+    assert dialog.table.rowCount() == 3 and dialog.quotation()[1].market_price_gp == price
+    assert repo._connection.total_changes == before
+
+
 def test_chain_blast_preview_tracks_item_caster_level(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(6)

@@ -5,6 +5,7 @@ Source: https://spheresofpower.wikidot.com/magical-items
 """
 from dataclasses import dataclass, replace
 from fractions import Fraction
+from collections import Counter
 
 from app.crafting_rules import CraftingQuote
 
@@ -113,6 +114,7 @@ def marvelous_item_price(caster_level: int, complexity: int | Fraction, *, daily
 
 # Reviewed construction prerequisites use catalog identities, never prose parsing.
 ADVANCED_CONSTRUCTION_REQUIREMENTS = {
+    'destruction:advanced-talent:extreme-range': (5, ('destruction:talent:extended-range-range',) * 2),
     'destruction:advanced-talent:grandmaster-jester-s-hb': (0, ('destruction:blast-shape-talent:knight-s-blast-blast-shape-jester-s-hb',)),
     'protection:advanced-talent:pithing-protection-3pp': (10, ('protection:advanced-talent:spell-selectivity-dbh',
         'protection:aegis-ward-talent:spell-ward-aegis-ward')),
@@ -205,18 +207,20 @@ def missing_construction_alternatives(contributions):
 def missing_construction_prerequisites(contributions):
     """Reviewed transitive additions in deterministic dependency order."""
     owned = {row['catalog_key'] for row in contributions}
-    seen, missing = {row['catalog_key'] for row in contributions if not row.get('alternative')}, []
+    seen, missing = Counter(row['catalog_key'] for row in contributions if not row.get('alternative')), []
     def visit(key):
-        for required in ADVANCED_CONSTRUCTION_REQUIREMENTS.get(key, (0, ()))[1]:
-            if required in seen: continue
-            seen.add(required); visit(required); missing.append(required)
+        for required, count in Counter(ADVANCED_CONSTRUCTION_REQUIREMENTS.get(key, (0, ()))[1]).items():
+            deficit = count - seen[required]
+            if deficit <= 0: continue
+            seen[required] = count
+            visit(required); missing.extend([required] * deficit)
     for key in sorted(owned): visit(key)
     return tuple(missing)
 
 
 def advanced_construction_blockers(contributions, caster_level, *, display_names=None):
     keys = {row['catalog_key'] for row in contributions}
-    applied = {row['catalog_key'] for row in contributions if not row.get('alternative')}
+    applied_counts = Counter(row['catalog_key'] for row in contributions if not row.get('alternative'))
     blockers = []
     names = display_names or {}
     blockers.extend(f'{names.get(key, key)}: include one prerequisite talent: '
@@ -232,8 +236,9 @@ def advanced_construction_blockers(contributions, caster_level, *, display_names
         minimum, required = requirement
         if caster_level < minimum:
             blockers.append(f'{names.get(key, key)}: item caster level must be at least {minimum}.')
-        blockers.extend(f'{names.get(key, key)}: prerequisite talent must be included in this effect: {names.get(talent, talent)}.'
-                        for talent in required if talent not in applied)
+        blockers.extend(f'{names.get(key, key)}: prerequisite talent must be included in this effect: {names.get(talent, talent)}'
+                        + (f' (requires {count}, included {applied_counts[talent]})' if count > 1 else '') + '.'
+                        for talent, count in Counter(required).items() if applied_counts[talent] < count)
     return tuple(blockers)
 
 
