@@ -46,6 +46,8 @@ The user's latest priority is the designer, not construction-calendar automation
 
 ## Required next (current remaining work)
 
+Combined requested-workflow regression: exercised the accessible-effect picker with owned Mass Healing, automatic extra-SP pricing, Diviner's Sight, a custom reduction, live 12000→7200 gp repricing, a manually locked displayed price, the actual Save action, and repository reopen. All selections and display lock survive while the authoritative numeric quote stays separate. One end-to-end UI regression passed in 4.07 seconds. Real Moldable lifecycle coverage remains in its dedicated existing regression; this test does not substitute a synthetic flexible selection for that coverage. No runtime change/deployment in this checkpoint.
+
 Mass Aegis cost: reviewed its additional +1 SP and connected it to the existing contribution-default map. No inferred extra cost for Instill Aegis, whose published text does not charge an additional SP beyond its aegis. The item-specific duration ladder remains authoritative; normal caster Mass Aegis duration does not silently replace it. Multi-recipient activation remains manual. Sources: https://spheresofpower.wikidot.com/protection and https://spheresofpower.wikidot.com/magical-items. Rules/base-power tests: 244 passed. Not deployed.
 
 Invalid-preview recovery: invalid drafts now replace stale construction-review content with the current error and clear unlocked calculated field editors to an em dash. Locked user text remains intact; correcting the input restores live values immediately. Existing item preview/error formula behavior remains in place. Four focused invalid-state/all-lock/status checks passed. No rules/database changes; not deployed.

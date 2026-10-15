@@ -68,6 +68,43 @@ def test_empty_marvelous_window_can_open_designer_without_writes(composer, monke
     window.close()
 
 
+def test_complete_design_workflow_keeps_live_price_separate_from_locked_card(composer, monkeypatch):
+    from app.content import magic_entry
+    from app.optional_traditions import catalog
+    from app.ui.marvelous_effect_picker import MarvelousEffectPicker
+    from PySide6.QtWidgets import QDialog
+    dialog, repo, cid = composer
+    entry = magic_entry('life:talent:mass-healing-mass')
+    repo.add_spell(cid, entry['name'], system='Sphere', school_or_sphere='Life',
+                   catalog_key=entry['key'], catalog_category=entry['category'])
+    dialog.sphere.setCurrentText('Life'); dialog.cl.setValue(10)
+    def choose(picker):
+        picker.selected_entries = (entry,)
+        return QDialog.DialogCode.Accepted
+    monkeypatch.setattr(MarvelousEffectPicker, 'exec', choose)
+    dialog.choose_accessible_effects()
+    assert dialog.quotation()[1].market_price_gp == 12000
+    dialog.crafting_tradition = dict(next(row for row in catalog()['entries'] if row['key'] == 'crafting:diviner-s-sight'))
+    dialog.drawbacks = [dict(source='custom', name='Only at sunrise', description='Requires visible sunrise.', reduction=1)]
+    dialog.update_preview()
+    assert dialog.quotation()[1].market_price_gp == 7200
+    assert '7200' in dialog.cost_formula.text()
+    dialog.card_locks['price'].setChecked(True)
+    dialog.card_edits['price'].setText('GM-negotiated price')
+    dialog.review.setChecked(True)
+    dialog.save_item()
+    assert QDialog.result(dialog) == QDialog.DialogCode.Accepted
+    reopened = MarvelousCraftingDialog(repo, cid, item_id=dialog.item_id)
+    try:
+        assert reopened.drawbacks[0]['reduction'] == 1
+        assert reopened.crafting_tradition['key'] == 'crafting:diviner-s-sight'
+        assert reopened.card_edits['price'].text() == 'GM-negotiated price'
+        assert reopened.quotation()[1].market_price_gp == 7200
+        assert 'Mass Healing' in reopened.item_preview.toPlainText()
+    finally:
+        reopened.close()
+
+
 def test_invalid_design_clears_stale_calculations_but_keeps_locked_text(composer):
     dialog, repo, cid = composer
     dialog.card_locks['description'].setChecked(True)
