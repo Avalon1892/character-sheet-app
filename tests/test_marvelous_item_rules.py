@@ -330,6 +330,23 @@ def test_selectivity_antimagic_conflict_only_when_options_can_coexist():
     with pytest.raises(ValueError, match='except-mode'): spell_selectivity_options(plan)
 
 
+@pytest.mark.parametrize('suffix', ['chain-blast-blast-shape', 'energy-aura-blast-shape',
+    'energy-leap-blast-shape', 'guided-strike-blast-shape', 'mutable-blast-blast-shape', 'retributive-blast-blast-shape'])
+def test_reviewed_mandatory_shape_sp_defaults(suffix):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_construction_spell_points, talent_construction_cost
+    entry = magic_entry('destruction:blast-shape-talent:' + suffix)
+    assert entry is not None
+    assert talent_construction_spell_points(entry) == 1
+    assert talent_construction_cost(entry, additional_spell_points=1) == 2
+
+
+def test_optional_energy_sphere_sustain_is_not_assumed_mandatory():
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_construction_spell_points
+    assert talent_construction_spell_points(magic_entry('destruction:blast-shape-talent:energy-sphere-blast-shape')) == 0
+
+
 def test_cheap_tradition_applies_once_to_combined_design():
     from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_price_formula
     base = dict(schema_version=1, caster_level=5, uses=1, range_steps=0,

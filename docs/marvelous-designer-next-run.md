@@ -46,6 +46,8 @@ The user's latest priority is the designer, not construction-calendar automation
 
 ## Required next (current remaining work)
 
+Shape-SP checkpoint: Chain Blast, Energy Aura, Energy Leap, Guided Strike, Mutable Blast and Retributive Blast now use reviewed one-SP mandatory defaults through the existing contribution editor. Optional Energy Sphere sustain is not assumed mandatory. Source: https://spheresofpower.wikidot.com/destruction. Rules/UI regression: 152 passed in 39.13 seconds. This covers SP defaults only; action/duration/geometry variants, replacement-cost accounting and further shape mechanics remain unfinished.
+
 Restore-performance checkpoint: saved-plan restoration now batches preview work under the existing loading flag, performs one final preview cycle/row-layout pass, and releases the flag in `finally` even on invalid input. Normal edits still refresh immediately. Locked descriptions and no-write loading behavior are preserved. UI/presentation validation: 72 passed in 37.81 seconds, including one preview-entry quotation call per successful load and resumed live updates after a failed load. No rules, repository synchronization or persistent semantics were changed.
 
 Alternative-conflict correction: Mobile Ward/Permanent Ward and Spell Selectivity except-mode/Antimagic Aura conflicts now respect the existing mutually exclusive group semantics. Two alternatives in the same group cannot coexist and do not trigger a simultaneous-use conflict; fixed contributions and independent groups still do. Applied-prerequisite checks remain unchanged. Rules/UI regression: 144 passed in 43.02 seconds. This corrects validation, not per-option bundled pricing or activation selection.
