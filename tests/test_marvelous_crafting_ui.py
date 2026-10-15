@@ -87,6 +87,21 @@ def test_dimension_pierce_picker_uses_space_effect_not_teleport(composer, monkey
     text = dialog.item_preview.toPlainText()
     assert 'Dimension Pierce' in text and '5 hours' in text and 'ghost touch' in text
     assert 'Teleport Distance' not in text
+    from app.services.crafting import CraftingService
+    service = CraftingService(repo, cid)
+    iid = service.save_marvelous_design(dialog.blueprint(), name='Planar glove', slot='', description='')
+    reopened = MarvelousCraftingDialog(repo, cid, item_id=iid)
+    try:
+        assert reopened.base_power.currentData() == 'warp:dimension-pierce'
+        assert '5 hours' in reopened.item_preview.toPlainText()
+        invalid = reopened.blueprint()
+        invalid['contributions'] = []
+        before = repo._connection.total_changes
+        with pytest.raises(ValueError, match='talent contribution'):
+            service.save_marvelous_design(invalid, name='Invalid glove', slot='', description='', item_id=iid)
+        assert repo._connection.total_changes == before
+    finally:
+        reopened.close()
 
 
 def test_complete_design_workflow_keeps_live_price_separate_from_locked_card(composer, monkeypatch):
