@@ -2216,6 +2216,16 @@ class CharacterRepository:
         self._touch_character(recipient)
         effect['recipient_character_id'] = recipient
 
+    def marvelous_activation_blockers(self, character_id, plan):
+        """Reviewed user requirements, separate from permanent crafting access."""
+        if (plan.get('crafting_tradition') or {}).get('key') != 'crafting:diviner-s-sight': return ()
+        from app.exploitant_rules import effective_magic_talents
+        if any(spell.enabled and spell.school_or_sphere.casefold() == 'divination'
+               and (spell.catalog_category.casefold() == 'base sphere' or spell.catalog_key.endswith(':base'))
+               for spell in effective_magic_talents(self, character_id)):
+            return ()
+        return ('Educated: requires Divination sphere training; Use Magic Device cannot bypass this requirement.',)
+
     def consume_marvelous_item_use(self, character_id: int, item_id: int, *, apply_to_self=False, effect_index=0, target_character_id=None) -> dict:
         """Atomically consume a saved custom item's use; preserve unrelated metadata.
 
@@ -2255,6 +2265,8 @@ class CharacterRepository:
                     self._touch_character(character_id)
                     return effect
             if not plan: raise ValueError('This item has no structured Marvelous blueprint.')
+            if blockers := self.marvelous_activation_blockers(character_id, plan):
+                raise ValueError('; '.join(blockers))
             if plan.get('extra_effects') and plan.get('combination_mode') == 'mixed':
                 if effect_index != 0:
                     raise ValueError('Use the complete mixed effect, not an individual component.')

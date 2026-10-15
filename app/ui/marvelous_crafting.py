@@ -967,6 +967,7 @@ class MarvelousItemUseDialog(QDialog):
                 metadata = json.loads(item.automation_json or '{}')
                 plan = metadata.get('marvelous_blueprint')
                 custom = bool(plan)
+                blockers = self.repository.marvelous_activation_blockers(self.character_id, plan) if custom else ()
                 if custom:
                     effects = [(index, power, marvelous_remaining_uses(metadata, index), resolve_base_power(power))
                                for index, power in enumerate([plan, *plan.get('extra_effects', [])])]
@@ -1005,11 +1006,12 @@ class MarvelousItemUseDialog(QDialog):
                 available = all(entry[2] != 0 for entry in effects) if mixed else remaining != 0
                 usable = metadata.get('marvelous_project', {}).get('status', 'complete') == 'complete'
                 target_allowed = not automatic or self.recipient.currentData() == self.character_id or all(entry[3]['range'] != 'Personal' for entry in (effects if mixed else [(index, power, remaining, effect)]))
-                button.setEnabled(available and usable and item.quantity == 1 and (not mixed or index == 0) and target_allowed)
+                button.setEnabled(available and usable and not blockers and item.quantity == 1 and (not mixed or index == 0) and target_allowed)
                 if not target_allowed: button.setToolTip('Personal-range effects can only affect the item user.')
                 if not usable: button.setToolTip('Construction has not produced a usable item.')
                 if mixed: button.setToolTip('Using the primary control spends one use of every limited component together. ' + ('Supported components apply atomically.' if automatic else 'Apply the combined effect manually.'))
                 elif item.quantity > 1: button.setToolTip('Separate these devices into individual records to track independent uses.')
+                if blockers: button.setToolTip('; '.join(blockers))
                 button.clicked.connect(lambda checked=False, iid=item.id, auto=automatic, ei=index:self.activate(iid, auto, ei))
                 self.table.setCellWidget(row, 3, button)
 

@@ -571,6 +571,23 @@ def test_energy_wall_modes_coordinate_sp_duration_geometry_and_reopen(composer):
     assert dialog.duration_steps.value() == 1 and 'Duration 12 minutes' in dialog.item_preview.toPlainText()
 
 
+def test_diviners_sight_use_button_tracks_training_and_explains_requirement(composer):
+    from app.ui.marvelous_crafting import MarvelousItemUseDialog
+    from app.services.crafting import CraftingService
+    dialog, repo, cid = composer
+    plan = dialog.blueprint()
+    plan['crafting_tradition'] = dict(key='crafting:diviner-s-sight')
+    CraftingService(repo, cid).save_marvelous_design(plan, name='Educated device', slot='', description='')
+    window = MarvelousItemUseDialog(repo, cid)
+    button = window.table.cellWidget(0, 3)
+    assert not button.isEnabled() and 'Divination sphere training' in button.toolTip()
+    repo.add_spell(cid, 'Divination', system='Sphere', school_or_sphere='Divination',
+        catalog_key='divination:base', catalog_category='Base Sphere')
+    window.refresh()
+    assert window.table.cellWidget(0, 3).isEnabled()
+    window.close()
+
+
 def test_chain_blast_preview_tracks_item_caster_level(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(6)

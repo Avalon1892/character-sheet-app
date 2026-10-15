@@ -28,6 +28,30 @@ def metadata(repo, cid, iid):
     return json.loads(next(i for i in repo.list_equipment(cid) if i.id == iid).automation_json)
 
 
+def test_diviners_sight_requires_enabled_base_training_before_any_writes(crafter):
+    repo, cid = crafter
+    plan = dict(schema_version=1, sphere='Life', base_power='life:temporary-hp', caster_level=5,
+        activation='standard', uses=1, range_steps=0, duration_steps=0, unique_changes=0,
+        contributions=[], crafting_tradition=dict(key='crafting:diviner-s-sight'))
+    iid = CraftingService(repo, cid).save_marvelous_design(plan, name='Educated gem', slot='', description='')
+    original = metadata(repo, cid, iid)
+    before = repo._connection.total_changes
+    with pytest.raises(ValueError, match='Use Magic Device cannot bypass'):
+        repo.consume_marvelous_item_use(cid, iid, apply_to_self=True)
+    assert repo._connection.total_changes == before and metadata(repo, cid, iid) == original
+    repo.add_spell(cid, 'A Divination talent', system='Sphere', school_or_sphere='Divination',
+        catalog_key='divination:talent:expanded-divinations', catalog_category='Talent')
+    assert repo.marvelous_activation_blockers(cid, plan)
+    sphere_id = repo.add_spell(cid, 'Divination', system='Sphere', school_or_sphere='Divination',
+        catalog_key='divination:base', catalog_category='Base Sphere')
+    repo.set_spell_enabled(cid, sphere_id, False)
+    assert repo.marvelous_activation_blockers(cid, plan)
+    repo.set_spell_enabled(cid, sphere_id, True)
+    assert not repo.marvelous_activation_blockers(cid, plan)
+    repo.consume_marvelous_item_use(cid, iid)
+    assert metadata(repo, cid, iid)['marvelous_uses_used'] == 1
+
+
 def test_character_transfer_preserves_blueprint_project_and_independent_counters(crafter, tmp_path, monkeypatch):
     from app.transfer import export_character, import_character
     from app.marvelous_item_rules import MarvelousRequirements
