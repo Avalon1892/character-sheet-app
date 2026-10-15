@@ -68,6 +68,33 @@ def test_empty_marvelous_window_can_open_designer_without_writes(composer, monke
     window.close()
 
 
+def test_every_item_field_lock_survives_repository_roundtrip_and_later_changes(composer):
+    from app.marvelous_item_presentation import ITEM_FIELDS
+    from app.services.crafting import CraftingService
+    from PySide6.QtWidgets import QTextEdit
+    dialog, repo, cid = composer
+    for key in ITEM_FIELDS:
+        dialog.card_locks[key].setChecked(True)
+        editor = dialog.card_edits[key]
+        if isinstance(editor, QTextEdit): editor.setPlainText('Manual ' + key)
+        else: editor.setText('Manual ' + key)
+    iid = CraftingService(repo, cid).save_marvelous_design(dialog.blueprint(), name='All locked', slot='', description='')
+    reopened = MarvelousCraftingDialog(repo, cid, item_id=iid)
+    try:
+        reopened.cl.setValue(8)
+        reopened.uses.setCurrentIndex(reopened.uses.findData(3))
+        assert reopened.quotation()[1].market_price_gp == 9600
+        overrides = reopened.blueprint()['display_overrides']
+        for key in ITEM_FIELDS:
+            assert reopened.card_locks[key].isChecked()
+            assert overrides[key] == dict(locked=True, value='Manual ' + key)
+        reopened.card_locks['price'].setChecked(False)
+        assert reopened.card_edits['price'].text() == '9,600.00 gp'
+        assert reopened.card_locks['description'].isChecked()
+    finally:
+        reopened.close()
+
+
 def test_item_card_locks_survive_changes_save_and_reopen(composer):
     from app.services.crafting import CraftingService
     dialog, repo, cid = composer

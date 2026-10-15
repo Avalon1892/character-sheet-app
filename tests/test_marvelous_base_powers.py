@@ -262,6 +262,15 @@ def test_effect_range_is_separate_from_target_range(key, field):
     with pytest.raises(ValueError): resolve_base_power(plan(key, effect_range_steps=3))
 
 
+@pytest.mark.parametrize('key', ['life:cure', 'life:restore', 'life:temporary-hp'])
+@pytest.mark.parametrize('level,targets', [(1, 2), (5, 3), (10, 6)])
+def test_mass_healing_projects_target_limit_without_applying_an_alternative(key, level, targets):
+    mass = dict(catalog_key='life:talent:mass-healing-mass')
+    assert resolve_base_power(plan(key, level, contributions=[mass]))['maximum_targets'] == targets
+    mass['alternative'] = True
+    assert 'maximum_targets' not in resolve_base_power(plan(key, level, contributions=[mass]))
+
+
 def test_weather_category_projection_tracks_modes_and_does_not_guess_unknown_combinations():
     greater = dict(catalog_key='weather:talent:greater-weather', effect_choice='three weather categories')
     severe = dict(catalog_key='weather:talent:severe-weather')

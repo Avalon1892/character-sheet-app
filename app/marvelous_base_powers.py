@@ -363,6 +363,11 @@ def resolve_base_power(plan):
             summary['temporary_hp_review'] = 'Base amount only; selected modifications require manual resolution.'
         elif any(row.get('catalog_key') == 'life:talent:painkiller' for row in plan.get('contributions', [])):
             summary['nonlethal_healing'] = temporary
+    if power.key in {'life:cure', 'life:restore', 'life:temporary-hp'}:
+        mass = [row for row in plan.get('contributions', []) if row.get('catalog_key') == 'life:talent:mass-healing-mass']
+        if len(mass) == 1 and not mass[0].get('alternative'):
+            summary['maximum_targets'] = 1 + max(1, cl // 2)
+            summary['targeting'] = 'Every target must be in range and receive the same Life effect; resolve the group manually.'
     if power.key == 'life:restore':
         summary['restore_mode'] = restore_mode or 'Not selected; manual review required'
         if restore_mode in {'mind', 'body'}:
