@@ -354,6 +354,8 @@ def resolve_base_power(plan):
     mode = item_dice_metamagic(plan)
     if mode and any(mode): summary['dice_mode'] = ' + '.join(label for label, active in zip(('Maximized', 'Empowered'), mode) if active)
     if plan.get('permanent', False): summary['duration'] = 'Permanent (dispellable)'
+    if any(row.get('catalog_key') == 'warp:advanced-talent:time-warp-jester-s-hb' for row in plan.get('contributions', [])):
+        summary['pricing_review'] = 'Time Warp lists a five-SP activation. Verify how its cost combines with the included True Teleport prerequisite before crafting; no extra-SP default is inferred for this interaction.'
     if power.key in {'time:haste', 'time:slow'}:
         rows = plan.get('contributions', [])
         keys = {row.get('catalog_key') for row in rows}

@@ -136,10 +136,9 @@ class CraftingService:
                     raise ValueError('Selected talent is not part of the blueprint base sphere.')
                 required.append(entry['name'])
                 for sphere, talent_key in CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS.get(entry['key'], ()):
-                    talent = self.magic_entries_by_key[talent_key]['name']
                     if sphere.casefold() not in known_spheres:
                         construction_blockers.append(f'{entry["name"]}: requires the {sphere} base sphere as a construction prerequisite.')
-                    if talent.casefold() not in known_talents:
+                    if talent_key and (talent := self.magic_entries_by_key[talent_key]['name']).casefold() not in known_talents:
                         construction_blockers.append(f'{entry["name"]}: requires {talent} as a construction prerequisite.')
                 if talent_effect_choices(entry['key']) and not contribution.get('effect_choice'):
                     construction_blockers.append(f'{entry["name"]}: choose the effect mode before construction.')

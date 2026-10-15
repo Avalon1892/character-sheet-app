@@ -176,6 +176,8 @@ ADVANCED_CONSTRUCTION_REQUIREMENTS = {
     'warp:advanced-talent:true-teleport': (10, ('warp:talent:distant-teleport', 'warp:talent:unseeing-teleport')),
     'warp:advanced-talent:dimensional-lock-space': (15, ('warp:space-talent:plane-manipulator-space',)),
     'warp:advanced-talent:create-demiplane-utility': (15, ('warp:space-talent:extradimensional-room-space',)),
+    'warp:advanced-talent:time-warp-jester-s-hb': (20, ('warp:talent:distant-teleport', 'warp:advanced-talent:true-teleport', 'warp:talent:unseeing-teleport')),
+    'warp:advanced-talent:timeline-drift-lg': (10, ('warp:talent:distant-teleport', 'warp:talent:unseeing-teleport')),
     'warp:advanced-talent:dimensional-tracery-3pp': (0, ()),
     'warp:advanced-talent:planting-warp-3pp': (0, ('warp:talent:teleport-object', 'warp:talent:unwilling-teleport')),
     'warp:advanced-talent:store-structure': (1, ('warp:space-talent:extradimensional-storage-space-utility',)),
@@ -228,6 +230,7 @@ ADVANCED_CONSTRUCTION_REQUIREMENTS = {
 }
 
 CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS = {
+    'warp:advanced-talent:time-warp-jester-s-hb': (('Time', None),),
     'warp:advanced-talent:create-demiplane-utility': (('Creation', 'creation:material-talent:expanded-materials-material'),),
 }
 
@@ -427,6 +430,7 @@ def talent_construction_spell_points(entry):
         'warp:advanced-talent:extradimensional-torpor-space-apoc': 1,
         'warp:advanced-talent:organ-detachment-space-alienist-hb': 3,
         'warp:advanced-talent:create-demiplane-utility': 3,
+        'warp:advanced-talent:timeline-drift-lg': 2,
         'warp:talent:emergency-teleport': 1,
         'warp:talent:instill-teleport-instill': 1,
         'warp:talent:mass-teleport-mass': 1,

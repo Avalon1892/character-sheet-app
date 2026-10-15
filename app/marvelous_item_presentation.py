@@ -40,8 +40,9 @@ def item_card_fields(plan, *, name, slot, description, quotation=None):
         values['construction_requirements'] += '; ' + entry['name']
         from app.marvelous_item_rules import CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS
         for sphere, required_key in CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS.get(entry['key'], ()):
-            required = magic_entry(required_key)
-            values['construction_requirements'] += '; prerequisite: ' + sphere + ' sphere / ' + (required['name'] if required else required_key)
+            required = magic_entry(required_key) if required_key else None
+            values['construction_requirements'] += '; prerequisite: ' + sphere + ' sphere'
+            if required_key: values['construction_requirements'] += ' / ' + (required['name'] if required else required_key)
         label = f"Alternative group {contribution.get('alternative_group', 1)}" if contribution.get('alternative') else 'Effect'
         selected = f"\nSelected option: {contribution['effect_choice']}" if contribution.get('effect_choice') else ''
         values['description'] += f"\n\n{label} — {entry['name']}{selected}\n{entry.get('description', '')}"

@@ -35,6 +35,22 @@ def test_demiplane_checks_foreign_prerequisite_without_adding_a_foreign_effect(c
     assert not service.marvelous_plan_requirements(plan, access=access).eligible
 
 
+def test_time_warp_requires_time_sphere_without_inventing_a_time_cl_gate(crafter):
+    from app.marvelous_item_rules import missing_construction_prerequisites
+    repo, cid = crafter
+    service = CraftingService(repo, cid)
+    rows = [dict(catalog_key='warp:advanced-talent:time-warp-jester-s-hb')]
+    rows.extend(dict(catalog_key=key) for key in missing_construction_prerequisites(rows))
+    plan = dict(sphere='Warp', base_power='warp:teleport', caster_level=20,
+                range_steps=0, duration_steps=0, contributions=rows)
+    access = dict(sphere_levels={'Warp': 20}, available_talents=[service.magic_entries_by_key[row['catalog_key']]['name'] for row in rows])
+    assert any('Time base sphere' in text for text in service.marvelous_plan_requirements(plan, access=access).blockers)
+    access['sphere_levels']['Time'] = 1
+    assert service.marvelous_plan_requirements(plan, access=access).eligible
+    from app.marvelous_base_powers import resolve_base_power
+    assert 'five-SP activation' in resolve_base_power(plan)['pricing_review']
+
+
 def test_required_effect_mode_blocks_construction_until_selected(crafter):
     repo, cid = crafter
     service = CraftingService(repo, cid)
