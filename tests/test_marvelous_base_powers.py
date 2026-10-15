@@ -212,6 +212,19 @@ def test_energy_sphere_mode_controls_duration_and_keeps_typed_dice(choice, durat
         assert resolve_base_power(blueprint)['duration'] == '10 minutes'
 
 
+@pytest.mark.parametrize('choice,area,duration', [
+    ('concentration cube', '5-foot cubic wall', 'Concentration'),
+    ('straight wall', 'Straight wall up to 20 ft. high and 200 ft. wide', '10 rounds'),
+    ('hemisphere', 'Hemisphere radius up to 25 ft.', '10 rounds')])
+def test_energy_wall_geometry_duration_and_damage(choice, area, duration):
+    from app.marvelous_base_powers import ENERGY_WALL_KEY
+    result = resolve_base_power(plan('destruction:blast', 10,
+        contributions=[dict(catalog_key=ENERGY_WALL_KEY, effect_choice=choice)]))
+    assert result['area'] == area and result['duration'] == duration
+    assert result['damage'] == '5d6 bludgeoning'
+    assert 'does not block sight' in result['geometry']
+
+
 def test_beacon_placement_range_duration_and_required_contribution():
     result = resolve_base_power(plan('warp:beacon', 7))
     assert result['range'] == 'Touch' and result['duration'] == '7 hours'

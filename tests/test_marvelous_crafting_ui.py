@@ -552,6 +552,25 @@ def test_energy_sphere_duration_mode_price_and_saved_adjustment_stay_in_sync(com
     assert dialog.duration_steps.value() == 0 and dialog.quotation()[0] == 2
 
 
+def test_energy_wall_modes_coordinate_sp_duration_geometry_and_reopen(composer):
+    from app.marvelous_base_powers import ENERGY_WALL_KEY
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(10)
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == ENERGY_WALL_KEY))
+    dialog.add_contribution()
+    choice = dialog.table.cellWidget(0, 5)
+    for mode, cost, text in [('concentration cube', 2, 'Duration Concentration'),
+                             ('straight wall', 3, '200 ft. wide'), ('hemisphere', 3, 'Hemisphere radius up to 25 ft.')]:
+        choice.setCurrentIndex(choice.findData(mode))
+        assert dialog.quotation()[0] == cost and text in dialog.item_preview.toPlainText()
+    dialog.cl.setValue(12)
+    assert 'Hemisphere radius up to 30 ft.' in dialog.item_preview.toPlainText()
+    dialog.duration_steps.setValue(1)
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint()['contributions'] == saved['contributions']
+    assert dialog.duration_steps.value() == 1 and 'Duration 12 minutes' in dialog.item_preview.toPlainText()
+
+
 def test_chain_blast_preview_tracks_item_caster_level(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(6)

@@ -82,7 +82,9 @@ EXPLOSIVE_ORB_KEY = 'destruction:blast-shape-talent:explosive-orb-blast-shape'
 BLAST_SALVO_KEY = 'destruction:blast-shape-talent:blast-salvo-blast-shape-bap'
 SCULPT_BLAST_KEY = 'destruction:blast-shape-talent:sculpt-blast-blast-shape'
 ENERGY_SPHERE_KEY = 'destruction:blast-shape-talent:energy-sphere-blast-shape'
+ENERGY_WALL_KEY = 'destruction:blast-shape-talent:energy-wall-blast-shape'
 TALENT_EFFECT_SP_CHOICES = {
+    ENERGY_WALL_KEY: {'concentration cube': 0, 'straight wall': 1, 'hemisphere': 1},
     ENERGY_SPHERE_KEY: {'concentration': 0, 'rounds per caster level': 1},
     BLAST_SALVO_KEY: {'two surges': 0, 'additional surges': 1},
     SCULPT_BLAST_KEY: {'burst': 1, 'cone': 1, 'line': 1},
@@ -90,6 +92,7 @@ TALENT_EFFECT_SP_CHOICES = {
     'destruction:advanced-talent:detonating-salvo-lg': {'5-foot radius explosions': 1, 'expanded explosions': 2},
 }
 DESTRUCTION_BLAST_SHAPES = {
+    ENERGY_WALL_KEY: 'Energy Wall',
     ENERGY_SPHERE_KEY: 'Energy Sphere',
     GUIDED_STRIKE_KEY: 'Guided',
     KNIGHTS_BLAST_KEY: "Knight's",
@@ -105,7 +108,7 @@ def destructive_blast_profile(plan):
     rows = plan.get('contributions', [])
     keys = [row.get('catalog_key') for row in rows]
     if any(row.get('alternative') for row in rows) or len(keys) != len(set(keys)): return None
-    if any(row.get('catalog_key') in {EXPLOSIVE_ORB_KEY, BLAST_SALVO_KEY, SCULPT_BLAST_KEY, ENERGY_SPHERE_KEY}
+    if any(row.get('catalog_key') in {EXPLOSIVE_ORB_KEY, BLAST_SALVO_KEY, SCULPT_BLAST_KEY, ENERGY_SPHERE_KEY, ENERGY_WALL_KEY}
            and row.get('effect_choice') not in talent_effect_choices(row['catalog_key'])
            for row in rows): return None
     if GRANDMASTER_KEY in keys:
@@ -141,8 +144,8 @@ def effective_base_duration(plan):
     power = next((power for power in BASE_POWERS if power.key == plan.get('base_power')), None)
     if power is None: return 'instantaneous'
     if power.key == 'destruction:blast' and destructive_blast_profile(plan):
-        sphere = next((row for row in plan.get('contributions', []) if row.get('catalog_key') == ENERGY_SPHERE_KEY), None)
-        if sphere: return 'concentration' if sphere['effect_choice'] == 'concentration' else 'round'
+        persistent = next((row for row in plan.get('contributions', []) if row.get('catalog_key') in {ENERGY_SPHERE_KEY, ENERGY_WALL_KEY}), None)
+        if persistent: return 'concentration' if persistent['effect_choice'] in {'concentration', 'concentration cube'} else 'round'
     return power.duration
 
 
@@ -433,6 +436,13 @@ def resolve_base_power(plan):
                 summary['fly_speed'] = f'{20 + 5 * (cl // 2)} ft. (perfect)'
                 summary['saving_throw'] = 'Reflex negates'
                 summary['movement'] = 'Move action to direct; must remain within blast range. Targeting, concentration and expiration are manual.'
+            elif shape == ENERGY_WALL_KEY:
+                choice = next(row['effect_choice'] for row in plan['contributions'] if row.get('catalog_key') == shape)
+                summary['area'] = {'concentration cube': '5-foot cubic wall',
+                    'straight wall': f'Straight wall up to 20 ft. high and {20 * cl} ft. wide',
+                    'hemisphere': f'Hemisphere radius up to {max(5, 5 * (cl // 2))} ft.'}[choice]
+                summary['saving_throw'] = 'Reflex avoids damage when created in an occupied space; creatures passing through take damage normally.'
+                summary['geometry'] = 'Must fit fully within blast range; does not block sight, line of effect or projectiles. Placement, concentration and expiration are manual.'
             elif shape == EXPLOSIVE_ORB_KEY:
                 choice = next(row['effect_choice'] for row in plan['contributions'] if row.get('catalog_key') == shape)
                 summary['area'] = 'One 5-foot square' if choice == 'single square' else f'Burst radius up to {10 + 5 * (cl // 5)} ft.'
