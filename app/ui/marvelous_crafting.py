@@ -925,6 +925,14 @@ class MarvelousItemUseDialog(QDialog):
         self.table.setColumnWidth(1, 140); self.table.setColumnWidth(2, 260); self.table.setColumnWidth(3, 220)
         self.table.cellDoubleClicked.connect(self.edit_design)
         root.addWidget(self.table, 1)
+        design_actions = QHBoxLayout(); root.addLayout(design_actions)
+        self.new_design = QPushButton('New item design…'); design_actions.addWidget(self.new_design)
+        self.new_design.clicked.connect(lambda: self.open_design())
+        self.empty_hint = QLabel('No Marvelous Items yet. Choose “New item design…” to create one.')
+        self.empty_hint.setWordWrap(True); root.addWidget(self.empty_hint)
+        self.edit_design_button = QPushButton('Edit selected design…'); design_actions.addWidget(self.edit_design_button)
+        self.edit_design_button.setEnabled(False)
+        self.edit_design_button.clicked.connect(lambda: self.edit_design(self.table.currentRow(), 0))
         self.construction = QPushButton('Construction project'); self.construction.setEnabled(False)
         root.addWidget(self.construction)
         self.shards = QPushButton('Record applied Flask Shards'); self.shards.setEnabled(False)
@@ -942,6 +950,7 @@ class MarvelousItemUseDialog(QDialog):
     def update_construction_selection(self):
         from PySide6.QtCore import Qt
         item = self.table.item(self.table.currentRow(), 0)
+        self.edit_design_button.setEnabled(bool(item and item.data(Qt.ItemDataRole.UserRole + 1)))
         self.construction.setEnabled(bool(item and item.data(Qt.ItemDataRole.UserRole + 1)))
         self.shards.setEnabled(bool(item and item.data(Qt.ItemDataRole.UserRole + 2)))
         self.recharge.setEnabled(bool(item and item.data(Qt.ItemDataRole.UserRole + 3)))
@@ -1046,13 +1055,19 @@ class MarvelousItemUseDialog(QDialog):
                 if blockers: button.setToolTip('; '.join(blockers))
                 button.clicked.connect(lambda checked=False, iid=item.id, auto=automatic, ei=index:self.activate(iid, auto, ei))
                 self.table.setCellWidget(row, 3, button)
+        self.empty_hint.setVisible(self.table.rowCount() == 0)
+        self.update_construction_selection()
 
     def edit_design(self, row, column):
         from PySide6.QtCore import Qt
-        if not self.table.item(row, 0).data(Qt.ItemDataRole.UserRole + 1): return
+        selected = self.table.item(row, 0)
+        if selected is None or not selected.data(Qt.ItemDataRole.UserRole + 1): return
+        self.open_design(selected.data(Qt.ItemDataRole.UserRole))
+
+    def open_design(self, item_id=None):
         try:
             dialog = MarvelousCraftingDialog(self.repository, self.character_id, self,
-                item_id=self.table.item(row, 0).data(Qt.ItemDataRole.UserRole))
+                item_id=item_id)
         except ValueError as error:
             QMessageBox.warning(self, 'Cannot edit design', str(error)); return
         if dialog.exec() == QDialog.DialogCode.Accepted:

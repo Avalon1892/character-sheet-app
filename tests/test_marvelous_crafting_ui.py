@@ -19,6 +19,31 @@ def composer(tmp_path):
     repo.close()
 
 
+def test_empty_marvelous_window_can_open_designer_without_writes(composer, monkeypatch):
+    from app.ui.marvelous_crafting import MarvelousItemUseDialog
+    from PySide6.QtWidgets import QDialog
+    designer, repo, cid = composer
+    window = MarvelousItemUseDialog(repo, cid)
+    before = repo._connection.total_changes
+    opened = []
+    def inspect(child):
+        assert isinstance(child, MarvelousCraftingDialog)
+        assert child.parent() is window
+        assert child.tradition_button.isEnabled()
+        assert child.effects_button.isEnabled()
+        assert child.drawbacks_button.isEnabled()
+        opened.append(child)
+        return QDialog.DialogCode.Rejected
+    monkeypatch.setattr(MarvelousCraftingDialog, 'exec', inspect)
+    assert window.new_design.isEnabled()
+    assert not window.edit_design_button.isEnabled()
+    window.new_design.click()
+    assert len(opened) == 1 and not window.changed
+    window.edit_design(-1, 0)
+    assert repo._connection.total_changes == before
+    window.close()
+
+
 def test_item_card_locks_survive_changes_save_and_reopen(composer):
     from app.services.crafting import CraftingService
     dialog, repo, cid = composer
