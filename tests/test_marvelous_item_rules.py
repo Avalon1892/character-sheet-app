@@ -148,12 +148,16 @@ def test_warp_either_or_dependency_does_not_require_both(key, options):
         assert advanced_construction_blockers(rows, 1)
 
 
-def test_bundled_advanced_warp_entries_have_explicit_construction_requirement_metadata():
+@pytest.mark.parametrize('sphere, commentary', [
+    ('Warp', 'warp:advanced-talent:warping-structures-store-and-teleport-structure'),
+    ('Time', 'time:advanced-talent:reversion-and-complete-reversion'),
+])
+def test_bundled_advanced_entries_have_explicit_construction_requirement_metadata(sphere, commentary):
     from app.catalogs import DEFAULT_CATALOG
     from app.marvelous_item_rules import ADVANCED_CONSTRUCTION_REQUIREMENTS
-    entries = {entry['key'] for entry in DEFAULT_CATALOG.magic_entries('Warp')
+    entries = {entry['key'] for entry in DEFAULT_CATALOG.magic_entries(sphere)
                if 'advanced' in entry.get('category', '').casefold()
-               and entry['key'] != 'warp:advanced-talent:warping-structures-store-and-teleport-structure'}
+               and entry['key'] != commentary}
     assert entries <= ADVANCED_CONSTRUCTION_REQUIREMENTS.keys()
 
 

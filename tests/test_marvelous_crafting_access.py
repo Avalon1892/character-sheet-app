@@ -95,12 +95,15 @@ def test_complex_training_uses_current_effective_ranks(crafter, monkeypatch):
     assert any('trained in Knowledge (nature)' in text for text in service.marvelous_plan_requirements(plan).blockers)
 
 
-def test_shared_warp_structure_rules_are_not_offered_as_an_item_talent(crafter):
+@pytest.mark.parametrize('sphere, key', [
+    ('Warp', 'warp:advanced-talent:warping-structures-store-and-teleport-structure'),
+    ('Time', 'time:advanced-talent:reversion-and-complete-reversion'),
+])
+def test_shared_rules_commentary_is_not_offered_as_an_item_talent(crafter, sphere, key):
     repo, cid = crafter
-    key = 'warp:advanced-talent:warping-structures-store-and-teleport-structure'
-    repo.add_spell(cid, 'Warping Structures', system='Sphere', school_or_sphere='Warp',
+    repo.add_spell(cid, 'Rules commentary', system='Sphere', school_or_sphere=sphere,
                    catalog_key=key, catalog_category='Advanced Talent')
-    assert key not in {entry['key'] for entry in CraftingService(repo, cid).accessible_marvelous_effects('Warp')}
+    assert key not in {entry['key'] for entry in CraftingService(repo, cid).accessible_marvelous_effects(sphere)}
     assert any(row.catalog_key == key for row in repo.list_spells(cid))
 
 
