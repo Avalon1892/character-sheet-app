@@ -362,6 +362,7 @@ def talent_construction_spell_points(entry):
         'life:talent:mass-healing-mass': 1,
         'life:talent:restorative-cure': 1,
         'life:advanced-talent:hypervitalize': 2,
+        'protection:talent:mass-aegis-mass': 1,
         'weather:talent:greater-weather': 1,
         'weather:talent:severe-weather': 1,
         'time:talent:mass-time-mass': 1,

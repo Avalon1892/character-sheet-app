@@ -58,6 +58,23 @@ def test_custom_named_tradition_does_not_gain_published_boons():
     assert crafting_boon_details({'crafting_tradition': {'key': 'custom:ley-linked', 'name': 'Ley-Linked'}}) == ()
 
 
+def test_mass_aegis_adds_one_spell_point_without_changing_item_duration():
+    from app.catalogs import DEFAULT_CATALOG
+    from app.marvelous_item_rules import talent_construction_spell_points, quote_marvelous_blueprint
+    from app.marvelous_base_powers import resolve_base_power, automatic_self_effect
+    key = 'protection:talent:mass-aegis-mass'
+    entry = next(entry for entry in DEFAULT_CATALOG.magic_entries('Protection') if entry['key'] == key)
+    assert talent_construction_spell_points(entry) == 1
+    plan = dict(schema_version=1, sphere='Protection', base_power='protection:aegis', caster_level=5,
+                uses=1, activation='standard', range_steps=0, duration_steps=0, unique_changes=0, contributions=[])
+    before = quote_marvelous_blueprint(plan)[1].market_price_gp
+    duration = resolve_base_power(plan)['duration']
+    plan['contributions'] = [dict(catalog_key=key, complexity=2, additional_spell_points=1)]
+    assert quote_marvelous_blueprint(plan)[1].market_price_gp == before + 4000
+    assert resolve_base_power(plan)['duration'] == duration
+    assert automatic_self_effect(plan) is None
+
+
 def test_weather_construction_sp_defaults_and_modes_are_catalog_backed():
     from app.catalogs import DEFAULT_CATALOG
     from app.marvelous_item_rules import talent_construction_spell_points, talent_choice_spell_points

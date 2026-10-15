@@ -46,6 +46,8 @@ The user's latest priority is the designer, not construction-calendar automation
 
 ## Required next (current remaining work)
 
+Mass Aegis cost: reviewed its additional +1 SP and connected it to the existing contribution-default map. No inferred extra cost for Instill Aegis, whose published text does not charge an additional SP beyond its aegis. The item-specific duration ladder remains authoritative; normal caster Mass Aegis duration does not silently replace it. Multi-recipient activation remains manual. Sources: https://spheresofpower.wikidot.com/protection and https://spheresofpower.wikidot.com/magical-items. Rules/base-power tests: 244 passed. Not deployed.
+
 Invalid-preview recovery: invalid drafts now replace stale construction-review content with the current error and clear unlocked calculated field editors to an em dash. Locked user text remains intact; correcting the input restores live values immediately. Existing item preview/error formula behavior remains in place. Four focused invalid-state/all-lock/status checks passed. No rules/database changes; not deployed.
 
 Mass Healing amount follow-up: item projections now separate a single fixed Mass Healing targeting modifier from the per-target Cure/Invigorate amount calculation. Deeper Healing and supported cure talents retain their correct amounts; unknown, duplicate or alternative modifiers still fall back to manual resolution. Automatic single-recipient activation remains disabled for Mass effects, preserving resource/use behavior. Source: https://spheresofpower.wikidot.com/life. Base-power/Life/resource validation: 157 passed in 29.78 seconds. Not deployed.
