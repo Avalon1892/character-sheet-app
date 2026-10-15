@@ -324,6 +324,37 @@ def resolve_base_power(plan):
     mode = item_dice_metamagic(plan)
     if mode and any(mode): summary['dice_mode'] = ' + '.join(label for label, active in zip(('Maximized', 'Empowered'), mode) if active)
     if plan.get('permanent', False): summary['duration'] = 'Permanent (dispellable)'
+    if power.key in {'time:haste', 'time:slow'}:
+        rows = plan.get('contributions', [])
+        keys = {row.get('catalog_key') for row in rows}
+        supported = {'time:talent:improved-haste', 'time:talent:improved-slow', 'time:talent:augment-healing',
+                     'time:talent:mass-time-mass', 'time:advanced-talent:temporal-haste'}
+        haste = power.key == 'time:haste'
+        if (any(row.get('alternative') for row in rows) or len(keys) != len(rows) or keys - supported
+                or ('time:advanced-talent:temporal-haste' in keys and (not haste or 'time:talent:improved-haste' not in keys))
+                or ('time:talent:improved-haste' in keys and not haste)
+                or ('time:talent:improved-slow' in keys and haste)):
+            summary['power'] = 'Modified Time effect — manual resolution'
+            summary['time_effect_review'] = 'Selected talents may replace the base effect; resolve their statistics, duration and targeting from the rules text.'
+        else:
+            bonus = 1 + cl // 10
+            if haste:
+                summary['attack_bonus'] = bonus
+                summary['dodge_bonus_to_ac_and_reflex'] = bonus
+                summary['movement_enhancement_bonus'] = f'+{10 + 10 * (cl // 5)} ft. to all movement modes'
+                if 'time:talent:improved-haste' in keys:
+                    summary['improved_haste'] = f'One extra highest-BAB attack during a full attack OR {1 + cl // 5} extra attacks of opportunity per round; not both. Does not stack with similar effects. Resolve manually.'
+                if 'time:advanced-talent:temporal-haste' in keys:
+                    summary['temporal_haste'] = 'One additional move or swift action each round, not an immediate action; resolve manually.'
+                if 'time:talent:augment-healing' in keys: summary['fast_healing'] = 1 + cl // 5
+            else:
+                summary['attack_ac_and_reflex_penalty'] = -bonus
+                summary['movement'] = 'All movement speeds halved, minimum 5 ft.'
+                summary['saving_throw'] = 'Will negates'
+                if 'time:talent:improved-slow' in keys: summary['condition'] = 'Staggered'
+                if 'time:talent:augment-healing' in keys:
+                    summary['healing_suppression'] = 'Stops natural healing, fast healing and suppressible regeneration; other magical/extraordinary healing still functions. Resolve manually.'
+            if 'time:talent:mass-time-mass' in keys: summary['maximum_targets'] = 1 + max(1, cl // 2)
     if power.key == 'life:temporary-hp':
         temporary = invigorate_temporary_hp(plan)
         summary['temporary_hp'] = cl if temporary is None else temporary

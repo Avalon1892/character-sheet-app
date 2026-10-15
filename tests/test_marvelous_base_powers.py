@@ -225,6 +225,26 @@ def test_energy_wall_geometry_duration_and_damage(choice, area, duration):
     assert 'does not block sight' in result['geometry']
 
 
+@pytest.mark.parametrize('level,speed,bonus', [(1, 10, 1), (5, 20, 1), (10, 30, 2), (20, 50, 3)])
+def test_ultimate_haste_item_values_scale_from_item_level(level, speed, bonus):
+    result = resolve_base_power(plan('time:haste', level))
+    assert result['attack_bonus'] == bonus and result['dodge_bonus_to_ac_and_reflex'] == bonus
+    assert result['movement_enhancement_bonus'] == f'+{speed} ft. to all movement modes'
+
+
+def test_reviewed_time_upgrades_and_unsupported_effects_are_not_confused():
+    rows = [dict(catalog_key=key) for key in ('time:talent:improved-haste',
+        'time:advanced-talent:temporal-haste', 'time:talent:augment-healing', 'time:talent:mass-time-mass')]
+    result = resolve_base_power(plan('time:haste', 10, contributions=rows))
+    assert result['fast_healing'] == 3 and result['maximum_targets'] == 6
+    assert '3 extra attacks of opportunity' in result['improved_haste']
+    assert 'move or swift' in result['temporal_haste']
+    slow = resolve_base_power(plan('time:slow', 10, contributions=[dict(catalog_key='time:talent:improved-slow')]))
+    assert slow['condition'] == 'Staggered' and slow['attack_ac_and_reflex_penalty'] == -2
+    unsupported = resolve_base_power(plan('time:haste', 10, contributions=[dict(catalog_key='time:talent:retry-time')]))
+    assert 'manual resolution' in unsupported['power'] and 'attack_bonus' not in unsupported
+
+
 def test_beacon_placement_range_duration_and_required_contribution():
     result = resolve_base_power(plan('warp:beacon', 7))
     assert result['range'] == 'Touch' and result['duration'] == '7 hours'

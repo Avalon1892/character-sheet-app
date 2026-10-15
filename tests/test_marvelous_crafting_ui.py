@@ -626,6 +626,20 @@ def test_temporal_haste_adds_required_talent_and_sp_to_live_price(composer):
     assert dialog.blueprint()['contributions'] == rows
 
 
+def test_time_item_card_updates_haste_and_fast_healing_from_caster_level(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Time'); dialog.cl.setValue(5)
+    key = 'time:talent:augment-healing'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    dialog.add_contribution()
+    text = dialog.item_preview.toPlainText()
+    assert 'Attack Bonus: 1' in text and 'Fast Healing: 2' in text
+    dialog.cl.setValue(10)
+    text = dialog.item_preview.toPlainText()
+    assert 'Attack Bonus: 2' in text and 'Fast Healing: 3' in text
+    assert '+30 ft. to all movement modes' in text
+
+
 def test_chain_blast_preview_tracks_item_caster_level(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(6)
