@@ -1579,6 +1579,7 @@ def test_restore_mode_is_explicit_saved_and_cleared_for_other_powers(composer):
 
 @pytest.mark.parametrize('sphere,key', [
     ('Life', 'life:advanced-talent:resurrection-supreme-warden'),
+    ('Life', 'life:advanced-talent:soul-consumption-dbh'),
     ('Protection', 'protection:advanced-talent:antimagic-aura'),
 ])
 def test_composer_adds_reviewed_prerequisites_without_duplicates_or_writes(composer, sphere, key):

@@ -74,6 +74,22 @@ def test_required_effect_mode_blocks_construction_until_selected(crafter):
     assert service.marvelous_plan_requirements(plan, access=access).eligible
 
 
+def test_soul_consumption_requires_integrated_death_talent_and_base_access(crafter):
+    repo, cid = crafter
+    service = CraftingService(repo, cid)
+    keys = ['life:advanced-talent:soul-consumption-dbh', 'life:talent:revitalize']
+    plan = dict(sphere='Life', base_power='life:cure', caster_level=8,
+                range_steps=0, duration_steps=0, contributions=[dict(catalog_key=key) for key in keys])
+    gem = 'death:advanced-talent:create-soul-gem-dbh'
+    access = dict(sphere_levels={'Life': 8, 'Death': 8},
+        available_talents=[service.magic_entries_by_key[key]['name'] for key in [*keys, gem]])
+    assert not service.marvelous_plan_requirements(plan, access=access).eligible
+    plan['contributions'].append(dict(catalog_key=gem))
+    assert service.marvelous_plan_requirements(plan, access=access).eligible
+    access['sphere_levels'].pop('Death')
+    assert not service.marvelous_plan_requirements(plan, access=access).eligible
+
+
 def test_complex_training_uses_current_effective_ranks(crafter, monkeypatch):
     repo, cid = crafter
     plan = dict(sphere='Life', base_power='life:cure', caster_level=5, range_steps=0,

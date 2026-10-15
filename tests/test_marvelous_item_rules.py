@@ -194,6 +194,7 @@ def test_warp_either_or_dependency_does_not_require_both(key, options):
 @pytest.mark.parametrize('sphere, commentary', [
     ('Warp', 'warp:advanced-talent:warping-structures-store-and-teleport-structure'),
     ('Time', 'time:advanced-talent:reversion-and-complete-reversion'),
+    ('Life', None),
 ])
 def test_bundled_advanced_entries_have_explicit_construction_requirement_metadata(sphere, commentary):
     from app.catalogs import DEFAULT_CATALOG

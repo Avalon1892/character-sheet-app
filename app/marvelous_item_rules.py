@@ -214,6 +214,8 @@ ADVANCED_CONSTRUCTION_REQUIREMENTS = {
         'warp:talent:mass-teleport-mass', 'warp:advanced-talent:portal', 'warp:space-talent:teleport-beacon-space',
         'warp:talent:unwilling-teleport', 'warp:space-talent:wormhole-space')),
     'life:advanced-talent:feline-good-catgirl-hb': (5, ('life:talent:lingering-resilience',)),
+    'life:advanced-talent:soul-consumption-dbh': (5, ('life:talent:revitalize', 'death:advanced-talent:create-soul-gem-dbh')),
+    'death:advanced-talent:create-soul-gem-dbh': (5, ()),
     'life:advanced-talent:hypervitalize': (15, ('life:cure-talent:restore-health-cure', 'life:talent:revitalize')),
     'life:advanced-talent:make-whole': (10, ('life:talent:break-enchantment',
         'life:cure-talent:restore-senses-cure', 'life:cure-talent:restore-spirit-cure')),
@@ -234,6 +236,7 @@ ADVANCED_CONSTRUCTION_REQUIREMENTS = {
 }
 
 CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS = {
+    'life:advanced-talent:soul-consumption-dbh': (('Death', 'death:advanced-talent:create-soul-gem-dbh'),),
     'warp:advanced-talent:time-warp-jester-s-hb': (('Time', None),),
     'warp:advanced-talent:create-demiplane-utility': (('Creation', 'creation:material-talent:expanded-materials-material'),),
 }
