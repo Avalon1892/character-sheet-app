@@ -494,6 +494,25 @@ def test_explosive_orb_choice_updates_price_after_row_removal_and_preserves_save
     assert dialog.blueprint()['contributions'] == saved['contributions']
 
 
+def test_detonating_salvo_mode_updates_cost_and_visible_selection(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(15)
+    key = 'destruction:advanced-talent:detonating-salvo-lg'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    dialog.add_contribution()
+    choice = dialog.table.cellWidget(0, 5)
+    choice.setCurrentIndex(choice.findData('5-foot radius explosions'))
+    small = dialog.quotation()[1].market_price_gp
+    assert dialog.table.cellWidget(0, 4).value() == 1
+    assert 'Selected option: 5-foot radius explosions' in dialog.item_preview.toPlainText()
+    choice.setCurrentIndex(choice.findData('expanded explosions'))
+    assert dialog.table.cellWidget(0, 4).value() == 2
+    assert dialog.quotation()[1].market_price_gp == small + 400 * 15
+    assert 'Selected option: expanded explosions' in dialog.item_preview.toPlainText()
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint()['contributions'] == saved['contributions']
+
+
 def test_chain_blast_preview_tracks_item_caster_level(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(6)

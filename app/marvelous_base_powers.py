@@ -79,6 +79,10 @@ GUIDED_STRIKE_KEY = 'destruction:blast-shape-talent:guided-strike-blast-shape'
 KNIGHTS_BLAST_KEY = 'destruction:blast-shape-talent:knight-s-blast-blast-shape-jester-s-hb'
 GRANDMASTER_KEY = 'destruction:advanced-talent:grandmaster-jester-s-hb'
 EXPLOSIVE_ORB_KEY = 'destruction:blast-shape-talent:explosive-orb-blast-shape'
+TALENT_EFFECT_SP_CHOICES = {
+    EXPLOSIVE_ORB_KEY: {'single square': 0, 'expanded burst': 1},
+    'destruction:advanced-talent:detonating-salvo-lg': {'5-foot radius explosions': 1, 'expanded explosions': 2},
+}
 DESTRUCTION_INSTANT_SHAPES = {
     GUIDED_STRIKE_KEY: 'Guided',
     KNIGHTS_BLAST_KEY: "Knight's",
@@ -106,8 +110,8 @@ def destructive_blast_profile(plan):
 
 def talent_effect_choices(key):
     """Reviewed construction choices, shared by the editor and projections."""
-    if key == EXPLOSIVE_ORB_KEY:
-        return ('single square', 'expanded burst')
+    if key in TALENT_EFFECT_SP_CHOICES:
+        return tuple(TALENT_EFFECT_SP_CHOICES[key])
     if key == 'protection:aegis-ward-talent:armored-magic-aegis':
         return ('armor', 'shield')
     if key == 'protection:advanced-talent:spell-selectivity-dbh':

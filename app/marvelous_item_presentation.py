@@ -39,7 +39,8 @@ def item_card_fields(plan, *, name, slot, description, quotation=None):
         if entry is None: continue
         values['construction_requirements'] += '; ' + entry['name']
         label = f"Alternative group {contribution.get('alternative_group', 1)}" if contribution.get('alternative') else 'Effect'
-        values['description'] += f"\n\n{label} — {entry['name']}\n{entry.get('description', '')}"
+        selected = f"\nSelected option: {contribution['effect_choice']}" if contribution.get('effect_choice') else ''
+        values['description'] += f"\n\n{label} — {entry['name']}{selected}\n{entry.get('description', '')}"
     records = plan.get('display_overrides', {})
     if tradition := plan.get('crafting_tradition'):
         values['description'] += '\n\nCrafting tradition — ' + tradition.get('name', tradition['key'])

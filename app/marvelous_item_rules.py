@@ -374,9 +374,8 @@ def talent_construction_spell_points(entry):
 
 def talent_choice_spell_points(key, choice):
     """Reviewed mode costs; None leaves an unrelated/manual value unchanged."""
-    if key == 'destruction:blast-shape-talent:explosive-orb-blast-shape':
-        return {'single square': 0, 'expanded burst': 1}.get(choice)
-    return None
+    from app.marvelous_base_powers import TALENT_EFFECT_SP_CHOICES
+    return TALENT_EFFECT_SP_CHOICES.get(key, {}).get(choice)
 
 
 def talent_construction_cost(entry, *, additional_spell_points=0, mythic_crafter=False):
