@@ -393,6 +393,21 @@ def test_prerequisite_batch_releases_preview_guard_after_failure(composer, monke
     assert dialog.table.rowCount() == 3
 
 
+def test_invalid_draft_keeps_equation_visible_without_stale_price(composer):
+    dialog, repo, cid = composer
+    dialog.cl.setValue(5)
+    valid = dialog.cost_formula.text()
+    assert '400 gp' in valid
+    dialog.unique.setValue(100)
+    invalid = dialog.cost_formula.text()
+    assert '400 gp × caster level × complexity × uses factor' in invalid
+    assert 'invalid design' in invalid
+    assert 'Complexity:' not in invalid
+    assert not dialog.save.isEnabled()
+    dialog.unique.setValue(0)
+    assert dialog.cost_formula.text() == valid
+
+
 def test_chain_blast_preview_tracks_item_caster_level(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(6)
@@ -633,11 +648,13 @@ def test_choosing_advanced_warp_effect_adds_required_chain(composer, monkeypatch
 
 
 @pytest.mark.parametrize('theme', ['classic', 'dark'])
-def test_designer_compact_layout_keeps_card_and_formula_in_window(composer, theme):
+@pytest.mark.parametrize('invalid', [False, True])
+def test_designer_compact_layout_keeps_card_and_formula_in_window(composer, theme, invalid):
     from app.ui.dialog_theme import dialog_stylesheet
     from PySide6.QtCore import QPoint
     dialog, repo, cid = composer
     dialog.setStyleSheet(dialog_stylesheet(theme))
+    if invalid: dialog.unique.setValue(100)
     dialog.resize(1100, 720); dialog.show(); QApplication.instance().processEvents()
     dialog.card_editor_toggle.click(); QApplication.instance().processEvents()
     dialog.card_editor_scroll.ensureWidgetVisible(dialog.card_locks['price'])

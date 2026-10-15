@@ -773,7 +773,11 @@ class MarvelousCraftingDialog(QDialog):
             permitted = bool(feats.intersection({'craft marvelous item', 'craft wondrous item'}))
             self.save.setEnabled(permitted and self.review.isChecked() and bool(self.name.text().strip()))
         except ValueError as error:
-            self.cost_formula.setText('Cost: invalid design — ' + str(error))
+            self.cost_formula.setText('Base power price: 400 gp × caster level × complexity × uses factor'
+                '\nUses factor: 1–4 daily; 5 unlimited; 2.5 for 50 total activations. Slotless ×2.'
+                '\nMultiple powers and tradition adjustments apply after base pricing.'
+                '\nCost: invalid design — ' + str(error))
+            self.cost_formula.setToolTip('Correct the invalid value to restore the exact live price, complexity and materials calculations.')
             self.render_item_card()
             self.result.setText(str(error)); self.save.setEnabled(False)
 
