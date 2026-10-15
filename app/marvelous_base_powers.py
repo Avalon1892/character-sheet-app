@@ -76,8 +76,11 @@ DESTRUCTION_BLAST_TYPES = {
     'destruction:blast-type-talent:frost-blast-blast-type-cold': ('Frost Blast', 'cold', 6, 0),
 }
 GUIDED_STRIKE_KEY = 'destruction:blast-shape-talent:guided-strike-blast-shape'
+KNIGHTS_BLAST_KEY = 'destruction:blast-shape-talent:knight-s-blast-blast-shape-jester-s-hb'
+GRANDMASTER_KEY = 'destruction:advanced-talent:grandmaster-jester-s-hb'
 DESTRUCTION_INSTANT_SHAPES = {
     GUIDED_STRIKE_KEY: 'Guided',
+    KNIGHTS_BLAST_KEY: "Knight's",
     'destruction:blast-shape-talent:chain-blast-blast-shape': 'Chain',
     'destruction:blast-shape-talent:mutable-blast-blast-shape': 'Mutable',
 }
@@ -87,6 +90,9 @@ def destructive_blast_profile(plan):
     rows = plan.get('contributions', [])
     keys = [row.get('catalog_key') for row in rows]
     if any(row.get('alternative') for row in rows) or len(keys) != len(set(keys)): return None
+    if GRANDMASTER_KEY in keys:
+        if KNIGHTS_BLAST_KEY not in keys: return None
+        keys.remove(GRANDMASTER_KEY)
     shapes = [key for key in keys if key in DESTRUCTION_INSTANT_SHAPES]
     if len(shapes) > 1: return None
     keys = [key for key in keys if key not in DESTRUCTION_INSTANT_SHAPES]
@@ -392,6 +398,14 @@ def resolve_base_power(plan):
                 summary['power'] = DESTRUCTION_INSTANT_SHAPES[shape] + ' ' + name
             if shape == GUIDED_STRIKE_KEY:
                 summary['attack_circumstance_bonus'] = 20
+            elif shape == KNIGHTS_BLAST_KEY:
+                close = 25 + 5 * (cl // 2)
+                grandmaster = any(row.get('catalog_key') == GRANDMASTER_KEY for row in plan.get('contributions', []))
+                summary['maximum_path_length'] = f'{close * 3 / 2:g} ft.'
+                summary['maximum_turns'] = cl if grandmaster else 1
+                summary['geometry'] = ('Change direction up to 90 degrees per turn; placement is manual.' if grandmaster
+                                       else f'A line up to {close} ft., then a 90-degree turn extending half the first segment again; excludes the user. Placement is manual.')
+                summary['saving_throw'] = 'Reflex half'
             elif shape == 'destruction:blast-shape-talent:chain-blast-blast-shape':
                 summary['maximum_targets'] = max(2, 1 + cl // 2)
                 summary['maximum_jump_distance'] = f'{10 + 5 * (cl // 5)} ft.'

@@ -254,6 +254,10 @@ def test_reviewed_destruction_alternative_prerequisites_accept_one_not_both():
 def test_reviewed_destruction_fixed_prerequisites_have_catalog_identities_and_paid_defaults():
     from app.content import magic_entry
     from app.marvelous_item_rules import ADVANCED_CONSTRUCTION_REQUIREMENTS, talent_construction_spell_points
+    from app.marvelous_base_powers import KNIGHTS_BLAST_KEY, GRANDMASTER_KEY
+    from app.marvelous_item_rules import missing_construction_prerequisites
+    assert talent_construction_spell_points(magic_entry(KNIGHTS_BLAST_KEY)) == 1
+    assert missing_construction_prerequisites([dict(catalog_key=GRANDMASTER_KEY)]) == (KNIGHTS_BLAST_KEY,)
     for key, (minimum, required) in ADVANCED_CONSTRUCTION_REQUIREMENTS.items():
         if key.startswith('destruction:'):
             assert magic_entry(key) and all(magic_entry(dependency) for dependency in required)

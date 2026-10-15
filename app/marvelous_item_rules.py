@@ -113,6 +113,7 @@ def marvelous_item_price(caster_level: int, complexity: int | Fraction, *, daily
 
 # Reviewed construction prerequisites use catalog identities, never prose parsing.
 ADVANCED_CONSTRUCTION_REQUIREMENTS = {
+    'destruction:advanced-talent:grandmaster-jester-s-hb': (0, ('destruction:blast-shape-talent:knight-s-blast-blast-shape-jester-s-hb',)),
     'protection:advanced-talent:pithing-protection-3pp': (10, ('protection:advanced-talent:spell-selectivity-dbh',
         'protection:aegis-ward-talent:spell-ward-aegis-ward')),
     'protection:advanced-talent:pithing-protection-arcforge-addendum-lg': (10, ()),

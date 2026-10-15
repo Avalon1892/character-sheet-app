@@ -148,6 +148,23 @@ def test_instant_shape_geometry_scales_without_changing_blast_dice(shape):
         assert result['maximum_cubes'] == 10
 
 
+def test_knights_blast_and_grandmaster_preserve_typed_dice_and_scale_path():
+    from app.marvelous_base_powers import KNIGHTS_BLAST_KEY, GRANDMASTER_KEY, automatic_damage_dice
+    rows = [dict(catalog_key=KNIGHTS_BLAST_KEY),
+            dict(catalog_key='destruction:blast-type-talent:crystal-blast-blast-type-crystal')]
+    blueprint = plan('destruction:blast', 6, contributions=rows)
+    result = resolve_base_power(blueprint)
+    assert result['damage'] == '3d4 piercing' and automatic_damage_dice(blueprint) == 3
+    assert result['maximum_path_length'] == '60 ft.' and result['maximum_turns'] == 1
+    rows.append(dict(catalog_key=GRANDMASTER_KEY))
+    assert resolve_base_power(blueprint)['maximum_turns'] == 6
+    blueprint['caster_level'] = 10
+    result = resolve_base_power(blueprint)
+    assert result['maximum_path_length'] == '75 ft.' and result['maximum_turns'] == 10
+    rows.pop(0)
+    assert automatic_damage_dice(blueprint) is None
+
+
 def test_beacon_placement_range_duration_and_required_contribution():
     result = resolve_base_power(plan('warp:beacon', 7))
     assert result['range'] == 'Touch' and result['duration'] == '7 hours'
