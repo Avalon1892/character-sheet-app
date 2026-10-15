@@ -303,10 +303,16 @@ def missing_construction_prerequisites(contributions):
 
 
 def advanced_construction_blockers(contributions, caster_level, *, display_names=None):
+    from app.marvelous_base_powers import TALENT_EFFECT_MINIMUM_CL
     keys = {row['catalog_key'] for row in contributions}
     applied_counts = Counter(row['catalog_key'] for row in contributions if not row.get('alternative'))
     blockers = []
     names = display_names or {}
+    for row in contributions:
+        key, choice = row['catalog_key'], row.get('effect_choice', '')
+        minimum = TALENT_EFFECT_MINIMUM_CL.get(key, {}).get(choice, 0)
+        if caster_level < minimum:
+            blockers.append(f'{names.get(key, key)} ({choice}): item caster level must be at least {minimum}.')
     blockers.extend(f'{names.get(key, key)}: include one prerequisite talent: '
                     + ' or '.join(names.get(option, option) for option in options) + '.'
                     for key, options in missing_construction_alternatives(contributions))

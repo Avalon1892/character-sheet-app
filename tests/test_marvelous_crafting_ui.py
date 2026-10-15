@@ -980,20 +980,23 @@ def test_temporal_haste_adds_required_talent_and_sp_to_live_price(composer):
     assert dialog.blueprint()['contributions'] == rows
 
 
-def test_shuffle_time_mode_updates_price_and_preserves_saved_manual_cost(composer):
+@pytest.mark.parametrize('key, first_mode, second_mode, cost', [
+    ('time:advanced-talent:shuffle-time-time-3pp', 'reroll initiative', 'roll twice, take lower', 1),
+    ('time:advanced-talent:past-sight-utility', 'view hours', 'view days', 2),
+])
+def test_time_mode_updates_price_and_preserves_saved_manual_cost(composer, key, first_mode, second_mode, cost):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Time'); dialog.cl.setValue(10)
-    key = 'time:advanced-talent:shuffle-time-time-3pp'
     dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
     dialog.add_contribution()
     choice = dialog.table.cellWidget(0, 5)
-    choice.setCurrentIndex(choice.findData('reroll initiative'))
+    choice.setCurrentIndex(choice.findData(first_mode))
     initial = dialog.quotation()
-    choice.setCurrentIndex(choice.findData('roll twice, take lower'))
-    assert dialog.blueprint()['contributions'][0]['additional_spell_points'] == 1
+    choice.setCurrentIndex(choice.findData(second_mode))
+    assert dialog.blueprint()['contributions'][0]['additional_spell_points'] == cost
     assert dialog.quotation()[0] == initial[0] + 1
     assert dialog.quotation()[1].market_price_gp > initial[1].market_price_gp
-    assert 'roll twice, take lower' in dialog.item_preview.toPlainText()
+    assert second_mode in dialog.item_preview.toPlainText()
     dialog.table.cellWidget(0, 4).setValue(3)
     saved = dialog.blueprint(); dialog.load_plan(saved)
     assert dialog.blueprint()['contributions'] == saved['contributions']

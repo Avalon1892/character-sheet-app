@@ -161,6 +161,16 @@ def test_bundled_advanced_entries_have_explicit_construction_requirement_metadat
     assert entries <= ADVANCED_CONSTRUCTION_REQUIREMENTS.keys()
 
 
+@pytest.mark.parametrize('mode, cost, minimum', [('view hours', 1, 5), ('view days', 2, 8), ('view years', 3, 16)])
+def test_past_sight_modes_price_and_enforce_item_caster_level(mode, cost, minimum):
+    from app.marvelous_item_rules import talent_choice_spell_points, advanced_construction_blockers
+    key = 'time:advanced-talent:past-sight-utility'
+    rows = [dict(catalog_key=key, effect_choice=mode)]
+    assert talent_choice_spell_points(key, mode) == cost
+    assert advanced_construction_blockers(rows, minimum - 1)
+    assert not advanced_construction_blockers(rows, minimum)
+
+
 def test_weather_construction_sp_defaults_and_modes_are_catalog_backed():
     from app.catalogs import DEFAULT_CATALOG
     from app.marvelous_item_rules import talent_construction_spell_points, talent_choice_spell_points
