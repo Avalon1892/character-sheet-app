@@ -58,6 +58,15 @@ def test_custom_named_tradition_does_not_gain_published_boons():
     assert crafting_boon_details({'crafting_tradition': {'key': 'custom:ley-linked', 'name': 'Ley-Linked'}}) == ()
 
 
+def test_cryptwood_boon_explains_material_benefits_and_unpriced_base_cost():
+    from app.marvelous_item_rules import crafting_boon_details
+    details = '\n'.join(crafting_boon_details({'crafting_tradition': {'key': 'crafting:cryptwood-artifice'}}))
+    for text in ('Imbued (greenwood)', 'one-quarter fire damage', '25 gp per original pound',
+                 'not included in the magical-effect quote', 'another special material'):
+        assert text in details
+    assert not crafting_boon_details({'crafting_tradition': {'key': 'custom:cryptwood', 'name': 'Cryptwood Artifice'}})
+
+
 def test_mass_aegis_adds_one_spell_point_without_changing_item_duration():
     from app.catalogs import DEFAULT_CATALOG
     from app.marvelous_item_rules import talent_construction_spell_points, quote_marvelous_blueprint

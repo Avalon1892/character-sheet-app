@@ -572,6 +572,12 @@ def crafting_boon_details(plan):
         return ('Living: repairs 1 item HP per day after at least 8 continuous hours with suitable nutrients; broken items require two days per HP. Nutrients depend on material: bone, leather/hide, soil/sunlight for wood, or ore/ingot for metal. Exposure and repair are tracked manually.',)
     if key == 'crafting:ley-linked':
         return ('Ley-Charged: atop a leyline, the GM chooses +2 effective caster levels, +1 to the normal effect/save DC, or a comparable benefit. This conditional use bonus is not a permanent construction CL or an automatic price adjustment.',)
+    if key == 'crafting:cryptwood-artifice':
+        return (
+            'Imbued (greenwood): suitable wooden or mostly wooden items gain greenwood benefits; items already made from another special material are ineligible. Do not assume the custom device is a suitable wooden item.',
+            'Greenwood: while damp and touching fertile soil, repairs 1 item HP per hour, including breaks; broken condition repairs during the first hour. Takes one-quarter fire damage. Wood-shaping magic lasts twice as long. Water/soil exposure and repairs remain manual; no time tracking is added.',
+            'Material cost review: Imbued charges half the normal special-material surcharge. Greenwood normally adds 50 gp per original pound to a masterwork item, so review 25 gp per original pound plus the applicable base/masterwork costs separately. These underlying-item costs are not included in the magical-effect quote.',
+        )
     return ()
 
 

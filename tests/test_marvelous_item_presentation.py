@@ -24,7 +24,8 @@ def test_item_block_descriptors_and_all_field_locks():
 def test_sample_tradition_boons_are_concrete_but_do_not_invent_item_statistics():
     plan = blueprint()
     for key, phrase in [('city-construction', '+2 hardness'), ('evil-artifice', '25% more item HP'),
-                        ('fey-touched', '8 continuous hours'), ('ley-linked', '+2 effective caster levels')]:
+                        ('fey-touched', '8 continuous hours'), ('ley-linked', '+2 effective caster levels'),
+                        ('cryptwood-artifice', '25 gp per original pound')]:
         plan['crafting_tradition'] = dict(key='crafting:' + key, name=key, description='')
         fields = item_card_fields(plan, name='Gem', slot='', description='')
         assert phrase in fields['description']
