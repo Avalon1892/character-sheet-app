@@ -132,7 +132,8 @@ def test_editing_legacy_design_keeps_inventory_weight_unless_explicitly_replaced
 
 @pytest.mark.parametrize('suffix,sides,kind', [('crystal-blast-blast-type-crystal', 4, 'piercing'),
                                              ('force-blast-blast-type-force', 6, 'force')])
-def test_blast_type_damage_roll_uses_selected_die_size_and_type(crafter, monkeypatch, suffix, sides, kind):
+@pytest.mark.parametrize('guided', [False, True])
+def test_blast_type_damage_roll_uses_selected_die_size_and_type(crafter, monkeypatch, suffix, sides, kind, guided):
     from app.content import magic_entry
     from app.marvelous_item_rules import talent_construction_spell_points, talent_construction_cost
     repo, cid = crafter
@@ -143,11 +144,15 @@ def test_blast_type_damage_roll_uses_selected_die_size_and_type(crafter, monkeyp
                 activation='standard', uses=1, range_steps=0, duration_steps=0, unique_changes=0,
                 contributions=[dict(catalog_key=entry['key'], additional_spell_points=points,
                                     complexity=talent_construction_cost(entry, additional_spell_points=points))])
+    if guided:
+        plan['contributions'].append(dict(catalog_key='destruction:blast-shape-talent:guided-strike-blast-shape',
+                                          additional_spell_points=1, complexity=2))
     iid = CraftingService(repo, cid).save_marvelous_design(plan, name='Blast device', slot='', description='')
     monkeypatch.setattr('random.randint', lambda low, high: high)
     result = repo.consume_marvelous_item_use(cid, iid)
     assert result['damage_rolls'] == [sides] * 3 and result['damage_rolled'] == sides * 3
     assert kind in result['damage_application'] and 'manually' in result['damage_application']
+    if guided: assert result['attack_circumstance_bonus'] == 20
 
 
 @pytest.mark.parametrize('mode', ['', 'distance', 'recharge'])

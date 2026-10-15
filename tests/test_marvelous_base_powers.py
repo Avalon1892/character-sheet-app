@@ -116,6 +116,18 @@ def test_arcforge_technology_ward_upgrade_and_aegis_are_distinct():
         resolve_base_power(plan('protection:aegis', 10, contributions=rows))
 
 
+def test_guided_base_blast_and_unsupported_shape_combinations():
+    from app.marvelous_base_powers import GUIDED_STRIKE_KEY, automatic_damage_dice
+    rows = [dict(catalog_key=GUIDED_STRIKE_KEY)]
+    blueprint = plan('destruction:blast', 6, contributions=rows)
+    result = resolve_base_power(blueprint)
+    assert result['damage'] == '3d6 bludgeoning' and result['attack_circumstance_bonus'] == 20
+    assert automatic_damage_dice(blueprint) == 3
+    rows.append(dict(catalog_key='destruction:blast-shape-talent:chain-blast-blast-shape'))
+    assert automatic_damage_dice(blueprint) is None
+    assert 'attack_circumstance_bonus' not in resolve_base_power(blueprint)
+
+
 def test_beacon_placement_range_duration_and_required_contribution():
     result = resolve_base_power(plan('warp:beacon', 7))
     assert result['range'] == 'Touch' and result['duration'] == '7 hours'

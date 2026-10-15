@@ -180,19 +180,25 @@ def test_invalid_loaded_weight_is_rejected_before_editor_normalization(composer)
     assert repo._connection.total_changes == before
 
 
-def test_force_blast_updates_live_cost_damage_and_saved_preview(composer):
+@pytest.mark.parametrize('guided', [False, True])
+def test_force_blast_updates_live_cost_damage_and_saved_preview(composer, guided):
     from app.services.crafting import CraftingService
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(6)
     key = 'destruction:blast-type-talent:force-blast-blast-type-force'
     index = next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key)
     dialog.talent.setCurrentIndex(index); dialog.add_contribution()
+    if guided:
+        key = 'destruction:blast-shape-talent:guided-strike-blast-shape'
+        index = next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key)
+        dialog.talent.setCurrentIndex(index); dialog.add_contribution()
     assert dialog.table.cellWidget(0, 4).value() == 1
-    assert dialog.quotation()[0] == 3
+    assert dialog.quotation()[0] == (5 if guided else 3)
     assert '3d6 force' in dialog.item_preview.toPlainText()
     iid = CraftingService(repo, cid).save_marvelous_design(dialog.blueprint(), name='Force device', slot='', description='')
     reopened = MarvelousCraftingDialog(repo, cid, item_id=iid)
     assert '3d6 force' in reopened.item_preview.toPlainText()
+    if guided: assert 'Attack Circumstance Bonus: 20' in reopened.item_preview.toPlainText()
     reopened.close()
 
 

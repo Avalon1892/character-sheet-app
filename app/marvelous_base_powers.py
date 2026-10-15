@@ -75,13 +75,16 @@ DESTRUCTION_BLAST_TYPES = {
     'destruction:blast-type-talent:force-blast-blast-type-force': ('Force Blast', 'force', 6, 1),
     'destruction:blast-type-talent:frost-blast-blast-type-cold': ('Frost Blast', 'cold', 6, 0),
 }
+GUIDED_STRIKE_KEY = 'destruction:blast-shape-talent:guided-strike-blast-shape'
 
 
 def destructive_blast_profile(plan):
     rows = plan.get('contributions', [])
-    if not rows: return ('Bludgeoning destructive blast', 'bludgeoning', 6, 0)
-    if len(rows) != 1 or rows[0].get('alternative'): return None
-    return DESTRUCTION_BLAST_TYPES.get(rows[0].get('catalog_key'))
+    keys = [row.get('catalog_key') for row in rows]
+    if any(row.get('alternative') for row in rows) or len(keys) != len(set(keys)): return None
+    if GUIDED_STRIKE_KEY in keys: keys.remove(GUIDED_STRIKE_KEY)
+    if not keys: return ('Bludgeoning destructive blast', 'bludgeoning', 6, 0)
+    return DESTRUCTION_BLAST_TYPES.get(keys[0]) if len(keys) == 1 else None
 
 
 def talent_effect_choices(key):
@@ -376,7 +379,10 @@ def resolve_base_power(plan):
             summary['power'] = name; summary['damage_type'] = damage_type
             summary['damage_die_size'] = sides
             summary['damage'] = f'{summary["damage_dice"]}d{sides} {damage_type}'
-            if plan.get('contributions'):
+            if any(row.get('catalog_key') == GUIDED_STRIKE_KEY for row in plan.get('contributions', [])):
+                summary['power'] = 'Guided ' + name
+                summary['attack_circumstance_bonus'] = 20
+            if any(row.get('catalog_key') in DESTRUCTION_BLAST_TYPES for row in plan.get('contributions', [])):
                 summary['secondary_effects'] = 'Resolve saves, secondary damage, conditions and target-specific defenses from the talent description manually.'
     if power.key == 'warp:teleport': summary['teleport_distance'] = distances[('close', 'medium', 'long')[effect_steps]]
     if power.key == 'warp:beacon':
