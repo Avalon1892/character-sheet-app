@@ -489,6 +489,7 @@ def crafting_item_limitations(plan):
     if tradition in {'crafting:city-construction', 'crafting:cryptwood-artifice'}:
         keys.add('crafting:area-bound')
     if tradition == 'crafting:city-construction': keys.add('crafting:bulky')
+    if tradition == 'crafting:cryptwood-artifice': keys.add('crafting:clingy')
     return keys
 
 

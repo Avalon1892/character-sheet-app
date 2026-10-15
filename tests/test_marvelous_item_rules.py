@@ -5,6 +5,20 @@ from app.marvelous_item_rules import effect_complexity, marvelous_crafting_quote
 from app.marvelous_item_rules import marvelous_requirements
 
 
+def test_cryptwood_tradition_inherits_both_published_restrictions():
+    from app.marvelous_item_rules import crafting_item_limitations, crafting_limitation_details
+    plan = dict(caster_level=7, crafting_tradition={'key': 'crafting:cryptwood-artifice'},
+                area_bound_mode='distance', drawbacks=[])
+    assert crafting_item_limitations(plan) == {'crafting:area-bound', 'crafting:clingy'}
+    details = '\n'.join(crafting_limitation_details(plan))
+    assert 'DC 17' in details and '7 miles' in details
+    plan['drawbacks'] = [dict(source='published', catalog_key='crafting:clingy')]
+    assert len([line for line in crafting_limitation_details(plan) if line.startswith('Clingy:')]) == 1
+    plan['crafting_tradition'] = {'key': 'custom:cryptwood', 'name': 'Cryptwood Artifice'}
+    plan['drawbacks'] = []
+    assert not crafting_item_limitations(plan)
+
+
 def test_complex_drawback_skill_choice_and_live_dc():
     from app.marvelous_item_rules import complex_required_skill, crafting_limitation_details
     plan = dict(caster_level=5, drawbacks=[])
