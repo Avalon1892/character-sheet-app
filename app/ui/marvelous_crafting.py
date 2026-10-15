@@ -634,12 +634,20 @@ class MarvelousCraftingDialog(QDialog):
                 + '\n\nMake them fixed contributions so they are applied with the advanced effect? Pricing will update; existing SP and custom cost values are preserved.') != QMessageBox.StandardButton.Yes:
             return
         selected = self.talent.currentIndex()
-        for key in additions:
-            if existing.get(key):
-                self.table.cellWidget(existing[key].pop(0), 2).setChecked(False)
-            else:
-                self.talent.setCurrentIndex(catalog[key][0]); self.add_contribution()
-        self.talent.setCurrentIndex(selected)
+        was_loading = self.loading_plan
+        self.loading_plan = True
+        try:
+            for key in additions:
+                if existing.get(key):
+                    self.table.cellWidget(existing[key].pop(0), 2).setChecked(False)
+                else:
+                    self.talent.setCurrentIndex(catalog[key][0]); self.add_contribution()
+        finally:
+            self.talent.setCurrentIndex(selected)
+            self.loading_plan = was_loading
+            if not was_loading:
+                self.table.resizeRowsToContents()
+                self.update_preview()
 
     def remove_contribution(self):
         if self.table.currentRow() >= 0: self.table.removeRow(self.table.currentRow())

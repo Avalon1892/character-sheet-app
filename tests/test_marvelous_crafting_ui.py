@@ -339,6 +339,38 @@ def test_counted_prerequisite_addition_is_idempotent_and_does_not_write(composer
     assert repo._connection.total_changes == before
 
 
+def test_prerequisite_batch_calculates_final_preview_once(composer, monkeypatch):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Warp'); dialog.cl.setValue(20)
+    key = 'warp:advanced-talent:enduring-portal'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    dialog.add_contribution()
+    calls = []
+    original = dialog.quotation
+    monkeypatch.setattr(dialog, 'quotation', lambda: (calls.append(True), original())[1])
+    dialog.add_required_contributions()
+    assert calls == [True]
+    assert not dialog.loading_plan
+    assert dialog.table.rowCount() > 2
+
+
+def test_prerequisite_batch_releases_preview_guard_after_failure(composer, monkeypatch):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(10)
+    key = 'destruction:advanced-talent:extreme-range'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    dialog.add_contribution()
+    original = dialog.add_contribution
+    def fail(): raise RuntimeError('Interrupted draft addition')
+    monkeypatch.setattr(dialog, 'add_contribution', fail)
+    with pytest.raises(RuntimeError, match='Interrupted draft'):
+        dialog.add_required_contributions()
+    assert not dialog.loading_plan
+    monkeypatch.setattr(dialog, 'add_contribution', original)
+    dialog.add_required_contributions()
+    assert dialog.table.rowCount() == 3
+
+
 def test_chain_blast_preview_tracks_item_caster_level(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(6)
