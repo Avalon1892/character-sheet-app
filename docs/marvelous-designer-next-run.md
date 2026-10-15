@@ -4,6 +4,8 @@ The user's latest priority is the designer, not construction-calendar automation
 
 ## Implemented checkpoint
 
+- Shuffle Time now exposes its ordinary initiative reroll (0 SP) and roll-twice/take-lower (1 SP) construction modes through the existing shared choice controller. The live item card and price update on mode changes; saved manual SP overrides survive reopening. Source: https://spheresofpower.wikidot.com/time. Complete designer UI/base-power validation: **212 passed in 61.62 seconds**. No initiative/round simulation added; not yet deployed.
+
 - Advanced Time construction metadata now covers every genuine bundled advanced talent, including Shuffle Time, Timeless Crane’s Hourglass and Witness Across Time. The Reversion commentary heading is excluded from accessible designer effects without deleting catalog/saved records. Both Time and Warp have coverage guards. Source: https://spheresofpower.wikidot.com/time. Focused rules/access validation: **197 passed in 14.53 seconds**. Mode-dependent Crane costs and broader effect automation remain separate follow-up work; this does not claim those are complete.
 
 - Final multi-power projection/UI checkpoint: **49 passed in 27.91 seconds** at unchanged source, including malformed child metadata/no-write validation.
