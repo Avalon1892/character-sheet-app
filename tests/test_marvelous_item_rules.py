@@ -307,6 +307,29 @@ def test_optional_alternative_does_not_satisfy_an_applied_prerequisite():
     assert missing_construction_alternatives(rows)
 
 
+@pytest.mark.parametrize('same_group', [True, False])
+def test_mobile_permanent_conflict_respects_mutually_exclusive_groups(same_group):
+    from app.marvelous_item_rules import advanced_construction_blockers
+    rows = [dict(catalog_key='protection:advanced-talent:mobile-ward-alienist-hb', alternative=True, alternative_group=1),
+            dict(catalog_key='protection:advanced-talent:permanent-ward', alternative=True, alternative_group=1 if same_group else 2),
+            dict(catalog_key='protection:talent:enduring-protection')]
+    blockers = advanced_construction_blockers(rows, 10)
+    assert any('cannot benefit' in issue for issue in blockers) is not same_group
+
+
+def test_selectivity_antimagic_conflict_only_when_options_can_coexist():
+    from app.marvelous_item_rules import spell_selectivity_options
+    rows = [dict(catalog_key='protection:advanced-talent:spell-selectivity-dbh', effect_choice='except',
+                 effect_spheres=['Life'], alternative=True, alternative_group=1),
+            dict(catalog_key='protection:advanced-talent:antimagic-aura', alternative=True, alternative_group=1)]
+    plan = dict(caster_level=10, contributions=rows)
+    assert spell_selectivity_options(plan)['mode'] == 'except'
+    rows[1]['alternative_group'] = 2
+    with pytest.raises(ValueError, match='except-mode'): spell_selectivity_options(plan)
+    rows[1]['alternative_group'] = 1; rows[1]['alternative'] = False
+    with pytest.raises(ValueError, match='except-mode'): spell_selectivity_options(plan)
+
+
 def test_cheap_tradition_applies_once_to_combined_design():
     from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_price_formula
     base = dict(schema_version=1, caster_level=5, uses=1, range_steps=0,

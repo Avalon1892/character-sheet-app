@@ -221,8 +221,9 @@ def advanced_construction_blockers(contributions, caster_level, *, display_names
     blockers.extend(f'{names.get(key, key)}: include one prerequisite talent: '
                     + ' or '.join(names.get(option, option) for option in options) + '.'
                     for key, options in missing_construction_alternatives(contributions))
-    if {'protection:advanced-talent:mobile-ward-alienist-hb',
-            'protection:advanced-talent:permanent-ward'} <= keys:
+    if any(contributions_can_coexist(left, right)
+           for left in contributions if left['catalog_key'] == 'protection:advanced-talent:mobile-ward-alienist-hb'
+           for right in contributions if right['catalog_key'] == 'protection:advanced-talent:permanent-ward'):
         blockers.append('Mobile Ward cannot benefit from Permanent Ward in the same effect.')
     for key in sorted(keys):
         requirement = ADVANCED_CONSTRUCTION_REQUIREMENTS.get(key)
@@ -233,6 +234,12 @@ def advanced_construction_blockers(contributions, caster_level, *, display_names
         blockers.extend(f'{names.get(key, key)}: prerequisite talent must be included in this effect: {names.get(talent, talent)}.'
                         for talent in required if talent not in applied)
     return tuple(blockers)
+
+
+def contributions_can_coexist(left, right):
+    """Only options in the same alternative group are mutually exclusive."""
+    return not (left.get('alternative') and right.get('alternative')
+                and left.get('alternative_group', 1) == right.get('alternative_group', 1))
 
 
 REVIEWED_METAMAGIC_SP_COSTS = {'maximize spell': 3, 'empower spell': 2}
@@ -398,7 +405,7 @@ def spell_selectivity_options(plan):
     if len({name.casefold() for name in spheres}) != len(spheres) or len(spheres) > 1 + plan['caster_level'] // 5:
         raise ValueError('Spell Selectivity sphere choices exceed the limit or contain duplicates.')
     from app.marvelous_base_powers import ANTIMAGIC_AURA_KEYS
-    if mode == 'except' and any(item.get('catalog_key') in ANTIMAGIC_AURA_KEYS
+    if mode == 'except' and any(item.get('catalog_key') in ANTIMAGIC_AURA_KEYS and contributions_can_coexist(row, item)
                                for item in plan['contributions']):
         raise ValueError('Spell Selectivity except-mode cannot be combined with Antimagic Aura.')
     return dict(mode=mode, spheres=tuple(spheres), maximum=1 + plan['caster_level'] // 5)

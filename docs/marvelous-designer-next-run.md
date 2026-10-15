@@ -46,6 +46,8 @@ The user's latest priority is the designer, not construction-calendar automation
 
 ## Required next (current remaining work)
 
+Alternative-conflict correction: Mobile Ward/Permanent Ward and Spell Selectivity except-mode/Antimagic Aura conflicts now respect the existing mutually exclusive group semantics. Two alternatives in the same group cannot coexist and do not trigger a simultaneous-use conflict; fixed contributions and independent groups still do. Applied-prerequisite checks remain unchanged. Rules/UI regression: 144 passed in 43.02 seconds. This corrects validation, not per-option bundled pricing or activation selection.
+
 Applied-prerequisite correction: fixed and one-of prerequisite discovery/validation no longer count mutually exclusive alternative entries as guaranteed applied talents. Add required talents can promote an existing optional prerequisite to a fixed contribution only after explicit confirmation, preserving cost/SP inputs instead of inserting duplicate rows. Declining leaves the draft/database untouched. Source: https://spheresofpower.wikidot.com/magical-items (advanced prerequisites must be applied). Rules/UI/access validation: 158 passed in 49.94 seconds. Per-option bundled prerequisite pricing remains a separate unfinished model; this repair offers a valid fixed-contribution design, not implicit bundles.
 
 Stored-weight safety checkpoint: loading validates explicit weight before widget conversion, then adapts decimal precision and the editor maximum to the stored finite value. Small fractional and large saved weights no longer silently round/clamp; boolean or invalid values reject without writes. UI regression: 64 passed in 39.23 seconds. This preserves stored designer inputs without changing inventory weight rules.
