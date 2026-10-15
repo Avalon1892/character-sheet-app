@@ -44,6 +44,7 @@ def item_card_fields(plan, *, name, slot, description, quotation=None):
             values['construction_requirements'] += '; prerequisite: ' + sphere + ' sphere'
             if required_key: values['construction_requirements'] += ' / ' + (required['name'] if required else required_key)
         label = f"Alternative group {contribution.get('alternative_group', 1)}" if contribution.get('alternative') else 'Effect'
+        if entry['sphere'].casefold() != plan['sphere'].casefold(): label = 'Required cross-sphere talent'
         selected = f"\nSelected option: {contribution['effect_choice']}" if contribution.get('effect_choice') else ''
         values['description'] += f"\n\n{label} — {entry['name']}{selected}\n{entry.get('description', '')}"
     records = plan.get('display_overrides', {})

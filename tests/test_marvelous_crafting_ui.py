@@ -68,6 +68,28 @@ def test_empty_marvelous_window_can_open_designer_without_writes(composer, monke
     window.close()
 
 
+def test_demiplane_inserts_and_prices_foreign_prerequisite_then_reopens(composer):
+    from app.services.crafting import CraftingService
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Warp'); dialog.cl.setValue(15)
+    key = 'warp:advanced-talent:create-demiplane-utility'
+    index = next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key)
+    dialog.talent.setCurrentIndex(index); dialog.add_contribution(); dialog.add_required_contributions()
+    rows = dialog.blueprint()['contributions']
+    assert {row['catalog_key'] for row in rows} == {key, 'warp:space-talent:extradimensional-room-space',
+                                                  'creation:material-talent:expanded-materials-material'}
+    assert dialog.sphere.currentText() == 'Warp'
+    assert dialog.quotation()[0] == 8 and dialog.quotation()[1].market_price_gp == 48000
+    assert 'Required cross-sphere talent' in dialog.item_preview.toPlainText()
+    iid = CraftingService(repo, cid).save_marvelous_design(dialog.blueprint(), name='World seed', slot='', description='')
+    reopened = MarvelousCraftingDialog(repo, cid, item_id=iid)
+    try:
+        assert reopened.blueprint()['contributions'] == rows
+        assert reopened.quotation()[1].market_price_gp == 48000
+    finally:
+        reopened.close()
+
+
 def test_dimensional_tracery_prerequisite_choice_is_atomic(composer, monkeypatch):
     from PySide6.QtWidgets import QInputDialog
     dialog, repo, cid = composer

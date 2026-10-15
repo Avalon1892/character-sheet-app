@@ -407,6 +407,13 @@ class MarvelousCraftingDialog(QDialog):
         for entry in DEFAULT_CATALOG.magic_entries(self.sphere.currentText()):
             if entry.get('category') not in {'Base Sphere', 'Drawback', 'Sphere-Specific Drawback'}:
                 self.talent.addItem(entry['name'], entry)
+        from app.marvelous_item_rules import CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS
+        existing = {self.talent.itemData(i)['key'] for i in range(self.talent.count())}
+        for owner, requirements in CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS.items():
+            if self.service.magic_entries_by_key.get(owner, {}).get('sphere') != self.sphere.currentText(): continue
+            for _, key in requirements:
+                if key and key not in existing and (entry := self.service.magic_entries_by_key.get(key)):
+                    self.talent.addItem(entry['name'], entry); existing.add(key)
         self.power_changed()
 
     def power_changed(self, *_):

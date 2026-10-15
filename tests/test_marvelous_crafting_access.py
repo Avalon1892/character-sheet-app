@@ -17,7 +17,7 @@ def crafter(tmp_path):
     repo.close()
 
 
-def test_demiplane_checks_foreign_prerequisite_without_adding_a_foreign_effect(crafter):
+def test_demiplane_requires_integrated_foreign_talent_not_just_owned_access(crafter):
     repo, cid = crafter
     service = CraftingService(repo, cid)
     keys = ['warp:advanced-talent:create-demiplane-utility', 'warp:space-talent:extradimensional-room-space']
@@ -29,10 +29,16 @@ def test_demiplane_checks_foreign_prerequisite_without_adding_a_foreign_effect(c
     access['sphere_levels']['Creation'] = 1
     assert not service.marvelous_plan_requirements(plan, access=access).eligible
     access['available_talents'].append(service.magic_entries_by_key['creation:material-talent:expanded-materials-material']['name'])
+    assert not service.marvelous_plan_requirements(plan, access=access).eligible
+    keys.append('creation:material-talent:expanded-materials-material')
+    plan['contributions'].append(dict(catalog_key=keys[-1]))
     assert service.marvelous_plan_requirements(plan, access=access).eligible
     assert [row['catalog_key'] for row in plan['contributions']] == keys
     plan['caster_level'] = 14
     assert not service.marvelous_plan_requirements(plan, access=access).eligible
+    plan['contributions'].pop(0)
+    with pytest.raises(ValueError, match='blueprint base sphere'):
+        service.marvelous_plan_requirements(plan, access=access)
 
 
 def test_time_warp_requires_time_sphere_without_inventing_a_time_cl_gate(crafter):

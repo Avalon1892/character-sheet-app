@@ -132,9 +132,12 @@ class CraftingService:
                     construction_blockers.append(f'Integrated feat must be possessed: {feat["name"]}.')
             construction_blockers.extend(advanced_construction_blockers(power['contributions'], power['caster_level'],
                 display_names={key: entry['name'] for key, entry in self.magic_entries_by_key.items()}))
+            foreign_prerequisites = {talent_key for row in power['contributions']
+                for _, talent_key in CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS.get(row['catalog_key'], ()) if talent_key}
             for contribution in power['contributions']:
                 entry = self.magic_entries_by_key.get(contribution['catalog_key'])
-                if entry is None or str(entry.get('sphere', '')).casefold() != power['sphere'].casefold():
+                if entry is None or (str(entry.get('sphere', '')).casefold() != power['sphere'].casefold()
+                                     and contribution['catalog_key'] not in foreign_prerequisites):
                     raise ValueError('Selected talent is not part of the blueprint base sphere.')
                 required.append(entry['name'])
                 for sphere, talent_key in CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS.get(entry['key'], ()):
