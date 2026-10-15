@@ -198,6 +198,9 @@ class MarvelousCraftingDialog(QDialog):
             lock.toggled.connect(lambda checked, key=key: self.set_card_lock(key, checked))
             edit.textChanged.connect(lambda *_, key=key: self.edit_card_field(key))
         self.preview = QTextBrowser(); self.card_tabs.addTab(self.preview, 'Construction review')
+        self.construction_status = QLabel(); self.construction_status.setWordWrap(True)
+        self.construction_status.linkActivated.connect(lambda _: self.card_tabs.setCurrentIndex(1))
+        center.addWidget(self.construction_status)
         self.drawbacks_panel = QWidget(); self.drawbacks_panel.setMinimumWidth(155); self.drawbacks_panel.setMaximumWidth(235)
         right = QVBoxLayout(self.drawbacks_panel); right.setContentsMargins(0, 0, 0, 0)
         columns.addWidget(self.drawbacks_panel, 2)
@@ -831,6 +834,13 @@ class MarvelousCraftingDialog(QDialog):
                 else 'Activation adds the supported aegis to ongoing effects; expiration remains manual.' if automatic == 'aegis'
                 else 'This effect currently requires manual application; item uses are tracked automatically.')
             requirements = self.service.marvelous_plan_requirements(self.blueprint(), access=self.crafting_access)
+            if requirements.blockers:
+                count = len(requirements.blockers)
+                wording = 'requirement needs' if count == 1 else 'requirements need'
+                self.construction_status.setText(f'Draft — {count} construction {wording} attention. <a href="review">Review</a>')
+            else:
+                self.construction_status.setText('Baseline construction checks passed. <a href="review">Review requirements</a>')
+            self.construction_status.setToolTip('\n'.join(requirements.blockers + requirements.bypassed))
             extra_review = ''
             for plan in self.extra_effects:
                 extra = self.service.marvelous_plan_requirements(plan, access=self.crafting_access)
@@ -851,6 +861,8 @@ class MarvelousCraftingDialog(QDialog):
             permitted = bool(feats.intersection({'craft marvelous item', 'craft wondrous item'}))
             self.save.setEnabled(permitted and self.review.isChecked() and bool(self.name.text().strip()))
         except ValueError as error:
+            self.construction_status.setText('Invalid design — correct the calculation error below.')
+            self.construction_status.setToolTip(str(error))
             self.cost_formula.setText('Base power price: 400 gp × caster level × complexity × uses factor'
                 '\nUses factor: 1–4 daily; 5 unlimited; 2.5 for 50 total activations. Slotless ×2.'
                 '\nMultiple powers and tradition adjustments apply after base pricing.'

@@ -19,6 +19,19 @@ def composer(tmp_path):
     repo.close()
 
 
+def test_visible_construction_status_opens_review_without_disabling_draft_save(composer):
+    dialog, repo, cid = composer
+    dialog.review.setChecked(True)
+    dialog.update_preview()
+    assert 'construction requirement' in dialog.construction_status.text()
+    assert 'Missing base sphere' in dialog.construction_status.toolTip()
+    assert dialog.save.isEnabled()
+    dialog.construction_status.linkActivated.emit('review')
+    assert dialog.card_tabs.currentWidget() is dialog.preview
+    dialog.cl.setValue(100)
+    assert dialog.construction_status.toolTip()
+
+
 def test_base_effect_selection_is_visible_outside_collapsed_settings(composer):
     dialog, repo, cid = composer
     assert dialog.settings_panel.isHidden()
