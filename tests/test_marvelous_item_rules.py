@@ -84,6 +84,23 @@ def test_reviewed_warp_activation_costs_are_one_sp(key):
     assert talent_construction_spell_points(entry) == 1
 
 
+@pytest.mark.parametrize('key,minimum,required,points', [
+    ('warp:advanced-talent:dimensional-lock-space', 15, 'warp:space-talent:plane-manipulator-space', 2),
+    ('warp:advanced-talent:extradimensional-capacity-utility-apoc', 0, 'warp:space-talent:extradimensional-storage-space-utility', 0),
+    ('warp:advanced-talent:extradimensional-torpor-space-apoc', 0, 'warp:space-talent:extradimensional-storage-space-utility', 1),
+])
+def test_additional_warp_prerequisites_and_minimum_levels(key, minimum, required, points):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import missing_construction_prerequisites, advanced_construction_blockers, talent_construction_spell_points
+    assert magic_entry(key) and magic_entry(required)
+    rows = [dict(catalog_key=key)]
+    assert missing_construction_prerequisites(rows) == (required,)
+    rows.append(dict(catalog_key=required))
+    assert not advanced_construction_blockers(rows, max(1, minimum))
+    if minimum: assert advanced_construction_blockers(rows, minimum - 1)
+    assert talent_construction_spell_points(magic_entry(key)) == points
+
+
 def test_weather_construction_sp_defaults_and_modes_are_catalog_backed():
     from app.catalogs import DEFAULT_CATALOG
     from app.marvelous_item_rules import talent_construction_spell_points, talent_choice_spell_points

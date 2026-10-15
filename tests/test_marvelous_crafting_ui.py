@@ -68,6 +68,21 @@ def test_empty_marvelous_window_can_open_designer_without_writes(composer, monke
     window.close()
 
 
+def test_dimensional_lock_adds_plane_manipulator_and_enforces_level(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Warp'); dialog.cl.setValue(15)
+    key = 'warp:advanced-talent:dimensional-lock-space'
+    index = next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key)
+    dialog.talent.setCurrentIndex(index); dialog.add_contribution()
+    assert dialog.add_prerequisites.isEnabled()
+    dialog.add_required_contributions()
+    rows = dialog.blueprint()['contributions']
+    assert {row['catalog_key'] for row in rows} == {key, 'warp:space-talent:plane-manipulator-space'}
+    assert next(row for row in rows if row['catalog_key'] == key)['additional_spell_points'] == 2
+    dialog.cl.setValue(14)
+    assert '15' in dialog.construction_status.toolTip()
+
+
 def test_fluctuate_picker_updates_cost_duration_and_survives_reopen(composer, monkeypatch):
     from app.content import magic_entry
     from app.ui.marvelous_effect_picker import MarvelousEffectPicker
