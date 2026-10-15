@@ -175,6 +175,8 @@ ADVANCED_CONSTRUCTION_REQUIREMENTS = {
     'protection:advanced-talent:mobile-ward-alienist-hb': (5, ()),
     'warp:advanced-talent:true-teleport': (10, ('warp:talent:distant-teleport', 'warp:talent:unseeing-teleport')),
     'warp:advanced-talent:dimensional-lock-space': (15, ('warp:space-talent:plane-manipulator-space',)),
+    'warp:advanced-talent:dimensional-tracery-3pp': (0, ()),
+    'warp:advanced-talent:planting-warp-3pp': (0, ('warp:talent:teleport-object', 'warp:talent:unwilling-teleport')),
     'warp:advanced-talent:lethal-teleport-apoc': (5, ('warp:talent:unwilling-teleport',)),
     'warp:advanced-talent:portal-interstice-sm': (5, ('warp:space-talent:extradimensional-room-space',
         'warp:talent:mass-teleport-mass', 'warp:advanced-talent:portal', 'warp:space-talent:wormhole-space')),
@@ -221,6 +223,8 @@ ADVANCED_CONSTRUCTION_REQUIREMENTS = {
 }
 
 ALTERNATIVE_CONSTRUCTION_REQUIREMENTS = {
+    'warp:advanced-talent:dimensional-tracery-3pp': ((
+        'warp:space-talent:teleport-beacon-space', 'warp:space-talent:warp-link-space'),),
     'destruction:advanced-talent:crystal-cocoon': ((
         'destruction:blast-type-talent:crystal-blast-blast-type-crystal',
         'destruction:blast-type-talent:living-crystal-blast-blast-type-crystal'),),

@@ -113,6 +113,7 @@ def test_additional_warp_prerequisites_and_minimum_levels(key, minimum, required
     ('warp:advanced-talent:warp-manipulator', 1),
     ('warp:advanced-talent:manifest-planar-zone-space-dbh', 5),
     ('warp:advanced-talent:greater-planar-zone-sm', 5),
+    ('warp:advanced-talent:planting-warp-3pp', 0),
 ])
 def test_warp_chain_expansion_adds_all_dependencies_once_and_checks_level(key, level):
     from app.content import magic_entry
@@ -125,6 +126,18 @@ def test_warp_chain_expansion_adds_all_dependencies_once_and_checks_level(key, l
     assert not missing_construction_prerequisites(rows)
     assert not advanced_construction_blockers(rows, max(1, level))
     if level: assert advanced_construction_blockers(rows, level - 1)
+
+
+def test_dimensional_tracery_requires_either_dependency_not_both():
+    from app.marvelous_item_rules import missing_construction_alternatives, advanced_construction_blockers
+    key = 'warp:advanced-talent:dimensional-tracery-3pp'
+    options = ('warp:space-talent:teleport-beacon-space', 'warp:space-talent:warp-link-space')
+    assert missing_construction_alternatives([dict(catalog_key=key)]) == ((key, options),)
+    for selected in options:
+        rows = [dict(catalog_key=key), dict(catalog_key=selected)]
+        assert not advanced_construction_blockers(rows, 1)
+        rows[-1]['alternative'] = True
+        assert advanced_construction_blockers(rows, 1)
 
 
 def test_weather_construction_sp_defaults_and_modes_are_catalog_backed():

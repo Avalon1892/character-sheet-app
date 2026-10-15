@@ -68,6 +68,25 @@ def test_empty_marvelous_window_can_open_designer_without_writes(composer, monke
     window.close()
 
 
+def test_dimensional_tracery_prerequisite_choice_is_atomic(composer, monkeypatch):
+    from PySide6.QtWidgets import QInputDialog
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Warp'); dialog.cl.setValue(10)
+    key = 'warp:advanced-talent:dimensional-tracery-3pp'
+    index = next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key)
+    dialog.talent.setCurrentIndex(index); dialog.add_contribution()
+    snapshot = dialog.blueprint()
+    before = repo._connection.total_changes
+    monkeypatch.setattr(QInputDialog, 'getItem', lambda *args: ('', False))
+    dialog.add_required_contributions()
+    assert dialog.blueprint() == snapshot
+    monkeypatch.setattr(QInputDialog, 'getItem', lambda *args: ('Warp Link (space)', True))
+    dialog.add_required_contributions()
+    keys = {row['catalog_key'] for row in dialog.blueprint()['contributions']}
+    assert keys == {key, 'warp:space-talent:warp-link-space'}
+    assert repo._connection.total_changes == before
+
+
 @pytest.mark.parametrize('key,required,level,points', [
     ('warp:advanced-talent:dimensional-lock-space', 'warp:space-talent:plane-manipulator-space', 15, 2),
     ('warp:advanced-talent:brain-preservation-alienist-hb', 'warp:advanced-talent:organ-detachment-space-alienist-hb', 15, 0),
