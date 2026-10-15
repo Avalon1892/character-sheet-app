@@ -39,6 +39,16 @@ def test_complex_drawback_skill_choice_and_live_dc():
     assert complex_required_skill(plan) is None
 
 
+def test_weather_construction_sp_defaults_and_modes_are_catalog_backed():
+    from app.catalogs import DEFAULT_CATALOG
+    from app.marvelous_item_rules import talent_construction_spell_points, talent_choice_spell_points
+    entries = {entry['key']: entry for entry in DEFAULT_CATALOG.magic_entries('Weather')}
+    for key in ('weather:talent:greater-weather', 'weather:talent:severe-weather'):
+        assert talent_construction_spell_points(entries[key]) == 1
+    assert talent_choice_spell_points('weather:talent:greater-weather', 'two weather categories') == 1
+    assert talent_choice_spell_points('weather:talent:greater-weather', 'three weather categories') == 2
+
+
 def test_repeated_complex_checks_preserve_each_roll_and_validate_skills():
     from app.marvelous_item_rules import complex_additional_skills, complex_crafting_skills, crafting_limitation_details
     record = dict(source='published', catalog_key='crafting:complex', required_skill='Acrobatics',

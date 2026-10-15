@@ -357,6 +357,8 @@ def talent_construction_spell_points(entry):
         return profile[3]
     if entry.get('key') in DESTRUCTION_BLAST_SHAPES: return 1
     return {
+        'weather:talent:greater-weather': 1,
+        'weather:talent:severe-weather': 1,
         'time:talent:mass-time-mass': 1,
         'time:talent:augment-healing': 1,
         'time:talent:retry-time': 2,

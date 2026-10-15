@@ -84,6 +84,7 @@ SCULPT_BLAST_KEY = 'destruction:blast-shape-talent:sculpt-blast-blast-shape'
 ENERGY_SPHERE_KEY = 'destruction:blast-shape-talent:energy-sphere-blast-shape'
 ENERGY_WALL_KEY = 'destruction:blast-shape-talent:energy-wall-blast-shape'
 TALENT_EFFECT_SP_CHOICES = {
+    'weather:talent:greater-weather': {'two weather categories': 1, 'three weather categories': 2},
     ENERGY_WALL_KEY: {'concentration cube': 0, 'straight wall': 1, 'hemisphere': 1},
     ENERGY_SPHERE_KEY: {'concentration': 0, 'rounds per caster level': 1},
     BLAST_SALVO_KEY: {'two surges': 0, 'additional surges': 1},

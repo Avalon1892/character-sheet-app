@@ -637,6 +637,22 @@ def test_educated_sphere_editor_saves_choices_and_cancellation_does_not_write(co
     assert repo._connection.total_changes == before
 
 
+def test_greater_weather_mode_changes_live_sp_and_price(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Weather'); dialog.cl.setValue(10)
+    key = 'weather:talent:greater-weather'
+    index = next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key)
+    dialog.talent.setCurrentIndex(index); dialog.add_contribution()
+    choice = dialog.table.cellWidget(0, 5)
+    choice.setCurrentIndex(choice.findData('two weather categories'))
+    initial = dialog.quotation()[1].market_price_gp
+    assert dialog.blueprint()['contributions'][0]['additional_spell_points'] == 1
+    choice.setCurrentIndex(choice.findData('three weather categories'))
+    assert dialog.blueprint()['contributions'][0]['additional_spell_points'] == 2
+    assert dialog.quotation()[1].market_price_gp == initial + 4000
+    assert 'three weather categories' in dialog.item_preview.toPlainText()
+
+
 def test_repeated_complex_checks_save_reopen_and_preserve_description_lock(composer):
     from app.services.crafting import CraftingService
     dialog, repo, cid = composer
