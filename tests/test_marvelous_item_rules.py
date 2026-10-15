@@ -5,6 +5,26 @@ from app.marvelous_item_rules import effect_complexity, marvelous_crafting_quote
 from app.marvelous_item_rules import marvelous_requirements
 
 
+def test_complex_drawback_skill_choice_and_live_dc():
+    from app.marvelous_item_rules import complex_required_skill, crafting_limitation_details
+    plan = dict(caster_level=5, drawbacks=[])
+    assert complex_required_skill(plan) is None
+    record = dict(source='published', catalog_key='crafting:complex', name='Complex', reduction=0)
+    plan['drawbacks'] = [record]
+    assert complex_required_skill(plan) == ''
+    record['required_skill'] = 'acrobatics'
+    assert complex_required_skill(plan) == 'Acrobatics'
+    assert any('DC 10 Acrobatics' in line for line in crafting_limitation_details(plan))
+    plan['caster_level'] = 9
+    assert any('DC 14 Acrobatics' in line for line in crafting_limitation_details(plan))
+    for invalid in ('Not a skill', 3, None):
+        record['required_skill'] = invalid
+        with pytest.raises(ValueError, match='known skill'):
+            complex_required_skill(plan)
+    record['source'] = 'custom'
+    assert complex_required_skill(plan) is None
+
+
 def test_expensive_item_drawback_changes_materials_not_price_and_rejects_cheap():
     from app.marvelous_item_rules import quote_marvelous_blueprint
     from app.marvelous_base_powers import automatic_self_effect

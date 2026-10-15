@@ -612,6 +612,28 @@ def test_educated_sphere_editor_saves_choices_and_cancellation_does_not_write(co
     assert repo._connection.total_changes == before
 
 
+def test_complex_skill_editor_requires_choice_and_cancel_preserves_draft(composer, monkeypatch):
+    from PySide6.QtWidgets import QDialog, QComboBox, QDialogButtonBox
+    dialog, repo, cid = composer
+    dialog.drawbacks = [dict(source='published', catalog_key='crafting:complex', name='Complex', description='', reduction=0)]
+    before = repo._connection.total_changes
+    def choose(child):
+        picker = child.findChild(QComboBox, 'complexSkill')
+        button = child.findChild(QDialogButtonBox).button(QDialogButtonBox.StandardButton.Ok)
+        assert picker.currentData() == '' and not button.isEnabled()
+        picker.setCurrentIndex(picker.findData('Acrobatics'))
+        assert button.isEnabled()
+        return QDialog.DialogCode.Accepted
+    monkeypatch.setattr(QDialog, 'exec', choose)
+    dialog.edit_drawback(0)
+    assert dialog.drawbacks[0]['required_skill'] == 'Acrobatics'
+    saved = dialog.blueprint()
+    monkeypatch.setattr(QDialog, 'exec', lambda child: QDialog.DialogCode.Rejected)
+    dialog.edit_drawback(0)
+    assert dialog.blueprint() == saved
+    assert repo._connection.total_changes == before
+
+
 def test_temporal_haste_adds_required_talent_and_sp_to_live_price(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Time'); dialog.cl.setValue(10)

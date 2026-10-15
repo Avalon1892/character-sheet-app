@@ -103,6 +103,9 @@ class CraftingService:
         from app.marvelous_item_rules import educated_required_spheres
         if educated_required_spheres(plan) == ():
             construction_blockers.append('Educated: choose required spheres.')
+        from app.marvelous_item_rules import complex_required_skill
+        if complex_required_skill(plan) == '':
+            construction_blockers.append('Complex: choose the required skill.')
         from app.marvelous_item_rules import marvelous_area_bound_mode
         if marvelous_area_bound_mode(plan) == '':
             construction_blockers.append('Area-Bound: choose distance-limited use or location recharge.')

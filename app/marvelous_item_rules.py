@@ -467,6 +467,19 @@ def educated_required_spheres(plan):
     return required if present else None
 
 
+def complex_required_skill(plan):
+    """Published Complex's chosen check; empty means an incomplete draft."""
+    from app.models import SKILLS
+    names = {skill.name.casefold(): skill.name for skill in SKILLS}
+    for record in plan.get('drawbacks', []):
+        if record.get('source') == 'published' and record.get('catalog_key') == 'crafting:complex':
+            selected = record.get('required_skill', '')
+            if not isinstance(selected, str) or (selected and selected.casefold() not in names):
+                raise ValueError('Complex requires a known skill choice.')
+            return names[selected.casefold()] if selected else ''
+    return None
+
+
 def crafting_item_limitations(plan):
     """Reviewed identities, independent of editable tradition/drawback prose."""
     keys = {row.get('catalog_key') for row in plan.get('drawbacks', []) if row.get('source') == 'published'}
@@ -558,6 +571,10 @@ def crafting_limitation_details(plan, *, quotation=None):
               'crafting:ridiculously-complicated': ('Acrobatics', 'Disable Device', 'Linguistics', 'Use Magic Device')}.get(tradition, ())
     if skills:
         lines.append(f'Complex: DC {5 + plan["caster_level"]} {", ".join(skills)} checks to activate; crafter must be trained in each skill.')
+    skill = complex_required_skill(plan)
+    if skill:
+        lines.append(f'Complex: DC {5 + plan["caster_level"]} {skill} check as part of activation; crafter training and the check result are manually verified.')
+    elif skill == '': lines.append('Complex: choose the required skill before completing this design.')
     if educated := educated_required_spheres(plan):
         lines.append('Educated: user must be trained in every required sphere: ' + ', '.join(educated) + '; Use Magic Device cannot bypass this requirement.')
     elif educated == ():
@@ -631,6 +648,7 @@ def quote_marvelous_blueprint(plan):
         raise ValueError('Unsupported Marvelous blueprint version.')
     spell_selectivity_options(plan)
     educated_required_spheres(plan)
+    complex_required_skill(plan)
     if plan.get('base_power'):
         from app.marvelous_base_powers import resolve_base_power
         resolve_base_power(plan)
