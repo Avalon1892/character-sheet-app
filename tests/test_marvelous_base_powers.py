@@ -178,6 +178,25 @@ def test_explosive_orb_modes_preserve_typed_damage(choice, area, save):
     assert automatic_damage_dice(blueprint) is None
 
 
+@pytest.mark.parametrize('choice,maximum', [('two surges', 2), ('additional surges', 5)])
+def test_salvo_distributes_instead_of_multiplying_damage(choice, maximum):
+    from app.marvelous_base_powers import BLAST_SALVO_KEY, automatic_damage_dice
+    blueprint = plan('destruction:blast', 12, contributions=[dict(catalog_key=BLAST_SALVO_KEY, effect_choice=choice)])
+    result = resolve_base_power(blueprint)
+    assert result['maximum_surges'] == maximum
+    assert automatic_damage_dice(blueprint) == 6
+    blueprint['caster_level'] = 4
+    assert resolve_base_power(blueprint)['maximum_surges'] == 2
+
+
+@pytest.mark.parametrize('choice,area', [('burst', 'Burst radius 20 ft.'), ('cone', 'Cone 50 ft.'), ('line', 'Line 200 ft.')])
+def test_sculpt_geometry_scales_from_caster_level(choice, area):
+    from app.marvelous_base_powers import SCULPT_BLAST_KEY
+    result = resolve_base_power(plan('destruction:blast', 10,
+        contributions=[dict(catalog_key=SCULPT_BLAST_KEY, effect_choice=choice)]))
+    assert result['area'] == area and result['saving_throw'] == 'Reflex half'
+
+
 def test_beacon_placement_range_duration_and_required_contribution():
     result = resolve_base_power(plan('warp:beacon', 7))
     assert result['range'] == 'Touch' and result['duration'] == '7 hours'

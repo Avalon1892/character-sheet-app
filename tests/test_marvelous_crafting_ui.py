@@ -513,6 +513,22 @@ def test_detonating_salvo_mode_updates_cost_and_visible_selection(composer):
     assert dialog.blueprint()['contributions'] == saved['contributions']
 
 
+def test_salvo_mode_adds_one_sp_and_live_surges_without_multiplying_dice(composer):
+    from app.marvelous_base_powers import BLAST_SALVO_KEY
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(12)
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == BLAST_SALVO_KEY))
+    dialog.add_contribution()
+    choice = dialog.table.cellWidget(0, 5)
+    choice.setCurrentIndex(choice.findData('two surges'))
+    assert dialog.quotation()[0] == 2
+    assert 'Maximum Surges: 2' in dialog.item_preview.toPlainText()
+    choice.setCurrentIndex(choice.findData('additional surges'))
+    assert dialog.quotation()[0] == 3
+    text = dialog.item_preview.toPlainText()
+    assert 'Maximum Surges: 5' in text and 'Damage: 6d6 bludgeoning' in text
+
+
 def test_chain_blast_preview_tracks_item_caster_level(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(6)

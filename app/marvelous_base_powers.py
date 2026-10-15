@@ -79,7 +79,11 @@ GUIDED_STRIKE_KEY = 'destruction:blast-shape-talent:guided-strike-blast-shape'
 KNIGHTS_BLAST_KEY = 'destruction:blast-shape-talent:knight-s-blast-blast-shape-jester-s-hb'
 GRANDMASTER_KEY = 'destruction:advanced-talent:grandmaster-jester-s-hb'
 EXPLOSIVE_ORB_KEY = 'destruction:blast-shape-talent:explosive-orb-blast-shape'
+BLAST_SALVO_KEY = 'destruction:blast-shape-talent:blast-salvo-blast-shape-bap'
+SCULPT_BLAST_KEY = 'destruction:blast-shape-talent:sculpt-blast-blast-shape'
 TALENT_EFFECT_SP_CHOICES = {
+    BLAST_SALVO_KEY: {'two surges': 0, 'additional surges': 1},
+    SCULPT_BLAST_KEY: {'burst': 1, 'cone': 1, 'line': 1},
     EXPLOSIVE_ORB_KEY: {'single square': 0, 'expanded burst': 1},
     'destruction:advanced-talent:detonating-salvo-lg': {'5-foot radius explosions': 1, 'expanded explosions': 2},
 }
@@ -87,6 +91,8 @@ DESTRUCTION_INSTANT_SHAPES = {
     GUIDED_STRIKE_KEY: 'Guided',
     KNIGHTS_BLAST_KEY: "Knight's",
     EXPLOSIVE_ORB_KEY: 'Explosive Orb',
+    BLAST_SALVO_KEY: 'Salvo',
+    SCULPT_BLAST_KEY: 'Sculpted',
     'destruction:blast-shape-talent:chain-blast-blast-shape': 'Chain',
     'destruction:blast-shape-talent:mutable-blast-blast-shape': 'Mutable',
 }
@@ -96,7 +102,8 @@ def destructive_blast_profile(plan):
     rows = plan.get('contributions', [])
     keys = [row.get('catalog_key') for row in rows]
     if any(row.get('alternative') for row in rows) or len(keys) != len(set(keys)): return None
-    if any(row.get('catalog_key') == EXPLOSIVE_ORB_KEY and row.get('effect_choice') not in talent_effect_choices(EXPLOSIVE_ORB_KEY)
+    if any(row.get('catalog_key') in {EXPLOSIVE_ORB_KEY, BLAST_SALVO_KEY, SCULPT_BLAST_KEY}
+           and row.get('effect_choice') not in talent_effect_choices(row['catalog_key'])
            for row in rows): return None
     if GRANDMASTER_KEY in keys:
         if KNIGHTS_BLAST_KEY not in keys: return None
@@ -412,6 +419,17 @@ def resolve_base_power(plan):
                 choice = next(row['effect_choice'] for row in plan['contributions'] if row.get('catalog_key') == shape)
                 summary['area'] = 'One 5-foot square' if choice == 'single square' else f'Burst radius up to {10 + 5 * (cl // 5)} ft.'
                 summary['saving_throw'] = 'Reflex negates' if choice == 'single square' else 'Reflex half'
+            elif shape == BLAST_SALVO_KEY:
+                choice = next(row['effect_choice'] for row in plan['contributions'] if row.get('catalog_key') == shape)
+                summary['maximum_surges'] = min(summary['damage_dice'], 2 if choice == 'two surges' else 3 + cl // 6)
+                summary['damage_distribution'] = 'Distribute the total blast dice among simultaneous surges, at least one die per surge. Resolve each touch attack manually; damage dice are not multiplied by the number of surges.'
+            elif shape == SCULPT_BLAST_KEY:
+                choice = next(row['effect_choice'] for row in plan['contributions'] if row.get('catalog_key') == shape)
+                summary['area'] = {'burst': f'Burst radius {10 + 5 * (cl // 5)} ft.',
+                                   'cone': f'Cone {25 + 5 * (cl // 2)} ft.',
+                                   'line': f'Line {100 + 10 * cl} ft.'}[choice]
+                summary['geometry'] = 'Emanates from the user but excludes the user; Extended Range and similar effects do not enlarge this shape. Placement is manual.'
+                summary['saving_throw'] = 'Reflex half'
             elif shape == KNIGHTS_BLAST_KEY:
                 close = 25 + 5 * (cl // 2)
                 grandmaster = any(row.get('catalog_key') == GRANDMASTER_KEY for row in plan.get('contributions', []))

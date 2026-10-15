@@ -330,6 +330,7 @@ def talent_construction_spell_points(entry):
     """
     from app.marvelous_base_powers import DESTRUCTION_BLAST_TYPES, DESTRUCTION_INSTANT_SHAPES
     if entry.get('key') == 'destruction:blast-shape-talent:explosive-orb-blast-shape': return 0
+    if entry.get('key') == 'destruction:blast-shape-talent:blast-salvo-blast-shape-bap': return 0
     if profile := DESTRUCTION_BLAST_TYPES.get(entry.get('key')):
         return profile[3]
     if entry.get('key') in DESTRUCTION_INSTANT_SHAPES: return 1
