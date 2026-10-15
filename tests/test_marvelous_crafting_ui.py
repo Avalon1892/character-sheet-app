@@ -651,6 +651,7 @@ def test_greater_weather_mode_changes_live_sp_and_price(composer):
     assert dialog.blueprint()['contributions'][0]['additional_spell_points'] == 2
     assert dialog.quotation()[1].market_price_gp == initial + 4000
     assert 'three weather categories' in dialog.item_preview.toPlainText()
+    assert 'Change 3 weather categories' in dialog.item_preview.toPlainText()
     # Loading a reviewed mode must preserve the user's explicitly edited cost.
     dialog.table.cellWidget(0, 4).setValue(4)
     from app.services.crafting import CraftingService

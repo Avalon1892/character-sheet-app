@@ -262,6 +262,20 @@ def test_effect_range_is_separate_from_target_range(key, field):
     with pytest.raises(ValueError): resolve_base_power(plan(key, effect_range_steps=3))
 
 
+def test_weather_category_projection_tracks_modes_and_does_not_guess_unknown_combinations():
+    greater = dict(catalog_key='weather:talent:greater-weather', effect_choice='three weather categories')
+    severe = dict(catalog_key='weather:talent:severe-weather')
+    result = resolve_base_power(plan('weather:control', contributions=[greater, severe]))
+    assert result['weather_categories'] == 3 and result['power'] == 'Change 3 weather categories'
+    assert 'maximum severity 7' in result['severity_adjustment']
+    greater['effect_choice'] = 'two weather categories'
+    assert resolve_base_power(plan('weather:control', contributions=[greater]))['weather_categories'] == 2
+    for rows in ([dict(greater, alternative=True)], [greater, greater],
+                 [dict(catalog_key='weather:advanced-talent:climate')], [dict(greater, effect_choice='')]):
+        modified = resolve_base_power(plan('weather:control', contributions=rows))
+        assert 'manual resolution' in modified['power'] and 'weather_categories' not in modified
+
+
 def test_restore_transitions_preserve_downgrades_and_ongoing_sources():
     from app.marvelous_base_powers import restore_condition_changes
     result = restore_condition_changes('body', ['Exhausted', 'Sickened', 'Battered'], ongoing=['Sickened'])

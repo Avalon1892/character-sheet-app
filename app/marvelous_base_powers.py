@@ -512,7 +512,23 @@ def resolve_base_power(plan):
     if power.key == 'warp:beacon':
         summary['target'] = 'One spot, object or creature; placement is manual.'
         summary['beacon'] = 'Creates a personal dimensional beacon. Travel to/from it is a separate teleport activation, on the same plane; unwilling creatures require Unwilling Teleport and a save.'
-    if power.key == 'weather:control': summary['area_radius'] = distances[('close', 'medium', 'long')[effect_steps]]
+    if power.key == 'weather:control':
+        summary['area_radius'] = distances[('close', 'medium', 'long')[effect_steps]]
+        rows = plan.get('contributions', [])
+        keys = [row.get('catalog_key') for row in rows]
+        greater = 'weather:talent:greater-weather'
+        severe = 'weather:talent:severe-weather'
+        supported = not any(row.get('alternative') for row in rows) and len(keys) == len(set(keys)) and set(keys) <= {greater, severe}
+        choice = next((row.get('effect_choice', '') for row in rows if row.get('catalog_key') == greater), '')
+        if not supported or (greater in keys and not choice):
+            summary['power'] = 'Modified weather effect — manual resolution'
+            summary['weather_resolution'] = 'Resolve the selected talents, weather categories, severity and area from their rules; the base radius above is not a resolved modified area.'
+        else:
+            count = {'two weather categories': 2, 'three weather categories': 3}.get(choice, 1)
+            summary['power'] = power.name if count == 1 else f'Change {count} weather categories'
+            summary['weather_categories'] = count
+            summary['weather_resolution'] = 'Choose categories and severity changes independently; apply weather consequences manually.'
+            if severe in keys: summary['severity_adjustment'] = 'One additional severity level, maximum severity 7.'
     if power.key in {'blood:construct', 'death:reanimate'}: summary['maximum_hit_dice'] = cl
     if power.key == 'dark:darkness': summary['radius'] = f'{10 + 5 * (cl // 2)} ft.'
     if power.key == 'alteration:shapeshift': summary['traits'] = 1 + cl // 5
