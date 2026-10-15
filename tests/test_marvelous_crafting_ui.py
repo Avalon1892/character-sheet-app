@@ -408,6 +408,24 @@ def test_invalid_draft_keeps_equation_visible_without_stale_price(composer):
     assert dialog.cost_formula.text() == valid
 
 
+def test_drawback_item_values_update_live_without_overwriting_description_lock(composer):
+    dialog, repo, cid = composer
+    dialog.cl.setValue(4)
+    dialog.drawbacks = [dict(source='published', catalog_key='crafting:unwieldy', name='Unwieldy', description='', reduction=0),
+                        dict(source='published', catalog_key='crafting:clingy', name='Clingy', description='', reduction=0)]
+    dialog.update_preview()
+    assert 'Unwieldy: −2' in dialog.item_preview.toPlainText()
+    assert 'DC 14' in dialog.item_preview.toPlainText()
+    dialog.cl.setValue(8)
+    assert 'Unwieldy: −3' in dialog.item_preview.toPlainText()
+    assert 'DC 18' in dialog.item_preview.toPlainText()
+    dialog.card_locks['description'].setChecked(True)
+    dialog.card_edits['description'].setPlainText('Locked item prose')
+    dialog.cl.setValue(12)
+    assert 'Locked item prose' in dialog.item_preview.toPlainText()
+    assert 'Unwieldy: −4' not in dialog.item_preview.toPlainText()
+
+
 def test_chain_blast_preview_tracks_item_caster_level(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(6)

@@ -394,7 +394,7 @@ def crafting_item_limitations(plan):
     """Reviewed identities, independent of editable tradition/drawback prose."""
     keys = {row.get('catalog_key') for row in plan.get('drawbacks', []) if row.get('source') == 'published'}
     tradition = (plan.get('crafting_tradition') or {}).get('key')
-    if tradition == 'crafting:evil-artifice': keys.add('crafting:sacrificing')
+    if tradition == 'crafting:evil-artifice': keys.update({'crafting:sacrificing', 'crafting:clingy'})
     if tradition == 'crafting:ley-linked': keys.add('crafting:taxing')
     if tradition in {'crafting:city-construction', 'crafting:cryptwood-artifice'}:
         keys.add('crafting:area-bound')
@@ -449,6 +449,11 @@ def crafting_limitation_details(plan):
     """Concrete item requirements; no location, clock or sacrifice simulation."""
     keys = crafting_item_limitations(plan)
     lines = []
+    if 'crafting:unwieldy' in keys:
+        penalty = min(6, 1 + plan['caster_level'] // 4)
+        lines.append(f'Unwieldy: −{penalty} to attack rolls made with this item or skill checks using it; stacks with other penalties. If caster level is modified, use the worse penalty; apply manually.')
+    if 'crafting:clingy' in keys:
+        lines.append(f'Clingy: curse suppression normally requires a check against DC {10 + plan["caster_level"]}; suppression/removal is resolved manually.')
     bound = marvelous_area_bound_mode(plan)
     if bound == 'distance':
         lines.append(f'Area-Bound: functions only within {plan["caster_level"]} miles of the bonded location (a smaller distance may be chosen); location is checked manually.')

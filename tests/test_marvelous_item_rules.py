@@ -291,6 +291,20 @@ def test_group_prerequisites_require_distinct_applied_talents(owner, minimum):
         assert talent_construction_spell_points(magic_entry(key)) == 1
 
 
+@pytest.mark.parametrize('level,penalty', [(1, 1), (3, 1), (4, 2), (19, 5), (20, 6), (24, 6)])
+def test_crafting_penalty_and_curse_descriptors_scale_from_item_level(level, penalty):
+    from app.marvelous_item_rules import crafting_limitation_details
+    blueprint = dict(caster_level=level, drawbacks=[dict(source='published', catalog_key='crafting:unwieldy'),
+                                                  dict(source='published', catalog_key='crafting:clingy')])
+    text = '\n'.join(crafting_limitation_details(blueprint))
+    assert f'Unwieldy: −{penalty}' in text and f'DC {10 + level}' in text
+    blueprint['drawbacks'] = [dict(source='custom', name='Unwieldy'), dict(source='custom', name='Clingy')]
+    assert not crafting_limitation_details(blueprint)
+    blueprint['crafting_tradition'] = dict(key='crafting:evil-artifice')
+    assert any(f'Clingy: curse suppression normally requires a check against DC {10 + level}' in line
+               for line in crafting_limitation_details(blueprint))
+
+
 def test_counted_prerequisites_require_two_applied_extended_ranges():
     from app.marvelous_item_rules import missing_construction_prerequisites, advanced_construction_blockers
     key = 'destruction:talent:extended-range-range'
