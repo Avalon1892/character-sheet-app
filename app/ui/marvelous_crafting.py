@@ -73,6 +73,12 @@ class MarvelousCraftingDialog(QDialog):
         self.sphere = QComboBox()
         for sphere in DEFAULT_CATALOG.magic_spheres(): self.sphere.addItem(sphere['name'])
         self.base_power = QComboBox()
+        self.base_selection = QWidget()
+        base_form = QFormLayout(self.base_selection); base_form.setContentsMargins(0, 0, 0, 0)
+        base_form.setRowWrapPolicy(QFormLayout.RowWrapPolicy.WrapLongRows)
+        base_form.addRow('Base sphere', self.sphere)
+        base_form.addRow('Base power', self.base_power)
+        left.insertWidget(0, self.base_selection)
         self.cl = QSpinBox(); self.cl.setRange(1, 100); self.cl.setValue(1)
         self.activation = QComboBox()
         for label, key in [('Standard action', 'standard'), ('Full-round action', 'full-round'),
@@ -95,8 +101,7 @@ class MarvelousCraftingDialog(QDialog):
         for label, key in [('Choose Restore mode…', ''), ('Mind', 'mind'), ('Body', 'body'), ('Soul', 'soul')]:
             self.restore_mode.addItem(label, key)
         self.effect_range.setToolTip('0: close; 1: medium; 2: long. +2 complexity per step. This changes teleport distance or weather radius, not target range.')
-        for label, widget in [('Name', self.name), ('Slot', self.slot), ('Base weight (lb)', self.base_weight), ('Base sphere', self.sphere),
-                              ('Base power', self.base_power),
+        for label, widget in [('Name', self.name), ('Slot', self.slot), ('Base weight (lb)', self.base_weight),
                               ('Item caster level', self.cl), ('Activation', self.activation),
                               ('Uses', self.uses), ('Range steps', self.range_steps),
                               ('Duration steps', self.duration_steps), ('Unique changes / limitations', self.unique)]:
@@ -124,7 +129,7 @@ class MarvelousCraftingDialog(QDialog):
         # Retain catalog-backed restoration for saved plans/prerequisites, but new
         # user selections go through the effective-access picker.
         self.talent.hide(); add.hide()
-        self.effects_button.setToolTip('Add currently accessible talents for the selected base sphere, including Moldable Talents. Change the base sphere to design a different power.')
+        self.effects_button.setToolTip('Add currently accessible talents for the Base sphere selected below, including Moldable Talents. Use Add power for an additional sphere effect on this item.')
         self.table = QTableWidget(0, 6)
         self.table.setHorizontalHeaderLabels(['Effect', 'Cost', 'Alt.', 'Group', 'SP', 'Choice'])
         self.table.setMinimumHeight(160); self.table.setMaximumHeight(240)

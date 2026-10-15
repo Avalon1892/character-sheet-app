@@ -19,6 +19,17 @@ def composer(tmp_path):
     repo.close()
 
 
+def test_base_effect_selection_is_visible_outside_collapsed_settings(composer):
+    dialog, repo, cid = composer
+    assert dialog.settings_panel.isHidden()
+    assert not dialog.base_selection.isHidden()
+    assert dialog.base_selection.isAncestorOf(dialog.sphere)
+    assert dialog.base_selection.isAncestorOf(dialog.base_power)
+    assert not dialog.settings_panel.isAncestorOf(dialog.sphere)
+    dialog.sphere.setCurrentText('Weather')
+    assert dialog.base_power.currentData() == 'weather:control'
+
+
 def test_empty_marvelous_window_can_open_designer_without_writes(composer, monkeypatch):
     from app.ui.marvelous_crafting import MarvelousItemUseDialog
     from PySide6.QtWidgets import QDialog
