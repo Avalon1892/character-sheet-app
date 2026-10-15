@@ -637,6 +637,29 @@ def test_educated_sphere_editor_saves_choices_and_cancellation_does_not_write(co
     assert repo._connection.total_changes == before
 
 
+def test_repeated_complex_checks_save_reopen_and_preserve_description_lock(composer):
+    from app.services.crafting import CraftingService
+    dialog, repo, cid = composer
+    dialog.cl.setValue(5)
+    dialog.drawbacks = [dict(source='published', catalog_key='crafting:complex', name='Complex',
+        description='', reduction=0, required_skill='Acrobatics', additional_skills=['Linguistics', 'Acrobatics'])]
+    dialog.update_preview()
+    assert dialog.item_preview.toPlainText().count('DC 10') == 3
+    dialog.card_locks['description'].setChecked(True)
+    dialog.card_edits['description'].setPlainText('My locked description')
+    iid = CraftingService(repo, cid).save_marvelous_design(dialog.blueprint(), name='Complex device', slot='', description='')
+    reopened = MarvelousCraftingDialog(repo, cid, item_id=iid)
+    try:
+        assert reopened.drawbacks[0]['additional_skills'] == ['Linguistics', 'Acrobatics']
+        reopened.cl.setValue(8)
+        assert 'My locked description' in reopened.item_preview.toPlainText()
+        assert 'DC 13' not in reopened.item_preview.toPlainText()
+        reopened.card_locks['description'].setChecked(False)
+        assert reopened.item_preview.toPlainText().count('DC 13') == 3
+    finally:
+        reopened.close()
+
+
 def test_complex_skill_editor_requires_choice_and_cancel_preserves_draft(composer, monkeypatch):
     from PySide6.QtWidgets import QDialog, QComboBox, QDialogButtonBox, QPushButton, QListWidget
     dialog, repo, cid = composer
