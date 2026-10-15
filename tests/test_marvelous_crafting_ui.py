@@ -339,6 +339,28 @@ def test_counted_prerequisite_addition_is_idempotent_and_does_not_write(composer
     assert repo._connection.total_changes == before
 
 
+@pytest.mark.parametrize('cancel_second', [False, True])
+@pytest.mark.parametrize('owner', ['crystal-cocoon', 'radiation-blast-blast-type-fire-light'])
+def test_group_prerequisite_choices_are_distinct_and_cancel_atomically(composer, monkeypatch, cancel_second, owner):
+    from PySide6.QtWidgets import QInputDialog
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(10)
+    key = 'destruction:advanced-talent:' + owner
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    dialog.add_contribution()
+    before = repo._connection.total_changes
+    choices = []
+    def choose(*args):
+        labels = args[3]
+        choices.append(labels[0])
+        return labels[0], not (cancel_second and len(choices) == 2)
+    monkeypatch.setattr(QInputDialog, 'getItem', choose)
+    dialog.add_required_contributions()
+    assert len(choices) == 2 and choices[0] != choices[1]
+    assert dialog.table.rowCount() == (1 if cancel_second else 3)
+    assert repo._connection.total_changes == before
+
+
 def test_prerequisite_batch_calculates_final_preview_once(composer, monkeypatch):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Warp'); dialog.cl.setValue(20)

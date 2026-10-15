@@ -268,6 +268,29 @@ def test_reviewed_destruction_fixed_prerequisites_have_catalog_identities_and_pa
         assert magic_entry(key) and all(magic_entry(option) for options in groups for option in options)
 
 
+@pytest.mark.parametrize('owner,minimum', [('crystal-cocoon', 10), ('radiation-blast-blast-type-fire-light', 5)])
+def test_group_prerequisites_require_distinct_applied_talents(owner, minimum):
+    from app.marvelous_item_rules import (COUNTED_ALTERNATIVE_CONSTRUCTION_REQUIREMENTS,
+        missing_construction_alternatives, advanced_construction_blockers, talent_construction_spell_points)
+    from app.content import magic_entry
+    key = 'destruction:advanced-talent:' + owner
+    count, options = COUNTED_ALTERNATIVE_CONSTRUCTION_REQUIREMENTS[key]
+    assert count == 2 and all(magic_entry(option) for option in options)
+    rows = [dict(catalog_key=key), dict(catalog_key=options[0]), dict(catalog_key=options[0])]
+    missing = missing_construction_alternatives(rows)
+    assert missing and all(options[0] not in choices for _, choices in missing)
+    rows.append(dict(catalog_key=options[1], alternative=True))
+    assert missing_construction_alternatives(rows)
+    rows[-1]['alternative'] = False
+    assert not missing_construction_alternatives(rows)
+    assert not advanced_construction_blockers(rows, minimum)
+    assert advanced_construction_blockers(rows, minimum - 1)
+    if owner.startswith('radiation'):
+        assert talent_construction_spell_points(magic_entry(key)) == 2
+    else:
+        assert talent_construction_spell_points(magic_entry(key)) == 1
+
+
 def test_counted_prerequisites_require_two_applied_extended_ranges():
     from app.marvelous_item_rules import missing_construction_prerequisites, advanced_construction_blockers
     key = 'destruction:talent:extended-range-range'

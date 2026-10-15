@@ -114,6 +114,8 @@ def marvelous_item_price(caster_level: int, complexity: int | Fraction, *, daily
 
 # Reviewed construction prerequisites use catalog identities, never prose parsing.
 ADVANCED_CONSTRUCTION_REQUIREMENTS = {
+    'destruction:advanced-talent:crystal-cocoon': (10, ()),
+    'destruction:advanced-talent:radiation-blast-blast-type-fire-light': (5, ()),
     'destruction:advanced-talent:extreme-range': (5, ('destruction:talent:extended-range-range',) * 2),
     'destruction:advanced-talent:grandmaster-jester-s-hb': (0, ('destruction:blast-shape-talent:knight-s-blast-blast-shape-jester-s-hb',)),
     'protection:advanced-talent:pithing-protection-3pp': (10, ('protection:advanced-talent:spell-selectivity-dbh',
@@ -179,6 +181,9 @@ ADVANCED_CONSTRUCTION_REQUIREMENTS = {
 }
 
 ALTERNATIVE_CONSTRUCTION_REQUIREMENTS = {
+    'destruction:advanced-talent:crystal-cocoon': ((
+        'destruction:blast-type-talent:crystal-blast-blast-type-crystal',
+        'destruction:blast-type-talent:living-crystal-blast-blast-type-crystal'),),
     'protection:advanced-talent:pithing-protection-arcforge-addendum-lg': (
         ('protection:advanced-talent:spell-selectivity-dbh', 'protection:advanced-talent:spell-selectivity-arcforge-addendum-lg'),
         ('protection:aegis-ward-talent:spell-ward-aegis-ward', 'protection:aegis-ward-talent:technological-suppression-aegis-ward-lg')),
@@ -195,13 +200,30 @@ ALTERNATIVE_CONSTRUCTION_REQUIREMENTS = {
         'destruction:blast-shape-talent:sculpt-blast-blast-shape'),),
 }
 
+COUNTED_ALTERNATIVE_CONSTRUCTION_REQUIREMENTS = {
+    'destruction:advanced-talent:crystal-cocoon': (2, (
+        'destruction:blast-type-talent:crystal-blast-blast-type-crystal',
+        'destruction:blast-type-talent:living-crystal-blast-blast-type-crystal',
+        'destruction:blast-type-talent:razor-blast-blast-type-crystal')),
+    'destruction:advanced-talent:radiation-blast-blast-type-fire-light': (2, (
+        'destruction:blast-type-talent:blistering-blast-blast-type-fire',
+        'destruction:blast-type-talent:fire-blast-blast-type-fire',
+        'destruction:blast-type-talent:searing-blast-blast-type-fire')),
+}
+
 
 def missing_construction_alternatives(contributions):
     keys = {row['catalog_key'] for row in contributions}
     applied = {row['catalog_key'] for row in contributions if not row.get('alternative')}
-    return tuple((key, options) for key in sorted(keys)
+    missing = [(key, options) for key in sorted(keys)
                  if key in ALTERNATIVE_CONSTRUCTION_REQUIREMENTS
-                 for options in ALTERNATIVE_CONSTRUCTION_REQUIREMENTS[key] if not applied.intersection(options))
+                 for options in ALTERNATIVE_CONSTRUCTION_REQUIREMENTS[key] if not applied.intersection(options)]
+    for key in sorted(keys):
+        if key not in COUNTED_ALTERNATIVE_CONSTRUCTION_REQUIREMENTS: continue
+        count, options = COUNTED_ALTERNATIVE_CONSTRUCTION_REQUIREMENTS[key]
+        if len(applied.intersection(options)) < count:
+            missing.append((key, tuple(option for option in options if option not in applied)))
+    return tuple(missing)
 
 
 def missing_construction_prerequisites(contributions):
@@ -315,6 +337,8 @@ def talent_construction_spell_points(entry):
         'destruction:advanced-talent:energy-cloud-blast-shape': 3,
         'destruction:advanced-talent:greater-admixture': 1,
         'destruction:advanced-talent:calamity-blast-shape': 2,
+        'destruction:advanced-talent:radiation-blast-blast-type-fire-light': 2,
+        'destruction:advanced-talent:crystal-cocoon': 1,
         'destruction:advanced-talent:detonating-salvo-lg': 1,
         'warp:space-talent:teleport-beacon-space': 1,
         'warp:advanced-talent:true-teleport': 2,
