@@ -668,25 +668,26 @@ class MarvelousCraftingDialog(QDialog):
         self.display_overrides[key] = dict(locked=True, value=edit.toPlainText() if isinstance(edit, QTextEdit) else edit.text())
         self.render_item_card()
 
-    def render_item_card(self):
+    def render_item_card(self, fields=None):
         from app.marvelous_item_presentation import item_card_fields, item_card_html
         try:
-            fields = item_card_fields(self.blueprint(), name=self.name.text(), slot=self.slot.currentData(),
-                                      description=self.description.toPlainText())
+            if fields is None:
+                fields = item_card_fields(self.blueprint(), name=self.name.text(), slot=self.slot.currentData(),
+                                          description=self.description.toPlainText())
             self.item_preview.setHtml(item_card_html(fields))
         except ValueError:
             self.item_preview.setPlainText('Complete a valid design to preview the item.')
 
-    def refresh_item_card(self):
+    def refresh_item_card(self, *, quotation=None):
         from app.marvelous_item_presentation import item_card_fields
         values = item_card_fields(self.blueprint(), name=self.name.text(), slot=self.slot.currentData(),
-                                  description=self.description.toPlainText())
+                                  description=self.description.toPlainText(), quotation=quotation)
         for key, text in values.items():
             edit = self.card_edits[key]
             edit.blockSignals(True)
             edit.setPlainText(text) if isinstance(edit, QTextEdit) else edit.setText(text)
             edit.blockSignals(False)
-        self.render_item_card()
+        self.render_item_card(values)
 
     def blueprint(self):
         from PySide6.QtCore import Qt
@@ -738,14 +739,15 @@ class MarvelousCraftingDialog(QDialog):
         self.table.setColumnHidden(3, not any(row.get('alternative') for row in contributions))
         self.add_prerequisites.setEnabled(bool(missing_construction_prerequisites(contributions) or missing_construction_alternatives(contributions)))
         try:
-            complexity, price, quote = self.quotation()
-            self.cost_formula.setText('Cost: ' + marvelous_price_formula(self.blueprint())
-                                      + '\nComplexity: ' + marvelous_complexity_formula(self.blueprint())
-                                      + '\nMaterials: ' + marvelous_materials_formula(self.blueprint()))
+            quotation = self.quotation()
+            complexity, price, quote = quotation
+            self.cost_formula.setText('Cost: ' + marvelous_price_formula(self.blueprint(), quotation=quotation)
+                                      + '\nComplexity: ' + marvelous_complexity_formula(self.blueprint(), quotation=quotation)
+                                      + '\nMaterials: ' + marvelous_materials_formula(self.blueprint(), quotation=quotation))
             from app.marvelous_item_rules import marvelous_effect_plan
-            self.cost_formula.setToolTip('\n'.join(f'Power {index + 1}: {marvelous_complexity_formula(marvelous_effect_plan(self.blueprint(), index))}'
+            self.cost_formula.setToolTip('\n'.join(f'Power {index + 1}: {marvelous_complexity_formula(marvelous_effect_plan(self.blueprint(), index), quotation=quotation if index == 0 else None)}'
                 for index in range(1 + len(self.extra_effects))))
-            self.refresh_item_card()
+            self.refresh_item_card(quotation=quotation)
             effect = resolve_base_power(self.blueprint())
             automatic = automatic_self_effect(self.blueprint())
             automation_notice = ('Activation can heal a living self, including nonlethal damage.' if automatic == 'cure'

@@ -16,9 +16,10 @@ def validate_display_overrides(records):
             raise ValueError('Item display overrides require text and a boolean lock.')
 
 
-def item_card_fields(plan, *, name, slot, description):
+def item_card_fields(plan, *, name, slot, description, quotation=None):
     """Locked text changes the card, never the quoted price or activation rules."""
-    _, price, quote = quote_marvelous_blueprint(plan)
+    quotation = quotation if quotation is not None else quote_marvelous_blueprint(plan)
+    _, price, quote = quotation
     effect = resolve_base_power(plan)
     from app.marvelous_item_rules import marvelous_item_weight
     weight = marvelous_item_weight(plan)
@@ -49,7 +50,7 @@ def item_card_fields(plan, *, name, slot, description):
             f"{record['name']}: {record.get('description', '')} (−{record['reduction']} complexity; {record['source']}, GM review)"
             for record in plan['drawbacks'])
     from app.marvelous_item_rules import crafting_limitation_details
-    if limitations := crafting_limitation_details(plan):
+    if limitations := crafting_limitation_details(plan, quotation=quotation):
         values['description'] += '\n\nActivation requirements:\n' + '\n'.join(limitations)
     if plan.get('extra_effects'):
         mixed = plan.get('combination_mode') == 'mixed'

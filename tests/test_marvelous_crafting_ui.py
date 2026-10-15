@@ -447,6 +447,30 @@ def test_group_teleport_adds_and_prices_mass_prerequisite_without_changing_saved
     assert dialog.quotation()[0] == 5
 
 
+@pytest.mark.parametrize('charged', [False, True])
+def test_preview_reuses_one_fresh_base_quote_per_edit(composer, monkeypatch, charged):
+    from app import marvelous_item_rules as rules, marvelous_item_presentation as presentation
+    from app.ui import marvelous_crafting as ui
+    dialog, repo, cid = composer
+    if charged:
+        dialog.uses.setCurrentIndex(dialog.uses.findData(5))
+        dialog.drawbacks = [dict(source='published', catalog_key='crafting:charged', name='Charged', description='', reduction=0)]
+    original = rules.quote_marvelous_blueprint
+    calls = []
+    def quote(plan):
+        calls.append(plan['caster_level'])
+        return original(plan)
+    for module in (rules, presentation, ui): monkeypatch.setattr(module, 'quote_marvelous_blueprint', quote)
+    dialog.cl.setValue(5)
+    assert calls == [5]
+    assert ('10,000.00 gp' if charged else '2,000.00 gp') in dialog.item_preview.toPlainText()
+    calls.clear()
+    dialog.cl.setValue(6)
+    assert calls == [6]
+    assert ('12,000.00 gp' if charged else '2,400.00 gp') in dialog.item_preview.toPlainText()
+    assert ('12000 gp' if charged else '2400 gp') in dialog.cost_formula.text()
+
+
 def test_chain_blast_preview_tracks_item_caster_level(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(6)

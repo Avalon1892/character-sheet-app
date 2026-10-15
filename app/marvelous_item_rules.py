@@ -455,7 +455,7 @@ def spell_selectivity_options(plan):
     return dict(mode=mode, spheres=tuple(spheres), maximum=1 + plan['caster_level'] // 5)
 
 
-def crafting_limitation_details(plan):
+def crafting_limitation_details(plan, *, quotation=None):
     """Concrete item requirements; no location, clock or sacrifice simulation."""
     keys = crafting_item_limitations(plan)
     lines = []
@@ -472,7 +472,7 @@ def crafting_limitation_details(plan):
     elif bound == '':
         lines.append('Area-Bound: choose distance-limited use or location recharge before resolving recovery.')
     if 'crafting:charged' in keys:
-        complexity, _, _ = quote_marvelous_blueprint(plan)
+        complexity, _, _ = quotation if quotation is not None else quote_marvelous_blueprint(plan)
         points = sum(row.get('additional_spell_points', 0) for row in plan['contributions'])
         points += sum(row.get('additional_spell_points', 0) for row in plan.get('feat_integrations', []))
         if any(row.get('alternative') for row in plan['contributions']):
@@ -689,9 +689,9 @@ def quote_marvelous_effects(plans, *, mode='multiple'):
                 crafting=marvelous_crafting_quote(combined, cl), mode=mode)
 
 
-def marvelous_complexity_formula(plan):
+def marvelous_complexity_formula(plan, *, quotation=None):
     """Explain every primary-effect term; use the quote for the final result."""
-    complexity, _, _ = quote_marvelous_blueprint(plan)
+    complexity, _, _ = quotation if quotation is not None else quote_marvelous_blueprint(plan)
     ordinary = [row for row in plan['contributions'] if not row.get('alternative')]
     groups = {}
     for row in plan['contributions']:
@@ -711,18 +711,18 @@ def marvelous_complexity_formula(plan):
     return f'max(1, {rendered}) = {complexity}'
 
 
-def marvelous_materials_formula(plan):
+def marvelous_materials_formula(plan, *, quotation=None):
     """Explain the construction materials separately from selling price."""
-    _, price, quote = quote_marvelous_blueprint(plan)
+    _, price, quote = quotation if quotation is not None else quote_marvelous_blueprint(plan)
     expensive = any(row.get('source') == 'published' and row.get('catalog_key') == 'crafting:expensive'
                     for row in plan.get('drawbacks', []))
     factor = ' × 1.25 (Expensive)' if expensive else ''
     return f'{price.market_price_gp} gp ÷ 2{factor} = {float(quote.cost_gp):g} gp'
 
 
-def marvelous_price_formula(plan):
+def marvelous_price_formula(plan, *, quotation=None):
     """Readable live formula from the authoritative quote, not a second calculator."""
-    complexity, price, _ = quote_marvelous_blueprint(plan)
+    complexity, price, _ = quotation if quotation is not None else quote_marvelous_blueprint(plan)
     tradition = plan.get('crafting_tradition') or {}
     if tradition.get('key') in {'crafting:city-construction', 'crafting:diviner-s-sight'}:
         base = {key: value for key, value in plan.items() if key != 'crafting_tradition'}
