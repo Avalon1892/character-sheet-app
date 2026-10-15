@@ -983,6 +983,8 @@ def test_temporal_haste_adds_required_talent_and_sp_to_live_price(composer):
 @pytest.mark.parametrize('key, first_mode, second_mode, cost', [
     ('time:advanced-talent:shuffle-time-time-3pp', 'reroll initiative', 'roll twice, take lower', 1),
     ('time:advanced-talent:past-sight-utility', 'view hours', 'view days', 2),
+    ('time:talent:delay-pain-time', 'delay until next turn', 'split damage across two turns', 2),
+    ('time:talent:time-bubble-time', 'time bubble only', 'include Haste or Slow', 2),
 ])
 def test_time_mode_updates_price_and_preserves_saved_manual_cost(composer, key, first_mode, second_mode, cost):
     dialog, repo, cid = composer

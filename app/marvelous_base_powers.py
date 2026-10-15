@@ -86,6 +86,8 @@ SCULPT_BLAST_KEY = 'destruction:blast-shape-talent:sculpt-blast-blast-shape'
 ENERGY_SPHERE_KEY = 'destruction:blast-shape-talent:energy-sphere-blast-shape'
 ENERGY_WALL_KEY = 'destruction:blast-shape-talent:energy-wall-blast-shape'
 TALENT_EFFECT_SP_CHOICES = {
+    'time:talent:delay-pain-time': {'delay until next turn': 1, 'split damage across two turns': 2},
+    'time:talent:time-bubble-time': {'time bubble only': 1, 'include Haste or Slow': 2},
     'time:advanced-talent:past-sight-utility': {'view hours': 1, 'view days': 2, 'view years': 3},
     'time:advanced-talent:shuffle-time-time-3pp': {'reroll initiative': 0, 'roll twice, take lower': 1},
     'warp:space-talent:fluctuate-space': {'concentration': 1, 'rounds per caster level': 2},

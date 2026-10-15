@@ -58,6 +58,15 @@ def test_custom_named_tradition_does_not_gain_published_boons():
     assert crafting_boon_details({'crafting_tradition': {'key': 'custom:ley-linked', 'name': 'Ley-Linked'}}) == ()
 
 
+@pytest.mark.parametrize('suffix', ['causality-time', 'delay-pain-time', 'eject-time', 'fast-time-time',
+    'lethargy-time', 'repetition-time', 'retroactive-preparation', 'second-chance', 'temporal-trap', 'time-bubble-time'])
+def test_reviewed_time_one_spell_point_construction_costs(suffix):
+    from app.catalogs import DEFAULT_CATALOG
+    from app.marvelous_item_rules import talent_construction_spell_points
+    entry = next(e for e in DEFAULT_CATALOG.magic_entries('Time') if e['key'] == 'time:talent:' + suffix)
+    assert talent_construction_spell_points(entry) == 1
+
+
 def test_cryptwood_boon_explains_material_benefits_and_unpriced_base_cost():
     from app.marvelous_item_rules import crafting_boon_details
     details = '\n'.join(crafting_boon_details({'crafting_tradition': {'key': 'crafting:cryptwood-artifice'}}))
