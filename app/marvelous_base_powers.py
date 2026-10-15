@@ -400,6 +400,19 @@ def resolve_base_power(plan):
         summary['temporary_hp'] = cl if temporary is None else temporary
         if temporary is None:
             summary['temporary_hp_review'] = 'Base amount only; selected modifications require manual resolution.'
+            rows = life_per_target_plan(plan).get('contributions', [])
+            keys = [row.get('catalog_key') for row in rows]
+            greater = 'life:talent:greater-invigorate'
+            if (greater in keys and len(keys) == len(set(keys))
+                    and not any(row.get('alternative') for row in rows)
+                    and set(keys) <= {greater, 'life:talent:deeper-healing', 'life:talent:painkiller'}):
+                selected = next(row for row in rows if row['catalog_key'] == greater)
+                base = cl * (2 if 'life:talent:deeper-healing' in keys else 1)
+                summary['temporary_hp_formula'] = f'{base} + applicable casting ability modifier (requires rules verification for this item; not the crafter’s live modifier)'
+                mode = selected.get('effect_choice')
+                summary['temporary_hp_limit'] = ('May exceed the target’s normal HP maximum.' if mode == 'exceed normal HP limit'
+                    else 'Cannot exceed the target’s normal HP maximum.' if mode == 'normal HP limit'
+                    else 'Choose the Greater Invigorate effect mode.')
         elif any(row.get('catalog_key') == 'life:talent:painkiller' for row in plan.get('contributions', [])):
             summary['nonlethal_healing'] = temporary
     if power.key in {'life:cure', 'life:restore', 'life:temporary-hp'}:

@@ -26,6 +26,22 @@ def test_dimension_pierce_is_not_a_teleport_and_requires_its_own_talent_cost():
     result = resolve_base_power(plan('warp:dimension-pierce'))
     assert result['range'] == 'Touch' and result['duration'] == '5 hours'
     assert 'ghost touch' in result['planar_interaction'] and 'teleport_distance' not in result
+
+
+def test_greater_invigorate_projection_keeps_unknown_item_modifier_explicit():
+    from app.marvelous_base_powers import automatic_self_effect
+    rows = [dict(catalog_key='life:talent:greater-invigorate', effect_choice='exceed normal HP limit'),
+            dict(catalog_key='life:talent:deeper-healing')]
+    item = plan('life:temporary-hp', cl=7, contributions=rows)
+    details = resolve_base_power(item)
+    assert details['temporary_hp_formula'].startswith('14 + applicable casting ability modifier')
+    assert 'May exceed' in details['temporary_hp_limit']
+    assert automatic_self_effect(item) is None
+    item['caster_level'] = 10
+    rows[0]['effect_choice'] = 'normal HP limit'
+    details = resolve_base_power(item)
+    assert details['temporary_hp_formula'].startswith('20 +')
+    assert 'Cannot exceed' in details['temporary_hp_limit']
     with pytest.raises(ValueError, match='talent contribution'):
         resolve_base_power(plan('warp:dimension-pierce', contributions=[]))
     with pytest.raises(ValueError, match='one-SP'):
