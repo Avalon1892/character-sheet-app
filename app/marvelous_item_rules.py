@@ -348,6 +348,9 @@ def talent_construction_spell_points(entry):
         'warp:talent:emergency-teleport': 1,
         'warp:talent:instill-teleport-instill': 1,
         'warp:talent:mass-teleport-mass': 1,
+        # Group's two-SP mode replaces Mass's one-SP mode; add only the difference.
+        'warp:advanced-talent:group-teleport': 1,
+        'warp:talent:unwilling-teleport': 1,
         'warp:advanced-talent:true-teleport': 2,
         'warp:advanced-talent:planeshift': 2,
         'warp:advanced-talent:portal': 1,

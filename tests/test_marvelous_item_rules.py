@@ -323,11 +323,18 @@ def test_reviewed_warp_prerequisite_chains(owner, minimum, required):
     if minimum: assert advanced_construction_blockers(rows, minimum - 1)
 
 
-@pytest.mark.parametrize('name', ['mass-teleport-mass', 'emergency-teleport', 'instill-teleport-instill'])
+@pytest.mark.parametrize('name', ['mass-teleport-mass', 'emergency-teleport', 'instill-teleport-instill', 'unwilling-teleport'])
 def test_reviewed_warp_paid_talents_have_one_extra_sp(name):
     from app.content import magic_entry
     from app.marvelous_item_rules import talent_construction_spell_points
     assert talent_construction_spell_points(magic_entry('warp:talent:' + name)) == 1
+
+
+def test_group_teleport_pays_two_sp_across_integrated_prerequisites():
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_construction_spell_points
+    assert sum(talent_construction_spell_points(magic_entry(key)) for key in
+               ('warp:advanced-talent:group-teleport', 'warp:talent:mass-teleport-mass')) == 2
 
 
 def test_counted_prerequisites_require_two_applied_extended_ranges():

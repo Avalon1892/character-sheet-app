@@ -435,10 +435,14 @@ def test_group_teleport_adds_and_prices_mass_prerequisite_without_changing_saved
     rows = dialog.blueprint()['contributions']
     mass = next(row for row in rows if row['catalog_key'] == 'warp:talent:mass-teleport-mass')
     assert mass['additional_spell_points'] == 1 and mass['complexity'] == 2
-    assert dialog.quotation()[0] == 6
+    assert dialog.quotation()[0] == 7
     saved = dialog.blueprint()
     mass = next(row for row in saved['contributions'] if row['catalog_key'] == 'warp:talent:mass-teleport-mass')
     mass['additional_spell_points'] = 0; mass['complexity'] = 1
+    dialog.load_plan(saved)
+    assert dialog.quotation()[0] == 6
+    group = next(row for row in saved['contributions'] if row['catalog_key'] == key)
+    group['additional_spell_points'] = 0; group['complexity'] = 2
     dialog.load_plan(saved)
     assert dialog.quotation()[0] == 5
 
