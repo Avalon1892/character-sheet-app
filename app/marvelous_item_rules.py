@@ -163,6 +163,9 @@ ADVANCED_CONSTRUCTION_REQUIREMENTS = {
     'protection:advanced-talent:planar-refuge-aegis-ward-rw-hb': (5, ()),
     'protection:advanced-talent:preserve-integrity-aegis-alienist-hb': (10, ()),
     'protection:advanced-talent:rapid-glyph-3pp': (0, ('protection:talent:glyph',)),
+    'protection:advanced-talent:tripped-glyph-3pp': (0, ('protection:talent:glyph', 'protection:advanced-talent:rapid-glyph-3pp')),
+    'protection:advanced-talent:stability-bottleneck-sm': (10, ('protection:aegis-ward-talent:spell-ward-aegis-ward',)),
+    'protection:advanced-talent:voiding-suppression-3pp': (10, ('protection:aegis-ward-talent:spell-ward-aegis-ward',)),
     'protection:advanced-talent:spell-eater-aegis-3pp': (10, ('protection:succor-talent:negation-succor-3pp',)),
     'protection:advanced-talent:spell-selectivity-dbh': (10, ('protection:aegis-ward-talent:spell-ward-aegis-ward',)),
     'protection:advanced-talent:subtle-aegis': (5, ()),
@@ -242,6 +245,8 @@ CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS = {
 }
 
 ALTERNATIVE_CONSTRUCTION_REQUIREMENTS = {
+    'protection:advanced-talent:stability-bottleneck-sm': (('protection:advanced-talent:spell-selectivity-dbh', 'protection:advanced-talent:spell-selectivity-arcforge-addendum-lg'),),
+    'protection:advanced-talent:voiding-suppression-3pp': (('protection:advanced-talent:spell-selectivity-dbh', 'protection:advanced-talent:spell-selectivity-arcforge-addendum-lg'),),
     'warp:advanced-talent:brutalizing-shunt-apoc': ((
         'warp:space-talent:create-gap-space', 'warp:talent:unseeing-teleport'),),
     'warp:advanced-talent:dimensional-tracery-3pp': ((
@@ -422,6 +427,7 @@ def talent_construction_spell_points(entry, *, reviewed_only=False):
         'life:talent:stabilizing-invigoration-warden': 0,
         'life:advanced-talent:hypervitalize': 2,
         'protection:talent:mass-aegis-mass': 1,
+        'protection:advanced-talent:tripped-glyph-3pp': 2,
         'weather:talent:greater-weather': 1,
         'weather:talent:severe-weather': 1,
         'time:talent:mass-time-mass': 1,

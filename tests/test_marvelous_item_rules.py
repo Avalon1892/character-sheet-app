@@ -195,6 +195,7 @@ def test_warp_either_or_dependency_does_not_require_both(key, options):
     ('Warp', 'warp:advanced-talent:warping-structures-store-and-teleport-structure'),
     ('Time', 'time:advanced-talent:reversion-and-complete-reversion'),
     ('Life', None),
+    ('Protection', None),
 ])
 def test_bundled_advanced_entries_have_explicit_construction_requirement_metadata(sphere, commentary):
     from app.catalogs import DEFAULT_CATALOG
@@ -223,6 +224,18 @@ def test_weather_construction_sp_defaults_and_modes_are_catalog_backed():
         assert talent_construction_spell_points(entries[key]) == 1
     assert talent_choice_spell_points('weather:talent:greater-weather', 'two weather categories') == 1
     assert talent_choice_spell_points('weather:talent:greater-weather', 'three weather categories') == 2
+
+
+@pytest.mark.parametrize('talent', ['stability-bottleneck-sm', 'voiding-suppression-3pp'])
+@pytest.mark.parametrize('selectivity', ['spell-selectivity-dbh', 'spell-selectivity-arcforge-addendum-lg'])
+def test_protection_filter_upgrades_accept_either_selectivity_and_require_ward(talent, selectivity):
+    from app.marvelous_item_rules import advanced_construction_blockers
+    rows = [dict(catalog_key='protection:advanced-talent:' + talent),
+            dict(catalog_key='protection:advanced-talent:' + selectivity),
+            dict(catalog_key='protection:aegis-ward-talent:spell-ward-aegis-ward')]
+    assert not advanced_construction_blockers(rows, 10)
+    assert advanced_construction_blockers(rows, 9)
+    assert advanced_construction_blockers(rows[:-1], 10)
 
 
 def test_repeated_complex_checks_preserve_each_roll_and_validate_skills():

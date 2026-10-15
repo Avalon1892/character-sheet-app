@@ -1581,6 +1581,7 @@ def test_restore_mode_is_explicit_saved_and_cleared_for_other_powers(composer):
     ('Life', 'life:advanced-talent:resurrection-supreme-warden'),
     ('Life', 'life:advanced-talent:soul-consumption-dbh'),
     ('Protection', 'protection:advanced-talent:antimagic-aura'),
+    ('Protection', 'protection:advanced-talent:tripped-glyph-3pp'),
 ])
 def test_composer_adds_reviewed_prerequisites_without_duplicates_or_writes(composer, sphere, key):
     from app.marvelous_item_rules import advanced_construction_blockers
@@ -1598,7 +1599,7 @@ def test_composer_adds_reviewed_prerequisites_without_duplicates_or_writes(compo
     dialog.add_required_contributions()
     assert dialog.blueprint()['contributions'] == contributions
     if sphere == 'Protection':
-        assert contributions[0]['additional_spell_points'] == 1
+        assert contributions[0]['additional_spell_points'] == (2 if 'tripped-glyph' in key else 1)
 
 
 def test_mythic_crafter_advanced_default_uses_existing_feature_access(composer):
