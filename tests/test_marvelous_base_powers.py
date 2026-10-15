@@ -197,6 +197,21 @@ def test_sculpt_geometry_scales_from_caster_level(choice, area):
     assert result['area'] == area and result['saving_throw'] == 'Reflex half'
 
 
+@pytest.mark.parametrize('choice,duration', [('concentration', 'Concentration'), ('rounds per caster level', '10 rounds')])
+def test_energy_sphere_mode_controls_duration_and_keeps_typed_dice(choice, duration):
+    from app.marvelous_base_powers import ENERGY_SPHERE_KEY
+    blueprint = plan('destruction:blast', 10, contributions=[dict(catalog_key=ENERGY_SPHERE_KEY, effect_choice=choice),
+        dict(catalog_key='destruction:blast-type-talent:crystal-blast-blast-type-crystal')])
+    result = resolve_base_power(blueprint)
+    assert result['duration'] == duration and result['fly_speed'] == '45 ft. (perfect)'
+    assert result['damage'] == '5d4 piercing' and result['saving_throw'] == 'Reflex negates'
+    blueprint['duration_steps'] = 1
+    if choice == 'concentration':
+        with pytest.raises(ValueError, match='duration ladder'): resolve_base_power(blueprint)
+    else:
+        assert resolve_base_power(blueprint)['duration'] == '10 minutes'
+
+
 def test_beacon_placement_range_duration_and_required_contribution():
     result = resolve_base_power(plan('warp:beacon', 7))
     assert result['range'] == 'Touch' and result['duration'] == '7 hours'

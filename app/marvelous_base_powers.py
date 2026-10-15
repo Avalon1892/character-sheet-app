@@ -81,13 +81,16 @@ GRANDMASTER_KEY = 'destruction:advanced-talent:grandmaster-jester-s-hb'
 EXPLOSIVE_ORB_KEY = 'destruction:blast-shape-talent:explosive-orb-blast-shape'
 BLAST_SALVO_KEY = 'destruction:blast-shape-talent:blast-salvo-blast-shape-bap'
 SCULPT_BLAST_KEY = 'destruction:blast-shape-talent:sculpt-blast-blast-shape'
+ENERGY_SPHERE_KEY = 'destruction:blast-shape-talent:energy-sphere-blast-shape'
 TALENT_EFFECT_SP_CHOICES = {
+    ENERGY_SPHERE_KEY: {'concentration': 0, 'rounds per caster level': 1},
     BLAST_SALVO_KEY: {'two surges': 0, 'additional surges': 1},
     SCULPT_BLAST_KEY: {'burst': 1, 'cone': 1, 'line': 1},
     EXPLOSIVE_ORB_KEY: {'single square': 0, 'expanded burst': 1},
     'destruction:advanced-talent:detonating-salvo-lg': {'5-foot radius explosions': 1, 'expanded explosions': 2},
 }
-DESTRUCTION_INSTANT_SHAPES = {
+DESTRUCTION_BLAST_SHAPES = {
+    ENERGY_SPHERE_KEY: 'Energy Sphere',
     GUIDED_STRIKE_KEY: 'Guided',
     KNIGHTS_BLAST_KEY: "Knight's",
     EXPLOSIVE_ORB_KEY: 'Explosive Orb',
@@ -102,15 +105,15 @@ def destructive_blast_profile(plan):
     rows = plan.get('contributions', [])
     keys = [row.get('catalog_key') for row in rows]
     if any(row.get('alternative') for row in rows) or len(keys) != len(set(keys)): return None
-    if any(row.get('catalog_key') in {EXPLOSIVE_ORB_KEY, BLAST_SALVO_KEY, SCULPT_BLAST_KEY}
+    if any(row.get('catalog_key') in {EXPLOSIVE_ORB_KEY, BLAST_SALVO_KEY, SCULPT_BLAST_KEY, ENERGY_SPHERE_KEY}
            and row.get('effect_choice') not in talent_effect_choices(row['catalog_key'])
            for row in rows): return None
     if GRANDMASTER_KEY in keys:
         if KNIGHTS_BLAST_KEY not in keys: return None
         keys.remove(GRANDMASTER_KEY)
-    shapes = [key for key in keys if key in DESTRUCTION_INSTANT_SHAPES]
+    shapes = [key for key in keys if key in DESTRUCTION_BLAST_SHAPES]
     if len(shapes) > 1: return None
-    keys = [key for key in keys if key not in DESTRUCTION_INSTANT_SHAPES]
+    keys = [key for key in keys if key not in DESTRUCTION_BLAST_SHAPES]
     if not keys: return ('Bludgeoning destructive blast', 'bludgeoning', 6, 0)
     return DESTRUCTION_BLAST_TYPES.get(keys[0]) if len(keys) == 1 else None
 
@@ -131,6 +134,16 @@ def talent_effect_choices(key):
 
 def base_powers(sphere):
     return tuple(power for power in BASE_POWERS if power.sphere.casefold() == sphere.casefold())
+
+
+def effective_base_duration(plan):
+    """Duration before construction adjustments, including reviewed effect modes."""
+    power = next((power for power in BASE_POWERS if power.key == plan.get('base_power')), None)
+    if power is None: return 'instantaneous'
+    if power.key == 'destruction:blast' and destructive_blast_profile(plan):
+        sphere = next((row for row in plan.get('contributions', []) if row.get('catalog_key') == ENERGY_SPHERE_KEY), None)
+        if sphere: return 'concentration' if sphere['effect_choice'] == 'concentration' else 'round'
+    return power.duration
 
 
 def item_dice_metamagic(plan):
@@ -285,7 +298,7 @@ def resolve_base_power(plan):
     range_index = RANGES.index(power.range) + plan['range_steps']
     if not 0 <= range_index < len(RANGES):
         raise ValueError('Range adjustment exceeds the published range ladder.')
-    duration = power.duration
+    duration = effective_base_duration(plan)
     if duration in DURATIONS:
         duration_index = DURATIONS.index(duration) + plan['duration_steps']
         if not 0 <= duration_index < len(DURATIONS):
@@ -410,11 +423,16 @@ def resolve_base_power(plan):
             summary['damage_die_size'] = sides
             summary['damage'] = f'{summary["damage_dice"]}d{sides} {damage_type}'
             shape = next((row['catalog_key'] for row in plan.get('contributions', [])
-                          if row.get('catalog_key') in DESTRUCTION_INSTANT_SHAPES), None)
+                          if row.get('catalog_key') in DESTRUCTION_BLAST_SHAPES), None)
             if shape:
-                summary['power'] = DESTRUCTION_INSTANT_SHAPES[shape] + ' ' + name
+                summary['power'] = DESTRUCTION_BLAST_SHAPES[shape] + ' ' + name
             if shape == GUIDED_STRIKE_KEY:
                 summary['attack_circumstance_bonus'] = 20
+            elif shape == ENERGY_SPHERE_KEY:
+                summary['area'] = 'One 5-foot square'
+                summary['fly_speed'] = f'{20 + 5 * (cl // 2)} ft. (perfect)'
+                summary['saving_throw'] = 'Reflex negates'
+                summary['movement'] = 'Move action to direct; must remain within blast range. Targeting, concentration and expiration are manual.'
             elif shape == EXPLOSIVE_ORB_KEY:
                 choice = next(row['effect_choice'] for row in plan['contributions'] if row.get('catalog_key') == shape)
                 summary['area'] = 'One 5-foot square' if choice == 'single square' else f'Burst radius up to {10 + 5 * (cl // 5)} ft.'

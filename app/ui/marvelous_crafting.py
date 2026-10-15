@@ -334,6 +334,8 @@ class MarvelousCraftingDialog(QDialog):
             self.table.item(row, 0).setData(Qt.ItemDataRole.UserRole + 1, contribution.get('effect_spheres', []))
             self.table.cellWidget(row, 2).setChecked(contribution.get('alternative', False))
             self.table.cellWidget(row, 3).setValue(contribution.get('alternative_group', 1))
+        self.refresh_duration_controls()
+        self.duration_steps.setValue(plan['duration_steps'])
 
     def change_item_caster_level(self, value):
         if not self.loading_plan:
@@ -411,11 +413,7 @@ class MarvelousCraftingDialog(QDialog):
         power = next((p for p in powers if p.key == self.base_power.currentData()), None)
         if power:
             self.range_steps.setRange(-RANGES.index(power.range), len(RANGES) - RANGES.index(power.range) - 1)
-            self.duration_steps.setEnabled(power.duration in DURATIONS)
-            if power.duration in DURATIONS:
-                index = DURATIONS.index(power.duration)
-                self.duration_steps.setRange(-index, len(DURATIONS) - index - 1)
-            else: self.duration_steps.setRange(0, 0)
+            self.refresh_duration_controls()
         if self.base_power.currentData() == 'warp:beacon' and not self.loading_plan:
             from PySide6.QtCore import Qt
             beacon = 'warp:space-talent:teleport-beacon-space'
@@ -424,6 +422,17 @@ class MarvelousCraftingDialog(QDialog):
                 if index >= 0:
                     self.talent.setCurrentIndex(index); self.add_contribution()
         self.update_preview()
+
+    def refresh_duration_controls(self):
+        from app.marvelous_base_powers import effective_base_duration
+        duration = effective_base_duration(self.blueprint())
+        self.duration_steps.blockSignals(True)
+        self.duration_steps.setEnabled(duration in DURATIONS)
+        if duration in DURATIONS:
+            index = DURATIONS.index(duration)
+            self.duration_steps.setRange(-index, len(DURATIONS) - index - 1)
+        else: self.duration_steps.setRange(0, 0)
+        self.duration_steps.blockSignals(False)
 
     def choose_drawbacks(self):
         from app.ui.marvelous_effect_picker import MarvelousEffectPicker
@@ -735,6 +744,7 @@ class MarvelousCraftingDialog(QDialog):
 
     def update_preview(self, *_):
         if self.loading_plan: return
+        self.refresh_duration_controls()
         selected_drawback = self.drawbacks_list.currentRow()
         self.drawbacks_list.clear()
         for record in self.drawbacks:

@@ -529,6 +529,29 @@ def test_salvo_mode_adds_one_sp_and_live_surges_without_multiplying_dice(compose
     assert 'Maximum Surges: 5' in text and 'Damage: 6d6 bludgeoning' in text
 
 
+def test_energy_sphere_duration_mode_price_and_saved_adjustment_stay_in_sync(composer):
+    from app.marvelous_base_powers import ENERGY_SPHERE_KEY
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(10)
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == ENERGY_SPHERE_KEY))
+    dialog.add_contribution()
+    choice = dialog.table.cellWidget(0, 5)
+    choice.setCurrentIndex(choice.findData('concentration'))
+    assert not dialog.duration_steps.isEnabled() and dialog.quotation()[0] == 2
+    assert 'Duration Concentration' in dialog.item_preview.toPlainText()
+    choice.setCurrentIndex(choice.findData('rounds per caster level'))
+    assert dialog.duration_steps.isEnabled() and dialog.quotation()[0] == 3
+    assert 'Duration 10 rounds' in dialog.item_preview.toPlainText()
+    dialog.duration_steps.setValue(1)
+    assert dialog.quotation()[0] == 5 and 'Duration 10 minutes' in dialog.item_preview.toPlainText()
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.duration_steps.value() == 1 and dialog.blueprint()['duration_steps'] == 1
+    assert 'Duration 10 minutes' in dialog.item_preview.toPlainText()
+    choice = dialog.table.cellWidget(0, 5)
+    choice.setCurrentIndex(choice.findData('concentration'))
+    assert dialog.duration_steps.value() == 0 and dialog.quotation()[0] == 2
+
+
 def test_chain_blast_preview_tracks_item_caster_level(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Destruction'); dialog.cl.setValue(6)
