@@ -36,6 +36,14 @@ def test_all_bundled_light_lenses_have_reviewed_zero_extra_sp():
     assert all(talent_construction_spell_points(entry, reviewed_only=True) == 0 for entry in entries)
 
 
+def test_every_bundled_light_talent_has_explicit_sp_metadata():
+    from app.content import DEFAULT_CATALOG
+    from app.marvelous_item_rules import talent_construction_spell_points
+    entries = [entry for entry in DEFAULT_CATALOG.magic_entries('Light') if 'Talent' in entry['category']]
+    assert entries
+    assert not [entry['key'] for entry in entries if talent_construction_spell_points(entry, reviewed_only=True) is None]
+
+
 LIGHT_ADVANCED_REQUIREMENTS = {
     'daylight-light': (10, ()), 'diffuse-body': (7, ('light:talent:flicker-light',)),
     'everglow': (1, ('light:talent:lingering-glow',)),

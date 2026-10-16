@@ -981,6 +981,8 @@ def test_temporal_haste_adds_required_talent_and_sp_to_live_price(composer):
 
 
 @pytest.mark.parametrize('key, first_mode, second_mode, cost', [
+    ('light:talent:doubled-nimbus', 'increase casting time one step', 'spend SP instead of increasing casting time', 1),
+    ('light:talent:flash', 'choose application timing once per round', 'swift-action additional application', 1),
     ('light:talent:beacon-of-hope-light', 'target fear-save bonus', 'fear recovery bright area', 1),
     ('light:talent:blinding-light-light', 'dazzle glowing target', 'blinding bright area', 1),
     ('light:talent:disorienting-patterns-light', 'difficult terrain', 'prone-inducing patterns', 1),

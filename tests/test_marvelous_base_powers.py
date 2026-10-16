@@ -399,6 +399,19 @@ def test_lens_unresolved_modifiers_and_multiple_payloads_do_not_invent_statistic
     assert 'do not substitute' in effect['casting_modifier_review']
 
 
+@pytest.mark.parametrize('suffix,mode,field,phrase', [
+    ('doubled-nimbus', 'increase casting time one step', 'activation_review', 'not silently rewritten'),
+    ('doubled-nimbus', 'spend SP instead of increasing casting time', 'nimbus_timing', 'does not increase casting time'),
+    ('flash', 'choose application timing once per round', 'light_application_timing', 'only once per round'),
+    ('flash', 'swift-action additional application', 'light_application_timing', 'no area or creature'),
+])
+def test_light_timing_modes_are_explicit_without_changing_item_activation(suffix, mode, field, phrase):
+    item = plan('light:glow', cl=10, activation='standard', contributions=[dict(
+        catalog_key='light:talent:' + suffix, effect_choice=mode)])
+    assert phrase in resolve_base_power(item)[field]
+    assert item['activation'] == 'standard'
+
+
 @pytest.mark.parametrize('kind,choice', [('physical', 'Strength + Dexterity'), ('mental', 'Wisdom + Charisma')])
 def test_paired_ability_projection_requires_fixed_dual_enhancement(kind, choice):
     rows = [dict(catalog_key=f'enhancement:enhance-talent:{kind}-enhancement-enhance', effect_choice=choice)]

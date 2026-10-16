@@ -102,6 +102,8 @@ LIGHT_LENSES = {
     'light:lens-talent:rose-tinted-lens-jester-s-hb': 'Rose-Tinted',
 }
 TALENT_EFFECT_SP_CHOICES = {
+    'light:talent:doubled-nimbus': {'increase casting time one step': 0, 'spend SP instead of increasing casting time': 1},
+    'light:talent:flash': {'choose application timing once per round': 0, 'swift-action additional application': 1},
     'light:talent:beacon-of-hope-light': {'target fear-save bonus': 0, 'fear recovery bright area': 1},
     'light:talent:blinding-light-light': {'dazzle glowing target': 0, 'blinding bright area': 1},
     'light:talent:disorienting-patterns-light': {'difficult terrain': 0, 'prone-inducing patterns': 1},
@@ -653,6 +655,19 @@ def resolve_base_power(plan):
         else:
             summary['power'] = 'Modified light — manual resolution'
             summary['light_resolution'] = 'Resolve the selected Light effects, area and talent interactions from their rules; the base bright-light area is not assumed.'
+        for row in rows:
+            if row.get('alternative'): continue
+            key, choice = row.get('catalog_key'), row.get('effect_choice')
+            if key == 'light:talent:doubled-nimbus':
+                if choice == 'increase casting time one step':
+                    summary['activation_review'] = 'Increase the glow casting time by one step; verify the item activation manually. The chosen activation is not silently rewritten.'
+                elif choice == 'spend SP instead of increasing casting time':
+                    summary['nimbus_timing'] = 'The paid option does not increase casting time. Overlapping nimbus areas do not apply effects twice.'
+            elif key == 'light:talent:flash':
+                if choice == 'choose application timing once per round':
+                    summary['light_application_timing'] = 'Choose the application point during your turn as a free action, still only once per round.'
+                elif choice == 'swift-action additional application':
+                    summary['light_application_timing'] = 'One additional application as a swift action; no area or creature can be affected more than once per round. Resolve timing manually.'
     if power.key == 'enhancement:enhance':
         rows = plan.get('contributions', [])
         keys = [row.get('catalog_key') for row in rows]
