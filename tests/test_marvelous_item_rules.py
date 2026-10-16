@@ -16,12 +16,13 @@ LIGHT_ADVANCED_REQUIREMENTS = {
 }
 
 
-def test_every_bundled_advanced_light_talent_has_explicit_requirements():
+def test_every_bundled_advanced_light_talent_has_explicit_requirements_and_costs():
     from app.content import DEFAULT_CATALOG
-    from app.marvelous_item_rules import ADVANCED_CONSTRUCTION_REQUIREMENTS
+    from app.marvelous_item_rules import ADVANCED_CONSTRUCTION_REQUIREMENTS, talent_construction_spell_points
     entries = [entry for entry in DEFAULT_CATALOG.magic_entries('Light') if entry['category'] == 'Advanced Talent']
     assert {entry['key'] for entry in entries} == {'light:advanced-talent:' + key for key in LIGHT_ADVANCED_REQUIREMENTS}
     assert all(entry['key'] in ADVANCED_CONSTRUCTION_REQUIREMENTS for entry in entries)
+    assert all(talent_construction_spell_points(entry, reviewed_only=True) is not None for entry in entries)
 
 
 @pytest.mark.parametrize('suffix,requirement', LIGHT_ADVANCED_REQUIREMENTS.items())
@@ -34,17 +35,32 @@ def test_light_advanced_construction_requires_integrated_dependencies_and_level(
     rows = [dict(catalog_key=key)]
     assert set(missing_construction_prerequisites(rows)) == set(required)
     rows.extend(dict(catalog_key=child) for child in missing_construction_prerequisites(rows))
+    if suffix == 'radiation-light': rows[-1]['effect_choice'] = 'nauseating bright light'
     assert not missing_construction_prerequisites(rows)
     assert not advanced_construction_blockers(rows, minimum)
     assert advanced_construction_blockers(rows, minimum - 1)
 
 
 @pytest.mark.parametrize('suffix,points', [('daylight-light',2), ('diffuse-body',0), ('everglow',1),
-    ('incarnate-glow',2), ('light-speed',0), ('prismatic-radiance-light',3)])
+    ('incarnate-glow',2), ('light-speed',0), ('prismatic-radiance-light',3), ('radiation-light',1)])
 def test_reviewed_advanced_light_costs_do_not_duplicate_prerequisite_sp(suffix, points):
     from app.content import magic_entry
     from app.marvelous_item_rules import talent_construction_spell_points
     assert talent_construction_spell_points(magic_entry('light:advanced-talent:' + suffix), reviewed_only=True) == points
+
+
+def test_radiation_requires_paid_irradiance_mode_not_possession_or_optional_row():
+    from app.marvelous_item_rules import missing_required_construction_modes, advanced_construction_blockers
+    parent, child = 'light:advanced-talent:radiation-light', 'light:talent:irradiance-light'
+    rows = [dict(catalog_key=parent), dict(catalog_key=child, effect_choice='sicken glowing target')]
+    assert missing_required_construction_modes(rows) == ((parent, child, 'nauseating bright light'),)
+    assert advanced_construction_blockers(rows, 10)
+    rows[1]['effect_choice'] = 'nauseating bright light'
+    assert not missing_required_construction_modes(rows)
+    assert not advanced_construction_blockers(rows, 10)
+    rows[1]['alternative'] = True
+    assert missing_required_construction_modes(rows)
+    assert advanced_construction_blockers(rows, 10)
 
 
 @pytest.mark.parametrize('suffix,expected', [

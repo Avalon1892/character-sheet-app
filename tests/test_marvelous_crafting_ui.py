@@ -981,6 +981,7 @@ def test_temporal_haste_adds_required_talent_and_sp_to_live_price(composer):
 
 
 @pytest.mark.parametrize('key, first_mode, second_mode, cost', [
+    ('light:talent:irradiance-light', 'sicken glowing target', 'nauseating bright light', 1),
     ('light:advanced-talent:star-genesis', 'expanded radius', 'expanded radius with central daylight', 2),
     ('enhancement:enhance-talent:energize-body-enhance', 'suppress fatigue / reduce exhaustion', 'suppress exhaustion', 1),
     ('enhancement:enhance-talent:ragged-edges-enhance', 'half caster level bleed', 'caster level bleed', 1),
@@ -1162,6 +1163,66 @@ def test_light_speed_inserts_transitive_prerequisites_and_reopens_without_duplic
     dialog.load_plan(saved)
     assert dialog.blueprint() == saved and dialog.table.rowCount() == 3
     assert repo._connection.total_changes == writes
+
+
+def test_radiation_inserts_paid_irradiance_mode_and_prices_two_total_sp(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Light'); dialog.cl.setValue(10)
+    key = 'light:advanced-talent:radiation-light'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution(); assert dialog.add_required_contributions()
+    rows = dialog.blueprint()['contributions']
+    assert len(rows) == 2 and sum(row['additional_spell_points'] for row in rows) == 2
+    assert rows[1]['effect_choice'] == 'nauseating bright light'
+    assert dialog.quotation()[0] == 6
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint() == saved
+    assert dialog.add_required_contributions() and dialog.table.rowCount() == 2
+    assert repo._connection.total_changes == writes
+
+
+def test_required_irradiance_mode_change_can_cancel_without_mutating_draft(composer, monkeypatch):
+    from PySide6.QtWidgets import QMessageBox
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Light'); dialog.cl.setValue(10)
+    for key in ('light:advanced-talent:radiation-light', 'light:talent:irradiance-light'):
+        dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+        dialog.add_contribution()
+    picker = dialog.table.cellWidget(1, 5); picker.setCurrentIndex(picker.findData('sicken glowing target'))
+    dialog.table.cellWidget(1, 1).setValue(5); dialog.table.cellWidget(1, 4).setValue(3)
+    original = dialog.blueprint(); writes = repo._connection.total_changes
+    monkeypatch.setattr(QMessageBox, 'question', lambda *args: QMessageBox.StandardButton.No)
+    assert not dialog.add_required_contributions()
+    assert dialog.blueprint() == original and repo._connection.total_changes == writes
+    monkeypatch.setattr(QMessageBox, 'question', lambda *args: QMessageBox.StandardButton.Yes)
+    assert dialog.add_required_contributions()
+    assert picker.currentData() == 'nauseating bright light'
+    assert dialog.table.cellWidget(1, 1).value() == 5
+    assert dialog.table.cellWidget(1, 4).value() == 1
+    saved = dialog.blueprint()
+    saved['contributions'][1]['effect_choice'] = 'sicken glowing target'
+    dialog.load_plan(saved)
+    assert dialog.blueprint()['contributions'] == saved['contributions']
+    assert repo._connection.total_changes == writes
+
+
+def test_cancel_mode_after_accepting_optional_promotion_is_still_atomic(composer, monkeypatch):
+    from PySide6.QtWidgets import QMessageBox
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Light'); dialog.cl.setValue(10)
+    for key in ('light:advanced-talent:radiation-light', 'light:talent:irradiance-light'):
+        dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+        dialog.add_contribution()
+    choice = dialog.table.cellWidget(1, 5); choice.setCurrentIndex(choice.findData('sicken glowing target'))
+    dialog.table.cellWidget(1, 2).setChecked(True)
+    original = dialog.blueprint(); writes = repo._connection.total_changes
+    replies = iter([QMessageBox.StandardButton.Yes, QMessageBox.StandardButton.No])
+    monkeypatch.setattr(QMessageBox, 'question', lambda *args: next(replies))
+    assert not dialog.add_required_contributions()
+    assert dialog.blueprint() == original
+    assert repo._connection.total_changes == writes
+    assert list(replies) == []
 
 
 def test_cancel_alternative_energy_promotion_preserves_choice_and_manual_cost(composer, monkeypatch):

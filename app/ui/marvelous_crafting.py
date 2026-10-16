@@ -706,7 +706,8 @@ class MarvelousCraftingDialog(QDialog):
             self.feat_integrations = dialog.records(); self.update_preview()
 
     def add_required_contributions(self):
-        from app.marvelous_item_rules import missing_construction_prerequisites, missing_construction_alternatives
+        from app.marvelous_item_rules import (missing_construction_prerequisites,
+            missing_construction_alternatives, missing_required_construction_modes, talent_choice_spell_points)
         from PySide6.QtWidgets import QInputDialog
         catalog = {self.talent.itemData(i)['key']: (i, self.talent.itemData(i)['name']) for i in range(self.talent.count())}
         pending = list(self.blueprint()['contributions']); additions = []
@@ -739,6 +740,16 @@ class MarvelousCraftingDialog(QDialog):
                 'These prerequisites are currently optional alternatives:\n' + '\n'.join(catalog[key][1] for key in promotions)
                 + '\n\nMake them fixed contributions so they are applied with the advanced effect? Pricing will update; existing SP and custom cost values are preserved.') != QMessageBox.StandardButton.Yes:
             return False
+        mode_changes = missing_required_construction_modes(pending)
+        existing_changes = [(key, mode) for _, key, mode in mode_changes
+            if any(row['catalog_key'] == key and row.get('effect_choice', '') != mode
+                   for row in self.blueprint()['contributions'])]
+        if existing_changes and QMessageBox.question(self, 'Apply required effect modes',
+                'These existing prerequisites need a different mode:\n' + '\n'.join(
+                    f'{catalog[key][1]}: {mode} ({talent_choice_spell_points(key, mode)} additional SP)'
+                    for key, mode in existing_changes)
+                + '\n\nApply these modes and their SP defaults? Custom base complexity is preserved; pricing will update. No changes have been applied yet.') != QMessageBox.StandardButton.Yes:
+            return False
         selected = self.talent.currentIndex()
         was_loading = self.loading_plan
         self.loading_plan = True
@@ -748,6 +759,15 @@ class MarvelousCraftingDialog(QDialog):
                     self.table.cellWidget(existing[key].pop(0), 2).setChecked(False)
                 else:
                     self.talent.setCurrentIndex(catalog[key][0]); self.add_contribution()
+            for _, key, mode in mode_changes:
+                for row in range(self.table.rowCount()):
+                    if self.table.item(row, 0).data(Qt.ItemDataRole.UserRole) != key or self.table.cellWidget(row, 2).isChecked(): continue
+                    choice = self.table.cellWidget(row, 5)
+                    if choice.currentData() != mode:
+                        choice.setCurrentIndex(choice.findData(mode))
+                        points = talent_choice_spell_points(key, mode)
+                        if points is not None: self.table.cellWidget(row, 4).setValue(points)
+                    break
         finally:
             self.talent.setCurrentIndex(selected)
             self.loading_plan = was_loading

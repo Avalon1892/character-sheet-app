@@ -195,6 +195,7 @@ def test_light_advanced_dependencies_are_enforced_by_shared_construction_service
     key = 'light:advanced-talent:' + suffix
     rows = [dict(catalog_key=key)]
     rows.extend(dict(catalog_key=child) for child in missing_construction_prerequisites(rows))
+    if suffix == 'radiation-light': rows[-1]['effect_choice'] = 'nauseating bright light'
     if suffix == 'star-genesis': rows[0]['effect_choice'] = 'expanded radius'
     access = dict(sphere_levels={'Light': 20}, available_talents=[service.magic_entries_by_key[row['catalog_key']]['name'] for row in rows])
     item = dict(sphere='Light', base_power='light:glow', caster_level=minimum,

@@ -361,6 +361,17 @@ def mode_construction_prerequisites(contribution):
     return ()
 
 
+def missing_required_construction_modes(contributions):
+    """Reviewed prerequisite modes that must be integrated, not merely owned."""
+    requirements = {
+        'light:advanced-talent:radiation-light': ('light:talent:irradiance-light', 'nauseating bright light'),
+    }
+    return tuple((owner, child, mode) for owner, (child, mode) in requirements.items()
+        if any(row['catalog_key'] == owner for row in contributions)
+        and not any(row['catalog_key'] == child and row.get('effect_choice') == mode
+                    and not row.get('alternative') for row in contributions))
+
+
 def missing_construction_prerequisites(contributions):
     """Reviewed transitive additions in deterministic dependency order."""
     owned = {row['catalog_key'] for row in contributions}
@@ -385,6 +396,8 @@ def advanced_construction_blockers(contributions, caster_level, *, display_names
     applied_counts = Counter(row['catalog_key'] for row in contributions if not row.get('alternative'))
     blockers = []
     names = display_names or {}
+    blockers.extend(f'{names.get(owner, owner)}: prerequisite {names.get(child, child)} must use {mode}.'
+                    for owner, child, mode in missing_required_construction_modes(contributions))
     for owner, required in sorted({(row['catalog_key'], key) for row in contributions for key in mode_construction_prerequisites(row)}):
         if not applied_counts[required]:
             blockers.append(f'{names.get(owner, owner)}: selected mode requires fixed prerequisite talent {names.get(required, required)}.')
@@ -488,6 +501,8 @@ def talent_construction_spell_points(entry, *, reviewed_only=False):
         'light:advanced-talent:everglow': 1,
         'light:advanced-talent:incarnate-glow': 2,
         'light:advanced-talent:prismatic-radiance-light': 3,
+        # Irradiance's paid nausea mode contributes the other one SP.
+        'light:advanced-talent:radiation-light': 1,
         **{f'light:{suffix}': 0 for suffix in (
             'advanced-talent:diffuse-body', 'advanced-talent:light-speed',
             'talent:flicker-light', 'talent:lingering-glow', 'talent:searing-light-light',
