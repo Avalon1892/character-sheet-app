@@ -140,6 +140,26 @@ def test_weather_nature_package_requirements_cannot_be_waived(crafter, suffix, p
     assert 'protected_requirements' not in access
 
 
+@pytest.mark.parametrize('owner,sphere,foreign', [
+    ('enhancement:advanced-talent:antimagic-aegis', 'Protection', 'protection:aegis-ward-talent:spell-ward-aegis-ward'),
+    ('enhancement:advanced-talent:heart-of-hope-and-fear-sm', 'Fate', 'fate:advanced-talent:hold-on-hope-word-sm'),
+])
+def test_enhancement_cross_sphere_prerequisites_need_integrated_talent_and_access(crafter, owner, sphere, foreign):
+    from app.marvelous_item_rules import missing_construction_prerequisites
+    repo, cid = crafter
+    service = CraftingService(repo, cid)
+    keys = [owner, *missing_construction_prerequisites([dict(catalog_key=owner)])]
+    plan = dict(sphere='Enhancement', base_power='enhancement:enhance', caster_level=20,
+        range_steps=0, duration_steps=0, contributions=[dict(catalog_key=k) for k in keys])
+    access = dict(sphere_levels={'Enhancement': 20},
+        available_talents=[service.magic_entries_by_key[k]['name'] for k in keys])
+    assert not service.marvelous_plan_requirements(plan, access=access).eligible
+    access['sphere_levels'][sphere] = 1
+    assert service.marvelous_plan_requirements(plan, access=access).eligible
+    plan['contributions'] = [r for r in plan['contributions'] if r['catalog_key'] != foreign]
+    assert not service.marvelous_plan_requirements(plan, access=access).eligible
+
+
 def test_complex_training_uses_current_effective_ranks(crafter, monkeypatch):
     repo, cid = crafter
     plan = dict(sphere='Life', base_power='life:cure', caster_level=5, range_steps=0,

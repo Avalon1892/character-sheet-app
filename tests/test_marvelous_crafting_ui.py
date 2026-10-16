@@ -1682,6 +1682,8 @@ def test_restore_mode_is_explicit_saved_and_cleared_for_other_powers(composer):
     ('Weather', 'weather:advanced-talent:radiotherapy-mantle-radiation-cata-hb'),
     ('Weather', 'weather:advanced-talent:fire-tornadoes'),
     ('Weather', 'weather:advanced-talent:volcano-lord'),
+    ('Enhancement', 'enhancement:advanced-talent:antimagic-aegis'),
+    ('Enhancement', 'enhancement:advanced-talent:heart-of-hope-and-fear-sm'),
     ('Life', 'life:advanced-talent:soul-consumption-dbh'),
     ('Protection', 'protection:advanced-talent:antimagic-aura'),
     ('Protection', 'protection:advanced-talent:tripped-glyph-3pp'),

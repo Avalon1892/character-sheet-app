@@ -216,6 +216,19 @@ ADVANCED_CONSTRUCTION_REQUIREMENTS = {
     'warp:advanced-talent:portal-network-dbh': (15, ('warp:advanced-talent:enduring-portal',
         'warp:talent:mass-teleport-mass', 'warp:advanced-talent:portal', 'warp:space-talent:teleport-beacon-space',
         'warp:talent:unwilling-teleport', 'warp:space-talent:wormhole-space')),
+    'enhancement:advanced-talent:alternative-energy-jester-s-hb': (5, ('enhancement:enhance-talent:energy-enhancement-enhance',)),
+    'enhancement:advanced-talent:antimagic-aegis': (1, ('enhancement:enhance-talent:magic-sink-enhance', 'protection:aegis-ward-talent:spell-ward-aegis-ward')),
+    'enhancement:advanced-talent:ascetic-control': (5, ()),
+    'enhancement:advanced-talent:bestow-life': (10, ('enhancement:enhance-talent:animate-object-enhance', 'enhancement:enhance-talent:bestow-intelligence-enhance')),
+    'enhancement:advanced-talent:critical-climax-3pp': (5, ('enhancement:enhance-talent:deadly-weapon-enhance',)),
+    'enhancement:advanced-talent:give-magic-life': (10, ('enhancement:enhance-talent:bestow-intelligence-enhance',)),
+    'enhancement:advanced-talent:heart-of-hope-and-fear-sm': (0, ('enhancement:advanced-talent:normalize-enhance-sm', 'fate:advanced-talent:hold-on-hope-word-sm')),
+    'fate:advanced-talent:hold-on-hope-word-sm': (0, ()),
+    'enhancement:advanced-talent:inherent-enhancement-enhance-archmagi-s-hb': (17, ('enhancement:talent:deep-enhancement', 'enhancement:enhance-talent:mental-enhancement-enhance', 'enhancement:enhance-talent:physical-enhancement-enhance')),
+    'enhancement:advanced-talent:normalize-enhance-sm': (0, ()),
+    'enhancement:advanced-talent:referential-enhancements': (15, ('enhancement:talent:deep-enhancement', 'enhancement:talent:mass-enhancement-mass')),
+    'enhancement:advanced-talent:reverse-gravity-enhance': (15, ('enhancement:enhance-talent:lighten-enhance',)),
+    'enhancement:advanced-talent:vicious-accuracy-enhance-3pp': (5, ('enhancement:enhance-talent:deadly-weapon-enhance',)),
     'weather:advanced-talent:boiling-lord': (5, ()),
     'weather:advanced-talent:cacophonic-clap': (10, ('weather:talent:storm-lord',)),
     'weather:advanced-talent:climate': (10, ('weather:talent:greater-size-range',)),
@@ -258,6 +271,8 @@ ADVANCED_CONSTRUCTION_REQUIREMENTS = {
 }
 
 CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS = {
+    'enhancement:advanced-talent:antimagic-aegis': (('Protection', 'protection:aegis-ward-talent:spell-ward-aegis-ward'),),
+    'enhancement:advanced-talent:heart-of-hope-and-fear-sm': (('Fate', 'fate:advanced-talent:hold-on-hope-word-sm'),),
     'weather:advanced-talent:fire-tornadoes': (('Nature', None),),
     'weather:advanced-talent:volcano-lord': (('Nature', None),),
     **{f'weather:advanced-talent:{suffix}': (('Destruction', None),)
