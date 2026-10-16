@@ -5,6 +5,64 @@ from app.marvelous_item_rules import effect_complexity, marvelous_crafting_quote
 from app.marvelous_item_rules import marvelous_requirements
 
 
+TELEKINESIS_ADVANCED_REQUIREMENTS = {
+    'affix': (10, ('telekinesis:advanced-talent:effortless-telekinesis', 'telekinesis:talent:idle-concentration')),
+    'astral-affixation': (15, ('telekinesis:advanced-talent:affix', 'telekinesis:advanced-talent:effortless-telekinesis', 'telekinesis:talent:idle-concentration')),
+    'brutalizing-bludgeon-lg': (5, ('telekinesis:talent:telekinetic-maneuver',)),
+    'choking-grasp': (15, ('telekinesis:talent:telekinetic-crush',)),
+    'disperse-force': (10, ('telekinesis:talent:quick-reactions', 'telekinesis:talent:telekinetic-push')),
+    'effortless-telekinesis': (10, ()),
+    'focused-power': (5, ('telekinesis:talent:powerful-telekinesis',)),
+    'gravity-manipulation': (15, ('telekinesis:talent:gravity-shift',)),
+    'linear-acceleration': (10, ('telekinesis:talent:acceleration', 'telekinesis:talent:greater-speed')),
+    'puppet': (10, ('telekinesis:talent:finesse-utility', 'telekinesis:talent:telekinetic-maneuver')),
+}
+
+
+def test_every_bundled_advanced_telekinesis_talent_has_explicit_dependencies():
+    from app.content import DEFAULT_CATALOG
+    entries = [entry for entry in DEFAULT_CATALOG.magic_entries('Telekinesis') if entry['category'] == 'Advanced Talent']
+    assert {entry['key'] for entry in entries} == {'telekinesis:advanced-talent:' + suffix for suffix in TELEKINESIS_ADVANCED_REQUIREMENTS}
+
+
+@pytest.mark.parametrize('suffix,requirement', TELEKINESIS_ADVANCED_REQUIREMENTS.items())
+def test_telekinesis_advanced_dependencies_are_integrated_once_and_level_gated(suffix, requirement):
+    from app.marvelous_item_rules import (ADVANCED_CONSTRUCTION_REQUIREMENTS,
+        missing_construction_prerequisites, advanced_construction_blockers)
+    key = 'telekinesis:advanced-talent:' + suffix
+    minimum, required = requirement
+    assert ADVANCED_CONSTRUCTION_REQUIREMENTS[key] == requirement
+    rows = [dict(catalog_key=key)]
+    missing = missing_construction_prerequisites(rows)
+    assert len(missing) == len(set(missing))
+    assert set(required) <= set(missing)
+    rows.extend(dict(catalog_key=child) for child in missing)
+    assert not missing_construction_prerequisites(rows)
+    assert not advanced_construction_blockers(rows, minimum)
+    assert advanced_construction_blockers(rows, minimum - 1)
+
+
+@pytest.mark.parametrize('suffix,points', [('affix',2), ('astral-affixation',1), ('choking-grasp',2),
+    ('disperse-force',1), ('linear-acceleration',2), ('puppet',1), ('brutalizing-bludgeon-lg',0),
+    ('effortless-telekinesis',0), ('focused-power',1)])
+def test_reviewed_telekinesis_advanced_sp_defaults(suffix, points):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_construction_spell_points
+    assert talent_construction_spell_points(magic_entry('telekinesis:advanced-talent:' + suffix), reviewed_only=True) == points
+
+
+@pytest.mark.parametrize('suffix,total', [('affix',2), ('astral-affixation',3), ('disperse-force',2),
+    ('linear-acceleration',2), ('puppet',1), ('choking-grasp',2)])
+def test_telekinesis_integrated_default_sp_totals_do_not_duplicate_dependencies(suffix, total):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import missing_construction_prerequisites, talent_construction_spell_points
+    key = 'telekinesis:advanced-talent:' + suffix
+    keys = [key, *missing_construction_prerequisites([dict(catalog_key=key)])]
+    points = [talent_construction_spell_points(magic_entry(child), reviewed_only=True) for child in keys]
+    assert None not in points
+    assert sum(points) == total
+
+
 def test_light_lens_conversion_is_paid_once_and_formula_matches_quote():
     from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_complexity_formula
     item = dict(schema_version=1, sphere='Light', base_power='light:lens', caster_level=5,

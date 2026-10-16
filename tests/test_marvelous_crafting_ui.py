@@ -981,6 +981,9 @@ def test_temporal_haste_adds_required_talent_and_sp_to_live_price(composer):
 
 
 @pytest.mark.parametrize('key, first_mode, second_mode, cost', [
+    ('telekinesis:advanced-talent:focused-power', 'one additional size category', 'two additional size categories', 2),
+    ('telekinesis:talent:telekinetic-push', 'aid movement or deflect', 'direct push on hostile target', 1),
+    ('telekinesis:talent:gravity-shift', 'concentration', 'Sustained Force', 1),
     ('light:talent:doubled-nimbus', 'increase casting time one step', 'spend SP instead of increasing casting time', 1),
     ('light:talent:flash', 'choose application timing once per round', 'swift-action additional application', 1),
     ('light:talent:beacon-of-hope-light', 'target fear-save bonus', 'fear recovery bright area', 1),
@@ -1300,6 +1303,24 @@ def test_add_lens_effect_switches_base_prices_once_and_reopens(composer, monkeyp
         assert reopened.quotation()[0] == 2 and reopened.table.rowCount() == 1
     finally:
         reopened.close()
+
+
+def test_astral_affixation_inserts_nested_talents_prices_three_total_sp_and_restores(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Telekinesis'); dialog.cl.setValue(15)
+    key = 'telekinesis:advanced-talent:astral-affixation'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    dialog.add_contribution(); assert dialog.add_required_contributions()
+    rows = dialog.blueprint()['contributions']
+    assert {row['catalog_key'] for row in rows} == {key, 'telekinesis:advanced-talent:affix',
+        'telekinesis:advanced-talent:effortless-telekinesis', 'telekinesis:talent:idle-concentration'}
+    assert len(rows) == 4 and sum(row['additional_spell_points'] for row in rows) == 3
+    assert dialog.quotation()[0] == 11
+    assert dialog.quotation()[1].market_price_gp == 66000
+    saved = dialog.blueprint(); writes = repo._connection.total_changes
+    dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and dialog.table.rowCount() == 4
+    assert repo._connection.total_changes == writes
 
 
 def test_cancel_alternative_energy_promotion_preserves_choice_and_manual_cost(composer, monkeypatch):

@@ -412,6 +412,14 @@ def test_light_timing_modes_are_explicit_without_changing_item_activation(suffix
     assert item['activation'] == 'standard'
 
 
+def test_telekinesis_metadata_does_not_claim_unimplemented_effect_or_concentration_rules():
+    effect = resolve_base_power(plan('telekinesis:force', cl=15, contributions=[dict(
+        catalog_key='telekinesis:advanced-talent:focused-power', effect_choice='one additional size category')]))
+    assert 'manual resolution' in effect['power']
+    assert 'cannot use Sustained Force' in effect['concentration_review']
+    assert 'final duration' in effect['telekinesis_review']
+
+
 @pytest.mark.parametrize('kind,choice', [('physical', 'Strength + Dexterity'), ('mental', 'Wisdom + Charisma')])
 def test_paired_ability_projection_requires_fixed_dual_enhancement(kind, choice):
     rows = [dict(catalog_key=f'enhancement:enhance-talent:{kind}-enhancement-enhance', effect_choice=choice)]

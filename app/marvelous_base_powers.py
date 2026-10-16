@@ -102,6 +102,9 @@ LIGHT_LENSES = {
     'light:lens-talent:rose-tinted-lens-jester-s-hb': 'Rose-Tinted',
 }
 TALENT_EFFECT_SP_CHOICES = {
+    'telekinesis:advanced-talent:focused-power': {'one additional size category': 1, 'two additional size categories': 2},
+    'telekinesis:talent:telekinetic-push': {'aid movement or deflect': 0, 'direct push on hostile target': 1},
+    'telekinesis:talent:gravity-shift': {'concentration': 0, 'Sustained Force': 1},
     'light:talent:doubled-nimbus': {'increase casting time one step': 0, 'spend SP instead of increasing casting time': 1},
     'light:talent:flash': {'choose application timing once per round': 0, 'swift-action additional application': 1},
     'light:talent:beacon-of-hope-light': {'target fear-save bonus': 0, 'fear recovery bright area': 1},
@@ -581,6 +584,11 @@ def resolve_base_power(plan):
                     summary['technology_check'] = 'Stops technological abilities and charge use without a check; constructs/cyborgs with SR still require a check against their SR.'
             if 'protection:aegis-ward-talent:spell-ward-aegis-ward' in keys:
                 summary['power'] = 'Combined magical/technological protection — manual resolution'
+    if power.key == 'telekinesis:force' and plan.get('contributions'):
+        summary['power'] = 'Modified telekinesis — manual resolution'
+        summary['telekinesis_review'] = 'Resolve the selected talents, targeting, concentration and final duration from their rules; the item base duration alone does not verify these interactions.'
+        if any(row.get('catalog_key') == 'telekinesis:advanced-talent:focused-power' for row in plan['contributions']):
+            summary['concentration_review'] = 'Focused Power cannot use Sustained Force. Its concentration/base-effect conversion needs rules review before construction.'
     if power.key == 'light:lens':
         rows = plan.get('contributions', [])
         lenses = [row for row in rows if row.get('catalog_key') in LIGHT_LENSES]
