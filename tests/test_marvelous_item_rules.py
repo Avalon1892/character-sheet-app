@@ -93,6 +93,18 @@ def test_greater_invigorate_optional_sp_cost():
     assert talent_choice_spell_points(key, 'exceed normal HP limit') == 1
 
 
+@pytest.mark.parametrize('suffix,mode,cost', [
+    ('avert-space', 'readied standard action', 0), ('avert-space', 'immediate action', 1),
+    ('avert-space', 'immediate action during total defense', 0),
+    ('blink-space', 'concentration', 0), ('blink-space', 'minutes per caster level', 1),
+    ('create-gap-space', 'concentration', 1), ('create-gap-space', 'minutes per caster level', 2),
+    ('distort-size-space', 'concentration', 0), ('distort-size-space', 'minutes per caster level', 1),
+])
+def test_reviewed_space_mode_spell_point_costs(suffix, mode, cost):
+    from app.marvelous_item_rules import talent_choice_spell_points
+    assert talent_choice_spell_points('warp:space-talent:' + suffix, mode) == cost
+
+
 @pytest.mark.parametrize('suffix', ['causality-time', 'delay-pain-time', 'eject-time', 'fast-time-time',
     'lethargy-time', 'repetition-time', 'retroactive-preparation', 'second-chance', 'temporal-trap', 'time-bubble-time'])
 def test_reviewed_time_one_spell_point_construction_costs(suffix):

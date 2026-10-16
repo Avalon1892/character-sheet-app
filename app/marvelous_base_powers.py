@@ -86,6 +86,10 @@ SCULPT_BLAST_KEY = 'destruction:blast-shape-talent:sculpt-blast-blast-shape'
 ENERGY_SPHERE_KEY = 'destruction:blast-shape-talent:energy-sphere-blast-shape'
 ENERGY_WALL_KEY = 'destruction:blast-shape-talent:energy-wall-blast-shape'
 TALENT_EFFECT_SP_CHOICES = {
+    'warp:space-talent:avert-space': {'readied standard action': 0, 'immediate action': 1, 'immediate action during total defense': 0},
+    'warp:space-talent:blink-space': {'concentration': 0, 'minutes per caster level': 1},
+    'warp:space-talent:create-gap-space': {'concentration': 1, 'minutes per caster level': 2},
+    'warp:space-talent:distort-size-space': {'concentration': 0, 'minutes per caster level': 1},
     'life:talent:greater-invigorate': {'normal HP limit': 0, 'exceed normal HP limit': 1},
     'time:talent:delay-pain-time': {'delay until next turn': 1, 'split damage across two turns': 2},
     'time:talent:time-bubble-time': {'time bubble only': 1, 'include Haste or Slow': 2},

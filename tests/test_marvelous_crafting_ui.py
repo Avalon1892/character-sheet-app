@@ -985,10 +985,15 @@ def test_temporal_haste_adds_required_talent_and_sp_to_live_price(composer):
     ('time:advanced-talent:past-sight-utility', 'view hours', 'view days', 2),
     ('time:talent:delay-pain-time', 'delay until next turn', 'split damage across two turns', 2),
     ('time:talent:time-bubble-time', 'time bubble only', 'include Haste or Slow', 2),
+    ('warp:space-talent:avert-space', 'readied standard action', 'immediate action', 1),
+    ('warp:space-talent:blink-space', 'concentration', 'minutes per caster level', 1),
+    ('warp:space-talent:create-gap-space', 'concentration', 'minutes per caster level', 2),
+    ('warp:space-talent:distort-size-space', 'concentration', 'minutes per caster level', 1),
 ])
-def test_time_mode_updates_price_and_preserves_saved_manual_cost(composer, key, first_mode, second_mode, cost):
+def test_effect_mode_updates_price_and_preserves_saved_manual_cost(composer, key, first_mode, second_mode, cost):
+    from app.content import magic_entry
     dialog, repo, cid = composer
-    dialog.sphere.setCurrentText('Time'); dialog.cl.setValue(10)
+    dialog.sphere.setCurrentText(magic_entry(key)['sphere']); dialog.cl.setValue(10)
     dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
     dialog.add_contribution()
     choice = dialog.table.cellWidget(0, 5)
