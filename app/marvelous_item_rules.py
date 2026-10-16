@@ -503,6 +503,16 @@ def talent_construction_spell_points(entry, *, reviewed_only=False):
         'light:advanced-talent:prismatic-radiance-light': 3,
         # Irradiance's paid nausea mode contributes the other one SP.
         'light:advanced-talent:radiation-light': 1,
+        **{f'light:talent:{suffix}': 1 for suffix in (
+            'area-glow', 'bound-light-light', 'dual-light', 'encompassing-light-light',
+            'hypnotic-pattern-light', 'instill-glow-instill', 'mass-lens-mass',
+            'precious-light', 'repelling-light-light', 'revealing-light-light', 'visual-overload-light')},
+        **{f'light:talent:{suffix}': 0 for suffix in (
+            'bend-radiance', 'black-light', 'dancing-lights', 'fenestrate-light', 'flare',
+            'glory', 'guiding-light-light', 'inner-sun-light', 'light-link', 'lure-light-light',
+            'ranged-light-range', 'revelation-light', 'shining-arsenal-light', 'solar-strike-strike',
+            'sunstroke-light')},
+        **{f'light:nimbus-talent:{suffix}': 0 for suffix in ('beam-nimbus', 'trail-nimbus', 'weird-radiance-nimbus')},
         **{f'light:{suffix}': 0 for suffix in (
             'advanced-talent:diffuse-body', 'advanced-talent:light-speed',
             'talent:flicker-light', 'talent:lingering-glow', 'talent:searing-light-light',

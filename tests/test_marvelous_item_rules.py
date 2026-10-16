@@ -63,6 +63,39 @@ def test_radiation_requires_paid_irradiance_mode_not_possession_or_optional_row(
     assert advanced_construction_blockers(rows, 10)
 
 
+@pytest.mark.parametrize('key,points', [
+    *((f'light:talent:{suffix}', 1) for suffix in ('area-glow', 'bound-light-light', 'dual-light',
+        'encompassing-light-light', 'hypnotic-pattern-light', 'instill-glow-instill', 'mass-lens-mass',
+        'precious-light', 'repelling-light-light', 'revealing-light-light', 'visual-overload-light')),
+    *((f'light:talent:{suffix}', 0) for suffix in ('bend-radiance', 'black-light', 'dancing-lights',
+        'fenestrate-light', 'flare', 'glory', 'guiding-light-light', 'inner-sun-light', 'light-link',
+        'lure-light-light', 'ranged-light-range', 'revelation-light', 'shining-arsenal-light',
+        'solar-strike-strike', 'sunstroke-light')),
+    *((f'light:nimbus-talent:{suffix}', 0) for suffix in ('beam-nimbus', 'trail-nimbus', 'weird-radiance-nimbus')),
+])
+def test_reviewed_ordinary_light_sp_costs_use_real_catalog_entries(key, points):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_construction_spell_points
+    entry = magic_entry(key)
+    assert entry is not None
+    assert talent_construction_spell_points(entry, reviewed_only=True) == points
+
+
+@pytest.mark.parametrize('suffix,free,paid', [
+    ('beacon-of-hope-light', 'target fear-save bonus', 'fear recovery bright area'),
+    ('blinding-light-light', 'dazzle glowing target', 'blinding bright area'),
+    ('disorienting-patterns-light', 'difficult terrain', 'prone-inducing patterns'),
+    ('purifying-light-light-crimdan', 'targeted purification', 'purification bright area'),
+])
+def test_light_optional_paid_modes_do_not_make_target_only_effects_cost_one_sp(suffix, free, paid):
+    from app.marvelous_base_powers import talent_effect_choices
+    from app.marvelous_item_rules import talent_choice_spell_points
+    key = 'light:talent:' + suffix
+    assert talent_effect_choices(key) == (free, paid)
+    assert talent_choice_spell_points(key, free) == 0
+    assert talent_choice_spell_points(key, paid) == 1
+
+
 @pytest.mark.parametrize('suffix,expected', [
     ('enhance-talent:steal-capacity-enhance', 1), ('enhance-talent:steal-senses-enhance', 1),
     ('enhance-talent:alter-movement-enhance', 0), ('enhance-talent:cripple-enhance', 0),

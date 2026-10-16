@@ -91,6 +91,10 @@ ENERGY_WALL_KEY = 'destruction:blast-shape-talent:energy-wall-blast-shape'
 ENERGY_ENHANCEMENT_KEY = 'enhancement:enhance-talent:energy-enhancement-enhance'
 ALTERNATIVE_ENERGY_KEY = 'enhancement:advanced-talent:alternative-energy-jester-s-hb'
 TALENT_EFFECT_SP_CHOICES = {
+    'light:talent:beacon-of-hope-light': {'target fear-save bonus': 0, 'fear recovery bright area': 1},
+    'light:talent:blinding-light-light': {'dazzle glowing target': 0, 'blinding bright area': 1},
+    'light:talent:disorienting-patterns-light': {'difficult terrain': 0, 'prone-inducing patterns': 1},
+    'light:talent:purifying-light-light-crimdan': {'targeted purification': 0, 'purification bright area': 1},
     'light:talent:irradiance-light': {'sicken glowing target': 0, 'nauseating bright light': 1},
     'light:advanced-talent:star-genesis': {'expanded radius': 1, 'expanded radius with central daylight': 2},
     'enhancement:enhance-talent:energize-body-enhance': {'suppress fatigue / reduce exhaustion': 0, 'suppress exhaustion': 1},

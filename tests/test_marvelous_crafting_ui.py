@@ -981,6 +981,10 @@ def test_temporal_haste_adds_required_talent_and_sp_to_live_price(composer):
 
 
 @pytest.mark.parametrize('key, first_mode, second_mode, cost', [
+    ('light:talent:beacon-of-hope-light', 'target fear-save bonus', 'fear recovery bright area', 1),
+    ('light:talent:blinding-light-light', 'dazzle glowing target', 'blinding bright area', 1),
+    ('light:talent:disorienting-patterns-light', 'difficult terrain', 'prone-inducing patterns', 1),
+    ('light:talent:purifying-light-light-crimdan', 'targeted purification', 'purification bright area', 1),
     ('light:talent:irradiance-light', 'sicken glowing target', 'nauseating bright light', 1),
     ('light:advanced-talent:star-genesis', 'expanded radius', 'expanded radius with central daylight', 2),
     ('enhancement:enhance-talent:energize-body-enhance', 'suppress fatigue / reduce exhaustion', 'suppress exhaustion', 1),
