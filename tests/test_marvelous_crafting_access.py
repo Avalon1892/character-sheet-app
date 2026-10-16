@@ -90,6 +90,26 @@ def test_soul_consumption_requires_integrated_death_talent_and_base_access(craft
     assert not service.marvelous_plan_requirements(plan, access=access).eligible
 
 
+@pytest.mark.parametrize('suffix', ['radiation-lord-cata-hb', 'biohazard-cata-hb',
+    'contaminated-blows-mantle-radiation-cata-hb', 'contamination-lord-cata-hb',
+    'interference-cloud-shroud-radiation-cata-hb', 'melt-skin-shroud-radiation-cata-hb',
+    'radiotherapy-mantle-radiation-cata-hb'])
+def test_radiation_weather_construction_requires_destruction_base(crafter, suffix):
+    from app.marvelous_item_rules import missing_construction_prerequisites
+    repo, cid = crafter
+    service = CraftingService(repo, cid)
+    owner = 'weather:advanced-talent:' + suffix
+    keys = [owner, *missing_construction_prerequisites([dict(catalog_key=owner)])]
+    plan = dict(sphere='Weather', base_power='weather:control', caster_level=10,
+                range_steps=0, duration_steps=0, contributions=[dict(catalog_key=key) for key in keys])
+    access = dict(sphere_levels={'Weather': 10},
+        available_talents=[service.magic_entries_by_key[key]['name'] for key in keys])
+    result = service.marvelous_plan_requirements(plan, access=access)
+    assert not result.eligible and any('Destruction base sphere' in line for line in result.blockers)
+    access['sphere_levels']['Destruction'] = 1
+    assert service.marvelous_plan_requirements(plan, access=access).eligible
+
+
 def test_complex_training_uses_current_effective_ranks(crafter, monkeypatch):
     repo, cid = crafter
     plan = dict(sphere='Life', base_power='life:cure', caster_level=5, range_steps=0,

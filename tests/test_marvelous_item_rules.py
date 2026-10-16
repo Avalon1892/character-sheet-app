@@ -248,6 +248,19 @@ def test_weather_construction_sp_defaults_and_modes_are_catalog_backed():
     assert talent_choice_spell_points('weather:talent:greater-weather', 'three weather categories') == 2
 
 
+def test_weather_advanced_metadata_covers_every_non_nature_package_entry():
+    from app.catalogs import DEFAULT_CATALOG
+    from app.marvelous_item_rules import ADVANCED_CONSTRUCTION_REQUIREMENTS, missing_construction_prerequisites, advanced_construction_blockers
+    deferred = {'weather:advanced-talent:fire-tornadoes', 'weather:advanced-talent:volcano-lord'}
+    entries = {e['key'] for e in DEFAULT_CATALOG.magic_entries('Weather') if 'advanced' in e['category'].lower()} - deferred
+    assert len(entries) == 19
+    for key in entries:
+        minimum, _ = ADVANCED_CONSTRUCTION_REQUIREMENTS[key]
+        rows = [dict(catalog_key=k) for k in [key, *missing_construction_prerequisites([dict(catalog_key=key)])]]
+        assert not advanced_construction_blockers(rows, max(20, minimum))
+        assert advanced_construction_blockers(rows, minimum - 1)
+
+
 @pytest.mark.parametrize('talent', ['stability-bottleneck-sm', 'voiding-suppression-3pp'])
 @pytest.mark.parametrize('selectivity', ['spell-selectivity-dbh', 'spell-selectivity-arcforge-addendum-lg'])
 def test_protection_filter_upgrades_accept_either_selectivity_and_require_ward(talent, selectivity):

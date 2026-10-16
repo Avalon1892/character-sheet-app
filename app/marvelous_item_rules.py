@@ -216,6 +216,23 @@ ADVANCED_CONSTRUCTION_REQUIREMENTS = {
     'warp:advanced-talent:portal-network-dbh': (15, ('warp:advanced-talent:enduring-portal',
         'warp:talent:mass-teleport-mass', 'warp:advanced-talent:portal', 'warp:space-talent:teleport-beacon-space',
         'warp:talent:unwilling-teleport', 'warp:space-talent:wormhole-space')),
+    'weather:advanced-talent:boiling-lord': (5, ()),
+    'weather:advanced-talent:cacophonic-clap': (10, ('weather:talent:storm-lord',)),
+    'weather:advanced-talent:climate': (10, ('weather:talent:greater-size-range',)),
+    'weather:advanced-talent:climatic-shift': (15, ('weather:talent:lengthened-weather',)),
+    'weather:advanced-talent:cold-lord': (1, ()),
+    'weather:advanced-talent:desert-lord': (1, ()),
+    'weather:advanced-talent:heat-lord': (1, ()),
+    'weather:advanced-talent:rain-lord': (1, ()),
+    'weather:advanced-talent:wind-lord': (1, ()),
+    'weather:advanced-talent:dehydration-pulse': (5, ('weather:advanced-talent:desert-lord',)),
+    'weather:advanced-talent:rain-bomb': (1, ('weather:advanced-talent:rain-lord',)),
+    'weather:advanced-talent:tornado-lord': (10, ('weather:advanced-talent:wind-lord',)),
+    'weather:advanced-talent:radiation-lord-cata-hb': (10, ()),
+    **{f'weather:advanced-talent:{suffix}': (10, ('weather:advanced-talent:radiation-lord-cata-hb',))
+       for suffix in ('biohazard-cata-hb', 'contaminated-blows-mantle-radiation-cata-hb',
+          'contamination-lord-cata-hb', 'interference-cloud-shroud-radiation-cata-hb',
+          'melt-skin-shroud-radiation-cata-hb', 'radiotherapy-mantle-radiation-cata-hb')},
     'life:advanced-talent:feline-good-catgirl-hb': (5, ('life:talent:lingering-resilience',)),
     'life:advanced-talent:soul-consumption-dbh': (5, ('life:talent:revitalize', 'death:advanced-talent:create-soul-gem-dbh')),
     'death:advanced-talent:create-soul-gem-dbh': (5, ()),
@@ -239,6 +256,11 @@ ADVANCED_CONSTRUCTION_REQUIREMENTS = {
 }
 
 CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS = {
+    **{f'weather:advanced-talent:{suffix}': (('Destruction', None),)
+       for suffix in ('radiation-lord-cata-hb', 'biohazard-cata-hb',
+          'contaminated-blows-mantle-radiation-cata-hb', 'contamination-lord-cata-hb',
+          'interference-cloud-shroud-radiation-cata-hb', 'melt-skin-shroud-radiation-cata-hb',
+          'radiotherapy-mantle-radiation-cata-hb')},
     'life:advanced-talent:soul-consumption-dbh': (('Death', 'death:advanced-talent:create-soul-gem-dbh'),),
     'warp:advanced-talent:time-warp-jester-s-hb': (('Time', None),),
     'warp:advanced-talent:create-demiplane-utility': (('Creation', 'creation:material-talent:expanded-materials-material'),),
