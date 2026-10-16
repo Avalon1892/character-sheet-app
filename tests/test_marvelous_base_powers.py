@@ -86,6 +86,22 @@ def test_space_geometry_modes_scale_without_teleport_or_automatic_application(ke
         resolve_base_power(item)
     row['additional_spell_points'] += 1
     assert resolve_base_power(item)['duration'] == '8 minutes'
+
+
+def test_climate_projects_area_and_casting_requirement_without_guessing_range_interactions():
+    rows = [dict(catalog_key='weather:advanced-talent:climate'),
+            dict(catalog_key='weather:talent:greater-size-range')]
+    item = plan('weather:control', cl=10, contributions=rows)
+    effect = resolve_base_power(item)
+    assert effect['area_radius'] == '2 miles'
+    assert '20 minutes' in effect['casting_requirement']
+    assert 'does not control' in effect['tornadoes']
+    item['effect_range_steps'] = 1
+    effect = resolve_base_power(item)
+    assert 'manual resolution' in effect['power'] and 'casting_requirement' not in effect
+    item['effect_range_steps'] = 0
+    rows[0]['alternative'] = True
+    assert 'manual resolution' in resolve_base_power(item)['power']
     with pytest.raises(ValueError, match='talent contribution'):
         resolve_base_power(plan('warp:dimension-pierce', contributions=[]))
     with pytest.raises(ValueError, match='one-SP'):

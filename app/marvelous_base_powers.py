@@ -631,7 +631,12 @@ def resolve_base_power(plan):
         keys = [row.get('catalog_key') for row in rows]
         greater = 'weather:talent:greater-weather'
         severe = 'weather:talent:severe-weather'
-        supported = not any(row.get('alternative') for row in rows) and len(keys) == len(set(keys)) and set(keys) <= {greater, severe}
+        climate = 'weather:advanced-talent:climate'
+        supported_keys = {greater, severe}
+        if climate in keys: supported_keys |= {climate, 'weather:talent:greater-size-range'}
+        supported = (not any(row.get('alternative') for row in rows) and len(keys) == len(set(keys))
+                     and set(keys) <= supported_keys
+                     and not (climate in keys and (effect_steps or 'weather:talent:greater-size-range' not in keys)))
         choice = next((row.get('effect_choice', '') for row in rows if row.get('catalog_key') == greater), '')
         if not supported or (greater in keys and not choice):
             summary['power'] = 'Modified weather effect — manual resolution'
@@ -642,6 +647,10 @@ def resolve_base_power(plan):
             summary['weather_categories'] = count
             summary['weather_resolution'] = 'Choose categories and severity changes independently; apply weather consequences manually.'
             if severe in keys: summary['severity_adjustment'] = 'One additional severity level, maximum severity 7.'
+            if climate in keys:
+                summary['area_radius'] = '2 miles'
+                summary['casting_requirement'] = '20 minutes of focused casting before weather changes begin to manifest; resolve this requirement manually, without a timer.'
+                summary['tornadoes'] = 'Severity-7 winds can create tornadoes; Climate alone does not control their paths.'
     if power.key in {'blood:construct', 'death:reanimate'}: summary['maximum_hit_dice'] = cl
     if power.key == 'dark:darkness': summary['radius'] = f'{10 + 5 * (cl // 2)} ft.'
     if power.key == 'alteration:shapeshift': summary['traits'] = 1 + cl // 5

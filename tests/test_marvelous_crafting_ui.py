@@ -1052,6 +1052,26 @@ def test_space_effect_picker_selects_derived_power_and_updates_duration(composer
     assert dialog.duration_steps.isEnabled()
 
 
+def test_climate_add_effects_projects_area_and_required_talent(composer, monkeypatch):
+    from app.ui.marvelous_effect_picker import MarvelousEffectPicker
+    from app.content import magic_entry
+    from PySide6.QtWidgets import QDialog
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Weather'); dialog.cl.setValue(10)
+    entry = magic_entry('weather:advanced-talent:climate')
+    monkeypatch.setattr(dialog.service, 'accessible_marvelous_effects', lambda sphere: (entry,))
+    def accept(picker):
+        picker.selected_entries = (entry,)
+        return QDialog.DialogCode.Accepted
+    monkeypatch.setattr(MarvelousEffectPicker, 'exec', accept)
+    dialog.choose_accessible_effects()
+    assert dialog.table.rowCount() == 2
+    assert '2 miles' in dialog.item_preview.toPlainText() and '20 minutes' in dialog.item_preview.toPlainText()
+    assert dialog.quotation()[1].market_price_gp == 20000
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and '2 miles' in dialog.item_preview.toPlainText()
+
+
 def test_greater_invigorate_optional_cost_updates_and_reopens(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Life'); dialog.cl.setValue(10)
