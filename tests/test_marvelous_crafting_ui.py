@@ -1247,6 +1247,29 @@ def test_cancel_mode_after_accepting_optional_promotion_is_still_atomic(composer
     assert list(replies) == []
 
 
+def test_mode_only_prerequisite_fix_is_available_from_visible_button(composer, monkeypatch):
+    from PySide6.QtWidgets import QMessageBox
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Light'); dialog.cl.setValue(10)
+    for key in ('light:advanced-talent:radiation-light', 'light:talent:irradiance-light'):
+        dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+        dialog.add_contribution()
+    picker = dialog.table.cellWidget(1, 5); picker.setCurrentIndex(picker.findData('sicken glowing target'))
+    original = dialog.blueprint(); writes = repo._connection.total_changes
+    assert dialog.add_prerequisites.isEnabled()
+    monkeypatch.setattr(QMessageBox, 'question', lambda *args: QMessageBox.StandardButton.No)
+    dialog.add_prerequisites.click()
+    assert dialog.blueprint() == original and dialog.add_prerequisites.isEnabled()
+    monkeypatch.setattr(QMessageBox, 'question', lambda *args: QMessageBox.StandardButton.Yes)
+    dialog.add_prerequisites.click()
+    assert picker.currentData() == 'nauseating bright light'
+    assert not dialog.add_prerequisites.isEnabled()
+    dialog.load_plan(original)
+    assert dialog.blueprint()['contributions'] == original['contributions']
+    assert dialog.add_prerequisites.isEnabled()
+    assert repo._connection.total_changes == writes
+
+
 def test_cancel_alternative_energy_promotion_preserves_choice_and_manual_cost(composer, monkeypatch):
     from PySide6.QtWidgets import QMessageBox
     from app.marvelous_base_powers import ENERGY_ENHANCEMENT_KEY, ALTERNATIVE_ENERGY_KEY
