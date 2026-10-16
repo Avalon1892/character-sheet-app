@@ -275,6 +275,51 @@ def test_flexibility_unlocks_only_earned_tiers_and_poison_does_not_invent_dc(cl)
     assert 'rather than increasing its DC' in effect['poison_target']
 
 
+@pytest.mark.parametrize('cl', [1,3,4,7,10,14])
+def test_weapon_enhancement_modes_preserve_dice_and_separate_benefits(cl):
+    for suffix,choice,field,expected in [
+        ('energy-enhancement-enhance', 'weapon: fire', 'additional_energy_damage', f'1d6+{cl // 2} fire'),
+        ('energy-enhancement-enhance', 'consumable: cold', 'additional_energy_damage', f'{cl} cold'),
+        ('deadly-weapon-enhance', 'keen and critical confirmation', 'critical_confirmation_bonus', cl // 3),
+        ('deadly-weapon-enhance', 'bypass DR: cold iron', 'bypassed_damage_reduction', 'cold iron'),
+        ('ravenous-weapon-enhance-sm', 'damage wielder on a miss', 'wielder_damage_on_miss', f'{1 + cl // 4}d6 untyped'),
+        ('traveling-weapon-enhance', 'ranged or throwing weapon: ignore cover', 'ignored_cover_ac_bonus', 2 + 2 * (cl // 7)),
+    ]:
+        row = dict(catalog_key='enhancement:enhance-talent:' + suffix, effect_choice=choice)
+        item = plan('enhancement:enhance', cl=cl, contributions=[row])
+        effect = resolve_base_power(item)
+        assert effect[field] == expected and 'equipment_enhancement_bonus' not in effect
+        row['effect_choice'] = ''
+        assert 'mode_review' in resolve_base_power(item)
+
+
+@pytest.mark.parametrize('energy,minimum', [('sonic',5), ('force',10)])
+def test_alternative_energy_projection_requires_fixed_talent_and_mode_level(energy, minimum):
+    from app.marvelous_base_powers import ENERGY_ENHANCEMENT_KEY, ALTERNATIVE_ENERGY_KEY
+    rows = [dict(catalog_key=ENERGY_ENHANCEMENT_KEY, effect_choice='weapon: ' + energy)]
+    item = plan('enhancement:enhance', cl=minimum, contributions=rows)
+    assert 'additional_energy_damage' not in resolve_base_power(item)
+    rows.append(dict(catalog_key=ALTERNATIVE_ENERGY_KEY))
+    assert resolve_base_power(item)['energy_type'] == energy
+    item['caster_level'] = minimum - 1
+    assert 'additional_energy_damage' not in resolve_base_power(item)
+    item['caster_level'] = minimum
+    rows[-1]['alternative'] = True
+    assert 'additional_energy_damage' not in resolve_base_power(item)
+
+
+def test_weapon_property_modes_do_not_gain_other_modes_benefits():
+    cases = [
+        ('traveling-weapon-enhance', 'non-throwing melee weapon: throwing and returning', 'weapon_properties', 'ignored_cover_ac_bonus'),
+        ('ravenous-weapon-enhance-sm', 'vicious weapon', 'weapon_property', 'wielder_damage_on_miss'),
+        ('deadly-weapon-enhance', 'bypass DR: silver', 'bypassed_damage_reduction', 'critical_confirmation_bonus'),
+    ]
+    for suffix,mode,present,absent in cases:
+        effect = resolve_base_power(plan('enhancement:enhance', cl=10, contributions=[dict(
+            catalog_key='enhancement:enhance-talent:' + suffix, effect_choice=mode)]))
+        assert present in effect and absent not in effect
+
+
 @pytest.mark.parametrize('kind,choice', [('physical', 'Strength + Dexterity'), ('mental', 'Wisdom + Charisma')])
 def test_paired_ability_projection_requires_fixed_dual_enhancement(kind, choice):
     rows = [dict(catalog_key=f'enhancement:enhance-talent:{kind}-enhancement-enhance', effect_choice=choice)]

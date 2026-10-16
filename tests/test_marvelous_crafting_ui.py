@@ -1128,6 +1128,43 @@ def test_selected_enhancement_modes_update_and_restore_without_writes(composer, 
     assert repo._connection.total_changes == before
 
 
+def test_alternative_energy_mode_inserts_prices_and_restores_prerequisite(composer):
+    from app.marvelous_base_powers import ENERGY_ENHANCEMENT_KEY, ALTERNATIVE_ENERGY_KEY
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Enhancement'); dialog.cl.setValue(10)
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == ENERGY_ENHANCEMENT_KEY))
+    dialog.add_contribution()
+    picker = dialog.table.cellWidget(0, 5); picker.setCurrentIndex(picker.findData('weapon: fire'))
+    initial = dialog.quotation()[0]; writes = repo._connection.total_changes
+    picker.setCurrentIndex(picker.findData('weapon: force'))
+    rows = dialog.blueprint()['contributions']
+    assert [row['catalog_key'] for row in rows].count(ALTERNATIVE_ENERGY_KEY) == 1
+    assert dialog.quotation()[0] == initial + 2
+    assert 'Additional Energy Damage: 1d6+5 force' in dialog.item_preview.toPlainText()
+    picker.setCurrentIndex(picker.findData('weapon: sonic'))
+    assert dialog.table.rowCount() == 2
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint() == saved
+    assert repo._connection.total_changes == writes
+
+
+def test_cancel_alternative_energy_promotion_preserves_choice_and_manual_cost(composer, monkeypatch):
+    from PySide6.QtWidgets import QMessageBox
+    from app.marvelous_base_powers import ENERGY_ENHANCEMENT_KEY, ALTERNATIVE_ENERGY_KEY
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Enhancement'); dialog.cl.setValue(10)
+    for key in (ENERGY_ENHANCEMENT_KEY, ALTERNATIVE_ENERGY_KEY):
+        dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+        dialog.add_contribution()
+    picker = dialog.table.cellWidget(0, 5); picker.setCurrentIndex(picker.findData('weapon: fire'))
+    dialog.table.cellWidget(0, 4).setValue(3); dialog.table.cellWidget(1, 2).setChecked(True)
+    before = dialog.blueprint(); writes = repo._connection.total_changes
+    monkeypatch.setattr(QMessageBox, 'question', lambda *args: QMessageBox.StandardButton.No)
+    picker.setCurrentIndex(picker.findData('weapon: force'))
+    assert dialog.blueprint() == before
+    assert repo._connection.total_changes == writes
+
+
 def test_cancel_dual_promotion_restores_previous_ability_choice(composer, monkeypatch):
     from PySide6.QtWidgets import QMessageBox
     dialog, repo, cid = composer

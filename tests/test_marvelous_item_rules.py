@@ -24,6 +24,22 @@ def test_reviewed_enhancement_additional_spell_point_defaults(suffix, expected):
     assert talent_construction_spell_points(entry, reviewed_only=True) == expected
 
 
+@pytest.mark.parametrize('energy,minimum', [('sonic',5), ('force',10)])
+def test_energy_mode_requires_alternative_energy_once_and_exact_level(energy, minimum):
+    from app.marvelous_base_powers import ENERGY_ENHANCEMENT_KEY, ALTERNATIVE_ENERGY_KEY
+    from app.marvelous_item_rules import missing_construction_prerequisites, advanced_construction_blockers
+    rows = [dict(catalog_key=ENERGY_ENHANCEMENT_KEY, effect_choice='weapon: ' + energy)]
+    assert missing_construction_prerequisites(rows) == (ALTERNATIVE_ENERGY_KEY,)
+    assert advanced_construction_blockers(rows, minimum)
+    rows.append(dict(catalog_key=ALTERNATIVE_ENERGY_KEY))
+    assert not missing_construction_prerequisites(rows)
+    assert not advanced_construction_blockers(rows, minimum)
+    assert advanced_construction_blockers(rows, minimum - 1)
+    rows[-1]['alternative'] = True
+    assert missing_construction_prerequisites(rows) == (ALTERNATIVE_ENERGY_KEY,)
+    assert advanced_construction_blockers(rows, minimum)
+
+
 @pytest.mark.parametrize('kind,choice', [
     ('physical', 'Strength + Dexterity'), ('physical', 'Strength + Constitution'),
     ('physical', 'Dexterity + Constitution'), ('mental', 'Intelligence + Wisdom'),

@@ -88,6 +88,8 @@ BLAST_SALVO_KEY = 'destruction:blast-shape-talent:blast-salvo-blast-shape-bap'
 SCULPT_BLAST_KEY = 'destruction:blast-shape-talent:sculpt-blast-blast-shape'
 ENERGY_SPHERE_KEY = 'destruction:blast-shape-talent:energy-sphere-blast-shape'
 ENERGY_WALL_KEY = 'destruction:blast-shape-talent:energy-wall-blast-shape'
+ENERGY_ENHANCEMENT_KEY = 'enhancement:enhance-talent:energy-enhancement-enhance'
+ALTERNATIVE_ENERGY_KEY = 'enhancement:advanced-talent:alternative-energy-jester-s-hb'
 TALENT_EFFECT_SP_CHOICES = {
     'enhancement:enhance-talent:energize-body-enhance': {'suppress fatigue / reduce exhaustion': 0, 'suppress exhaustion': 1},
     'enhancement:enhance-talent:ragged-edges-enhance': {'half caster level bleed': 0, 'caster level bleed': 1},
@@ -116,6 +118,7 @@ TALENT_EFFECT_SP_CHOICES = {
     'destruction:advanced-talent:detonating-salvo-lg': {'5-foot radius explosions': 1, 'expanded explosions': 2},
 }
 TALENT_EFFECT_MINIMUM_CL = {
+    ENERGY_ENHANCEMENT_KEY: {'weapon: sonic': 5, 'weapon: force': 10},
     'time:advanced-talent:past-sight-utility': {'view hours': 5, 'view days': 8, 'view years': 16},
 }
 DESTRUCTION_BLAST_SHAPES = {
@@ -176,6 +179,16 @@ def talent_effect_choices(key):
         return ('Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma')
     if key == 'enhancement:enhance-talent:harden-weaken-enhance':
         return ('increase hardness', 'decrease hardness', 'grant DR/adamantine', 'decrease bypassable DR')
+    if key == ENERGY_ENHANCEMENT_KEY:
+        return tuple('weapon: ' + energy for energy in ('acid', 'cold', 'electricity', 'fire', 'sonic', 'force')) + tuple(
+            'consumable: ' + energy for energy in ('acid', 'cold', 'electricity', 'fire'))
+    if key == 'enhancement:enhance-talent:deadly-weapon-enhance':
+        return ('keen and critical confirmation', 'bypass DR: bludgeoning', 'bypass DR: cold iron',
+                'bypass DR: piercing', 'bypass DR: silver', 'bypass DR: slashing')
+    if key == 'enhancement:enhance-talent:ravenous-weapon-enhance-sm':
+        return ('vicious weapon', 'damage wielder on a miss')
+    if key == 'enhancement:enhance-talent:traveling-weapon-enhance':
+        return ('non-throwing melee weapon: throwing and returning', 'ranged or throwing weapon: ignore cover')
     if key == 'protection:aegis-ward-talent:armored-magic-aegis':
         return ('armor', 'shield')
     if key == 'protection:advanced-talent:spell-selectivity-dbh':
@@ -555,6 +568,10 @@ def resolve_base_power(plan):
         greater = 'enhancement:talent:greater-enhance-equipment'
         mass = 'enhancement:talent:mass-enhancement-mass'
         mode_powers = {
+            ENERGY_ENHANCEMENT_KEY: 'Energy Enhancement',
+            'enhancement:enhance-talent:deadly-weapon-enhance': 'Deadly Weapon',
+            'enhancement:enhance-talent:ravenous-weapon-enhance-sm': 'Ravenous Weapon',
+            'enhancement:enhance-talent:traveling-weapon-enhance': 'Traveling Weapon',
             'enhancement:enhance-talent:enhance-focus-enhance': 'Enhance Focus',
             'enhancement:enhance-talent:staunch-resistance-enhance': 'Staunch Resistance',
             'enhancement:enhance-talent:supply-vigor-enhance': 'Supply Vigor',
@@ -578,9 +595,14 @@ def resolve_base_power(plan):
                    ability['catalog_key'] if ability else selected['catalog_key'] if selected else greater}
         dual = 'enhancement:talent:dual-enhancement'
         if ability: allowed.add(dual)
+        if selected and selected['catalog_key'] == ENERGY_ENHANCEMENT_KEY: allowed.add(ALTERNATIVE_ENERGY_KEY)
         paired = bool(ability and ability.get('effect_choice') in ABILITY_ENHANCEMENT_CHOICES[ability['catalog_key']][3:])
+        advanced_energy = bool(selected and selected['catalog_key'] == ENERGY_ENHANCEMENT_KEY
+            and selected.get('effect_choice') in TALENT_EFFECT_MINIMUM_CL[ENERGY_ENHANCEMENT_KEY])
         supported = (len(keys) == len(set(keys)) and not any(row.get('alternative') for row in rows)
-                     and set(keys) <= allowed and not (paired and dual not in keys))
+                     and set(keys) <= allowed and not (paired and dual not in keys)
+                     and not (advanced_energy and (ALTERNATIVE_ENERGY_KEY not in keys or
+                         cl < TALENT_EFFECT_MINIMUM_CL[ENERGY_ENHANCEMENT_KEY][selected['effect_choice']])))
         if supported:
             if ability:
                 summary['power'] = 'Physical Enhancement' if 'physical-enhancement' in ability['catalog_key'] else 'Mental Enhancement'
@@ -596,6 +618,32 @@ def resolve_base_power(plan):
                 summary['power'] = mode_powers[key]
                 if talent_effect_choices(key) and choice not in talent_effect_choices(key):
                     summary['mode_review'] = 'Choose the effect mode before construction.'
+                elif summary['power'] == 'Energy Enhancement':
+                    target, energy = choice.split(': ', 1)
+                    summary['energy_type'] = energy
+                    if target == 'weapon':
+                        summary['additional_energy_damage'] = f'1d6+{cl // 2} {energy}'
+                        summary['energy_resolution'] = 'Equivalent elemental weapon property; apply to the enhanced weapon manually. Does not change its base damage.'
+                    else:
+                        summary['additional_energy_damage'] = f'{cl} {energy}'
+                        summary['energy_resolution'] = 'Consumable, splash weapon or poison: applies on consumption, direct/splash damage, or a poison hit even if its save succeeds. Resolve manually.'
+                elif summary['power'] == 'Deadly Weapon':
+                    if choice == 'keen and critical confirmation':
+                        summary['weapon_property'] = 'Keen, only if not already present; resolve threat-range stacking manually.'
+                        summary['critical_confirmation_bonus'] = cl // 3
+                    else:
+                        summary['bypassed_damage_reduction'] = choice.removeprefix('bypass DR: ')
+                    summary['weapon_resolution'] = 'Apply to the selected weapon manually; this does not add a permanent enchantment.'
+                elif summary['power'] == 'Ravenous Weapon':
+                    if choice == 'vicious weapon': summary['weapon_property'] = 'Vicious; resolve its normal damage to target and wielder manually.'
+                    else: summary['wielder_damage_on_miss'] = f'{1 + cl // 4}d6 untyped'
+                elif summary['power'] == 'Traveling Weapon':
+                    if choice == 'non-throwing melee weapon: throwing and returning':
+                        summary['weapon_properties'] = 'Throwing and returning; applies to a melee weapon that does not already have throwing.'
+                    else:
+                        summary['ignored_cover_ac_bonus'] = 2 + 2 * (cl // 7)
+                        summary['cover_limits'] = 'Only ranged/throwing weapons or ammunition; does not bypass total cover.'
+                    summary['weapon_resolution'] = 'Confirm the weapon category and apply manually.'
                 elif summary['power'] == 'Enhance Focus':
                     summary['skill'] = choice
                     summary['skill_enhancement_bonus'] = 5 + cl // 4

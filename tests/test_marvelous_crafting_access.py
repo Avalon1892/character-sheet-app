@@ -166,6 +166,9 @@ def test_enhancement_cross_sphere_prerequisites_need_integrated_talent_and_acces
     ('alter-movement-enhance', 'increase one movement speed'),
     ('enhance-focus-enhance', 'Perception'), ('staunch-resistance-enhance', 'Reflex'),
     ('supply-vigor-enhance', 'Dexterity'), ('harden-weaken-enhance', 'grant DR/adamantine'),
+    ('energy-enhancement-enhance', 'weapon: fire'), ('deadly-weapon-enhance', 'bypass DR: silver'),
+    ('ravenous-weapon-enhance-sm', 'damage wielder on a miss'),
+    ('traveling-weapon-enhance', 'ranged or throwing weapon: ignore cover'),
     ('spectral-enhancement-enhance-gravecaller-s-hb', 'empowered ghost touch armor'),
 ])
 def test_enhancement_requires_explicit_mode_before_construction(crafter, suffix, choice):

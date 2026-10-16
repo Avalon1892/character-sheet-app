@@ -344,10 +344,12 @@ def missing_construction_alternatives(contributions):
 
 def mode_construction_prerequisites(contribution):
     """Explicit reviewed mode requirements, not prerequisite prose parsing."""
-    from app.marvelous_base_powers import ABILITY_ENHANCEMENT_CHOICES
+    from app.marvelous_base_powers import ABILITY_ENHANCEMENT_CHOICES, ENERGY_ENHANCEMENT_KEY, ALTERNATIVE_ENERGY_KEY
     choices = ABILITY_ENHANCEMENT_CHOICES.get(contribution.get('catalog_key'), ())
     if contribution.get('effect_choice') in choices[3:]:
         return ('enhancement:talent:dual-enhancement',)
+    if contribution.get('catalog_key') == ENERGY_ENHANCEMENT_KEY and contribution.get('effect_choice') in {'weapon: sonic', 'weapon: force'}:
+        return (ALTERNATIVE_ENERGY_KEY,)
     return ()
 
 
