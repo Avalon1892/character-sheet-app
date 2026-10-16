@@ -632,7 +632,9 @@ def resolve_base_power(plan):
         greater = 'weather:talent:greater-weather'
         severe = 'weather:talent:severe-weather'
         climate = 'weather:advanced-talent:climate'
-        supported_keys = {greater, severe}
+        lords = {f'weather:advanced-talent:{talent}-lord': category for talent, category in (
+            ('cold', 'Cold'), ('heat', 'Heat'), ('desert', 'Aridity'), ('rain', 'Precipitation'), ('wind', 'Wind'))}
+        supported_keys = {greater, severe, *lords}
         if climate in keys: supported_keys |= {climate, 'weather:talent:greater-size-range'}
         supported = (not any(row.get('alternative') for row in rows) and len(keys) == len(set(keys))
                      and set(keys) <= supported_keys
@@ -646,6 +648,19 @@ def resolve_base_power(plan):
             summary['power'] = power.name if count == 1 else f'Change {count} weather categories'
             summary['weather_categories'] = count
             summary['weather_resolution'] = 'Choose categories and severity changes independently; apply weather consequences manually.'
+            limit = min(7, 3 + cl // 7) + (1 if severe in keys else 0)
+            summary['maximum_severity'] = min(7, limit)
+            if limit > 7: summary['excess_severity_bonus'] = limit - 7
+            for talent, category in lords.items():
+                if talent in keys:
+                    summary[category.lower() + '_severity_limit'] = min(7, limit + 1)
+                    if limit + 1 > 7: summary[category.lower() + '_excess_severity_bonus'] = limit - 6
+            if set(keys).intersection(lords):
+                summary['calm_eye'] = 'May leave a central area up to 80 feet in diameter unaffected by the matching lord’s weather category; place manually.'
+            if limit > 7 or (limit == 7 and set(keys).intersection(lords)):
+                summary['excess_severity'] = 'Severity stays at 7; each effective step above 7 adds +1 to associated weather numbers, DCs and penalties. Resolve those consequences manually.'
+            if 'weather:advanced-talent:wind-lord' in keys:
+                summary['wind_control'] = 'May turn wind up to 90 degrees and create updrafts, downdrafts or rotation. Detailed tornado-path control requires Tornado Lord.'
             if severe in keys: summary['severity_adjustment'] = 'One additional severity level, maximum severity 7.'
             if climate in keys:
                 summary['area_radius'] = '2 miles'

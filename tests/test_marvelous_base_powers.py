@@ -102,6 +102,26 @@ def test_climate_projects_area_and_casting_requirement_without_guessing_range_in
     item['effect_range_steps'] = 0
     rows[0]['alternative'] = True
     assert 'manual resolution' in resolve_base_power(item)['power']
+
+
+@pytest.mark.parametrize('cl,maximum', [(1,3), (6,3), (7,4), (14,5), (21,6), (28,7), (35,7)])
+def test_weather_item_maximum_severity_uses_caster_level(cl, maximum):
+    assert resolve_base_power(plan('weather:control', cl=cl))['maximum_severity'] == maximum
+
+
+def test_weather_lords_scale_category_limits_and_keep_severity_seven_cap():
+    rows = [dict(catalog_key='weather:talent:severe-weather'),
+            dict(catalog_key='weather:advanced-talent:cold-lord'),
+            dict(catalog_key='weather:advanced-talent:wind-lord')]
+    item = plan('weather:control', cl=7, contributions=rows)
+    effect = resolve_base_power(item)
+    assert effect['maximum_severity'] == 5 and effect['cold_severity_limit'] == 6
+    assert effect['wind_severity_limit'] == 6 and '90 degrees' in effect['wind_control']
+    item['caster_level'] = 28
+    effect = resolve_base_power(item)
+    assert effect['maximum_severity'] == 7 and effect['excess_severity_bonus'] == 1
+    assert effect['cold_severity_limit'] == 7 and effect['cold_excess_severity_bonus'] == 2
+    assert 'Severity stays at 7' in effect['excess_severity']
     with pytest.raises(ValueError, match='talent contribution'):
         resolve_base_power(plan('warp:dimension-pierce', contributions=[]))
     with pytest.raises(ValueError, match='one-SP'):

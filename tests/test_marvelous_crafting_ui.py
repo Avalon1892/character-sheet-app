@@ -1052,6 +1052,21 @@ def test_space_effect_picker_selects_derived_power_and_updates_duration(composer
     assert dialog.duration_steps.isEnabled()
 
 
+def test_weather_severity_numbers_update_live_with_item_level(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Weather'); dialog.cl.setValue(10)
+    for key in ('weather:talent:severe-weather', 'weather:advanced-talent:cold-lord'):
+        dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+        dialog.add_contribution()
+    text = dialog.item_preview.toPlainText()
+    assert 'Maximum Severity: 5' in text and 'Cold Severity Limit: 6' in text
+    dialog.cl.setValue(21)
+    text = dialog.item_preview.toPlainText()
+    assert 'Cold Severity Limit: 7' in text and 'Cold Excess Severity Bonus: 1' in text
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and 'Cold Excess Severity Bonus: 1' in dialog.item_preview.toPlainText()
+
+
 def test_climate_add_effects_projects_area_and_required_talent(composer, monkeypatch):
     from app.ui.marvelous_effect_picker import MarvelousEffectPicker
     from app.content import magic_entry
