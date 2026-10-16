@@ -165,6 +165,8 @@ def talent_effect_choices(key):
         return tuple(TALENT_EFFECT_SP_CHOICES[key])
     if key in ABILITY_ENHANCEMENT_CHOICES:
         return ABILITY_ENHANCEMENT_CHOICES[key]
+    if key == 'enhancement:enhance-talent:alter-movement-enhance':
+        return ('increase one movement speed', 'halve all movement speeds')
     if key == 'protection:aegis-ward-talent:armored-magic-aegis':
         return ('armor', 'shield')
     if key == 'protection:advanced-talent:spell-selectivity-dbh':
@@ -544,6 +546,9 @@ def resolve_base_power(plan):
         greater = 'enhancement:talent:greater-enhance-equipment'
         mass = 'enhancement:talent:mass-enhancement-mass'
         mode_powers = {
+            'enhancement:enhance-talent:alter-movement-enhance': 'Alter Movement',
+            'enhancement:enhance-talent:cripple-enhance': 'Cripple',
+            'enhancement:enhance-talent:superior-reflexes-enhance': 'Superior Reflexes',
             'enhancement:enhance-talent:energize-body-enhance': 'Energize Body',
             'enhancement:enhance-talent:ragged-edges-enhance': 'Ragged Edges',
             'enhancement:enhance-talent:spectral-enhancement-enhance-gravecaller-s-hb': 'Spectral Enhancement',
@@ -574,8 +579,24 @@ def resolve_base_power(plan):
             elif selected:
                 key, choice = selected['catalog_key'], selected.get('effect_choice', '')
                 summary['power'] = mode_powers[key]
-                if choice not in talent_effect_choices(key):
+                if talent_effect_choices(key) and choice not in talent_effect_choices(key):
                     summary['mode_review'] = 'Choose the effect mode before construction.'
+                elif summary['power'] == 'Alter Movement':
+                    if choice == 'increase one movement speed':
+                        summary['movement_speed_bonus'] = f'+{10 * (1 + cl // 5)} ft. enhancement'
+                        summary['movement_skill_bonus'] = 2 * (1 + cl // 5)
+                        summary['movement_skill_scope'] = 'Enhancement bonus to Acrobatics, Climb, Fly or Swim checks while using the chosen speed.'
+                        summary['movement_target'] = 'Choose an existing movement speed on the target; this does not grant a new movement mode. Apply manually.'
+                    else:
+                        summary['movement_multiplier'] = 'Half of every movement speed, minimum 5 ft.'
+                        summary['five_foot_steps'] = 'Provoke attacks of opportunity unless an Acrobatics check succeeds against the enhancer’s MSD; resolve manually.'
+                elif summary['power'] == 'Cripple':
+                    summary['roll_penalty'] = -(2 + cl // 5)
+                    summary['penalty_scope'] = 'All attack rolls, saving throws, ability checks and skill checks; apply to the target manually.'
+                elif summary['power'] == 'Superior Reflexes':
+                    summary['initiative_bonus'] = 1 + (cl - 1) // 4
+                    summary['additional_attacks_of_opportunity'] = 1 + (cl - 1) // 4
+                    summary['flat_footed_attacks_of_opportunity'] = 'Allowed; resolve attacks and initiative manually.'
                 elif summary['power'] == 'Energize Body':
                     summary['condition_suppression'] = ('Suppress exhausted for the duration.' if choice == 'suppress exhaustion'
                         else 'Suppress fatigued or reduce exhausted to fatigued for the duration.')

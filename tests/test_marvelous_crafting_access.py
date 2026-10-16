@@ -163,6 +163,7 @@ def test_enhancement_cross_sphere_prerequisites_need_integrated_talent_and_acces
 @pytest.mark.parametrize('suffix,choice', [
     ('physical-enhancement-enhance', 'Strength'), ('mental-enhancement-enhance', 'Charisma'),
     ('energize-body-enhance', 'suppress exhaustion'), ('ragged-edges-enhance', 'caster level bleed'),
+    ('alter-movement-enhance', 'increase one movement speed'),
     ('spectral-enhancement-enhance-gravecaller-s-hb', 'empowered ghost touch armor'),
 ])
 def test_enhancement_requires_explicit_mode_before_construction(crafter, suffix, choice):

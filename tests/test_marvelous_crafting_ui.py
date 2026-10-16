@@ -1080,6 +1080,31 @@ def test_dual_enhancement_mode_adds_prices_and_restores_prerequisite(composer):
     assert repo._connection.total_changes == writes
 
 
+@pytest.mark.parametrize('suffix,field,initial,updated', [
+    ('alter-movement-enhance', 'Movement Speed Bonus', '+10 ft. enhancement', '+20 ft. enhancement'),
+    ('cripple-enhance', 'Roll Penalty', '-2', '-3'),
+    ('superior-reflexes-enhance', 'Initiative Bonus', '1', '2'),
+])
+def test_enhancement_live_card_updates_level_values_without_character_writes(composer, suffix, field, initial, updated):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Enhancement'); dialog.cl.setValue(4)
+    key = 'enhancement:enhance-talent:' + suffix
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    before = repo._connection.total_changes
+    dialog.add_contribution()
+    if suffix == 'alter-movement-enhance':
+        picker = dialog.table.cellWidget(0, 5)
+        picker.setCurrentIndex(picker.findData('increase one movement speed'))
+    assert f'{field}: {initial}' in dialog.item_preview.toPlainText()
+    assert 'Equipment Enhancement Bonus:' not in dialog.item_preview.toPlainText()
+    dialog.cl.setValue(5)
+    assert f'{field}: {updated}' in dialog.item_preview.toPlainText()
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint() == saved
+    assert f'{field}: {updated}' in dialog.item_preview.toPlainText()
+    assert repo._connection.total_changes == before
+
+
 def test_cancel_dual_promotion_restores_previous_ability_choice(composer, monkeypatch):
     from PySide6.QtWidgets import QMessageBox
     dialog, repo, cid = composer

@@ -192,6 +192,46 @@ def test_mixed_enhancement_payloads_do_not_claim_one_supported_effect():
     assert 'carrying_capacity_multiplier' not in effect and 'additional_bleed_damage' not in effect
 
 
+@pytest.mark.parametrize('cl,speed,skill,penalty,reflexes', [
+    (1,10,2,-2,1), (4,10,2,-2,1), (5,20,4,-3,2),
+    (8,20,4,-3,2), (9,20,4,-3,3), (10,30,6,-4,3), (13,30,6,-4,4),
+])
+def test_movement_cripple_and_reflexes_project_distinct_level_progressions(cl, speed, skill, penalty, reflexes):
+    row = dict(catalog_key='enhancement:enhance-talent:alter-movement-enhance', effect_choice='increase one movement speed')
+    item = plan('enhancement:enhance', cl=cl, contributions=[row])
+    effect = resolve_base_power(item)
+    assert effect['movement_speed_bonus'] == f'+{speed} ft. enhancement'
+    assert effect['movement_skill_bonus'] == skill
+    assert 'does not grant' in effect['movement_target']
+    row['effect_choice'] = 'halve all movement speeds'
+    effect = resolve_base_power(item)
+    assert 'minimum 5 ft.' in effect['movement_multiplier']
+    assert 'movement_speed_bonus' not in effect
+    row.clear(); row['catalog_key'] = 'enhancement:enhance-talent:cripple-enhance'
+    effect = resolve_base_power(item)
+    assert effect['roll_penalty'] == penalty
+    row['catalog_key'] = 'enhancement:enhance-talent:superior-reflexes-enhance'
+    effect = resolve_base_power(item)
+    assert effect['initiative_bonus'] == reflexes
+    assert effect['additional_attacks_of_opportunity'] == reflexes
+    assert 'Allowed' in effect['flat_footed_attacks_of_opportunity']
+    assert 'equipment_enhancement_bonus' not in effect
+
+
+def test_alter_movement_requires_mode_and_does_not_project_unknown_combinations():
+    rows = [dict(catalog_key='enhancement:enhance-talent:alter-movement-enhance')]
+    item = plan('enhancement:enhance', cl=10, contributions=rows)
+    assert 'mode_review' in resolve_base_power(item)
+    rows[0]['effect_choice'] = 'increase one movement speed'
+    rows.append(dict(catalog_key='enhancement:talent:mass-enhancement-mass'))
+    effect = resolve_base_power(item)
+    assert effect['maximum_targets'] == 6 and effect['duration'] == '10 rounds'
+    rows.append(dict(catalog_key='enhancement:enhance-talent:cripple-enhance'))
+    effect = resolve_base_power(item)
+    assert 'manual resolution' in effect['power']
+    assert 'movement_speed_bonus' not in effect and 'roll_penalty' not in effect
+
+
 @pytest.mark.parametrize('kind,choice', [('physical', 'Strength + Dexterity'), ('mental', 'Wisdom + Charisma')])
 def test_paired_ability_projection_requires_fixed_dual_enhancement(kind, choice):
     rows = [dict(catalog_key=f'enhancement:enhance-talent:{kind}-enhancement-enhance', effect_choice=choice)]
