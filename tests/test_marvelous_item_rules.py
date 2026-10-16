@@ -260,6 +260,17 @@ def test_weather_advanced_metadata_covers_every_bundled_entry():
         assert advanced_construction_blockers(rows, minimum - 1)
 
 
+def test_weather_advanced_spell_point_defaults_cover_catalog_and_exact_costs():
+    from app.catalogs import DEFAULT_CATALOG
+    from app.marvelous_item_rules import talent_construction_spell_points
+    paid = {'cacophonic-clap': 1, 'climate': 1, 'climatic-shift': 3, 'dehydration-pulse': 2,
+            'radiation-lord-cata-hb': 2, 'rain-bomb': 1, 'volcano-lord': 2}
+    entries = [e for e in DEFAULT_CATALOG.magic_entries('Weather') if 'advanced' in e['category'].lower()]
+    assert len(entries) == 21
+    for entry in entries:
+        assert talent_construction_spell_points(entry, reviewed_only=True) == paid.get(entry['key'].split(':')[-1], 0)
+
+
 @pytest.mark.parametrize('talent', ['stability-bottleneck-sm', 'voiding-suppression-3pp'])
 @pytest.mark.parametrize('selectivity', ['spell-selectivity-dbh', 'spell-selectivity-arcforge-addendum-lg'])
 def test_protection_filter_upgrades_accept_either_selectivity_and_require_ward(talent, selectivity):

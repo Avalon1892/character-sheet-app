@@ -1439,11 +1439,16 @@ def test_beacon_power_automatically_includes_talent_and_reopens_without_duplicat
     reopened.close()
 
 
-@pytest.mark.parametrize('key,points', [('true-teleport', 2), ('planeshift', 2), ('portal', 1), ('enduring-portal', 1)])
-def test_warp_effect_sp_defaults_update_price_and_restore(composer, key, points):
+@pytest.mark.parametrize('sphere,key,points', [
+    ('Warp', 'true-teleport', 2), ('Warp', 'planeshift', 2), ('Warp', 'portal', 1), ('Warp', 'enduring-portal', 1),
+    ('Weather', 'cacophonic-clap', 1), ('Weather', 'climate', 1), ('Weather', 'climatic-shift', 3),
+    ('Weather', 'dehydration-pulse', 2), ('Weather', 'radiation-lord-cata-hb', 2),
+    ('Weather', 'rain-bomb', 1), ('Weather', 'volcano-lord', 2), ('Weather', 'boiling-lord', 0),
+])
+def test_advanced_effect_sp_defaults_update_price_and_restore(composer, sphere, key, points):
     dialog, repo, cid = composer
-    dialog.sphere.setCurrentText('Warp'); dialog.cl.setValue(20)
-    index = next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == 'warp:advanced-talent:' + key)
+    dialog.sphere.setCurrentText(sphere); dialog.cl.setValue(20)
+    index = next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == sphere.lower() + ':advanced-talent:' + key)
     dialog.talent.setCurrentIndex(index); dialog.add_contribution()
     assert dialog.table.cellWidget(0, 4).value() == points
     assert dialog.quotation()[1].market_price_gp == 400 * 20 * (1 + 2 + points)
