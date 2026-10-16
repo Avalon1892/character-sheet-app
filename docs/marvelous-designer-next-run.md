@@ -314,4 +314,6 @@ Telekinesis preview follow-up (2026-10-16): the shared item projection now calcu
 
 Validation for this Telekinesis preview checkpoint: 769 passed in 132.86 seconds across base-power, pricing, presentation and the complete designer UI test modules. No portable build was performed. Unrelated Refined Sheet work remains outside this checkpoint.
 
+Enhancement cost follow-up (2026-10-16): registered reviewed one-SP defaults for Flash of Excellence and Power Parasitism, and zero additional SP for Ranged Enhancement. Preview notes keep the one-round/immediate-action conversion, qualifying hostile-effect trigger and item-specific range interaction explicit; these are not silently modeled as ordinary unconditional effects. Three Enhancement talent costs remain unreviewed: Give Magic Life, Inherent Enhancement and Instill Enhancement, whose conversion/ritual accounting needs separate review. Source: https://spheresofpower.wikidot.com/enhancement. Validation: 573 rules/base-power tests and three UI default/manual-override/reopen tests passed. The first UI test attempt supplied an internally inconsistent complexity/SP pair; the test fixture was corrected to a legal manual override, without changing application normalization.
+
 The full active goal is not complete. Broader Marvelous implementation history and gaps remain in `marvelous-items-next-run.md`.

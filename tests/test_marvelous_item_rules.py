@@ -364,6 +364,15 @@ def test_unknown_sp_default_is_distinct_from_reviewed_free_without_changing_draf
     assert talent_construction_spell_points(free, reviewed_only=True) == 0
 
 
+@pytest.mark.parametrize('suffix,cost', [('flash-of-excellence-sm', 1),
+    ('power-parasitism-alienist-hb', 1), ('ranged-enhancement-range', 0)])
+def test_enhancement_timing_and_range_modifiers_have_reviewed_sp_defaults(suffix, cost):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_construction_spell_points
+    entry = magic_entry('enhancement:talent:' + suffix)
+    assert entry and talent_construction_spell_points(entry, reviewed_only=True) == cost
+
+
 def test_time_warp_replacement_cost_includes_true_teleport_once():
     from app.content import magic_entry
     from app.marvelous_item_rules import talent_construction_spell_points, missing_construction_prerequisites

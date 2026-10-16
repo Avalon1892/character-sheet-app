@@ -27,6 +27,16 @@ def test_every_base_power_has_a_resolvable_projection(power):
     assert result['caster_level'] == 5 and result['save_dc'] == 12 and result['magic_skill_bonus'] == 5
 
 
+def test_enhancement_timing_modifiers_keep_item_conversion_limits_visible():
+    rows = [dict(catalog_key='enhancement:talent:' + suffix) for suffix in (
+        'flash-of-excellence-sm', 'power-parasitism-alienist-hb', 'ranged-enhancement-range')]
+    result = resolve_base_power(plan('enhancement:enhance', contributions=rows))
+    assert 'one-round maximum' in result['flash_of_excellence_review']
+    assert 'half the user' in result['power_parasitism_trigger']
+    assert 'item-specific range ladder' in result['ranged_enhancement_review']
+    assert 'manual' in result['power']
+
+
 def test_dimension_pierce_is_not_a_teleport_and_requires_its_own_talent_cost():
     result = resolve_base_power(plan('warp:dimension-pierce'))
     assert result['range'] == 'Touch' and result['duration'] == '5 hours'

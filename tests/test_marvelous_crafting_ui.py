@@ -1370,6 +1370,24 @@ def test_telekinesis_live_movement_and_size_update_and_restore_without_writes(co
     assert repo._connection.total_changes == writes
 
 
+@pytest.mark.parametrize('suffix,cost', [('flash-of-excellence-sm', 1),
+    ('power-parasitism-alienist-hb', 1), ('ranged-enhancement-range', 0)])
+def test_enhancement_modifier_defaults_and_manual_overrides_survive_reopen(composer, suffix, cost):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Enhancement')
+    key = 'enhancement:talent:' + suffix
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    saved = dialog.blueprint()
+    assert saved['contributions'][0]['additional_spell_points'] == cost
+    saved['contributions'][0]['additional_spell_points'] = 4
+    saved['contributions'][0]['complexity'] = 5
+    dialog.load_plan(saved)
+    assert dialog.blueprint() == saved
+    assert repo._connection.total_changes == writes
+
+
 def test_cancel_alternative_energy_promotion_preserves_choice_and_manual_cost(composer, monkeypatch):
     from PySide6.QtWidgets import QMessageBox
     from app.marvelous_base_powers import ENERGY_ENHANCEMENT_KEY, ALTERNATIVE_ENERGY_KEY

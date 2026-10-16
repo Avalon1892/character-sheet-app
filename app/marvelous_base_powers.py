@@ -724,6 +724,12 @@ def resolve_base_power(plan):
     if power.key == 'enhancement:enhance':
         rows = plan.get('contributions', [])
         keys = [row.get('catalog_key') for row in rows]
+        if 'enhancement:talent:flash-of-excellence-sm' in keys:
+            summary['flash_of_excellence_review'] = 'One SP buys immediate-action enhancement with a one-round maximum duration. The ordinary item activation and duration are not automatically converted; verify this construction before use.'
+        if 'enhancement:talent:power-parasitism-alienist-hb' in keys:
+            summary['power_parasitism_trigger'] = 'Requires successful ability damage, drain or an ability-score penalty against a target with at least half the user\'s Hit Dice. One additional SP permits a swift-action enhancement on a willing target. Verify the trigger and item activation manually.'
+        if 'enhancement:talent:ranged-enhancement-range' in keys:
+            summary['ranged_enhancement_review'] = 'The talent adds no spell-point cost. Its caster-range progression is not automatically substituted for the item-specific range ladder; verify the chosen item range.'
         greater = 'enhancement:talent:greater-enhance-equipment'
         mass = 'enhancement:talent:mass-enhancement-mass'
         mode_powers = {
