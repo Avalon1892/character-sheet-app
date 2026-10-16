@@ -122,6 +122,25 @@ def test_weather_lords_scale_category_limits_and_keep_severity_seven_cap():
     assert effect['maximum_severity'] == 7 and effect['excess_severity_bonus'] == 1
     assert effect['cold_severity_limit'] == 7 and effect['cold_excess_severity_bonus'] == 2
     assert 'Severity stays at 7' in effect['excess_severity']
+
+
+@pytest.mark.parametrize('cl,bonus', [(1,1), (3,1), (4,2), (8,3), (16,5), (20,5)])
+def test_enhance_equipment_item_bonus_uses_ultimate_progression(cl, bonus):
+    effect = resolve_base_power(plan('enhancement:enhance', cl=cl))
+    assert effect['equipment_enhancement_bonus'] == bonus
+    assert 'Does not stack' in effect['stacking'] and '50 pieces' in effect['equipment_targets']
+
+
+def test_greater_and_mass_equipment_projection_does_not_invent_unknown_effects():
+    rows = [dict(catalog_key='enhancement:talent:greater-enhance-equipment'),
+            dict(catalog_key='enhancement:talent:mass-enhancement-mass')]
+    item = plan('enhancement:enhance', cl=20, contributions=rows)
+    effect = resolve_base_power(item)
+    assert effect['equipment_enhancement_bonus'] == 6 and effect['maximum_targets'] == 11
+    assert effect['duration'] == '20 rounds'
+    rows.append(dict(catalog_key='enhancement:advanced-talent:bestow-life'))
+    effect = resolve_base_power(item)
+    assert 'manual resolution' in effect['power'] and 'equipment_enhancement_bonus' not in effect
     with pytest.raises(ValueError, match='talent contribution'):
         resolve_base_power(plan('warp:dimension-pierce', contributions=[]))
     with pytest.raises(ValueError, match='one-SP'):

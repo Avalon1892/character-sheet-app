@@ -29,7 +29,7 @@ _ROWS = (
     ('destruction:blast', 'Destruction', 'Bludgeoning destructive blast', 'touch', 'instantaneous'),
     ('divination:divine', 'Divination', 'Divine magic', 'close', 'concentration'),
     ('divination:sense', 'Divination', 'Base sense', 'personal', 'minute'),
-    ('enhancement:enhance', 'Enhancement', 'Basic enhancement', 'touch', 'round'),
+    ('enhancement:enhance', 'Enhancement', 'Enhance Equipment', 'touch', 'round'),
     ('fallen-fey:link', 'Fallen Fey', 'Fey-link / Nature-connection', 'personal', 'minute'),
     ('fate:serendipity', 'Fate', 'Serendipity', 'personal', 'round'),
     ('illusion:figment', 'Illusion', 'Silent visual illusion', 'touch', 'round'),
@@ -523,6 +523,25 @@ def resolve_base_power(plan):
                     summary['technology_check'] = 'Stops technological abilities and charge use without a check; constructs/cyborgs with SR still require a check against their SR.'
             if 'protection:aegis-ward-talent:spell-ward-aegis-ward' in keys:
                 summary['power'] = 'Combined magical/technological protection — manual resolution'
+    if power.key == 'enhancement:enhance':
+        rows = plan.get('contributions', [])
+        keys = [row.get('catalog_key') for row in rows]
+        greater = 'enhancement:talent:greater-enhance-equipment'
+        mass = 'enhancement:talent:mass-enhancement-mass'
+        supported = (len(keys) == len(set(keys)) and not any(row.get('alternative') for row in rows)
+                     and set(keys) <= {greater, mass, 'enhancement:talent:deep-enhancement'})
+        if supported:
+            bonus = min(5, 1 + cl // 4)
+            if greater in keys: bonus = min(6, 2 + cl // 4)
+            summary['equipment_enhancement_bonus'] = bonus
+            summary['equipment_targets'] = 'One weapon, suit of armor, shield, or up to 50 pieces of ammunition grouped in one container/quiver.'
+            summary['stacking'] = 'Does not stack with existing enhancement bonuses; use the higher bonus. This is a temporary effect, not a permanent item enchantment.'
+            if mass in keys:
+                summary['maximum_targets'] = 1 + max(1, cl // 2)
+                summary['targeting'] = 'Every target must be in range and receive the same enhancement; each is a separate effect. Resolve equipment selection manually.'
+        else:
+            summary['power'] = 'Modified enhancement — manual resolution'
+            summary['enhancement_resolution'] = 'Resolve the chosen enhancement and talent interactions from their rules; the basic equipment bonus is not assumed.'
     if power.key == 'life:cure':
         healing = cure_healing_components(life_per_target_plan(plan))
         if healing is not None:

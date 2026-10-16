@@ -473,6 +473,7 @@ def talent_construction_spell_points(entry, *, reviewed_only=False):
             'advanced-talent:normalize-enhance-sm', 'advanced-talent:vicious-accuracy-enhance-3pp',
             'enhance-talent:magic-sink-enhance', 'enhance-talent:deadly-weapon-enhance',
             'enhance-talent:energy-enhancement-enhance', 'talent:deep-enhancement')},
+        'enhancement:talent:greater-enhance-equipment': 0,
         'life:talent:greater-restore-warden': 1,
         'life:talent:mass-healing-mass': 1,
         'life:talent:restorative-cure': 1,

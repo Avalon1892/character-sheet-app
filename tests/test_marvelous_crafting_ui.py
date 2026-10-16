@@ -1053,6 +1053,20 @@ def test_space_effect_picker_selects_derived_power_and_updates_duration(composer
     assert dialog.duration_steps.isEnabled()
 
 
+def test_enhance_equipment_preview_updates_bonus_and_restores(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Enhancement'); dialog.cl.setValue(4)
+    assert 'Equipment Enhancement Bonus: 2' in dialog.item_preview.toPlainText()
+    for key in ('enhancement:talent:greater-enhance-equipment', 'enhancement:talent:mass-enhancement-mass'):
+        dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+        dialog.add_contribution()
+    dialog.cl.setValue(20)
+    text = dialog.item_preview.toPlainText()
+    assert 'Equipment Enhancement Bonus: 6' in text and 'Maximum Targets: 11' in text
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and 'Equipment Enhancement Bonus: 6' in dialog.item_preview.toPlainText()
+
+
 def test_weather_severity_numbers_update_live_with_item_level(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Weather'); dialog.cl.setValue(10)
