@@ -1053,6 +1053,26 @@ def test_space_effect_picker_selects_derived_power_and_updates_duration(composer
     assert dialog.duration_steps.isEnabled()
 
 
+@pytest.mark.parametrize('kind,choice', [('physical', 'Dexterity'), ('mental', 'Wisdom')])
+def test_ability_enhancement_choice_updates_live_and_restores(composer, kind, choice):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Enhancement'); dialog.cl.setValue(6)
+    key = f'enhancement:enhance-talent:{kind}-enhancement-enhance'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    picker = dialog.table.cellWidget(0, 5)
+    picker.setCurrentIndex(picker.findData(choice))
+    text = dialog.item_preview.toPlainText()
+    assert f'Ability Score: {choice}' in text and 'Ability Enhancement Bonus: 2' in text
+    assert 'Equipment Enhancement Bonus:' not in text
+    dialog.cl.setValue(7)
+    assert 'Ability Enhancement Bonus: 4' in dialog.item_preview.toPlainText()
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and dialog.table.cellWidget(0, 5).currentData() == choice
+    assert repo._connection.total_changes == writes
+
+
 def test_enhance_equipment_preview_updates_bonus_and_restores(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Enhancement'); dialog.cl.setValue(4)

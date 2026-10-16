@@ -150,6 +150,10 @@ def talent_effect_choices(key):
     """Reviewed construction choices, shared by the editor and projections."""
     if key in TALENT_EFFECT_SP_CHOICES:
         return tuple(TALENT_EFFECT_SP_CHOICES[key])
+    if key == 'enhancement:enhance-talent:physical-enhancement-enhance':
+        return ('Strength', 'Dexterity', 'Constitution')
+    if key == 'enhancement:enhance-talent:mental-enhancement-enhance':
+        return ('Intelligence', 'Wisdom', 'Charisma')
     if key == 'protection:aegis-ward-talent:armored-magic-aegis':
         return ('armor', 'shield')
     if key == 'protection:advanced-talent:spell-selectivity-dbh':
@@ -528,17 +532,32 @@ def resolve_base_power(plan):
         keys = [row.get('catalog_key') for row in rows]
         greater = 'enhancement:talent:greater-enhance-equipment'
         mass = 'enhancement:talent:mass-enhancement-mass'
+        ability_rows = [row for row in rows if row.get('catalog_key') in {
+            'enhancement:enhance-talent:physical-enhancement-enhance',
+            'enhancement:enhance-talent:mental-enhancement-enhance'}]
+        ability = ability_rows[0] if len(ability_rows) == 1 else None
+        allowed = {mass, 'enhancement:talent:deep-enhancement', ability['catalog_key'] if ability else greater}
         supported = (len(keys) == len(set(keys)) and not any(row.get('alternative') for row in rows)
-                     and set(keys) <= {greater, mass, 'enhancement:talent:deep-enhancement'})
+                     and set(keys) <= allowed)
         if supported:
-            bonus = min(5, 1 + cl // 4)
-            if greater in keys: bonus = min(6, 2 + cl // 4)
-            summary['equipment_enhancement_bonus'] = bonus
-            summary['equipment_targets'] = 'One weapon, suit of armor, shield, or up to 50 pieces of ammunition grouped in one container/quiver.'
-            summary['stacking'] = 'Does not stack with existing enhancement bonuses; use the higher bonus. This is a temporary effect, not a permanent item enchantment.'
+            if ability:
+                summary['power'] = 'Physical Enhancement' if 'physical-enhancement' in ability['catalog_key'] else 'Mental Enhancement'
+                choice = ability.get('effect_choice', '')
+                if choice:
+                    summary['ability_score'] = choice
+                    summary['ability_enhancement_bonus'] = 2 + 2 * (cl // 7)
+                else:
+                    summary['mode_review'] = 'Choose the ability score before construction.'
+                summary['stacking'] = 'Temporary enhancement bonus to the chosen ability score; does not stack with other enhancement bonuses and does not rewrite the base score.'
+            else:
+                bonus = min(5, 1 + cl // 4)
+                if greater in keys: bonus = min(6, 2 + cl // 4)
+                summary['equipment_enhancement_bonus'] = bonus
+                summary['equipment_targets'] = 'One weapon, suit of armor, shield, or up to 50 pieces of ammunition grouped in one container/quiver.'
+                summary['stacking'] = 'Does not stack with existing enhancement bonuses; use the higher bonus. This is a temporary effect, not a permanent item enchantment.'
             if mass in keys:
                 summary['maximum_targets'] = 1 + max(1, cl // 2)
-                summary['targeting'] = 'Every target must be in range and receive the same enhancement; each is a separate effect. Resolve equipment selection manually.'
+                summary['targeting'] = 'Every target must be in range and receive the same enhancement and chosen ability (if applicable); each is a separate effect. Resolve target selection manually.'
         else:
             summary['power'] = 'Modified enhancement — manual resolution'
             summary['enhancement_resolution'] = 'Resolve the chosen enhancement and talent interactions from their rules; the basic equipment bonus is not assumed.'

@@ -141,6 +141,18 @@ def test_greater_and_mass_equipment_projection_does_not_invent_unknown_effects()
     rows.append(dict(catalog_key='enhancement:advanced-talent:bestow-life'))
     effect = resolve_base_power(item)
     assert 'manual resolution' in effect['power'] and 'equipment_enhancement_bonus' not in effect
+
+
+@pytest.mark.parametrize('kind,choice', [('physical', 'Dexterity'), ('mental', 'Wisdom')])
+@pytest.mark.parametrize('cl,bonus', [(1,2), (7,4), (14,6), (21,8)])
+def test_ability_enhancement_projects_selected_score_without_equipment_bonus(kind, choice, cl, bonus):
+    row = dict(catalog_key=f'enhancement:enhance-talent:{kind}-enhancement-enhance', effect_choice=choice)
+    effect = resolve_base_power(plan('enhancement:enhance', cl=cl, contributions=[row]))
+    assert effect['ability_score'] == choice and effect['ability_enhancement_bonus'] == bonus
+    assert 'equipment_enhancement_bonus' not in effect and 'Temporary' in effect['stacking']
+    row['effect_choice'] = ''
+    effect = resolve_base_power(plan('enhancement:enhance', cl=cl, contributions=[row]))
+    assert 'mode_review' in effect and 'ability_enhancement_bonus' not in effect
     with pytest.raises(ValueError, match='talent contribution'):
         resolve_base_power(plan('warp:dimension-pierce', contributions=[]))
     with pytest.raises(ValueError, match='one-SP'):

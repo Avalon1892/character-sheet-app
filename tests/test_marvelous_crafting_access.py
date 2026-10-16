@@ -160,6 +160,21 @@ def test_enhancement_cross_sphere_prerequisites_need_integrated_talent_and_acces
     assert not service.marvelous_plan_requirements(plan, access=access).eligible
 
 
+@pytest.mark.parametrize('kind,choice', [('physical', 'Strength'), ('mental', 'Charisma')])
+def test_ability_enhancement_requires_explicit_score_before_construction(crafter, kind, choice):
+    repo, cid = crafter
+    service = CraftingService(repo, cid)
+    key = f'enhancement:enhance-talent:{kind}-enhancement-enhance'
+    row = dict(catalog_key=key)
+    plan = dict(sphere='Enhancement', base_power='enhancement:enhance', caster_level=8,
+        range_steps=0, duration_steps=0, contributions=[row])
+    access = dict(sphere_levels={'Enhancement': 8}, available_talents=[service.magic_entries_by_key[key]['name']])
+    result = service.marvelous_plan_requirements(plan, access=access)
+    assert not result.eligible and any('choose the effect mode' in line for line in result.blockers)
+    row['effect_choice'] = choice
+    assert service.marvelous_plan_requirements(plan, access=access).eligible
+
+
 def test_complex_training_uses_current_effective_ranks(crafter, monkeypatch):
     repo, cid = crafter
     plan = dict(sphere='Life', base_power='life:cure', caster_level=5, range_steps=0,
