@@ -1351,6 +1351,25 @@ def test_gravity_modes_update_prerequisite_keep_total_and_cancel_manual_sp_atomi
     assert repo._connection.total_changes == writes
 
 
+def test_telekinesis_live_movement_and_size_update_and_restore_without_writes(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Telekinesis'); dialog.cl.setValue(5)
+    writes = repo._connection.total_changes
+    for suffix in ('powerful-telekinesis', 'greater-speed', 'flight'):
+        key = 'telekinesis:talent:' + suffix
+        dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+        dialog.add_contribution()
+    assert 'Maximum Lift Size: Medium' in dialog.item_preview.toPlainText()
+    assert 'Granted Fly Speed: 40 ft. (perfect)' in dialog.item_preview.toPlainText()
+    dialog.cl.setValue(10)
+    assert 'Maximum Lift Size: Large' in dialog.item_preview.toPlainText()
+    assert 'Granted Fly Speed: 55 ft. (perfect)' in dialog.item_preview.toPlainText()
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint() == saved
+    assert 'Granted Fly Speed: 55 ft. (perfect)' in dialog.item_preview.toPlainText()
+    assert repo._connection.total_changes == writes
+
+
 def test_cancel_alternative_energy_promotion_preserves_choice_and_manual_cost(composer, monkeypatch):
     from PySide6.QtWidgets import QMessageBox
     from app.marvelous_base_powers import ENERGY_ENHANCEMENT_KEY, ALTERNATIVE_ENERGY_KEY

@@ -101,6 +101,11 @@ LIGHT_LENSES = {
     'light:lens-talent:periscope-lens-utility': 'Periscope',
     'light:lens-talent:rose-tinted-lens-jester-s-hb': 'Rose-Tinted',
 }
+TELEKINESIS_LIFT_SIZES = (
+    (1, 'Diminutive'), (3, 'Tiny'), (5, 'Small'), (8, 'Medium'), (11, 'Large'),
+    (15, 'Huge'), (20, 'Gargantuan'), (25, 'Colossal'), (30, 'Colossal+'),
+    (40, 'Colossal++'), (50, 'Colossal+++'), (60, 'Colossal++++'),
+)
 TALENT_EFFECT_SP_CHOICES = {
     'telekinesis:advanced-talent:gravity-manipulation': {'concentration (2 SP total)': 2, 'Sustained Force (2 SP total)': 1},
     'telekinesis:talent:divided-mind-mass': {'multiple lifted objects': 0, 'multiple maneuver or push targets': 1},
@@ -589,10 +594,45 @@ def resolve_base_power(plan):
                     summary['technology_check'] = 'Stops technological abilities and charge use without a check; constructs/cyborgs with SR still require a check against their SR.'
             if 'protection:aegis-ward-talent:spell-ward-aegis-ward' in keys:
                 summary['power'] = 'Combined magical/technological protection — manual resolution'
-    if power.key == 'telekinesis:force' and plan.get('contributions'):
-        summary['power'] = 'Modified telekinesis — manual resolution'
-        summary['telekinesis_review'] = 'Resolve the selected talents, targeting, concentration and final duration from their rules; the item base duration alone does not verify these interactions.'
-        if any(row.get('catalog_key') == 'telekinesis:advanced-talent:focused-power' for row in plan['contributions']):
+    if power.key == 'telekinesis:force':
+        rows = plan.get('contributions', [])
+        keys = [row.get('catalog_key') for row in rows]
+        allowed = {f'telekinesis:talent:{suffix}' for suffix in (
+            'powerful-telekinesis', 'greater-speed', 'acceleration', 'divided-mind-mass',
+            'flight', 'dampening-field', 'finesse-utility')}
+        divided = next((row for row in rows if row.get('catalog_key') == 'telekinesis:talent:divided-mind-mass'), None)
+        supported = (len(keys) == len(set(keys)) and not any(row.get('alternative') for row in rows)
+            and set(keys) <= allowed and (divided is None or divided.get('effect_choice') == 'multiple lifted objects'))
+        if supported:
+            index = max(index for index, (minimum, _) in enumerate(TELEKINESIS_LIFT_SIZES) if cl >= minimum)
+            index += int('telekinesis:talent:powerful-telekinesis' in keys)
+            size = TELEKINESIS_LIFT_SIZES[index][1] if index < len(TELEKINESIS_LIFT_SIZES) else '1 size category above Colossal++++'
+            speed = 30 + 5 * (cl // 2) if 'telekinesis:talent:greater-speed' in keys else 20 + 5 * (cl // 5)
+            summary['maximum_lift_size'] = size
+            summary['telekinesis_speed'] = f'{speed} ft.'
+            summary['lifting_limits'] = 'Size assumes dense material. Lighter/half-weight targets count one size smaller; weightless targets count two smaller. Resolve actual target size and eligibility manually.'
+            summary['bludgeon_resolution'] = 'Damage depends on the actual lifted object, not automatically the maximum lift size; resolve attacks and target defenses manually.'
+            if 'telekinesis:talent:acceleration' in keys:
+                summary['straight_line_movement'] = f'{speed * 2} ft.'
+                summary['charge_bonus'] = 'After at least 10 ft. of straight-line movement, a Bludgeon counts as charging (+2 attack); resolve charge eligibility manually.'
+            if divided is not None:
+                summary['maximum_lifted_targets'] = 1 + cl
+                summary['combined_size_limit'] = 'All lifted targets together must fit the maximum lift size; count them as one effective object or resolve allowed separate attacks manually.'
+            if 'telekinesis:talent:flight' in keys:
+                summary['granted_fly_speed'] = f'{speed} ft. (perfect)'
+                summary['flight_control'] = 'The lifted creature controls its movement during the Sustained Force and need not remain within telekinesis range. Apply movement manually.'
+            if 'telekinesis:talent:dampening-field' in keys:
+                summary['lifted_object_hardness_bonus'] = 1 + cl // 5
+                summary['lifted_object_deflection_ac_bonus'] = 1 + cl // 5
+                summary['lifted_creature_damage_reduction'] = f'{cl // 2}/piercing'
+                summary['dampening_limits'] = 'Lifted objects ignore broken-condition penalties; the object may avoid self-damage as a Bludgeon. Apply the creature/object benefits only to eligible targets.'
+            if 'telekinesis:talent:finesse-utility' in keys:
+                summary['remote_skill_penalty'] = -5
+                summary['fine_manipulation'] = 'Allows appropriate remote object-related skills and first aid, but not take 10; attended-object/Sleight of Hand uses need Steal. Resolve skills and applicable item casting modifier manually.'
+        else:
+            summary['power'] = 'Modified telekinesis — manual resolution'
+            summary['telekinesis_review'] = 'Resolve the selected talents, targeting, concentration and final duration from their rules; the item base duration alone does not verify these interactions.'
+        if 'telekinesis:advanced-talent:focused-power' in keys:
             summary['concentration_review'] = 'Focused Power cannot use Sustained Force. Its concentration/base-effect conversion needs rules review before construction.'
     if power.key == 'light:lens':
         rows = plan.get('contributions', [])

@@ -420,6 +420,52 @@ def test_telekinesis_metadata_does_not_claim_unimplemented_effect_or_concentrati
     assert 'final duration' in effect['telekinesis_review']
 
 
+@pytest.mark.parametrize('cl,size,speed', [(1,'Diminutive',20), (3,'Tiny',20), (5,'Small',25),
+    (8,'Medium',25), (11,'Large',30), (15,'Huge',35), (20,'Gargantuan',40),
+    (25,'Colossal',45), (30,'Colossal+',50), (40,'Colossal++',60),
+    (50,'Colossal+++',70), (60,'Colossal++++',80)])
+def test_telekinesis_item_base_uses_reviewed_size_and_speed_progressions(cl, size, speed):
+    effect = resolve_base_power(plan('telekinesis:force', cl=cl))
+    assert effect['maximum_lift_size'] == size
+    assert effect['telekinesis_speed'] == f'{speed} ft.'
+    assert effect['duration'] == f'{cl} rounds'
+    assert 'actual lifted object' in effect['bludgeon_resolution']
+    assert 'granted_fly_speed' not in effect
+
+
+def test_supported_telekinesis_modifiers_combine_without_guessing_target_statistics():
+    rows = [dict(catalog_key='telekinesis:talent:' + suffix) for suffix in (
+        'powerful-telekinesis', 'greater-speed', 'acceleration', 'flight', 'dampening-field', 'finesse-utility')]
+    rows.append(dict(catalog_key='telekinesis:talent:divided-mind-mass', effect_choice='multiple lifted objects'))
+    effect = resolve_base_power(plan('telekinesis:force', cl=10, contributions=rows))
+    assert effect['maximum_lift_size'] == 'Large'
+    assert effect['telekinesis_speed'] == '55 ft.' and effect['straight_line_movement'] == '110 ft.'
+    assert effect['granted_fly_speed'] == '55 ft. (perfect)' and effect['maximum_lifted_targets'] == 11
+    assert effect['lifted_object_hardness_bonus'] == 3 and effect['lifted_object_deflection_ac_bonus'] == 3
+    assert effect['lifted_creature_damage_reduction'] == '5/piercing'
+    assert effect['remote_skill_penalty'] == -5
+    assert effect['duration'] == '10 rounds'
+
+
+def test_telekinesis_low_level_dr_and_above_table_size_are_not_invented():
+    rows = [dict(catalog_key='telekinesis:talent:dampening-field')]
+    assert resolve_base_power(plan('telekinesis:force', cl=1, contributions=rows))['lifted_creature_damage_reduction'] == '0/piercing'
+    rows = [dict(catalog_key='telekinesis:talent:powerful-telekinesis')]
+    assert 'above Colossal++++' in resolve_base_power(plan('telekinesis:force', cl=60, contributions=rows))['maximum_lift_size']
+
+
+@pytest.mark.parametrize('rows', [
+    [dict(catalog_key='telekinesis:talent:greater-speed', alternative=True)],
+    [dict(catalog_key='telekinesis:talent:greater-speed')] * 2,
+    [dict(catalog_key='telekinesis:talent:divided-mind-mass', effect_choice='multiple maneuver or push targets')],
+    [dict(catalog_key='telekinesis:advanced-talent:effortless-telekinesis')],
+])
+def test_unsupported_telekinesis_modifiers_do_not_keep_stale_lifting_values(rows):
+    effect = resolve_base_power(plan('telekinesis:force', cl=10, contributions=rows))
+    assert 'manual resolution' in effect['power']
+    assert 'maximum_lift_size' not in effect and 'telekinesis_speed' not in effect
+
+
 @pytest.mark.parametrize('kind,choice', [('physical', 'Strength + Dexterity'), ('mental', 'Wisdom + Charisma')])
 def test_paired_ability_projection_requires_fixed_dual_enhancement(kind, choice):
     rows = [dict(catalog_key=f'enhancement:enhance-talent:{kind}-enhancement-enhance', effect_choice=choice)]
