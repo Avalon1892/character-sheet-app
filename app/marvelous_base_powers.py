@@ -91,6 +91,7 @@ ENERGY_WALL_KEY = 'destruction:blast-shape-talent:energy-wall-blast-shape'
 ENERGY_ENHANCEMENT_KEY = 'enhancement:enhance-talent:energy-enhancement-enhance'
 ALTERNATIVE_ENERGY_KEY = 'enhancement:advanced-talent:alternative-energy-jester-s-hb'
 TALENT_EFFECT_SP_CHOICES = {
+    'light:advanced-talent:star-genesis': {'expanded radius': 1, 'expanded radius with central daylight': 2},
     'enhancement:enhance-talent:energize-body-enhance': {'suppress fatigue / reduce exhaustion': 0, 'suppress exhaustion': 1},
     'enhancement:enhance-talent:ragged-edges-enhance': {'half caster level bleed': 0, 'caster level bleed': 1},
     'enhancement:enhance-talent:spectral-enhancement-enhance-gravecaller-s-hb': {

@@ -981,6 +981,7 @@ def test_temporal_haste_adds_required_talent_and_sp_to_live_price(composer):
 
 
 @pytest.mark.parametrize('key, first_mode, second_mode, cost', [
+    ('light:advanced-talent:star-genesis', 'expanded radius', 'expanded radius with central daylight', 2),
     ('enhancement:enhance-talent:energize-body-enhance', 'suppress fatigue / reduce exhaustion', 'suppress exhaustion', 1),
     ('enhancement:enhance-talent:ragged-edges-enhance', 'half caster level bleed', 'caster level bleed', 1),
     ('enhancement:enhance-talent:spectral-enhancement-enhance-gravecaller-s-hb', 'ghost touch armor', 'empowered ghost touch armor', 1),
@@ -1145,6 +1146,21 @@ def test_alternative_energy_mode_inserts_prices_and_restores_prerequisite(compos
     assert dialog.table.rowCount() == 2
     saved = dialog.blueprint(); dialog.load_plan(saved)
     assert dialog.blueprint() == saved
+    assert repo._connection.total_changes == writes
+
+
+def test_light_speed_inserts_transitive_prerequisites_and_reopens_without_duplicates(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Light'); dialog.cl.setValue(15)
+    key = 'light:advanced-talent:light-speed'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    dialog.add_contribution(); dialog.add_required_contributions()
+    rows = dialog.blueprint()['contributions']
+    assert {row['catalog_key'] for row in rows} == {key, 'light:advanced-talent:incarnate-glow', 'light:talent:flicker-light'}
+    assert len(rows) == 3 and dialog.quotation()[0] == 8
+    saved = dialog.blueprint(); writes = repo._connection.total_changes
+    dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and dialog.table.rowCount() == 3
     assert repo._connection.total_changes == writes
 
 

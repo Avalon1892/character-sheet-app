@@ -5,6 +5,48 @@ from app.marvelous_item_rules import effect_complexity, marvelous_crafting_quote
 from app.marvelous_item_rules import marvelous_requirements
 
 
+LIGHT_ADVANCED_REQUIREMENTS = {
+    'daylight-light': (10, ()), 'diffuse-body': (7, ('light:talent:flicker-light',)),
+    'everglow': (1, ('light:talent:lingering-glow',)),
+    'incarnate-glow': (15, ('light:talent:flicker-light',)),
+    'light-speed': (15, ('light:talent:flicker-light', 'light:advanced-talent:incarnate-glow')),
+    'prismatic-radiance-light': (15, ('light:talent:searing-light-light', 'light:talent:style-utility')),
+    'radiation-light': (10, ('light:talent:irradiance-light',)),
+    'star-genesis': (10, ('light:talent:intensity-control',)),
+}
+
+
+def test_every_bundled_advanced_light_talent_has_explicit_requirements():
+    from app.content import DEFAULT_CATALOG
+    from app.marvelous_item_rules import ADVANCED_CONSTRUCTION_REQUIREMENTS
+    entries = [entry for entry in DEFAULT_CATALOG.magic_entries('Light') if entry['category'] == 'Advanced Talent']
+    assert {entry['key'] for entry in entries} == {'light:advanced-talent:' + key for key in LIGHT_ADVANCED_REQUIREMENTS}
+    assert all(entry['key'] in ADVANCED_CONSTRUCTION_REQUIREMENTS for entry in entries)
+
+
+@pytest.mark.parametrize('suffix,requirement', LIGHT_ADVANCED_REQUIREMENTS.items())
+def test_light_advanced_construction_requires_integrated_dependencies_and_level(suffix, requirement):
+    from app.marvelous_item_rules import (ADVANCED_CONSTRUCTION_REQUIREMENTS,
+        missing_construction_prerequisites, advanced_construction_blockers)
+    key = 'light:advanced-talent:' + suffix
+    minimum, required = requirement
+    assert ADVANCED_CONSTRUCTION_REQUIREMENTS[key] == requirement
+    rows = [dict(catalog_key=key)]
+    assert set(missing_construction_prerequisites(rows)) == set(required)
+    rows.extend(dict(catalog_key=child) for child in missing_construction_prerequisites(rows))
+    assert not missing_construction_prerequisites(rows)
+    assert not advanced_construction_blockers(rows, minimum)
+    assert advanced_construction_blockers(rows, minimum - 1)
+
+
+@pytest.mark.parametrize('suffix,points', [('daylight-light',2), ('diffuse-body',0), ('everglow',1),
+    ('incarnate-glow',2), ('light-speed',0), ('prismatic-radiance-light',3)])
+def test_reviewed_advanced_light_costs_do_not_duplicate_prerequisite_sp(suffix, points):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_construction_spell_points
+    assert talent_construction_spell_points(magic_entry('light:advanced-talent:' + suffix), reviewed_only=True) == points
+
+
 @pytest.mark.parametrize('suffix,expected', [
     ('enhance-talent:steal-capacity-enhance', 1), ('enhance-talent:steal-senses-enhance', 1),
     ('enhance-talent:alter-movement-enhance', 0), ('enhance-talent:cripple-enhance', 0),

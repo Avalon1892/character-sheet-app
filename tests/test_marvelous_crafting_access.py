@@ -185,6 +185,30 @@ def test_enhancement_requires_explicit_mode_before_construction(crafter, suffix,
     assert service.marvelous_plan_requirements(plan, access=access).eligible
 
 
+@pytest.mark.parametrize('suffix,minimum', [('daylight-light',10), ('diffuse-body',7), ('everglow',1),
+    ('incarnate-glow',15), ('light-speed',15), ('prismatic-radiance-light',15),
+    ('radiation-light',10), ('star-genesis',10)])
+def test_light_advanced_dependencies_are_enforced_by_shared_construction_service(crafter, suffix, minimum):
+    from app.marvelous_item_rules import missing_construction_prerequisites
+    repo, cid = crafter
+    service = CraftingService(repo, cid)
+    key = 'light:advanced-talent:' + suffix
+    rows = [dict(catalog_key=key)]
+    rows.extend(dict(catalog_key=child) for child in missing_construction_prerequisites(rows))
+    if suffix == 'star-genesis': rows[0]['effect_choice'] = 'expanded radius'
+    access = dict(sphere_levels={'Light': 20}, available_talents=[service.magic_entries_by_key[row['catalog_key']]['name'] for row in rows])
+    item = dict(sphere='Light', base_power='light:glow', caster_level=minimum,
+        range_steps=0, duration_steps=0, contributions=rows)
+    assert service.marvelous_plan_requirements(item, access=access).eligible
+    if minimum > 1:
+        item['caster_level'] = minimum - 1
+        assert not service.marvelous_plan_requirements(item, access=access).eligible
+        item['caster_level'] = minimum
+    if len(rows) > 1:
+        rows.pop()
+        assert not service.marvelous_plan_requirements(item, access=access).eligible
+
+
 def test_complex_training_uses_current_effective_ranks(crafter, monkeypatch):
     repo, cid = crafter
     plan = dict(sphere='Life', base_power='life:cure', caster_level=5, range_steps=0,
