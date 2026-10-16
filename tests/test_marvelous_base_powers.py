@@ -374,6 +374,31 @@ def test_unsupported_light_modifications_do_not_claim_basic_bright_area(rows):
     assert 'bright_light_radius' not in effect
 
 
+@pytest.mark.parametrize('cl', [1,5,10,20])
+def test_light_lens_base_and_numeric_variants_do_not_emit_bright_light(cl):
+    effect = resolve_base_power(plan('light:lens', cl=cl))
+    assert effect['sight_perception_bonus'] == f'+{2 + cl // 5} circumstance'
+    assert effect['perception_distance_increment'] == f'{10 + 10 * cl} ft. per +1 DC'
+    for suffix,field,expected in [
+        ('aiming-scope-lens', 'ranged_attack_competence_bonus', 1 + cl // 10),
+        ('halo-effect-lens-utility', 'bluff_diplomacy_circumstance_bonus', 2 + cl // 4),
+        ('obscure-lens', 'defensive_uses_per_round', 1 + cl // 10),
+        ('rose-tinted-lens-jester-s-hb', 'ending_burst_fire_damage', f'{cl}d4 fire on failed Reflex save if the lens is ended as part of the burst'),
+    ]:
+        item = plan('light:lens', cl=cl, contributions=[dict(catalog_key='light:lens-talent:' + suffix)])
+        effect = resolve_base_power(item)
+        assert effect[field] == expected
+        assert 'bright_light_radius' not in effect and effect['duration'] == f'{cl} minutes'
+
+
+def test_lens_unresolved_modifiers_and_multiple_payloads_do_not_invent_statistics():
+    rows = [dict(catalog_key='light:lens-talent:aiming-scope-lens'), dict(catalog_key='light:lens-talent:obscure-lens')]
+    effect = resolve_base_power(plan('light:lens', cl=10, contributions=rows))
+    assert 'manual resolution' in effect['power'] and 'ranged_attack_competence_bonus' not in effect
+    effect = resolve_base_power(plan('light:lens', cl=10, contributions=[dict(catalog_key='light:lens-talent:chameleon-lens')]))
+    assert 'do not substitute' in effect['casting_modifier_review']
+
+
 @pytest.mark.parametrize('kind,choice', [('physical', 'Strength + Dexterity'), ('mental', 'Wisdom + Charisma')])
 def test_paired_ability_projection_requires_fixed_dual_enhancement(kind, choice):
     rows = [dict(catalog_key=f'enhancement:enhance-talent:{kind}-enhancement-enhance', effect_choice=choice)]

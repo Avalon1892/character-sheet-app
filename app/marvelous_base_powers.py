@@ -37,6 +37,7 @@ _ROWS = (
     ('life:restore', 'Life', 'Restore', 'touch', 'instantaneous'),
     ('life:temporary-hp', 'Life', 'Temporary hit points', 'touch', 'minute'),
     ('light:glow', 'Light', 'Bright glow', 'personal', 'minute'),
+    ('light:lens', 'Light', 'Telescope lens', 'personal', 'minute'),
     ('mana:expunge', 'Mana', 'Spellburn', 'close', 'instantaneous'),
     ('mana:manipulate', 'Mana', 'Shuffle', 'close', 'fixed-round'),
     ('mind:suggestion', 'Mind', 'Lesser Suggestion', 'touch', 'variable'),
@@ -90,6 +91,16 @@ ENERGY_SPHERE_KEY = 'destruction:blast-shape-talent:energy-sphere-blast-shape'
 ENERGY_WALL_KEY = 'destruction:blast-shape-talent:energy-wall-blast-shape'
 ENERGY_ENHANCEMENT_KEY = 'enhancement:enhance-talent:energy-enhancement-enhance'
 ALTERNATIVE_ENERGY_KEY = 'enhancement:advanced-talent:alternative-energy-jester-s-hb'
+LIGHT_LENSES = {
+    'light:lens-talent:aiming-scope-lens': 'Aiming Scope',
+    'light:lens-talent:chameleon-lens': 'Chameleon',
+    'light:lens-talent:dim-light-lens': 'Dim Light',
+    'light:lens-talent:halo-effect-lens-utility': 'Halo Effect',
+    'light:lens-talent:infravision-lens': 'Infravision',
+    'light:lens-talent:obscure-lens': 'Obscure',
+    'light:lens-talent:periscope-lens-utility': 'Periscope',
+    'light:lens-talent:rose-tinted-lens-jester-s-hb': 'Rose-Tinted',
+}
 TALENT_EFFECT_SP_CHOICES = {
     'light:talent:beacon-of-hope-light': {'target fear-save bonus': 0, 'fear recovery bright area': 1},
     'light:talent:blinding-light-light': {'dazzle glowing target': 0, 'blinding bright area': 1},
@@ -568,6 +579,35 @@ def resolve_base_power(plan):
                     summary['technology_check'] = 'Stops technological abilities and charge use without a check; constructs/cyborgs with SR still require a check against their SR.'
             if 'protection:aegis-ward-talent:spell-ward-aegis-ward' in keys:
                 summary['power'] = 'Combined magical/technological protection — manual resolution'
+    if power.key == 'light:lens':
+        rows = plan.get('contributions', [])
+        lenses = [row for row in rows if row.get('catalog_key') in LIGHT_LENSES]
+        if not rows:
+            summary['sight_perception_bonus'] = f'+{2 + cl // 5} circumstance'
+            summary['perception_distance_increment'] = f'{10 + 10 * cl} ft. per +1 DC'
+        elif len(rows) == len(lenses) == 1 and not lenses[0].get('alternative'):
+            name = LIGHT_LENSES[lenses[0]['catalog_key']]
+            summary['power'] = name + ' lens'
+            if name == 'Aiming Scope':
+                summary['ranged_attack_competence_bonus'] = 1 + cl // 10
+                summary['ignored_range_increments'] = 1 + cl // 10
+            elif name == 'Halo Effect':
+                summary['bluff_diplomacy_circumstance_bonus'] = 2 + cl // 4
+                summary['communication_limits'] = 'Only against creatures seeing the target with normal or low-light vision; Perform applicability requires GM approval.'
+            elif name == 'Obscure':
+                summary['defensive_uses_per_round'] = 1 + cl // 10
+                summary['defense'] = 'Before an attack roll, force two rolls and use the lower. No effect on attackers relying solely on nonvisual senses or unable to see the target.'
+            elif name == 'Rose-Tinted':
+                summary['burst_area'] = '30-foot cone or 60-foot line'
+                summary['burst_effect'] = 'Reflex save or blinded 1 round and dazzled 1 minute; wait 1d4 rounds between bursts.'
+                summary['ending_burst_fire_damage'] = f'{cl}d4 fire on failed Reflex save if the lens is ended as part of the burst'
+            else:
+                summary['lens_resolution'] = 'Use the selected lens rules below; target-specific values and special senses are resolved manually.'
+                if name == 'Chameleon': summary['casting_modifier_review'] = 'Uses the applicable item casting ability modifier; do not substitute the character’s modifier automatically.'
+            summary['application'] = 'Lens effect only; does not emit the bright-glow area. Apply to the target manually.'
+        else:
+            summary['power'] = 'Modified lens — manual resolution'
+            summary['lens_resolution'] = 'Resolve multiple, alternative or additional lens modifications from their rules; no single-lens statistics are assumed.'
     if power.key == 'light:glow':
         from app.marvelous_item_rules import advanced_construction_blockers
         rows = plan.get('contributions', [])

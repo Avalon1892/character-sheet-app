@@ -485,7 +485,8 @@ def talent_construction_spell_points(entry, *, reviewed_only=False):
     Planeshift adds two, Portal adds one, and sustained Enduring Portal adds
     one beyond its integrated prerequisites. Optional variants remain explicit.
     """
-    from app.marvelous_base_powers import DESTRUCTION_BLAST_TYPES, DESTRUCTION_BLAST_SHAPES, TALENT_EFFECT_SP_CHOICES
+    from app.marvelous_base_powers import DESTRUCTION_BLAST_TYPES, DESTRUCTION_BLAST_SHAPES, TALENT_EFFECT_SP_CHOICES, LIGHT_LENSES
+    if entry.get('key') in LIGHT_LENSES: return 0
     if choices := TALENT_EFFECT_SP_CHOICES.get(entry.get('key')):
         return min(choices.values())
     if entry.get('key') == 'destruction:blast-shape-talent:energy-sphere-blast-shape': return 0
@@ -927,6 +928,13 @@ def drawback_complexity(records):
     return total
 
 
+def light_lens_conversion_complexity(plan):
+    """One lens conversion, already paid by a selected lens talent's row."""
+    from app.marvelous_base_powers import LIGHT_LENSES
+    return int(plan.get('base_power') == 'light:lens' and not any(
+        row.get('catalog_key') in LIGHT_LENSES for row in plan.get('contributions', [])))
+
+
 def quote_marvelous_blueprint(plan):
     """Price the persisted composer blueprint using the same pure rules."""
     if plan.get('schema_version') != 1:
@@ -976,7 +984,7 @@ def quote_marvelous_blueprint(plan):
             raise ValueError('Taxing cannot restrict an effect usable for an unlimited duration.')
     complexity = effect_complexity(talent_costs=[x['complexity'] for x in plan['contributions'] if not x.get('alternative', False)] + grouped_costs,
         range_steps=plan['range_steps'], duration_steps=plan['duration_steps'],
-        activation=plan['activation'], unique_changes=plan['unique_changes'] - drawback_complexity(plan.get('drawbacks', [])) - simple + (2 if plan.get('permanent') else 0) + int(plan.get('full_blast_damage', False)) + 2 * plan.get('effect_range_steps', 0) + feat_cost)
+        activation=plan['activation'], unique_changes=plan['unique_changes'] - drawback_complexity(plan.get('drawbacks', [])) - simple + (2 if plan.get('permanent') else 0) + int(plan.get('full_blast_damage', False)) + 2 * plan.get('effect_range_steps', 0) + feat_cost + light_lens_conversion_complexity(plan))
     price = marvelous_item_price(plan['caster_level'], complexity,
                                 daily_uses=1 if plan['uses'] == 50 else plan['uses'], limited_uses=plan['uses'] == 50)
     if plan.get('no_space_limitation'):
@@ -1076,6 +1084,7 @@ def marvelous_complexity_formula(plan, *, quotation=None):
             groups.setdefault(row.get('alternative_group', 1), []).append(row['complexity'])
     terms = [('base', 1), ('talents', sum(row['complexity'] - row.get('additional_spell_points', 0) for row in ordinary)),
              ('extra SP', sum(row.get('additional_spell_points', 0) for row in ordinary)),
+             ('lens conversion', light_lens_conversion_complexity(plan)),
              ('choices', sum(effect_complexity(alternative_costs=costs) - 1 for costs in groups.values())),
              ('range', plan['range_steps']), ('duration', 2 * plan['duration_steps']),
              ('activation', ACTIVATION_COMPLEXITY[plan['activation']]), ('unique changes', plan['unique_changes']),

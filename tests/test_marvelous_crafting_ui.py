@@ -1274,6 +1274,32 @@ def test_mode_only_prerequisite_fix_is_available_from_visible_button(composer, m
     assert repo._connection.total_changes == writes
 
 
+def test_add_lens_effect_switches_base_prices_once_and_reopens(composer, monkeypatch):
+    from PySide6.QtWidgets import QDialog
+    from app.content import magic_entry
+    from app.services.crafting import CraftingService
+    from app.ui.marvelous_effect_picker import MarvelousEffectPicker
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Light'); dialog.cl.setValue(10)
+    entry = magic_entry('light:lens-talent:aiming-scope-lens')
+    def choose(picker):
+        picker.selected_entries = (entry,)
+        return QDialog.DialogCode.Accepted
+    monkeypatch.setattr(MarvelousEffectPicker, 'exec', choose)
+    dialog.choose_accessible_effects()
+    assert dialog.base_power.currentData() == 'light:lens'
+    assert dialog.quotation()[0] == 2
+    assert 'Ranged Attack Competence Bonus: 2' in dialog.item_preview.toPlainText()
+    assert 'Bright Light Radius:' not in dialog.item_preview.toPlainText()
+    iid = CraftingService(repo, cid).save_marvelous_design(dialog.blueprint(), name='Scope', slot='', description='')
+    reopened = MarvelousCraftingDialog(repo, cid, item_id=iid)
+    try:
+        assert reopened.base_power.currentData() == 'light:lens'
+        assert reopened.quotation()[0] == 2 and reopened.table.rowCount() == 1
+    finally:
+        reopened.close()
+
+
 def test_cancel_alternative_energy_promotion_preserves_choice_and_manual_cost(composer, monkeypatch):
     from PySide6.QtWidgets import QMessageBox
     from app.marvelous_base_powers import ENERGY_ENHANCEMENT_KEY, ALTERNATIVE_ENERGY_KEY

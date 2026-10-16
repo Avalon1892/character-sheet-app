@@ -5,6 +5,37 @@ from app.marvelous_item_rules import effect_complexity, marvelous_crafting_quote
 from app.marvelous_item_rules import marvelous_requirements
 
 
+def test_light_lens_conversion_is_paid_once_and_formula_matches_quote():
+    from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_complexity_formula
+    item = dict(schema_version=1, sphere='Light', base_power='light:lens', caster_level=5,
+        uses=1, activation='standard', range_steps=0, duration_steps=0, unique_changes=0, contributions=[])
+    assert quote_marvelous_blueprint(item)[0] == 2
+    assert '1 lens conversion' in marvelous_complexity_formula(item)
+    item['contributions'] = [dict(catalog_key='light:lens-talent:aiming-scope-lens', complexity=1)]
+    assert quote_marvelous_blueprint(item)[0] == 2
+    assert 'lens conversion' not in marvelous_complexity_formula(item)
+    item['contributions'][0]['complexity'] = 4
+    assert quote_marvelous_blueprint(item)[0] == 5
+    item['contributions'] = [dict(catalog_key=key, complexity=1, alternative=True) for key in (
+        'light:lens-talent:aiming-scope-lens', 'light:lens-talent:obscure-lens')]
+    assert quote_marvelous_blueprint(item)[0] == Fraction(5, 2)
+    lens = dict(item, contributions=[])
+    combined = dict(item, sphere='Life', base_power='life:cure', contributions=[],
+        extra_effects=[lens], combination_mode='multiple')
+    assert quote_marvelous_blueprint(combined)[1].market_price_gp == 7000
+    combined['combination_mode'] = 'mixed'
+    assert quote_marvelous_blueprint(combined)[1].market_price_gp == 8000
+
+
+def test_all_bundled_light_lenses_have_reviewed_zero_extra_sp():
+    from app.content import DEFAULT_CATALOG
+    from app.marvelous_base_powers import LIGHT_LENSES
+    from app.marvelous_item_rules import talent_construction_spell_points
+    entries = [entry for entry in DEFAULT_CATALOG.magic_entries('Light') if entry['category'] == 'Lens Talent']
+    assert {entry['key'] for entry in entries} == set(LIGHT_LENSES)
+    assert all(talent_construction_spell_points(entry, reviewed_only=True) == 0 for entry in entries)
+
+
 LIGHT_ADVANCED_REQUIREMENTS = {
     'daylight-light': (10, ()), 'diffuse-body': (7, ('light:talent:flicker-light',)),
     'everglow': (1, ('light:talent:lingering-glow',)),
