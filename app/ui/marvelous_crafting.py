@@ -584,6 +584,8 @@ class MarvelousCraftingDialog(QDialog):
                     self.base_power.setCurrentIndex(self.base_power.findData('warp:dimension-pierce'))
                 if entry['key'] == 'warp:space-talent:fluctuate-space':
                     self.base_power.setCurrentIndex(self.base_power.findData('warp:fluctuate'))
+                if entry['key'] == 'warp:space-talent:blink-space':
+                    self.base_power.setCurrentIndex(self.base_power.findData('warp:blink'))
                 from app.marvelous_base_powers import ANTIMAGIC_AURA_KEYS
                 if entry['key'] in ANTIMAGIC_AURA_KEYS:
                     self.base_power.setCurrentIndex(self.base_power.findData('protection:ward'))

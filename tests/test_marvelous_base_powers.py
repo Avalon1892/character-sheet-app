@@ -10,6 +10,8 @@ def plan(key, cl=5, **changes):
         changes.setdefault('contributions', [dict(catalog_key='warp:space-talent:dimension-pierce-space', complexity=2, additional_spell_points=1)])
     if key == 'warp:fluctuate':
         changes.setdefault('contributions', [dict(catalog_key='warp:space-talent:fluctuate-space', complexity=2, additional_spell_points=1)])
+    if key == 'warp:blink':
+        changes.setdefault('contributions', [dict(catalog_key='warp:space-talent:blink-space', complexity=1, additional_spell_points=0, effect_choice='concentration')])
     return dict(base_power=key, sphere=power.sphere, caster_level=cl,
                 range_steps=0, duration_steps=0, **changes)
 
@@ -42,6 +44,26 @@ def test_greater_invigorate_projection_keeps_unknown_item_modifier_explicit():
     details = resolve_base_power(item)
     assert details['temporary_hp_formula'].startswith('20 +')
     assert 'Cannot exceed' in details['temporary_hp_limit']
+
+
+def test_blink_modes_duration_scaling_cost_and_no_automatic_application():
+    from app.marvelous_base_powers import automatic_self_effect
+    item = plan('warp:blink', cl=6)
+    effect = resolve_base_power(item)
+    assert effect['miss_chance'] == '30%' and effect['duration'] == 'Concentration'
+    assert 'teleport_distance' not in effect and automatic_self_effect(item) is None
+    row = item['contributions'][0]
+    row['effect_choice'] = 'penalty for minutes per caster level'
+    with pytest.raises(ValueError, match='one-SP'):
+        resolve_base_power(item)
+    row['additional_spell_points'] = 1
+    effect = resolve_base_power(item)
+    assert effect['duration'] == '6 minutes' and 'Will negates' in effect['blink_effect']
+    item['caster_level'] = 30
+    assert resolve_base_power(item)['miss_chance'] == '50%'
+    row['alternative'] = True
+    with pytest.raises(ValueError, match='fixed Blink'):
+        resolve_base_power(item)
     with pytest.raises(ValueError, match='talent contribution'):
         resolve_base_power(plan('warp:dimension-pierce', contributions=[]))
     with pytest.raises(ValueError, match='one-SP'):

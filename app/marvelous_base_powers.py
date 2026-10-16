@@ -52,6 +52,7 @@ _ROWS = (
     ('warp:beacon', 'Warp', 'Place teleport beacon', 'touch', 'hour'),
     ('warp:dimension-pierce', 'Warp', 'Dimension Pierce', 'touch', 'hour'),
     ('warp:fluctuate', 'Warp', 'Fluctuate', 'touch', 'concentration'),
+    ('warp:blink', 'Warp', 'Blink', 'touch', 'concentration'),
     ('weather:control', 'Weather', 'Change one weather category', 'personal', 'round'),
 )
 BASE_POWERS = tuple(MarvelousBasePower(*row) for row in _ROWS)
@@ -87,7 +88,8 @@ ENERGY_SPHERE_KEY = 'destruction:blast-shape-talent:energy-sphere-blast-shape'
 ENERGY_WALL_KEY = 'destruction:blast-shape-talent:energy-wall-blast-shape'
 TALENT_EFFECT_SP_CHOICES = {
     'warp:space-talent:avert-space': {'readied standard action': 0, 'immediate action': 1, 'immediate action during total defense': 0},
-    'warp:space-talent:blink-space': {'concentration': 0, 'minutes per caster level': 1},
+    'warp:space-talent:blink-space': {'concentration': 0, 'minutes per caster level': 1,
+        'penalty with concentration': 0, 'penalty for minutes per caster level': 1},
     'warp:space-talent:create-gap-space': {'concentration': 1, 'minutes per caster level': 2},
     'warp:space-talent:distort-size-space': {'concentration': 0, 'minutes per caster level': 1},
     'life:talent:greater-invigorate': {'normal HP limit': 0, 'exceed normal HP limit': 1},
@@ -159,6 +161,9 @@ def effective_base_duration(plan):
     """Duration before construction adjustments, including reviewed effect modes."""
     power = next((power for power in BASE_POWERS if power.key == plan.get('base_power')), None)
     if power is None: return 'instantaneous'
+    if power.key == 'warp:blink':
+        selected = next((row for row in plan.get('contributions', []) if row.get('catalog_key') == 'warp:space-talent:blink-space'), {})
+        return 'minute' if 'minutes per caster level' in selected.get('effect_choice', '') else 'concentration'
     if power.key == 'warp:fluctuate':
         selected = next((row for row in plan.get('contributions', []) if row.get('catalog_key') == 'warp:space-talent:fluctuate-space'), {})
         return 'round' if selected.get('effect_choice') == 'rounds per caster level' else 'concentration'
@@ -306,6 +311,14 @@ def resolve_base_power(plan):
         if choices and selected != '' and selected not in choices:
             raise ValueError('Choose a supported effect option for ' + row['catalog_key'] + '.')
     key = plan.get('base_power')
+    if key == 'warp:blink':
+        selected = [row for row in plan.get('contributions', []) if row.get('catalog_key') == 'warp:space-talent:blink-space']
+        if len(selected) != 1 or selected[0].get('alternative'):
+            raise ValueError('Blink requires one fixed Blink talent contribution.')
+        minimum = TALENT_EFFECT_SP_CHOICES['warp:space-talent:blink-space'].get(selected[0].get('effect_choice'), 0)
+        points = selected[0].get('additional_spell_points', 0)
+        if isinstance(points, bool) or not isinstance(points, int) or points < minimum:
+            raise ValueError('Sustained Blink requires its one-SP cost.')
     if key == 'warp:beacon':
         beacons = [row for row in plan.get('contributions', []) if row.get('catalog_key') == 'warp:space-talent:teleport-beacon-space']
         if (len(beacons) != 1 or beacons[0].get('alternative')
@@ -571,6 +584,18 @@ def resolve_base_power(plan):
             if any(row.get('catalog_key') in DESTRUCTION_BLAST_TYPES for row in plan.get('contributions', [])):
                 summary['secondary_effects'] = 'Resolve saves, secondary damage, conditions and target-specific defenses from the talent description manually.'
     if power.key == 'warp:teleport': summary['teleport_distance'] = distances[('close', 'medium', 'long')[effect_steps]]
+    if power.key == 'warp:blink':
+        selected = next(row for row in plan['contributions'] if row.get('catalog_key') == 'warp:space-talent:blink-space')
+        penalty = selected.get('effect_choice', '').startswith('penalty')
+        summary['target'] = 'One touched creature.'
+        summary['miss_chance'] = f'{min(50, 20 + 5 * (cl // 3))}%'
+        summary['blink_effect'] = ('The target suffers this miss chance on its attacks; Will negates.' if penalty
+            else 'Attacks against the target suffer this miss chance.')
+        if not selected.get('effect_choice'):
+            summary['mode_review'] = 'Choose the Blink effect mode before construction.'
+        summary['exceptions'] = 'Does not affect force or effects crossing coterminous planes (including ghost touch); does not stack with other blink/incorporeal miss chances. Resolve attacks manually.'
+        if len(plan['contributions']) != 1:
+            summary['effect_review'] = 'Blink base values shown; additional talent interactions require manual resolution.'
     if power.key == 'warp:beacon':
         summary['target'] = 'One spot, object or creature; placement is manual.'
         summary['beacon'] = 'Creates a personal dimensional beacon. Travel to/from it is a separate teleport activation, on the same plane; unwilling creatures require Unwilling Teleport and a save.'
