@@ -95,8 +95,13 @@ class CraftingService:
                    if spell.catalog_category.casefold() == 'base sphere' or spell.catalog_key.endswith(':base')}
         talents = tuple((entry['name'] if (entry := self.magic_entries_by_key.get(spell.catalog_key)) else spell.name)
                         for spell in spells)
+        from app.sphere_rules import base_sphere_choice_options
+        nature_choices = {name.casefold(): name for name in base_sphere_choice_options('Nature')}
+        packages = tuple(dict.fromkeys(f'Nature ({nature_choices[str(spell.choice).strip().casefold()]} package)'
+            for spell in spells if spell.catalog_key in {'nature:base', 'nature:talent:expanded-geomancing'}
+            and str(spell.choice).strip().casefold() in nature_choices))
         return dict(sphere_levels={sphere: level for sphere in spheres},
-                    available_talents=talents)
+                    available_talents=talents, available_requirements=packages)
 
     def marvelous_plan_requirements(self, plan, *, access=None):
         """Resolve selected catalog identities and feed the shared eligibility check."""
@@ -106,6 +111,8 @@ class CraftingService:
         known_talents = {name.casefold() for name in construction_access.get('available_talents', ())}
         known_spheres = {name.casefold() for name, level in construction_access.get('sphere_levels', {}).items() if level > 0}
         required, advanced, spheres, construction_blockers = [], [], [], []
+        from app.marvelous_item_rules import CONSTRUCTION_PACKAGE_REQUIREMENTS
+        protected = list(construction_access.get('protected_requirements', ()))
         from app.marvelous_item_rules import educated_required_spheres
         if educated_required_spheres(plan) == ():
             construction_blockers.append('Educated: choose required spheres.')
@@ -141,6 +148,7 @@ class CraftingService:
                                      and contribution['catalog_key'] not in foreign_prerequisites):
                     raise ValueError('Selected talent is not part of the blueprint base sphere.')
                 required.append(entry['name'])
+                protected.extend(CONSTRUCTION_PACKAGE_REQUIREMENTS.get(entry['key'], ()))
                 for sphere, talent_key in CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS.get(entry['key'], ()):
                     if sphere.casefold() not in known_spheres:
                         construction_blockers.append(f'{entry["name"]}: requires the {sphere} base sphere as a construction prerequisite.')
@@ -156,6 +164,7 @@ class CraftingService:
                 known = {entry['sphere'] for entry in self.magic_entries_by_key.values()}
                 if any(sphere not in known for sphere in options['spheres']):
                     raise ValueError('Spell Selectivity contains an unknown magic sphere.')
+        construction_access = dict(construction_access, protected_requirements=tuple(dict.fromkeys(protected)))
         result = self.marvelous_requirements(caster_level=plan['caster_level'],
             required_spheres=spheres, required_talents=required,
             advanced_talents=advanced, **construction_access)

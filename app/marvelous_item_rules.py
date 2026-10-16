@@ -224,6 +224,8 @@ ADVANCED_CONSTRUCTION_REQUIREMENTS = {
     'weather:advanced-talent:desert-lord': (1, ()),
     'weather:advanced-talent:heat-lord': (1, ()),
     'weather:advanced-talent:rain-lord': (1, ()),
+    'weather:advanced-talent:fire-tornadoes': (15, ('weather:advanced-talent:wind-lord',)),
+    'weather:advanced-talent:volcano-lord': (10, ()),
     'weather:advanced-talent:wind-lord': (1, ()),
     'weather:advanced-talent:dehydration-pulse': (5, ('weather:advanced-talent:desert-lord',)),
     'weather:advanced-talent:rain-bomb': (1, ('weather:advanced-talent:rain-lord',)),
@@ -256,6 +258,8 @@ ADVANCED_CONSTRUCTION_REQUIREMENTS = {
 }
 
 CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS = {
+    'weather:advanced-talent:fire-tornadoes': (('Nature', None),),
+    'weather:advanced-talent:volcano-lord': (('Nature', None),),
     **{f'weather:advanced-talent:{suffix}': (('Destruction', None),)
        for suffix in ('radiation-lord-cata-hb', 'biohazard-cata-hb',
           'contaminated-blows-mantle-radiation-cata-hb', 'contamination-lord-cata-hb',
@@ -264,6 +268,11 @@ CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS = {
     'life:advanced-talent:soul-consumption-dbh': (('Death', 'death:advanced-talent:create-soul-gem-dbh'),),
     'warp:advanced-talent:time-warp-jester-s-hb': (('Time', None),),
     'warp:advanced-talent:create-demiplane-utility': (('Creation', 'creation:material-talent:expanded-materials-material'),),
+}
+
+CONSTRUCTION_PACKAGE_REQUIREMENTS = {
+    'weather:advanced-talent:fire-tornadoes': ('Nature (Fire package)',),
+    'weather:advanced-talent:volcano-lord': ('Nature (Earth package)', 'Nature (Fire package)'),
 }
 
 ALTERNATIVE_CONSTRUCTION_REQUIREMENTS = {

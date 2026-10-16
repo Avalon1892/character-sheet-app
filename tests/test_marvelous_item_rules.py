@@ -248,12 +248,11 @@ def test_weather_construction_sp_defaults_and_modes_are_catalog_backed():
     assert talent_choice_spell_points('weather:talent:greater-weather', 'three weather categories') == 2
 
 
-def test_weather_advanced_metadata_covers_every_non_nature_package_entry():
+def test_weather_advanced_metadata_covers_every_bundled_entry():
     from app.catalogs import DEFAULT_CATALOG
     from app.marvelous_item_rules import ADVANCED_CONSTRUCTION_REQUIREMENTS, missing_construction_prerequisites, advanced_construction_blockers
-    deferred = {'weather:advanced-talent:fire-tornadoes', 'weather:advanced-talent:volcano-lord'}
-    entries = {e['key'] for e in DEFAULT_CATALOG.magic_entries('Weather') if 'advanced' in e['category'].lower()} - deferred
-    assert len(entries) == 19
+    entries = {e['key'] for e in DEFAULT_CATALOG.magic_entries('Weather') if 'advanced' in e['category'].lower()}
+    assert len(entries) == 21
     for key in entries:
         minimum, _ = ADVANCED_CONSTRUCTION_REQUIREMENTS[key]
         rows = [dict(catalog_key=k) for k in [key, *missing_construction_prerequisites([dict(catalog_key=key)])]]

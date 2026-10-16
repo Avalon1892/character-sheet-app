@@ -110,6 +110,36 @@ def test_radiation_weather_construction_requires_destruction_base(crafter, suffi
     assert service.marvelous_plan_requirements(plan, access=access).eligible
 
 
+def test_permanent_nature_package_access_uses_saved_choices_not_flexible_selections(crafter):
+    repo, cid = crafter
+    repo.add_spell(cid, 'Nature', system='Sphere', school_or_sphere='Nature',
+        catalog_key='nature:base', catalog_category='Base Sphere', choice='Fire')
+    repo.add_spell(cid, 'Expanded Geomancing', system='Sphere', school_or_sphere='Nature',
+        catalog_key='nature:talent:expanded-geomancing', catalog_category='Talent', choice='Earth')
+    assert set(CraftingService(repo, cid).permanent_marvelous_access()['available_requirements']) == {
+        'Nature (Fire package)', 'Nature (Earth package)'}
+
+
+@pytest.mark.parametrize('suffix,packages', [('fire-tornadoes', ('Nature (Fire package)',)),
+    ('volcano-lord', ('Nature (Earth package)', 'Nature (Fire package)'))])
+def test_weather_nature_package_requirements_cannot_be_waived(crafter, suffix, packages):
+    from app.marvelous_item_rules import missing_construction_prerequisites
+    repo, cid = crafter
+    repo.add_feat(cid, 'Versatile Crafter')
+    service = CraftingService(repo, cid)
+    key = 'weather:advanced-talent:' + suffix
+    keys = [key, *missing_construction_prerequisites([dict(catalog_key=key)])]
+    plan = dict(sphere='Weather', base_power='weather:control', caster_level=15,
+        range_steps=0, duration_steps=0, contributions=[dict(catalog_key=k) for k in keys])
+    access = dict(sphere_levels={'Weather': 15, 'Nature': 15},
+        available_talents=[service.magic_entries_by_key[k]['name'] for k in keys])
+    result = service.marvelous_plan_requirements(plan, access=access)
+    assert not result.eligible and any('package' in line for line in result.blockers)
+    access['available_requirements'] = packages
+    assert service.marvelous_plan_requirements(plan, access=access).eligible
+    assert 'protected_requirements' not in access
+
+
 def test_complex_training_uses_current_effective_ranks(crafter, monkeypatch):
     repo, cid = crafter
     plan = dict(sphere='Life', base_power='life:cure', caster_level=5, range_steps=0,

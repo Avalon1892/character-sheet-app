@@ -1640,18 +1640,20 @@ def test_restore_mode_is_explicit_saved_and_cleared_for_other_powers(composer):
     ('Life', 'life:advanced-talent:resurrection-supreme-warden'),
     ('Warp', 'warp:advanced-talent:time-warp-jester-s-hb'),
     ('Weather', 'weather:advanced-talent:radiotherapy-mantle-radiation-cata-hb'),
+    ('Weather', 'weather:advanced-talent:fire-tornadoes'),
+    ('Weather', 'weather:advanced-talent:volcano-lord'),
     ('Life', 'life:advanced-talent:soul-consumption-dbh'),
     ('Protection', 'protection:advanced-talent:antimagic-aura'),
     ('Protection', 'protection:advanced-talent:tripped-glyph-3pp'),
 ])
 def test_composer_adds_reviewed_prerequisites_without_duplicates_or_writes(composer, sphere, key):
-    from app.marvelous_item_rules import advanced_construction_blockers
+    from app.marvelous_item_rules import advanced_construction_blockers, missing_construction_prerequisites
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText(sphere); dialog.cl.setValue(20)
     index = next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key)
     dialog.talent.setCurrentIndex(index); dialog.add_contribution()
     before = repo._connection.total_changes
-    assert dialog.add_prerequisites.isEnabled()
+    assert dialog.add_prerequisites.isEnabled() == bool(missing_construction_prerequisites(dialog.blueprint()['contributions']))
     dialog.add_required_contributions()
     contributions = dialog.blueprint()['contributions']
     assert not advanced_construction_blockers(contributions, 20)
