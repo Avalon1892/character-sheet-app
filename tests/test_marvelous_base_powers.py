@@ -232,6 +232,49 @@ def test_alter_movement_requires_mode_and_does_not_project_unknown_combinations(
     assert 'movement_speed_bonus' not in effect and 'roll_penalty' not in effect
 
 
+@pytest.mark.parametrize('cl,skill,save,vigor,reduction', [(1,5,2,2,1), (4,6,2,2,1), (5,6,3,2,1), (7,6,3,4,2), (14,8,4,6,3)])
+def test_skill_save_and_vigor_enhancements_scale_independently(cl, skill, save, vigor, reduction):
+    for suffix,choice,expected in [
+        ('enhance-focus-enhance', 'Acrobatics', {'skill': 'Acrobatics', 'skill_enhancement_bonus': skill}),
+        ('staunch-resistance-enhance', 'Will', {'saving_throw': 'Will', 'untyped_save_bonus': save}),
+        ('supply-vigor-enhance', 'Constitution', {'ability_score': 'Constitution',
+            'ignored_existing_ability_damage_drain_penalty': vigor, 'incoming_ability_damage_drain_reduction': reduction}),
+    ]:
+        row = dict(catalog_key='enhancement:enhance-talent:' + suffix, effect_choice=choice)
+        item = plan('enhancement:enhance', cl=cl, contributions=[row])
+        effect = resolve_base_power(item)
+        assert all(effect[field] == value for field, value in expected.items())
+        assert 'equipment_enhancement_bonus' not in effect
+        row['effect_choice'] = ''
+        assert 'mode_review' in resolve_base_power(item)
+
+
+@pytest.mark.parametrize('cl', [1, 2, 5, 14])
+def test_harden_weaken_modes_keep_object_and_creature_effects_separate(cl):
+    for mode,field,expected in [('increase hardness', 'hardness_adjustment', cl),
+        ('decrease hardness', 'hardness_adjustment', -cl),
+        ('grant DR/adamantine', 'damage_reduction', f'{max(1, cl // 2)}/adamantine'),
+        ('decrease bypassable DR', 'damage_reduction_decrease', max(1, cl // 2))]:
+        effect = resolve_base_power(plan('enhancement:enhance', cl=cl, contributions=[dict(
+            catalog_key='enhancement:enhance-talent:harden-weaken-enhance', effect_choice=mode)]))
+        assert effect[field] == expected
+        assert ('fragile' in effect) == (mode == 'decrease hardness')
+        assert ('dr_limits' in effect) == (mode == 'decrease bypassable DR')
+        assert 'equipment_enhancement_bonus' not in effect
+
+
+@pytest.mark.parametrize('cl', [1,5,6,11,12,17,18])
+def test_flexibility_unlocks_only_earned_tiers_and_poison_does_not_invent_dc(cl):
+    effect = resolve_base_power(plan('enhancement:enhance', cl=cl, contributions=[dict(
+        catalog_key='enhancement:enhance-talent:improved-flexibility-enhance')]))
+    for field,minimum in [('narrow_spaces',6), ('tight_spaces',12), ('minimum_space',18)]:
+        assert (field in effect) == (cl >= minimum)
+    effect = resolve_base_power(plan('enhancement:enhance', cl=cl, contributions=[dict(
+        catalog_key='enhancement:enhance-talent:superior-poison-enhance')]))
+    assert effect['additional_successful_saves_to_cure'] == 1
+    assert 'rather than increasing its DC' in effect['poison_target']
+
+
 @pytest.mark.parametrize('kind,choice', [('physical', 'Strength + Dexterity'), ('mental', 'Wisdom + Charisma')])
 def test_paired_ability_projection_requires_fixed_dual_enhancement(kind, choice):
     rows = [dict(catalog_key=f'enhancement:enhance-talent:{kind}-enhancement-enhance', effect_choice=choice)]

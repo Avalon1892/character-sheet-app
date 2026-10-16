@@ -164,6 +164,8 @@ def test_enhancement_cross_sphere_prerequisites_need_integrated_talent_and_acces
     ('physical-enhancement-enhance', 'Strength'), ('mental-enhancement-enhance', 'Charisma'),
     ('energize-body-enhance', 'suppress exhaustion'), ('ragged-edges-enhance', 'caster level bleed'),
     ('alter-movement-enhance', 'increase one movement speed'),
+    ('enhance-focus-enhance', 'Perception'), ('staunch-resistance-enhance', 'Reflex'),
+    ('supply-vigor-enhance', 'Dexterity'), ('harden-weaken-enhance', 'grant DR/adamantine'),
     ('spectral-enhancement-enhance-gravecaller-s-hb', 'empowered ghost touch armor'),
 ])
 def test_enhancement_requires_explicit_mode_before_construction(crafter, suffix, choice):

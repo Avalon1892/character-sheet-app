@@ -1105,6 +1105,29 @@ def test_enhancement_live_card_updates_level_values_without_character_writes(com
     assert repo._connection.total_changes == before
 
 
+@pytest.mark.parametrize('suffix,choice,field,initial,updated', [
+    ('enhance-focus-enhance', 'Perception', 'Skill Enhancement Bonus', '6', '8'),
+    ('staunch-resistance-enhance', 'Reflex', 'Untyped Save Bonus', '2', '4'),
+    ('supply-vigor-enhance', 'Dexterity', 'Ignored Existing Ability Damage Drain Penalty', '2', '6'),
+    ('harden-weaken-enhance', 'grant DR/adamantine', 'Damage Reduction', '2/adamantine', '7/adamantine'),
+])
+def test_selected_enhancement_modes_update_and_restore_without_writes(composer, suffix, choice, field, initial, updated):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Enhancement'); dialog.cl.setValue(4)
+    key = 'enhancement:enhance-talent:' + suffix
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    before = repo._connection.total_changes
+    dialog.add_contribution()
+    picker = dialog.table.cellWidget(0, 5); picker.setCurrentIndex(picker.findData(choice))
+    assert f'{field}: {initial}' in dialog.item_preview.toPlainText()
+    dialog.cl.setValue(14)
+    assert f'{field}: {updated}' in dialog.item_preview.toPlainText()
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint() == saved
+    assert f'{field}: {updated}' in dialog.item_preview.toPlainText()
+    assert repo._connection.total_changes == before
+
+
 def test_cancel_dual_promotion_restores_previous_ability_choice(composer, monkeypatch):
     from PySide6.QtWidgets import QMessageBox
     dialog, repo, cid = composer

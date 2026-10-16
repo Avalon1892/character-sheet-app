@@ -167,6 +167,15 @@ def talent_effect_choices(key):
         return ABILITY_ENHANCEMENT_CHOICES[key]
     if key == 'enhancement:enhance-talent:alter-movement-enhance':
         return ('increase one movement speed', 'halve all movement speeds')
+    if key == 'enhancement:enhance-talent:enhance-focus-enhance':
+        from app.models import SKILLS
+        return tuple(skill.name for skill in SKILLS)
+    if key == 'enhancement:enhance-talent:staunch-resistance-enhance':
+        return ('Fortitude', 'Reflex', 'Will')
+    if key == 'enhancement:enhance-talent:supply-vigor-enhance':
+        return ('Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma')
+    if key == 'enhancement:enhance-talent:harden-weaken-enhance':
+        return ('increase hardness', 'decrease hardness', 'grant DR/adamantine', 'decrease bypassable DR')
     if key == 'protection:aegis-ward-talent:armored-magic-aegis':
         return ('armor', 'shield')
     if key == 'protection:advanced-talent:spell-selectivity-dbh':
@@ -546,6 +555,12 @@ def resolve_base_power(plan):
         greater = 'enhancement:talent:greater-enhance-equipment'
         mass = 'enhancement:talent:mass-enhancement-mass'
         mode_powers = {
+            'enhancement:enhance-talent:enhance-focus-enhance': 'Enhance Focus',
+            'enhancement:enhance-talent:staunch-resistance-enhance': 'Staunch Resistance',
+            'enhancement:enhance-talent:supply-vigor-enhance': 'Supply Vigor',
+            'enhancement:enhance-talent:harden-weaken-enhance': 'Harden/Weaken',
+            'enhancement:enhance-talent:improved-flexibility-enhance': 'Improved Flexibility',
+            'enhancement:enhance-talent:superior-poison-enhance': 'Superior Poison',
             'enhancement:enhance-talent:alter-movement-enhance': 'Alter Movement',
             'enhancement:enhance-talent:cripple-enhance': 'Cripple',
             'enhancement:enhance-talent:superior-reflexes-enhance': 'Superior Reflexes',
@@ -581,6 +596,38 @@ def resolve_base_power(plan):
                 summary['power'] = mode_powers[key]
                 if talent_effect_choices(key) and choice not in talent_effect_choices(key):
                     summary['mode_review'] = 'Choose the effect mode before construction.'
+                elif summary['power'] == 'Enhance Focus':
+                    summary['skill'] = choice
+                    summary['skill_enhancement_bonus'] = 5 + cl // 4
+                    summary['skill_targeting'] = 'Apply to the chosen skill manually; Craft, Perform and Profession require a specific specialty. Does not grant ranks or training.'
+                elif summary['power'] == 'Staunch Resistance':
+                    summary['saving_throw'] = choice
+                    summary['untyped_save_bonus'] = 2 + cl // 5
+                    summary['save_resolution'] = 'Apply only to the chosen saving throw, not all three.'
+                elif summary['power'] == 'Supply Vigor':
+                    summary['ability_score'] = choice
+                    summary['ignored_existing_ability_damage_drain_penalty'] = 2 + 2 * (cl // 7)
+                    summary['incoming_ability_damage_drain_reduction'] = 1 + cl // 7
+                    summary['vigor_limits'] = 'Does not prevent ability damage/drain paid as a cost. Suppresses rather than heals existing damage, drain or penalties; apply manually.'
+                elif summary['power'] == 'Harden/Weaken':
+                    if choice in {'increase hardness', 'decrease hardness'}:
+                        summary['hardness_adjustment'] = cl if choice == 'increase hardness' else -cl
+                        if choice == 'decrease hardness': summary['fragile'] = 'The object gains fragile if it does not already have it.'
+                    elif choice == 'grant DR/adamantine':
+                        summary['damage_reduction'] = f'{max(1, cl // 2)}/adamantine'
+                    else:
+                        summary['damage_reduction_decrease'] = max(1, cl // 2)
+                        summary['dr_limits'] = 'Only bypassable DR can be reduced; DR/— is unaffected.'
+                    summary['hardening_resolution'] = 'Apply the selected change to the target manually; existing target hardness/DR is not assumed.'
+                elif summary['power'] == 'Improved Flexibility':
+                    summary['escape_artist_actions'] = 'One-minute checks become full-round actions; full-round checks become standard actions.'
+                    if cl >= 6: summary['narrow_spaces'] = 'Ignore squeezing penalties and move at full speed.'
+                    if cl >= 12: summary['tight_spaces'] = 'Move at full speed without losing Dexterity to AC.'
+                    if cl >= 18: summary['minimum_space'] = 'Escape Artist can squeeze through any space that fits one fist.'
+                    summary['flexibility_resolution'] = 'Resolve checks and available space manually.'
+                elif summary['power'] == 'Superior Poison':
+                    summary['additional_successful_saves_to_cure'] = 1
+                    summary['poison_target'] = 'One dose of poison; adds to its required cure saves rather than increasing its DC. Resolve poison manually.'
                 elif summary['power'] == 'Alter Movement':
                     if choice == 'increase one movement speed':
                         summary['movement_speed_bonus'] = f'+{10 * (1 + cl // 5)} ft. enhancement'
