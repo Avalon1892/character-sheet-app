@@ -5,6 +5,25 @@ from app.marvelous_item_rules import effect_complexity, marvelous_crafting_quote
 from app.marvelous_item_rules import marvelous_requirements
 
 
+@pytest.mark.parametrize('suffix,expected', [
+    ('enhance-talent:steal-capacity-enhance', 1), ('enhance-talent:steal-senses-enhance', 1),
+    ('enhance-talent:alter-movement-enhance', 0), ('enhance-talent:cripple-enhance', 0),
+    ('enhance-talent:emphasize-belief-enhance', 0), ('enhance-talent:enhance-focus-enhance', 0),
+    ('enhance-talent:enhance-potency-enhance-sm', 0), ('enhance-talent:harden-weaken-enhance', 0),
+    ('enhance-talent:improved-flexibility-enhance', 0), ('enhance-talent:ravenous-weapon-enhance-sm', 0),
+    ('enhance-talent:staunch-resistance-enhance', 0), ('enhance-talent:superior-poison-enhance', 0),
+    ('enhance-talent:superior-reflexes-enhance', 0), ('enhance-talent:supply-vigor-enhance', 0),
+    ('enhance-talent:traveling-weapon-enhance', 0), ('talent:crippling-strike-strike', 0),
+    ('talent:natural-enhancement', 0),
+])
+def test_reviewed_enhancement_additional_spell_point_defaults(suffix, expected):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_construction_spell_points
+    entry = magic_entry('enhancement:' + suffix)
+    assert entry is not None
+    assert talent_construction_spell_points(entry, reviewed_only=True) == expected
+
+
 @pytest.mark.parametrize('kind,choice', [
     ('physical', 'Strength + Dexterity'), ('physical', 'Strength + Constitution'),
     ('physical', 'Dexterity + Constitution'), ('mental', 'Intelligence + Wisdom'),

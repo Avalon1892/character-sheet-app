@@ -160,11 +160,15 @@ def test_enhancement_cross_sphere_prerequisites_need_integrated_talent_and_acces
     assert not service.marvelous_plan_requirements(plan, access=access).eligible
 
 
-@pytest.mark.parametrize('kind,choice', [('physical', 'Strength'), ('mental', 'Charisma')])
-def test_ability_enhancement_requires_explicit_score_before_construction(crafter, kind, choice):
+@pytest.mark.parametrize('suffix,choice', [
+    ('physical-enhancement-enhance', 'Strength'), ('mental-enhancement-enhance', 'Charisma'),
+    ('energize-body-enhance', 'suppress exhaustion'), ('ragged-edges-enhance', 'caster level bleed'),
+    ('spectral-enhancement-enhance-gravecaller-s-hb', 'empowered ghost touch armor'),
+])
+def test_enhancement_requires_explicit_mode_before_construction(crafter, suffix, choice):
     repo, cid = crafter
     service = CraftingService(repo, cid)
-    key = f'enhancement:enhance-talent:{kind}-enhancement-enhance'
+    key = 'enhancement:enhance-talent:' + suffix
     row = dict(catalog_key=key)
     plan = dict(sphere='Enhancement', base_power='enhancement:enhance', caster_level=8,
         range_steps=0, duration_steps=0, contributions=[row])

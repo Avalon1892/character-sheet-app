@@ -981,6 +981,9 @@ def test_temporal_haste_adds_required_talent_and_sp_to_live_price(composer):
 
 
 @pytest.mark.parametrize('key, first_mode, second_mode, cost', [
+    ('enhancement:enhance-talent:energize-body-enhance', 'suppress fatigue / reduce exhaustion', 'suppress exhaustion', 1),
+    ('enhancement:enhance-talent:ragged-edges-enhance', 'half caster level bleed', 'caster level bleed', 1),
+    ('enhancement:enhance-talent:spectral-enhancement-enhance-gravecaller-s-hb', 'ghost touch armor', 'empowered ghost touch armor', 1),
     ('time:advanced-talent:shuffle-time-time-3pp', 'reroll initiative', 'roll twice, take lower', 1),
     ('time:advanced-talent:past-sight-utility', 'view hours', 'view days', 2),
     ('time:talent:delay-pain-time', 'delay until next turn', 'split damage across two turns', 2),

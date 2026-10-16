@@ -143,6 +143,55 @@ def test_greater_and_mass_equipment_projection_does_not_invent_unknown_effects()
     assert 'manual resolution' in effect['power'] and 'equipment_enhancement_bonus' not in effect
 
 
+@pytest.mark.parametrize('suffix,choice,field,expected', [
+    ('energize-body-enhance', 'suppress fatigue / reduce exhaustion', 'carrying_capacity_multiplier', 4),
+    ('energize-body-enhance', 'suppress exhaustion', 'carrying_capacity_multiplier', 4),
+    ('ragged-edges-enhance', 'half caster level bleed', 'additional_bleed_damage', 6),
+    ('ragged-edges-enhance', 'caster level bleed', 'additional_bleed_damage', 12),
+    ('spectral-enhancement-enhance-gravecaller-s-hb', 'empowered ghost touch armor', 'negative_energy_resistance', 6),
+    ('spectral-enhancement-enhance-gravecaller-s-hb', 'empowered ghost touch armor', 'possession_negative_energy_save_bonus', 4),
+    ('spectral-enhancement-enhance-gravecaller-s-hb', 'empowered ghost touch weapon', 'undead_incorporeal_hit', 'Will save or sickened for 1 round, bypassing sickened immunity.'),
+])
+def test_enhancement_mode_projects_its_own_effect_not_equipment_bonus(suffix, choice, field, expected):
+    rows = [dict(catalog_key='enhancement:enhance-talent:' + suffix, effect_choice=choice)]
+    item = plan('enhancement:enhance', cl=12, contributions=rows)
+    effect = resolve_base_power(item)
+    assert effect[field] == expected and 'equipment_enhancement_bonus' not in effect
+    assert effect['duration'] == '12 rounds'
+    rows[0]['effect_choice'] = ''
+    assert 'mode_review' in resolve_base_power(item)
+    assert field not in resolve_base_power(item)
+    rows[0]['effect_choice'] = choice
+    rows[0]['alternative'] = True
+    assert field not in resolve_base_power(item)
+
+
+def test_spectral_object_and_unempowered_armor_do_not_claim_empowered_benefits():
+    key = 'enhancement:enhance-talent:spectral-enhancement-enhance-gravecaller-s-hb'
+    for mode in ('solid to incorporeal creatures', 'ghost touch armor', 'ghost touch weapon'):
+        effect = resolve_base_power(plan('enhancement:enhance', cl=12, contributions=[dict(catalog_key=key, effect_choice=mode)]))
+        assert effect['spectral_mode'] == mode
+        assert 'negative_energy_resistance' not in effect and 'undead_incorporeal_hit' not in effect
+
+
+@pytest.mark.parametrize('cl,bleed,multiplier', [(1,1,2), (4,2,2), (5,2,3), (10,5,4)])
+def test_enhancement_mode_low_level_floors_and_scaling(cl, bleed, multiplier):
+    effect = resolve_base_power(plan('enhancement:enhance', cl=cl, contributions=[dict(
+        catalog_key='enhancement:enhance-talent:ragged-edges-enhance', effect_choice='half caster level bleed')]))
+    assert effect['additional_bleed_damage'] == bleed
+    effect = resolve_base_power(plan('enhancement:enhance', cl=cl, contributions=[dict(
+        catalog_key='enhancement:enhance-talent:energize-body-enhance', effect_choice='suppress exhaustion')]))
+    assert effect['carrying_capacity_multiplier'] == multiplier
+
+
+def test_mixed_enhancement_payloads_do_not_claim_one_supported_effect():
+    rows = [dict(catalog_key='enhancement:enhance-talent:energize-body-enhance', effect_choice='suppress exhaustion'),
+            dict(catalog_key='enhancement:enhance-talent:ragged-edges-enhance', effect_choice='caster level bleed')]
+    effect = resolve_base_power(plan('enhancement:enhance', cl=10, contributions=rows))
+    assert 'manual resolution' in effect['power']
+    assert 'carrying_capacity_multiplier' not in effect and 'additional_bleed_damage' not in effect
+
+
 @pytest.mark.parametrize('kind,choice', [('physical', 'Strength + Dexterity'), ('mental', 'Wisdom + Charisma')])
 def test_paired_ability_projection_requires_fixed_dual_enhancement(kind, choice):
     rows = [dict(catalog_key=f'enhancement:enhance-talent:{kind}-enhancement-enhance', effect_choice=choice)]
@@ -166,6 +215,9 @@ def test_ability_enhancement_projects_selected_score_without_equipment_bonus(kin
     row['effect_choice'] = ''
     effect = resolve_base_power(plan('enhancement:enhance', cl=cl, contributions=[row]))
     assert 'mode_review' in effect and 'ability_enhancement_bonus' not in effect
+    row['effect_choice'] = 'unsupported saved mode'
+    with pytest.raises(ValueError, match='supported effect option'):
+        resolve_base_power(plan('enhancement:enhance', cl=cl, contributions=[row]))
     with pytest.raises(ValueError, match='talent contribution'):
         resolve_base_power(plan('warp:dimension-pierce', contributions=[]))
     with pytest.raises(ValueError, match='one-SP'):

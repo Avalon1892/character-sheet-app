@@ -89,6 +89,11 @@ SCULPT_BLAST_KEY = 'destruction:blast-shape-talent:sculpt-blast-blast-shape'
 ENERGY_SPHERE_KEY = 'destruction:blast-shape-talent:energy-sphere-blast-shape'
 ENERGY_WALL_KEY = 'destruction:blast-shape-talent:energy-wall-blast-shape'
 TALENT_EFFECT_SP_CHOICES = {
+    'enhancement:enhance-talent:energize-body-enhance': {'suppress fatigue / reduce exhaustion': 0, 'suppress exhaustion': 1},
+    'enhancement:enhance-talent:ragged-edges-enhance': {'half caster level bleed': 0, 'caster level bleed': 1},
+    'enhancement:enhance-talent:spectral-enhancement-enhance-gravecaller-s-hb': {
+        'solid to incorporeal creatures': 0, 'ghost touch weapon': 0, 'ghost touch armor': 0,
+        'empowered ghost touch weapon': 1, 'empowered ghost touch armor': 1},
     # Lighten's one SP is already included as a construction prerequisite.
     'enhancement:advanced-talent:reverse-gravity-enhance': {'concentration': 1, 'rounds per caster level': 2},
     'warp:space-talent:avert-space': {'readied standard action': 0, 'immediate action': 1, 'immediate action during total defense': 0},
@@ -538,11 +543,19 @@ def resolve_base_power(plan):
         keys = [row.get('catalog_key') for row in rows]
         greater = 'enhancement:talent:greater-enhance-equipment'
         mass = 'enhancement:talent:mass-enhancement-mass'
+        mode_powers = {
+            'enhancement:enhance-talent:energize-body-enhance': 'Energize Body',
+            'enhancement:enhance-talent:ragged-edges-enhance': 'Ragged Edges',
+            'enhancement:enhance-talent:spectral-enhancement-enhance-gravecaller-s-hb': 'Spectral Enhancement',
+        }
         ability_rows = [row for row in rows if row.get('catalog_key') in {
             'enhancement:enhance-talent:physical-enhancement-enhance',
             'enhancement:enhance-talent:mental-enhancement-enhance'}]
         ability = ability_rows[0] if len(ability_rows) == 1 else None
-        allowed = {mass, 'enhancement:talent:deep-enhancement', ability['catalog_key'] if ability else greater}
+        mode_rows = [row for row in rows if row.get('catalog_key') in mode_powers]
+        selected = mode_rows[0] if len(mode_rows) == 1 else None
+        allowed = {mass, 'enhancement:talent:deep-enhancement',
+                   ability['catalog_key'] if ability else selected['catalog_key'] if selected else greater}
         dual = 'enhancement:talent:dual-enhancement'
         if ability: allowed.add(dual)
         paired = bool(ability and ability.get('effect_choice') in ABILITY_ENHANCEMENT_CHOICES[ability['catalog_key']][3:])
@@ -558,6 +571,29 @@ def resolve_base_power(plan):
                 else:
                     summary['mode_review'] = 'Choose the ability score before construction.'
                 summary['stacking'] = 'Temporary enhancement bonus to the chosen ability score; does not stack with other enhancement bonuses and does not rewrite the base score.'
+            elif selected:
+                key, choice = selected['catalog_key'], selected.get('effect_choice', '')
+                summary['power'] = mode_powers[key]
+                if choice not in talent_effect_choices(key):
+                    summary['mode_review'] = 'Choose the effect mode before construction.'
+                elif summary['power'] == 'Energize Body':
+                    summary['condition_suppression'] = ('Suppress exhausted for the duration.' if choice == 'suppress exhaustion'
+                        else 'Suppress fatigued or reduce exhausted to fatigued for the duration.')
+                    summary['condition_limits'] = 'Conditions still count for effects that inflict fatigue/exhaustion; sleeping targets wake. Resolve conditions manually.'
+                    summary['carrying_capacity_multiplier'] = 2 + cl // 5
+                    summary['endurance'] = f'Add {cl} to Constitution only for breath-holding and running duration.'
+                elif summary['power'] == 'Ragged Edges':
+                    summary['additional_bleed_damage'] = cl if choice == 'caster level bleed' else max(1, cl // 2)
+                    summary['bleed_resolution'] = 'Attacks with the enhanced weapon inflict this additional bleed; resolve hits, bleed and stacking manually.'
+                else:
+                    summary['spectral_mode'] = choice
+                    summary['spectral_resolution'] = 'Resolve equipment eligibility, object size limits, incorporeal interaction and any escape save manually.'
+                    if choice == 'empowered ghost touch weapon':
+                        summary['undead_incorporeal_hit'] = 'Will save or sickened for 1 round, bypassing sickened immunity.'
+                    elif choice == 'empowered ghost touch armor':
+                        summary['negative_energy_resistance'] = cl // 2
+                        summary['possession_negative_energy_save_bonus'] = 2 + cl // 5
+                        summary['save_bonus_type'] = 'Circumstance'
             else:
                 bonus = min(5, 1 + cl // 4)
                 if greater in keys: bonus = min(6, 2 + cl // 4)
