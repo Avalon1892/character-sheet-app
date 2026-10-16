@@ -642,8 +642,10 @@ class MarvelousCraftingDialog(QDialog):
         self.update_preview()
 
     def contribution_choice_changed(self, choice):
-        if self.loading_plan: return
-        from app.marvelous_item_rules import talent_choice_spell_points
+        previous = choice.property('previousChoice') or ''
+        if self.loading_plan:
+            choice.setProperty('previousChoice', choice.currentData()); return
+        from app.marvelous_item_rules import talent_choice_spell_points, mode_construction_prerequisites
         from PySide6.QtCore import Qt
         for row in range(self.table.rowCount()):
             if self.table.cellWidget(row, 5) is not choice: continue
@@ -651,7 +653,11 @@ class MarvelousCraftingDialog(QDialog):
             if points is not None:
                 editor = self.table.cellWidget(row, 4)
                 editor.blockSignals(True); editor.setValue(points); editor.blockSignals(False)
+            selected = dict(catalog_key=self.table.item(row, 0).data(Qt.ItemDataRole.UserRole), effect_choice=choice.currentData())
+            if mode_construction_prerequisites(selected) and not self.add_required_contributions():
+                choice.blockSignals(True); choice.setCurrentIndex(choice.findData(previous)); choice.blockSignals(False)
             break
+        choice.setProperty('previousChoice', choice.currentData())
         self.update_preview()
 
     def refresh_effect_options(self):

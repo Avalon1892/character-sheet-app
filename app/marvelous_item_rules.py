@@ -342,6 +342,15 @@ def missing_construction_alternatives(contributions):
     return tuple(missing)
 
 
+def mode_construction_prerequisites(contribution):
+    """Explicit reviewed mode requirements, not prerequisite prose parsing."""
+    from app.marvelous_base_powers import ABILITY_ENHANCEMENT_CHOICES
+    choices = ABILITY_ENHANCEMENT_CHOICES.get(contribution.get('catalog_key'), ())
+    if contribution.get('effect_choice') in choices[3:]:
+        return ('enhancement:talent:dual-enhancement',)
+    return ()
+
+
 def missing_construction_prerequisites(contributions):
     """Reviewed transitive additions in deterministic dependency order."""
     owned = {row['catalog_key'] for row in contributions}
@@ -353,6 +362,10 @@ def missing_construction_prerequisites(contributions):
             seen[required] = count
             visit(required); missing.extend([required] * deficit)
     for key in sorted(owned): visit(key)
+    for required in sorted({key for row in contributions for key in mode_construction_prerequisites(row)}):
+        if not seen[required]:
+            seen[required] = 1
+            visit(required); missing.append(required)
     return tuple(missing)
 
 
@@ -362,6 +375,9 @@ def advanced_construction_blockers(contributions, caster_level, *, display_names
     applied_counts = Counter(row['catalog_key'] for row in contributions if not row.get('alternative'))
     blockers = []
     names = display_names or {}
+    for owner, required in sorted({(row['catalog_key'], key) for row in contributions for key in mode_construction_prerequisites(row)}):
+        if not applied_counts[required]:
+            blockers.append(f'{names.get(owner, owner)}: selected mode requires fixed prerequisite talent {names.get(required, required)}.')
     for row in contributions:
         key, choice = row['catalog_key'], row.get('effect_choice', '')
         minimum = TALENT_EFFECT_MINIMUM_CL.get(key, {}).get(choice, 0)
@@ -462,6 +478,7 @@ def talent_construction_spell_points(entry, *, reviewed_only=False):
         'enhancement:enhance-talent:bestow-intelligence-enhance': 1,
         'enhancement:enhance-talent:lighten-enhance': 1,
         'enhancement:talent:mass-enhancement-mass': 1,
+        'enhancement:talent:dual-enhancement': 1,
         'enhancement:advanced-talent:antimagic-aegis': 1,
         'enhancement:advanced-talent:ascetic-control': 2,
         # Bestow Life's three-SP total includes both one-SP prerequisites.

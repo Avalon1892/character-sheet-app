@@ -146,14 +146,20 @@ def destructive_blast_profile(plan):
     return DESTRUCTION_BLAST_TYPES.get(keys[0]) if len(keys) == 1 else None
 
 
+ABILITY_ENHANCEMENT_CHOICES = {
+    'enhancement:enhance-talent:physical-enhancement-enhance': ('Strength', 'Dexterity', 'Constitution',
+        'Strength + Dexterity', 'Strength + Constitution', 'Dexterity + Constitution'),
+    'enhancement:enhance-talent:mental-enhancement-enhance': ('Intelligence', 'Wisdom', 'Charisma',
+        'Intelligence + Wisdom', 'Intelligence + Charisma', 'Wisdom + Charisma'),
+}
+
+
 def talent_effect_choices(key):
     """Reviewed construction choices, shared by the editor and projections."""
     if key in TALENT_EFFECT_SP_CHOICES:
         return tuple(TALENT_EFFECT_SP_CHOICES[key])
-    if key == 'enhancement:enhance-talent:physical-enhancement-enhance':
-        return ('Strength', 'Dexterity', 'Constitution')
-    if key == 'enhancement:enhance-talent:mental-enhancement-enhance':
-        return ('Intelligence', 'Wisdom', 'Charisma')
+    if key in ABILITY_ENHANCEMENT_CHOICES:
+        return ABILITY_ENHANCEMENT_CHOICES[key]
     if key == 'protection:aegis-ward-talent:armored-magic-aegis':
         return ('armor', 'shield')
     if key == 'protection:advanced-talent:spell-selectivity-dbh':
@@ -537,8 +543,11 @@ def resolve_base_power(plan):
             'enhancement:enhance-talent:mental-enhancement-enhance'}]
         ability = ability_rows[0] if len(ability_rows) == 1 else None
         allowed = {mass, 'enhancement:talent:deep-enhancement', ability['catalog_key'] if ability else greater}
+        dual = 'enhancement:talent:dual-enhancement'
+        if ability: allowed.add(dual)
+        paired = bool(ability and ability.get('effect_choice') in ABILITY_ENHANCEMENT_CHOICES[ability['catalog_key']][3:])
         supported = (len(keys) == len(set(keys)) and not any(row.get('alternative') for row in rows)
-                     and set(keys) <= allowed)
+                     and set(keys) <= allowed and not (paired and dual not in keys))
         if supported:
             if ability:
                 summary['power'] = 'Physical Enhancement' if 'physical-enhancement' in ability['catalog_key'] else 'Mental Enhancement'

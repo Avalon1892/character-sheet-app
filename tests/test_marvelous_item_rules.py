@@ -5,6 +5,27 @@ from app.marvelous_item_rules import effect_complexity, marvelous_crafting_quote
 from app.marvelous_item_rules import marvelous_requirements
 
 
+@pytest.mark.parametrize('kind,choice', [
+    ('physical', 'Strength + Dexterity'), ('physical', 'Strength + Constitution'),
+    ('physical', 'Dexterity + Constitution'), ('mental', 'Intelligence + Wisdom'),
+    ('mental', 'Intelligence + Charisma'), ('mental', 'Wisdom + Charisma'),
+])
+def test_paired_enhancement_requires_one_fixed_dual_talent(kind, choice):
+    from app.marvelous_item_rules import (missing_construction_prerequisites,
+        advanced_construction_blockers, talent_construction_spell_points)
+    dual = 'enhancement:talent:dual-enhancement'
+    rows = [dict(catalog_key=f'enhancement:enhance-talent:{kind}-enhancement-enhance', effect_choice=choice)]
+    assert missing_construction_prerequisites(rows) == (dual,)
+    assert advanced_construction_blockers(rows, 10)
+    rows.append(dict(catalog_key=dual, alternative=True))
+    assert missing_construction_prerequisites(rows) == (dual,)
+    assert advanced_construction_blockers(rows, 10)
+    rows[-1]['alternative'] = False
+    assert not missing_construction_prerequisites(rows)
+    assert not advanced_construction_blockers(rows, 10)
+    assert talent_construction_spell_points(dict(key=dual), reviewed_only=True) == 1
+
+
 def test_cryptwood_tradition_inherits_both_published_restrictions():
     from app.marvelous_item_rules import crafting_item_limitations, crafting_limitation_details
     plan = dict(caster_level=7, crafting_tradition={'key': 'crafting:cryptwood-artifice'},

@@ -1053,6 +1053,47 @@ def test_space_effect_picker_selects_derived_power_and_updates_duration(composer
     assert dialog.duration_steps.isEnabled()
 
 
+def test_dual_enhancement_mode_adds_prices_and_restores_prerequisite(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Enhancement'); dialog.cl.setValue(6)
+    key = 'enhancement:enhance-talent:physical-enhancement-enhance'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    dialog.add_contribution()
+    picker = dialog.table.cellWidget(0, 5)
+    picker.setCurrentIndex(picker.findData('Strength'))
+    original_complexity = dialog.quotation()[0]
+    writes = repo._connection.total_changes
+    picker.setCurrentIndex(picker.findData('Strength + Dexterity'))
+    rows = dialog.blueprint()['contributions']
+    assert [row['catalog_key'] for row in rows].count('enhancement:talent:dual-enhancement') == 1
+    assert dialog.quotation()[0] == original_complexity + 2
+    picker.setCurrentIndex(picker.findData('Strength + Constitution'))
+    assert dialog.table.rowCount() == 2
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint() == saved
+    legacy = dict(saved, contributions=[saved['contributions'][0]])
+    dialog.load_plan(legacy)
+    assert dialog.table.rowCount() == 1
+    assert repo._connection.total_changes == writes
+
+
+def test_cancel_dual_promotion_restores_previous_ability_choice(composer, monkeypatch):
+    from PySide6.QtWidgets import QMessageBox
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Enhancement'); dialog.cl.setValue(6)
+    for key in ('enhancement:enhance-talent:physical-enhancement-enhance', 'enhancement:talent:dual-enhancement'):
+        dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+        dialog.add_contribution()
+    picker = dialog.table.cellWidget(0, 5)
+    picker.setCurrentIndex(picker.findData('Dexterity'))
+    dialog.table.cellWidget(1, 2).setChecked(True)
+    before = dialog.blueprint(); writes = repo._connection.total_changes
+    monkeypatch.setattr(QMessageBox, 'question', lambda *args: QMessageBox.StandardButton.No)
+    picker.setCurrentIndex(picker.findData('Strength + Dexterity'))
+    assert dialog.blueprint() == before
+    assert repo._connection.total_changes == writes
+
+
 @pytest.mark.parametrize('kind,choice', [('physical', 'Dexterity'), ('mental', 'Wisdom')])
 def test_ability_enhancement_choice_updates_live_and_restores(composer, kind, choice):
     dialog, repo, cid = composer

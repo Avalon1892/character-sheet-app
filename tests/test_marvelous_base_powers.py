@@ -143,6 +143,19 @@ def test_greater_and_mass_equipment_projection_does_not_invent_unknown_effects()
     assert 'manual resolution' in effect['power'] and 'equipment_enhancement_bonus' not in effect
 
 
+@pytest.mark.parametrize('kind,choice', [('physical', 'Strength + Dexterity'), ('mental', 'Wisdom + Charisma')])
+def test_paired_ability_projection_requires_fixed_dual_enhancement(kind, choice):
+    rows = [dict(catalog_key=f'enhancement:enhance-talent:{kind}-enhancement-enhance', effect_choice=choice)]
+    item = plan('enhancement:enhance', cl=14, contributions=rows)
+    assert 'ability_score' not in resolve_base_power(item)
+    rows.append(dict(catalog_key='enhancement:talent:dual-enhancement'))
+    effect = resolve_base_power(item)
+    assert effect['ability_score'] == choice
+    assert effect['ability_enhancement_bonus'] == 6
+    rows[-1]['alternative'] = True
+    assert 'ability_score' not in resolve_base_power(item)
+
+
 @pytest.mark.parametrize('kind,choice', [('physical', 'Dexterity'), ('mental', 'Wisdom')])
 @pytest.mark.parametrize('cl,bonus', [(1,2), (7,4), (14,6), (21,8)])
 def test_ability_enhancement_projects_selected_score_without_equipment_bonus(kind, choice, cl, bonus):
