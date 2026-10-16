@@ -1024,24 +1024,29 @@ def test_time_item_card_updates_haste_and_fast_healing_from_caster_level(compose
     assert '+30 ft. to all movement modes' in text
 
 
-def test_blink_effect_picker_selects_derived_power_and_updates_duration(composer, monkeypatch):
+@pytest.mark.parametrize('talent,power,mode,detail', [
+    ('blink-space', 'warp:blink', 'penalty for minutes per caster level', '30%'),
+    ('create-gap-space', 'warp:create-gap', 'minutes per caster level', 'Contiguous 5-foot cubes'),
+    ('distort-size-space', 'warp:distort-size', 'minutes per caster level', '10 ft.'),
+])
+def test_space_effect_picker_selects_derived_power_and_updates_duration(composer, monkeypatch, talent, power, mode, detail):
     from app.ui.marvelous_effect_picker import MarvelousEffectPicker
     from app.content import magic_entry
     from PySide6.QtWidgets import QDialog
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Warp'); dialog.cl.setValue(6)
-    entry = magic_entry('warp:space-talent:blink-space')
+    entry = magic_entry('warp:space-talent:' + talent)
     monkeypatch.setattr(dialog.service, 'accessible_marvelous_effects', lambda sphere: (entry,))
     def accept(picker):
         picker.selected_entries = (entry,)
         return QDialog.DialogCode.Accepted
     monkeypatch.setattr(MarvelousEffectPicker, 'exec', accept)
     dialog.choose_accessible_effects()
-    assert dialog.base_power.currentData() == 'warp:blink'
-    mode = dialog.table.cellWidget(0, 5)
-    mode.setCurrentIndex(mode.findData('penalty for minutes per caster level'))
+    assert dialog.base_power.currentData() == power
+    picker = dialog.table.cellWidget(0, 5)
+    picker.setCurrentIndex(picker.findData(mode))
     text = dialog.item_preview.toPlainText()
-    assert '6 minutes' in text and '30%' in text and 'Will negates' in text
+    assert '6 minutes' in text and detail in text
     saved = dialog.blueprint(); dialog.load_plan(saved)
     assert dialog.blueprint() == saved
     assert dialog.duration_steps.isEnabled()

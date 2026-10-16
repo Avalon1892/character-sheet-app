@@ -53,6 +53,8 @@ _ROWS = (
     ('warp:dimension-pierce', 'Warp', 'Dimension Pierce', 'touch', 'hour'),
     ('warp:fluctuate', 'Warp', 'Fluctuate', 'touch', 'concentration'),
     ('warp:blink', 'Warp', 'Blink', 'touch', 'concentration'),
+    ('warp:create-gap', 'Warp', 'Create Gap', 'touch', 'concentration'),
+    ('warp:distort-size', 'Warp', 'Distort Size', 'touch', 'concentration'),
     ('weather:control', 'Weather', 'Change one weather category', 'personal', 'round'),
 )
 BASE_POWERS = tuple(MarvelousBasePower(*row) for row in _ROWS)
@@ -120,6 +122,9 @@ DESTRUCTION_BLAST_SHAPES = {
     'destruction:blast-shape-talent:chain-blast-blast-shape': 'Chain',
     'destruction:blast-shape-talent:mutable-blast-blast-shape': 'Mutable',
 }
+SPACE_MODE_POWERS = {'warp:blink': 'warp:space-talent:blink-space',
+    'warp:create-gap': 'warp:space-talent:create-gap-space',
+    'warp:distort-size': 'warp:space-talent:distort-size-space'}
 
 
 def destructive_blast_profile(plan):
@@ -161,8 +166,8 @@ def effective_base_duration(plan):
     """Duration before construction adjustments, including reviewed effect modes."""
     power = next((power for power in BASE_POWERS if power.key == plan.get('base_power')), None)
     if power is None: return 'instantaneous'
-    if power.key == 'warp:blink':
-        selected = next((row for row in plan.get('contributions', []) if row.get('catalog_key') == 'warp:space-talent:blink-space'), {})
+    if power.key in SPACE_MODE_POWERS:
+        selected = next((row for row in plan.get('contributions', []) if row.get('catalog_key') == SPACE_MODE_POWERS[power.key]), {})
         return 'minute' if 'minutes per caster level' in selected.get('effect_choice', '') else 'concentration'
     if power.key == 'warp:fluctuate':
         selected = next((row for row in plan.get('contributions', []) if row.get('catalog_key') == 'warp:space-talent:fluctuate-space'), {})
@@ -311,14 +316,17 @@ def resolve_base_power(plan):
         if choices and selected != '' and selected not in choices:
             raise ValueError('Choose a supported effect option for ' + row['catalog_key'] + '.')
     key = plan.get('base_power')
-    if key == 'warp:blink':
-        selected = [row for row in plan.get('contributions', []) if row.get('catalog_key') == 'warp:space-talent:blink-space']
+    if key in SPACE_MODE_POWERS:
+        talent = SPACE_MODE_POWERS[key]
+        name = next(power.name for power in BASE_POWERS if power.key == key)
+        selected = [row for row in plan.get('contributions', []) if row.get('catalog_key') == talent]
         if len(selected) != 1 or selected[0].get('alternative'):
-            raise ValueError('Blink requires one fixed Blink talent contribution.')
-        minimum = TALENT_EFFECT_SP_CHOICES['warp:space-talent:blink-space'].get(selected[0].get('effect_choice'), 0)
+            raise ValueError(f'{name} requires one fixed {name} talent contribution.')
+        choices = TALENT_EFFECT_SP_CHOICES[talent]
+        minimum = choices.get(selected[0].get('effect_choice'), min(choices.values()))
         points = selected[0].get('additional_spell_points', 0)
         if isinstance(points, bool) or not isinstance(points, int) or points < minimum:
-            raise ValueError('Sustained Blink requires its one-SP cost.')
+            raise ValueError(f'{name} requires its {"one-SP" if minimum == 1 else str(minimum) + "-SP"} cost.')
     if key == 'warp:beacon':
         beacons = [row for row in plan.get('contributions', []) if row.get('catalog_key') == 'warp:space-talent:teleport-beacon-space']
         if (len(beacons) != 1 or beacons[0].get('alternative')
@@ -584,6 +592,15 @@ def resolve_base_power(plan):
             if any(row.get('catalog_key') in DESTRUCTION_BLAST_TYPES for row in plan.get('contributions', [])):
                 summary['secondary_effects'] = 'Resolve saves, secondary damage, conditions and target-specific defenses from the talent description manually.'
     if power.key == 'warp:teleport': summary['teleport_distance'] = distances[('close', 'medium', 'long')[effect_steps]]
+    if power.key == 'warp:create-gap':
+        summary['maximum_cubes'] = 1 + cl // 4
+        summary['geometry'] = 'Contiguous 5-foot cubes in an inanimate object; does not damage the object or change structural integrity. Placement is manual.'
+        summary['saving_throw'] = 'Reflex to move safely to the edge if the gap would cause a creature to fall.'
+        summary['expiration'] = 'Occupants are shunted when the gap ends; resolve available space and any resulting damage manually.'
+    if power.key == 'warp:distort-size':
+        summary['space_adjustment'] = f'Up to {5 * (1 + cl // 4)} ft. larger or smaller.'
+        summary['size_rules'] = 'Changes occupied space, not size category, damage, reach value or size modifiers; reach originates from the new space. Below a 5-foot cube, halve space per remaining step, rounding down to the nearest half foot (minimum 1-foot cube).'
+        summary['adjustment_action'] = 'Swift action each turn or part of concentration; the caster may grant control to the target. Resolve positioning manually.'
     if power.key == 'warp:blink':
         selected = next(row for row in plan['contributions'] if row.get('catalog_key') == 'warp:space-talent:blink-space')
         penalty = selected.get('effect_choice', '').startswith('penalty')

@@ -12,6 +12,9 @@ def plan(key, cl=5, **changes):
         changes.setdefault('contributions', [dict(catalog_key='warp:space-talent:fluctuate-space', complexity=2, additional_spell_points=1)])
     if key == 'warp:blink':
         changes.setdefault('contributions', [dict(catalog_key='warp:space-talent:blink-space', complexity=1, additional_spell_points=0, effect_choice='concentration')])
+    if key in {'warp:create-gap', 'warp:distort-size'}:
+        points = 1 if key == 'warp:create-gap' else 0
+        changes.setdefault('contributions', [dict(catalog_key='warp:space-talent:' + key.split(':')[1] + '-space', complexity=1 + points, additional_spell_points=points, effect_choice='concentration')])
     return dict(base_power=key, sphere=power.sphere, caster_level=cl,
                 range_steps=0, duration_steps=0, **changes)
 
@@ -64,6 +67,25 @@ def test_blink_modes_duration_scaling_cost_and_no_automatic_application():
     row['alternative'] = True
     with pytest.raises(ValueError, match='fixed Blink'):
         resolve_base_power(item)
+
+
+@pytest.mark.parametrize('key', ['warp:create-gap', 'warp:distort-size'])
+def test_space_geometry_modes_scale_without_teleport_or_automatic_application(key):
+    from app.marvelous_base_powers import automatic_self_effect
+    item = plan(key, cl=8)
+    effect = resolve_base_power(item)
+    assert effect['duration'] == 'Concentration' and 'teleport_distance' not in effect
+    assert automatic_self_effect(item) is None
+    if key == 'warp:create-gap':
+        assert effect['maximum_cubes'] == 3
+    else:
+        assert '15 ft.' in effect['space_adjustment'] and 'not size category' in effect['size_rules']
+    row = item['contributions'][0]
+    row['effect_choice'] = 'minutes per caster level'
+    with pytest.raises(ValueError, match='SP'):
+        resolve_base_power(item)
+    row['additional_spell_points'] += 1
+    assert resolve_base_power(item)['duration'] == '8 minutes'
     with pytest.raises(ValueError, match='talent contribution'):
         resolve_base_power(plan('warp:dimension-pierce', contributions=[]))
     with pytest.raises(ValueError, match='one-SP'):
