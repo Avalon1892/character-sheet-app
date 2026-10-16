@@ -320,6 +320,60 @@ def test_weapon_property_modes_do_not_gain_other_modes_benefits():
         assert present in effect and absent not in effect
 
 
+@pytest.mark.parametrize('cl,radius', [(1,30), (4,40), (10,55), (15,65)])
+def test_light_item_bright_radius_preserves_item_duration_and_is_not_sunlight(cl, radius):
+    effect = resolve_base_power(plan('light:glow', cl=cl))
+    assert effect['bright_light_radius'] == f'{radius} ft.'
+    assert f'{radius} ft. beyond' in effect['illumination_extension']
+    assert effect['duration'] == f'{cl} minutes'
+    assert 'not equivalent to daylight' in effect['sunlight']
+
+
+def test_daylight_area_and_star_genesis_central_daylight_are_distinct():
+    effect = resolve_base_power(plan('light:glow', cl=10, contributions=[dict(catalog_key='light:advanced-talent:daylight-light')]))
+    assert effect['bright_light_radius'] == '2 miles'
+    assert '5 miles beyond' in effect['illumination_extension']
+    assert 'daylight_equivalent_radius' not in effect
+    rows = [dict(catalog_key='light:advanced-talent:star-genesis', effect_choice='expanded radius'),
+            dict(catalog_key='light:talent:intensity-control')]
+    item = plan('light:glow', cl=10, contributions=rows)
+    effect = resolve_base_power(item)
+    assert effect['bright_light_radius'] == '105 ft.'
+    assert 'daylight_equivalent_radius' not in effect
+    rows[0]['effect_choice'] = 'expanded radius with central daylight'
+    assert resolve_base_power(item)['daylight_equivalent_radius'] == '55 ft.'
+    rows.append(dict(catalog_key='light:advanced-talent:daylight-light'))
+    effect = resolve_base_power(item)
+    assert 'manual resolution' in effect['power'] and 'bright_light_radius' not in effect
+
+
+def test_irradiance_and_radiation_modes_show_only_supported_condition_effects():
+    rows = [dict(catalog_key='light:talent:irradiance-light', effect_choice='sicken glowing target')]
+    item = plan('light:glow', cl=10, contributions=rows)
+    effect = resolve_base_power(item)
+    assert 'glowing creature is sickened' in effect['condition']
+    assert 'radiation_exposure' not in effect
+    rows[0]['effect_choice'] = 'nauseating bright light'
+    assert 'success still sickens' in resolve_base_power(item)['condition']
+    rows.append(dict(catalog_key='light:advanced-talent:radiation-light'))
+    assert 'low radiation' in resolve_base_power(item)['radiation_exposure']
+    rows[0]['effect_choice'] = 'sicken glowing target'
+    assert 'radiation_exposure' not in resolve_base_power(item)
+    assert 'manual resolution' in resolve_base_power(item)['power']
+
+
+@pytest.mark.parametrize('rows', [
+    [dict(catalog_key='light:advanced-talent:daylight-light', alternative=True)],
+    [dict(catalog_key='light:advanced-talent:daylight-light')] * 2,
+    [dict(catalog_key='light:talent:style-utility')],
+    [dict(catalog_key='light:advanced-talent:everglow'), dict(catalog_key='light:talent:lingering-glow')],
+])
+def test_unsupported_light_modifications_do_not_claim_basic_bright_area(rows):
+    effect = resolve_base_power(plan('light:glow', cl=10, contributions=rows))
+    assert 'manual resolution' in effect['power']
+    assert 'bright_light_radius' not in effect
+
+
 @pytest.mark.parametrize('kind,choice', [('physical', 'Strength + Dexterity'), ('mental', 'Wisdom + Charisma')])
 def test_paired_ability_projection_requires_fixed_dual_enhancement(kind, choice):
     rows = [dict(catalog_key=f'enhancement:enhance-talent:{kind}-enhancement-enhance', effect_choice=choice)]

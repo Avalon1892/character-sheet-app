@@ -1175,10 +1175,32 @@ def test_radiation_inserts_paid_irradiance_mode_and_prices_two_total_sp(composer
     rows = dialog.blueprint()['contributions']
     assert len(rows) == 2 and sum(row['additional_spell_points'] for row in rows) == 2
     assert rows[1]['effect_choice'] == 'nauseating bright light'
+    assert 'Radiation Exposure:' in dialog.item_preview.toPlainText()
     assert dialog.quotation()[0] == 6
     saved = dialog.blueprint(); dialog.load_plan(saved)
     assert dialog.blueprint() == saved
     assert dialog.add_required_contributions() and dialog.table.rowCount() == 2
+    assert repo._connection.total_changes == writes
+
+
+def test_star_genesis_live_area_updates_and_mode_restores(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Light'); dialog.cl.setValue(10)
+    key = 'light:advanced-talent:star-genesis'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    dialog.add_contribution(); dialog.add_required_contributions()
+    picker = dialog.table.cellWidget(0, 5); picker.setCurrentIndex(picker.findData('expanded radius'))
+    assert 'Bright Light Radius: 105 ft.' in dialog.item_preview.toPlainText()
+    assert 'Daylight Equivalent Radius:' not in dialog.item_preview.toPlainText()
+    picker.setCurrentIndex(picker.findData('expanded radius with central daylight'))
+    assert 'Daylight Equivalent Radius: 55 ft.' in dialog.item_preview.toPlainText()
+    dialog.cl.setValue(14)
+    assert 'Bright Light Radius: 125 ft.' in dialog.item_preview.toPlainText()
+    assert 'Daylight Equivalent Radius: 65 ft.' in dialog.item_preview.toPlainText()
+    saved = dialog.blueprint(); writes = repo._connection.total_changes
+    dialog.load_plan(saved)
+    assert dialog.blueprint() == saved
+    assert 'Bright Light Radius: 125 ft.' in dialog.item_preview.toPlainText()
     assert repo._connection.total_changes == writes
 
 

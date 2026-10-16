@@ -564,6 +564,51 @@ def resolve_base_power(plan):
                     summary['technology_check'] = 'Stops technological abilities and charge use without a check; constructs/cyborgs with SR still require a check against their SR.'
             if 'protection:aegis-ward-talent:spell-ward-aegis-ward' in keys:
                 summary['power'] = 'Combined magical/technological protection — manual resolution'
+    if power.key == 'light:glow':
+        from app.marvelous_item_rules import advanced_construction_blockers
+        rows = plan.get('contributions', [])
+        keys = [row.get('catalog_key') for row in rows]
+        irradiance = 'light:talent:irradiance-light'
+        radiation = 'light:advanced-talent:radiation-light'
+        daylight = 'light:advanced-talent:daylight-light'
+        star = 'light:advanced-talent:star-genesis'
+        intensity = 'light:talent:intensity-control'
+        supported = (len(keys) == len(set(keys)) and not any(row.get('alternative') for row in rows)
+            and set(keys) <= {irradiance, radiation, daylight, star, intensity}
+            and not advanced_construction_blockers(rows, cl)
+            and not (daylight in keys and (irradiance in keys or star in keys))
+            and not (intensity in keys and star not in keys))
+        if supported:
+            radius = 30 + 5 * (cl // 2)
+            summary['sunlight'] = 'Bright light is not equivalent to daylight for creatures harmed by daylight.'
+            star_choice = next((row.get('effect_choice', '') for row in rows if row.get('catalog_key') == star), '')
+            if star in keys:
+                if not star_choice: summary['mode_review'] = 'Choose the Star Genesis mode before construction.'
+                else:
+                    radius += 25 + 5 * (cl // 2)
+                    if star_choice == 'expanded radius with central daylight':
+                        summary['daylight_equivalent_radius'] = f'{30 + 5 * (cl // 2)} ft.'
+                        summary['sunlight'] = 'Only the central daylight-equivalent radius counts as daylight; the rest is ordinary bright light.'
+            summary['bright_light_radius'] = f'{radius} ft.'
+            summary['illumination_extension'] = f'Increase light level by one step (maximum normal) for {radius} ft. beyond the bright radius.'
+            if daylight in keys:
+                summary['power'] = 'Daylight — expanded bright light'
+                summary['bright_light_radius'] = '2 miles'
+                summary['illumination_extension'] = 'Normal light for 5 miles beyond the bright radius.'
+            if irradiance in keys:
+                summary['power'] = 'Radiation' if radiation in keys else 'Irradiance'
+                choice = next(row.get('effect_choice', '') for row in rows if row.get('catalog_key') == irradiance)
+                if not choice: summary['mode_review'] = 'Choose the Irradiance mode before construction.'
+                elif choice == 'sicken glowing target':
+                    summary['condition'] = 'The glowing creature is sickened: −2 to attack rolls, weapon damage, saves, skills and ability checks.'
+                else:
+                    summary['condition'] = 'Creatures in the bright area: Fortitude save each round; failure nauseates for 1 round, success still sickens for that round.'
+                    if radiation in keys:
+                        summary['radiation_exposure'] = 'Failed nausea saves also inflict low radiation. This source cannot stack with itself to raise radiation severity.'
+                summary['condition_resolution'] = 'Resolve target eligibility, saving throws, conditions and radiation manually.'
+        else:
+            summary['power'] = 'Modified light — manual resolution'
+            summary['light_resolution'] = 'Resolve the selected Light effects, area and talent interactions from their rules; the base bright-light area is not assumed.'
     if power.key == 'enhancement:enhance':
         rows = plan.get('contributions', [])
         keys = [row.get('catalog_key') for row in rows]
