@@ -63,6 +63,59 @@ def test_telekinesis_integrated_default_sp_totals_do_not_duplicate_dependencies(
     assert sum(points) == total
 
 
+def test_every_bundled_telekinesis_talent_has_reviewed_sp_metadata():
+    from app.content import DEFAULT_CATALOG
+    from app.marvelous_item_rules import talent_construction_spell_points
+    entries = [entry for entry in DEFAULT_CATALOG.magic_entries('Telekinesis') if 'Talent' in entry['category']]
+    assert entries
+    assert not [entry['key'] for entry in entries if talent_construction_spell_points(entry, reviewed_only=True) is None]
+
+
+@pytest.mark.parametrize('suffix,points', [
+    *((name,1) for name in ('homing', 'kinetic-field', 'pantomime-cage-jester-s-hb')),
+    *((name,0) for name in ('dampening-field', 'dancing-weapon', 'excessive-force-bap', 'flight',
+        'floating-shield', 'forceful-telekinesis', 'increased-range-range', 'mobile-bludgeon',
+        'orbit', 'parry', 'return', 'seizing-strike-strike-3pp', 'steal', 'sweeping-bludgeons-bap',
+        'telekinetic-tools', 'whirlwind-assembly')),
+])
+def test_remaining_ordinary_telekinesis_defaults_match_catalog(suffix, points):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_construction_spell_points
+    entry = magic_entry('telekinesis:talent:' + suffix)
+    assert entry is not None
+    assert talent_construction_spell_points(entry, reviewed_only=True) == points
+
+
+@pytest.mark.parametrize('mode,child_mode,parent_sp,child_sp', [
+    ('concentration (2 SP total)', 'concentration', 2, 0),
+    ('Sustained Force (2 SP total)', 'Sustained Force', 1, 1),
+])
+def test_gravity_manipulation_replaces_instead_of_adding_to_shift_cost(mode, child_mode, parent_sp, child_sp):
+    from app.marvelous_item_rules import (talent_choice_spell_points, missing_required_construction_modes,
+        advanced_construction_blockers, quote_marvelous_blueprint)
+    parent, child = 'telekinesis:advanced-talent:gravity-manipulation', 'telekinesis:talent:gravity-shift'
+    assert talent_choice_spell_points(parent, mode) == parent_sp
+    assert talent_choice_spell_points(child, child_mode) == child_sp
+    rows = [dict(catalog_key=parent, effect_choice=mode, complexity=2 + parent_sp, additional_spell_points=parent_sp),
+        dict(catalog_key=child, effect_choice=child_mode, complexity=1 + child_sp, additional_spell_points=child_sp)]
+    assert parent_sp + child_sp == 2
+    assert not missing_required_construction_modes(rows)
+    assert not advanced_construction_blockers(rows, 15)
+    item = dict(schema_version=1, sphere='Telekinesis', base_power='telekinesis:force', caster_level=15,
+        activation='standard', uses=1, range_steps=0, duration_steps=0, unique_changes=0, contributions=rows)
+    assert quote_marvelous_blueprint(item)[0] == 6
+    assert quote_marvelous_blueprint(item)[1].market_price_gp == 36000
+    rows[1]['effect_choice'] = 'concentration' if child_mode == 'Sustained Force' else 'Sustained Force'
+    assert advanced_construction_blockers(rows, 15)
+
+
+def test_conflicting_gravity_parent_modes_do_not_silently_drop_a_requirement():
+    from app.marvelous_item_rules import missing_required_construction_modes
+    rows = [dict(catalog_key='telekinesis:advanced-talent:gravity-manipulation', effect_choice=mode)
+        for mode in ('concentration (2 SP total)', 'Sustained Force (2 SP total)')]
+    assert len(missing_required_construction_modes(rows)) == 2
+
+
 def test_light_lens_conversion_is_paid_once_and_formula_matches_quote():
     from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_complexity_formula
     item = dict(schema_version=1, sphere='Light', base_power='light:lens', caster_level=5,

@@ -373,13 +373,16 @@ def mode_construction_prerequisites(contribution):
 
 def missing_required_construction_modes(contributions):
     """Reviewed prerequisite modes that must be integrated, not merely owned."""
-    requirements = {
-        'light:advanced-talent:radiation-light': ('light:talent:irradiance-light', 'nauseating bright light'),
-    }
-    return tuple((owner, child, mode) for owner, (child, mode) in requirements.items()
+    requirements = [('light:advanced-talent:radiation-light', 'light:talent:irradiance-light', 'nauseating bright light')]
+    for row in contributions:
+        if row['catalog_key'] == 'telekinesis:advanced-talent:gravity-manipulation':
+            mode = {'concentration (2 SP total)': 'concentration',
+                    'Sustained Force (2 SP total)': 'Sustained Force'}.get(row.get('effect_choice'))
+            if mode: requirements.append((row['catalog_key'], 'telekinesis:talent:gravity-shift', mode))
+    return tuple(dict.fromkeys((owner, child, mode) for owner, child, mode in requirements
         if any(row['catalog_key'] == owner for row in contributions)
         and not any(row['catalog_key'] == child and row.get('effect_choice') == mode
-                    and not row.get('alternative') for row in contributions))
+                    and not row.get('alternative') for row in contributions)))
 
 
 def missing_construction_prerequisites(contributions):
@@ -516,6 +519,12 @@ def talent_construction_spell_points(entry, *, reviewed_only=False):
         'telekinesis:advanced-talent:linear-acceleration': 2,
         'telekinesis:advanced-talent:puppet': 1,
         'telekinesis:talent:quick-reactions': 1,
+        **{f'telekinesis:talent:{suffix}': 1 for suffix in ('homing', 'kinetic-field', 'pantomime-cage-jester-s-hb')},
+        **{f'telekinesis:talent:{suffix}': 0 for suffix in (
+            'dampening-field', 'dancing-weapon', 'excessive-force-bap', 'flight', 'floating-shield',
+            'forceful-telekinesis', 'increased-range-range', 'mobile-bludgeon', 'orbit', 'parry',
+            'return', 'seizing-strike-strike-3pp', 'steal', 'sweeping-bludgeons-bap',
+            'telekinetic-tools', 'whirlwind-assembly')},
         **{f'telekinesis:{suffix}': 0 for suffix in (
             'advanced-talent:brutalizing-bludgeon-lg', 'advanced-talent:effortless-telekinesis',
             'talent:acceleration', 'talent:greater-speed', 'talent:idle-concentration',

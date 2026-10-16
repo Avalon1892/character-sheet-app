@@ -981,6 +981,10 @@ def test_temporal_haste_adds_required_talent_and_sp_to_live_price(composer):
 
 
 @pytest.mark.parametrize('key, first_mode, second_mode, cost', [
+    ('telekinesis:talent:divided-mind-mass', 'multiple lifted objects', 'multiple maneuver or push targets', 1),
+    ('telekinesis:talent:gravity-ward-well', 'concentration', 'Sustained Force', 1),
+    ('telekinesis:talent:kinetic-sense', 'target without line of sight', '30-foot blindsense', 1),
+    ('telekinesis:talent:tether', 'concentration', 'Sustained Force', 1),
     ('telekinesis:advanced-talent:focused-power', 'one additional size category', 'two additional size categories', 2),
     ('telekinesis:talent:telekinetic-push', 'aid movement or deflect', 'direct push on hostile target', 1),
     ('telekinesis:talent:gravity-shift', 'concentration', 'Sustained Force', 1),
@@ -1320,6 +1324,30 @@ def test_astral_affixation_inserts_nested_talents_prices_three_total_sp_and_rest
     saved = dialog.blueprint(); writes = repo._connection.total_changes
     dialog.load_plan(saved)
     assert dialog.blueprint() == saved and dialog.table.rowCount() == 4
+    assert repo._connection.total_changes == writes
+
+
+def test_gravity_modes_update_prerequisite_keep_total_and_cancel_manual_sp_atomically(composer, monkeypatch):
+    from PySide6.QtWidgets import QMessageBox
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Telekinesis'); dialog.cl.setValue(15)
+    key = 'telekinesis:advanced-talent:gravity-manipulation'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    dialog.add_contribution(); dialog.add_required_contributions()
+    monkeypatch.setattr(QMessageBox, 'question', lambda *args: QMessageBox.StandardButton.Yes)
+    picker = dialog.table.cellWidget(0, 5)
+    for mode in ('concentration (2 SP total)', 'Sustained Force (2 SP total)'):
+        picker.setCurrentIndex(picker.findData(mode))
+        rows = dialog.blueprint()['contributions']
+        assert sum(row['additional_spell_points'] for row in rows) == 2
+        assert dialog.table.rowCount() == 2 and dialog.quotation()[0] == 6
+    dialog.table.cellWidget(0, 4).setValue(7)
+    original = dialog.blueprint(); writes = repo._connection.total_changes
+    monkeypatch.setattr(QMessageBox, 'question', lambda *args: QMessageBox.StandardButton.No)
+    picker.setCurrentIndex(picker.findData('concentration (2 SP total)'))
+    assert dialog.blueprint() == original
+    dialog.load_plan(original)
+    assert dialog.blueprint() == original
     assert repo._connection.total_changes == writes
 
 

@@ -648,17 +648,22 @@ class MarvelousCraftingDialog(QDialog):
         previous = choice.property('previousChoice') or ''
         if self.loading_plan:
             choice.setProperty('previousChoice', choice.currentData()); return
-        from app.marvelous_item_rules import talent_choice_spell_points, mode_construction_prerequisites
+        from app.marvelous_item_rules import (talent_choice_spell_points,
+            mode_construction_prerequisites, missing_required_construction_modes)
         from PySide6.QtCore import Qt
         for row in range(self.table.rowCount()):
             if self.table.cellWidget(row, 5) is not choice: continue
             points = talent_choice_spell_points(self.table.item(row, 0).data(Qt.ItemDataRole.UserRole), choice.currentData())
+            editor = self.table.cellWidget(row, 4)
+            previous_points = editor.value()
             if points is not None:
-                editor = self.table.cellWidget(row, 4)
                 editor.blockSignals(True); editor.setValue(points); editor.blockSignals(False)
             selected = dict(catalog_key=self.table.item(row, 0).data(Qt.ItemDataRole.UserRole), effect_choice=choice.currentData())
-            if mode_construction_prerequisites(selected) and not self.add_required_contributions():
+            required_modes = missing_required_construction_modes(self.blueprint()['contributions'])
+            needs_modes = any(owner == selected['catalog_key'] for owner, _, _ in required_modes)
+            if (mode_construction_prerequisites(selected) or needs_modes) and not self.add_required_contributions():
                 choice.blockSignals(True); choice.setCurrentIndex(choice.findData(previous)); choice.blockSignals(False)
+                editor.blockSignals(True); editor.setValue(previous_points); editor.blockSignals(False)
             break
         choice.setProperty('previousChoice', choice.currentData())
         self.update_preview()

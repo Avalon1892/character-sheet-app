@@ -102,6 +102,11 @@ LIGHT_LENSES = {
     'light:lens-talent:rose-tinted-lens-jester-s-hb': 'Rose-Tinted',
 }
 TALENT_EFFECT_SP_CHOICES = {
+    'telekinesis:advanced-talent:gravity-manipulation': {'concentration (2 SP total)': 2, 'Sustained Force (2 SP total)': 1},
+    'telekinesis:talent:divided-mind-mass': {'multiple lifted objects': 0, 'multiple maneuver or push targets': 1},
+    'telekinesis:talent:gravity-ward-well': {'concentration': 0, 'Sustained Force': 1},
+    'telekinesis:talent:kinetic-sense': {'target without line of sight': 0, '30-foot blindsense': 1},
+    'telekinesis:talent:tether': {'concentration': 0, 'Sustained Force': 1},
     'telekinesis:advanced-talent:focused-power': {'one additional size category': 1, 'two additional size categories': 2},
     'telekinesis:talent:telekinetic-push': {'aid movement or deflect': 0, 'direct push on hostile target': 1},
     'telekinesis:talent:gravity-shift': {'concentration': 0, 'Sustained Force': 1},
