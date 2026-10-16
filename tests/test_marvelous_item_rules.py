@@ -77,6 +77,16 @@ def test_time_warp_replacement_cost_includes_true_teleport_once():
     assert sum(talent_construction_spell_points(magic_entry(k)) for k in keys) == 5
 
 
+@pytest.mark.parametrize('owner,total', [('bestow-life', 3), ('reverse-gravity-enhance', 2), ('referential-enhancements', 3)])
+def test_enhancement_replacement_and_additional_costs_include_prerequisites_once(owner, total):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_construction_spell_points, missing_construction_prerequisites
+    key = 'enhancement:advanced-talent:' + owner
+    keys = [key, *missing_construction_prerequisites([dict(catalog_key=key)])]
+    assert all(talent_construction_spell_points(magic_entry(k), reviewed_only=True) is not None for k in keys)
+    assert sum(talent_construction_spell_points(magic_entry(k)) for k in keys) == total
+
+
 @pytest.mark.parametrize('suffix,cost', [('self-renewal', 1), ('sudden-invigoration', 1),
     ('deeper-healing', 0), ('painkiller', 0), ('esoteric-healing', 0), ('latent-healing', 0),
     ('lingering-resilience', 0), ('lingering-vitality-warden', 0), ('resuscitate', 0), ('stabilizing-invigoration-warden', 0)])

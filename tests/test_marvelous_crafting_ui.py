@@ -989,6 +989,7 @@ def test_temporal_haste_adds_required_talent_and_sp_to_live_price(composer):
     ('warp:space-talent:blink-space', 'concentration', 'minutes per caster level', 1),
     ('warp:space-talent:create-gap-space', 'concentration', 'minutes per caster level', 2),
     ('warp:space-talent:distort-size-space', 'concentration', 'minutes per caster level', 1),
+    ('enhancement:advanced-talent:reverse-gravity-enhance', 'concentration', 'rounds per caster level', 2),
 ])
 def test_effect_mode_updates_price_and_preserves_saved_manual_cost(composer, key, first_mode, second_mode, cost):
     from app.content import magic_entry
@@ -1479,6 +1480,9 @@ def test_beacon_power_automatically_includes_talent_and_reopens_without_duplicat
     ('Weather', 'cacophonic-clap', 1), ('Weather', 'climate', 1), ('Weather', 'climatic-shift', 3),
     ('Weather', 'dehydration-pulse', 2), ('Weather', 'radiation-lord-cata-hb', 2),
     ('Weather', 'rain-bomb', 1), ('Weather', 'volcano-lord', 2), ('Weather', 'boiling-lord', 0),
+    ('Enhancement', 'antimagic-aegis', 1), ('Enhancement', 'ascetic-control', 2),
+    ('Enhancement', 'bestow-life', 1), ('Enhancement', 'heart-of-hope-and-fear-sm', 1),
+    ('Enhancement', 'referential-enhancements', 2), ('Enhancement', 'critical-climax-3pp', 0),
 ])
 def test_advanced_effect_sp_defaults_update_price_and_restore(composer, sphere, key, points):
     dialog, repo, cid = composer
@@ -1684,6 +1688,7 @@ def test_restore_mode_is_explicit_saved_and_cleared_for_other_powers(composer):
     ('Weather', 'weather:advanced-talent:volcano-lord'),
     ('Enhancement', 'enhancement:advanced-talent:antimagic-aegis'),
     ('Enhancement', 'enhancement:advanced-talent:heart-of-hope-and-fear-sm'),
+    ('Enhancement', 'enhancement:advanced-talent:bestow-life'),
     ('Life', 'life:advanced-talent:soul-consumption-dbh'),
     ('Protection', 'protection:advanced-talent:antimagic-aura'),
     ('Protection', 'protection:advanced-talent:tripped-glyph-3pp'),
@@ -1700,6 +1705,8 @@ def test_composer_adds_reviewed_prerequisites_without_duplicates_or_writes(compo
     contributions = dialog.blueprint()['contributions']
     assert not advanced_construction_blockers(contributions, 20)
     assert len(contributions) == len({row['catalog_key'] for row in contributions})
+    if key == 'enhancement:advanced-talent:bestow-life':
+        assert sum(row['additional_spell_points'] for row in contributions) == 3
     assert not dialog.add_prerequisites.isEnabled() and repo._connection.total_changes == before
     dialog.add_required_contributions()
     assert dialog.blueprint()['contributions'] == contributions

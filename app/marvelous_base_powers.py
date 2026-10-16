@@ -89,6 +89,8 @@ SCULPT_BLAST_KEY = 'destruction:blast-shape-talent:sculpt-blast-blast-shape'
 ENERGY_SPHERE_KEY = 'destruction:blast-shape-talent:energy-sphere-blast-shape'
 ENERGY_WALL_KEY = 'destruction:blast-shape-talent:energy-wall-blast-shape'
 TALENT_EFFECT_SP_CHOICES = {
+    # Lighten's one SP is already included as a construction prerequisite.
+    'enhancement:advanced-talent:reverse-gravity-enhance': {'concentration': 1, 'rounds per caster level': 2},
     'warp:space-talent:avert-space': {'readied standard action': 0, 'immediate action': 1, 'immediate action during total defense': 0},
     'warp:space-talent:blink-space': {'concentration': 0, 'minutes per caster level': 1,
         'penalty with concentration': 0, 'penalty for minutes per caster level': 1},

@@ -458,6 +458,21 @@ def talent_construction_spell_points(entry, *, reviewed_only=False):
     if entry.get('key') in DESTRUCTION_BLAST_SHAPES: return 1
     return {
         'life:talent:break-enchantment': 1,
+        'enhancement:enhance-talent:animate-object-enhance': 1,
+        'enhancement:enhance-talent:bestow-intelligence-enhance': 1,
+        'enhancement:enhance-talent:lighten-enhance': 1,
+        'enhancement:talent:mass-enhancement-mass': 1,
+        'enhancement:advanced-talent:antimagic-aegis': 1,
+        'enhancement:advanced-talent:ascetic-control': 2,
+        # Bestow Life's three-SP total includes both one-SP prerequisites.
+        'enhancement:advanced-talent:bestow-life': 1,
+        'enhancement:advanced-talent:heart-of-hope-and-fear-sm': 1,
+        'enhancement:advanced-talent:referential-enhancements': 2,
+        **{f'enhancement:{suffix}': 0 for suffix in (
+            'advanced-talent:alternative-energy-jester-s-hb', 'advanced-talent:critical-climax-3pp',
+            'advanced-talent:normalize-enhance-sm', 'advanced-talent:vicious-accuracy-enhance-3pp',
+            'enhance-talent:magic-sink-enhance', 'enhance-talent:deadly-weapon-enhance',
+            'enhance-talent:energy-enhancement-enhance', 'talent:deep-enhancement')},
         'life:talent:greater-restore-warden': 1,
         'life:talent:mass-healing-mass': 1,
         'life:talent:restorative-cure': 1,
