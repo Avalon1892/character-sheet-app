@@ -1388,6 +1388,26 @@ def test_enhancement_modifier_defaults_and_manual_overrides_survive_reopen(compo
     assert repo._connection.total_changes == writes
 
 
+def test_inherent_temporary_mode_preview_and_choices_survive_reopen(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Enhancement'); dialog.cl.setValue(17)
+    saved = dialog.blueprint()
+    saved['contributions'] = [dict(catalog_key=key, complexity=1, additional_spell_points=0,
+        alternative=False, alternative_group=1, effect_choice='') for key in (
+        'enhancement:talent:deep-enhancement', 'enhancement:enhance-talent:mental-enhancement-enhance',
+        'enhancement:enhance-talent:physical-enhancement-enhance')]
+    saved['contributions'].append(dict(catalog_key='enhancement:advanced-talent:inherent-enhancement-enhance-archmagi-s-hb',
+        complexity=3, additional_spell_points=1, alternative=False, alternative_group=1,
+        effect_choice='temporary untyped bonus: Dexterity'))
+    writes = repo._connection.total_changes
+    dialog.load_plan(saved)
+    assert 'Ability Untyped Bonus: 6' in dialog.item_preview.toPlainText()
+    assert '25,000 gp' in dialog.item_preview.toPlainText()
+    restored = dialog.blueprint(); dialog.load_plan(restored)
+    assert dialog.blueprint() == restored
+    assert repo._connection.total_changes == writes
+
+
 def test_cancel_alternative_energy_promotion_preserves_choice_and_manual_cost(composer, monkeypatch):
     from PySide6.QtWidgets import QMessageBox
     from app.marvelous_base_powers import ENERGY_ENHANCEMENT_KEY, ALTERNATIVE_ENERGY_KEY

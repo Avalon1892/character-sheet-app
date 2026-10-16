@@ -37,6 +37,20 @@ def test_enhancement_timing_modifiers_keep_item_conversion_limits_visible():
     assert 'manual' in result['power']
 
 
+@pytest.mark.parametrize('ability', ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma'])
+def test_temporary_inherent_enhancement_displays_untyped_not_permanent_bonus(ability):
+    key = 'enhancement:advanced-talent:inherent-enhancement-enhance-archmagi-s-hb'
+    rows = [dict(catalog_key=k) for k in ('enhancement:talent:deep-enhancement',
+        'enhancement:enhance-talent:mental-enhancement-enhance',
+        'enhancement:enhance-talent:physical-enhancement-enhance')]
+    rows.append(dict(catalog_key=key, effect_choice='temporary untyped bonus: ' + ability))
+    result = resolve_base_power(plan('enhancement:enhance', cl=17, contributions=rows))
+    assert result['ability_score'] == ability and result['ability_untyped_bonus'] == 6
+    assert 'ability_enhancement_bonus' not in result
+    assert result['maximum_duration'] == '17 rounds'
+    assert '25,000 gp' in result['inherent_ritual_review']
+
+
 def test_dimension_pierce_is_not_a_teleport_and_requires_its_own_talent_cost():
     result = resolve_base_power(plan('warp:dimension-pierce'))
     assert result['range'] == 'Touch' and result['duration'] == '5 hours'

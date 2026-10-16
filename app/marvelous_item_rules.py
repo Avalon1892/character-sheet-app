@@ -992,6 +992,10 @@ def quote_marvelous_blueprint(plan):
         raise ValueError('Alternative-effect flags must be boolean.')
     groups = {}
     for contribution in plan['contributions']:
+        if (contribution.get('catalog_key') == 'enhancement:advanced-talent:inherent-enhancement-enhance-archmagi-s-hb'
+                and contribution.get('effect_choice', '').startswith('temporary untyped bonus: ')
+                and (plan.get('permanent') or plan['duration_steps'] > 0)):
+            raise ValueError('Temporary Inherent Enhancement cannot exceed one round per caster level or become permanent.')
         if (plan.get('base_power') == 'mana:manipulate'
                 and contribution.get('catalog_key') == 'mana:manipulation-talent:transfer-manipulation'):
             raise ValueError('Mana Transfer cannot be applied to a crafted manipulate effect.')

@@ -107,6 +107,9 @@ TELEKINESIS_LIFT_SIZES = (
     (40, 'Colossal++'), (50, 'Colossal+++'), (60, 'Colossal++++'),
 )
 TALENT_EFFECT_SP_CHOICES = {
+    'enhancement:advanced-talent:inherent-enhancement-enhance-archmagi-s-hb': {
+        'temporary untyped bonus: ' + ability: 1 for ability in (
+            'Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma')},
     'telekinesis:advanced-talent:gravity-manipulation': {'concentration (2 SP total)': 2, 'Sustained Force (2 SP total)': 1},
     'telekinesis:talent:divided-mind-mass': {'multiple lifted objects': 0, 'multiple maneuver or push targets': 1},
     'telekinesis:talent:gravity-ward-well': {'concentration': 0, 'Sustained Force': 1},
@@ -1032,6 +1035,26 @@ def resolve_base_power(plan):
                 summary['area_radius'] = '2 miles'
                 summary['casting_requirement'] = '20 minutes of focused casting before weather changes begin to manifest; resolve this requirement manually, without a timer.'
                 summary['tornadoes'] = 'Severity-7 winds can create tornadoes; Climate alone does not control their paths.'
+    if power.key == 'enhancement:enhance':
+        inherent_key = 'enhancement:advanced-talent:inherent-enhancement-enhance-archmagi-s-hb'
+        rows = plan.get('contributions', [])
+        inherent = [row for row in rows if row.get('catalog_key') == inherent_key]
+        if inherent:
+            summary['inherent_ritual_review'] = 'Only the temporary untyped-bonus mode is modeled here. The separate instantaneous inherent-bonus ritual (five SP, one hour, 25,000 gp per +1, maximum +5) is not included in this item quote.'
+            required = {'enhancement:talent:deep-enhancement',
+                'enhancement:enhance-talent:mental-enhancement-enhance',
+                'enhancement:enhance-talent:physical-enhancement-enhance', inherent_key}
+            keys = [row.get('catalog_key') for row in rows]
+            choice = inherent[0].get('effect_choice', '')
+            if (len(keys) == len(set(keys)) and set(keys) == required
+                    and not any(row.get('alternative') for row in rows)
+                    and choice in TALENT_EFFECT_SP_CHOICES[inherent_key] and cl >= 17):
+                summary['power'] = 'Temporary Untyped Ability Enhancement'
+                summary['ability_score'] = choice.removeprefix('temporary untyped bonus: ')
+                summary['ability_untyped_bonus'] = 2 + 2 * (cl // 7)
+                summary['stacking'] = 'Temporary untyped bonus; stacks with a separate normal enhancement bonus. Does not permanently rewrite the base ability score.'
+                summary['maximum_duration'] = f'{cl} rounds'
+                summary['duration_review'] = 'Cannot exceed one round per caster level or become permanent; Deep Enhancement does not extend this limit.'
     if power.key in {'blood:construct', 'death:reanimate'}: summary['maximum_hit_dice'] = cl
     if power.key == 'dark:darkness': summary['radius'] = f'{10 + 5 * (cl // 2)} ft.'
     if power.key == 'alteration:shapeshift': summary['traits'] = 1 + cl // 5

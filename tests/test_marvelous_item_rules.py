@@ -373,6 +373,21 @@ def test_enhancement_timing_and_range_modifiers_have_reviewed_sp_defaults(suffix
     assert entry and talent_construction_spell_points(entry, reviewed_only=True) == cost
 
 
+@pytest.mark.parametrize('changes', [dict(duration_steps=1), dict(duration_steps=3, permanent=True)])
+def test_temporary_inherent_enhancement_cannot_quote_extended_or_permanent_duration(changes):
+    from app.marvelous_item_rules import quote_marvelous_blueprint, talent_choice_spell_points
+    key = 'enhancement:advanced-talent:inherent-enhancement-enhance-archmagi-s-hb'
+    choice = 'temporary untyped bonus: Strength'
+    assert talent_choice_spell_points(key, choice) == 1
+    item = dict(schema_version=1, sphere='Enhancement', base_power='enhancement:enhance', caster_level=17,
+        activation='standard', uses=1, range_steps=0, duration_steps=0, unique_changes=0,
+        contributions=[dict(catalog_key=key, effect_choice=choice, complexity=3, additional_spell_points=1)])
+    assert quote_marvelous_blueprint(item)[0] == 4
+    item.update(changes)
+    with pytest.raises(ValueError, match='one round per caster level'):
+        quote_marvelous_blueprint(item)
+
+
 def test_time_warp_replacement_cost_includes_true_teleport_once():
     from app.content import magic_entry
     from app.marvelous_item_rules import talent_construction_spell_points, missing_construction_prerequisites
