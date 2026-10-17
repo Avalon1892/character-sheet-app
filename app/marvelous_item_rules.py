@@ -562,7 +562,7 @@ def tradition_costs(base_price, *, cheap=False, expensive=False, other_reduction
     return materials, base * fraction if cheap else base
 
 
-def talent_construction_spell_points(entry, *, reviewed_only=False):
+def talent_construction_spell_points(entry, *, reviewed_only=False, base_power=None):
     """Reviewed mandatory default, not optional SP inferred from catalog prose.
 
     Ultimate Teleport Beacon spends one SP to place or use a beacon. These are
@@ -573,6 +573,8 @@ def talent_construction_spell_points(entry, *, reviewed_only=False):
     one beyond its integrated prerequisites. Optional variants remain explicit.
     """
     from app.marvelous_base_powers import DESTRUCTION_BLAST_TYPES, DESTRUCTION_BLAST_SHAPES, TALENT_EFFECT_SP_CHOICES, LIGHT_LENSES, LIFE_VITALITY_EFFECTS
+    from app.marvelous_base_powers import DARK_MELDS
+    if base_power == 'dark:meld' and entry.get('key') in DARK_MELDS: return 0
     if entry.get('key') in LIGHT_LENSES: return 0
     if entry.get('key') in LIFE_VITALITY_EFFECTS: return 0
     if choices := TALENT_EFFECT_SP_CHOICES.get(entry.get('key')):
@@ -820,15 +822,19 @@ def talent_choice_spell_points(key, choice):
     return TALENT_EFFECT_SP_CHOICES.get(key, {}).get(choice)
 
 
-def talent_construction_cost(entry, *, additional_spell_points=0, mythic_crafter=False):
+def talent_construction_cost(entry, *, additional_spell_points=0, mythic_crafter=False, base_power=None):
     """Default reviewed contribution; never extract spell-point rules from prose.
 
     Published Admixture construction is free; its blast types are paid separately.
+    A single Dark meld replaces Darkness for free, except Feed On Darkness (+2).
     Other talents use the general ordinary/advanced rule until mapped explicitly.
     """
     if isinstance(additional_spell_points, bool) or not isinstance(additional_spell_points, int) or additional_spell_points < 0:
         raise ValueError('Additional spell points must be a nonnegative integer.')
     if not isinstance(mythic_crafter, bool): raise ValueError('Mythic Crafter access must be boolean.')
+    from app.marvelous_base_powers import DARK_MELDS
+    if base_power == 'dark:meld' and entry.get('key') in DARK_MELDS:
+        return (2 if entry['key'] == 'dark:meld-talent:feed-on-darkness-meld' else 0) + additional_spell_points
     if entry.get('key') == 'destruction:talent:admixture':
         return 0
     if entry.get('key') in {'alteration:talent:mass-alteration-mass', 'illusion:talent:suppression-glamer'}:

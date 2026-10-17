@@ -581,6 +581,9 @@ class MarvelousCraftingDialog(QDialog):
             if entry['key'] in existing: continue
             index = next((i for i in range(self.talent.count()) if self.talent.itemData(i)['key'] == entry['key']), -1)
             if index >= 0:
+                from app.marvelous_base_powers import DARK_MELDS
+                if entry['key'] in DARK_MELDS:
+                    self.base_power.setCurrentIndex(self.base_power.findData('dark:meld'))
                 self.talent.setCurrentIndex(index); self.add_contribution(); existing.add(entry['key'])
                 if entry['key'] == 'warp:space-talent:teleport-beacon-space':
                     self.base_power.setCurrentIndex(self.base_power.findData('warp:beacon'))
@@ -622,11 +625,15 @@ class MarvelousCraftingDialog(QDialog):
         cost.setButtonSymbols(QSpinBox.ButtonSymbols.NoButtons)
         from app.marvelous_item_rules import talent_construction_cost
         mythic = 'mythic crafter' in self.service.feats
-        cost.setValue(talent_construction_cost(entry, mythic_crafter=mythic))
+        cost.setValue(talent_construction_cost(entry, mythic_crafter=mythic, base_power=self.base_power.currentData()))
         if mythic and 'advanced' in entry.get('category', '').casefold():
             cost.setToolTip('Mythic Crafter reduces the advanced talent base contribution to +1. Additional spell points still add complexity.')
         if entry['key'] == 'destruction:talent:admixture':
             cost.setToolTip('Admixture adds no complexity. Pay for each included blast type separately.')
+        if self.base_power.currentData() == 'dark:meld':
+            from app.marvelous_base_powers import DARK_MELDS
+            if entry['key'] in DARK_MELDS:
+                cost.setToolTip('The single meld replaces Darkness without a talent surcharge; Feed On Darkness adds +2 complexity. Manual values are preserved.')
         cost.valueChanged.connect(self.update_preview); self.table.setCellWidget(row, 1, cost)
         alternative = QCheckBox(); alternative.setToolTip('Mutually exclusive option in the same alternative group. Most expensive costs full; other options cost half.')
         alternative.toggled.connect(self.update_preview); self.table.setCellWidget(row, 2, alternative)
@@ -638,8 +645,8 @@ class MarvelousCraftingDialog(QDialog):
         extra_sp = QSpinBox(); extra_sp.setRange(0, 100)
         extra_sp.setButtonSymbols(QSpinBox.ButtonSymbols.NoButtons)
         from app.marvelous_item_rules import talent_construction_spell_points
-        extra_sp.setValue(talent_construction_spell_points(entry))
-        reviewed = talent_construction_spell_points(entry, reviewed_only=True)
+        extra_sp.setValue(talent_construction_spell_points(entry, base_power=self.base_power.currentData()))
+        reviewed = talent_construction_spell_points(entry, reviewed_only=True, base_power=self.base_power.currentData())
         extra_sp.setToolTip(('No reviewed automatic SP default is registered for this talent. Zero is an editable draft value, not confirmation that the effect is free. ' if reviewed is None else '')
             + 'Additional spell points required by this effect add one complexity each. Confirm the published cost; no description parsing is used.')
         extra_sp.valueChanged.connect(self.update_preview); self.table.setCellWidget(row, 4, extra_sp)

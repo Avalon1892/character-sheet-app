@@ -695,6 +695,20 @@ def test_imbue_shadow_cost_modes_keep_conversion_separate_from_blindfold(mode, s
     assert talent_choice_spell_points('dark:blot-darkness-shadow-talent:imbue-shadow-shadow', mode) == sp
 
 
+@pytest.mark.parametrize('suffix,extra', [('clearsight-meld', 0), ('dark-slaughter-meld', 0),
+    ('edgelord-meld-jester-s-hb', 0), ('feed-on-darkness-meld', 2), ('hide-in-darkness-meld', 0),
+    ('step-through-darkness-meld', 0), ('voidwatcher-meld-bap', 0)])
+def test_single_dark_meld_uses_item_specific_conversion_not_normal_talent_plus_sp(suffix, extra):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_construction_cost, talent_construction_spell_points
+    entry = magic_entry('dark:meld-talent:' + suffix)
+    assert entry
+    assert talent_construction_cost(entry, base_power='dark:meld') == extra
+    assert talent_construction_spell_points(entry, reviewed_only=True, base_power='dark:meld') == 0
+    assert talent_construction_cost(entry, base_power='dark:darkness') == 1
+    assert talent_construction_cost(entry, base_power='dark:meld', additional_spell_points=3) == extra + 3
+
+
 def test_create_materials_does_not_add_another_surcharge_to_required_lengthened_creation():
     from app.content import magic_entry
     from app.marvelous_item_rules import talent_construction_spell_points

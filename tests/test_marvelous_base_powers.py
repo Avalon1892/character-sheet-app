@@ -260,6 +260,17 @@ def test_shadowed_mien_modes_update_duration_bonuses_and_optional_hp(mode, durat
     assert 'social_competence_bonus' not in resolve_base_power(plan('dark:darkness', cl=10, contributions=rows))
 
 
+def test_dark_meld_replaces_darkness_without_creating_an_area_or_changing_item_duration():
+    result = resolve_base_power(plan('dark:meld', cl=10))
+    assert result['darkvision'].startswith('60 ft.') and result['duration'] == '10 rounds'
+    rows = [dict(catalog_key='dark:meld-talent:clearsight-meld')]
+    result = resolve_base_power(plan('dark:meld', cl=10, contributions=rows))
+    assert result['power'] == 'Clearsight (meld)' and 'radius' not in result
+    rows.append(dict(catalog_key='dark:meld-talent:dark-slaughter-meld'))
+    with pytest.raises(ValueError, match='one fixed meld'):
+        resolve_base_power(plan('dark:meld', cl=10, contributions=rows))
+
+
 def test_ooze_originator_projects_chosen_hd_but_not_unselected_species_statistics():
     rows = [dict(catalog_key='creation:advanced-talent:ooze-originator-create', effect_choice='8 HD ooze'),
         dict(catalog_key='creation:material-talent:acidic-creation-material')]

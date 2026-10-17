@@ -24,6 +24,7 @@ _ROWS = (
     ('creation:alter', 'Creation', 'Repair / destroy', 'touch', 'instantaneous'),
     ('creation:create', 'Creation', 'Create object', 'personal', 'round'),
     ('dark:darkness', 'Dark', 'Darkness', 'personal', 'round'),
+    ('dark:meld', 'Dark', 'Darkvision meld', 'personal', 'round'),
     ('death:ghost-strike', 'Death', 'Ghost strike', 'touch', 'variable'),
     ('death:reanimate', 'Death', 'Reanimate', 'touch', 'round'),
     ('destruction:blast', 'Destruction', 'Bludgeoning destructive blast', 'touch', 'instantaneous'),
@@ -116,6 +117,10 @@ LIFE_VITALITY_EFFECTS = {
     'life:vitality-talent:sustaining-vitality-vitality': 'AC and saving throws: +2 circumstance.',
 }
 PLASMA_PROJECTION_BASE_MODES = {'create a plasma blade': 'creation:create', 'alter a melee weapon': 'creation:alter'}
+
+DARK_MELDS = frozenset('dark:meld-talent:' + suffix for suffix in (
+    'clearsight-meld', 'dark-slaughter-meld', 'edgelord-meld-jester-s-hb', 'feed-on-darkness-meld',
+    'hide-in-darkness-meld', 'step-through-darkness-meld', 'voidwatcher-meld-bap'))
 
 TALENT_EFFECT_SP_CHOICES = {
     'dark:blot-darkness-shadow-talent:imbue-shadow-shadow': {'blindfold with concentration': 1,
@@ -1413,5 +1418,20 @@ def resolve_base_power(plan):
                 summary['power'] = 'Lightless Penumbra'
                 summary['light_pattern_vision_save_bonus'] = cl
                 summary['daylight_protection'] = 'Protects against normal/magical daylight; treated as averting eyes against gaze attacks without the usual penalties. Resolve eligibility and saves manually.'
+    if power.key == 'dark:meld':
+        rows = plan.get('contributions', [])
+        melds = [row for row in rows if row.get('catalog_key') in DARK_MELDS]
+        if len(melds) > 1 or any(row.get('alternative') for row in melds):
+            raise ValueError('Choose one fixed meld per Dark meld power; use separate item powers for different melds.')
+        if not rows:
+            summary['darkvision'] = '60 ft.; if the target already has darkvision, increase its range by 30 ft.'
+        elif len(rows) == 1 and melds:
+            from app.content import magic_entry
+            entry = magic_entry(melds[0]['catalog_key'])
+            summary['power'] = entry['name']
+            summary['meld_resolution'] = 'Applies the selected meld, not an area of darkness. Item duration/range apply; resolve recipient eligibility and conditional benefits manually.'
+        else:
+            summary['power'] = 'Modified meld — manual resolution'
+            summary['meld_resolution'] = 'Resolve modifier interactions and recipient eligibility manually; this power does not create an area of darkness.'
     if power.key == 'alteration:shapeshift': summary['traits'] = 1 + cl // 5
     return summary

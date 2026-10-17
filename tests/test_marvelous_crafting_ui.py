@@ -1798,6 +1798,34 @@ def test_dark_fixed_area_cost_defaults_are_live_and_not_reapplied_on_reopen(comp
     assert dialog.blueprint() == saved and repo._connection.total_changes == writes
 
 
+@pytest.mark.parametrize('suffix,extra', [('clearsight-meld', 0), ('feed-on-darkness-meld', 2)])
+def test_add_effects_converts_single_dark_meld_and_preserves_manual_saved_cost(composer, monkeypatch, suffix, extra):
+    from app.ui.marvelous_effect_picker import MarvelousEffectPicker
+    from app.content import magic_entry
+    from PySide6.QtWidgets import QDialog
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Dark'); dialog.cl.setValue(10)
+    entry = magic_entry('dark:meld-talent:' + suffix)
+    monkeypatch.setattr(dialog.service, 'accessible_marvelous_effects', lambda sphere: (entry,))
+    def accept(picker):
+        picker.selected_entries = (entry,)
+        return QDialog.DialogCode.Accepted
+    monkeypatch.setattr(MarvelousEffectPicker, 'exec', accept)
+    writes = repo._connection.total_changes
+    dialog.choose_accessible_effects()
+    assert dialog.base_power.currentData() == 'dark:meld'
+    saved = dialog.blueprint()
+    assert saved['contributions'][0]['complexity'] == extra
+    assert saved['contributions'][0]['additional_spell_points'] == 0
+    assert dialog.quotation()[0] == 1 + extra
+    assert 'SP cost requires review' not in dialog.item_preview.toPlainText()
+    dialog.load_plan(saved)
+    assert dialog.blueprint() == saved
+    saved['contributions'][0].update(complexity=4, additional_spell_points=3)
+    dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and repo._connection.total_changes == writes
+
+
 def test_dark_greater_wall_live_geometry_costs_and_reopen(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Dark'); dialog.cl.setValue(10)
