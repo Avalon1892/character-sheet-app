@@ -112,6 +112,29 @@ def test_potent_alteration_uses_dice_and_does_not_restore_expended_charges():
     assert 'repair_or_destroy' not in resolve_base_power(plan('creation:alter', contributions=rows))
 
 
+@pytest.mark.parametrize('choice,steps', [('one size category', 1), ('additional size categories', 4)])
+def test_magnify_preview_replaces_repair_roll_and_uses_talent_duration(choice, steps):
+    rows = [dict(catalog_key='creation:alter-talent:magnify-minimize-alter', effect_choice=choice)]
+    result = resolve_base_power(plan('creation:alter', cl=10, contributions=rows))
+    assert result['maximum_size_category_steps'] == steps and result['duration'] == '10 minutes'
+    assert 'repair_or_destroy' not in result
+    extended = plan('creation:alter', cl=10, contributions=rows)
+    extended['duration_steps'] = 1
+    assert resolve_base_power(extended)['duration'] == '100 minutes'
+
+
+@pytest.mark.parametrize('choice,duration', [('concentration', 'Concentration'), ('minutes per caster level', '10 minutes')])
+def test_transparency_preview_exposes_selected_duration_and_limits(choice, duration):
+    rows = [dict(catalog_key='creation:alter-talent:transparency-alter-utility', effect_choice=choice)]
+    result = resolve_base_power(plan('creation:alter', cl=10, contributions=rows))
+    assert result['duration'] == duration
+    assert result['larger_object_area_square_feet'] == 20 and result['maximum_penetration_feet'] == 10
+    assert result['one_way_perception_penalty'] == -4 and result['one_way_detection_dc'] == 15
+    rows[0]['alternative'] = True
+    result = resolve_base_power(plan('creation:alter', cl=10, contributions=rows))
+    assert 'larger_object_area_square_feet' not in result
+
+
 def test_conditional_life_descriptors_keep_trigger_and_activation_constraints():
     rows = [dict(catalog_key='life:talent:' + suffix) for suffix in (
         'adrenaline-surge', 'taste-of-victory', 'violent-recuperation-alienist-hb', 'diagnose-utility')]

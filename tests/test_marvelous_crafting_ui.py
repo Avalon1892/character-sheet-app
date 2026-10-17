@@ -1531,6 +1531,24 @@ def test_creation_capacity_preview_updates_with_level_without_inventory_writes(c
     assert repo._connection.total_changes == writes
 
 
+def test_transparency_duration_controls_follow_selected_mode_and_reopen(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Creation'); dialog.cl.setValue(10)
+    dialog.base_power.setCurrentIndex(dialog.base_power.findData('creation:alter'))
+    key = 'creation:alter-talent:transparency-alter-utility'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    mode = dialog.table.cellWidget(0, 5)
+    mode.setCurrentIndex(mode.findData('concentration'))
+    assert 'Duration Concentration' in dialog.item_preview.toPlainText()
+    mode.setCurrentIndex(mode.findData('minutes per caster level'))
+    assert 'Duration 10 minutes' in dialog.item_preview.toPlainText()
+    assert 'Larger Object Area Square Feet: 20' in dialog.item_preview.toPlainText()
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and repo._connection.total_changes == writes
+
+
 @pytest.mark.parametrize('suffix,required', [
     ('create-materials', {'creation:talent:lengthened-creation'}),
     ('create-minds-think-alike-jester-s-hb', {'creation:talent:exquisite-detail-utility',

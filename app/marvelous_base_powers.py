@@ -270,6 +270,14 @@ def effective_base_duration(plan):
     if power.key == 'warp:fluctuate':
         selected = next((row for row in plan.get('contributions', []) if row.get('catalog_key') == 'warp:space-talent:fluctuate-space'), {})
         return 'round' if selected.get('effect_choice') == 'rounds per caster level' else 'concentration'
+    if power.key == 'creation:alter':
+        rows = plan.get('contributions', [])
+        if len(rows) == 1 and not rows[0].get('alternative'):
+            key, choice = rows[0].get('catalog_key'), rows[0].get('effect_choice')
+            if choice in TALENT_EFFECT_SP_CHOICES.get(key, {}):
+                if key == 'creation:alter-talent:magnify-minimize-alter': return 'minute'
+                if key == 'creation:alter-talent:transparency-alter-utility':
+                    return 'concentration' if choice == 'concentration' else 'minute'
     if power.key == 'destruction:blast' and destructive_blast_profile(plan):
         persistent = next((row for row in plan.get('contributions', []) if row.get('catalog_key') in {ENERGY_SPHERE_KEY, ENERGY_WALL_KEY}), None)
         if persistent: return 'concentration' if persistent['effect_choice'] in {'concentration', 'concentration cube'} else 'round'
@@ -996,6 +1004,23 @@ def resolve_base_power(plan):
         elif len(rows) == 1 and rows[0].get('catalog_key') == potent and not rows[0].get('alternative'):
             summary['repair_or_destroy'] = f'1d6+{cl} object HP; Destroy bypasses hardness.'
             summary['target_review'] = 'Check the selected Potent Alteration mode and target eligibility; artifacts cannot be altered, and expended charges are not restored.'
+        elif (len(rows) == 1 and not rows[0].get('alternative')
+                and rows[0].get('effect_choice') in TALENT_EFFECT_SP_CHOICES.get(rows[0].get('catalog_key'), {})
+                and rows[0].get('catalog_key') in {'creation:alter-talent:magnify-minimize-alter', 'creation:alter-talent:transparency-alter-utility'}):
+            key, choice = rows[0]['catalog_key'], rows[0]['effect_choice']
+            if key == 'creation:alter-talent:magnify-minimize-alter':
+                summary['power'] = 'Magnify / Minimize'
+                summary['maximum_size_category_steps'] = 1 if choice == 'one size category' else 2 + cl // 5
+                summary['size_limits'] = 'Fine through Colossal. Each step doubles/halves height and width and multiplies/divides weight by eight. Apply to the actual target manually.'
+                summary['worn_equipment_review'] = 'Resized worn equipment can encumber, break or fall off; resolve its actual fit and material rules manually.'
+            else:
+                summary['power'] = 'Transparency'
+                summary['unmodified_transparency_duration_limit'] = f'{cl} minutes'
+                summary['larger_object_area_square_feet'] = 2 * cl
+                summary['maximum_penetration_feet'] = cl
+                summary['one_way_perception_penalty'] = -4
+                summary['one_way_detection_dc'] = 15
+                summary['transparency_limits'] = 'May affect an object within creation size, or the listed area of a larger object. Changes visibility, not composition or hardness; resolve line of sight and target eligibility manually.'
         else:
             summary['power'] = 'Modified alteration — manual resolution'
             summary['alteration_review'] = 'The selected talent may replace Repair/Destroy entirely; resolve its effect and duration, not a generic HP roll.'
