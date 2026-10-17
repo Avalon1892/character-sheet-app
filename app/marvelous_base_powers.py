@@ -116,6 +116,8 @@ LIFE_VITALITY_EFFECTS = {
     'life:vitality-talent:sustaining-vitality-vitality': 'AC and saving throws: +2 circumstance.',
 }
 TALENT_EFFECT_SP_CHOICES = {
+    # Matches the designer's existing CL range; one extra SP per complete four HD.
+    'creation:advanced-talent:ooze-originator-create': {f'{hd} HD ooze': hd // 4 for hd in range(1, 101)},
     'creation:advanced-talent:dissolution-alter': {'unattended non-magical object': 1,
         'attended, magical or creature target': 2},
     # The required Change Material contribution already supplies the initial SP.
@@ -187,6 +189,7 @@ TALENT_EFFECT_SP_CHOICES = {
     'destruction:advanced-talent:detonating-salvo-lg': {'5-foot radius explosions': 1, 'expanded explosions': 2},
 }
 TALENT_EFFECT_MINIMUM_CL = {
+    'creation:advanced-talent:ooze-originator-create': {f'{hd} HD ooze': hd for hd in range(1, 101)},
     ENERGY_ENHANCEMENT_KEY: {'weapon: sonic': 5, 'weapon: force': 10},
     'time:advanced-talent:past-sight-utility': {'view hours': 5, 'view days': 8, 'view years': 16},
 }
@@ -1036,6 +1039,19 @@ def resolve_base_power(plan):
         else:
             summary['power'] = 'Modified creation — manual resolution'
             summary['creation_review'] = 'Resolve size, material, target and duration interactions from the integrated talents; no generic maximum object is assumed.'
+        ooze = 'creation:advanced-talent:ooze-originator-create'
+        selected = next((row for row in rows if row.get('catalog_key') == ooze), {})
+        mode = selected.get('effect_choice')
+        if (len(rows) == 2 and set(keys) == {ooze, 'creation:material-talent:acidic-creation-material'}
+                and not any(row.get('alternative') for row in rows)
+                and mode in TALENT_EFFECT_MINIMUM_CL[ooze]
+                and TALENT_EFFECT_MINIMUM_CL[ooze][mode] <= cl):
+            summary['power'] = 'Ooze Originator'
+            summary.pop('creation_review', None)
+            summary['ooze_hit_dice'] = TALENT_EFFECT_MINIMUM_CL[ooze][mode]
+            summary['maximum_controlled_ooze_hit_dice'] = cl
+            summary['ooze_selection'] = 'Choose an untemplated ooze or GM-approved unique ooze within creation size limits. Species statistics and size eligibility are manual; no creature is added automatically.'
+            summary['ooze_control'] = 'Recognizes its creator and obeys basic commands; otherwise acts as a normal mindless ooze. Exceeding the controlled-HD limit releases the earliest-created oozes first.'
     if power.key == 'creation:alter':
         rows = plan.get('contributions', [])
         potent = 'creation:talent:potent-alteration'

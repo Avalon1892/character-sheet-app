@@ -1651,6 +1651,25 @@ def test_dissolution_mode_automatically_integrates_correct_potent_cost(composer,
     assert dialog.blueprint() == saved and repo._connection.total_changes == writes
 
 
+def test_ooze_hit_dice_mode_updates_price_and_reopens_without_writes(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Creation'); dialog.cl.setValue(10)
+    dialog.base_power.setCurrentIndex(dialog.base_power.findData('creation:create'))
+    key = 'creation:advanced-talent:ooze-originator-create'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    choice = dialog.table.cellWidget(0, 5)
+    before = dialog.cost_formula.text()
+    choice.setCurrentIndex(choice.findData('8 HD ooze'))
+    assert dialog.blueprint()['contributions'][0]['additional_spell_points'] == 2
+    assert dialog.cost_formula.text() != before
+    assert dialog.add_required_contributions()
+    assert 'Ooze Hit Dice: 8' in dialog.item_preview.toPlainText()
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and repo._connection.total_changes == writes
+
+
 def test_material_body_live_modes_change_price_and_preserve_saved_manual_cost(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Creation'); dialog.cl.setValue(10)

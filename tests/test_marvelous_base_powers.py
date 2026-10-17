@@ -138,6 +138,16 @@ def test_create_materials_is_instantaneous_with_live_capacity_and_material_limit
     assert resolve_base_power(plan('creation:create', cl=10, contributions=rows))['power'] != 'Create Materials'
 
 
+def test_ooze_originator_projects_chosen_hd_but_not_unselected_species_statistics():
+    rows = [dict(catalog_key='creation:advanced-talent:ooze-originator-create', effect_choice='8 HD ooze'),
+        dict(catalog_key='creation:material-talent:acidic-creation-material')]
+    result = resolve_base_power(plan('creation:create', cl=10, contributions=rows))
+    assert result['power'] == 'Ooze Originator'
+    assert result['ooze_hit_dice'] == 8 and result['maximum_controlled_ooze_hit_dice'] == 10
+    assert 'maximum_object_size' not in result
+    assert resolve_base_power(plan('creation:create', cl=7, contributions=rows))['power'] != 'Ooze Originator'
+
+
 def test_potent_alteration_uses_dice_and_does_not_restore_expended_charges():
     assert resolve_base_power(plan('creation:alter', cl=5))['repair_or_destroy'].startswith('1d4+2')
     rows = [dict(catalog_key='creation:talent:potent-alteration', effect_choice='enhanced repair or destroy')]

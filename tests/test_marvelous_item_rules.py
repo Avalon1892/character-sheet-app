@@ -522,6 +522,18 @@ def test_create_materials_does_not_add_another_surcharge_to_required_lengthened_
     assert talent_construction_spell_points(magic_entry('creation:talent:lengthened-creation'), reviewed_only=True) == 1
 
 
+@pytest.mark.parametrize('hd,cost', [(1, 0), (3, 0), (4, 1), (7, 1), (8, 2), (100, 25)])
+def test_ooze_originator_cost_and_caster_level_follow_selected_hit_dice(hd, cost):
+    from app.marvelous_item_rules import talent_choice_spell_points, advanced_construction_blockers
+    key = 'creation:advanced-talent:ooze-originator-create'
+    rows = [dict(catalog_key=key, effect_choice=f'{hd} HD ooze'),
+        dict(catalog_key='creation:material-talent:acidic-creation-material')]
+    assert talent_choice_spell_points(key, f'{hd} HD ooze') == cost
+    assert not advanced_construction_blockers(rows, max(5, hd))
+    if hd > 5:
+        assert any(f'at least {hd}' in message for message in advanced_construction_blockers(rows, hd - 1))
+
+
 def test_fleshcraft_living_target_mode_adds_its_extra_spell_point():
     from app.marvelous_item_rules import talent_choice_spell_points
     key = 'creation:advanced-talent:fleshcraft-material'
