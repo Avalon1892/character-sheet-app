@@ -118,6 +118,8 @@ LIFE_VITALITY_EFFECTS = {
 PLASMA_PROJECTION_BASE_MODES = {'create a plasma blade': 'creation:create', 'alter a melee weapon': 'creation:alter'}
 
 TALENT_EFFECT_SP_CHOICES = {
+    'dark:blot-darkness-shadow-talent:imbue-shadow-shadow': {'blindfold with concentration': 1,
+        'blindfold without concentration': 2, 'convert a blot or darkness talent to a shadow': 1},
     'dark:advanced-talent:pitch-black': {'additional darkness talent capacity': 0, 'deeper absolute darkness': 1},
     'dark:advanced-talent:vanish-in-shadow': {'hide in any dim light or darkness': 0, 'hide from unusual detection': 1},
     'dark:blot-darkness-shadow-talent:shadowed-mien-shadow': {'concentration': 0,

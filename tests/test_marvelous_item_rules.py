@@ -673,6 +673,28 @@ def test_dark_advanced_and_shadowed_mien_modes_have_explicit_costs(key, mode, sp
     assert magic_entry(key) and talent_choice_spell_points(key, mode) == sp
 
 
+@pytest.mark.parametrize('suffix,sp', [(name, 0) for name in (
+    'black-lung-darkness', 'directional-darkness-darkness', 'disorienting-darkness-darkness',
+    'edge-of-night-darkness-jester-s-hb', 'fearful-darkness-blot-darkness', 'flat-black-blot',
+    'hungry-darkness-blot-darkness', 'intoxicating-darkness-blot-darkness', 'looming-darkness-blot-darkness',
+    'numbing-darkness-blot-darkness', 'shadow-slick-blot-shadow', 'shadow-tag-blot-darkness-shadow',
+    'tenebrous-legerdemain-blot-darkness')]
+    + [(name, 1) for name in ('creeping-lethargy-blot-darkness', 'obscure-passage-blot', 'shadow-lurk-shadow',
+        'silent-darkness-darkness', 'snagging-darkness-blot', 'stygian-immersion-blot', 'thick-darkness-darkness')])
+def test_dark_area_and_shadow_fixed_cost_metadata(suffix, sp):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_construction_spell_points
+    entry = magic_entry('dark:blot-darkness-shadow-talent:' + suffix)
+    assert entry and talent_construction_spell_points(entry, reviewed_only=True) == sp
+
+
+@pytest.mark.parametrize('mode,sp', [('blindfold with concentration', 1), ('blindfold without concentration', 2),
+    ('convert a blot or darkness talent to a shadow', 1)])
+def test_imbue_shadow_cost_modes_keep_conversion_separate_from_blindfold(mode, sp):
+    from app.marvelous_item_rules import talent_choice_spell_points
+    assert talent_choice_spell_points('dark:blot-darkness-shadow-talent:imbue-shadow-shadow', mode) == sp
+
+
 def test_create_materials_does_not_add_another_surcharge_to_required_lengthened_creation():
     from app.content import magic_entry
     from app.marvelous_item_rules import talent_construction_spell_points

@@ -585,6 +585,15 @@ def talent_construction_spell_points(entry, *, reviewed_only=False):
         return profile[3]
     if entry.get('key') in DESTRUCTION_BLAST_SHAPES: return 1
     return {
+        **{'dark:blot-darkness-shadow-talent:' + suffix: 0 for suffix in (
+            'black-lung-darkness', 'directional-darkness-darkness', 'disorienting-darkness-darkness',
+            'edge-of-night-darkness-jester-s-hb', 'fearful-darkness-blot-darkness', 'flat-black-blot',
+            'hungry-darkness-blot-darkness', 'intoxicating-darkness-blot-darkness',
+            'looming-darkness-blot-darkness', 'numbing-darkness-blot-darkness',
+            'shadow-slick-blot-shadow', 'shadow-tag-blot-darkness-shadow', 'tenebrous-legerdemain-blot-darkness')},
+        **{'dark:blot-darkness-shadow-talent:' + suffix: 1 for suffix in (
+            'creeping-lethargy-blot-darkness', 'obscure-passage-blot', 'shadow-lurk-shadow',
+            'silent-darkness-darkness', 'snagging-darkness-blot', 'stygian-immersion-blot', 'thick-darkness-darkness')},
         'dark:advanced-talent:black-and-black-morality-blot-darkness-shadow': 2,
         'dark:advanced-talent:midnight-darkness': 2,
         'dark:advanced-talent:lightless-penumbra-shadow': 1,

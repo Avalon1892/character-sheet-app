@@ -1766,6 +1766,38 @@ def test_shadowed_mien_live_card_tracks_mode_cl_and_reopened_description(compose
     assert dialog.blueprint() == saved and repo._connection.total_changes == writes
 
 
+def test_imbue_shadow_modes_price_separately_and_preserve_reopened_manual_values(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Dark'); dialog.cl.setValue(10)
+    key = 'dark:blot-darkness-shadow-talent:imbue-shadow-shadow'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution(); choice = dialog.table.cellWidget(0, 5)
+    choice.setCurrentIndex(choice.findData('blindfold with concentration'))
+    before = dialog.quotation()[1].market_price_gp
+    choice.setCurrentIndex(choice.findData('blindfold without concentration'))
+    assert dialog.blueprint()['contributions'][0]['additional_spell_points'] == 2
+    assert dialog.quotation()[1].market_price_gp > before
+    choice.setCurrentIndex(choice.findData('convert a blot or darkness talent to a shadow'))
+    assert dialog.blueprint()['contributions'][0]['additional_spell_points'] == 1
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and repo._connection.total_changes == writes
+
+
+@pytest.mark.parametrize('suffix,sp', [('black-lung-darkness', 0), ('thick-darkness-darkness', 1)])
+def test_dark_fixed_area_cost_defaults_are_live_and_not_reapplied_on_reopen(composer, suffix, sp):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Dark'); dialog.cl.setValue(10)
+    key = 'dark:blot-darkness-shadow-talent:' + suffix
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    assert dialog.blueprint()['contributions'][0]['additional_spell_points'] == sp
+    saved = dialog.blueprint(); saved['contributions'][0].update(additional_spell_points=3, complexity=4)
+    dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and repo._connection.total_changes == writes
+
+
 def test_dark_greater_wall_live_geometry_costs_and_reopen(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Dark'); dialog.cl.setValue(10)
