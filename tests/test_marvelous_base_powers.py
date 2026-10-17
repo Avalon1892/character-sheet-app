@@ -123,6 +123,21 @@ def test_alchemical_creation_cl14_conflict_is_not_silently_resolved():
     assert 'alchemical_statistics' not in resolve_base_power(plan('creation:create', cl=14, contributions=rows))
 
 
+@pytest.mark.parametrize('larger,capacity', [(False, 10), (True, 20)])
+def test_create_materials_is_instantaneous_with_live_capacity_and_material_limits(larger, capacity):
+    rows = [dict(catalog_key='creation:advanced-talent:create-materials'),
+        dict(catalog_key='creation:talent:lengthened-creation'),
+        dict(catalog_key='creation:material-talent:expanded-materials-material')]
+    if larger: rows.append(dict(catalog_key='creation:talent:larger-creation'))
+    result = resolve_base_power(plan('creation:create', cl=10, contributions=rows))
+    assert result['power'] == 'Create Materials' and result['duration'] == 'Instantaneous'
+    assert result['creation_capacity_small_objects'] == capacity
+    assert 'Costly Creation' in result['material_limits']
+    assert 'Fabricate' in result['craft_review']
+    rows[0]['alternative'] = True
+    assert resolve_base_power(plan('creation:create', cl=10, contributions=rows))['power'] != 'Create Materials'
+
+
 def test_potent_alteration_uses_dice_and_does_not_restore_expended_charges():
     assert resolve_base_power(plan('creation:alter', cl=5))['repair_or_destroy'].startswith('1d4+2')
     rows = [dict(catalog_key='creation:talent:potent-alteration', effect_choice='enhanced repair or destroy')]

@@ -515,6 +515,13 @@ def test_material_body_cost_includes_change_material_once(mode, total):
     assert talent_choice_spell_points(key, mode) + talent_construction_spell_points(prerequisite, reviewed_only=True) == total
 
 
+def test_create_materials_does_not_add_another_surcharge_to_required_lengthened_creation():
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_construction_spell_points
+    assert talent_construction_spell_points(magic_entry('creation:advanced-talent:create-materials'), reviewed_only=True) == 0
+    assert talent_construction_spell_points(magic_entry('creation:talent:lengthened-creation'), reviewed_only=True) == 1
+
+
 def test_fleshcraft_living_target_mode_adds_its_extra_spell_point():
     from app.marvelous_item_rules import talent_choice_spell_points
     key = 'creation:advanced-talent:fleshcraft-material'
