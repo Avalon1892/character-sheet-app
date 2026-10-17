@@ -642,6 +642,8 @@ def talent_construction_spell_points(entry, *, reviewed_only=False):
             'material-talent:acidic-creation-material', 'talent:larger-creation',
             'talent:lengthened-creation', 'talent:replication')},
         **{'creation:' + suffix: 0 for suffix in (
+            'advanced-talent:imperfect-recreation-alienist-hb', 'advanced-talent:integrate-item-alter-sm',
+            'advanced-talent:internal-creation-apoc',
             'talent:practiced-creation',
             'material-talent:alchemical-creation-material',
             'talent:instill-alteration-instill',

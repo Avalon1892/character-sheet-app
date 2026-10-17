@@ -497,6 +497,21 @@ def test_fixed_advanced_creation_costs_preserve_surcharges(suffix, cost):
     assert entry and talent_construction_spell_points(entry, reviewed_only=True) == cost
 
 
+@pytest.mark.parametrize('suffix', ['imperfect-recreation-alienist-hb', 'integrate-item-alter-sm', 'internal-creation-apoc'])
+def test_creation_modifiers_do_not_duplicate_underlying_effect_costs(suffix):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_construction_spell_points
+    entry = magic_entry('creation:advanced-talent:' + suffix)
+    assert entry and talent_construction_spell_points(entry, reviewed_only=True) == 0
+
+
+def test_fleshcraft_living_target_mode_adds_its_extra_spell_point():
+    from app.marvelous_item_rules import talent_choice_spell_points
+    key = 'creation:advanced-talent:fleshcraft-material'
+    assert talent_choice_spell_points(key, 'create or alter nonliving flesh') == 0
+    assert talent_choice_spell_points(key, 'alter a living creature') == 1
+
+
 @pytest.mark.parametrize('suffix,free,paid', [
     ('alter-talent:magnify-minimize-alter', 'one size category', 'additional size categories'),
     ('alter-talent:transparency-alter-utility', 'concentration', 'minutes per caster level'),

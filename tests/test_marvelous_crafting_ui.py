@@ -1680,7 +1680,8 @@ def test_costly_creation_choice_inserts_complete_path_or_cancels_without_mutatio
     assert dialog.blueprint() == saved and repo._connection.total_changes == writes
 
 
-@pytest.mark.parametrize('suffix,points', [('fabricate', 1), ('state-shift-alter', 0)])
+@pytest.mark.parametrize('suffix,points', [('fabricate', 1), ('state-shift-alter', 0),
+    ('internal-creation-apoc', 0), ('imperfect-recreation-alienist-hb', 0), ('integrate-item-alter-sm', 0)])
 def test_advanced_creation_defaults_do_not_replace_manual_costs_on_reopen(composer, suffix, points):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Creation'); dialog.cl.setValue(20)
@@ -1696,6 +1697,7 @@ def test_advanced_creation_defaults_do_not_replace_manual_costs_on_reopen(compos
 
 
 @pytest.mark.parametrize('suffix,free,paid', [
+    ('advanced-talent:fleshcraft-material', 'create or alter nonliving flesh', 'alter a living creature'),
     ('talent:altering-burst', 'ten-foot radius, half-size objects', 'twenty-foot radius, normal-size objects'),
     ('talent:restrictive-casing', 'non-harmful worn object', 'full-body confinement cage'),
     ('material-talent:plasma-production-material', 'fire or burning object', 'electricity'),

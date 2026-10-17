@@ -116,6 +116,8 @@ LIFE_VITALITY_EFFECTS = {
     'life:vitality-talent:sustaining-vitality-vitality': 'AC and saving throws: +2 circumstance.',
 }
 TALENT_EFFECT_SP_CHOICES = {
+    'creation:advanced-talent:fleshcraft-material': {'create or alter nonliving flesh': 0,
+        'alter a living creature': 1},
     'creation:talent:altering-burst': {'ten-foot radius, half-size objects': 0,
         'twenty-foot radius, normal-size objects': 1},
     'creation:talent:restrictive-casing': {'non-harmful worn object': 0, 'full-body confinement cage': 1},
