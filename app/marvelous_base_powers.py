@@ -118,6 +118,7 @@ LIFE_VITALITY_EFFECTS = {
 PLASMA_PROJECTION_BASE_MODES = {'create a plasma blade': 'creation:create', 'alter a melee weapon': 'creation:alter'}
 
 TALENT_EFFECT_SP_CHOICES = {
+    'creation:advanced-talent:sustenance-material-utility': {'standard-action food and drink': 1},
     'creation:advanced-talent:plasma-projection': {'create a plasma blade': 0, 'alter a melee weapon': 1},
     # Instantaneous duplication adds two SP: one here, one in required Lengthened Creation.
     'creation:advanced-talent:duplicate': {'temporary object copy': 0, 'instantaneous object copy': 1},
@@ -1181,6 +1182,15 @@ def resolve_base_power(plan):
         summary['plasma_weapon'] = 'Energy sword; the wielder is proficient. Requires a held hilt-like object or an existing melee weapon. Resolve the weapon statistics manually; no inventory weapon is created or altered automatically.'
         summary['plasma_renewal'] = 'When duration expires, one additional SP renews it as a free action. The wielder can toggle the blade as a swift action. Spending and expiration are manual.'
         summary['plasma_intensification'] = f'Optional: spend one additional SP as a swift action for one round to add {1 + max(0, (cl - 5) // 5)}d10 damage (Medium weapon), with 10-foot reach and adjacent attacks. Not included as a permanent damage bonus or upfront cost.'
+    if (power.key == 'creation:alter' and len(plan.get('contributions', [])) == 1
+            and plan['contributions'][0].get('catalog_key') == 'creation:advanced-talent:sustenance-material-utility'
+            and plan['contributions'][0].get('effect_choice') == 'standard-action food and drink'
+            and not plan['contributions'][0].get('alternative')):
+        summary['power'] = 'Sustenance — Food and Drink'
+        summary.pop('alteration_review', None)
+        summary['food_quantity'] = 'Sustains a number of Medium creatures equal to the applicable item casting ability modifier. That modifier is not assumed to equal the crafter’s modifier.'
+        summary['food_quality'] = 'Bland food and drink. No inventory supplies are created automatically.'
+        summary['sustenance_variants'] = 'This design uses the one-SP standard-action food mode, not the free ten-minute ritual or edible-object alteration.'
     if power.key == 'destruction:blast':
         summary['damage_dice'] = cl if boost else cl // 2
         profile = destructive_blast_profile(plan)

@@ -1651,6 +1651,27 @@ def test_dissolution_mode_automatically_integrates_correct_potent_cost(composer,
     assert dialog.blueprint() == saved and repo._connection.total_changes == writes
 
 
+def test_sustenance_food_mode_switches_base_and_preserves_reopened_input(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Creation'); dialog.cl.setValue(5)
+    dialog.base_power.setCurrentIndex(dialog.base_power.findData('creation:create'))
+    key = 'creation:advanced-talent:sustenance-material-utility'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    choice = dialog.table.cellWidget(0, 5)
+    choice.setCurrentIndex(choice.findData('standard-action food and drink'))
+    assert dialog.base_power.currentData() == 'creation:alter'
+    assert dialog.blueprint()['contributions'][0]['additional_spell_points'] == 1
+    assert 'Duration Instantaneous' in dialog.item_preview.toPlainText()
+    assert 'Sustenance — Food and Drink' in dialog.item_preview.toPlainText()
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and repo._connection.total_changes == writes
+    dialog.base_power.setCurrentIndex(dialog.base_power.findData('creation:create'))
+    with pytest.raises(ValueError, match='Sustenance food mode replaces'):
+        dialog.quotation()
+
+
 def test_plasma_modes_switch_base_power_preserve_costs_and_reopen_without_writes(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Creation'); dialog.cl.setValue(10)

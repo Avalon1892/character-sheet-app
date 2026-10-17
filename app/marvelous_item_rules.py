@@ -1129,6 +1129,10 @@ def quote_marvelous_blueprint(plan):
         raise ValueError('Alternative-effect flags must be boolean.')
     groups = {}
     for contribution in plan['contributions']:
+        if (contribution.get('catalog_key') == 'creation:advanced-talent:sustenance-material-utility'
+                and contribution.get('effect_choice') == 'standard-action food and drink'
+                and plan.get('base_power') != 'creation:alter'):
+            raise ValueError('Sustenance food mode replaces the Creation Alter effect; choose creation:alter.')
         if contribution.get('catalog_key') == 'creation:advanced-talent:plasma-projection':
             from app.marvelous_base_powers import PLASMA_PROJECTION_BASE_MODES
             expected = PLASMA_PROJECTION_BASE_MODES.get(contribution.get('effect_choice'))

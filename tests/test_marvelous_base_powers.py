@@ -193,6 +193,18 @@ def test_plasma_projection_has_reviewed_duration_and_manual_optional_intensifica
     assert resolve_base_power(plan(base, cl=10, contributions=rows))['power'] != 'Plasma Projection'
 
 
+def test_sustenance_food_mode_has_no_invented_casting_modifier_or_edible_object_effect():
+    rows = [dict(catalog_key='creation:advanced-talent:sustenance-material-utility', effect_choice='standard-action food and drink')]
+    result = resolve_base_power(plan('creation:alter', cl=5, contributions=rows))
+    assert result['power'] == 'Sustenance — Food and Drink'
+    assert result['duration'] == 'Instantaneous'
+    assert 'repair_or_destroy' not in result
+    assert 'item casting ability modifier' in result['food_quantity']
+    assert 'ten-minute' in result['sustenance_variants']
+    rows[0]['alternative'] = True
+    assert resolve_base_power(plan('creation:alter', cl=5, contributions=rows))['power'] != 'Sustenance — Food and Drink'
+
+
 def test_ooze_originator_projects_chosen_hd_but_not_unselected_species_statistics():
     rows = [dict(catalog_key='creation:advanced-talent:ooze-originator-create', effect_choice='8 HD ooze'),
         dict(catalog_key='creation:material-talent:acidic-creation-material')]

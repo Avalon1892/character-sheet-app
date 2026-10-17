@@ -680,6 +680,9 @@ class MarvelousCraftingDialog(QDialog):
             break
         choice.setProperty('previousChoice', choice.currentData())
         choice.setToolTip(choice.currentText())
+        if (selected.get('catalog_key') == 'creation:advanced-talent:sustenance-material-utility'
+                and choice.currentData() == 'standard-action food and drink'):
+            self.base_power.setCurrentIndex(self.base_power.findData('creation:alter'))
         if selected.get('catalog_key') == 'creation:advanced-talent:plasma-projection':
             from app.marvelous_base_powers import PLASMA_PROJECTION_BASE_MODES
             if power := PLASMA_PROJECTION_BASE_MODES.get(choice.currentData()):
