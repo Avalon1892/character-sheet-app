@@ -647,7 +647,10 @@ class MarvelousCraftingDialog(QDialog):
         from app.marvelous_base_powers import talent_effect_choices
         if choices := talent_effect_choices(entry['key']):
             for value in choices: choice.addItem(value.title(), value)
+            width = max(choice.fontMetrics().horizontalAdvance(choice.itemText(i)) for i in range(choice.count())) + 48
+            choice.view().setMinimumWidth(min(640, width))
             self.table.setColumnHidden(5, False)
+        choice.setToolTip('Choose an effect mode; its full name appears here after selection.')
         choice.setEnabled(choice.count() > 1)
         choice.currentIndexChanged.connect(lambda: self.contribution_choice_changed(choice)); self.table.setCellWidget(row, 5, choice)
         if not self.loading_plan: self.table.resizeRowsToContents()
@@ -656,6 +659,7 @@ class MarvelousCraftingDialog(QDialog):
     def contribution_choice_changed(self, choice):
         previous = choice.property('previousChoice') or ''
         if self.loading_plan:
+            choice.setToolTip(choice.currentText())
             choice.setProperty('previousChoice', choice.currentData()); return
         from app.marvelous_item_rules import (talent_choice_spell_points,
             mode_construction_prerequisites, missing_required_construction_modes)
@@ -675,6 +679,7 @@ class MarvelousCraftingDialog(QDialog):
                 editor.blockSignals(True); editor.setValue(previous_points); editor.blockSignals(False)
             break
         choice.setProperty('previousChoice', choice.currentData())
+        choice.setToolTip(choice.currentText())
         self.update_preview()
 
     def refresh_effect_options(self):

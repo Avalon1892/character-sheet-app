@@ -1708,6 +1708,22 @@ def test_ooze_hit_dice_mode_updates_price_and_reopens_without_writes(composer):
     assert dialog.blueprint() == saved and repo._connection.total_changes == writes
 
 
+def test_long_effect_modes_have_readable_popup_and_restored_selection_tooltip(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Creation')
+    key = 'creation:advanced-talent:material-body-alter'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    dialog.add_contribution()
+    choice = dialog.table.cellWidget(0, 5)
+    longest = max(choice.fontMetrics().horizontalAdvance(choice.itemText(i)) for i in range(choice.count()))
+    assert choice.view().minimumWidth() >= min(640, longest + 48)
+    choice.setCurrentIndex(choice.findData('sustained without concentration'))
+    assert choice.toolTip() == choice.currentText()
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    choice = dialog.table.cellWidget(0, 5)
+    assert choice.toolTip() == choice.currentText()
+
+
 def test_material_body_live_modes_change_price_and_preserve_saved_manual_cost(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Creation'); dialog.cl.setValue(10)
