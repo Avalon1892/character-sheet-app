@@ -2274,6 +2274,20 @@ def test_designer_compact_layout_keeps_card_and_formula_in_window(composer, them
     dialog.hide()
 
 
+@pytest.mark.parametrize('theme', ['classic', 'dark'])
+def test_compact_settings_name_uses_full_column_width(composer, theme):
+    from app.ui.dialog_theme import dialog_stylesheet
+    from PySide6.QtWidgets import QApplication
+    dialog, repo, cid = composer
+    dialog.setStyleSheet(dialog_stylesheet(theme))
+    dialog.settings_toggle.setChecked(True)
+    dialog.resize(1100, 720); dialog.show()
+    QApplication.processEvents()
+    assert dialog.name.width() >= 200
+    assert dialog.name.width() >= dialog.settings_panel.width() - 30
+    dialog.hide()
+
+
 def test_invalid_design_clears_stale_item_preview(composer):
     dialog, repo, cid = composer
     assert 'Custom Marvelous Item' in dialog.item_preview.toPlainText()

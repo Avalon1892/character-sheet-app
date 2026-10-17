@@ -62,7 +62,7 @@ class MarvelousCraftingDialog(QDialog):
         self.settings_panel.hide()
         self.settings_toggle.toggled.connect(self.settings_panel.setVisible)
         self.settings_toggle.toggled.connect(lambda checked: self.settings_toggle.setText('− Item settings' if checked else '+ Item settings'))
-        form.setRowWrapPolicy(QFormLayout.RowWrapPolicy.WrapLongRows)
+        form.setRowWrapPolicy(QFormLayout.RowWrapPolicy.WrapAllRows)
         self.name = QLineEdit('Custom Marvelous Item')
         self.base_weight = QDoubleSpinBox(); self.base_weight.setRange(-1, 1000000000)
         self.base_weight.setDecimals(3); self.base_weight.setValue(-1)
