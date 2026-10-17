@@ -79,6 +79,39 @@ def test_unknown_revitalize_combination_does_not_claim_a_resolved_healing_amount
     assert 'healing' not in result and 'fast_healing' not in result
 
 
+@pytest.mark.parametrize('cl,size', [(1,'Small'), (2,'Medium'), (4,'Large'), (8,'Huge'),
+    (16,'Gargantuan'), (32,'Colossal'), (64,'Colossal+')])
+def test_creation_size_uses_integrated_capacity_not_character_state(cl, size):
+    result = resolve_base_power(plan('creation:create', cl=cl))
+    assert result['creation_capacity_small_objects'] == cl
+    assert result['maximum_object_size'] == size
+    assert 'One object' in result['object_count']
+    assert result['duration'] == f'{cl} rounds'
+
+
+def test_force_creation_combines_size_and_shared_object_limits():
+    rows = [dict(catalog_key='creation:' + suffix) for suffix in ('talent:larger-creation',
+        'talent:divided-creation-mass', 'material-talent:object-of-force-material')]
+    result = resolve_base_power(plan('creation:create', cl=10, contributions=rows))
+    assert result['creation_capacity_small_objects'] == 20 and result['maximum_object_size'] == 'Gargantuan'
+    assert 'sharing' in result['object_count']
+    assert result['force_object_hardness'] == 10 and result['force_object_hp_per_inch'] == 10
+    assert 'Not the weight of the crafting device' in result['force_object_weight']
+    rows.append(dict(catalog_key='creation:talent:replication'))
+    result = resolve_base_power(plan('creation:create', cl=10, contributions=rows))
+    assert 'manual resolution' in result['power'] and 'maximum_object_size' not in result
+
+
+def test_potent_alteration_uses_dice_and_does_not_restore_expended_charges():
+    assert resolve_base_power(plan('creation:alter', cl=5))['repair_or_destroy'].startswith('1d4+2')
+    rows = [dict(catalog_key='creation:talent:potent-alteration', effect_choice='enhanced repair or destroy')]
+    result = resolve_base_power(plan('creation:alter', cl=5, contributions=rows))
+    assert result['repair_or_destroy'].startswith('1d6+5')
+    assert 'charges are not restored' in result['target_review']
+    rows = [dict(catalog_key='creation:alter-talent:forge-alter')]
+    assert 'repair_or_destroy' not in resolve_base_power(plan('creation:alter', contributions=rows))
+
+
 def test_conditional_life_descriptors_keep_trigger_and_activation_constraints():
     rows = [dict(catalog_key='life:talent:' + suffix) for suffix in (
         'adrenaline-surge', 'taste-of-victory', 'violent-recuperation-alienist-hb', 'diagnose-utility')]

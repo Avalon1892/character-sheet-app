@@ -960,6 +960,45 @@ def resolve_base_power(plan):
             else:
                 summary['power'] = 'Modified Revitalize — manual resolution'
                 summary['revitalize_review'] = 'Resolve the selected modifiers and duration from their rules; no automatic fast-healing amount is assumed.'
+    if power.key == 'creation:create':
+        rows = plan.get('contributions', [])
+        keys = [row.get('catalog_key') for row in rows]
+        larger, divided = 'creation:talent:larger-creation', 'creation:talent:divided-creation-mass'
+        detail, force = 'creation:talent:exquisite-detail-utility', 'creation:material-talent:object-of-force-material'
+        expanded = 'creation:material-talent:expanded-materials-material'
+        if (len(keys) == len(set(keys)) and not any(row.get('alternative') for row in rows)
+                and set(keys) <= {larger, divided, detail, force, expanded} and not {force, expanded} <= set(keys)):
+            units = cl * (2 if larger in keys else 1)
+            sizes = ((1, 'Small'), (2, 'Medium'), (4, 'Large'), (8, 'Huge'),
+                (16, 'Gargantuan'), (32, 'Colossal'), (64, 'Colossal+'))
+            summary['creation_capacity_small_objects'] = units
+            summary['maximum_object_size'] = next(size for minimum, size in reversed(sizes) if units >= minimum)
+            if units >= 128:
+                summary['maximum_object_size'] = 'Beyond Colossal+; consult the full size table'
+            summary['object_count'] = ('Multiple same-general-type objects sharing the total size capacity.' if divided in keys
+                else 'One object; size capacity does not itself grant multiple objects.')
+            summary['materials'] = ('Force' if force in keys else 'Expanded Materials; check the material and CL requirements manually.' if expanded in keys
+                else 'Vegetable matter such as wood, hemp or cotton.')
+            if force in keys:
+                summary['force_object_hardness'] = cl
+                summary['force_object_hp_per_inch'] = 10
+                summary['force_object_weight'] = 'Weightless; may be anchored. Disappears when broken. Not the weight of the crafting device.'
+            summary['craft_review'] = ('Detailed objects require their appropriate Craft checks; no automatic success.' if detail in keys
+                else 'Complex objects require Craft checks; normal DC15 creation limit applies.')
+        else:
+            summary['power'] = 'Modified creation — manual resolution'
+            summary['creation_review'] = 'Resolve size, material, target and duration interactions from the integrated talents; no generic maximum object is assumed.'
+    if power.key == 'creation:alter':
+        rows = plan.get('contributions', [])
+        potent = 'creation:talent:potent-alteration'
+        if not rows:
+            summary['repair_or_destroy'] = f'1d4+{cl // 2} object HP; Destroy bypasses hardness.'
+        elif len(rows) == 1 and rows[0].get('catalog_key') == potent and not rows[0].get('alternative'):
+            summary['repair_or_destroy'] = f'1d6+{cl} object HP; Destroy bypasses hardness.'
+            summary['target_review'] = 'Check the selected Potent Alteration mode and target eligibility; artifacts cannot be altered, and expended charges are not restored.'
+        else:
+            summary['power'] = 'Modified alteration — manual resolution'
+            summary['alteration_review'] = 'The selected talent may replace Repair/Destroy entirely; resolve its effect and duration, not a generic HP roll.'
     if power.key == 'destruction:blast':
         summary['damage_dice'] = cl if boost else cl // 2
         profile = destructive_blast_profile(plan)

@@ -1514,6 +1514,23 @@ def test_creation_cost_defaults_update_and_preserve_manual_overrides(composer, s
     assert repo._connection.total_changes == writes
 
 
+def test_creation_capacity_preview_updates_with_level_without_inventory_writes(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Creation'); dialog.cl.setValue(10)
+    dialog.base_power.setCurrentIndex(dialog.base_power.findData('creation:create'))
+    key = 'creation:talent:larger-creation'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    assert 'Creation Capacity Small Objects: 20' in dialog.item_preview.toPlainText()
+    dialog.cl.setValue(16)
+    assert 'Creation Capacity Small Objects: 32' in dialog.item_preview.toPlainText()
+    assert 'Maximum Object Size: Colossal' in dialog.item_preview.toPlainText()
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint() == saved
+    assert repo._connection.total_changes == writes
+
+
 @pytest.mark.parametrize('suffix,required', [
     ('create-materials', {'creation:talent:lengthened-creation'}),
     ('create-minds-think-alike-jester-s-hb', {'creation:talent:exquisite-detail-utility',
