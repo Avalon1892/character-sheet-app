@@ -370,4 +370,6 @@ Advanced Creation target-cost checkpoint (2026-10-17): Fleshcraft now distinguis
 
 The advanced Creation target-cost UI validation completed: 14 passed in 9.14 seconds.
 
+Dissolution checkpoint (2026-10-17): target modes now require matching fixed Potent Alteration modes. Unattended non-magical objects cost one SP in Dissolution plus zero in the prerequisite; attended/magical/creature targets cost two plus Potent's one, for the published three-SP total. Shared prerequisite insertion configures these modes and preserves choices on reopen without writes. Valid fixed combinations display either up to a 10-foot cube disintegrated without HP damage, or 2d6/CL on failed Fortitude and normal Potent damage on success, with explicit manual targeting/destruction. Missing/wrong/alternative modes do not claim a resolved Dissolution effect. Validation: 726 rules/base-power/presentation tests and two UI prerequisite-mode/cost/reopen/no-write tests passed. Source: https://spheresofpower.wikidot.com/creation. Creation cost metadata now covers 40/46 raw entries; six advanced entries remain unreviewed. No creature HP or inventory destruction is automated. Not yet deployed.
+
 The full active goal is not complete. Broader Marvelous implementation history and gaps remain in `marvelous-items-next-run.md`.

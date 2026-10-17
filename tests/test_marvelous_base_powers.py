@@ -133,6 +133,23 @@ def test_potent_alteration_uses_dice_and_does_not_restore_expended_charges():
     assert 'repair_or_destroy' not in resolve_base_power(plan('creation:alter', contributions=rows))
 
 
+@pytest.mark.parametrize('mode,child', [('unattended non-magical object', 'enhanced repair or destroy'),
+    ('attended, magical or creature target', 'affect magical, attended or construct target')])
+def test_dissolution_projects_only_the_valid_fixed_target_mode(mode, child):
+    rows = [dict(catalog_key='creation:advanced-talent:dissolution-alter', effect_choice=mode),
+        dict(catalog_key='creation:talent:potent-alteration', effect_choice=child)]
+    result = resolve_base_power(plan('creation:alter', cl=10, contributions=rows))
+    assert result['power'] == 'Dissolution' and 'repair_or_destroy' not in result
+    if mode == 'unattended non-magical object':
+        assert '10-foot cube' in result['disintegration_volume']
+        assert 'failed_fortitude_damage' not in result
+    else:
+        assert result['failed_fortitude_damage'] == '20d6'
+        assert result['successful_fortitude_damage'] == '1d6+10'
+    rows[-1]['effect_choice'] = ''
+    assert resolve_base_power(plan('creation:alter', cl=10, contributions=rows))['power'] != 'Dissolution'
+
+
 @pytest.mark.parametrize('choice,steps', [('one size category', 1), ('additional size categories', 4)])
 def test_magnify_preview_replaces_repair_roll_and_uses_talent_duration(choice, steps):
     rows = [dict(catalog_key='creation:alter-talent:magnify-minimize-alter', effect_choice=choice)]

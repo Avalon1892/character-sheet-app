@@ -1632,6 +1632,25 @@ def test_practiced_creation_live_discount_and_concentration_survive_reopen(compo
     assert dialog.blueprint() == saved and repo._connection.total_changes == writes
 
 
+@pytest.mark.parametrize('mode,total_sp', [('unattended non-magical object', 1),
+    ('attended, magical or creature target', 3)])
+def test_dissolution_mode_automatically_integrates_correct_potent_cost(composer, mode, total_sp):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Creation'); dialog.cl.setValue(10)
+    dialog.base_power.setCurrentIndex(dialog.base_power.findData('creation:alter'))
+    key = 'creation:advanced-talent:dissolution-alter'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    choice = dialog.table.cellWidget(0,5)
+    choice.setCurrentIndex(choice.findData(mode))
+    saved = dialog.blueprint()
+    assert sum(row['additional_spell_points'] for row in saved['contributions']) == total_sp
+    assert sum(row['catalog_key'] == 'creation:talent:potent-alteration' for row in saved['contributions']) == 1
+    dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and repo._connection.total_changes == writes
+
+
 @pytest.mark.parametrize('suffix,required', [
     ('create-materials', {'creation:talent:lengthened-creation'}),
     ('create-minds-think-alike-jester-s-hb', {'creation:talent:exquisite-detail-utility',

@@ -116,6 +116,8 @@ LIFE_VITALITY_EFFECTS = {
     'life:vitality-talent:sustaining-vitality-vitality': 'AC and saving throws: +2 circumstance.',
 }
 TALENT_EFFECT_SP_CHOICES = {
+    'creation:advanced-talent:dissolution-alter': {'unattended non-magical object': 1,
+        'attended, magical or creature target': 2},
     'creation:advanced-talent:fleshcraft-material': {'create or alter nonliving flesh': 0,
         'alter a living creature': 1},
     'creation:talent:altering-burst': {'ten-foot radius, half-size objects': 0,
@@ -1056,6 +1058,24 @@ def resolve_base_power(plan):
                 summary['divided_alchemy'] = 'Combined size must fit creation capacity; each item counts as Small. Only one item gains the improved DC/damage; the others retain normal statistics.'
             if power.key == 'creation:alter':
                 summary['alchemical_duration_review'] = 'Potency enhancement lasts for normal created-object duration, then returns to normal; verify item duration conversion. Does not stack with other DC increases.'
+    if power.key == 'creation:alter':
+        rows = plan.get('contributions', [])
+        dissolution, potent = 'creation:advanced-talent:dissolution-alter', 'creation:talent:potent-alteration'
+        selected = next((row for row in rows if row.get('catalog_key') == dissolution), {})
+        prerequisite = next((row for row in rows if row.get('catalog_key') == potent), {})
+        mode = selected.get('effect_choice')
+        expected = {'unattended non-magical object': 'enhanced repair or destroy',
+            'attended, magical or creature target': 'affect magical, attended or construct target'}.get(mode)
+        if (len(rows) == 2 and {row.get('catalog_key') for row in rows} == {dissolution,potent}
+                and not any(row.get('alternative') for row in rows) and expected
+                and prerequisite.get('effect_choice') == expected):
+            summary['power'] = 'Dissolution'
+            if mode == 'unattended non-magical object':
+                summary['disintegration_volume'] = 'Up to one 10-foot cube of nonliving matter; no HP damage roll.'
+            else:
+                summary['failed_fortitude_damage'] = f'{2 * cl}d6'
+                summary['successful_fortitude_damage'] = f'1d6+{cl}'
+                summary['dissolution_damage_rules'] = 'Bypasses hardness, resistances and DR; a target reduced to 0 HP is disintegrated. Resolve targeting, saves, damage and destruction manually.'
     if power.key == 'destruction:blast':
         summary['damage_dice'] = cl if boost else cl // 2
         profile = destructive_blast_profile(plan)

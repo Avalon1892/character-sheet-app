@@ -416,6 +416,10 @@ def missing_required_construction_modes(contributions):
     """Reviewed prerequisite modes that must be integrated, not merely owned."""
     requirements = [('light:advanced-talent:radiation-light', 'light:talent:irradiance-light', 'nauseating bright light')]
     for row in contributions:
+        if row['catalog_key'] == 'creation:advanced-talent:dissolution-alter':
+            mode = {'unattended non-magical object': 'enhanced repair or destroy',
+                'attended, magical or creature target': 'affect magical, attended or construct target'}.get(row.get('effect_choice'))
+            if mode: requirements.append((row['catalog_key'], 'creation:talent:potent-alteration', mode))
         if row['catalog_key'] == 'telekinesis:advanced-talent:gravity-manipulation':
             mode = {'concentration (2 SP total)': 'concentration',
                     'Sustained Force (2 SP total)': 'Sustained Force'}.get(row.get('effect_choice'))

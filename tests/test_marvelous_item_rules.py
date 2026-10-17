@@ -512,6 +512,23 @@ def test_fleshcraft_living_target_mode_adds_its_extra_spell_point():
     assert talent_choice_spell_points(key, 'alter a living creature') == 1
 
 
+@pytest.mark.parametrize('mode,child_mode,parent_sp,child_sp,total', [
+    ('unattended non-magical object', 'enhanced repair or destroy', 1, 0, 1),
+    ('attended, magical or creature target', 'affect magical, attended or construct target', 2, 1, 3),
+])
+def test_dissolution_requires_matching_potent_mode_and_complete_sp_cost(mode, child_mode, parent_sp, child_sp, total):
+    from app.marvelous_item_rules import talent_choice_spell_points, missing_required_construction_modes, advanced_construction_blockers
+    parent, child = 'creation:advanced-talent:dissolution-alter', 'creation:talent:potent-alteration'
+    assert talent_choice_spell_points(parent, mode) == parent_sp
+    assert talent_choice_spell_points(child, child_mode) == child_sp
+    rows = [dict(catalog_key=parent, effect_choice=mode), dict(catalog_key=child, effect_choice=child_mode)]
+    assert not missing_required_construction_modes(rows)
+    assert not advanced_construction_blockers(rows, 10)
+    assert parent_sp + child_sp == total
+    rows[-1]['effect_choice'] = ''
+    assert missing_required_construction_modes(rows) == ((parent, child, child_mode),)
+
+
 @pytest.mark.parametrize('suffix,free,paid', [
     ('alter-talent:magnify-minimize-alter', 'one size category', 'additional size categories'),
     ('alter-talent:transparency-alter-utility', 'concentration', 'minutes per caster level'),
