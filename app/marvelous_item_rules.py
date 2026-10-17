@@ -1055,9 +1055,20 @@ def instill_alteration_minimum_complexity(plan):
     if not instill: return 0
     if plan.get('base_power') != 'creation:alter':
         raise ValueError('Instill Alteration requires a Creation alter effect.')
-    if len(instill) != 1 or any(row.get('alternative') for row in rows):
-        raise ValueError('Instill Alteration with duplicate or alternative effects needs cost review.')
-    return int(not any(row.get('additional_spell_points', 0) for row in rows))
+    if len(instill) != 1 or instill[0].get('alternative'):
+        raise ValueError('Instill Alteration must be one fixed talent contribution; duplicates or optional instilling need cost review.')
+    if any(row.get('additional_spell_points', 0) for row in rows if not row.get('alternative')): return 0
+    groups = {}
+    for row in rows:
+        if row.get('alternative'): groups.setdefault(row.get('alternative_group', 1), []).append(row)
+    if not groups: return 1
+    if any(all(row.get('additional_spell_points', 0) for row in group) for group in groups.values()): return 0
+    if len(groups) != 1:
+        raise ValueError('Instill Alteration with interacting alternative groups needs cost review.')
+    options = next(iter(groups.values()))
+    before = [row['complexity'] for row in options]
+    after = [row['complexity'] + int(not row.get('additional_spell_points', 0)) for row in options]
+    return effect_complexity(alternative_costs=after) - effect_complexity(alternative_costs=before)
 
 
 def quote_marvelous_blueprint(plan):
@@ -1115,9 +1126,9 @@ def quote_marvelous_blueprint(plan):
             raise ValueError('Sacrificing requires limited daily uses, not unlimited or fifty-total uses.')
         if 'crafting:taxing' in limitations and power.get('permanent'):
             raise ValueError('Taxing cannot restrict an effect usable for an unlimited duration.')
-    complexity = effect_complexity(talent_costs=[x['complexity'] for x in plan['contributions'] if not x.get('alternative', False)] + grouped_costs,
+    complexity = effect_complexity(talent_costs=[x['complexity'] for x in plan['contributions'] if not x.get('alternative', False)] + grouped_costs + [instill_alteration_minimum_complexity(plan)],
         range_steps=plan['range_steps'], duration_steps=plan['duration_steps'],
-        activation=plan['activation'], unique_changes=plan['unique_changes'] - drawback_complexity(plan.get('drawbacks', [])) - simple + (2 if plan.get('permanent') else 0) + int(plan.get('full_blast_damage', False)) + 2 * plan.get('effect_range_steps', 0) + feat_cost + light_lens_conversion_complexity(plan) + instill_alteration_minimum_complexity(plan))
+        activation=plan['activation'], unique_changes=plan['unique_changes'] - drawback_complexity(plan.get('drawbacks', [])) - simple + (2 if plan.get('permanent') else 0) + int(plan.get('full_blast_damage', False)) + 2 * plan.get('effect_range_steps', 0) + feat_cost + light_lens_conversion_complexity(plan))
     price = marvelous_item_price(plan['caster_level'], complexity,
                                 daily_uses=1 if plan['uses'] == 50 else plan['uses'], limited_uses=plan['uses'] == 50)
     if plan.get('no_space_limitation'):

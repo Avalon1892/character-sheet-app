@@ -570,6 +570,32 @@ def test_instill_alteration_rejects_create_or_ambiguous_alternative_costs():
         instill_alteration_minimum_complexity(dict(base_power='creation:alter', contributions=[row]))
 
 
+@pytest.mark.parametrize('costs,points,expected', [([1,2], [0,1], Fraction(1,2)),
+    ([1,1], [0,0], Fraction(3,2)), ([2,3], [1,2], 0), ([3,2], [0,1], 1)])
+def test_instill_alternative_minimum_respects_highest_full_other_half_pricing(costs, points, expected):
+    from copy import deepcopy
+    from app.marvelous_item_rules import instill_alteration_minimum_complexity
+    rows = [dict(catalog_key='creation:talent:instill-alteration-instill', complexity=1, additional_spell_points=0)]
+    rows += [dict(catalog_key='creation:alter-talent:' + suffix, complexity=cost, additional_spell_points=sp,
+        alternative=True, alternative_group=1) for suffix,cost,sp in zip(('magnify-minimize-alter','forge-alter'), costs, points)]
+    item = dict(base_power='creation:alter', contributions=rows)
+    original = deepcopy(item)
+    assert instill_alteration_minimum_complexity(item) == expected
+    assert item == original
+
+
+def test_instill_interacting_groups_need_review_unless_every_path_already_pays():
+    from app.marvelous_item_rules import instill_alteration_minimum_complexity
+    rows = [dict(catalog_key='creation:talent:instill-alteration-instill', complexity=1)]
+    rows += [dict(catalog_key='creation:alter-talent:forge-alter', complexity=1, alternative=True,
+        alternative_group=group, additional_spell_points=0) for group in (1,2)]
+    item = dict(base_power='creation:alter', contributions=rows)
+    with pytest.raises(ValueError, match='interacting alternative groups'):
+        instill_alteration_minimum_complexity(item)
+    rows[-1]['additional_spell_points'] = 1
+    assert instill_alteration_minimum_complexity(item) == 0
+
+
 def test_every_bundled_life_vitality_talent_has_reviewed_free_sp_cost():
     from app.content import DEFAULT_CATALOG
     from app.marvelous_base_powers import LIFE_VITALITY_EFFECTS

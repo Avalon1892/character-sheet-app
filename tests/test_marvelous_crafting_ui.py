@@ -1564,6 +1564,26 @@ def test_instill_minimum_live_formula_avoids_double_charge_and_reopens(composer)
     assert dialog.blueprint() == saved and repo._connection.total_changes == writes
 
 
+def test_instill_alternative_group_shows_discounted_minimum_adjustment(composer):
+    from app.marvelous_item_rules import quote_marvelous_blueprint
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Creation'); dialog.cl.setValue(10)
+    dialog.base_power.setCurrentIndex(dialog.base_power.findData('creation:alter'))
+    saved = dialog.blueprint()
+    saved['contributions'] = [
+        dict(catalog_key='creation:talent:instill-alteration-instill', complexity=1, additional_spell_points=0,
+            alternative=False, alternative_group=1),
+        dict(catalog_key='creation:alter-talent:magnify-minimize-alter', complexity=1, additional_spell_points=0,
+            alternative=True, alternative_group=1, effect_choice='one size category'),
+        dict(catalog_key='creation:alter-talent:forge-alter', complexity=2, additional_spell_points=1,
+            alternative=True, alternative_group=1)]
+    writes = repo._connection.total_changes
+    dialog.load_plan(saved)
+    assert quote_marvelous_blueprint(dialog.blueprint())[0] == 5
+    assert '1/2 instill minimum SP' in dialog.cost_formula.text()
+    assert dialog.blueprint() == saved and repo._connection.total_changes == writes
+
+
 @pytest.mark.parametrize('suffix,required', [
     ('create-materials', {'creation:talent:lengthened-creation'}),
     ('create-minds-think-alike-jester-s-hb', {'creation:talent:exquisite-detail-utility',
