@@ -570,6 +570,11 @@ def talent_construction_spell_points(entry, *, reviewed_only=False):
         return profile[3]
     if entry.get('key') in DESTRUCTION_BLAST_SHAPES: return 1
     return {
+        **{'dark:talent:' + suffix: 0 for suffix in (
+            'clinging-darkness', 'dampen-light', 'dappled-shadows', 'extinguish', 'flowing-darkness',
+            'gaze-into-the-abyss', 'greater-darkvision', 'greater-meld', 'lingering-darkness',
+            'obfuscation', 'quick-meld', 'ranged-darkness-range', 'wall-of-darkness')},
+        **{'dark:talent:' + suffix: 1 for suffix in ('dual-darkness', 'greater-darkness', 'mass-meld-mass')},
         'life:talent:break-enchantment': 1,
         'telekinesis:advanced-talent:affix': 2,
         'telekinesis:advanced-talent:astral-affixation': 1,

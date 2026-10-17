@@ -205,6 +205,25 @@ def test_sustenance_food_mode_has_no_invented_casting_modifier_or_edible_object_
     assert resolve_base_power(plan('creation:alter', cl=5, contributions=rows))['power'] != 'Sustenance — Food and Drink'
 
 
+@pytest.mark.parametrize('greater,wall', [(False, False), (True, False), (False, True), (True, True)])
+def test_dark_geometry_tracks_greater_darkness_and_wall_without_multiplying_areas(greater, wall):
+    rows = [dict(catalog_key='dark:talent:dappled-shadows')]
+    if greater: rows.append(dict(catalog_key='dark:talent:greater-darkness'))
+    if wall: rows.append(dict(catalog_key='dark:talent:wall-of-darkness'))
+    result = resolve_base_power(plan('dark:darkness', cl=10, contributions=rows))
+    assert result['duration'] == '10 rounds'
+    if wall:
+        assert result['maximum_ten_foot_cubes'] == (26 if greater else 13)
+        assert 'radius' not in result
+        assert 'need not be contiguous' in result['geometry']
+    else:
+        assert result['radius'] == ('70 ft.' if greater else '35 ft.')
+        assert 'not multiple full-radius' in result['divided_area']
+    rows[0]['alternative'] = True
+    result = resolve_base_power(plan('dark:darkness', cl=10, contributions=rows))
+    assert result['power'] == 'Modified Darkness — manual resolution' and 'radius' not in result
+
+
 def test_ooze_originator_projects_chosen_hd_but_not_unselected_species_statistics():
     rows = [dict(catalog_key='creation:advanced-talent:ooze-originator-create', effect_choice='8 HD ooze'),
         dict(catalog_key='creation:material-talent:acidic-creation-material')]

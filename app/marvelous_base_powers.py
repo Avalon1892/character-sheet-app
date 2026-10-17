@@ -1349,6 +1349,24 @@ def resolve_base_power(plan):
                 summary['maximum_duration'] = f'{cl} rounds'
                 summary['duration_review'] = 'Cannot exceed one round per caster level or become permanent; Deep Enhancement does not extend this limit.'
     if power.key in {'blood:construct', 'death:reanimate'}: summary['maximum_hit_dice'] = cl
-    if power.key == 'dark:darkness': summary['radius'] = f'{10 + 5 * (cl // 2)} ft.'
+    if power.key == 'dark:darkness':
+        rows = plan.get('contributions', [])
+        keys = [row.get('catalog_key') for row in rows]
+        supported = {'dark:talent:' + suffix for suffix in ('greater-darkness', 'wall-of-darkness',
+            'dappled-shadows', 'flowing-darkness', 'clinging-darkness', 'extinguish',
+            'gaze-into-the-abyss', 'obfuscation', 'lingering-darkness')}
+        if len(keys) == len(set(keys)) and set(keys) <= supported and not any(row.get('alternative') for row in rows):
+            greater = 'dark:talent:greater-darkness' in keys
+            if 'dark:talent:wall-of-darkness' in keys:
+                summary['maximum_ten_foot_cubes'] = 6 + 2 * cl if greater else 3 + cl
+                summary['geometry'] = ('Cubes need not be contiguous; arrange them within the applicable range and perceive every occupied area.'
+                    if 'dark:talent:dappled-shadows' in keys else 'Cubes must be contiguous; perceive every occupied area. Resolve placement manually.')
+            else:
+                summary['radius'] = f'{20 + 5 * cl if greater else 10 + 5 * (cl // 2)} ft.'
+                if 'dark:talent:dappled-shadows' in keys:
+                    summary['divided_area'] = 'Divide radius in 5-foot increments between non-overlapping areas; resolve placement manually, not multiple full-radius copies.'
+        else:
+            summary['power'] = 'Modified Darkness — manual resolution'
+            summary['darkness_review'] = 'Selected talents may replace darkness or change its geometry, duration or targets. Resolve those interactions before assuming the base radius.'
     if power.key == 'alteration:shapeshift': summary['traits'] = 1 + cl // 5
     return summary

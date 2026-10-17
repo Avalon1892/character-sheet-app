@@ -554,6 +554,19 @@ def test_plasma_projection_mode_cost_and_base_mismatch_validation(mode, base, sp
         quote_marvelous_blueprint(item)
 
 
+@pytest.mark.parametrize('suffix,sp', [(name, 0) for name in (
+    'clinging-darkness', 'dampen-light', 'dappled-shadows', 'extinguish', 'flowing-darkness',
+    'gaze-into-the-abyss', 'greater-darkvision', 'greater-meld', 'lingering-darkness',
+    'obfuscation', 'quick-meld', 'ranged-darkness-range', 'wall-of-darkness')]
+    + [(name, 1) for name in ('dual-darkness', 'greater-darkness', 'mass-meld-mass')])
+def test_dark_fixed_cost_defaults_match_catalog_talents(suffix, sp):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_construction_spell_points
+    entry = magic_entry('dark:talent:' + suffix)
+    assert entry
+    assert talent_construction_spell_points(entry, reviewed_only=True) == sp
+
+
 def test_create_materials_does_not_add_another_surcharge_to_required_lengthened_creation():
     from app.content import magic_entry
     from app.marvelous_item_rules import talent_construction_spell_points

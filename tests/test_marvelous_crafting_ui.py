@@ -1651,6 +1651,21 @@ def test_dissolution_mode_automatically_integrates_correct_potent_cost(composer,
     assert dialog.blueprint() == saved and repo._connection.total_changes == writes
 
 
+def test_dark_greater_wall_live_geometry_costs_and_reopen(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Dark'); dialog.cl.setValue(10)
+    writes = repo._connection.total_changes
+    for key in ('dark:talent:greater-darkness', 'dark:talent:wall-of-darkness'):
+        dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+        dialog.add_contribution()
+    assert sum(row['additional_spell_points'] for row in dialog.blueprint()['contributions']) == 1
+    assert 'Maximum Ten Foot Cubes: 26' in dialog.item_preview.toPlainText()
+    dialog.cl.setValue(12)
+    assert 'Maximum Ten Foot Cubes: 30' in dialog.item_preview.toPlainText()
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and repo._connection.total_changes == writes
+
+
 def test_sustenance_food_mode_switches_base_and_preserves_reopened_input(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Creation'); dialog.cl.setValue(5)
