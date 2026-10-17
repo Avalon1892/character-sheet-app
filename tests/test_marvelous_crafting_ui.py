@@ -32,6 +32,22 @@ def test_visible_construction_status_opens_review_without_disabling_draft_save(c
     assert dialog.construction_status.toolTip()
 
 
+@pytest.mark.parametrize('theme', ['classic', 'dark'])
+def test_effect_rows_fit_controls_when_theme_is_applied_after_loading(composer, theme):
+    from app.ui.dialog_theme import dialog_stylesheet
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Creation'); dialog.cl.setValue(10)
+    for key in ('creation:talent:larger-creation', 'creation:material-talent:object-of-force-material'):
+        dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+        dialog.add_contribution()
+    dialog.setStyleSheet(dialog_stylesheet(theme))
+    dialog.show(); QApplication.processEvents()
+    for row in range(dialog.table.rowCount()):
+        for column in (1,4):
+            control = dialog.table.cellWidget(row, column)
+            assert dialog.table.rowHeight(row) >= control.sizeHint().height()
+
+
 def test_base_effect_selection_is_visible_outside_collapsed_settings(composer):
     dialog, repo, cid = composer
     assert dialog.settings_panel.isHidden()

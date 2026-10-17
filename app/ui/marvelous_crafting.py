@@ -257,6 +257,10 @@ class MarvelousCraftingDialog(QDialog):
         if item_id is not None:
             self.load_design(item_id)
 
+    def showEvent(self, event):
+        super().showEvent(event)
+        self.table.resizeRowsToContents()
+
     def load_design(self, item_id):
         item = next((item for item in self.repository.list_equipment(self.character_id) if item.id == item_id), None)
         if item is None: raise ValueError('Unknown character item.')
