@@ -116,6 +116,10 @@ LIFE_VITALITY_EFFECTS = {
     'life:vitality-talent:sustaining-vitality-vitality': 'AC and saving throws: +2 circumstance.',
 }
 TALENT_EFFECT_SP_CHOICES = {
+    'life:talent:adrenaline-surge': {'surge one ally': 1, 'surge multiple allies': 2},
+    'life:talent:taste-of-victory': {'ordinary qualifying hit': 1, 'critical hit, unconscious or zero-HP target': 0},
+    'life:talent:diagnose-utility': {'detect conditions': 0, 'condition details as standard action': 0,
+        'condition details as swift action': 1},
     'enhancement:advanced-talent:inherent-enhancement-enhance-archmagi-s-hb': {
         'temporary untyped bonus: ' + ability: 1 for ability in (
             'Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma')},
@@ -527,6 +531,15 @@ def resolve_base_power(plan):
         elif any(row.get('catalog_key') == 'life:talent:painkiller' for row in plan.get('contributions', [])):
             summary['nonlethal_healing'] = temporary
     if power.key in {'life:cure', 'life:restore', 'life:temporary-hp'}:
+        life_keys = {row.get('catalog_key') for row in plan.get('contributions', [])}
+        if 'life:talent:adrenaline-surge' in life_keys:
+            summary['adrenaline_surge'] = 'Other allies only: immediate attack, movement, Escape Artist check (+CL), ready/draw/pick up equipment, or stand. Multiple surges require a Life effect already affecting multiple allies; resolve in initiative order.'
+        if 'life:talent:taste-of-victory' in life_keys:
+            summary['taste_of_victory'] = 'Requires an attack-roll hit against a creature with at least half the user\'s Hit Dice. Swift Life use costs +1 SP, waived for a critical hit, unconscious victim or victim reduced to 0 HP. Verify trigger and item activation manually.'
+        if 'life:talent:violent-recuperation-alienist-hb' in life_keys:
+            summary['violent_recuperation'] = 'After incoming damage is fully negated by DR, resistance or immunity, permits immediate Life use at normal SP cost. The same damage effect cannot trigger it again for one minute; verify eligibility manually.'
+        if 'life:talent:diagnose-utility' in life_keys:
+            summary['diagnose_review'] = 'Diagnose is a separate diagnostic use, not extra healing. Detects conditions as a swift action; details require a standard action or +1 SP for swift use. Resolve examination and item activation separately.'
         vitality = [row for row in plan.get('contributions', []) if row.get('catalog_key') in LIFE_VITALITY_EFFECTS]
         if vitality:
             summary['vitality_limits'] = 'Only one vitality benefit per target. Lasts up to one minute from application, ending when the target takes damage after a failed save or an attack hit. Apply benefits and expiration manually.'

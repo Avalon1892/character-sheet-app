@@ -1434,6 +1434,31 @@ def test_vitality_default_and_live_description_survive_reopen_without_writes(com
     assert repo._connection.total_changes == writes
 
 
+@pytest.mark.parametrize('suffix,low,high', [
+    ('adrenaline-surge', 'surge one ally', 'surge multiple allies'),
+    ('taste-of-victory', 'critical hit, unconscious or zero-HP target', 'ordinary qualifying hit'),
+    ('diagnose-utility', 'condition details as standard action', 'condition details as swift action'),
+])
+def test_conditional_life_mode_updates_price_and_preserves_saved_choice(composer, suffix, low, high):
+    from app.marvelous_item_rules import quote_marvelous_blueprint
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Life'); dialog.cl.setValue(10)
+    key = 'life:talent:' + suffix
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    mode = dialog.table.cellWidget(0, 5)
+    mode.setCurrentIndex(mode.findData(low))
+    before = quote_marvelous_blueprint(dialog.blueprint())[1].market_price_gp
+    mode.setCurrentIndex(mode.findData(high))
+    saved = dialog.blueprint()
+    assert quote_marvelous_blueprint(saved)[1].market_price_gp - before == 4000
+    assert saved['contributions'][0]['effect_choice'] == high
+    dialog.load_plan(saved)
+    assert dialog.blueprint() == saved
+    assert repo._connection.total_changes == writes
+
+
 def test_cancel_alternative_energy_promotion_preserves_choice_and_manual_cost(composer, monkeypatch):
     from PySide6.QtWidgets import QMessageBox
     from app.marvelous_base_powers import ENERGY_ENHANCEMENT_KEY, ALTERNATIVE_ENERGY_KEY

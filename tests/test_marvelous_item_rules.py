@@ -374,6 +374,28 @@ def test_every_bundled_life_vitality_talent_has_reviewed_free_sp_cost():
     assert all(talent_construction_spell_points(entry, reviewed_only=True) == 0 for entry in entries)
 
 
+@pytest.mark.parametrize('suffix,choice,cost', [
+    ('adrenaline-surge', 'surge one ally', 1), ('adrenaline-surge', 'surge multiple allies', 2),
+    ('taste-of-victory', 'ordinary qualifying hit', 1),
+    ('taste-of-victory', 'critical hit, unconscious or zero-HP target', 0),
+    ('diagnose-utility', 'detect conditions', 0),
+    ('diagnose-utility', 'condition details as standard action', 0),
+    ('diagnose-utility', 'condition details as swift action', 1),
+])
+def test_conditional_life_costs_are_explicit_modes(suffix, choice, cost):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_choice_spell_points
+    key = 'life:talent:' + suffix
+    assert magic_entry(key)
+    assert talent_choice_spell_points(key, choice) == cost
+
+
+def test_violent_recuperation_adds_no_sp_beyond_its_life_effect():
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_construction_spell_points
+    assert talent_construction_spell_points(magic_entry('life:talent:violent-recuperation-alienist-hb'), reviewed_only=True) == 0
+
+
 @pytest.mark.parametrize('suffix,cost', [('flash-of-excellence-sm', 1),
     ('power-parasitism-alienist-hb', 1), ('ranged-enhancement-range', 0)])
 def test_enhancement_timing_and_range_modifiers_have_reviewed_sp_defaults(suffix, cost):

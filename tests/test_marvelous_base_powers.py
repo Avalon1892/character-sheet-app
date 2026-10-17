@@ -60,6 +60,16 @@ def test_lingering_vitality_keeps_its_damage_expiration_exception():
     assert 'one additional round' in result['vitality_damage_expiration']
 
 
+def test_conditional_life_descriptors_keep_trigger_and_activation_constraints():
+    rows = [dict(catalog_key='life:talent:' + suffix) for suffix in (
+        'adrenaline-surge', 'taste-of-victory', 'violent-recuperation-alienist-hb', 'diagnose-utility')]
+    result = resolve_base_power(plan('life:cure', contributions=rows))
+    assert 'Other allies only' in result['adrenaline_surge']
+    assert 'half the user' in result['taste_of_victory']
+    assert 'same damage effect' in result['violent_recuperation']
+    assert 'not extra healing' in result['diagnose_review']
+
+
 @pytest.mark.parametrize('ability', ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma'])
 def test_temporary_inherent_enhancement_displays_untyped_not_permanent_bonus(ability):
     key = 'enhancement:advanced-talent:inherent-enhancement-enhance-archmagi-s-hb'
