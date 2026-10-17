@@ -1613,6 +1613,10 @@ def test_advanced_creation_defaults_do_not_replace_manual_costs_on_reopen(compos
 
 
 @pytest.mark.parametrize('suffix,free,paid', [
+    ('talent:altering-burst', 'ten-foot radius, half-size objects', 'twenty-foot radius, normal-size objects'),
+    ('talent:restrictive-casing', 'non-harmful worn object', 'full-body confinement cage'),
+    ('material-talent:plasma-production-material', 'fire or burning object', 'electricity'),
+    ('talent:precise-destruction-utility', 'mundane device or lock', 'magical trap'),
     ('alter-talent:magnify-minimize-alter', 'one size category', 'additional size categories'),
     ('alter-talent:transparency-alter-utility', 'concentration', 'minutes per caster level'),
     ('talent:mass-liquid-generation', 'five cubic feet per Small object', '125 cubic feet of non-harmful liquid per Small object'),
@@ -1631,7 +1635,10 @@ def test_creation_mode_changes_update_quote_and_keep_saved_choice(composer, suff
     before = quote_marvelous_blueprint(dialog.blueprint())[1].market_price_gp
     mode.setCurrentIndex(mode.findData(paid))
     saved = dialog.blueprint()
-    assert quote_marvelous_blueprint(saved)[1].market_price_gp - before == 4000
+    expected = 8000 if suffix == 'talent:precise-destruction-utility' else 4000
+    assert quote_marvelous_blueprint(saved)[1].market_price_gp - before == expected
+    if suffix == 'talent:precise-destruction-utility':
+        assert sum(row['catalog_key'] == 'creation:talent:potent-alteration' for row in saved['contributions']) == 1
     assert paid in dialog.cost_formula.toolTip()
     dialog.load_plan(saved)
     assert dialog.blueprint() == saved

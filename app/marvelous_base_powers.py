@@ -116,6 +116,11 @@ LIFE_VITALITY_EFFECTS = {
     'life:vitality-talent:sustaining-vitality-vitality': 'AC and saving throws: +2 circumstance.',
 }
 TALENT_EFFECT_SP_CHOICES = {
+    'creation:talent:altering-burst': {'ten-foot radius, half-size objects': 0,
+        'twenty-foot radius, normal-size objects': 1},
+    'creation:talent:restrictive-casing': {'non-harmful worn object': 0, 'full-body confinement cage': 1},
+    'creation:material-talent:plasma-production-material': {'fire or burning object': 0, 'electricity': 1},
+    'creation:talent:precise-destruction-utility': {'mundane device or lock': 0, 'magical trap': 1},
     'creation:alter-talent:magnify-minimize-alter': {'one size category': 0, 'additional size categories': 1},
     'creation:alter-talent:transparency-alter-utility': {'concentration': 0, 'minutes per caster level': 1},
     'creation:talent:mass-liquid-generation': {'five cubic feet per Small object': 0,

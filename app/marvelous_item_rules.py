@@ -407,6 +407,8 @@ def mode_construction_prerequisites(contribution):
         return ('enhancement:talent:dual-enhancement',)
     if contribution.get('catalog_key') == ENERGY_ENHANCEMENT_KEY and contribution.get('effect_choice') in {'weapon: sonic', 'weapon: force'}:
         return (ALTERNATIVE_ENERGY_KEY,)
+    if contribution.get('catalog_key') == 'creation:talent:precise-destruction-utility' and contribution.get('effect_choice') == 'magical trap':
+        return ('creation:talent:potent-alteration',)
     return ()
 
 
@@ -632,6 +634,7 @@ def talent_construction_spell_points(entry, *, reviewed_only=False):
         'enhancement:enhance-talent:mental-enhancement-enhance': 0,
         'life:talent:greater-restore-warden': 1,
         **{'creation:' + suffix: 1 for suffix in (
+            'material-talent:gaseous-generation-material',
             'advanced-talent:corp-criadhach-dbh', 'advanced-talent:create-minds-think-alike-jester-s-hb',
             'advanced-talent:fabricate', 'advanced-talent:permanent-change',
             'alter-talent:change-material-alter', 'alter-talent:crack-alter-apoc',
@@ -639,6 +642,7 @@ def talent_construction_spell_points(entry, *, reviewed_only=False):
             'material-talent:acidic-creation-material', 'talent:larger-creation',
             'talent:lengthened-creation', 'talent:replication')},
         **{'creation:' + suffix: 0 for suffix in (
+            'talent:created-momentum',
             'advanced-talent:magma-mastery-material', 'advanced-talent:mythical-material-maker-material',
             'advanced-talent:state-shift-alter',
             'material-talent:object-of-force-material',

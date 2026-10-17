@@ -512,6 +512,39 @@ def test_creation_modes_distinguish_free_and_paid_variants(suffix, free, paid):
     assert talent_choice_spell_points(key, paid) == 1
 
 
+@pytest.mark.parametrize('suffix,free,paid', [
+    ('talent:altering-burst', 'ten-foot radius, half-size objects', 'twenty-foot radius, normal-size objects'),
+    ('talent:restrictive-casing', 'non-harmful worn object', 'full-body confinement cage'),
+    ('material-talent:plasma-production-material', 'fire or burning object', 'electricity'),
+    ('talent:precise-destruction-utility', 'mundane device or lock', 'magical trap'),
+])
+def test_creation_material_and_target_modes_have_reviewed_costs(suffix, free, paid):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_choice_spell_points
+    key = 'creation:' + suffix
+    assert magic_entry(key)
+    assert talent_choice_spell_points(key, free) == 0 and talent_choice_spell_points(key, paid) == 1
+
+
+def test_precise_destruction_magical_trap_requires_integrated_potent_alteration():
+    from app.marvelous_item_rules import mode_construction_prerequisites, missing_construction_prerequisites
+    row = dict(catalog_key='creation:talent:precise-destruction-utility', effect_choice='magical trap')
+    required = 'creation:talent:potent-alteration'
+    assert mode_construction_prerequisites(row) == (required,)
+    assert missing_construction_prerequisites([row]) == (required,)
+    row['effect_choice'] = 'mundane device or lock'
+    assert not mode_construction_prerequisites(row)
+
+
+def test_only_three_ordinary_creation_costs_remain_unreviewed():
+    from app.content import DEFAULT_CATALOG
+    from app.marvelous_item_rules import talent_construction_spell_points
+    entries = [e for e in DEFAULT_CATALOG.magic_entries('Creation') if 'Talent' in e['category'] and 'Advanced' not in e['category']]
+    assert {e['key'] for e in entries if talent_construction_spell_points(e, reviewed_only=True) is None} == {
+        'creation:material-talent:alchemical-creation-material', 'creation:talent:instill-alteration-instill',
+        'creation:talent:practiced-creation'}
+
+
 def test_every_bundled_life_vitality_talent_has_reviewed_free_sp_cost():
     from app.content import DEFAULT_CATALOG
     from app.marvelous_base_powers import LIFE_VITALITY_EFFECTS
