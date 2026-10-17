@@ -1549,6 +1549,21 @@ def test_transparency_duration_controls_follow_selected_mode_and_reopen(composer
     assert dialog.blueprint() == saved and repo._connection.total_changes == writes
 
 
+def test_instill_minimum_live_formula_avoids_double_charge_and_reopens(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Creation'); dialog.cl.setValue(10)
+    dialog.base_power.setCurrentIndex(dialog.base_power.findData('creation:alter'))
+    writes = repo._connection.total_changes
+    for key in ('creation:talent:instill-alteration-instill', 'creation:alter-talent:forge-alter'):
+        dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+        dialog.add_contribution()
+        if key.endswith('instill'):
+            assert '1 instill minimum SP' in dialog.cost_formula.text()
+    assert 'instill minimum SP' not in dialog.cost_formula.text()
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and repo._connection.total_changes == writes
+
+
 @pytest.mark.parametrize('suffix,required', [
     ('create-materials', {'creation:talent:lengthened-creation'}),
     ('create-minds-think-alike-jester-s-hb', {'creation:talent:exquisite-detail-utility',

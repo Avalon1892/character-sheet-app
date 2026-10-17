@@ -536,13 +536,38 @@ def test_precise_destruction_magical_trap_requires_integrated_potent_alteration(
     assert not mode_construction_prerequisites(row)
 
 
-def test_only_three_ordinary_creation_costs_remain_unreviewed():
+def test_only_two_ordinary_creation_costs_remain_unreviewed():
     from app.content import DEFAULT_CATALOG
     from app.marvelous_item_rules import talent_construction_spell_points
     entries = [e for e in DEFAULT_CATALOG.magic_entries('Creation') if 'Talent' in e['category'] and 'Advanced' not in e['category']]
     assert {e['key'] for e in entries if talent_construction_spell_points(e, reviewed_only=True) is None} == {
-        'creation:material-talent:alchemical-creation-material', 'creation:talent:instill-alteration-instill',
+        'creation:material-talent:alchemical-creation-material',
         'creation:talent:practiced-creation'}
+
+
+def test_instill_alteration_minimum_sp_is_charged_once_without_rewriting_inputs():
+    from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_complexity_formula
+    item = dict(schema_version=1, sphere='Creation', base_power='creation:alter', caster_level=10,
+        activation='standard', uses=1, range_steps=0, duration_steps=0, unique_changes=0,
+        contributions=[dict(catalog_key='creation:talent:instill-alteration-instill', complexity=1, additional_spell_points=0)])
+    assert quote_marvelous_blueprint(item)[0] == 3
+    assert '1 instill minimum SP' in marvelous_complexity_formula(item)
+    assert item['contributions'][0]['additional_spell_points'] == 0
+    item['contributions'].append(dict(catalog_key='creation:alter-talent:forge-alter', complexity=2, additional_spell_points=1))
+    assert quote_marvelous_blueprint(item)[0] == 4
+    assert 'instill minimum SP' not in marvelous_complexity_formula(item)
+    item['contributions'][0].update(complexity=4, additional_spell_points=3)
+    assert quote_marvelous_blueprint(item)[0] == 7
+
+
+def test_instill_alteration_rejects_create_or_ambiguous_alternative_costs():
+    from app.marvelous_item_rules import instill_alteration_minimum_complexity
+    row = dict(catalog_key='creation:talent:instill-alteration-instill', complexity=1)
+    with pytest.raises(ValueError, match='alter effect'):
+        instill_alteration_minimum_complexity(dict(base_power='creation:create', contributions=[row]))
+    row['alternative'] = True
+    with pytest.raises(ValueError, match='cost review'):
+        instill_alteration_minimum_complexity(dict(base_power='creation:alter', contributions=[row]))
 
 
 def test_every_bundled_life_vitality_talent_has_reviewed_free_sp_cost():

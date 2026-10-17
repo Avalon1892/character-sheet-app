@@ -594,6 +594,8 @@ class MarvelousCraftingDialog(QDialog):
                 from app.marvelous_base_powers import LIGHT_LENSES
                 if entry['key'] in LIGHT_LENSES:
                     self.base_power.setCurrentIndex(self.base_power.findData('light:lens'))
+                if entry['key'] == 'creation:talent:instill-alteration-instill':
+                    self.base_power.setCurrentIndex(self.base_power.findData('creation:alter'))
         # Required construction talents are part of the same draft; eligibility
         # still checks ownership and CL separately and never grants them to a PC.
         if not self.add_required_contributions():
