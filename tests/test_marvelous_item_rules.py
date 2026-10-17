@@ -505,6 +505,16 @@ def test_creation_modifiers_do_not_duplicate_underlying_effect_costs(suffix):
     assert entry and talent_construction_spell_points(entry, reviewed_only=True) == 0
 
 
+@pytest.mark.parametrize('mode,total', [('concentration', 1), ('sustained without concentration', 2)])
+def test_material_body_cost_includes_change_material_once(mode, total):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_choice_spell_points, talent_construction_spell_points
+    key = 'creation:advanced-talent:material-body-alter'
+    assert magic_entry(key)
+    prerequisite = magic_entry('creation:alter-talent:change-material-alter')
+    assert talent_choice_spell_points(key, mode) + talent_construction_spell_points(prerequisite, reviewed_only=True) == total
+
+
 def test_fleshcraft_living_target_mode_adds_its_extra_spell_point():
     from app.marvelous_item_rules import talent_choice_spell_points
     key = 'creation:advanced-talent:fleshcraft-material'

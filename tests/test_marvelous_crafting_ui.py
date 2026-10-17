@@ -1651,6 +1651,32 @@ def test_dissolution_mode_automatically_integrates_correct_potent_cost(composer,
     assert dialog.blueprint() == saved and repo._connection.total_changes == writes
 
 
+def test_material_body_live_modes_change_price_and_preserve_saved_manual_cost(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Creation'); dialog.cl.setValue(10)
+    dialog.base_power.setCurrentIndex(dialog.base_power.findData('creation:alter'))
+    writes = repo._connection.total_changes
+    for key in ('creation:advanced-talent:material-body-alter',
+            'creation:alter-talent:change-material-alter', 'creation:material-talent:expanded-materials-material'):
+        dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+        dialog.add_contribution()
+    choice = dialog.table.cellWidget(0, 5)
+    choice.setCurrentIndex(choice.findData('concentration'))
+    assert 'Duration Concentration' in dialog.item_preview.toPlainText()
+    before = dialog.cost_formula.text()
+    choice.setCurrentIndex(choice.findData('sustained without concentration'))
+    assert 'Duration 10 minutes' in dialog.item_preview.toPlainText()
+    assert dialog.cost_formula.text() != before
+    saved = dialog.blueprint()
+    assert sum(row['additional_spell_points'] for row in saved['contributions']) == 2
+    dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and repo._connection.total_changes == writes
+    saved['contributions'][0]['additional_spell_points'] = 4
+    dialog.load_plan(saved)
+    assert dialog.blueprint()['contributions'][0]['additional_spell_points'] == 4
+    assert repo._connection.total_changes == writes
+
+
 @pytest.mark.parametrize('suffix,required', [
     ('create-materials', {'creation:talent:lengthened-creation'}),
     ('create-minds-think-alike-jester-s-hb', {'creation:talent:exquisite-detail-utility',

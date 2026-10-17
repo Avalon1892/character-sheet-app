@@ -150,6 +150,20 @@ def test_dissolution_projects_only_the_valid_fixed_target_mode(mode, child):
     assert resolve_base_power(plan('creation:alter', cl=10, contributions=rows))['power'] != 'Dissolution'
 
 
+@pytest.mark.parametrize('mode,duration', [('concentration', 'Concentration'), ('sustained without concentration', '10 minutes')])
+def test_material_body_projects_fixed_expanded_material_duration_without_inventing_hardness(mode, duration):
+    rows = [dict(catalog_key='creation:advanced-talent:material-body-alter', effect_choice=mode),
+        dict(catalog_key='creation:alter-talent:change-material-alter'),
+        dict(catalog_key='creation:material-talent:expanded-materials-material')]
+    result = resolve_base_power(plan('creation:alter', cl=10, contributions=rows))
+    assert result['power'] == 'Material Body' and result['duration'] == duration
+    assert 'hardness manually' in result['material_defense']
+    assert '× 3' in result['material_body_limit']
+    assert 'repair_or_destroy' not in result
+    rows[0]['alternative'] = True
+    assert resolve_base_power(plan('creation:alter', cl=10, contributions=rows))['power'] != 'Material Body'
+
+
 @pytest.mark.parametrize('choice,steps', [('one size category', 1), ('additional size categories', 4)])
 def test_magnify_preview_replaces_repair_roll_and_uses_talent_duration(choice, steps):
     rows = [dict(catalog_key='creation:alter-talent:magnify-minimize-alter', effect_choice=choice)]
