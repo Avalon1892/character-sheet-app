@@ -1691,6 +1691,23 @@ def test_umbral_burst_invalid_saved_duration_is_reported_not_silently_clamped(co
     assert repo._connection.total_changes == writes
 
 
+@pytest.mark.parametrize('key,expected', [
+    ('dark:advanced-talent:melt-into-shadow', {'dark:advanced-talent:animated-shadow-shadow', 'dark:talent:flowing-darkness', 'dark:blot-darkness-shadow-talent:shadow-lurk-shadow'}),
+    ('dark:advanced-talent:shadow-double-shadow', {'dark:advanced-talent:animated-shadow-shadow', 'dark:blot-darkness-shadow-talent:shadow-lurk-shadow'})])
+def test_dark_advanced_prerequisites_insert_once_and_restore_without_writes(composer, key, expected):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Dark'); dialog.cl.setValue(15)
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution(); assert dialog.add_required_contributions()
+    saved = dialog.blueprint()
+    keys = [row['catalog_key'] for row in saved['contributions']]
+    assert set(keys) == expected | {key} and len(keys) == len(set(keys))
+    assert dialog.add_required_contributions() and dialog.blueprint() == saved
+    dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and repo._connection.total_changes == writes
+
+
 def test_dark_greater_wall_live_geometry_costs_and_reopen(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Dark'); dialog.cl.setValue(10)

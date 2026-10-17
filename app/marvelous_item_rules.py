@@ -121,6 +121,19 @@ def marvelous_item_price(caster_level: int, complexity: int | Fraction, *, daily
 
 # Reviewed construction prerequisites use catalog identities, never prose parsing.
 ADVANCED_CONSTRUCTION_REQUIREMENTS = {
+    'dark:advanced-talent:animated-shadow-shadow': (5, ('dark:blot-darkness-shadow-talent:shadow-lurk-shadow',)),
+    'dark:advanced-talent:black-and-black-morality-blot-darkness-shadow': (10, ('dark:talent:gaze-into-the-abyss',)),
+    'dark:advanced-talent:eternal-darkness': (10, ('dark:talent:lingering-darkness',)),
+    'dark:advanced-talent:lightless-penumbra-shadow': (1, ('dark:blot-darkness-shadow-talent:shadowed-mien-shadow',)),
+    'dark:advanced-talent:melt-into-shadow': (10, ('dark:advanced-talent:animated-shadow-shadow',
+        'dark:talent:flowing-darkness', 'dark:blot-darkness-shadow-talent:shadow-lurk-shadow')),
+    'dark:advanced-talent:midnight-darkness': (10, ('dark:talent:greater-darkness',)),
+    'dark:advanced-talent:one-with-the-void': (10, ('dark:meld-talent:step-through-darkness-meld',)),
+    'dark:advanced-talent:pitch-black': (10, ('dark:blot-darkness-shadow-talent:pure-darkness-darkness',)),
+    'dark:advanced-talent:shadow-double-shadow': (15, ('dark:advanced-talent:animated-shadow-shadow',
+        'dark:blot-darkness-shadow-talent:shadow-lurk-shadow')),
+    'dark:advanced-talent:shadow-walker-meld': (10, ('dark:meld-talent:step-through-darkness-meld',)),
+    'dark:advanced-talent:vanish-in-shadow': (5, ('dark:meld-talent:hide-in-darkness-meld',)),
     'creation:advanced-talent:corp-criadhach-dbh': (10, ('creation:advanced-talent:duplicate', 'creation:advanced-talent:fleshcraft-material')),
     'creation:advanced-talent:costly-creation': (15, ('creation:material-talent:expanded-materials-material', 'creation:talent:lengthened-creation')),
     'creation:advanced-talent:create-minds-think-alike-jester-s-hb': (5, ('creation:talent:exquisite-detail-utility', 'enhancement:enhance-talent:bestow-intelligence-enhance')),

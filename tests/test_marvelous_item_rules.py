@@ -5,6 +5,44 @@ from app.marvelous_item_rules import effect_complexity, marvelous_crafting_quote
 from app.marvelous_item_rules import marvelous_requirements
 
 
+DARK_ADVANCED_REQUIREMENTS = {
+    'animated-shadow-shadow': (5, ('dark:blot-darkness-shadow-talent:shadow-lurk-shadow',)),
+    'black-and-black-morality-blot-darkness-shadow': (10, ('dark:talent:gaze-into-the-abyss',)),
+    'eternal-darkness': (10, ('dark:talent:lingering-darkness',)),
+    'lightless-penumbra-shadow': (1, ('dark:blot-darkness-shadow-talent:shadowed-mien-shadow',)),
+    'melt-into-shadow': (10, ('dark:advanced-talent:animated-shadow-shadow', 'dark:talent:flowing-darkness', 'dark:blot-darkness-shadow-talent:shadow-lurk-shadow')),
+    'midnight-darkness': (10, ('dark:talent:greater-darkness',)),
+    'one-with-the-void': (10, ('dark:meld-talent:step-through-darkness-meld',)),
+    'pitch-black': (10, ('dark:blot-darkness-shadow-talent:pure-darkness-darkness',)),
+    'shadow-double-shadow': (15, ('dark:advanced-talent:animated-shadow-shadow', 'dark:blot-darkness-shadow-talent:shadow-lurk-shadow')),
+    'shadow-walker-meld': (10, ('dark:meld-talent:step-through-darkness-meld',)),
+    'vanish-in-shadow': (5, ('dark:meld-talent:hide-in-darkness-meld',)),
+}
+
+
+@pytest.mark.parametrize('suffix,requirement', DARK_ADVANCED_REQUIREMENTS.items())
+def test_dark_advanced_prerequisites_use_exact_catalog_identities_and_levels(suffix, requirement):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import ADVANCED_CONSTRUCTION_REQUIREMENTS, missing_construction_prerequisites, advanced_construction_blockers
+    key = 'dark:advanced-talent:' + suffix
+    assert magic_entry(key) and ADVANCED_CONSTRUCTION_REQUIREMENTS[key] == requirement
+    minimum, required = requirement
+    assert all(magic_entry(child) for child in required)
+    rows = [dict(catalog_key=key)]
+    missing = missing_construction_prerequisites(rows)
+    assert set(required) <= set(missing)
+    rows.extend(dict(catalog_key=child) for child in missing)
+    assert not advanced_construction_blockers(rows, minimum)
+    if minimum > 1:
+        assert any('caster level' in message for message in advanced_construction_blockers(rows, minimum - 1))
+
+
+def test_all_bundled_dark_advanced_entries_have_requirement_metadata():
+    from app.catalogs import DEFAULT_CATALOG
+    keys = {e['key'] for e in DEFAULT_CATALOG.magic_entries('Dark') if e['category'] == 'Advanced Talent'}
+    assert keys == {'dark:advanced-talent:' + suffix for suffix in DARK_ADVANCED_REQUIREMENTS}
+
+
 TELEKINESIS_ADVANCED_REQUIREMENTS = {
     'affix': (10, ('telekinesis:advanced-talent:effortless-telekinesis', 'telekinesis:talent:idle-concentration')),
     'astral-affixation': (15, ('telekinesis:advanced-talent:affix', 'telekinesis:advanced-talent:effortless-telekinesis', 'telekinesis:talent:idle-concentration')),
