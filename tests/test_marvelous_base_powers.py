@@ -166,6 +166,18 @@ def test_duplicate_object_modes_show_copy_limits_and_correct_duration(instant):
     assert resolve_base_power(plan('creation:create', cl=10, contributions=rows))['power'] != 'Duplicate Object'
 
 
+@pytest.mark.parametrize('instant', [False, True])
+def test_duplicate_does_not_inherit_divided_creation_multi_object_preview(instant):
+    rows = [dict(catalog_key='creation:advanced-talent:duplicate', effect_choice='instantaneous object copy' if instant else 'temporary object copy'),
+        dict(catalog_key='creation:talent:exquisite-detail-utility'),
+        dict(catalog_key='creation:talent:divided-creation-mass')]
+    if instant:
+        rows += [dict(catalog_key='creation:advanced-talent:create-materials'), dict(catalog_key='creation:talent:lengthened-creation')]
+    result = resolve_base_power(plan('creation:create', cl=10, contributions=rows))
+    assert result['power'] != 'Duplicate Object'
+    assert 'object_count' not in result
+
+
 def test_ooze_originator_projects_chosen_hd_but_not_unselected_species_statistics():
     rows = [dict(catalog_key='creation:advanced-talent:ooze-originator-create', effect_choice='8 HD ooze'),
         dict(catalog_key='creation:material-talent:acidic-creation-material')]

@@ -302,15 +302,17 @@ def effective_base_duration(plan):
         rows = plan.get('contributions', [])
         keys = [row.get('catalog_key') for row in rows]
         required = {'creation:advanced-talent:create-materials', 'creation:talent:lengthened-creation'}
+        modifiers = {'creation:talent:larger-creation', 'creation:talent:divided-creation-mass',
+            'creation:material-talent:expanded-materials-material'}
         duplicate = 'creation:advanced-talent:duplicate'
         if duplicate in keys:
             selected = next(row for row in rows if row.get('catalog_key') == duplicate)
             if selected.get('effect_choice') != 'instantaneous object copy': return power.duration
             required |= {duplicate, 'creation:talent:exquisite-detail-utility'}
+            modifiers.remove('creation:talent:divided-creation-mass')
         if (required <= set(keys) and len(keys) == len(set(keys))
                 and not any(row.get('alternative') for row in rows)
-                and set(keys) <= required | {'creation:talent:larger-creation', 'creation:talent:divided-creation-mass',
-                    'creation:material-talent:expanded-materials-material'}):
+                and set(keys) <= required | modifiers):
             return 'instantaneous'
     if power.key == 'creation:create' and any(row.get('catalog_key') == 'creation:talent:practiced-creation'
             and not row.get('alternative') for row in plan.get('contributions', [])):
