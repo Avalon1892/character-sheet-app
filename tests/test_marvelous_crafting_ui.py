@@ -1725,6 +1725,26 @@ def test_eternal_darkness_conflict_appears_and_clears_in_live_construction_revie
     assert repo._connection.total_changes == writes
 
 
+@pytest.mark.parametrize('key,mode,expected_sp', [
+    ('dark:advanced-talent:pitch-black', 'deeper absolute darkness', 1),
+    ('dark:advanced-talent:vanish-in-shadow', 'hide from unusual detection', 2),
+    ('dark:blot-darkness-shadow-talent:shadowed-mien-shadow', 'ten minutes per caster level with temporary HP', 2)])
+def test_dark_advanced_cost_modes_include_prerequisites_and_reopen_without_writes(composer, key, mode, expected_sp):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Dark'); dialog.cl.setValue(10)
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution(); assert dialog.add_required_contributions()
+    choice = dialog.table.cellWidget(0, 5)
+    before = dialog.quotation()[1].market_price_gp
+    choice.setCurrentIndex(choice.findData(mode))
+    assert dialog.quotation()[1].market_price_gp > before
+    saved = dialog.blueprint()
+    assert sum(row['additional_spell_points'] for row in saved['contributions']) == expected_sp
+    dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and repo._connection.total_changes == writes
+
+
 def test_dark_greater_wall_live_geometry_costs_and_reopen(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Dark'); dialog.cl.setValue(10)

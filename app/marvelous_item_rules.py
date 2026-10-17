@@ -585,6 +585,11 @@ def talent_construction_spell_points(entry, *, reviewed_only=False):
         return profile[3]
     if entry.get('key') in DESTRUCTION_BLAST_SHAPES: return 1
     return {
+        'dark:advanced-talent:black-and-black-morality-blot-darkness-shadow': 2,
+        'dark:advanced-talent:midnight-darkness': 2,
+        'dark:advanced-talent:lightless-penumbra-shadow': 1,
+        'dark:blot-darkness-shadow-talent:pure-darkness-darkness': 0,
+        'dark:meld-talent:hide-in-darkness-meld': 1,
         **{'dark:talent:' + suffix: 0 for suffix in (
             'insinuate', 'rolling-blackout', 'shadow-coterie', 'shifting-shadows',
             'instill-dark-instill', 'shadow-strike-strike-3pp',

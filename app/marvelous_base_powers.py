@@ -118,6 +118,11 @@ LIFE_VITALITY_EFFECTS = {
 PLASMA_PROJECTION_BASE_MODES = {'create a plasma blade': 'creation:create', 'alter a melee weapon': 'creation:alter'}
 
 TALENT_EFFECT_SP_CHOICES = {
+    'dark:advanced-talent:pitch-black': {'additional darkness talent capacity': 0, 'deeper absolute darkness': 1},
+    'dark:advanced-talent:vanish-in-shadow': {'hide in any dim light or darkness': 0, 'hide from unusual detection': 1},
+    'dark:blot-darkness-shadow-talent:shadowed-mien-shadow': {'concentration': 0,
+        'ten minutes per caster level': 1, 'concentration with temporary HP': 1,
+        'ten minutes per caster level with temporary HP': 2},
     'dark:talent:shadow-stash-utility': {'ordinary storage and retrieval': 0, 'immediate retrieval': 1},
     'dark:talent:shadowing-darkness': {'one-round lingering shadows': 0, 'extended lingering shadows': 1},
     'creation:advanced-talent:sustenance-material-utility': {'standard-action food and drink': 1},

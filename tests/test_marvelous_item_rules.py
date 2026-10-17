@@ -646,6 +646,33 @@ def test_additional_dark_cost_defaults_use_existing_catalog_keys(suffix, sp):
     assert entry and talent_construction_spell_points(entry, reviewed_only=True) == sp
 
 
+@pytest.mark.parametrize('key,sp', [
+    ('dark:advanced-talent:black-and-black-morality-blot-darkness-shadow', 2),
+    ('dark:advanced-talent:midnight-darkness', 2),
+    ('dark:advanced-talent:lightless-penumbra-shadow', 1),
+    ('dark:blot-darkness-shadow-talent:pure-darkness-darkness', 0),
+    ('dark:meld-talent:hide-in-darkness-meld', 1)])
+def test_dark_advanced_surcharges_and_prerequisite_defaults(key, sp):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_construction_spell_points
+    assert talent_construction_spell_points(magic_entry(key), reviewed_only=True) == sp
+
+
+@pytest.mark.parametrize('key,mode,sp', [
+    ('dark:advanced-talent:pitch-black', 'additional darkness talent capacity', 0),
+    ('dark:advanced-talent:pitch-black', 'deeper absolute darkness', 1),
+    ('dark:advanced-talent:vanish-in-shadow', 'hide in any dim light or darkness', 0),
+    ('dark:advanced-talent:vanish-in-shadow', 'hide from unusual detection', 1),
+    ('dark:blot-darkness-shadow-talent:shadowed-mien-shadow', 'concentration', 0),
+    ('dark:blot-darkness-shadow-talent:shadowed-mien-shadow', 'ten minutes per caster level', 1),
+    ('dark:blot-darkness-shadow-talent:shadowed-mien-shadow', 'concentration with temporary HP', 1),
+    ('dark:blot-darkness-shadow-talent:shadowed-mien-shadow', 'ten minutes per caster level with temporary HP', 2)])
+def test_dark_advanced_and_shadowed_mien_modes_have_explicit_costs(key, mode, sp):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_choice_spell_points
+    assert magic_entry(key) and talent_choice_spell_points(key, mode) == sp
+
+
 def test_create_materials_does_not_add_another_surcharge_to_required_lengthened_creation():
     from app.content import magic_entry
     from app.marvelous_item_rules import talent_construction_spell_points
