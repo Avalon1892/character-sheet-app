@@ -930,6 +930,27 @@ def resolve_base_power(plan):
             summary['healing_dice'] = dice; summary['healing_bonus'] = bonus
         else:
             summary['healing'] = f'Base 1d8+{cl}; selected modifications require manual resolution'
+        rows = life_per_target_plan(plan).get('contributions', [])
+        keys = [row.get('catalog_key') for row in rows]
+        revitalize = 'life:talent:revitalize'
+        if revitalize in keys:
+            cure_talents = {'life:cure-talent:restore-capacity-cure', 'life:cure-talent:restore-health-cure',
+                'life:cure-talent:restore-senses-cure', 'life:cure-talent:restore-spirit-cure'}
+            count = keys.count(revitalize)
+            supported = (count in (1, 2) and len(keys) - count == len(set(keys) - {revitalize})
+                and set(keys) <= cure_talents | {revitalize} and not any(row.get('alternative') for row in rows))
+            summary.pop('healing', None)
+            summary['revitalize_limits'] = 'Replaces direct cure healing with fast healing; no immediate healing roll. Does not count as cure for Fount of Life or similar interactions. Resolve ongoing recovery manually.'
+            if supported:
+                amount = 1 + len(set(keys) & cure_talents)
+                summary['power'] = 'Revitalize'
+                summary['fast_healing'] = amount
+                summary['duration'] = f'{cl} ' + ('minutes' if count == 1 else 'hours')
+                if count == 2: summary['maximum_total_healing'] = 10 * cl * amount
+                summary['fast_healing_stacking'] = 'Does not add to another fast-healing source; the target chooses which source benefits it each round.'
+            else:
+                summary['power'] = 'Modified Revitalize — manual resolution'
+                summary['revitalize_review'] = 'Resolve the selected modifiers and duration from their rules; no automatic fast-healing amount is assumed.'
     if power.key == 'destruction:blast':
         summary['damage_dice'] = cl if boost else cl // 2
         profile = destructive_blast_profile(plan)

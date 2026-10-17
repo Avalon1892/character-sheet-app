@@ -585,6 +585,7 @@ def talent_construction_spell_points(entry, *, reviewed_only=False):
         'enhancement:enhance-talent:mental-enhancement-enhance': 0,
         'life:talent:greater-restore-warden': 1,
         'life:talent:violent-recuperation-alienist-hb': 0,
+        'life:talent:revitalize': 0,
         'life:talent:mass-healing-mass': 1,
         'life:talent:restorative-cure': 1,
         'life:talent:self-renewal': 1,

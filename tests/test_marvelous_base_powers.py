@@ -60,6 +60,25 @@ def test_lingering_vitality_keeps_its_damage_expiration_exception():
     assert 'one additional round' in result['vitality_damage_expiration']
 
 
+@pytest.mark.parametrize('copies', [1, 2])
+@pytest.mark.parametrize('talents', range(5))
+def test_revitalize_replaces_healing_roll_and_counts_only_integrated_cure_talents(copies, talents):
+    cure = ['restore-capacity-cure', 'restore-health-cure', 'restore-senses-cure', 'restore-spirit-cure']
+    rows = [dict(catalog_key='life:talent:revitalize') for _ in range(copies)]
+    rows += [dict(catalog_key='life:cure-talent:' + suffix) for suffix in cure[:talents]]
+    result = resolve_base_power(plan('life:cure', cl=10, contributions=rows))
+    assert result['fast_healing'] == 1 + talents and 'healing' not in result
+    assert result['duration'] == ('10 minutes' if copies == 1 else '10 hours')
+    assert result.get('maximum_total_healing') == (100 * (1 + talents) if copies == 2 else None)
+
+
+def test_unknown_revitalize_combination_does_not_claim_a_resolved_healing_amount():
+    rows = [dict(catalog_key='life:talent:revitalize'), dict(catalog_key='life:talent:deeper-healing')]
+    result = resolve_base_power(plan('life:cure', contributions=rows))
+    assert 'manual resolution' in result['power']
+    assert 'healing' not in result and 'fast_healing' not in result
+
+
 def test_conditional_life_descriptors_keep_trigger_and_activation_constraints():
     rows = [dict(catalog_key='life:talent:' + suffix) for suffix in (
         'adrenaline-surge', 'taste-of-victory', 'violent-recuperation-alienist-hb', 'diagnose-utility')]
@@ -832,7 +851,8 @@ def test_mass_healing_keeps_per_target_amount_but_does_not_enable_single_target_
     assert resolve_base_power(invigorate)['temporary_hp'] == 20
     assert automatic_self_effect(invigorate) is None
     rows.append(dict(catalog_key='life:talent:revitalize'))
-    assert 'manual resolution' in resolve_base_power(cure)['healing']
+    modified = resolve_base_power(cure)
+    assert 'healing' not in modified and 'manual resolution' in modified['power']
 
 
 def test_weather_category_projection_tracks_modes_and_does_not_guess_unknown_combinations():

@@ -1459,6 +1459,24 @@ def test_conditional_life_mode_updates_price_and_preserves_saved_choice(composer
     assert repo._connection.total_changes == writes
 
 
+def test_revitalize_live_preview_replaces_direct_healing_and_preserves_reopen(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Life'); dialog.cl.setValue(10)
+    dialog.base_power.setCurrentIndex(dialog.base_power.findData('life:cure'))
+    key = 'life:talent:revitalize'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    assert 'Fast Healing: 1' in dialog.item_preview.toPlainText()
+    assert 'Duration 10 minutes' in dialog.item_preview.toPlainText()
+    saved = dialog.blueprint()
+    assert saved['contributions'][0]['additional_spell_points'] == 0
+    dialog.load_plan(saved)
+    assert dialog.blueprint() == saved
+    assert 'Fast Healing: 1' in dialog.item_preview.toPlainText()
+    assert repo._connection.total_changes == writes
+
+
 def test_cancel_alternative_energy_promotion_preserves_choice_and_manual_cost(composer, monkeypatch):
     from PySide6.QtWidgets import QMessageBox
     from app.marvelous_base_powers import ENERGY_ENHANCEMENT_KEY, ALTERNATIVE_ENERGY_KEY
