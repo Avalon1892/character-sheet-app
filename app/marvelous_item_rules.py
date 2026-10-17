@@ -498,8 +498,9 @@ def talent_construction_spell_points(entry, *, reviewed_only=False):
     Planeshift adds two, Portal adds one, and sustained Enduring Portal adds
     one beyond its integrated prerequisites. Optional variants remain explicit.
     """
-    from app.marvelous_base_powers import DESTRUCTION_BLAST_TYPES, DESTRUCTION_BLAST_SHAPES, TALENT_EFFECT_SP_CHOICES, LIGHT_LENSES
+    from app.marvelous_base_powers import DESTRUCTION_BLAST_TYPES, DESTRUCTION_BLAST_SHAPES, TALENT_EFFECT_SP_CHOICES, LIGHT_LENSES, LIFE_VITALITY_EFFECTS
     if entry.get('key') in LIGHT_LENSES: return 0
+    if entry.get('key') in LIFE_VITALITY_EFFECTS: return 0
     if choices := TALENT_EFFECT_SP_CHOICES.get(entry.get('key')):
         return min(choices.values())
     if entry.get('key') == 'destruction:blast-shape-talent:energy-sphere-blast-shape': return 0

@@ -1408,6 +1408,32 @@ def test_inherent_temporary_mode_preview_and_choices_survive_reopen(composer):
     assert repo._connection.total_changes == writes
 
 
+@pytest.mark.parametrize('key', [
+    'life:vitality-talent:aggressive-vitality-vitality',
+    'life:vitality-talent:calming-vitality-vitality-warden',
+    'life:vitality-talent:energizing-vitality-vitality',
+    'life:vitality-talent:high-on-vitality-vitality-jester-s-hb',
+    'life:vitality-talent:ruin-into-resurgence-vitality-3pp',
+    'life:vitality-talent:securing-vitality-vitality-warden',
+    'life:vitality-talent:sustaining-vitality-vitality',
+])
+def test_vitality_default_and_live_description_survive_reopen_without_writes(composer, key):
+    from app.marvelous_base_powers import LIFE_VITALITY_EFFECTS
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Life'); dialog.cl.setValue(5)
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    saved = dialog.blueprint()
+    assert saved['contributions'][0]['additional_spell_points'] == 0
+    assert LIFE_VITALITY_EFFECTS[key] in dialog.item_preview.toPlainText()
+    assert 'Only one vitality benefit per target' in dialog.item_preview.toPlainText()
+    dialog.load_plan(saved)
+    assert dialog.blueprint() == saved
+    assert LIFE_VITALITY_EFFECTS[key] in dialog.item_preview.toPlainText()
+    assert repo._connection.total_changes == writes
+
+
 def test_cancel_alternative_energy_promotion_preserves_choice_and_manual_cost(composer, monkeypatch):
     from PySide6.QtWidgets import QMessageBox
     from app.marvelous_base_powers import ENERGY_ENHANCEMENT_KEY, ALTERNATIVE_ENERGY_KEY

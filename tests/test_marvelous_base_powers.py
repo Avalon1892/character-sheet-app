@@ -37,6 +37,29 @@ def test_enhancement_timing_modifiers_keep_item_conversion_limits_visible():
     assert 'manual' in result['power']
 
 
+@pytest.mark.parametrize('base', ['life:cure', 'life:restore', 'life:temporary-hp'])
+def test_life_vitality_previews_do_not_stack_or_invent_duration_tracking(base):
+    key = 'life:vitality-talent:sustaining-vitality-vitality'
+    rows = [dict(catalog_key=key)]
+    result = resolve_base_power(plan(base, contributions=rows))
+    assert '+2 circumstance' in result['vitality_benefit']
+    assert 'one minute' in result['vitality_limits']
+    rows.append(dict(catalog_key='life:vitality-talent:aggressive-vitality-vitality'))
+    result = resolve_base_power(plan(base, contributions=rows))
+    assert 'vitality_benefit' not in result
+    assert 'do not stack' in result['vitality_selection']
+    rows[:] = [dict(catalog_key=key, alternative=True)]
+    assert 'vitality_benefit' not in resolve_base_power(plan(base, contributions=rows))
+
+
+def test_lingering_vitality_keeps_its_damage_expiration_exception():
+    rows = [dict(catalog_key='life:vitality-talent:energizing-vitality-vitality'),
+        dict(catalog_key='life:talent:lingering-vitality-warden')]
+    result = resolve_base_power(plan('life:cure', contributions=rows))
+    assert '+30 ft.' in result['vitality_benefit']
+    assert 'one additional round' in result['vitality_damage_expiration']
+
+
 @pytest.mark.parametrize('ability', ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma'])
 def test_temporary_inherent_enhancement_displays_untyped_not_permanent_bonus(ability):
     key = 'enhancement:advanced-talent:inherent-enhancement-enhance-archmagi-s-hb'

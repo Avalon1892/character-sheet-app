@@ -106,6 +106,15 @@ TELEKINESIS_LIFT_SIZES = (
     (15, 'Huge'), (20, 'Gargantuan'), (25, 'Colossal'), (30, 'Colossal+'),
     (40, 'Colossal++'), (50, 'Colossal+++'), (60, 'Colossal++++'),
 )
+LIFE_VITALITY_EFFECTS = {
+    'life:vitality-talent:aggressive-vitality-vitality': 'Weapon attack and damage rolls: +2 circumstance.',
+    'life:vitality-talent:calming-vitality-vitality-warden': 'Concentration checks: +4 morale.',
+    'life:vitality-talent:energizing-vitality-vitality': 'Existing movement speeds: +30 ft. circumstance; does not grant new movement modes.',
+    'life:vitality-talent:high-on-vitality-vitality-jester-s-hb': 'Floats up to 6 inches above ground; ignores difficult terrain and ground hazards.',
+    'life:vitality-talent:ruin-into-resurgence-vitality-3pp': 'For each 2 negative levels, 6 ability damage or 4 ability drain removed: +1 insight to ability checks, attacks, saves and skills, capped at +1 per 4 CL (minimum +1). Requires actual removal of those penalties.',
+    'life:vitality-talent:securing-vitality-vitality-warden': 'CMB and CMD: +2 circumstance.',
+    'life:vitality-talent:sustaining-vitality-vitality': 'AC and saving throws: +2 circumstance.',
+}
 TALENT_EFFECT_SP_CHOICES = {
     'enhancement:advanced-talent:inherent-enhancement-enhance-archmagi-s-hb': {
         'temporary untyped bonus: ' + ability: 1 for ability in (
@@ -518,6 +527,16 @@ def resolve_base_power(plan):
         elif any(row.get('catalog_key') == 'life:talent:painkiller' for row in plan.get('contributions', [])):
             summary['nonlethal_healing'] = temporary
     if power.key in {'life:cure', 'life:restore', 'life:temporary-hp'}:
+        vitality = [row for row in plan.get('contributions', []) if row.get('catalog_key') in LIFE_VITALITY_EFFECTS]
+        if vitality:
+            summary['vitality_limits'] = 'Only one vitality benefit per target. Lasts up to one minute from application, ending when the target takes damage after a failed save or an attack hit. Apply benefits and expiration manually.'
+            if any(row.get('catalog_key') == 'life:talent:lingering-vitality-warden' and not row.get('alternative')
+                   for row in plan.get('contributions', [])):
+                summary['vitality_damage_expiration'] = 'Lingering Vitality delays damage-triggered expiration by one additional round; resolve manually.'
+            if len(vitality) == 1 and not vitality[0].get('alternative'):
+                summary['vitality_benefit'] = LIFE_VITALITY_EFFECTS[vitality[0]['catalog_key']]
+            else:
+                summary['vitality_selection'] = 'Choose one eligible vitality benefit for each target; these talents do not stack together on a target.'
         mass = [row for row in plan.get('contributions', []) if row.get('catalog_key') == 'life:talent:mass-healing-mass']
         if len(mass) == 1 and not mass[0].get('alternative'):
             summary['maximum_targets'] = 1 + max(1, cl // 2)

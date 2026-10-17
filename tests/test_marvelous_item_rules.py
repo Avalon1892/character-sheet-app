@@ -364,6 +364,16 @@ def test_unknown_sp_default_is_distinct_from_reviewed_free_without_changing_draf
     assert talent_construction_spell_points(free, reviewed_only=True) == 0
 
 
+def test_every_bundled_life_vitality_talent_has_reviewed_free_sp_cost():
+    from app.content import DEFAULT_CATALOG
+    from app.marvelous_base_powers import LIFE_VITALITY_EFFECTS
+    from app.marvelous_item_rules import talent_construction_spell_points
+    entries = [entry for entry in DEFAULT_CATALOG.magic_entries('Life') if entry['category'] == 'Vitality Talent']
+    assert {entry['key'] for entry in entries} == set(LIFE_VITALITY_EFFECTS)
+    assert len(entries) == 7
+    assert all(talent_construction_spell_points(entry, reviewed_only=True) == 0 for entry in entries)
+
+
 @pytest.mark.parametrize('suffix,cost', [('flash-of-excellence-sm', 1),
     ('power-parasitism-alienist-hb', 1), ('ranged-enhancement-range', 0)])
 def test_enhancement_timing_and_range_modifiers_have_reviewed_sp_defaults(suffix, cost):
