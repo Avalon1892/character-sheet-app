@@ -548,6 +548,15 @@ def resolve_base_power(plan):
     if not 0 <= range_index < len(RANGES):
         raise ValueError('Range adjustment exceeds the published range ladder.')
     duration = effective_base_duration(plan)
+    umbral_burst = (power.key == 'dark:darkness' and any(
+        row.get('catalog_key') == 'dark:talent:umbral-burst' and not row.get('alternative')
+        for row in plan.get('contributions', [])))
+    if umbral_burst:
+        if plan['duration_steps'] or plan.get('permanent'):
+            raise ValueError('Umbral Burst lasts exactly one round; duration adjustments and permanency are not allowed.')
+        if any(row.get('catalog_key') in {'dark:talent:lingering-darkness', 'dark:advanced-talent:eternal-darkness'}
+                for row in plan.get('contributions', [])):
+            raise ValueError('Umbral Burst cannot benefit from Lingering Darkness or Eternal Darkness.')
     if duration in DURATIONS:
         duration_index = DURATIONS.index(duration) + plan['duration_steps']
         if not 0 <= duration_index < len(DURATIONS):
@@ -1352,6 +1361,9 @@ def resolve_base_power(plan):
                 summary['duration_review'] = 'Cannot exceed one round per caster level or become permanent; Deep Enhancement does not extend this limit.'
     if power.key in {'blood:construct', 'death:reanimate'}: summary['maximum_hit_dice'] = cl
     if power.key == 'dark:darkness':
+        if umbral_burst:
+            summary['duration'] = '1 round'
+            summary['umbral_burst_limits'] = 'Cannot be maintained by concentration or extended with SP. Resolve expiration manually; this does not schedule turns or spend SP automatically.'
         rows = plan.get('contributions', [])
         keys = [row.get('catalog_key') for row in rows]
         supported = {'dark:talent:' + suffix for suffix in ('greater-darkness', 'wall-of-darkness',

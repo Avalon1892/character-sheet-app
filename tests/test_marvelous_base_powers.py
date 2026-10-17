@@ -224,6 +224,25 @@ def test_dark_geometry_tracks_greater_darkness_and_wall_without_multiplying_area
     assert result['power'] == 'Modified Darkness — manual resolution' and 'radius' not in result
 
 
+def test_umbral_burst_is_one_round_not_rounds_per_caster_level():
+    rows = [dict(catalog_key='dark:talent:umbral-burst')]
+    result = resolve_base_power(plan('dark:darkness', cl=15, contributions=rows))
+    assert result['duration'] == '1 round'
+    assert 'Cannot be maintained' in result['umbral_burst_limits']
+
+
+@pytest.mark.parametrize('change', [dict(duration_steps=1), dict(duration_steps=-1), dict(permanent=True),
+    dict(extra='dark:talent:lingering-darkness'), dict(extra='dark:advanced-talent:eternal-darkness')])
+def test_umbral_burst_rejects_duration_adjustments_and_extenders(change):
+    rows = [dict(catalog_key='dark:talent:umbral-burst')]
+    change = dict(change)
+    if extra := change.pop('extra', None): rows.append(dict(catalog_key=extra))
+    item = plan('dark:darkness', cl=15, contributions=rows)
+    item.update(change)
+    with pytest.raises(ValueError, match='Umbral Burst'):
+        resolve_base_power(item)
+
+
 def test_ooze_originator_projects_chosen_hd_but_not_unselected_species_statistics():
     rows = [dict(catalog_key='creation:advanced-talent:ooze-originator-create', effect_choice='8 HD ooze'),
         dict(catalog_key='creation:material-talent:acidic-creation-material')]

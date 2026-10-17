@@ -1673,6 +1673,24 @@ def test_dark_variable_modes_update_price_and_preserve_manual_saved_sp(composer,
     assert dialog.blueprint() == saved and repo._connection.total_changes == writes
 
 
+def test_umbral_burst_invalid_saved_duration_is_reported_not_silently_clamped(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Dark'); dialog.cl.setValue(15)
+    key = 'dark:talent:umbral-burst'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    assert 'Duration 1 round;' in dialog.item_preview.toPlainText()
+    saved = dialog.blueprint(); saved['duration_steps'] = 1
+    dialog.load_plan(saved)
+    assert dialog.blueprint() == saved
+    assert 'Umbral Burst lasts exactly one round' in dialog.cost_formula.text()
+    assert not dialog.save.isEnabled()
+    dialog.duration_steps.setValue(0)
+    assert 'Duration 1 round;' in dialog.item_preview.toPlainText()
+    assert repo._connection.total_changes == writes
+
+
 def test_dark_greater_wall_live_geometry_costs_and_reopen(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Dark'); dialog.cl.setValue(10)

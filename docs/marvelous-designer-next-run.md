@@ -408,4 +408,6 @@ Dark utility/mode follow-up (2026-10-17): explicit zero/one-SP choices for Shado
 
 Final Dark utility validation: complete item-rules module plus both variable-mode UI cases passed together, 494 tests in 4.45 seconds.
 
+Umbral Burst duration checkpoint (2026-10-17): fixed Umbral Burst effects project exactly one round independent of CL. Shared resolver/quote rejects duration-step adjustments, permanency and Lingering/Eternal Darkness combinations, preserving explicit no-concentration/no-SP-extension rules without scheduling turns. Invalid saved duration inputs are retained and shown as errors, not normalized away on load; the user can correct the duration and recover the live preview. The existing adjustable UI input is intentionally retained for correcting invalid drafts. Alternative Umbral variants and other replacement-effect combinations remain manual. Validation: 783 rules/base-power tests and four related Dark UI tests passed. Initial two test failures were helper-call construction errors (duplicate duration keyword), corrected locally without changing existing helper behavior. Source: https://spheresofpower.wikidot.com/dark. Not deployed.
+
 The full active goal is not complete. Broader Marvelous implementation history and gaps remain in `marvelous-items-next-run.md`.
