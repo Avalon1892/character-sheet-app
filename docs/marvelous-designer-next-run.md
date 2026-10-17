@@ -416,4 +416,6 @@ Advanced Dark prerequisite checkpoint (2026-10-18): registered exact CL and cata
 
 Advanced Dark final validation: complete item-rules module plus two live prerequisite tests passed together, 506 tests in 4.96 seconds.
 
+Eternal Darkness immobility checkpoint (2026-10-18): shared advanced construction validation now reports Eternal Darkness + Clinging Darkness and Eternal Darkness + Rolling Blackout conflicts. Same-group mutually exclusive options are not treated as coexisting; fixed selections or independent alternative groups are blocked. Shifting Shadows remains compatible. The live construction-review warning persists on reopen and clears after the conflicting talent is removed, without writes or silently deleting choices. Validation: 511 item-rules tests plus four related conflict/insertion UI tests passed. Source: https://spheresofpower.wikidot.com/dark. This completes these two construction constraints, not Eternal Darkness's price/permanency projection or all Dark combinations. Not deployed; desktop remains at dffa977 runtime.
+
 The full active goal is not complete. Broader Marvelous implementation history and gaps remain in `marvelous-items-next-run.md`.

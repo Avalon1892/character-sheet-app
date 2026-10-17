@@ -491,6 +491,8 @@ def advanced_construction_blockers(contributions, caster_level, *, display_names
            for right in contributions if right['catalog_key'] == 'protection:advanced-talent:permanent-ward'):
         blockers.append('Mobile Ward cannot benefit from Permanent Ward in the same effect.')
     for left_key, right_key, message in (
+        ('dark:advanced-talent:eternal-darkness', 'dark:talent:clinging-darkness', 'Eternal Darkness cannot be centered on a creature or object with Clinging Darkness.'),
+        ('dark:advanced-talent:eternal-darkness', 'dark:talent:rolling-blackout', 'Eternal Darkness cannot be moved with Rolling Blackout.'),
         ('life:talent:affliction', 'life:talent:fount-of-life', 'Affliction cannot be combined with Fount of Life.'),
         ('life:talent:instill-life-instill', 'life:talent:empathic-healing', 'Instill Life cannot be augmented by Empathic Healing.'),
     ):

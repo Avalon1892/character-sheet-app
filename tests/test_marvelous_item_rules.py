@@ -37,6 +37,25 @@ def test_dark_advanced_prerequisites_use_exact_catalog_identities_and_levels(suf
         assert any('caster level' in message for message in advanced_construction_blockers(rows, minimum - 1))
 
 
+@pytest.mark.parametrize('other,message', [('clinging-darkness', 'cannot be centered'), ('rolling-blackout', 'cannot be moved')])
+@pytest.mark.parametrize('groups,conflict', [(None, True), ((1, 1), False), ((1, 2), True)])
+def test_eternal_darkness_immobility_respects_actual_coexisting_options(other, message, groups, conflict):
+    from app.marvelous_item_rules import advanced_construction_blockers
+    rows = [dict(catalog_key='dark:advanced-talent:eternal-darkness'),
+        dict(catalog_key='dark:talent:' + other), dict(catalog_key='dark:talent:lingering-darkness')]
+    if groups:
+        for row, group in zip(rows, groups): row.update(alternative=True, alternative_group=group)
+    blockers = advanced_construction_blockers(rows, 10)
+    assert any(message in item for item in blockers) == conflict
+
+
+def test_eternal_darkness_allows_shifting_shadows_without_allowing_movement():
+    from app.marvelous_item_rules import advanced_construction_blockers
+    rows = [dict(catalog_key='dark:advanced-talent:eternal-darkness'),
+        dict(catalog_key='dark:talent:lingering-darkness'), dict(catalog_key='dark:talent:shifting-shadows')]
+    assert not advanced_construction_blockers(rows, 10)
+
+
 def test_all_bundled_dark_advanced_entries_have_requirement_metadata():
     from app.catalogs import DEFAULT_CATALOG
     keys = {e['key'] for e in DEFAULT_CATALOG.magic_entries('Dark') if e['category'] == 'Advanced Talent'}

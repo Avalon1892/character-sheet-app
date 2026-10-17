@@ -1708,6 +1708,23 @@ def test_dark_advanced_prerequisites_insert_once_and_restore_without_writes(comp
     assert dialog.blueprint() == saved and repo._connection.total_changes == writes
 
 
+@pytest.mark.parametrize('other,message', [('clinging-darkness', 'cannot be centered'), ('rolling-blackout', 'cannot be moved')])
+def test_eternal_darkness_conflict_appears_and_clears_in_live_construction_review(composer, other, message):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Dark'); dialog.cl.setValue(10)
+    writes = repo._connection.total_changes
+    for key in ('dark:advanced-talent:eternal-darkness', 'dark:talent:' + other):
+        dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+        dialog.add_contribution()
+        if key.endswith('eternal-darkness'): assert dialog.add_required_contributions()
+    assert message in dialog.construction_status.toolTip()
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and message in dialog.construction_status.toolTip()
+    dialog.table.setCurrentCell(2, 0); dialog.remove_contribution()
+    assert message not in dialog.construction_status.toolTip()
+    assert repo._connection.total_changes == writes
+
+
 def test_dark_greater_wall_live_geometry_costs_and_reopen(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Dark'); dialog.cl.setValue(10)
