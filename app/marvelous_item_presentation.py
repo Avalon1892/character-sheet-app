@@ -7,6 +7,22 @@ ITEM_FIELDS = ('name', 'slot', 'aura', 'weight', 'caster_level', 'save_dc', 'act
                'range', 'duration', 'price', 'construction_cost', 'construction_requirements', 'description')
 
 
+def contribution_cost_details(plan):
+    """Explain stored contribution costs without substituting catalog defaults."""
+    from app.content import magic_entry
+    lines = []
+    for row in plan.get('contributions', []):
+        entry = magic_entry(row['catalog_key'])
+        name = entry['name'] if entry else row['catalog_key']
+        points = row.get('additional_spell_points', 0)
+        group = f" [alternative group {row.get('alternative_group', 1)}]" if row.get('alternative') else ''
+        choice = f" ({row['effect_choice']})" if row.get('effect_choice') else ''
+        lines.append(f"{name}{choice}{group}: {row['complexity'] - points} talent + {points} extra SP = {row['complexity']} complexity")
+    for row in plan.get('drawbacks', []):
+        lines.append(f"{row['name']}: −{row['reduction']} complexity")
+    return '\n'.join(lines)
+
+
 def validate_display_overrides(records):
     if not isinstance(records, dict): raise ValueError('Item display overrides must be a mapping.')
     for key, record in records.items():

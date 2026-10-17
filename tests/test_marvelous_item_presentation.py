@@ -62,6 +62,17 @@ def test_unreviewed_sp_cost_is_visible_without_changing_quote_or_manual_lock():
     assert item_card_fields(plan, name='Gem', slot='', description='')['construction_requirements'] == 'Reviewed manually'
 
 
+def test_cost_details_use_saved_manual_costs_and_name_alternatives_and_drawbacks():
+    from app.marvelous_item_presentation import contribution_cost_details
+    plan = dict(contributions=[dict(catalog_key='life:talent:deeper-healing', complexity=7,
+        additional_spell_points=3, alternative=True, alternative_group=2, effect_choice='custom review')],
+        drawbacks=[dict(name='Custom limitation', reduction=2)])
+    result = contribution_cost_details(plan)
+    assert 'Deeper Healing (custom review) [alternative group 2]' in result
+    assert '4 talent + 3 extra SP = 7 complexity' in result
+    assert 'Custom limitation: −2 complexity' in result
+
+
 def test_aura_updates_with_real_caster_level_and_respects_its_own_lock():
     plan = blueprint()
     assert item_card_fields(plan, name='Gem', slot='', description='')['aura'] == 'Faint (school not specified)'

@@ -883,8 +883,13 @@ class MarvelousCraftingDialog(QDialog):
                                       + '\nComplexity: ' + marvelous_complexity_formula(self.blueprint(), quotation=quotation)
                                       + '\nMaterials: ' + marvelous_materials_formula(self.blueprint(), quotation=quotation))
             from app.marvelous_item_rules import marvelous_effect_plan
-            self.cost_formula.setToolTip('\n'.join(f'Power {index + 1}: {marvelous_complexity_formula(marvelous_effect_plan(self.blueprint(), index), quotation=quotation if index == 0 else None)}'
-                for index in range(1 + len(self.extra_effects))))
+            from app.marvelous_item_presentation import contribution_cost_details
+            details = []
+            for index in range(1 + len(self.extra_effects)):
+                power_plan = marvelous_effect_plan(self.blueprint(), index)
+                details.append(f'Power {index + 1}: {marvelous_complexity_formula(power_plan, quotation=quotation if index == 0 else None)}'
+                    + '\n' + contribution_cost_details(power_plan))
+            self.cost_formula.setToolTip('\n\n'.join(details))
             self.refresh_item_card(quotation=quotation)
             effect = resolve_base_power(self.blueprint())
             automatic = automatic_self_effect(self.blueprint())

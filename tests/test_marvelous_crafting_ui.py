@@ -1454,6 +1454,8 @@ def test_conditional_life_mode_updates_price_and_preserves_saved_choice(composer
     saved = dialog.blueprint()
     assert quote_marvelous_blueprint(saved)[1].market_price_gp - before == 4000
     assert saved['contributions'][0]['effect_choice'] == high
+    assert high in dialog.cost_formula.toolTip()
+    assert 'extra SP' in dialog.cost_formula.toolTip()
     dialog.load_plan(saved)
     assert dialog.blueprint() == saved
     assert repo._connection.total_changes == writes
