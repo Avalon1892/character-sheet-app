@@ -18,6 +18,38 @@ TELEKINESIS_ADVANCED_REQUIREMENTS = {
     'puppet': (10, ('telekinesis:talent:finesse-utility', 'telekinesis:talent:telekinetic-maneuver')),
 }
 
+CREATION_FIXED_REQUIREMENTS = {
+    'create-materials': (10, ('creation:talent:lengthened-creation',)),
+    'duplicate': (5, ('creation:talent:exquisite-detail-utility',)),
+    'fabricate': (10, ('creation:alter-talent:forge-alter',)),
+    'dissolution-alter': (0, ('creation:talent:potent-alteration',)),
+    'integrate-item-alter-sm': (5, ('creation:talent:potent-alteration',)),
+    'internal-creation-apoc': (0, ('creation:talent:distant-creation-range', 'creation:talent:potent-alteration')),
+    'magma-mastery-material': (10, ('creation:material-talent:plasma-production-material',)),
+    'ooze-originator-create': (5, ('creation:material-talent:acidic-creation-material',)),
+    'permanent-change': (10, ('creation:alter-talent:change-material-alter',
+        'creation:material-talent:expanded-materials-material', 'creation:alter-talent:forge-alter')),
+    'plasma-projection': (5, ('creation:material-talent:plasma-production-material',)),
+    'state-shift-alter': (10, ('creation:alter-talent:change-material-alter',)),
+    'sustenance-material-utility': (1, ()),
+}
+
+
+@pytest.mark.parametrize('suffix,requirement', CREATION_FIXED_REQUIREMENTS.items())
+def test_creation_fixed_advanced_dependencies_and_levels(suffix, requirement):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import ADVANCED_CONSTRUCTION_REQUIREMENTS, missing_construction_prerequisites, advanced_construction_blockers
+    key = 'creation:advanced-talent:' + suffix
+    assert magic_entry(key) and ADVANCED_CONSTRUCTION_REQUIREMENTS[key] == requirement
+    minimum, required = requirement
+    assert all(magic_entry(child) for child in required)
+    rows = [dict(catalog_key=key)]
+    assert set(required) <= set(missing_construction_prerequisites(rows))
+    rows += [dict(catalog_key=child) for child in required]
+    assert not advanced_construction_blockers(rows, max(1, minimum))
+    if minimum > 1:
+        assert any('caster level' in message for message in advanced_construction_blockers(rows, minimum - 1))
+
 
 def test_every_bundled_advanced_telekinesis_talent_has_explicit_dependencies():
     from app.content import DEFAULT_CATALOG

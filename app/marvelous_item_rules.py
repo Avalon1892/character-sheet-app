@@ -121,6 +121,19 @@ def marvelous_item_price(caster_level: int, complexity: int | Fraction, *, daily
 
 # Reviewed construction prerequisites use catalog identities, never prose parsing.
 ADVANCED_CONSTRUCTION_REQUIREMENTS = {
+    'creation:advanced-talent:create-materials': (10, ('creation:talent:lengthened-creation',)),
+    'creation:advanced-talent:duplicate': (5, ('creation:talent:exquisite-detail-utility',)),
+    'creation:advanced-talent:fabricate': (10, ('creation:alter-talent:forge-alter',)),
+    'creation:advanced-talent:dissolution-alter': (0, ('creation:talent:potent-alteration',)),
+    'creation:advanced-talent:integrate-item-alter-sm': (5, ('creation:talent:potent-alteration',)),
+    'creation:advanced-talent:internal-creation-apoc': (0, ('creation:talent:distant-creation-range', 'creation:talent:potent-alteration')),
+    'creation:advanced-talent:magma-mastery-material': (10, ('creation:material-talent:plasma-production-material',)),
+    'creation:advanced-talent:ooze-originator-create': (5, ('creation:material-talent:acidic-creation-material',)),
+    'creation:advanced-talent:permanent-change': (10, ('creation:alter-talent:change-material-alter',
+        'creation:material-talent:expanded-materials-material', 'creation:alter-talent:forge-alter')),
+    'creation:advanced-talent:plasma-projection': (5, ('creation:material-talent:plasma-production-material',)),
+    'creation:advanced-talent:state-shift-alter': (10, ('creation:alter-talent:change-material-alter',)),
+    'creation:advanced-talent:sustenance-material-utility': (1, ()),
     'time:advanced-talent:advanced-rewind': (10, ('time:talent:age-time',)),
     'time:advanced-talent:combo-breaker-sm': (0, ('time:talent:eject-time',)),
     'time:advanced-talent:divergent-retry-sm': (0, ('time:talent:retry-time',)),

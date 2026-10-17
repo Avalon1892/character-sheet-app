@@ -1514,6 +1514,29 @@ def test_creation_cost_defaults_update_and_preserve_manual_overrides(composer, s
     assert repo._connection.total_changes == writes
 
 
+@pytest.mark.parametrize('suffix,required', [
+    ('create-materials', {'creation:talent:lengthened-creation'}),
+    ('permanent-change', {'creation:alter-talent:change-material-alter',
+        'creation:material-talent:expanded-materials-material', 'creation:alter-talent:forge-alter'}),
+])
+def test_creation_required_talents_insert_once_and_survive_reopen(composer, suffix, required):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Creation'); dialog.cl.setValue(15)
+    key = 'creation:advanced-talent:' + suffix
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    assert dialog.add_required_contributions()
+    saved = dialog.blueprint()
+    keys = [row['catalog_key'] for row in saved['contributions']]
+    assert set(keys) == required | {key} and len(keys) == len(set(keys))
+    assert dialog.add_required_contributions()
+    assert dialog.blueprint() == saved
+    dialog.load_plan(saved)
+    assert dialog.blueprint() == saved
+    assert repo._connection.total_changes == writes
+
+
 @pytest.mark.parametrize('suffix,free,paid', [
     ('alter-talent:magnify-minimize-alter', 'one size category', 'additional size categories'),
     ('alter-talent:transparency-alter-utility', 'concentration', 'minutes per caster level'),
