@@ -536,12 +536,11 @@ def test_precise_destruction_magical_trap_requires_integrated_potent_alteration(
     assert not mode_construction_prerequisites(row)
 
 
-def test_only_two_ordinary_creation_costs_remain_unreviewed():
+def test_only_practiced_creation_cost_remains_unreviewed_among_ordinary_talents():
     from app.content import DEFAULT_CATALOG
     from app.marvelous_item_rules import talent_construction_spell_points
     entries = [e for e in DEFAULT_CATALOG.magic_entries('Creation') if 'Talent' in e['category'] and 'Advanced' not in e['category']]
     assert {e['key'] for e in entries if talent_construction_spell_points(e, reviewed_only=True) is None} == {
-        'creation:material-talent:alchemical-creation-material',
         'creation:talent:practiced-creation'}
 
 

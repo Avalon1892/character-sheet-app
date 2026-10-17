@@ -102,6 +102,27 @@ def test_force_creation_combines_size_and_shared_object_limits():
     assert 'manual resolution' in result['power'] and 'maximum_object_size' not in result
 
 
+@pytest.mark.parametrize('cl,maximum', [(1,25),(4,100),(5,250),(10,750),(13,975),(15,1500),(20,2500)])
+def test_alchemical_creation_value_progression_and_divided_limits(cl, maximum):
+    rows = [dict(catalog_key='creation:material-talent:alchemical-creation-material')]
+    result = resolve_base_power(plan('creation:create', cl=cl, contributions=rows))
+    assert result['maximum_alchemical_value_gp'] == maximum
+    assert 'crafter’s live modifier' in result['alchemical_statistics']
+    rows.append(dict(catalog_key='creation:talent:divided-creation-mass'))
+    result = resolve_base_power(plan('creation:create', cl=cl, contributions=rows))
+    assert result['maximum_combined_alchemical_value'] == f'{maximum / 2:g} gp'
+    assert 'Only one item' in result['divided_alchemy']
+
+
+def test_alchemical_creation_cl14_conflict_is_not_silently_resolved():
+    rows = [dict(catalog_key='creation:material-talent:alchemical-creation-material')]
+    result = resolve_base_power(plan('creation:create', cl=14, contributions=rows))
+    assert 'Needs rules verification' in result['alchemical_value_review']
+    assert 'maximum_alchemical_value_gp' not in result
+    rows[0]['alternative'] = True
+    assert 'alchemical_statistics' not in resolve_base_power(plan('creation:create', cl=14, contributions=rows))
+
+
 def test_potent_alteration_uses_dice_and_does_not_restore_expended_charges():
     assert resolve_base_power(plan('creation:alter', cl=5))['repair_or_destroy'].startswith('1d4+2')
     rows = [dict(catalog_key='creation:talent:potent-alteration', effect_choice='enhanced repair or destroy')]

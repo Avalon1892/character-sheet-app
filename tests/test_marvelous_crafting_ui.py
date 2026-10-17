@@ -1584,6 +1584,23 @@ def test_instill_alternative_group_shows_discounted_minimum_adjustment(composer)
     assert dialog.blueprint() == saved and repo._connection.total_changes == writes
 
 
+def test_alchemical_preview_updates_value_and_flags_published_cl14_conflict(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Creation'); dialog.cl.setValue(10)
+    dialog.base_power.setCurrentIndex(dialog.base_power.findData('creation:create'))
+    key = 'creation:material-talent:alchemical-creation-material'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    assert dialog.blueprint()['contributions'][0]['additional_spell_points'] == 0
+    assert 'Maximum Alchemical Value Gp: 750' in dialog.item_preview.toPlainText()
+    dialog.cl.setValue(14)
+    assert 'Needs rules verification' in dialog.item_preview.toPlainText()
+    assert 'Maximum Alchemical Value Gp:' not in dialog.item_preview.toPlainText()
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and repo._connection.total_changes == writes
+
+
 @pytest.mark.parametrize('suffix,required', [
     ('create-materials', {'creation:talent:lengthened-creation'}),
     ('create-minds-think-alike-jester-s-hb', {'creation:talent:exquisite-detail-utility',

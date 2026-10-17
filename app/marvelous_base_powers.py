@@ -1029,6 +1029,26 @@ def resolve_base_power(plan):
         else:
             summary['power'] = 'Modified alteration — manual resolution'
             summary['alteration_review'] = 'The selected talent may replace Repair/Destroy entirely; resolve its effect and duration, not a generic HP roll.'
+    if power.key in {'creation:create', 'creation:alter'}:
+        rows = plan.get('contributions', [])
+        keys = [row.get('catalog_key') for row in rows]
+        alchemical, divided = 'creation:material-talent:alchemical-creation-material', 'creation:talent:divided-creation-mass'
+        if (alchemical in keys and len(keys) == len(set(keys)) and set(keys) <= {alchemical, divided}
+                and not any(row.get('alternative') for row in rows)
+                and (divided not in keys or power.key == 'creation:create')):
+            summary['power'] = 'Alchemical Creation' if power.key == 'creation:create' else 'Enhance Mundane Alchemical Item'
+            if cl == 14:
+                summary['alchemical_value_review'] = 'Needs rules verification: at CL14 the text formula gives 1,050 gp but the published table lists 1,150 gp. Confirm the limit with the GM.'
+            else:
+                maximum = 25 * cl * (1 + cl // 5)
+                summary['maximum_alchemical_value_gp'] = maximum
+                if divided in keys: summary['maximum_combined_alchemical_value'] = f'{maximum / 2:g} gp'
+            summary['alchemical_statistics'] = 'DC = 10 + applicable item casting modifier + half CL; HP damage adds that modifier. The item modifier is not assumed to equal the crafter’s live modifier.'
+            summary['alchemical_limits'] = 'Use a normal alchemical item or poison; Spheres of Might Alchemy formulae and poisons are excluded. No items or doses are added automatically.'
+            if divided in keys:
+                summary['divided_alchemy'] = 'Combined size must fit creation capacity; each item counts as Small. Only one item gains the improved DC/damage; the others retain normal statistics.'
+            if power.key == 'creation:alter':
+                summary['alchemical_duration_review'] = 'Potency enhancement lasts for normal created-object duration, then returns to normal; verify item duration conversion. Does not stack with other DC increases.'
     if power.key == 'destruction:blast':
         summary['damage_dice'] = cl if boost else cl // 2
         profile = destructive_blast_profile(plan)
