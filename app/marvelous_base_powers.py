@@ -122,7 +122,7 @@ TALENT_EFFECT_SP_CHOICES = {
         'attended, magical or creature target': 2},
     # The required Change Material contribution already supplies the initial SP.
     'creation:advanced-talent:material-body-alter': {'concentration': 0,
-        'sustained without concentration': 1},
+        'sustained without concentration': 1, 'hours per caster level with Lengthened Creation': 0},
     'creation:advanced-talent:fleshcraft-material': {'create or alter nonliving flesh': 0,
         'alter a living creature': 1},
     'creation:talent:altering-burst': {'ten-foot radius, half-size objects': 0,
@@ -275,6 +275,23 @@ def base_powers(sphere):
     return tuple(power for power in BASE_POWERS if power.sphere.casefold() == sphere.casefold())
 
 
+def material_body_duration(plan):
+    """Reviewed fixed material configuration; unknown combinations stay manual."""
+    if plan.get('base_power') != 'creation:alter': return None
+    rows = plan.get('contributions', [])
+    body = 'creation:advanced-talent:material-body-alter'
+    keys = [row.get('catalog_key') for row in rows]
+    required = {body, 'creation:alter-talent:change-material-alter', 'creation:material-talent:expanded-materials-material'}
+    lengthened = 'creation:talent:lengthened-creation'
+    if (len(keys) != len(set(keys)) or any(row.get('alternative') for row in rows)
+            or not required <= set(keys) or not set(keys) <= required | {lengthened}): return None
+    mode = next(row.get('effect_choice') for row in rows if row.get('catalog_key') == body)
+    if mode == 'hours per caster level with Lengthened Creation':
+        return 'hour' if lengthened in keys else None
+    if lengthened in keys: return None
+    return {'concentration': 'concentration', 'sustained without concentration': 'minute'}.get(mode)
+
+
 def effective_base_duration(plan):
     """Duration before construction adjustments, including reviewed effect modes."""
     power = next((power for power in BASE_POWERS if power.key == plan.get('base_power')), None)
@@ -299,13 +316,7 @@ def effective_base_duration(plan):
         return 'round' if selected.get('effect_choice') == 'rounds per caster level' else 'concentration'
     if power.key == 'creation:alter':
         rows = plan.get('contributions', [])
-        body = 'creation:advanced-talent:material-body-alter'
-        body_keys = {body, 'creation:alter-talent:change-material-alter', 'creation:material-talent:expanded-materials-material'}
-        if (len(rows) == 3 and {row.get('catalog_key') for row in rows} == body_keys
-                and not any(row.get('alternative') for row in rows)):
-            choice = next(row.get('effect_choice') for row in rows if row.get('catalog_key') == body)
-            if choice in TALENT_EFFECT_SP_CHOICES[body]:
-                return 'concentration' if choice == 'concentration' else 'minute'
+        if duration := material_body_duration(plan): return duration
         if len(rows) == 1 and not rows[0].get('alternative'):
             key, choice = rows[0].get('catalog_key'), rows[0].get('effect_choice')
             if choice in TALENT_EFFECT_SP_CHOICES.get(key, {}):
@@ -1103,16 +1114,13 @@ def resolve_base_power(plan):
     if power.key == 'creation:alter':
         rows = plan.get('contributions', [])
         dissolution, potent = 'creation:advanced-talent:dissolution-alter', 'creation:talent:potent-alteration'
-        body = 'creation:advanced-talent:material-body-alter'
-        if (len(rows) == 3 and {row.get('catalog_key') for row in rows} == {
-                body, 'creation:alter-talent:change-material-alter', 'creation:material-talent:expanded-materials-material'}
-                and not any(row.get('alternative') for row in rows)
-                and next(row.get('effect_choice') for row in rows if row.get('catalog_key') == body) in TALENT_EFFECT_SP_CHOICES[body]):
+        if material_body_duration(plan):
             summary['power'] = 'Material Body'
             summary['target'] = 'One willing creature touched'
             summary['material_defense'] = 'DR equals the chosen solid material’s hardness; adamantine bypasses it when hardness is below 20. Select a material you can create and resolve its hardness manually.'
             summary['material_body_limit'] = f'Ends after preventing damage equal to material HP per inch × {cl // 3}. Track prevented damage manually.'
-            summary['unmodified_concentration_limit'] = f'{cl} minutes'
+            if material_body_duration(plan) == 'concentration':
+                summary['unmodified_concentration_limit'] = f'{cl} minutes'
         selected = next((row for row in rows if row.get('catalog_key') == dissolution), {})
         prerequisite = next((row for row in rows if row.get('catalog_key') == potent), {})
         mode = selected.get('effect_choice')

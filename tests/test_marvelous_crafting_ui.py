@@ -1694,6 +1694,14 @@ def test_material_body_live_modes_change_price_and_preserve_saved_manual_cost(co
     dialog.load_plan(saved)
     assert dialog.blueprint()['contributions'][0]['additional_spell_points'] == 4
     assert repo._connection.total_changes == writes
+    choice = dialog.table.cellWidget(0, 5)
+    choice.setCurrentIndex(choice.findData('hours per caster level with Lengthened Creation'))
+    lengthened = dialog.blueprint()
+    assert sum(row['catalog_key'] == 'creation:talent:lengthened-creation' for row in lengthened['contributions']) == 1
+    assert sum(row['additional_spell_points'] for row in lengthened['contributions']) == 2
+    assert 'Duration 10 hours' in dialog.item_preview.toPlainText()
+    dialog.load_plan(lengthened)
+    assert dialog.blueprint() == lengthened and repo._connection.total_changes == writes
 
 
 @pytest.mark.parametrize('suffix,required', [

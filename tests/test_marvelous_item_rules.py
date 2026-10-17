@@ -515,6 +515,19 @@ def test_material_body_cost_includes_change_material_once(mode, total):
     assert talent_choice_spell_points(key, mode) + talent_construction_spell_points(prerequisite, reviewed_only=True) == total
 
 
+def test_material_body_hour_mode_requires_lengthened_creation_without_a_second_sustaining_cost():
+    from app.marvelous_item_rules import talent_choice_spell_points, mode_construction_prerequisites, advanced_construction_blockers
+    key = 'creation:advanced-talent:material-body-alter'
+    row = dict(catalog_key=key, effect_choice='hours per caster level with Lengthened Creation')
+    assert talent_choice_spell_points(key, row['effect_choice']) == 0
+    assert mode_construction_prerequisites(row) == ('creation:talent:lengthened-creation',)
+    rows = [row, dict(catalog_key='creation:alter-talent:change-material-alter'),
+        dict(catalog_key='creation:material-talent:expanded-materials-material')]
+    assert advanced_construction_blockers(rows, 10)
+    rows.append(dict(catalog_key='creation:talent:lengthened-creation'))
+    assert not advanced_construction_blockers(rows, 10)
+
+
 def test_create_materials_does_not_add_another_surcharge_to_required_lengthened_creation():
     from app.content import magic_entry
     from app.marvelous_item_rules import talent_construction_spell_points

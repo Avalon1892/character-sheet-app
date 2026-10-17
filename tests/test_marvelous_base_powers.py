@@ -138,6 +138,19 @@ def test_create_materials_is_instantaneous_with_live_capacity_and_material_limit
     assert resolve_base_power(plan('creation:create', cl=10, contributions=rows))['power'] != 'Create Materials'
 
 
+def test_material_body_hour_mode_needs_fixed_lengthened_creation_for_duration_projection():
+    rows = [dict(catalog_key='creation:advanced-talent:material-body-alter', effect_choice='hours per caster level with Lengthened Creation'),
+        dict(catalog_key='creation:alter-talent:change-material-alter'),
+        dict(catalog_key='creation:material-talent:expanded-materials-material')]
+    assert resolve_base_power(plan('creation:alter', cl=10, contributions=rows))['power'] != 'Material Body'
+    rows.append(dict(catalog_key='creation:talent:lengthened-creation'))
+    result = resolve_base_power(plan('creation:alter', cl=10, contributions=rows))
+    assert result['power'] == 'Material Body' and result['duration'] == '10 hours'
+    assert 'unmodified_concentration_limit' not in result
+    rows[-1]['alternative'] = True
+    assert resolve_base_power(plan('creation:alter', cl=10, contributions=rows))['power'] != 'Material Body'
+
+
 def test_ooze_originator_projects_chosen_hd_but_not_unselected_species_statistics():
     rows = [dict(catalog_key='creation:advanced-talent:ooze-originator-create', effect_choice='8 HD ooze'),
         dict(catalog_key='creation:material-talent:acidic-creation-material')]

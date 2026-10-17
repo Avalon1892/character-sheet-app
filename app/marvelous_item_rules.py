@@ -409,6 +409,9 @@ def mode_construction_prerequisites(contribution):
         return (ALTERNATIVE_ENERGY_KEY,)
     if contribution.get('catalog_key') == 'creation:talent:precise-destruction-utility' and contribution.get('effect_choice') == 'magical trap':
         return ('creation:talent:potent-alteration',)
+    if (contribution.get('catalog_key') == 'creation:advanced-talent:material-body-alter'
+            and contribution.get('effect_choice') == 'hours per caster level with Lengthened Creation'):
+        return ('creation:talent:lengthened-creation',)
     return ()
 
 
