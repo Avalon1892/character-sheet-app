@@ -1651,6 +1651,26 @@ def test_dissolution_mode_automatically_integrates_correct_potent_cost(composer,
     assert dialog.blueprint() == saved and repo._connection.total_changes == writes
 
 
+def test_plasma_modes_switch_base_power_preserve_costs_and_reopen_without_writes(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Creation'); dialog.cl.setValue(10)
+    key = 'creation:advanced-talent:plasma-projection'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution(); assert dialog.add_required_contributions()
+    choice = dialog.table.cellWidget(0, 5)
+    for mode, base, sp in [('alter a melee weapon', 'creation:alter', 1), ('create a plasma blade', 'creation:create', 0)]:
+        choice.setCurrentIndex(choice.findData(mode))
+        assert dialog.base_power.currentData() == base
+        assert dialog.blueprint()['contributions'][0]['additional_spell_points'] == sp
+    material = dialog.table.cellWidget(1, 5)
+    material.setCurrentIndex(material.findData('fire or burning object'))
+    assert 'Power: Plasma Projection' in dialog.item_preview.toPlainText()
+    assert 'Duration 10 rounds' in dialog.item_preview.toPlainText()
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and repo._connection.total_changes == writes
+
+
 def test_greenwood_surcharge_updates_live_without_changing_magic_quote_or_locked_weight(composer):
     dialog, repo, cid = composer
     dialog.crafting_tradition = dict(key='crafting:cryptwood-artifice', name='Cryptwood Artifice', description='Imbued (greenwood)')

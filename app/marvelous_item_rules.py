@@ -1129,6 +1129,11 @@ def quote_marvelous_blueprint(plan):
         raise ValueError('Alternative-effect flags must be boolean.')
     groups = {}
     for contribution in plan['contributions']:
+        if contribution.get('catalog_key') == 'creation:advanced-talent:plasma-projection':
+            from app.marvelous_base_powers import PLASMA_PROJECTION_BASE_MODES
+            expected = PLASMA_PROJECTION_BASE_MODES.get(contribution.get('effect_choice'))
+            if expected and plan.get('base_power') != expected:
+                raise ValueError('Plasma Projection mode requires base power ' + expected + '.')
         if (contribution.get('catalog_key') in {'time:talent:time-strike-strike', 'life:talent:clarified-strike-strike',
                 'creation:talent:transmuting-strike-strike-3pp'}
                 and plan['activation'] in {'move', 'swift'}):

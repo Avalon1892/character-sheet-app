@@ -115,7 +115,10 @@ LIFE_VITALITY_EFFECTS = {
     'life:vitality-talent:securing-vitality-vitality-warden': 'CMB and CMD: +2 circumstance.',
     'life:vitality-talent:sustaining-vitality-vitality': 'AC and saving throws: +2 circumstance.',
 }
+PLASMA_PROJECTION_BASE_MODES = {'create a plasma blade': 'creation:create', 'alter a melee weapon': 'creation:alter'}
+
 TALENT_EFFECT_SP_CHOICES = {
+    'creation:advanced-talent:plasma-projection': {'create a plasma blade': 0, 'alter a melee weapon': 1},
     # Instantaneous duplication adds two SP: one here, one in required Lengthened Creation.
     'creation:advanced-talent:duplicate': {'temporary object copy': 0, 'instantaneous object copy': 1},
     # Matches the designer's existing CL range; one extra SP per complete four HD.
@@ -277,6 +280,20 @@ def base_powers(sphere):
     return tuple(power for power in BASE_POWERS if power.sphere.casefold() == sphere.casefold())
 
 
+def plasma_projection_mode(plan):
+    rows = plan.get('contributions', [])
+    key, material = 'creation:advanced-talent:plasma-projection', 'creation:material-talent:plasma-production-material'
+    keys = [row.get('catalog_key') for row in rows]
+    if (len(keys) != len(set(keys)) or any(row.get('alternative') for row in rows)
+            or not {key, material} <= set(keys)
+            or not set(keys) <= {key, material, 'creation:talent:lengthened-creation'}): return None
+    mode = next(row.get('effect_choice') for row in rows if row.get('catalog_key') == key)
+    material_mode = next(row.get('effect_choice') for row in rows if row.get('catalog_key') == material)
+    if PLASMA_PROJECTION_BASE_MODES.get(mode) == plan.get('base_power') and material_mode == 'fire or burning object':
+        return mode
+    return None
+
+
 def material_body_duration(plan):
     """Reviewed fixed material configuration; unknown combinations stay manual."""
     if plan.get('base_power') != 'creation:alter': return None
@@ -298,6 +315,9 @@ def effective_base_duration(plan):
     """Duration before construction adjustments, including reviewed effect modes."""
     power = next((power for power in BASE_POWERS if power.key == plan.get('base_power')), None)
     if power is None: return 'instantaneous'
+    if plasma_projection_mode(plan):
+        return 'hour' if any(row.get('catalog_key') == 'creation:talent:lengthened-creation'
+            for row in plan.get('contributions', [])) else 'round'
     if power.key == 'creation:create':
         rows = plan.get('contributions', [])
         keys = [row.get('catalog_key') for row in rows]
@@ -1155,6 +1175,12 @@ def resolve_base_power(plan):
                 summary['failed_fortitude_damage'] = f'{2 * cl}d6'
                 summary['successful_fortitude_damage'] = f'1d6+{cl}'
                 summary['dissolution_damage_rules'] = 'Bypasses hardness, resistances and DR; a target reduced to 0 HP is disintegrated. Resolve targeting, saves, damage and destruction manually.'
+    if plasma_projection_mode(plan):
+        summary['power'] = 'Plasma Projection'
+        summary.pop('creation_review', None); summary.pop('alteration_review', None)
+        summary['plasma_weapon'] = 'Energy sword; the wielder is proficient. Requires a held hilt-like object or an existing melee weapon. Resolve the weapon statistics manually; no inventory weapon is created or altered automatically.'
+        summary['plasma_renewal'] = 'When duration expires, one additional SP renews it as a free action. The wielder can toggle the blade as a swift action. Spending and expiration are manual.'
+        summary['plasma_intensification'] = f'Optional: spend one additional SP as a swift action for one round to add {1 + max(0, (cl - 5) // 5)}d10 damage (Medium weapon), with 10-foot reach and adjacent attacks. Not included as a permanent damage bonus or upfront cost.'
     if power.key == 'destruction:blast':
         summary['damage_dice'] = cl if boost else cl // 2
         profile = destructive_blast_profile(plan)

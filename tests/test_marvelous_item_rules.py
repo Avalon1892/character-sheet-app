@@ -540,6 +540,20 @@ def test_instantaneous_duplicate_adds_two_sp_across_its_required_contributions()
         talent_construction_spell_points(magic_entry(child), reviewed_only=True) for child in missing) == 2
 
 
+@pytest.mark.parametrize('mode,base,sp', [('create a plasma blade', 'creation:create', 0), ('alter a melee weapon', 'creation:alter', 1)])
+def test_plasma_projection_mode_cost_and_base_mismatch_validation(mode, base, sp):
+    from app.marvelous_item_rules import talent_choice_spell_points, quote_marvelous_blueprint
+    key = 'creation:advanced-talent:plasma-projection'
+    assert talent_choice_spell_points(key, mode) == sp
+    item = dict(schema_version=1, sphere='Creation', base_power=base, caster_level=10, uses=1,
+        activation='standard', range_steps=0, duration_steps=0, unique_changes=0,
+        contributions=[dict(catalog_key=key, complexity=2+sp, additional_spell_points=sp, effect_choice=mode)])
+    quote_marvelous_blueprint(item)
+    item['base_power'] = 'creation:alter' if base == 'creation:create' else 'creation:create'
+    with pytest.raises(ValueError, match='Plasma Projection mode requires base power'):
+        quote_marvelous_blueprint(item)
+
+
 def test_create_materials_does_not_add_another_surcharge_to_required_lengthened_creation():
     from app.content import magic_entry
     from app.marvelous_item_rules import talent_construction_spell_points

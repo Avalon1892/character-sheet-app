@@ -178,6 +178,21 @@ def test_duplicate_does_not_inherit_divided_creation_multi_object_preview(instan
     assert 'object_count' not in result
 
 
+@pytest.mark.parametrize('mode,base', [('create a plasma blade', 'creation:create'), ('alter a melee weapon', 'creation:alter')])
+@pytest.mark.parametrize('lengthened,duration', [(False, '10 rounds'), (True, '10 hours')])
+def test_plasma_projection_has_reviewed_duration_and_manual_optional_intensification(mode, base, lengthened, duration):
+    rows = [dict(catalog_key='creation:advanced-talent:plasma-projection', effect_choice=mode),
+        dict(catalog_key='creation:material-talent:plasma-production-material', effect_choice='fire or burning object')]
+    if lengthened: rows.append(dict(catalog_key='creation:talent:lengthened-creation'))
+    result = resolve_base_power(plan(base, cl=10, contributions=rows))
+    assert result['power'] == 'Plasma Projection' and result['duration'] == duration
+    assert 'add 2d10' in result['plasma_intensification']
+    assert 'upfront cost' in result['plasma_intensification']
+    assert 'repair_or_destroy' not in result
+    rows[1]['effect_choice'] = 'electricity'
+    assert resolve_base_power(plan(base, cl=10, contributions=rows))['power'] != 'Plasma Projection'
+
+
 def test_ooze_originator_projects_chosen_hd_but_not_unselected_species_statistics():
     rows = [dict(catalog_key='creation:advanced-talent:ooze-originator-create', effect_choice='8 HD ooze'),
         dict(catalog_key='creation:material-talent:acidic-creation-material')]
