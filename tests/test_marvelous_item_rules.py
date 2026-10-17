@@ -486,6 +486,17 @@ def test_reviewed_creation_costs_use_real_catalog_identities(suffix, cost):
     assert entry and talent_construction_spell_points(entry, reviewed_only=True) == cost
 
 
+@pytest.mark.parametrize('suffix,cost', [('corp-criadhach-dbh', 1),
+    ('create-minds-think-alike-jester-s-hb', 1), ('fabricate', 1), ('permanent-change', 1),
+    ('magma-mastery-material', 0), ('mythical-material-maker-material', 0),
+    ('state-shift-alter', 0), ('costly-creation', 5)])
+def test_fixed_advanced_creation_costs_preserve_surcharges(suffix, cost):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_construction_spell_points
+    entry = magic_entry('creation:advanced-talent:' + suffix)
+    assert entry and talent_construction_spell_points(entry, reviewed_only=True) == cost
+
+
 @pytest.mark.parametrize('suffix,free,paid', [
     ('alter-talent:magnify-minimize-alter', 'one size category', 'additional size categories'),
     ('alter-talent:transparency-alter-utility', 'concentration', 'minutes per caster level'),

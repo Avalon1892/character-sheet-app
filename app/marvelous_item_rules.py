@@ -632,15 +632,20 @@ def talent_construction_spell_points(entry, *, reviewed_only=False):
         'enhancement:enhance-talent:mental-enhancement-enhance': 0,
         'life:talent:greater-restore-warden': 1,
         **{'creation:' + suffix: 1 for suffix in (
+            'advanced-talent:corp-criadhach-dbh', 'advanced-talent:create-minds-think-alike-jester-s-hb',
+            'advanced-talent:fabricate', 'advanced-talent:permanent-change',
             'alter-talent:change-material-alter', 'alter-talent:crack-alter-apoc',
             'alter-talent:forge-alter', 'alter-talent:rigidity-alter',
             'material-talent:acidic-creation-material', 'talent:larger-creation',
             'talent:lengthened-creation', 'talent:replication')},
         **{'creation:' + suffix: 0 for suffix in (
+            'advanced-talent:magma-mastery-material', 'advanced-talent:mythical-material-maker-material',
+            'advanced-talent:state-shift-alter',
             'material-talent:object-of-force-material',
             'material-talent:expanded-materials-material', 'talent:distant-creation-range',
             'talent:divided-creation-mass', 'talent:exquisite-detail-utility',
             'talent:transmuting-strike-strike-3pp')},
+        'creation:advanced-talent:costly-creation': 5,
         'life:talent:violent-recuperation-alienist-hb': 0,
         'life:talent:revitalize': 0,
         **{'life:' + suffix: 0 for suffix in (

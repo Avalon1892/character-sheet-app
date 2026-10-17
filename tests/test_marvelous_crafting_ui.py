@@ -1564,6 +1564,8 @@ def test_costly_creation_choice_inserts_complete_path_or_cancels_without_mutatio
     dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
     dialog.add_contribution()
     original = dialog.blueprint(); writes = repo._connection.total_changes
+    assert original['contributions'][0]['additional_spell_points'] == 5
+    assert original['contributions'][0]['complexity'] == 7
     monkeypatch.setattr(QInputDialog, 'getItem', lambda *args, **kwargs: ('', False))
     assert not dialog.add_required_contributions()
     assert dialog.blueprint() == original
@@ -1573,6 +1575,21 @@ def test_costly_creation_choice_inserts_complete_path_or_cancels_without_mutatio
     assert {'creation:advanced-talent:permanent-change', 'creation:alter-talent:forge-alter',
         'creation:alter-talent:change-material-alter', 'creation:material-talent:expanded-materials-material',
         'creation:talent:lengthened-creation'} <= {row['catalog_key'] for row in saved['contributions']}
+    dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and repo._connection.total_changes == writes
+
+
+@pytest.mark.parametrize('suffix,points', [('fabricate', 1), ('state-shift-alter', 0)])
+def test_advanced_creation_defaults_do_not_replace_manual_costs_on_reopen(composer, suffix, points):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Creation'); dialog.cl.setValue(20)
+    key = 'creation:advanced-talent:' + suffix
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    saved = dialog.blueprint()
+    assert saved['contributions'][0]['additional_spell_points'] == points
+    saved['contributions'][0].update(complexity=6, additional_spell_points=4)
     dialog.load_plan(saved)
     assert dialog.blueprint() == saved and repo._connection.total_changes == writes
 
