@@ -278,7 +278,7 @@ def test_talent_does_not_silently_supply_a_missing_base_sphere(crafter):
 
 def test_owned_catalog_identity_survives_display_name_override(crafter):
     repo, cid = crafter
-    entry = next(e for e in DEFAULT_CATALOG.magic_entries('Life') if e['category'] == 'Talent')
+    entry = next(e for e in DEFAULT_CATALOG.magic_entries('Life') if e['key'] == 'life:talent:deeper-healing')
     repo.add_spell(cid, 'My renamed talent', system='Sphere', school_or_sphere='Life',
                    catalog_key=entry['key'], catalog_category=entry['category'])
     service = CraftingService(repo, cid)
@@ -286,6 +286,19 @@ def test_owned_catalog_identity_survives_display_name_override(crafter):
                 duration_steps=0, contributions=[dict(catalog_key=entry['key'], complexity=1)])
     result = service.marvelous_plan_requirements(plan)
     assert result.eligible and not result.bypassed
+
+
+def test_adrenaline_construction_requires_explicit_mode_even_when_owned(crafter):
+    repo, cid = crafter
+    key = 'life:talent:adrenaline-surge'
+    repo.add_spell(cid, 'Adrenaline Surge', system='Sphere', school_or_sphere='Life',
+        catalog_key=key, catalog_category='Talent')
+    plan = dict(sphere='Life', base_power='life:cure', caster_level=5, range_steps=0,
+        duration_steps=0, contributions=[dict(catalog_key=key, complexity=2, additional_spell_points=1)])
+    service = CraftingService(repo, cid)
+    assert any('choose the effect mode' in message for message in service.marvelous_plan_requirements(plan).blockers)
+    plan['contributions'][0]['effect_choice'] = 'surge one ally'
+    assert service.marvelous_plan_requirements(plan).eligible
 
 
 def test_foreign_catalog_contribution_is_rejected(crafter):
@@ -299,7 +312,7 @@ def test_foreign_catalog_contribution_is_rejected(crafter):
 
 def test_combined_requirements_check_all_spheres_and_deduplicate_shared_talents(crafter):
     repo, cid = crafter
-    entry = next(e for e in DEFAULT_CATALOG.magic_entries('Life') if e['category'] == 'Talent')
+    entry = next(e for e in DEFAULT_CATALOG.magic_entries('Life') if e['key'] == 'life:talent:deeper-healing')
     plan = dict(sphere='Life', base_power='life:cure', caster_level=5, range_steps=0,
                 duration_steps=0, contributions=[dict(catalog_key=entry['key'], complexity=1)])
     extra = dict(plan)
