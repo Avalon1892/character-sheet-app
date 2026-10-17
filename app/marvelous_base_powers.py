@@ -116,6 +116,9 @@ LIFE_VITALITY_EFFECTS = {
     'life:vitality-talent:sustaining-vitality-vitality': 'AC and saving throws: +2 circumstance.',
 }
 TALENT_EFFECT_SP_CHOICES = {
+    'time:talent:age-time': {'creature age with concentration': 1, 'creature age for minutes per caster level': 2},
+    'time:talent:broken-time-time': {'concentration': 0, 'rounds per caster level': 1},
+    'time:talent:rapid-response-time': {'concentration': 0, 'ten minutes per caster level': 1},
     'life:talent:adrenaline-surge': {'surge one ally': 1, 'surge multiple allies': 2},
     'life:talent:taste-of-victory': {'ordinary qualifying hit': 1, 'critical hit, unconscious or zero-HP target': 0},
     'life:talent:diagnose-utility': {'detect conditions': 0, 'condition details as standard action': 0,

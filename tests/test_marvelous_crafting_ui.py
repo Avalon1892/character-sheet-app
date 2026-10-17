@@ -1496,6 +1496,31 @@ def test_free_time_modifier_defaults_preserve_manual_saved_costs(composer, suffi
     assert repo._connection.total_changes == writes
 
 
+@pytest.mark.parametrize('suffix,low,high', [
+    ('age-time', 'creature age with concentration', 'creature age for minutes per caster level'),
+    ('broken-time-time', 'concentration', 'rounds per caster level'),
+    ('rapid-response-time', 'concentration', 'ten minutes per caster level'),
+])
+def test_time_concentration_mode_costs_update_without_rewriting_saved_inputs(composer, suffix, low, high):
+    from app.marvelous_item_rules import quote_marvelous_blueprint
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Time'); dialog.cl.setValue(10)
+    key = 'time:talent:' + suffix
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    mode = dialog.table.cellWidget(0, 5)
+    mode.setCurrentIndex(mode.findData(low))
+    before = quote_marvelous_blueprint(dialog.blueprint())[1].market_price_gp
+    mode.setCurrentIndex(mode.findData(high))
+    saved = dialog.blueprint()
+    assert quote_marvelous_blueprint(saved)[1].market_price_gp - before == 4000
+    assert high in dialog.cost_formula.toolTip()
+    dialog.load_plan(saved)
+    assert dialog.blueprint() == saved
+    assert repo._connection.total_changes == writes
+
+
 def test_cancel_alternative_energy_promotion_preserves_choice_and_manual_cost(composer, monkeypatch):
     from PySide6.QtWidgets import QMessageBox
     from app.marvelous_base_powers import ENERGY_ENHANCEMENT_KEY, ALTERNATIVE_ENERGY_KEY

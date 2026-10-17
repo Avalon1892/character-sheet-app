@@ -373,6 +373,20 @@ def test_reviewed_free_time_modifiers_have_catalog_backed_costs(suffix):
     assert entry and talent_construction_spell_points(entry, reviewed_only=True) == 0
 
 
+@pytest.mark.parametrize('suffix,mode,points', [
+    ('age-time', 'creature age with concentration', 1),
+    ('age-time', 'creature age for minutes per caster level', 2),
+    ('broken-time-time', 'concentration', 0), ('broken-time-time', 'rounds per caster level', 1),
+    ('rapid-response-time', 'concentration', 0), ('rapid-response-time', 'ten minutes per caster level', 1),
+])
+def test_time_concentration_modes_have_explicit_reviewed_costs(suffix, mode, points):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_choice_spell_points
+    key = 'time:talent:' + suffix
+    assert magic_entry(key)
+    assert talent_choice_spell_points(key, mode) == points
+
+
 @pytest.mark.parametrize('key,sphere,base', [
     ('time:talent:time-strike-strike', 'Time', 'time:haste'),
     ('life:talent:clarified-strike-strike', 'Life', 'life:cure')])
