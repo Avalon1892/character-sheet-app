@@ -54,7 +54,7 @@ def test_item_block_escapes_manual_html():
 
 def test_unreviewed_sp_cost_is_visible_without_changing_quote_or_manual_lock():
     plan = blueprint()
-    plan['contributions'] = [dict(catalog_key='life:talent:fount-of-life', complexity=3, additional_spell_points=2)]
+    plan['contributions'] = [dict(catalog_key='life:talent:empathic-healing', complexity=3, additional_spell_points=2)]
     fields = item_card_fields(plan, name='Gem', slot='', description='')
     assert 'SP cost requires review' in fields['construction_requirements']
     assert fields['price'] == '8,000.00 gp'

@@ -426,6 +426,14 @@ def advanced_construction_blockers(contributions, caster_level, *, display_names
            for left in contributions if left['catalog_key'] == 'protection:advanced-talent:mobile-ward-alienist-hb'
            for right in contributions if right['catalog_key'] == 'protection:advanced-talent:permanent-ward'):
         blockers.append('Mobile Ward cannot benefit from Permanent Ward in the same effect.')
+    for left_key, right_key, message in (
+        ('life:talent:affliction', 'life:talent:fount-of-life', 'Affliction cannot be combined with Fount of Life.'),
+        ('life:talent:instill-life-instill', 'life:talent:empathic-healing', 'Instill Life cannot be augmented by Empathic Healing.'),
+    ):
+        if any(contributions_can_coexist(left, right)
+               for left in contributions if left['catalog_key'] == left_key
+               for right in contributions if right['catalog_key'] == right_key):
+            blockers.append(message)
     for key in sorted(keys):
         requirement = ADVANCED_CONSTRUCTION_REQUIREMENTS.get(key)
         if requirement is None: continue
@@ -586,6 +594,11 @@ def talent_construction_spell_points(entry, *, reviewed_only=False):
         'life:talent:greater-restore-warden': 1,
         'life:talent:violent-recuperation-alienist-hb': 0,
         'life:talent:revitalize': 0,
+        **{'life:' + suffix: 0 for suffix in (
+            'cure-talent:restore-capacity-cure', 'cure-talent:restore-health-cure',
+            'cure-talent:restore-senses-cure', 'cure-talent:restore-spirit-cure',
+            'talent:affliction', 'talent:clarified-strike-strike', 'talent:fount-of-life',
+            'talent:instill-life-instill', 'talent:ranged-healing-range', 'talent:sanctify')},
         'life:talent:mass-healing-mass': 1,
         'life:talent:restorative-cure': 1,
         'life:talent:self-renewal': 1,

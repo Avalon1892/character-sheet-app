@@ -396,6 +396,24 @@ def test_violent_recuperation_adds_no_sp_beyond_its_life_effect():
     assert talent_construction_spell_points(magic_entry('life:talent:violent-recuperation-alienist-hb'), reviewed_only=True) == 0
 
 
+def test_all_ordinary_life_costs_except_empathic_reduction_are_reviewed():
+    from app.content import DEFAULT_CATALOG
+    from app.marvelous_item_rules import talent_construction_spell_points
+    entries = [e for e in DEFAULT_CATALOG.magic_entries('Life') if 'Talent' in e['category'] and 'Advanced' not in e['category']]
+    assert [e['key'] for e in entries if talent_construction_spell_points(e, reviewed_only=True) is None] == ['life:talent:empathic-healing']
+
+
+@pytest.mark.parametrize('left,right', [('affliction', 'fount-of-life'), ('instill-life-instill', 'empathic-healing')])
+def test_incompatible_life_effects_are_blocked_unless_mutually_exclusive(left, right):
+    from app.marvelous_item_rules import advanced_construction_blockers
+    rows = [dict(catalog_key='life:talent:' + suffix) for suffix in (left, right)]
+    assert len(advanced_construction_blockers(rows, 10)) == 1
+    for row in rows: row.update(alternative=True, alternative_group=1)
+    assert not advanced_construction_blockers(rows, 10)
+    rows[1]['alternative_group'] = 2
+    assert advanced_construction_blockers(rows, 10)
+
+
 @pytest.mark.parametrize('suffix,cost', [('flash-of-excellence-sm', 1),
     ('power-parasitism-alienist-hb', 1), ('ranged-enhancement-range', 0)])
 def test_enhancement_timing_and_range_modifiers_have_reviewed_sp_defaults(suffix, cost):
