@@ -632,6 +632,9 @@ def talent_construction_spell_points(entry, *, reviewed_only=False):
         'time:talent:mass-time-mass': 1,
         'time:talent:augment-healing': 1,
         'time:talent:causality-time': 1,
+        **{'time:talent:' + suffix: 0 for suffix in (
+            'improved-haste', 'improved-slow', 'instill-time-instill', 'lingering-time-3pp',
+            'ranged-time-range', 'time-strike-strike', 'time-zone')},
         'time:talent:delay-pain-time': 1,
         'time:talent:eject-time': 1,
         'time:talent:fast-time-time': 1,
@@ -1008,6 +1011,9 @@ def quote_marvelous_blueprint(plan):
         raise ValueError('Alternative-effect flags must be boolean.')
     groups = {}
     for contribution in plan['contributions']:
+        if (contribution.get('catalog_key') in {'time:talent:time-strike-strike', 'life:talent:clarified-strike-strike'}
+                and plan['activation'] in {'move', 'swift'}):
+            raise ValueError('Strike talents cannot reduce casting below a standard action.')
         if (contribution.get('catalog_key') == 'enhancement:advanced-talent:inherent-enhancement-enhance-archmagi-s-hb'
                 and contribution.get('effect_choice', '').startswith('temporary untyped bonus: ')
                 and (plan.get('permanent') or plan['duration_steps'] > 0)):

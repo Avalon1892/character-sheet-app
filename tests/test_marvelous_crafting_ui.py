@@ -1479,6 +1479,23 @@ def test_revitalize_live_preview_replaces_direct_healing_and_preserves_reopen(co
     assert repo._connection.total_changes == writes
 
 
+@pytest.mark.parametrize('suffix', ['improved-haste', 'improved-slow', 'instill-time-instill',
+    'lingering-time-3pp', 'ranged-time-range', 'time-strike-strike', 'time-zone'])
+def test_free_time_modifier_defaults_preserve_manual_saved_costs(composer, suffix):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Time'); dialog.cl.setValue(10)
+    key = 'time:talent:' + suffix
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    saved = dialog.blueprint()
+    assert saved['contributions'][0]['additional_spell_points'] == 0
+    saved['contributions'][0].update(complexity=4, additional_spell_points=2)
+    dialog.load_plan(saved)
+    assert dialog.blueprint() == saved
+    assert repo._connection.total_changes == writes
+
+
 def test_cancel_alternative_energy_promotion_preserves_choice_and_manual_cost(composer, monkeypatch):
     from PySide6.QtWidgets import QMessageBox
     from app.marvelous_base_powers import ENERGY_ENHANCEMENT_KEY, ALTERNATIVE_ENERGY_KEY

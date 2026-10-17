@@ -364,6 +364,30 @@ def test_unknown_sp_default_is_distinct_from_reviewed_free_without_changing_draf
     assert talent_construction_spell_points(free, reviewed_only=True) == 0
 
 
+@pytest.mark.parametrize('suffix', ['improved-haste', 'improved-slow', 'instill-time-instill',
+    'lingering-time-3pp', 'ranged-time-range', 'time-strike-strike', 'time-zone'])
+def test_reviewed_free_time_modifiers_have_catalog_backed_costs(suffix):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_construction_spell_points
+    entry = magic_entry('time:talent:' + suffix)
+    assert entry and talent_construction_spell_points(entry, reviewed_only=True) == 0
+
+
+@pytest.mark.parametrize('key,sphere,base', [
+    ('time:talent:time-strike-strike', 'Time', 'time:haste'),
+    ('life:talent:clarified-strike-strike', 'Life', 'life:cure')])
+def test_strike_item_casting_cannot_be_shortened_below_standard(key, sphere, base):
+    from app.marvelous_item_rules import quote_marvelous_blueprint
+    item = dict(schema_version=1, sphere=sphere, base_power=base, caster_level=10,
+        activation='standard', uses=1, range_steps=0, duration_steps=0, unique_changes=0,
+        contributions=[dict(catalog_key=key, complexity=1, additional_spell_points=0)])
+    assert quote_marvelous_blueprint(item)
+    for activation in ('move', 'swift'):
+        item['activation'] = activation
+        with pytest.raises(ValueError, match='below a standard action'):
+            quote_marvelous_blueprint(item)
+
+
 def test_every_bundled_life_vitality_talent_has_reviewed_free_sp_cost():
     from app.content import DEFAULT_CATALOG
     from app.marvelous_base_powers import LIFE_VITALITY_EFFECTS
