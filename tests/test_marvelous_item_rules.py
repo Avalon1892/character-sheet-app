@@ -389,7 +389,8 @@ def test_time_concentration_modes_have_explicit_reviewed_costs(suffix, mode, poi
 
 @pytest.mark.parametrize('key,sphere,base', [
     ('time:talent:time-strike-strike', 'Time', 'time:haste'),
-    ('life:talent:clarified-strike-strike', 'Life', 'life:cure')])
+    ('life:talent:clarified-strike-strike', 'Life', 'life:cure'),
+    ('creation:talent:transmuting-strike-strike-3pp', 'Creation', 'creation:alter')])
 def test_strike_item_casting_cannot_be_shortened_below_standard(key, sphere, base):
     from app.marvelous_item_rules import quote_marvelous_blueprint
     item = dict(schema_version=1, sphere=sphere, base_power=base, caster_level=10,
@@ -400,6 +401,22 @@ def test_strike_item_casting_cannot_be_shortened_below_standard(key, sphere, bas
         item['activation'] = activation
         with pytest.raises(ValueError, match='below a standard action'):
             quote_marvelous_blueprint(item)
+
+
+@pytest.mark.parametrize('suffix,cost', [
+    ('alter-talent:change-material-alter', 1), ('alter-talent:crack-alter-apoc', 1),
+    ('alter-talent:forge-alter', 1), ('alter-talent:rigidity-alter', 1),
+    ('material-talent:acidic-creation-material', 1), ('talent:larger-creation', 1),
+    ('talent:lengthened-creation', 1), ('talent:replication', 1),
+    ('material-talent:expanded-materials-material', 0), ('talent:distant-creation-range', 0),
+    ('talent:divided-creation-mass', 0), ('talent:exquisite-detail-utility', 0),
+    ('talent:transmuting-strike-strike-3pp', 0),
+])
+def test_reviewed_creation_costs_use_real_catalog_identities(suffix, cost):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_construction_spell_points
+    entry = magic_entry('creation:' + suffix)
+    assert entry and talent_construction_spell_points(entry, reviewed_only=True) == cost
 
 
 def test_every_bundled_life_vitality_talent_has_reviewed_free_sp_cost():

@@ -1496,6 +1496,24 @@ def test_free_time_modifier_defaults_preserve_manual_saved_costs(composer, suffi
     assert repo._connection.total_changes == writes
 
 
+@pytest.mark.parametrize('suffix,cost', [('talent:larger-creation', 1),
+    ('talent:divided-creation-mass', 0), ('material-talent:expanded-materials-material', 0),
+    ('alter-talent:change-material-alter', 1), ('material-talent:acidic-creation-material', 1)])
+def test_creation_cost_defaults_update_and_preserve_manual_overrides(composer, suffix, cost):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Creation'); dialog.cl.setValue(10)
+    key = 'creation:' + suffix
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    saved = dialog.blueprint()
+    assert saved['contributions'][0]['additional_spell_points'] == cost
+    saved['contributions'][0].update(complexity=5, additional_spell_points=3)
+    dialog.load_plan(saved)
+    assert dialog.blueprint() == saved
+    assert repo._connection.total_changes == writes
+
+
 @pytest.mark.parametrize('suffix,low,high', [
     ('age-time', 'creature age with concentration', 'creature age for minutes per caster level'),
     ('broken-time-time', 'concentration', 'rounds per caster level'),
