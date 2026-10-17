@@ -883,11 +883,15 @@ def crafting_boon_details(plan):
     if key == 'crafting:ley-linked':
         return ('Ley-Charged: atop a leyline, the GM chooses +2 effective caster levels, +1 to the normal effect/save DC, or a comparable benefit. This conditional use bonus is not a permanent construction CL or an automatic price adjustment.',)
     if key == 'crafting:cryptwood-artifice':
+        surcharge = ()
+        if marvelous_item_weight(plan) is not None:
+            cost = Fraction(str(plan['base_weight_lb'])) * 25
+            surcharge = (f'Conditional Greenwood surcharge: {float(cost):g} gp = {plan["base_weight_lb"]:g} original lb × 25 gp/lb. Applies only to an eligible wooden/masterwork item, not another special material; add base/masterwork costs separately. Not included in the magical-effect quote.',)
         return (
             'Imbued (greenwood): suitable wooden or mostly wooden items gain greenwood benefits; items already made from another special material are ineligible. Do not assume the custom device is a suitable wooden item.',
             'Greenwood: while damp and touching fertile soil, repairs 1 item HP per hour, including breaks; broken condition repairs during the first hour. Takes one-quarter fire damage. Wood-shaping magic lasts twice as long. Water/soil exposure and repairs remain manual; no time tracking is added.',
             'Material cost review: Imbued charges half the normal special-material surcharge. Greenwood normally adds 50 gp per original pound to a masterwork item, so review 25 gp per original pound plus the applicable base/masterwork costs separately. These underlying-item costs are not included in the magical-effect quote.',
-        )
+        ) + surcharge
     return ()
 
 

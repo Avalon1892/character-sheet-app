@@ -841,6 +841,18 @@ def test_reviewed_time_one_spell_point_construction_costs(suffix):
     assert talent_construction_spell_points(entry) == 1
 
 
+@pytest.mark.parametrize('weight,cost', [(0, '0 gp'), (2, '50 gp'), (2.5, '62.5 gp')])
+def test_cryptwood_conditional_material_surcharge_uses_original_not_bulky_weight(weight, cost):
+    from app.marvelous_item_rules import crafting_boon_details
+    plan = dict(crafting_tradition={'key': 'crafting:cryptwood-artifice'}, base_weight_lb=weight,
+        drawbacks=[dict(source='published', catalog_key='crafting:bulky')])
+    details = '\n'.join(crafting_boon_details(plan))
+    assert f'Conditional Greenwood surcharge: {cost}' in details
+    assert 'Not included in the magical-effect quote' in details
+    plan['base_weight_lb'] = None
+    assert 'Conditional Greenwood surcharge:' not in '\n'.join(crafting_boon_details(plan))
+
+
 def test_cryptwood_boon_explains_material_benefits_and_unpriced_base_cost():
     from app.marvelous_item_rules import crafting_boon_details
     details = '\n'.join(crafting_boon_details({'crafting_tradition': {'key': 'crafting:cryptwood-artifice'}}))

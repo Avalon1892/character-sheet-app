@@ -1651,6 +1651,23 @@ def test_dissolution_mode_automatically_integrates_correct_potent_cost(composer,
     assert dialog.blueprint() == saved and repo._connection.total_changes == writes
 
 
+def test_greenwood_surcharge_updates_live_without_changing_magic_quote_or_locked_weight(composer):
+    dialog, repo, cid = composer
+    dialog.crafting_tradition = dict(key='crafting:cryptwood-artifice', name='Cryptwood Artifice', description='Imbued (greenwood)')
+    dialog.area_bound.setCurrentIndex(dialog.area_bound.findData('distance'))
+    writes = repo._connection.total_changes
+    dialog.base_weight.setValue(2)
+    before = dialog.quotation()[1].market_price_gp
+    assert 'Conditional Greenwood surcharge: 50 gp' in dialog.item_preview.toPlainText()
+    dialog.display_overrides['weight'] = dict(locked=True, value='My displayed weight')
+    dialog.base_weight.setValue(2.5)
+    assert 'Conditional Greenwood surcharge: 62.5 gp' in dialog.item_preview.toPlainText()
+    assert 'My displayed weight' in dialog.item_preview.toPlainText()
+    assert dialog.quotation()[1].market_price_gp == before
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and repo._connection.total_changes == writes
+
+
 def test_instantaneous_duplicate_inserts_complete_chain_and_reopens_without_writes(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Creation'); dialog.cl.setValue(10)
