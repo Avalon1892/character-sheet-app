@@ -271,6 +271,26 @@ def test_dark_meld_replaces_darkness_without_creating_an_area_or_changing_item_d
         resolve_base_power(plan('dark:meld', cl=10, contributions=rows))
 
 
+@pytest.mark.parametrize('suffix,field,value', [('clearsight-meld', 'clearsight', 'Immunity'),
+    ('dark-slaughter-meld', 'precision_damage', '2d6'), ('edgelord-meld-jester-s-hb', 'demoralize_action', 'Swift action'),
+    ('feed-on-darkness-meld', 'fast_healing', 2), ('hide-in-darkness-meld', 'stealth_permission', 'May attempt'),
+    ('step-through-darkness-meld', 'teleport_distance', '50 ft.'), ('voidwatcher-meld-bap', 'shadow_blindsense_range', '50 ft.')])
+def test_single_dark_meld_describes_its_actual_conditional_payload(suffix, field, value):
+    rows = [dict(catalog_key='dark:meld-talent:' + suffix)]
+    result = resolve_base_power(plan('dark:meld', cl=10, contributions=rows))
+    assert str(result[field]).startswith(str(value))
+    assert result['duration'] == '10 rounds' and 'radius' not in result
+    rows.append(dict(catalog_key='dark:talent:greater-meld'))
+    assert field not in resolve_base_power(plan('dark:meld', cl=10, contributions=rows))
+
+
+def test_dark_meld_cl_thresholds_do_not_change_item_activation_or_duration():
+    for cl, action, bonus in ((9, 'Move action', 2), (10, 'Swift action', 3)):
+        result = resolve_base_power(plan('dark:meld', cl=cl, contributions=[dict(catalog_key='dark:meld-talent:edgelord-meld-jester-s-hb')]))
+        assert result['demoralize_action'] == action and result['intimidate_bonus'] == bonus
+        assert result['duration'] == f'{cl} rounds'
+
+
 def test_ooze_originator_projects_chosen_hd_but_not_unselected_species_statistics():
     rows = [dict(catalog_key='creation:advanced-talent:ooze-originator-create', effect_choice='8 HD ooze'),
         dict(catalog_key='creation:material-talent:acidic-creation-material')]

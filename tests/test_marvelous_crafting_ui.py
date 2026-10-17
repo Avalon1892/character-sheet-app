@@ -1826,6 +1826,29 @@ def test_add_effects_converts_single_dark_meld_and_preserves_manual_saved_cost(c
     assert dialog.blueprint() == saved and repo._connection.total_changes == writes
 
 
+@pytest.mark.parametrize('suffix,initial,changed', [
+    ('feed-on-darkness-meld', 'Fast Healing: 2', 'Fast Healing: 3'),
+    ('step-through-darkness-meld', 'Teleport Distance: 50 ft.', 'Teleport Distance: 70 ft.')])
+def test_dark_meld_live_payload_changes_with_cl_but_respects_description_lock(composer, suffix, initial, changed):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Dark'); dialog.cl.setValue(10)
+    dialog.base_power.setCurrentIndex(dialog.base_power.findData('dark:meld'))
+    key = 'dark:meld-talent:' + suffix
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    assert initial in dialog.item_preview.toPlainText()
+    dialog.cl.setValue(20)
+    assert changed in dialog.item_preview.toPlainText()
+    dialog.card_locks['description'].setChecked(True)
+    dialog.card_edits['description'].setPlainText('Manual meld description')
+    dialog.cl.setValue(15)
+    assert 'Manual meld description' in dialog.item_preview.toPlainText()
+    assert changed not in dialog.item_preview.toPlainText()
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and repo._connection.total_changes == writes
+
+
 def test_dark_greater_wall_live_geometry_costs_and_reopen(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Dark'); dialog.cl.setValue(10)

@@ -1430,6 +1430,27 @@ def resolve_base_power(plan):
             entry = magic_entry(melds[0]['catalog_key'])
             summary['power'] = entry['name']
             summary['meld_resolution'] = 'Applies the selected meld, not an area of darkness. Item duration/range apply; resolve recipient eligibility and conditional benefits manually.'
+            key = melds[0]['catalog_key']
+            if key == 'dark:meld-talent:clearsight-meld':
+                summary['clearsight'] = 'Immunity to negative effects of the creator’s darkness/blot talents. Does not grant darkvision; existing darkvision can see through Pure Darkness.'
+            elif key == 'dark:meld-talent:dark-slaughter-meld':
+                summary['precision_damage'] = f'{1 + cl // 10}d6'
+                summary['precision_conditions'] = 'Only within the creator’s darkness, against a flanked target, a target denied Dex to AC, or one unable to perceive the attacker. Stacks with sneak attack; not multiplied on a critical hit.'
+            elif key == 'dark:meld-talent:edgelord-meld-jester-s-hb':
+                summary['intimidate_bonus'] = 1 + cl // 5
+                summary['demoralize_action'] = 'Swift action' if cl >= 10 else 'Move action'
+                summary['edgelord_condition'] = 'Benefits apply while shrouded in the creator’s darkness. Demoralize action is not the item activation action.'
+            elif key == 'dark:meld-talent:feed-on-darkness-meld':
+                summary['fast_healing'] = 1 + cl // 10
+                summary['healing_condition'] = 'Only while within the creator’s darkness. Single talent instance; repeated-talent scaling and ongoing healing are manual.'
+            elif key == 'dark:meld-talent:hide-in-darkness-meld':
+                summary['stealth_permission'] = 'May attempt to hide while observed, in dim light or darkness within the creator’s darkness. Does not make the target invisible or automatically succeed at Stealth.'
+            elif key == 'dark:meld-talent:step-through-darkness-meld':
+                summary['teleport_distance'] = f'{30 + 10 * (cl // 5)} ft.'
+                summary['teleport_conditions'] = 'Move action; both endpoints must lie within the creator’s darkness. Carries up to a heavy load of equipment. Does not add a permanent movement mode.'
+            elif key == 'dark:meld-talent:voidwatcher-meld-bap':
+                summary['shadow_blindsense_range'] = f'{25 + 5 * (cl // 2)} ft.'
+                summary['shadow_detection'] = 'Detects things casting shadows; anything inside or touching the creator’s darkness counts as within range. Roll Perception twice and take the higher result to notice things in dim light/darkness.'
         else:
             summary['power'] = 'Modified meld — manual resolution'
             summary['meld_resolution'] = 'Resolve modifier interactions and recipient eligibility manually; this power does not create an area of darkness.'
