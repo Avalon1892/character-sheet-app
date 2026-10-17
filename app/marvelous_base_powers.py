@@ -288,6 +288,17 @@ def base_powers(sphere):
     return tuple(power for power in BASE_POWERS if power.sphere.casefold() == sphere.casefold())
 
 
+def shadowed_mien_mode(plan):
+    if plan.get('base_power') != 'dark:darkness': return None
+    key = 'dark:blot-darkness-shadow-talent:shadowed-mien-shadow'
+    rows = plan.get('contributions', [])
+    keys = [row.get('catalog_key') for row in rows]
+    if (key not in keys or len(keys) != len(set(keys)) or any(row.get('alternative') for row in rows)
+            or not set(keys) <= {key, 'dark:advanced-talent:lightless-penumbra-shadow'}): return None
+    mode = next(row.get('effect_choice') for row in rows if row.get('catalog_key') == key)
+    return mode if mode in TALENT_EFFECT_SP_CHOICES[key] else None
+
+
 def plasma_projection_mode(plan):
     rows = plan.get('contributions', [])
     key, material = 'creation:advanced-talent:plasma-projection', 'creation:material-talent:plasma-production-material'
@@ -323,6 +334,8 @@ def effective_base_duration(plan):
     """Duration before construction adjustments, including reviewed effect modes."""
     power = next((power for power in BASE_POWERS if power.key == plan.get('base_power')), None)
     if power is None: return 'instantaneous'
+    if mode := shadowed_mien_mode(plan):
+        return 'concentration' if mode.startswith('concentration') else 'ten-minutes'
     if plasma_projection_mode(plan):
         return 'hour' if any(row.get('catalog_key') == 'creation:talent:lengthened-creation'
             for row in plan.get('contributions', [])) else 'round'
@@ -1387,5 +1400,16 @@ def resolve_base_power(plan):
         else:
             summary['power'] = 'Modified Darkness — manual resolution'
             summary['darkness_review'] = 'Selected talents may replace darkness or change its geometry, duration or targets. Resolve those interactions before assuming the base radius.'
+        if mode := shadowed_mien_mode(plan):
+            summary['power'] = 'Shadowed Mien'
+            summary.pop('darkness_review', None)
+            summary['social_competence_bonus'] = f'+{cl // 2} on Bluff to lie or feint, and Intimidate to demoralize.'
+            summary['sense_motive_hunch_dc_increase'] = cl
+            summary['shadowed_mien_visibility'] = 'Conceals appearance and intentions; target sees out normally. Clearsight and see in darkness defeat the concealment and its bonuses against those observers; darkvision does not.'
+            if 'temporary HP' in mode: summary['temporary_hit_points'] = cl
+            if 'dark:advanced-talent:lightless-penumbra-shadow' in keys:
+                summary['power'] = 'Lightless Penumbra'
+                summary['light_pattern_vision_save_bonus'] = cl
+                summary['daylight_protection'] = 'Protects against normal/magical daylight; treated as averting eyes against gaze attacks without the usual penalties. Resolve eligibility and saves manually.'
     if power.key == 'alteration:shapeshift': summary['traits'] = 1 + cl // 5
     return summary

@@ -1745,6 +1745,27 @@ def test_dark_advanced_cost_modes_include_prerequisites_and_reopen_without_write
     assert dialog.blueprint() == saved and repo._connection.total_changes == writes
 
 
+@pytest.mark.parametrize('penumbra', [False, True])
+def test_shadowed_mien_live_card_tracks_mode_cl_and_reopened_description(composer, penumbra):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Dark'); dialog.cl.setValue(10)
+    key = 'dark:advanced-talent:lightless-penumbra-shadow' if penumbra else 'dark:blot-darkness-shadow-talent:shadowed-mien-shadow'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution(); assert dialog.add_required_contributions()
+    choice = dialog.table.cellWidget(1 if penumbra else 0, 5)
+    choice.setCurrentIndex(choice.findData('ten minutes per caster level with temporary HP'))
+    text = dialog.item_preview.toPlainText()
+    assert 'Duration 100 minutes' in text and 'Temporary Hit Points: 10' in text, dialog.result.text()
+    dialog.cl.setValue(12)
+    text = dialog.item_preview.toPlainText()
+    assert 'Duration 120 minutes' in text and 'Temporary Hit Points: 12' in text
+    assert 'Social Competence Bonus: +6' in text
+    if penumbra: assert 'Light Pattern Vision Save Bonus: 12' in text
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and repo._connection.total_changes == writes
+
+
 def test_dark_greater_wall_live_geometry_costs_and_reopen(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Dark'); dialog.cl.setValue(10)

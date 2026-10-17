@@ -243,6 +243,23 @@ def test_umbral_burst_rejects_duration_adjustments_and_extenders(change):
         resolve_base_power(item)
 
 
+@pytest.mark.parametrize('mode,duration,temp', [('concentration', 'Concentration', False),
+    ('ten minutes per caster level', '100 minutes', False), ('concentration with temporary HP', 'Concentration', True),
+    ('ten minutes per caster level with temporary HP', '100 minutes', True)])
+@pytest.mark.parametrize('penumbra', [False, True])
+def test_shadowed_mien_modes_update_duration_bonuses_and_optional_hp(mode, duration, temp, penumbra):
+    rows = [dict(catalog_key='dark:blot-darkness-shadow-talent:shadowed-mien-shadow', effect_choice=mode)]
+    if penumbra: rows.append(dict(catalog_key='dark:advanced-talent:lightless-penumbra-shadow'))
+    result = resolve_base_power(plan('dark:darkness', cl=10, contributions=rows))
+    assert result['duration'] == duration and 'radius' not in result
+    assert result['social_competence_bonus'].startswith('+5')
+    assert result['sense_motive_hunch_dc_increase'] == 10
+    assert result.get('temporary_hit_points') == (10 if temp else None)
+    if penumbra: assert result['light_pattern_vision_save_bonus'] == 10
+    rows[0]['alternative'] = True
+    assert 'social_competence_bonus' not in resolve_base_power(plan('dark:darkness', cl=10, contributions=rows))
+
+
 def test_ooze_originator_projects_chosen_hd_but_not_unselected_species_statistics():
     rows = [dict(catalog_key='creation:advanced-talent:ooze-originator-create', effect_choice='8 HD ooze'),
         dict(catalog_key='creation:material-talent:acidic-creation-material')]
