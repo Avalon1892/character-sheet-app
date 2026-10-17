@@ -1514,6 +1514,32 @@ def test_creation_cost_defaults_update_and_preserve_manual_overrides(composer, s
     assert repo._connection.total_changes == writes
 
 
+@pytest.mark.parametrize('suffix,free,paid', [
+    ('alter-talent:magnify-minimize-alter', 'one size category', 'additional size categories'),
+    ('alter-talent:transparency-alter-utility', 'concentration', 'minutes per caster level'),
+    ('talent:mass-liquid-generation', 'five cubic feet per Small object', '125 cubic feet of non-harmful liquid per Small object'),
+    ('talent:potent-alteration', 'enhanced repair or destroy', 'affect magical, attended or construct target'),
+])
+def test_creation_mode_changes_update_quote_and_keep_saved_choice(composer, suffix, free, paid):
+    from app.marvelous_item_rules import quote_marvelous_blueprint
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Creation'); dialog.cl.setValue(10)
+    key = 'creation:' + suffix
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    mode = dialog.table.cellWidget(0, 5)
+    mode.setCurrentIndex(mode.findData(free))
+    before = quote_marvelous_blueprint(dialog.blueprint())[1].market_price_gp
+    mode.setCurrentIndex(mode.findData(paid))
+    saved = dialog.blueprint()
+    assert quote_marvelous_blueprint(saved)[1].market_price_gp - before == 4000
+    assert paid in dialog.cost_formula.toolTip()
+    dialog.load_plan(saved)
+    assert dialog.blueprint() == saved
+    assert repo._connection.total_changes == writes
+
+
 @pytest.mark.parametrize('suffix,low,high', [
     ('age-time', 'creature age with concentration', 'creature age for minutes per caster level'),
     ('broken-time-time', 'concentration', 'rounds per caster level'),

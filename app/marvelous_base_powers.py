@@ -116,6 +116,12 @@ LIFE_VITALITY_EFFECTS = {
     'life:vitality-talent:sustaining-vitality-vitality': 'AC and saving throws: +2 circumstance.',
 }
 TALENT_EFFECT_SP_CHOICES = {
+    'creation:alter-talent:magnify-minimize-alter': {'one size category': 0, 'additional size categories': 1},
+    'creation:alter-talent:transparency-alter-utility': {'concentration': 0, 'minutes per caster level': 1},
+    'creation:talent:mass-liquid-generation': {'five cubic feet per Small object': 0,
+        '125 cubic feet of non-harmful liquid per Small object': 1},
+    'creation:talent:potent-alteration': {'enhanced repair or destroy': 0,
+        'affect magical, attended or construct target': 1},
     'time:talent:age-time': {'creature age with concentration': 1, 'creature age for minutes per caster level': 2},
     'time:talent:broken-time-time': {'concentration': 0, 'rounds per caster level': 1},
     'time:talent:rapid-response-time': {'concentration': 0, 'ten minutes per caster level': 1},

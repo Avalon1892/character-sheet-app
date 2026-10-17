@@ -419,6 +419,21 @@ def test_reviewed_creation_costs_use_real_catalog_identities(suffix, cost):
     assert entry and talent_construction_spell_points(entry, reviewed_only=True) == cost
 
 
+@pytest.mark.parametrize('suffix,free,paid', [
+    ('alter-talent:magnify-minimize-alter', 'one size category', 'additional size categories'),
+    ('alter-talent:transparency-alter-utility', 'concentration', 'minutes per caster level'),
+    ('talent:mass-liquid-generation', 'five cubic feet per Small object', '125 cubic feet of non-harmful liquid per Small object'),
+    ('talent:potent-alteration', 'enhanced repair or destroy', 'affect magical, attended or construct target'),
+])
+def test_creation_modes_distinguish_free_and_paid_variants(suffix, free, paid):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_choice_spell_points
+    key = 'creation:' + suffix
+    assert magic_entry(key)
+    assert talent_choice_spell_points(key, free) == 0
+    assert talent_choice_spell_points(key, paid) == 1
+
+
 def test_every_bundled_life_vitality_talent_has_reviewed_free_sp_cost():
     from app.content import DEFAULT_CATALOG
     from app.marvelous_base_powers import LIFE_VITALITY_EFFECTS
