@@ -571,10 +571,13 @@ def talent_construction_spell_points(entry, *, reviewed_only=False):
     if entry.get('key') in DESTRUCTION_BLAST_SHAPES: return 1
     return {
         **{'dark:talent:' + suffix: 0 for suffix in (
+            'insinuate', 'rolling-blackout', 'shadow-coterie', 'shifting-shadows',
+            'instill-dark-instill', 'shadow-strike-strike-3pp',
             'clinging-darkness', 'dampen-light', 'dappled-shadows', 'extinguish', 'flowing-darkness',
             'gaze-into-the-abyss', 'greater-darkvision', 'greater-meld', 'lingering-darkness',
             'obfuscation', 'quick-meld', 'ranged-darkness-range', 'wall-of-darkness')},
-        **{'dark:talent:' + suffix: 1 for suffix in ('dual-darkness', 'greater-darkness', 'mass-meld-mass')},
+        **{'dark:talent:' + suffix: 1 for suffix in ('dual-darkness', 'greater-darkness', 'mass-meld-mass',
+            'sinister-surprise', 'umbral-burst')},
         'life:talent:break-enchantment': 1,
         'telekinesis:advanced-talent:affix': 2,
         'telekinesis:advanced-talent:astral-affixation': 1,
@@ -1144,7 +1147,7 @@ def quote_marvelous_blueprint(plan):
             if expected and plan.get('base_power') != expected:
                 raise ValueError('Plasma Projection mode requires base power ' + expected + '.')
         if (contribution.get('catalog_key') in {'time:talent:time-strike-strike', 'life:talent:clarified-strike-strike',
-                'creation:talent:transmuting-strike-strike-3pp'}
+                'creation:talent:transmuting-strike-strike-3pp', 'dark:talent:shadow-strike-strike-3pp'}
                 and plan['activation'] in {'move', 'swift'}):
             raise ValueError('Strike talents cannot reduce casting below a standard action.')
         if (contribution.get('catalog_key') == 'enhancement:advanced-talent:inherent-enhancement-enhance-archmagi-s-hb'

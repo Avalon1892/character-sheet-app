@@ -457,6 +457,7 @@ def test_time_concentration_modes_have_explicit_reviewed_costs(suffix, mode, poi
 @pytest.mark.parametrize('key,sphere,base', [
     ('time:talent:time-strike-strike', 'Time', 'time:haste'),
     ('life:talent:clarified-strike-strike', 'Life', 'life:cure'),
+    ('dark:talent:shadow-strike-strike-3pp', 'Dark', 'dark:darkness'),
     ('creation:talent:transmuting-strike-strike-3pp', 'Creation', 'creation:alter')])
 def test_strike_item_casting_cannot_be_shortened_below_standard(key, sphere, base):
     from app.marvelous_item_rules import quote_marvelous_blueprint
@@ -565,6 +566,27 @@ def test_dark_fixed_cost_defaults_match_catalog_talents(suffix, sp):
     entry = magic_entry('dark:talent:' + suffix)
     assert entry
     assert talent_construction_spell_points(entry, reviewed_only=True) == sp
+
+
+@pytest.mark.parametrize('key,free,paid', [
+    ('dark:talent:shadow-stash-utility', 'ordinary storage and retrieval', 'immediate retrieval'),
+    ('dark:talent:shadowing-darkness', 'one-round lingering shadows', 'extended lingering shadows')])
+def test_dark_variable_modes_do_not_assume_the_paid_variant(key, free, paid):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_choice_spell_points
+    assert magic_entry(key)
+    assert talent_choice_spell_points(key, free) == 0
+    assert talent_choice_spell_points(key, paid) == 1
+
+
+@pytest.mark.parametrize('suffix,sp', [(name, 0) for name in ('insinuate', 'rolling-blackout',
+    'shadow-coterie', 'shifting-shadows', 'instill-dark-instill', 'shadow-strike-strike-3pp')]
+    + [('sinister-surprise', 1), ('umbral-burst', 1)])
+def test_additional_dark_cost_defaults_use_existing_catalog_keys(suffix, sp):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_construction_spell_points
+    entry = magic_entry('dark:talent:' + suffix)
+    assert entry and talent_construction_spell_points(entry, reviewed_only=True) == sp
 
 
 def test_create_materials_does_not_add_another_surcharge_to_required_lengthened_creation():

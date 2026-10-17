@@ -1651,6 +1651,28 @@ def test_dissolution_mode_automatically_integrates_correct_potent_cost(composer,
     assert dialog.blueprint() == saved and repo._connection.total_changes == writes
 
 
+@pytest.mark.parametrize('key,free,paid', [
+    ('dark:talent:shadow-stash-utility', 'ordinary storage and retrieval', 'immediate retrieval'),
+    ('dark:talent:shadowing-darkness', 'one-round lingering shadows', 'extended lingering shadows')])
+def test_dark_variable_modes_update_price_and_preserve_manual_saved_sp(composer, key, free, paid):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Dark'); dialog.cl.setValue(10)
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    choice = dialog.table.cellWidget(0, 5)
+    choice.setCurrentIndex(choice.findData(free)); before = dialog.quotation()[1].market_price_gp
+    choice.setCurrentIndex(choice.findData(paid))
+    assert dialog.blueprint()['contributions'][0]['additional_spell_points'] == 1
+    assert dialog.quotation()[1].market_price_gp > before
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint() == saved
+    saved['contributions'][0]['additional_spell_points'] = 3
+    saved['contributions'][0]['complexity'] = 4
+    dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and repo._connection.total_changes == writes
+
+
 def test_dark_greater_wall_live_geometry_costs_and_reopen(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Dark'); dialog.cl.setValue(10)

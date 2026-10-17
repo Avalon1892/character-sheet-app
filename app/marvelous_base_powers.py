@@ -118,6 +118,8 @@ LIFE_VITALITY_EFFECTS = {
 PLASMA_PROJECTION_BASE_MODES = {'create a plasma blade': 'creation:create', 'alter a melee weapon': 'creation:alter'}
 
 TALENT_EFFECT_SP_CHOICES = {
+    'dark:talent:shadow-stash-utility': {'ordinary storage and retrieval': 0, 'immediate retrieval': 1},
+    'dark:talent:shadowing-darkness': {'one-round lingering shadows': 0, 'extended lingering shadows': 1},
     'creation:advanced-talent:sustenance-material-utility': {'standard-action food and drink': 1},
     'creation:advanced-talent:plasma-projection': {'create a plasma blade': 0, 'alter a melee weapon': 1},
     # Instantaneous duplication adds two SP: one here, one in required Lengthened Creation.
