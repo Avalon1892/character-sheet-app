@@ -1516,6 +1516,8 @@ def test_creation_cost_defaults_update_and_preserve_manual_overrides(composer, s
 
 @pytest.mark.parametrize('suffix,required', [
     ('create-materials', {'creation:talent:lengthened-creation'}),
+    ('create-minds-think-alike-jester-s-hb', {'creation:talent:exquisite-detail-utility',
+        'enhancement:enhance-talent:bestow-intelligence-enhance'}),
     ('permanent-change', {'creation:alter-talent:change-material-alter',
         'creation:material-talent:expanded-materials-material', 'creation:alter-talent:forge-alter'}),
 ])
@@ -1535,6 +1537,27 @@ def test_creation_required_talents_insert_once_and_survive_reopen(composer, suff
     dialog.load_plan(saved)
     assert dialog.blueprint() == saved
     assert repo._connection.total_changes == writes
+
+
+def test_costly_creation_choice_inserts_complete_path_or_cancels_without_mutation(composer, monkeypatch):
+    from PySide6.QtWidgets import QInputDialog
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Creation'); dialog.cl.setValue(20)
+    key = 'creation:advanced-talent:costly-creation'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    dialog.add_contribution()
+    original = dialog.blueprint(); writes = repo._connection.total_changes
+    monkeypatch.setattr(QInputDialog, 'getItem', lambda *args, **kwargs: ('', False))
+    assert not dialog.add_required_contributions()
+    assert dialog.blueprint() == original
+    monkeypatch.setattr(QInputDialog, 'getItem', lambda *args, **kwargs: (next(label for label in args[3] if label == 'Permanent Change'), True))
+    assert dialog.add_required_contributions()
+    saved = dialog.blueprint()
+    assert {'creation:advanced-talent:permanent-change', 'creation:alter-talent:forge-alter',
+        'creation:alter-talent:change-material-alter', 'creation:material-talent:expanded-materials-material',
+        'creation:talent:lengthened-creation'} <= {row['catalog_key'] for row in saved['contributions']}
+    dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and repo._connection.total_changes == writes
 
 
 @pytest.mark.parametrize('suffix,free,paid', [

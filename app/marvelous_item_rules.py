@@ -121,6 +121,16 @@ def marvelous_item_price(caster_level: int, complexity: int | Fraction, *, daily
 
 # Reviewed construction prerequisites use catalog identities, never prose parsing.
 ADVANCED_CONSTRUCTION_REQUIREMENTS = {
+    'creation:advanced-talent:corp-criadhach-dbh': (10, ('creation:advanced-talent:duplicate', 'creation:advanced-talent:fleshcraft-material')),
+    'creation:advanced-talent:costly-creation': (15, ('creation:material-talent:expanded-materials-material', 'creation:talent:lengthened-creation')),
+    'creation:advanced-talent:create-minds-think-alike-jester-s-hb': (5, ('creation:talent:exquisite-detail-utility', 'enhancement:enhance-talent:bestow-intelligence-enhance')),
+    'creation:advanced-talent:fleshcraft-material': (10, ()),
+    'creation:advanced-talent:material-body-alter': (5, ('creation:alter-talent:change-material-alter',)),
+    'creation:advanced-talent:mythical-material-maker-material': (15, ()),
+    'creation:advanced-talent:imperfect-recreation-alienist-hb': (15, (
+        'creation:advanced-talent:duplicate', 'creation:talent:exquisite-detail-utility',
+        'creation:advanced-talent:fleshcraft-material', 'enhancement:enhance-talent:animate-object-enhance',
+        'enhancement:enhance-talent:bestow-intelligence-enhance', 'enhancement:advanced-talent:bestow-life')),
     'creation:advanced-talent:create-materials': (10, ('creation:talent:lengthened-creation',)),
     'creation:advanced-talent:duplicate': (5, ('creation:talent:exquisite-detail-utility',)),
     'creation:advanced-talent:fabricate': (10, ('creation:alter-talent:forge-alter',)),
@@ -302,6 +312,11 @@ ADVANCED_CONSTRUCTION_REQUIREMENTS = {
 }
 
 CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS = {
+    'creation:advanced-talent:create-minds-think-alike-jester-s-hb': (('Enhancement', 'enhancement:enhance-talent:bestow-intelligence-enhance'),),
+    'creation:advanced-talent:imperfect-recreation-alienist-hb': (
+        ('Enhancement', 'enhancement:enhance-talent:animate-object-enhance'),
+        ('Enhancement', 'enhancement:enhance-talent:bestow-intelligence-enhance'),
+        ('Enhancement', 'enhancement:advanced-talent:bestow-life')),
     'enhancement:advanced-talent:antimagic-aegis': (('Protection', 'protection:aegis-ward-talent:spell-ward-aegis-ward'),),
     'enhancement:advanced-talent:heart-of-hope-and-fear-sm': (('Fate', 'fate:advanced-talent:hold-on-hope-word-sm'),),
     'weather:advanced-talent:fire-tornadoes': (('Nature', None),),
@@ -321,7 +336,18 @@ CONSTRUCTION_PACKAGE_REQUIREMENTS = {
     'weather:advanced-talent:volcano-lord': ('Nature (Earth package)', 'Nature (Fire package)'),
 }
 
+CREATION_MATERIAL_REQUIREMENTS = tuple('creation:' + suffix for suffix in (
+    'material-talent:acidic-creation-material', 'material-talent:alchemical-creation-material',
+    'material-talent:expanded-materials-material', 'material-talent:gaseous-generation-material',
+    'material-talent:object-of-force-material', 'material-talent:plasma-production-material',
+    'advanced-talent:fleshcraft-material', 'advanced-talent:magma-mastery-material',
+    'advanced-talent:mythical-material-maker-material', 'advanced-talent:sustenance-material-utility'))
+
 ALTERNATIVE_CONSTRUCTION_REQUIREMENTS = {
+    **{'creation:advanced-talent:' + suffix: (tuple(key for key in CREATION_MATERIAL_REQUIREMENTS
+        if key != 'creation:advanced-talent:' + suffix),) for suffix in (
+            'fleshcraft-material', 'material-body-alter', 'mythical-material-maker-material')},
+    'creation:advanced-talent:costly-creation': (('creation:advanced-talent:permanent-change', 'creation:advanced-talent:create-materials'),),
     'protection:advanced-talent:stability-bottleneck-sm': (('protection:advanced-talent:spell-selectivity-dbh', 'protection:advanced-talent:spell-selectivity-arcforge-addendum-lg'),),
     'protection:advanced-talent:voiding-suppression-3pp': (('protection:advanced-talent:spell-selectivity-dbh', 'protection:advanced-talent:spell-selectivity-arcforge-addendum-lg'),),
     'warp:advanced-talent:brutalizing-shunt-apoc': ((

@@ -51,6 +51,41 @@ def test_creation_fixed_advanced_dependencies_and_levels(suffix, requirement):
         assert any('caster level' in message for message in advanced_construction_blockers(rows, minimum - 1))
 
 
+def test_all_creation_advanced_catalog_entries_have_requirement_metadata():
+    from app.content import DEFAULT_CATALOG, magic_entry
+    from app.marvelous_item_rules import ADVANCED_CONSTRUCTION_REQUIREMENTS, CREATION_MATERIAL_REQUIREMENTS
+    entries = [e for e in DEFAULT_CATALOG.magic_entries('Creation') if e['category'] == 'Advanced Talent']
+    assert len(entries) == 19
+    assert all(e['key'] in ADVANCED_CONSTRUCTION_REQUIREMENTS for e in entries)
+    assert all(magic_entry(key) for key in CREATION_MATERIAL_REQUIREMENTS)
+
+
+@pytest.mark.parametrize('suffix', ['fleshcraft-material', 'material-body-alter', 'mythical-material-maker-material'])
+def test_creation_material_choices_require_another_fixed_material_talent(suffix):
+    from app.marvelous_item_rules import missing_construction_alternatives
+    key = 'creation:advanced-talent:' + suffix
+    rows = [dict(catalog_key=key)]
+    missing = missing_construction_alternatives(rows)
+    assert missing and key not in missing[0][1]
+    rows.append(dict(catalog_key='creation:material-talent:expanded-materials-material'))
+    assert not missing_construction_alternatives(rows)
+    rows[-1]['alternative'] = True
+    assert missing_construction_alternatives(rows)
+
+
+@pytest.mark.parametrize('path', ['create-materials', 'permanent-change'])
+def test_costly_creation_expands_the_selected_complete_prerequisite_path(path):
+    from app.marvelous_item_rules import missing_construction_prerequisites, advanced_construction_blockers
+    rows = [dict(catalog_key='creation:advanced-talent:costly-creation'),
+        dict(catalog_key='creation:advanced-talent:' + path)]
+    assert advanced_construction_blockers(rows, 15)
+    rows += [dict(catalog_key=key) for key in missing_construction_prerequisites(rows)]
+    assert not advanced_construction_blockers(rows, 15)
+    assert any('caster level' in message for message in advanced_construction_blockers(rows, 14))
+    if path == 'permanent-change':
+        assert {'creation:alter-talent:change-material-alter', 'creation:alter-talent:forge-alter'} <= {r['catalog_key'] for r in rows}
+
+
 def test_every_bundled_advanced_telekinesis_talent_has_explicit_dependencies():
     from app.content import DEFAULT_CATALOG
     entries = [entry for entry in DEFAULT_CATALOG.magic_entries('Telekinesis') if entry['category'] == 'Advanced Talent']
