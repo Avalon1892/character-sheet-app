@@ -269,6 +269,9 @@ def effective_base_duration(plan):
     """Duration before construction adjustments, including reviewed effect modes."""
     power = next((power for power in BASE_POWERS if power.key == plan.get('base_power')), None)
     if power is None: return 'instantaneous'
+    if power.key == 'creation:create' and any(row.get('catalog_key') == 'creation:talent:practiced-creation'
+            and not row.get('alternative') for row in plan.get('contributions', [])):
+        return 'concentration'
     if power.key in SPACE_MODE_POWERS:
         selected = next((row for row in plan.get('contributions', []) if row.get('catalog_key') == SPACE_MODE_POWERS[power.key]), {})
         return 'minute' if 'minutes per caster level' in selected.get('effect_choice', '') else 'concentration'
@@ -980,7 +983,7 @@ def resolve_base_power(plan):
         detail, force = 'creation:talent:exquisite-detail-utility', 'creation:material-talent:object-of-force-material'
         expanded = 'creation:material-talent:expanded-materials-material'
         if (len(keys) == len(set(keys)) and not any(row.get('alternative') for row in rows)
-                and set(keys) <= {larger, divided, detail, force, expanded} and not {force, expanded} <= set(keys)):
+                and set(keys) <= {larger, divided, detail, force, expanded, 'creation:talent:practiced-creation'} and not {force, expanded} <= set(keys)):
             units = cl * (2 if larger in keys else 1)
             sizes = ((1, 'Small'), (2, 'Medium'), (4, 'Large'), (8, 'Huge'),
                 (16, 'Gargantuan'), (32, 'Colossal'), (64, 'Colossal+'))
@@ -998,6 +1001,8 @@ def resolve_base_power(plan):
                 summary['force_object_weight'] = 'Weightless; may be anchored. Disappears when broken. Not the weight of the crafting device.'
             summary['craft_review'] = ('Detailed objects require their appropriate Craft checks; no automatic success.' if detail in keys
                 else 'Complex objects require Craft checks; normal DC15 creation limit applies.')
+            if 'creation:talent:practiced-creation' in keys:
+                summary['practiced_creation'] = 'One-step slower casting reduces the casting SP cost by one (minimum zero); the object requires concentration. Only extra-SP complexity is discounted, not the fixed item base complexity.'
         else:
             summary['power'] = 'Modified creation — manual resolution'
             summary['creation_review'] = 'Resolve size, material, target and duration interactions from the integrated talents; no generic maximum object is assumed.'

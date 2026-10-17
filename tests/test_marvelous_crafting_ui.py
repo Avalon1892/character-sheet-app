@@ -1601,6 +1601,21 @@ def test_alchemical_preview_updates_value_and_flags_published_cl14_conflict(comp
     assert dialog.blueprint() == saved and repo._connection.total_changes == writes
 
 
+def test_practiced_creation_live_discount_and_concentration_survive_reopen(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Creation'); dialog.cl.setValue(10)
+    dialog.base_power.setCurrentIndex(dialog.base_power.findData('creation:create'))
+    dialog.activation.setCurrentIndex(dialog.activation.findData('full-round'))
+    writes = repo._connection.total_changes
+    for key in ('creation:talent:practiced-creation', 'creation:talent:larger-creation'):
+        dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+        dialog.add_contribution()
+    assert 'Duration Concentration' in dialog.item_preview.toPlainText()
+    assert '− 1 Practiced extra-SP reduction' in dialog.cost_formula.text()
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and repo._connection.total_changes == writes
+
+
 @pytest.mark.parametrize('suffix,required', [
     ('create-materials', {'creation:talent:lengthened-creation'}),
     ('create-minds-think-alike-jester-s-hb', {'creation:talent:exquisite-detail-utility',

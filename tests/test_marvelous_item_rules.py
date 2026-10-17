@@ -536,12 +536,41 @@ def test_precise_destruction_magical_trap_requires_integrated_potent_alteration(
     assert not mode_construction_prerequisites(row)
 
 
-def test_only_practiced_creation_cost_remains_unreviewed_among_ordinary_talents():
+def test_all_ordinary_creation_costs_have_reviewed_metadata():
     from app.content import DEFAULT_CATALOG
     from app.marvelous_item_rules import talent_construction_spell_points
     entries = [e for e in DEFAULT_CATALOG.magic_entries('Creation') if 'Talent' in e['category'] and 'Advanced' not in e['category']]
-    assert {e['key'] for e in entries if talent_construction_spell_points(e, reviewed_only=True) is None} == {
-        'creation:talent:practiced-creation'}
+    assert all(talent_construction_spell_points(e, reviewed_only=True) is not None for e in entries)
+
+
+def test_practiced_creation_reduces_extra_sp_once_and_requires_slow_concentration():
+    from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_complexity_formula
+    item = dict(schema_version=1, sphere='Creation', base_power='creation:create', caster_level=10,
+        activation='full-round', uses=1, range_steps=0, duration_steps=0, unique_changes=0,
+        contributions=[dict(catalog_key='creation:talent:practiced-creation', complexity=1, additional_spell_points=0),
+            dict(catalog_key='creation:material-talent:object-of-force-material', complexity=1, additional_spell_points=0)])
+    assert quote_marvelous_blueprint(item)[0] == 2
+    assert 'Practiced extra-SP reduction' not in marvelous_complexity_formula(item)
+    item['contributions'].append(dict(catalog_key='creation:talent:larger-creation', complexity=2, additional_spell_points=1))
+    assert quote_marvelous_blueprint(item)[0] == 3
+    assert '− 1 Practiced extra-SP reduction' in marvelous_complexity_formula(item)
+    item['activation'] = 'standard'
+    with pytest.raises(ValueError, match='full-round activation'):
+        quote_marvelous_blueprint(item)
+    item['activation'] = 'full-round'
+    item['duration_steps'] = 1
+    with pytest.raises(ValueError, match='duration ladder'):
+        quote_marvelous_blueprint(item)
+
+
+@pytest.mark.parametrize('key', ['creation:talent:lengthened-creation', 'creation:talent:replication',
+    'creation:advanced-talent:create-materials', 'creation:advanced-talent:permanent-change'])
+def test_practiced_creation_rejects_known_nonconcentration_conversions(key):
+    from app.marvelous_item_rules import practiced_creation_complexity_reduction
+    item = dict(base_power='creation:create', activation='full-round', contributions=[
+        dict(catalog_key='creation:talent:practiced-creation'), dict(catalog_key=key)])
+    with pytest.raises(ValueError, match='concentration-only'):
+        practiced_creation_complexity_reduction(item)
 
 
 def test_instill_alteration_minimum_sp_is_charged_once_without_rewriting_inputs():

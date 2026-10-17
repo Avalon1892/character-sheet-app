@@ -596,6 +596,9 @@ class MarvelousCraftingDialog(QDialog):
                     self.base_power.setCurrentIndex(self.base_power.findData('light:lens'))
                 if entry['key'] == 'creation:talent:instill-alteration-instill':
                     self.base_power.setCurrentIndex(self.base_power.findData('creation:alter'))
+                if entry['key'] == 'creation:talent:practiced-creation':
+                    self.base_power.setCurrentIndex(self.base_power.findData('creation:create'))
+                    self.activation.setCurrentIndex(self.activation.findData('full-round'))
         # Required construction talents are part of the same draft; eligibility
         # still checks ownership and CL separately and never grants them to a PC.
         if not self.add_required_contributions():

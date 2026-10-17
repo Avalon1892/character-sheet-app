@@ -642,6 +642,7 @@ def talent_construction_spell_points(entry, *, reviewed_only=False):
             'material-talent:acidic-creation-material', 'talent:larger-creation',
             'talent:lengthened-creation', 'talent:replication')},
         **{'creation:' + suffix: 0 for suffix in (
+            'talent:practiced-creation',
             'material-talent:alchemical-creation-material',
             'talent:instill-alteration-instill',
             'talent:created-momentum',
@@ -1072,6 +1073,22 @@ def instill_alteration_minimum_complexity(plan):
     return effect_complexity(alternative_costs=after) - effect_complexity(alternative_costs=before)
 
 
+def practiced_creation_complexity_reduction(plan):
+    """Only extra-SP complexity can be reduced; the fixed base cost stays intact."""
+    rows = plan.get('contributions', [])
+    selected = [row for row in rows if row.get('catalog_key') == 'creation:talent:practiced-creation']
+    if not selected: return 0
+    if plan.get('base_power') != 'creation:create' or plan.get('activation') != 'full-round':
+        raise ValueError('Practiced Creation requires Create with full-round activation instead of its normal standard action.')
+    if len(selected) != 1 or any(row.get('alternative') for row in rows):
+        raise ValueError('Practiced Creation with duplicate or alternative effects needs cost review.')
+    incompatible = {'creation:talent:lengthened-creation', 'creation:talent:replication',
+        'creation:advanced-talent:create-materials', 'creation:advanced-talent:permanent-change'}
+    if any(row.get('catalog_key') in incompatible for row in rows):
+        raise ValueError('Practiced Creation requires concentration-only maintenance, not sustained or instantaneous creation.')
+    return int(any(row.get('additional_spell_points', 0) for row in rows))
+
+
 def quote_marvelous_blueprint(plan):
     """Price the persisted composer blueprint using the same pure rules."""
     if plan.get('schema_version') != 1:
@@ -1129,7 +1146,7 @@ def quote_marvelous_blueprint(plan):
             raise ValueError('Taxing cannot restrict an effect usable for an unlimited duration.')
     complexity = effect_complexity(talent_costs=[x['complexity'] for x in plan['contributions'] if not x.get('alternative', False)] + grouped_costs + [instill_alteration_minimum_complexity(plan)],
         range_steps=plan['range_steps'], duration_steps=plan['duration_steps'],
-        activation=plan['activation'], unique_changes=plan['unique_changes'] - drawback_complexity(plan.get('drawbacks', [])) - simple + (2 if plan.get('permanent') else 0) + int(plan.get('full_blast_damage', False)) + 2 * plan.get('effect_range_steps', 0) + feat_cost + light_lens_conversion_complexity(plan))
+        activation=plan['activation'], unique_changes=plan['unique_changes'] - drawback_complexity(plan.get('drawbacks', [])) - simple + (2 if plan.get('permanent') else 0) + int(plan.get('full_blast_damage', False)) + 2 * plan.get('effect_range_steps', 0) + feat_cost + light_lens_conversion_complexity(plan) - practiced_creation_complexity_reduction(plan))
     price = marvelous_item_price(plan['caster_level'], complexity,
                                 daily_uses=1 if plan['uses'] == 50 else plan['uses'], limited_uses=plan['uses'] == 50)
     if plan.get('no_space_limitation'):
@@ -1231,6 +1248,7 @@ def marvelous_complexity_formula(plan, *, quotation=None):
              ('extra SP', sum(row.get('additional_spell_points', 0) for row in ordinary)),
              ('lens conversion', light_lens_conversion_complexity(plan)),
              ('instill minimum SP', instill_alteration_minimum_complexity(plan)),
+             ('Practiced extra-SP reduction', -practiced_creation_complexity_reduction(plan)),
              ('choices', sum(effect_complexity(alternative_costs=costs) - 1 for costs in groups.values())),
              ('range', plan['range_steps']), ('duration', 2 * plan['duration_steps']),
              ('activation', ACTIVATION_COMPLEXITY[plan['activation']]), ('unique changes', plan['unique_changes']),
