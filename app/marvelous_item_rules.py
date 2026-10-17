@@ -842,6 +842,17 @@ def talent_construction_cost(entry, *, additional_spell_points=0, mythic_crafter
     return (2 if 'advanced' in str(entry.get('category', '')).casefold() and not mythic_crafter else 1) + additional_spell_points
 
 
+def dark_meld_blueprint(entry, *, caster_level, uses, activation):
+    """An ordinary meld as a separate, editable power; no persistence or catalog copy."""
+    from app.marvelous_base_powers import DARK_MELDS
+    if entry.get('key') not in DARK_MELDS:
+        raise ValueError('Choose an ordinary Dark meld talent.')
+    return dict(schema_version=1, sphere='Dark', base_power='dark:meld', caster_level=caster_level,
+        uses=uses, activation=activation, range_steps=0, duration_steps=0, unique_changes=0,
+        contributions=[dict(catalog_key=entry['key'], complexity=talent_construction_cost(entry, base_power='dark:meld'),
+            additional_spell_points=0)], effect_name=entry['name'], effect_description='')
+
+
 ACTIVATION_COMPLEXITY = {"standard": 0, "full-round": -1, "move": 3, "swift": 5}
 
 

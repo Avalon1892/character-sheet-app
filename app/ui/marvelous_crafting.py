@@ -577,14 +577,33 @@ class MarvelousCraftingDialog(QDialog):
         from copy import deepcopy
         previous = deepcopy(self.blueprint())
         existing = {self.table.item(row, 0).data(Qt.ItemDataRole.UserRole) for row in range(self.table.rowCount())}
+        from app.marvelous_base_powers import DARK_MELDS
+        existing_melds = existing.intersection(DARK_MELDS) | {row['catalog_key']
+            for power in self.extra_effects if power.get('base_power') == 'dark:meld'
+            for row in power.get('contributions', []) if row['catalog_key'] in DARK_MELDS}
         for entry in dialog.selected_entries:
             if entry['key'] in existing: continue
+            if entry['key'] in DARK_MELDS:
+                if entry['key'] in existing_melds: continue
+                if self.table.rowCount():
+                    if self.draft_effect:
+                        self.load_plan(previous)
+                        QMessageBox.warning(self, 'One meld per power',
+                            'Add different melds as separate powers from the main item designer. This power was not changed.')
+                        return
+                    from app.marvelous_item_rules import dark_meld_blueprint
+                    from uuid import uuid4
+                    power = dark_meld_blueprint(entry, caster_level=self.cl.value(),
+                        uses=self.uses.currentData(), activation=self.activation.currentData())
+                    power['effect_id'] = str(uuid4()); self.extra_effects.append(power)
+                    existing_melds.add(entry['key'])
+                    continue
             index = next((i for i in range(self.talent.count()) if self.talent.itemData(i)['key'] == entry['key']), -1)
             if index >= 0:
-                from app.marvelous_base_powers import DARK_MELDS
                 if entry['key'] in DARK_MELDS:
                     self.base_power.setCurrentIndex(self.base_power.findData('dark:meld'))
                 self.talent.setCurrentIndex(index); self.add_contribution(); existing.add(entry['key'])
+                if entry['key'] in DARK_MELDS: existing_melds.add(entry['key'])
                 if entry['key'] == 'warp:space-talent:teleport-beacon-space':
                     self.base_power.setCurrentIndex(self.base_power.findData('warp:beacon'))
                 if entry['key'] == 'warp:space-talent:dimension-pierce-space':
@@ -610,6 +629,8 @@ class MarvelousCraftingDialog(QDialog):
         # still checks ownership and CL separately and never grants them to a PC.
         if not self.add_required_contributions():
             self.load_plan(previous)
+        else:
+            self.refresh_extra_picker()
 
     def add_contribution(self):
         entry = self.talent.currentData()

@@ -709,6 +709,19 @@ def test_single_dark_meld_uses_item_specific_conversion_not_normal_talent_plus_s
     assert talent_construction_cost(entry, base_power='dark:meld', additional_spell_points=3) == extra + 3
 
 
+def test_separate_dark_meld_power_uses_shared_multi_power_pricing():
+    from app.content import magic_entry
+    from app.marvelous_item_rules import dark_meld_blueprint, quote_marvelous_effects
+    powers = [dark_meld_blueprint(magic_entry('dark:meld-talent:' + suffix), caster_level=10, uses=1, activation='standard')
+        for suffix in ('clearsight-meld', 'feed-on-darkness-meld')]
+    quote = quote_marvelous_effects(powers)
+    assert quote['market_price_gp'] == 18000
+    assert powers[0]['contributions'][0]['complexity'] == 0
+    assert powers[1]['contributions'][0]['complexity'] == 2
+    with pytest.raises(ValueError, match='ordinary Dark meld'):
+        dark_meld_blueprint(magic_entry('dark:talent:greater-darkness'), caster_level=10, uses=1, activation='standard')
+
+
 def test_create_materials_does_not_add_another_surcharge_to_required_lengthened_creation():
     from app.content import magic_entry
     from app.marvelous_item_rules import talent_construction_spell_points

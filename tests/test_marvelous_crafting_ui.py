@@ -1849,6 +1849,61 @@ def test_dark_meld_live_payload_changes_with_cl_but_respects_description_lock(co
     assert dialog.blueprint() == saved and repo._connection.total_changes == writes
 
 
+@pytest.mark.parametrize('existing_darkness', [False, True])
+def test_bulk_meld_selection_creates_separate_powers_and_keeps_identity_on_reopen(composer, monkeypatch, existing_darkness):
+    from app.ui.marvelous_effect_picker import MarvelousEffectPicker
+    from app.content import magic_entry
+    from PySide6.QtWidgets import QDialog
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Dark'); dialog.cl.setValue(10)
+    if existing_darkness:
+        dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == 'dark:talent:greater-darkness'))
+        dialog.add_contribution()
+    entries = tuple(magic_entry('dark:meld-talent:' + suffix) for suffix in ('clearsight-meld', 'feed-on-darkness-meld'))
+    monkeypatch.setattr(dialog.service, 'accessible_marvelous_effects', lambda sphere: entries)
+    def accept(picker):
+        picker.selected_entries = entries
+        return QDialog.DialogCode.Accepted
+    monkeypatch.setattr(MarvelousEffectPicker, 'exec', accept)
+    writes = repo._connection.total_changes
+    dialog.choose_accessible_effects()
+    assert dialog.table.rowCount() == 1 and len(dialog.extra_effects) == (2 if existing_darkness else 1)
+    assert dialog.base_power.currentData() == ('dark:darkness' if existing_darkness else 'dark:meld')
+    assert dialog.quotation()[1].market_price_gp == (36000 if existing_darkness else 18000)
+    identity = dialog.extra_effects[0]['effect_id']
+    dialog.choose_accessible_effects()
+    assert len(dialog.extra_effects) == (2 if existing_darkness else 1) and dialog.extra_effects[0]['effect_id'] == identity
+    saved = dialog.blueprint(); dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and repo._connection.total_changes == writes
+    entries += (magic_entry('dark:meld-talent:dark-slaughter-meld'),)
+    monkeypatch.setattr(dialog, 'add_required_contributions', lambda: False)
+    dialog.choose_accessible_effects()
+    assert dialog.blueprint() == saved and repo._connection.total_changes == writes
+
+
+def test_single_power_editor_rolls_back_bulk_melds_instead_of_losing_nested_powers(composer, monkeypatch):
+    from app.ui.marvelous_crafting import MarvelousCraftingDialog
+    from app.ui.marvelous_effect_picker import MarvelousEffectPicker
+    from app.content import magic_entry
+    from PySide6.QtWidgets import QDialog, QMessageBox
+    _, repo, cid = composer
+    dialog = MarvelousCraftingDialog(repo, cid, draft_effect=True)
+    dialog.sphere.setCurrentText('Dark'); dialog.cl.setValue(10)
+    entries = tuple(magic_entry('dark:meld-talent:' + suffix) for suffix in ('clearsight-meld', 'feed-on-darkness-meld'))
+    monkeypatch.setattr(dialog.service, 'accessible_marvelous_effects', lambda sphere: entries)
+    def accept(picker):
+        picker.selected_entries = entries
+        return QDialog.DialogCode.Accepted
+    monkeypatch.setattr(MarvelousEffectPicker, 'exec', accept)
+    warnings = []
+    monkeypatch.setattr(QMessageBox, 'warning', lambda *args: warnings.append(args[2]))
+    before = dialog.blueprint(); writes = repo._connection.total_changes
+    dialog.choose_accessible_effects()
+    assert dialog.blueprint() == before and warnings
+    assert not dialog.extra_effects and repo._connection.total_changes == writes
+    dialog.close()
+
+
 def test_dark_greater_wall_live_geometry_costs_and_reopen(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Dark'); dialog.cl.setValue(10)
