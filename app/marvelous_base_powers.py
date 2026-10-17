@@ -116,6 +116,8 @@ LIFE_VITALITY_EFFECTS = {
     'life:vitality-talent:sustaining-vitality-vitality': 'AC and saving throws: +2 circumstance.',
 }
 TALENT_EFFECT_SP_CHOICES = {
+    # Instantaneous duplication adds two SP: one here, one in required Lengthened Creation.
+    'creation:advanced-talent:duplicate': {'temporary object copy': 0, 'instantaneous object copy': 1},
     # Matches the designer's existing CL range; one extra SP per complete four HD.
     'creation:advanced-talent:ooze-originator-create': {f'{hd} HD ooze': hd // 4 for hd in range(1, 101)},
     'creation:advanced-talent:dissolution-alter': {'unattended non-magical object': 1,
@@ -300,6 +302,11 @@ def effective_base_duration(plan):
         rows = plan.get('contributions', [])
         keys = [row.get('catalog_key') for row in rows]
         required = {'creation:advanced-talent:create-materials', 'creation:talent:lengthened-creation'}
+        duplicate = 'creation:advanced-talent:duplicate'
+        if duplicate in keys:
+            selected = next(row for row in rows if row.get('catalog_key') == duplicate)
+            if selected.get('effect_choice') != 'instantaneous object copy': return power.duration
+            required |= {duplicate, 'creation:talent:exquisite-detail-utility'}
         if (required <= set(keys) and len(keys) == len(set(keys))
                 and not any(row.get('alternative') for row in rows)
                 and set(keys) <= required | {'creation:talent:larger-creation', 'creation:talent:divided-creation-mass',
@@ -1021,8 +1028,13 @@ def resolve_base_power(plan):
         expanded = 'creation:material-talent:expanded-materials-material'
         materials = 'creation:advanced-talent:create-materials'
         raw_materials = effective_base_duration(plan) == 'instantaneous' and materials in keys
+        duplicate = 'creation:advanced-talent:duplicate'
+        copy = next((row for row in rows if row.get('catalog_key') == duplicate), {})
+        temporary_copy = (copy.get('effect_choice') == 'temporary object copy' and detail in keys
+            and set(keys) <= {duplicate, detail, expanded, larger})
+        instantaneous_copy = raw_materials and copy.get('effect_choice') == 'instantaneous object copy'
         if (len(keys) == len(set(keys)) and not any(row.get('alternative') for row in rows)
-                and (raw_materials or set(keys) <= {larger, divided, detail, force, expanded, 'creation:talent:practiced-creation'}) and not {force, expanded} <= set(keys)):
+                and (raw_materials or temporary_copy or set(keys) <= {larger, divided, detail, force, expanded, 'creation:talent:practiced-creation'}) and not {force, expanded} <= set(keys)):
             units = cl * (2 if larger in keys else 1)
             sizes = ((1, 'Small'), (2, 'Medium'), (4, 'Large'), (8, 'Huge'),
                 (16, 'Gargantuan'), (32, 'Colossal'), (64, 'Colossal+'))
@@ -1045,6 +1057,11 @@ def resolve_base_power(plan):
                 summary['craft_review'] = 'Raw materials and simple structures only; complex finished items require Fabricate and an appropriate Craft check.'
                 summary['material_limits'] = 'Gems, precious metals and rare metals require Costly Creation. Select only materials you can create; no inventory or sale value is generated automatically.'
                 summary['material_persistence'] = 'Normal nonmagical material, not a dispellable ongoing effect.'
+            if temporary_copy or instantaneous_copy:
+                summary['power'] = 'Duplicate Object'
+                summary['copy_limits'] = 'Touch an original object. Copy only materials you can create; other materials become available substitutes. Magical properties are never copied. No inventory item is generated automatically.'
+                summary['craft_review'] = 'Creates an exact nonmagical replica rather than crafting a new design; resolve material availability and original-object eligibility manually.'
+                summary['copy_aura'] = ('No lingering Creation aura.' if instantaneous_copy else 'Lingering Creation aura can identify the copy.')
             if 'creation:talent:practiced-creation' in keys:
                 summary['practiced_creation'] = 'One-step slower casting reduces the casting SP cost by one (minimum zero); the object requires concentration. Only extra-SP complexity is discounted, not the fixed item base complexity.'
         else:

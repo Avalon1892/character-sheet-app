@@ -412,6 +412,9 @@ def mode_construction_prerequisites(contribution):
     if (contribution.get('catalog_key') == 'creation:advanced-talent:material-body-alter'
             and contribution.get('effect_choice') == 'hours per caster level with Lengthened Creation'):
         return ('creation:talent:lengthened-creation',)
+    if (contribution.get('catalog_key') == 'creation:advanced-talent:duplicate'
+            and contribution.get('effect_choice') == 'instantaneous object copy'):
+        return ('creation:advanced-talent:create-materials',)
     return ()
 
 

@@ -528,6 +528,18 @@ def test_material_body_hour_mode_requires_lengthened_creation_without_a_second_s
     assert not advanced_construction_blockers(rows, 10)
 
 
+def test_instantaneous_duplicate_adds_two_sp_across_its_required_contributions():
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_choice_spell_points, talent_construction_spell_points, missing_construction_prerequisites
+    key = 'creation:advanced-talent:duplicate'
+    rows = [dict(catalog_key=key, effect_choice='instantaneous object copy')]
+    missing = missing_construction_prerequisites(rows)
+    assert {'creation:advanced-talent:create-materials', 'creation:talent:lengthened-creation', 'creation:talent:exquisite-detail-utility'} <= set(missing)
+    assert talent_choice_spell_points(key, 'temporary object copy') == 0
+    assert talent_choice_spell_points(key, 'instantaneous object copy') + sum(
+        talent_construction_spell_points(magic_entry(child), reviewed_only=True) for child in missing) == 2
+
+
 def test_create_materials_does_not_add_another_surcharge_to_required_lengthened_creation():
     from app.content import magic_entry
     from app.marvelous_item_rules import talent_construction_spell_points

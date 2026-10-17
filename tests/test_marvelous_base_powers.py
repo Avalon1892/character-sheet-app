@@ -151,6 +151,21 @@ def test_material_body_hour_mode_needs_fixed_lengthened_creation_for_duration_pr
     assert resolve_base_power(plan('creation:alter', cl=10, contributions=rows))['power'] != 'Material Body'
 
 
+@pytest.mark.parametrize('instant', [False, True])
+def test_duplicate_object_modes_show_copy_limits_and_correct_duration(instant):
+    rows = [dict(catalog_key='creation:advanced-talent:duplicate', effect_choice='instantaneous object copy' if instant else 'temporary object copy'),
+        dict(catalog_key='creation:talent:exquisite-detail-utility')]
+    if instant:
+        rows += [dict(catalog_key='creation:advanced-talent:create-materials'), dict(catalog_key='creation:talent:lengthened-creation')]
+    result = resolve_base_power(plan('creation:create', cl=10, contributions=rows))
+    assert result['power'] == 'Duplicate Object'
+    assert result['duration'] == ('Instantaneous' if instant else '10 rounds')
+    assert 'Magical properties are never copied' in result['copy_limits']
+    assert result['copy_aura'].startswith('No lingering' if instant else 'Lingering')
+    rows[0]['alternative'] = True
+    assert resolve_base_power(plan('creation:create', cl=10, contributions=rows))['power'] != 'Duplicate Object'
+
+
 def test_ooze_originator_projects_chosen_hd_but_not_unselected_species_statistics():
     rows = [dict(catalog_key='creation:advanced-talent:ooze-originator-create', effect_choice='8 HD ooze'),
         dict(catalog_key='creation:material-talent:acidic-creation-material')]

@@ -1651,6 +1651,27 @@ def test_dissolution_mode_automatically_integrates_correct_potent_cost(composer,
     assert dialog.blueprint() == saved and repo._connection.total_changes == writes
 
 
+def test_instantaneous_duplicate_inserts_complete_chain_and_reopens_without_writes(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Creation'); dialog.cl.setValue(10)
+    dialog.base_power.setCurrentIndex(dialog.base_power.findData('creation:create'))
+    key = 'creation:advanced-talent:duplicate'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    choice = dialog.table.cellWidget(0, 5)
+    choice.setCurrentIndex(choice.findData('instantaneous object copy'))
+    saved = dialog.blueprint()
+    assert len(saved['contributions']) == 4
+    assert sum(row['additional_spell_points'] for row in saved['contributions']) == 2
+    assert 'Duration Instantaneous' in dialog.item_preview.toPlainText()
+    assert 'Duplicate Object' in dialog.item_preview.toPlainText()
+    assert dialog.add_required_contributions()
+    assert dialog.blueprint() == saved
+    dialog.load_plan(saved)
+    assert dialog.blueprint() == saved and repo._connection.total_changes == writes
+
+
 def test_ooze_hit_dice_mode_updates_price_and_reopens_without_writes(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Creation'); dialog.cl.setValue(10)
