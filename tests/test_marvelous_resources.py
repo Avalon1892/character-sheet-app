@@ -502,6 +502,83 @@ def test_basic_cure_rolls_and_heals_nonlethal_atomically(crafter, monkeypatch):
     assert marvelous_remaining_uses(metadata(repo, cid, iid)) == 0
 
 
+def test_separate_meld_design_saves_independent_uses_and_recovers_without_applying_healing(crafter):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import dark_meld_blueprint
+    from uuid import uuid4
+    repo, cid = crafter
+    primary = dark_meld_blueprint(magic_entry('dark:meld-talent:clearsight-meld'), caster_level=10, uses=2, activation='standard')
+    extra = dark_meld_blueprint(magic_entry('dark:meld-talent:feed-on-darkness-meld'), caster_level=10, uses=1, activation='standard')
+    extra['effect_id'] = str(uuid4())
+    primary.update(extra_effects=[extra], combination_mode='multiple')
+    service = CraftingService(repo, cid)
+    iid = service.save_marvelous_design(primary, name='Two melds', slot='', description='')
+    saved = metadata(repo, cid, iid)['marvelous_blueprint']
+    assert saved['extra_effects'][0]['effect_id'] == extra['effect_id']
+    hp = repo.get_hit_points(cid)
+    effect = repo.consume_marvelous_item_use(cid, iid, effect_index=1)
+    assert effect['fast_healing'] == 2 and repo.get_hit_points(cid) == hp
+    data = metadata(repo, cid, iid)
+    assert marvelous_remaining_uses(data) == 2 and marvelous_remaining_uses(data, 1) == 0
+    service.save_marvelous_design(saved, name='Renamed melds', slot='', description='', item_id=iid)
+    data = metadata(repo, cid, iid)
+    assert marvelous_remaining_uses(data) == 2 and marvelous_remaining_uses(data, 1) == 0
+    writes = repo._connection.total_changes
+    with pytest.raises(ValueError, match='Automatic self-application is not supported'):
+        repo.consume_marvelous_item_use(cid, iid, apply_to_self=True)
+    assert repo._connection.total_changes == writes and repo.get_hit_points(cid) == hp
+    FullRestEngine(repo, cid).perform({'marvelous_items.daily_uses': True})
+    data = metadata(repo, cid, iid)
+    assert marvelous_remaining_uses(data) == 2 and marvelous_remaining_uses(data, 1) == 1
+
+
+def test_reordering_meld_powers_keeps_spent_uses_attached_to_their_identity(crafter):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import dark_meld_blueprint
+    from uuid import uuid4
+    repo, cid = crafter
+    powers = [dark_meld_blueprint(magic_entry('dark:meld-talent:' + suffix), caster_level=10, uses=2, activation='standard')
+        for suffix in ('clearsight-meld', 'feed-on-darkness-meld', 'step-through-darkness-meld')]
+    for power in powers[1:]: power['effect_id'] = str(uuid4())
+    primary = powers[0]; primary.update(extra_effects=powers[1:], combination_mode='multiple')
+    service = CraftingService(repo, cid)
+    iid = service.save_marvelous_design(primary, name='Three melds', slot='', description='')
+    repo.consume_marvelous_item_use(cid, iid, effect_index=2)
+    saved = metadata(repo, cid, iid)['marvelous_blueprint']
+    saved['extra_effects'].reverse()
+    service.save_marvelous_design(saved, name='Reordered melds', slot='', description='', item_id=iid)
+    data = metadata(repo, cid, iid)
+    assert data['marvelous_blueprint']['extra_effects'][0]['effect_name'] == 'Step Through Darkness (meld)'
+    assert marvelous_remaining_uses(data, 1) == 1 and marvelous_remaining_uses(data, 2) == 2
+
+
+def test_meld_use_dialog_cancel_is_noop_and_confirm_spends_only_selected_power(crafter, monkeypatch):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import dark_meld_blueprint
+    from app.ui.marvelous_crafting import MarvelousItemUseDialog
+    from PySide6.QtWidgets import QApplication, QMessageBox
+    from uuid import uuid4
+    app = QApplication.instance() or QApplication([])
+    repo, cid = crafter
+    primary = dark_meld_blueprint(magic_entry('dark:meld-talent:clearsight-meld'), caster_level=10, uses=2, activation='standard')
+    extra = dark_meld_blueprint(magic_entry('dark:meld-talent:feed-on-darkness-meld'), caster_level=10, uses=1, activation='standard')
+    extra['effect_id'] = str(uuid4()); primary.update(extra_effects=[extra], combination_mode='multiple')
+    iid = CraftingService(repo, cid).save_marvelous_design(primary, name='Two melds', slot='', description='')
+    dialog = MarvelousItemUseDialog(repo, cid)
+    assert dialog.table.item(1, 2).text() == 'Feed On Darkness (meld)'
+    hp = repo.get_hit_points(cid); writes = repo._connection.total_changes
+    monkeypatch.setattr(QMessageBox, 'question', lambda *args: QMessageBox.StandardButton.No)
+    dialog.table.cellWidget(1, 3).click()
+    assert repo._connection.total_changes == writes
+    monkeypatch.setattr(QMessageBox, 'question', lambda *args: QMessageBox.StandardButton.Yes)
+    dialog.table.cellWidget(1, 3).click()
+    data = metadata(repo, cid, iid)
+    assert marvelous_remaining_uses(data) == 2 and marvelous_remaining_uses(data, 1) == 0
+    assert repo.get_hit_points(cid) == hp
+    assert dialog.table.cellWidget(0, 3).isEnabled() and not dialog.table.cellWidget(1, 3).isEnabled()
+    dialog.close()
+
+
 def test_combined_design_saves_price_and_independent_recovery(crafter):
     repo, cid = crafter; iid = item(repo, cid, 2)
     data = metadata(repo, cid, iid); plan = data['marvelous_blueprint']
