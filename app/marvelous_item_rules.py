@@ -119,8 +119,59 @@ def marvelous_item_price(caster_level: int, complexity: int | Fraction, *, daily
     )
 
 
+# Imported subsections are retained for saved-data compatibility, but are not
+# independently learnable item effects.
+MARVELOUS_SUBSECTION_KEYS = frozenset({
+    'divination:advanced-talent:divine-chart',
+    'divination:advanced-talent:lay-of-the-land',
+    'divination:advanced-talent:pathfinder',
+    'fallen-fey:fey-blessing-talent:grimalkin-shade',
+})
+
 # Reviewed construction prerequisites use catalog identities, never prose parsing.
 ADVANCED_CONSTRUCTION_REQUIREMENTS = {
+    'divination:advanced-talent:speak-and-i-listen-dbh': (10, ('divination:advanced-talent:hear-name-sense-utility-dbh',)),
+    'divination:advanced-talent:alternate-divinations-advanced-sense-origin': (1, ()),
+    'divination:advanced-talent:arc-of-change-utility-sm': (0, ()),
+    'divination:advanced-talent:sense-observation-sense-alienist-hb': (0, ('divination:sense-talent:detect-scrying-sense',)),
+    'fallen-fey:advanced-talent:banish-to-faerie': (8, ()),
+    'fallen-fey:advanced-talent:blinding-beauty-fey-blessing': (10, ()),
+    'fallen-fey:advanced-talent:bound-to-nature-fey-blessing': (10, ()),
+    'fallen-fey:advanced-talent:drowning-kiss-fey-blessing': (10, ()),
+    'fallen-fey:advanced-talent:fairy-ring-traveler-utility': (5, ()),
+    'fallen-fey:advanced-talent:fey-initiation': (15, ('fallen-fey:talent:greater-fey-link',)),
+    'fallen-fey:advanced-talent:fey-invisibility-fey-blessing': (5, ('fallen-fey:fey-blessing-talent:fade-fey-blessing',)),
+    'fallen-fey:advanced-talent:steal-skin-fey-blessing': (5, ()),
+    'blood:advanced-talent:cardiovascular-ascension-quicken-still-crimdan': (10, ('blood:quicken-still-talent:cardiovascular-mastery-quicken-still-crimdan',)),
+    'blood:advanced-talent:drain-lifeblood': (1, ()),
+    'blood:advanced-talent:overclock': (18, ('blood:quicken-still-talent:control-oxygenation-quicken-still',)),
+    'blood:advanced-talent:puppet-master': (10, ('blood:quicken-still-talent:blood-puppet-quicken',)),
+    'blood:advanced-talent:sanguine-minion': (5, ('blood:talent:extract-blood-construct', 'blood:talent:lengthened-control')),
+    'blood:advanced-talent:sanguiphilia-bap': (7, ('blood:blood-art-talent:martyr-s-tithings-blood-art-bap',)),
+    'blood:advanced-talent:union-of-blood-bap': (10, ()),
+    'divination:advanced-talent:assurance-of-the-future-sm': (0, ('divination:divine-talent:divine-future-divine',)),
+    'divination:advanced-talent:cartographer-s-divinations-divine-utility-rw-hb': (5, ()),
+    'divination:advanced-talent:detect-patronage-utility-lg': (0, ('divination:divine-talent:detect-spellcaster-divine',)),
+    'divination:advanced-talent:discern-location-divine-utility': (15, ('divination:divine-talent:dowsing-divine-utility', 'divination:talent:greater-divine-range')),
+    'divination:advanced-talent:divine-identity-divine-utility': (1, ('divination:sense-talent:discern-individual-sense',)),
+    'divination:advanced-talent:divine-knowledge-divine-utility': (10, ('divination:advanced-talent:read-omens-divine-utility',)),
+    'divination:advanced-talent:expansive-vision': (10, ()),
+    'divination:advanced-talent:eye-in-the-sky-3pp': (0, ('divination:divine-talent:viewing-divine-utility',)),
+    'divination:advanced-talent:eyes-of-the-cabal-bap': (5, ('divination:sense-talent:prying-sight-sense-bap',)),
+    'divination:advanced-talent:greater-scrying-divine-utility': (15, ('divination:talent:greater-divine-range', 'divination:advanced-talent:scrying-utility', 'divination:divine-talent:viewing-divine-utility')),
+    'divination:advanced-talent:hear-name-sense-utility-dbh': (5, ()),
+    'divination:advanced-talent:mechanical-counterintelligence-lg': (0, ('divination:sense-talent:detect-scrying-sense',)),
+    'divination:advanced-talent:otherworldly-viewing-lg': (10, ('divination:talent:greater-divine-range', 'divination:divine-talent:viewing-divine-utility')),
+    'divination:advanced-talent:penetrating-divination': (1, ()),
+    'divination:advanced-talent:power-of-the-name-utility-dbh': (10, ('divination:advanced-talent:hear-name-sense-utility-dbh',)),
+    'divination:advanced-talent:read-omens-divine-utility': (5, ()),
+    'divination:advanced-talent:remote-casting-divine-alienist-hb': (5, ('divination:divine-talent:viewing-divine-utility',)),
+    'divination:advanced-talent:scrying-utility': (10, ('divination:talent:greater-divine-range', 'divination:divine-talent:viewing-divine-utility')),
+    'divination:advanced-talent:sensitive-divinations-eo3': (1, ()),
+    'divination:advanced-talent:soulbroker-s-sight-utility-sm': (0, ('divination:divine-talent:divine-treasure-divine-utility-alienist-hb',)),
+    'divination:advanced-talent:trapfinding-sense': (1, ('divination:sense-talent:see-hazard-sense',)),
+    'divination:advanced-talent:true-perception-sense-origin': (10, ('divination:sense-talent:ghost-sight-sense', 'divination:sense-talent:unhooded-sight-sense')),
+    'divination:advanced-talent:unobscured-vision-sense': (10, ('divination:sense-talent:ghost-sight-sense',)),
     'dark:advanced-talent:animated-shadow-shadow': (5, ('dark:blot-darkness-shadow-talent:shadow-lurk-shadow',)),
     'dark:advanced-talent:black-and-black-morality-blot-darkness-shadow': (10, ('dark:talent:gaze-into-the-abyss',)),
     'dark:advanced-talent:eternal-darkness': (10, ('dark:talent:lingering-darkness',)),
@@ -325,6 +376,8 @@ ADVANCED_CONSTRUCTION_REQUIREMENTS = {
 }
 
 CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS = {
+    'divination:advanced-talent:arc-of-change-utility-sm': (('Time', None),),
+    'divination:advanced-talent:soulbroker-s-sight-utility-sm': (('Fate', None),),
     'creation:advanced-talent:create-minds-think-alike-jester-s-hb': (('Enhancement', 'enhancement:enhance-talent:bestow-intelligence-enhance'),),
     'creation:advanced-talent:imperfect-recreation-alienist-hb': (
         ('Enhancement', 'enhancement:enhance-talent:animate-object-enhance'),
@@ -343,6 +396,26 @@ CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS = {
     'warp:advanced-talent:time-warp-jester-s-hb': (('Time', None),),
     'warp:advanced-talent:create-demiplane-utility': (('Creation', 'creation:material-talent:expanded-materials-material'),),
 }
+
+DIVINATION_SENSE_SPHERES = {
+    'material sense': 'Creation', 'see in darkness': 'Dark', 'spirit sense': 'Death',
+    'lifesense': 'Life', 'thoughtsense': 'Mind', 'unrestricted thoughtsense': 'Mind',
+    'touchsight': 'Telekinesis', 'storm vision': 'Weather',
+}
+
+
+def cross_sphere_construction_requirements(contribution):
+    """Fixed and selected-mode prerequisites, shared by eligibility and the card."""
+    key = contribution.get('catalog_key')
+    requirements = CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS.get(key, ())
+    if key == 'divination:advanced-talent:alternate-divinations-advanced-sense-origin':
+        sphere = DIVINATION_SENSE_SPHERES.get(contribution.get('effect_choice'))
+        if sphere: requirements += ((sphere, None),)
+    if (key == 'divination:advanced-talent:speak-and-i-listen-dbh'
+            and contribution.get('effect_choice') == 'teleport'):
+        requirements += tuple(('Warp', 'warp:' + suffix) for suffix in (
+            'talent:distant-teleport', 'talent:unseeing-teleport', 'advanced-talent:true-teleport'))
+    return requirements
 
 CONSTRUCTION_PACKAGE_REQUIREMENTS = {
     'weather:advanced-talent:fire-tornadoes': ('Nature (Fire package)',),
@@ -415,6 +488,17 @@ def missing_construction_alternatives(contributions):
 def mode_construction_prerequisites(contribution):
     """Explicit reviewed mode requirements, not prerequisite prose parsing."""
     from app.marvelous_base_powers import ABILITY_ENHANCEMENT_CHOICES, ENERGY_ENHANCEMENT_KEY, ALTERNATIVE_ENERGY_KEY
+    if contribution.get('catalog_key') == 'divination:advanced-talent:speak-and-i-listen-dbh':
+        if contribution.get('effect_choice') == 'scrying':
+            return ('divination:advanced-talent:scrying-utility',)
+        if contribution.get('effect_choice') == 'teleport':
+            return tuple(key for _, key in cross_sphere_construction_requirements(contribution))
+    if (contribution.get('catalog_key') == 'fallen-fey:fey-blessing-talent:fairy-dust-fey-blessing'
+            and contribution.get('effect_choice') == 'flight'):
+        return ('fallen-fey:fey-blessing-talent:fairy-flight-fey-blessing',)
+    if (contribution.get('catalog_key') == 'fallen-fey:talent:bounty-of-the-fey-mass-3pp'
+            and contribution.get('effect_choice') == 'shared blessing in an area'):
+        return ('fallen-fey:talent:share-link',) * 2
     choices = ABILITY_ENHANCEMENT_CHOICES.get(contribution.get('catalog_key'), ())
     if contribution.get('effect_choice') in choices[3:]:
         return ('enhancement:talent:dual-enhancement',)
@@ -433,7 +517,8 @@ def mode_construction_prerequisites(contribution):
 
 def missing_required_construction_modes(contributions):
     """Reviewed prerequisite modes that must be integrated, not merely owned."""
-    requirements = [('light:advanced-talent:radiation-light', 'light:talent:irradiance-light', 'nauseating bright light')]
+    requirements = [('light:advanced-talent:radiation-light', 'light:talent:irradiance-light', 'nauseating bright light'),
+        ('blood:advanced-talent:overclock', 'blood:quicken-still-talent:control-oxygenation-quicken-still', 'quicken with extra attacks')]
     for row in contributions:
         if row['catalog_key'] == 'creation:advanced-talent:dissolution-alter':
             mode = {'unattended non-magical object': 'enhanced repair or destroy',
@@ -460,10 +545,14 @@ def missing_construction_prerequisites(contributions):
             seen[required] = count
             visit(required); missing.extend([required] * deficit)
     for key in sorted(owned): visit(key)
-    for required in sorted({key for row in contributions for key in mode_construction_prerequisites(row)}):
-        if not seen[required]:
-            seen[required] = 1
-            visit(required); missing.append(required)
+    mode_counts = Counter()
+    for row in contributions:
+        mode_counts |= Counter(mode_construction_prerequisites(row))
+    for required, count in sorted(mode_counts.items()):
+        deficit = count - seen[required]
+        if deficit > 0:
+            seen[required] = count
+            visit(required); missing.extend([required] * deficit)
     return tuple(missing)
 
 
@@ -473,11 +562,14 @@ def advanced_construction_blockers(contributions, caster_level, *, display_names
     applied_counts = Counter(row['catalog_key'] for row in contributions if not row.get('alternative'))
     blockers = []
     names = display_names or {}
+    blockers.extend(f'{names.get(key, key)} is a rules subsection, not a separate talent; choose its parent talent and effect mode.'
+                    for key in sorted(keys & MARVELOUS_SUBSECTION_KEYS))
     blockers.extend(f'{names.get(owner, owner)}: prerequisite {names.get(child, child)} must use {mode}.'
                     for owner, child, mode in missing_required_construction_modes(contributions))
-    for owner, required in sorted({(row['catalog_key'], key) for row in contributions for key in mode_construction_prerequisites(row)}):
-        if not applied_counts[required]:
-            blockers.append(f'{names.get(owner, owner)}: selected mode requires fixed prerequisite talent {names.get(required, required)}.')
+    for row in contributions:
+        for required, count in Counter(mode_construction_prerequisites(row)).items():
+            if applied_counts[required] < count:
+                blockers.append(f'{names.get(row["catalog_key"], row["catalog_key"])}: selected mode requires {count} fixed selection(s) of prerequisite talent {names.get(required, required)}.')
     for row in contributions:
         key, choice = row['catalog_key'], row.get('effect_choice', '')
         minimum = TALENT_EFFECT_MINIMUM_CL.get(key, {}).get(choice, 0)
@@ -587,6 +679,77 @@ def talent_construction_spell_points(entry, *, reviewed_only=False, base_power=N
         return profile[3]
     if entry.get('key') in DESTRUCTION_BLAST_SHAPES: return 1
     return {
+        # Simple blessings spend their one activation SP and have no separately
+        # paid action in these modes: +1 talent +1 SP matches the item rule's +2.
+        # Blessings with additional paid subabilities remain separately reviewed.
+        **{'fallen-fey:fey-blessing-talent:' + suffix: 1 for suffix in (
+            'animate-hair-fey-blessing', 'beckoning-call-fey-blessing-utility',
+            'crown-of-the-courts-fey-blessing', 'enchanting-music-fey-blessing',
+            'fae-light-fey-blessing-utility', 'fairy-flight-fey-blessing',
+            'feline-omens-fey-blessing-catgirl-hb', 'fey-beauty-fey-blessing-utility',
+            'fey-potency-fey-blessing', 'fey-secrets-fey-blessing',
+            'gremlin-s-presence-fey-blessing', 'listen-to-the-wind-fey-blessing-utility',
+            'long-step-fey-blessing', 'mantle-of-autumn-fey-blessing', 'misplacement-fey-blessing',
+            'natural-blessing-fey-blessing', 'natural-dominion-fey-blessing',
+            'nature-s-empathy-fey-blessing-utility', 'plant-friend-fey-blessing',
+            'saboteur-fey-blessing-utility', 'snare-setter-fey-blessing',
+            'stunning-glance-fey-blessing', 'tree-meld-fey-blessing', 'trickery-fey-blessing',
+            'unseelie-aura-fey-blessing', 'unthreatening-form-fey-blessing',
+            'water-creature-fey-blessing', 'weapons-of-the-wild-fey-blessing',
+            'wild-walk-fey-blessing', 'winterfey-fey-blessing')},
+        # Detect Scrying already contributes the one SP of Sense Observation.
+        'divination:advanced-talent:sense-observation-sense-alienist-hb': 0,
+        # Cost of the spell/effect cast through the sensor is separate.
+        'divination:advanced-talent:remote-casting-divine-alienist-hb': 1,
+        'fallen-fey:talent:feytouch-strike-strike-3pp': 0,
+        'blood:quicken-still-talent:blood-puppet-quicken': 1,
+        'blood:quicken-still-talent:manipulate-alchemy-quicken-still': 0,
+        'blood:blood-art-talent:gory-armaments-blood-art-bap': 0,
+        'blood:advanced-talent:drain-lifeblood': 1,
+        'blood:advanced-talent:essence-manipulation-bap': 0,
+        'blood:advanced-talent:overclock': 3,
+        'blood:advanced-talent:puppet-master': 0,
+        'blood:advanced-talent:sanguine-minion': 2,
+        'blood:advanced-talent:sanguiphilia-bap': 0,
+        'blood:advanced-talent:union-of-blood-bap': 3,
+        **{'blood:talent:' + suffix: 0 for suffix in (
+            'blood-tracking', 'complex-control-apoc', 'exsanguinating-strike-strike-bap',
+            'hemorrhage', 'improved-bleed', 'inject-crimdan', 'lengthened-control',
+            'lingering-control', 'mana-bleed', 'ranged-blood-magic-range-bap', 'self-control')},
+        'blood:talent:hemo-goblin-jester-s-hb': 1,
+        'blood:talent:mass-blood-magic-mass-bap': 1,
+        **{'divination:advanced-talent:' + suffix: 0 for suffix in (
+            'assurance-of-the-future-sm', 'detect-patronage-utility-lg', 'divine-identity-divine-utility',
+            'eye-in-the-sky-3pp', 'mechanical-counterintelligence-lg', 'otherworldly-viewing-lg',
+            'penetrating-divination', 'power-of-the-name-utility-dbh', 'sensitive-divinations-eo3',
+            'soulbroker-s-sight-utility-sm')},
+        'divination:advanced-talent:hear-name-sense-utility-dbh': 1,
+        'divination:advanced-talent:trapfinding-sense': 0,  # See Hazard already supplies 1 SP.
+        'divination:advanced-talent:read-omens-divine-utility': 2,
+        'divination:advanced-talent:true-perception-sense-origin': 0,  # Ghost Sight + Unhooded Sight: 2 SP.
+        'divination:advanced-talent:unobscured-vision-sense': 2,  # Plus Ghost Sight: 3 SP.
+        # These replace prerequisite effects' costs; their integrated rows
+        # already supply Dowsing (1), Read Omens (2), and Viewing (1).
+        'divination:advanced-talent:discern-location-divine-utility': 2,
+        'divination:advanced-talent:divine-knowledge-divine-utility': 1,
+        'divination:advanced-talent:scrying-utility': 1,
+        **{'divination:sense-talent:' + suffix: 1 for suffix in (
+            'battlefield-sense-sense', 'detect-scrying-sense', 'discern-individual-sense',
+            'foreshadow-sense', 'ghost-sight-sense', 'nature-sense-sense', 'prescience-sense',
+            'prying-sight-sense-bap', 'see-hazard-sense', 'sense-presence-sense-alienist-hb',
+            'sniper-s-eye-sense', 'tremorsense-sense', 'unhooded-sight-sense')},
+        **{'divination:sense-talent:' + suffix: 2 for suffix in (
+            'sense-magic-sense', 'shared-perception-sense')},
+        **{'divination:divine-talent:' + suffix: 1 for suffix in (
+            'augury-divine-utility', 'detect-secrets-divine-utility', 'detect-spellcaster-divine',
+            'divine-information-divine-utility', 'dowsing-divine-utility', 'sensory-overload-divine',
+            'viewing-divine-utility', 'witness-the-city-divine-utility')},
+        **{'divination:divine-talent:' + suffix: 0 for suffix in (
+            'divine-biohazard-divine-alienist-hb', 'divine-capability-divine-utility-sm',
+            'divine-future-divine', 'divine-relationships-divine-utility-3pp',
+            'divine-treasure-divine-utility-alienist-hb')},
+        **{'divination:talent:' + suffix: 0 for suffix in (
+            'expanded-divinations', 'fast-divinations', 'greater-divine-range', 'lingering-divination')},
         **{'dark:blot-darkness-shadow-talent:' + suffix: 0 for suffix in (
             'black-lung-darkness', 'directional-darkness-darkness', 'disorienting-darkness-darkness',
             'edge-of-night-darkness-jester-s-hb', 'fearful-darkness-blot-darkness', 'flat-black-blot',
@@ -835,6 +998,10 @@ def talent_construction_cost(entry, *, additional_spell_points=0, mythic_crafter
     from app.marvelous_base_powers import DARK_MELDS
     if base_power == 'dark:meld' and entry.get('key') in DARK_MELDS:
         return (2 if entry['key'] == 'dark:meld-talent:feed-on-darkness-meld' else 0) + additional_spell_points
+    # A replacement ordinary sense costs one complexity per SP, not an extra
+    # talent surcharge as well (Magical Items, Divination / Sense).
+    if base_power == 'divination:sense' and entry.get('key', '').startswith('divination:sense-talent:'):
+        return additional_spell_points
     if entry.get('key') == 'destruction:talent:admixture':
         return 0
     if entry.get('key') in {'alteration:talent:mass-alteration-mass', 'illusion:talent:suppression-glamer'}:
@@ -1193,7 +1360,9 @@ def quote_marvelous_blueprint(plan):
             if expected and plan.get('base_power') != expected:
                 raise ValueError('Plasma Projection mode requires base power ' + expected + '.')
         if (contribution.get('catalog_key') in {'time:talent:time-strike-strike', 'life:talent:clarified-strike-strike',
-                'creation:talent:transmuting-strike-strike-3pp', 'dark:talent:shadow-strike-strike-3pp'}
+                'creation:talent:transmuting-strike-strike-3pp', 'dark:talent:shadow-strike-strike-3pp',
+                'divination:talent:revealing-strike-strike-3pp', 'blood:talent:exsanguinating-strike-strike-bap',
+                'fallen-fey:talent:feytouch-strike-strike-3pp'}
                 and plan['activation'] in {'move', 'swift'}):
             raise ValueError('Strike talents cannot reduce casting below a standard action.')
         if (contribution.get('catalog_key') == 'enhancement:advanced-talent:inherent-enhancement-enhance-archmagi-s-hb'

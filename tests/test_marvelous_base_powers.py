@@ -19,6 +19,156 @@ def plan(key, cl=5, **changes):
                 range_steps=0, duration_steps=0, **changes)
 
 
+@pytest.mark.parametrize('cl,speed', [(1, None), (4, None), (5, '30 ft. (poor)'),
+    (10, '35 ft. (average)'), (15, '40 ft. (good)'), (20, '45 ft. (perfect)'), (25, '50 ft. (perfect)')])
+def test_fairy_flight_thresholds_keep_gliding_distinct_from_flight(cl, speed):
+    row = dict(catalog_key='fallen-fey:fey-blessing-talent:fairy-flight-fey-blessing')
+    result = resolve_base_power(plan('fallen-fey:link', cl=cl, contributions=[row]))
+    assert result.get('granted_fly_speed') == speed
+    assert ('glide' in result) == (cl < 5)
+    assert result['duration'] == f'{cl} minutes'
+
+
+@pytest.mark.parametrize('cl,distance', [(1, 10), (3, 10), (4, 15), (5, 15), (6, 20), (20, 55)])
+def test_fey_long_step_breakpoints(cl, distance):
+    row = dict(catalog_key='fallen-fey:fey-blessing-talent:long-step-fey-blessing')
+    result = resolve_base_power(plan('fallen-fey:link', cl=cl, contributions=[row]))
+    assert result['teleport_distance'] == f'{distance} ft.'
+
+
+def test_fey_weapon_modes_do_not_mix_bite_gore_or_alignment():
+    row = dict(catalog_key='fallen-fey:fey-blessing-talent:weapons-of-the-wild-fey-blessing', effect_choice='gremlin teeth')
+    result = resolve_base_power(plan('fallen-fey:link', cl=14, contributions=[row]))
+    assert result['medium_damage'] == '1d8'
+    assert result['weapon_special_ability'] == 'unholy'
+    row['effect_choice'] = 'unicorn blessing'
+    result = resolve_base_power(plan('fallen-fey:link', cl=7, contributions=[row]))
+    assert result['medium_damage'] == '1d6'
+    assert result['damage_reduction_alignment'] == 'good'
+    assert 'weapon_special_ability' not in result
+    row['effect_choice'] = ''
+    result = resolve_base_power(plan('fallen-fey:link', cl=14, contributions=[row]))
+    assert 'mode_review' in result and 'medium_damage' not in result
+
+
+def test_greater_fey_link_duration_and_unsupported_blessing_combinations():
+    rows = [dict(catalog_key='fallen-fey:fey-blessing-talent:fairy-flight-fey-blessing'),
+        dict(catalog_key='fallen-fey:talent:greater-fey-link', effect_choice='ten minutes per caster level')]
+    result = resolve_base_power(plan('fallen-fey:link', cl=10, contributions=rows))
+    assert result['duration'] == '100 minutes'
+    rows[1]['effect_choice'] = 'hours per caster level'
+    assert resolve_base_power(plan('fallen-fey:link', cl=10, contributions=rows))['duration'] == '10 hours'
+    rows.append(dict(catalog_key='fallen-fey:fey-blessing-talent:long-step-fey-blessing'))
+    result = resolve_base_power(plan('fallen-fey:link', cl=10, contributions=rows))
+    assert 'fey_blessing_review' in result and 'granted_fly_speed' not in result
+    result = resolve_base_power(plan('fallen-fey:link', cl=10, contributions=[rows[1]]))
+    assert result['nature_connection_bonus'] == 3
+    assert result['duration'] == '10 hours'
+    assert 'fey_blessing_review' not in result
+
+
+def test_advanced_divination_senses_show_selected_radius_and_target_limits():
+    row = dict(catalog_key='divination:advanced-talent:alternate-divinations-advanced-sense-origin', effect_choice='thoughtsense')
+    result = resolve_base_power(plan('divination:sense', cl=10, contributions=[row]))
+    assert result['sense_radius'] == '50 ft.'
+    assert 'Only creatures targetable' in result['sense_limits']
+    row['effect_choice'] = 'storm vision'
+    result = resolve_base_power(plan('divination:sense', cl=10, contributions=[row]))
+    assert 'sense_radius' not in result
+    assert 'unrelated invisibility' in result['weather_vision']
+    assert result['duration'] == '10 minutes'
+
+
+def test_true_perception_and_trapfinding_replace_prerequisite_skill_bonuses():
+    from app.marvelous_item_rules import missing_construction_prerequisites
+    for suffix in ('true-perception-sense-origin', 'trapfinding-sense'):
+        rows = [dict(catalog_key='divination:advanced-talent:' + suffix)]
+        rows.extend(dict(catalog_key=key) for key in missing_construction_prerequisites(rows))
+        result = resolve_base_power(plan('divination:sense', cl=10, contributions=rows))
+        assert 'divination_review' not in result
+        assert 'perception_bonus' not in result
+        if suffix == 'true-perception-sense-origin':
+            assert result['true_perception_range'] == '120 ft.'
+        else:
+            assert result['trapfinding_bonus'] == 5
+
+
+@pytest.mark.parametrize('cl', [1, 5, 10, 20])
+def test_divination_foreshadow_scales_but_keeps_item_duration(cl):
+    row = dict(catalog_key='divination:sense-talent:foreshadow-sense')
+    result = resolve_base_power(plan('divination:sense', cl=cl, contributions=[row]))
+    assert result['dodge_ac_bonus'] == 1 + cl // 10
+    assert result['reflex_and_initiative_bonus'] == 2 + cl // 10
+    assert result['duration'] == f'{cl} minutes'
+    assert result['range'] == 'Personal'
+
+
+def test_divination_unsupported_combinations_do_not_claim_single_sense_values():
+    rows = [dict(catalog_key='divination:sense-talent:foreshadow-sense'),
+            dict(catalog_key='divination:sense-talent:prescience-sense')]
+    result = resolve_base_power(plan('divination:sense', contributions=rows))
+    assert 'manual resolution' in result['power']
+    assert 'dodge_ac_bonus' not in result
+    result = resolve_base_power(plan('divination:sense', contributions=[
+        dict(catalog_key='divination:sense-talent:unknown-custom-sense')]))
+    assert 'manual resolution' in result['power']
+
+
+def test_divination_augury_chance_is_capped_and_sniper_penalties_not_bonuses():
+    result = resolve_base_power(plan('divination:divine', cl=30,
+        contributions=[dict(catalog_key='divination:divine-talent:augury-divine-utility')]))
+    assert result['meaningful_reply_chance'] == '90%'
+    result = resolve_base_power(plan('divination:sense', cl=9,
+        contributions=[dict(catalog_key='divination:sense-talent:sniper-s-eye-sense')]))
+    assert result['perception_distance_penalty_reduction'] == 9
+    assert result['ranged_environment_and_range_penalty_reduction'] == 4
+    assert 'never grants' in result['penalty_limits']
+
+
+@pytest.mark.parametrize('cl', [1, 3, 5, 10, 20])
+def test_blood_control_modifiers_scale_without_changing_item_base(cl):
+    rows = [dict(catalog_key='blood:talent:' + suffix) for suffix in
+            ('hemorrhage', 'improved-bleed', 'mass-blood-magic-mass-bap')]
+    result = resolve_base_power(plan('blood:control', cl=cl, contributions=rows))
+    assert result['bleed_damage'] == 2 * cl
+    assert result['coagulate_bleed_reduction'] == 1 + cl // 3
+    assert result['heal_check_to_stop_bleed'] == 15 + cl
+    assert result['maximum_targets'] == 1 + max(1, cl // 2)
+    assert result['range'] == 'Touch'
+    assert result['duration'] == f'{cl} rounds'
+
+
+def test_blood_optional_modes_and_unknown_effects_do_not_claim_basic_damage():
+    row = dict(catalog_key='blood:talent:eye-bleed', effect_choice='blindness')
+    result = resolve_base_power(plan('blood:control', contributions=[row]))
+    assert result['eye_effect'].startswith('Blinded')
+    result = resolve_base_power(plan('blood:control', contributions=[dict(catalog_key='blood:talent:hemo-goblin-jester-s-hb')]))
+    assert 'manual resolution' in result['power']
+    assert 'bleed_damage' not in result
+
+
+@pytest.mark.parametrize('mode,dr', [('still DR/slashing', '3/slashing'), ('still DR/adamantine', '5/adamantine')])
+def test_blood_density_mode_replaces_bleed_and_uses_correct_dr(mode, dr):
+    row = dict(catalog_key='blood:quicken-still-talent:manipulate-density-quicken-still-bap', effect_choice=mode)
+    result = resolve_base_power(plan('blood:control', cl=10, contributions=[row]))
+    assert result['damage_reduction'] == dr
+    assert 'bleed_damage' not in result
+    if mode.endswith('adamantine'):
+        assert '100 damage' in result['damage_reduction_limit']
+
+
+def test_blood_movement_bonus_and_blood_art_do_not_mix_their_statistics():
+    row = dict(catalog_key='blood:quicken-still-talent:internal-propulsion-blood-art-quicken-crimdan', effect_choice='quicken movement and flight')
+    result = resolve_base_power(plan('blood:control', cl=10, contributions=[row]))
+    assert result['one_movement_speed_enhancement_bonus'] == 20
+    assert result['granted_fly_speed'] == '20 ft. (average), winged flight'
+    assert 'blood_loss' not in result
+    row['effect_choice'] = 'blood art reposition'
+    result = resolve_base_power(plan('blood:control', cl=10, contributions=[row]))
+    assert result['blood_loss'] == 5
+    assert 'one_movement_speed_enhancement_bonus' not in result
+
+
 @pytest.mark.parametrize('power', BASE_POWERS)
 def test_every_base_power_has_a_resolvable_projection(power):
     result = resolve_base_power(plan(power.key))

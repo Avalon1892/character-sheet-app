@@ -17,6 +17,61 @@ def crafter(tmp_path):
     repo.close()
 
 
+@pytest.mark.parametrize('mode,sphere', [('material sense', 'Creation'), ('see in darkness', 'Dark'),
+    ('spirit sense', 'Death'), ('lifesense', 'Life'), ('thoughtsense', 'Mind'),
+    ('unrestricted thoughtsense', 'Mind'), ('touchsight', 'Telekinesis'), ('storm vision', 'Weather')])
+def test_advanced_divination_sense_checks_only_its_selected_foreign_sphere(crafter, mode, sphere):
+    repo, cid = crafter
+    service = CraftingService(repo, cid)
+    key = 'divination:advanced-talent:alternate-divinations-advanced-sense-origin'
+    row = dict(catalog_key=key, effect_choice=mode)
+    plan = dict(sphere='Divination', base_power='divination:sense', caster_level=5,
+                range_steps=0, duration_steps=0, contributions=[row])
+    access = dict(sphere_levels={'Divination': 5}, available_talents=[service.magic_entries_by_key[key]['name']])
+    before = repo._connection.total_changes
+    missing = service.marvelous_plan_requirements(plan, access=access)
+    assert any(f'{sphere} base sphere' in text for text in missing.blockers)
+    access['sphere_levels'][sphere] = 1
+    assert service.marvelous_plan_requirements(plan, access=access).eligible
+    assert repo._connection.total_changes == before
+
+
+@pytest.mark.parametrize('mode', ['scrying', 'teleport'])
+def test_speak_and_i_listen_checks_foreign_access_only_for_teleport(crafter, mode):
+    from app.marvelous_item_rules import missing_construction_prerequisites
+    repo, cid = crafter
+    service = CraftingService(repo, cid)
+    rows = [dict(catalog_key='divination:advanced-talent:speak-and-i-listen-dbh', effect_choice=mode)]
+    rows.extend(dict(catalog_key=key) for key in missing_construction_prerequisites(rows))
+    plan = dict(sphere='Divination', base_power='divination:divine', caster_level=10,
+                range_steps=0, duration_steps=0, contributions=rows)
+    access = dict(sphere_levels={'Divination': 10},
+        available_talents=[service.magic_entries_by_key[row['catalog_key']]['name'] for row in rows])
+    before = repo._connection.total_changes
+    result = service.marvelous_plan_requirements(plan, access=access)
+    if mode == 'teleport':
+        assert not result.eligible and any('Warp base sphere' in text for text in result.blockers)
+        access['sphere_levels']['Warp'] = 1
+        assert service.marvelous_plan_requirements(plan, access=access).eligible
+    else:
+        assert result.eligible
+    assert repo._connection.total_changes == before
+
+
+def test_imported_subsections_are_not_offered_as_accessible_item_talents(crafter):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import MARVELOUS_SUBSECTION_KEYS
+    repo, cid = crafter
+    for key in MARVELOUS_SUBSECTION_KEYS:
+        entry = magic_entry(key)
+        repo.add_spell(cid, entry['name'], system='Sphere', school_or_sphere=entry['sphere'],
+                       catalog_key=key, catalog_category=entry['category'])
+    before = repo._connection.total_changes
+    entries = CraftingService(repo, cid).accessible_marvelous_effects()
+    assert not MARVELOUS_SUBSECTION_KEYS.intersection(entry['key'] for entry in entries)
+    assert repo._connection.total_changes == before
+
+
 def test_demiplane_requires_integrated_foreign_talent_not_just_owned_access(crafter):
     repo, cid = crafter
     service = CraftingService(repo, cid)

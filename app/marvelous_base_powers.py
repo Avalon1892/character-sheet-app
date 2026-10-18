@@ -122,7 +122,103 @@ DARK_MELDS = frozenset('dark:meld-talent:' + suffix for suffix in (
     'clearsight-meld', 'dark-slaughter-meld', 'edgelord-meld-jester-s-hb', 'feed-on-darkness-meld',
     'hide-in-darkness-meld', 'step-through-darkness-meld', 'voidwatcher-meld-bap'))
 
+# These select actual blessings, not a claim that their item-pricing conversion
+# or every secondary activation has a reviewed SP surcharge.
+FEY_BLESSING_CHOICES = {
+    'aelfwine-fey-blessing': ('bolstering brew', 'brawling booze', 'calming sip', 'liquid courage'),
+    'animate-hair-fey-blessing': ('entangling locks', 'grasping tresses'),
+    'beastward-fey-blessing': ('animal affinity', 'repel beast', 'repel vermin', 'vermin affinity'),
+    'crown-of-the-courts-fey-blessing': ('seelie', 'unseelie'),
+    'enchanting-music-fey-blessing': ('bewitching melody', 'dancing tune', 'distracting cacophony', 'lullaby'),
+    'fairy-dust-fey-blessing': ('amnesia', 'bleed', 'blind', 'charm', 'fear', 'frighten', 'glitter', 'poison', 'sleep', 'flight'),
+    'feast-and-famine-fey-blessing': ('putrid vomit', 'spoilage', 'unspoil'),
+    'feline-omens-fey-blessing-catgirl-hb': ('bayun meow', 'cait sidhe taigham', 'grimalkin shade'),
+    'grace-of-the-sidhe-fey-blessing': ('evasion', 'supernatural speed'),
+    'gremlin-s-presence-fey-blessing': ('collateral damage', 'jinx', 'pugwampi aura', 'stymie channeling'),
+    'mantle-of-autumn-fey-blessing': ('cloak of leaves', 'touch of the harvest'),
+    'mantle-of-spring-fey-blessing': ('plant growth', 'verdant step'),
+    'natural-blessing-fey-blessing': ('animal blessing', 'plant blessing', 'vermin blessing'),
+    'natural-dominion-fey-blessing': ('animal', 'plant', 'vermin'),
+    'nature-s-empathy-fey-blessing-utility': ('vermin empathy', 'wild empathy'),
+    'pixie-sticks-fey-blessing-jester-s-hb': ('pixie stick', 'stick pixies', 'sugar sticks'),
+    'plant-friend-fey-blessing': ('arboreal pacifism', 'plant empathy', 'wood defense'),
+    'shadow-collector-fey-blessing': ('shadow reaver', 'steal shadow'),
+    'spores-fey-blessing': ('anxiety spores', 'fungal snare'),
+    'unseelie-aura-fey-blessing': ('aura of shattered loyalties', 'fear aura'),
+    'water-creature-fey-blessing': ('hydrokinesis', 'waterspout', 'waveglide'),
+    'weapons-of-the-wild-fey-blessing': ('antlers of the forest', 'gremlin teeth', 'unicorn blessing'),
+    'winterfey-fey-blessing': ('cold touch', 'icebeard', 'icewalk', 'lower temperature', 'snowsight'),
+    'zolavoi-s-mantle-fey-blessing': ('cindercloud', 'sense object', 'smokesight'),
+}
+
+DIVINATION_ADVANCED_SENSES = frozenset('divination:advanced-talent:' + suffix for suffix in (
+    'alternate-divinations-advanced-sense-origin', 'hear-name-sense-utility-dbh',
+    'sense-observation-sense-alienist-hb', 'trapfinding-sense',
+    'true-perception-sense-origin', 'unobscured-vision-sense'))
+
 TALENT_EFFECT_SP_CHOICES = {
+    'divination:advanced-talent:speak-and-i-listen-dbh': {'scrying': 1, 'teleport': 1},
+    'divination:advanced-talent:alternate-divinations-advanced-sense-origin': {
+        'material sense': 2, 'see in darkness': 2, 'spirit sense': 1, 'lifesense': 2,
+        'thoughtsense': 1, 'unrestricted thoughtsense': 2, 'touchsight': 2, 'storm vision': 1},
+    'divination:advanced-talent:cartographer-s-divinations-divine-utility-rw-hb': {
+        'divine chart': 2, 'lay of the land': 2, 'pathfinder': 2},
+    'fallen-fey:talent:greater-fey-link': {'ten minutes per caster level': 0, 'hours per caster level': 1},
+    'fallen-fey:talent:share-link': {'willing target': 0, 'unwilling target': 1},
+    'fallen-fey:talent:bounty-of-the-fey-mass-3pp': {'two personal blessings': 0, 'shared blessing in an area': 1},
+    **{'blood:' + kind + ':cystic-growth-blood-art-still-crimdan': {'still cysts': 0, 'blood art': 0}
+        for kind in ('blood-art-talent', 'quicken-still-talent')},
+    **{'blood:' + kind + ':internal-propulsion-blood-art-quicken-crimdan': {
+        'quicken movement': 0, 'quicken movement and flight': 1, 'blood art reposition': 0}
+        for kind in ('blood-art-talent', 'quicken-still-talent')},
+    'blood:blood-art-talent:blood-rebuff-blood-art-bap': {'temporary HP': 0, 'enhanced temporary HP and DR': 1},
+    'blood:blood-art-talent:bloodbind-blood-art-bap': {'concentration': 0, 'sustained': 1,
+        'concentration with entwined health': 1, 'sustained with entwined health': 2},
+    'blood:blood-art-talent:martyr-s-tithings-blood-art-bap': {'grant temporary HP': 0, 'grant temporary HP and healing': 1},
+    'blood:blood-art-talent:piercing-blood-blood-art-bap': {'one-round stagger': 0, 'extended stagger': 1},
+    'blood:blood-art-talent:rush-to-the-head-blood-art-bap': {'knock prone': 0, 'knock prone and confuse': 1},
+    'blood:quicken-still-talent:cardiovascular-mastery-quicken-still-crimdan': {
+        'quicken healing conversion': 0, 'still paralysis': 1, 'prevent unconsciousness': 1},
+    'blood:quicken-still-talent:control-oxygenation-quicken-still': {
+        'still fatigue': 0, 'still exhaustion': 1, 'quicken condition relief': 0, 'quicken with extra attacks': 1},
+    'blood:quicken-still-talent:manipulate-density-quicken-still-bap': {
+        'quicken Acrobatics': 0, 'quicken Acrobatics and compression': 1,
+        'still DR/slashing': 0, 'still DR/adamantine': 1},
+    'blood:quicken-still-talent:manipulate-health-quicken-still': {
+        'still disease delay': 0, 'still disease recovery save': 0,
+        'quicken expel disease': 1, 'quicken force disease save': 1},
+    'blood:quicken-still-talent:migraine-quicken': {'sickened': 0, 'nauseated': 1},
+    'blood:quicken-still-talent:numb-still': {'checks penalty and pain saves': 0, 'staggered': 1},
+    'blood:quicken-still-talent:redirect-flow-quicken-still-apoc': {
+        'still impede movement': 0, 'quicken movement': 0, 'still mental checks': 0,
+        'still disarm defense penalty': 0, 'still force dropped items': 1},
+    'blood:quicken-still-talent:slick-quicken': {'slippery creature': 0, 'slippery trail': 1},
+    'blood:advanced-talent:cardiovascular-ascension-quicken-still-crimdan': {
+        'ignore mortal HP damage': 3, 'stop the heart': 2, 'rupture temporary HP': 1},
+    'blood:talent:absorb-blood': {'transfer bleed damage as temporary HP': 0, 'Constitution damage and healing': 1},
+    'blood:talent:crimson-vortex-crimdan': {'small vortex with concentration': 0,
+        'expanded vortex with concentration': 1, 'small sustained vortex': 1, 'expanded sustained vortex': 2},
+    'blood:talent:extract-blood-construct': {'concentration': 0, 'without concentration': 1},
+    'blood:talent:eye-bleed': {'concealment miss chance': 0, 'blindness': 1},
+    'blood:talent:greater-blood-control': {'increase casting time': 0, 'spend a spell point': 1},
+    'blood:talent:hemokinesis': {'move blood': 0, 'blood arc': 1, 'grant construct flight': 1},
+    'blood:talent:instill-blood-magic-instill-bap': {'instill a blood art': 0, 'instill sustained blood control': 1},
+    'blood:talent:red-mist-crimdan': {'conceal the bleeding creature': 0, 'expanded mist': 1},
+    # Reviewed Ultimate Divination costs; these are effect costs, not casting-time discounts.
+    'divination:sense-talent:blindfolded-oracle-sense': {'blindsense': 1, 'blindsight': 2},
+    'divination:sense-talent:logos-sense-origin': {'understand languages': 1, 'understand and be understood': 2},
+    'divination:sense-talent:scent-sense': {'scent': 1, 'keen scent': 2},
+    'divination:divine-talent:detect-thoughts-divine-utility': {'emotions': 0, 'surface thoughts': 1},
+    'divination:divine-talent:object-reading-divine-utility': {'last owner': 0, 'previous owner': 1},
+    'divination:talent:alarm-utility-gravecaller-s-hb': {'ten minutes per caster level': 1, 'hours per caster level': 2},
+    'divination:talent:grant-divination': {'grant a sense': 0, 'grant a divine effect': 1},
+    'divination:talent:instill-divination-instill': {'instill a sense': 0, 'instill a divine effect': 1},
+    'divination:talent:pressuring-divinations-utility-sm': {'immediate-action assessment': 0, 'free-action assessment': 1},
+    'divination:talent:revealing-strike-strike-3pp': {'standard-action strike': 0, 'immediate divination after a hit': 1},
+    'divination:advanced-talent:arc-of-change-utility-sm': {'hours of history': 0, 'extended history': 1},
+    'divination:advanced-talent:eyes-of-the-cabal-bap': {'transfer to another target': 0, 'copy to additional targets': 2},
+    'divination:advanced-talent:expansive-vision': {'normal sense range': 0, 'one range step farther': 1},
+    'divination:advanced-talent:greater-scrying-divine-utility': {'ordinary concentration': 0, 'faster concentration': 1},
     'dark:blot-darkness-shadow-talent:imbue-shadow-shadow': {'blindfold with concentration': 1,
         'blindfold without concentration': 2, 'convert a blot or darkness talent to a shadow': 1},
     'dark:advanced-talent:pitch-black': {'additional darkness talent capacity': 0, 'deeper absolute darkness': 1},
@@ -258,6 +354,8 @@ def talent_effect_choices(key):
     """Reviewed construction choices, shared by the editor and projections."""
     if key in TALENT_EFFECT_SP_CHOICES:
         return tuple(TALENT_EFFECT_SP_CHOICES[key])
+    if isinstance(key, str) and key.startswith('fallen-fey:fey-blessing-talent:'):
+        return FEY_BLESSING_CHOICES.get(key.split(':')[-1], ())
     if key in ABILITY_ENHANCEMENT_CHOICES:
         return ABILITY_ENHANCEMENT_CHOICES[key]
     if key == 'enhancement:enhance-talent:alter-movement-enhance':
@@ -341,6 +439,12 @@ def effective_base_duration(plan):
     """Duration before construction adjustments, including reviewed effect modes."""
     power = next((power for power in BASE_POWERS if power.key == plan.get('base_power')), None)
     if power is None: return 'instantaneous'
+    if power.key == 'fallen-fey:link':
+        links = [row for row in plan.get('contributions', []) if row.get('catalog_key') == 'fallen-fey:talent:greater-fey-link']
+        if len(links) == 1 and not links[0].get('alternative'):
+            mode = links[0].get('effect_choice')
+            if mode == 'ten minutes per caster level': return 'ten-minutes'
+            if mode == 'hours per caster level': return 'hour'
     if mode := shadowed_mien_mode(plan):
         return 'concentration' if mode.startswith('concentration') else 'ten-minutes'
     if plasma_projection_mode(plan):
@@ -604,6 +708,223 @@ def resolve_base_power(plan):
     mode = item_dice_metamagic(plan)
     if mode and any(mode): summary['dice_mode'] = ' + '.join(label for label, active in zip(('Maximized', 'Empowered'), mode) if active)
     if plan.get('permanent', False): summary['duration'] = 'Permanent (dispellable)'
+    if power.key == 'fallen-fey:link':
+        rows = plan.get('contributions', [])
+        blessings = [row for row in rows if row.get('catalog_key', '').startswith('fallen-fey:fey-blessing-talent:')]
+        summary['fey_link'] = 'Counts as fey instead of the previous creature type; retains subtypes and previous type benefits. Does not gain the normal benefits of the fey type.'
+        plain_link = not blessings and all(row.get('catalog_key') == 'fallen-fey:talent:greater-fey-link'
+            and not row.get('alternative') for row in rows)
+        if plain_link:
+            summary['nature_connection_bonus'] = 1 + cl // 5
+            summary['nature_connection_scope'] = 'Initiative, Knowledge (geography), Survival, Stealth and Perception in one terrain selected when the item is crafted.'
+            summary['terrain_review'] = 'Record the fixed terrain in the item description before construction.'
+        allowed_modifiers = {'fallen-fey:talent:greater-fey-link'}
+        supported = (len(blessings) == 1 and len({row.get('catalog_key') for row in rows}) == len(rows)
+            and not any(row.get('alternative') for row in rows)
+            and all(row is blessings[0] or row.get('catalog_key') in allowed_modifiers for row in rows))
+        if supported:
+            from app.content import magic_entry
+            row = blessings[0]
+            entry = magic_entry(row['catalog_key'])
+            summary['power'] = entry['name'] if entry else 'Unknown fey blessing — manual resolution'
+            key, choice = row['catalog_key'].split(':')[-1], row.get('effect_choice', '')
+            if talent_effect_choices(row['catalog_key']) and choice not in talent_effect_choices(row['catalog_key']):
+                summary['mode_review'] = 'Choose the specific fey blessing before construction.'
+            elif key == 'fairy-flight-fey-blessing':
+                summary['polymorph'] = 'Winged flight; apply shapeshift interaction and armor/wing restrictions manually.'
+                if cl < 5:
+                    summary['glide'] = '30 ft. (poor); descends 1 ft. per 5 ft. traveled; no falling damage.'
+                else:
+                    steps = cl // 5 - 1
+                    maneuverability = ('poor', 'average', 'good', 'perfect')[min(3, steps)]
+                    summary['granted_fly_speed'] = f'{30 + 5 * steps} ft. ({maneuverability})'
+                    summary['falling'] = 'No falling damage.'
+            elif key == 'long-step-fey-blessing':
+                summary['teleport_distance'] = f'{10 + 5 * max(0, (cl - 2) // 2)} ft.'
+                summary['teleport_action'] = 'Move action; line of sight required; no attacks of opportunity.'
+            elif key in {'fey-beauty-fey-blessing-utility', 'fey-potency-fey-blessing'}:
+                summary['bonus'] = 1 + cl // 5
+                summary['bonus_scope'] = ('Charisma-based skill and ability checks only.' if 'beauty' in key
+                                          else 'Rolls to overcome spell resistance only.')
+            elif key == 'fey-secrets-fey-blessing':
+                summary['single_roll_insight_bonus'] = f'1d4+{cl // 5}'
+                summary['uses'] = 'Once before the link ends per blessing; cannot spend multiple blessings on one roll.'
+            elif key == 'natural-blessing-fey-blessing':
+                summary['saving_throw_luck_bonus'] = 1 + cl // 5
+                summary['bonus_targets'] = f'Friendly creatures of the chosen type ({choice}) within 30 ft.'
+            elif key == 'natural-dominion-fey-blessing':
+                summary['maximum_target_cr'] = cl
+                summary['dominion'] = f'One {choice} within 30 ft.; Will negates. Apply the intelligence-dependent command limits manually.'
+            elif key == 'saboteur-fey-blessing-utility':
+                summary['disable_device_competence_bonus'] = max(1, cl // 2)
+                summary['unattended_object_bonus_damage'] = cl
+                summary['limits'] = 'Object damage once per round; devices count one complexity category simpler for dismantling time.'
+            elif key == 'aelfwine-fey-blessing':
+                summary['flask_hardness'] = 5
+                summary['flask_hp'] = 5 * cl
+                if choice == 'bolstering brew': summary['temporary_hp'] = f'{cl}, lasting 1 minute after drinking'
+                elif choice == 'liquid courage': summary['fear_save_circumstance_bonus'] = 2 + cl // 7
+                summary['alcohol_limits'] = 'Creatures immune to alcohol do not benefit. Drinking is a separate action; paid dispelling and talent selections still require review.'
+            elif key == 'pixie-sticks-fey-blessing-jester-s-hb':
+                if choice == 'pixie stick':
+                    summary['wooden_weapon_attack_and_damage_insight_bonus'] = 1 + cl // 5
+                elif choice == 'sugar sticks':
+                    summary['healing_per_consumption'] = cl
+                    summary['consumption_limit'] = 'Once per creature per 10 minutes; consumption is a separate action.'
+                elif choice == 'stick pixies':
+                    summary['maximum_summoned_cr'] = f'{cl}/3'
+                    summary['maximum_combined_summoned_hd'] = cl
+                    summary['summoning_cost_review'] = 'Separate one-SP summoning action; permanent CL caps must exclude temporary increases.'
+            elif key == 'gremlin-s-presence-fey-blessing':
+                if choice == 'jinx': summary['attack_save_skill_and_ability_penalty'] = -(2 + cl // 5)
+                elif choice == 'pugwampi aura':
+                    summary['hostile_save_penalty'] = -(1 + cl // 5)
+                    summary['aura_limits'] = '30 ft.; creatures benefiting from any luck bonus ignore this penalty.'
+            elif key == 'mantle-of-autumn-fey-blessing':
+                if choice == 'cloak of leaves': summary['concealment_radius'] = f'{10 + 5 * (cl // 5)} ft.'
+                elif choice == 'touch of the harvest':
+                    summary['maximum_touched_food_plants'] = cl
+                    summary['food_per_plant'] = 'One day for 3 Medium creatures or 1 horse.'
+            elif key == 'weapons-of-the-wild-fey-blessing':
+                bite = choice == 'gremlin teeth'
+                summary['natural_attack'] = 'Primary bite' if bite else 'Primary gore; double damage on a charge'
+                summary['medium_damage'] = '1d8' if bite else '1d6'
+                summary['small_damage'] = '1d6' if bite else '1d4'
+                alignment = {'antlers of the forest': ('chaotic', 'anarchic'),
+                    'gremlin teeth': ('evil', 'unholy'), 'unicorn blessing': ('good', 'holy')}[choice]
+                if cl >= 7: summary['damage_reduction_alignment'] = alignment[0]
+                if cl >= 14: summary['weapon_special_ability'] = alignment[1]
+                summary['polymorph'] = 'Natural attack only; apply the interaction with Alteration traits manually.'
+            elif key == 'water-creature-fey-blessing' and choice == 'waterspout':
+                summary['waterspout_damage'] = f'{1 + (cl - 1) // 2}d6 bludgeoning'
+                summary['waterspout_targeting'] = 'Creature touching the same water, within close range; Reflex negates.'
+            elif key == 'snare-setter-fey-blessing':
+                summary['snare_detection_dc'] = 20 + cl
+                summary['snare_ac_and_hp'] = cl
+                summary['snare_hardness'] = cl // 2
+                summary['snare_limits'] = 'One active snare; trapfinding required to locate it; escape against sphere DC as a full-round action.'
+            summary['application'] = 'Selected blessing only. Secondary actions, per-target immunities, resource costs and character changes are resolved manually.'
+        elif rows and not plain_link:
+            summary['fey_blessing_review'] = 'Resolve multiple or modified blessings, independent use costs and durations from their rules; no single-blessing statistics are assumed.'
+    if power.key in {'divination:divine', 'divination:sense'}:
+        rows = plan.get('contributions', [])
+        selected = [row for row in rows if row.get('catalog_key', '').startswith(
+            'divination:sense-talent:' if power.key == 'divination:sense' else 'divination:divine-talent:')]
+        if not rows:
+            summary['divination_effect'] = ('Read magical writing; does not activate the writing.'
+                if power.key == 'divination:sense' else 'Detect magical aura strength and location; identify school or sphere with Knowledge (arcana).')
+        elif len(rows) == len(selected) == 1 and not selected[0].get('alternative'):
+            from app.content import magic_entry
+            row = selected[0]
+            entry = magic_entry(row['catalog_key'])
+            summary['power'] = entry['name'] if entry else 'Unknown Divination effect — manual resolution'
+            key = row['catalog_key'].split(':')[-1]
+            choice = row.get('effect_choice', '')
+            if talent_effect_choices(row['catalog_key']) and choice not in talent_effect_choices(row['catalog_key']):
+                summary['mode_review'] = 'Choose the effect mode before construction.'
+            half, close = cl // 2, 25 + 5 * (cl // 2)
+            if key == 'foreshadow-sense':
+                summary['dodge_ac_bonus'] = 1 + cl // 10
+                summary['reflex_and_initiative_bonus'] = 2 + cl // 10
+                summary['awareness'] = 'Not flat-footed in the surprise round or before acting in the first combat round.'
+            elif key == 'prescience-sense':
+                summary['attack_insight_bonus'] = 1 + cl // 10
+                summary['dismissal_attack_or_maneuver_insight_bonus'] = 10 + half
+            elif key == 'nature-sense-sense':
+                summary['knowledge_nature_and_survival_bonus'] = 1 + cl // 5
+                summary['dismissal'] = 'Immediate action: reroll a failed Survival check against natural hazards or getting lost with this bonus.'
+            elif key == 'discern-individual-sense':
+                summary['monster_lore_insight_bonus'] = max(1, half)
+                summary['training'] = 'Monster lore checks may be attempted untrained.'
+            elif key == 'unhooded-sight-sense':
+                summary['disbelief_bonus'] = max(1, half)
+                summary['bonus_scope'] = 'Will saves, Perception checks and magic skill checks to disbelieve illusions only.'
+            elif key == 'ghost-sight-sense':
+                summary['perception_bonus'] = cl
+                summary['bonus_scope'] = 'Notice invisible or ethereal creatures; successful detection reveals an outline until line of sight is lost.'
+            elif key == 'sniper-s-eye-sense':
+                summary['perception_distance_penalty_reduction'] = cl
+                summary['ranged_environment_and_range_penalty_reduction'] = half
+                summary['penalty_limits'] = 'Reduces applicable penalties to zero at most; never grants a positive bonus.'
+            elif key in {'blindfolded-oracle-sense', 'tremorsense-sense', 'sense-magic-sense'}:
+                summary['sense_radius'] = f'{close} ft.'
+                if key == 'blindfolded-oracle-sense':
+                    summary['granted_sense'] = choice or 'Choose blindsense or blindsight'
+                    summary['sense_limits'] = 'Only functions with eyes closed.'
+                elif key == 'tremorsense-sense':
+                    summary['granted_sense'] = 'Tremorsense; requires shared ground contact, or moving creatures in water when underwater.'
+                else:
+                    summary['granted_sense'] = 'Constant basic magic-aura divination within close range.'
+            elif key == 'battlefield-sense-sense':
+                summary['flanking_exception_rogue_level'] = cl + 4
+                summary['defense'] = 'Cannot be flanked except by a creature meeting this rogue-level threshold.'
+            elif key == 'shared-perception-sense':
+                summary['maximum_targets'] = 2 + cl // 5
+                summary['shared_perception_limits'] = 'Touched targets share senses while within long range of each other; dense materials can block the effect.'
+            elif key == 'augury-divine-utility':
+                summary['meaningful_reply_chance'] = f'{min(90, 70 + cl)}%'
+                summary['future_horizon'] = f'{cl} hours'
+            elif key == 'divine-future-divine':
+                summary['insight_die'] = f'1d4+{cl // 5}'
+                summary['benefit'] = 'Spend the stored die on an eligible roll; repeat talent selections and daily use restrictions require manual resolution.'
+            elif key in {'divine-biohazard-divine-alienist-hb', 'divine-capability-divine-utility-sm',
+                         'divine-information-divine-utility', 'divine-treasure-divine-utility-alienist-hb',
+                         'detect-thoughts-divine-utility', 'object-reading-divine-utility'}:
+                summary['conditional_skill_bonus'] = half
+                summary['bonus_scope'] = 'Only the checks and targets specified by the selected talent; not a general skill bonus.'
+            elif key == 'sensory-overload-divine':
+                summary['nonlethal_damage_per_round'] = cl
+                summary['saving_throws'] = 'Fortitude negates damage; Will ends the effect. Mindless creatures take -2 on these saves.'
+            summary['application'] = 'Resolve the selected rules text and target eligibility manually; no permanent character statistic is changed.'
+        else:
+            summary['power'] = 'Modified Divination effect — manual resolution'
+            summary['divination_review'] = 'Resolve multiple effects, alternative groups and modifiers from their rules; no single-sense statistics are assumed.'
+        if power.key == 'divination:sense':
+            advanced = [row for row in rows if row.get('catalog_key') in DIVINATION_ADVANCED_SENSES]
+            if len(advanced) == 1:
+                from app.marvelous_item_rules import ADVANCED_CONSTRUCTION_REQUIREMENTS
+                row = advanced[0]
+                owner = row['catalog_key']
+                required = {owner, *ADVANCED_CONSTRUCTION_REQUIREMENTS[owner][1]}
+                keys = [item.get('catalog_key') for item in rows]
+                if set(keys) == required and len(keys) == len(required) and not any(item.get('alternative') for item in rows):
+                    from app.content import magic_entry
+                    summary.pop('divination_review', None)
+                    summary['power'] = magic_entry(owner)['name']
+                    key, choice = owner.split(':')[-1], row.get('effect_choice', '')
+                    close = 25 + 5 * (cl // 2)
+                    if key == 'alternate-divinations-advanced-sense-origin':
+                        if choice not in talent_effect_choices(owner):
+                            summary['mode_review'] = 'Choose the advanced sense before construction.'
+                        else:
+                            summary['granted_sense'] = choice.title()
+                            if choice != 'storm vision' and choice != 'see in darkness':
+                                summary['sense_radius'] = f'{close} ft.'
+                            if choice == 'material sense':
+                                summary['material_review'] = 'Fix one material the crafter can create or alter; confirm Creation material access before construction.'
+                            if choice in {'thoughtsense', 'unrestricted thoughtsense'}:
+                                summary['sense_limits'] = ('Conscious creatures only; respects nondetection and Unplottable. '
+                                    + ('All conscious creature types.' if choice.startswith('unrestricted') else 'Only creatures targetable by the crafter’s Mind sphere abilities.'))
+                            if choice == 'storm vision':
+                                summary['weather_vision'] = 'Ignores concealment, miss chances and Perception penalties directly caused by natural or magical weather; does not reveal unrelated invisibility.'
+                            if choice == 'see in darkness': summary['darkness_vision'] = 'See perfectly through ordinary and magical darkness; does not grant sight through other obstructions.'
+                    elif key == 'hear-name-sense-utility-dbh':
+                        summary['phrase_detection_range'] = f'{cl} miles'
+                        summary['phrase_review'] = 'Fix the trigger word, phrase or name in the design; only references to the user or their actions trigger it.'
+                        summary['dismissal'] = 'Learn the speaker’s name, appearance and location.'
+                    elif key == 'sense-observation-sense-alienist-hb':
+                        summary['observation'] = 'Detect number of observers and senses used, not identities; familiar subjects thinking of the user also trigger this sense.'
+                        summary['observation_limit'] = 'Same plane only.'
+                    elif key == 'trapfinding-sense':
+                        summary['trapfinding_bonus'] = max(1, cl // 2)
+                        summary['bonus_scope'] = 'Perception to locate traps and Disable Device; permits disabling magical traps.'
+                    elif key == 'true-perception-sense-origin':
+                        summary['true_perception_range'] = '120 ft.'
+                        summary['perception_review'] = 'Fix sight, sound, touch, or taste/odor in the item design. Does not penetrate solid objects, mundane disguises, hiding or fog; cannot combine with viewing/scrying.'
+                    elif key == 'unobscured-vision-sense':
+                        summary['see_through_matter_range'] = f'{close} ft.'
+                        summary['penetration_limit'] = 'Dense materials can block this sense as with Divine; it is not unlimited wall penetration.'
+                    summary['application'] = 'Resolve selected sense, targets and concealment manually; the item does not permanently alter creature senses.'
     if any(row.get('catalog_key') == 'warp:advanced-talent:time-warp-jester-s-hb' for row in plan.get('contributions', [])):
         summary['time_travel'] = f'Up to {100 * cl:,} years forward or backward, within True Teleport range; destination familiarity, mishaps and timeline consequences require GM resolution.'
         summary['spell_point_accounting'] = 'Time Warp costs 5 SP total: 2 SP from the integrated True Teleport prerequisite plus 3 additional SP. Other teleport modifiers may add costs separately.'
@@ -1384,6 +1705,96 @@ def resolve_base_power(plan):
                 summary['stacking'] = 'Temporary untyped bonus; stacks with a separate normal enhancement bonus. Does not permanently rewrite the base ability score.'
                 summary['maximum_duration'] = f'{cl} rounds'
                 summary['duration_review'] = 'Cannot exceed one round per caster level or become permanent; Deep Enhancement does not extend this limit.'
+    if power.key == 'blood:control':
+        rows = plan.get('contributions', [])
+        keys = {row.get('catalog_key') for row in rows}
+        supported = {'blood:talent:' + suffix for suffix in (
+            'hemorrhage', 'improved-bleed', 'eye-bleed', 'mass-blood-magic-mass-bap',
+            'complex-control-apoc', 'lingering-control')}
+        if (keys <= supported and len(keys) == len(rows)
+                and not any(row.get('alternative') for row in rows)):
+            summary['bleed_damage'] = cl * (2 if 'blood:talent:hemorrhage' in keys else 1)
+            summary['coagulate_bleed_reduction'] = 1 + cl // 3
+            summary['blood_control_options'] = 'Apply Bleed or Coagulate; quicken and still effects replace each other unless Complex Control applies.'
+            summary['target_eligibility'] = 'Fortitude negates; spell resistance applies. Below half maximum HP: -4 on the initial save. Check blood/bleed immunity and exceptions manually.'
+            summary['heal_check_to_stop_bleed'] = 15 + (cl if 'blood:talent:improved-bleed' in keys else 0)
+            if 'blood:talent:improved-bleed' in keys:
+                summary['magical_healing'] = 'Requires a successful magic skill check to stop this Bleed.'
+            if 'blood:talent:mass-blood-magic-mass-bap' in keys:
+                summary['maximum_targets'] = 1 + max(1, cl // 2)
+                summary['mass_limits'] = 'Each target must be in range and receive the same effect; the mass surcharge is paid once, not again for the included quicken/still ability.'
+            eye = next((row for row in rows if row.get('catalog_key') == 'blood:talent:eye-bleed'), None)
+            if eye:
+                choice = eye.get('effect_choice')
+                if choice == 'blindness': summary['eye_effect'] = 'Blinded while the Bleed continues.'
+                elif choice == 'concealment miss chance': summary['eye_effect'] = '20% concealment miss chance against all creatures while the Bleed continues.'
+                else: summary['mode_review'] = 'Choose the Eye Bleed mode before construction.'
+                summary['eye_limits'] = 'Only creatures with eyes or equivalent sensory organs; stops when Bleed stops.'
+            if 'blood:talent:complex-control-apoc' in keys:
+                summary['simultaneous_control'] = 'Quicken and still may coexist; escaping control requires a mental-only full-round action.'
+            if 'blood:talent:lingering-control' in keys:
+                summary['lingering_control'] = 'Two-round continuation after concentration stops; does not add two rounds to the item duration.'
+            summary['application'] = 'Resolve target saves, damage and conditions manually; this preview does not deal damage or establish permanent control.'
+        else:
+            summary['power'] = 'Modified Blood effect — manual resolution'
+            summary['blood_review'] = 'Selected talents may replace control or add blood arts, blood-loss costs, different targeting or duration. Resolve those rules before construction.'
+        if len(rows) == 1 and not rows[0].get('alternative') and rows[0].get('catalog_key', '').startswith('blood:quicken-still-talent:'):
+            from app.content import magic_entry
+            row = rows[0]
+            entry = magic_entry(row['catalog_key'])
+            if entry:
+                summary['power'] = entry['name']
+                choice = row.get('effect_choice', '')
+                key = row['catalog_key'].split(':')[-1]
+                if talent_effect_choices(row['catalog_key']) and choice not in talent_effect_choices(row['catalog_key']):
+                    summary['mode_review'] = 'Choose the quicken, still or blood-art mode before construction.'
+                elif key == 'manipulate-density-quicken-still-bap':
+                    if choice.startswith('quicken'):
+                        summary['acrobatics_circumstance_bonus'] = 2 + cl // 2
+                        if choice.endswith('compression'): summary['granted_ability'] = 'Compression'
+                    elif choice == 'still DR/slashing': summary['damage_reduction'] = f'{max(1, cl // 3)}/slashing'
+                    elif choice == 'still DR/adamantine':
+                        summary['damage_reduction'] = f'{max(1, cl // 2)}/adamantine'
+                        summary['damage_reduction_limit'] = f'After preventing {10 * cl} damage, changes to {max(1, cl // 3)}/slashing.'
+                elif key == 'internal-propulsion-blood-art-quicken-crimdan':
+                    if choice.startswith('quicken'):
+                        summary['one_movement_speed_enhancement_bonus'] = 10 + 5 * (cl // 5)
+                        if choice.endswith('flight'):
+                            summary['granted_fly_speed'] = '20 ft. (average), winged flight'
+                            summary['flight_duration'] = '1 minute; separate from the item control duration.'
+                    elif choice == 'blood art reposition':
+                        summary['forced_movement'] = '10 ft.; no attacks of opportunity. Fortitude negates, +4 save against intrinsically harmful destinations.'
+                        summary['blood_loss'] = max(1, cl // 2)
+                elif key == 'numb-still':
+                    if choice == 'staggered': summary['condition'] = 'Staggered'
+                    else:
+                        summary['strength_dexterity_checks_penalty'] = -(2 + cl // 5)
+                        summary['pain_save_bonus'] = 2 + cl // 5
+                        summary['penalty_scope'] = 'Ability and skill checks, including initiative; not attacks, AC, or ability scores.'
+                elif key == 'migraine-quicken': summary['condition'] = choice.title() + ' (pain effect)'
+                elif key == 'redirect-flow-quicken-still-apoc':
+                    if choice == 'quicken movement':
+                        summary['all_movement_speed_enhancement_bonus'] = 10 + 5 * (cl // 5)
+                        summary['movement_cost'] = 'Using the additional movement causes fatigue for 1 round.'
+                    elif choice == 'still mental checks':
+                        summary['intelligence_wisdom_checks_and_concentration_penalty'] = -(2 + cl // 5)
+                    elif choice.startswith('still disarm') or choice == 'still force dropped items':
+                        summary['cmd_against_disarm_penalty'] = -(2 + cl // 4)
+                        if choice == 'still force dropped items': summary['drop_items'] = 'Fortitude each turn: drop one held item on failure, all held items on failure by 5 or more.'
+                    elif choice == 'still impede movement':
+                        summary['movement_restriction'] = 'No 5-foot steps; moving more than half speed requires Acrobatics against the sphere DC or fall prone.'
+                        summary['cmd_against_trip_bull_rush_reposition_penalty'] = -2
+                elif key == 'slick-quicken':
+                    summary['cmd_against_listed_maneuvers_penalty'] = -(2 + cl // 5)
+                    summary['maneuvers'] = 'Bull rush, disarm, drag, reposition, overrun and trip; only while bleeding.'
+                    if choice == 'slippery trail': summary['trail_duration'] = f'Exited spaces remain slippery for {cl} rounds; Reflex or fall prone.'
+                elif key == 'blood-puppet-quicken':
+                    summary['puppet_duration_limit'] = f'{cl} rounds or until control ends, whichever comes first.'
+                    summary['puppet_limits'] = 'Physical actions only, paid with the corresponding controller action; mental actions and attempts to escape remain possible.'
+                elif key == 'manipulate-alchemy-quicken-still':
+                    summary['control_required'] = 'Requires existing blood control; cannot initiate control with this ability.'
+                    summary['maximum_delayed_effects'] = 1 + cl // 10
+                summary['application'] = 'Apply only the selected mode and its rules manually; no permanent character statistic or resource is changed.'
     if power.key in {'blood:construct', 'death:reanimate'}: summary['maximum_hit_dice'] = cl
     if power.key == 'dark:darkness':
         if umbral_burst:

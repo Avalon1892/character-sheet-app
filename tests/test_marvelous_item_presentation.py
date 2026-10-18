@@ -7,6 +7,20 @@ def blueprint():
                 unique_changes=0, contributions=[])
 
 
+def test_divination_selected_sense_requirement_changes_on_the_live_card():
+    plan = blueprint()
+    row = dict(catalog_key='divination:advanced-talent:alternate-divinations-advanced-sense-origin',
+               effect_choice='lifesense', complexity=4, additional_spell_points=2)
+    plan.update(sphere='Divination', base_power='divination:sense', contributions=[row])
+    fields = item_card_fields(plan, name='Sensor', slot='', description='')
+    assert 'prerequisite: Life sphere' in fields['construction_requirements']
+    assert 'prerequisite: Dark sphere' not in fields['construction_requirements']
+    row['effect_choice'] = 'see in darkness'
+    fields = item_card_fields(plan, name='Sensor', slot='', description='')
+    assert 'prerequisite: Dark sphere' in fields['construction_requirements']
+    assert 'prerequisite: Life sphere' not in fields['construction_requirements']
+
+
 def test_item_block_descriptors_and_all_field_locks():
     plan = blueprint()
     fields = item_card_fields(plan, name='Healing gem', slot='Neck', description='A bright gem.')

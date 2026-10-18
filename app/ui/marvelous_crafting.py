@@ -411,13 +411,15 @@ class MarvelousCraftingDialog(QDialog):
         for entry in DEFAULT_CATALOG.magic_entries(self.sphere.currentText()):
             if entry.get('category') not in {'Base Sphere', 'Drawback', 'Sphere-Specific Drawback'}:
                 self.talent.addItem(entry['name'], entry)
-        from app.marvelous_item_rules import CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS
+        from app.marvelous_item_rules import cross_sphere_construction_requirements
+        from app.marvelous_base_powers import talent_effect_choices
         existing = {self.talent.itemData(i)['key'] for i in range(self.talent.count())}
-        for owner, requirements in CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS.items():
-            if self.service.magic_entries_by_key.get(owner, {}).get('sphere') != self.sphere.currentText(): continue
-            for _, key in requirements:
-                if key and key not in existing and (entry := self.service.magic_entries_by_key.get(key)):
-                    self.talent.addItem(entry['name'], entry); existing.add(key)
+        for index in range(self.talent.count()):
+            owner = self.talent.itemData(index)['key']
+            for mode in ('', *talent_effect_choices(owner)):
+                for _, key in cross_sphere_construction_requirements(dict(catalog_key=owner, effect_choice=mode)):
+                    if key and key not in existing and (entry := self.service.magic_entries_by_key.get(key)):
+                        self.talent.addItem(entry['name'], entry); existing.add(key)
         self.power_changed()
 
     def power_changed(self, *_):
@@ -602,6 +604,11 @@ class MarvelousCraftingDialog(QDialog):
             if index >= 0:
                 if entry['key'] in DARK_MELDS:
                     self.base_power.setCurrentIndex(self.base_power.findData('dark:meld'))
+                from app.marvelous_base_powers import DIVINATION_ADVANCED_SENSES
+                if (entry['key'].startswith('divination:sense-talent:') or entry['key'] in DIVINATION_ADVANCED_SENSES) and not self.table.rowCount():
+                    self.base_power.setCurrentIndex(self.base_power.findData('divination:sense'))
+                if entry['key'].startswith('divination:divine-talent:') and not self.table.rowCount():
+                    self.base_power.setCurrentIndex(self.base_power.findData('divination:divine'))
                 self.talent.setCurrentIndex(index); self.add_contribution(); existing.add(entry['key'])
                 if entry['key'] in DARK_MELDS: existing_melds.add(entry['key'])
                 if entry['key'] == 'warp:space-talent:teleport-beacon-space':
@@ -655,6 +662,8 @@ class MarvelousCraftingDialog(QDialog):
             from app.marvelous_base_powers import DARK_MELDS
             if entry['key'] in DARK_MELDS:
                 cost.setToolTip('The single meld replaces Darkness without a talent surcharge; Feed On Darkness adds +2 complexity. Manual values are preserved.')
+        if self.base_power.currentData() == 'divination:sense' and entry['key'].startswith('divination:sense-talent:'):
+            cost.setToolTip('Replacing the base sense adds complexity equal to its SP cost only. Manual values are preserved.')
         cost.valueChanged.connect(self.update_preview); self.table.setCellWidget(row, 1, cost)
         alternative = QCheckBox(); alternative.setToolTip('Mutually exclusive option in the same alternative group. Most expensive costs full; other options cost half.')
         alternative.toggled.connect(self.update_preview); self.table.setCellWidget(row, 2, alternative)

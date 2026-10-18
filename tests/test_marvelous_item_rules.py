@@ -5,6 +5,211 @@ from app.marvelous_item_rules import effect_complexity, marvelous_crafting_quote
 from app.marvelous_item_rules import marvelous_requirements
 
 
+def test_fey_bounty_area_mode_requires_two_fixed_share_links():
+    from app.marvelous_item_rules import missing_construction_prerequisites, advanced_construction_blockers
+    owner, child = 'fallen-fey:talent:bounty-of-the-fey-mass-3pp', 'fallen-fey:talent:share-link'
+    rows = [dict(catalog_key=owner, effect_choice='shared blessing in an area')]
+    assert missing_construction_prerequisites(rows) == (child, child)
+    rows.append(dict(catalog_key=child))
+    assert missing_construction_prerequisites(rows) == (child,)
+    assert advanced_construction_blockers(rows, 10)
+    rows.append(dict(catalog_key=child, alternative=True))
+    assert missing_construction_prerequisites(rows) == (child,)
+    rows[-1]['alternative'] = False
+    assert not missing_construction_prerequisites(rows)
+    assert not advanced_construction_blockers(rows, 10)
+    rows[0]['effect_choice'] = 'two personal blessings'
+    assert not missing_construction_prerequisites(rows[:1])
+
+
+def test_fairy_dust_flight_requires_actual_flight_talent_not_other_dust_modes():
+    from app.marvelous_item_rules import missing_construction_prerequisites
+    row = dict(catalog_key='fallen-fey:fey-blessing-talent:fairy-dust-fey-blessing', effect_choice='flight')
+    assert missing_construction_prerequisites([row]) == ('fallen-fey:fey-blessing-talent:fairy-flight-fey-blessing',)
+    row['effect_choice'] = 'bleed'
+    assert missing_construction_prerequisites([row]) == ()
+
+
+def test_fallen_fey_advanced_requirements_and_choices_use_catalog_identities():
+    from app.content import magic_entry
+    from app.marvelous_base_powers import FEY_BLESSING_CHOICES, talent_effect_choices
+    from app.marvelous_item_rules import ADVANCED_CONSTRUCTION_REQUIREMENTS
+    requirements = {key: value for key, value in ADVANCED_CONSTRUCTION_REQUIREMENTS.items() if key.startswith('fallen-fey:')}
+    assert len(requirements) == 8
+    for key, (_, children) in requirements.items():
+        assert magic_entry(key) and all(magic_entry(child) for child in children)
+    for suffix, choices in FEY_BLESSING_CHOICES.items():
+        key = 'fallen-fey:fey-blessing-talent:' + suffix
+        assert magic_entry(key)
+        assert talent_effect_choices(key) == choices
+
+
+def test_reviewed_simple_fey_blessings_cost_two_without_claiming_complex_paid_modes():
+    from app.content import magic_entries, magic_entry
+    from app.marvelous_item_rules import talent_construction_spell_points, talent_construction_cost
+    reviewed = [entry for entry in magic_entries('Fallen Fey')
+                if entry['category'] == 'Fey-blessing Talent'
+                and talent_construction_spell_points(entry, reviewed_only=True) is not None]
+    assert len(reviewed) == 30
+    for entry in reviewed:
+        points = talent_construction_spell_points(entry, reviewed_only=True)
+        assert points == 1
+        assert talent_construction_cost(entry, additional_spell_points=points, base_power='fallen-fey:link') == 2
+    for suffix in ('fairy-dust-fey-blessing', 'summon-fairy-fey-blessing', 'spores-fey-blessing'):
+        assert talent_construction_spell_points(magic_entry('fallen-fey:fey-blessing-talent:' + suffix), reviewed_only=True) is None
+
+
+@pytest.mark.parametrize('mode', ['scrying', 'teleport'])
+def test_speak_and_i_listen_has_separate_transitive_prerequisite_paths(mode):
+    from app.marvelous_item_rules import (missing_construction_prerequisites,
+        cross_sphere_construction_requirements, advanced_construction_blockers)
+    row = dict(catalog_key='divination:advanced-talent:speak-and-i-listen-dbh', effect_choice=mode)
+    rows = [row]
+    missing = missing_construction_prerequisites(rows)
+    assert len(missing) == len(set(missing))
+    if mode == 'scrying':
+        assert 'divination:advanced-talent:scrying-utility' in missing
+        assert not any(key.startswith('warp:') for key in missing)
+        assert cross_sphere_construction_requirements(row) == ()
+    else:
+        assert 'warp:advanced-talent:true-teleport' in missing
+        assert 'divination:advanced-talent:scrying-utility' not in missing
+        assert {sphere for sphere, _ in cross_sphere_construction_requirements(row)} == {'Warp'}
+    rows.extend(dict(catalog_key=key) for key in missing)
+    assert not missing_construction_prerequisites(rows)
+    assert not advanced_construction_blockers(rows, 10)
+
+
+def test_every_ordinary_divination_talent_has_a_reviewed_cost():
+    from app.content import magic_entries
+    from app.marvelous_item_rules import talent_construction_spell_points
+    entries = [e for e in magic_entries('Divination')
+               if 'talent' in e['category'].casefold() and 'advanced' not in e['category'].casefold()]
+    assert len(entries) == 42
+    assert not [e['key'] for e in entries if talent_construction_spell_points(e, reviewed_only=True) is None]
+
+
+def test_every_actual_divination_talent_has_cost_metadata_but_subsections_are_not_talents():
+    from app.content import magic_entries
+    from app.marvelous_item_rules import (talent_construction_spell_points,
+        MARVELOUS_SUBSECTION_KEYS, advanced_construction_blockers)
+    entries = [e for e in magic_entries('Divination') if 'Talent' in e['category']
+               and e['key'] not in MARVELOUS_SUBSECTION_KEYS]
+    assert len(entries) == 69
+    assert not [e['key'] for e in entries if talent_construction_spell_points(e, reviewed_only=True) is None]
+    for key in MARVELOUS_SUBSECTION_KEYS:
+        assert any('rules subsection' in text for text in advanced_construction_blockers([dict(catalog_key=key)], 20))
+
+
+def test_every_general_blood_talent_has_reviewed_cost_metadata():
+    from app.content import magic_entries
+    from app.marvelous_item_rules import talent_construction_spell_points
+    entries = [e for e in magic_entries('Blood') if e['category'] == 'Talent']
+    assert len(entries) == 21
+    assert not [e['key'] for e in entries if talent_construction_spell_points(e, reviewed_only=True) is None]
+
+
+def test_all_bundled_blood_talents_have_reviewed_costs_not_necessarily_complete_effects():
+    from app.content import magic_entries
+    from app.marvelous_item_rules import talent_construction_spell_points
+    entries = [e for e in magic_entries('Blood') if 'Talent' in e['category']]
+    assert len(entries) == 49
+    assert not [e['key'] for e in entries if talent_construction_spell_points(e, reviewed_only=True) is None]
+
+
+def test_overclock_requires_the_paid_oxygenation_mode_and_correct_caster_level():
+    from app.content import magic_entry
+    from app.marvelous_item_rules import (missing_construction_prerequisites,
+        missing_required_construction_modes, advanced_construction_blockers, talent_choice_spell_points)
+    owner = 'blood:advanced-talent:overclock'
+    child = 'blood:quicken-still-talent:control-oxygenation-quicken-still'
+    rows = [dict(catalog_key=owner)]
+    assert missing_construction_prerequisites(rows) == (child,)
+    assert missing_required_construction_modes(rows) == ((owner, child, 'quicken with extra attacks'),)
+    assert magic_entry(child)
+    rows.append(dict(catalog_key=child, effect_choice='quicken with extra attacks'))
+    assert not advanced_construction_blockers(rows, 18)
+    assert advanced_construction_blockers(rows, 17)
+    assert talent_choice_spell_points(child, rows[1]['effect_choice']) == 1
+
+
+@pytest.mark.parametrize('suffix,mode,points', [
+    ('absorb-blood', 'Constitution damage and healing', 1),
+    ('crimson-vortex-crimdan', 'expanded sustained vortex', 2),
+    ('extract-blood-construct', 'concentration', 0),
+    ('extract-blood-construct', 'without concentration', 1),
+    ('eye-bleed', 'blindness', 1), ('greater-blood-control', 'increase casting time', 0),
+    ('hemokinesis', 'blood arc', 1), ('hemokinesis', 'move blood', 0),
+    ('instill-blood-magic-instill-bap', 'instill sustained blood control', 1),
+    ('red-mist-crimdan', 'expanded mist', 1),
+])
+def test_blood_effect_modes_use_reviewed_incremental_costs(suffix, mode, points):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_choice_spell_points
+    assert magic_entry('blood:talent:' + suffix)
+    assert talent_choice_spell_points('blood:talent:' + suffix, mode) == points
+
+
+@pytest.mark.parametrize('suffix,points', [('foreshadow-sense', 1), ('sense-magic-sense', 2),
+    ('shared-perception-sense', 2), ('blindfolded-oracle-sense', 1)])
+def test_divination_replacement_senses_pay_sp_not_a_second_talent_surcharge(suffix, points):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_construction_cost, talent_construction_spell_points
+    entry = magic_entry('divination:sense-talent:' + suffix)
+    assert talent_construction_spell_points(entry, reviewed_only=True) == points
+    assert talent_construction_cost(entry, additional_spell_points=points, base_power='divination:sense') == points
+    assert talent_construction_cost(entry, additional_spell_points=points, base_power='divination:divine') == points + 1
+
+
+@pytest.mark.parametrize('key,mode,points', [
+    ('sense-talent:blindfolded-oracle-sense', 'blindsight', 2),
+    ('sense-talent:logos-sense-origin', 'understand and be understood', 2),
+    ('sense-talent:scent-sense', 'keen scent', 2),
+    ('divine-talent:detect-thoughts-divine-utility', 'surface thoughts', 1),
+    ('talent:alarm-utility-gravecaller-s-hb', 'hours per caster level', 2),
+    ('talent:instill-divination-instill', 'instill a sense', 0),
+    ('talent:instill-divination-instill', 'instill a divine effect', 1),
+])
+def test_divination_cost_modes_are_explicit_catalog_backed_options(key, mode, points):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_choice_spell_points
+    assert magic_entry('divination:' + key)
+    assert talent_choice_spell_points('divination:' + key, mode) == points
+
+
+@pytest.mark.parametrize('suffix,total,minimum', [
+    ('discern-location-divine-utility', 3, 15), ('divine-knowledge-divine-utility', 3, 10),
+    ('scrying-utility', 2, 10), ('trapfinding-sense', 1, 1),
+    ('true-perception-sense-origin', 2, 10), ('unobscured-vision-sense', 3, 10),
+])
+def test_divination_replacement_costs_include_prerequisites_without_double_charging(suffix, total, minimum):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import (missing_construction_prerequisites,
+        advanced_construction_blockers, talent_construction_spell_points)
+    key = 'divination:advanced-talent:' + suffix
+    rows = [dict(catalog_key=key)]
+    rows += [dict(catalog_key=child) for child in missing_construction_prerequisites(rows)]
+    assert all(magic_entry(row['catalog_key']) for row in rows)
+    assert sum(talent_construction_spell_points(magic_entry(row['catalog_key']), reviewed_only=True) for row in rows) == total
+    assert not missing_construction_prerequisites(rows)
+    assert not advanced_construction_blockers(rows, minimum)
+    assert advanced_construction_blockers(rows, minimum - 1)
+
+
+def test_divination_advanced_dependency_identities_are_real_and_transitive():
+    from app.content import magic_entry
+    from app.marvelous_item_rules import ADVANCED_CONSTRUCTION_REQUIREMENTS, missing_construction_prerequisites
+    reviewed = {k: value for k, value in ADVANCED_CONSTRUCTION_REQUIREMENTS.items() if k.startswith('divination:')}
+    assert len(reviewed) == 27
+    assert all(magic_entry(key) and all(magic_entry(child) for child in required)
+               for key, (_, required) in reviewed.items())
+    rows = [dict(catalog_key='divination:advanced-talent:greater-scrying-divine-utility')]
+    missing = missing_construction_prerequisites(rows)
+    assert len(missing) == len(set(missing)) == 3
+    assert set(missing) == {'divination:talent:greater-divine-range',
+        'divination:divine-talent:viewing-divine-utility', 'divination:advanced-talent:scrying-utility'}
+
+
 DARK_ADVANCED_REQUIREMENTS = {
     'animated-shadow-shadow': (5, ('dark:blot-darkness-shadow-talent:shadow-lurk-shadow',)),
     'black-and-black-morality-blot-darkness-shadow': (10, ('dark:talent:gaze-into-the-abyss',)),

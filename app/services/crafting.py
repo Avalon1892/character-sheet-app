@@ -61,6 +61,7 @@ class CraftingService:
     def accessible_marvelous_effects(self, sphere=None):
         """Current effective choices, including flexible talents; not permanent eligibility."""
         from app.exploitant_rules import effective_magic_talents
+        from app.marvelous_item_rules import MARVELOUS_SUBSECTION_KEYS
         keys = {spell.catalog_key for spell in effective_magic_talents(self.repository, self.character_id)
                 if spell.enabled and spell.system.casefold() in {'sphere', 'spheres'}}
         # Imported shared rules/commentary headings are not additional talents.
@@ -68,6 +69,7 @@ class CraftingService:
             and (sphere is None or entry['sphere'].casefold() == sphere.casefold())
             and key not in {'warp:advanced-talent:warping-structures-store-and-teleport-structure',
                             'time:advanced-talent:reversion-and-complete-reversion'}
+            and key not in MARVELOUS_SUBSECTION_KEYS
             and entry.get('category') != 'Base Sphere' and 'drawback' not in entry.get('category', '').casefold()),
             key=lambda entry: (entry['sphere'].casefold(), entry['name'].casefold())))
 
@@ -106,7 +108,7 @@ class CraftingService:
     def marvelous_plan_requirements(self, plan, *, access=None):
         """Resolve selected catalog identities and feed the shared eligibility check."""
         from app.marvelous_base_powers import resolve_base_power, talent_effect_choices
-        from app.marvelous_item_rules import advanced_construction_blockers, CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS
+        from app.marvelous_item_rules import advanced_construction_blockers, cross_sphere_construction_requirements
         construction_access = access if access is not None else self.permanent_marvelous_access()
         known_talents = {name.casefold() for name in construction_access.get('available_talents', ())}
         known_spheres = {name.casefold() for name, level in construction_access.get('sphere_levels', {}).items() if level > 0}
@@ -141,7 +143,7 @@ class CraftingService:
             construction_blockers.extend(advanced_construction_blockers(power['contributions'], power['caster_level'],
                 display_names={key: entry['name'] for key, entry in self.magic_entries_by_key.items()}))
             foreign_prerequisites = {talent_key for row in power['contributions']
-                for _, talent_key in CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS.get(row['catalog_key'], ()) if talent_key}
+                for _, talent_key in cross_sphere_construction_requirements(row) if talent_key}
             for contribution in power['contributions']:
                 entry = self.magic_entries_by_key.get(contribution['catalog_key'])
                 if entry is None or (str(entry.get('sphere', '')).casefold() != power['sphere'].casefold()
@@ -149,7 +151,7 @@ class CraftingService:
                     raise ValueError('Selected talent is not part of the blueprint base sphere.')
                 required.append(entry['name'])
                 protected.extend(CONSTRUCTION_PACKAGE_REQUIREMENTS.get(entry['key'], ()))
-                for sphere, talent_key in CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS.get(entry['key'], ()):
+                for sphere, talent_key in cross_sphere_construction_requirements(contribution):
                     if sphere.casefold() not in known_spheres:
                         construction_blockers.append(f'{entry["name"]}: requires the {sphere} base sphere as a construction prerequisite.')
                     if talent_key and (talent := self.magic_entries_by_key[talent_key]['name']).casefold() not in known_talents:

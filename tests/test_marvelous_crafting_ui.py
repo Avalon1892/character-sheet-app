@@ -19,6 +19,150 @@ def composer(tmp_path):
     repo.close()
 
 
+def test_fey_bounty_mode_inserts_two_share_links_without_character_writes(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Fallen Fey'); dialog.cl.setValue(10)
+    key = 'fallen-fey:talent:bounty-of-the-fey-mass-3pp'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    before = repo._connection.total_changes
+    dialog.add_contribution()
+    choice = dialog.table.cellWidget(0, 5)
+    choice.setCurrentIndex(choice.findData('shared blessing in an area'))
+    rows = dialog.blueprint()['contributions']
+    assert sum(row['catalog_key'] == 'fallen-fey:talent:share-link' for row in rows) == 2
+    assert len(rows) == 3
+    dialog.add_required_contributions()
+    assert dialog.table.rowCount() == 3
+    assert repo._connection.total_changes == before
+
+
+def test_fey_weapon_choice_updates_card_and_preserves_manual_cost_on_reopen(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Fallen Fey'); dialog.cl.setValue(14)
+    key = 'fallen-fey:fey-blessing-talent:weapons-of-the-wild-fey-blessing'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    before = repo._connection.total_changes
+    dialog.add_contribution()
+    choice = dialog.table.cellWidget(0, 5)
+    choice.setCurrentIndex(choice.findData('gremlin teeth'))
+    assert 'unholy' in dialog.item_preview.toPlainText()
+    dialog.table.cellWidget(0, 1).setValue(4)
+    dialog.table.cellWidget(0, 4).setValue(2)
+    draft = dialog.blueprint()
+    dialog.load_plan(draft)
+    assert dialog.blueprint()['contributions'] == draft['contributions']
+    assert 'Weapons Of The Wild' in dialog.item_preview.toPlainText()
+    assert repo._connection.total_changes == before
+
+
+def test_advanced_divination_picker_selects_sense_base_and_updates_required_sphere(composer, monkeypatch):
+    from app.content import magic_entry
+    from app.ui.marvelous_effect_picker import MarvelousEffectPicker
+    from PySide6.QtWidgets import QDialog
+    dialog, repo, cid = composer
+    entry = magic_entry('divination:advanced-talent:alternate-divinations-advanced-sense-origin')
+    repo.add_spell(cid, entry['name'], system='Sphere', school_or_sphere='Divination',
+                   catalog_key=entry['key'], catalog_category=entry['category'])
+    dialog.sphere.setCurrentText('Divination'); dialog.cl.setValue(10)
+    before = repo._connection.total_changes
+    def choose(picker):
+        picker.selected_entries = (entry,)
+        return QDialog.DialogCode.Accepted
+    monkeypatch.setattr(MarvelousEffectPicker, 'exec', choose)
+    dialog.choose_accessible_effects()
+    assert dialog.base_power.currentData() == 'divination:sense'
+    choice = dialog.table.cellWidget(0, 5)
+    choice.setCurrentIndex(choice.findData('lifesense'))
+    assert 'prerequisite: Life sphere' in dialog.item_preview.toPlainText()
+    assert '50 ft.' in dialog.item_preview.toPlainText()
+    choice.setCurrentIndex(choice.findData('see in darkness'))
+    assert 'prerequisite: Dark sphere' in dialog.item_preview.toPlainText()
+    assert 'prerequisite: Life sphere' not in dialog.item_preview.toPlainText()
+    draft = dialog.blueprint()
+    dialog.load_plan(draft)
+    assert dialog.blueprint()['contributions'] == draft['contributions']
+    assert repo._connection.total_changes == before
+
+
+@pytest.mark.parametrize('mode', ['scrying', 'teleport'])
+def test_speak_listen_mode_inserts_only_its_selected_path_and_reopens(composer, mode):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Divination'); dialog.cl.setValue(20)
+    key = 'divination:advanced-talent:speak-and-i-listen-dbh'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    before = repo._connection.total_changes
+    dialog.add_contribution()
+    choice = dialog.table.cellWidget(0, 5)
+    choice.setCurrentIndex(choice.findData(mode))
+    keys = {row['catalog_key'] for row in dialog.blueprint()['contributions']}
+    assert 'divination:advanced-talent:hear-name-sense-utility-dbh' in keys
+    assert ('warp:advanced-talent:true-teleport' in keys) == (mode == 'teleport')
+    assert ('divination:advanced-talent:scrying-utility' in keys) == (mode == 'scrying')
+    draft = dialog.blueprint()
+    dialog.load_plan(draft)
+    assert dialog.blueprint()['contributions'] == draft['contributions']
+    assert repo._connection.total_changes == before
+
+
+@pytest.mark.parametrize('suffix,base', [('sense-talent:blindfolded-oracle-sense', 'sense'),
+                                      ('divine-talent:detect-thoughts-divine-utility', 'divine')])
+def test_divination_picker_defaults_modes_price_and_reopens_without_writes(composer, monkeypatch, suffix, base):
+    from app.content import magic_entry
+    from app.ui.marvelous_effect_picker import MarvelousEffectPicker
+    from PySide6.QtWidgets import QDialog
+    dialog, repo, cid = composer
+    entry = magic_entry('divination:' + suffix)
+    repo.add_spell(cid, entry['name'], system='Sphere', school_or_sphere='Divination',
+                   catalog_key=entry['key'], catalog_category=entry['category'])
+    dialog.sphere.setCurrentText('Divination'); dialog.cl.setValue(10)
+    before = repo._connection.total_changes
+    def choose(picker):
+        picker.selected_entries = (entry,)
+        return QDialog.DialogCode.Accepted
+    monkeypatch.setattr(MarvelousEffectPicker, 'exec', choose)
+    dialog.choose_accessible_effects()
+    assert dialog.base_power.currentData() == 'divination:' + base
+    choice = dialog.table.cellWidget(0, 5)
+    choice.setCurrentIndex(1)
+    price = dialog.quotation()[1].market_price_gp
+    choice.setCurrentIndex(2)
+    assert dialog.quotation()[1].market_price_gp == price + 4000
+    assert dialog.table.cellWidget(0, 1).value() == (0 if base == 'sense' else 1)
+    draft = dialog.blueprint()
+    reopened = MarvelousCraftingDialog(repo, cid)
+    reopened.load_plan(draft)
+    try:
+        assert reopened.blueprint()['contributions'] == draft['contributions']
+        assert reopened.quotation()[1].market_price_gp == dialog.quotation()[1].market_price_gp
+        assert repo._connection.total_changes == before
+    finally:
+        reopened.close()
+
+
+@pytest.mark.parametrize('key,first,second', [
+    ('blood:talent:eye-bleed', 'concealment miss chance', 'blindness'),
+    ('blood:quicken-still-talent:manipulate-density-quicken-still-bap', 'still DR/slashing', 'still DR/adamantine'),
+    ('blood:quicken-still-talent:internal-propulsion-blood-art-quicken-crimdan', 'quicken movement', 'quicken movement and flight'),
+])
+def test_blood_modes_update_live_price_and_card_without_writes(composer, key, first, second):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Blood'); dialog.cl.setValue(10)
+    before = repo._connection.total_changes
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    dialog.add_contribution()
+    choice = dialog.table.cellWidget(0, 5)
+    choice.setCurrentIndex(choice.findData(first))
+    price = dialog.quotation()[1].market_price_gp
+    first_card = dialog.item_preview.toPlainText()
+    choice.setCurrentIndex(choice.findData(second))
+    assert dialog.quotation()[1].market_price_gp == price + 4000
+    assert dialog.item_preview.toPlainText() != first_card
+    draft = dialog.blueprint()
+    dialog.load_plan(draft)
+    assert dialog.blueprint()['contributions'] == draft['contributions']
+    assert repo._connection.total_changes == before
+
+
 def test_visible_construction_status_opens_review_without_disabling_draft_save(composer):
     dialog, repo, cid = composer
     dialog.review.setChecked(True)

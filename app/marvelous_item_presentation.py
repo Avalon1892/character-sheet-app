@@ -57,10 +57,10 @@ def item_card_fields(plan, *, name, slot, description, quotation=None):
         from app.marvelous_item_rules import talent_construction_spell_points
         if talent_construction_spell_points(entry, reviewed_only=True, base_power=plan.get('base_power')) is None:
             values['construction_requirements'] += ' (SP cost requires review; no registered automatic default)'
-        from app.marvelous_item_rules import CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS, CONSTRUCTION_PACKAGE_REQUIREMENTS
+        from app.marvelous_item_rules import cross_sphere_construction_requirements, CONSTRUCTION_PACKAGE_REQUIREMENTS
         for package in CONSTRUCTION_PACKAGE_REQUIREMENTS.get(entry['key'], ()):
             values['construction_requirements'] += '; prerequisite: ' + package
-        for sphere, required_key in CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS.get(entry['key'], ()):
+        for sphere, required_key in cross_sphere_construction_requirements(contribution):
             required = magic_entry(required_key) if required_key else None
             values['construction_requirements'] += '; prerequisite: ' + sphere + ' sphere'
             if required_key: values['construction_requirements'] += ' / ' + (required['name'] if required else required_key)
