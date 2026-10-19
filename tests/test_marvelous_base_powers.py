@@ -19,6 +19,14 @@ def plan(key, cl=5, **changes):
                 range_steps=0, duration_steps=0, **changes)
 
 
+@pytest.mark.parametrize('key', ['conjuration:talent:greater-summoning', 'conjuration:form-talent:lingering-companion-form'])
+def test_conjuration_duration_talents_each_buy_one_item_step_not_their_caster_duration(key):
+    row = dict(catalog_key=key, effect_choice='one duration step') if key.endswith('greater-summoning') else dict(catalog_key=key)
+    result = resolve_base_power(plan('conjuration:companion', cl=7, contributions=[row]))
+    assert result['duration'] == '7 minutes'
+    assert result['initial_free_form_talents'] == 0
+
+
 @pytest.mark.parametrize('cl,speed', [(1, None), (4, None), (5, '30 ft. (poor)'),
     (10, '35 ft. (average)'), (15, '40 ft. (good)'), (20, '45 ft. (perfect)'), (25, '50 ft. (perfect)')])
 def test_fairy_flight_thresholds_keep_gliding_distinct_from_flight(cl, speed):

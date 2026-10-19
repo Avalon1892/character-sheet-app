@@ -488,6 +488,9 @@ def missing_construction_alternatives(contributions):
 def mode_construction_prerequisites(contribution):
     """Explicit reviewed mode requirements, not prerequisite prose parsing."""
     from app.marvelous_base_powers import ABILITY_ENHANCEMENT_CHOICES, ENERGY_ENHANCEMENT_KEY, ALTERNATIVE_ENERGY_KEY
+    if (contribution.get('catalog_key') == 'conjuration:talent:greater-summoning'
+            and contribution.get('effect_choice') == '24 hours with Lingering Companion'):
+        return ('conjuration:form-talent:lingering-companion-form',)
     if contribution.get('catalog_key') == 'divination:advanced-talent:speak-and-i-listen-dbh':
         if contribution.get('effect_choice') == 'scrying':
             return ('divination:advanced-talent:scrying-utility',)
@@ -679,6 +682,8 @@ def talent_construction_spell_points(entry, *, reviewed_only=False, base_power=N
         return profile[3]
     if entry.get('key') in DESTRUCTION_BLAST_SHAPES: return 1
     return {
+        # The item-specific duration steps replace these talents' ordinary SP costs.
+        'conjuration:form-talent:lingering-companion-form': 0,
         # Simple blessings spend their one activation SP and have no separately
         # paid action in these modes: +1 talent +1 SP matches the item rule's +2.
         # Blessings with additional paid subabilities remain separately reviewed.
@@ -1328,6 +1333,12 @@ def practiced_creation_complexity_reduction(plan):
     return int(any(row.get('additional_spell_points', 0) for row in rows))
 
 
+def conjuration_duration_complexity(plan):
+    """The two talent rows pay +2; the optional 24-hour conversion adds +2."""
+    from app.marvelous_base_powers import conjuration_item_duration
+    return 2 if conjuration_item_duration(plan) == 'fixed-day' else 0
+
+
 def quote_marvelous_blueprint(plan):
     """Price the persisted composer blueprint using the same pure rules."""
     if plan.get('schema_version') != 1:
@@ -1396,7 +1407,7 @@ def quote_marvelous_blueprint(plan):
             raise ValueError('Taxing cannot restrict an effect usable for an unlimited duration.')
     complexity = effect_complexity(talent_costs=[x['complexity'] for x in plan['contributions'] if not x.get('alternative', False)] + grouped_costs + [instill_alteration_minimum_complexity(plan)],
         range_steps=plan['range_steps'], duration_steps=plan['duration_steps'],
-        activation=plan['activation'], unique_changes=plan['unique_changes'] - drawback_complexity(plan.get('drawbacks', [])) - simple + (2 if plan.get('permanent') else 0) + int(plan.get('full_blast_damage', False)) + 2 * plan.get('effect_range_steps', 0) + feat_cost + light_lens_conversion_complexity(plan) - practiced_creation_complexity_reduction(plan))
+        activation=plan['activation'], unique_changes=plan['unique_changes'] - drawback_complexity(plan.get('drawbacks', [])) - simple + (2 if plan.get('permanent') else 0) + int(plan.get('full_blast_damage', False)) + 2 * plan.get('effect_range_steps', 0) + feat_cost + light_lens_conversion_complexity(plan) - practiced_creation_complexity_reduction(plan) + conjuration_duration_complexity(plan))
     price = marvelous_item_price(plan['caster_level'], complexity,
                                 daily_uses=1 if plan['uses'] == 50 else plan['uses'], limited_uses=plan['uses'] == 50)
     if plan.get('no_space_limitation'):
@@ -1497,6 +1508,7 @@ def marvelous_complexity_formula(plan, *, quotation=None):
     terms = [('base', 1), ('talents', sum(row['complexity'] - row.get('additional_spell_points', 0) for row in ordinary)),
              ('extra SP', sum(row.get('additional_spell_points', 0) for row in ordinary)),
              ('lens conversion', light_lens_conversion_complexity(plan)),
+             ('24-hour Conjuration', conjuration_duration_complexity(plan)),
              ('instill minimum SP', instill_alteration_minimum_complexity(plan)),
              ('Practiced extra-SP reduction', -practiced_creation_complexity_reduction(plan)),
              ('choices', sum(effect_complexity(alternative_costs=costs) - 1 for costs in groups.values())),

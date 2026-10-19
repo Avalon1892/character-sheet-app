@@ -19,6 +19,48 @@ def composer(tmp_path):
     repo.close()
 
 
+def test_conjuration_day_choice_updates_price_formula_controls_and_reopens(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Conjuration'); dialog.cl.setValue(5)
+    key = 'conjuration:talent:greater-summoning'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    before = repo._connection.total_changes
+    dialog.add_contribution()
+    choice = dialog.table.cellWidget(0, 5)
+    choice.setCurrentIndex(choice.findData('24 hours with Lingering Companion'))
+    assert dialog.table.rowCount() == 2
+    assert dialog.quotation()[1].market_price_gp == 10000
+    assert '24 hours' in dialog.item_preview.toPlainText()
+    assert '24-hour Conjuration' in dialog.cost_formula.text()
+    assert not dialog.duration_steps.isEnabled()
+    draft = dialog.blueprint()
+    dialog.load_plan(draft)
+    assert dialog.blueprint()['contributions'] == draft['contributions']
+    choice = dialog.table.cellWidget(0, 5)
+    choice.setCurrentIndex(choice.findData('one duration step'))
+    assert dialog.quotation()[1].market_price_gp == 6000
+    assert dialog.duration_steps.isEnabled()
+    assert '50 minutes' in dialog.item_preview.toPlainText()
+    assert repo._connection.total_changes == before
+
+
+def test_removing_conjuration_day_prerequisite_leaves_an_editable_invalid_draft(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Conjuration'); dialog.cl.setValue(5)
+    key = 'conjuration:talent:greater-summoning'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    dialog.add_contribution()
+    choice = dialog.table.cellWidget(0, 5)
+    choice.setCurrentIndex(choice.findData('24 hours with Lingering Companion'))
+    dialog.table.removeRow(1)
+    dialog.update_preview()
+    assert 'Invalid design' in dialog.construction_status.text()
+    assert 'fixed Greater Summoning' in dialog.construction_status.toolTip()
+    choice.setCurrentIndex(choice.findData('one duration step'))
+    assert 'Invalid design' not in dialog.construction_status.text()
+    assert dialog.quotation()[1].market_price_gp == 4000
+
+
 def test_fey_bounty_mode_inserts_two_share_links_without_character_writes(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Fallen Fey'); dialog.cl.setValue(10)

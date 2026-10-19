@@ -156,7 +156,27 @@ DIVINATION_ADVANCED_SENSES = frozenset('divination:advanced-talent:' + suffix fo
     'sense-observation-sense-alienist-hb', 'trapfinding-sense',
     'true-perception-sense-origin', 'unobscured-vision-sense'))
 
+CONJURATION_DURATION_TALENTS = frozenset({
+    'conjuration:talent:greater-summoning',
+    'conjuration:form-talent:lingering-companion-form',
+})
+
+
+def conjuration_item_duration(plan):
+    """Item-specific duration conversion, not the ordinary summoning durations."""
+    if plan.get('base_power') != 'conjuration:companion': return None
+    rows = [row for row in plan.get('contributions', []) if row.get('catalog_key') in CONJURATION_DURATION_TALENTS]
+    fixed = {row['catalog_key'] for row in rows if not row.get('alternative')}
+    day = [row for row in rows if row.get('catalog_key') == 'conjuration:talent:greater-summoning'
+           and row.get('effect_choice') == '24 hours with Lingering Companion']
+    if day:
+        # Draft controls also call this resolver. Validate missing/optional
+        # prerequisites in resolve_base_power so an invalid draft stays editable.
+        return 'fixed-day'
+    return ('round', 'minute', 'ten-minutes')[len(fixed)]
+
 TALENT_EFFECT_SP_CHOICES = {
+    'conjuration:talent:greater-summoning': {'one duration step': 0, '24 hours with Lingering Companion': 0},
     'divination:advanced-talent:speak-and-i-listen-dbh': {'scrying': 1, 'teleport': 1},
     'divination:advanced-talent:alternate-divinations-advanced-sense-origin': {
         'material sense': 2, 'see in darkness': 2, 'spirit sense': 1, 'lifesense': 2,
@@ -439,6 +459,7 @@ def effective_base_duration(plan):
     """Duration before construction adjustments, including reviewed effect modes."""
     power = next((power for power in BASE_POWERS if power.key == plan.get('base_power')), None)
     if power is None: return 'instantaneous'
+    if duration := conjuration_item_duration(plan): return duration
     if power.key == 'fallen-fey:link':
         links = [row for row in plan.get('contributions', []) if row.get('catalog_key') == 'fallen-fey:talent:greater-fey-link']
         if len(links) == 1 and not links[0].get('alternative'):
@@ -673,6 +694,13 @@ def resolve_base_power(plan):
     power = next((p for p in BASE_POWERS if p.key == key), None)
     if power is None or power.sphere.casefold() != plan['sphere'].casefold():
         raise ValueError('Choose a base power from the selected sphere.')
+    if key == 'conjuration:companion':
+        rows = plan.get('contributions', [])
+        day = [row for row in rows if row.get('catalog_key') == 'conjuration:talent:greater-summoning'
+               and row.get('effect_choice') == '24 hours with Lingering Companion']
+        fixed = {row.get('catalog_key') for row in rows if not row.get('alternative')}
+        if day and (any(row.get('alternative') for row in day) or not CONJURATION_DURATION_TALENTS <= fixed):
+            raise ValueError('The 24-hour Conjuration option requires fixed Greater Summoning and Lingering Companion contributions.')
     range_index = RANGES.index(power.range) + plan['range_steps']
     if not 0 <= range_index < len(RANGES):
         raise ValueError('Range adjustment exceeds the published range ladder.')
@@ -701,13 +729,19 @@ def resolve_base_power(plan):
                  'medium': f'{100 + 10 * cl} ft.', 'long': f'{400 + 40 * cl} ft.'}
     durations = {'round': f'{cl} rounds', 'minute': f'{cl} minutes',
                  'ten-minutes': f'{10 * cl} minutes', 'hour': f'{cl} hours',
-                 'fixed-round': '1 round', 'instantaneous': 'Instantaneous',
+                 'fixed-round': '1 round', 'fixed-day': '24 hours', 'instantaneous': 'Instantaneous',
                  'concentration': 'Concentration', 'variable': 'As selected effect'}
     summary = {'power': power.name, 'range': distances[RANGES[range_index]], 'duration': durations[duration],
                'caster_level': cl, 'save_dc': 10 + cl // 2, 'magic_skill_bonus': cl}
     mode = item_dice_metamagic(plan)
     if mode and any(mode): summary['dice_mode'] = ' + '.join(label for label, active in zip(('Maximized', 'Empowered'), mode) if active)
     if plan.get('permanent', False): summary['duration'] = 'Permanent (dispellable)'
+    if power.key == 'conjuration:companion':
+        summary['initial_free_form_talents'] = 0
+        summary['companion_design'] = 'Fix the companion base form and paid form talents in the item design; unlike an ordinary summoned companion, this item grants no free initial form talent.'
+        summary['summoning_location'] = 'Adjacent space' if summary['range'] == 'Personal' else summary['range']
+        if duration == 'fixed-day':
+            summary['duration_pricing'] = 'Greater Summoning + Lingering Companion + the 24-hour conversion: +4 complexity total before other adjustments.'
     if power.key == 'fallen-fey:link':
         rows = plan.get('contributions', [])
         blessings = [row for row in rows if row.get('catalog_key', '').startswith('fallen-fey:fey-blessing-talent:')]

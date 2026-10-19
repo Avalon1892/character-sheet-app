@@ -5,6 +5,48 @@ from app.marvelous_item_rules import effect_complexity, marvelous_crafting_quote
 from app.marvelous_item_rules import marvelous_requirements
 
 
+def conjuration_duration_plan(*, day=False):
+    return dict(schema_version=1, sphere='Conjuration', base_power='conjuration:companion', caster_level=5,
+        activation='standard', uses=1, range_steps=0, duration_steps=0, unique_changes=0,
+        contributions=[dict(catalog_key='conjuration:talent:greater-summoning', complexity=1,
+            additional_spell_points=0, effect_choice='24 hours with Lingering Companion' if day else 'one duration step'),
+            dict(catalog_key='conjuration:form-talent:lingering-companion-form', complexity=1, additional_spell_points=0)])
+
+
+def test_conjuration_duration_conversion_prices_and_explains_the_optional_day():
+    from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_complexity_formula
+    from app.marvelous_base_powers import resolve_base_power
+    ordinary = conjuration_duration_plan()
+    assert quote_marvelous_blueprint(ordinary)[0] == 3
+    assert resolve_base_power(ordinary)['duration'] == '50 minutes'
+    day = conjuration_duration_plan(day=True)
+    complexity, price, _ = quote_marvelous_blueprint(day)
+    assert complexity == 5 and price.market_price_gp == 10000
+    assert resolve_base_power(day)['duration'] == '24 hours'
+    assert '+ 2 24-hour Conjuration' in marvelous_complexity_formula(day)
+    assert ordinary['contributions'][0]['complexity'] == day['contributions'][0]['complexity'] == 1
+    day['extra_effects'] = [dict(schema_version=1, sphere='Life', base_power='life:cure', caster_level=5,
+        activation='standard', uses=1, range_steps=0, duration_steps=0, unique_changes=0, contributions=[])]
+    assert quote_marvelous_blueprint(day)[1].market_price_gp == 13000
+
+
+def test_conjuration_day_requires_fixed_talents_and_cannot_use_generic_duration_or_permanency():
+    from app.marvelous_item_rules import quote_marvelous_blueprint, missing_construction_prerequisites
+    plan = conjuration_duration_plan(day=True)
+    assert missing_construction_prerequisites(plan['contributions'][:1]) == ('conjuration:form-talent:lingering-companion-form',)
+    plan['contributions'][1]['alternative'] = True
+    with pytest.raises(ValueError, match='fixed Greater Summoning'):
+        quote_marvelous_blueprint(plan)
+    plan['contributions'][1]['alternative'] = False
+    plan['duration_steps'] = 1
+    with pytest.raises(ValueError, match='duration'):
+        quote_marvelous_blueprint(plan)
+    plan['duration_steps'] = 0
+    plan['permanent'] = True
+    with pytest.raises(ValueError, match='Permanency'):
+        quote_marvelous_blueprint(plan)
+
+
 def test_fey_bounty_area_mode_requires_two_fixed_share_links():
     from app.marvelous_item_rules import missing_construction_prerequisites, advanced_construction_blockers
     owner, child = 'fallen-fey:talent:bounty-of-the-fey-mass-3pp', 'fallen-fey:talent:share-link'
