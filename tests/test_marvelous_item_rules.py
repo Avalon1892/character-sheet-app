@@ -11,11 +11,30 @@ def test_reviewed_conjuration_forms_have_catalog_backed_costs_and_choices():
     from app.marvelous_item_rules import talent_construction_spell_points
     entries = [entry for entry in magic_entries('Conjuration') if entry['category'] == 'Form Talent']
     assert len(entries) == 55
-    assert [entry['key'] for entry in entries if talent_construction_spell_points(entry, reviewed_only=True) is None] == ['conjuration:form-talent:superior-senses-form']
+    assert [entry['key'] for entry in entries if talent_construction_spell_points(entry, reviewed_only=True) is None] == []
     for suffix, choices in CONJURATION_FORM_CHOICES.items():
         key = 'conjuration:form-talent:' + suffix
         assert magic_entry(key) and talent_effect_choices(key) == choices
     assert talent_construction_spell_points(magic_entry('conjuration:form-talent:amorphous-creature-form'), reviewed_only=True) == 1
+
+
+@pytest.mark.parametrize('mode,points,sphere,package', [
+    ('darkvision', 0, None, None), ('low-light vision', 0, None, None), ('scent', 0, None, None),
+    ('see in darkness', 1, 'Dark', None), ('lifesense', 2, 'Life', None),
+    ('thoughtsense', 2, 'Mind', None), ('touchsight', 2, 'Telekinesis', None),
+    ('stone vision', 0, 'Nature', 'Earth'), ('tremorsense', 1, 'Nature', 'Earth'),
+    ('smoke vision', 0, 'Nature', 'Fire'), ('scent metal', 0, 'Nature', 'Metal'),
+    ('plant vision', 0, 'Nature', 'Plant'), ('water vision', 0, 'Nature', 'Water')])
+def test_superior_senses_mode_costs_and_exact_access_requirements(mode, points, sphere, package):
+    from app.marvelous_item_rules import (talent_choice_spell_points,
+        cross_sphere_construction_requirements, construction_package_requirements)
+    from app.marvelous_base_powers import talent_effect_choices
+    key = 'conjuration:form-talent:superior-senses-form'
+    row = dict(catalog_key=key, effect_choice=mode)
+    assert mode in talent_effect_choices(key)
+    assert talent_choice_spell_points(key, mode) == points
+    assert cross_sphere_construction_requirements(row) == (((sphere, None),) if sphere else ())
+    assert construction_package_requirements(row) == ((f'Nature ({package} package)',) if package else ())
 
 
 def test_sanguine_thirst_requires_a_separate_fixed_blood_drain_mode():

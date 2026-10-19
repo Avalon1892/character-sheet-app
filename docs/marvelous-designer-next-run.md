@@ -508,4 +508,16 @@ Focused validation: nine Sanguine rules tests and nine live-UI tests passed, inc
 
 This closes the previously documented Sanguine same-talent insertion gap, not all Conjuration mechanics. Superior Senses conditional modes, anatomy/repeat-selection validation, companion base-form/archetype selection and full statistics, general/type/advanced Conjuration talents, untouched sphere payloads, tradition/material/shared-charge gaps, full-application validation and deployment remain unfinished. No desktop or portable deployment.
 
+## Superior Senses checkpoint — 2026-10-19
+
+Added 13 explicit Superior Senses choices through the existing effect-mode control. Darkvision, low-light vision, scent and the unpaid Nature variants cost zero extra SP; see in darkness and tremorsense cost one; lifesense, thoughtsense and touchsight cost two. Selecting a mode updates SP defaults, complexity, price and the item card. Saved choices and manual cost/SP overrides survive reopening. All 55 ordinary Conjuration Form Talent entries now have at least one reviewed cost default or mode; this is cost coverage, not complete form automation.
+
+The shared cross-sphere requirement resolver now checks the selected sense's sphere only. A small package resolver extends the existing static Weather package requirements to selected Nature senses and feeds both service validation and card text. Earth, Fire, Metal, Plant and Water are checked individually. Construction text explicitly states that the caster OR companion may supply sphere access. Automatic access gathering still covers the crafter only; absent access is reported as needing caster/companion verification, not proof that the companion lacks it. Resolving companion sphere/package sources remains unfinished.
+
+Read-only projections show the selected sense's range, detection limits and conditional upgrades to existing darkvision/scent, without guessing companion anatomy, base senses, full statistics or changing character records. No runtime description parsing, catalog edits or schema changes.
+
+Focused validation: **32 rules/base/access tests and one live-UI test passed**, covering all mode costs and exact sphere/package requirements, profile text, dynamic prices (8,000 / 12,000 / 16,000 gp at CL10), source labels, saved manual values and no database writes. Complete item-rules/base-power/access/presentation group: **1,071 passed in 69.99 seconds**, report `artifacts/senses-rules-20261019.xml`. Complete designer UI: **300 passed in 226.58 seconds**, report `artifacts/senses-ui-20261019.xml`. Final wording changes were additionally checked by all **93 access/presentation tests** (68.28 seconds). No test failures; whitespace checks passed. No full application isolated suite was run. Source: https://spheresofpower.wikidot.com/conjuration (Ultimate Superior Senses).
+
+Remaining: companion-owned sphere/package access resolution, explicit base-form/base-sense selection, anatomy and repeated forms, full companion statistics and general/type/advanced Conjuration talents. All previously documented other-sphere, tradition, material, charge, visual, full-application validation and deployment gaps remain. No desktop or portable deployment.
+
 The full active goal is not complete. Broader Marvelous implementation history and gaps remain in `marvelous-items-next-run.md`.

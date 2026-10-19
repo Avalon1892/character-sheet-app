@@ -36,6 +36,31 @@ def test_advanced_divination_sense_checks_only_its_selected_foreign_sphere(craft
     assert repo._connection.total_changes == before
 
 
+@pytest.mark.parametrize('mode,sphere,package', [('darkvision', None, None),
+    ('see in darkness', 'Dark', None), ('lifesense', 'Life', None),
+    ('thoughtsense', 'Mind', None), ('touchsight', 'Telekinesis', None),
+    ('stone vision', 'Nature', 'Earth'), ('tremorsense', 'Nature', 'Earth'),
+    ('smoke vision', 'Nature', 'Fire'), ('scent metal', 'Nature', 'Metal'),
+    ('plant vision', 'Nature', 'Plant'), ('water vision', 'Nature', 'Water')])
+def test_superior_senses_construction_checks_selected_sphere_and_package(crafter, mode, sphere, package):
+    repo, cid = crafter
+    service = CraftingService(repo, cid)
+    key = 'conjuration:form-talent:superior-senses-form'
+    plan = dict(sphere='Conjuration', base_power='conjuration:companion', caster_level=5,
+                range_steps=0, duration_steps=0, contributions=[dict(catalog_key=key, effect_choice=mode)])
+    access = dict(sphere_levels={'Conjuration': 5}, available_talents=[service.magic_entries_by_key[key]['name']])
+    writes = repo._connection.total_changes
+    if sphere:
+        assert any(f'{sphere} base sphere' in text for text in service.marvelous_plan_requirements(plan, access=access).blockers)
+        access['sphere_levels'][sphere] = 1
+    if package:
+        result = service.marvelous_plan_requirements(plan, access=access)
+        assert any(f'Nature ({package} package)' in text for text in result.blockers)
+        access['available_requirements'] = [f'Nature ({package} package)']
+    assert service.marvelous_plan_requirements(plan, access=access).eligible
+    assert repo._connection.total_changes == writes
+
+
 @pytest.mark.parametrize('mode', ['scrying', 'teleport'])
 def test_speak_and_i_listen_checks_foreign_access_only_for_teleport(crafter, mode):
     from app.marvelous_item_rules import missing_construction_prerequisites

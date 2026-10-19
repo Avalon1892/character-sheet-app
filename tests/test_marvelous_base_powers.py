@@ -39,6 +39,17 @@ def test_conjuration_selected_breath_and_resistance_modes_do_not_mix_energies():
     assert result['companion_breath_save_dc'] == '14 + companion Constitution modifier (Reflex half)'
 
 
+@pytest.mark.parametrize('mode,text', [('darkvision', '60 ft.'), ('scent', 'keen scent'),
+    ('lifesense', 'living creatures'), ('thoughtsense', 'mind blank'),
+    ('tremorsense', '30 ft.'), ('scent metal', '90 ft.'), ('touchsight', 'line of effect')])
+def test_superior_senses_projects_selected_sense_without_claiming_full_companion_stats(mode, text):
+    row = dict(catalog_key='conjuration:form-talent:superior-senses-form', effect_choice=mode)
+    result = resolve_base_power(plan('conjuration:companion', cl=10, contributions=[row]))
+    assert text in result['companion_superior_sense']
+    assert result['standard_companion_hit_dice'] == 8
+    assert 'not complete creature statistics' in result['companion_profile_scope']
+
+
 def test_unreviewed_conjuration_hd_changes_and_repeated_forms_do_not_get_standard_stats():
     for rows in ([dict(catalog_key='conjuration:form-talent:boon-companion-form')],
                  [dict(catalog_key='conjuration:form-talent:armored-companion-form')] * 2):

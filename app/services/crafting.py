@@ -113,7 +113,7 @@ class CraftingService:
         known_talents = {name.casefold() for name in construction_access.get('available_talents', ())}
         known_spheres = {name.casefold() for name, level in construction_access.get('sphere_levels', {}).items() if level > 0}
         required, advanced, spheres, construction_blockers = [], [], [], []
-        from app.marvelous_item_rules import CONSTRUCTION_PACKAGE_REQUIREMENTS
+        from app.marvelous_item_rules import construction_package_requirements
         protected = list(construction_access.get('protected_requirements', ()))
         from app.marvelous_item_rules import educated_required_spheres
         if educated_required_spheres(plan) == ():
@@ -150,10 +150,13 @@ class CraftingService:
                                      and contribution['catalog_key'] not in foreign_prerequisites):
                     raise ValueError('Selected talent is not part of the blueprint base sphere.')
                 required.append(entry['name'])
-                protected.extend(CONSTRUCTION_PACKAGE_REQUIREMENTS.get(entry['key'], ()))
+                protected.extend(construction_package_requirements(contribution))
                 for sphere, talent_key in cross_sphere_construction_requirements(contribution):
                     if sphere.casefold() not in known_spheres:
-                        construction_blockers.append(f'{entry["name"]}: requires the {sphere} base sphere as a construction prerequisite.')
+                        if entry['key'] == 'conjuration:form-talent:superior-senses-form':
+                            construction_blockers.append(f'{entry["name"]}: verify {sphere} base sphere access on the caster or companion; companion sphere access is not automatically resolved.')
+                        else:
+                            construction_blockers.append(f'{entry["name"]}: requires the {sphere} base sphere as a construction prerequisite.')
                     if talent_key and (talent := self.magic_entries_by_key[talent_key]['name']).casefold() not in known_talents:
                         construction_blockers.append(f'{entry["name"]}: requires {talent} as a construction prerequisite.')
                 if talent_effect_choices(entry['key']) and not contribution.get('effect_choice'):

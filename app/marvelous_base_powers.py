@@ -205,7 +205,8 @@ def conjuration_form_details(plan):
         'fortified-companion-form', 'powerful-companion-form', 'quick-companion-form', 'sage-companion-form',
         'willful-companion-form', 'camouflaged-companion-form', 'magic-attacks-form', 'roguish-creature-form',
         'resistant-creature-form', 'spell-warded-companion-form', 'draconic-creature-form',
-        'explosive-companion-form', 'water-being-form', 'climbing-companion-form', 'natural-aspect-form')}
+        'explosive-companion-form', 'water-being-form', 'climbing-companion-form', 'natural-aspect-form',
+        'superior-senses-form')}
     keys = [row.get('catalog_key') for row in rows]
     cl = plan['caster_level']
     if (not 1 <= cl <= 40 or len(keys) != len(set(keys))
@@ -263,9 +264,29 @@ def conjuration_form_details(plan):
         elif key == 'climbing-companion-form':
             result['companion_granted_climb_speed'] = '20 ft., or +10 ft. to an existing climb speed; at least three free limbs required.'
         elif key == 'natural-aspect-form': result['companion_special_quality'] = choice.title()
+        elif key == 'superior-senses-form':
+            result['companion_superior_sense'] = {
+                'darkvision': 'Darkvision 60 ft.; increase existing darkvision by 30 ft. instead.',
+                'low-light vision': 'Low-light vision',
+                'scent': 'Scent; with existing scent, choose 60-ft. scent or keen scent (180 ft. underwater; blood up to one mile).',
+                'see in darkness': 'See in darkness',
+                'lifesense': 'Lifesense 30 ft. (living creatures only)',
+                'thoughtsense': 'Thoughtsense 30 ft.; distinguishes sentient from nonsentient minds; blocked by nondetection and mind blank.',
+                'stone vision': 'See through up to 5 ft. of dirt and stone.',
+                'tremorsense': 'Tremorsense 30 ft.; aquatic creatures also sense movement through water.',
+                'smoke vision': 'See through magical and mundane smoke within normal vision range.',
+                'scent metal': 'Scent metal 90 ft.; add existing scent range, if any.',
+                'plant vision': 'See through plant matter 30 ft.; solid wood still blocks sight.',
+                'water vision': 'See through fog, mist and murky water within normal vision range.',
+                'touchsight': 'Touchsight 30 ft.; ignores invisibility, darkness and concealment; requires line of effect.',
+            }.get(choice, 'Choose a sense before construction.')
     return result
 
 TALENT_EFFECT_SP_CHOICES = {
+    'conjuration:form-talent:superior-senses-form': {
+        'darkvision': 0, 'low-light vision': 0, 'scent': 0, 'see in darkness': 1,
+        'lifesense': 2, 'thoughtsense': 2, 'stone vision': 0, 'tremorsense': 1,
+        'smoke vision': 0, 'scent metal': 0, 'plant vision': 0, 'water vision': 0, 'touchsight': 2},
     'conjuration:form-talent:amorphous-creature-form': {'choose a base form each summon': 1},
     'conjuration:form-talent:empower-familiar-form-alienist-hb': {'concentration': 1, 'without concentration': 2},
     'conjuration:talent:greater-summoning': {'one duration step': 0, '24 hours with Lingering Companion': 0},

@@ -76,6 +76,35 @@ def test_sanguine_optional_prerequisite_promotion_can_cancel_atomically(composer
     assert repo._connection.total_changes == writes
 
 
+def test_superior_senses_live_cost_requirements_preview_and_reopen(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Conjuration'); dialog.cl.setValue(10)
+    key = 'conjuration:form-talent:superior-senses-form'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    picker = dialog.table.cellWidget(0, 5)
+    picker.setCurrentIndex(picker.findData('darkvision'))
+    assert dialog.table.cellWidget(0, 4).value() == 0
+    assert dialog.quotation()[1].market_price_gp == 8000
+    assert 'Darkvision 60 ft.' in dialog.item_preview.toPlainText()
+    picker.setCurrentIndex(picker.findData('lifesense'))
+    assert dialog.table.cellWidget(0, 4).value() == 2
+    assert dialog.quotation()[1].market_price_gp == 16000
+    assert 'prerequisite: Life sphere' in dialog.item_preview.toPlainText()
+    assert 'Lifesense 30 ft.' in dialog.item_preview.toPlainText()
+    picker.setCurrentIndex(picker.findData('tremorsense'))
+    assert dialog.table.cellWidget(0, 4).value() == 1
+    assert dialog.quotation()[1].market_price_gp == 12000
+    assert 'Nature (Earth package)' in dialog.item_preview.toPlainText()
+    dialog.table.cellWidget(0, 1).setValue(5)
+    dialog.table.cellWidget(0, 4).setValue(3)
+    saved = dialog.blueprint()
+    dialog.load_plan(saved)
+    assert dialog.blueprint()['contributions'] == saved['contributions']
+    assert repo._connection.total_changes == writes
+
+
 def test_conjuration_form_choice_uses_hd_and_preserves_locked_description(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Conjuration'); dialog.cl.setValue(10)

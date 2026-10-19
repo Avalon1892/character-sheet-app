@@ -57,12 +57,14 @@ def item_card_fields(plan, *, name, slot, description, quotation=None):
         from app.marvelous_item_rules import talent_construction_spell_points
         if talent_construction_spell_points(entry, reviewed_only=True, base_power=plan.get('base_power')) is None:
             values['construction_requirements'] += ' (SP cost requires review; no registered automatic default)'
-        from app.marvelous_item_rules import cross_sphere_construction_requirements, CONSTRUCTION_PACKAGE_REQUIREMENTS
-        for package in CONSTRUCTION_PACKAGE_REQUIREMENTS.get(entry['key'], ()):
+        from app.marvelous_item_rules import cross_sphere_construction_requirements, construction_package_requirements
+        for package in construction_package_requirements(contribution):
             values['construction_requirements'] += '; prerequisite: ' + package
         for sphere, required_key in cross_sphere_construction_requirements(contribution):
             required = magic_entry(required_key) if required_key else None
             values['construction_requirements'] += '; prerequisite: ' + sphere + ' sphere'
+            if entry['key'] == 'conjuration:form-talent:superior-senses-form':
+                values['construction_requirements'] += ' (caster or companion)'
             if required_key: values['construction_requirements'] += ' / ' + (required['name'] if required else required_key)
         label = f"Alternative group {contribution.get('alternative_group', 1)}" if contribution.get('alternative') else 'Effect'
         if entry['sphere'].casefold() != plan['sphere'].casefold(): label = 'Required cross-sphere talent'

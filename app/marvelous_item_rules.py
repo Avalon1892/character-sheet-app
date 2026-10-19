@@ -408,6 +408,9 @@ def cross_sphere_construction_requirements(contribution):
     """Fixed and selected-mode prerequisites, shared by eligibility and the card."""
     key = contribution.get('catalog_key')
     requirements = CROSS_SPHERE_CONSTRUCTION_REQUIREMENTS.get(key, ())
+    if key == 'conjuration:form-talent:superior-senses-form':
+        sphere = CONJURATION_SENSE_REQUIREMENTS.get(contribution.get('effect_choice'), (None, None))[0]
+        if sphere: requirements += ((sphere, None),)
     if key == 'divination:advanced-talent:alternate-divinations-advanced-sense-origin':
         sphere = DIVINATION_SENSE_SPHERES.get(contribution.get('effect_choice'))
         if sphere: requirements += ((sphere, None),)
@@ -421,6 +424,24 @@ CONSTRUCTION_PACKAGE_REQUIREMENTS = {
     'weather:advanced-talent:fire-tornadoes': ('Nature (Fire package)',),
     'weather:advanced-talent:volcano-lord': ('Nature (Earth package)', 'Nature (Fire package)'),
 }
+
+CONJURATION_SENSE_REQUIREMENTS = {
+    'see in darkness': ('Dark', None), 'lifesense': ('Life', None),
+    'thoughtsense': ('Mind', None), 'touchsight': ('Telekinesis', None),
+    'stone vision': ('Nature', 'Earth'), 'tremorsense': ('Nature', 'Earth'),
+    'smoke vision': ('Nature', 'Fire'), 'scent metal': ('Nature', 'Metal'),
+    'plant vision': ('Nature', 'Plant'), 'water vision': ('Nature', 'Water'),
+}
+
+
+def construction_package_requirements(contribution):
+    """Fixed and selected-mode package access, independent of presentation."""
+    key = contribution.get('catalog_key')
+    required = CONSTRUCTION_PACKAGE_REQUIREMENTS.get(key, ())
+    if key == 'conjuration:form-talent:superior-senses-form':
+        package = CONJURATION_SENSE_REQUIREMENTS.get(contribution.get('effect_choice'), (None, None))[1]
+        if package: required += (f'Nature ({package} package)',)
+    return required
 
 CREATION_MATERIAL_REQUIREMENTS = tuple('creation:' + suffix for suffix in (
     'material-talent:acidic-creation-material', 'material-talent:alchemical-creation-material',
