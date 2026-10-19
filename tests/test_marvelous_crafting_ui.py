@@ -19,6 +19,30 @@ def composer(tmp_path):
     repo.close()
 
 
+def test_conjuration_form_choice_uses_hd_and_preserves_locked_description(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Conjuration'); dialog.cl.setValue(10)
+    key = 'conjuration:form-talent:draconic-creature-form'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    before = repo._connection.total_changes
+    dialog.add_contribution()
+    assert dialog.table.cellWidget(0, 4).value() == 0
+    choice = dialog.table.cellWidget(0, 5)
+    choice.setCurrentIndex(choice.findData('30-foot cone: fire'))
+    assert '4d8 30-foot cone: fire' in dialog.item_preview.toPlainText()
+    assert dialog.quotation()[1].market_price_gp == 8000
+    dialog.card_locks['description'].setChecked(True)
+    dialog.card_edits['description'].setPlainText('Fixed breath description')
+    dialog.cl.setValue(12)
+    assert dialog.quotation()[1].market_price_gp == 9600
+    assert 'Fixed breath description' in dialog.item_preview.toPlainText()
+    draft = dialog.blueprint()
+    dialog.load_plan(draft)
+    assert dialog.blueprint()['contributions'] == draft['contributions']
+    assert dialog.blueprint()['display_overrides'] == draft['display_overrides']
+    assert repo._connection.total_changes == before
+
+
 def test_conjuration_day_choice_updates_price_formula_controls_and_reopens(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Conjuration'); dialog.cl.setValue(5)

@@ -161,6 +161,27 @@ CONJURATION_DURATION_TALENTS = frozenset({
     'conjuration:form-talent:lingering-companion-form',
 })
 
+CONJURATION_FORM_CHOICES = {
+    'aligned-creature-form': ('good', 'evil', 'lawful', 'chaotic'),
+    'altered-size-form': ('increase one size category', 'decrease one size category'),
+    'avian-creature-form': ('winged flight', 'magical flight'),
+    'bestial-form': ('bite', 'two claws', 'gore', 'two hooves', 'two pincers', 'two slams',
+        'sting', 'tail slap', 'two talons', 'tentacle', 'two wing buffets'),
+    'draconic-creature-form': tuple(shape + ': ' + energy for shape in ('30-foot cone', '60-foot line')
+        for energy in ('acid', 'cold', 'electricity', 'fire')),
+    'elemental-creature-form': ('acid', 'cold', 'electricity', 'fire'),
+    'explosive-companion-form': ('acid', 'cold', 'electricity', 'fire'),
+    'extra-limbs-form': ('head', 'two arms', 'two legs', 'tail'),
+    'infectious-creature-form': ('blinding sickness', 'bubonic plague', 'cackle fever', 'filth fever',
+        'leprosy', 'mindfire', 'red ache', 'shakes', 'slimy doom'),
+    'monstrous-attacks-form': ('constrict', 'grab', 'lunge', 'pull', 'poison', 'trip'),
+    'muensterous-companion-form-jester-s-hb': ('cheese body', 'dangerously cheesy', 'spray fondue'),
+    'natural-aspect-form': ('fast healing 1', 'leaping attack', 'pounce', 'rend', 'rock catching', 'rock throwing', 'trample'),
+    'resistant-creature-form': ('acid', 'cold', 'electricity', 'fire', 'sonic'),
+    'sanguine-creature-form': ('bleed', 'blood drain', 'thirst'),
+    'stinking-companion-form': ('nauseating spray', 'stench'),
+}
+
 
 def conjuration_item_duration(plan):
     """Item-specific duration conversion, not the ordinary summoning durations."""
@@ -175,7 +196,78 @@ def conjuration_item_duration(plan):
         return 'fixed-day'
     return ('round', 'minute', 'ten-minutes')[len(fixed)]
 
+
+def conjuration_form_details(plan):
+    """Read-only standard-companion form deltas; no base form or archetype guessed."""
+    rows = plan.get('contributions', [])
+    profiles = {'conjuration:form-talent:' + suffix for suffix in (
+        'animal-creature-form', 'armored-companion-form', 'avian-creature-form', 'earth-creature-form',
+        'fortified-companion-form', 'powerful-companion-form', 'quick-companion-form', 'sage-companion-form',
+        'willful-companion-form', 'camouflaged-companion-form', 'magic-attacks-form', 'roguish-creature-form',
+        'resistant-creature-form', 'spell-warded-companion-form', 'draconic-creature-form',
+        'explosive-companion-form', 'water-being-form', 'climbing-companion-form', 'natural-aspect-form')}
+    keys = [row.get('catalog_key') for row in rows]
+    cl = plan['caster_level']
+    if (not 1 <= cl <= 40 or len(keys) != len(set(keys))
+            or any(row.get('alternative') for row in rows)
+            or set(keys) - profiles - CONJURATION_DURATION_TALENTS):
+        return {'companion_statistics_review': 'Resolve repeated/alternative forms, HD-changing talents, types, companion archetypes and unreviewed combinations manually.'}
+    hd = cl - cl // 4
+    result = {'standard_companion_hit_dice': hd,
+              'companion_profile_scope': 'Standard companion progression only, without companion archetypes or HD-changing talents. Values below are form benefits, not complete creature statistics.'}
+    for row in rows:
+        key, choice = row['catalog_key'].split(':')[-1], row.get('effect_choice', '')
+        if row['catalog_key'] in CONJURATION_DURATION_TALENTS: continue
+        choices = CONJURATION_FORM_CHOICES.get(key, ())
+        if choices and choice not in choices:
+            result['companion_mode_review'] = 'Choose every form option before construction.'
+            continue
+        if key == 'animal-creature-form':
+            result['companion_land_speed_bonus'] = 20 + 10 * (hd // 2)
+            result['companion_scent'] = 'Scent'
+        elif key == 'armored-companion-form': result['companion_armor_bonus'] = 2 + (hd - 1) // 2
+        elif key == 'avian-creature-form':
+            maneuverability = 'perfect (supernatural)' if choice == 'magical flight' else 'average; good with an avian base form'
+            result['companion_granted_fly_speed'] = f'{30 + 10 * (hd // 2)} ft. ({maneuverability})'
+        elif key == 'earth-creature-form':
+            result['companion_granted_burrow_speed'] = f'{15 + 5 * (hd // 2)} ft.'
+            result['companion_tremorsense'] = f'{10 + 5 * (hd // 2)} ft.'
+        elif key in {'fortified-companion-form', 'powerful-companion-form', 'quick-companion-form',
+                     'sage-companion-form', 'willful-companion-form'}:
+            ability = {'fortified-companion-form': 'constitution', 'powerful-companion-form': 'strength',
+                'quick-companion-form': 'dexterity', 'sage-companion-form': 'intelligence',
+                'willful-companion-form': 'wisdom'}[key]
+            result['companion_' + ability + '_increase'] = 2 + hd // 2
+            if key == 'sage-companion-form': result['companion_monster_lore_bonus'] = max(1, hd // 2)
+            if key == 'willful-companion-form': result['companion_will_rolls'] = 'Roll twice, take higher; three rolls if already entitled to two.'
+        elif key == 'camouflaged-companion-form':
+            result['companion_stealth_circumstance_bonus'] = 1 + hd // 2
+            result['companion_granted_stealth_ranks'] = hd
+        elif key == 'magic-attacks-form':
+            result['companion_natural_attack_dr_bypass'] = ('Magic, cold iron, silver, adamantine' if hd >= 14
+                else 'Magic, cold iron, silver' if hd >= 7 else 'Magic')
+        elif key == 'roguish-creature-form': result['companion_sneak_attack'] = f'{1 + int(hd >= 7) + int(hd >= 14)}d6'
+        elif key == 'resistant-creature-form': result['companion_energy_resistance'] = f'{5 + hd} {choice}'
+        elif key == 'spell-warded-companion-form': result['companion_spell_resistance'] = 10 + hd
+        elif key == 'draconic-creature-form':
+            result['companion_breath_weapon'] = f'{max(1, hd // 2)}d8 {choice}'
+            result['companion_breath_save_dc'] = f'{10 + hd // 2} + companion Constitution modifier (Reflex half)'
+            result['companion_breath_recharge'] = '1d4 rounds; track manually.'
+        elif key == 'explosive-companion-form':
+            result['companion_explosion'] = f'{hd}d6 {choice}; {5 + 5 * (hd // 5)}-ft. radius when reduced to 0 HP or less'
+            result['companion_explosion_save'] = 'Reflex against the Conjuration sphere DC for half; does not damage the user automatically.'
+        elif key == 'water-being-form':
+            result['companion_granted_swim_speed'] = f'{30 + 10 * (hd // 2)} ft.'
+            result['companion_underwater_blindsense'] = f'{15 + 5 * (hd // 2)} ft.'
+            result['companion_water_breathing'] = 'Can breathe underwater.'
+        elif key == 'climbing-companion-form':
+            result['companion_granted_climb_speed'] = '20 ft., or +10 ft. to an existing climb speed; at least three free limbs required.'
+        elif key == 'natural-aspect-form': result['companion_special_quality'] = choice.title()
+    return result
+
 TALENT_EFFECT_SP_CHOICES = {
+    'conjuration:form-talent:amorphous-creature-form': {'choose a base form each summon': 1},
+    'conjuration:form-talent:empower-familiar-form-alienist-hb': {'concentration': 1, 'without concentration': 2},
     'conjuration:talent:greater-summoning': {'one duration step': 0, '24 hours with Lingering Companion': 0},
     'divination:advanced-talent:speak-and-i-listen-dbh': {'scrying': 1, 'teleport': 1},
     'divination:advanced-talent:alternate-divinations-advanced-sense-origin': {
@@ -376,6 +468,8 @@ def talent_effect_choices(key):
         return tuple(TALENT_EFFECT_SP_CHOICES[key])
     if isinstance(key, str) and key.startswith('fallen-fey:fey-blessing-talent:'):
         return FEY_BLESSING_CHOICES.get(key.split(':')[-1], ())
+    if isinstance(key, str) and key.startswith('conjuration:form-talent:'):
+        return CONJURATION_FORM_CHOICES.get(key.split(':')[-1], ())
     if key in ABILITY_ENHANCEMENT_CHOICES:
         return ABILITY_ENHANCEMENT_CHOICES[key]
     if key == 'enhancement:enhance-talent:alter-movement-enhance':
@@ -742,6 +836,7 @@ def resolve_base_power(plan):
         summary['summoning_location'] = 'Adjacent space' if summary['range'] == 'Personal' else summary['range']
         if duration == 'fixed-day':
             summary['duration_pricing'] = 'Greater Summoning + Lingering Companion + the 24-hour conversion: +4 complexity total before other adjustments.'
+        summary.update(conjuration_form_details(plan))
     if power.key == 'fallen-fey:link':
         rows = plan.get('contributions', [])
         blessings = [row for row in rows if row.get('catalog_key', '').startswith('fallen-fey:fey-blessing-talent:')]

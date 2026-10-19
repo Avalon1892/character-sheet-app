@@ -19,6 +19,36 @@ def plan(key, cl=5, **changes):
                 range_steps=0, duration_steps=0, **changes)
 
 
+@pytest.mark.parametrize('cl,hd', [(1, 1), (4, 3), (5, 4), (8, 6), (10, 8), (20, 15), (40, 30)])
+def test_conjuration_form_statistics_use_companion_hd_not_item_cl(cl, hd):
+    rows = [dict(catalog_key='conjuration:form-talent:' + suffix)
+            for suffix in ('armored-companion-form', 'powerful-companion-form', 'animal-creature-form')]
+    result = resolve_base_power(plan('conjuration:companion', cl=cl, contributions=rows))
+    assert result['standard_companion_hit_dice'] == hd
+    assert result['companion_armor_bonus'] == 2 + (hd - 1) // 2
+    assert result['companion_strength_increase'] == 2 + hd // 2
+    assert result['companion_land_speed_bonus'] == 20 + 10 * (hd // 2)
+
+
+def test_conjuration_selected_breath_and_resistance_modes_do_not_mix_energies():
+    rows = [dict(catalog_key='conjuration:form-talent:draconic-creature-form', effect_choice='30-foot cone: fire'),
+        dict(catalog_key='conjuration:form-talent:resistant-creature-form', effect_choice='cold')]
+    result = resolve_base_power(plan('conjuration:companion', cl=10, contributions=rows))
+    assert result['companion_breath_weapon'] == '4d8 30-foot cone: fire'
+    assert result['companion_energy_resistance'] == '13 cold'
+    assert result['companion_breath_save_dc'] == '14 + companion Constitution modifier (Reflex half)'
+
+
+def test_unreviewed_conjuration_hd_changes_and_repeated_forms_do_not_get_standard_stats():
+    for rows in ([dict(catalog_key='conjuration:form-talent:boon-companion-form')],
+                 [dict(catalog_key='conjuration:form-talent:armored-companion-form')] * 2):
+        result = resolve_base_power(plan('conjuration:companion', cl=10, contributions=rows))
+        assert 'companion_statistics_review' in result
+        assert 'standard_companion_hit_dice' not in result
+    result = resolve_base_power(plan('conjuration:companion', cl=41))
+    assert 'standard_companion_hit_dice' not in result
+
+
 @pytest.mark.parametrize('key', ['conjuration:talent:greater-summoning', 'conjuration:form-talent:lingering-companion-form'])
 def test_conjuration_duration_talents_each_buy_one_item_step_not_their_caster_duration(key):
     row = dict(catalog_key=key, effect_choice='one duration step') if key.endswith('greater-summoning') else dict(catalog_key=key)

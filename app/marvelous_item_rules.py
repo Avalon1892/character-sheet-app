@@ -565,6 +565,11 @@ def advanced_construction_blockers(contributions, caster_level, *, display_names
     applied_counts = Counter(row['catalog_key'] for row in contributions if not row.get('alternative'))
     blockers = []
     names = display_names or {}
+    sanguine = 'conjuration:form-talent:sanguine-creature-form'
+    if (any(row.get('catalog_key') == sanguine and row.get('effect_choice') == 'thirst' for row in contributions)
+            and not any(row.get('catalog_key') == sanguine and row.get('effect_choice') == 'blood drain'
+                        and not row.get('alternative') for row in contributions)):
+        blockers.append('Sanguine Creature (Thirst) requires another fixed Sanguine Creature selection in Blood Drain mode.')
     blockers.extend(f'{names.get(key, key)} is a rules subsection, not a separate talent; choose its parent talent and effect mode.'
                     for key in sorted(keys & MARVELOUS_SUBSECTION_KEYS))
     blockers.extend(f'{names.get(owner, owner)}: prerequisite {names.get(child, child)} must use {mode}.'
@@ -682,6 +687,23 @@ def talent_construction_spell_points(entry, *, reviewed_only=False, base_power=N
         return profile[3]
     if entry.get('key') in DESTRUCTION_BLAST_SHAPES: return 1
     return {
+        **{'conjuration:form-talent:' + suffix: 0 for suffix in (
+            'aligned-creature-form', 'altered-size-form', 'animal-creature-form', 'armored-companion-form',
+            'avian-creature-form', 'battle-creature-form', 'bestial-form', 'boon-companion-form',
+            'camouflaged-companion-form', 'capable-companion-form', 'climbing-companion-form',
+            'crafting-creature-form', 'draconic-creature-form', 'earth-creature-form', 'elemental-creature-form',
+            'explosive-companion-form', 'extra-limbs-form', 'extreme-situations-form',
+            'fortified-companion-form', 'implement-bearer-form', 'infectious-creature-form',
+            'magic-attacks-form', 'magic-vessel-form-alienist-hb', 'magical-companion-form',
+            'monstrous-attacks-form', 'mount-form', 'muensterous-companion-form-jester-s-hb',
+            'mystical-companion-form', 'natural-aspect-form', 'powerful-companion-form',
+            'quick-companion-form', 'raging-companion-form', 'ravenous-creature-form',
+            'resistant-creature-form', 'roguish-creature-form', 'sage-companion-form',
+            'sanguine-creature-form', 'shadow-creature-form', 'shield-bearer-form', 'shocking-creature-form',
+            'skill-mimic-form-utility-dbh', 'skillful-companion-form-utility',
+            'spell-warded-companion-form', 'stinking-companion-form', 'thorned-companion-form',
+            'trade-expertise-form-lots', 'transformative-form-utility', 'trapbreaking-companion-form',
+            'water-being-form', 'web-spinner-form', 'willful-companion-form')},
         # The item-specific duration steps replace these talents' ordinary SP costs.
         'conjuration:form-talent:lingering-companion-form': 0,
         # Simple blessings spend their one activation SP and have no separately

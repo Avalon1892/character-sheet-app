@@ -5,6 +5,30 @@ from app.marvelous_item_rules import effect_complexity, marvelous_crafting_quote
 from app.marvelous_item_rules import marvelous_requirements
 
 
+def test_reviewed_conjuration_forms_have_catalog_backed_costs_and_choices():
+    from app.content import magic_entries, magic_entry
+    from app.marvelous_base_powers import CONJURATION_FORM_CHOICES, talent_effect_choices
+    from app.marvelous_item_rules import talent_construction_spell_points
+    entries = [entry for entry in magic_entries('Conjuration') if entry['category'] == 'Form Talent']
+    assert len(entries) == 55
+    assert [entry['key'] for entry in entries if talent_construction_spell_points(entry, reviewed_only=True) is None] == ['conjuration:form-talent:superior-senses-form']
+    for suffix, choices in CONJURATION_FORM_CHOICES.items():
+        key = 'conjuration:form-talent:' + suffix
+        assert magic_entry(key) and talent_effect_choices(key) == choices
+    assert talent_construction_spell_points(magic_entry('conjuration:form-talent:amorphous-creature-form'), reviewed_only=True) == 1
+
+
+def test_sanguine_thirst_requires_a_separate_fixed_blood_drain_mode():
+    from app.marvelous_item_rules import advanced_construction_blockers
+    key = 'conjuration:form-talent:sanguine-creature-form'
+    rows = [dict(catalog_key=key, effect_choice='thirst')]
+    assert any('Blood Drain' in message for message in advanced_construction_blockers(rows, 10))
+    rows.append(dict(catalog_key=key, effect_choice='blood drain', alternative=True))
+    assert advanced_construction_blockers(rows, 10)
+    rows[1]['alternative'] = False
+    assert not advanced_construction_blockers(rows, 10)
+
+
 def conjuration_duration_plan(*, day=False):
     return dict(schema_version=1, sphere='Conjuration', base_power='conjuration:companion', caster_level=5,
         activation='standard', uses=1, range_steps=0, duration_steps=0, unique_changes=0,
