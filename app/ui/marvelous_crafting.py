@@ -797,18 +797,21 @@ class MarvelousCraftingDialog(QDialog):
             QMessageBox.warning(self, 'Cannot add prerequisites', 'A required talent is not available in the current sphere catalog. No talents were added.')
             return False
         from PySide6.QtCore import Qt
+        mode_changes = missing_required_construction_modes(pending)
+        separate_modes = {key: mode for owner, key, mode in mode_changes if owner == key}
         existing = {}
         for row in range(self.table.rowCount()):
             if self.table.cellWidget(row, 2).isChecked():
-                existing.setdefault(self.table.item(row, 0).data(Qt.ItemDataRole.UserRole), []).append(row)
+                key = self.table.item(row, 0).data(Qt.ItemDataRole.UserRole)
+                if key in separate_modes and self.table.cellWidget(row, 5).currentData() not in ('', separate_modes[key]): continue
+                existing.setdefault(key, []).append(row)
         promotions = list(dict.fromkeys(key for key in additions if existing.get(key)))
         if promotions and QMessageBox.question(self, 'Apply required talents',
                 'These prerequisites are currently optional alternatives:\n' + '\n'.join(catalog[key][1] for key in promotions)
                 + '\n\nMake them fixed contributions so they are applied with the advanced effect? Pricing will update; existing SP and custom cost values are preserved.') != QMessageBox.StandardButton.Yes:
             return False
-        mode_changes = missing_required_construction_modes(pending)
-        existing_changes = [(key, mode) for _, key, mode in mode_changes
-            if any(row['catalog_key'] == key and row.get('effect_choice', '') != mode
+        existing_changes = [(key, mode) for owner, key, mode in mode_changes
+            if owner != key and any(row['catalog_key'] == key and row.get('effect_choice', '') != mode
                    for row in self.blueprint()['contributions'])]
         if existing_changes and QMessageBox.question(self, 'Apply required effect modes',
                 'These existing prerequisites need a different mode:\n' + '\n'.join(
@@ -825,9 +828,13 @@ class MarvelousCraftingDialog(QDialog):
                     self.table.cellWidget(existing[key].pop(0), 2).setChecked(False)
                 else:
                     self.talent.setCurrentIndex(catalog[key][0]); self.add_contribution()
-            for _, key, mode in mode_changes:
-                for row in range(self.table.rowCount()):
-                    if self.table.item(row, 0).data(Qt.ItemDataRole.UserRole) != key or self.table.cellWidget(row, 2).isChecked(): continue
+            for owner, key, mode in mode_changes:
+                candidates = [row for row in range(self.table.rowCount())
+                    if self.table.item(row, 0).data(Qt.ItemDataRole.UserRole) == key
+                    and not self.table.cellWidget(row, 2).isChecked()]
+                if owner == key:
+                    candidates = [row for row in candidates if self.table.cellWidget(row, 5).currentData() in ('', mode)]
+                for row in candidates:
                     choice = self.table.cellWidget(row, 5)
                     if choice.currentData() != mode:
                         choice.setCurrentIndex(choice.findData(mode))

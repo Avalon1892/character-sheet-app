@@ -22,11 +22,30 @@ def test_sanguine_thirst_requires_a_separate_fixed_blood_drain_mode():
     from app.marvelous_item_rules import advanced_construction_blockers
     key = 'conjuration:form-talent:sanguine-creature-form'
     rows = [dict(catalog_key=key, effect_choice='thirst')]
-    assert any('Blood Drain' in message for message in advanced_construction_blockers(rows, 10))
+    assert any('blood drain' in message.casefold() for message in advanced_construction_blockers(rows, 10))
     rows.append(dict(catalog_key=key, effect_choice='blood drain', alternative=True))
     assert advanced_construction_blockers(rows, 10)
     rows[1]['alternative'] = False
     assert not advanced_construction_blockers(rows, 10)
+
+
+@pytest.mark.parametrize('existing', [None, 'bleed', 'blank', 'blood drain'])
+@pytest.mark.parametrize('optional_thirst', [False, True])
+def test_sanguine_dependency_adds_a_separate_mode_without_replacing_existing_choices(existing, optional_thirst):
+    from app.marvelous_item_rules import missing_construction_prerequisites, missing_required_construction_modes
+    key = 'conjuration:form-talent:sanguine-creature-form'
+    rows = [dict(catalog_key=key, effect_choice='thirst', alternative=optional_thirst)]
+    if existing is not None:
+        rows.append(dict(catalog_key=key, effect_choice='' if existing == 'blank' else existing))
+    expected = () if existing in {'blank', 'blood drain'} else (key,)
+    assert missing_construction_prerequisites(rows) == expected
+    if existing == 'blood drain':
+        assert missing_required_construction_modes(rows) == ()
+    else:
+        assert missing_required_construction_modes(rows) == ((key, key, 'blood drain'),)
+    pending = rows + [dict(catalog_key=child) for child in expected]
+    assert missing_construction_prerequisites(pending) == ()
+    assert rows[0]['effect_choice'] == 'thirst'
 
 
 def conjuration_duration_plan(*, day=False):

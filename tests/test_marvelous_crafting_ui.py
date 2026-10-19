@@ -19,6 +19,63 @@ def composer(tmp_path):
     repo.close()
 
 
+@pytest.mark.parametrize('existing_mode,optional', [(None, False), ('bleed', False), ('bleed', True), ('', False), ('blood drain', True)])
+def test_sanguine_thirst_preserves_other_modes_and_adds_fixed_blood_drain(composer, monkeypatch, existing_mode, optional):
+    from PySide6.QtWidgets import QMessageBox
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Conjuration')
+    key = 'conjuration:form-talent:sanguine-creature-form'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    monkeypatch.setattr(QMessageBox, 'question', lambda *args: QMessageBox.StandardButton.Yes)
+    writes = repo._connection.total_changes
+    if existing_mode is not None:
+        dialog.add_contribution()
+        choice = dialog.table.cellWidget(0, 5)
+        choice.setCurrentIndex(choice.findData(existing_mode))
+        dialog.table.cellWidget(0, 1).setValue(5)
+        dialog.table.cellWidget(0, 4).setValue(3)
+        dialog.table.cellWidget(0, 2).setChecked(optional)
+    dialog.add_contribution()
+    owner = dialog.table.rowCount() - 1
+    choice = dialog.table.cellWidget(owner, 5)
+    choice.setCurrentIndex(choice.findData('thirst'))
+    rows = dialog.blueprint()['contributions']
+    assert rows[owner]['effect_choice'] == 'thirst'
+    assert sum(row.get('effect_choice') == 'blood drain' and not row.get('alternative') for row in rows) == 1
+    if existing_mode is not None:
+        assert dialog.table.cellWidget(0, 1).value() == 5
+        assert dialog.table.cellWidget(0, 4).value() == 3
+        if existing_mode == 'bleed':
+            assert rows[0]['effect_choice'] == 'bleed'
+            assert dialog.table.cellWidget(0, 2).isChecked() == optional
+    assert dialog.add_required_contributions()
+    assert dialog.blueprint()['contributions'] == rows
+    saved = dialog.blueprint()
+    dialog.load_plan(saved)
+    assert dialog.blueprint()['contributions'] == rows
+    assert repo._connection.total_changes == writes
+
+
+def test_sanguine_optional_prerequisite_promotion_can_cancel_atomically(composer, monkeypatch):
+    from PySide6.QtWidgets import QMessageBox
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Conjuration')
+    key = 'conjuration:form-talent:sanguine-creature-form'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    dialog.add_contribution()
+    choice = dialog.table.cellWidget(0, 5)
+    choice.setCurrentIndex(choice.findData('blood drain'))
+    dialog.table.cellWidget(0, 2).setChecked(True)
+    dialog.add_contribution()
+    original = dialog.blueprint()
+    writes = repo._connection.total_changes
+    monkeypatch.setattr(QMessageBox, 'question', lambda *args: QMessageBox.StandardButton.No)
+    choice = dialog.table.cellWidget(1, 5)
+    choice.setCurrentIndex(choice.findData('thirst'))
+    assert dialog.blueprint() == original
+    assert repo._connection.total_changes == writes
+
+
 def test_conjuration_form_choice_uses_hd_and_preserves_locked_description(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Conjuration'); dialog.cl.setValue(10)

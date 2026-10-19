@@ -500,4 +500,12 @@ Sources: https://spheresofpower.wikidot.com/conjuration (Ultimate Form Talents a
 
 Remaining: Superior Senses paid/conditional modes; complete anatomy, repeat-selection and same-talent mode prerequisite automation; companion base-form/archetype selection and full statistics; general/type/advanced Conjuration talents; all previously documented other-sphere, tradition, material, charge, visual and deployment gaps. The full requested designer remains incomplete.
 
+## Same-talent prerequisite checkpoint — 2026-10-19
+
+Sanguine Creature (Thirst) now uses the shared prerequisite workflow to insert a separate fixed Blood Drain selection automatically. Existing Thirst/Bleed selections, optional groups, custom complexity and SP values are preserved. A fixed blank selection is reused; an optional Blood Drain selection is promoted only after confirmation. Cancelling the promotion leaves the draft unchanged. Repeated prerequisite actions do not duplicate selections, and saved drafts retain the separate modes. Editing performs no character/database writes.
+
+Focused validation: nine Sanguine rules tests and nine live-UI tests passed, including existing Irradiance/Gravity cancellation regressions. An initial UI run could not create the sandbox's temporary directory; rerunning with an explicit workspace temporary directory passed. Complete rules/base-power/designer group: **1,257 passed in 215.42 seconds**, report `artifacts/sanguine-full-20261019.xml`. The other nine Marvelous modules: **178 passed in 108.02 seconds**. Combined coverage across all 12 modules: **1,435 passed**, no test failures. Diff whitespace checks passed. No full application isolated suite was run.
+
+This closes the previously documented Sanguine same-talent insertion gap, not all Conjuration mechanics. Superior Senses conditional modes, anatomy/repeat-selection validation, companion base-form/archetype selection and full statistics, general/type/advanced Conjuration talents, untouched sphere payloads, tradition/material/shared-charge gaps, full-application validation and deployment remain unfinished. No desktop or portable deployment.
+
 The full active goal is not complete. Broader Marvelous implementation history and gaps remain in `marvelous-items-next-run.md`.

@@ -488,6 +488,9 @@ def missing_construction_alternatives(contributions):
 def mode_construction_prerequisites(contribution):
     """Explicit reviewed mode requirements, not prerequisite prose parsing."""
     from app.marvelous_base_powers import ABILITY_ENHANCEMENT_CHOICES, ENERGY_ENHANCEMENT_KEY, ALTERNATIVE_ENERGY_KEY
+    if (contribution.get('catalog_key') == 'conjuration:form-talent:sanguine-creature-form'
+            and contribution.get('effect_choice') == 'thirst'):
+        return ('conjuration:form-talent:sanguine-creature-form',)
     if (contribution.get('catalog_key') == 'conjuration:talent:greater-summoning'
             and contribution.get('effect_choice') == '24 hours with Lingering Companion'):
         return ('conjuration:form-talent:lingering-companion-form',)
@@ -523,6 +526,9 @@ def missing_required_construction_modes(contributions):
     requirements = [('light:advanced-talent:radiation-light', 'light:talent:irradiance-light', 'nauseating bright light'),
         ('blood:advanced-talent:overclock', 'blood:quicken-still-talent:control-oxygenation-quicken-still', 'quicken with extra attacks')]
     for row in contributions:
+        if (row['catalog_key'] == 'conjuration:form-talent:sanguine-creature-form'
+                and row.get('effect_choice') == 'thirst'):
+            requirements.append((row['catalog_key'], row['catalog_key'], 'blood drain'))
         if row['catalog_key'] == 'creation:advanced-talent:dissolution-alter':
             mode = {'unattended non-magical object': 'enhanced repair or destroy',
                 'attended, magical or creature target': 'affect magical, attended or construct target'}.get(row.get('effect_choice'))
@@ -556,6 +562,13 @@ def missing_construction_prerequisites(contributions):
         if deficit > 0:
             seen[required] = count
             visit(required); missing.extend([required] * deficit)
+    for owner, child, _ in missing_required_construction_modes(contributions):
+        if owner != child or child in missing: continue
+        # A self-key prerequisite needs a separate configured selection, not
+        # replacement of the dependent talent's mode. New rows start blank.
+        if not any(row['catalog_key'] == child and not row.get('effect_choice')
+                   and not row.get('alternative') for row in contributions):
+            missing.append(child)
     return tuple(missing)
 
 
@@ -565,11 +578,6 @@ def advanced_construction_blockers(contributions, caster_level, *, display_names
     applied_counts = Counter(row['catalog_key'] for row in contributions if not row.get('alternative'))
     blockers = []
     names = display_names or {}
-    sanguine = 'conjuration:form-talent:sanguine-creature-form'
-    if (any(row.get('catalog_key') == sanguine and row.get('effect_choice') == 'thirst' for row in contributions)
-            and not any(row.get('catalog_key') == sanguine and row.get('effect_choice') == 'blood drain'
-                        and not row.get('alternative') for row in contributions)):
-        blockers.append('Sanguine Creature (Thirst) requires another fixed Sanguine Creature selection in Blood Drain mode.')
     blockers.extend(f'{names.get(key, key)} is a rules subsection, not a separate talent; choose its parent talent and effect mode.'
                     for key in sorted(keys & MARVELOUS_SUBSECTION_KEYS))
     blockers.extend(f'{names.get(owner, owner)}: prerequisite {names.get(child, child)} must use {mode}.'
