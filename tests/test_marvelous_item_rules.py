@@ -18,6 +18,40 @@ def test_reviewed_conjuration_forms_have_catalog_backed_costs_and_choices():
     assert talent_construction_spell_points(magic_entry('conjuration:form-talent:amorphous-creature-form'), reviewed_only=True) == 1
 
 
+def test_all_conjuration_type_talents_have_reviewed_zero_extra_sp_costs():
+    from app.content import magic_entries
+    from app.marvelous_base_powers import CONJURATION_TYPE_KEYS
+    from app.marvelous_item_rules import talent_construction_spell_points
+    entries = [entry for entry in magic_entries('Conjuration') if entry['category'] == 'Type Talent']
+    assert {entry['key'] for entry in entries} == CONJURATION_TYPE_KEYS
+    assert all(talent_construction_spell_points(entry, reviewed_only=True) == 0 for entry in entries)
+
+
+def test_conjuration_types_reject_conflicts_and_third_copy_but_preserve_alternatives():
+    from app.marvelous_item_rules import advanced_construction_blockers
+    construct = dict(catalog_key='conjuration:type-talent:constructed-type')
+    fey = dict(catalog_key='conjuration:type-talent:fey-companion-type')
+    assert not advanced_construction_blockers([construct, construct], 10)
+    assert any('at most twice' in message for message in advanced_construction_blockers([construct] * 3, 10))
+    assert any('only one type' in message for message in advanced_construction_blockers([construct, fey], 10))
+    alternatives = [dict(construct, alternative=True), dict(fey, alternative=True)]
+    assert not advanced_construction_blockers(alternatives, 10)
+    alternatives[1]['alternative_group'] = 2
+    assert advanced_construction_blockers(alternatives, 10)
+    choices = [dict(construct), dict(construct, alternative=True), dict(construct, alternative=True)]
+    assert not advanced_construction_blockers(choices, 10)
+
+
+@pytest.mark.parametrize('second,valid', [('celestial: saves + aligned attacks', True),
+    ('celestial: damage reduction + saves', False), ('fiendish: saves + aligned attacks', False)])
+def test_planar_second_selection_requires_remaining_benefits_of_same_alignment(second, valid):
+    from app.marvelous_item_rules import advanced_construction_blockers
+    key = 'conjuration:type-talent:planar-creature-type'
+    rows = [dict(catalog_key=key, effect_choice=choice) for choice in
+            ('celestial: damage reduction + resistance', second)]
+    assert bool(advanced_construction_blockers(rows, 10)) != valid
+
+
 @pytest.mark.parametrize('mode,points,sphere,package', [
     ('darkvision', 0, None, None), ('low-light vision', 0, None, None), ('scent', 0, None, None),
     ('see in darkness', 1, 'Dark', None), ('lifesense', 2, 'Life', None),

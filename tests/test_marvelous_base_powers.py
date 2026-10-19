@@ -39,6 +39,57 @@ def test_conjuration_selected_breath_and_resistance_modes_do_not_mix_energies():
     assert result['companion_breath_save_dc'] == '14 + companion Constitution modifier (Reflex half)'
 
 
+@pytest.mark.parametrize('suffix,field,first,second', [
+    ('aberrant-companion-type-alienist-hb', 'companion_cmb_cmd_type_bonus', 2, 3),
+    ('constructed-type', 'companion_type_damage_reduction', '4/adamantine', '5/—'),
+    ('fey-companion-type', 'companion_type_save_scope', 'Charms and sleep', 'Illusions and mind-affecting effects'),
+    ('ooze-companion-type', 'companion_fortification', 'Moderate', 'Heavy'),
+    ('plant-creature-type', 'companion_type_save_scope', 'Paralysis, poison, polymorph, sleep and stunning', 'Mind-affecting effects'),
+    ('undead-creature-type', 'companion_channel_resistance', 6, 6)])
+def test_conjuration_type_upgrade_projects_only_talent_benefits(suffix, field, first, second):
+    row = dict(catalog_key='conjuration:type-talent:' + suffix)
+    for count, expected in ((1, first), (2, second)):
+        result = resolve_base_power(plan('conjuration:companion', cl=10, contributions=[row] * count))
+        assert result[field] == expected
+        assert result['standard_companion_hit_dice'] == 8
+        assert 'do not grant normal creature-type traits' in result['companion_type_scope']
+        if count == 1: assert 'companion_type_immunities' not in result
+
+
+def test_planar_companion_selects_two_benefits_then_gains_remaining_two():
+    key = 'conjuration:type-talent:planar-creature-type'
+    rows = [dict(catalog_key=key, effect_choice='celestial: damage reduction + resistance')]
+    first = resolve_base_power(plan('conjuration:companion', cl=10, contributions=rows))
+    assert first['companion_type_damage_reduction'] == '3/evil'
+    assert first['companion_planar_resistance'] == '4 (acid, cold, electricity)'
+    assert 'companion_type_save_bonus' not in first and 'companion_aligned_attacks' not in first
+    rows.append(dict(catalog_key=key, effect_choice='celestial: saves + aligned attacks'))
+    second = resolve_base_power(plan('conjuration:companion', cl=10, contributions=rows))
+    assert second['companion_type_save_bonus'] == 2
+    assert second['companion_aligned_attacks'] == 'Good'
+    assert 'companion_creature_type' not in second
+
+
+@pytest.mark.parametrize('group,opposed,alignment,resistance', [
+    ('anarchic', 'lawful', 'Chaotic', '4 (acid, electricity, sonic)'),
+    ('axiomatic', 'chaotic', 'Lawful', 'DR 4 against nonlethal damage'),
+    ('celestial', 'evil', 'Good', '4 (acid, cold, electricity)'),
+    ('fiendish', 'good', 'Evil', '4 (cold, fire)')])
+def test_all_planar_choice_pairs_project_only_the_two_selected_benefits(group, opposed, alignment, resistance):
+    from app.marvelous_base_powers import PLANAR_CREATURE_CHOICES
+    fields = {'damage reduction': ('companion_type_damage_reduction', f'3/{opposed}'),
+              'resistance': ('companion_planar_resistance', resistance),
+              'saves': ('companion_type_save_bonus', 2), 'aligned attacks': ('companion_aligned_attacks', alignment)}
+    choices = [choice for choice in PLANAR_CREATURE_CHOICES if choice.startswith(group + ': ')]
+    assert len(choices) == 6
+    for choice in choices:
+        result = resolve_base_power(plan('conjuration:companion', cl=10,
+            contributions=[dict(catalog_key='conjuration:type-talent:planar-creature-type', effect_choice=choice)]))
+        for benefit, (field, value) in fields.items():
+            if benefit in choice.split(': ')[1].split(' + '): assert result[field] == value
+            else: assert field not in result
+
+
 @pytest.mark.parametrize('mode,text', [('darkvision', '60 ft.'), ('scent', 'keen scent'),
     ('lifesense', 'living creatures'), ('thoughtsense', 'mind blank'),
     ('tremorsense', '30 ft.'), ('scent metal', '90 ft.'), ('touchsight', 'line of effect')])

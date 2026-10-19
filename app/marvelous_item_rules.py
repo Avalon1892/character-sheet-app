@@ -599,6 +599,24 @@ def advanced_construction_blockers(contributions, caster_level, *, display_names
     applied_counts = Counter(row['catalog_key'] for row in contributions if not row.get('alternative'))
     blockers = []
     names = display_names or {}
+    from itertools import combinations
+    from app.marvelous_base_powers import CONJURATION_TYPE_KEYS, PLANAR_CREATURE_CHOICES
+    type_rows = [row for row in contributions if row['catalog_key'] in CONJURATION_TYPE_KEYS]
+    if any(left['catalog_key'] != right['catalog_key'] and contributions_can_coexist(left, right)
+           for left, right in combinations(type_rows, 2)):
+        blockers.append('A Conjuration companion may benefit from only one type talent at a time.')
+    if any(all(contributions_can_coexist(left, right) for left, right in combinations(group, 2))
+           for group in combinations(type_rows, 3)):
+        blockers.append('A Conjuration type talent may be taken at most twice for the same companion.')
+    planar = [row for row in type_rows if row['catalog_key'] == 'conjuration:type-talent:planar-creature-type'
+              and row.get('effect_choice') in PLANAR_CREATURE_CHOICES]
+    for left, right in combinations(planar, 2):
+        if not contributions_can_coexist(left, right): continue
+        first_group, first_benefits = left['effect_choice'].split(': ')
+        second_group, second_benefits = right['effect_choice'].split(': ')
+        if first_group != second_group or set(first_benefits.split(' + ')) & set(second_benefits.split(' + ')):
+            blockers.append('Planar Creature: the second selection must grant the remaining two benefits of the same alignment.')
+            break
     blockers.extend(f'{names.get(key, key)} is a rules subsection, not a separate talent; choose its parent talent and effect mode.'
                     for key in sorted(keys & MARVELOUS_SUBSECTION_KEYS))
     blockers.extend(f'{names.get(owner, owner)}: prerequisite {names.get(child, child)} must use {mode}.'
@@ -701,7 +719,7 @@ def talent_construction_spell_points(entry, *, reviewed_only=False, base_power=N
     Planeshift adds two, Portal adds one, and sustained Enduring Portal adds
     one beyond its integrated prerequisites. Optional variants remain explicit.
     """
-    from app.marvelous_base_powers import DESTRUCTION_BLAST_TYPES, DESTRUCTION_BLAST_SHAPES, TALENT_EFFECT_SP_CHOICES, LIGHT_LENSES, LIFE_VITALITY_EFFECTS
+    from app.marvelous_base_powers import DESTRUCTION_BLAST_TYPES, DESTRUCTION_BLAST_SHAPES, TALENT_EFFECT_SP_CHOICES, LIGHT_LENSES, LIFE_VITALITY_EFFECTS, CONJURATION_TYPE_KEYS
     from app.marvelous_base_powers import DARK_MELDS
     if base_power == 'dark:meld' and entry.get('key') in DARK_MELDS: return 0
     if entry.get('key') in LIGHT_LENSES: return 0
@@ -716,6 +734,7 @@ def talent_construction_spell_points(entry, *, reviewed_only=False, base_power=N
         return profile[3]
     if entry.get('key') in DESTRUCTION_BLAST_SHAPES: return 1
     return {
+        **{key: 0 for key in CONJURATION_TYPE_KEYS},
         **{'conjuration:form-talent:' + suffix: 0 for suffix in (
             'aligned-creature-form', 'altered-size-form', 'animal-creature-form', 'armored-companion-form',
             'avian-creature-form', 'battle-creature-form', 'bestial-form', 'boon-companion-form',

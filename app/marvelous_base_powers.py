@@ -4,6 +4,7 @@ Source: https://spheresofpower.wikidot.com/magical-items (Item Base Powers).
 Special talent variants remain separate construction changes.
 """
 from dataclasses import dataclass
+from itertools import combinations
 
 
 @dataclass(frozen=True)
@@ -182,6 +183,80 @@ CONJURATION_FORM_CHOICES = {
     'stinking-companion-form': ('nauseating spray', 'stench'),
 }
 
+CONJURATION_TYPE_KEYS = frozenset('conjuration:type-talent:' + suffix for suffix in (
+    'aberrant-companion-type-alienist-hb', 'constructed-type', 'fey-companion-type',
+    'ooze-companion-type', 'planar-creature-type', 'plant-creature-type', 'undead-creature-type'))
+PLANAR_CREATURE_CHOICES = tuple(f'{alignment}: {left} + {right}'
+    for alignment in ('anarchic', 'axiomatic', 'celestial', 'fiendish')
+    for left, right in combinations(('damage reduction', 'resistance', 'saves', 'aligned attacks'), 2))
+
+
+def conjuration_type_details(rows, hd):
+    """Type-talent benefits only; creature-type traits are not granted wholesale."""
+    types = [row for row in rows if row.get('catalog_key') in CONJURATION_TYPE_KEYS]
+    if not types: return {}
+    keys = {row['catalog_key'] for row in types}
+    if len(keys) != 1 or len(types) > 2:
+        return {'companion_type_review': 'A companion may have one type talent, taken at most twice.'}
+    key = types[0]['catalog_key'].split(':')[-1]
+    twice = len(types) == 2
+    result = {'companion_type_scope': 'Only the listed talent benefits apply; type changes do not grant normal creature-type traits, Hit Dice or skills. The extraplanar subtype is retained.'}
+    if key == 'aberrant-companion-type-alienist-hb':
+        result.update(companion_creature_type='Aberration', companion_darkvision='60 ft.',
+            companion_low_light_vision='Low-light vision', companion_divination_compulsion_save_bonus=1 + hd // (3 if twice else 5),
+            companion_cmb_cmd_type_bonus=1 + hd // (3 if twice else 5))
+        if twice: result['companion_all_around_vision'] = 'All-around vision'
+    elif key == 'constructed-type':
+        result.update(companion_creature_type='Construct', companion_fortification='Heavy' if twice else 'Moderate',
+            companion_type_damage_reduction=f'{(3 if twice else 2) + hd // 3}/' + ('—' if twice else 'adamantine'))
+        if twice: result['companion_no_breathing'] = 'No breathing; immune to drowning, suffocation and gas-based effects.'
+    elif key == 'fey-companion-type':
+        result.update(companion_creature_type='Fey',
+            companion_type_damage_reduction=f'{(3 if twice else 2) + hd // (3 if twice else 5)}/cold iron',
+            companion_type_save_bonus=1 + hd // (3 if twice else 5),
+            companion_type_save_scope='Illusions and mind-affecting effects' if twice else 'Charms and sleep')
+    elif key == 'ooze-companion-type':
+        result.update(companion_creature_type='Ooze', companion_fortification='Heavy' if twice else 'Moderate',
+            companion_compression='One-quarter space without squeezing; one-eighth space when squeezing.')
+        if twice:
+            result['companion_engulf'] = 'Standard action; move up to speed over smaller creatures. No other attacks that round. Targets choosing an attack of opportunity get no save; otherwise Reflex negates. Engulfed targets are pinned, may suffocate and take slam damage each round (without a slam attack: 1d4 Medium, 1d3 Small). Escape as from a pin.'
+            result['companion_engulf_save_dc'] = f'{10 + hd // 2} + companion Strength modifier'
+    elif key == 'plant-creature-type':
+        result.update(companion_creature_type='Plant', companion_low_light_vision='Low-light vision',
+            companion_type_save_bonus=2 + hd // 2,
+            companion_type_save_scope='Mind-affecting effects' if twice else 'Paralysis, poison, polymorph, sleep and stunning')
+        if twice:
+            result['companion_type_immunities'] = 'Paralysis, poison, polymorph, sleep and stunning; no sleep required.'
+    elif key == 'undead-creature-type':
+        result.update(companion_creature_type='Undead', companion_energy_affinity='Healed by negative energy; harmed by positive energy.',
+            companion_channel_resistance=2 + hd // 2)
+        if twice:
+            result['companion_type_immunities'] = 'Disease, exhaustion, fatigue, paralysis, poison, sleep and stunning; no breathing (immune to drowning, suffocation and gas-based effects).'
+        else:
+            result.update(companion_type_save_bonus=2 + hd // 2,
+                companion_type_save_scope='Disease, exhaustion, fatigue, paralysis, poison, sleep and stunning')
+    elif key == 'planar-creature-type':
+        choices = [row.get('effect_choice', '') for row in types]
+        if any(choice not in PLANAR_CREATURE_CHOICES for choice in choices):
+            return {'companion_type_review': 'Choose a planar alignment and two benefits for each selection.'}
+        groups = {choice.split(': ')[0] for choice in choices}
+        benefits = {benefit for choice in choices for benefit in choice.split(': ')[1].split(' + ')}
+        if len(groups) != 1 or (twice and len(benefits) != 4):
+            return {'companion_type_review': 'The second planar selection must grant the remaining two benefits of the same alignment.'}
+        group = next(iter(groups))
+        opposed, alignment, energies, saves = {
+            'anarchic': ('lawful', 'chaotic', 'acid, electricity, sonic', 'Mind-affecting effects'),
+            'axiomatic': ('chaotic', 'lawful', None, 'Death effects'),
+            'celestial': ('evil', 'good', 'acid, cold, electricity', 'Disease'),
+            'fiendish': ('good', 'evil', 'cold, fire', 'Poison')}[group]
+        result['companion_planar_alignment'] = group.title()
+        if 'damage reduction' in benefits: result['companion_type_damage_reduction'] = f'{2 + hd // 5}/{opposed}'
+        if 'resistance' in benefits:
+            result['companion_planar_resistance'] = f'{hd // 2} ({energies})' if energies else f'DR {hd // 2} against nonlethal damage'
+        if 'saves' in benefits: result.update(companion_type_save_bonus=1 + hd // 5, companion_type_save_scope=saves)
+        if 'aligned attacks' in benefits: result['companion_aligned_attacks'] = alignment.title()
+    return result
+
 
 def conjuration_item_duration(plan):
     """Item-specific duration conversion, not the ordinary summoning durations."""
@@ -209,13 +284,14 @@ def conjuration_form_details(plan):
         'superior-senses-form')}
     keys = [row.get('catalog_key') for row in rows]
     cl = plan['caster_level']
-    if (not 1 <= cl <= 40 or len(keys) != len(set(keys))
+    if (not 1 <= cl <= 40 or any(keys.count(key) > 1 for key in set(keys) - CONJURATION_TYPE_KEYS)
             or any(row.get('alternative') for row in rows)
-            or set(keys) - profiles - CONJURATION_DURATION_TALENTS):
+            or set(keys) - profiles - CONJURATION_DURATION_TALENTS - CONJURATION_TYPE_KEYS):
         return {'companion_statistics_review': 'Resolve repeated/alternative forms, HD-changing talents, types, companion archetypes and unreviewed combinations manually.'}
     hd = cl - cl // 4
     result = {'standard_companion_hit_dice': hd,
               'companion_profile_scope': 'Standard companion progression only, without companion archetypes or HD-changing talents. Values below are form benefits, not complete creature statistics.'}
+    result.update(conjuration_type_details(rows, hd))
     for row in rows:
         key, choice = row['catalog_key'].split(':')[-1], row.get('effect_choice', '')
         if row['catalog_key'] in CONJURATION_DURATION_TALENTS: continue
@@ -487,6 +563,7 @@ def talent_effect_choices(key):
     """Reviewed construction choices, shared by the editor and projections."""
     if key in TALENT_EFFECT_SP_CHOICES:
         return tuple(TALENT_EFFECT_SP_CHOICES[key])
+    if key == 'conjuration:type-talent:planar-creature-type': return PLANAR_CREATURE_CHOICES
     if isinstance(key, str) and key.startswith('fallen-fey:fey-blessing-talent:'):
         return FEY_BLESSING_CHOICES.get(key.split(':')[-1], ())
     if isinstance(key, str) and key.startswith('conjuration:form-talent:'):

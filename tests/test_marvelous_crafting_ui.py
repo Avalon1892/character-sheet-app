@@ -105,6 +105,31 @@ def test_superior_senses_live_cost_requirements_preview_and_reopen(composer):
     assert repo._connection.total_changes == writes
 
 
+def test_conjuration_type_upgrade_cost_preview_conflict_and_saved_values(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Conjuration'); dialog.cl.setValue(10)
+    key = 'conjuration:type-talent:constructed-type'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    assert dialog.table.cellWidget(0, 4).value() == 0
+    assert dialog.quotation()[1].market_price_gp == 8000
+    assert '4/adamantine' in dialog.item_preview.toPlainText()
+    dialog.add_contribution()
+    assert dialog.quotation()[1].market_price_gp == 12000
+    assert '5/—' in dialog.item_preview.toPlainText()
+    assert 'Heavy' in dialog.item_preview.toPlainText()
+    saved = dialog.blueprint()
+    dialog.load_plan(saved)
+    assert dialog.blueprint()['contributions'] == saved['contributions']
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count())
+        if dialog.talent.itemData(i)['key'] == 'conjuration:type-talent:plant-creature-type'))
+    dialog.add_contribution()
+    assert 'only one type' in dialog.construction_status.toolTip()
+    assert 'construction requirements need attention' in dialog.construction_status.text()
+    assert repo._connection.total_changes == writes
+
+
 def test_conjuration_form_choice_uses_hd_and_preserves_locked_description(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Conjuration'); dialog.cl.setValue(10)
