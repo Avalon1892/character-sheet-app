@@ -43,6 +43,43 @@ def test_fate_word_costs_include_required_sp_and_preserve_paid_choices(suffix, c
     assert talent_construction_cost(entry, additional_spell_points=points) == 1 + points
 
 
+@pytest.mark.parametrize('suffix,first,second', [('confine-word-curse-3pp', 0, 1),
+    ('freedom-word', 1, 2), ('harm-word-curse', 0, 1), ('mundanity-word-curse-sm', 0, 1),
+    ('truth-word-curse-utility', 0, 1)])
+def test_fate_concentration_word_costs_include_base_and_sustaining_sp(suffix, first, second):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_choice_spell_points, talent_construction_spell_points
+    from app.marvelous_base_powers import talent_effect_choices
+    key = 'fate:word-talent:' + suffix
+    choices = talent_effect_choices(key)
+    assert len(choices) == 2
+    assert talent_choice_spell_points(key, choices[0]) == first
+    assert talent_choice_spell_points(key, choices[1]) == second
+    assert talent_construction_spell_points(magic_entry(key), reviewed_only=True) == first
+
+
+def test_perfect_word_has_all_six_abilities_in_both_paid_modes():
+    from app.marvelous_base_powers import talent_effect_choices
+    from app.marvelous_item_rules import talent_choice_spell_points
+    key = 'fate:word-talent:perfect-word'
+    expected = {f'{ability}: {mode}' for ability in ('Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma')
+                for mode in ('concentration', 'minutes per caster level')}
+    assert set(talent_effect_choices(key)) == expected
+    for choice in expected:
+        assert talent_choice_spell_points(key, choice) == (1 if choice.endswith('concentration') else 2)
+
+
+def test_all_twelve_reviewed_word_keys_have_catalog_entries_and_cost_defaults():
+    from app.content import magic_entry
+    from app.marvelous_base_powers import FATE_WORD_DURATIONS
+    from app.marvelous_item_rules import talent_construction_spell_points
+    assert len(FATE_WORD_DURATIONS) == 12
+    for key in FATE_WORD_DURATIONS:
+        entry = magic_entry(key)
+        assert entry and entry['category'] == 'Word Talent'
+        assert talent_construction_spell_points(entry, reviewed_only=True) is not None
+
+
 def test_all_conjuration_type_talents_have_reviewed_zero_extra_sp_costs():
     from app.content import magic_entries
     from app.marvelous_base_powers import CONJURATION_TYPE_KEYS

@@ -208,6 +208,34 @@ def test_fate_pain_word_updates_cost_dice_duration_controls_and_reopens(composer
     assert repo._connection.total_changes == writes
 
 
+@pytest.mark.parametrize('suffix,first,second,first_price,second_price,duration', [
+    ('freedom-word', 'concentration', 'rounds per caster level', 12000, 16000, '10 rounds'),
+    ('truth-word-curse-utility', 'concentration', 'minutes per caster level', 8000, 12000, '10 minutes'),
+    ('perfect-word', 'Dexterity: concentration', 'Dexterity: minutes per caster level', 12000, 16000, '10 minutes')])
+def test_fate_word_sustaining_choice_updates_price_and_controls_atomically(composer, suffix, first, second, first_price, second_price, duration):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Fate'); dialog.cl.setValue(10)
+    dialog.base_power.setCurrentIndex(dialog.base_power.findData('fate:word'))
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count())
+        if dialog.talent.itemData(i)['key'] == 'fate:word-talent:' + suffix))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    picker = dialog.table.cellWidget(0, 5)
+    picker.setCurrentIndex(picker.findData(first))
+    assert dialog.quotation()[1].market_price_gp == first_price
+    assert dialog.card_edits['duration'].text() == 'Concentration'
+    assert not dialog.duration_steps.isEnabled()
+    picker.setCurrentIndex(picker.findData(second))
+    assert dialog.quotation()[1].market_price_gp == second_price
+    assert dialog.card_edits['duration'].text() == duration
+    assert dialog.duration_steps.isEnabled()
+    if suffix == 'perfect-word': assert 'All Movement Speed Bonus: 20' in dialog.item_preview.toPlainText()
+    saved = dialog.blueprint()
+    dialog.load_plan(saved)
+    assert dialog.blueprint()['contributions'] == saved['contributions']
+    assert repo._connection.total_changes == writes
+
+
 def test_conjuration_day_choice_updates_price_formula_controls_and_reopens(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Conjuration'); dialog.cl.setValue(5)

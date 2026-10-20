@@ -64,6 +64,52 @@ def test_fate_word_requires_one_fixed_reviewed_word_and_rejects_instant_duration
         resolve_base_power(dict(plan('fate:word', contributions=[dict(catalog_key='fate:word-talent:classify-word-utility')]), duration_steps=1))
 
 
+@pytest.mark.parametrize('suffix,sustained,duration', [
+    ('confine-word-curse-3pp', 'rounds per caster level', '10 rounds'),
+    ('freedom-word', 'rounds per caster level', '10 rounds'),
+    ('harm-word-curse', 'rounds per caster level', '10 rounds'),
+    ('mundanity-word-curse-sm', 'rounds per caster level', '10 rounds'),
+    ('truth-word-curse-utility', 'minutes per caster level', '10 minutes')])
+def test_fate_concentration_word_durations_follow_selected_mode(suffix, sustained, duration):
+    row = dict(catalog_key='fate:word-talent:' + suffix, effect_choice='concentration')
+    result = resolve_base_power(plan('fate:word', cl=10, contributions=[row]))
+    assert result['duration'] == 'Concentration'
+    if suffix == 'freedom-word': assert result['concentration_limit'] == 'At most 10 rounds.'
+    row['effect_choice'] = sustained
+    assert resolve_base_power(plan('fate:word', cl=10, contributions=[row]))['duration'] == duration
+
+
+@pytest.mark.parametrize('ability,field,value', [
+    ('Strength', 'perfect_strength', '+4'), ('Dexterity', 'all_movement_speed_bonus', 20),
+    ('Constitution', 'refreshing_temporary_hp', 3), ('Intelligence', 'trained_skill_bonus', 4),
+    ('Wisdom', 'initiative_bonus', 3), ('Charisma', 'perfect_charisma', '-10 Diplomacy')])
+@pytest.mark.parametrize('mode,duration', [('concentration', 'Concentration'), ('minutes per caster level', '10 minutes')])
+def test_perfect_word_uses_selected_ability_without_changing_ability_scores(ability, field, value, mode, duration):
+    row = dict(catalog_key='fate:word-talent:perfect-word', effect_choice=f'{ability}: {mode}')
+    result = resolve_base_power(plan('fate:word', cl=10, contributions=[row]))
+    assert result['duration'] == duration
+    if isinstance(value, int): assert result[field] == value
+    else: assert value in result[field]
+    assert 'not an ability-score increase' in result['perfect_ability_check_and_skill_bonus']
+    if ability != 'Wisdom': assert 'initiative_bonus' not in result
+    if ability != 'Dexterity': assert 'all_movement_speed_bonus' not in result
+
+
+def test_open_close_and_subvert_keep_ending_conditions_and_scaling_explicit():
+    row = dict(catalog_key='fate:word-talent:open-close-word-utility', effect_choice='open')
+    opened = resolve_base_power(plan('fate:word', contributions=[row]))
+    assert opened['duration'] == 'Instantaneous' and opened['open_check_bonus'] == 10
+    row['effect_choice'] = 'close'
+    closed = resolve_base_power(plan('fate:word', contributions=[row]))
+    assert closed['duration'] == 'Until the portal is forced or picked open'
+    assert closed['close_dc_increase'] == 10 and 'open_check_bonus' not in closed
+    for cl, critical in ((9, 'No automatic critical threat'), (10, 'Automatically threatens a critical hit')):
+        result = resolve_base_power(plan('fate:word', cl=cl,
+            contributions=[dict(catalog_key='fate:word-talent:subvert-weapon-word-curse')]))
+        assert result['duration'] == f'{cl} hours' and result['subvert_critical'] == critical
+        assert 'Ends when triggered' in result['discharge_end']
+
+
 @pytest.mark.parametrize('rows', [[], [dict(catalog_key='fate:motif-talent:the-chariot-motif', alternative=True)],
     [dict(catalog_key='fate:motif-talent:the-chariot-motif')] * 2])
 def test_fate_motif_base_requires_one_fixed_motif_without_guessing_combination_rules(rows):

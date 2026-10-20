@@ -206,7 +206,21 @@ FATE_WORD_DURATIONS = {
     'fate:word-talent:exorcism-word': 'instantaneous',
     'fate:word-talent:mercy-word-curse': 'round',
     'fate:word-talent:pain-word-curse': 'fixed-round',
+    'fate:word-talent:subvert-weapon-word-curse': 'hour',
 }
+FATE_WORD_MODES = {
+    **{'fate:word-talent:' + suffix: {'concentration': (points, 'concentration'),
+        'rounds per caster level': (points + 1, 'round')}
+        for suffix, points in (('confine-word-curse-3pp', 0), ('freedom-word', 1),
+                              ('harm-word-curse', 0), ('mundanity-word-curse-sm', 0))},
+    'fate:word-talent:truth-word-curse-utility': {
+        'concentration': (0, 'concentration'), 'minutes per caster level': (1, 'minute')},
+    'fate:word-talent:open-close-word-utility': {'open': (1, 'instantaneous'), 'close': (1, 'variable')},
+    'fate:word-talent:perfect-word': {f'{ability}: {mode}': (points, duration)
+        for ability in ('Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma')
+        for mode, points, duration in (('concentration', 1, 'concentration'), ('minutes per caster level', 2, 'minute'))},
+}
+FATE_WORD_DURATIONS.update({key: next(iter(modes.values()))[1] for key, modes in FATE_WORD_MODES.items()})
 
 
 def conjuration_type_details(rows, hd):
@@ -377,6 +391,7 @@ def conjuration_form_details(plan):
     return result
 
 TALENT_EFFECT_SP_CHOICES = {
+    **{key: {mode: values[0] for mode, values in modes.items()} for key, modes in FATE_WORD_MODES.items()},
     'fate:word-talent:exorcism-word': {'remove an effect': 1, 'remove an effect and identify its source': 2},
     'fate:word-talent:pain-word-curse': {'one round': 0, 'damage each round': 1},
     'conjuration:form-talent:superior-senses-form': {
@@ -675,6 +690,8 @@ def effective_base_duration(plan):
     if power.key == 'fate:word':
         words = [row for row in plan.get('contributions', []) if row.get('catalog_key') in FATE_WORD_DURATIONS]
         if len(words) == 1 and not words[0].get('alternative'):
+            if mode := FATE_WORD_MODES.get(words[0]['catalog_key'], {}).get(words[0].get('effect_choice')):
+                return mode[1]
             if (words[0]['catalog_key'] == 'fate:word-talent:pain-word-curse'
                     and words[0].get('effect_choice') == 'damage each round'): return 'round'
             return FATE_WORD_DURATIONS[words[0]['catalog_key']]
@@ -981,6 +998,48 @@ def resolve_base_power(plan):
             summary['mental_skill_penalty'] = -4
             summary['pain_casting_check'] = f'Magic skill check DC 10 + half the damage dealt + {cl // 2} to use a spell or sphere effect.'
             summary['pain_frequency'] = 'Each round for the word duration' if selected.get('effect_choice') == 'damage each round' else 'Damage once; penalties last one round.'
+        elif suffix == 'confine-word-curse-3pp':
+            summary['confine'] = 'Will negates. The target cannot take immediate actions or attacks of opportunity.'
+        elif suffix == 'freedom-word':
+            summary['freedom'] = 'Move and attack normally despite physical restraints; grapples against the target fail, and escape checks against grapples/pins succeed automatically. Underwater movement is allowed, but water breathing is not granted.'
+            if selected.get('effect_choice') == 'concentration':
+                summary['concentration_limit'] = f'At most {cl} rounds.'
+        elif suffix == 'harm-word-curse': summary['extra_untyped_damage_when_damaged'] = max(1, cl // 2)
+        elif suffix == 'mundanity-word-curse-sm':
+            summary['mundanity'] = 'Will negates. Roll 3d20 and use the middle result for attacks, saves and skill checks. Ties use the repeated high or low result. Other roll-twice or reroll abilities have no effect.'
+        elif suffix == 'truth-word-curse-utility':
+            summary['truth'] = 'Will negates. No deliberate lies; evasiveness, silence and careful wording remain possible. Target is aware, and the caster knows whether the save succeeded.'
+        elif suffix == 'open-close-word-utility':
+            if selected.get('effect_choice') == 'open':
+                summary['open_check_bonus'] = 10
+                summary['open_check'] = 'Magic skill check against lock Disable Device DC or stuck-door Strength DC. Opens/unlocks fastenings; cannot lift a barred gate or portcullis or supply force.'
+            elif selected.get('effect_choice') == 'close':
+                summary['duration'] = 'Until the portal is forced or picked open'
+                summary['close_dc_increase'] = 10
+                summary['close'] = 'Closes a suitable wood, metal or stone portal and locks an existing lock. Does not create a new lock.'
+        elif suffix == 'subvert-weapon-word-curse':
+            summary['subvert_weapon'] = 'The next attack with the weapon automatically hits its wielder; the word then ends. An attended or magical weapon gets a Will save.'
+            summary['subvert_critical'] = 'Automatically threatens a critical hit' if cl >= 10 else 'No automatic critical threat'
+            summary['discharge_end'] = 'Ends when triggered, even if the displayed maximum duration has not elapsed.'
+        elif suffix == 'perfect-word':
+            ability = selected.get('effect_choice', '').split(': ')[0]
+            summary['perfect_ability_check_and_skill_bonus'] = f'+1 to checks and skills based on {ability or "the chosen ability"}; not an ability-score increase.'
+            if ability == 'Strength':
+                summary['perfect_strength'] = f'Bull rush, overrun and trip do not provoke. If a maneuver already does not provoke, gain +{2 + cl // 4} to its combat maneuver check instead.'
+            elif ability == 'Dexterity':
+                summary['all_movement_speed_bonus'] = 10 + 5 * (cl // 5)
+                summary['perfect_movement'] = 'The first square moved is not threatened by enemies.'
+            elif ability == 'Constitution':
+                summary['refreshing_temporary_hp'] = 1 + cl // 5
+                summary['temporary_hp_refresh'] = 'Refresh each round; do not stack.'
+            elif ability == 'Intelligence':
+                summary['trained_skill_bonus'] = 2 + cl // 5
+                summary['untrained_skill_treatment'] = 'Treat untrained skills as having one rank; no actual skill ranks are granted.'
+            elif ability == 'Wisdom':
+                summary['initiative_bonus'] = 1 + cl // 5
+                summary['free_observation'] = 'One Perception or Sense Motive check as a free action each round.'
+            elif ability == 'Charisma':
+                summary['perfect_charisma'] = 'Demoralize as a swift action, or once/round as a free action if already swift. Influence attitude in one round at -10 Diplomacy.'
     if power.key == 'fate:motif':
         from app.content import magic_entry
         selected = next(row for row in plan['contributions'] if row.get('catalog_key') in FATE_MOTIFS)
