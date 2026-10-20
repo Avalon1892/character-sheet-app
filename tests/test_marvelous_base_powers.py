@@ -56,7 +56,7 @@ def test_reviewed_fate_words_replace_aura_with_native_duration_and_rules(suffix,
 
 def test_fate_word_requires_one_fixed_reviewed_word_and_rejects_instant_duration_adjustments():
     mercy = dict(catalog_key='fate:word-talent:mercy-word-curse')
-    unknown = dict(catalog_key='fate:word-talent:bless-word')
+    unknown = dict(catalog_key='fate:word-talent:unreviewed-test-word')
     for rows in ([], [dict(mercy, alternative=True)], [mercy, mercy], [mercy, unknown], [unknown]):
         with pytest.raises(ValueError, match='one fixed reviewed word'):
             resolve_base_power(plan('fate:word', contributions=rows))
@@ -188,6 +188,32 @@ def test_metaphysical_cloak_projects_selected_alignment_without_changing_actual_
     assert 'without changing its actual alignment' in result['metaphysical_cloak']
     assert 'Check at use' in result['cloak_reference_alignments']
     assert 'does not assume the crafter' in result['cloak_reference_alignments']
+
+
+@pytest.mark.parametrize('suffix,field,text', [('bless-word', 'word_roll', 'higher'),
+    ('curse-word-curse', 'word_roll', 'lower'), ('borrow-luck-word', 'borrow_luck', '-4'),
+    ('borrow-trouble-word-curse', 'borrow_trouble', '+4'), ('conjunction-word', 'conjunction', 'both creatures'),
+    ('bargain-word-bap', 'bargain', 'cannot be delayed twice')])
+def test_immediate_fate_words_keep_trigger_and_conditional_effects(suffix, field, text):
+    from app.marvelous_base_powers import native_item_activation, effective_item_activation
+    draft = plan('fate:word', cl=10, contributions=[dict(catalog_key='fate:word-talent:' + suffix)])
+    result = resolve_base_power(draft)
+    assert text in result[field]
+    assert native_item_activation(draft) == effective_item_activation(draft) == 'immediate'
+    assert effective_item_activation(dict(draft, activation='swift')) == 'swift'
+    if suffix == 'bargain-word-bap': assert result['duration'] == '5 rounds'
+    if suffix in {'bless-word', 'curse-word-curse'}:
+        assert 'before' in result['word_trigger'] and '2d20' in result['word_roll']
+
+
+def test_native_word_timing_does_not_leak_into_other_or_unresolved_powers():
+    from app.marvelous_base_powers import native_item_activation
+    row = dict(catalog_key='fate:word-talent:bless-word')
+    assert native_item_activation(plan('fate:serendipity', contributions=[row])) == 'standard'
+    assert native_item_activation(plan('fate:word', contributions=[dict(row, alternative=True)])) == 'standard'
+    assert native_item_activation(plan('fate:word', contributions=[row, row])) == 'standard'
+    bargain = resolve_base_power(plan('fate:word', cl=1, contributions=[dict(catalog_key='fate:word-talent:bargain-word-bap')]))
+    assert bargain['duration'] == '1 round'
 
 
 @pytest.mark.parametrize('rows', [[], [dict(catalog_key='fate:motif-talent:the-chariot-motif', alternative=True)],

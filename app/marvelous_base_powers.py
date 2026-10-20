@@ -221,7 +221,33 @@ FATE_WORD_DURATIONS = {
     'fate:word-talent:pain-word-curse': 'fixed-round',
     'fate:word-talent:subvert-weapon-word-curse': 'hour',
     'fate:word-talent:enmity-word-curse': 'variable',
+    'fate:word-talent:bless-word': 'instantaneous',
+    'fate:word-talent:curse-word-curse': 'instantaneous',
+    'fate:word-talent:borrow-luck-word': 'variable',
+    'fate:word-talent:borrow-trouble-word-curse': 'variable',
+    'fate:word-talent:conjunction-word': 'variable',
+    'fate:word-talent:bargain-word-bap': 'variable',
 }
+FATE_IMMEDIATE_WORDS = frozenset('fate:word-talent:' + suffix for suffix in (
+    'bless-word', 'curse-word-curse', 'borrow-luck-word', 'borrow-trouble-word-curse',
+    'conjunction-word', 'bargain-word-bap'))
+
+
+def native_item_activation(plan):
+    """Published native timing; stored standard means no construction adjustment."""
+    rows = [row for row in plan.get('contributions', [])
+            if row.get('catalog_key', '').startswith('fate:word-talent:')]
+    if (plan.get('base_power') == 'fate:word' and len(rows) == 1
+            and not rows[0].get('alternative') and rows[0]['catalog_key'] in FATE_IMMEDIATE_WORDS):
+        return 'immediate'
+    return 'standard'
+
+
+def effective_item_activation(plan):
+    selected = plan.get('activation', 'standard')
+    return native_item_activation(plan) if selected == 'standard' else selected
+
+
 FATE_WORD_MODES = {
     'fate:word-talent:metaphysical-cloak-word': {f'{alignment}: {mode}': (points, duration)
         for alignment in FATE_ALIGNMENT_AXES
@@ -1108,6 +1134,23 @@ def resolve_base_power(plan):
                 summary['cloak_reference_alignments'] = 'Applicable caster/user alignment must be one of: ' + ', '.join(allowed) + '. Check at use; the designer does not assume the crafter is the user.'
             summary['metaphysical_cloak'] = 'Will negates. Treat the target as the selected alignment for all purposes, without changing its actual alignment, actions or code of conduct.'
             summary['cloak_rules_scope'] = 'Uses the standard two-axis alignment system; this talent is removed in the published no-alignment variant.'
+        elif suffix in {'bless-word', 'curse-word-curse'}:
+            summary['word_roll'] = 'Roll 2d20 and use the ' + ('higher' if suffix == 'bless-word' else 'lower') + ' result.'
+            summary['word_trigger'] = 'Use before the attack, skill check, ability check or saving throw is rolled.'
+            summary['word_target'] = 'You or an ally' if suffix == 'bless-word' else 'An enemy'
+        elif suffix == 'borrow-luck-word':
+            summary['borrow_luck'] = 'After a failed save/check or missed attack, allow a reroll. Then apply -4 to that roll category until a subsequent legitimate failure/miss. The reroll itself does not end the penalty; deliberate/harmless failures and attacks against objects/allies do not end it.'
+        elif suffix == 'borrow-trouble-word-curse':
+            summary['borrow_trouble'] = 'After a successful save/check or hit, force a reroll. Then grant +4 to that roll category until a subsequent success/hit. Success on the reroll itself does not end the bonus.'
+        elif suffix == 'conjunction-word':
+            summary['conjunction'] = 'After an ally fails a save, reroll using your modifier, or after you fail, use an ally’s modifier. A failed reroll exposes both creatures to the triggering effect. For a failed save to end an ongoing effect with no other failure consequence, the newly affected creature is affected until the end of your next turn.'
+        elif suffix == 'bargain-word-bap':
+            rounds = max(1, cl // 2)
+            summary['duration'] = f'{rounds} ' + ('round' if rounds == 1 else 'rounds')
+            summary['bargain_trigger'] = 'Willing target only; after attack rolls/saves, before damage is determined.'
+            summary['bargain'] = 'Delay damage and associated effects. When this word ends or is dispelled, resolve them against current defenses. The same attack/effect cannot be delayed twice, including by Guardian delayed damage. A new Bargain ends the previous one immediately.'
+        if selected['catalog_key'] in FATE_IMMEDIATE_WORDS:
+            summary['native_word_activation'] = 'Immediate action without an activation surcharge; explicit construction activation changes still use the published adjustment table.'
     if power.key == 'fate:motif':
         from app.content import magic_entry
         selected = next(row for row in plan['contributions'] if row.get('catalog_key') in FATE_MOTIFS)

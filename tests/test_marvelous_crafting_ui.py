@@ -280,6 +280,35 @@ def test_metaphysical_cloak_choice_updates_price_hours_and_eligibility_preview(c
     assert repo._connection.total_changes == writes
 
 
+def test_native_immediate_word_timing_price_locks_and_reopen_stay_consistent(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Fate'); dialog.cl.setValue(10)
+    dialog.base_power.setCurrentIndex(dialog.base_power.findData('fate:word'))
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count())
+        if dialog.talent.itemData(i)['key'] == 'fate:word-talent:bless-word'))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    assert dialog.activation.currentText() == 'Immediate action (native word)'
+    assert dialog.card_edits['activation'].text() == 'Immediate'
+    assert dialog.quotation()[1].market_price_gp == 12000
+    assert 'no activation surcharge' in dialog.cost_formula.text()
+    dialog.activation.setCurrentIndex(dialog.activation.findData('swift'))
+    assert dialog.card_edits['activation'].text() == 'Swift'
+    assert dialog.quotation()[1].market_price_gp == 32000
+    dialog.activation.setCurrentIndex(dialog.activation.findData('standard'))
+    dialog.card_locks['activation'].setChecked(True)
+    dialog.card_edits['activation'].setText('Custom displayed timing')
+    saved = dialog.blueprint()
+    assert saved['activation'] == 'standard'
+    dialog.load_plan(saved)
+    assert dialog.blueprint()['activation'] == 'standard'
+    assert dialog.card_edits['activation'].text() == 'Custom displayed timing'
+    assert dialog.quotation()[1].market_price_gp == 12000
+    dialog.sphere.setCurrentText('Life')
+    assert dialog.activation.itemText(dialog.activation.findData('standard')) == 'Standard action'
+    assert repo._connection.total_changes == writes
+
+
 def test_conjuration_day_choice_updates_price_formula_controls_and_reopens(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Conjuration'); dialog.cl.setValue(5)

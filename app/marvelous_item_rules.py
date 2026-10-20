@@ -719,7 +719,8 @@ def talent_construction_spell_points(entry, *, reviewed_only=False, base_power=N
     Planeshift adds two, Portal adds one, and sustained Enduring Portal adds
     one beyond its integrated prerequisites. Optional variants remain explicit.
     """
-    from app.marvelous_base_powers import DESTRUCTION_BLAST_TYPES, DESTRUCTION_BLAST_SHAPES, TALENT_EFFECT_SP_CHOICES, LIGHT_LENSES, LIFE_VITALITY_EFFECTS, CONJURATION_TYPE_KEYS, FATE_MOTIFS
+    from app.marvelous_base_powers import DESTRUCTION_BLAST_TYPES, DESTRUCTION_BLAST_SHAPES, TALENT_EFFECT_SP_CHOICES, LIGHT_LENSES, LIFE_VITALITY_EFFECTS, CONJURATION_TYPE_KEYS, FATE_MOTIFS, FATE_IMMEDIATE_WORDS
+    if entry.get('key') in FATE_IMMEDIATE_WORDS: return 1
     if entry.get('key') in FATE_MOTIFS:
         return 0 if base_power == 'fate:motif' else 1
     from app.marvelous_base_powers import DARK_MELDS
@@ -1417,6 +1418,7 @@ def conjuration_duration_complexity(plan):
 
 def quote_marvelous_blueprint(plan):
     """Price the persisted composer blueprint using the same pure rules."""
+    from app.marvelous_base_powers import FATE_IMMEDIATE_WORDS, effective_base_duration
     if plan.get('schema_version') != 1:
         raise ValueError('Unsupported Marvelous blueprint version.')
     spell_selectivity_options(plan)
@@ -1436,7 +1438,15 @@ def quote_marvelous_blueprint(plan):
     if any(not isinstance(x.get('alternative', False), bool) for x in plan['contributions']):
         raise ValueError('Alternative-effect flags must be boolean.')
     groups = {}
+    immediate_word = plan.get('base_power') == 'fate:word' and any(
+        row.get('catalog_key') in FATE_IMMEDIATE_WORDS for row in plan['contributions'])
     for contribution in plan['contributions']:
+        if plan.get('base_power') == 'fate:word':
+            if contribution.get('catalog_key') == 'fate:talent:shrieking-strike-strike' and immediate_word:
+                raise ValueError('Shrieking Strike cannot affect a word normally usable as an immediate action, even after an activation adjustment.')
+            if (contribution.get('catalog_key') == 'fate:talent:instill-fate-instill'
+                    and (immediate_word or effective_base_duration(plan) == 'concentration')):
+                raise ValueError('Instill Fate cannot contain a concentration word or a word with a native immediate-action trigger.')
         if (contribution.get('catalog_key') == 'creation:advanced-talent:sustenance-material-utility'
                 and contribution.get('effect_choice') == 'standard-action food and drink'
                 and plan.get('base_power') != 'creation:alter'):
@@ -1449,7 +1459,7 @@ def quote_marvelous_blueprint(plan):
         if (contribution.get('catalog_key') in {'time:talent:time-strike-strike', 'life:talent:clarified-strike-strike',
                 'creation:talent:transmuting-strike-strike-3pp', 'dark:talent:shadow-strike-strike-3pp',
                 'divination:talent:revealing-strike-strike-3pp', 'blood:talent:exsanguinating-strike-strike-bap',
-                'fallen-fey:talent:feytouch-strike-strike-3pp'}
+                'fallen-fey:talent:feytouch-strike-strike-3pp', 'fate:talent:shrieking-strike-strike'}
                 and plan['activation'] in {'move', 'swift'}):
             raise ValueError('Strike talents cannot reduce casting below a standard action.')
         if (contribution.get('catalog_key') == 'enhancement:advanced-talent:inherent-enhancement-enhance-archmagi-s-hb'
@@ -1558,6 +1568,10 @@ def quote_marvelous_effects(plans, *, mode='multiple'):
     plans = tuple(plans)
     if not plans:
         raise ValueError('At least one effect is required.')
+    from app.marvelous_base_powers import effective_item_activation
+    timings = {effective_item_activation(plan) for plan in plans}
+    if mode == 'mixed' and 'immediate' in timings and len(timings) > 1:
+        raise ValueError('A mixed native immediate word cannot accelerate a differently timed power for free; use separate powers or matching explicit activation adjustments.')
     levels = {plan['caster_level'] for plan in plans}
     if len(levels) != 1:
         raise ValueError('All item effects must have the same caster level.')
@@ -1596,7 +1610,9 @@ def marvelous_complexity_formula(plan, *, quotation=None):
              ('drawbacks', -drawback_complexity(plan.get('drawbacks', []))),
              ('Simple boon', -simple_tradition_reduction(plan))]
     rendered = '1 base' + ''.join(f" {'+' if value > 0 else '−'} {abs(value)} {label}" for label, value in terms[1:] if value)
-    return f'max(1, {rendered}) = {complexity}'
+    from app.marvelous_base_powers import effective_item_activation
+    native = '; native immediate word, no activation surcharge' if effective_item_activation(plan) == 'immediate' else ''
+    return f'max(1, {rendered}) = {complexity}' + native
 
 
 def marvelous_materials_formula(plan, *, quotation=None):

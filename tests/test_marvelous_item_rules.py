@@ -69,11 +69,12 @@ def test_perfect_word_has_all_six_abilities_in_both_paid_modes():
         assert talent_choice_spell_points(key, choice) == (1 if choice.endswith('concentration') else 2)
 
 
-def test_all_eighteen_reviewed_word_keys_have_catalog_entries_and_cost_defaults():
-    from app.content import magic_entry
+def test_all_ordinary_word_keys_have_catalog_entries_and_cost_defaults():
+    from app.content import magic_entry, magic_entries
     from app.marvelous_base_powers import FATE_WORD_DURATIONS
     from app.marvelous_item_rules import talent_construction_spell_points
-    assert len(FATE_WORD_DURATIONS) == 18
+    assert len(FATE_WORD_DURATIONS) == 24
+    assert set(FATE_WORD_DURATIONS) == {entry['key'] for entry in magic_entries('Fate') if entry['category'] == 'Word Talent'}
     for key in FATE_WORD_DURATIONS:
         entry = magic_entry(key)
         assert entry and entry['category'] == 'Word Talent'
@@ -101,6 +102,56 @@ def test_metaphysical_cloak_has_all_alignments_with_free_concentration_and_paid_
         assert f'{alignment}: concentration' in choices
         assert talent_choice_spell_points(key, f'{alignment}: concentration') == 0
         assert talent_choice_spell_points(key, f'{alignment}: hours per caster level') == 1
+
+
+@pytest.mark.parametrize('activation,effective,price', [('standard', 'Immediate', 12000),
+    ('full-round', 'Full Round', 8000), ('move', 'Move', 24000), ('swift', 'Swift', 32000)])
+def test_native_immediate_word_price_formula_and_card_agree(activation, effective, price):
+    from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_complexity_formula
+    from app.marvelous_item_presentation import item_card_fields
+    draft = dict(schema_version=1, sphere='Fate', base_power='fate:word', caster_level=10,
+        activation=activation, uses=1, range_steps=0, duration_steps=0, unique_changes=0,
+        contributions=[dict(catalog_key='fate:word-talent:bless-word', complexity=2, additional_spell_points=1)])
+    assert quote_marvelous_blueprint(draft)[1].market_price_gp == price
+    assert item_card_fields(draft, name='Word', slot='', description='')['activation'] == effective
+    assert ('native immediate word, no activation surcharge' in marvelous_complexity_formula(draft)) == (activation == 'standard')
+    assert draft['activation'] == activation
+
+
+@pytest.mark.parametrize('activation', ['standard', 'full-round', 'move', 'swift'])
+@pytest.mark.parametrize('modifier,message', [('shrieking-strike-strike', 'Shrieking Strike'),
+    ('instill-fate-instill', 'Instill Fate')])
+def test_native_word_restrictions_cannot_be_bypassed_by_changing_item_activation(activation, modifier, message):
+    from app.marvelous_item_rules import quote_marvelous_blueprint
+    draft = dict(schema_version=1, sphere='Fate', base_power='fate:word', caster_level=10,
+        activation=activation, uses=1, range_steps=0, duration_steps=0, unique_changes=0,
+        contributions=[dict(catalog_key='fate:word-talent:bless-word', complexity=2, additional_spell_points=1),
+                       dict(catalog_key='fate:talent:' + modifier, complexity=1, additional_spell_points=0)])
+    with pytest.raises(ValueError, match=message): quote_marvelous_blueprint(draft)
+
+
+def test_instill_fate_rejects_concentration_but_accepts_sustained_standard_word():
+    from app.marvelous_item_rules import quote_marvelous_blueprint
+    word = dict(catalog_key='fate:word-talent:truth-word-curse-utility', complexity=1,
+                additional_spell_points=0, effect_choice='concentration')
+    draft = dict(schema_version=1, sphere='Fate', base_power='fate:word', caster_level=10,
+        activation='standard', uses=1, range_steps=0, duration_steps=0, unique_changes=0,
+        contributions=[word, dict(catalog_key='fate:talent:instill-fate-instill', complexity=1, additional_spell_points=0)])
+    with pytest.raises(ValueError, match='concentration word'): quote_marvelous_blueprint(draft)
+    word.update(effect_choice='minutes per caster level', complexity=2, additional_spell_points=1)
+    assert quote_marvelous_blueprint(draft)[1].market_price_gp == 16000
+
+
+@pytest.mark.parametrize('activation,price', [('standard', 16000), ('full-round', 12000), ('move', None), ('swift', None)])
+def test_shrieking_strike_keeps_standard_action_floor_for_ordinary_words(activation, price):
+    from app.marvelous_item_rules import quote_marvelous_blueprint
+    draft = dict(schema_version=1, sphere='Fate', base_power='fate:word', caster_level=10,
+        activation=activation, uses=1, range_steps=0, duration_steps=0, unique_changes=0,
+        contributions=[dict(catalog_key='fate:word-talent:truth-word-curse-utility', effect_choice='minutes per caster level', complexity=2, additional_spell_points=1),
+                       dict(catalog_key='fate:talent:shrieking-strike-strike', complexity=1, additional_spell_points=0)])
+    if price is None:
+        with pytest.raises(ValueError, match='below a standard action'): quote_marvelous_blueprint(draft)
+    else: assert quote_marvelous_blueprint(draft)[1].market_price_gp == price
 
 
 def test_all_conjuration_type_talents_have_reviewed_zero_extra_sp_costs():

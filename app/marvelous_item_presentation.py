@@ -1,6 +1,6 @@
 """Item-card projections and display locks; no mechanical overrides."""
 from app.marvelous_item_rules import quote_marvelous_blueprint
-from app.marvelous_base_powers import resolve_base_power
+from app.marvelous_base_powers import resolve_base_power, effective_item_activation
 from html import escape
 
 ITEM_FIELDS = ('name', 'slot', 'aura', 'weight', 'caster_level', 'save_dc', 'activation', 'uses',
@@ -41,7 +41,7 @@ def item_card_fields(plan, *, name, slot, description, quotation=None):
     weight = marvelous_item_weight(plan)
     values = dict(name=name, slot=slot or 'Held / carried', caster_level=str(plan['caster_level']),
                   aura=marvelous_aura_strength(plan['caster_level']) + ' (school not specified)', weight='Not specified' if weight is None else f'{weight:g} lb.', range=effect['range'], duration=effect['duration'],
-                  save_dc=str(price.save_dc), activation=plan['activation'].replace('-', ' ').title(),
+                  save_dc=str(price.save_dc), activation=effective_item_activation(plan).replace('-', ' ').title(),
                   uses='50 total activations' if plan['uses'] == 50 else 'At will' if plan['uses'] == 5 else f"{plan['uses']}/day",
                   price=f'{float(price.market_price_gp):,.2f} gp',
                   construction_cost=f'{float(quote.cost_gp):,.2f} gp',

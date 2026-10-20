@@ -35,3 +35,14 @@ def test_invalid_combinations_are_rejected():
         quote_marvelous_effects([])
     with pytest.raises(ValueError, match='mode'):
         quote_marvelous_effects([effect()], mode='unknown')
+
+
+def test_mixed_native_word_cannot_accelerate_a_differently_timed_power_for_free():
+    word = dict(effect(), sphere='Fate', base_power='fate:word', contributions=[dict(
+        catalog_key='fate:word-talent:bless-word', complexity=2, additional_spell_points=1)])
+    cure = effect()
+    assert quote_marvelous_effects([word, cure], mode='multiple')['market_price_gp'] == 18000
+    with pytest.raises(ValueError, match='cannot accelerate'):
+        quote_marvelous_effects([word, cure], mode='mixed')
+    word['activation'] = cure['activation'] = 'swift'
+    assert quote_marvelous_effects([word, cure], mode='mixed')['market_price_gp'] == 80000
