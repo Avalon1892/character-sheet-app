@@ -34,6 +34,7 @@ _ROWS = (
     ('enhancement:enhance', 'Enhancement', 'Enhance Equipment', 'touch', 'round'),
     ('fallen-fey:link', 'Fallen Fey', 'Fey-link / Nature-connection', 'personal', 'minute'),
     ('fate:serendipity', 'Fate', 'Serendipity', 'personal', 'round'),
+    ('fate:motif', 'Fate', 'Selected motif', 'personal', 'minute'),
     ('illusion:figment', 'Illusion', 'Silent visual illusion', 'touch', 'round'),
     ('life:cure', 'Life', 'Cure', 'touch', 'instantaneous'),
     ('life:restore', 'Life', 'Restore', 'touch', 'instantaneous'),
@@ -189,6 +190,16 @@ CONJURATION_TYPE_KEYS = frozenset('conjuration:type-talent:' + suffix for suffix
 PLANAR_CREATURE_CHOICES = tuple(f'{alignment}: {left} + {right}'
     for alignment in ('anarchic', 'axiomatic', 'celestial', 'fiendish')
     for left, right in combinations(('damage reduction', 'resistance', 'saves', 'aligned attacks'), 2))
+
+FATE_MOTIFS = frozenset('fate:motif-talent:' + suffix for suffix in (
+    'cups-motif-arcana-bap', 'judgment-motif', 'justice-motif', 'pentacles-motif-arcana-bap',
+    'strength-motif', 'swords-motif-arcana-bap', 'temperance-motif', 'the-chariot-motif',
+    'the-devil-motif', 'the-emperor-motif', 'the-empress-motif', 'the-fool-motif',
+    'the-hanged-man-motif', 'the-hermit-motif', 'the-hierophant-motif', 'the-king-motif-3pp',
+    'the-knight-motif-3pp', 'the-lovers-motif', 'the-magician-motif', 'the-moon-motif',
+    'the-page-motif-3pp', 'the-queen-motif-3pp', 'the-star-motif', 'the-sun-motif',
+    'the-tower-motif', 'the-wheel-motif', 'the-world-motif-utility', 'wands-motif-arcana-bap'))
+FATE_MOTIF_CHOICES = {'fate:motif-talent:pentacles-motif-arcana-bap': ('Fortitude', 'Reflex', 'Will')}
 
 
 def conjuration_type_details(rows, hd):
@@ -563,6 +574,7 @@ def talent_effect_choices(key):
     """Reviewed construction choices, shared by the editor and projections."""
     if key in TALENT_EFFECT_SP_CHOICES:
         return tuple(TALENT_EFFECT_SP_CHOICES[key])
+    if key in FATE_MOTIF_CHOICES: return FATE_MOTIF_CHOICES[key]
     if key == 'conjuration:type-talent:planar-creature-type': return PLANAR_CREATURE_CHOICES
     if isinstance(key, str) and key.startswith('fallen-fey:fey-blessing-talent:'):
         return FEY_BLESSING_CHOICES.get(key.split(':')[-1], ())
@@ -886,6 +898,10 @@ def resolve_base_power(plan):
     power = next((p for p in BASE_POWERS if p.key == key), None)
     if power is None or power.sphere.casefold() != plan['sphere'].casefold():
         raise ValueError('Choose a base power from the selected sphere.')
+    if key == 'fate:motif':
+        motifs = [row for row in plan.get('contributions', []) if row.get('catalog_key') in FATE_MOTIFS]
+        if len(motifs) != 1 or motifs[0].get('alternative'):
+            raise ValueError('A motif item requires one fixed motif talent contribution; multiple motifs and attached arcana need separate rules review.')
     if key == 'conjuration:companion':
         rows = plan.get('contributions', [])
         day = [row for row in rows if row.get('catalog_key') == 'conjuration:talent:greater-summoning'
@@ -925,6 +941,36 @@ def resolve_base_power(plan):
                  'concentration': 'Concentration', 'variable': 'As selected effect'}
     summary = {'power': power.name, 'range': distances[RANGES[range_index]], 'duration': durations[duration],
                'caster_level': cl, 'save_dc': 10 + cl // 2, 'magic_skill_bonus': cl}
+    if power.key == 'fate:motif':
+        from app.content import magic_entry
+        selected = next(row for row in plan['contributions'] if row.get('catalog_key') in FATE_MOTIFS)
+        entry = magic_entry(selected['catalog_key'])
+        summary['power'] = entry['name']
+        summary['motif_discharge'] = 'The target may discharge the motif as an immediate action for its listed benefit; discharging ends the normal motif. Specific talent exceptions still apply.'
+        summary['motif_scope'] = 'One instance of this motif per creature; an equal/higher-CL instance replaces it, while a lower-CL instance has no effect. Will negates; spell resistance applies.'
+        summary['motif_duration_conversion'] = 'Item-specific duration: one minute per caster level, not the ordinary one hour per caster level.'
+        suffix = selected['catalog_key'].split(':')[-1]
+        if suffix == 'cups-motif-arcana-bap':
+            summary['mental_skill_bonus'] = 2 + cl // 10
+            summary['retained_skill_dice_on_discharge'] = f'{2 + cl // 7}d20; expend a retained result instead of rolling a skill check, for {cl} minutes.'
+        elif suffix == 'pentacles-motif-arcana-bap':
+            summary['selected_save_bonus'] = f'{1 + cl // 10} to {selected.get("effect_choice") or "a saving throw that must be chosen"}'
+            summary['discharge_rerolls'] = f'{1 + cl // 10} failed d20 rolls over {cl} minutes; accept the new result.'
+        elif suffix == 'swords-motif-arcana-bap':
+            summary['attack_bonus'] = 1 + cl // 10
+            summary['swords_discharge'] = f'Ignore concealment miss chance for one minute; once add {max(1, cl // 2)} to a critical confirmation. Not compatible with automatic critical threats.'
+        elif suffix == 'wands-motif-arcana-bap': summary['initiative_bonus'] = 2 + cl // 10
+        elif suffix == 'strength-motif': summary['cmb_cmd_strength_insight_bonus'] = 2 + cl // 4
+        elif suffix == 'the-chariot-motif': summary['cannot_act_or_staggered_save_insight_bonus'] = 2 + cl // 10
+        elif suffix == 'the-moon-motif': summary['mind_affecting_save_insight_bonus'] = 2 + cl // 10
+        elif suffix == 'the-star-motif': summary['ac_against_opportunity_attacks_insight_bonus'] = 2 + cl // 5
+        elif suffix == 'justice-motif': summary['justice_conditional_attack_damage_insight_bonus'] = 2 + cl // 5
+        elif suffix == 'the-wheel-motif':
+            summary['wheel_roll_on_activation'] = f'{1 + cl // 10}d4; each result selects a roll category; repeated categories stack.'
+            summary['wheel_insight_bonus_per_result'] = 1 + cl // 10
+            summary['wheel_discharge_bonus'] = 'Twice the sum of those d4 results to one permitted roll, chosen before rolling.'
+        if selected['catalog_key'] == 'fate:motif-talent:the-knight-motif-3pp':
+            summary['motif_discharge'] = ('Free action usable outside the target’s turn' if cl >= 10 else 'Immediate action') + '; applies a known metamagic feat without increasing casting time. The target still pays its normal additional SP.'
     mode = item_dice_metamagic(plan)
     if mode and any(mode): summary['dice_mode'] = ' + '.join(label for label, active in zip(('Maximized', 'Empowered'), mode) if active)
     if plan.get('permanent', False): summary['duration'] = 'Permanent (dispellable)'

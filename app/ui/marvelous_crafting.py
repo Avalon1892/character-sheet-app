@@ -664,6 +664,10 @@ class MarvelousCraftingDialog(QDialog):
                 cost.setToolTip('The single meld replaces Darkness without a talent surcharge; Feed On Darkness adds +2 complexity. Manual values are preserved.')
         if self.base_power.currentData() == 'divination:sense' and entry['key'].startswith('divination:sense-talent:'):
             cost.setToolTip('Replacing the base sense adds complexity equal to its SP cost only. Manual values are preserved.')
+        if self.base_power.currentData() == 'fate:motif':
+            from app.marvelous_base_powers import FATE_MOTIFS
+            if entry['key'] in FATE_MOTIFS:
+                cost.setToolTip('The item-specific motif conversion adds +1 complexity and lasts one minute per caster level. Its ordinary casting SP is not charged again. Manual values are preserved.')
         cost.valueChanged.connect(self.update_preview); self.table.setCellWidget(row, 1, cost)
         alternative = QCheckBox(); alternative.setToolTip('Mutually exclusive option in the same alternative group. Most expensive costs full; other options cost half.')
         alternative.toggled.connect(self.update_preview); self.table.setCellWidget(row, 2, alternative)

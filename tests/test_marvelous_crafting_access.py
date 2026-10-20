@@ -17,6 +17,21 @@ def crafter(tmp_path):
     repo.close()
 
 
+def test_pentacles_motif_requires_its_saved_save_choice_before_construction(crafter):
+    repo, cid = crafter
+    service = CraftingService(repo, cid)
+    key = 'fate:motif-talent:pentacles-motif-arcana-bap'
+    row = dict(catalog_key=key, complexity=1, additional_spell_points=0)
+    plan = dict(sphere='Fate', base_power='fate:motif', caster_level=5,
+                range_steps=0, duration_steps=0, contributions=[row])
+    access = dict(sphere_levels={'Fate': 5}, available_talents=[service.magic_entries_by_key[key]['name']])
+    writes = repo._connection.total_changes
+    assert any('choose the effect mode' in text for text in service.marvelous_plan_requirements(plan, access=access).blockers)
+    row['effect_choice'] = 'Will'
+    assert service.marvelous_plan_requirements(plan, access=access).eligible
+    assert repo._connection.total_changes == writes
+
+
 @pytest.mark.parametrize('mode,sphere', [('material sense', 'Creation'), ('see in darkness', 'Dark'),
     ('spirit sense', 'Death'), ('lifesense', 'Life'), ('thoughtsense', 'Mind'),
     ('unrestricted thoughtsense', 'Mind'), ('touchsight', 'Telekinesis'), ('storm vision', 'Weather')])

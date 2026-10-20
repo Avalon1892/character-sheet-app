@@ -4,6 +4,8 @@ from app.marvelous_base_powers import BASE_POWERS, resolve_base_power
 
 def plan(key, cl=5, **changes):
     power = next(p for p in BASE_POWERS if p.key == key)
+    if key == 'fate:motif':
+        changes.setdefault('contributions', [dict(catalog_key='fate:motif-talent:the-chariot-motif', complexity=1, additional_spell_points=0)])
     if key == 'warp:beacon':
         changes.setdefault('contributions', [dict(catalog_key='warp:space-talent:teleport-beacon-space', complexity=2, additional_spell_points=1)])
     if key == 'warp:dimension-pierce':
@@ -17,6 +19,52 @@ def plan(key, cl=5, **changes):
         changes.setdefault('contributions', [dict(catalog_key='warp:space-talent:' + key.split(':')[1] + '-space', complexity=1 + points, additional_spell_points=points, effect_choice='concentration')])
     return dict(base_power=key, sphere=power.sphere, caster_level=cl,
                 range_steps=0, duration_steps=0, **changes)
+
+
+def test_every_ordinary_fate_motif_replaces_serendipity_with_item_specific_duration():
+    from app.content import magic_entry
+    from app.marvelous_base_powers import FATE_MOTIFS
+    for key in FATE_MOTIFS:
+        row = dict(catalog_key=key, complexity=1, additional_spell_points=0)
+        result = resolve_base_power(plan('fate:motif', cl=10, contributions=[row]))
+        assert result['power'] == magic_entry(key)['name']
+        assert result['duration'] == '10 minutes'
+        assert 'one hour' in result['motif_duration_conversion']
+        assert 'spell resistance applies' in result['motif_scope']
+
+
+@pytest.mark.parametrize('rows', [[], [dict(catalog_key='fate:motif-talent:the-chariot-motif', alternative=True)],
+    [dict(catalog_key='fate:motif-talent:the-chariot-motif')] * 2])
+def test_fate_motif_base_requires_one_fixed_motif_without_guessing_combination_rules(rows):
+    with pytest.raises(ValueError, match='one fixed motif'):
+        resolve_base_power(plan('fate:motif', contributions=rows))
+
+
+@pytest.mark.parametrize('suffix,field,expected', [
+    ('cups-motif-arcana-bap', 'mental_skill_bonus', 3),
+    ('swords-motif-arcana-bap', 'attack_bonus', 2),
+    ('wands-motif-arcana-bap', 'initiative_bonus', 3),
+    ('strength-motif', 'cmb_cmd_strength_insight_bonus', 4),
+    ('the-chariot-motif', 'cannot_act_or_staggered_save_insight_bonus', 3),
+    ('the-moon-motif', 'mind_affecting_save_insight_bonus', 3),
+    ('the-star-motif', 'ac_against_opportunity_attacks_insight_bonus', 4),
+    ('justice-motif', 'justice_conditional_attack_damage_insight_bonus', 4)])
+def test_fate_motif_profiles_keep_conditional_bonus_scope(suffix, field, expected):
+    result = resolve_base_power(plan('fate:motif', cl=10,
+        contributions=[dict(catalog_key='fate:motif-talent:' + suffix)]))
+    assert result[field] == expected
+
+
+def test_fate_wheel_keeps_random_dice_and_knight_discharge_changes_at_cl_ten():
+    wheel = resolve_base_power(plan('fate:motif', cl=20,
+        contributions=[dict(catalog_key='fate:motif-talent:the-wheel-motif')]))
+    assert wheel['wheel_roll_on_activation'].startswith('3d4;')
+    assert wheel['wheel_insight_bonus_per_result'] == 3
+    for cl, action in ((9, 'Immediate action'), (10, 'Free action')):
+        result = resolve_base_power(plan('fate:motif', cl=cl,
+            contributions=[dict(catalog_key='fate:motif-talent:the-knight-motif-3pp')]))
+        assert result['motif_discharge'].startswith(action)
+        assert 'still pays' in result['motif_discharge']
 
 
 @pytest.mark.parametrize('cl,hd', [(1, 1), (4, 3), (5, 4), (8, 6), (10, 8), (20, 15), (40, 30)])
@@ -272,7 +320,7 @@ def test_blood_movement_bonus_and_blood_art_do_not_mix_their_statistics():
 @pytest.mark.parametrize('power', BASE_POWERS)
 def test_every_base_power_has_a_resolvable_projection(power):
     result = resolve_base_power(plan(power.key))
-    assert result['power'] == power.name
+    assert result['power'] == ('The Chariot (motif)' if power.key == 'fate:motif' else power.name)
     assert result['range'] and result['duration']
     assert result['caster_level'] == 5 and result['save_dc'] == 12 and result['magic_skill_bonus'] == 5
 

@@ -18,6 +18,18 @@ def test_reviewed_conjuration_forms_have_catalog_backed_costs_and_choices():
     assert talent_construction_spell_points(magic_entry('conjuration:form-talent:amorphous-creature-form'), reviewed_only=True) == 1
 
 
+def test_fate_motif_item_conversion_uses_specific_cost_not_ordinary_casting_sp():
+    from app.content import magic_entries
+    from app.marvelous_base_powers import FATE_MOTIFS
+    from app.marvelous_item_rules import talent_construction_cost, talent_construction_spell_points
+    entries = [entry for entry in magic_entries('Fate') if entry['category'] == 'Motif Talent']
+    assert len(entries) == 28 and {entry['key'] for entry in entries} == FATE_MOTIFS
+    for entry in entries:
+        assert talent_construction_spell_points(entry, reviewed_only=True) == 1
+        assert talent_construction_spell_points(entry, reviewed_only=True, base_power='fate:motif') == 0
+        assert talent_construction_cost(entry, base_power='fate:motif') == 1
+
+
 def test_all_conjuration_type_talents_have_reviewed_zero_extra_sp_costs():
     from app.content import magic_entries
     from app.marvelous_base_powers import CONJURATION_TYPE_KEYS

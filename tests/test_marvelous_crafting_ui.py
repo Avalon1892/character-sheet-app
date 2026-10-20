@@ -154,6 +154,35 @@ def test_conjuration_form_choice_uses_hd_and_preserves_locked_description(compos
     assert repo._connection.total_changes == before
 
 
+def test_fate_motif_price_choice_duration_locks_and_reopen(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Fate'); dialog.cl.setValue(10)
+    dialog.base_power.setCurrentIndex(dialog.base_power.findData('fate:motif'))
+    key = 'fate:motif-talent:pentacles-motif-arcana-bap'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    assert dialog.table.cellWidget(0, 4).value() == 0
+    assert dialog.quotation()[1].market_price_gp == 8000
+    picker = dialog.table.cellWidget(0, 5)
+    picker.setCurrentIndex(picker.findData('Reflex'))
+    assert '2 to Reflex' in dialog.item_preview.toPlainText()
+    assert dialog.card_edits['duration'].text() == '10 minutes'
+    dialog.card_locks['duration'].setChecked(True)
+    dialog.card_edits['duration'].setText('Locked duration')
+    dialog.cl.setValue(20)
+    assert dialog.quotation()[1].market_price_gp == 16000
+    assert '3 to Reflex' in dialog.item_preview.toPlainText()
+    assert dialog.card_edits['duration'].text() == 'Locked duration'
+    dialog.table.cellWidget(0, 1).setValue(4)
+    dialog.table.cellWidget(0, 4).setValue(2)
+    saved = dialog.blueprint()
+    dialog.load_plan(saved)
+    assert dialog.blueprint()['contributions'] == saved['contributions']
+    assert dialog.blueprint()['display_overrides'] == saved['display_overrides']
+    assert repo._connection.total_changes == writes
+
+
 def test_conjuration_day_choice_updates_price_formula_controls_and_reopens(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Conjuration'); dialog.cl.setValue(5)
