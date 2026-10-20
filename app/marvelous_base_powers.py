@@ -201,6 +201,19 @@ FATE_MOTIFS = frozenset('fate:motif-talent:' + suffix for suffix in (
     'the-page-motif-3pp', 'the-queen-motif-3pp', 'the-star-motif', 'the-sun-motif',
     'the-tower-motif', 'the-wheel-motif', 'the-world-motif-utility', 'wands-motif-arcana-bap'))
 FATE_MOTIF_CHOICES = {'fate:motif-talent:pentacles-motif-arcana-bap': ('Fortitude', 'Reflex', 'Will')}
+FATE_ALIGNMENT_AXES = {'LG': (-1, 1), 'NG': (0, 1), 'CG': (1, 1),
+    'LN': (-1, 0), 'N': (0, 0), 'CN': (1, 0),
+    'LE': (-1, -1), 'NE': (0, -1), 'CE': (1, -1)}
+
+
+def metaphysical_cloak_alignment_allowed(reference_alignment, chosen_alignment):
+    """One step on EACH axis; unknown alignment needs review, not neutrality."""
+    source = FATE_ALIGNMENT_AXES.get(reference_alignment)
+    target = FATE_ALIGNMENT_AXES.get(chosen_alignment)
+    if source is None or target is None: return None
+    return all(abs(left - right) <= 1 for left, right in zip(source, target))
+
+
 FATE_WORD_DURATIONS = {
     'fate:word-talent:classify-word-utility': 'variable',
     'fate:word-talent:exorcism-word': 'instantaneous',
@@ -210,6 +223,9 @@ FATE_WORD_DURATIONS = {
     'fate:word-talent:enmity-word-curse': 'variable',
 }
 FATE_WORD_MODES = {
+    'fate:word-talent:metaphysical-cloak-word': {f'{alignment}: {mode}': (points, duration)
+        for alignment in FATE_ALIGNMENT_AXES
+        for mode, points, duration in (('concentration', 0, 'concentration'), ('hours per caster level', 1, 'hour'))},
     'fate:word-talent:align-object-word': {f'{effect}: {mode}': (points, duration)
         for effect in ('divine focus', 'good weapon', 'evil weapon', 'lawful weapon', 'chaotic weapon')
         for mode, points, duration in (('concentration', 1, 'concentration'), ('minutes per caster level', 2, 'minute'))},
@@ -1083,6 +1099,15 @@ def resolve_base_power(plan):
         elif suffix == 'villainy-word-curse':
             summary['villainy_mark'] = 'Will negates. Allies may mark the victim with appropriate smite/challenge or alignment-restricted class abilities despite ordinary target restrictions; those effects end with this word.'
             summary['villainy_optional_support_review'] = f'This priced mode marks only. The optional ally support is not included: each support use normally costs another SP and can waive one daily use or grant +{1 + cl // 3} to attack and weapon damage rolls. Repeated support needs separate cost/activation accounting.'
+        elif suffix == 'metaphysical-cloak-word':
+            alignment = selected.get('effect_choice', '').split(': ')[0]
+            if alignment in FATE_ALIGNMENT_AXES:
+                summary['treated_alignment'] = alignment
+                allowed = [source for source in FATE_ALIGNMENT_AXES
+                           if metaphysical_cloak_alignment_allowed(source, alignment)]
+                summary['cloak_reference_alignments'] = 'Applicable caster/user alignment must be one of: ' + ', '.join(allowed) + '. Check at use; the designer does not assume the crafter is the user.'
+            summary['metaphysical_cloak'] = 'Will negates. Treat the target as the selected alignment for all purposes, without changing its actual alignment, actions or code of conduct.'
+            summary['cloak_rules_scope'] = 'Uses the standard two-axis alignment system; this talent is removed in the published no-alignment variant.'
     if power.key == 'fate:motif':
         from app.content import magic_entry
         selected = next(row for row in plan['contributions'] if row.get('catalog_key') in FATE_MOTIFS)

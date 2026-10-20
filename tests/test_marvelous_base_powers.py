@@ -163,6 +163,33 @@ def test_villainy_mark_does_not_claim_repeated_paid_ally_support_is_free():
     assert 'each support use' in result['villainy_optional_support_review']
 
 
+@pytest.mark.parametrize('reference,allowed', [
+    ('LG', {'LG', 'NG', 'LN', 'N'}), ('NG', {'LG', 'NG', 'CG', 'LN', 'N', 'CN'}),
+    ('CG', {'NG', 'CG', 'N', 'CN'}), ('LN', {'LG', 'NG', 'LN', 'N', 'LE', 'NE'}),
+    ('N', {'LG', 'NG', 'CG', 'LN', 'N', 'CN', 'LE', 'NE', 'CE'}),
+    ('CN', {'NG', 'CG', 'N', 'CN', 'NE', 'CE'}), ('LE', {'LN', 'N', 'LE', 'NE'}),
+    ('NE', {'LN', 'N', 'CN', 'LE', 'NE', 'CE'}), ('CE', {'N', 'CN', 'NE', 'CE'})])
+def test_metaphysical_cloak_alignment_checks_both_axes_independently(reference, allowed):
+    from app.models import ALIGNMENTS
+    from app.marvelous_base_powers import FATE_ALIGNMENT_AXES, metaphysical_cloak_alignment_allowed
+    assert set(FATE_ALIGNMENT_AXES) == set(ALIGNMENTS) - {''}
+    for target in FATE_ALIGNMENT_AXES:
+        assert metaphysical_cloak_alignment_allowed(reference, target) == (target in allowed)
+    assert metaphysical_cloak_alignment_allowed('', reference) is None
+    assert metaphysical_cloak_alignment_allowed(reference, None) is None
+
+
+@pytest.mark.parametrize('alignment', ['LG', 'NG', 'CG', 'LN', 'N', 'CN', 'LE', 'NE', 'CE'])
+@pytest.mark.parametrize('mode,duration', [('concentration', 'Concentration'), ('hours per caster level', '10 hours')])
+def test_metaphysical_cloak_projects_selected_alignment_without_changing_actual_alignment(alignment, mode, duration):
+    result = resolve_base_power(plan('fate:word', cl=10, contributions=[dict(
+        catalog_key='fate:word-talent:metaphysical-cloak-word', effect_choice=f'{alignment}: {mode}')]))
+    assert result['duration'] == duration and result['treated_alignment'] == alignment
+    assert 'without changing its actual alignment' in result['metaphysical_cloak']
+    assert 'Check at use' in result['cloak_reference_alignments']
+    assert 'does not assume the crafter' in result['cloak_reference_alignments']
+
+
 @pytest.mark.parametrize('rows', [[], [dict(catalog_key='fate:motif-talent:the-chariot-motif', alternative=True)],
     [dict(catalog_key='fate:motif-talent:the-chariot-motif')] * 2])
 def test_fate_motif_base_requires_one_fixed_motif_without_guessing_combination_rules(rows):

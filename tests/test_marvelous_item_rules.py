@@ -69,11 +69,11 @@ def test_perfect_word_has_all_six_abilities_in_both_paid_modes():
         assert talent_choice_spell_points(key, choice) == (1 if choice.endswith('concentration') else 2)
 
 
-def test_all_seventeen_reviewed_word_keys_have_catalog_entries_and_cost_defaults():
+def test_all_eighteen_reviewed_word_keys_have_catalog_entries_and_cost_defaults():
     from app.content import magic_entry
     from app.marvelous_base_powers import FATE_WORD_DURATIONS
     from app.marvelous_item_rules import talent_construction_spell_points
-    assert len(FATE_WORD_DURATIONS) == 17
+    assert len(FATE_WORD_DURATIONS) == 18
     for key in FATE_WORD_DURATIONS:
         entry = magic_entry(key)
         assert entry and entry['category'] == 'Word Talent'
@@ -88,6 +88,19 @@ def test_conditional_fate_word_costs_cover_all_registered_modes(suffix, expected
     from app.marvelous_item_rules import talent_choice_spell_points
     key = 'fate:word-talent:' + suffix
     assert [talent_choice_spell_points(key, choice) for choice in talent_effect_choices(key)] == expected
+
+
+def test_metaphysical_cloak_has_all_alignments_with_free_concentration_and_paid_hours():
+    from app.models import ALIGNMENTS
+    from app.marvelous_base_powers import talent_effect_choices
+    from app.marvelous_item_rules import talent_choice_spell_points
+    key = 'fate:word-talent:metaphysical-cloak-word'
+    choices = talent_effect_choices(key)
+    assert len(choices) == 18
+    for alignment in set(ALIGNMENTS) - {''}:
+        assert f'{alignment}: concentration' in choices
+        assert talent_choice_spell_points(key, f'{alignment}: concentration') == 0
+        assert talent_choice_spell_points(key, f'{alignment}: hours per caster level') == 1
 
 
 def test_all_conjuration_type_talents_have_reviewed_zero_extra_sp_costs():
