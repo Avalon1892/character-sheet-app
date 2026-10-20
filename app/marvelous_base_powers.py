@@ -207,8 +207,19 @@ FATE_WORD_DURATIONS = {
     'fate:word-talent:mercy-word-curse': 'round',
     'fate:word-talent:pain-word-curse': 'fixed-round',
     'fate:word-talent:subvert-weapon-word-curse': 'hour',
+    'fate:word-talent:enmity-word-curse': 'variable',
 }
 FATE_WORD_MODES = {
+    'fate:word-talent:align-object-word': {f'{effect}: {mode}': (points, duration)
+        for effect in ('divine focus', 'good weapon', 'evil weapon', 'lawful weapon', 'chaotic weapon')
+        for mode, points, duration in (('concentration', 1, 'concentration'), ('minutes per caster level', 2, 'minute'))},
+    'fate:word-talent:axe-you-a-question-word-jester-s-hb': {
+        'initial damage only': (0, 'variable'), 'repeat damage on new fear': (1, 'variable')},
+    'fate:word-talent:malice-word-curse': {f'{effect}: {mode}': (points, duration)
+        for effect in ('attacker and victim', 'retaliation')
+        for mode, points, duration in (('concentration', 0, 'concentration'), ('minutes per caster level', 1, 'minute'))},
+    'fate:word-talent:villainy-word-curse': {
+        'mark only: concentration': (0, 'concentration'), 'mark only: rounds per caster level': (1, 'round')},
     **{'fate:word-talent:' + suffix: {'concentration': (points, 'concentration'),
         'rounds per caster level': (points + 1, 'round')}
         for suffix, points in (('confine-word-curse-3pp', 0), ('freedom-word', 1),
@@ -1040,6 +1051,38 @@ def resolve_base_power(plan):
                 summary['free_observation'] = 'One Perception or Sense Motive check as a free action each round.'
             elif ability == 'Charisma':
                 summary['perfect_charisma'] = 'Demoralize as a swift action, or once/round as a free action if already swift. Influence attitude in one round at -10 Diplomacy.'
+        elif suffix == 'align-object-word':
+            choice = selected.get('effect_choice', '')
+            if choice.startswith('divine focus:'):
+                summary['aligned_object'] = 'The affected object counts as a divine focus for all purposes.'
+            elif choice in FATE_WORD_MODES[selected['catalog_key']]:
+                alignment = choice.split(' weapon:')[0]
+                opposed = {'good': 'evil', 'evil': 'good', 'lawful': 'chaotic', 'chaotic': 'lawful'}[alignment]
+                summary['aligned_weapon'] = f'Counts as {alignment} for overcoming damage reduction.'
+                summary['aligned_weapon_damage'] = f'2d6 extra damage against {opposed} creatures only.'
+        elif suffix == 'axe-you-a-question-word-jester-s-hb':
+            if cl >= 2: summary['duration'] = f'{cl // 2} rounds of shaken'
+            else: summary['duration_review'] = 'Half caster level in rounds; verify the minimum/rounding at CL1.'
+            summary['axe_damage'] = 'Greataxe damage for the user’s size (Medium: 1d12). No Strength or other damage modifiers.'
+            summary['axe_save'] = 'Will negates; language-dependent fear effect.'
+            if selected.get('effect_choice') == 'repeat damage on new fear':
+                summary['axe_repeat'] = 'During the stated duration, another effect making the target shaken triggers the same damage, at most once per round. This word cannot trigger its own repeated damage.'
+        elif suffix == 'enmity-word-curse':
+            summary['enmity_sequence'] = 'Alignment steps: 0, unaffected; 1, sickened 1 minute; 2 adds staggered 1 round; 3 adds blind 1 round; 4 adds dazed 1 round. Effects are consecutive, highest step first, not simultaneous.'
+            summary['enmity_save'] = 'Will negates. Strong opposing aura: -1 to save; overwhelming: -2. Use the strongest aura, not their sum. The cosmic effect can affect undead.'
+            summary['enmity_review'] = 'Resolve the applicable caster/user and target alignments at use; no fixed alignment or duration is assumed by the designer.'
+        elif suffix == 'malice-word-curse':
+            summary['malice_bonus_per_trigger'] = 1 + cl // 10
+            summary['malice_bonus_scope'] = 'Attack rolls, damage rolls and saving throws; at most one trigger per round. Stacks only within this instance, capped by the applicable casting ability modifier; each increment lasts that modifier in rounds. Do not substitute item CL for that modifier.'
+            if selected.get('effect_choice', '').startswith('retaliation:'):
+                summary['malice_trigger'] = 'The one target gains the bonus when another creature directly damages it or succeeds on a combat maneuver against it.'
+            elif selected.get('effect_choice', '').startswith('attacker and victim:'):
+                summary['malice_trigger'] = 'The attacker gains the bonus by directly damaging or succeeding on a combat maneuver against its chosen victim. Victim gets Will negation; attacker is harmlessly affected. Ongoing damage does not trigger it.'
+                summary['malice_new_victim'] = 'Swift action to change victims; resets bonus and ends if the new victim saves.'
+            else: summary['malice_mode_review'] = 'Choose attacker/victim or retaliation mode before construction.'
+        elif suffix == 'villainy-word-curse':
+            summary['villainy_mark'] = 'Will negates. Allies may mark the victim with appropriate smite/challenge or alignment-restricted class abilities despite ordinary target restrictions; those effects end with this word.'
+            summary['villainy_optional_support_review'] = f'This priced mode marks only. The optional ally support is not included: each support use normally costs another SP and can waive one daily use or grant +{1 + cl // 3} to attack and weapon damage rolls. Repeated support needs separate cost/activation accounting.'
     if power.key == 'fate:motif':
         from app.content import magic_entry
         selected = next(row for row in plan['contributions'] if row.get('catalog_key') in FATE_MOTIFS)

@@ -110,6 +110,59 @@ def test_open_close_and_subvert_keep_ending_conditions_and_scaling_explicit():
         assert 'Ends when triggered' in result['discharge_end']
 
 
+@pytest.mark.parametrize('alignment,opposed', [('good', 'evil'), ('evil', 'good'), ('lawful', 'chaotic'), ('chaotic', 'lawful')])
+@pytest.mark.parametrize('mode,duration', [('concentration', 'Concentration'), ('minutes per caster level', '10 minutes')])
+def test_align_object_weapon_modes_keep_opposed_alignment_damage_conditional(alignment, opposed, mode, duration):
+    result = resolve_base_power(plan('fate:word', cl=10, contributions=[dict(
+        catalog_key='fate:word-talent:align-object-word', effect_choice=f'{alignment} weapon: {mode}')]))
+    assert result['duration'] == duration
+    assert alignment in result['aligned_weapon']
+    assert result['aligned_weapon_damage'] == f'2d6 extra damage against {opposed} creatures only.'
+    assert 'aligned_object' not in result
+
+
+@pytest.mark.parametrize('mode', ['concentration', 'minutes per caster level'])
+def test_align_object_divine_focus_mode_does_not_grant_weapon_damage(mode):
+    result = resolve_base_power(plan('fate:word', contributions=[dict(
+        catalog_key='fate:word-talent:align-object-word', effect_choice=f'divine focus: {mode}')]))
+    assert 'divine focus' in result['aligned_object']
+    assert 'aligned_weapon_damage' not in result
+
+
+def test_axe_and_enmity_keep_target_dependent_duration_and_damage_explicit():
+    row = dict(catalog_key='fate:word-talent:axe-you-a-question-word-jester-s-hb', effect_choice='initial damage only')
+    first = resolve_base_power(plan('fate:word', cl=10, contributions=[row]))
+    assert first['duration'] == '5 rounds of shaken'
+    assert 'Medium: 1d12' in first['axe_damage'] and 'No Strength' in first['axe_damage']
+    assert 'axe_repeat' not in first
+    row['effect_choice'] = 'repeat damage on new fear'
+    repeat = resolve_base_power(plan('fate:word', cl=10, contributions=[row]))
+    assert 'at most once per round' in repeat['axe_repeat'] and 'cannot trigger its own' in repeat['axe_repeat']
+    assert 'duration_review' in resolve_base_power(plan('fate:word', cl=1, contributions=[row]))
+    enmity = resolve_base_power(plan('fate:word', contributions=[dict(catalog_key='fate:word-talent:enmity-word-curse')]))
+    assert enmity['duration'] == 'As selected effect'
+    assert 'consecutive' in enmity['enmity_sequence'] and 'not their sum' in enmity['enmity_save']
+
+
+@pytest.mark.parametrize('effect', ['attacker and victim', 'retaliation'])
+@pytest.mark.parametrize('mode,duration', [('concentration', 'Concentration'), ('minutes per caster level', '20 minutes')])
+def test_malice_modes_do_not_guess_casting_modifier_or_replace_trigger(effect, mode, duration):
+    result = resolve_base_power(plan('fate:word', cl=20, contributions=[dict(
+        catalog_key='fate:word-talent:malice-word-curse', effect_choice=f'{effect}: {mode}')]))
+    assert result['duration'] == duration and result['malice_bonus_per_trigger'] == 3
+    assert 'Do not substitute item CL' in result['malice_bonus_scope']
+    assert ('malice_new_victim' in result) == (effect == 'attacker and victim')
+
+
+def test_villainy_mark_does_not_claim_repeated_paid_ally_support_is_free():
+    result = resolve_base_power(plan('fate:word', cl=12, contributions=[dict(
+        catalog_key='fate:word-talent:villainy-word-curse', effect_choice='mark only: rounds per caster level')]))
+    assert result['duration'] == '12 rounds'
+    assert 'marks only' in result['villainy_optional_support_review']
+    assert '+5' in result['villainy_optional_support_review']
+    assert 'each support use' in result['villainy_optional_support_review']
+
+
 @pytest.mark.parametrize('rows', [[], [dict(catalog_key='fate:motif-talent:the-chariot-motif', alternative=True)],
     [dict(catalog_key='fate:motif-talent:the-chariot-motif')] * 2])
 def test_fate_motif_base_requires_one_fixed_motif_without_guessing_combination_rules(rows):

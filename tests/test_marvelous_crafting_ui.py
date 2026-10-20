@@ -236,6 +236,28 @@ def test_fate_word_sustaining_choice_updates_price_and_controls_atomically(compo
     assert repo._connection.total_changes == writes
 
 
+def test_align_object_switching_modes_updates_price_without_leaking_weapon_benefits(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Fate'); dialog.cl.setValue(10)
+    dialog.base_power.setCurrentIndex(dialog.base_power.findData('fate:word'))
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count())
+        if dialog.talent.itemData(i)['key'] == 'fate:word-talent:align-object-word'))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    picker = dialog.table.cellWidget(0, 5)
+    picker.setCurrentIndex(picker.findData('good weapon: concentration'))
+    assert dialog.quotation()[1].market_price_gp == 12000
+    assert 'against evil creatures only' in dialog.item_preview.toPlainText()
+    picker.setCurrentIndex(picker.findData('divine focus: minutes per caster level'))
+    assert dialog.quotation()[1].market_price_gp == 16000
+    assert dialog.card_edits['duration'].text() == '10 minutes'
+    assert 'Aligned Weapon Damage:' not in dialog.item_preview.toPlainText()
+    saved = dialog.blueprint()
+    dialog.load_plan(saved)
+    assert dialog.blueprint()['contributions'] == saved['contributions']
+    assert repo._connection.total_changes == writes
+
+
 def test_conjuration_day_choice_updates_price_formula_controls_and_reopens(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Conjuration'); dialog.cl.setValue(5)
