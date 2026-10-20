@@ -4,6 +4,8 @@ from app.marvelous_base_powers import BASE_POWERS, resolve_base_power
 
 def plan(key, cl=5, **changes):
     power = next(p for p in BASE_POWERS if p.key == key)
+    if key == 'fate:word':
+        changes.setdefault('contributions', [dict(catalog_key='fate:word-talent:mercy-word-curse', complexity=2, additional_spell_points=1)])
     if key == 'fate:motif':
         changes.setdefault('contributions', [dict(catalog_key='fate:motif-talent:the-chariot-motif', complexity=1, additional_spell_points=0)])
     if key == 'warp:beacon':
@@ -31,6 +33,35 @@ def test_every_ordinary_fate_motif_replaces_serendipity_with_item_specific_durat
         assert result['duration'] == '10 minutes'
         assert 'one hour' in result['motif_duration_conversion']
         assert 'spell resistance applies' in result['motif_scope']
+
+
+@pytest.mark.parametrize('suffix,choice,duration,field', [
+    ('classify-word-utility', '', 'As selected effect', 'classify'),
+    ('mercy-word-curse', '', '10 rounds', 'mercy'),
+    ('exorcism-word', 'remove an effect', 'Instantaneous', 'exorcism'),
+    ('exorcism-word', 'remove an effect and identify its source', 'Instantaneous', 'exorcism_source'),
+    ('pain-word-curse', 'one round', '1 round', 'pain_save'),
+    ('pain-word-curse', 'damage each round', '10 rounds', 'pain_save')])
+def test_reviewed_fate_words_replace_aura_with_native_duration_and_rules(suffix, choice, duration, field):
+    row = dict(catalog_key='fate:word-talent:' + suffix, effect_choice=choice)
+    result = resolve_base_power(plan('fate:word', cl=10, contributions=[row]))
+    assert result['duration'] == duration and field in result
+    assert 'aura is replaced' in result['word_spell_resistance']
+    if suffix == 'pain-word-curse':
+        assert result['nonlethal_damage'] == '1d4+5'
+        assert result['mental_skill_penalty'] == -4
+        assert 'half the damage dealt + 5' in result['pain_casting_check']
+    if suffix == 'exorcism-word' and choice == 'remove an effect': assert 'exorcism_source' not in result
+
+
+def test_fate_word_requires_one_fixed_reviewed_word_and_rejects_instant_duration_adjustments():
+    mercy = dict(catalog_key='fate:word-talent:mercy-word-curse')
+    unknown = dict(catalog_key='fate:word-talent:bless-word')
+    for rows in ([], [dict(mercy, alternative=True)], [mercy, mercy], [mercy, unknown], [unknown]):
+        with pytest.raises(ValueError, match='one fixed reviewed word'):
+            resolve_base_power(plan('fate:word', contributions=rows))
+    with pytest.raises(ValueError, match='duration ladder'):
+        resolve_base_power(dict(plan('fate:word', contributions=[dict(catalog_key='fate:word-talent:classify-word-utility')]), duration_steps=1))
 
 
 @pytest.mark.parametrize('rows', [[], [dict(catalog_key='fate:motif-talent:the-chariot-motif', alternative=True)],
@@ -320,7 +351,8 @@ def test_blood_movement_bonus_and_blood_art_do_not_mix_their_statistics():
 @pytest.mark.parametrize('power', BASE_POWERS)
 def test_every_base_power_has_a_resolvable_projection(power):
     result = resolve_base_power(plan(power.key))
-    assert result['power'] == ('The Chariot (motif)' if power.key == 'fate:motif' else power.name)
+    expected = {'fate:motif': 'The Chariot (motif)', 'fate:word': 'Mercy (word) [curse]'}
+    assert result['power'] == expected.get(power.key, power.name)
     assert result['range'] and result['duration']
     assert result['caster_level'] == 5 and result['save_dc'] == 12 and result['magic_skill_bonus'] == 5
 

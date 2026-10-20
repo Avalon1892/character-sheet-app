@@ -736,6 +736,8 @@ def talent_construction_spell_points(entry, *, reviewed_only=False, base_power=N
         return profile[3]
     if entry.get('key') in DESTRUCTION_BLAST_SHAPES: return 1
     return {
+        'fate:word-talent:classify-word-utility': 1,
+        'fate:word-talent:mercy-word-curse': 1,
         **{key: 0 for key in CONJURATION_TYPE_KEYS},
         **{'conjuration:form-talent:' + suffix: 0 for suffix in (
             'aligned-creature-form', 'altered-size-form', 'animal-creature-form', 'armored-companion-form',

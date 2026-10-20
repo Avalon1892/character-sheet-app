@@ -30,6 +30,19 @@ def test_fate_motif_item_conversion_uses_specific_cost_not_ordinary_casting_sp()
         assert talent_construction_cost(entry, base_power='fate:motif') == 1
 
 
+@pytest.mark.parametrize('suffix,choice,points', [('classify-word-utility', '', 1),
+    ('mercy-word-curse', '', 1), ('exorcism-word', 'remove an effect', 1),
+    ('exorcism-word', 'remove an effect and identify its source', 2),
+    ('pain-word-curse', 'one round', 0), ('pain-word-curse', 'damage each round', 1)])
+def test_fate_word_costs_include_required_sp_and_preserve_paid_choices(suffix, choice, points):
+    from app.content import magic_entry
+    from app.marvelous_item_rules import talent_construction_cost, talent_construction_spell_points, talent_choice_spell_points
+    entry = magic_entry('fate:word-talent:' + suffix)
+    actual = talent_choice_spell_points(entry['key'], choice) if choice else talent_construction_spell_points(entry, reviewed_only=True)
+    assert actual == points
+    assert talent_construction_cost(entry, additional_spell_points=points) == 1 + points
+
+
 def test_all_conjuration_type_talents_have_reviewed_zero_extra_sp_costs():
     from app.content import magic_entries
     from app.marvelous_base_powers import CONJURATION_TYPE_KEYS

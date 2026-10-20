@@ -35,6 +35,7 @@ _ROWS = (
     ('fallen-fey:link', 'Fallen Fey', 'Fey-link / Nature-connection', 'personal', 'minute'),
     ('fate:serendipity', 'Fate', 'Serendipity', 'personal', 'round'),
     ('fate:motif', 'Fate', 'Selected motif', 'personal', 'minute'),
+    ('fate:word', 'Fate', 'Selected word', 'personal', 'variable'),
     ('illusion:figment', 'Illusion', 'Silent visual illusion', 'touch', 'round'),
     ('life:cure', 'Life', 'Cure', 'touch', 'instantaneous'),
     ('life:restore', 'Life', 'Restore', 'touch', 'instantaneous'),
@@ -200,6 +201,12 @@ FATE_MOTIFS = frozenset('fate:motif-talent:' + suffix for suffix in (
     'the-page-motif-3pp', 'the-queen-motif-3pp', 'the-star-motif', 'the-sun-motif',
     'the-tower-motif', 'the-wheel-motif', 'the-world-motif-utility', 'wands-motif-arcana-bap'))
 FATE_MOTIF_CHOICES = {'fate:motif-talent:pentacles-motif-arcana-bap': ('Fortitude', 'Reflex', 'Will')}
+FATE_WORD_DURATIONS = {
+    'fate:word-talent:classify-word-utility': 'variable',
+    'fate:word-talent:exorcism-word': 'instantaneous',
+    'fate:word-talent:mercy-word-curse': 'round',
+    'fate:word-talent:pain-word-curse': 'fixed-round',
+}
 
 
 def conjuration_type_details(rows, hd):
@@ -370,6 +377,8 @@ def conjuration_form_details(plan):
     return result
 
 TALENT_EFFECT_SP_CHOICES = {
+    'fate:word-talent:exorcism-word': {'remove an effect': 1, 'remove an effect and identify its source': 2},
+    'fate:word-talent:pain-word-curse': {'one round': 0, 'damage each round': 1},
     'conjuration:form-talent:superior-senses-form': {
         'darkvision': 0, 'low-light vision': 0, 'scent': 0, 'see in darkness': 1,
         'lifesense': 2, 'thoughtsense': 2, 'stone vision': 0, 'tremorsense': 1,
@@ -663,6 +672,12 @@ def effective_base_duration(plan):
     """Duration before construction adjustments, including reviewed effect modes."""
     power = next((power for power in BASE_POWERS if power.key == plan.get('base_power')), None)
     if power is None: return 'instantaneous'
+    if power.key == 'fate:word':
+        words = [row for row in plan.get('contributions', []) if row.get('catalog_key') in FATE_WORD_DURATIONS]
+        if len(words) == 1 and not words[0].get('alternative'):
+            if (words[0]['catalog_key'] == 'fate:word-talent:pain-word-curse'
+                    and words[0].get('effect_choice') == 'damage each round'): return 'round'
+            return FATE_WORD_DURATIONS[words[0]['catalog_key']]
     if duration := conjuration_item_duration(plan): return duration
     if power.key == 'fallen-fey:link':
         links = [row for row in plan.get('contributions', []) if row.get('catalog_key') == 'fallen-fey:talent:greater-fey-link']
@@ -898,6 +913,10 @@ def resolve_base_power(plan):
     power = next((p for p in BASE_POWERS if p.key == key), None)
     if power is None or power.sphere.casefold() != plan['sphere'].casefold():
         raise ValueError('Choose a base power from the selected sphere.')
+    if key == 'fate:word':
+        words = [row for row in plan.get('contributions', []) if row.get('catalog_key', '').startswith('fate:word-talent:')]
+        if len(words) != 1 or words[0].get('alternative') or words[0]['catalog_key'] not in FATE_WORD_DURATIONS:
+            raise ValueError('A word item requires one fixed reviewed word contribution; other words and combinations still need rules review.')
     if key == 'fate:motif':
         motifs = [row for row in plan.get('contributions', []) if row.get('catalog_key') in FATE_MOTIFS]
         if len(motifs) != 1 or motifs[0].get('alternative'):
@@ -941,6 +960,27 @@ def resolve_base_power(plan):
                  'concentration': 'Concentration', 'variable': 'As selected effect'}
     summary = {'power': power.name, 'range': distances[RANGES[range_index]], 'duration': durations[duration],
                'caster_level': cl, 'save_dc': 10 + cl // 2, 'magic_skill_bonus': cl}
+    if power.key == 'fate:word':
+        from app.content import magic_entry
+        selected = next(row for row in plan['contributions'] if row.get('catalog_key') in FATE_WORD_DURATIONS)
+        summary['power'] = magic_entry(selected['catalog_key'])['name']
+        summary['word_spell_resistance'] = 'Spell resistance applies; the Serendipity aura is replaced, not added.'
+        suffix = selected['catalog_key'].split(':')[-1]
+        if suffix == 'classify-word-utility':
+            summary['classify'] = 'Will negates. Mind-affecting compulsion; requires a language or telepathy. The answer uses the target’s preferred language; understanding is not granted.'
+            summary['duration_review'] = 'Classify does not state an explicit timed duration. Resolve the compelled statement; do not assume a round-per-level duration or permanency.'
+        elif suffix == 'exorcism-word':
+            summary['exorcism'] = 'Attempt a magic skill check to end one mind-affecting, curse or possession effect. Only one attempt against a given effect per day; verify eligibility and resolve the check manually.'
+            if selected.get('effect_choice') == 'remove an effect and identify its source':
+                summary['exorcism_source'] = 'On a successful removal, identify the originator’s name, creature type/subtypes and a brief reason. The selected item mode includes the extra SP cost.'
+        elif suffix == 'mercy-word-curse':
+            summary['mercy'] = 'Will negates. Weapon attacks deal nonlethal damage; attacks against creatures or objects not subject to nonlethal damage remain lethal.'
+        elif suffix == 'pain-word-curse':
+            summary['nonlethal_damage'] = f'1d4+{cl // 2}'
+            summary['pain_save'] = 'No saving throw.'
+            summary['mental_skill_penalty'] = -4
+            summary['pain_casting_check'] = f'Magic skill check DC 10 + half the damage dealt + {cl // 2} to use a spell or sphere effect.'
+            summary['pain_frequency'] = 'Each round for the word duration' if selected.get('effect_choice') == 'damage each round' else 'Damage once; penalties last one round.'
     if power.key == 'fate:motif':
         from app.content import magic_entry
         selected = next(row for row in plan['contributions'] if row.get('catalog_key') in FATE_MOTIFS)

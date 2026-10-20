@@ -183,6 +183,31 @@ def test_fate_motif_price_choice_duration_locks_and_reopen(composer):
     assert repo._connection.total_changes == writes
 
 
+def test_fate_pain_word_updates_cost_dice_duration_controls_and_reopens(composer):
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Fate'); dialog.cl.setValue(10)
+    dialog.base_power.setCurrentIndex(dialog.base_power.findData('fate:word'))
+    key = 'fate:word-talent:pain-word-curse'
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count()) if dialog.talent.itemData(i)['key'] == key))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    picker = dialog.table.cellWidget(0, 5)
+    picker.setCurrentIndex(picker.findData('one round'))
+    assert dialog.quotation()[1].market_price_gp == 8000
+    assert not dialog.duration_steps.isEnabled()
+    assert dialog.card_edits['duration'].text() == '1 round'
+    assert '1d4+5' in dialog.item_preview.toPlainText()
+    picker.setCurrentIndex(picker.findData('damage each round'))
+    assert dialog.quotation()[1].market_price_gp == 12000
+    assert dialog.table.cellWidget(0, 4).value() == 1
+    assert dialog.duration_steps.isEnabled()
+    assert dialog.card_edits['duration'].text() == '10 rounds'
+    saved = dialog.blueprint()
+    dialog.load_plan(saved)
+    assert dialog.blueprint()['contributions'] == saved['contributions']
+    assert repo._connection.total_changes == writes
+
+
 def test_conjuration_day_choice_updates_price_formula_controls_and_reopens(composer):
     dialog, repo, cid = composer
     dialog.sphere.setCurrentText('Conjuration'); dialog.cl.setValue(5)
