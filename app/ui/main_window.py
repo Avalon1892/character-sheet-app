@@ -1380,6 +1380,10 @@ class MainWindow(QMainWindow):
         export_action = QAction("&Export selected character…", self)
         export_action.triggered.connect(self.export_selected)
         file_menu.addAction(export_action)
+        pdf_action = QAction("Export sheet as &PDF…", self)
+        pdf_action.setShortcut("Ctrl+P")
+        pdf_action.triggered.connect(self.export_sheet_pdf)
+        file_menu.addAction(pdf_action)
         import_action = QAction("&Import character…", self)
         import_action.triggered.connect(self.import_from_file)
         file_menu.addAction(import_action)
@@ -1928,6 +1932,29 @@ class MainWindow(QMainWindow):
                 QMessageBox.warning(self, "Cannot rename character", str(error))
                 return
             self.refresh_characters(character.id)
+
+    def export_sheet_pdf(self) -> None:
+        character = self._selected_character()
+        if character is None:
+            QMessageBox.information(self, "Select a character", "Select a character first.")
+            return
+        filename, _ = QFileDialog.getSaveFileName(
+            self, "Export sheet as PDF", str(self._last_save_directory() / f"{character.name}.pdf"),
+            "PDF documents (*.pdf)",
+        )
+        if not filename:
+            return
+        if not filename.lower().endswith(".pdf"):
+            filename += ".pdf"
+        from app.ui.sheet_pdf import export_sheet_pdf
+        try:
+            self.refined_sheet.class_progression_page.refresh()
+            count = export_sheet_pdf(self.refined_sheet.page_tabs, filename, character.name)
+        except (OSError, ValueError, RuntimeError) as error:
+            QMessageBox.warning(self, "PDF export failed", str(error))
+            return
+        self._remember_save_directory(filename)
+        self.statusBar().showMessage(f"Exported {count} PDF pages to {filename}.", 8000)
 
     def export_selected(self) -> None:
         character = self._selected_character()
