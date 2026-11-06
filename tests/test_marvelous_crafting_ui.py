@@ -19,6 +19,32 @@ def composer(tmp_path):
     repo.close()
 
 
+def test_hallow_choice_live_price_lock_reopen_and_base_switch(composer):
+    from app.marvelous_item_rules import quote_marvelous_blueprint
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Fate'); dialog.cl.setValue(10)
+    writes = repo._connection.total_changes
+    dialog.base_power.setCurrentIndex(dialog.base_power.findData('fate:hallow'))
+    assert not dialog.hallow_alignment.isHidden()
+    assert not dialog.settings_toggle.isChecked()
+    dialog.hallow_alignment.setCurrentIndex(dialog.hallow_alignment.findData('lawful: profane'))
+    blueprint = dialog.blueprint()
+    assert quote_marvelous_blueprint(blueprint)[0] == 3
+    assert 'Hallow word conversion' in dialog.cost_formula.text()
+    assert 'profane' in dialog.preview.toPlainText().lower()
+    dialog.card_locks['description'].setChecked(True)
+    dialog.card_edits['description'].setPlainText('Custom locked Hallow description')
+    blueprint = dialog.blueprint()
+    dialog.load_plan(blueprint)
+    assert dialog.hallow_alignment.currentData() == 'lawful: profane'
+    dialog.hallow_alignment.setCurrentIndex(dialog.hallow_alignment.findData('chaotic: sacred'))
+    assert dialog.card_edits['description'].toPlainText() == 'Custom locked Hallow description'
+    dialog.base_power.setCurrentIndex(dialog.base_power.findData('fate:serendipity'))
+    assert dialog.blueprint()['hallow_alignment'] == ''
+    assert quote_marvelous_blueprint(dialog.blueprint())[0] == 1
+    assert repo._connection.total_changes == writes
+
+
 @pytest.mark.parametrize('existing_mode,optional', [(None, False), ('bleed', False), ('bleed', True), ('', False), ('blood drain', True)])
 def test_sanguine_thirst_preserves_other_modes_and_adds_fixed_blood_drain(composer, monkeypatch, existing_mode, optional):
     from PySide6.QtWidgets import QMessageBox

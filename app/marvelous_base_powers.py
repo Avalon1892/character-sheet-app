@@ -34,6 +34,7 @@ _ROWS = (
     ('enhancement:enhance', 'Enhancement', 'Enhance Equipment', 'touch', 'round'),
     ('fallen-fey:link', 'Fallen Fey', 'Fey-link / Nature-connection', 'personal', 'minute'),
     ('fate:serendipity', 'Fate', 'Serendipity', 'personal', 'round'),
+    ('fate:hallow', 'Fate', 'Hallow', 'personal', 'minute'),
     ('fate:motif', 'Fate', 'Selected motif', 'personal', 'minute'),
     ('fate:word', 'Fate', 'Selected word', 'personal', 'variable'),
     ('illusion:figment', 'Illusion', 'Silent visual illusion', 'touch', 'round'),
@@ -191,6 +192,9 @@ CONJURATION_TYPE_KEYS = frozenset('conjuration:type-talent:' + suffix for suffix
 PLANAR_CREATURE_CHOICES = tuple(f'{alignment}: {left} + {right}'
     for alignment in ('anarchic', 'axiomatic', 'celestial', 'fiendish')
     for left, right in combinations(('damage reduction', 'resistance', 'saves', 'aligned attacks'), 2))
+
+HALLOW_CHOICES = ('good: sacred', 'evil: profane', 'lawful: sacred', 'lawful: profane',
+                  'chaotic: sacred', 'chaotic: profane')
 
 FATE_MOTIFS = frozenset('fate:motif-talent:' + suffix for suffix in (
     'cups-motif-arcana-bap', 'judgment-motif', 'justice-motif', 'pentacles-motif-arcana-bap',
@@ -938,6 +942,15 @@ def resolve_base_power(plan):
         if choices and selected != '' and selected not in choices:
             raise ValueError('Choose a supported effect option for ' + row['catalog_key'] + '.')
     key = plan.get('base_power')
+    hallow = plan.get('hallow_alignment', '')
+    if key == 'fate:hallow':
+        if hallow not in HALLOW_CHOICES:
+            raise ValueError('Choose Hallow alignment and sacred/profane bonus type.')
+        if any(row.get('catalog_key', '').startswith(('fate:word-talent:', 'fate:motif-talent:'))
+               for row in plan.get('contributions', [])):
+            raise ValueError('Hallow cannot silently include another word or motif; add it as a separate item power.')
+    elif hallow:
+        raise ValueError('Hallow alignment requires the Hallow base power.')
     if key in SPACE_MODE_POWERS:
         talent = SPACE_MODE_POWERS[key]
         name = next(power.name for power in BASE_POWERS if power.key == key)
@@ -1030,6 +1043,14 @@ def resolve_base_power(plan):
                  'concentration': 'Concentration', 'variable': 'As selected effect'}
     summary = {'power': power.name, 'range': distances[RANGES[range_index]], 'duration': durations[duration],
                'caster_level': cl, 'save_dc': 10 + cl // 2, 'magic_skill_bonus': cl}
+    if power.key == 'fate:hallow':
+        alignment, bonus_type = hallow.split(': ')
+        opposed = {'good': 'evil', 'evil': 'good', 'lawful': 'chaotic', 'chaotic': 'lawful'}[alignment]
+        summary['hallow_alignment'] = alignment.title()
+        summary['conditional_bonus'] = f'+{1 + cl // 10} {bonus_type} to attack rolls, AC and saving throws against {opposed} creatures only; not an unconditional character bonus.'
+        summary['hallow_eligibility'] = 'The invoking caster must possess the selected alignment. Good casters grant sacred bonuses; evil casters grant profane bonuses; casters neither good nor evil choose sacred or profane. Verify the eventual user, not only the crafter.'
+        summary['hallow_protection'] = f'Immune to mental-control spells and sphere effects originating from {opposed} creatures. Existing control allows a new save; success suppresses it only for this word\'s duration. A possessing life force is not expelled.'
+        summary['word_spell_resistance'] = 'Spell resistance applies; Hallow replaces Serendipity rather than adding its aura.'
     if power.key == 'fate:word':
         from app.content import magic_entry
         selected = next(row for row in plan['contributions'] if row.get('catalog_key') in FATE_WORD_DURATIONS)

@@ -1371,6 +1371,11 @@ def light_lens_conversion_complexity(plan):
         row.get('catalog_key') in LIGHT_LENSES for row in plan.get('contributions', [])))
 
 
+def hallow_conversion_complexity(plan):
+    """Word conversion +1 and Hallow's required spell point +1."""
+    return 2 if plan.get('base_power') == 'fate:hallow' else 0
+
+
 def instill_alteration_minimum_complexity(plan):
     """A free alter costs one SP when instilled; paid alters pay no extra point."""
     rows = plan.get('contributions', [])
@@ -1493,7 +1498,7 @@ def quote_marvelous_blueprint(plan):
             raise ValueError('Taxing cannot restrict an effect usable for an unlimited duration.')
     complexity = effect_complexity(talent_costs=[x['complexity'] for x in plan['contributions'] if not x.get('alternative', False)] + grouped_costs + [instill_alteration_minimum_complexity(plan)],
         range_steps=plan['range_steps'], duration_steps=plan['duration_steps'],
-        activation=plan['activation'], unique_changes=plan['unique_changes'] - drawback_complexity(plan.get('drawbacks', [])) - simple + (2 if plan.get('permanent') else 0) + int(plan.get('full_blast_damage', False)) + 2 * plan.get('effect_range_steps', 0) + feat_cost + light_lens_conversion_complexity(plan) - practiced_creation_complexity_reduction(plan) + conjuration_duration_complexity(plan))
+        activation=plan['activation'], unique_changes=plan['unique_changes'] - drawback_complexity(plan.get('drawbacks', [])) - simple + (2 if plan.get('permanent') else 0) + int(plan.get('full_blast_damage', False)) + 2 * plan.get('effect_range_steps', 0) + feat_cost + light_lens_conversion_complexity(plan) + hallow_conversion_complexity(plan) - practiced_creation_complexity_reduction(plan) + conjuration_duration_complexity(plan))
     price = marvelous_item_price(plan['caster_level'], complexity,
                                 daily_uses=1 if plan['uses'] == 50 else plan['uses'], limited_uses=plan['uses'] == 50)
     if plan.get('no_space_limitation'):
@@ -1598,6 +1603,7 @@ def marvelous_complexity_formula(plan, *, quotation=None):
     terms = [('base', 1), ('talents', sum(row['complexity'] - row.get('additional_spell_points', 0) for row in ordinary)),
              ('extra SP', sum(row.get('additional_spell_points', 0) for row in ordinary)),
              ('lens conversion', light_lens_conversion_complexity(plan)),
+             ('Hallow word conversion + required SP', hallow_conversion_complexity(plan)),
              ('24-hour Conjuration', conjuration_duration_complexity(plan)),
              ('instill minimum SP', instill_alteration_minimum_complexity(plan)),
              ('Practiced extra-SP reduction', -practiced_creation_complexity_reduction(plan)),

@@ -111,6 +111,16 @@ class MarvelousCraftingDialog(QDialog):
         self.effect_range_label = QLabel('Distance / area steps')
         form.addRow(self.effect_range_label, self.effect_range)
         self.restore_label = QLabel('Restore mode'); form.addRow(self.restore_label, self.restore_mode)
+        from app.marvelous_base_powers import HALLOW_CHOICES
+        self.hallow_alignment = QComboBox()
+        self.hallow_alignment.addItem('Choose alignment / bonus…', '')
+        for choice in HALLOW_CHOICES:
+            self.hallow_alignment.addItem(choice.title(), choice)
+        self.hallow_label = QLabel('Hallow alignment')
+        hallow_row = QHBoxLayout()
+        hallow_row.addWidget(self.hallow_label); hallow_row.addWidget(self.hallow_alignment, 1)
+        left.insertLayout(left.indexOf(self.settings_toggle), hallow_row)
+        self.hallow_alignment.currentIndexChanged.connect(self.update_preview)
         picker = QHBoxLayout(); left.addLayout(picker)
         self.effects_button = QPushButton('Add effects…'); left.insertWidget(0, self.effects_button)
         self.effects_button.clicked.connect(self.choose_accessible_effects)
@@ -328,6 +338,7 @@ class MarvelousCraftingDialog(QDialog):
         self.full_blast.setChecked(plan.get('full_blast_damage', False))
         self.effect_range.setValue(plan.get('effect_range_steps', 0))
         self.restore_mode.setCurrentIndex(max(0, self.restore_mode.findData(plan.get('restore_mode', ''))))
+        self.hallow_alignment.setCurrentIndex(max(0, self.hallow_alignment.findData(plan.get('hallow_alignment', ''))))
         for contribution in plan['contributions']:
             index = next((i for i in range(self.talent.count()) if self.talent.itemData(i)['key'] == contribution['catalog_key']), -1)
             if index < 0: raise ValueError('A saved talent is no longer available; editing cannot safely continue.')
@@ -423,6 +434,9 @@ class MarvelousCraftingDialog(QDialog):
         self.power_changed()
 
     def power_changed(self, *_):
+        hallow = self.base_power.currentData() == 'fate:hallow'
+        self.hallow_alignment.setVisible(hallow); self.hallow_label.setVisible(hallow)
+        if not hallow: self.hallow_alignment.setCurrentIndex(0)
         restore = self.base_power.currentData() == 'life:restore'
         self.restore_mode.setVisible(restore); self.restore_label.setVisible(restore)
         if not restore: self.restore_mode.setCurrentIndex(0)
@@ -914,6 +928,7 @@ class MarvelousCraftingDialog(QDialog):
                     full_blast_damage=self.full_blast.isChecked(),
                     effect_range_steps=self.effect_range.value(),
                     restore_mode=self.restore_mode.currentData(),
+                    hallow_alignment=self.hallow_alignment.currentData(),
                     extra_effects=self.extra_effects, combination_mode=self.combination_mode,
                     feat_integrations=self.feat_integrations,
                     automation_status='rules_only', display_overrides=self.display_overrides,

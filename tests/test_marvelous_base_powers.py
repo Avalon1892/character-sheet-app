@@ -4,6 +4,8 @@ from app.marvelous_base_powers import BASE_POWERS, resolve_base_power
 
 def plan(key, cl=5, **changes):
     power = next(p for p in BASE_POWERS if p.key == key)
+    if key == 'fate:hallow':
+        changes.setdefault('hallow_alignment', 'good: sacred')
     if key == 'fate:word':
         changes.setdefault('contributions', [dict(catalog_key='fate:word-talent:mercy-word-curse', complexity=2, additional_spell_points=1)])
     if key == 'fate:motif':
@@ -21,6 +23,31 @@ def plan(key, cl=5, **changes):
         changes.setdefault('contributions', [dict(catalog_key='warp:space-talent:' + key.split(':')[1] + '-space', complexity=1 + points, additional_spell_points=points, effect_choice='concentration')])
     return dict(base_power=key, sphere=power.sphere, caster_level=cl,
                 range_steps=0, duration_steps=0, **changes)
+
+
+@pytest.mark.parametrize('choice', ['good: sacred', 'evil: profane', 'lawful: sacred', 'lawful: profane', 'chaotic: sacred', 'chaotic: profane'])
+@pytest.mark.parametrize('cl,bonus', [(5, 1), (10, 2), (20, 3)])
+def test_hallow_word_has_explicit_alignment_conditional_bonus_and_conversion_cost(choice, cl, bonus):
+    from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_complexity_formula
+    blueprint = dict(plan('fate:hallow', cl=cl, hallow_alignment=choice), schema_version=1,
+                     contributions=[], unique_changes=0, activation='standard', uses=1)
+    result = resolve_base_power(blueprint)
+    assert result['duration'] == f'{cl} minutes'
+    assert result['conditional_bonus'].startswith(f'+{bonus} {choice.split(": ")[1]}')
+    assert 'eventual user' in result['hallow_eligibility']
+    assert 'not expelled' in result['hallow_protection']
+    complexity, price, _ = quote_marvelous_blueprint(blueprint)
+    assert complexity == 3 and price.market_price_gp == 400 * cl * 3
+    assert 'Hallow word conversion + required SP' in marvelous_complexity_formula(blueprint)
+
+
+def test_hallow_rejects_missing_choice_and_unreviewed_word_combinations():
+    with pytest.raises(ValueError, match='Choose Hallow'):
+        resolve_base_power(plan('fate:hallow', hallow_alignment=''))
+    with pytest.raises(ValueError, match='separate item power'):
+        resolve_base_power(plan('fate:hallow', contributions=[dict(catalog_key='fate:word-talent:bless-word')]))
+    with pytest.raises(ValueError, match='requires the Hallow'):
+        resolve_base_power(plan('fate:serendipity', hallow_alignment='good: sacred'))
 
 
 def test_every_ordinary_fate_motif_replaces_serendipity_with_item_specific_duration():
