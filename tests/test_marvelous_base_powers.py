@@ -25,6 +25,73 @@ def plan(key, cl=5, **changes):
                 range_steps=0, duration_steps=0, **changes)
 
 
+@pytest.mark.parametrize('tier,complexity', [('lesser', 1), ('greater', 2), ('powerful', 4)])
+def test_mind_item_tiers_price_once_and_keep_suggestion_restrictions(tier, complexity):
+    from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_complexity_formula
+    from app.marvelous_base_powers import MIND_POWERFUL_CHARM
+    rows = [dict(catalog_key=MIND_POWERFUL_CHARM, complexity=3, additional_spell_points=2)] if tier == 'powerful' else []
+    blueprint = dict(plan('mind:suggestion', cl=10, mind_charm_tier=tier), schema_version=1,
+                     contributions=rows, unique_changes=0, activation='standard', uses=1)
+    result = resolve_base_power(blueprint)
+    assert result['power'] == tier.title() + ' Suggestion'
+    assert result['duration'] == '10 hours'
+    assert 'own creature type' in result['creature_types']
+    assert 'action finishes' in result['suggestion_end']
+    assert quote_marvelous_blueprint(blueprint)[0] == complexity
+    assert quote_marvelous_blueprint(blueprint)[1].market_price_gp == 4000 * complexity
+    if tier == 'greater': assert 'greater Mind charm' in marvelous_complexity_formula(blueprint)
+
+
+@pytest.mark.parametrize('tier,complexity', [('lesser', 2), ('greater', 3), ('powerful', 5)])
+def test_reviewed_alternate_mind_charms_share_tier_cost_not_suggestion_duration(tier, complexity):
+    from app.content import magic_entries
+    from app.marvelous_base_powers import MIND_CHARMS, MIND_POWERFUL_CHARM
+    from app.marvelous_item_rules import quote_marvelous_blueprint, talent_construction_spell_points
+    entries = [e for e in magic_entries('Mind') if e['category'] == 'Charm Talent']
+    assert len(entries) == 30 and {e['key'] for e in entries} == MIND_CHARMS
+    for entry in entries:
+        assert talent_construction_spell_points(entry, reviewed_only=True, base_power='mind:suggestion') == 0
+        rows = [dict(catalog_key=entry['key'], complexity=1, additional_spell_points=0)]
+        if tier == 'powerful': rows.append(dict(catalog_key=MIND_POWERFUL_CHARM, complexity=3, additional_spell_points=2))
+        blueprint = dict(plan('mind:suggestion', cl=10, mind_charm_tier=tier), schema_version=1,
+                         contributions=rows, unique_changes=0, activation='standard', uses=1)
+        result = resolve_base_power(blueprint)
+        assert result['power'] == tier.title() + ' ' + entry['name']
+        assert result['duration'] == 'As selected effect' and 'suggestion_request' not in result
+        assert quote_marvelous_blueprint(blueprint)[0] == complexity
+
+
+def test_mind_expanded_mass_and_legacy_profiles_are_not_conflated():
+    result = resolve_base_power(plan('mind:suggestion', cl=10, mind_charm_tier='lesser', contributions=[
+        dict(catalog_key='mind:talent:expanded-charm', complexity=1, additional_spell_points=0),
+        dict(catalog_key='mind:talent:mass-charm-mass', complexity=2, additional_spell_points=1)]))
+    assert 'All creature types' in result['creature_types'] and 'immunity' in result['creature_types']
+    assert 'Up to 6' in result['charm_targets'] and 'once per target' in result['lesser_charm_limit']
+    assert resolve_base_power(plan('mind:suggestion'))['duration'] == 'As selected effect'
+
+
+@pytest.mark.parametrize('key,tier,charges', [('mind:suggestion', 'lesser', 1),
+    ('mind:suggestion', 'greater', 3), ('mind:suggestion', 'powerful', 6), ('fate:hallow', '', 4)])
+def test_mind_and_hallow_charged_items_include_their_required_spell_points(key, tier, charges):
+    from app.marvelous_item_rules import crafting_limitation_details
+    rows = [dict(catalog_key='mind:talent:powerful-charm', complexity=3, additional_spell_points=2)] if tier == 'powerful' else []
+    blueprint = dict(plan(key, cl=10), schema_version=1, contributions=rows,
+        unique_changes=0, activation='standard', uses=5,
+        drawbacks=[dict(source='published', catalog_key='crafting:charged', name='Charged', reduction=0)])
+    if tier: blueprint['mind_charm_tier'] = tier
+    assert any(f'{charges} charges per activation' in line for line in crafting_limitation_details(blueprint))
+
+
+@pytest.mark.parametrize('changes', [dict(mind_charm_tier='unknown'), dict(mind_charm_tier=None),
+    dict(mind_charm_tier='powerful'), dict(mind_charm_tier='powerful', contributions=[dict(
+        catalog_key='mind:talent:powerful-charm', complexity=3, additional_spell_points=0)]),
+    dict(mind_charm_tier='lesser', contributions=[dict(catalog_key='mind:charm-talent:fear-charm'),
+                                               dict(catalog_key='mind:charm-talent:sleep-charm')]),
+    dict(mind_charm_tier='lesser', contributions=[dict(catalog_key='mind:cloud-talent:lure-cloud')])])
+def test_invalid_mind_tiers_or_combinations_do_not_get_a_suggestion_profile(changes):
+    with pytest.raises(ValueError): resolve_base_power(plan('mind:suggestion', **changes))
+
+
 @pytest.mark.parametrize('choice', ['good: sacred', 'evil: profane', 'lawful: sacred', 'lawful: profane', 'chaotic: sacred', 'chaotic: profane'])
 @pytest.mark.parametrize('cl,bonus', [(5, 1), (10, 2), (20, 3)])
 def test_hallow_word_has_explicit_alignment_conditional_bonus_and_conversion_cost(choice, cl, bonus):

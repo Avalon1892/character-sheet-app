@@ -720,6 +720,11 @@ def talent_construction_spell_points(entry, *, reviewed_only=False, base_power=N
     one beyond its integrated prerequisites. Optional variants remain explicit.
     """
     from app.marvelous_base_powers import DESTRUCTION_BLAST_TYPES, DESTRUCTION_BLAST_SHAPES, TALENT_EFFECT_SP_CHOICES, LIGHT_LENSES, LIFE_VITALITY_EFFECTS, CONJURATION_TYPE_KEYS, FATE_MOTIFS, FATE_IMMEDIATE_WORDS
+    if entry.get('key') == 'mind:talent:powerful-charm': return 2
+    if entry.get('key') == 'mind:talent:expanded-charm': return 0
+    if entry.get('key') == 'mind:talent:mass-charm-mass': return 1
+    from app.marvelous_base_powers import MIND_CHARMS
+    if entry.get('key') in MIND_CHARMS: return 0  # Tier conversion is charged separately.
     if entry.get('key') in FATE_IMMEDIATE_WORDS: return 1
     if entry.get('key') in FATE_MOTIFS:
         return 0 if base_power == 'fate:motif' else 1
@@ -1303,6 +1308,7 @@ def crafting_limitation_details(plan, *, quotation=None):
     if 'crafting:charged' in keys:
         complexity, _, _ = quotation if quotation is not None else quote_marvelous_blueprint(plan)
         points = sum(row.get('additional_spell_points', 0) for row in plan['contributions'] if not row.get('alternative'))
+        points += mind_greater_charm_complexity(plan) + int(plan.get('base_power') == 'fate:hallow')
         points += sum(row.get('additional_spell_points', 0) for row in plan.get('feat_integrations', []))
         scope = ' (primary power only)' if plan.get('extra_effects') else ''
         if any(row.get('alternative') for row in plan['contributions']):
@@ -1403,6 +1409,11 @@ def light_lens_conversion_complexity(plan):
 def hallow_conversion_complexity(plan):
     """Word conversion +1 and Hallow's required spell point +1."""
     return 2 if plan.get('base_power') == 'fate:hallow' else 0
+
+
+def mind_greater_charm_complexity(plan):
+    # Powerful costs are paid by its +1 talent / +2 SP contribution, not twice.
+    return int(plan.get('base_power') == 'mind:suggestion' and plan.get('mind_charm_tier') == 'greater')
 
 
 def instill_alteration_minimum_complexity(plan):
@@ -1528,7 +1539,7 @@ def quote_marvelous_blueprint(plan):
             raise ValueError('Taxing cannot restrict an effect usable for an unlimited duration.')
     complexity = effect_complexity(talent_costs=[x['complexity'] for x in plan['contributions'] if not x.get('alternative', False)] + grouped_costs + [instill_alteration_minimum_complexity(plan)],
         range_steps=plan['range_steps'], duration_steps=plan['duration_steps'],
-        activation=plan['activation'], unique_changes=plan['unique_changes'] - drawback_complexity(plan.get('drawbacks', [])) - simple + (2 if plan.get('permanent') else 0) + int(plan.get('full_blast_damage', False)) + 2 * plan.get('effect_range_steps', 0) + feat_cost + light_lens_conversion_complexity(plan) + hallow_conversion_complexity(plan) - practiced_creation_complexity_reduction(plan) + conjuration_duration_complexity(plan))
+        activation=plan['activation'], unique_changes=plan['unique_changes'] - drawback_complexity(plan.get('drawbacks', [])) - simple + (2 if plan.get('permanent') else 0) + int(plan.get('full_blast_damage', False)) + 2 * plan.get('effect_range_steps', 0) + feat_cost + light_lens_conversion_complexity(plan) + hallow_conversion_complexity(plan) + mind_greater_charm_complexity(plan) - practiced_creation_complexity_reduction(plan) + conjuration_duration_complexity(plan))
     price = marvelous_item_price(plan['caster_level'], complexity,
                                 daily_uses=1 if plan['uses'] == 50 else plan['uses'], limited_uses=plan['uses'] == 50)
     if plan.get('no_space_limitation'):
@@ -1630,6 +1641,7 @@ def marvelous_complexity_formula(plan, *, quotation=None):
              ('extra SP', sum(row.get('additional_spell_points', 0) for row in ordinary)),
              ('lens conversion', light_lens_conversion_complexity(plan)),
              ('Hallow word conversion + required SP', hallow_conversion_complexity(plan)),
+             ('greater Mind charm', mind_greater_charm_complexity(plan)),
              ('24-hour Conjuration', conjuration_duration_complexity(plan)),
              ('instill minimum SP', instill_alteration_minimum_complexity(plan)),
              ('Practiced extra-SP reduction', -practiced_creation_complexity_reduction(plan)),

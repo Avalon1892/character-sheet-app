@@ -5,6 +5,7 @@ Special talent variants remain separate construction changes.
 """
 from dataclasses import dataclass
 from itertools import combinations
+from fractions import Fraction
 
 
 @dataclass(frozen=True)
@@ -195,6 +196,47 @@ PLANAR_CREATURE_CHOICES = tuple(f'{alignment}: {left} + {right}'
 
 HALLOW_CHOICES = ('good: sacred', 'evil: profane', 'lawful: sacred', 'lawful: profane',
                   'chaotic: sacred', 'chaotic: profane')
+MIND_POWERFUL_CHARM = 'mind:talent:powerful-charm'
+MIND_CHARMS = frozenset('mind:charm-talent:' + suffix for suffix in (
+    'amnesia-charm', 'calm-charm', 'candor-charm-utility', 'cerebral-strike-charm',
+    'command-charm', 'confusion-charm', 'courage-charm', 'disrupt-focus-charm',
+    'enthrall-charm-utility', 'esteem-charm', 'fascinate-charm-apoc', 'fear-charm',
+    'flabbergast-charm-lots', 'gestures-charm', 'hostility-charm', 'incense-charm-lots',
+    'inception-charm-utility', 'innocence-charm-sm', 'inspiration-charm',
+    'mind-shield-charm', 'mind-spy-charm', 'paralyze-charm', 'project-thoughts-charm-utility',
+    'read-mind-charm-utility', 'recommend-charm-jester-s-hb', 'sleep-charm',
+    'speechless-charm-utility-sm', 'utterances-charm', 'vision-charm', 'wrack-charm-alienist-hb',
+))
+
+
+def mind_charm_selection(plan):
+    """Explicit item charm tier; absent means preserve a legacy draft."""
+    tier = plan.get('mind_charm_tier', '')
+    if tier == '':
+        return None
+    if plan.get('base_power') != 'mind:suggestion' or tier not in ('lesser', 'greater', 'powerful'):
+        raise ValueError('Choose a supported Mind charm tier for the Mind base power.')
+    rows = plan.get('contributions', [])
+    charms = [row for row in rows if row.get('catalog_key', '').startswith('mind:charm-talent:')]
+    if len(charms) > 1 or any(row.get('alternative') for row in charms):
+        raise ValueError('Choose one fixed Mind charm per power; use separate powers for other charms.')
+    if any(row['catalog_key'] not in MIND_CHARMS for row in charms):
+        raise ValueError('This Mind charm has not been reviewed for the item tier conversion.')
+    if any(row.get('catalog_key', '').startswith(('mind:cloud-talent:', 'mind:cognition-talent:')) for row in rows):
+        raise ValueError('Cloud and cognition conversions require separate rules review, not a charm-tier price.')
+    powerful = [row for row in rows if row.get('catalog_key') == MIND_POWERFUL_CHARM]
+    if tier == 'powerful':
+        if (len(powerful) != 1 or powerful[0].get('alternative')
+                or isinstance(powerful[0].get('additional_spell_points', 0), bool)
+                or not isinstance(powerful[0].get('additional_spell_points', 0), int)
+                or powerful[0].get('additional_spell_points', 0) < 2
+                or isinstance(powerful[0].get('complexity', 0), bool)
+                or not isinstance(powerful[0].get('complexity', 0), (int, Fraction))
+                or powerful[0].get('complexity', 0) < 3):
+            raise ValueError('Powerful charm requires one fixed Powerful Charm contribution: +1 talent and at least +2 SP complexity.')
+    elif powerful:
+        raise ValueError('The Powerful Charm contribution requires the powerful tier; remove it when choosing another tier.')
+    return tier, charms[0] if charms else None
 
 FATE_MOTIFS = frozenset('fate:motif-talent:' + suffix for suffix in (
     'cups-motif-arcana-bap', 'judgment-motif', 'justice-motif', 'pentacles-motif-arcana-bap',
@@ -744,6 +786,9 @@ def effective_base_duration(plan):
     """Duration before construction adjustments, including reviewed effect modes."""
     power = next((power for power in BASE_POWERS if power.key == plan.get('base_power')), None)
     if power is None: return 'instantaneous'
+    if power.key == 'mind:suggestion' and plan.get('mind_charm_tier') in ('lesser', 'greater', 'powerful'):
+        return 'variable' if any(row.get('catalog_key', '').startswith('mind:charm-talent:')
+            for row in plan.get('contributions', [])) else 'hour'
     if power.key == 'fate:word':
         words = [row for row in plan.get('contributions', []) if row.get('catalog_key') in FATE_WORD_DURATIONS]
         if len(words) == 1 and not words[0].get('alternative'):
@@ -942,6 +987,7 @@ def resolve_base_power(plan):
         if choices and selected != '' and selected not in choices:
             raise ValueError('Choose a supported effect option for ' + row['catalog_key'] + '.')
     key = plan.get('base_power')
+    mind = mind_charm_selection(plan)
     hallow = plan.get('hallow_alignment', '')
     if key == 'fate:hallow':
         if hallow not in HALLOW_CHOICES:
@@ -1043,6 +1089,26 @@ def resolve_base_power(plan):
                  'concentration': 'Concentration', 'variable': 'As selected effect'}
     summary = {'power': power.name, 'range': distances[RANGES[range_index]], 'duration': durations[duration],
                'caster_level': cl, 'save_dc': 10 + cl // 2, 'magic_skill_bonus': cl}
+    if mind:
+        tier, charm = mind
+        from app.content import magic_entry
+        entry = magic_entry(charm['catalog_key']) if charm else None
+        if charm and entry is None: raise ValueError('Selected Mind charm no longer matches the catalog.')
+        summary['power'] = f'{tier.title()} ' + (entry['name'] if entry else 'Suggestion')
+        summary['charm_tier'] = tier.title()
+        expanded = any(row.get('catalog_key') == 'mind:talent:expanded-charm' and not row.get('alternative') for row in plan.get('contributions', []))
+        mass = any(row.get('catalog_key') == 'mind:talent:mass-charm-mass' and not row.get('alternative') for row in plan.get('contributions', []))
+        summary['charm_targets'] = (f'Up to {1 + max(1, cl // 2)} creatures, each in item range and affected by the same charm.' if mass else 'One creature in item range.')
+        summary['creature_types'] = ('All creature types; mind-affecting immunity still applies.' if expanded else 'Only the invoking user\'s own creature type; do not assume the crafter is the user.')
+        summary['charm_resistance'] = 'Mind-affecting enchantment; spell resistance applies. Resolve the selected charm\'s saving throws and target restrictions at use.'
+        if charm:
+            summary['charm_duration_review'] = 'Use the selected tier in the catalog description below. Its exact duration and special timing require review; Suggestion duration is not substituted.'
+        else:
+            summary['suggestion_request'] = {'lesser': 'A very simple request, limited to a sentence or two; Will negates.',
+                'greater': 'Up to a basic request, never something the target would not normally do; very simple requests impose -2 on the Will save.',
+                'powerful': 'Any request not obviously fatal or against the target\'s nature; basic requests impose -2 and very simple requests -4 on the Will save.'}[tier]
+            summary['suggestion_end'] = 'Ends when the suggested action finishes or the duration expires. Unmet conditional instructions do not occur.'
+        if tier == 'lesser': summary['lesser_charm_limit'] = 'Normally once per target per day for this individual lesser charm, separate from the item\'s daily uses; apply any explicit charm-specific exception.'
     if power.key == 'fate:hallow':
         alignment, bonus_type = hallow.split(': ')
         opposed = {'good': 'evil', 'evil': 'good', 'lawful': 'chaotic', 'chaotic': 'lawful'}[alignment]

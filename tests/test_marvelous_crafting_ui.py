@@ -19,6 +19,44 @@ def composer(tmp_path):
     repo.close()
 
 
+def test_mind_tier_live_price_prerequisite_locks_and_legacy_reopen(composer):
+    from copy import deepcopy
+    from app.marvelous_item_rules import quote_marvelous_blueprint
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Mind'); dialog.cl.setValue(10)
+    writes = repo._connection.total_changes
+    assert dialog.mind_tier.currentData() == 'lesser' and not dialog.mind_tier.isHidden()
+    assert dialog.base_power.currentText() == 'Mind charm (tier below)'
+    assert quote_marvelous_blueprint(dialog.blueprint())[0] == 1
+    dialog.mind_tier.setCurrentIndex(dialog.mind_tier.findData('greater'))
+    assert quote_marvelous_blueprint(dialog.blueprint())[0] == 2
+    dialog.mind_tier.setCurrentIndex(dialog.mind_tier.findData('powerful'))
+    saved = deepcopy(dialog.blueprint())
+    assert len(saved['contributions']) == 1
+    assert saved['contributions'][0]['catalog_key'] == 'mind:talent:powerful-charm'
+    assert saved['contributions'][0]['additional_spell_points'] == 2
+    assert quote_marvelous_blueprint(saved)[0] == 4
+    dialog.load_plan(saved)
+    assert dialog.mind_tier.currentData() == 'powerful' and dialog.table.rowCount() == 1
+    dialog.card_locks['description'].setChecked(True)
+    dialog.card_edits['description'].setPlainText('Locked Mind description')
+    dialog.mind_tier.setCurrentIndex(dialog.mind_tier.findData('lesser'))
+    assert dialog.table.rowCount() == 0
+    assert dialog.card_edits['description'].toPlainText() == 'Locked Mind description'
+    legacy = deepcopy(dialog.blueprint()); legacy.pop('mind_charm_tier')
+    dialog.load_plan(legacy)
+    assert dialog.mind_tier.currentData() == ''
+    assert quote_marvelous_blueprint(dialog.blueprint())[0] == 1
+    assert repo._connection.total_changes == writes
+    legacy['contributions'] = [dict(catalog_key='mind:talent:powerful-charm', complexity=0,
+                                    additional_spell_points=0, alternative=True)]
+    dialog.load_plan(legacy)
+    dialog.mind_tier.setCurrentIndex(dialog.mind_tier.findData('powerful'))
+    assert len(dialog.blueprint()['contributions']) == 1
+    assert quote_marvelous_blueprint(dialog.blueprint())[0] == 4
+    assert not dialog.blueprint()['contributions'][0]['alternative']
+
+
 def test_tradition_durability_updates_live_preserves_locks_and_reopens(composer):
     from copy import deepcopy
     from app.marvelous_item_rules import quote_marvelous_blueprint

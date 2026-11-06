@@ -128,6 +128,15 @@ class MarvelousCraftingDialog(QDialog):
         hallow_row.addWidget(self.hallow_label); hallow_row.addWidget(self.hallow_alignment, 1)
         left.insertLayout(left.indexOf(self.settings_toggle), hallow_row)
         self.hallow_alignment.currentIndexChanged.connect(self.update_preview)
+        self.mind_tier = QComboBox()
+        for label, key in [('Legacy / review manually', ''), ('Lesser charm', 'lesser'),
+                           ('Greater charm (+1 complexity)', 'greater'), ('Powerful charm (+3 complexity)', 'powerful')]:
+            self.mind_tier.addItem(label, key)
+        self.mind_tier.setToolTip('Changing tier adds or removes the dedicated Powerful Charm contribution. Other talent rows and locked item text are preserved.')
+        self.mind_tier_label = QLabel('Charm tier')
+        mind_row = QHBoxLayout(); mind_row.addWidget(self.mind_tier_label); mind_row.addWidget(self.mind_tier, 1)
+        left.insertLayout(left.indexOf(self.settings_toggle), mind_row)
+        self.mind_tier.currentIndexChanged.connect(self.change_mind_tier)
         picker = QHBoxLayout(); left.addLayout(picker)
         self.effects_button = QPushButton('Add effects…'); left.insertWidget(0, self.effects_button)
         self.effects_button.clicked.connect(self.choose_accessible_effects)
@@ -308,6 +317,8 @@ class MarvelousCraftingDialog(QDialog):
         marvelous_item_weight(plan)
         from app.marvelous_item_rules import marvelous_item_durability
         marvelous_item_durability(plan)
+        from app.marvelous_base_powers import mind_charm_selection
+        mind_charm_selection(plan)
         stored_weight = plan.get('base_weight_lb')
         if stored_weight is not None:
             from decimal import Decimal
@@ -352,6 +363,7 @@ class MarvelousCraftingDialog(QDialog):
         self.effect_range.setValue(plan.get('effect_range_steps', 0))
         self.restore_mode.setCurrentIndex(max(0, self.restore_mode.findData(plan.get('restore_mode', ''))))
         self.hallow_alignment.setCurrentIndex(max(0, self.hallow_alignment.findData(plan.get('hallow_alignment', ''))))
+        self.mind_tier.setCurrentIndex(max(0, self.mind_tier.findData(plan.get('mind_charm_tier', ''))))
         for contribution in plan['contributions']:
             index = next((i for i in range(self.talent.count()) if self.talent.itemData(i)['key'] == contribution['catalog_key']), -1)
             if index < 0: raise ValueError('A saved talent is no longer available; editing cannot safely continue.')
@@ -446,7 +458,31 @@ class MarvelousCraftingDialog(QDialog):
                         self.talent.addItem(entry['name'], entry); existing.add(key)
         self.power_changed()
 
+    def change_mind_tier(self, *_):
+        if self.loading_plan or self.base_power.currentData() != 'mind:suggestion': return
+        from PySide6.QtCore import Qt
+        from app.marvelous_base_powers import MIND_POWERFUL_CHARM
+        rows = [row for row in range(self.table.rowCount())
+                if self.table.item(row, 0).data(Qt.ItemDataRole.UserRole) == MIND_POWERFUL_CHARM]
+        if self.mind_tier.currentData() == 'powerful' and not rows:
+            index = next((i for i in range(self.talent.count()) if self.talent.itemData(i)['key'] == MIND_POWERFUL_CHARM), -1)
+            if index >= 0:
+                self.talent.setCurrentIndex(index); self.add_contribution()
+        elif self.mind_tier.currentData() == 'powerful':
+            for row in rows:
+                self.table.cellWidget(row, 1).setValue(max(1, self.table.cellWidget(row, 1).value()))
+                self.table.cellWidget(row, 4).setValue(max(2, self.table.cellWidget(row, 4).value()))
+                self.table.cellWidget(row, 2).setChecked(False)
+        elif self.mind_tier.currentData() in ('lesser', 'greater'):
+            for row in reversed(rows): self.table.removeRow(row)
+        self.refresh_duration_controls()
+        self.update_preview()
+
     def power_changed(self, *_):
+        mind = self.base_power.currentData() == 'mind:suggestion'
+        self.mind_tier.setVisible(mind); self.mind_tier_label.setVisible(mind)
+        if not mind: self.mind_tier.setCurrentIndex(0)
+        elif not self.loading_plan and not self.mind_tier.currentData(): self.mind_tier.setCurrentIndex(1)
         hallow = self.base_power.currentData() == 'fate:hallow'
         self.hallow_alignment.setVisible(hallow); self.hallow_label.setVisible(hallow)
         if not hallow: self.hallow_alignment.setCurrentIndex(0)
@@ -695,6 +731,12 @@ class MarvelousCraftingDialog(QDialog):
             from app.marvelous_base_powers import FATE_MOTIFS
             if entry['key'] in FATE_MOTIFS:
                 cost.setToolTip('The item-specific motif conversion adds +1 complexity and lasts one minute per caster level. Its ordinary casting SP is not charged again. Manual values are preserved.')
+        if self.base_power.currentData() == 'mind:suggestion':
+            from app.marvelous_base_powers import MIND_CHARMS, MIND_POWERFUL_CHARM
+            if entry['key'] in MIND_CHARMS:
+                cost.setToolTip('Alternate charm: +1 complexity. Choose the tier above: greater adds +1 separately; powerful adds its dedicated +1 talent / +2 SP contribution. Do not charge the tier SP again on this row.')
+            elif entry['key'] == MIND_POWERFUL_CHARM:
+                cost.setToolTip('The powerful tier adds +3 complexity exactly once: +1 for this talent and +2 for its SP. Selecting another tier removes this dedicated contribution.')
         cost.valueChanged.connect(self.update_preview); self.table.setCellWidget(row, 1, cost)
         alternative = QCheckBox(); alternative.setToolTip('Mutually exclusive option in the same alternative group. Most expensive costs full; other options cost half.')
         alternative.toggled.connect(self.update_preview); self.table.setCellWidget(row, 2, alternative)
@@ -721,6 +763,9 @@ class MarvelousCraftingDialog(QDialog):
         choice.setToolTip('Choose an effect mode; its full name appears here after selection.')
         choice.setEnabled(choice.count() > 1)
         choice.currentIndexChanged.connect(lambda: self.contribution_choice_changed(choice)); self.table.setCellWidget(row, 5, choice)
+        if (not self.loading_plan and entry['key'] == 'mind:talent:powerful-charm'
+                and self.base_power.currentData() == 'mind:suggestion'):
+            self.mind_tier.setCurrentIndex(self.mind_tier.findData('powerful'))
         if not self.loading_plan: self.table.resizeRowsToContents()
         self.update_preview()
 
@@ -942,6 +987,7 @@ class MarvelousCraftingDialog(QDialog):
                     effect_range_steps=self.effect_range.value(),
                     restore_mode=self.restore_mode.currentData(),
                     hallow_alignment=self.hallow_alignment.currentData(),
+                    mind_charm_tier=self.mind_tier.currentData(),
                     extra_effects=self.extra_effects, combination_mode=self.combination_mode,
                     feat_integrations=self.feat_integrations,
                     automation_status='rules_only', display_overrides=self.display_overrides,
@@ -956,6 +1002,9 @@ class MarvelousCraftingDialog(QDialog):
 
     def update_preview(self, *_):
         if self.loading_plan: return
+        if self.base_power.currentData() == 'mind:suggestion':
+            self.base_power.setItemText(self.base_power.currentIndex(),
+                'Mind charm (tier below)' if self.mind_tier.currentData() else 'Lesser Suggestion (legacy)')
         self.refresh_duration_controls()
         selected_drawback = self.drawbacks_list.currentRow()
         self.drawbacks_list.clear()
