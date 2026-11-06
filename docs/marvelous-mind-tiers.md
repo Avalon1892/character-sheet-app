@@ -96,3 +96,35 @@ combination and companion-access gaps remain; this is not completion of the full
 custom designer goal.
 
 Source: https://spheresofpower.wikidot.com/mind (Ultimate charm descriptions).
+
+## Communication, protection and sensory profiles
+
+Innocence, Recommend, Speechless, Utterances, Vision and Wrack now have reviewed
+tier-specific payloads and durations. Recommend and Utterances project their own
+caster-level breakpoints. Recommend keeps its real-risk and next-turn trigger;
+Utterances keeps range, extra-save, verbal-component and actual-user skill-rank
+restrictions explicit. Innocence distinguishes emotion/fear penalty conversion
+from ignored severance penalties and does not manufacture a target-dependent bonus.
+
+Speechless shows the published day-per-level greater/powerful duration without
+adding days to the ordinary construction-duration ladder. Language selection and
+selective word/subject restrictions remain use-time decisions. Spellcasting is
+not suppressed, and telepathic interference does not become generic immunity to
+mental attacks. Innocence, Recommend and Speechless do not invent saving throws
+absent from their individual published text.
+
+Vision preserves its sense/subject limits, unfamiliar-stimulus and invisibility
+prohibitions, pain-save bonus and repeat saves. Wrack separates its one-round stun
+from its round-per-level nausea and successful-save sickness. No target records,
+resources, rounds or days are tracked or changed by these item-card projections.
+
+Sixteen of the thirty bundled ordinary charms now have dedicated profiles. The
+fourteen remaining are Amnesia, Cerebral Strike, Command, Disrupt Focus, Esteem,
+Fascinate, Gestures, Hostility, Inception, Inspiration, Mind Spy, Paralyze, Project
+Thoughts and Read Mind. Clouds, cognition, advanced/modifier interactions and the
+broader sphere-cost, tradition/material, combination and companion-access gaps
+remain open. The full designer goal is not complete; no deployment is included.
+
+Sources:
+- https://spheresofpower.wikidot.com/mind (Ultimate charm descriptions)
+- https://legacy.aonprd.com/coreRulebook/gettingStarted.html (default rounding)

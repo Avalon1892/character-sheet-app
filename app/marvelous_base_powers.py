@@ -212,6 +212,12 @@ MIND_CHARM_DURATIONS = {
     'mind:charm-talent:candor-charm-utility': ('round', 'hour', 'single-question'),
     'mind:charm-talent:flabbergast-charm-lots': ('minute', 'minute', 'ten-minutes'),
     'mind:charm-talent:incense-charm-lots': ('round', 'round', 'round'),
+    'mind:charm-talent:innocence-charm-sm': ('minute', 'minute', 'minute'),
+    'mind:charm-talent:recommend-charm-jester-s-hb': ('round', 'minute', 'hour'),
+    'mind:charm-talent:speechless-charm-utility-sm': ('round', 'day', 'day'),
+    'mind:charm-talent:utterances-charm': ('minute', 'minute', 'minute'),
+    'mind:charm-talent:vision-charm': ('round', 'round', 'round'),
+    'mind:charm-talent:wrack-charm-alienist-hb': ('round', 'round', 'round'),
     'mind:charm-talent:confusion-charm': ('fixed-round', 'minute', 'minute'),
     'mind:charm-talent:courage-charm': ('fixed-minute', 'minute', 'minute'),
     'mind:charm-talent:fear-charm': ('round', 'round', 'round'),
@@ -263,6 +269,40 @@ def mind_charm_details(key, tier, cl):
             result['charm_save'] = 'Will partial: on success, angry for 1 round instead. Spell resistance applies.'
         if tier == 'powerful':
             result['charm_effect'] += ' May choose frenzied instead; the invoking caster may change the target of the frenzy as a standard action.'
+    elif key.endswith('innocence-charm-sm'):
+        result['charm_save'] = 'Innocence does not specify a saving throw; spell resistance applies.'
+        result['charm_effect'] = ('Reduce numerical penalties from emotion, fear and severances by 1.' if tier == 'lesser'
+            else 'Motivations cannot be invoked by the target or others; ignore numerical penalties from emotion, fear and severances.')
+        if tier == 'powerful':
+            result['charm_effect'] += ' Emotion and fear penalties become morale bonuses of half their magnitude, rounded down; severance penalties are ignored, not converted.'
+        result['charm_scope'] = "Resolve against the recipient's actual penalties; do not grant an unconditional bonus to the crafter."
+    elif key.endswith('recommend-charm-jester-s-hb'):
+        result['charm_save'] = 'Recommend does not specify a saving throw; spell resistance applies.'
+        bonus = 1 if tier == 'lesser' else 1 + cl // 4
+        result['charm_effect'] = f"After a failed attack roll, skill check, saving throw or ability check, gain +{bonus} morale to the first roll of that check type for 1 round, beginning at the start of the target's next turn."
+        result['charm_scope'] = 'Only genuine failure with real risk qualifies; harmless attempts cannot farm bonuses. The GM decides whether a failure qualifies.'
+    elif key.endswith('speechless-charm-utility-sm'):
+        result['charm_save'] = 'Speechless does not specify a saving throw; spell resistance applies.'
+        result['charm_effect'] = ('Choose one language' if tier != 'powerful' else 'Choose any number of languages') + '; prevent speaking, understanding, reading, writing and telepathic communication in those languages. May selectively restrict words or subjects. Does not prevent spellcasting.'
+        if tier != 'lesser':
+            result['charm_scope'] = 'Block sending and receiving thoughts for telepathic creatures; otherwise block receiving telepathy. Participants are not automatically aware of the interference. Unrelated mind-reading and attacks are unaffected.'
+    elif key.endswith('utterances-charm'):
+        result['charm_effect'] = f'Alter vocalizations: {10 + 5 * (cl // 5)}% failure for verbal-component magic, stacking with similar failure chances; +/-{2 + cl // 5} circumstance to Bluff, Diplomacy, Intimidate or Perform.'
+        if tier != 'lesser':
+            result['charm_scope'] = 'May silence or dictate speech, preventing verbal magic. Dictation requires the target to remain in range unless commanded silent; speech against its nature grants another Will save.'
+        if tier == 'powerful':
+            result['charm_additional_benefits'] = "For vocal checks, use the invoking caster's ranks through the target or borrow the target's ranks. Cast verbal-only magic from its space; Gestures permits somatic components without another save. Verify actual user/target ranks and talents, not the crafter's statistics."
+    elif key.endswith('vision-charm'):
+        result['charm_effect'] = {'lesser': 'Alter one sense concerning one creature, object, sound or effect.',
+            'greater': 'Alter all five senses concerning one creature, object, sound or effect.',
+            'powerful': 'Alter all five senses concerning the surroundings.'}[tier]
+        result['charm_scope'] = 'Cannot create invisibility or reproduce unfamiliar speech, sights or sounds. Hiding pain grants +4 to the Will save. Interaction with altered perceptions grants a new save each round.'
+    elif key.endswith('wrack-charm-alienist-hb'):
+        result['charm_effect'] = 'Sickened.' if tier == 'lesser' else 'Nauseated.'
+        if tier != 'lesser':
+            result['charm_save'] = f'Will partial: on success, sickened for {cl} rounds instead. Spell resistance applies.'
+        if tier == 'powerful':
+            result['charm_additional_effect'] = 'Also stunned for 1 round on a failed save; this secondary duration does not scale with caster level.'
     elif key.endswith('confusion-charm'):
         result['charm_effect'] = 'The target is confused.'
         if tier == 'powerful': result['charm_penalties'] = '-2 caster level and -4 to Intelligence, Wisdom and Charisma for the charm duration.'
@@ -1170,7 +1210,7 @@ def resolve_base_power(plan):
     distances = {'personal': 'Personal', 'touch': 'Touch', 'close': f'{25 + 5 * (cl // 2)} ft.',
                  'medium': f'{100 + 10 * cl} ft.', 'long': f'{400 + 40 * cl} ft.'}
     durations = {'round': f'{cl} rounds', 'minute': f'{cl} minutes',
-                 'ten-minutes': f'{10 * cl} minutes', 'hour': f'{cl} hours',
+                 'ten-minutes': f'{10 * cl} minutes', 'hour': f'{cl} hours', 'day': f'{cl} days',
                  'fixed-round': '1 round', 'fixed-minute': '1 minute', 'dice-rounds': '1d4 rounds', 'fixed-day': '24 hours', 'instantaneous': 'Instantaneous',
                  'single-question': 'One question; repeat restriction depends on target Wisdom',
                  'concentration': 'Concentration', 'variable': 'As selected effect'}

@@ -83,6 +83,12 @@ def mind_payload(suffix, tier, cl=7, **changes):
     ('candor-charm-utility', ('7 rounds', '7 hours', 'One question; repeat restriction depends on target Wisdom')),
     ('flabbergast-charm-lots', ('7 minutes', '7 minutes', '70 minutes')),
     ('incense-charm-lots', ('7 rounds', '7 rounds', '7 rounds')),
+    ('innocence-charm-sm', ('7 minutes', '7 minutes', '7 minutes')),
+    ('recommend-charm-jester-s-hb', ('7 rounds', '7 minutes', '7 hours')),
+    ('speechless-charm-utility-sm', ('7 rounds', '7 days', '7 days')),
+    ('utterances-charm', ('7 minutes', '7 minutes', '7 minutes')),
+    ('vision-charm', ('7 rounds', '7 rounds', '7 rounds')),
+    ('wrack-charm-alienist-hb', ('7 rounds', '7 rounds', '7 rounds')),
     ('confusion-charm', ('1 round', '7 minutes', '7 minutes')),
     ('courage-charm', ('1 minute', '7 minutes', '7 minutes')),
     ('fear-charm', ('7 rounds', '7 rounds', '7 rounds')),
@@ -130,6 +136,40 @@ def test_calm_candor_and_emotion_charms_keep_target_limits_and_partial_saves():
         assert 'angry for 1 round' in resolve_base_power(mind_payload('incense-charm-lots', tier))['charm_save']
     incense = resolve_base_power(mind_payload('incense-charm-lots', 'powerful'))
     assert 'frenzied' in incense['charm_effect'] and 'standard action' in incense['charm_effect']
+
+
+@pytest.mark.parametrize('cl,bonus,failure', [(1,1,10), (4,2,10), (5,2,15), (8,3,15), (10,3,20)])
+def test_recommend_and_utterances_scale_without_borrowing_recipient_statistics(cl, bonus, failure):
+    for tier in ('greater', 'powerful'):
+        result = resolve_base_power(mind_payload('recommend-charm-jester-s-hb', tier, cl=cl))
+        assert f'+{bonus} morale' in result['charm_effect'] and 'first roll' in result['charm_effect']
+        assert 'next turn' in result['charm_effect'] and 'real risk' in result['charm_scope']
+        assert 'does not specify' in result['charm_save']
+    assert '+1 morale' in resolve_base_power(mind_payload('recommend-charm-jester-s-hb', 'lesser', cl=cl))['charm_effect']
+    result = resolve_base_power(mind_payload('utterances-charm', 'powerful', cl=cl))
+    assert f'{failure}% failure' in result['charm_effect']
+    assert f'+/-{2 + cl // 5} circumstance' in result['charm_effect']
+    assert 'remain in range' in result['charm_scope'] and 'another Will save' in result['charm_scope']
+    assert 'not the crafter' in result['charm_additional_benefits']
+
+
+def test_innocence_speechless_vision_and_wrack_preserve_scopes_and_secondary_durations():
+    result = resolve_base_power(mind_payload('innocence-charm-sm', 'powerful'))
+    assert 'rounded down' in result['charm_effect'] and 'severance penalties are ignored, not converted' in result['charm_effect']
+    assert 'does not specify' in result['charm_save']
+    for tier in ('greater', 'powerful'):
+        result = resolve_base_power(mind_payload('speechless-charm-utility-sm', tier))
+        assert 'Does not prevent spellcasting' in result['charm_effect']
+        assert 'not automatically aware' in result['charm_scope'] and 'Unrelated mind-reading' in result['charm_scope']
+        with pytest.raises(ValueError):
+            resolve_base_power(mind_payload('speechless-charm-utility-sm', tier, duration_steps=1))
+    assert 'one language' in resolve_base_power(mind_payload('speechless-charm-utility-sm', 'lesser'))['charm_effect']
+    assert 'any number' in resolve_base_power(mind_payload('speechless-charm-utility-sm', 'powerful'))['charm_effect']
+    result = resolve_base_power(mind_payload('vision-charm', 'powerful'))
+    assert 'surroundings' in result['charm_effect'] and '+4' in result['charm_scope'] and 'each round' in result['charm_scope']
+    result = resolve_base_power(mind_payload('wrack-charm-alienist-hb', 'powerful', cl=20))
+    assert result['duration'] == '20 rounds' and 'sickened for 20 rounds' in result['charm_save']
+    assert 'stunned for 1 round' in result['charm_additional_effect']
 
 
 @pytest.mark.parametrize('suffix', ['confusion-charm', 'courage-charm', 'sleep-charm'])
