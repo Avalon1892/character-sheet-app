@@ -64,10 +64,20 @@ def _snapshot_page(canvas):
     """Expand scrollable tables only for capture, then restore live geometry."""
     original_size = canvas.size()
     tables = [(table, table.minimumHeight(), table.maximumHeight(), table.size(),
-               table.verticalScrollBar().value(), table.horizontalScrollBar().value())
+               table.verticalScrollBar().value(), table.horizontalScrollBar().value(),
+               [table.isRowHidden(row) for row in range(table.rowCount())],
+               [table.rowHeight(row) for row in range(table.rowCount())],
+               table.wordWrap(), table.textElideMode())
               for table in canvas.findChildren(QTableWidget) if table.isVisibleTo(canvas)]
     try:
         for table, *_ in tables:
+            # A printed sheet must include entries hidden by the interactive
+            # preview limit, and must not preserve on-screen ellipses.
+            table.setWordWrap(True)
+            table.setTextElideMode(Qt.TextElideMode.ElideNone)
+            for row in range(table.rowCount()):
+                table.setRowHidden(row, False)
+            table.resizeRowsToContents()
             height = (table.horizontalHeader().height() + table.frameWidth() * 2 +
                       sum(table.rowHeight(row) for row in range(table.rowCount())
                           if not table.isRowHidden(row)) + 4)
@@ -91,7 +101,12 @@ def _snapshot_page(canvas):
         bottom = min(snapshot.height(), max((stop for _, stop in spans), default=snapshot.height()) + 32)
         return snapshot.toImage().copy(0, 0, snapshot.width(), bottom), spans
     finally:
-        for table, minimum, maximum, size, vertical, horizontal in tables:
+        for table, minimum, maximum, size, vertical, horizontal, hidden, heights, wrap, elide in tables:
+            table.setWordWrap(wrap)
+            table.setTextElideMode(elide)
+            for row, (was_hidden, height) in enumerate(zip(hidden, heights)):
+                table.setRowHidden(row, was_hidden)
+                table.setRowHeight(row, height)
             table.setMinimumHeight(minimum)
             table.setMaximumHeight(maximum)
             table.resize(size)

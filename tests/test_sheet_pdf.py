@@ -82,6 +82,9 @@ def test_scrollable_table_is_captured_fully_and_restored():
     for row in range(30):
         table.setItem(row, 0, QTableWidgetItem(f"Row {row}"))
     table.setFixedHeight(100)
+    table.setRowHidden(29, True)
+    table.setWordWrap(False)
+    table.setRowHeight(0, 47)
     layout.addWidget(table)
     canvas.resize(800, 150)
     canvas.show()
@@ -92,4 +95,8 @@ def test_scrollable_table_is_captured_fully_and_restored():
     assert image.height() > 1000
     assert max(stop for _, stop in spans) > 1000
     assert (table.minimumHeight(), table.maximumHeight(), table.verticalScrollBar().value()) == before
+    assert table.isRowHidden(29)
+    assert not table.wordWrap()
+    assert table.rowHeight(0) == 47
+    assert len(spans) >= 30
     canvas.close()
