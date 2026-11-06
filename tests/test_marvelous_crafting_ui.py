@@ -19,6 +19,36 @@ def composer(tmp_path):
     repo.close()
 
 
+@pytest.mark.parametrize('suffix,durations,detail', [
+    ('calm-charm', ('7 rounds', '7 rounds', '7 rounds'), 'do not dispel'),
+    ('candor-charm-utility', ('7 rounds', '7 hours', 'One question; repeat restriction depends on target Wisdom'), 'target Wisdom'),
+    ('flabbergast-charm-lots', ('7 minutes', '7 minutes', '70 minutes'), 'Dumbfounded'),
+    ('incense-charm-lots', ('7 rounds', '7 rounds', '7 rounds'), 'frenzied'),
+])
+def test_additional_mind_payloads_live_tier_price_and_locked_duration(composer, suffix, durations, detail):
+    from copy import deepcopy
+    from app.marvelous_item_rules import quote_marvelous_blueprint
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Mind'); dialog.cl.setValue(7)
+    writes = repo._connection.total_changes
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count())
+        if dialog.talent.itemData(i)['key'] == 'mind:charm-talent:' + suffix))
+    dialog.add_contribution()
+    for tier, duration, complexity in zip(('lesser', 'greater', 'powerful'), durations, (2, 3, 5)):
+        dialog.mind_tier.setCurrentIndex(dialog.mind_tier.findData(tier))
+        assert dialog.card_edits['duration'].text() == duration
+        assert quote_marvelous_blueprint(dialog.blueprint())[0] == complexity
+    assert detail in dialog.item_preview.toPlainText()
+    if suffix == 'candor-charm-utility':
+        assert not dialog.duration_steps.isEnabled()
+    dialog.card_locks['duration'].setChecked(True)
+    dialog.card_edits['duration'].setText('Locked duration')
+    dialog.cl.setValue(10)
+    dialog.load_plan(deepcopy(dialog.blueprint()))
+    assert dialog.card_edits['duration'].text() == 'Locked duration'
+    assert repo._connection.total_changes == writes
+
+
 def test_reviewed_mind_payload_duration_price_and_locks_update_together(composer):
     from copy import deepcopy
     from app.marvelous_item_rules import quote_marvelous_blueprint

@@ -208,6 +208,10 @@ MIND_CHARMS = frozenset('mind:charm-talent:' + suffix for suffix in (
     'speechless-charm-utility-sm', 'utterances-charm', 'vision-charm', 'wrack-charm-alienist-hb',
 ))
 MIND_CHARM_DURATIONS = {
+    'mind:charm-talent:calm-charm': ('round', 'round', 'round'),
+    'mind:charm-talent:candor-charm-utility': ('round', 'hour', 'single-question'),
+    'mind:charm-talent:flabbergast-charm-lots': ('minute', 'minute', 'ten-minutes'),
+    'mind:charm-talent:incense-charm-lots': ('round', 'round', 'round'),
     'mind:charm-talent:confusion-charm': ('fixed-round', 'minute', 'minute'),
     'mind:charm-talent:courage-charm': ('fixed-minute', 'minute', 'minute'),
     'mind:charm-talent:fear-charm': ('round', 'round', 'round'),
@@ -234,7 +238,32 @@ def reviewed_mind_charm(plan):
 def mind_charm_details(key, tier, cl):
     """Read-only item text: no target resources, clocks, or rolls are changed."""
     result = {'charm_save': 'Will negates; spell resistance applies.'}
-    if key.endswith('confusion-charm'):
+    if key.endswith('calm-charm'):
+        result['charm_effect'] = 'Suppress emotion-descriptor effects and magical or extraordinary morale bonuses; do not dispel them.'
+        if tier != 'lesser':
+            result['charm_effect'] += ' No violent or destructive actions or revelry; emotion effects beyond bonuses cannot be initiated.'
+        if tier == 'powerful':
+            result['charm_effect'] += ' The target may take no actions.'
+        result['charm_scope'] = 'The target may still defend itself normally. Aggressive action toward it or damage to it ends the charm immediately.'
+    elif key.endswith('candor-charm-utility'):
+        if tier == 'powerful':
+            result['charm_effect'] = 'Compel an answer to one directly asked question.'
+            result['charm_save'] = 'Will negates; success permits ignoring similar questions for minutes equal to the target Wisdom score. Similarity is adjudicated by the GM; do not use the crafter Wisdom. Spell resistance applies.'
+        else:
+            result['charm_effect'] = 'Only intentionally truthful speech; does not compel the target to speak.'
+            result['charm_scope'] = 'An attempted lie may allow a Reflex save to stop speaking when the target realizes its words are changing. Subtlety can conceal the compulsion.'
+    elif key.endswith('flabbergast-charm-lots'):
+        result['charm_effect'] = {'lesser': 'Uncertain.', 'greater': 'Shocked.', 'powerful': 'Dumbfounded.'}[tier]
+        if tier != 'lesser':
+            result['charm_save'] = 'Will partial: on success, uncertain for 1 minute instead. Spell resistance applies.'
+    elif key.endswith('incense-charm-lots'):
+        result['charm_effect'] = 'Choose angry or livid toward a chosen target.'
+        if tier != 'lesser':
+            result['charm_effect'] += ' May choose enraged instead.'
+            result['charm_save'] = 'Will partial: on success, angry for 1 round instead. Spell resistance applies.'
+        if tier == 'powerful':
+            result['charm_effect'] += ' May choose frenzied instead; the invoking caster may change the target of the frenzy as a standard action.'
+    elif key.endswith('confusion-charm'):
         result['charm_effect'] = 'The target is confused.'
         if tier == 'powerful': result['charm_penalties'] = '-2 caster level and -4 to Intelligence, Wisdom and Charisma for the charm duration.'
     elif key.endswith('courage-charm'):
@@ -1143,6 +1172,7 @@ def resolve_base_power(plan):
     durations = {'round': f'{cl} rounds', 'minute': f'{cl} minutes',
                  'ten-minutes': f'{10 * cl} minutes', 'hour': f'{cl} hours',
                  'fixed-round': '1 round', 'fixed-minute': '1 minute', 'dice-rounds': '1d4 rounds', 'fixed-day': '24 hours', 'instantaneous': 'Instantaneous',
+                 'single-question': 'One question; repeat restriction depends on target Wisdom',
                  'concentration': 'Concentration', 'variable': 'As selected effect'}
     summary = {'power': power.name, 'range': distances[RANGES[range_index]], 'duration': durations[duration],
                'caster_level': cl, 'save_dc': 10 + cl // 2, 'magic_skill_bonus': cl}

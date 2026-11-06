@@ -79,6 +79,10 @@ def mind_payload(suffix, tier, cl=7, **changes):
 
 
 @pytest.mark.parametrize('suffix,durations', [
+    ('calm-charm', ('7 rounds', '7 rounds', '7 rounds')),
+    ('candor-charm-utility', ('7 rounds', '7 hours', 'One question; repeat restriction depends on target Wisdom')),
+    ('flabbergast-charm-lots', ('7 minutes', '7 minutes', '70 minutes')),
+    ('incense-charm-lots', ('7 rounds', '7 rounds', '7 rounds')),
     ('confusion-charm', ('1 round', '7 minutes', '7 minutes')),
     ('courage-charm', ('1 minute', '7 minutes', '7 minutes')),
     ('fear-charm', ('7 rounds', '7 rounds', '7 rounds')),
@@ -109,6 +113,23 @@ def test_reviewed_mind_numbers_saves_and_lesser_limit_exceptions():
     result = resolve_base_power(mind_payload('mind-shield-charm', 'lesser', cl=7))
     assert '+4 morale' in result['charm_effect'] and 'multiple uses' in result['lesser_charm_limit']
     assert 'halve effectiveness' in resolve_base_power(mind_payload('mind-shield-charm', 'greater'))['charm_effect']
+
+
+def test_calm_candor_and_emotion_charms_keep_target_limits_and_partial_saves():
+    calm = resolve_base_power(mind_payload('calm-charm', 'powerful'))
+    assert 'no actions' in calm['charm_effect'] and 'do not dispel' in calm['charm_effect']
+    assert 'defend itself' in calm['charm_scope'] and 'ends the charm' in calm['charm_scope']
+    candor = resolve_base_power(mind_payload('candor-charm-utility', 'lesser'))
+    assert 'does not compel' in candor['charm_effect'] and 'Reflex save' in candor['charm_scope']
+    candor = resolve_base_power(mind_payload('candor-charm-utility', 'powerful', cl=20))
+    assert 'target Wisdom' in candor['charm_save'] and 'crafter Wisdom' in candor['charm_save']
+    with pytest.raises(ValueError):
+        resolve_base_power(mind_payload('candor-charm-utility', 'powerful', duration_steps=1))
+    for tier in ('greater', 'powerful'):
+        assert 'uncertain for 1 minute' in resolve_base_power(mind_payload('flabbergast-charm-lots', tier))['charm_save']
+        assert 'angry for 1 round' in resolve_base_power(mind_payload('incense-charm-lots', tier))['charm_save']
+    incense = resolve_base_power(mind_payload('incense-charm-lots', 'powerful'))
+    assert 'frenzied' in incense['charm_effect'] and 'standard action' in incense['charm_effect']
 
 
 @pytest.mark.parametrize('suffix', ['confusion-charm', 'courage-charm', 'sleep-charm'])

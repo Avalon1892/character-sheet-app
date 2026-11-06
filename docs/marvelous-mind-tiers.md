@@ -76,3 +76,23 @@ tests passed. Final focused coverage passed 31 checks, with an additional live U
 check of duration-step/price agreement after the shared runs. Both supported
 themes were visually inspected. No full application suite or desktop/portable
 deployment was performed for this checkpoint.
+
+## Additional emotion and truthfulness profiles
+
+Calm, Candor, Flabbergast and Incense now project their three tiers into the live
+item card. Calm keeps its suppression (not dispelling), defensive exception and
+early-ending conditions. Flabbergast and Incense distinguish their full-duration
+conditions from the fixed one-minute or one-round successful-save consequences.
+Candor distinguishes truthful speech from compelled answers. Powerful Candor
+shows a single-question effect and a repeat restriction based on the recipient's
+Wisdom score, without substituting the crafter's score or inventing a duration.
+Its duration cannot use the ordinary per-caster-level adjustment ladder.
+
+These projections reuse the existing tier costs, prerequisite row, live quote and
+locked-field behavior. They do not apply conditions to a recipient or add clocks.
+Twenty other ordinary charms, clouds, cognition and advanced/modifier interactions
+still need reviewed profiles. Other sphere-cost, tradition/material, complex
+combination and companion-access gaps remain; this is not completion of the full
+custom designer goal.
+
+Source: https://spheresofpower.wikidot.com/mind (Ultimate charm descriptions).
