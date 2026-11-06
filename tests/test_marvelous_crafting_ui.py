@@ -19,6 +19,44 @@ def composer(tmp_path):
     repo.close()
 
 
+def test_tradition_durability_updates_live_preserves_locks_and_reopens(composer):
+    from copy import deepcopy
+    from app.marvelous_item_rules import quote_marvelous_blueprint
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Life'); dialog.cl.setValue(10)
+    dialog.crafting_tradition = {'key': 'crafting:city-construction', 'name': 'City Construction', 'description': ''}
+    dialog.area_bound.setCurrentIndex(dialog.area_bound.findData('distance'))
+    dialog.update_preview()
+    price = quote_marvelous_blueprint(dialog.blueprint())[1].market_price_gp
+    writes = repo._connection.total_changes
+    dialog.base_hardness.setValue(5); dialog.base_item_hp.setValue(11)
+    assert 'Hardness 7; maximum item HP 13' in dialog.item_preview.toPlainText()
+    assert quote_marvelous_blueprint(dialog.blueprint())[1].market_price_gp == price
+    saved = deepcopy(dialog.blueprint())
+    dialog.card_locks['description'].setChecked(True)
+    dialog.card_edits['description'].setPlainText('Fixed item description')
+    dialog.base_item_hp.setValue(20)
+    assert dialog.card_edits['description'].toPlainText() == 'Fixed item description'
+    assert repo._connection.total_changes == writes
+    dialog.load_plan(saved)
+    assert dialog.base_hardness.value() == 5 and dialog.base_item_hp.value() == 11
+    dialog.crafting_tradition = {'key': 'crafting:diviner-s-sight', 'name': "Diviner's Sight", 'description': ''}
+    dialog.update_preview()
+    assert 'Hardness 2; maximum item HP 5' in dialog.item_preview.toPlainText()
+    dialog.remove_crafting_tradition()
+    assert 'Hardness 5; maximum item HP 11' in dialog.item_preview.toPlainText()
+    before = dialog.blueprint()
+    with pytest.raises(ValueError): dialog.load_plan({**before, 'base_hardness': True})
+    assert dialog.blueprint() == before
+    item_id = dialog.service.save_marvelous_design(before, name='Durable item', slot='', description='')
+    reopened = MarvelousCraftingDialog(repo, cid, item_id=item_id)
+    try:
+        assert reopened.base_hardness.value() == 5 and reopened.base_item_hp.value() == 11
+        assert 'Hardness 5; maximum item HP 11' in reopened.item_preview.toPlainText()
+    finally:
+        reopened.close()
+
+
 def test_hallow_choice_live_price_lock_reopen_and_base_switch(composer):
     from app.marvelous_item_rules import quote_marvelous_blueprint
     dialog, repo, cid = composer

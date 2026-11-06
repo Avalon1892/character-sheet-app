@@ -5,6 +5,46 @@ from app.marvelous_item_rules import effect_complexity, marvelous_crafting_quote
 from app.marvelous_item_rules import marvelous_requirements
 
 
+@pytest.mark.parametrize('tradition,hardness,hp', [
+    (None, 5, 11), ('crafting:city-construction', 7, 13),
+    ('crafting:evil-artifice', 7, 13), ('crafting:diviner-s-sight', 2, 5),
+    ('custom:city-construction', 5, 11),
+])
+def test_physical_item_durability_uses_reviewed_tradition_identity(tradition, hardness, hp):
+    from app.marvelous_item_rules import marvelous_item_durability
+    plan = dict(base_hardness=5, base_item_hp=11,
+                crafting_tradition={'key': tradition} if tradition else None)
+    result = marvelous_item_durability(plan)
+    assert (result['hardness'], result['hit_points']) == (hardness, hp)
+    assert (plan['base_hardness'], plan['base_item_hp']) == (5, 11)
+
+
+def test_item_durability_keeps_unknown_inputs_and_fragile_rounding_explicit():
+    from app.marvelous_item_rules import marvelous_item_durability
+    assert marvelous_item_durability({})['hit_points'] is None
+    resilient = dict(crafting_tradition={'key': 'crafting:evil-artifice'}, base_item_hp=1)
+    assert marvelous_item_durability(resilient)['hit_points'] == 1
+    assert marvelous_item_durability(resilient)['hardness'] is None
+    fragile = dict(base_hardness=1, base_item_hp=1, drawbacks=[
+        dict(source='published', catalog_key='crafting:fragile')])
+    assert marvelous_item_durability(fragile)['hardness'] == 0
+    assert marvelous_item_durability(fragile)['hit_points'] == 0
+    fragile['base_hardness'] = 8; fragile['base_item_hp'] = 12
+    fragile['drawbacks'].append(dict(fragile['drawbacks'][0]))
+    assert marvelous_item_durability(fragile)['hit_points'] == 6
+    fragile['drawbacks'].pop()
+    fragile['drawbacks'][0]['source'] = 'custom'
+    assert marvelous_item_durability(fragile)['hit_points'] == 12
+
+
+@pytest.mark.parametrize('field,value', [('base_hardness', True), ('base_hardness', -1),
+    ('base_hardness', 1.5), ('base_item_hp', 0), ('base_item_hp', '5'),
+    ('base_item_hp', 2147483648), ('base_item_hp', float('nan'))])
+def test_invalid_physical_item_durability_is_rejected(field, value):
+    from app.marvelous_item_rules import marvelous_item_durability
+    with pytest.raises(ValueError): marvelous_item_durability({field: value})
+
+
 def test_reviewed_conjuration_forms_have_catalog_backed_costs_and_choices():
     from app.content import magic_entries, magic_entry
     from app.marvelous_base_powers import CONJURATION_FORM_CHOICES, talent_effect_choices

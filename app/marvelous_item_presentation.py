@@ -37,8 +37,9 @@ def item_card_fields(plan, *, name, slot, description, quotation=None):
     quotation = quotation if quotation is not None else quote_marvelous_blueprint(plan)
     _, price, quote = quotation
     effect = resolve_base_power(plan)
-    from app.marvelous_item_rules import marvelous_item_weight, marvelous_aura_strength
+    from app.marvelous_item_rules import marvelous_item_weight, marvelous_aura_strength, marvelous_item_durability
     weight = marvelous_item_weight(plan)
+    durability = marvelous_item_durability(plan)
     values = dict(name=name, slot=slot or 'Held / carried', caster_level=str(plan['caster_level']),
                   aura=marvelous_aura_strength(plan['caster_level']) + ' (school not specified)', weight='Not specified' if weight is None else f'{weight:g} lb.', range=effect['range'], duration=effect['duration'],
                   save_dc=str(price.save_dc), activation=effective_item_activation(plan).replace('-', ' ').title(),
@@ -70,6 +71,14 @@ def item_card_fields(plan, *, name, slot, description, quotation=None):
         if entry['sphere'].casefold() != plan['sphere'].casefold(): label = 'Required cross-sphere talent'
         selected = f"\nSelected option: {contribution['effect_choice']}" if contribution.get('effect_choice') else ''
         values['description'] += f"\n\n{label} — {entry['name']}{selected}\n{entry.get('description', '')}"
+    if durability['hardness'] is not None or durability['hit_points'] is not None:
+        hardness = durability['hardness'] if durability['hardness'] is not None else 'Not specified'
+        hp = durability['hit_points'] if durability['hit_points'] is not None else 'Not specified'
+        values['description'] += f'\n\nItem durability: Hardness {hardness}; maximum item HP {hp}. These are item statistics, not character HP.'
+        if durability['resilient']:
+            values['description'] += '\nResilient calculation: base hardness + 2; base maximum item HP × 1.25, rounded down (minimum 1).'
+        if durability['fragile']:
+            values['description'] += '\nFragile calculation: half base hardness and half base maximum item HP, rounded down. A successful critical hit against the item gives it the broken condition regardless of damage.'
     records = plan.get('display_overrides', {})
     if tradition := plan.get('crafting_tradition'):
         values['description'] += '\n\nCrafting tradition — ' + tradition.get('name', tradition['key'])

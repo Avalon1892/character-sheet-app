@@ -1176,11 +1176,40 @@ def complex_crafting_skills(plan):
     return tuple(dict.fromkeys((*required, *((chosen,) if chosen else ()), *extra)))
 
 
+def marvelous_item_durability(plan):
+    """Optional physical-item inputs, modified once by reviewed traditions."""
+    simple_tradition_reduction(plan)  # Reuse the existing tradition-record validation.
+    values = {}
+    for field, minimum in (('base_hardness', 0), ('base_item_hp', 1)):
+        value = plan.get(field)
+        if value is not None and (isinstance(value, bool) or not isinstance(value, int)
+                                  or not minimum <= value <= 2147483647):
+            raise ValueError(f'{field.replace("_", " ").title()} must be an integer from {minimum} to 2147483647, or unspecified.')
+        values[field] = value
+    tradition = (plan.get('crafting_tradition') or {}).get('key')
+    resilient = tradition in {'crafting:city-construction', 'crafting:evil-artifice'}
+    fragile = tradition == 'crafting:diviner-s-sight' or any(
+        row.get('source') == 'published' and row.get('catalog_key') == 'crafting:fragile'
+        for row in plan.get('drawbacks', []))
+    if resilient and fragile:
+        raise ValueError('Fragile is incompatible with Resilient.')
+    hardness, hp = values['base_hardness'], values['base_item_hp']
+    if resilient:
+        hardness = None if hardness is None else hardness + 2
+        hp = None if hp is None else max(1, hp * 5 // 4)
+    elif fragile:
+        hardness = None if hardness is None else hardness // 2
+        hp = None if hp is None else hp // 2
+    return dict(hardness=hardness, hit_points=hp, resilient=resilient, fragile=fragile)
+
+
 def crafting_boon_details(plan):
     """Published sample-tradition effects without invented durability or clocks."""
     key = (plan.get('crafting_tradition') or {}).get('key')
     if key in {'crafting:city-construction', 'crafting:evil-artifice'}:
         return ('Resilient: +2 hardness and 25% more item HP (round down, minimum 1). Apply to the actual item material; no baseline durability is assumed. Armor also has a 25% chance to negate extra critical-hit damage, without stacking with fortification or similar effects.',)
+    if key == 'crafting:diviner-s-sight':
+        return ('Fragile: half normal item hardness and maximum item HP, rounded down when pre-tradition values are supplied. A successful critical hit against the item gives it the broken condition regardless of damage. No base material durability is assumed.',)
     if key == 'crafting:fey-touched':
         return ('Living: repairs 1 item HP per day after at least 8 continuous hours with suitable nutrients; broken items require two days per HP. Nutrients depend on material: bone, leather/hide, soil/sunlight for wood, or ore/ingot for metal. Exposure and repair are tracked manually.',)
     if key == 'crafting:ley-linked':
@@ -1487,6 +1516,7 @@ def quote_marvelous_blueprint(plan):
     feat_cost = feat_integration_complexity(plan.get('feat_integrations', []))
     simple = simple_tradition_reduction(plan)
     marvelous_item_weight(plan)
+    marvelous_item_durability(plan)
     marvelous_area_bound_mode(plan)
     limitations = crafting_item_limitations(plan)
     for power in [plan, *plan.get('extra_effects', [])]:
@@ -1516,10 +1546,6 @@ def quote_marvelous_blueprint(plan):
     cheap = False
     if tradition is not None:
         cheap = tradition['key'] in {'crafting:city-construction', 'crafting:diviner-s-sight'}
-        if tradition['key'] in {'crafting:city-construction', 'crafting:evil-artifice'} and any(
-                row.get('source') == 'published' and row.get('catalog_key') == 'crafting:fragile'
-                for row in plan.get('drawbacks', [])):
-            raise ValueError('Fragile is incompatible with the Resilient boon of this crafting tradition.')
     expensive = any(record['source'] == 'published' and record.get('catalog_key') == 'crafting:expensive'
                     for record in plan.get('drawbacks', []))
     if cheap or expensive:
