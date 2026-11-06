@@ -57,7 +57,9 @@ def test_reviewed_alternate_mind_charms_share_tier_cost_not_suggestion_duration(
                          contributions=rows, unique_changes=0, activation='standard', uses=1)
         result = resolve_base_power(blueprint)
         assert result['power'] == tier.title() + ' ' + entry['name']
-        assert result['duration'] == 'As selected effect' and 'suggestion_request' not in result
+        from app.marvelous_base_powers import MIND_CHARM_DURATIONS
+        assert (result['duration'] == 'As selected effect') == (entry['key'] not in MIND_CHARM_DURATIONS)
+        assert 'suggestion_request' not in result
         assert quote_marvelous_blueprint(blueprint)[0] == complexity
 
 
@@ -68,6 +70,59 @@ def test_mind_expanded_mass_and_legacy_profiles_are_not_conflated():
     assert 'All creature types' in result['creature_types'] and 'immunity' in result['creature_types']
     assert 'Up to 6' in result['charm_targets'] and 'once per target' in result['lesser_charm_limit']
     assert resolve_base_power(plan('mind:suggestion'))['duration'] == 'As selected effect'
+
+
+def mind_payload(suffix, tier, cl=7, **changes):
+    rows = [dict(catalog_key='mind:charm-talent:' + suffix, complexity=1, additional_spell_points=0)]
+    if tier == 'powerful': rows.append(dict(catalog_key='mind:talent:powerful-charm', complexity=3, additional_spell_points=2))
+    return dict(plan('mind:suggestion', cl=cl, mind_charm_tier=tier, contributions=rows), **changes)
+
+
+@pytest.mark.parametrize('suffix,durations', [
+    ('confusion-charm', ('1 round', '7 minutes', '7 minutes')),
+    ('courage-charm', ('1 minute', '7 minutes', '7 minutes')),
+    ('fear-charm', ('7 rounds', '7 rounds', '7 rounds')),
+    ('enthrall-charm-utility', ('7 minutes', '7 minutes', '7 hours')),
+    ('sleep-charm', ('1d4 rounds', '7 minutes', '7 minutes')),
+    ('mind-shield-charm', ('7 rounds', '7 rounds', '7 rounds')),
+])
+def test_reviewed_mind_payload_durations_and_tier_details(suffix, durations):
+    for tier, duration in zip(('lesser', 'greater', 'powerful'), durations):
+        result = resolve_base_power(mind_payload(suffix, tier))
+        assert result['duration'] == duration
+        assert result['charm_effect'] and result['charm_save']
+        assert 'charm_duration_review' not in result
+        assert 'suggestion_end' not in result
+
+
+def test_reviewed_mind_numbers_saves_and_lesser_limit_exceptions():
+    result = resolve_base_power(mind_payload('courage-charm', 'lesser', cl=10))
+    assert '+4 morale' in result['charm_effect'] and 'one chosen' in result['charm_effect']
+    assert 'no saving throw' in result['charm_save']
+    result = resolve_base_power(mind_payload('courage-charm', 'powerful', cl=10))
+    assert '+3 morale' in result['charm_effect'] and '10 temporary HP' in result['charm_additional_benefits']
+    result = resolve_base_power(mind_payload('confusion-charm', 'powerful'))
+    assert '-2 caster level' in result['charm_penalties'] and '-4 to Intelligence' in result['charm_penalties']
+    assert 'shaken for 7 rounds' in resolve_base_power(mind_payload('fear-charm', 'greater'))['charm_save']
+    assert 'not compulsion' in resolve_base_power(mind_payload('enthrall-charm-utility', 'powerful'))['charm_scope']
+    assert 'new Will save with +4' in resolve_base_power(mind_payload('sleep-charm', 'powerful'))['charm_waking']
+    result = resolve_base_power(mind_payload('mind-shield-charm', 'lesser', cl=7))
+    assert '+4 morale' in result['charm_effect'] and 'multiple uses' in result['lesser_charm_limit']
+    assert 'halve effectiveness' in resolve_base_power(mind_payload('mind-shield-charm', 'greater'))['charm_effect']
+
+
+@pytest.mark.parametrize('suffix', ['confusion-charm', 'courage-charm', 'sleep-charm'])
+def test_fixed_or_rolled_charm_durations_do_not_use_the_scalable_duration_ladder(suffix):
+    with pytest.raises(ValueError):
+        resolve_base_power({**mind_payload(suffix, 'lesser'), 'duration_steps': 1})
+
+
+def test_unreviewed_mind_modifier_does_not_inherit_reviewed_base_duration():
+    blueprint = mind_payload('confusion-charm', 'greater')
+    blueprint['contributions'].append(dict(catalog_key='mind:advanced-talent:insanity', complexity=2, additional_spell_points=1))
+    result = resolve_base_power(blueprint)
+    assert result['duration'] == 'As selected effect' and 'charm_duration_review' in result
+    assert 'charm_effect' not in result
 
 
 @pytest.mark.parametrize('key,tier,charges', [('mind:suggestion', 'lesser', 1),

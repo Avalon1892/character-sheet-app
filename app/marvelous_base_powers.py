@@ -207,6 +207,61 @@ MIND_CHARMS = frozenset('mind:charm-talent:' + suffix for suffix in (
     'read-mind-charm-utility', 'recommend-charm-jester-s-hb', 'sleep-charm',
     'speechless-charm-utility-sm', 'utterances-charm', 'vision-charm', 'wrack-charm-alienist-hb',
 ))
+MIND_CHARM_DURATIONS = {
+    'mind:charm-talent:confusion-charm': ('fixed-round', 'minute', 'minute'),
+    'mind:charm-talent:courage-charm': ('fixed-minute', 'minute', 'minute'),
+    'mind:charm-talent:fear-charm': ('round', 'round', 'round'),
+    'mind:charm-talent:enthrall-charm-utility': ('minute', 'minute', 'hour'),
+    'mind:charm-talent:sleep-charm': ('dice-rounds', 'minute', 'minute'),
+    'mind:charm-talent:mind-shield-charm': ('round', 'round', 'round'),
+}
+
+
+def reviewed_mind_charm(plan):
+    """Only reviewed payloads with no unreviewed coexisting modifiers."""
+    tier = plan.get('mind_charm_tier')
+    rows = plan.get('contributions', [])
+    charms = [row for row in rows if row.get('catalog_key', '').startswith('mind:charm-talent:')]
+    if tier not in ('lesser', 'greater', 'powerful') or len(charms) != 1:
+        return None
+    key = charms[0]['catalog_key']
+    allowed = {key, MIND_POWERFUL_CHARM, 'mind:talent:expanded-charm', 'mind:talent:mass-charm-mass'}
+    if (key not in MIND_CHARM_DURATIONS or any(row.get('alternative') or row.get('catalog_key') not in allowed for row in rows)):
+        return None
+    return key, tier
+
+
+def mind_charm_details(key, tier, cl):
+    """Read-only item text: no target resources, clocks, or rolls are changed."""
+    result = {'charm_save': 'Will negates; spell resistance applies.'}
+    if key.endswith('confusion-charm'):
+        result['charm_effect'] = 'The target is confused.'
+        if tier == 'powerful': result['charm_penalties'] = '-2 caster level and -4 to Intelligence, Wisdom and Charisma for the charm duration.'
+    elif key.endswith('courage-charm'):
+        result['charm_save'] = 'Courage lists no saving throw; spell resistance applies.'
+        bonus = (2 if tier == 'lesser' else 1) + cl // 5
+        result['charm_effect'] = (f'+{bonus} morale to one chosen attack roll, saving throw, ability check or skill check within one minute; expires unused if no roll is chosen.'
+            if tier == 'lesser' else f'+{bonus} morale to attack rolls, saving throws, ability checks and skill checks.')
+        if tier == 'powerful': result['charm_additional_benefits'] = f'Fear immunity and {cl} temporary HP; not automatically granted to the crafter.'
+    elif key.endswith('fear-charm'):
+        result['charm_effect'] = {'lesser': 'Shaken.', 'greater': 'Frightened.', 'powerful': 'Panicked.'}[tier]
+        if tier != 'lesser': result['charm_save'] = f'Will partial: on success, shaken for {cl} rounds instead. Spell resistance applies.'
+    elif key.endswith('enthrall-charm-utility'):
+        result['charm_effect'] = ('Improve disposition by one step, at most friendly; Will negates.' if tier == 'lesser'
+            else 'Disposition becomes friendly; unusual requests require an opposed Charisma check. Obviously fatal requests or requests against the target\'s nature are not obeyed.')
+        result['charm_scope'] = 'Enchantment (charm), not compulsion. Attacks or threats by the invoking caster or allies grant +5 on the save. DC 25 Sense Motive reveals enchantment.'
+    elif key.endswith('sleep-charm'):
+        result['charm_effect'] = 'Staggered for 1d4 rounds; do not average the duration roll.' if tier == 'lesser' else 'Asleep.'
+        if tier == 'greater': result['charm_waking'] = 'Damage wakes the target automatically; another creature may wake it as a standard action (aid another).'
+        if tier == 'powerful': result['charm_waking'] = 'Damage or a standard-action waking attempt permits a new Will save with +4; waking is not automatic.'
+    elif key.endswith('mind-shield-charm'):
+        result['charm_save'] = 'Willing creature only; spell resistance applies.'
+        if tier == 'lesser':
+            result['charm_effect'] = f'+{1 + cl // 2} morale on a Will save against a mind-altering effect; ends after that one save, successful or not. Does not remove existing effects.'
+            result['lesser_charm_limit'] = 'Mind Shield explicitly permits multiple uses on a target per day; item uses remain a separate resource.'
+        elif tier == 'greater': result['charm_effect'] = f'+{cl} morale to Will saves against mind-affecting effects; halve effectiveness after each such save, successful or not. Does not remove existing effects.'
+        else: result['charm_effect'] = f'Immunity to mind-altering effects requiring a Will save. A magic skill check against the applicable caster MSD can bypass immunity; even then, +{cl} to the save. Verify that MSD at use.'
+    return result
 
 
 def mind_charm_selection(plan):
@@ -787,6 +842,8 @@ def effective_base_duration(plan):
     power = next((power for power in BASE_POWERS if power.key == plan.get('base_power')), None)
     if power is None: return 'instantaneous'
     if power.key == 'mind:suggestion' and plan.get('mind_charm_tier') in ('lesser', 'greater', 'powerful'):
+        if reviewed := reviewed_mind_charm(plan):
+            return MIND_CHARM_DURATIONS[reviewed[0]][('lesser', 'greater', 'powerful').index(reviewed[1])]
         return 'variable' if any(row.get('catalog_key', '').startswith('mind:charm-talent:')
             for row in plan.get('contributions', [])) else 'hour'
     if power.key == 'fate:word':
@@ -1085,7 +1142,7 @@ def resolve_base_power(plan):
                  'medium': f'{100 + 10 * cl} ft.', 'long': f'{400 + 40 * cl} ft.'}
     durations = {'round': f'{cl} rounds', 'minute': f'{cl} minutes',
                  'ten-minutes': f'{10 * cl} minutes', 'hour': f'{cl} hours',
-                 'fixed-round': '1 round', 'fixed-day': '24 hours', 'instantaneous': 'Instantaneous',
+                 'fixed-round': '1 round', 'fixed-minute': '1 minute', 'dice-rounds': '1d4 rounds', 'fixed-day': '24 hours', 'instantaneous': 'Instantaneous',
                  'concentration': 'Concentration', 'variable': 'As selected effect'}
     summary = {'power': power.name, 'range': distances[RANGES[range_index]], 'duration': durations[duration],
                'caster_level': cl, 'save_dc': 10 + cl // 2, 'magic_skill_bonus': cl}
@@ -1102,13 +1159,16 @@ def resolve_base_power(plan):
         summary['creature_types'] = ('All creature types; mind-affecting immunity still applies.' if expanded else 'Only the invoking user\'s own creature type; do not assume the crafter is the user.')
         summary['charm_resistance'] = 'Mind-affecting enchantment; spell resistance applies. Resolve the selected charm\'s saving throws and target restrictions at use.'
         if charm:
-            summary['charm_duration_review'] = 'Use the selected tier in the catalog description below. Its exact duration and special timing require review; Suggestion duration is not substituted.'
+            if reviewed := reviewed_mind_charm(plan):
+                summary.update(mind_charm_details(*reviewed, cl))
+            else:
+                summary['charm_duration_review'] = 'Use the selected tier in the catalog description below. Its exact duration and special timing require review; Suggestion duration is not substituted.'
         else:
             summary['suggestion_request'] = {'lesser': 'A very simple request, limited to a sentence or two; Will negates.',
                 'greater': 'Up to a basic request, never something the target would not normally do; very simple requests impose -2 on the Will save.',
                 'powerful': 'Any request not obviously fatal or against the target\'s nature; basic requests impose -2 and very simple requests -4 on the Will save.'}[tier]
             summary['suggestion_end'] = 'Ends when the suggested action finishes or the duration expires. Unmet conditional instructions do not occur.'
-        if tier == 'lesser': summary['lesser_charm_limit'] = 'Normally once per target per day for this individual lesser charm, separate from the item\'s daily uses; apply any explicit charm-specific exception.'
+        if tier == 'lesser' and 'lesser_charm_limit' not in summary: summary['lesser_charm_limit'] = 'Normally once per target per day for this individual lesser charm, separate from the item\'s daily uses; apply any explicit charm-specific exception.'
     if power.key == 'fate:hallow':
         alignment, bonus_type = hallow.split(': ')
         opposed = {'good': 'evil', 'evil': 'good', 'lawful': 'chaotic', 'chaotic': 'lawful'}[alignment]

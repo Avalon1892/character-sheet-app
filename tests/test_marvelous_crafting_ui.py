@@ -19,6 +19,37 @@ def composer(tmp_path):
     repo.close()
 
 
+def test_reviewed_mind_payload_duration_price_and_locks_update_together(composer):
+    from copy import deepcopy
+    from app.marvelous_item_rules import quote_marvelous_blueprint
+    from app.marvelous_base_powers import resolve_base_power
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Mind'); dialog.cl.setValue(7)
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count())
+        if dialog.talent.itemData(i)['key'] == 'mind:charm-talent:confusion-charm'))
+    writes = repo._connection.total_changes
+    dialog.add_contribution()
+    assert dialog.card_edits['duration'].text() == '1 round'
+    assert not dialog.duration_steps.isEnabled()
+    dialog.mind_tier.setCurrentIndex(dialog.mind_tier.findData('greater'))
+    assert dialog.card_edits['duration'].text() == '7 minutes'
+    assert quote_marvelous_blueprint(dialog.blueprint())[0] == 3
+    dialog.duration_steps.setValue(1)
+    assert dialog.card_edits['duration'].text() == '70 minutes'
+    assert quote_marvelous_blueprint(dialog.blueprint())[0] == 5
+    dialog.duration_steps.setValue(0)
+    dialog.mind_tier.setCurrentIndex(dialog.mind_tier.findData('powerful'))
+    assert '-4 to Intelligence' in dialog.item_preview.toPlainText()
+    assert quote_marvelous_blueprint(dialog.blueprint())[0] == 5
+    dialog.card_locks['duration'].setChecked(True)
+    dialog.card_edits['duration'].setText('GM duration')
+    dialog.cl.setValue(10)
+    saved = deepcopy(dialog.blueprint()); dialog.load_plan(saved)
+    assert dialog.card_edits['duration'].text() == 'GM duration'
+    assert resolve_base_power(saved)['duration'] == '10 minutes'
+    assert repo._connection.total_changes == writes
+
+
 def test_mind_tier_live_price_prerequisite_locks_and_legacy_reopen(composer):
     from copy import deepcopy
     from app.marvelous_item_rules import quote_marvelous_blueprint

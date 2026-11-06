@@ -45,3 +45,34 @@ combinations, material pricing and companion-access coverage still need work.
 Sources:
 - https://spheresofpower.wikidot.com/magical-items (Mind item conversions)
 - https://spheresofpower.wikidot.com/mind (charm tiers and talents)
+
+## Reviewed ordinary charm payloads
+
+Confusion, Courage, Fear, Enthrall, Sleep and Mind Shield now have structured
+duration and effect text for each tier. Courage uses the Ultimate sphere's
+minute-per-level greater/powerful duration, not the older Core variant. Its lesser
+effect lasts one fixed minute and benefits one roll. Sleep's lesser duration
+remains `1d4 rounds`, not an average or a caster-level-scaled duration.
+
+The item card projects scoped numerical bonuses and penalties, temporary HP,
+partial-save consequences, waking rules, Enthrall's charm-versus-compulsion
+distinction, and Mind Shield's willing-target and repeat-use rules. It does not
+mutate a recipient or track turns, repeated saving throws, or waking attempts.
+Courage is not assigned an invented Will save. Powerful Mind Shield's applicable
+MSD remains an explicit use-time check rather than borrowing the crafter's MSD.
+
+Fixed or rolled durations cannot silently use the ordinary per-level duration
+ladder. Known scalable durations use the existing adjustments and price formula.
+Unreviewed coexisting modifiers (for example Insanity) retain a duration-review
+warning instead of inheriting an incorrect base duration. Legacy designs without
+an explicit tier and all locked display fields retain their existing behavior.
+
+Other ordinary charms, clouds, cognition and advanced interactions still need
+dedicated payload/duration work; the full designer goal remains active.
+
+Payload checkpoint validation: 1,281 shared rules/access/presentation tests,
+313 designer UI tests and 105 item/resource/project/import/Moldable integration
+tests passed. Final focused coverage passed 31 checks, with an additional live UI
+check of duration-step/price agreement after the shared runs. Both supported
+themes were visually inspected. No full application suite or desktop/portable
+deployment was performed for this checkpoint.
