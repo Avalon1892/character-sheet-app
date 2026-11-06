@@ -218,6 +218,12 @@ MIND_CHARM_DURATIONS = {
     'mind:charm-talent:utterances-charm': ('minute', 'minute', 'minute'),
     'mind:charm-talent:vision-charm': ('round', 'round', 'round'),
     'mind:charm-talent:wrack-charm-alienist-hb': ('round', 'round', 'round'),
+    'mind:charm-talent:command-charm': ('next-turn', 'concentration-round', 'concentration-round'),
+    'mind:charm-talent:disrupt-focus-charm': ('concentration-half-round', 'round', 'round'),
+    'mind:charm-talent:gestures-charm': ('minute', 'minute', 'minute'),
+    'mind:charm-talent:paralyze-charm': ('fixed-round', 'round', 'round'),
+    'mind:charm-talent:project-thoughts-charm-utility': ('single-message', 'concentration', 'concentration'),
+    'mind:charm-talent:read-mind-charm-utility': ('emotional-reading', 'concentration', 'information-reading'),
     'mind:charm-talent:confusion-charm': ('fixed-round', 'minute', 'minute'),
     'mind:charm-talent:courage-charm': ('fixed-minute', 'minute', 'minute'),
     'mind:charm-talent:fear-charm': ('round', 'round', 'round'),
@@ -303,6 +309,47 @@ def mind_charm_details(key, tier, cl):
             result['charm_save'] = f'Will partial: on success, sickened for {cl} rounds instead. Spell resistance applies.'
         if tier == 'powerful':
             result['charm_additional_effect'] = 'Also stunned for 1 round on a failed save; this secondary duration does not scale with caster level.'
+    elif key.endswith('command-charm'):
+        if tier == 'lesser':
+            result['charm_effect'] = 'Force one move, swift or free action on the next turn; the target cannot use its other actions that turn to undo it. Standing still counts as a free action.'
+        else:
+            result['charm_effect'] = ('Control nonverbal actions while concentrating; at most one move or standard action each round, or a charge.' if tier == 'greater'
+                else 'Control nonverbal actions while concentrating, without the one-move-or-standard-action restriction.')
+            result['charm_save'] = 'Will negates; a new Will save is allowed as a free action at the end of each turn of the target. Spell resistance applies.'
+            result['charm_scope'] = 'The target may still speak. Control grants no knowledge of its magic or inventory and cannot force helplessness or surrender of its Dexterity bonus to AC.'
+    elif key.endswith('disrupt-focus-charm'):
+        result['charm_effect'] = 'Require a concentration check for spells, talents and similar effects normally subject to concentration under adverse conditions.'
+        result['concentration_dc'] = f"{10 + (cl // 2 if tier == 'lesser' else cl)} + the invoking user's casting ability modifier; do not substitute the crafter's modifier."
+        result['charm_scope'] = ('The invoking user must concentrate; ends on the first failed concentration check.' if tier == 'lesser'
+            else 'No concentration required to maintain it; ends on the first failed concentration check.' if tier == 'greater'
+            else 'No concentration required to maintain it; failed concentration checks do not end it.')
+    elif key.endswith('gestures-charm'):
+        result['charm_effect'] = f'Alter gestures: {10 + 5 * (cl // 5)}% failure for somatic-component magic, stacking with similar failure chances; -{2 + cl // 5} circumstance to skill checks normally subject to armor check penalties.'
+        if tier != 'lesser':
+            result['charm_scope'] = f'Force pickup or dropping of held objects within reach, not worn or bound items. As a standard action without provoking, make a flat-footed target prone or attempt a ranged trip using CL {cl} instead of BAB and the casting ability modifier of the invoking user instead of Strength. May force an armor-check-penalty skill check to fail if flat-footed, or prevent gesture/somatic magic.'
+        if tier == 'powerful':
+            result['charm_additional_benefits'] = 'May force movement up to half the speed of the target or an attack of opportunity when a creature provokes in its threatened area. The target must have an attack of opportunity remaining; this also spends one attack of opportunity from the invoking user. Somatic-only magic may originate from the target; Utterances permits verbal components without another save. Willing participants may reverse control. Resolve actual user/target capabilities at use.'
+    elif key.endswith('paralyze-charm'):
+        result['charm_effect'] = {'lesser': 'Dazed for 1 round.', 'greater': 'Stunned.', 'powerful': 'Paralyzed.'}[tier]
+        if tier != 'lesser':
+            result['charm_save'] = 'Will negates; each round the target may take a full-round action, without provoking, to attempt a new Will save and end the charm. Spell resistance applies.'
+    elif key.endswith('project-thoughts-charm-utility'):
+        result['charm_save'] = 'Project Thoughts does not specify a saving throw; spell resistance applies.'
+        result['charm_effect'] = ('Send one telepathic message of at most 25 words; a shared language is required.' if tier == 'lesser'
+            else 'Send telepathic messages in real time while concentrating, without a word limit or shared-language requirement.')
+        if tier == 'lesser':
+            result['lesser_charm_limit'] = 'Project Thoughts permits repeated uses on a target in a day; item daily uses remain separate.'
+        if tier == 'powerful':
+            result['charm_additional_benefits'] = 'The target may reply telepathically, but is never required to answer.'
+    elif key.endswith('read-mind-charm-utility'):
+        if tier == 'powerful':
+            result['charm_effect'] = 'Extract one specific piece of information, normally an answer of at most 25 words and limited to what the target knows.'
+            result['charm_save'] = 'Will negates; success permits silence or a Bluff-based lie. Asking the same creature the same question again returns the same response, including silence or a lie. Spell resistance applies.'
+        else:
+            result['charm_effect'] = 'Read the emotional state of the target.' if tier == 'lesser' else 'Read surface thoughts while concentrating.'
+            result['charm_save'] = 'Will negates if unwilling; spell resistance applies.'
+        if tier == 'lesser':
+            result['lesser_charm_limit'] = 'Read Mind permits repeated emotional-state readings on a target in a day; item daily uses remain separate.'
     elif key.endswith('confusion-charm'):
         result['charm_effect'] = 'The target is confused.'
         if tier == 'powerful': result['charm_penalties'] = '-2 caster level and -4 to Intelligence, Wisdom and Charisma for the charm duration.'
@@ -1213,6 +1260,12 @@ def resolve_base_power(plan):
                  'ten-minutes': f'{10 * cl} minutes', 'hour': f'{cl} hours', 'day': f'{cl} days',
                  'fixed-round': '1 round', 'fixed-minute': '1 minute', 'dice-rounds': '1d4 rounds', 'fixed-day': '24 hours', 'instantaneous': 'Instantaneous',
                  'single-question': 'One question; repeat restriction depends on target Wisdom',
+                 'next-turn': 'One action on the next turn of the target',
+                 'concentration-round': f'Concentration, up to {cl} rounds',
+                 'concentration-half-round': f'Concentration, up to {max(1, cl // 2)} rounds',
+                 'single-message': 'One message of at most 25 words',
+                 'emotional-reading': 'One emotional-state reading; no sustained duration specified',
+                 'information-reading': 'One specific piece of information',
                  'concentration': 'Concentration', 'variable': 'As selected effect'}
     summary = {'power': power.name, 'range': distances[RANGES[range_index]], 'duration': durations[duration],
                'caster_level': cl, 'save_dc': 10 + cl // 2, 'magic_skill_bonus': cl}

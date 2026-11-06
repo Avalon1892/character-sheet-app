@@ -128,3 +128,40 @@ remain open. The full designer goal is not complete; no deployment is included.
 Sources:
 - https://spheresofpower.wikidot.com/mind (Ultimate charm descriptions)
 - https://legacy.aonprd.com/coreRulebook/gettingStarted.html (default rounding)
+
+## Control, concentration and telepathy profiles
+
+Command, Disrupt Focus, Gestures, Paralyze, Project Thoughts and Read Mind now
+have dedicated tier profiles. Command preserves its next-turn lesser action,
+bounded concentration, action limits and free-action repeat saves. Paralyze uses
+a fixed one-round lesser duration and full-round repeat-save actions for its
+stronger tiers, rather than conflating those saves with Command's free action.
+Disrupt Focus calculates its duration floor and the known part of its
+concentration DC while leaving the invoking user's casting modifier explicit.
+Its lesser/greater early-ending rule does not incorrectly end the powerful tier.
+
+Gestures projects somatic failure and skill penalties, plus held-versus-worn
+object restrictions, trip substitutions and the actual participants' attack of
+opportunity limits. It does not borrow the crafter's capabilities or introduce
+round tracking. Project Thoughts and Read Mind preserve word/language limits,
+voluntary replies, unwilling-target saves, repeat-question behavior and their
+explicit repeatable lesser-charm exceptions. The item's own daily uses remain a
+separate resource.
+
+Single messages/readings and concentration-bounded effects do not inherit a
+generic per-level duration or an adjustable construction-duration ladder. A
+lesser emotional-state reading has no sustained duration invented for it.
+Existing locks, saved drafts and tier complexity arithmetic are unchanged.
+
+Twenty-two bundled ordinary charms now have profiles. The eight remaining are
+Amnesia, Cerebral Strike, Esteem, Fascinate, Hostility, Inception, Inspiration and
+Mind Spy. Inspiration's native immediate trigger requires item-activation rules
+verification: the Mind construction entry does not explicitly repeat Fate's
+native-word casting-time exception, so this checkpoint does not grant it for
+free. Clouds, cognition, advanced/modifier interactions and the broader designer
+gaps listed above remain open. No full-goal completion or deployment is claimed.
+
+Sources:
+
+- https://spheresofpower.wikidot.com/mind (Ultimate charm descriptions)
+- https://spheresofpower.wikidot.com/magical-items (Mind versus Fate conversions)

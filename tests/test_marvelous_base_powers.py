@@ -89,6 +89,12 @@ def mind_payload(suffix, tier, cl=7, **changes):
     ('utterances-charm', ('7 minutes', '7 minutes', '7 minutes')),
     ('vision-charm', ('7 rounds', '7 rounds', '7 rounds')),
     ('wrack-charm-alienist-hb', ('7 rounds', '7 rounds', '7 rounds')),
+    ('command-charm', ('One action on the next turn of the target', 'Concentration, up to 7 rounds', 'Concentration, up to 7 rounds')),
+    ('disrupt-focus-charm', ('Concentration, up to 3 rounds', '7 rounds', '7 rounds')),
+    ('gestures-charm', ('7 minutes', '7 minutes', '7 minutes')),
+    ('paralyze-charm', ('1 round', '7 rounds', '7 rounds')),
+    ('project-thoughts-charm-utility', ('One message of at most 25 words', 'Concentration', 'Concentration')),
+    ('read-mind-charm-utility', ('One emotional-state reading; no sustained duration specified', 'Concentration', 'One specific piece of information')),
     ('confusion-charm', ('1 round', '7 minutes', '7 minutes')),
     ('courage-charm', ('1 minute', '7 minutes', '7 minutes')),
     ('fear-charm', ('7 rounds', '7 rounds', '7 rounds')),
@@ -170,6 +176,53 @@ def test_innocence_speechless_vision_and_wrack_preserve_scopes_and_secondary_dur
     result = resolve_base_power(mind_payload('wrack-charm-alienist-hb', 'powerful', cl=20))
     assert result['duration'] == '20 rounds' and 'sickened for 20 rounds' in result['charm_save']
     assert 'stunned for 1 round' in result['charm_additional_effect']
+
+
+@pytest.mark.parametrize('cl,half,failure,penalty', [(1,1,10,2), (2,1,10,2), (5,2,15,3), (10,5,20,4)])
+def test_disrupt_focus_and_gestures_scale_without_guessing_user_ability(cl, half, failure, penalty):
+    for tier in ('lesser', 'greater', 'powerful'):
+        result = resolve_base_power(mind_payload('disrupt-focus-charm', tier, cl=cl))
+        assert result['concentration_dc'].startswith(str(10 + (cl // 2 if tier == 'lesser' else cl)) + ' +')
+        assert 'invoking user' in result['concentration_dc'] and 'not substitute' in result['concentration_dc']
+        if tier == 'lesser':
+            assert result['duration'] == f'Concentration, up to {half} rounds'
+            assert 'first failed' in result['charm_scope']
+        elif tier == 'greater':
+            assert 'first failed' in result['charm_scope']
+        else:
+            assert 'do not end' in result['charm_scope']
+        gesture = resolve_base_power(mind_payload('gestures-charm', tier, cl=cl))
+        assert f'{failure}% failure' in gesture['charm_effect']
+        assert f'-{penalty} circumstance' in gesture['charm_effect']
+    assert 'worn or bound' in gesture['charm_scope'] and 'Utterances' in gesture['charm_additional_benefits']
+    assert 'from the invoking user' in gesture['charm_additional_benefits']
+
+
+def test_command_paralyze_and_telepathy_keep_action_and_repeat_use_limits():
+    command = resolve_base_power(mind_payload('command-charm', 'lesser'))
+    assert 'cannot use its other actions' in command['charm_effect']
+    command = resolve_base_power(mind_payload('command-charm', 'greater'))
+    assert 'one move or standard' in command['charm_effect']
+    assert 'free action' in command['charm_save'] and 'helplessness' in command['charm_scope']
+    paralyze = resolve_base_power(mind_payload('paralyze-charm', 'powerful'))
+    assert 'Paralyzed' in paralyze['charm_effect'] and 'full-round action' in paralyze['charm_save']
+    assert 'without provoking' in paralyze['charm_save']
+    for suffix in ('project-thoughts-charm-utility', 'read-mind-charm-utility'):
+        lesser = resolve_base_power(mind_payload(suffix, 'lesser'))
+        assert 'repeated' in lesser['lesser_charm_limit'] and 'item daily uses remain separate' in lesser['lesser_charm_limit']
+    project = resolve_base_power(mind_payload('project-thoughts-charm-utility', 'powerful'))
+    assert 'without a word limit' in project['charm_effect'] and 'never required' in project['charm_additional_benefits']
+    reading = resolve_base_power(mind_payload('read-mind-charm-utility', 'powerful'))
+    assert 'same response' in reading['charm_save'] and 'Bluff' in reading['charm_save']
+
+
+@pytest.mark.parametrize('suffix,tier', [('command-charm','lesser'), ('command-charm','greater'),
+    ('disrupt-focus-charm','lesser'), ('paralyze-charm','lesser'),
+    ('project-thoughts-charm-utility','lesser'), ('project-thoughts-charm-utility','greater'),
+    ('read-mind-charm-utility','lesser'), ('read-mind-charm-utility','powerful')])
+def test_bounded_or_single_action_mind_profiles_reject_generic_duration_adjustment(suffix, tier):
+    with pytest.raises(ValueError):
+        resolve_base_power(mind_payload(suffix, tier, duration_steps=1))
 
 
 @pytest.mark.parametrize('suffix', ['confusion-charm', 'courage-charm', 'sleep-charm'])

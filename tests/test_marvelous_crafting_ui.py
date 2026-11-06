@@ -30,6 +30,12 @@ def composer(tmp_path):
     ('utterances-charm', ('7 minutes', '7 minutes', '7 minutes'), '15% failure'),
     ('vision-charm', ('7 rounds', '7 rounds', '7 rounds'), 'surroundings'),
     ('wrack-charm-alienist-hb', ('7 rounds', '7 rounds', '7 rounds'), 'stunned for 1 round'),
+    ('command-charm', ('One action on the next turn of the target', 'Concentration, up to 7 rounds', 'Concentration, up to 7 rounds'), 'helplessness'),
+    ('disrupt-focus-charm', ('Concentration, up to 3 rounds', '7 rounds', '7 rounds'), '17 +'),
+    ('gestures-charm', ('7 minutes', '7 minutes', '7 minutes'), '15% failure'),
+    ('paralyze-charm', ('1 round', '7 rounds', '7 rounds'), 'full-round action'),
+    ('project-thoughts-charm-utility', ('One message of at most 25 words', 'Concentration', 'Concentration'), 'never required to answer'),
+    ('read-mind-charm-utility', ('One emotional-state reading; no sustained duration specified', 'Concentration', 'One specific piece of information'), 'same response'),
 ])
 def test_additional_mind_payloads_live_tier_price_and_locked_duration(composer, suffix, durations, detail):
     from copy import deepcopy
@@ -45,7 +51,8 @@ def test_additional_mind_payloads_live_tier_price_and_locked_duration(composer, 
         assert dialog.card_edits['duration'].text() == duration
         assert quote_marvelous_blueprint(dialog.blueprint())[0] == complexity
     assert detail in dialog.item_preview.toPlainText()
-    if suffix in ('candor-charm-utility', 'speechless-charm-utility-sm'):
+    if suffix in ('candor-charm-utility', 'speechless-charm-utility-sm', 'command-charm',
+                  'project-thoughts-charm-utility', 'read-mind-charm-utility'):
         assert not dialog.duration_steps.isEnabled()
     dialog.card_locks['duration'].setChecked(True)
     dialog.card_edits['duration'].setText('Locked duration')
