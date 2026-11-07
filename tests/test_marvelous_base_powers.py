@@ -95,6 +95,12 @@ def mind_payload(suffix, tier, cl=7, **changes):
     ('paralyze-charm', ('1 round', '7 rounds', '7 rounds')),
     ('project-thoughts-charm-utility', ('One message of at most 25 words', 'Concentration', 'Concentration')),
     ('read-mind-charm-utility', ('One emotional-state reading; no sustained duration specified', 'Concentration', 'One specific piece of information')),
+    ('amnesia-charm', ('Memory alteration; see restoration rules',) * 3),
+    ('inception-charm-utility', ('Memory alteration; see restoration rules',) * 3),
+    ('esteem-charm', ('One chosen check within 2 hours', 'One chosen check within 2 hours', 'One chosen check within 2 days')),
+    ('fascinate-charm-apoc', ('7 rounds', '7 rounds', '7 minutes')),
+    ('hostility-charm', ('On the next turn of the target', '7 rounds', '7 rounds')),
+    ('mind-spy-charm', ('7 hours', '7 days', '7 weeks')),
     ('confusion-charm', ('1 round', '7 minutes', '7 minutes')),
     ('courage-charm', ('1 minute', '7 minutes', '7 minutes')),
     ('fear-charm', ('7 rounds', '7 rounds', '7 rounds')),
@@ -223,6 +229,56 @@ def test_command_paralyze_and_telepathy_keep_action_and_repeat_use_limits():
 def test_bounded_or_single_action_mind_profiles_reject_generic_duration_adjustment(suffix, tier):
     with pytest.raises(ValueError):
         resolve_base_power(mind_payload(suffix, tier, duration_steps=1))
+
+
+@pytest.mark.parametrize('cl,bonus,window,penalty', [(1,1,1,2), (4,2,1,2), (5,2,2,3), (10,5,3,4), (20,10,5,6)])
+def test_esteem_and_fascinate_use_their_own_level_breakpoints(cl, bonus, window, penalty):
+    esteem = resolve_base_power(mind_payload('esteem-charm', 'lesser', cl=cl))
+    assert f'+{bonus} competence' in esteem['charm_effect'] and 'one chosen' in esteem['charm_effect']
+    assert esteem['duration'] == f'One chosen check within {window} hours'
+    assert 'DC 25' in esteem['charm_scope']
+    esteem = resolve_base_power(mind_payload('esteem-charm', 'greater', cl=cl))
+    assert f'+{cl} competence' in esteem['charm_effect'] and 'DC 15' in esteem['charm_scope']
+    assert 'per day' in esteem['charm_repeat_limit']
+    esteem = resolve_base_power(mind_payload('esteem-charm', 'powerful', cl=cl))
+    assert esteem['duration'] == f'One chosen check within {window} days' and 'per week' in esteem['charm_repeat_limit']
+    assert 'item daily uses' in esteem['charm_repeat_limit']
+    assert f'-{penalty} to Perception' in resolve_base_power(mind_payload('fascinate-charm-apoc', 'lesser', cl=cl))['charm_effect']
+
+
+def test_memory_windows_and_restoration_do_not_become_expiry_or_paid_permanency():
+    amnesia = resolve_base_power(mind_payload('amnesia-charm', 'greater', cl=10))
+    assert '10 minutes' in amnesia['charm_effect'] and 'not a timed expiry' in amnesia['memory_window']
+    amnesia = resolve_base_power(mind_payload('amnesia-charm', 'powerful', cl=10))
+    assert '10 days' in amnesia['charm_effect'] and 'Restore Senses' in amnesia['memory_restoration']
+    inception = resolve_base_power(mind_payload('inception-charm-utility', 'powerful'))
+    assert 'without deleting' in inception['charm_effect'] and 'Restore Senses' in inception['memory_restoration']
+    assert '+4' in inception['memory_resistance'] and '+2' in inception['memory_resistance']
+    assert 'no stated timed expiry' in inception['memory_window']
+    lesser = resolve_base_power(mind_payload('inception-charm-utility', 'lesser'))
+    assert 'does not compel belief' in lesser['charm_effect']
+
+
+def test_hostility_fascinate_and_spy_keep_alternatives_and_distinct_end_conditions():
+    hostility = resolve_base_power(mind_payload('hostility-charm', 'powerful'))
+    assert 'one package, not both' in hostility['rage_packages'] and '+4' in hostility['rage_packages']
+    assert 'Brutal retains ordinary rage bonuses' in hostility['rage_packages']
+    assert 'without fatigue' in hostility['charm_effect'] and 'if unwilling' in hostility['charm_save']
+    assert '1d8' in resolve_base_power(mind_payload('hostility-charm', 'lesser'))['charm_effect']
+    greater = resolve_base_power(mind_payload('fascinate-charm-apoc', 'greater'))
+    powerful = resolve_base_power(mind_payload('fascinate-charm-apoc', 'powerful'))
+    assert 'damage ends it immediately' in greater['charm_scope']
+    assert 'Damage permits a new save' in powerful['charm_scope'] and '-4' in powerful['charm_scope']
+    for tier, duration, budget in [('lesser','10 hours','10 rounds'), ('greater','10 days','10 minutes'), ('powerful','10 weeks','10 hours')]:
+        spy = resolve_base_power(mind_payload('mind-spy-charm', tier, cl=10))
+        assert spy['duration'] == duration and spy['sensory_use_budget'].startswith(budget)
+        assert 'consecutive rounds do not' in spy['charm_save'] and 'unaware' in spy['charm_save']
+
+
+@pytest.mark.parametrize('suffix', ['amnesia-charm', 'inception-charm-utility', 'esteem-charm'])
+def test_special_memory_and_one_check_windows_reject_generic_duration_steps(suffix):
+    with pytest.raises(ValueError):
+        resolve_base_power(mind_payload(suffix, 'greater', duration_steps=1))
 
 
 @pytest.mark.parametrize('suffix', ['confusion-charm', 'courage-charm', 'sleep-charm'])

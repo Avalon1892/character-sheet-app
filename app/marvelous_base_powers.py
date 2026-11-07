@@ -224,6 +224,12 @@ MIND_CHARM_DURATIONS = {
     'mind:charm-talent:paralyze-charm': ('fixed-round', 'round', 'round'),
     'mind:charm-talent:project-thoughts-charm-utility': ('single-message', 'concentration', 'concentration'),
     'mind:charm-talent:read-mind-charm-utility': ('emotional-reading', 'concentration', 'information-reading'),
+    'mind:charm-talent:amnesia-charm': ('memory-change', 'memory-change', 'memory-change'),
+    'mind:charm-talent:inception-charm-utility': ('memory-change', 'memory-change', 'memory-change'),
+    'mind:charm-talent:esteem-charm': ('esteem-hours', 'esteem-hours', 'esteem-days'),
+    'mind:charm-talent:fascinate-charm-apoc': ('round', 'round', 'minute'),
+    'mind:charm-talent:hostility-charm': ('next-turn-attack', 'round', 'round'),
+    'mind:charm-talent:mind-spy-charm': ('hour', 'day', 'week'),
     'mind:charm-talent:confusion-charm': ('fixed-round', 'minute', 'minute'),
     'mind:charm-talent:courage-charm': ('fixed-minute', 'minute', 'minute'),
     'mind:charm-talent:fear-charm': ('round', 'round', 'round'),
@@ -350,6 +356,50 @@ def mind_charm_details(key, tier, cl):
             result['charm_save'] = 'Will negates if unwilling; spell resistance applies.'
         if tier == 'lesser':
             result['lesser_charm_limit'] = 'Read Mind permits repeated emotional-state readings on a target in a day; item daily uses remain separate.'
+    elif key.endswith('amnesia-charm'):
+        result['charm_effect'] = {'lesser': 'Erase recollection of the last round, back to the start of the previous round of actions of the invoking user.',
+            'greater': f'Erase up to {cl} minutes of the immediate past, or memories of one person, location, item or event within that same time window.',
+            'powerful': f'Erase all or part of the memories from up to {cl} days ago.'}[tier]
+        result['memory_window'] = 'This is the period of remembered events affected, not a timed expiry or a paid item-permanency adjustment.'
+        result['memory_restoration'] = {'lesser': 'A reminder permits a new Will save. Break Enchantment, effects removing confusion, or any Inception tier specifically restoring the memory may also restore it.',
+            'greater': 'Break Enchantment or greater/powerful Inception specifically restoring the memory may restore it.',
+            'powerful': 'Ultimate rules: Life Break Enchantment with Restore Senses, miracle, wish, or powerful Inception specifically restoring the memory.'}[tier]
+    elif key.endswith('inception-charm-utility'):
+        result['charm_effect'] = {'lesser': 'Implant a rumor supposedly heard or read; an opposed magic skill or Bluff check against Sense Motive determines belief. Believing the source does not compel belief in its truth.',
+            'greater': 'Implant memories relating to personal experience or invention; contradictory new memories take precedence but do not delete the originals.',
+            'powerful': 'Create apparently authentic memories of personally witnessed events, without deleting or changing the original memories.'}[tier]
+        result['memory_restoration'] = {'lesser': 'Contradictory evidence permits a new Will save. Break Enchantment, confusion-removing effects, or any Amnesia tier may remove or expose the false information.',
+            'greater': 'Contradictory evidence permits a new Will save. Break Enchantment or greater/powerful Amnesia may remove or expose the false information.',
+            'powerful': 'Ultimate rules: Life Break Enchantment with Restore Senses, miracle, wish, or powerful Amnesia specifically exposing the false memory.'}[tier]
+        if tier == 'powerful':
+            result['memory_resistance'] = 'A contradictory memory grants +4 to the initial Will save and Sense Motive check. Uncharacteristic behavior adds +2, or +4 if against the nature of the subject.'
+        result['memory_window'] = 'Memory modification has no stated timed expiry here; do not substitute Suggestion duration or charge for item permanency.'
+    elif key.endswith('esteem-charm'):
+        bonus = max(1, cl // 2) if tier == 'lesser' else cl
+        result['charm_effect'] = f'+{bonus} competence to one chosen Intelligence-, Wisdom- or Charisma-based skill check within the stated window; not a bonus to every check.'
+        result['charm_scope'] = f'The target counts as enchanted; Sense Motive DC {25 if tier == "lesser" else 15} detects the influence.'
+        if tier != 'lesser':
+            result['charm_repeat_limit'] = ('Once per target per day.' if tier == 'greater' else 'Once per target per week.') + ' This is separate from the item daily uses.'
+    elif key.endswith('fascinate-charm-apoc'):
+        result['charm_effect'] = f'-{2 + cl // 5} to Perception.' if tier == 'lesser' else 'Fascinated.'
+        if tier == 'greater':
+            result['charm_scope'] = 'An obvious threat permits a new save instead of automatically ending fascination; damage ends it immediately.'
+        if tier == 'powerful':
+            result['charm_scope'] = 'Hostile actions or threats permit a new save at -4. Damage permits a new save instead of automatically ending fascination.'
+    elif key.endswith('hostility-charm'):
+        if tier == 'lesser':
+            result['charm_effect'] = 'On the next turn, move to and attack the nearest creature at least once. If none can be reached, deal 1d8 + the Strength modifier of the target as self-damage with what it holds; do not substitute crafter Strength or average the die.'
+        else:
+            result['charm_save'] = 'Will negates if unwilling; spell resistance applies.'
+            result['charm_effect'] = 'Rage: +2 morale to Strength and Constitution, +1 Will saves, -2 AC. No spells or Intelligence-, Wisdom- or Charisma-based skills/class features. Counts as barbarian rage, without fatigue afterward.'
+            if tier == 'powerful':
+                result['rage_packages'] = 'May add one package, not both: Heroic raises the morale Strength/Constitution bonuses to +4 and Will bonus to +2 and permits spells and mental skills/class features. Brutal retains ordinary rage bonuses but forces attacks on the nearest creature each round (friend or foe), or 1d8 + the Strength modifier of the target as self-damage if no attack is possible.'
+    elif key.endswith('mind-spy-charm'):
+        result['charm_effect'] = 'See and hear through the target while the link persists; sensory-use intervals need not be consecutive and may be linked to an event.'
+        unit = {'lesser': 'rounds', 'greater': 'minutes', 'powerful': 'hours'}[tier]
+        result['sensory_use_budget'] = f'{cl} {unit} total within the link lifetime; this is not continuous observation for that entire lifetime.'
+        result['charm_save'] = 'Will negates; each separate sensory use allows a new Will save, but consecutive rounds do not grant extra saves. A failed save leaves the target unaware. Spell resistance applies.'
+        result['charm_scope'] = 'Possession-blocking/suppressing abilities and enchantment-removing abilities can likewise block, suppress or remove this link. No observation clock is tracked by the designer.'
     elif key.endswith('confusion-charm'):
         result['charm_effect'] = 'The target is confused.'
         if tier == 'powerful': result['charm_penalties'] = '-2 caster level and -4 to Intelligence, Wisdom and Charisma for the charm duration.'
@@ -1266,6 +1316,11 @@ def resolve_base_power(plan):
                  'single-message': 'One message of at most 25 words',
                  'emotional-reading': 'One emotional-state reading; no sustained duration specified',
                  'information-reading': 'One specific piece of information',
+                 'memory-change': 'Memory alteration; see restoration rules',
+                 'esteem-hours': f'One chosen check within {1 + cl // 5} hours',
+                 'esteem-days': f'One chosen check within {1 + cl // 5} days',
+                 'next-turn-attack': 'On the next turn of the target',
+                 'week': f'{cl} weeks',
                  'concentration': 'Concentration', 'variable': 'As selected effect'}
     summary = {'power': power.name, 'range': distances[RANGES[range_index]], 'duration': durations[duration],
                'caster_level': cl, 'save_dc': 10 + cl // 2, 'magic_skill_bonus': cl}

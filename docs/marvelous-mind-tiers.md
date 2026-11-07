@@ -165,3 +165,35 @@ Sources:
 
 - https://spheresofpower.wikidot.com/mind (Ultimate charm descriptions)
 - https://spheresofpower.wikidot.com/magical-items (Mind versus Fate conversions)
+
+## Memory, influence and sensory-link profiles
+
+Amnesia, Inception, Esteem, Fascinate, Hostility and Mind Spy now have dedicated
+tier profiles. Memory alteration does not silently become an hour-per-level
+Suggestion effect or a paid permanency adjustment. Amnesia shows the affected
+memory window separately; Inception preserves original memories, belief checks,
+contradictory-evidence saves and resistance modifiers. Restoration text follows
+the Ultimate descriptions, including Restore Senses in the powerful-tier Life
+Break Enchantment paths, rather than substituting the older Core wording.
+
+Esteem calculates its single-check competence bonus and its 1 + CL/5 hour/day
+window, detection DC and per-target daily/weekly limits. It does not grant a
+bonus to every check or reduce the item's daily uses to the per-target limit.
+Fascinate distinguishes damage ending the greater charm from damage permitting
+a new save against the powerful charm. Hostility lists Heroic and Brutal as
+alternative optional packages, preserving ordinary rage restrictions, the
+Heroic exceptions, self-damage dice and the absence of post-rage fatigue.
+
+Mind Spy separates the hour/day/week-per-level link lifetime from its much
+shorter round/minute/hour-per-level sensory-use allowance. Separate uses allow
+new saves; consecutive rounds do not. The designer does not track observation
+time, erase memories, apply rage bonuses or mutate target records. Existing
+locked item fields and tier construction prices remain unchanged.
+
+Twenty-eight ordinary charm profiles are covered. Cerebral Strike still needs
+review of its tier-specific damage minimum/floor semantics, and Inspiration
+still needs its item-activation conversion resolved. Clouds, cognition,
+advanced/modifier interactions and the broader designer gaps remain open. No
+completion of the full goal, full-application test claim or deployment is made.
+
+Source: https://spheresofpower.wikidot.com/mind (Ultimate charm descriptions).

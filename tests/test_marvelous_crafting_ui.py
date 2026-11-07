@@ -36,6 +36,12 @@ def composer(tmp_path):
     ('paralyze-charm', ('1 round', '7 rounds', '7 rounds'), 'full-round action'),
     ('project-thoughts-charm-utility', ('One message of at most 25 words', 'Concentration', 'Concentration'), 'never required to answer'),
     ('read-mind-charm-utility', ('One emotional-state reading; no sustained duration specified', 'Concentration', 'One specific piece of information'), 'same response'),
+    ('amnesia-charm', ('Memory alteration; see restoration rules',) * 3, '7 days ago'),
+    ('inception-charm-utility', ('Memory alteration; see restoration rules',) * 3, 'Restore Senses'),
+    ('esteem-charm', ('One chosen check within 2 hours', 'One chosen check within 2 hours', 'One chosen check within 2 days'), 'per target per week'),
+    ('fascinate-charm-apoc', ('7 rounds', '7 rounds', '7 minutes'), 'Damage permits a new save'),
+    ('hostility-charm', ('On the next turn of the target', '7 rounds', '7 rounds'), 'one package, not both'),
+    ('mind-spy-charm', ('7 hours', '7 days', '7 weeks'), '7 hours total'),
 ])
 def test_additional_mind_payloads_live_tier_price_and_locked_duration(composer, suffix, durations, detail):
     from copy import deepcopy
@@ -52,7 +58,8 @@ def test_additional_mind_payloads_live_tier_price_and_locked_duration(composer, 
         assert quote_marvelous_blueprint(dialog.blueprint())[0] == complexity
     assert detail in dialog.item_preview.toPlainText()
     if suffix in ('candor-charm-utility', 'speechless-charm-utility-sm', 'command-charm',
-                  'project-thoughts-charm-utility', 'read-mind-charm-utility'):
+                  'project-thoughts-charm-utility', 'read-mind-charm-utility', 'amnesia-charm',
+                  'inception-charm-utility', 'esteem-charm', 'mind-spy-charm'):
         assert not dialog.duration_steps.isEnabled()
     dialog.card_locks['duration'].setChecked(True)
     dialog.card_edits['duration'].setText('Locked duration')
