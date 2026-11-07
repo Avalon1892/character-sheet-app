@@ -1024,7 +1024,8 @@ class MarvelousCraftingDialog(QDialog):
         draft = self.blueprint()
         contributions = draft['contributions']
         self.activation.setItemText(self.activation.findData('standard'),
-            'Immediate action (native word)' if native_item_activation(draft) == 'immediate' else 'Standard action')
+            ('Immediate action (native charm)' if draft['base_power'] == 'mind:suggestion' else 'Immediate action (native word)')
+            if native_item_activation(draft) == 'immediate' else 'Standard action')
         self.table.setColumnHidden(3, not any(row.get('alternative') for row in contributions))
         self.add_prerequisites.setEnabled(bool(missing_construction_prerequisites(contributions)
             or missing_construction_alternatives(contributions) or missing_required_construction_modes(contributions)))

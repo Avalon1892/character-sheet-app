@@ -197,3 +197,36 @@ advanced/modifier interactions and the broader designer gaps remain open. No
 completion of the full goal, full-application test claim or deployment is made.
 
 Source: https://spheresofpower.wikidot.com/mind (Ultimate charm descriptions).
+
+## Inspiration native trigger
+
+The published Inspiring Crest provides direct item evidence for Inspiration's
+immediate, after-roll/before-result trigger. Its CL 2, one-use, 1,600 gp price
+also matches the ordinary +1 alternate-charm construction conversion without a
+swift-action surcharge. This supports the specifically scoped Inspiration
+conversion; it is not treated as a blanket timing exception for all Mind talents.
+
+Explicit-tier, fixed reviewed Inspiration designs now retain that native timing.
+All three tiers project their competence bonus (+2, +2d4, or +2d4 plus half CL,
+minimum +1) as a single-roll effect. Dice are not averaged, and the duration is
+not a scalable per-level interval. Prices and the visible formula use the
+existing tier costs and explain the native timing. Manual display locks survive
+reopening. Legacy drafts and unreviewed coexisting modifiers do not opt into the
+new timing automatically.
+
+Mixed powers cannot borrow Inspiration's immediate timing to accelerate an
+ordinary standard-action effect for free. Explicit activation adjustments keep
+their existing costs, but receive a timing-review notice because a slower or
+otherwise changed activation does not automatically preserve the original
+trigger. Existing Fate native-word labels and behavior are preserved.
+
+Twenty-nine ordinary charms now have profiles. Cerebral Strike's powerful-tier
+minimum and ability-score-floor interpretation still needs rules verification;
+the other previously documented designer gaps remain open. No full-goal
+completion or deployment is included.
+
+Sources:
+
+- https://spheresofpower.wikidot.com/marvelous-items (Inspiring Crest)
+- https://spheresofpower.wikidot.com/mind (Inspiration tiers)
+- https://spheresofpower.wikidot.com/magical-items (construction adjustments)

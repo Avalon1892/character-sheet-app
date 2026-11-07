@@ -42,6 +42,7 @@ def composer(tmp_path):
     ('fascinate-charm-apoc', ('7 rounds', '7 rounds', '7 minutes'), 'Damage permits a new save'),
     ('hostility-charm', ('On the next turn of the target', '7 rounds', '7 rounds'), 'one package, not both'),
     ('mind-spy-charm', ('7 hours', '7 days', '7 weeks'), '7 hours total'),
+    ('inspiration-charm', ('One attack roll or skill check',) * 3, '+2d4+3 competence'),
 ])
 def test_additional_mind_payloads_live_tier_price_and_locked_duration(composer, suffix, durations, detail):
     from copy import deepcopy
@@ -59,13 +60,35 @@ def test_additional_mind_payloads_live_tier_price_and_locked_duration(composer, 
     assert detail in dialog.item_preview.toPlainText()
     if suffix in ('candor-charm-utility', 'speechless-charm-utility-sm', 'command-charm',
                   'project-thoughts-charm-utility', 'read-mind-charm-utility', 'amnesia-charm',
-                  'inception-charm-utility', 'esteem-charm', 'mind-spy-charm'):
+                  'inception-charm-utility', 'esteem-charm', 'mind-spy-charm', 'inspiration-charm'):
         assert not dialog.duration_steps.isEnabled()
     dialog.card_locks['duration'].setChecked(True)
     dialog.card_edits['duration'].setText('Locked duration')
     dialog.cl.setValue(10)
     dialog.load_plan(deepcopy(dialog.blueprint()))
     assert dialog.card_edits['duration'].text() == 'Locked duration'
+    assert repo._connection.total_changes == writes
+
+
+def test_inspiration_live_native_timing_formula_locks_and_reopen(composer):
+    from copy import deepcopy
+    dialog, repo, cid = composer
+    dialog.sphere.setCurrentText('Mind'); dialog.cl.setValue(2)
+    writes = repo._connection.total_changes
+    dialog.talent.setCurrentIndex(next(i for i in range(dialog.talent.count())
+        if dialog.talent.itemData(i)['key'] == 'mind:charm-talent:inspiration-charm'))
+    dialog.add_contribution()
+    assert dialog.activation.currentText() == 'Immediate action (native charm)'
+    assert dialog.card_edits['activation'].text() == 'Immediate'
+    assert dialog.quotation()[1].market_price_gp == 1600
+    assert 'native immediate charm' in dialog.cost_formula.text()
+    dialog.card_locks['activation'].setChecked(True)
+    dialog.card_edits['activation'].setText('Locked timing text')
+    saved = deepcopy(dialog.blueprint()); dialog.load_plan(saved)
+    assert dialog.card_edits['activation'].text() == 'Locked timing text'
+    assert dialog.activation.currentData() == 'standard' and dialog.quotation()[1].market_price_gp == 1600
+    legacy = deepcopy(saved); legacy.pop('mind_charm_tier'); dialog.load_plan(legacy)
+    assert dialog.activation.currentText() == 'Standard action'
     assert repo._connection.total_changes == writes
 
 

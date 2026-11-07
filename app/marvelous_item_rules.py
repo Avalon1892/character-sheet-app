@@ -1613,7 +1613,7 @@ def quote_marvelous_effects(plans, *, mode='multiple'):
     from app.marvelous_base_powers import effective_item_activation
     timings = {effective_item_activation(plan) for plan in plans}
     if mode == 'mixed' and 'immediate' in timings and len(timings) > 1:
-        raise ValueError('A mixed native immediate word cannot accelerate a differently timed power for free; use separate powers or matching explicit activation adjustments.')
+        raise ValueError('A mixed native immediate effect cannot accelerate a differently timed power for free; use separate powers or matching explicit activation adjustments.')
     levels = {plan['caster_level'] for plan in plans}
     if len(levels) != 1:
         raise ValueError('All item effects must have the same caster level.')
@@ -1655,7 +1655,8 @@ def marvelous_complexity_formula(plan, *, quotation=None):
              ('Simple boon', -simple_tradition_reduction(plan))]
     rendered = '1 base' + ''.join(f" {'+' if value > 0 else '−'} {abs(value)} {label}" for label, value in terms[1:] if value)
     from app.marvelous_base_powers import effective_item_activation
-    native = '; native immediate word, no activation surcharge' if effective_item_activation(plan) == 'immediate' else ''
+    kind = 'charm' if plan.get('base_power') == 'mind:suggestion' else 'word'
+    native = f'; native immediate {kind}, no activation surcharge' if effective_item_activation(plan) == 'immediate' else ''
     return f'max(1, {rendered}) = {complexity}' + native
 
 

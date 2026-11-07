@@ -230,6 +230,7 @@ MIND_CHARM_DURATIONS = {
     'mind:charm-talent:fascinate-charm-apoc': ('round', 'round', 'minute'),
     'mind:charm-talent:hostility-charm': ('next-turn-attack', 'round', 'round'),
     'mind:charm-talent:mind-spy-charm': ('hour', 'day', 'week'),
+    'mind:charm-talent:inspiration-charm': ('single-roll', 'single-roll', 'single-roll'),
     'mind:charm-talent:confusion-charm': ('fixed-round', 'minute', 'minute'),
     'mind:charm-talent:courage-charm': ('fixed-minute', 'minute', 'minute'),
     'mind:charm-talent:fear-charm': ('round', 'round', 'round'),
@@ -400,6 +401,11 @@ def mind_charm_details(key, tier, cl):
         result['sensory_use_budget'] = f'{cl} {unit} total within the link lifetime; this is not continuous observation for that entire lifetime.'
         result['charm_save'] = 'Will negates; each separate sensory use allows a new Will save, but consecutive rounds do not grant extra saves. A failed save leaves the target unaware. Spell resistance applies.'
         result['charm_scope'] = 'Possession-blocking/suppressing abilities and enchantment-removing abilities can likewise block, suppress or remove this link. No observation clock is tracked by the designer.'
+    elif key.endswith('inspiration-charm'):
+        bonus = '2' if tier == 'lesser' else '2d4' if tier == 'greater' else f'2d4+{max(1, cl // 2)}'
+        result['charm_effect'] = f'+{bonus} competence to one attack roll or skill check; dice remain rolled, not averaged.'
+        result['charm_save'] = 'Inspiration does not specify a saving throw; spell resistance applies.'
+        result['charm_scope'] = 'Invoke after the roll but before its result is revealed; may turn failure into success. Native immediate activation follows the published Inspiring Crest example.'
     elif key.endswith('confusion-charm'):
         result['charm_effect'] = 'The target is confused.'
         if tier == 'powerful': result['charm_penalties'] = '-2 caster level and -4 to Intelligence, Wisdom and Charisma for the charm duration.'
@@ -502,6 +508,12 @@ FATE_IMMEDIATE_WORDS = frozenset('fate:word-talent:' + suffix for suffix in (
 
 def native_item_activation(plan):
     """Published native timing; stored standard means no construction adjustment."""
+    # The published Inspiring Crest preserves Inspiration's immediate trigger.
+    # Do not extend that exception to legacy drafts or unreviewed modifiers.
+    if (plan.get('base_power') == 'mind:suggestion'
+            and (reviewed := reviewed_mind_charm(plan))
+            and reviewed[0] == 'mind:charm-talent:inspiration-charm'):
+        return 'immediate'
     rows = [row for row in plan.get('contributions', [])
             if row.get('catalog_key', '').startswith('fate:word-talent:')]
     if (plan.get('base_power') == 'fate:word' and len(rows) == 1
@@ -1321,6 +1333,7 @@ def resolve_base_power(plan):
                  'esteem-days': f'One chosen check within {1 + cl // 5} days',
                  'next-turn-attack': 'On the next turn of the target',
                  'week': f'{cl} weeks',
+                 'single-roll': 'One attack roll or skill check',
                  'concentration': 'Concentration', 'variable': 'As selected effect'}
     summary = {'power': power.name, 'range': distances[RANGES[range_index]], 'duration': durations[duration],
                'caster_level': cl, 'save_dc': 10 + cl // 2, 'magic_skill_bonus': cl}
@@ -1339,6 +1352,8 @@ def resolve_base_power(plan):
         if charm:
             if reviewed := reviewed_mind_charm(plan):
                 summary.update(mind_charm_details(*reviewed, cl))
+                if reviewed[0] == 'mind:charm-talent:inspiration-charm' and plan.get('activation', 'standard') != 'standard':
+                    summary['charm_timing_review'] = 'Needs rules verification: changed activation does not automatically preserve the after-roll, before-result trigger.'
             else:
                 summary['charm_duration_review'] = 'Use the selected tier in the catalog description below. Its exact duration and special timing require review; Suggestion duration is not substituted.'
         else:

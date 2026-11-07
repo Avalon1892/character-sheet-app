@@ -101,6 +101,7 @@ def mind_payload(suffix, tier, cl=7, **changes):
     ('fascinate-charm-apoc', ('7 rounds', '7 rounds', '7 minutes')),
     ('hostility-charm', ('On the next turn of the target', '7 rounds', '7 rounds')),
     ('mind-spy-charm', ('7 hours', '7 days', '7 weeks')),
+    ('inspiration-charm', ('One attack roll or skill check',) * 3),
     ('confusion-charm', ('1 round', '7 minutes', '7 minutes')),
     ('courage-charm', ('1 minute', '7 minutes', '7 minutes')),
     ('fear-charm', ('7 rounds', '7 rounds', '7 rounds')),
@@ -279,6 +280,40 @@ def test_hostility_fascinate_and_spy_keep_alternatives_and_distinct_end_conditio
 def test_special_memory_and_one_check_windows_reject_generic_duration_steps(suffix):
     with pytest.raises(ValueError):
         resolve_base_power(mind_payload(suffix, 'greater', duration_steps=1))
+
+
+@pytest.mark.parametrize('tier,bonus,complexity', [('lesser','+2 competence',2), ('greater','+2d4 competence',3), ('powerful','+2d4+5 competence',5)])
+def test_inspiration_preserves_native_trigger_dice_and_tier_price(tier, bonus, complexity):
+    from app.marvelous_base_powers import native_item_activation, effective_item_activation
+    from app.marvelous_item_rules import quote_marvelous_blueprint, marvelous_complexity_formula
+    draft = dict(mind_payload('inspiration-charm', tier, cl=10), schema_version=1, activation='standard', uses=1, unique_changes=0)
+    result = resolve_base_power(draft)
+    assert bonus in result['charm_effect'] and 'before its result' in result['charm_scope']
+    assert native_item_activation(draft) == effective_item_activation(draft) == 'immediate'
+    assert quote_marvelous_blueprint(draft)[0] == complexity
+    assert quote_marvelous_blueprint(draft)[1].market_price_gp == 4000 * complexity
+    assert 'native immediate charm, no activation surcharge' in marvelous_complexity_formula(draft)
+    draft['activation'] = 'swift'
+    assert effective_item_activation(draft) == 'swift'
+    assert quote_marvelous_blueprint(draft)[0] == complexity + 5
+    assert 'Needs rules verification' in resolve_base_power(draft)['charm_timing_review']
+    with pytest.raises(ValueError):
+        resolve_base_power(dict(draft, duration_steps=1))
+
+
+def test_inspiration_native_timing_is_scoped_and_matches_published_crest_price():
+    from app.marvelous_base_powers import native_item_activation
+    from app.marvelous_item_rules import quote_marvelous_blueprint
+    draft = dict(mind_payload('inspiration-charm', 'lesser', cl=2), schema_version=1, activation='standard', uses=1, unique_changes=0)
+    assert quote_marvelous_blueprint(draft)[1].market_price_gp == 1600
+    legacy = dict(draft); legacy.pop('mind_charm_tier')
+    assert native_item_activation(legacy) == 'standard'
+    assert native_item_activation(dict(draft, base_power='life:cure')) == 'standard'
+    draft['contributions'].append(dict(catalog_key='mind:talent:subtlety', complexity=1, additional_spell_points=0))
+    assert native_item_activation(draft) == 'standard'
+    assert 'charm_duration_review' in resolve_base_power(draft)
+    assert 'charm_effect' not in resolve_base_power(draft)
+    assert '2d4+1' in resolve_base_power(mind_payload('inspiration-charm', 'powerful', cl=1))['charm_effect']
 
 
 @pytest.mark.parametrize('suffix', ['confusion-charm', 'courage-charm', 'sleep-charm'])

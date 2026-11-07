@@ -46,3 +46,11 @@ def test_mixed_native_word_cannot_accelerate_a_differently_timed_power_for_free(
         quote_marvelous_effects([word, cure], mode='mixed')
     word['activation'] = cure['activation'] = 'swift'
     assert quote_marvelous_effects([word, cure], mode='mixed')['market_price_gp'] == 80000
+
+
+def test_inspiration_cannot_give_a_mixed_standard_power_free_immediate_activation():
+    charm = dict(effect(), sphere='Mind', base_power='mind:suggestion', mind_charm_tier='lesser',
+        contributions=[dict(catalog_key='mind:charm-talent:inspiration-charm', complexity=1, additional_spell_points=0)])
+    assert quote_marvelous_effects([charm, effect()], mode='multiple')['market_price_gp'] == 14000
+    with pytest.raises(ValueError, match='cannot accelerate'):
+        quote_marvelous_effects([charm, effect()], mode='mixed')
